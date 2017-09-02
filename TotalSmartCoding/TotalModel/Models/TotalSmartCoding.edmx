@@ -155,22 +155,6 @@
           <Property Name="Address" Type="nvarchar" MaxLength="100" />
           <Property Name="Remarks" Type="nvarchar" MaxLength="100" />
         </EntityType>
-        <EntityType Name="FillingCartons">
-          <Key>
-            <PropertyRef Name="FillingCartonID" />
-          </Key>
-          <Property Name="FillingCartonID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="EntryDate" Type="datetime" Nullable="false" />
-          <Property Name="FillingLineID" Type="int" Nullable="false" />
-          <Property Name="BatchID" Type="int" Nullable="false" />
-          <Property Name="CommodityID" Type="int" Nullable="false" />
-          <Property Name="FillingPalletID" Type="int" />
-          <Property Name="PCID" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="Code" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="TotalPacks" Type="int" Nullable="false" />
-          <Property Name="Volume" Type="decimal" Precision="18" Scale="3" Nullable="false" />
-          <Property Name="EntryStatusID" Type="int" Nullable="false" />
-        </EntityType>
         <EntityType Name="FillingLines">
           <Key>
             <PropertyRef Name="FillingLineID" />
@@ -189,38 +173,6 @@
           <Property Name="DatabaseName" Type="nvarchar" MaxLength="100" />
           <Property Name="Remarks" Type="nvarchar" MaxLength="100" />
           <Property Name="InActive" Type="bit" Nullable="false" />
-        </EntityType>
-        <EntityType Name="FillingPacks">
-          <Key>
-            <PropertyRef Name="FillingPackID" />
-          </Key>
-          <Property Name="FillingPackID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="EntryDate" Type="datetime" Nullable="false" />
-          <Property Name="FillingLineID" Type="int" Nullable="false" />
-          <Property Name="BatchID" Type="int" Nullable="false" />
-          <Property Name="CommodityID" Type="int" Nullable="false" />
-          <Property Name="FillingCartonID" Type="int" />
-          <Property Name="QueueID" Type="int" Nullable="false" />
-          <Property Name="PCID" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="Code" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Volume" Type="decimal" Precision="18" Scale="3" Nullable="false" />
-          <Property Name="EntryStatusID" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="FillingPallets">
-          <Key>
-            <PropertyRef Name="FillingPalletID" />
-          </Key>
-          <Property Name="FillingPalletID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="EntryDate" Type="datetime" Nullable="false" />
-          <Property Name="FillingLineID" Type="int" Nullable="false" />
-          <Property Name="BatchID" Type="int" Nullable="false" />
-          <Property Name="CommodityID" Type="int" Nullable="false" />
-          <Property Name="PCID" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="Code" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="TotalPacks" Type="int" Nullable="false" />
-          <Property Name="TotalCartons" Type="int" Nullable="false" />
-          <Property Name="Volume" Type="decimal" Precision="18" Scale="3" Nullable="false" />
-          <Property Name="EntryStatusID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="GoodsReceiptDetails">
           <Key>
@@ -936,42 +888,6 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Parameter Name="CartonIDs" Type="varchar" Mode="In" />
           <Parameter Name="EntryStatusID" Type="int" Mode="In" />
         </Function>
-        <Function Name="FillingCartonEditable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="EntityID" Type="int" Mode="In" />
-        </Function>
-        <Function Name="FillingCartonSaveRelative" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="EntityID" Type="int" Mode="In" />
-          <Parameter Name="SaveRelativeOption" Type="int" Mode="In" />
-          <Parameter Name="FillingPackIDs" Type="varchar" Mode="In" />
-          <Parameter Name="DeleteFillingPack" Type="bit" Mode="In" />
-        </Function>
-        <Function Name="FillingCartonUpdateEntryStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="FillingCartonIDs" Type="varchar" Mode="In" />
-          <Parameter Name="EntryStatusID" Type="int" Mode="In" />
-        </Function>
-        <Function Name="FillingPackEditable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="EntityID" Type="int" Mode="In" />
-        </Function>
-        <Function Name="FillingPackUpdateEntryStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="FillingPackIDs" Type="varchar" Mode="In" />
-          <Parameter Name="EntryStatusID" Type="int" Mode="In" />
-        </Function>
-        <Function Name="FillingPackUpdateQueueID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="FillingPackIDs" Type="varchar" Mode="In" />
-          <Parameter Name="QueueID" Type="int" Mode="In" />
-        </Function>
-        <Function Name="FillingPalletEditable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="EntityID" Type="int" Mode="In" />
-        </Function>
-        <Function Name="FillingPalletSaveRelative" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="EntityID" Type="int" Mode="In" />
-          <Parameter Name="SaveRelativeOption" Type="int" Mode="In" />
-          <Parameter Name="FillingCartonIDs" Type="varchar" Mode="In" />
-        </Function>
-        <Function Name="FillingPalletUpdateEntryStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="FillingPalletIDs" Type="varchar" Mode="In" />
-          <Parameter Name="EntryStatusID" Type="int" Mode="In" />
-        </Function>
         <Function Name="GetAccessLevel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserID" Type="int" Mode="In" />
           <Parameter Name="NMVNTaskID" Type="int" Mode="In" />
@@ -1012,25 +928,11 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Parameter Name="FromDate" Type="datetime" Mode="In" />
           <Parameter Name="ToDate" Type="datetime" Mode="In" />
         </Function>
-        <Function Name="GetFillingCartons" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="FillingLineID" Type="int" Mode="In" />
-          <Parameter Name="EntryStatusIDs" Type="varchar" Mode="In" />
-          <Parameter Name="FillingPalletID" Type="int" Mode="In" />
-        </Function>
         <Function Name="GetFillingLineBases" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetFillingLineIndexes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="AspUserID" Type="nvarchar" Mode="In" />
           <Parameter Name="FromDate" Type="datetime" Mode="In" />
           <Parameter Name="ToDate" Type="datetime" Mode="In" />
-        </Function>
-        <Function Name="GetFillingPacks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="FillingLineID" Type="int" Mode="In" />
-          <Parameter Name="EntryStatusIDs" Type="varchar" Mode="In" />
-          <Parameter Name="FillingCartonID" Type="int" Mode="In" />
-        </Function>
-        <Function Name="GetFillingPallets" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="FillingLineID" Type="int" Mode="In" />
-          <Parameter Name="EntryStatusIDs" Type="varchar" Mode="In" />
         </Function>
         <Function Name="GetGoodsReceiptIndexes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="AspUserID" Type="nvarchar" Mode="In" />
@@ -1168,10 +1070,7 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="dtproperties" EntityType="Self.dtproperties" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="FillingCartons" EntityType="Self.FillingCartons" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FillingLines" EntityType="Self.FillingLines" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="FillingPacks" EntityType="Self.FillingPacks" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="FillingPallets" EntityType="Self.FillingPallets" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GoodsReceiptDetails" EntityType="Self.GoodsReceiptDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GoodsReceipts" EntityType="Self.GoodsReceipts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GoodsReceiptTypes" EntityType="Self.GoodsReceiptTypes" Schema="dbo" store:Type="Tables" />
@@ -1422,61 +1321,11 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
             <Parameter Name="FillingLineID" Mode="In" Type="Int32" />
             <Parameter Name="ActiveOption" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="FillingCartonEditable" ReturnType="Collection(String)">
-          <Parameter Name="EntityID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="FillingCartonSaveRelative">
-            <Parameter Name="EntityID" Mode="In" Type="Int32" />
-            <Parameter Name="SaveRelativeOption" Mode="In" Type="Int32" />
-            <Parameter Name="FillingPackIDs" Mode="In" Type="String" />
-            <Parameter Name="DeleteFillingPack" Mode="In" Type="Boolean" />
-          </FunctionImport>
-          <FunctionImport Name="FillingPackEditable" ReturnType="Collection(String)">
-          <Parameter Name="EntityID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="FillingPackUpdateEntryStatus">
-            <Parameter Name="FillingPackIDs" Mode="In" Type="String" />
-            <Parameter Name="EntryStatusID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="FillingCartonUpdateEntryStatus">
-            <Parameter Name="FillingCartonIDs" Mode="In" Type="String" />
-            <Parameter Name="EntryStatusID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="FillingPalletEditable" ReturnType="Collection(String)">
-          <Parameter Name="EntityID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="FillingPalletSaveRelative">
-            <Parameter Name="EntityID" Mode="In" Type="Int32" />
-            <Parameter Name="SaveRelativeOption" Mode="In" Type="Int32" />
-            <Parameter Name="FillingCartonIDs" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="FillingPalletUpdateEntryStatus">
-            <Parameter Name="FillingPalletIDs" Mode="In" Type="String" />
-            <Parameter Name="EntryStatusID" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="BatchCommonUpdate">
             <Parameter Name="BatchID" Mode="In" Type="Int32" />
             <Parameter Name="NextPackNo" Mode="In" Type="String" />
             <Parameter Name="NextCartonNo" Mode="In" Type="String" />
             <Parameter Name="NextPalletNo" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="FillingPackUpdateQueueID">
-            <Parameter Name="FillingPackIDs" Mode="In" Type="String" />
-            <Parameter Name="QueueID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="GetFillingPacks" EntitySet="FillingPacks" ReturnType="Collection(TotalSmartCodingModel.FillingPack)">
-            <Parameter Name="FillingLineID" Mode="In" Type="Int32" />
-            <Parameter Name="EntryStatusIDs" Mode="In" Type="String" />
-            <Parameter Name="FillingCartonID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="GetFillingCartons" EntitySet="FillingCartons" ReturnType="Collection(TotalSmartCodingModel.FillingCarton)">
-            <Parameter Name="FillingLineID" Mode="In" Type="Int32" />
-            <Parameter Name="EntryStatusIDs" Mode="In" Type="String" />
-            <Parameter Name="FillingPalletID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="GetFillingPallets" EntitySet="FillingPallets" ReturnType="Collection(TotalSmartCodingModel.FillingPallet)">
-            <Parameter Name="FillingLineID" Mode="In" Type="Int32" />
-            <Parameter Name="EntryStatusIDs" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="BatchPostSaveValidate" ReturnType="Collection(String)">
           <Parameter Name="EntityID" Mode="In" Type="Int32" />
@@ -1559,7 +1408,6 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <EntitySet Name="dtproperties" EntityType="TotalSmartCodingModel.dtproperty" />
           <EntitySet Name="Employees" EntityType="TotalSmartCodingModel.Employee" />
           <EntitySet Name="FillingLines" EntityType="TotalSmartCodingModel.FillingLine" />
-          <EntitySet Name="FillingPacks" EntityType="TotalSmartCodingModel.FillingPack" />
           <EntitySet Name="GoodsReceiptDetails" EntityType="TotalSmartCodingModel.GoodsReceiptDetail" />
           <EntitySet Name="GoodsReceipts" EntityType="TotalSmartCodingModel.GoodsReceipt" />
           <EntitySet Name="GoodsReceiptTypes" EntityType="TotalSmartCodingModel.GoodsReceiptType" />
@@ -1673,8 +1521,6 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
             <End Role="Commodity" EntitySet="Commodities" />
             <End Role="PickupDetail" EntitySet="PickupDetails" />
           </AssociationSet>
-          <EntitySet Name="FillingCartons" EntityType="TotalSmartCodingModel.FillingCarton" />
-          <EntitySet Name="FillingPallets" EntityType="TotalSmartCodingModel.FillingPallet" />
           <EntitySet Name="Cartons" EntityType="TotalSmartCodingModel.Carton" />
           <EntitySet Name="Packs" EntityType="TotalSmartCodingModel.Pack" />
           <EntitySet Name="Pallets" EntityType="TotalSmartCodingModel.Pallet" />
@@ -1731,7 +1577,7 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
             <End Role="PickupDetail" EntitySet="PickupDetails" />
           </AssociationSet>
           <FunctionImport Name="CartonEditable" ReturnType="Collection(String)">
-            <Parameter Name="EntityID" Mode="In" Type="Int32" />
+          <Parameter Name="EntityID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="CartonSaveRelative">
             <Parameter Name="EntityID" Mode="In" Type="Int32" />
@@ -1758,7 +1604,7 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
             <Parameter Name="EntryStatusIDs" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="PackEditable" ReturnType="Collection(String)">
-            <Parameter Name="EntityID" Mode="In" Type="Int32" />
+          <Parameter Name="EntityID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="PackUpdateEntryStatus">
             <Parameter Name="PackIDs" Mode="In" Type="String" />
@@ -1769,7 +1615,7 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
             <Parameter Name="QueueID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="PalletEditable" ReturnType="Collection(String)">
-            <Parameter Name="EntityID" Mode="In" Type="Int32" />
+          <Parameter Name="EntityID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="PalletSaveRelative">
             <Parameter Name="EntityID" Mode="In" Type="Int32" />
@@ -2112,22 +1958,6 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <NavigationProperty Name="Pickups" Relationship="TotalSmartCodingModel.FK_Pickups_FillingLines" FromRole="FillingLine" ToRole="Pickup" />
           <NavigationProperty Name="Cartons" Relationship="TotalSmartCodingModel.FK_Cartons_FillingLines" FromRole="FillingLine" ToRole="Carton" />
           <NavigationProperty Name="Packs" Relationship="TotalSmartCodingModel.FK_Packs_FillingLines" FromRole="FillingLine" ToRole="Pack" />
-        </EntityType>
-        <EntityType Name="FillingPack">
-          <Key>
-            <PropertyRef Name="FillingPackID" />
-          </Key>
-          <Property Name="FillingPackID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="FillingLineID" Type="Int32" Nullable="false" />
-          <Property Name="BatchID" Type="Int32" Nullable="false" />
-          <Property Name="CommodityID" Type="Int32" Nullable="false" />
-          <Property Name="FillingCartonID" Type="Int32" />
-          <Property Name="QueueID" Type="Int32" Nullable="false" />
-          <Property Name="PCID" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="Code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="EntryStatusID" Type="Int32" Nullable="false" />
-          <Property Name="Volume" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
         </EntityType>
         <EntityType Name="GoodsReceiptDetail">
           <Key>
@@ -2688,38 +2518,6 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="FillingCarton">
-          <Key>
-            <PropertyRef Name="FillingCartonID" />
-          </Key>
-          <Property Name="FillingCartonID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="FillingLineID" Type="Int32" Nullable="false" />
-          <Property Name="BatchID" Type="Int32" Nullable="false" />
-          <Property Name="CommodityID" Type="Int32" Nullable="false" />
-          <Property Name="FillingPalletID" Type="Int32" />
-          <Property Name="PCID" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="Code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TotalPacks" Type="Int32" Nullable="false" />
-          <Property Name="Volume" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
-          <Property Name="EntryStatusID" Type="Int32" Nullable="false" />
-        </EntityType>
-        <EntityType Name="FillingPallet">
-          <Key>
-            <PropertyRef Name="FillingPalletID" />
-          </Key>
-          <Property Name="FillingPalletID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="FillingLineID" Type="Int32" Nullable="false" />
-          <Property Name="BatchID" Type="Int32" Nullable="false" />
-          <Property Name="CommodityID" Type="Int32" Nullable="false" />
-          <Property Name="PCID" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="Code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TotalPacks" Type="Int32" Nullable="false" />
-          <Property Name="TotalCartons" Type="Int32" Nullable="false" />
-          <Property Name="Volume" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
-          <Property Name="EntryStatusID" Type="Int32" Nullable="false" />
-        </EntityType>
         <EntityType Name="Carton">
           <Key>
             <PropertyRef Name="CartonID" />
@@ -3080,22 +2878,7 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="FillingCartonEditable" FunctionName="TotalSmartCodingModel.Store.FillingCartonEditable" />
-          <FunctionImportMapping FunctionImportName="FillingCartonSaveRelative" FunctionName="TotalSmartCodingModel.Store.FillingCartonSaveRelative" />
-          <FunctionImportMapping FunctionImportName="FillingPackEditable" FunctionName="TotalSmartCodingModel.Store.FillingPackEditable" />
-          <FunctionImportMapping FunctionImportName="FillingPackUpdateEntryStatus" FunctionName="TotalSmartCodingModel.Store.FillingPackUpdateEntryStatus" />
-          <FunctionImportMapping FunctionImportName="FillingCartonUpdateEntryStatus" FunctionName="TotalSmartCodingModel.Store.FillingCartonUpdateEntryStatus" />
-          <FunctionImportMapping FunctionImportName="FillingPalletEditable" FunctionName="TotalSmartCodingModel.Store.FillingPalletEditable" />
-          <FunctionImportMapping FunctionImportName="FillingPalletSaveRelative" FunctionName="TotalSmartCodingModel.Store.FillingPalletSaveRelative" />
-          <FunctionImportMapping FunctionImportName="FillingPalletUpdateEntryStatus" FunctionName="TotalSmartCodingModel.Store.FillingPalletUpdateEntryStatus" />
           <FunctionImportMapping FunctionImportName="BatchCommonUpdate" FunctionName="TotalSmartCodingModel.Store.BatchCommonUpdate" />
-          <FunctionImportMapping FunctionImportName="FillingPackUpdateQueueID" FunctionName="TotalSmartCodingModel.Store.FillingPackUpdateQueueID" />
-          <FunctionImportMapping FunctionImportName="GetFillingPacks" FunctionName="TotalSmartCodingModel.Store.GetFillingPacks">
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetFillingCartons" FunctionName="TotalSmartCodingModel.Store.GetFillingCartons">
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetFillingPallets" FunctionName="TotalSmartCodingModel.Store.GetFillingPallets">
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="BatchPostSaveValidate" FunctionName="TotalSmartCodingModel.Store.BatchPostSaveValidate" />
           <FunctionImportMapping FunctionImportName="GetCommodityIndexes" FunctionName="TotalSmartCodingModel.Store.GetCommodityIndexes">
             <ResultMapping>
@@ -3385,23 +3168,6 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="FillingPacks">
-            <EntityTypeMapping TypeName="TotalSmartCodingModel.FillingPack">
-              <MappingFragment StoreEntitySet="FillingPacks">
-                <ScalarProperty Name="Volume" ColumnName="Volume" />
-                <ScalarProperty Name="EntryStatusID" ColumnName="EntryStatusID" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="PCID" ColumnName="PCID" />
-                <ScalarProperty Name="QueueID" ColumnName="QueueID" />
-                <ScalarProperty Name="FillingCartonID" ColumnName="FillingCartonID" />
-                <ScalarProperty Name="CommodityID" ColumnName="CommodityID" />
-                <ScalarProperty Name="BatchID" ColumnName="BatchID" />
-                <ScalarProperty Name="FillingLineID" ColumnName="FillingLineID" />
-                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
-                <ScalarProperty Name="FillingPackID" ColumnName="FillingPackID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="GoodsReceiptDetails">
             <EntityTypeMapping TypeName="TotalSmartCodingModel.GoodsReceiptDetail">
               <MappingFragment StoreEntitySet="GoodsReceiptDetails">
@@ -3622,40 +3388,6 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
                 <ScalarProperty Name="OfficialCode" ColumnName="OfficialCode" />
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="CommodityID" ColumnName="CommodityID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="FillingCartons">
-            <EntityTypeMapping TypeName="TotalSmartCodingModel.FillingCarton">
-              <MappingFragment StoreEntitySet="FillingCartons">
-                <ScalarProperty Name="EntryStatusID" ColumnName="EntryStatusID" />
-                <ScalarProperty Name="Volume" ColumnName="Volume" />
-                <ScalarProperty Name="TotalPacks" ColumnName="TotalPacks" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="PCID" ColumnName="PCID" />
-                <ScalarProperty Name="FillingPalletID" ColumnName="FillingPalletID" />
-                <ScalarProperty Name="CommodityID" ColumnName="CommodityID" />
-                <ScalarProperty Name="BatchID" ColumnName="BatchID" />
-                <ScalarProperty Name="FillingLineID" ColumnName="FillingLineID" />
-                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
-                <ScalarProperty Name="FillingCartonID" ColumnName="FillingCartonID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="FillingPallets">
-            <EntityTypeMapping TypeName="TotalSmartCodingModel.FillingPallet">
-              <MappingFragment StoreEntitySet="FillingPallets">
-                <ScalarProperty Name="EntryStatusID" ColumnName="EntryStatusID" />
-                <ScalarProperty Name="Volume" ColumnName="Volume" />
-                <ScalarProperty Name="TotalCartons" ColumnName="TotalCartons" />
-                <ScalarProperty Name="TotalPacks" ColumnName="TotalPacks" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="PCID" ColumnName="PCID" />
-                <ScalarProperty Name="CommodityID" ColumnName="CommodityID" />
-                <ScalarProperty Name="BatchID" ColumnName="BatchID" />
-                <ScalarProperty Name="FillingLineID" ColumnName="FillingLineID" />
-                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
-                <ScalarProperty Name="FillingPalletID" ColumnName="FillingPalletID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

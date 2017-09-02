@@ -12,7 +12,6 @@
         <EntityTypeShape EntityType="TotalSmartCodingModel.dtproperty" Width="1.5" PointX="4.75" PointY="0.75" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.Employee" Width="1.5" PointX="8.25" PointY="2.25" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.FillingLine" Width="1.5" PointX="0.75" PointY="5.125" />
-        <EntityTypeShape EntityType="TotalSmartCodingModel.FillingPack" Width="1.5" PointX="12.75" PointY="0.75" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.GoodsReceiptDetail" Width="1.5" PointX="9.75" PointY="15.375" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.GoodsReceipt" Width="1.5" PointX="7.5" PointY="22.375" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.GoodsReceiptType" Width="1.5" PointX="5.25" PointY="24.5" />
@@ -51,8 +50,6 @@
         <AssociationConnector Association="TotalSmartCodingModel.FK_Batches_Commodities" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsReceiptDetails_Commodities" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_PickupDetails_Commodities" />
-        <EntityTypeShape EntityType="TotalSmartCodingModel.FillingCarton" Width="1.5" PointX="15.375" PointY="0.75" />
-        <EntityTypeShape EntityType="TotalSmartCodingModel.FillingPallet" Width="1.5" PointX="15.375" PointY="4.75" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.Carton" Width="1.5" PointX="5.25" PointY="13.375" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.Pack" Width="1.5" PointX="7.5" PointY="13.25" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.Pallet" Width="1.5" PointX="3" PointY="21.625" />

@@ -108,9 +108,6 @@
     <Compile Include="Models\EmployeeIndex.cs">
       <DependentUpon>TotalSmartCoding.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\FillingCarton.cs">
-      <DependentUpon>TotalSmartCoding.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\FillingLine.cs">
       <DependentUpon>TotalSmartCoding.tt</DependentUpon>
     </Compile>
@@ -118,12 +115,6 @@
       <DependentUpon>TotalSmartCoding.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\FillingLineIndex.cs">
-      <DependentUpon>TotalSmartCoding.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\FillingPack.cs">
-      <DependentUpon>TotalSmartCoding.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\FillingPallet.cs">
       <DependentUpon>TotalSmartCoding.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GoodsReceipt.cs">
