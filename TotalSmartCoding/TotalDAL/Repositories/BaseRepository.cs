@@ -39,18 +39,18 @@ namespace TotalDAL.Repositories
 
             //return;
 
-            Helpers.SqlProgrammability.Productions.Pack fillingPack = new Helpers.SqlProgrammability.Productions.Pack(totalSmartCodingEntities);
-            fillingPack.RestoreProcedure();
+            Helpers.SqlProgrammability.Productions.Pack pack = new Helpers.SqlProgrammability.Productions.Pack(totalSmartCodingEntities);
+            pack.RestoreProcedure();
 
             ////return;
 
-            Helpers.SqlProgrammability.Productions.Carton fillingCarton = new Helpers.SqlProgrammability.Productions.Carton(totalSmartCodingEntities);
-            fillingCarton.RestoreProcedure();
+            Helpers.SqlProgrammability.Productions.Carton carton = new Helpers.SqlProgrammability.Productions.Carton(totalSmartCodingEntities);
+            carton.RestoreProcedure();
 
             //return;
 
-            Helpers.SqlProgrammability.Productions.Pallet fillingPallet = new Helpers.SqlProgrammability.Productions.Pallet(totalSmartCodingEntities);
-            fillingPallet.RestoreProcedure();
+            Helpers.SqlProgrammability.Productions.Pallet pallet = new Helpers.SqlProgrammability.Productions.Pallet(totalSmartCodingEntities);
+            pallet.RestoreProcedure();
 
 
             //return;

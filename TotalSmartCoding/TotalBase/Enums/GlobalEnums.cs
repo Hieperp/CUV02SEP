@@ -60,11 +60,8 @@
 
 
             Pack = 28001,
-            FillingPack = 28002,
             Carton = 28003,
-            FillingCarton = 28004,
             Pallet = 28005,
-            FillingPallet = 28006,
 
 
             Batch = 28106,

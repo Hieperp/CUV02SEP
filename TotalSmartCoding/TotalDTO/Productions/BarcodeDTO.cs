@@ -32,7 +32,7 @@ namespace TotalDTO.Productions
 
         public int EntryStatusID { get; set; }
 
-        public int QueueID { get; set; } //JUST FOR FillingPackDTO ONLY
+        public int QueueID { get; set; } //JUST FOR PackDTO ONLY
 
         public override int PreparedPersonID { get { return 1; } }
     }

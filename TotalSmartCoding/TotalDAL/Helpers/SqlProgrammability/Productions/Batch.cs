@@ -59,9 +59,9 @@ namespace TotalDAL.Helpers.SqlProgrammability.Productions
             string[] queryArray = new string[4];
 
             queryArray[0] = " SELECT TOP 1 @FoundEntity = BatchID FROM Batches WHERE BatchID = @EntityID AND InActive = 1 "; //Don't allow edit after void
-            queryArray[1] = " SELECT TOP 1 @FoundEntity = BatchID FROM FillingPallets WHERE BatchID = @EntityID ";
-            queryArray[2] = " SELECT TOP 1 @FoundEntity = BatchID FROM FillingCartons WHERE BatchID = @EntityID ";
-            queryArray[3] = " SELECT TOP 1 @FoundEntity = BatchID FROM FillingPacks WHERE BatchID = @EntityID ";
+            queryArray[1] = " SELECT TOP 1 @FoundEntity = BatchID FROM Pallets WHERE BatchID = @EntityID ";
+            queryArray[2] = " SELECT TOP 1 @FoundEntity = BatchID FROM Cartons WHERE BatchID = @EntityID ";
+            queryArray[3] = " SELECT TOP 1 @FoundEntity = BatchID FROM Packs WHERE BatchID = @EntityID ";
 
             this.totalSmartCodingEntities.CreateProcedureToCheckExisting("BatchEditable", queryArray);
         }
