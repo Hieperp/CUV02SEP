@@ -121,9 +121,9 @@
     <Compile Include="Controllers\Inventories\GoodsReceiptController.cs" />
     <Compile Include="Controllers\Productions\BatchController.cs" />
     <Compile Include="Controllers\Productions\CodingController.cs" />
-    <Compile Include="Controllers\Productions\FillingCartonController.cs" />
-    <Compile Include="Controllers\Productions\FillingPackController.cs" />
-    <Compile Include="Controllers\Productions\FillingPalletController.cs" />
+    <Compile Include="Controllers\Productions\CartonController.cs" />
+    <Compile Include="Controllers\Productions\PackController.cs" />
+    <Compile Include="Controllers\Productions\PalletController.cs" />
     <Compile Include="Controllers\Productions\PrinterController.cs" />
     <Compile Include="Controllers\Productions\ScannerController.cs" />
     <Compile Include="Libraries\Helpers\ViewHelpers.cs" />
@@ -139,9 +139,9 @@
     <Compile Include="ViewModels\Inventories\GoodsReceiptViewModel.cs" />
     <Compile Include="ViewModels\Inventories\PickupViewModel.cs" />
     <Compile Include="ViewModels\Productions\BatchViewModel.cs" />
-    <Compile Include="ViewModels\Productions\FillingCartonViewModel.cs" />
-    <Compile Include="ViewModels\Productions\FillingPackViewModel.cs" />
-    <Compile Include="ViewModels\Productions\FillingPalletViewModel.cs" />
+    <Compile Include="ViewModels\Productions\CartonViewModel.cs" />
+    <Compile Include="ViewModels\Productions\PackViewModel.cs" />
+    <Compile Include="ViewModels\Productions\PalletViewModel.cs" />
     <Compile Include="Views\Commons\CustomExceptionMessageBox.cs">
       <SubType>Form</SubType>
     </Compile>

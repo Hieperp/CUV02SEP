@@ -59,9 +59,9 @@
     <Compile Include="Helpers\SqlProgrammability\Inventories\GoodsReceipt.cs" />
     <Compile Include="Helpers\SqlProgrammability\Inventories\Pickup.cs" />
     <Compile Include="Helpers\SqlProgrammability\Productions\Batch.cs" />
-    <Compile Include="Helpers\SqlProgrammability\Productions\FillingCarton.cs" />
-    <Compile Include="Helpers\SqlProgrammability\Productions\FillingPack.cs" />
-    <Compile Include="Helpers\SqlProgrammability\Productions\FillingPallet.cs" />
+    <Compile Include="Helpers\SqlProgrammability\Productions\Carton.cs" />
+    <Compile Include="Helpers\SqlProgrammability\Productions\Pack.cs" />
+    <Compile Include="Helpers\SqlProgrammability\Productions\Pallet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\Commons\AspNetUserRepository.cs" />
@@ -76,9 +76,9 @@
     <Compile Include="Repositories\Inventories\GoodsReceiptRepository.cs" />
     <Compile Include="Repositories\Inventories\PickupRepository.cs" />
     <Compile Include="Repositories\Productions\BatchRepository.cs" />
-    <Compile Include="Repositories\Productions\FillingCartonRepository.cs" />
-    <Compile Include="Repositories\Productions\FillingPackRepository.cs" />
-    <Compile Include="Repositories\Productions\FillingPalletRepository.cs" />
+    <Compile Include="Repositories\Productions\CartonRepository.cs" />
+    <Compile Include="Repositories\Productions\PackRepository.cs" />
+    <Compile Include="Repositories\Productions\PalletRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

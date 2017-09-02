@@ -119,17 +119,17 @@ namespace TotalSmartCoding.Libraries
 
 
 
-                Kernel.Bind<IFillingPackService>().To<FillingPackService>();
-                Kernel.Bind<IFillingPackRepository>().To<FillingPackRepository>();
-                Kernel.Bind<FillingPackViewModel>().ToSelf();
+                Kernel.Bind<IPackService>().To<PackService>();
+                Kernel.Bind<IPackRepository>().To<PackRepository>();
+                Kernel.Bind<PackViewModel>().ToSelf();
 
-                Kernel.Bind<IFillingCartonService>().To<FillingCartonService>();
-                Kernel.Bind<IFillingCartonRepository>().To<FillingCartonRepository>();
-                Kernel.Bind<FillingCartonViewModel>().ToSelf();
+                Kernel.Bind<ICartonService>().To<CartonService>();
+                Kernel.Bind<ICartonRepository>().To<CartonRepository>();
+                Kernel.Bind<CartonViewModel>().ToSelf();
 
-                Kernel.Bind<IFillingPalletService>().To<FillingPalletService>();
-                Kernel.Bind<IFillingPalletRepository>().To<FillingPalletRepository>();
-                Kernel.Bind<FillingPalletViewModel>().ToSelf();
+                Kernel.Bind<IPalletService>().To<PalletService>();
+                Kernel.Bind<IPalletRepository>().To<PalletRepository>();
+                Kernel.Bind<PalletViewModel>().ToSelf();
 
 
 

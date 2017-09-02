@@ -22,22 +22,23 @@ namespace TotalModel.Models
         }
     
         public int PackID { get; set; }
-        public int FillingPackID { get; set; }
         public System.DateTime EntryDate { get; set; }
         public int FillingLineID { get; set; }
+        public int BatchID { get; set; }
         public int CommodityID { get; set; }
         public Nullable<int> CartonID { get; set; }
+        public int QueueID { get; set; }
         public int LocationID { get; set; }
-        public string PCID { get; set; }
         public string Code { get; set; }
+        public decimal Volume { get; set; }
         public int EntryStatusID { get; set; }
     
+        public virtual Carton Carton { get; set; }
+        public virtual Commodity Commodity { get; set; }
         public virtual FillingLine FillingLine { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GoodsReceiptDetail> GoodsReceiptDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PickupDetail> PickupDetails { get; set; }
-        public virtual Commodity Commodity { get; set; }
-        public virtual Carton Carton { get; set; }
     }
 }

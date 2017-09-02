@@ -27,9 +27,9 @@ namespace TotalSmartCoding.Controllers.Productions
     public class ScannerController : CodingController //this is CommonThreadProperty
     {
         #region Storage
-        private FillingPackController fillingPackController;
-        private FillingCartonController fillingCartonController;
-        private FillingPalletController fillingPalletController;
+        private PackController packController;
+        private CartonController cartonController;
+        private PalletController palletController;
 
 
         private IONetSocket ionetSocketPack;
@@ -37,19 +37,19 @@ namespace TotalSmartCoding.Controllers.Productions
         private IONetSocket ionetSocketPallet;
 
 
-        private BarcodeQueue<FillingPackDTO> packQueue;
-        private BarcodeQueue<FillingPackDTO> packsetQueue;
+        private BarcodeQueue<PackDTO> packQueue;
+        private BarcodeQueue<PackDTO> packsetQueue;
 
-        private BarcodeQueue<FillingCartonDTO> cartonPendingQueue;
-        private BarcodeQueue<FillingCartonDTO> cartonQueue;
-        private BarcodeQueue<FillingCartonDTO> localcartonsetQueue;
-        private BarcodeQueue<FillingCartonDTO> cartonsetQueue
+        private BarcodeQueue<CartonDTO> cartonPendingQueue;
+        private BarcodeQueue<CartonDTO> cartonQueue;
+        private BarcodeQueue<CartonDTO> localcartonsetQueue;
+        private BarcodeQueue<CartonDTO> cartonsetQueue
         {
             get { return this.localcartonsetQueue; }
             set { this.localcartonsetQueue = value; this.FillingData.CartonsetQueueCount = this.localcartonsetQueue.Count; this.FillingData.CartonsetQueueZebraStatus = GlobalVariables.ZebraStatus.Freshnew; }
         }
 
-        private BarcodeQueue<FillingPalletDTO> palletQueue;
+        private BarcodeQueue<PalletDTO> palletQueue;
 
 
         private BarcodeScannerStatus[] barcodeScannerStatus;
@@ -66,9 +66,9 @@ namespace TotalSmartCoding.Controllers.Productions
                 base.FillingData = fillingData;
 
 
-                this.fillingPackController = new FillingPackController(CommonNinject.Kernel.Get<IFillingPackService>(), CommonNinject.Kernel.Get<FillingPackViewModel>());
-                this.fillingCartonController = new FillingCartonController(CommonNinject.Kernel.Get<IFillingCartonService>(), CommonNinject.Kernel.Get<FillingCartonViewModel>());
-                this.fillingPalletController = new FillingPalletController(CommonNinject.Kernel.Get<IFillingPalletService>(), CommonNinject.Kernel.Get<FillingPalletViewModel>());
+                this.packController = new PackController(CommonNinject.Kernel.Get<IPackService>(), CommonNinject.Kernel.Get<PackViewModel>());
+                this.cartonController = new CartonController(CommonNinject.Kernel.Get<ICartonService>(), CommonNinject.Kernel.Get<CartonViewModel>());
+                this.palletController = new PalletController(CommonNinject.Kernel.Get<IPalletService>(), CommonNinject.Kernel.Get<PalletViewModel>());
 
 
                 this.ionetSocketPack = new IONetSocket(IPAddress.Parse(GlobalVariables.IpAddress(GlobalVariables.ScannerName.PackScanner)), 23, 120); //PORT 2112: DATA LOGIC
@@ -76,14 +76,14 @@ namespace TotalSmartCoding.Controllers.Productions
                 this.ionetSocketPallet = new IONetSocket(IPAddress.Parse(GlobalVariables.IpAddress(GlobalVariables.ScannerName.PalletScanner)), 23, 120);
 
 
-                this.packQueue = new BarcodeQueue<FillingPackDTO>(this.FillingData.NoSubQueue, this.FillingData.ItemPerSubQueue, this.FillingData.RepeatSubQueueIndex) { ItemPerSet = this.FillingData.PackPerCarton };
-                this.packsetQueue = new BarcodeQueue<FillingPackDTO>(this.FillingData.NoSubQueue, this.FillingData.ItemPerSubQueue, false) { ItemPerSet = this.FillingData.PackPerCarton };
+                this.packQueue = new BarcodeQueue<PackDTO>(this.FillingData.NoSubQueue, this.FillingData.ItemPerSubQueue, this.FillingData.RepeatSubQueueIndex) { ItemPerSet = this.FillingData.PackPerCarton };
+                this.packsetQueue = new BarcodeQueue<PackDTO>(this.FillingData.NoSubQueue, this.FillingData.ItemPerSubQueue, false) { ItemPerSet = this.FillingData.PackPerCarton };
 
-                this.cartonPendingQueue = new BarcodeQueue<FillingCartonDTO>() { ItemPerSet = this.FillingData.CartonPerPallet };
-                this.cartonQueue = new BarcodeQueue<FillingCartonDTO>() { ItemPerSet = this.FillingData.CartonPerPallet };
-                this.cartonsetQueue = new BarcodeQueue<FillingCartonDTO>() { ItemPerSet = this.FillingData.CartonPerPallet };
+                this.cartonPendingQueue = new BarcodeQueue<CartonDTO>() { ItemPerSet = this.FillingData.CartonPerPallet };
+                this.cartonQueue = new BarcodeQueue<CartonDTO>() { ItemPerSet = this.FillingData.CartonPerPallet };
+                this.cartonsetQueue = new BarcodeQueue<CartonDTO>() { ItemPerSet = this.FillingData.CartonPerPallet };
 
-                this.palletQueue = new BarcodeQueue<FillingPalletDTO>();
+                this.palletQueue = new BarcodeQueue<PalletDTO>();
 
 
                 base.FillingData.PropertyChanged += new PropertyChangedEventHandler(fillingData_PropertyChanged);
@@ -103,34 +103,34 @@ namespace TotalSmartCoding.Controllers.Productions
         {
             try
             {
-                IList<FillingPack> fillingPacks = this.fillingPackController.fillingPackService.GetFillingPacks(this.FillingData.FillingLineID, (int)GlobalVariables.BarcodeStatus.Freshnew + "," + (int)GlobalVariables.BarcodeStatus.Readytoset, null);
-                if (fillingPacks.Count > 0)
+                IList<Pack> packs = this.packController.packService.GetPacks(this.FillingData.FillingLineID, (int)GlobalVariables.BarcodeStatus.Freshnew + "," + (int)GlobalVariables.BarcodeStatus.Readytoset, null);
+                if (packs.Count > 0)
                 {
-                    fillingPacks.Each(fillingPack =>
+                    packs.Each(pack =>
                     {
-                        FillingPackDTO fillingPackDTO = Mapper.Map<FillingPack, FillingPackDTO>(fillingPack);
-                        if (fillingPackDTO.EntryStatusID == (int)GlobalVariables.BarcodeStatus.Freshnew)
-                            this.packQueue.Enqueue(fillingPackDTO, false);
+                        PackDTO packDTO = Mapper.Map<Pack, PackDTO>(pack);
+                        if (packDTO.EntryStatusID == (int)GlobalVariables.BarcodeStatus.Freshnew)
+                            this.packQueue.Enqueue(packDTO, false);
                         else
-                            this.packsetQueue.Enqueue(fillingPackDTO, false);
+                            this.packsetQueue.Enqueue(packDTO, false);
                     });
                     this.NotifyPropertyChanged("PackQueue");
                     this.NotifyPropertyChanged("PacksetQueue");
                 }
 
-                IList<FillingCarton> fillingCartons = this.fillingCartonController.fillingCartonService.GetFillingCartons(this.FillingData.FillingLineID, (int)GlobalVariables.BarcodeStatus.Freshnew + "," + (int)GlobalVariables.BarcodeStatus.Readytoset + "," + (int)GlobalVariables.BarcodeStatus.Pending + "," + (int)GlobalVariables.BarcodeStatus.Noread, null);
-                if (fillingCartons.Count > 0)
+                IList<Carton> cartons = this.cartonController.cartonService.GetCartons(this.FillingData.FillingLineID, (int)GlobalVariables.BarcodeStatus.Freshnew + "," + (int)GlobalVariables.BarcodeStatus.Readytoset + "," + (int)GlobalVariables.BarcodeStatus.Pending + "," + (int)GlobalVariables.BarcodeStatus.Noread, null);
+                if (cartons.Count > 0)
                 {
-                    fillingCartons.Each(fillingCarton =>
+                    cartons.Each(carton =>
                     {
-                        FillingCartonDTO fillingCartonDTO = Mapper.Map<FillingCarton, FillingCartonDTO>(fillingCarton);
-                        if (fillingCartonDTO.EntryStatusID == (int)GlobalVariables.BarcodeStatus.Freshnew)
-                            this.cartonQueue.Enqueue(fillingCartonDTO, false);
+                        CartonDTO cartonDTO = Mapper.Map<Carton, CartonDTO>(carton);
+                        if (cartonDTO.EntryStatusID == (int)GlobalVariables.BarcodeStatus.Freshnew)
+                            this.cartonQueue.Enqueue(cartonDTO, false);
                         else
-                            if (fillingCartonDTO.EntryStatusID == (int)GlobalVariables.BarcodeStatus.Readytoset)
-                                this.cartonsetQueue.Enqueue(fillingCartonDTO, false);
+                            if (cartonDTO.EntryStatusID == (int)GlobalVariables.BarcodeStatus.Readytoset)
+                                this.cartonsetQueue.Enqueue(cartonDTO, false);
                             else //BarcodeStatus.Pending, BarcodeStatus.Noread
-                                this.cartonPendingQueue.Enqueue(fillingCartonDTO, false);
+                                this.cartonPendingQueue.Enqueue(cartonDTO, false);
                     });
                     this.NotifyPropertyChanged("CartonQueue");
                     this.NotifyPropertyChanged("CartonsetQueue");
@@ -139,13 +139,13 @@ namespace TotalSmartCoding.Controllers.Productions
 
                 if (false && !GlobalEnums.OnTestPalletReceivedNow)
                 {
-                    IList<FillingPallet> fillingPallets = this.fillingPalletController.fillingPalletService.GetFillingPallets(this.FillingData.FillingLineID, (int)GlobalVariables.BarcodeStatus.Freshnew + "," + (int)GlobalVariables.BarcodeStatus.Readytoset);
-                    if (fillingPallets.Count > 0)
+                    IList<Pallet> pallets = this.palletController.palletService.GetPallets(this.FillingData.FillingLineID, (int)GlobalVariables.BarcodeStatus.Freshnew + "," + (int)GlobalVariables.BarcodeStatus.Readytoset);
+                    if (pallets.Count > 0)
                     {
-                        fillingPallets.Each(fillingPallet =>
+                        pallets.Each(pallet =>
                         {
-                            FillingPalletDTO fillingPalletDTO = Mapper.Map<FillingPallet, FillingPalletDTO>(fillingPallet);
-                            this.palletQueue.Enqueue(fillingPalletDTO, false);
+                            PalletDTO palletDTO = Mapper.Map<Pallet, PalletDTO>(pallet);
+                            this.palletQueue.Enqueue(palletDTO, false);
                         });
                         this.NotifyPropertyChanged("PalletQueue");
                     }
@@ -317,39 +317,39 @@ namespace TotalSmartCoding.Controllers.Productions
 
         #region
 
-        public IList<BarcodeDTO> GetBarcodeList(int fillingCartonID, int fillingPalletID)
+        public IList<BarcodeDTO> GetBarcodeList(int cartonID, int palletID)
         {
             try
             {
                 IList<BarcodeDTO> barcodeList = new List<BarcodeDTO>();
 
-                if (fillingCartonID > 0)
+                if (cartonID > 0)
                 {
-                    lock (this.fillingPackController)
+                    lock (this.packController)
                     {
-                        IList<FillingPack> fillingPacks = this.fillingPackController.fillingPackService.GetFillingPacks(this.FillingData.FillingLineID, (int)GlobalVariables.BarcodeStatus.Freshnew + "," + (int)GlobalVariables.BarcodeStatus.Readytoset + "," + (int)GlobalVariables.BarcodeStatus.Wrapped, fillingCartonID);
-                        if (fillingPacks.Count > 0)
+                        IList<Pack> packs = this.packController.packService.GetPacks(this.FillingData.FillingLineID, (int)GlobalVariables.BarcodeStatus.Freshnew + "," + (int)GlobalVariables.BarcodeStatus.Readytoset + "," + (int)GlobalVariables.BarcodeStatus.Wrapped, cartonID);
+                        if (packs.Count > 0)
                         {
-                            fillingPacks.Each(fillingPack =>
+                            packs.Each(pack =>
                             {
-                                FillingPackDTO fillingPackDTO = Mapper.Map<FillingPack, FillingPackDTO>(fillingPack);
-                                barcodeList.Add(fillingPackDTO);
+                                PackDTO packDTO = Mapper.Map<Pack, PackDTO>(pack);
+                                barcodeList.Add(packDTO);
                             });
                         }
                     }
                 }
                 else
-                    if (fillingPalletID > 0)
+                    if (palletID > 0)
                     {
-                        lock (this.fillingCartonController)
+                        lock (this.cartonController)
                         {
-                            IList<FillingCarton> fillingCartons = this.fillingCartonController.fillingCartonService.GetFillingCartons(this.FillingData.FillingLineID, (int)GlobalVariables.BarcodeStatus.Freshnew + "," + (int)GlobalVariables.BarcodeStatus.Readytoset + "," + (int)GlobalVariables.BarcodeStatus.Wrapped + "," + (int)GlobalVariables.BarcodeStatus.Pending + "," + (int)GlobalVariables.BarcodeStatus.Noread, fillingPalletID);
-                            if (fillingCartons.Count > 0)
+                            IList<Carton> cartons = this.cartonController.cartonService.GetCartons(this.FillingData.FillingLineID, (int)GlobalVariables.BarcodeStatus.Freshnew + "," + (int)GlobalVariables.BarcodeStatus.Readytoset + "," + (int)GlobalVariables.BarcodeStatus.Wrapped + "," + (int)GlobalVariables.BarcodeStatus.Pending + "," + (int)GlobalVariables.BarcodeStatus.Noread, palletID);
+                            if (cartons.Count > 0)
                             {
-                                fillingCartons.Each(fillingCarton =>
+                                cartons.Each(carton =>
                                 {
-                                    FillingCartonDTO fillingCartonDTO = Mapper.Map<FillingCarton, FillingCartonDTO>(fillingCarton);
-                                    barcodeList.Add(fillingCartonDTO);
+                                    CartonDTO cartonDTO = Mapper.Map<Carton, CartonDTO>(carton);
+                                    barcodeList.Add(cartonDTO);
                                 });
                             }
                         }
@@ -578,7 +578,7 @@ namespace TotalSmartCoding.Controllers.Productions
                 {
                     lock (this.packQueue)
                     {
-                        FillingPackDTO messageData = this.addPack(receivedBarcode, this.packQueue.NextQueueID);
+                        PackDTO messageData = this.addPack(receivedBarcode, this.packQueue.NextQueueID);
                         if (messageData != null)
                         {
                             this.packQueue.Enqueue(messageData);
@@ -591,16 +591,16 @@ namespace TotalSmartCoding.Controllers.Productions
             return barcodeReceived;
         }
 
-        private FillingPackDTO addPack(string packCode, int queueID)
+        private PackDTO addPack(string packCode, int queueID)
         {
             try
             {
-                FillingPackDTO fillingPackDTO = new FillingPackDTO(this.FillingData) { Code = packCode, QueueID = queueID };
+                PackDTO packDTO = new PackDTO(this.FillingData) { Code = packCode, QueueID = queueID };
 
-                lock (this.fillingPackController)
+                lock (this.packController)
                 {
-                    if (this.fillingPackController.fillingPackService.Save(fillingPackDTO))
-                        return fillingPackDTO;
+                    if (this.packController.packService.Save(packDTO))
+                        return packDTO;
                     else
                         throw new Exception();
                 }
@@ -640,9 +640,9 @@ namespace TotalSmartCoding.Controllers.Productions
                         if (this.packsetQueue.Count > 0)
                         {
                             isSuccessfully = true;
-                            lock (this.fillingPackController)
+                            lock (this.packController)
                             {
-                                if (!this.fillingPackController.fillingPackService.UpdateEntryStatus(this.packsetQueue.EntityIDs, GlobalVariables.BarcodeStatus.Readytoset)) throw new Exception("Lỗi lưu trạng thái chai: " + this.fillingPackController.fillingPackService.ServiceTag);
+                                if (!this.packController.packService.UpdateEntryStatus(this.packsetQueue.EntityIDs, GlobalVariables.BarcodeStatus.Readytoset)) throw new Exception("Lỗi lưu trạng thái chai: " + this.packController.packService.ServiceTag);
                             }
                         }
                     }
@@ -711,23 +711,23 @@ namespace TotalSmartCoding.Controllers.Productions
                     if (!GlobalVariables.IgnoreEmptyCarton || this.packsetQueue.Count > 0 || !this.FillingData.HasPack) //BY NOT this.FillingData.HasPack: this.packsetQueue.Count WILL ALWAYS BE: 0 (NO PACK RECEIVED)
                     {//IF this.packsetQueue.Count <= 0 => THIS WILL SAVE AN EMPTY CARTON. this.packsetQueue.EntityIDs WILL BE BLANK => NO PACK BE UPDATED FOR THIS CARTON
 
-                        FillingCartonDTO fillingCartonDTO = new FillingCartonDTO(this.FillingData) { Code = this.interpretBarcode(cartonCode), TotalPacks = this.packsetQueue.Count, Volume = this.packsetQueue.TotalVolume };
-                        if (isPending) fillingCartonDTO.EntryStatusID = (int)GlobalVariables.BarcodeStatus.Noread;
+                        CartonDTO cartonDTO = new CartonDTO(this.FillingData) { Code = this.interpretBarcode(cartonCode), TotalPacks = this.packsetQueue.Count, Volume = this.packsetQueue.TotalVolume };
+                        if (isPending) cartonDTO.EntryStatusID = (int)GlobalVariables.BarcodeStatus.Noread;
 
-                        lock (this.fillingCartonController)
+                        lock (this.cartonController)
                         {
-                            this.fillingCartonController.fillingCartonService.ServiceBag["EntryStatusIDs"] = fillingCartonDTO.EntryStatusID;
-                            this.fillingCartonController.fillingCartonService.ServiceBag["FillingPackIDs"] = this.FillingData.HasPack ? this.packsetQueue.EntityIDs : ""; //VERY IMPORTANT: NEED TO ADD FillingPackIDs TO NEW FillingCartonDTO
-                            if (this.fillingCartonController.fillingCartonService.Save(fillingCartonDTO))
-                                this.packsetQueue = new BarcodeQueue<FillingPackDTO>(this.FillingData.NoSubQueue, this.FillingData.ItemPerSubQueue, false) { ItemPerSet = this.FillingData.PackPerCarton }; //CLEAR AFTER ADD TO FillingCartonDTO
+                            this.cartonController.cartonService.ServiceBag["EntryStatusIDs"] = cartonDTO.EntryStatusID;
+                            this.cartonController.cartonService.ServiceBag["PackIDs"] = this.FillingData.HasPack ? this.packsetQueue.EntityIDs : ""; //VERY IMPORTANT: NEED TO ADD PackIDs TO NEW CartonDTO
+                            if (this.cartonController.cartonService.Save(cartonDTO))
+                                this.packsetQueue = new BarcodeQueue<PackDTO>(this.FillingData.NoSubQueue, this.FillingData.ItemPerSubQueue, false) { ItemPerSet = this.FillingData.PackPerCarton }; //CLEAR AFTER ADD TO CartonDTO
                             else
-                                throw new Exception("Lỗi lưu mã vạch carton: " + fillingCartonDTO.Code);
+                                throw new Exception("Lỗi lưu mã vạch carton: " + cartonDTO.Code);
                         }
 
                         if (isPending)
-                            this.cartonPendingQueue.Enqueue(fillingCartonDTO);
+                            this.cartonPendingQueue.Enqueue(cartonDTO);
                         else
-                            this.cartonQueue.Enqueue(fillingCartonDTO);
+                            this.cartonQueue.Enqueue(cartonDTO);
                         return true;
                     }
                     else
@@ -753,9 +753,9 @@ namespace TotalSmartCoding.Controllers.Productions
                         if (this.cartonsetQueue.Count > 0)
                         {
                             isSuccessfully = true;
-                            lock (this.fillingCartonController)
+                            lock (this.cartonController)
                             {
-                                if (!this.fillingCartonController.fillingCartonService.UpdateEntryStatus(this.cartonsetQueue.EntityIDs, GlobalVariables.BarcodeStatus.Readytoset)) throw new Exception("Lỗi lưu trạng thái carton: " + this.fillingCartonController.fillingCartonService.ServiceTag);
+                                if (!this.cartonController.cartonService.UpdateEntryStatus(this.cartonsetQueue.EntityIDs, GlobalVariables.BarcodeStatus.Readytoset)) throw new Exception("Lỗi lưu trạng thái carton: " + this.cartonController.cartonService.ServiceTag);
                             }
                         }
                     }
@@ -816,18 +816,18 @@ namespace TotalSmartCoding.Controllers.Productions
                     if (!GlobalVariables.IgnoreEmptyPallet || ((this.cartonsetQueue.Count > 0 || !this.FillingData.HasCarton) && (this.FillingData.CartonsetQueueZebraStatus == GlobalVariables.ZebraStatus.Printed || GlobalEnums.OnTestScanner || GlobalEnums.OnTestPalletReceivedNow))) //BY NOW: GlobalVariables.IgnoreEmptyPallet = TRUE. LATER, WE WILL ADD AN OPTION ON MENU FOR USER, IF NEEDED.               NOTES: HERE WE CHECK this.FillingData.CartonsetQueueLabelPrintedCount != 0: TO ENSURE THAT A NEW LABEL HAS BEEN PRINTED BY PrinterController IN ORDER TO MatchingAndAddPallet
                     {//IF this.cartonsetQueue.Count <= 0 => THIS WILL SAVE AN EMPTY PALLET: this.cartonsetQueue.EntityIDs WILL BE BLANK => NO CARTON BE UPDATED FOR THIS PALLET
 
-                        FillingPalletDTO fillingPalletDTO = new FillingPalletDTO(this.FillingData) { Code = palletCode, TotalPacks = this.cartonsetQueue.TotalPacks, TotalCartons = this.cartonsetQueue.Count, Volume = this.cartonsetQueue.TotalVolume };
+                        PalletDTO palletDTO = new PalletDTO(this.FillingData) { Code = palletCode, TotalPacks = this.cartonsetQueue.TotalPacks, TotalCartons = this.cartonsetQueue.Count, Volume = this.cartonsetQueue.TotalVolume };
 
-                        lock (this.fillingPalletController)
+                        lock (this.palletController)
                         {
-                            this.fillingPalletController.fillingPalletService.ServiceBag["FillingCartonIDs"] = this.cartonsetQueue.EntityIDs; //VERY IMPORTANT: NEED TO ADD FillingCartonIDs TO NEW FillingPalletDTO
-                            if (this.fillingPalletController.fillingPalletService.Save(fillingPalletDTO))
-                                this.cartonsetQueue = new BarcodeQueue<FillingCartonDTO>(); //CLEAR AFTER ADD TO FillingPalletDTO
+                            this.palletController.palletService.ServiceBag["CartonIDs"] = this.cartonsetQueue.EntityIDs; //VERY IMPORTANT: NEED TO ADD CartonIDs TO NEW PalletDTO
+                            if (this.palletController.palletService.Save(palletDTO))
+                                this.cartonsetQueue = new BarcodeQueue<CartonDTO>(); //CLEAR AFTER ADD TO PalletDTO
                             else
-                                throw new Exception("Lỗi lưu pallet: " + fillingPalletDTO.Code);
+                                throw new Exception("Lỗi lưu pallet: " + palletDTO.Code);
                         }
 
-                        this.palletQueue.Enqueue(fillingPalletDTO);
+                        this.palletQueue.Enqueue(palletDTO);
                         return true;
                     }
                     else
@@ -897,17 +897,17 @@ namespace TotalSmartCoding.Controllers.Productions
                             {
                                 if (this.packQueue.GetSubQueueCount(i) > (this.packQueue.ItemPerSet / this.packQueue.NoSubQueue))
                                 {
-                                    FillingPackDTO fillingPackDTO = this.packQueue.ElementAt(i, this.packQueue.GetSubQueueCount(i) - 1).ShallowClone(); //Get the last pack of SubQueue(i)
-                                    fillingPackDTO.QueueID = subQueueID; //Set new QueueID
+                                    PackDTO packDTO = this.packQueue.ElementAt(i, this.packQueue.GetSubQueueCount(i) - 1).ShallowClone(); //Get the last pack of SubQueue(i)
+                                    packDTO.QueueID = subQueueID; //Set new QueueID
 
-                                    lock (this.fillingPackController)
+                                    lock (this.packController)
                                     {
-                                        if (this.fillingPackController.fillingPackService.UpdateQueueID(fillingPackDTO.FillingPackID.ToString(), fillingPackDTO.QueueID))
+                                        if (this.packController.packService.UpdateQueueID(packDTO.PackID.ToString(), packDTO.QueueID))
                                         {
-                                            this.packQueue.Dequeue(fillingPackDTO.FillingPackID); //First: Remove from old subQueue
-                                            this.packQueue.Enqueue(fillingPackDTO, false); //Next: Add to new subQueue
+                                            this.packQueue.Dequeue(packDTO.PackID); //First: Remove from old subQueue
+                                            this.packQueue.Enqueue(packDTO, false); //Next: Add to new subQueue
                                         }
-                                        else throw new System.ArgumentException("Unknown error: Fail to handle this pack", "Can not change new queue ID: " + this.fillingPackController.fillingPackService.ServiceTag);
+                                        else throw new System.ArgumentException("Unknown error: Fail to handle this pack", "Can not change new queue ID: " + this.packController.packService.ServiceTag);
                                     }
                                 }
                             }
@@ -927,29 +927,29 @@ namespace TotalSmartCoding.Controllers.Productions
             }
         }
 
-        public bool RemovePackInPackQueue(int fillingPackID)
+        public bool RemovePackInPackQueue(int packID)
         {
-            return this.RemovePackInPackQueue(fillingPackID, false);
+            return this.RemovePackInPackQueue(packID, false);
         }
 
-        public bool RemovePackInPackQueue(int fillingPackID, bool removeAll)
+        public bool RemovePackInPackQueue(int packID, bool removeAll)
         {
-            if (fillingPackID <= 0 && !removeAll) return false;
+            if (packID <= 0 && !removeAll) return false;
 
             lock (this.packQueue)
             {
-                lock (this.fillingPackController)
+                lock (this.packController)
                 {
                     do
                     {
                         if (this.packQueue.Count > 0)
                         {
-                            FillingPackDTO messageData = this.packQueue.Dequeue(removeAll ? 0 : fillingPackID);
+                            PackDTO messageData = this.packQueue.Dequeue(removeAll ? 0 : packID);
                             if (messageData != null)
                             {
                                 this.NotifyPropertyChanged("PackQueue");
 
-                                if (!this.fillingPackController.fillingPackService.Delete(messageData.FillingPackID)) throw new System.ArgumentException("Lỗi", "Không thể xóa chai từ CSDL: " + messageData.Code);
+                                if (!this.packController.packService.Delete(messageData.PackID)) throw new System.ArgumentException("Lỗi", "Không thể xóa chai từ CSDL: " + messageData.Code);
                             }
                             else throw new System.ArgumentException("Lỗi", "Không tìm thấy chai trên hàng");
                         }
@@ -961,9 +961,9 @@ namespace TotalSmartCoding.Controllers.Productions
             }
         }
 
-        public bool MovePacksetToCartonPendingQueue(int fillingPackID)
+        public bool MovePacksetToCartonPendingQueue(int packID)
         {
-            if (fillingPackID <= 0) return false;
+            if (packID <= 0) return false;
 
             this.ReceiveCarton("NoRead");
             this.NotifyPropertyChanged("PacksetQueue");
@@ -981,22 +981,22 @@ namespace TotalSmartCoding.Controllers.Productions
                 {
                     if (this.packQueue.Count > 0 && this.packsetQueue.Count == this.packsetQueue.ItemPerSet)
                     {
-                        FillingPackDTO messageData = this.packQueue.ElementAt(0).ShallowClone(); //Get the first pack
+                        PackDTO messageData = this.packQueue.ElementAt(0).ShallowClone(); //Get the first pack
 
-                        if (this.packsetQueue.Replace(fillingPackID, messageData)) //messageData.QueueID: Will change to new value (new position) after replace
+                        if (this.packsetQueue.Replace(packID, messageData)) //messageData.QueueID: Will change to new value (new position) after replace
                         {
-                            this.packQueue.Dequeue(messageData.FillingPackID); //Dequeue the first pack
+                            this.packQueue.Dequeue(messageData.PackID); //Dequeue the first pack
 
                             this.NotifyPropertyChanged("PacksetQueue");
                             this.NotifyPropertyChanged("PackQueue");
 
-                            lock (this.fillingPackController)
+                            lock (this.packController)
                             {
-                                if (!this.fillingPackController.fillingPackService.Delete(fillingPackID)) throw new System.ArgumentException("Fail to handle this pack", "Can not delete pack from the line");
+                                if (!this.packController.packService.Delete(packID)) throw new System.ArgumentException("Fail to handle this pack", "Can not delete pack from the line");
 
-                                if (!this.fillingPackController.fillingPackService.UpdateQueueID(messageData.FillingPackID.ToString(), messageData.QueueID)) throw new System.ArgumentException("Fail to handle this pack", "Can not update new pack subqueue");
+                                if (!this.packController.packService.UpdateQueueID(messageData.PackID.ToString(), messageData.QueueID)) throw new System.ArgumentException("Fail to handle this pack", "Can not update new pack subqueue");
 
-                                if (!this.fillingPackController.fillingPackService.UpdateEntryStatus(messageData.FillingPackID.ToString(), GlobalVariables.BarcodeStatus.Readytoset)) throw new System.ArgumentException("Fail to handle this pack", "Can not update new pack status");
+                                if (!this.packController.packService.UpdateEntryStatus(messageData.PackID.ToString(), GlobalVariables.BarcodeStatus.Readytoset)) throw new System.ArgumentException("Fail to handle this pack", "Can not update new pack status");
                                 else return true;
                             }
                         }
@@ -1007,11 +1007,11 @@ namespace TotalSmartCoding.Controllers.Productions
             }
         }
 
-        public bool MoveCartonToPendingQueue(int fillingCartonID, bool fromCartonsetQueue)
+        public bool MoveCartonToPendingQueue(int cartonID, bool fromCartonsetQueue)
         {
-            if (fillingCartonID <= 0) return false;
+            if (cartonID <= 0) return false;
 
-            BarcodeQueue<FillingCartonDTO> movedCartonQueue = fromCartonsetQueue ? this.cartonsetQueue : this.cartonQueue;
+            BarcodeQueue<CartonDTO> movedCartonQueue = fromCartonsetQueue ? this.cartonsetQueue : this.cartonQueue;
 
             lock (this.cartonQueue)
             {
@@ -1019,34 +1019,34 @@ namespace TotalSmartCoding.Controllers.Productions
                 {
                     if (movedCartonQueue.Count > 0 && (!fromCartonsetQueue || this.cartonQueue.Count > 0))
                     {
-                        FillingCartonDTO fillingCartonDTO = movedCartonQueue.Dequeue(fillingCartonID);
-                        if (fillingCartonDTO != null)
+                        CartonDTO cartonDTO = movedCartonQueue.Dequeue(cartonID);
+                        if (cartonDTO != null)
                         {
                             lock (this.cartonPendingQueue)
                             {
-                                fillingCartonDTO.EntryStatusID = (int)GlobalVariables.BarcodeStatus.Pending;
-                                this.cartonPendingQueue.Enqueue(fillingCartonDTO);
+                                cartonDTO.EntryStatusID = (int)GlobalVariables.BarcodeStatus.Pending;
+                                this.cartonPendingQueue.Enqueue(cartonDTO);
 
                                 this.NotifyPropertyChanged("CartonPendingQueue");
                                 if (fromCartonsetQueue) this.NotifyPropertyChanged("CartonsetQueue"); else this.NotifyPropertyChanged("CartonQueue");
 
-                                lock (this.fillingCartonController)
+                                lock (this.cartonController)
                                 {
 
-                                    if (this.fillingCartonController.fillingCartonService.UpdateEntryStatus(fillingCartonDTO.FillingCartonID.ToString(), GlobalVariables.BarcodeStatus.Pending))
+                                    if (this.cartonController.cartonService.UpdateEntryStatus(cartonDTO.CartonID.ToString(), GlobalVariables.BarcodeStatus.Pending))
                                     {
                                         if (fromCartonsetQueue)
                                         {
-                                            fillingCartonDTO = this.cartonQueue.Dequeue();
-                                            if (fillingCartonDTO != null)
+                                            cartonDTO = this.cartonQueue.Dequeue();
+                                            if (cartonDTO != null)
                                             {
-                                                fillingCartonDTO.EntryStatusID = (int)GlobalVariables.BarcodeStatus.Readytoset;
-                                                this.cartonsetQueue.Enqueue(fillingCartonDTO);
+                                                cartonDTO.EntryStatusID = (int)GlobalVariables.BarcodeStatus.Readytoset;
+                                                this.cartonsetQueue.Enqueue(cartonDTO);
 
                                                 this.NotifyPropertyChanged("CartonQueue");
                                                 this.NotifyPropertyChanged("CartonsetQueue");
 
-                                                if (this.fillingCartonController.fillingCartonService.UpdateEntryStatus(fillingCartonDTO.FillingCartonID.ToString(), GlobalVariables.BarcodeStatus.Readytoset)) return true;
+                                                if (this.cartonController.cartonService.UpdateEntryStatus(cartonDTO.CartonID.ToString(), GlobalVariables.BarcodeStatus.Readytoset)) return true;
                                                 else throw new System.ArgumentException("Fail to handle this carton", "Can not delete carton from the line");
                                             }
                                             else throw new System.ArgumentException("Fail to handle this carton", "Can not remove carton from the line");
@@ -1066,9 +1066,9 @@ namespace TotalSmartCoding.Controllers.Productions
         }
 
 
-        public bool TakebackCartonFromPendingQueue(int fillingCartonID)
+        public bool TakebackCartonFromPendingQueue(int cartonID)
         {
-            if (fillingCartonID <= 0) return false;
+            if (cartonID <= 0) return false;
 
             lock (this.cartonPendingQueue)
             {
@@ -1076,19 +1076,19 @@ namespace TotalSmartCoding.Controllers.Productions
                 {
                     if (this.cartonPendingQueue.Count > 0)
                     {
-                        FillingCartonDTO fillingCartonDTO = this.cartonPendingQueue.Dequeue(fillingCartonID);
-                        if (fillingCartonDTO != null)
+                        CartonDTO cartonDTO = this.cartonPendingQueue.Dequeue(cartonID);
+                        if (cartonDTO != null)
                         {
 
-                            fillingCartonDTO.EntryStatusID = (int)GlobalVariables.BarcodeStatus.Freshnew;
-                            this.cartonQueue.Enqueue(fillingCartonDTO);
+                            cartonDTO.EntryStatusID = (int)GlobalVariables.BarcodeStatus.Freshnew;
+                            this.cartonQueue.Enqueue(cartonDTO);
 
                             this.NotifyPropertyChanged("CartonPendingQueue");
                             this.NotifyPropertyChanged("CartonQueue");
 
-                            lock (this.fillingCartonController)
+                            lock (this.cartonController)
                             {
-                                if (this.fillingCartonController.fillingCartonService.UpdateEntryStatus(fillingCartonDTO.FillingCartonID.ToString(), GlobalVariables.BarcodeStatus.Freshnew))
+                                if (this.cartonController.cartonService.UpdateEntryStatus(cartonDTO.CartonID.ToString(), GlobalVariables.BarcodeStatus.Freshnew))
                                     return true;
                                 else throw new System.ArgumentException("Fail to handle this carton", "Can not delete carton from the line");
                             }
@@ -1103,9 +1103,9 @@ namespace TotalSmartCoding.Controllers.Productions
 
 
 
-        public Boolean UnwrapCartontoPack(int fillingCartonID)
+        public Boolean UnwrapCartontoPack(int cartonID)
         {
-            if (fillingCartonID <= 0) return false;
+            if (cartonID <= 0) return false;
 
             lock (this.packsetQueue)
             {
@@ -1113,32 +1113,32 @@ namespace TotalSmartCoding.Controllers.Productions
                 {
                     lock (this.cartonPendingQueue)
                     {
-                        lock (this.fillingPackController)
+                        lock (this.packController)
                         {
-                            IList<FillingPack> fillingPacks = this.fillingPackController.fillingPackService.GetFillingPacks(this.FillingData.FillingLineID, (int)GlobalVariables.BarcodeStatus.Wrapped + "", fillingCartonID);
-                            if (fillingPacks.Count == this.FillingData.PackPerCarton)
+                            IList<Pack> packs = this.packController.packService.GetPacks(this.FillingData.FillingLineID, (int)GlobalVariables.BarcodeStatus.Wrapped + "", cartonID);
+                            if (packs.Count == this.FillingData.PackPerCarton)
                             {
-                                fillingPacks.Each(fillingPack =>
+                                packs.Each(pack =>
                                 { //(***)
-                                    if (fillingPack.BatchID == this.FillingData.BatchID && fillingPack.CommodityID == this.FillingData.CommodityID)
+                                    if (pack.BatchID == this.FillingData.BatchID && pack.CommodityID == this.FillingData.CommodityID)
                                     {
-                                        FillingPackDTO fillingPackDTO = Mapper.Map<FillingPack, FillingPackDTO>(fillingPack);
-                                        fillingPackDTO.EntryStatusID = (int)GlobalVariables.BarcodeStatus.Readytoset;
-                                        this.packsetQueue.Enqueue(fillingPackDTO, false);
+                                        PackDTO packDTO = Mapper.Map<Pack, PackDTO>(pack);
+                                        packDTO.EntryStatusID = (int)GlobalVariables.BarcodeStatus.Readytoset;
+                                        this.packsetQueue.Enqueue(packDTO, false);
                                     }
                                     else
                                         throw new Exception("Lỗi: Mã sản phẩm, số batch của carton không đúng mã sản phẩm, số batch của chuyền");
                                 });
-                                this.cartonPendingQueue.Dequeue(fillingCartonID);
+                                this.cartonPendingQueue.Dequeue(cartonID);
 
                                 this.NotifyPropertyChanged("PacksetQueue");
                                 this.NotifyPropertyChanged("CartonPendingQueue");
 
-                                lock (this.fillingCartonController)
+                                lock (this.cartonController)
                                 {
-                                    this.fillingCartonController.fillingCartonService.ServiceBag["EntryStatusIDs"] = (int)GlobalVariables.BarcodeStatus.Noread + "," + (int)GlobalVariables.BarcodeStatus.Pending; //THIS CARTON MUST BE Noread || Pending IN ORDER TO UNWRAP TO PACK
-                                    this.fillingCartonController.fillingCartonService.ServiceBag["FillingPackIDs"] = this.packsetQueue.EntityIDs; //SEE (***): WE HAVE ADDED ALL PACK OF THIS CARTON TO packsetQueue ALREADY. SO, NOW WE CAN USE this.packsetQueue.EntityIDs FOR ServiceBag["FillingPackIDs"]
-                                    if (!this.fillingCartonController.fillingCartonService.Delete(fillingCartonID)) throw new System.ArgumentException("Lỗi", "Không thể xóa carton trên CSDL");
+                                    this.cartonController.cartonService.ServiceBag["EntryStatusIDs"] = (int)GlobalVariables.BarcodeStatus.Noread + "," + (int)GlobalVariables.BarcodeStatus.Pending; //THIS CARTON MUST BE Noread || Pending IN ORDER TO UNWRAP TO PACK
+                                    this.cartonController.cartonService.ServiceBag["PackIDs"] = this.packsetQueue.EntityIDs; //SEE (***): WE HAVE ADDED ALL PACK OF THIS CARTON TO packsetQueue ALREADY. SO, NOW WE CAN USE this.packsetQueue.EntityIDs FOR ServiceBag["PackIDs"]
+                                    if (!this.cartonController.cartonService.Delete(cartonID)) throw new System.ArgumentException("Lỗi", "Không thể xóa carton trên CSDL");
                                 }
                                 return true;
                             }
@@ -1154,25 +1154,25 @@ namespace TotalSmartCoding.Controllers.Productions
             }
         }
 
-        public Boolean DeleteCarton(int fillingCartonID)
+        public Boolean DeleteCarton(int cartonID)
         {
-            if (fillingCartonID <= 0) return false;
+            if (cartonID <= 0) return false;
 
             lock (this.cartonPendingQueue)
             {
-                lock (this.fillingPackController)
+                lock (this.packController)
                 {
-                    lock (this.fillingCartonController)
+                    lock (this.cartonController)
                     {
-                        IList<FillingPack> fillingPacks = this.fillingPackController.fillingPackService.GetFillingPacks(this.FillingData.FillingLineID, (int)GlobalVariables.BarcodeStatus.Wrapped + "", fillingCartonID);
-                        if (fillingPacks.Count == this.FillingData.PackPerCarton)
+                        IList<Pack> packs = this.packController.packService.GetPacks(this.FillingData.FillingLineID, (int)GlobalVariables.BarcodeStatus.Wrapped + "", cartonID);
+                        if (packs.Count == this.FillingData.PackPerCarton)
                         {
-                            this.fillingCartonController.fillingCartonService.ServiceBag["EntryStatusIDs"] = (int)GlobalVariables.BarcodeStatus.Noread + "," + (int)GlobalVariables.BarcodeStatus.Pending; //THIS CARTON MUST BE Noread || Pending IN ORDER TO UNWRAP TO PACK
-                            this.fillingCartonController.fillingCartonService.ServiceBag["FillingPackIDs"] = string.Join(",", fillingPacks.Select(d => d.FillingPackID));
-                            this.fillingCartonController.fillingCartonService.ServiceBag["DeleteFillingPack"] = true;
-                            if (!this.fillingCartonController.fillingCartonService.Delete(fillingCartonID)) throw new System.ArgumentException("Lỗi", "Không thể xóa carton trên CSDL");
+                            this.cartonController.cartonService.ServiceBag["EntryStatusIDs"] = (int)GlobalVariables.BarcodeStatus.Noread + "," + (int)GlobalVariables.BarcodeStatus.Pending; //THIS CARTON MUST BE Noread || Pending IN ORDER TO UNWRAP TO PACK
+                            this.cartonController.cartonService.ServiceBag["PackIDs"] = string.Join(",", packs.Select(d => d.PackID));
+                            this.cartonController.cartonService.ServiceBag["DeletePack"] = true;
+                            if (!this.cartonController.cartonService.Delete(cartonID)) throw new System.ArgumentException("Lỗi", "Không thể xóa carton trên CSDL");
 
-                            this.cartonPendingQueue.Dequeue(fillingCartonID);
+                            this.cartonPendingQueue.Dequeue(cartonID);
 
                             this.NotifyPropertyChanged("CartonPendingQueue");
                         }

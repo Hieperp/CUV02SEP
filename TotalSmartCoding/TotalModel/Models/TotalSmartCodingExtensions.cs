@@ -378,11 +378,9 @@ namespace TotalModel.Models
     }
 
 
-    public partial class FillingPack : IPrimitiveEntity, IBaseEntity
+    public partial class Pack : IPrimitiveEntity, IBaseEntity
     {
-        public int GetID() { return this.FillingPackID; }
-
-        public int LocationID { get; set; }
+        public int GetID() { return this.PackID; }
 
         public int UserID { get; set; }
         public int PreparedPersonID { get; set; }
@@ -393,11 +391,9 @@ namespace TotalModel.Models
     }
 
 
-    public partial class FillingCarton : IPrimitiveEntity, IBaseEntity
+    public partial class Carton : IPrimitiveEntity, IBaseEntity
     {
-        public int GetID() { return this.FillingCartonID; }
-
-        public int LocationID { get; set; }
+        public int GetID() { return this.CartonID; }
 
         public int UserID { get; set; }
         public int PreparedPersonID { get; set; }
@@ -408,11 +404,9 @@ namespace TotalModel.Models
     }
 
 
-    public partial class FillingPallet : IPrimitiveEntity, IBaseEntity
+    public partial class Pallet : IPrimitiveEntity, IBaseEntity
     {
-        public int GetID() { return this.FillingPalletID; }
-
-        public int LocationID { get; set; }
+        public int GetID() { return this.PalletID; }
 
         public int UserID { get; set; }
         public int PreparedPersonID { get; set; }

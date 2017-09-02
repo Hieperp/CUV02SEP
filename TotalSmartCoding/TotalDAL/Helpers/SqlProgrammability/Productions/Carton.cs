@@ -1,0 +1,121 @@
+﻿using System;
+using System.Text;
+
+using TotalBase;
+using TotalBase.Enums;
+using TotalModel.Models;
+
+namespace TotalDAL.Helpers.SqlProgrammability.Productions
+{
+    public class Carton
+    {
+        private readonly TotalSmartCodingEntities totalSmartCodingEntities;
+
+        public Carton(TotalSmartCodingEntities totalSmartCodingEntities)
+        {
+            this.totalSmartCodingEntities = totalSmartCodingEntities;
+        }
+
+        public void RestoreProcedure()
+        {
+            this.CartonSaveRelative();
+
+            this.CartonEditable();
+
+            this.GetCartons();
+            this.CartonUpdateEntryStatus();
+        }
+
+        private void CartonSaveRelative()
+        {
+            //BE CAREFULL WHEN SAVE: NEED TO SET @PackIDs (FOR BOTH WHEN SAVE - Update AND DELETE - Undo
+            string queryString = " @EntityID int, @SaveRelativeOption int, @PackIDs varchar(3999), @DeletePack bit " + "\r\n"; //SaveRelativeOption: 1: Update, -1:Undo
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+
+            queryString = queryString + "   IF (@PackIDs <> '') " + "\r\n";
+            queryString = queryString + "       BEGIN " + "\r\n";
+
+            queryString = queryString + "           IF (@SaveRelativeOption = 1) " + "\r\n";
+
+            queryString = queryString + "               UPDATE      Packs" + "\r\n";
+            queryString = queryString + "               SET         CartonID = @EntityID, EntryStatusID = " + (int)GlobalVariables.BarcodeStatus.Wrapped + "\r\n"; //WHERE: NOT BELONG TO ANY CARTON, AND NUMBER OF PACK EFFECTED: IS THE SAME PackID PASS BY VARIBLE: PackIDs
+            queryString = queryString + "               WHERE       CartonID IS NULL AND EntryStatusID = " + (int)GlobalVariables.BarcodeStatus.Readytoset + " AND PackID IN (SELECT Id FROM dbo.SplitToIntList (@PackIDs)) " + "\r\n";
+
+            queryString = queryString + "           ELSE " + "\r\n"; //(@SaveRelativeOption = -1) 
+
+            queryString = queryString + "               BEGIN " + "\r\n";
+            queryString = queryString + "                   IF (@DeletePack = 1) " + "\r\n";
+            queryString = queryString + "                       DELETE      " + "\r\n";
+            queryString = queryString + "                       FROM        Packs " + "\r\n";
+            queryString = queryString + "                       WHERE       CartonID = @EntityID AND EntryStatusID = " + (int)GlobalVariables.BarcodeStatus.Wrapped + "\r\n";
+            queryString = queryString + "                   ELSE " + "\r\n";
+            queryString = queryString + "                       UPDATE      Packs" + "\r\n";
+            queryString = queryString + "                       SET         CartonID = NULL, EntryStatusID = " + (int)GlobalVariables.BarcodeStatus.Readytoset + "\r\n"; //WHERE: NOT BELONG TO ANY CARTON, AND NUMBER OF PACK EFFECTED: IS THE SAME PackID PASS BY VARIBLE: PackIDs
+            queryString = queryString + "                       WHERE       CartonID = @EntityID AND EntryStatusID = " + (int)GlobalVariables.BarcodeStatus.Wrapped + "\r\n";
+            queryString = queryString + "               END " + "\r\n";
+
+
+            queryString = queryString + "           IF @@ROWCOUNT <> (SELECT TotalPacks FROM Cartons WHERE CartonID = @EntityID)  OR  @@ROWCOUNT <> ((SELECT (LEN(@PackIDs) - LEN(REPLACE(@PackIDs, ',', '')))) + 1) " + "\r\n"; //CHECK BOTH CONDITION FOR SURE. BUT: WE CAN OMIT THE SECOND CONDITION
+            queryString = queryString + "               BEGIN " + "\r\n";
+            queryString = queryString + "                   DECLARE     @msg NVARCHAR(300) = N'System Error: Some pack does not exist!' + cast(@@ROWCOUNT as nvarchar) ; " + "\r\n";
+            queryString = queryString + "                   THROW       61001,  @msg, 1; " + "\r\n";
+            queryString = queryString + "               END " + "\r\n";
+            queryString = queryString + "       END " + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("CartonSaveRelative", queryString);
+        }
+
+
+        private void CartonEditable()
+        {
+            string[] queryArray = new string[1];
+            
+            queryArray[0] = " SELECT TOP 1 @FoundEntity = CartonID FROM Cartons WHERE CartonID = @EntityID AND NOT PalletID IS NULL";
+
+            this.totalSmartCodingEntities.CreateProcedureToCheckExisting("CartonEditable", queryArray);
+        }
+
+
+
+
+
+        private void GetCartons()
+        {
+            string sqlSelect = "       SELECT * FROM Cartons WHERE FillingLineID = @FillingLineID AND EntryStatusID IN (SELECT Id FROM dbo.SplitToIntList (@EntryStatusIDs)) " + "\r\n";
+
+            string queryString = " @FillingLineID int, @EntryStatusIDs varchar(3999), @PalletID int " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+
+            queryString = queryString + "       " + "\r\n";
+            queryString = queryString + "   IF (@PalletID IS NULL) " + "\r\n";
+            queryString = queryString + "       " + sqlSelect + "\r\n";
+            queryString = queryString + "   ELSE " + "\r\n";
+            queryString = queryString + "       " + sqlSelect + " AND PalletID = @PalletID " + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("GetCartons", queryString);
+        }
+
+        private void CartonUpdateEntryStatus()
+        {
+            //BE CAREFULL WHEN SAVE: NEED TO SET @CartonIDs (FOR BOTH WHEN SAVE - Update AND DELETE - Undo
+            string queryString = " @CartonIDs varchar(3999), @EntryStatusID int " + "\r\n"; //SaveRelativeOption: 1: Update, -1:Undo
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+            queryString = queryString + "       UPDATE      Cartons" + "\r\n";
+            queryString = queryString + "       SET         EntryStatusID = @EntryStatusID " + "\r\n";
+            queryString = queryString + "       WHERE       CartonID IN (SELECT Id FROM dbo.SplitToIntList (@CartonIDs)) " + "\r\n";
+
+            queryString = queryString + "       IF @@ROWCOUNT <> ((SELECT (LEN(@CartonIDs) - LEN(REPLACE(@CartonIDs, ',', '')))) + 1) " + "\r\n";
+            queryString = queryString + "           BEGIN " + "\r\n";
+            queryString = queryString + "               DECLARE     @msg NVARCHAR(300) = N'System Error: Some carton does not exist!' ; " + "\r\n";
+            queryString = queryString + "               THROW       61001,  @msg, 1; " + "\r\n";
+            queryString = queryString + "           END " + "\r\n";
+
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("CartonUpdateEntryStatus", queryString);
+        }
+
+    }
+}

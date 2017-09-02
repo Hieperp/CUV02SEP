@@ -10,25 +10,25 @@ using System.Collections.Generic;
 
 namespace TotalService.Productions
 {
-    public class FillingPackService : GenericService<FillingPack, FillingPackDTO, FillingPackPrimitiveDTO>, IFillingPackService
+    public class PackService : GenericService<Pack, PackDTO, PackPrimitiveDTO>, IPackService
     {
-        private IFillingPackRepository fillingPackRepository;
-        public FillingPackService(IFillingPackRepository fillingPackRepository)
-            : base(fillingPackRepository)
+        private IPackRepository packRepository;
+        public PackService(IPackRepository packRepository)
+            : base(packRepository)
         {
-            this.fillingPackRepository = fillingPackRepository;
+            this.packRepository = packRepository;
         }
 
-        public IList<FillingPack> GetFillingPacks(GlobalVariables.FillingLine fillingLineID, string entryStatusIDs, int? fillingCartonID)
+        public IList<Pack> GetPacks(GlobalVariables.FillingLine fillingLineID, string entryStatusIDs, int? cartonID)
         {
-            return this.fillingPackRepository.GetFillingPacks(fillingLineID, entryStatusIDs, fillingCartonID);
+            return this.packRepository.GetPacks(fillingLineID, entryStatusIDs, cartonID);
         }
 
-        public bool UpdateEntryStatus(string fillingPackIDs, GlobalVariables.BarcodeStatus barcodeStatus)
+        public bool UpdateEntryStatus(string packIDs, GlobalVariables.BarcodeStatus barcodeStatus)
         {
             try
             {
-                this.fillingPackRepository.UpdateEntryStatus(fillingPackIDs, barcodeStatus);
+                this.packRepository.UpdateEntryStatus(packIDs, barcodeStatus);
                 return true;
             }
             catch (Exception ex)
@@ -37,11 +37,11 @@ namespace TotalService.Productions
                 return false;
             }
         }
-        public bool UpdateQueueID(string fillingPackIDs, int queueID)
+        public bool UpdateQueueID(string packIDs, int queueID)
         {
             try
             {
-                this.fillingPackRepository.UpdateQueueID(fillingPackIDs, queueID);
+                this.packRepository.UpdateQueueID(packIDs, queueID);
                 return true;
             }
             catch (Exception ex)
@@ -52,7 +52,7 @@ namespace TotalService.Productions
         }
 
 
-        protected override bool TryValidateModel(FillingPackDTO dto, ref StringBuilder invalidMessage)
+        protected override bool TryValidateModel(PackDTO dto, ref StringBuilder invalidMessage)
         {
             if (!base.TryValidateModel(dto, ref invalidMessage)) return false;
             // cần phải ktra DTO here in order to save: có nên kết hợp IsValid của DTO để ktra ngay trong GenericService cho tất cả DTO object??? if (dto.EntryDate < new DateTime(2015, 7, 1) || dto.EntryDate > DateTime.Today.AddDays(2)) invalidMessage.Append(" Ngày không hợp lệ;");
