@@ -89,9 +89,9 @@ namespace TotalSmartCoding.Views.Productions
                 this.textBoxCommodityCode.TextBox.DataBindings.Add("Text", this.fillingData, "CommodityCode");
                 this.textBoxCommodityOfficialCode.TextBox.DataBindings.Add("Text", this.fillingData, "CommodityOfficialCode");
                 this.textBoxBatchCode.TextBox.DataBindings.Add("Text", this.fillingData, "BatchCode");
-                this.textBoxNextPackNo.TextBox.DataBindings.Add("Text", this.fillingData, "NextPackNo");
-                this.textBoxNextCartonNo.TextBox.DataBindings.Add("Text", this.fillingData, "NextCartonNo");
-                this.textBoxNextPalletNo.TextBox.DataBindings.Add("Text", this.fillingData, "NextPalletNo");
+                this.textNextPackNo.TextBox.DataBindings.Add("Text", this.fillingData, "NextPackNo");
+                this.textNextCartonNo.TextBox.DataBindings.Add("Text", this.fillingData, "NextCartonNo");
+                this.textNextPalletNo.TextBox.DataBindings.Add("Text", this.fillingData, "NextPalletNo");
 
                 this.comboBoxEmptyCarton.ComboBox.Items.AddRange(new string[] { "Ignore empty carton", "Keep empty carton" });
                 this.comboBoxEmptyCarton.ComboBox.SelectedIndex = GlobalVariables.IgnoreEmptyCarton ? 0 : 1;
@@ -100,7 +100,7 @@ namespace TotalSmartCoding.Views.Productions
                 this.buttonCartonNoreadNow.Visible = GlobalEnums.OnTestScanner;
                 this.buttonPalletReceivedNow.Visible = GlobalEnums.OnTestScanner;
 
-                if (!fillingData.HasPack) { this.dgvCartonPendingQueue.RowTemplate.Height = 195; this.dgvCartonQueue.RowTemplate.Height = 195; this.dgvCartonsetQueue.RowTemplate.Height = 195; this.dgvPalletQueue.RowTemplate.Height = 195; this.dgvPalletsetQueue.RowTemplate.Height = 195; }
+                if (!fillingData.HasPack) { this.labelNextPackNo.Visible = false; this.textNextPackNo.Visible = false; this.dgvCartonPendingQueue.RowTemplate.Height = 195; this.dgvCartonQueue.RowTemplate.Height = 195; this.dgvCartonsetQueue.RowTemplate.Height = 195; this.dgvPalletQueue.RowTemplate.Height = 195; this.dgvPalletsetQueue.RowTemplate.Height = 195; }
 
             }
             catch (Exception exception)
@@ -139,7 +139,7 @@ namespace TotalSmartCoding.Views.Productions
             try
             {
                 this.splitContainerPack.SplitterDistance = this.SplitterDistanceQuality();
-                this.splitContainerCarton.SplitterDistance = SplitterContainerCarton();
+                this.splitContainerCarton.SplitterDistance = this.SplitterContainerCarton();
                 this.splitContainerPallet.SplitterDistance = this.SplitterContainerPallet();
 
 
@@ -196,7 +196,7 @@ namespace TotalSmartCoding.Views.Productions
                 case GlobalVariables.FillingLine.Pail:
                     return 0;
                 case GlobalVariables.FillingLine.Drum:
-                    return 70; //86;
+                    return 0; //86;
                 default:
                     return 1;
             }
@@ -231,43 +231,7 @@ namespace TotalSmartCoding.Views.Productions
                     return 1;
             }
         }
-
-        private int SplitterDistanceMatching()
-        {
-            //if (this.fillingLineData.FillingLineID == GlobalVariables.FillingLine.CM || this.fillingLineData.FillingLineID == GlobalVariables.FillingLine.WH || this.fillingLineData.FillingLineID == GlobalVariables.FillingLine.Pail)
-            //{
-            //    for (int i = 1; i <= 24; i++)
-            //        this.dataGridViewCartonList.Columns[i].Visible = (i > (this.fillingLineData.FillingLineID == GlobalVariables.FillingLine.CM || this.fillingLineData.FillingLineID == GlobalVariables.FillingLine.WH ? GlobalVariables.NoItemPerCarton() : 0)) ? false : true;
-            //}
-
-            switch (GlobalVariables.FillingLineID)
-            {
-                case GlobalVariables.FillingLine.Smallpack:
-                    return 955;//1199
-                case GlobalVariables.FillingLine.Pail:
-                    return 955;//760---24
-                case GlobalVariables.FillingLine.Drum:
-                    return GlobalVariables.noItemPerCartonSetByProductID == 6 ? 860 : 880;
-                default:
-                    return 1;
-            }
-        }
-
-        private int SplitterDistanceCarton()
-        {
-            switch (GlobalVariables.FillingLineID)
-            {
-                case GlobalVariables.FillingLine.Smallpack:
-                    return 160; //213
-                case GlobalVariables.FillingLine.Pail:
-                    return 160;
-                case GlobalVariables.FillingLine.Drum:
-                    return 361; //485
-                default:
-                    return 1;
-            }
-        }
-
+                
         #endregion Contructor & Implement Interface
 
         #region Toolstrip bar
