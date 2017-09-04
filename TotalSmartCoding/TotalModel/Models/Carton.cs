@@ -26,12 +26,12 @@ namespace TotalModel.Models
         public System.DateTime EntryDate { get; set; }
         public int FillingLineID { get; set; }
         public int BatchID { get; set; }
+        public int LocationID { get; set; }
         public int CommodityID { get; set; }
         public Nullable<int> PalletID { get; set; }
-        public int LocationID { get; set; }
         public string Code { get; set; }
-        public int TotalPacks { get; set; }
         public decimal Volume { get; set; }
+        public int PackCounts { get; set; }
         public int EntryStatusID { get; set; }
     
         public virtual Commodity Commodity { get; set; }

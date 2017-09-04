@@ -77,6 +77,11 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
                     CommodityCode = this.pendingPallet.CommodityCode,
                     CommodityName = this.pendingPallet.CommodityName,
 
+                    PackCounts = this.pendingPallet.PackCounts,
+                    CartonCounts = this.pendingPallet.CartonCounts,
+                    PalletCounts = this.pendingPallet.PalletCounts,
+                    Volume = this.pendingPallet.Volume,
+
                     Quantity = (decimal)this.pendingPallet.QuantityRemains
                 };
 

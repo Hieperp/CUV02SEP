@@ -71,7 +71,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
             queryString = queryString + "       SELECT      PickupDetails.PickupDetailID, PickupDetails.PickupID, Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, PickupDetails.BinLocationID, BinLocations.Code AS BinLocationCode, " + "\r\n";
             queryString = queryString + "                   PickupDetails.PackID, Packs.Code AS PackCode, Packs.EntryDate AS PackEntryDate, PickupDetails.CartonID, Cartons.Code AS CartonCode, Cartons.EntryDate AS CartonEntryDate, PickupDetails.PalletID, Pallets.Code AS PalletCode, Pallets.EntryDate AS PalletEntryDate, " + "\r\n";
-            queryString = queryString + "                   PickupDetails.Quantity, PickupDetails.Volume, PickupDetails.Remarks " + "\r\n";
+            queryString = queryString + "                   PickupDetails.PackCounts, PickupDetails.CartonCounts, PickupDetails.PalletCounts, PickupDetails.Quantity, PickupDetails.Volume, PickupDetails.Remarks " + "\r\n";
             queryString = queryString + "       FROM        PickupDetails " + "\r\n";
             queryString = queryString + "                   INNER JOIN Commodities ON PickupDetails.PickupID = @PickupID AND PickupDetails.CommodityID = Commodities.CommodityID " + "\r\n";
             queryString = queryString + "                   INNER JOIN BinLocations ON PickupDetails.BinLocationID = BinLocations.BinLocationID " + "\r\n";
@@ -145,7 +145,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             string queryString = "";
 
             queryString = queryString + "       SELECT      Pallets.PalletID, Pallets.EntryDate, Pallets.Code, Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, " + "\r\n";
-            queryString = queryString + "                   ROUND(Pallets.Quantity - Pallets.QuantityPickup,  " + (int)GlobalEnums.rndQuantity + ") AS QuantityRemains, CAST(0 AS decimal(18, 2)) AS Quantity, Pallets.Volume " + "\r\n";
+            queryString = queryString + "                   ROUND(Pallets.Quantity - Pallets.QuantityPickup,  " + (int)GlobalEnums.rndQuantity + ") AS QuantityRemains, CAST(0 AS decimal(18, 2)) AS Quantity, Pallets.PackCounts, Pallets.CartonCounts, 1 AS PalletCounts, Pallets.Volume " + "\r\n";
 
             queryString = queryString + "       FROM        Pallets " + "\r\n";
             queryString = queryString + "                   INNER JOIN Commodities ON Pallets.LocationID = @LocationID AND ROUND(Pallets.Quantity - Pallets.QuantityPickup, " + (int)GlobalEnums.rndQuantity + ") > 0 AND Pallets.CommodityID = Commodities.CommodityID " + (isPalletIDs ? " AND Pallets.PalletID NOT IN (SELECT Id FROM dbo.SplitToIntList (@PalletIDs))" : "") + "\r\n";
@@ -157,7 +157,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
         {
             string queryString = "";
             queryString = queryString + "       SELECT      Pallets.PalletID, Pallets.EntryDate, Pallets.Code, Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, " + "\r\n";
-            queryString = queryString + "                   ROUND(Pallets.Quantity - Pallets.QuantityPickup + Pallets.Quantity,  " + (int)GlobalEnums.rndQuantity + ") AS QuantityRemains, CAST(0 AS decimal(18, 2)) AS Quantity, Pallets.Volume " + "\r\n";
+            queryString = queryString + "                   ROUND(Pallets.Quantity - Pallets.QuantityPickup + Pallets.Quantity,  " + (int)GlobalEnums.rndQuantity + ") AS QuantityRemains, CAST(0 AS decimal(18, 2)) AS Quantity, Pallets.PackCounts, Pallets.CartonCounts, 1 AS PalletCounts, Pallets.Volume " + "\r\n";
 
             queryString = queryString + "       FROM        PickupDetails" + "\r\n";
             queryString = queryString + "                   INNER JOIN Pallets ON PickupDetails.PickupID = @PickupID AND PickupDetails.PalletID = Pallets.PalletID " + (isPalletIDs ? " AND Pallets.PalletID NOT IN (SELECT Id FROM dbo.SplitToIntList (@PalletIDs))" : "") + "\r\n";

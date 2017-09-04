@@ -22,7 +22,7 @@ namespace TotalDTO.Productions
 
         public int PalletID { get; set; }
 
-        public int TotalCartons { get; set; }
+        public int CartonCounts { get; set; }
     }
 
     public class PalletDTO : PalletPrimitiveDTO, IShallowClone<PalletDTO>

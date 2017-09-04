@@ -16,6 +16,13 @@ namespace TotalDTO.Helpers
         public virtual decimal TotalQuantity { get { return this.DtoDetails().Select(o => o.Quantity).Sum(); } }
         public virtual decimal TotalVolume { get { return this.DtoDetails().Select(o => o.Volume).Sum(); } }
 
+
+
+
+        public virtual decimal TotalPackCounts { get { return this.DtoDetails().Select(o => o.PackCounts).Sum(); } }
+        public virtual decimal TotalCartonCounts { get { return this.DtoDetails().Select(o => o.CartonCounts).Sum(); } }
+        public virtual decimal TotalPalletCounts { get { return this.DtoDetails().Select(o => o.PalletCounts).Sum(); } }
+
         //public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         //{
         //    foreach (var result in base.Validate(validationContext)) { yield return result; }

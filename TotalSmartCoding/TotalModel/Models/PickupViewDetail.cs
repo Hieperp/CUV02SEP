@@ -32,5 +32,8 @@ namespace TotalModel.Models
         public Nullable<System.DateTime> PackEntryDate { get; set; }
         public Nullable<System.DateTime> CartonEntryDate { get; set; }
         public Nullable<System.DateTime> PalletEntryDate { get; set; }
+        public int PackCounts { get; set; }
+        public int CartonCounts { get; set; }
+        public int PalletCounts { get; set; }
     }
 }

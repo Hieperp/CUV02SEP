@@ -15,6 +15,11 @@ namespace TotalDTO.Helpers
 
         decimal Quantity { get; set; }
         decimal Volume { get; set; }
+
+
+        decimal PackCounts { get; set; }
+        decimal CartonCounts { get; set; }
+        decimal PalletCounts { get; set; }
     }
 
     public abstract class QuantityDetailDTO : BaseModel, IQuantityDetailDTO, IBaseModel
@@ -61,6 +66,42 @@ namespace TotalDTO.Helpers
         {
             get { return this.volume; }
             set { ApplyPropertyChange<QuantityDetailDTO, decimal>(ref this.volume, o => o.Volume, Math.Round(value, (int)GlobalEnums.rndVolume)); }
+        }
+
+
+
+
+
+
+
+
+
+
+        private int packCounts;
+        [DefaultValue(0)]
+        [Range(0, 99999999999, ErrorMessage = "PackCounts không hợp lệ")]
+        public virtual int PackCounts
+        {
+            get { return this.packCounts; }
+            set { ApplyPropertyChange<QuantityDetailDTO, int>(ref this.packCounts, o => o.PackCounts, value); }
+        }
+
+        private int cartonCounts;
+        [DefaultValue(0)]
+        [Range(0, 99999999999, ErrorMessage = "CartonCounts không hợp lệ")]
+        public virtual int CartonCounts
+        {
+            get { return this.cartonCounts; }
+            set { ApplyPropertyChange<QuantityDetailDTO, int>(ref this.cartonCounts, o => o.CartonCounts, value); }
+        }
+
+        private int palletCounts;
+        [DefaultValue(0)]
+        [Range(0, 99999999999, ErrorMessage = "PalletCounts không hợp lệ")]
+        public virtual int PalletCounts
+        {
+            get { return this.palletCounts; }
+            set { ApplyPropertyChange<QuantityDetailDTO, int>(ref this.palletCounts, o => o.PalletCounts, value); }
         }
     }
 }

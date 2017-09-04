@@ -29,9 +29,9 @@ namespace TotalModel.Models
         public int CommodityID { get; set; }
         public int LocationID { get; set; }
         public string Code { get; set; }
-        public int TotalPacks { get; set; }
-        public int TotalCartons { get; set; }
         public decimal Volume { get; set; }
+        public int PackCounts { get; set; }
+        public int CartonCounts { get; set; }
         public decimal Quantity { get; set; }
         public decimal QuantityPickup { get; set; }
         public int EntryStatusID { get; set; }

@@ -374,7 +374,7 @@ namespace TotalDTO.Productions
             }
         }
 
-        public int TotalPacks { get { return this.list2DBarcode.Select(o => o.Select(y => y.TotalPacks).Sum()).Sum(); } }
+        public int PackCounts { get { return this.list2DBarcode.Select(o => o.Select(y => y.PackCounts).Sum()).Sum(); } }
 
         public decimal TotalVolume { get { return this.list2DBarcode.Select(o => o.Select(y => y.Volume).Sum()).Sum(); } }
 

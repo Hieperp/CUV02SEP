@@ -12,8 +12,8 @@ namespace TotalDTO.Productions
             {
                 this.FillingLineID = (int)fillingData.FillingLineID;
                 this.BatchID = fillingData.BatchID;
-                this.CommodityID = fillingData.CommodityID;                
-                
+                this.CommodityID = fillingData.CommodityID;
+
                 this.EntryStatusID = (int)GlobalVariables.BarcodeStatus.Freshnew;
             }
         }
@@ -23,7 +23,8 @@ namespace TotalDTO.Productions
         public int CommodityID { get; set; }
         public string Code { get; set; }
 
-        public virtual int TotalPacks { get; set; }
+        public decimal Quantity { get { return 1; } }
+        public virtual int PackCounts { get; set; }
 
         public decimal Volume { get; set; }
 

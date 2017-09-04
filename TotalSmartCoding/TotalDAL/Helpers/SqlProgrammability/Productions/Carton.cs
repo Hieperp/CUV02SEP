@@ -56,7 +56,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Productions
             queryString = queryString + "               END " + "\r\n";
 
 
-            queryString = queryString + "           IF @@ROWCOUNT <> (SELECT TotalPacks FROM Cartons WHERE CartonID = @EntityID)  OR  @@ROWCOUNT <> ((SELECT (LEN(@PackIDs) - LEN(REPLACE(@PackIDs, ',', '')))) + 1) " + "\r\n"; //CHECK BOTH CONDITION FOR SURE. BUT: WE CAN OMIT THE SECOND CONDITION
+            queryString = queryString + "           IF @@ROWCOUNT <> (SELECT PackCounts FROM Cartons WHERE CartonID = @EntityID)  OR  @@ROWCOUNT <> ((SELECT (LEN(@PackIDs) - LEN(REPLACE(@PackIDs, ',', '')))) + 1) " + "\r\n"; //CHECK BOTH CONDITION FOR SURE. BUT: WE CAN OMIT THE SECOND CONDITION
             queryString = queryString + "               BEGIN " + "\r\n";
             queryString = queryString + "                   DECLARE     @msg NVARCHAR(300) = N'System Error: Some pack does not exist!' + cast(@@ROWCOUNT as nvarchar) ; " + "\r\n";
             queryString = queryString + "                   THROW       61001,  @msg, 1; " + "\r\n";

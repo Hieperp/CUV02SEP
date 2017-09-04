@@ -67,12 +67,12 @@
           <Property Name="EntryDate" Type="datetime" Nullable="false" />
           <Property Name="FillingLineID" Type="int" Nullable="false" />
           <Property Name="BatchID" Type="int" Nullable="false" />
+          <Property Name="LocationID" Type="int" Nullable="false" />
           <Property Name="CommodityID" Type="int" Nullable="false" />
           <Property Name="PalletID" Type="int" />
-          <Property Name="LocationID" Type="int" Nullable="false" />
           <Property Name="Code" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="TotalPacks" Type="int" Nullable="false" />
           <Property Name="Volume" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="PackCounts" Type="int" Nullable="false" />
           <Property Name="EntryStatusID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Commodities">
@@ -300,10 +300,10 @@
           <Property Name="EntryDate" Type="datetime" Nullable="false" />
           <Property Name="FillingLineID" Type="int" Nullable="false" />
           <Property Name="BatchID" Type="int" Nullable="false" />
+          <Property Name="LocationID" Type="int" Nullable="false" />
+          <Property Name="QueueID" Type="int" Nullable="false" />
           <Property Name="CommodityID" Type="int" Nullable="false" />
           <Property Name="CartonID" Type="int" />
-          <Property Name="QueueID" Type="int" Nullable="false" />
-          <Property Name="LocationID" Type="int" Nullable="false" />
           <Property Name="Code" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Volume" Type="decimal" Precision="18" Scale="3" Nullable="false" />
           <Property Name="EntryStatusID" Type="int" Nullable="false" />
@@ -319,9 +319,9 @@
           <Property Name="CommodityID" Type="int" Nullable="false" />
           <Property Name="LocationID" Type="int" Nullable="false" />
           <Property Name="Code" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="TotalPacks" Type="int" Nullable="false" />
-          <Property Name="TotalCartons" Type="int" Nullable="false" />
           <Property Name="Volume" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="PackCounts" Type="int" Nullable="false" />
+          <Property Name="CartonCounts" Type="int" Nullable="false" />
           <Property Name="Quantity" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="QuantityPickup" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="EntryStatusID" Type="int" Nullable="false" />
@@ -341,6 +341,9 @@
           <Property Name="PackID" Type="int" />
           <Property Name="CartonID" Type="int" />
           <Property Name="PalletID" Type="int" />
+          <Property Name="PackCounts" Type="int" Nullable="false" />
+          <Property Name="CartonCounts" Type="int" Nullable="false" />
+          <Property Name="PalletCounts" Type="int" Nullable="false" />
           <Property Name="Quantity" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="QuantityReceipt" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Volume" Type="decimal" Precision="18" Scale="2" Nullable="false" />
@@ -363,6 +366,9 @@
           <Property Name="PreparedPersonID" Type="int" Nullable="false" />
           <Property Name="OrganizationalUnitID" Type="int" Nullable="false" />
           <Property Name="LocationID" Type="int" Nullable="false" />
+          <Property Name="TotalPackCounts" Type="int" Nullable="false" />
+          <Property Name="TotalCartonCounts" Type="int" Nullable="false" />
+          <Property Name="TotalPalletCounts" Type="int" Nullable="false" />
           <Property Name="TotalQuantity" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="TotalVolume" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="100" />
@@ -1417,7 +1423,6 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <EntitySet Name="OrganizationalUnits" EntityType="TotalSmartCodingModel.OrganizationalUnit" />
           <EntitySet Name="OrganizationalUnitUsers" EntityType="TotalSmartCodingModel.OrganizationalUnitUser" />
           <EntitySet Name="PickupDetails" EntityType="TotalSmartCodingModel.PickupDetail" />
-          <EntitySet Name="Pickups" EntityType="TotalSmartCodingModel.Pickup" />
           <EntitySet Name="Territories" EntityType="TotalSmartCodingModel.Territory" />
           <EntitySet Name="Warehouses" EntityType="TotalSmartCodingModel.Warehouse" />
           <AssociationSet Name="FK_Batches_FillingLines" Association="TotalSmartCodingModel.FK_Batches_FillingLines">
@@ -1444,10 +1449,6 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
             <End Role="Location" EntitySet="Locations" />
             <End Role="Employee" EntitySet="Employees" />
           </AssociationSet>
-          <AssociationSet Name="FK_Pickups_FillingLines" Association="TotalSmartCodingModel.FK_Pickups_FillingLines">
-            <End Role="FillingLine" EntitySet="FillingLines" />
-            <End Role="Pickup" EntitySet="Pickups" />
-          </AssociationSet>
           <AssociationSet Name="FK_GoodsReceiptDetails_GoodsReceipts" Association="TotalSmartCodingModel.FK_GoodsReceiptDetails_GoodsReceipts">
             <End Role="GoodsReceipt" EntitySet="GoodsReceipts" />
             <End Role="GoodsReceiptDetail" EntitySet="GoodsReceiptDetails" />
@@ -1468,10 +1469,6 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
             <End Role="Location" EntitySet="Locations" />
             <End Role="GoodsReceipt" EntitySet="GoodsReceipts" />
           </AssociationSet>
-          <AssociationSet Name="FK_GoodsReceipts_Pickups" Association="TotalSmartCodingModel.FK_GoodsReceipts_Pickups">
-            <End Role="Pickup" EntitySet="Pickups" />
-            <End Role="GoodsReceipt" EntitySet="GoodsReceipts" />
-          </AssociationSet>
           <AssociationSet Name="FK_GoodsReceipts_Warehouses" Association="TotalSmartCodingModel.FK_GoodsReceipts_Warehouses">
             <End Role="Warehouse" EntitySet="Warehouses" />
             <End Role="GoodsReceipt" EntitySet="GoodsReceipts" />
@@ -1479,10 +1476,6 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <AssociationSet Name="FK_OrganizationalUnits_Locations" Association="TotalSmartCodingModel.FK_OrganizationalUnits_Locations">
             <End Role="Location" EntitySet="Locations" />
             <End Role="OrganizationalUnit" EntitySet="OrganizationalUnits" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Pickups_Locations" Association="TotalSmartCodingModel.FK_Pickups_Locations">
-            <End Role="Location" EntitySet="Locations" />
-            <End Role="Pickup" EntitySet="Pickups" />
           </AssociationSet>
           <AssociationSet Name="FK_Warehouses_Locations" Association="TotalSmartCodingModel.FK_Warehouses_Locations">
             <End Role="Location" EntitySet="Locations" />
@@ -1492,17 +1485,9 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
             <End Role="OrganizationalUnit" EntitySet="OrganizationalUnits" />
             <End Role="OrganizationalUnitUser" EntitySet="OrganizationalUnitUsers" />
           </AssociationSet>
-          <AssociationSet Name="FK_PickupDetails_Pickups" Association="TotalSmartCodingModel.FK_PickupDetails_Pickups">
-            <End Role="Pickup" EntitySet="Pickups" />
-            <End Role="PickupDetail" EntitySet="PickupDetails" />
-          </AssociationSet>
           <AssociationSet Name="FK_PickupDetails_Warehouses" Association="TotalSmartCodingModel.FK_PickupDetails_Warehouses">
             <End Role="Warehouse" EntitySet="Warehouses" />
             <End Role="PickupDetail" EntitySet="PickupDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Pickups_Warehouses" Association="TotalSmartCodingModel.FK_Pickups_Warehouses">
-            <End Role="Warehouse" EntitySet="Warehouses" />
-            <End Role="Pickup" EntitySet="Pickups" />
           </AssociationSet>
           <AssociationSet Name="FK_Territories_Territories" Association="TotalSmartCodingModel.FK_Territories_Territories">
             <End Role="Territory" EntitySet="Territories" />
@@ -1521,6 +1506,56 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
             <End Role="Commodity" EntitySet="Commodities" />
             <End Role="PickupDetail" EntitySet="PickupDetails" />
           </AssociationSet>
+          <FunctionImport Name="CartonEditable" ReturnType="Collection(String)">
+          <Parameter Name="EntityID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CartonSaveRelative">
+            <Parameter Name="EntityID" Mode="In" Type="Int32" />
+            <Parameter Name="SaveRelativeOption" Mode="In" Type="Int32" />
+            <Parameter Name="PackIDs" Mode="In" Type="String" />
+            <Parameter Name="DeletePack" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="CartonUpdateEntryStatus">
+            <Parameter Name="CartonIDs" Mode="In" Type="String" />
+            <Parameter Name="EntryStatusID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetCartons" EntitySet="Cartons" ReturnType="Collection(TotalSmartCodingModel.Carton)">
+            <Parameter Name="FillingLineID" Mode="In" Type="Int32" />
+            <Parameter Name="EntryStatusIDs" Mode="In" Type="String" />
+            <Parameter Name="PalletID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetPacks" EntitySet="Packs" ReturnType="Collection(TotalSmartCodingModel.Pack)">
+            <Parameter Name="FillingLineID" Mode="In" Type="Int32" />
+            <Parameter Name="EntryStatusIDs" Mode="In" Type="String" />
+            <Parameter Name="CartonID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetPallets" EntitySet="Pallets" ReturnType="Collection(TotalSmartCodingModel.Pallet)">
+            <Parameter Name="FillingLineID" Mode="In" Type="Int32" />
+            <Parameter Name="EntryStatusIDs" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PackEditable" ReturnType="Collection(String)">
+          <Parameter Name="EntityID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PackUpdateEntryStatus">
+            <Parameter Name="PackIDs" Mode="In" Type="String" />
+            <Parameter Name="EntryStatusID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PackUpdateQueueID">
+            <Parameter Name="PackIDs" Mode="In" Type="String" />
+            <Parameter Name="QueueID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PalletEditable" ReturnType="Collection(String)">
+          <Parameter Name="EntityID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PalletSaveRelative">
+            <Parameter Name="EntityID" Mode="In" Type="Int32" />
+            <Parameter Name="SaveRelativeOption" Mode="In" Type="Int32" />
+            <Parameter Name="CartonIDs" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PalletUpdateEntryStatus">
+            <Parameter Name="PalletIDs" Mode="In" Type="String" />
+            <Parameter Name="EntryStatusID" Mode="In" Type="Int32" />
+          </FunctionImport>
           <EntitySet Name="Cartons" EntityType="TotalSmartCodingModel.Carton" />
           <EntitySet Name="Packs" EntityType="TotalSmartCodingModel.Pack" />
           <EntitySet Name="Pallets" EntityType="TotalSmartCodingModel.Pallet" />
@@ -1576,56 +1611,27 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
             <End Role="Pallet" EntitySet="Pallets" />
             <End Role="PickupDetail" EntitySet="PickupDetails" />
           </AssociationSet>
-          <FunctionImport Name="CartonEditable" ReturnType="Collection(String)">
-          <Parameter Name="EntityID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="CartonSaveRelative">
-            <Parameter Name="EntityID" Mode="In" Type="Int32" />
-            <Parameter Name="SaveRelativeOption" Mode="In" Type="Int32" />
-            <Parameter Name="PackIDs" Mode="In" Type="String" />
-            <Parameter Name="DeletePack" Mode="In" Type="Boolean" />
-          </FunctionImport>
-          <FunctionImport Name="CartonUpdateEntryStatus">
-            <Parameter Name="CartonIDs" Mode="In" Type="String" />
-            <Parameter Name="EntryStatusID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="GetCartons" EntitySet="Cartons" ReturnType="Collection(TotalSmartCodingModel.Carton)">
-            <Parameter Name="FillingLineID" Mode="In" Type="Int32" />
-            <Parameter Name="EntryStatusIDs" Mode="In" Type="String" />
-            <Parameter Name="PalletID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="GetPacks" EntitySet="Packs" ReturnType="Collection(TotalSmartCodingModel.Pack)">
-            <Parameter Name="FillingLineID" Mode="In" Type="Int32" />
-            <Parameter Name="EntryStatusIDs" Mode="In" Type="String" />
-            <Parameter Name="CartonID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="GetPallets" EntitySet="Pallets" ReturnType="Collection(TotalSmartCodingModel.Pallet)">
-            <Parameter Name="FillingLineID" Mode="In" Type="Int32" />
-            <Parameter Name="EntryStatusIDs" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="PackEditable" ReturnType="Collection(String)">
-          <Parameter Name="EntityID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="PackUpdateEntryStatus">
-            <Parameter Name="PackIDs" Mode="In" Type="String" />
-            <Parameter Name="EntryStatusID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="PackUpdateQueueID">
-            <Parameter Name="PackIDs" Mode="In" Type="String" />
-            <Parameter Name="QueueID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="PalletEditable" ReturnType="Collection(String)">
-          <Parameter Name="EntityID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="PalletSaveRelative">
-            <Parameter Name="EntityID" Mode="In" Type="Int32" />
-            <Parameter Name="SaveRelativeOption" Mode="In" Type="Int32" />
-            <Parameter Name="CartonIDs" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="PalletUpdateEntryStatus">
-            <Parameter Name="PalletIDs" Mode="In" Type="String" />
-            <Parameter Name="EntryStatusID" Mode="In" Type="Int32" />
-          </FunctionImport>
+          <EntitySet Name="Pickups" EntityType="TotalSmartCodingModel.Pickup" />
+          <AssociationSet Name="FK_Pickups_FillingLines" Association="TotalSmartCodingModel.FK_Pickups_FillingLines">
+            <End Role="FillingLine" EntitySet="FillingLines" />
+            <End Role="Pickup" EntitySet="Pickups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GoodsReceipts_Pickups" Association="TotalSmartCodingModel.FK_GoodsReceipts_Pickups">
+            <End Role="Pickup" EntitySet="Pickups" />
+            <End Role="GoodsReceipt" EntitySet="GoodsReceipts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pickups_Locations" Association="TotalSmartCodingModel.FK_Pickups_Locations">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="Pickup" EntitySet="Pickups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PickupDetails_Pickups" Association="TotalSmartCodingModel.FK_PickupDetails_Pickups">
+            <End Role="Pickup" EntitySet="Pickups" />
+            <End Role="PickupDetail" EntitySet="PickupDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pickups_Warehouses" Association="TotalSmartCodingModel.FK_Pickups_Warehouses">
+            <End Role="Warehouse" EntitySet="Warehouses" />
+            <End Role="Pickup" EntitySet="Pickups" />
+          </AssociationSet>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
           <Property Type="Int32" Name="PickupID" Nullable="false" />
@@ -1765,6 +1771,9 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Type="DateTime" Name="PackEntryDate" Nullable="true" Precision="23" />
           <Property Type="DateTime" Name="CartonEntryDate" Nullable="true" Precision="23" />
           <Property Type="DateTime" Name="PalletEntryDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="PackCounts" Nullable="false" />
+          <Property Type="Int32" Name="CartonCounts" Nullable="false" />
+          <Property Type="Int32" Name="PalletCounts" Nullable="false" />
         </ComplexType>
         <ComplexType Name="PendingPallet">
           <Property Type="Int32" Name="PalletID" Nullable="false" />
@@ -1776,6 +1785,9 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Type="Decimal" Name="QuantityRemains" Nullable="true" Precision="19" Scale="2" />
           <Property Type="Decimal" Name="Quantity" Nullable="true" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="Volume" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="PackCounts" Nullable="false" />
+          <Property Type="Int32" Name="CartonCounts" Nullable="false" />
+          <Property Type="Int32" Name="PalletCounts" Nullable="false" />
         </ComplexType>
         <ComplexType Name="EmployeeBase">
           <Property Type="Int32" Name="EmployeeID" Nullable="false" />
@@ -1955,9 +1967,9 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Name="Remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="InActive" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Batches" Relationship="TotalSmartCodingModel.FK_Batches_FillingLines" FromRole="FillingLine" ToRole="Batch" />
-          <NavigationProperty Name="Pickups" Relationship="TotalSmartCodingModel.FK_Pickups_FillingLines" FromRole="FillingLine" ToRole="Pickup" />
           <NavigationProperty Name="Cartons" Relationship="TotalSmartCodingModel.FK_Cartons_FillingLines" FromRole="FillingLine" ToRole="Carton" />
           <NavigationProperty Name="Packs" Relationship="TotalSmartCodingModel.FK_Packs_FillingLines" FromRole="FillingLine" ToRole="Pack" />
+          <NavigationProperty Name="Pickups" Relationship="TotalSmartCodingModel.FK_Pickups_FillingLines" FromRole="FillingLine" ToRole="Pickup" />
         </EntityType>
         <EntityType Name="GoodsReceiptDetail">
           <Key>
@@ -2018,8 +2030,8 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <NavigationProperty Name="GoodsReceiptDetails" Relationship="TotalSmartCodingModel.FK_GoodsReceiptDetails_GoodsReceipts" FromRole="GoodsReceipt" ToRole="GoodsReceiptDetail" />
           <NavigationProperty Name="GoodsReceiptType" Relationship="TotalSmartCodingModel.FK_GoodsReceipts_GoodsReceiptTypes" FromRole="GoodsReceipt" ToRole="GoodsReceiptType" />
           <NavigationProperty Name="Location" Relationship="TotalSmartCodingModel.FK_GoodsReceipts_Locations" FromRole="GoodsReceipt" ToRole="Location" />
-          <NavigationProperty Name="Pickup" Relationship="TotalSmartCodingModel.FK_GoodsReceipts_Pickups" FromRole="GoodsReceipt" ToRole="Pickup" />
           <NavigationProperty Name="Warehouse" Relationship="TotalSmartCodingModel.FK_GoodsReceipts_Warehouses" FromRole="GoodsReceipt" ToRole="Warehouse" />
+          <NavigationProperty Name="Pickup" Relationship="TotalSmartCodingModel.FK_GoodsReceipts_Pickups" FromRole="GoodsReceipt" ToRole="Pickup" />
         </EntityType>
         <EntityType Name="GoodsReceiptType">
           <Key>
@@ -2049,8 +2061,8 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <NavigationProperty Name="Employees" Relationship="TotalSmartCodingModel.FK_Employees_Locations" FromRole="Location" ToRole="Employee" />
           <NavigationProperty Name="GoodsReceipts" Relationship="TotalSmartCodingModel.FK_GoodsReceipts_Locations" FromRole="Location" ToRole="GoodsReceipt" />
           <NavigationProperty Name="OrganizationalUnits" Relationship="TotalSmartCodingModel.FK_OrganizationalUnits_Locations" FromRole="Location" ToRole="OrganizationalUnit" />
-          <NavigationProperty Name="Pickups" Relationship="TotalSmartCodingModel.FK_Pickups_Locations" FromRole="Location" ToRole="Pickup" />
           <NavigationProperty Name="Warehouses" Relationship="TotalSmartCodingModel.FK_Warehouses_Locations" FromRole="Location" ToRole="Warehouse" />
+          <NavigationProperty Name="Pickups" Relationship="TotalSmartCodingModel.FK_Pickups_Locations" FromRole="Location" ToRole="Pickup" />
         </EntityType>
         <EntityType Name="ModuleDetail">
           <Key>
@@ -2122,41 +2134,15 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Name="Approved" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="BinLocation" Relationship="TotalSmartCodingModel.FK_PickupDetails_BinLocations" FromRole="PickupDetail" ToRole="BinLocation" />
           <NavigationProperty Name="GoodsReceiptDetails" Relationship="TotalSmartCodingModel.FK_GoodsReceiptDetails_PickupDetails" FromRole="PickupDetail" ToRole="GoodsReceiptDetail" />
-          <NavigationProperty Name="Pickup" Relationship="TotalSmartCodingModel.FK_PickupDetails_Pickups" FromRole="PickupDetail" ToRole="Pickup" />
           <NavigationProperty Name="Warehouse" Relationship="TotalSmartCodingModel.FK_PickupDetails_Warehouses" FromRole="PickupDetail" ToRole="Warehouse" />
           <NavigationProperty Name="Commodity" Relationship="TotalSmartCodingModel.FK_PickupDetails_Commodities" FromRole="PickupDetail" ToRole="Commodity" />
+          <Property Name="PackCounts" Type="Int32" Nullable="false" />
+          <Property Name="CartonCounts" Type="Int32" Nullable="false" />
+          <Property Name="PalletCounts" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Carton" Relationship="TotalSmartCodingModel.FK_PickupDetails_Cartons" FromRole="PickupDetail" ToRole="Carton" />
           <NavigationProperty Name="Pack" Relationship="TotalSmartCodingModel.FK_PickupDetails_Packs" FromRole="PickupDetail" ToRole="Pack" />
           <NavigationProperty Name="Pallet" Relationship="TotalSmartCodingModel.FK_PickupDetails_Pallets" FromRole="PickupDetail" ToRole="Pallet" />
-        </EntityType>
-        <EntityType Name="Pickup">
-          <Key>
-            <PropertyRef Name="PickupID" />
-          </Key>
-          <Property Name="PickupID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Reference" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="FillingLineID" Type="Int32" Nullable="false" />
-          <Property Name="WarehouseID" Type="Int32" Nullable="false" />
-          <Property Name="ForkliftDriverID" Type="Int32" Nullable="false" />
-          <Property Name="StorekeeperID" Type="Int32" Nullable="false" />
-          <Property Name="UserID" Type="Int32" Nullable="false" />
-          <Property Name="PreparedPersonID" Type="Int32" Nullable="false" />
-          <Property Name="OrganizationalUnitID" Type="Int32" Nullable="false" />
-          <Property Name="LocationID" Type="Int32" Nullable="false" />
-          <Property Name="TotalQuantity" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="TotalVolume" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="EditedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Approved" Type="Boolean" Nullable="false" />
-          <Property Name="ApprovedDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="FillingLine" Relationship="TotalSmartCodingModel.FK_Pickups_FillingLines" FromRole="Pickup" ToRole="FillingLine" />
-          <NavigationProperty Name="GoodsReceipts" Relationship="TotalSmartCodingModel.FK_GoodsReceipts_Pickups" FromRole="Pickup" ToRole="GoodsReceipt" />
-          <NavigationProperty Name="Location" Relationship="TotalSmartCodingModel.FK_Pickups_Locations" FromRole="Pickup" ToRole="Location" />
-          <NavigationProperty Name="PickupDetails" Relationship="TotalSmartCodingModel.FK_PickupDetails_Pickups" FromRole="Pickup" ToRole="PickupDetail" />
-          <NavigationProperty Name="Warehouse" Relationship="TotalSmartCodingModel.FK_Pickups_Warehouses" FromRole="Pickup" ToRole="Warehouse" />
+          <NavigationProperty Name="Pickup" Relationship="TotalSmartCodingModel.FK_PickupDetails_Pickups" FromRole="PickupDetail" ToRole="Pickup" />
         </EntityType>
         <EntityType Name="Territory">
           <Key>
@@ -2261,18 +2247,6 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Pickups_FillingLines">
-          <End Type="TotalSmartCodingModel.FillingLine" Role="FillingLine" Multiplicity="1" />
-          <End Type="TotalSmartCodingModel.Pickup" Role="Pickup" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="FillingLine">
-              <PropertyRef Name="FillingLineID" />
-            </Principal>
-            <Dependent Role="Pickup">
-              <PropertyRef Name="FillingLineID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_GoodsReceiptDetails_GoodsReceipts">
           <End Type="TotalSmartCodingModel.GoodsReceipt" Role="GoodsReceipt" Multiplicity="1" />
           <End Type="TotalSmartCodingModel.GoodsReceiptDetail" Role="GoodsReceiptDetail" Multiplicity="*" />
@@ -2333,18 +2307,6 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_GoodsReceipts_Pickups">
-          <End Type="TotalSmartCodingModel.Pickup" Role="Pickup" Multiplicity="0..1" />
-          <End Type="TotalSmartCodingModel.GoodsReceipt" Role="GoodsReceipt" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Pickup">
-              <PropertyRef Name="PickupID" />
-            </Principal>
-            <Dependent Role="GoodsReceipt">
-              <PropertyRef Name="PickupID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_GoodsReceipts_Warehouses">
           <End Type="TotalSmartCodingModel.Warehouse" Role="Warehouse" Multiplicity="1" />
           <End Type="TotalSmartCodingModel.GoodsReceipt" Role="GoodsReceipt" Multiplicity="*" />
@@ -2365,18 +2327,6 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
               <PropertyRef Name="LocationID" />
             </Principal>
             <Dependent Role="OrganizationalUnit">
-              <PropertyRef Name="LocationID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Pickups_Locations">
-          <End Type="TotalSmartCodingModel.Location" Role="Location" Multiplicity="1" />
-          <End Type="TotalSmartCodingModel.Pickup" Role="Pickup" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Location">
-              <PropertyRef Name="LocationID" />
-            </Principal>
-            <Dependent Role="Pickup">
               <PropertyRef Name="LocationID" />
             </Dependent>
           </ReferentialConstraint>
@@ -2405,18 +2355,6 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PickupDetails_Pickups">
-          <End Type="TotalSmartCodingModel.Pickup" Role="Pickup" Multiplicity="1" />
-          <End Type="TotalSmartCodingModel.PickupDetail" Role="PickupDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Pickup">
-              <PropertyRef Name="PickupID" />
-            </Principal>
-            <Dependent Role="PickupDetail">
-              <PropertyRef Name="PickupID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_PickupDetails_Warehouses">
           <End Type="TotalSmartCodingModel.Warehouse" Role="Warehouse" Multiplicity="1" />
           <End Type="TotalSmartCodingModel.PickupDetail" Role="PickupDetail" Multiplicity="*" />
@@ -2425,18 +2363,6 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
               <PropertyRef Name="WarehouseID" />
             </Principal>
             <Dependent Role="PickupDetail">
-              <PropertyRef Name="WarehouseID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Pickups_Warehouses">
-          <End Type="TotalSmartCodingModel.Warehouse" Role="Warehouse" Multiplicity="1" />
-          <End Type="TotalSmartCodingModel.Pickup" Role="Pickup" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Warehouse">
-              <PropertyRef Name="WarehouseID" />
-            </Principal>
-            <Dependent Role="Pickup">
               <PropertyRef Name="WarehouseID" />
             </Dependent>
           </ReferentialConstraint>
@@ -2526,12 +2452,12 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="FillingLineID" Type="Int32" Nullable="false" />
           <Property Name="BatchID" Type="Int32" Nullable="false" />
+          <Property Name="LocationID" Type="Int32" Nullable="false" />
           <Property Name="CommodityID" Type="Int32" Nullable="false" />
           <Property Name="PalletID" Type="Int32" />
-          <Property Name="LocationID" Type="Int32" Nullable="false" />
           <Property Name="Code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TotalPacks" Type="Int32" Nullable="false" />
           <Property Name="Volume" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
+          <Property Name="PackCounts" Type="Int32" Nullable="false" />
           <Property Name="EntryStatusID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Commodity" Relationship="TotalSmartCodingModel.FK_Cartons_Commodities" FromRole="Carton" ToRole="Commodity" />
           <NavigationProperty Name="FillingLine" Relationship="TotalSmartCodingModel.FK_Cartons_FillingLines" FromRole="Carton" ToRole="FillingLine" />
@@ -2548,10 +2474,10 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="FillingLineID" Type="Int32" Nullable="false" />
           <Property Name="BatchID" Type="Int32" Nullable="false" />
+          <Property Name="LocationID" Type="Int32" Nullable="false" />
+          <Property Name="QueueID" Type="Int32" Nullable="false" />
           <Property Name="CommodityID" Type="Int32" Nullable="false" />
           <Property Name="CartonID" Type="Int32" />
-          <Property Name="QueueID" Type="Int32" Nullable="false" />
-          <Property Name="LocationID" Type="Int32" Nullable="false" />
           <Property Name="Code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Volume" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
           <Property Name="EntryStatusID" Type="Int32" Nullable="false" />
@@ -2572,9 +2498,9 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Name="CommodityID" Type="Int32" Nullable="false" />
           <Property Name="LocationID" Type="Int32" Nullable="false" />
           <Property Name="Code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TotalPacks" Type="Int32" Nullable="false" />
-          <Property Name="TotalCartons" Type="Int32" Nullable="false" />
           <Property Name="Volume" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="PackCounts" Type="Int32" Nullable="false" />
+          <Property Name="CartonCounts" Type="Int32" Nullable="false" />
           <Property Name="Quantity" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <Property Name="QuantityPickup" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <Property Name="EntryStatusID" Type="Int32" Nullable="false" />
@@ -2736,6 +2662,98 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
             </Principal>
             <Dependent Role="PickupDetail">
               <PropertyRef Name="PalletID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Pickup">
+          <Key>
+            <PropertyRef Name="PickupID" />
+          </Key>
+          <Property Name="PickupID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Reference" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="FillingLineID" Type="Int32" Nullable="false" />
+          <Property Name="WarehouseID" Type="Int32" Nullable="false" />
+          <Property Name="ForkliftDriverID" Type="Int32" Nullable="false" />
+          <Property Name="StorekeeperID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="PreparedPersonID" Type="Int32" Nullable="false" />
+          <Property Name="OrganizationalUnitID" Type="Int32" Nullable="false" />
+          <Property Name="LocationID" Type="Int32" Nullable="false" />
+          <Property Name="TotalPackCounts" Type="Int32" Nullable="false" />
+          <Property Name="TotalCartonCounts" Type="Int32" Nullable="false" />
+          <Property Name="TotalPalletCounts" Type="Int32" Nullable="false" />
+          <Property Name="TotalQuantity" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="TotalVolume" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EditedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Approved" Type="Boolean" Nullable="false" />
+          <Property Name="ApprovedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="FillingLine" Relationship="TotalSmartCodingModel.FK_Pickups_FillingLines" FromRole="Pickup" ToRole="FillingLine" />
+          <NavigationProperty Name="GoodsReceipts" Relationship="TotalSmartCodingModel.FK_GoodsReceipts_Pickups" FromRole="Pickup" ToRole="GoodsReceipt" />
+          <NavigationProperty Name="Location" Relationship="TotalSmartCodingModel.FK_Pickups_Locations" FromRole="Pickup" ToRole="Location" />
+          <NavigationProperty Name="PickupDetails" Relationship="TotalSmartCodingModel.FK_PickupDetails_Pickups" FromRole="Pickup" ToRole="PickupDetail" />
+          <NavigationProperty Name="Warehouse" Relationship="TotalSmartCodingModel.FK_Pickups_Warehouses" FromRole="Pickup" ToRole="Warehouse" />
+        </EntityType>
+        <Association Name="FK_Pickups_FillingLines">
+          <End Type="TotalSmartCodingModel.FillingLine" Role="FillingLine" Multiplicity="1" />
+          <End Type="TotalSmartCodingModel.Pickup" Role="Pickup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FillingLine">
+              <PropertyRef Name="FillingLineID" />
+            </Principal>
+            <Dependent Role="Pickup">
+              <PropertyRef Name="FillingLineID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GoodsReceipts_Pickups">
+          <End Type="TotalSmartCodingModel.Pickup" Role="Pickup" Multiplicity="0..1" />
+          <End Type="TotalSmartCodingModel.GoodsReceipt" Role="GoodsReceipt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pickup">
+              <PropertyRef Name="PickupID" />
+            </Principal>
+            <Dependent Role="GoodsReceipt">
+              <PropertyRef Name="PickupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pickups_Locations">
+          <End Type="TotalSmartCodingModel.Location" Role="Location" Multiplicity="1" />
+          <End Type="TotalSmartCodingModel.Pickup" Role="Pickup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="LocationID" />
+            </Principal>
+            <Dependent Role="Pickup">
+              <PropertyRef Name="LocationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PickupDetails_Pickups">
+          <End Type="TotalSmartCodingModel.Pickup" Role="Pickup" Multiplicity="1" />
+          <End Type="TotalSmartCodingModel.PickupDetail" Role="PickupDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pickup">
+              <PropertyRef Name="PickupID" />
+            </Principal>
+            <Dependent Role="PickupDetail">
+              <PropertyRef Name="PickupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pickups_Warehouses">
+          <End Type="TotalSmartCodingModel.Warehouse" Role="Warehouse" Multiplicity="1" />
+          <End Type="TotalSmartCodingModel.Pickup" Role="Pickup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouse">
+              <PropertyRef Name="WarehouseID" />
+            </Principal>
+            <Dependent Role="Pickup">
+              <PropertyRef Name="WarehouseID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2937,6 +2955,9 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
                 <ScalarProperty Name="PackEntryDate" ColumnName="PackEntryDate" />
                 <ScalarProperty Name="CartonEntryDate" ColumnName="CartonEntryDate" />
                 <ScalarProperty Name="PalletEntryDate" ColumnName="PalletEntryDate" />
+                <ScalarProperty Name="PackCounts" ColumnName="PackCounts" />
+                <ScalarProperty Name="CartonCounts" ColumnName="CartonCounts" />
+                <ScalarProperty Name="PalletCounts" ColumnName="PalletCounts" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -2957,6 +2978,9 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
                 <ScalarProperty Name="QuantityRemains" ColumnName="QuantityRemains" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="Volume" ColumnName="Volume" />
+                <ScalarProperty Name="PackCounts" ColumnName="PackCounts" />
+                <ScalarProperty Name="CartonCounts" ColumnName="CartonCounts" />
+                <ScalarProperty Name="PalletCounts" ColumnName="PalletCounts" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -3297,6 +3321,9 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <EntitySetMapping Name="PickupDetails">
             <EntityTypeMapping TypeName="TotalSmartCodingModel.PickupDetail">
               <MappingFragment StoreEntitySet="PickupDetails">
+                <ScalarProperty Name="PalletCounts" ColumnName="PalletCounts" />
+                <ScalarProperty Name="CartonCounts" ColumnName="CartonCounts" />
+                <ScalarProperty Name="PackCounts" ColumnName="PackCounts" />
                 <ScalarProperty Name="Approved" ColumnName="Approved" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
                 <ScalarProperty Name="VolumeReceipt" ColumnName="VolumeReceipt" />
@@ -3314,31 +3341,6 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
                 <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
                 <ScalarProperty Name="PickupID" ColumnName="PickupID" />
                 <ScalarProperty Name="PickupDetailID" ColumnName="PickupDetailID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Pickups">
-            <EntityTypeMapping TypeName="TotalSmartCodingModel.Pickup">
-              <MappingFragment StoreEntitySet="Pickups">
-                <ScalarProperty Name="ApprovedDate" ColumnName="ApprovedDate" />
-                <ScalarProperty Name="Approved" ColumnName="Approved" />
-                <ScalarProperty Name="EditedDate" ColumnName="EditedDate" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="TotalVolume" ColumnName="TotalVolume" />
-                <ScalarProperty Name="TotalQuantity" ColumnName="TotalQuantity" />
-                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
-                <ScalarProperty Name="OrganizationalUnitID" ColumnName="OrganizationalUnitID" />
-                <ScalarProperty Name="PreparedPersonID" ColumnName="PreparedPersonID" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="StorekeeperID" ColumnName="StorekeeperID" />
-                <ScalarProperty Name="ForkliftDriverID" ColumnName="ForkliftDriverID" />
-                <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
-                <ScalarProperty Name="FillingLineID" ColumnName="FillingLineID" />
-                <ScalarProperty Name="Reference" ColumnName="Reference" />
-                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
-                <ScalarProperty Name="PickupID" ColumnName="PickupID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3391,59 +3393,6 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Cartons">
-            <EntityTypeMapping TypeName="TotalSmartCodingModel.Carton">
-              <MappingFragment StoreEntitySet="Cartons">
-                <ScalarProperty Name="EntryStatusID" ColumnName="EntryStatusID" />
-                <ScalarProperty Name="Volume" ColumnName="Volume" />
-                <ScalarProperty Name="TotalPacks" ColumnName="TotalPacks" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
-                <ScalarProperty Name="PalletID" ColumnName="PalletID" />
-                <ScalarProperty Name="CommodityID" ColumnName="CommodityID" />
-                <ScalarProperty Name="BatchID" ColumnName="BatchID" />
-                <ScalarProperty Name="FillingLineID" ColumnName="FillingLineID" />
-                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
-                <ScalarProperty Name="CartonID" ColumnName="CartonID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Packs">
-            <EntityTypeMapping TypeName="TotalSmartCodingModel.Pack">
-              <MappingFragment StoreEntitySet="Packs">
-                <ScalarProperty Name="EntryStatusID" ColumnName="EntryStatusID" />
-                <ScalarProperty Name="Volume" ColumnName="Volume" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
-                <ScalarProperty Name="QueueID" ColumnName="QueueID" />
-                <ScalarProperty Name="CartonID" ColumnName="CartonID" />
-                <ScalarProperty Name="CommodityID" ColumnName="CommodityID" />
-                <ScalarProperty Name="BatchID" ColumnName="BatchID" />
-                <ScalarProperty Name="FillingLineID" ColumnName="FillingLineID" />
-                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
-                <ScalarProperty Name="PackID" ColumnName="PackID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Pallets">
-            <EntityTypeMapping TypeName="TotalSmartCodingModel.Pallet">
-              <MappingFragment StoreEntitySet="Pallets">
-                <ScalarProperty Name="EntryStatusID" ColumnName="EntryStatusID" />
-                <ScalarProperty Name="QuantityPickup" ColumnName="QuantityPickup" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="Volume" ColumnName="Volume" />
-                <ScalarProperty Name="TotalCartons" ColumnName="TotalCartons" />
-                <ScalarProperty Name="TotalPacks" ColumnName="TotalPacks" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
-                <ScalarProperty Name="CommodityID" ColumnName="CommodityID" />
-                <ScalarProperty Name="BatchID" ColumnName="BatchID" />
-                <ScalarProperty Name="FillingLineID" ColumnName="FillingLineID" />
-                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
-                <ScalarProperty Name="PalletID" ColumnName="PalletID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="CartonEditable" FunctionName="TotalSmartCodingModel.Store.CartonEditable" />
           <FunctionImportMapping FunctionImportName="CartonSaveRelative" FunctionName="TotalSmartCodingModel.Store.CartonSaveRelative" />
           <FunctionImportMapping FunctionImportName="CartonUpdateEntryStatus" FunctionName="TotalSmartCodingModel.Store.CartonUpdateEntryStatus" />
@@ -3459,6 +3408,87 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <FunctionImportMapping FunctionImportName="PalletEditable" FunctionName="TotalSmartCodingModel.Store.PalletEditable" />
           <FunctionImportMapping FunctionImportName="PalletSaveRelative" FunctionName="TotalSmartCodingModel.Store.PalletSaveRelative" />
           <FunctionImportMapping FunctionImportName="PalletUpdateEntryStatus" FunctionName="TotalSmartCodingModel.Store.PalletUpdateEntryStatus" />
+          <EntitySetMapping Name="Cartons">
+            <EntityTypeMapping TypeName="TotalSmartCodingModel.Carton">
+              <MappingFragment StoreEntitySet="Cartons">
+                <ScalarProperty Name="EntryStatusID" ColumnName="EntryStatusID" />
+                <ScalarProperty Name="PackCounts" ColumnName="PackCounts" />
+                <ScalarProperty Name="Volume" ColumnName="Volume" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="PalletID" ColumnName="PalletID" />
+                <ScalarProperty Name="CommodityID" ColumnName="CommodityID" />
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+                <ScalarProperty Name="BatchID" ColumnName="BatchID" />
+                <ScalarProperty Name="FillingLineID" ColumnName="FillingLineID" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="CartonID" ColumnName="CartonID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Packs">
+            <EntityTypeMapping TypeName="TotalSmartCodingModel.Pack">
+              <MappingFragment StoreEntitySet="Packs">
+                <ScalarProperty Name="EntryStatusID" ColumnName="EntryStatusID" />
+                <ScalarProperty Name="Volume" ColumnName="Volume" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="CartonID" ColumnName="CartonID" />
+                <ScalarProperty Name="CommodityID" ColumnName="CommodityID" />
+                <ScalarProperty Name="QueueID" ColumnName="QueueID" />
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+                <ScalarProperty Name="BatchID" ColumnName="BatchID" />
+                <ScalarProperty Name="FillingLineID" ColumnName="FillingLineID" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="PackID" ColumnName="PackID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pallets">
+            <EntityTypeMapping TypeName="TotalSmartCodingModel.Pallet">
+              <MappingFragment StoreEntitySet="Pallets">
+                <ScalarProperty Name="EntryStatusID" ColumnName="EntryStatusID" />
+                <ScalarProperty Name="QuantityPickup" ColumnName="QuantityPickup" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="CartonCounts" ColumnName="CartonCounts" />
+                <ScalarProperty Name="PackCounts" ColumnName="PackCounts" />
+                <ScalarProperty Name="Volume" ColumnName="Volume" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+                <ScalarProperty Name="CommodityID" ColumnName="CommodityID" />
+                <ScalarProperty Name="BatchID" ColumnName="BatchID" />
+                <ScalarProperty Name="FillingLineID" ColumnName="FillingLineID" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="PalletID" ColumnName="PalletID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pickups">
+            <EntityTypeMapping TypeName="TotalSmartCodingModel.Pickup">
+              <MappingFragment StoreEntitySet="Pickups">
+                <ScalarProperty Name="ApprovedDate" ColumnName="ApprovedDate" />
+                <ScalarProperty Name="Approved" ColumnName="Approved" />
+                <ScalarProperty Name="EditedDate" ColumnName="EditedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="TotalVolume" ColumnName="TotalVolume" />
+                <ScalarProperty Name="TotalQuantity" ColumnName="TotalQuantity" />
+                <ScalarProperty Name="TotalPalletCounts" ColumnName="TotalPalletCounts" />
+                <ScalarProperty Name="TotalCartonCounts" ColumnName="TotalCartonCounts" />
+                <ScalarProperty Name="TotalPackCounts" ColumnName="TotalPackCounts" />
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+                <ScalarProperty Name="OrganizationalUnitID" ColumnName="OrganizationalUnitID" />
+                <ScalarProperty Name="PreparedPersonID" ColumnName="PreparedPersonID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="StorekeeperID" ColumnName="StorekeeperID" />
+                <ScalarProperty Name="ForkliftDriverID" ColumnName="ForkliftDriverID" />
+                <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
+                <ScalarProperty Name="FillingLineID" ColumnName="FillingLineID" />
+                <ScalarProperty Name="Reference" ColumnName="Reference" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="PickupID" ColumnName="PickupID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
