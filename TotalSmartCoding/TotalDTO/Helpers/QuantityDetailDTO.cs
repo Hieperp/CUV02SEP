@@ -17,9 +17,9 @@ namespace TotalDTO.Helpers
         decimal Volume { get; set; }
 
 
-        decimal PackCounts { get; set; }
-        decimal CartonCounts { get; set; }
-        decimal PalletCounts { get; set; }
+        int PackCounts { get; set; }
+        int CartonCounts { get; set; }
+        int PalletCounts { get; set; }
     }
 
     public abstract class QuantityDetailDTO : BaseModel, IQuantityDetailDTO, IBaseModel

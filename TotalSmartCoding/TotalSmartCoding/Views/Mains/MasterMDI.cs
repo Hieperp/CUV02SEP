@@ -412,15 +412,26 @@ namespace TotalSmartCoding.Views.Mains
 
         private void OpenTestView()
         {
-            return;
+            //return;
+
+            //////Open new form
+            ////Pickups grForm;  //
+            //////GoodsReceipts grForm;
+            //////childForm = new Batches();
+            //////childForm = new DeliveryAdvices();
+            ////grForm = new Pickups(); //
+            //////grForm = new GoodsReceipts();
+
+
 
             //Open new form
-            Pickups grForm;  //
-            //GoodsReceipts grForm;
+            GoodsReceipts grForm;
             //childForm = new Batches();
             //childForm = new DeliveryAdvices();
-            grForm = new Pickups(); //
-            //grForm = new GoodsReceipts();
+            grForm = new GoodsReceipts();
+
+
+
 
             if (grForm != null)
             {
