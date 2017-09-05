@@ -16,6 +16,9 @@ using TotalSmartCoding.Controllers.APIs.Commons;
 using TotalSmartCoding.Libraries;
 using TotalCore.Repositories.Commons;
 using TotalModel.Models;
+using TotalDAL.Repositories;
+using TotalCore.Repositories;
+using System.Data.Entity.Core.Objects;
 
 namespace TotalSmartCoding.Views.Mains
 {
@@ -200,6 +203,32 @@ namespace TotalSmartCoding.Views.Mains
                 //    publicAuthenticationPassword.ShowDialog();
                 //    publicAuthenticationPassword.Dispose();
                 //}
+
+                if (this.checkEmptyData.Checked)
+                {
+                    IBaseRepository baseRepository = CommonNinject.Kernel.Get<IBaseRepository>();
+
+                    baseRepository.ExecuteStoreCommand("DELETE FROM     GoodsReceiptDetails", new ObjectParameter[] { });
+                    baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('GoodsReceiptDetails', RESEED, 0)", new ObjectParameter[] { });
+
+                    baseRepository.ExecuteStoreCommand("DELETE FROM     GoodsReceipts", new ObjectParameter[] { });
+                    baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('GoodsReceipts', RESEED, 0)", new ObjectParameter[] { });
+
+                    baseRepository.ExecuteStoreCommand("DELETE FROM     PickupDetails", new ObjectParameter[] { });
+                    baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('PickupDetails', RESEED, 0)", new ObjectParameter[] { });
+
+                    baseRepository.ExecuteStoreCommand("DELETE FROM     Pickups", new ObjectParameter[] { });
+                    baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('Pickups', RESEED, 0)", new ObjectParameter[] { });
+
+                    baseRepository.ExecuteStoreCommand("DELETE FROM     Packs", new ObjectParameter[] { });
+                    baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('Packs', RESEED, 0)", new ObjectParameter[] { });
+
+                    baseRepository.ExecuteStoreCommand("DELETE FROM     Cartons", new ObjectParameter[] { });
+                    baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('Cartons', RESEED, 0)", new ObjectParameter[] { });
+
+                    baseRepository.ExecuteStoreCommand("DELETE FROM     Pallets", new ObjectParameter[] { });
+                    baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('Pallets', RESEED, 0)", new ObjectParameter[] { });
+                }
 
             }
             catch (Exception exception)

@@ -1058,7 +1058,6 @@
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
             this.toolStripButton3.Size = new System.Drawing.Size(52, 52);
-            this.toolStripButton3.Text = "toolStripButton3";
             // 
             // buttonPalletQueueCount
             // 
@@ -1931,7 +1930,7 @@
             this.textBoxCommodityOfficialCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxCommodityOfficialCode.Name = "textBoxCommodityOfficialCode";
             this.textBoxCommodityOfficialCode.ReadOnly = true;
-            this.textBoxCommodityOfficialCode.Size = new System.Drawing.Size(99, 75);
+            this.textBoxCommodityOfficialCode.Size = new System.Drawing.Size(99, 27);
             this.textBoxCommodityOfficialCode.Text = "8984568";
             this.textBoxCommodityOfficialCode.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBoxCommodityOfficialCode.Visible = false;
@@ -2035,7 +2034,7 @@
             this.comboBoxEmptyCarton.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxEmptyCarton.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             this.comboBoxEmptyCarton.Name = "comboBoxEmptyCarton";
-            this.comboBoxEmptyCarton.Size = new System.Drawing.Size(75, 75);
+            this.comboBoxEmptyCarton.Size = new System.Drawing.Size(75, 28);
             this.comboBoxEmptyCarton.Visible = false;
             // 
             // toolStripLabel8

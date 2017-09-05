@@ -45,6 +45,7 @@
             this.labelNoDomino = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBoxIcon = new System.Windows.Forms.PictureBox();
+            this.checkEmptyData = new System.Windows.Forms.CheckBox();
             this.groupBoxMainButton.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxIcon)).BeginInit();
@@ -52,10 +53,11 @@
             // 
             // groupBoxMainButton
             // 
+            this.groupBoxMainButton.Controls.Add(this.checkEmptyData);
             this.groupBoxMainButton.Controls.Add(this.buttonListEmployee);
             this.groupBoxMainButton.Controls.Add(this.buttonCancel);
             this.groupBoxMainButton.Controls.Add(this.buttonOK);
-            this.groupBoxMainButton.Location = new System.Drawing.Point(-417, 198);
+            this.groupBoxMainButton.Location = new System.Drawing.Point(-390, 193);
             this.groupBoxMainButton.Margin = new System.Windows.Forms.Padding(4);
             this.groupBoxMainButton.Name = "groupBoxMainButton";
             this.groupBoxMainButton.Padding = new System.Windows.Forms.Padding(4);
@@ -66,7 +68,7 @@
             // buttonListEmployee
             // 
             this.buttonListEmployee.Image = ((System.Drawing.Image)(resources.GetObject("buttonListEmployee.Image")));
-            this.buttonListEmployee.Location = new System.Drawing.Point(444, 23);
+            this.buttonListEmployee.Location = new System.Drawing.Point(570, 14);
             this.buttonListEmployee.Margin = new System.Windows.Forms.Padding(4);
             this.buttonListEmployee.Name = "buttonListEmployee";
             this.buttonListEmployee.Size = new System.Drawing.Size(33, 28);
@@ -121,7 +123,7 @@
             this.comboBoxEmployeeID.Location = new System.Drawing.Point(138, 95);
             this.comboBoxEmployeeID.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxEmployeeID.Name = "comboBoxEmployeeID";
-            this.comboBoxEmployeeID.Size = new System.Drawing.Size(357, 28);
+            this.comboBoxEmployeeID.Size = new System.Drawing.Size(388, 28);
             this.comboBoxEmployeeID.TabIndex = 14;
             // 
             // comboBoxAutonicsPortName
@@ -131,7 +133,7 @@
             this.comboBoxAutonicsPortName.Location = new System.Drawing.Point(138, 157);
             this.comboBoxAutonicsPortName.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxAutonicsPortName.Name = "comboBoxAutonicsPortName";
-            this.comboBoxAutonicsPortName.Size = new System.Drawing.Size(358, 28);
+            this.comboBoxAutonicsPortName.Size = new System.Drawing.Size(389, 28);
             this.comboBoxAutonicsPortName.TabIndex = 15;
             this.comboBoxAutonicsPortName.Visible = false;
             // 
@@ -176,7 +178,7 @@
             this.comboFillingLineID.Location = new System.Drawing.Point(138, 33);
             this.comboFillingLineID.Margin = new System.Windows.Forms.Padding(4);
             this.comboFillingLineID.Name = "comboFillingLineID";
-            this.comboFillingLineID.Size = new System.Drawing.Size(357, 28);
+            this.comboFillingLineID.Size = new System.Drawing.Size(388, 28);
             this.comboFillingLineID.TabIndex = 21;
             this.comboFillingLineID.Validated += new System.EventHandler(this.comboFillingLineID_Validated);
             // 
@@ -241,13 +243,23 @@
             this.pictureBoxIcon.TabStop = false;
             this.pictureBoxIcon.DoubleClick += new System.EventHandler(this.pictureBoxIcon_DoubleClick);
             // 
+            // checkEmptyData
+            // 
+            this.checkEmptyData.AutoSize = true;
+            this.checkEmptyData.Location = new System.Drawing.Point(417, 34);
+            this.checkEmptyData.Name = "checkEmptyData";
+            this.checkEmptyData.Size = new System.Drawing.Size(134, 21);
+            this.checkEmptyData.TabIndex = 28;
+            this.checkEmptyData.Text = "Empty Database";
+            this.checkEmptyData.UseVisualStyleBackColor = true;
+            // 
             // Logon
             // 
             this.AcceptButton = this.buttonOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.buttonCancel;
-            this.ClientSize = new System.Drawing.Size(506, 275);
+            this.ClientSize = new System.Drawing.Size(540, 271);
             this.ControlBox = false;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.labelPortAutonis);
@@ -264,6 +276,7 @@
             this.Text = "Logon";
             this.Load += new System.EventHandler(this.PublicApplicationLogon_Load);
             this.groupBoxMainButton.ResumeLayout(false);
+            this.groupBoxMainButton.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxIcon)).EndInit();
@@ -290,5 +303,6 @@
         private System.Windows.Forms.Label labelPortAutonis;
         private System.Windows.Forms.Label labelNoDomino;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.CheckBox checkEmptyData;
     }
 }
