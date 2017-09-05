@@ -32,6 +32,9 @@ namespace TotalModel.Models
         public decimal VolumeIssue { get; set; }
         public string Remarks { get; set; }
         public bool Approved { get; set; }
+        public int PackCounts { get; set; }
+        public int CartonCounts { get; set; }
+        public int PalletCounts { get; set; }
     
         public virtual BinLocation BinLocation { get; set; }
         public virtual GoodsReceipt GoodsReceipt { get; set; }

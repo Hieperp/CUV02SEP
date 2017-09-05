@@ -31,7 +31,6 @@ namespace TotalModel.Models
         public virtual DbSet<Batch> Batches { get; set; }
         public virtual DbSet<BinLocation> BinLocations { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
-        public virtual DbSet<dtproperty> dtproperties { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<FillingLine> FillingLines { get; set; }
         public virtual DbSet<GoodsReceiptDetail> GoodsReceiptDetails { get; set; }

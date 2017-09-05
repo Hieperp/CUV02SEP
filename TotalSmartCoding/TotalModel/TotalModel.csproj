@@ -96,9 +96,6 @@
     <Compile Include="Models\Customer.cs">
       <DependentUpon>TotalSmartCoding.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\dtproperty.cs">
-      <DependentUpon>TotalSmartCoding.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Employee.cs">
       <DependentUpon>TotalSmartCoding.tt</DependentUpon>
     </Compile>

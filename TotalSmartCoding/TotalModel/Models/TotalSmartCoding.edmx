@@ -127,19 +127,6 @@
           <Property Name="IsSupplier" Type="bit" Nullable="false" />
           <Property Name="IsFemale" Type="bit" Nullable="false" />
         </EntityType>
-        <EntityType Name="dtproperties">
-          <Key>
-            <PropertyRef Name="id" />
-            <PropertyRef Name="property" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="objectid" Type="int" />
-          <Property Name="property" Type="varchar" MaxLength="64" Nullable="false" />
-          <Property Name="value" Type="varchar" MaxLength="255" />
-          <Property Name="uvalue" Type="nvarchar" MaxLength="255" />
-          <Property Name="lvalue" Type="image" />
-          <Property Name="version" Type="int" Nullable="false" />
-        </EntityType>
         <EntityType Name="Employees">
           <Key>
             <PropertyRef Name="EmployeeID" />
@@ -190,6 +177,9 @@
           <Property Name="PackID" Type="int" />
           <Property Name="CartonID" Type="int" />
           <Property Name="PalletID" Type="int" />
+          <Property Name="PackCounts" Type="int" Nullable="false" />
+          <Property Name="CartonCounts" Type="int" Nullable="false" />
+          <Property Name="PalletCounts" Type="int" Nullable="false" />
           <Property Name="Quantity" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="QuantityIssue" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Volume" Type="decimal" Precision="18" Scale="2" Nullable="false" />
@@ -214,6 +204,9 @@
           <Property Name="PreparedPersonID" Type="int" Nullable="false" />
           <Property Name="OrganizationalUnitID" Type="int" Nullable="false" />
           <Property Name="LocationID" Type="int" Nullable="false" />
+          <Property Name="TotalPackCounts" Type="int" Nullable="false" />
+          <Property Name="TotalCartonCounts" Type="int" Nullable="false" />
+          <Property Name="TotalPalletCounts" Type="int" Nullable="false" />
           <Property Name="TotalQuantity" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="TotalVolume" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="100" />
@@ -1074,7 +1067,6 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <EntitySet Name="Cartons" EntityType="Self.Cartons" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Commodities" EntityType="Self.Commodities" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="dtproperties" EntityType="Self.dtproperties" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FillingLines" EntityType="Self.FillingLines" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GoodsReceiptDetails" EntityType="Self.GoodsReceiptDetails" Schema="dbo" store:Type="Tables" />
@@ -1411,7 +1403,6 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <EntitySet Name="Batches" EntityType="TotalSmartCodingModel.Batch" />
           <EntitySet Name="BinLocations" EntityType="TotalSmartCodingModel.BinLocation" />
           <EntitySet Name="Customers" EntityType="TotalSmartCodingModel.Customer" />
-          <EntitySet Name="dtproperties" EntityType="TotalSmartCodingModel.dtproperty" />
           <EntitySet Name="Employees" EntityType="TotalSmartCodingModel.Employee" />
           <EntitySet Name="FillingLines" EntityType="TotalSmartCodingModel.FillingLine" />
           <EntitySet Name="GoodsReceiptDetails" EntityType="TotalSmartCodingModel.GoodsReceiptDetail" />
@@ -1918,19 +1909,6 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Name="IsFemale" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Employee" Relationship="TotalSmartCodingModel.FK_Customers_Employees" FromRole="Customer" ToRole="Employee" />
         </EntityType>
-        <EntityType Name="dtproperty">
-          <Key>
-            <PropertyRef Name="id" />
-            <PropertyRef Name="property" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="objectid" Type="Int32" />
-          <Property Name="property" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Name="value" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="uvalue" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="lvalue" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="version" Type="Int32" Nullable="false" />
-        </EntityType>
         <EntityType Name="Employee">
           <Key>
             <PropertyRef Name="EmployeeID" />
@@ -2001,6 +1979,9 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <NavigationProperty Name="Carton" Relationship="TotalSmartCodingModel.FK_GoodsReceiptDetails_Cartons" FromRole="GoodsReceiptDetail" ToRole="Carton" />
           <NavigationProperty Name="Pack" Relationship="TotalSmartCodingModel.FK_GoodsReceiptDetails_Packs" FromRole="GoodsReceiptDetail" ToRole="Pack" />
           <NavigationProperty Name="Pallet" Relationship="TotalSmartCodingModel.FK_GoodsReceiptDetails_Pallets" FromRole="GoodsReceiptDetail" ToRole="Pallet" />
+          <Property Name="PackCounts" Type="Int32" Nullable="false" />
+          <Property Name="CartonCounts" Type="Int32" Nullable="false" />
+          <Property Name="PalletCounts" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="GoodsReceipt">
           <Key>
@@ -2032,6 +2013,9 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <NavigationProperty Name="Location" Relationship="TotalSmartCodingModel.FK_GoodsReceipts_Locations" FromRole="GoodsReceipt" ToRole="Location" />
           <NavigationProperty Name="Warehouse" Relationship="TotalSmartCodingModel.FK_GoodsReceipts_Warehouses" FromRole="GoodsReceipt" ToRole="Warehouse" />
           <NavigationProperty Name="Pickup" Relationship="TotalSmartCodingModel.FK_GoodsReceipts_Pickups" FromRole="GoodsReceipt" ToRole="Pickup" />
+          <Property Name="TotalPackCounts" Type="Int32" Nullable="false" />
+          <Property Name="TotalCartonCounts" Type="Int32" Nullable="false" />
+          <Property Name="TotalPalletCounts" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="GoodsReceiptType">
           <Key>
@@ -3143,19 +3127,6 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="dtproperties">
-            <EntityTypeMapping TypeName="TotalSmartCodingModel.dtproperty">
-              <MappingFragment StoreEntitySet="dtproperties">
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="lvalue" ColumnName="lvalue" />
-                <ScalarProperty Name="uvalue" ColumnName="uvalue" />
-                <ScalarProperty Name="value" ColumnName="value" />
-                <ScalarProperty Name="property" ColumnName="property" />
-                <ScalarProperty Name="objectid" ColumnName="objectid" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="TotalSmartCodingModel.Employee">
               <MappingFragment StoreEntitySet="Employees">
@@ -3195,6 +3166,9 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <EntitySetMapping Name="GoodsReceiptDetails">
             <EntityTypeMapping TypeName="TotalSmartCodingModel.GoodsReceiptDetail">
               <MappingFragment StoreEntitySet="GoodsReceiptDetails">
+                <ScalarProperty Name="PalletCounts" ColumnName="PalletCounts" />
+                <ScalarProperty Name="CartonCounts" ColumnName="CartonCounts" />
+                <ScalarProperty Name="PackCounts" ColumnName="PackCounts" />
                 <ScalarProperty Name="Approved" ColumnName="Approved" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
                 <ScalarProperty Name="VolumeIssue" ColumnName="VolumeIssue" />
@@ -3219,6 +3193,9 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <EntitySetMapping Name="GoodsReceipts">
             <EntityTypeMapping TypeName="TotalSmartCodingModel.GoodsReceipt">
               <MappingFragment StoreEntitySet="GoodsReceipts">
+                <ScalarProperty Name="TotalPalletCounts" ColumnName="TotalPalletCounts" />
+                <ScalarProperty Name="TotalCartonCounts" ColumnName="TotalCartonCounts" />
+                <ScalarProperty Name="TotalPackCounts" ColumnName="TotalPackCounts" />
                 <ScalarProperty Name="ApprovedDate" ColumnName="ApprovedDate" />
                 <ScalarProperty Name="Approved" ColumnName="Approved" />
                 <ScalarProperty Name="EditedDate" ColumnName="EditedDate" />

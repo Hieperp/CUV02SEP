@@ -9,7 +9,6 @@
         <EntityTypeShape EntityType="TotalSmartCodingModel.Batch" Width="1.5" PointX="3" PointY="11.125" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.BinLocation" Width="1.5" PointX="10.5" PointY="8.75" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.Customer" Width="1.5" PointX="10.5" PointY="1" />
-        <EntityTypeShape EntityType="TotalSmartCodingModel.dtproperty" Width="1.5" PointX="4.75" PointY="0.75" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.Employee" Width="1.5" PointX="8.25" PointY="2.25" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.FillingLine" Width="1.5" PointX="0.75" PointY="5.125" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.GoodsReceiptDetail" Width="1.5" PointX="9.75" PointY="15.375" />

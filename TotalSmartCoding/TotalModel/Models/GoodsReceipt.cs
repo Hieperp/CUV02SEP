@@ -41,6 +41,9 @@ namespace TotalModel.Models
         public System.DateTime EditedDate { get; set; }
         public bool Approved { get; set; }
         public Nullable<System.DateTime> ApprovedDate { get; set; }
+        public int TotalPackCounts { get; set; }
+        public int TotalCartonCounts { get; set; }
+        public int TotalPalletCounts { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GoodsReceiptDetail> GoodsReceiptDetails { get; set; }
