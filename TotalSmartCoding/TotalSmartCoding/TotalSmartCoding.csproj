@@ -94,7 +94,9 @@
     <Compile Include="Controllers\APIs\Commons\FillingLineAPIs.cs" />
     <Compile Include="Controllers\APIs\Commons\WarehouseAPIs.cs" />
     <Compile Include="Controllers\APIs\Inventories\PickupAPIs.cs" />
+    <Compile Include="Controllers\APIs\Sales\SalesOrderAPIs.cs" />
     <Compile Include="Controllers\Inventories\PickupController.cs" />
+    <Compile Include="Controllers\Sales\SalesOrderController.cs" />
     <Compile Include="Libraries\AutoMapperConfig.cs" />
     <Compile Include="Libraries\CommonConfigs.cs" />
     <Compile Include="Libraries\CommonRegistries.cs" />
@@ -142,6 +144,7 @@
     <Compile Include="ViewModels\Productions\CartonViewModel.cs" />
     <Compile Include="ViewModels\Productions\PackViewModel.cs" />
     <Compile Include="ViewModels\Productions\PalletViewModel.cs" />
+    <Compile Include="ViewModels\Sales\SalesOrderViewModel.cs" />
     <Compile Include="Views\Commons\CustomExceptionMessageBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -230,6 +233,12 @@
     <Compile Include="Views\Productions\SmartCoding.designer.cs">
       <DependentUpon>SmartCoding.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Sales\SalesOrders\SalesOrders.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Sales\SalesOrders\SalesOrders.designer.cs">
+      <DependentUpon>SalesOrders.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
@@ -279,6 +288,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Productions\SmartCoding.resx">
       <DependentUpon>SmartCoding.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Sales\SalesOrders\SalesOrders.resx">
+      <DependentUpon>SalesOrders.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config">
       <SubType>Designer</SubType>

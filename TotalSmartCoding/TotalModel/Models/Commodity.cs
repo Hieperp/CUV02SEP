@@ -23,6 +23,7 @@ namespace TotalModel.Models
             this.Cartons = new HashSet<Carton>();
             this.Packs = new HashSet<Pack>();
             this.Pallets = new HashSet<Pallet>();
+            this.SalesOrderDetails = new HashSet<SalesOrderDetail>();
         }
     
         public int CommodityID { get; set; }
@@ -56,5 +57,7 @@ namespace TotalModel.Models
         public virtual ICollection<Pack> Packs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pallet> Pallets { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SalesOrderDetail> SalesOrderDetails { get; set; }
     }
 }

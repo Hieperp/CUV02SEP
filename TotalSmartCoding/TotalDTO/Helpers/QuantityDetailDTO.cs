@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using TotalBase;
 using TotalBase.Enums;
 using TotalModel;
+using TotalModel.Helpers;
 
 namespace TotalDTO.Helpers
 {
@@ -102,6 +105,19 @@ namespace TotalDTO.Helpers
         {
             get { return this.palletCounts; }
             set { ApplyPropertyChange<QuantityDetailDTO, int>(ref this.palletCounts, o => o.PalletCounts, value); }
+        }
+
+
+
+
+
+        protected override List<ValidationRule> CreateRules()
+        {
+            List<ValidationRule> validationRules = base.CreateRules();
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<QuantityDetailDTO>(p => p.CommodityID), "Vui lòng chọn mặt hàng.", delegate { return (this.CommodityID > 0); }));
+
+            return validationRules;
+
         }
     }
 }

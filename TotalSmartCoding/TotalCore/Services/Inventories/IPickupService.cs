@@ -8,4 +8,3 @@ namespace TotalCore.Services.Inventories
     {
     }
 }
-

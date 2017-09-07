@@ -31,6 +31,11 @@ namespace TotalDAL.Repositories
 
             return;
 
+            //return;
+
+            Helpers.SqlProgrammability.Sales.SalesOrder salesOrder = new Helpers.SqlProgrammability.Sales.SalesOrder(totalSmartCodingEntities);
+            salesOrder.RestoreProcedure();
+
 
             return;
 

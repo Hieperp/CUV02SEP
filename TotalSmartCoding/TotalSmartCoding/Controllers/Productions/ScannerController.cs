@@ -132,6 +132,9 @@ namespace TotalSmartCoding.Controllers.Productions
                             else //BarcodeStatus.Pending, BarcodeStatus.Noread
                                 this.cartonPendingQueue.Enqueue(cartonDTO, false);
                     });
+
+                    this.cartonsetQueue = this.cartonsetQueue;
+
                     this.NotifyPropertyChanged("CartonQueue");
                     this.NotifyPropertyChanged("CartonsetQueue");
                     this.NotifyPropertyChanged("CartonPendingQueue");

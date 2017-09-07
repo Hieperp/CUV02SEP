@@ -18,6 +18,7 @@ using TotalSmartCoding.Views.Inventories.GoodsReceipts;
 using System.IO;
 using System.Reflection;
 using TotalBase;
+using TotalSmartCoding.Views.Sales.SalesOrders;
 
 namespace TotalSmartCoding.Views.Mains
 {

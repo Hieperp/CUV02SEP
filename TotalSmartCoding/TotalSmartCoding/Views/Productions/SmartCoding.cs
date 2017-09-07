@@ -100,7 +100,7 @@ namespace TotalSmartCoding.Views.Productions
                 this.buttonCartonNoreadNow.Visible = GlobalEnums.OnTestScanner;
                 this.buttonPalletReceivedNow.Visible = GlobalEnums.OnTestScanner;
 
-                if (!fillingData.HasPack) { this.labelNextPackNo.Visible = false; this.textNextPackNo.Visible = false; this.dgvCartonPendingQueue.RowTemplate.Height = 195; this.dgvCartonQueue.RowTemplate.Height = 195; this.dgvCartonsetQueue.RowTemplate.Height = 195; this.dgvPalletQueue.RowTemplate.Height = 195; this.dgvPalletsetQueue.RowTemplate.Height = 195; }
+                if (!fillingData.HasPack) { this.labelNextPackNo.Visible = false; this.textNextPackNo.Visible = false; this.dgvCartonPendingQueue.RowTemplate.Height = 210; this.dgvCartonQueue.RowTemplate.Height = 210; this.dgvCartonsetQueue.RowTemplate.Height = 210; this.dgvPalletQueue.RowTemplate.Height = 210; this.dgvPalletsetQueue.RowTemplate.Height = 210; }
 
             }
             catch (Exception exception)
@@ -209,9 +209,9 @@ namespace TotalSmartCoding.Views.Productions
                 case GlobalVariables.FillingLine.Smallpack:
                     return 225;
                 case GlobalVariables.FillingLine.Pail:
-                    return 521;
+                    return 551;
                 case GlobalVariables.FillingLine.Drum:
-                    return 70; //86;
+                    return 277; //86;
                 default:
                     return 1;
             }
@@ -224,9 +224,9 @@ namespace TotalSmartCoding.Views.Productions
                 case GlobalVariables.FillingLine.Smallpack:
                     return 111;
                 case GlobalVariables.FillingLine.Pail:
-                    return 259;
+                    return 274;
                 case GlobalVariables.FillingLine.Drum:
-                    return 70; //86;
+                    return 0; //86;
                 default:
                     return 1;
             }

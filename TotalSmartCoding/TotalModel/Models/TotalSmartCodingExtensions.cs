@@ -417,4 +417,35 @@ namespace TotalModel.Models
     }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public partial class SalesOrderIndex : IBaseIndex
+    {
+        public int Id { get { return this.SalesOrderID; } }
+    }
+
+    public partial class SalesOrder : IPrimitiveEntity, IBaseEntity, IBaseDetailEntity<SalesOrderDetail>
+    {
+        public int GetID() { return this.SalesOrderID; }
+
+        public ICollection<SalesOrderDetail> GetDetails() { return this.SalesOrderDetails; }
+    }
+
+    public partial class SalesOrderDetail : IPrimitiveEntity, IHelperEntryDate
+    {
+        public int GetID() { return this.SalesOrderDetailID; }
+    }
+
 }

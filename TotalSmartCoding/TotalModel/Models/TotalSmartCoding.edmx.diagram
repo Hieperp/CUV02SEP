@@ -65,6 +65,11 @@
         <AssociationConnector Association="TotalSmartCodingModel.FK_Pickups_Locations" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_PickupDetails_Pickups" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_Pickups_Warehouses" />
+        <EntityTypeShape EntityType="TotalSmartCodingModel.SalesOrderDetail" Width="1.5" PointX="14.5" PointY="24.75" />
+        <EntityTypeShape EntityType="TotalSmartCodingModel.SalesOrder" Width="1.5" PointX="8.25" PointY="32.75" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_SalesOrderDetails_Commodities" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_SalesOrders_Locations" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_SalesOrderDetails_SalesOrders" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

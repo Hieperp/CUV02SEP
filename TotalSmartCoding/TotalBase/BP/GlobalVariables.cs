@@ -224,9 +224,11 @@ namespace TotalBase
                         case ScannerName.QualityScanner:
                             return "127.0.0.1";
                         case ScannerName.PackScanner:
-                            return "172.21.67.54";
+                            return "127.0.0.1";
                         case ScannerName.CartonScanner:
                             return "127.0.0.1";
+                        case ScannerName.PalletScanner:
+                            return "172.21.67.173";
                         default:
                             return "127.0.0.1";
                     }

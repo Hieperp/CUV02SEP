@@ -67,6 +67,7 @@
     <Compile Include="Repositories\Productions\ICartonRepository.cs" />
     <Compile Include="Repositories\Productions\IPackRepository.cs" />
     <Compile Include="Repositories\Productions\IPalletRepository.cs" />
+    <Compile Include="Repositories\Sales\ISalesOrderRepository.cs" />
     <Compile Include="Services\IBaseService.cs" />
     <Compile Include="Services\IGenericService.cs" />
     <Compile Include="Services\IGenericWithDetailService.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="Services\Productions\ICartonService.cs" />
     <Compile Include="Services\Productions\IPackService.cs" />
     <Compile Include="Services\Productions\IPalletService.cs" />
+    <Compile Include="Services\Sales\ISalesOrderService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TotalBase\TotalBase.csproj">
