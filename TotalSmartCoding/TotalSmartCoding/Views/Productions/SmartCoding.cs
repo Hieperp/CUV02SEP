@@ -97,10 +97,17 @@ namespace TotalSmartCoding.Views.Productions
                 this.comboBoxEmptyCarton.ComboBox.SelectedIndex = GlobalVariables.IgnoreEmptyCarton ? 0 : 1;
                 this.comboBoxEmptyCarton.Enabled = this.fillingData.FillingLineID != GlobalVariables.FillingLine.Pail;
 
+                this.comboBoxSendToZebra.ComboBox.Items.AddRange(new string[] { "Stop print label", "Print new label" });
+                this.comboBoxSendToZebra.ComboBox.SelectedIndex = GlobalEnums.SendToZebra ? 1 : 0;
+                this.comboBoxSendToZebra.Visible = this.fillingData.FillingLineID == GlobalVariables.FillingLine.Drum;
+                this.separatorSendToZebra.Visible = this.fillingData.FillingLineID == GlobalVariables.FillingLine.Drum;
+                this.buttonSendToZebra.Visible = this.fillingData.FillingLineID == GlobalVariables.FillingLine.Drum;
+
                 this.buttonCartonNoreadNow.Visible = GlobalEnums.OnTestScanner;
                 this.buttonPalletReceivedNow.Visible = GlobalEnums.OnTestScanner;
 
                 if (!fillingData.HasPack) { this.labelNextPackNo.Visible = false; this.textNextPackNo.Visible = false; this.dgvCartonPendingQueue.RowTemplate.Height = 210; this.dgvCartonQueue.RowTemplate.Height = 210; this.dgvCartonsetQueue.RowTemplate.Height = 210; this.dgvPalletQueue.RowTemplate.Height = 210; this.dgvPalletsetQueue.RowTemplate.Height = 210; }
+                if (!fillingData.HasCarton) { this.labelNextCartonNo.Visible = false; this.textNextCartonNo.Visible = false; }
 
             }
             catch (Exception exception)
@@ -179,6 +186,17 @@ namespace TotalSmartCoding.Views.Productions
             {
                 GlobalVariables.IgnoreEmptyCarton = this.comboBoxEmptyCarton.ComboBox.SelectedIndex == 0;
                 GlobalRegistry.Write("IgnoreEmptyCarton", GlobalVariables.IgnoreEmptyCarton ? "1" : "0");
+            }
+            catch
+            { }
+        }
+
+
+        private void comboBoxSendToZebra_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                GlobalEnums.SendToZebra = this.comboBoxSendToZebra.ComboBox.SelectedIndex == 1;
             }
             catch
             { }
@@ -903,6 +921,7 @@ namespace TotalSmartCoding.Views.Productions
         }
 
         #endregion Backup
+
 
 
 

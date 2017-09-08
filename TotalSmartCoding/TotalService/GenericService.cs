@@ -421,11 +421,15 @@ namespace TotalService
         {
             if (this.functionNameToggleApproved != null && this.functionNameToggleApproved != "")
             {
-                ObjectParameter[] parameters = new ObjectParameter[] { new ObjectParameter("EntityID", dto.GetID()), new ObjectParameter("Approved", !dto.Approved) };
-                if (this.genericRepository.ExecuteFunction(this.functionNameToggleApproved, parameters) < 1) throw new System.ArgumentException("Lỗi", "Chứng từ không tồn tại hoặc đã " + (dto.Approved ? "hủy" : "") + "duyệt");
+                if (this.genericRepository.ExecuteFunction(this.functionNameToggleApproved, this.ToggleApprovedParameters(dto)) < 1) throw new System.ArgumentException("Lỗi", "Chứng từ không tồn tại hoặc đã " + (dto.Approved ? "hủy" : "") + "duyệt");
             }
             else
                 throw new System.ArgumentException("Lỗi", "Hệ thống không cho phép thực hiện tác vụ này.");
+        }
+
+        protected virtual ObjectParameter[] ToggleApprovedParameters(TDto dto)
+        {
+            return new ObjectParameter[] { new ObjectParameter("EntityID", dto.GetID()), new ObjectParameter("Approved", !dto.Approved) };
         }
 
         protected virtual void ToggleVoidMe(TDto dto)

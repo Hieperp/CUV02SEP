@@ -26,13 +26,7 @@ namespace TotalService.Productions
 
             this.ServiceBag.Remove("PackIDs");
             this.ServiceBag.Remove("DeletePack");
-
-            if (this.ServiceBag.ContainsKey("DeletePack") && this.ServiceBag["DeletePack"] != null)
-            {
-                int i = 1;
-
-            }
-
+            
             return objectParameters;
         }
 
