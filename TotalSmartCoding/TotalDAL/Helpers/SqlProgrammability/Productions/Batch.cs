@@ -83,8 +83,11 @@ namespace TotalDAL.Helpers.SqlProgrammability.Productions
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
 
-            queryString = queryString + "       UPDATE      Batches  SET IsDefault = ~@Approved WHERE BatchID <> @EntityID AND IsDefault =  @Approved" + "\r\n";
-            queryString = queryString + "       UPDATE      Batches  SET IsDefault =  @Approved WHERE BatchID =  @EntityID AND IsDefault = ~@Approved" + "\r\n";
+            queryString = queryString + "       DECLARE @FillingLineID int ";
+            queryString = queryString + "       SELECT @FillingLineID = FillingLineID FROM Batches WHERE BatchID = @EntityID ";
+
+            queryString = queryString + "       UPDATE      Batches  SET IsDefault = ~@Approved WHERE FillingLineID = @FillingLineID AND BatchID <> @EntityID AND IsDefault =  @Approved" + "\r\n";
+            queryString = queryString + "       UPDATE      Batches  SET IsDefault =  @Approved WHERE FillingLineID = @FillingLineID AND BatchID =  @EntityID AND IsDefault = ~@Approved" + "\r\n";
 
             queryString = queryString + "       IF @@ROWCOUNT <> 1 " + "\r\n";
             queryString = queryString + "           BEGIN " + "\r\n";
