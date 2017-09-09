@@ -318,7 +318,7 @@ namespace TotalSmartCoding.Controllers.Productions
                 if (this.OnPrinting)
                 {
                     stringMessage = stringMessage + "^XA"; //[^XA - Indicates start of label format.]
-                    stringMessage = stringMessage + "^LH60,20"; //[^LH - Sets label home position 80 dots to the right and 30 dots down from top edge of label.]
+                    stringMessage = stringMessage + "^LH70,20"; //[^LH - Sets label home position 80 dots to the right and 30 dots down from top edge of label.]
 
                     stringMessage = stringMessage + "^FO0,10  ^BC,360,N  ^FD" + this.privateFillingData.FirstLine(false) + this.privateFillingData.SecondLine(false) + this.thirdLine(false, 0) + "^FS";// [^FO0,10 - Set field origin 10 dots to the right and 10 dots down from the home position defined by the ^LH instruction.] [^BC - Select Code 128 bar code.] [^FD - Start of field data for the bar code.] [AAA001 - Actual field data.] [^FS - End of field data.]
 
@@ -332,7 +332,7 @@ namespace TotalSmartCoding.Controllers.Productions
                 else //TEST PAGE ONLY
                 {
                     stringMessage = stringMessage + "^XA"; //[^XA - Indicates start of label format.]
-                    stringMessage = stringMessage + "^LH60,20"; //[^LH - Sets label home position 80 dots to the right and 30 dots down from top edge of label.]
+                    stringMessage = stringMessage + "^LH70,20"; //[^LH - Sets label home position 80 dots to the right and 30 dots down from top edge of label.]
 
                     stringMessage = stringMessage + "^FO0,30 ^AS ^FD" + "If you can read this, your printer is ready" + "^FS";
                     stringMessage = stringMessage + "^FO0,80 ^AS ^FD" + "**PLEASE PRESS THE START BUTTON TO BEGIN**" + "^FS";
