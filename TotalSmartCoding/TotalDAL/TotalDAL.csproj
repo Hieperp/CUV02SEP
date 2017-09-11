@@ -52,6 +52,7 @@
     <Compile Include="Helpers\SqlProgrammability\Commons\BinLocation.cs" />
     <Compile Include="Helpers\SqlProgrammability\Commons\AccessControl.cs" />
     <Compile Include="Helpers\SqlProgrammability\Commons\Commodity.cs" />
+    <Compile Include="Helpers\SqlProgrammability\Commons\Customer.cs" />
     <Compile Include="Helpers\SqlProgrammability\Commons\Employee.cs" />
     <Compile Include="Helpers\SqlProgrammability\Commons\FillingLine.cs" />
     <Compile Include="Helpers\SqlProgrammability\Commons\Warehouse.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="Repositories\Commons\AspNetUserRepository.cs" />
     <Compile Include="Repositories\Commons\BinLocationRepository.cs" />
     <Compile Include="Repositories\Commons\CommodityRepository.cs" />
+    <Compile Include="Repositories\Commons\CustomerRepository.cs" />
     <Compile Include="Repositories\Commons\EmployeeRepository.cs" />
     <Compile Include="Repositories\Commons\FillingLineRepository.cs" />
     <Compile Include="Repositories\Commons\WarehouseRepository.cs" />

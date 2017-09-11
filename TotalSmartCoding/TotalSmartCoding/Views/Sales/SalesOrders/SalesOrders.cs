@@ -35,7 +35,7 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
 {
     public partial class SalesOrders : BaseView
     {
-        private SalesOrderAPIs goodsReceiptAPIs;        
+        private SalesOrderAPIs goodsReceiptAPIs;
         private SalesOrderViewModel goodsReceiptViewModel { get; set; }
 
         public SalesOrders()
@@ -47,7 +47,7 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
             this.toolstripChild = this.toolStripChildForm;
             this.fastListIndex = this.fastSalesOrderIndex;
 
-            this.goodsReceiptAPIs = new SalesOrderAPIs(CommonNinject.Kernel.Get<ISalesOrderAPIRepository>());            
+            this.goodsReceiptAPIs = new SalesOrderAPIs(CommonNinject.Kernel.Get<ISalesOrderAPIRepository>());
 
             this.goodsReceiptViewModel = CommonNinject.Kernel.Get<SalesOrderViewModel>();
             this.goodsReceiptViewModel.PropertyChanged += new PropertyChangedEventHandler(ModelDTO_PropertyChanged);
@@ -123,21 +123,14 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
             base.Loading();
         }
 
-
-        //protected override DialogResult wizardMaster()
-        //{
-        //    WizardMaster wizardMaster = new WizardMaster(this.goodsReceiptAPIs, this.goodsReceiptViewModel);
-        //    return wizardMaster.ShowDialog();
-        //}
-
-        //protected override void wizardDetail()
-        //{
-        //    base.wizardDetail();
-        //    WizardDetail wizardDetail = new WizardDetail(this.goodsReceiptAPIs, this.goodsReceiptViewModel);
-        //    wizardDetail.ShowDialog();
-        //}
-
-
-
+        private void gridexViewDetails_ReadOnlyChanged(object sender, EventArgs e)
+        {
+            string columnName = CommonExpressions.PropertyName<SalesOrderDetailDTO>(p => p.CommodityName);
+            this.gridexViewDetails.Columns[columnName].ReadOnly = true;
+            columnName = CommonExpressions.PropertyName<SalesOrderDetailDTO>(p => p.PackageSize);
+            this.gridexViewDetails.Columns[columnName].ReadOnly = true;
+            columnName = CommonExpressions.PropertyName<SalesOrderDetailDTO>(p => p.PackageVolume);
+            this.gridexViewDetails.Columns[columnName].ReadOnly = true;
+        }
     }
 }

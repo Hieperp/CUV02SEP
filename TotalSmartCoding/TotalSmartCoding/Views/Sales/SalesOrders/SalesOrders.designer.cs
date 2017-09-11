@@ -353,6 +353,7 @@
             this.gridexViewDetails.RowTemplate.Height = 24;
             this.gridexViewDetails.Size = new System.Drawing.Size(1309, 313);
             this.gridexViewDetails.TabIndex = 65;
+            this.gridexViewDetails.ReadOnlyChanged += new System.EventHandler(this.gridexViewDetails_ReadOnlyChanged);
             // 
             // numericUpDownSizingDetail
             // 
