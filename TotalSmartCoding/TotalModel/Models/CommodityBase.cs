@@ -16,5 +16,9 @@ namespace TotalModel.Models
         public int CommodityID { get; set; }
         public string Code { get; set; }
         public string Name { get; set; }
+        public string Unit { get; set; }
+        public decimal Volume { get; set; }
+        public string PackageSize { get; set; }
+        public decimal PackageVolume { get; set; }
     }
 }

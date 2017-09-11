@@ -11,6 +11,7 @@ namespace TotalCore.Repositories.Commons
 
     public interface ICommodityAPIRepository : IGenericAPIRepository
     {
-        IList<CommodityBase> GetCommodityBases();
+        IList<CommodityBase> GetCommodityBases(bool withNullRow);
+        IList<Commodity> SearchCommodities(int? commodityID);
     }
 }

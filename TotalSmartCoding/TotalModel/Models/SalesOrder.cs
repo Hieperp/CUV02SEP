@@ -29,11 +29,8 @@ namespace TotalModel.Models
         public int PreparedPersonID { get; set; }
         public int OrganizationalUnitID { get; set; }
         public int LocationID { get; set; }
-        public int TotalPackCounts { get; set; }
-        public int TotalCartonCounts { get; set; }
-        public int TotalPalletCounts { get; set; }
         public decimal TotalQuantity { get; set; }
-        public decimal TotalVolume { get; set; }
+        public decimal TotalLineVolume { get; set; }
         public string Description { get; set; }
         public string Remarks { get; set; }
         public System.DateTime CreatedDate { get; set; }

@@ -25,12 +25,17 @@ using TotalCore.Repositories.Sales;
 using TotalSmartCoding.Controllers.APIs.Sales;
 using TotalCore.Services.Sales;
 using TotalSmartCoding.ViewModels.Sales;
+using TotalSmartCoding.Controllers.APIs.Commons;
+using TotalCore.Repositories.Commons;
+using TotalBase;
+using TotalModel.Models;
+using TotalDTO.Sales;
 
 namespace TotalSmartCoding.Views.Sales.SalesOrders
 {
     public partial class SalesOrders : BaseView
     {
-        private SalesOrderAPIs goodsReceiptAPIs;
+        private SalesOrderAPIs goodsReceiptAPIs;        
         private SalesOrderViewModel goodsReceiptViewModel { get; set; }
 
         public SalesOrders()
@@ -42,7 +47,7 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
             this.toolstripChild = this.toolStripChildForm;
             this.fastListIndex = this.fastSalesOrderIndex;
 
-            this.goodsReceiptAPIs = new SalesOrderAPIs(CommonNinject.Kernel.Get<ISalesOrderAPIRepository>());
+            this.goodsReceiptAPIs = new SalesOrderAPIs(CommonNinject.Kernel.Get<ISalesOrderAPIRepository>());            
 
             this.goodsReceiptViewModel = CommonNinject.Kernel.Get<SalesOrderViewModel>();
             this.goodsReceiptViewModel.PropertyChanged += new PropertyChangedEventHandler(ModelDTO_PropertyChanged);
@@ -81,7 +86,30 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
             this.gridexViewDetails.AutoGenerateColumns = false;
             this.gridexViewDetails.DataSource = this.goodsReceiptViewModel.ViewDetails;
 
+            this.goodsReceiptViewModel.ViewDetails.ListChanged += ViewDetails_ListChanged;
+
+            this.gridexViewDetails.EditingControlShowing += new DataGridViewEditingControlShowingEventHandler(this.gridexViewDetails_EditingControlShowing);
+
             //StackedHeaderDecorator stackedHeaderDecorator = new StackedHeaderDecorator(this.dataGridViewDetails);
+
+
+            DataGridViewComboBoxColumn comboBoxColumn;
+            CommodityAPIs commodityAPIs = new CommodityAPIs(CommonNinject.Kernel.Get<ICommodityAPIRepository>());
+
+            comboBoxColumn = (DataGridViewComboBoxColumn)this.gridexViewDetails.Columns[CommonExpressions.PropertyName<SalesOrderDetailDTO>(p => p.CommodityID)];
+            comboBoxColumn.DataSource = commodityAPIs.GetCommodityBases(true);
+            comboBoxColumn.DisplayMember = CommonExpressions.PropertyName<CommodityBase>(p => p.Code);
+            comboBoxColumn.ValueMember = CommonExpressions.PropertyName<CommodityBase>(p => p.CommodityID);
+        }
+
+        private void ViewDetails_ListChanged(object sender, ListChangedEventArgs e)
+        {
+            if (this.EditableMode && e.PropertyDescriptor != null && e.NewIndex >= 0 && e.NewIndex < this.goodsReceiptViewModel.ViewDetails.Count)
+            {
+                SalesOrderDetailDTO salesOrderDetailDTO = this.goodsReceiptViewModel.ViewDetails[e.NewIndex];
+                if (salesOrderDetailDTO != null)
+                    this.CalculateQuantityDetailDTO(salesOrderDetailDTO, e.PropertyDescriptor.Name);
+            }
         }
 
         protected override Controllers.BaseController myController
@@ -94,6 +122,7 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
             this.fastSalesOrderIndex.SetObjects(this.goodsReceiptAPIs.GetSalesOrderIndexes());
             base.Loading();
         }
+
 
         //protected override DialogResult wizardMaster()
         //{

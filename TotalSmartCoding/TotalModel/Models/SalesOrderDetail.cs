@@ -21,13 +21,10 @@ namespace TotalModel.Models
         public int CustomerID { get; set; }
         public int LocationID { get; set; }
         public int CommodityID { get; set; }
-        public int PackCounts { get; set; }
-        public int CartonCounts { get; set; }
-        public int PalletCounts { get; set; }
         public decimal Quantity { get; set; }
-        public decimal QuantityReceipt { get; set; }
-        public decimal Volume { get; set; }
-        public decimal VolumeReceipt { get; set; }
+        public decimal QuantityAdvice { get; set; }
+        public decimal LineVolume { get; set; }
+        public decimal LineVolumeAdvice { get; set; }
         public string Remarks { get; set; }
         public bool Approved { get; set; }
     

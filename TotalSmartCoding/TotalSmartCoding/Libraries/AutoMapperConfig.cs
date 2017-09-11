@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
-using AutoMapper;
 
+using AutoMapper;
 
 using TotalModel.Models;
 
-using TotalDTO.Inventories;
 using TotalDTO.Commons;
-
-using TotalSmartCoding.ViewModels.Inventories;
 using TotalDTO.Productions;
+using TotalDTO.Sales;
+using TotalDTO.Inventories;
+
 using TotalSmartCoding.ViewModels.Productions;
+using TotalSmartCoding.ViewModels.Sales;
+using TotalSmartCoding.ViewModels.Inventories;
 
 namespace TotalSmartCoding.Libraries
 {
@@ -38,6 +40,22 @@ namespace TotalSmartCoding.Libraries
                 cfg.CreateMap<GoodsReceiptPrimitiveDTO, GoodsReceipt>();
                 cfg.CreateMap<GoodsReceiptViewDetail, GoodsReceiptDetailDTO>();
                 cfg.CreateMap<GoodsReceiptDetailDTO, GoodsReceiptDetail>();
+
+
+                cfg.CreateMap<SalesOrder, SalesOrderViewModel>();
+                cfg.CreateMap<SalesOrder, SalesOrderDTO>();
+                cfg.CreateMap<SalesOrderPrimitiveDTO, SalesOrder>();
+                cfg.CreateMap<SalesOrderViewDetail, SalesOrderDetailDTO>();
+                cfg.CreateMap<SalesOrderDetailDTO, SalesOrderDetail>();
+
+
+
+
+
+
+
+
+
 
 
                 cfg.CreateMap<Batch, BatchViewModel>();

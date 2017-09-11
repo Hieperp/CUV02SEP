@@ -44,11 +44,11 @@ namespace TotalModel.Models
         public virtual DbSet<PickupDetail> PickupDetails { get; set; }
         public virtual DbSet<Territory> Territories { get; set; }
         public virtual DbSet<Warehouse> Warehouses { get; set; }
-        public virtual DbSet<Commodity> Commodities { get; set; }
         public virtual DbSet<Carton> Cartons { get; set; }
         public virtual DbSet<Pack> Packs { get; set; }
         public virtual DbSet<Pallet> Pallets { get; set; }
         public virtual DbSet<Pickup> Pickups { get; set; }
+        public virtual DbSet<Commodity> Commodities { get; set; }
         public virtual DbSet<SalesOrderDetail> SalesOrderDetails { get; set; }
         public virtual DbSet<SalesOrder> SalesOrders { get; set; }
     
@@ -868,6 +868,24 @@ namespace TotalModel.Models
                 new ObjectParameter("Approved", typeof(bool));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SalesOrderToggleApproved", entityIDParameter, approvedParameter);
+        }
+    
+        public virtual ObjectResult<Commodity> SearchCommodities(Nullable<int> commodityID)
+        {
+            var commodityIDParameter = commodityID.HasValue ?
+                new ObjectParameter("CommodityID", commodityID) :
+                new ObjectParameter("CommodityID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Commodity>("SearchCommodities", commodityIDParameter);
+        }
+    
+        public virtual ObjectResult<Commodity> SearchCommodities(Nullable<int> commodityID, MergeOption mergeOption)
+        {
+            var commodityIDParameter = commodityID.HasValue ?
+                new ObjectParameter("CommodityID", commodityID) :
+                new ObjectParameter("CommodityID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Commodity>("SearchCommodities", mergeOption, commodityIDParameter);
         }
     }
 }

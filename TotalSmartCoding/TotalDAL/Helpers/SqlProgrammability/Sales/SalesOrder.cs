@@ -44,7 +44,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
-            queryString = queryString + "       SELECT      SalesOrders.SalesOrderID, CAST(SalesOrders.EntryDate AS DATE) AS EntryDate, SalesOrders.Reference, Locations.Code AS LocationCode, Customers.Name AS CustomerName, SalesOrders.Description, SalesOrders.TotalQuantity, SalesOrders.TotalVolume, SalesOrders.Approved " + "\r\n";
+            queryString = queryString + "       SELECT      SalesOrders.SalesOrderID, CAST(SalesOrders.EntryDate AS DATE) AS EntryDate, SalesOrders.Reference, Locations.Code AS LocationCode, Customers.Name AS CustomerName, SalesOrders.Description, SalesOrders.TotalQuantity, SalesOrders.TotalLineVolume, SalesOrders.Approved " + "\r\n";
             queryString = queryString + "       FROM        SalesOrders " + "\r\n";
             queryString = queryString + "                   INNER JOIN Locations ON SalesOrders.EntryDate >= @FromDate AND SalesOrders.EntryDate <= @ToDate AND SalesOrders.OrganizationalUnitID IN (SELECT AccessControls.OrganizationalUnitID FROM AccessControls INNER JOIN AspNetUsers ON AccessControls.UserID = AspNetUsers.UserID WHERE AspNetUsers.Id = @AspUserID AND AccessControls.NMVNTaskID = " + (int)TotalBase.Enums.GlobalEnums.NmvnTaskID.SalesOrder + " AND AccessControls.AccessLevel > 0) AND Locations.LocationID = SalesOrders.LocationID " + "\r\n";
             queryString = queryString + "                   INNER JOIN Customers ON SalesOrders.CustomerID = Customers.CustomerID " + "\r\n";
@@ -69,7 +69,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
             queryString = queryString + "    BEGIN " + "\r\n";
 
             queryString = queryString + "       SELECT      SalesOrderDetails.SalesOrderDetailID, SalesOrderDetails.SalesOrderID, Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, " + "\r\n";
-            queryString = queryString + "                   SalesOrderDetails.PackCounts, SalesOrderDetails.CartonCounts, SalesOrderDetails.PalletCounts, SalesOrderDetails.Quantity, SalesOrderDetails.Volume, SalesOrderDetails.Remarks " + "\r\n";
+            queryString = queryString + "                   Commodities.Unit, Commodities.PackageSize, Commodities.Volume, Commodities.PackageVolume, SalesOrderDetails.Quantity, SalesOrderDetails.LineVolume, SalesOrderDetails.Remarks " + "\r\n";
             queryString = queryString + "       FROM        SalesOrderDetails " + "\r\n";
             queryString = queryString + "                   INNER JOIN Commodities ON SalesOrderDetails.SalesOrderID = @SalesOrderID AND SalesOrderDetails.CommodityID = Commodities.CommodityID " + "\r\n";
 

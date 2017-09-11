@@ -4,14 +4,27 @@ using System.Windows.Forms;
 using System.Collections.Generic;
 using System.ComponentModel;
 
+using Ninject;
+
 using CustomControls;
 using BrightIdeasSoftware;
 
+using TotalCore.Repositories.Commons;
+
 using TotalDTO;
+using TotalDTO.Helpers;
+using TotalBase;
 using TotalBase.Enums;
+
 using TotalModel.Interfaces;
+using TotalModel.Models;
+
+using TotalSmartCoding.Libraries;
 using TotalSmartCoding.Libraries.Helpers;
 using TotalSmartCoding.Controllers;
+using TotalSmartCoding.Controllers.APIs.Commons;
+
+
 
 namespace TotalSmartCoding.Views.Mains
 {
@@ -184,6 +197,20 @@ namespace TotalSmartCoding.Views.Mains
             }
 
             throw new System.ArgumentException("Lỗi", "Vui lòng chọn dữ liệu.");
+        }
+
+
+
+
+        public void gridexViewDetails_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            var comboBox = e.Control as DataGridViewComboBoxEditingControl;
+            if (comboBox != null)
+            {
+                comboBox.DropDownStyle = ComboBoxStyle.DropDown;
+                comboBox.AutoCompleteSource = AutoCompleteSource.ListItems;
+                comboBox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            }
         }
 
         #endregion EventHandlers
@@ -476,5 +503,28 @@ namespace TotalSmartCoding.Views.Mains
 
 
         #endregion <Implement Interface>
+
+        #region Helper Method
+        protected virtual void CalculateQuantityDetailDTO(IQuantityDetailDTO quantityDetailDTO, string propertyName)
+        {
+            if (propertyName == CommonExpressions.PropertyName<IQuantityDetailDTO>(p => p.CommodityID))
+            {
+                CommodityAPIs commodityAPIs = new CommodityAPIs(CommonNinject.Kernel.Get<ICommodityAPIRepository>());
+                IList<Commodity> commodities = commodityAPIs.SearchCommodities(quantityDetailDTO.CommodityID);
+                if (commodities.Count > 0)
+                {
+                    quantityDetailDTO.CommodityCode = commodities[0].Code;
+                    quantityDetailDTO.CommodityName = commodities[0].Name;
+                    quantityDetailDTO.Unit = commodities[0].Unit;
+                    quantityDetailDTO.PackageSize = commodities[0].PackageSize;
+                    quantityDetailDTO.Volume = commodities[0].Volume;
+                    quantityDetailDTO.PackageVolume = commodities[0].PackageVolume;
+                }
+            }
+            if (propertyName == CommonExpressions.PropertyName<IQuantityDetailDTO>(p => p.PackageVolume) || propertyName == CommonExpressions.PropertyName<IQuantityDetailDTO>(p => p.Quantity))
+                quantityDetailDTO.LineVolume = quantityDetailDTO.Quantity * quantityDetailDTO.PackageVolume;
+
+        }
+        #endregion Helper Method
     }
 }

@@ -34,7 +34,6 @@ namespace TotalModel.Models
         public int PackCounts { get; set; }
         public int EntryStatusID { get; set; }
     
-        public virtual Commodity Commodity { get; set; }
         public virtual FillingLine FillingLine { get; set; }
         public virtual Pallet Pallet { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -43,5 +42,6 @@ namespace TotalModel.Models
         public virtual ICollection<Pack> Packs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PickupDetail> PickupDetails { get; set; }
+        public virtual Commodity Commodity { get; set; }
     }
 }

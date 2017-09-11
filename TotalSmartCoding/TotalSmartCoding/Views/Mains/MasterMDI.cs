@@ -413,7 +413,7 @@ namespace TotalSmartCoding.Views.Mains
 
         private void OpenTestView()
         {
-            return;
+            //return;
 
             //////Open new form
             ////Pickups grForm;  //
@@ -426,10 +426,10 @@ namespace TotalSmartCoding.Views.Mains
 
 
             //Open new form
-            GoodsReceipts grForm;
+            SalesOrders grForm;
             //childForm = new Batches();
             //childForm = new DeliveryAdvices();
-            grForm = new GoodsReceipts();
+            grForm = new SalesOrders();
 
 
 

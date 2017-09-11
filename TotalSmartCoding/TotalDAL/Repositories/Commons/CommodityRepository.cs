@@ -26,9 +26,16 @@ namespace TotalDAL.Repositories.Commons
         {
         }
 
-        public IList<CommodityBase> GetCommodityBases()
+        public IList<CommodityBase> GetCommodityBases(bool withNullRow)
         {
-            return this.TotalSmartCodingEntities.GetCommodityBases().ToList();
+            IList<CommodityBase> commodityBases = this.TotalSmartCodingEntities.GetCommodityBases().ToList();
+            if (withNullRow) commodityBases.Add(new CommodityBase() { CommodityID = 0 });
+            return commodityBases;
+        }
+
+        public IList<Commodity> SearchCommodities(int? commodityID)
+        {
+            return this.TotalSmartCodingEntities.SearchCommodities(commodityID).ToList();
         }
     }
 }

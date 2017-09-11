@@ -18,11 +18,12 @@ namespace TotalModel.Models
         public int CommodityID { get; set; }
         public string CommodityCode { get; set; }
         public string CommodityName { get; set; }
-        public int PackCounts { get; set; }
-        public int CartonCounts { get; set; }
-        public int PalletCounts { get; set; }
         public decimal Quantity { get; set; }
         public decimal Volume { get; set; }
         public string Remarks { get; set; }
+        public string Unit { get; set; }
+        public string PackageSize { get; set; }
+        public decimal PackageVolume { get; set; }
+        public decimal LineVolume { get; set; }
     }
 }

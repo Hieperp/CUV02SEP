@@ -12,13 +12,21 @@ namespace TotalDTO.Helpers
     public interface IQuantityDetailDTO : IBaseModel
     {
         int CommodityID { get; set; }
+        
         string CommodityCode { get; set; }
         string CommodityName { get; set; }
+
+        string Unit { get; set; }
+        string PackageSize { get; set; }        
+
         int CommodityTypeID { get; set; }
 
-        decimal Quantity { get; set; }
         decimal Volume { get; set; }
+        decimal PackageVolume { get; set; }
 
+        decimal Quantity { get; set; }
+        decimal LineVolume { get; set; }
+        
 
         int PackCounts { get; set; }
         int CartonCounts { get; set; }
@@ -53,14 +61,22 @@ namespace TotalDTO.Helpers
             set { ApplyPropertyChange<QuantityDetailDTO, string>(ref this.commodityName, o => o.CommodityName, value); }
         }
 
-        private decimal quantity;
-        [DefaultValue(0)]
-        [Range(0, 99999999999, ErrorMessage = "Số lượng không hợp lệ")]
-        public virtual decimal Quantity
+        private string unit;
+        [DefaultValue("")]
+        public virtual string Unit
         {
-            get { return this.quantity; }
-            set { ApplyPropertyChange<QuantityDetailDTO, decimal>(ref this.quantity, o => o.Quantity, Math.Round(value, (int)GlobalEnums.rndQuantity)); }
+            get { return this.unit; }
+            set { ApplyPropertyChange<QuantityDetailDTO, string>(ref this.unit, o => o.Unit, value); }
         }
+
+        private string packageSize;
+        [DefaultValue("")]
+        public virtual string PackageSize
+        {
+            get { return this.packageSize; }
+            set { ApplyPropertyChange<QuantityDetailDTO, string>(ref this.packageSize, o => o.PackageSize, value); }
+        }
+
 
         private decimal volume;
         [DefaultValue(0)]
@@ -71,10 +87,32 @@ namespace TotalDTO.Helpers
             set { ApplyPropertyChange<QuantityDetailDTO, decimal>(ref this.volume, o => o.Volume, Math.Round(value, (int)GlobalEnums.rndVolume)); }
         }
 
+        private decimal packageVolume;
+        [DefaultValue(0)]
+        [Range(0, 99999999999, ErrorMessage = "PackageVolume không hợp lệ")]
+        public virtual decimal PackageVolume
+        {
+            get { return this.packageVolume; }
+            set { ApplyPropertyChange<QuantityDetailDTO, decimal>(ref this.packageVolume, o => o.PackageVolume, Math.Round(value, (int)GlobalEnums.rndVolume)); }
+        }
 
+        private decimal quantity;
+        [DefaultValue(0)]
+        [Range(0, 99999999999, ErrorMessage = "Số lượng không hợp lệ")]
+        public virtual decimal Quantity
+        {
+            get { return this.quantity; }
+            set { ApplyPropertyChange<QuantityDetailDTO, decimal>(ref this.quantity, o => o.Quantity, Math.Round(value, (int)GlobalEnums.rndQuantity)); }
+        }
 
-
-
+        private decimal lineVolume;
+        [DefaultValue(0)]
+        [Range(0, 99999999999, ErrorMessage = "LineVolume không hợp lệ")]
+        public virtual decimal LineVolume
+        {
+            get { return this.lineVolume; }
+            set { ApplyPropertyChange<QuantityDetailDTO, decimal>(ref this.lineVolume, o => o.LineVolume, Math.Round(value, (int)GlobalEnums.rndVolume)); }
+        }
 
 
 

@@ -24,6 +24,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             //this.CommoditySaveRelative();
 
             this.GetCommodityBases();
+            this.SearchCommodities();
         }
 
 
@@ -95,7 +96,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
-            queryString = queryString + "       SELECT      CommodityID, Code, Name " + "\r\n";
+            queryString = queryString + "       SELECT      CommodityID, Code, Name, Unit, Volume, PackageSize, PackageVolume " + "\r\n";
             queryString = queryString + "       FROM        Commodities " + "\r\n";
 
             queryString = queryString + "    END " + "\r\n";
@@ -103,5 +104,22 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             this.totalSmartCodingEntities.CreateStoredProcedure("GetCommodityBases", queryString);
         }
 
+        private void SearchCommodities()
+        {
+            string queryString;
+
+            queryString = " @CommodityID int " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+            queryString = queryString + "    BEGIN " + "\r\n";
+
+            queryString = queryString + "       SELECT      * " + "\r\n";
+            queryString = queryString + "       FROM        Commodities " + "\r\n";
+            queryString = queryString + "       WHERE       CommodityID = @CommodityID " + "\r\n";
+
+            queryString = queryString + "    END " + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("SearchCommodities", queryString);
+        }
     }
 }
