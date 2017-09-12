@@ -36,7 +36,7 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
     public partial class SalesOrders : BaseView
     {
         private SalesOrderAPIs goodsReceiptAPIs;
-        private SalesOrderViewModel goodsReceiptViewModel { get; set; }
+        private SalesOrderViewModel salesOrderViewModel { get; set; }
 
         public SalesOrders()
             : base()
@@ -49,29 +49,45 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
 
             this.goodsReceiptAPIs = new SalesOrderAPIs(CommonNinject.Kernel.Get<ISalesOrderAPIRepository>());
 
-            this.goodsReceiptViewModel = CommonNinject.Kernel.Get<SalesOrderViewModel>();
-            this.goodsReceiptViewModel.PropertyChanged += new PropertyChangedEventHandler(ModelDTO_PropertyChanged);
-            this.baseDTO = this.goodsReceiptViewModel;
+            this.salesOrderViewModel = CommonNinject.Kernel.Get<SalesOrderViewModel>();
+            this.salesOrderViewModel.PropertyChanged += new PropertyChangedEventHandler(ModelDTO_PropertyChanged);
+            this.baseDTO = this.salesOrderViewModel;
         }
 
         Binding bindingEntryDate;
         Binding bindingReference;
 
+        Binding bindingCustomerID;
+        Binding bindingSalespersonID;
+
         protected override void InitializeCommonControlBinding()
         {
             base.InitializeCommonControlBinding();
 
-            this.bindingReference = this.textexReference.DataBindings.Add("Text", this.goodsReceiptViewModel, "Reference", true, DataSourceUpdateMode.OnPropertyChanged);
-            this.bindingEntryDate = this.dateTimexEntryDate.DataBindings.Add("Value", this.goodsReceiptViewModel, "EntryDate", true);
+            this.bindingReference = this.textexReference.DataBindings.Add("Text", this.salesOrderViewModel, "Reference", true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingEntryDate = this.dateTimexEntryDate.DataBindings.Add("Value", this.salesOrderViewModel, "EntryDate", true);
+
+            CustomerAPIs customerAPIs = new CustomerAPIs(CommonNinject.Kernel.Get<ICustomerAPIRepository>());
+
+            this.combexCustomerID.DataSource = customerAPIs.GetCustomerBases();
+            this.combexCustomerID.DisplayMember = CommonExpressions.PropertyName<CustomerBase>(p => p.Name);
+            this.combexCustomerID.ValueMember = CommonExpressions.PropertyName<CustomerBase>(p => p.CustomerID);
+            this.bindingCustomerID = this.combexCustomerID.DataBindings.Add("SelectedValue", this.salesOrderViewModel, CommonExpressions.PropertyName<SalesOrderViewModel>(p => p.CustomerID), true, DataSourceUpdateMode.OnPropertyChanged);
+
+
+            EmployeeAPIs employeeAPIs = new EmployeeAPIs(CommonNinject.Kernel.Get<IEmployeeAPIRepository>());
+
+            this.combexSalespersonID.DataSource = employeeAPIs.GetEmployeeBases();
+            this.combexSalespersonID.DisplayMember = CommonExpressions.PropertyName<EmployeeBase>(p => p.Name);
+            this.combexSalespersonID.ValueMember = CommonExpressions.PropertyName<EmployeeBase>(p => p.EmployeeID);
+            this.bindingSalespersonID = this.combexSalespersonID.DataBindings.Add("SelectedValue", this.salesOrderViewModel, CommonExpressions.PropertyName<SalesOrderViewModel>(p => p.SalespersonID), true, DataSourceUpdateMode.OnPropertyChanged);
 
 
             this.bindingReference.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingEntryDate.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
 
-
-
-
-
+            this.bindingCustomerID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingSalespersonID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
 
             this.naviGroupDetails.DataBindings.Add("ExpandedHeight", this.numericUpDownSizingDetail, "Value", true, DataSourceUpdateMode.OnPropertyChanged);
             this.numericUpDownSizingDetail.Minimum = this.naviGroupDetails.HeaderHeight * 2;
@@ -84,9 +100,9 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
         protected override void InitializeDataGridBinding()
         {
             this.gridexViewDetails.AutoGenerateColumns = false;
-            this.gridexViewDetails.DataSource = this.goodsReceiptViewModel.ViewDetails;
+            this.gridexViewDetails.DataSource = this.salesOrderViewModel.ViewDetails;
 
-            this.goodsReceiptViewModel.ViewDetails.ListChanged += ViewDetails_ListChanged;
+            this.salesOrderViewModel.ViewDetails.ListChanged += ViewDetails_ListChanged;
 
             this.gridexViewDetails.EditingControlShowing += new DataGridViewEditingControlShowingEventHandler(this.gridexViewDetails_EditingControlShowing);
 
@@ -104,9 +120,9 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
 
         private void ViewDetails_ListChanged(object sender, ListChangedEventArgs e)
         {
-            if (this.EditableMode && e.PropertyDescriptor != null && e.NewIndex >= 0 && e.NewIndex < this.goodsReceiptViewModel.ViewDetails.Count)
+            if (this.EditableMode && e.PropertyDescriptor != null && e.NewIndex >= 0 && e.NewIndex < this.salesOrderViewModel.ViewDetails.Count)
             {
-                SalesOrderDetailDTO salesOrderDetailDTO = this.goodsReceiptViewModel.ViewDetails[e.NewIndex];
+                SalesOrderDetailDTO salesOrderDetailDTO = this.salesOrderViewModel.ViewDetails[e.NewIndex];
                 if (salesOrderDetailDTO != null)
                     this.CalculateQuantityDetailDTO(salesOrderDetailDTO, e.PropertyDescriptor.Name);
             }
@@ -114,7 +130,7 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
 
         protected override Controllers.BaseController myController
         {
-            get { return new SalesOrderController(CommonNinject.Kernel.Get<ISalesOrderService>(), this.goodsReceiptViewModel); }
+            get { return new SalesOrderController(CommonNinject.Kernel.Get<ISalesOrderService>(), this.salesOrderViewModel); }
         }
 
         public override void Loading()
