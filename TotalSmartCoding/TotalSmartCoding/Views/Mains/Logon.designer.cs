@@ -30,10 +30,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Logon));
             this.groupBoxMainButton = new System.Windows.Forms.GroupBox();
+            this.checkEmptyData = new System.Windows.Forms.CheckBox();
             this.buttonListEmployee = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonOK = new System.Windows.Forms.Button();
-            this.labelFillingLineID = new System.Windows.Forms.Label();
+            this.lbEmployeeID = new System.Windows.Forms.Label();
             this.comboBoxEmployeeID = new System.Windows.Forms.ComboBox();
             this.comboBoxAutonicsPortName = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -45,7 +46,6 @@
             this.labelNoDomino = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBoxIcon = new System.Windows.Forms.PictureBox();
-            this.checkEmptyData = new System.Windows.Forms.CheckBox();
             this.groupBoxMainButton.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxIcon)).BeginInit();
@@ -64,6 +64,16 @@
             this.groupBoxMainButton.Size = new System.Drawing.Size(966, 82);
             this.groupBoxMainButton.TabIndex = 9;
             this.groupBoxMainButton.TabStop = false;
+            // 
+            // checkEmptyData
+            // 
+            this.checkEmptyData.AutoSize = true;
+            this.checkEmptyData.Location = new System.Drawing.Point(417, 34);
+            this.checkEmptyData.Name = "checkEmptyData";
+            this.checkEmptyData.Size = new System.Drawing.Size(134, 21);
+            this.checkEmptyData.TabIndex = 28;
+            this.checkEmptyData.Text = "Empty Database";
+            this.checkEmptyData.UseVisualStyleBackColor = true;
             // 
             // buttonListEmployee
             // 
@@ -104,23 +114,23 @@
             this.buttonOK.UseVisualStyleBackColor = true;
             this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
             // 
-            // labelFillingLineID
+            // lbEmployeeID
             // 
-            this.labelFillingLineID.AutoSize = true;
-            this.labelFillingLineID.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelFillingLineID.Location = new System.Drawing.Point(136, 71);
-            this.labelFillingLineID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelFillingLineID.Name = "labelFillingLineID";
-            this.labelFillingLineID.Size = new System.Drawing.Size(38, 20);
-            this.labelFillingLineID.TabIndex = 5;
-            this.labelFillingLineID.Text = "User";
+            this.lbEmployeeID.AutoSize = true;
+            this.lbEmployeeID.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbEmployeeID.Location = new System.Drawing.Point(136, 77);
+            this.lbEmployeeID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbEmployeeID.Name = "lbEmployeeID";
+            this.lbEmployeeID.Size = new System.Drawing.Size(38, 20);
+            this.lbEmployeeID.TabIndex = 5;
+            this.lbEmployeeID.Text = "User";
             // 
             // comboBoxEmployeeID
             // 
             this.comboBoxEmployeeID.Enabled = false;
             this.comboBoxEmployeeID.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxEmployeeID.FormattingEnabled = true;
-            this.comboBoxEmployeeID.Location = new System.Drawing.Point(138, 95);
+            this.comboBoxEmployeeID.Location = new System.Drawing.Point(138, 101);
             this.comboBoxEmployeeID.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxEmployeeID.Name = "comboBoxEmployeeID";
             this.comboBoxEmployeeID.Size = new System.Drawing.Size(388, 28);
@@ -130,7 +140,7 @@
             // 
             this.comboBoxAutonicsPortName.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxAutonicsPortName.FormattingEnabled = true;
-            this.comboBoxAutonicsPortName.Location = new System.Drawing.Point(138, 157);
+            this.comboBoxAutonicsPortName.Location = new System.Drawing.Point(138, 162);
             this.comboBoxAutonicsPortName.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxAutonicsPortName.Name = "comboBoxAutonicsPortName";
             this.comboBoxAutonicsPortName.Size = new System.Drawing.Size(389, 28);
@@ -175,7 +185,7 @@
             this.comboFillingLineID.Enabled = false;
             this.comboFillingLineID.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboFillingLineID.FormattingEnabled = true;
-            this.comboFillingLineID.Location = new System.Drawing.Point(138, 33);
+            this.comboFillingLineID.Location = new System.Drawing.Point(138, 40);
             this.comboFillingLineID.Margin = new System.Windows.Forms.Padding(4);
             this.comboFillingLineID.Name = "comboFillingLineID";
             this.comboFillingLineID.Size = new System.Drawing.Size(388, 28);
@@ -186,7 +196,7 @@
             // 
             this.lbProductionLineID.AutoSize = true;
             this.lbProductionLineID.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbProductionLineID.Location = new System.Drawing.Point(136, 9);
+            this.lbProductionLineID.Location = new System.Drawing.Point(136, 16);
             this.lbProductionLineID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbProductionLineID.Name = "lbProductionLineID";
             this.lbProductionLineID.Size = new System.Drawing.Size(36, 20);
@@ -198,7 +208,7 @@
             // 
             this.labelPortAutonis.AutoSize = true;
             this.labelPortAutonis.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPortAutonis.Location = new System.Drawing.Point(136, 133);
+            this.labelPortAutonis.Location = new System.Drawing.Point(136, 138);
             this.labelPortAutonis.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelPortAutonis.Name = "labelPortAutonis";
             this.labelPortAutonis.Size = new System.Drawing.Size(111, 20);
@@ -243,16 +253,6 @@
             this.pictureBoxIcon.TabStop = false;
             this.pictureBoxIcon.DoubleClick += new System.EventHandler(this.pictureBoxIcon_DoubleClick);
             // 
-            // checkEmptyData
-            // 
-            this.checkEmptyData.AutoSize = true;
-            this.checkEmptyData.Location = new System.Drawing.Point(417, 34);
-            this.checkEmptyData.Name = "checkEmptyData";
-            this.checkEmptyData.Size = new System.Drawing.Size(134, 21);
-            this.checkEmptyData.TabIndex = 28;
-            this.checkEmptyData.Text = "Empty Database";
-            this.checkEmptyData.UseVisualStyleBackColor = true;
-            // 
             // Logon
             // 
             this.AcceptButton = this.buttonOK;
@@ -269,7 +269,7 @@
             this.Controls.Add(this.comboBoxEmployeeID);
             this.Controls.Add(this.pictureBoxIcon);
             this.Controls.Add(this.groupBoxMainButton);
-            this.Controls.Add(this.labelFillingLineID);
+            this.Controls.Add(this.lbEmployeeID);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Logon";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -290,7 +290,7 @@
         private System.Windows.Forms.GroupBox groupBoxMainButton;
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Button buttonOK;
-        private System.Windows.Forms.Label labelFillingLineID;
+        private System.Windows.Forms.Label lbEmployeeID;
         private System.Windows.Forms.PictureBox pictureBoxIcon;
         private System.Windows.Forms.ComboBox comboBoxEmployeeID;
         private System.Windows.Forms.ComboBox comboBoxAutonicsPortName;

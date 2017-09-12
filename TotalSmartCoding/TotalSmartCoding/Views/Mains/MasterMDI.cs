@@ -413,23 +413,23 @@ namespace TotalSmartCoding.Views.Mains
 
         private void OpenTestView()
         {
-            //return;
-
-            //////Open new form
-            ////Pickups grForm;  //
-            //////GoodsReceipts grForm;
-            //////childForm = new Batches();
-            //////childForm = new DeliveryAdvices();
-            ////grForm = new Pickups(); //
-            //////grForm = new GoodsReceipts();
-
-
+            if (GlobalVariables.FillingLineID != GlobalVariables.FillingLine.None) return;
 
             //Open new form
-            SalesOrders grForm;
+            Pickups grForm;  //
+            //GoodsReceipts grForm;
             //childForm = new Batches();
             //childForm = new DeliveryAdvices();
-            grForm = new SalesOrders();
+            grForm = new Pickups(); //
+            //grForm = new GoodsReceipts();
+
+
+
+            ////Open new form
+            //SalesOrders grForm;
+            ////childForm = new Batches();
+            ////childForm = new DeliveryAdvices();
+            //grForm = new SalesOrders();
 
 
 

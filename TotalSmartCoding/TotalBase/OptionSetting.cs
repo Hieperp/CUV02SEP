@@ -11,7 +11,7 @@ namespace TotalBase
         private DateTime lowerFillterDate;
         private DateTime upperFillterDate;
 
-        public OptionSetting() : this(DateTime.Today.AddDays(-45), new DateTime(2013, 12, 31)) { }
+        public OptionSetting() : this(DateTime.Today.AddDays(-45), new DateTime(2017, 12, 31)) { }
 
         public OptionSetting(DateTime lowerFillterDate, DateTime upperFillterDate)
         {

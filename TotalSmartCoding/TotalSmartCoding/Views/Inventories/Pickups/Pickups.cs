@@ -194,6 +194,9 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
         protected override void InitializeDataGridBinding()
         {
             this.gridexPalletDetails.AutoGenerateColumns = false;
+            this.gridexCartonDetails.AutoGenerateColumns = false;
+            this.gridexPackDetails.AutoGenerateColumns = false;
+
             this.gridexPalletDetails.DataSource = this.pickupViewModel.ViewDetails;
             this.gridexCartonDetails.DataSource = this.pickupViewModel.PalletDetails;
 

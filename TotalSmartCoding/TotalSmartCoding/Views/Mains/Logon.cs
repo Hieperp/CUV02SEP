@@ -60,10 +60,18 @@ namespace TotalSmartCoding.Views.Mains
                 this.comboFillingLineID.DisplayMember = CommonExpressions.PropertyName<FillingLineBase>(p => p.Name);
                 this.comboFillingLineID.ValueMember = CommonExpressions.PropertyName<FillingLineBase>(p => p.FillingLineID);
 
-                int fillingLineID;
+                int fillingLineID = 0;
                 if (int.TryParse(CommonConfigs.ReadSetting("FillingLineID"), out fillingLineID) && fillingLineID >= 1 && fillingLineID <= 3)
                     this.comboFillingLineID.SelectedValue = fillingLineID;
 
+                if (fillingLineID == 0)
+                {
+                    this.lbProductionLineID.Visible = false;
+                    this.comboFillingLineID.Visible = false;
+
+                    this.lbEmployeeID.Top = this.lbProductionLineID.Top;
+                    this.comboBoxEmployeeID.Top = this.comboFillingLineID.Top;
+                }
                 //this.comboFillingLineID.SelectedValue = 2;
 
                 //this.bindingFillingLineID = this.comboFillingLineID.DataBindings.Add("SelectedValue", GlobalVariables., CommonExpressions.PropertyName<PickupViewModel>(p => p.FillingLineID), true, DataSourceUpdateMode.OnPropertyChanged);
@@ -145,12 +153,16 @@ namespace TotalSmartCoding.Views.Mains
             {
                 ContextAttributes.User = new UserInformation(1, 1, this.comboBoxEmployeeID.Text, new DateTime());
 
-                if (this.comboFillingLineID.SelectedIndex < 0 || this.comboBoxAutonicsPortName.SelectedIndex < 0) throw new System.ArgumentException("Vui lòng chọn chuyền sản xuất (NOF1, NOF2, NOF...), và chọn đúng cổng COM để chạy phần mềm"); // || (this.comboFillingLineID.Enabled && (GlobalVariables.ProductionLine)this.comboFillingLineID.SelectedValue == GlobalVariables.ProductionLine.SERVER)
+                if ( (this.comboFillingLineID.Visible && this.comboFillingLineID.SelectedIndex < 0) || this.comboBoxAutonicsPortName.SelectedIndex < 0) throw new System.ArgumentException("Vui lòng chọn chuyền sản xuất (NOF1, NOF2, NOF...), và chọn đúng cổng COM để chạy phần mềm"); // || (this.comboFillingLineID.Enabled && (GlobalVariables.ProductionLine)this.comboFillingLineID.SelectedValue == GlobalVariables.ProductionLine.SERVER)
 
-
-                GlobalVariables.FillingLineID = (GlobalVariables.FillingLine)this.comboFillingLineID.SelectedValue;
-                GlobalVariables.FillingLineCode = ((FillingLineBase)this.comboFillingLineID.SelectedItem).Code;
-                GlobalVariables.FillingLineName = ((FillingLineBase)this.comboFillingLineID.SelectedItem).Name;
+                if (this.comboFillingLineID.Visible)
+                {
+                    GlobalVariables.FillingLineID = (GlobalVariables.FillingLine)this.comboFillingLineID.SelectedValue;
+                    GlobalVariables.FillingLineCode = ((FillingLineBase)this.comboFillingLineID.SelectedItem).Code;
+                    GlobalVariables.FillingLineName = ((FillingLineBase)this.comboFillingLineID.SelectedItem).Name;
+                }
+                else
+                    GlobalVariables.FillingLineID = GlobalVariables.FillingLine.None;
 
                 GlobalVariables.ComportName = (string)this.comboBoxAutonicsPortName.SelectedValue;
 

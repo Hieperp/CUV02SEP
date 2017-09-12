@@ -31,8 +31,13 @@ namespace TotalSmartCoding
             Logon logon = new Logon();
 
             //if (logon.ShowDialog() == DialogResult.OK) Application.Run(new MasterMDI(GlobalEnums.NmvnTaskID.SmartCoding));
-            if (logon.ShowDialog() == DialogResult.OK) Application.Run(new MasterMDI());
-
+            if (logon.ShowDialog() == DialogResult.OK)
+            {
+                if (GlobalVariables.FillingLineID == GlobalVariables.FillingLine.None)
+                    Application.Run(new MasterMDI());
+                else
+                    Application.Run(new MasterMDI(GlobalEnums.NmvnTaskID.SmartCoding));
+            }
             logon.Dispose();
 
 

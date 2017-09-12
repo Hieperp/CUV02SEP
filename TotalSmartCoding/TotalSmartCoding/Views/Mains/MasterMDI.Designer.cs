@@ -419,7 +419,7 @@
             this.txtLockedDate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtLockedDate.Name = "txtLockedDate";
             this.txtLockedDate.Size = new System.Drawing.Size(99, 55);
-            this.txtLockedDate.Text = "10/10/2013";
+            this.txtLockedDate.Text = "01/09/2017";
             this.txtLockedDate.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // toolStripSeparator12
@@ -446,7 +446,7 @@
             this.textFillterUpperDate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textFillterUpperDate.Name = "textFillterUpperDate";
             this.textFillterUpperDate.Size = new System.Drawing.Size(99, 55);
-            this.textFillterUpperDate.Text = "01/01/2013";
+            this.textFillterUpperDate.Text = "01/01/2018";
             this.textFillterUpperDate.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // buttonLoading

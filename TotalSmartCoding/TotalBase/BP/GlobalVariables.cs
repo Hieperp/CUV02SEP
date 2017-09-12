@@ -51,6 +51,7 @@ namespace TotalBase
 
         public enum FillingLine
         {
+            None = 0,
             Smallpack = 1,
             Pail = 2,
             Drum = 3
