@@ -415,13 +415,16 @@ namespace TotalSmartCoding.Views.Mains
         {
             if (GlobalVariables.FillingLineID != GlobalVariables.FillingLine.None) return;
 
+            //Pickups grForm;
+            //grForm = new Pickups();
+
             //Open new form
-            Pickups grForm;  //
-            //GoodsReceipts grForm;
+            //Pickups grForm;  //
+            GoodsReceipts grForm;
             //childForm = new Batches();
             //childForm = new DeliveryAdvices();
-            grForm = new Pickups(); //
-            //grForm = new GoodsReceipts();
+            //grForm = new Pickups(); //
+            grForm = new GoodsReceipts();
 
 
 

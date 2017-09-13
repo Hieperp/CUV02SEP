@@ -31,6 +31,13 @@ namespace TotalDAL.Repositories
 
             return;
 
+
+            return;
+
+            Helpers.SqlProgrammability.Sales.DeliveryAdvice deliveryAdvice = new Helpers.SqlProgrammability.Sales.DeliveryAdvice(totalSmartCodingEntities);
+            deliveryAdvice.RestoreProcedure();
+
+
             return;
 
             Helpers.SqlProgrammability.Commons.Customer customer = new Helpers.SqlProgrammability.Commons.Customer(totalSmartCodingEntities);
