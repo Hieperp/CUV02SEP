@@ -12,31 +12,39 @@ namespace TotalModel.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class SalesOrderDetail
+    public partial class DeliveryAdvice
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public SalesOrderDetail()
+        public DeliveryAdvice()
         {
             this.DeliveryAdviceDetails = new HashSet<DeliveryAdviceDetail>();
         }
     
-        public int SalesOrderDetailID { get; set; }
-        public int SalesOrderID { get; set; }
+        public int DeliveryAdviceID { get; set; }
         public System.DateTime EntryDate { get; set; }
         public string Reference { get; set; }
+        public bool HasSalesOrder { get; set; }
+        public Nullable<int> SalesOrderID { get; set; }
+        public string SalesOrderReferences { get; set; }
         public int CustomerID { get; set; }
+        public int SalesPersonID { get; set; }
+        public int UserID { get; set; }
+        public int PreparedPersonID { get; set; }
+        public int OrganizationalUnitID { get; set; }
         public int LocationID { get; set; }
-        public int CommodityID { get; set; }
-        public decimal Quantity { get; set; }
-        public decimal QuantityAdvice { get; set; }
-        public decimal LineVolume { get; set; }
-        public decimal LineVolumeAdvice { get; set; }
+        public decimal TotalQuantity { get; set; }
+        public decimal TotalLineVolume { get; set; }
+        public string Description { get; set; }
         public string Remarks { get; set; }
+        public System.DateTime CreatedDate { get; set; }
+        public System.DateTime EditedDate { get; set; }
         public bool Approved { get; set; }
+        public Nullable<System.DateTime> ApprovedDate { get; set; }
     
-        public virtual Commodity Commodity { get; set; }
-        public virtual SalesOrder SalesOrder { get; set; }
+        public virtual Customer Customer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DeliveryAdviceDetail> DeliveryAdviceDetails { get; set; }
+        public virtual Location Location { get; set; }
+        public virtual SalesOrder SalesOrder { get; set; }
     }
 }

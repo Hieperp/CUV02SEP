@@ -468,4 +468,25 @@ namespace TotalModel.Models
         public int GetID() { return this.SalesOrderDetailID; }
     }
 
+
+    public partial class DeliveryAdviceIndex : IBaseIndex
+    {
+        public int Id { get { return this.DeliveryAdviceID; } }
+    }
+
+    public partial class DeliveryAdvice : IPrimitiveEntity, IBaseEntity, IBaseDetailEntity<DeliveryAdviceDetail>
+    {
+        public int GetID() { return this.DeliveryAdviceID; }
+
+        public ICollection<DeliveryAdviceDetail> GetDetails() { return this.DeliveryAdviceDetails; }
+    }
+
+
+    public partial class DeliveryAdviceDetail : IPrimitiveEntity, IHelperEntryDate
+    {
+        public int GetID() { return this.DeliveryAdviceDetailID; }
+    }
+
+
+
 }

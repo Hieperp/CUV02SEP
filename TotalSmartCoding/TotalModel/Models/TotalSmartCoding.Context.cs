@@ -51,6 +51,8 @@ namespace TotalModel.Models
         public virtual DbSet<Commodity> Commodities { get; set; }
         public virtual DbSet<SalesOrderDetail> SalesOrderDetails { get; set; }
         public virtual DbSet<SalesOrder> SalesOrders { get; set; }
+        public virtual DbSet<DeliveryAdviceDetail> DeliveryAdviceDetails { get; set; }
+        public virtual DbSet<DeliveryAdvice> DeliveryAdvices { get; set; }
     
         public virtual ObjectResult<Nullable<int>> GetAccessLevel(Nullable<int> userID, Nullable<int> nMVNTaskID, Nullable<int> organizationalUnitID)
         {
@@ -908,6 +910,132 @@ namespace TotalModel.Models
                 new ObjectParameter("ToDate", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CustomerIndex>("GetCustomerIndexes", aspUserIDParameter, fromDateParameter, toDateParameter);
+        }
+    
+        public virtual ObjectResult<string> DeliveryAdviceApproved(Nullable<int> entityID)
+        {
+            var entityIDParameter = entityID.HasValue ?
+                new ObjectParameter("EntityID", entityID) :
+                new ObjectParameter("EntityID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("DeliveryAdviceApproved", entityIDParameter);
+        }
+    
+        public virtual ObjectResult<string> DeliveryAdviceEditable(Nullable<int> entityID)
+        {
+            var entityIDParameter = entityID.HasValue ?
+                new ObjectParameter("EntityID", entityID) :
+                new ObjectParameter("EntityID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("DeliveryAdviceEditable", entityIDParameter);
+        }
+    
+        public virtual ObjectResult<string> DeliveryAdvicePostSaveValidate(Nullable<int> entityID)
+        {
+            var entityIDParameter = entityID.HasValue ?
+                new ObjectParameter("EntityID", entityID) :
+                new ObjectParameter("EntityID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("DeliveryAdvicePostSaveValidate", entityIDParameter);
+        }
+    
+        public virtual int DeliveryAdviceSaveRelative(Nullable<int> entityID, Nullable<int> saveRelativeOption)
+        {
+            var entityIDParameter = entityID.HasValue ?
+                new ObjectParameter("EntityID", entityID) :
+                new ObjectParameter("EntityID", typeof(int));
+    
+            var saveRelativeOptionParameter = saveRelativeOption.HasValue ?
+                new ObjectParameter("SaveRelativeOption", saveRelativeOption) :
+                new ObjectParameter("SaveRelativeOption", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeliveryAdviceSaveRelative", entityIDParameter, saveRelativeOptionParameter);
+        }
+    
+        public virtual int DeliveryAdviceToggleApproved(Nullable<int> entityID, Nullable<bool> approved)
+        {
+            var entityIDParameter = entityID.HasValue ?
+                new ObjectParameter("EntityID", entityID) :
+                new ObjectParameter("EntityID", typeof(int));
+    
+            var approvedParameter = approved.HasValue ?
+                new ObjectParameter("Approved", approved) :
+                new ObjectParameter("Approved", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeliveryAdviceToggleApproved", entityIDParameter, approvedParameter);
+        }
+    
+        public virtual ObjectResult<DeliveryAdviceIndex> GetDeliveryAdviceIndexes(string aspUserID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
+        {
+            var aspUserIDParameter = aspUserID != null ?
+                new ObjectParameter("AspUserID", aspUserID) :
+                new ObjectParameter("AspUserID", typeof(string));
+    
+            var fromDateParameter = fromDate.HasValue ?
+                new ObjectParameter("FromDate", fromDate) :
+                new ObjectParameter("FromDate", typeof(System.DateTime));
+    
+            var toDateParameter = toDate.HasValue ?
+                new ObjectParameter("ToDate", toDate) :
+                new ObjectParameter("ToDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DeliveryAdviceIndex>("GetDeliveryAdviceIndexes", aspUserIDParameter, fromDateParameter, toDateParameter);
+        }
+    
+        public virtual ObjectResult<DeliveryAdviceViewDetail> GetDeliveryAdviceViewDetails(Nullable<int> deliveryAdviceID)
+        {
+            var deliveryAdviceIDParameter = deliveryAdviceID.HasValue ?
+                new ObjectParameter("DeliveryAdviceID", deliveryAdviceID) :
+                new ObjectParameter("DeliveryAdviceID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DeliveryAdviceViewDetail>("GetDeliveryAdviceViewDetails", deliveryAdviceIDParameter);
+        }
+    
+        public virtual ObjectResult<PendingSalesOrderCustomer> GetPendingSalesOrderCustomers(Nullable<int> locationID)
+        {
+            var locationIDParameter = locationID.HasValue ?
+                new ObjectParameter("LocationID", locationID) :
+                new ObjectParameter("LocationID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PendingSalesOrderCustomer>("GetPendingSalesOrderCustomers", locationIDParameter);
+        }
+    
+        public virtual ObjectResult<PendingSalesOrderDetail> GetPendingSalesOrderDetails(Nullable<int> locationID, Nullable<int> deliveryAdviceID, Nullable<int> salesOrderID, Nullable<int> customerID, string salesOrderDetailIDs, Nullable<bool> isReadonly)
+        {
+            var locationIDParameter = locationID.HasValue ?
+                new ObjectParameter("LocationID", locationID) :
+                new ObjectParameter("LocationID", typeof(int));
+    
+            var deliveryAdviceIDParameter = deliveryAdviceID.HasValue ?
+                new ObjectParameter("DeliveryAdviceID", deliveryAdviceID) :
+                new ObjectParameter("DeliveryAdviceID", typeof(int));
+    
+            var salesOrderIDParameter = salesOrderID.HasValue ?
+                new ObjectParameter("SalesOrderID", salesOrderID) :
+                new ObjectParameter("SalesOrderID", typeof(int));
+    
+            var customerIDParameter = customerID.HasValue ?
+                new ObjectParameter("CustomerID", customerID) :
+                new ObjectParameter("CustomerID", typeof(int));
+    
+            var salesOrderDetailIDsParameter = salesOrderDetailIDs != null ?
+                new ObjectParameter("SalesOrderDetailIDs", salesOrderDetailIDs) :
+                new ObjectParameter("SalesOrderDetailIDs", typeof(string));
+    
+            var isReadonlyParameter = isReadonly.HasValue ?
+                new ObjectParameter("IsReadonly", isReadonly) :
+                new ObjectParameter("IsReadonly", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PendingSalesOrderDetail>("GetPendingSalesOrderDetails", locationIDParameter, deliveryAdviceIDParameter, salesOrderIDParameter, customerIDParameter, salesOrderDetailIDsParameter, isReadonlyParameter);
+        }
+    
+        public virtual ObjectResult<PendingSalesOrder> GetPendingSalesOrders(Nullable<int> locationID)
+        {
+            var locationIDParameter = locationID.HasValue ?
+                new ObjectParameter("LocationID", locationID) :
+                new ObjectParameter("LocationID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PendingSalesOrder>("GetPendingSalesOrders", locationIDParameter);
         }
     }
 }

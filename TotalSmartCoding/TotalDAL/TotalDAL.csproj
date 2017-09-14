@@ -83,6 +83,7 @@
     <Compile Include="Repositories\Productions\CartonRepository.cs" />
     <Compile Include="Repositories\Productions\PackRepository.cs" />
     <Compile Include="Repositories\Productions\PalletRepository.cs" />
+    <Compile Include="Repositories\Sales\DeliveryAdviceRepository.cs" />
     <Compile Include="Repositories\Sales\SalesOrderRepository.cs" />
   </ItemGroup>
   <ItemGroup>
