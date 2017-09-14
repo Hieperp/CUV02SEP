@@ -3490,6 +3490,9 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Type="String" Name="Description" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="Remarks" Nullable="true" MaxLength="100" />
           <Property Type="Boolean" Name="IsSelected" Nullable="true" />
+          <Property Type="String" Name="PackageSize" Nullable="true" MaxLength="60" />
+          <Property Type="Decimal" Name="Volume" Nullable="false" Precision="18" Scale="3" />
+          <Property Type="Decimal" Name="PackageVolume" Nullable="false" Precision="18" Scale="3" />
         </ComplexType>
         <ComplexType Name="PendingSalesOrder">
           <Property Type="Int32" Name="SalesOrderID" Nullable="false" />
@@ -4442,6 +4445,9 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
                 <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+                <ScalarProperty Name="PackageSize" ColumnName="PackageSize" />
+                <ScalarProperty Name="Volume" ColumnName="Volume" />
+                <ScalarProperty Name="PackageVolume" ColumnName="PackageVolume" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

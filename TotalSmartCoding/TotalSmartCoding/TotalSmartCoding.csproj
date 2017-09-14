@@ -95,8 +95,10 @@
     <Compile Include="Controllers\APIs\Commons\FillingLineAPIs.cs" />
     <Compile Include="Controllers\APIs\Commons\WarehouseAPIs.cs" />
     <Compile Include="Controllers\APIs\Inventories\PickupAPIs.cs" />
+    <Compile Include="Controllers\APIs\Sales\DeliveryAdviceAPIs.cs" />
     <Compile Include="Controllers\APIs\Sales\SalesOrderAPIs.cs" />
     <Compile Include="Controllers\Inventories\PickupController.cs" />
+    <Compile Include="Controllers\Sales\DeliveryAdviceController.cs" />
     <Compile Include="Controllers\Sales\SalesOrderController.cs" />
     <Compile Include="Libraries\AutoMapperConfig.cs" />
     <Compile Include="Libraries\CommonConfigs.cs" />
@@ -145,6 +147,7 @@
     <Compile Include="ViewModels\Productions\CartonViewModel.cs" />
     <Compile Include="ViewModels\Productions\PackViewModel.cs" />
     <Compile Include="ViewModels\Productions\PalletViewModel.cs" />
+    <Compile Include="ViewModels\Sales\DeliveryAdviceViewModel.cs" />
     <Compile Include="ViewModels\Sales\SalesOrderViewModel.cs" />
     <Compile Include="Views\Commons\CustomExceptionMessageBox.cs">
       <SubType>Form</SubType>
@@ -234,6 +237,24 @@
     <Compile Include="Views\Productions\SmartCoding.designer.cs">
       <DependentUpon>SmartCoding.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Sales\DeliveryAdvices\DeliveryAdvices.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Sales\DeliveryAdvices\DeliveryAdvices.designer.cs">
+      <DependentUpon>DeliveryAdvices.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sales\DeliveryAdvices\WizardDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Sales\DeliveryAdvices\WizardDetail.designer.cs">
+      <DependentUpon>WizardDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sales\DeliveryAdvices\WizardMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Sales\DeliveryAdvices\WizardMaster.designer.cs">
+      <DependentUpon>WizardMaster.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Sales\SalesOrders\SalesOrders.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -289,6 +310,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Productions\SmartCoding.resx">
       <DependentUpon>SmartCoding.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Sales\DeliveryAdvices\DeliveryAdvices.resx">
+      <DependentUpon>DeliveryAdvices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Sales\DeliveryAdvices\WizardDetail.resx">
+      <DependentUpon>WizardDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Sales\DeliveryAdvices\WizardMaster.resx">
+      <DependentUpon>WizardMaster.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Sales\SalesOrders\SalesOrders.resx">
       <DependentUpon>SalesOrders.cs</DependentUpon>

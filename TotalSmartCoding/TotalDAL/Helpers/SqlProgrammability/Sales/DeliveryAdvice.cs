@@ -189,7 +189,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
             string queryString = "";
 
             queryString = queryString + "       SELECT      SalesOrders.SalesOrderID, SalesOrderDetails.SalesOrderDetailID, SalesOrders.Reference AS SalesOrderReference, SalesOrders.EntryDate AS SalesOrderEntryDate, " + "\r\n";
-            queryString = queryString + "                   Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, " + "\r\n";
+            queryString = queryString + "                   Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, Commodities.PackageSize, Commodities.Volume, Commodities.PackageVolume, " + "\r\n";
             queryString = queryString + "                   ROUND(SalesOrderDetails.Quantity - SalesOrderDetails.QuantityAdvice,  " + (int)GlobalEnums.rndQuantity + ") AS QuantityRemains, CAST(0 AS decimal(18, 2)) AS Quantity, " + "\r\n";
             queryString = queryString + "                   ROUND(SalesOrderDetails.LineVolume - SalesOrderDetails.LineVolumeAdvice,  " + (int)GlobalEnums.rndVolume + ") AS LineVolumeRemains, CAST(0 AS decimal(18, 2)) AS LineVolume, SalesOrders.Description, SalesOrderDetails.Remarks, CAST(1 AS bit) AS IsSelected " + "\r\n";
 
@@ -205,7 +205,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
             string queryString = "";
 
             queryString = queryString + "       SELECT      SalesOrders.SalesOrderID, SalesOrderDetails.SalesOrderDetailID, SalesOrders.Reference AS SalesOrderReference, SalesOrders.EntryDate AS SalesOrderEntryDate, " + "\r\n";
-            queryString = queryString + "                   Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, " + "\r\n";
+            queryString = queryString + "                   Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, Commodities.PackageSize, Commodities.Volume, Commodities.PackageVolume, " + "\r\n";
             queryString = queryString + "                   ROUND(SalesOrderDetails.Quantity - SalesOrderDetails.QuantityAdvice + DeliveryAdviceDetails.Quantity,  " + (int)GlobalEnums.rndQuantity + ") AS QuantityRemains, CAST(0 AS decimal(18, 2)) AS Quantity, " + "\r\n";
             queryString = queryString + "                   ROUND(SalesOrderDetails.LineVolume - SalesOrderDetails.LineVolumeAdvice + DeliveryAdviceDetails.LineVolume,  " + (int)GlobalEnums.rndVolume + ") AS LineVolumeRemains, CAST(0 AS decimal(18, 2)) AS LineVolume, SalesOrders.Description, SalesOrderDetails.Remarks, CAST(1 AS bit) AS IsSelected " + "\r\n";
 

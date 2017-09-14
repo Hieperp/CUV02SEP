@@ -27,5 +27,8 @@ namespace TotalModel.Models
         public string Description { get; set; }
         public string Remarks { get; set; }
         public Nullable<bool> IsSelected { get; set; }
+        public string PackageSize { get; set; }
+        public decimal Volume { get; set; }
+        public decimal PackageVolume { get; set; }
     }
 }
