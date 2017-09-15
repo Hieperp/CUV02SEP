@@ -11,35 +11,35 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
 {
     public partial class WizardMaster : Form
     {
-        private GoodsReceiptAPIs goodsReceiptAPIs;
-        private GoodsReceiptViewModel goodsReceiptViewModel;
+        private GoodsIssueAPIs goodsIssueAPIs;
+        private GoodsIssueViewModel goodsIssueViewModel;
         private CustomTabControl customTabBatch;
-        public WizardMaster(GoodsReceiptAPIs goodsReceiptAPIs, GoodsReceiptViewModel goodsReceiptViewModel)
+        public WizardMaster(GoodsIssueAPIs goodsIssueAPIs, GoodsIssueViewModel goodsIssueViewModel)
         {
             InitializeComponent();
 
             this.customTabBatch = new CustomTabControl();
             //this.customTabBatch.ImageList = this.imageListTabControl;
 
-            this.customTabBatch.Font = this.fastPendingPickups.Font;
+            this.customTabBatch.Font = this.fastPendingDeliveryAdvices.Font;
             this.customTabBatch.DisplayStyle = TabStyle.VisualStudio;
             this.customTabBatch.DisplayStyleProvider.ImageAlign = ContentAlignment.MiddleLeft;
 
-            this.customTabBatch.TabPages.Add("tabPendingPickups", "Receipt by pickup                  ");
-            this.customTabBatch.TabPages.Add("tabPendingPickupWarehouses", "Receipt by warehouse          ");
-            this.customTabBatch.TabPages.Add("tabPendingPickups", "Transfer Receipt                    ");
-            this.customTabBatch.TabPages[0].Controls.Add(this.fastPendingPickups);
-            this.customTabBatch.TabPages[1].Controls.Add(this.fastPendingPickupWarehouses);
+            this.customTabBatch.TabPages.Add("tabPendingDeliveryAdvices", "Issue by deliveryAdvice                  ");
+            this.customTabBatch.TabPages.Add("tabPendingDeliveryAdviceCustomers", "Issue by customer          ");
+            this.customTabBatch.TabPages.Add("tabPendingDeliveryAdvices", "Transfer Issue                    ");
+            this.customTabBatch.TabPages[0].Controls.Add(this.fastPendingDeliveryAdvices);
+            this.customTabBatch.TabPages[1].Controls.Add(this.fastPendingDeliveryAdviceCustomers);
 
 
             this.customTabBatch.Dock = DockStyle.Fill;
-            this.fastPendingPickups.Dock = DockStyle.Fill;
-            this.fastPendingPickupWarehouses.Dock = DockStyle.Fill;
+            this.fastPendingDeliveryAdvices.Dock = DockStyle.Fill;
+            this.fastPendingDeliveryAdviceCustomers.Dock = DockStyle.Fill;
             this.panelMaster.Controls.Add(this.customTabBatch);
 
 
-            this.goodsReceiptAPIs = goodsReceiptAPIs;
-            this.goodsReceiptViewModel = goodsReceiptViewModel;
+            this.goodsIssueAPIs = goodsIssueAPIs;
+            this.goodsIssueViewModel = goodsIssueViewModel;
         }
 
 
@@ -47,8 +47,8 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
         {
             try
             {
-                this.fastPendingPickups.SetObjects(this.goodsReceiptAPIs.GetPendingPickups(this.goodsReceiptViewModel.LocationID));
-                this.fastPendingPickupWarehouses.SetObjects(this.goodsReceiptAPIs.GetPendingPickupWarehouses(this.goodsReceiptViewModel.LocationID));
+                this.fastPendingDeliveryAdvices.SetObjects(this.goodsIssueAPIs.GetPendingDeliveryAdvices(this.goodsIssueViewModel.LocationID));
+                this.fastPendingDeliveryAdviceCustomers.SetObjects(this.goodsIssueAPIs.GetPendingDeliveryAdviceCustomers(this.goodsIssueViewModel.LocationID));
 
             }
             catch (Exception exception)
@@ -64,27 +64,25 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
             {
                 if (sender.Equals(this.buttonOK))
                 {
-                    this.goodsReceiptViewModel.GoodsReceiptTypeID = 1; //GoodsReceiptTypeID = 1-FROM PRODUCTION/ LATER: WE SHOULD IMPLEMENT FOR EXPORT: GoodsReceiptTypeID = 2
-
                     bool nextOK = false;
                     if (this.customTabBatch.SelectedIndex == 0)
                     {
-                        PendingPickup pendingPickup = (PendingPickup)this.fastPendingPickups.SelectedObject;
-                        if (pendingPickup != null) {                            
-                            this.goodsReceiptViewModel.PickupID = pendingPickup.PickupID;
-                            this.goodsReceiptViewModel.PickupReferences = pendingPickup.PickupReference;
-                            this.goodsReceiptViewModel.WarehouseID = pendingPickup.WarehouseID;
-                            this.goodsReceiptViewModel.WarehouseName = pendingPickup.WarehouseName;
+                        PendingDeliveryAdvice pendingDeliveryAdvice = (PendingDeliveryAdvice)this.fastPendingDeliveryAdvices.SelectedObject;
+                        if (pendingDeliveryAdvice != null) {                            
+                            this.goodsIssueViewModel.DeliveryAdviceID = pendingDeliveryAdvice.DeliveryAdviceID;
+                            this.goodsIssueViewModel.DeliveryAdviceReferences = pendingDeliveryAdvice.DeliveryAdviceReference;
+                            this.goodsIssueViewModel.CustomerID = pendingDeliveryAdvice.CustomerID;
+                            this.goodsIssueViewModel.CustomerName = pendingDeliveryAdvice.CustomerName;
                             nextOK = true;
                         }
                     }
                     if (this.customTabBatch.SelectedIndex == 1)
                     {
-                        PendingPickupWarehouse pendingPickupWarehouse = (PendingPickupWarehouse)this.fastPendingPickupWarehouses.SelectedObject;
-                        if (pendingPickupWarehouse != null)
+                        PendingDeliveryAdviceCustomer pendingDeliveryAdviceCustomer = (PendingDeliveryAdviceCustomer)this.fastPendingDeliveryAdviceCustomers.SelectedObject;
+                        if (pendingDeliveryAdviceCustomer != null)
                         {
-                            this.goodsReceiptViewModel.WarehouseID = pendingPickupWarehouse.WarehouseID;
-                            this.goodsReceiptViewModel.WarehouseName = pendingPickupWarehouse.WarehouseName;
+                            this.goodsIssueViewModel.CustomerID = pendingDeliveryAdviceCustomer.CustomerID;
+                            this.goodsIssueViewModel.CustomerName = pendingDeliveryAdviceCustomer.CustomerName;
                             nextOK = true;
                         }
                     }

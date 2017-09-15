@@ -30,8 +30,8 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
 {
     public partial class GoodsIssues : BaseView
     {
-        private GoodsReceiptAPIs goodsReceiptAPIs;
-        private GoodsReceiptViewModel goodsReceiptViewModel { get; set; }
+        private GoodsIssueAPIs goodsIssueAPIs;
+        private GoodsIssueViewModel goodsIssueViewModel { get; set; }
 
         public GoodsIssues()
             : base()
@@ -40,13 +40,13 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
 
 
             this.toolstripChild = this.toolStripChildForm;
-            this.fastListIndex = this.fastGoodsReceiptIndex;
+            this.fastListIndex = this.fastGoodsIssueIndex;
 
-            this.goodsReceiptAPIs = new GoodsReceiptAPIs(CommonNinject.Kernel.Get<IGoodsReceiptAPIRepository>());
+            this.goodsIssueAPIs = new GoodsIssueAPIs(CommonNinject.Kernel.Get<IGoodsIssueAPIRepository>());
 
-            this.goodsReceiptViewModel = CommonNinject.Kernel.Get<GoodsReceiptViewModel>();
-            this.goodsReceiptViewModel.PropertyChanged += new PropertyChangedEventHandler(ModelDTO_PropertyChanged);
-            this.baseDTO = this.goodsReceiptViewModel;
+            this.goodsIssueViewModel = CommonNinject.Kernel.Get<GoodsIssueViewModel>();
+            this.goodsIssueViewModel.PropertyChanged += new PropertyChangedEventHandler(ModelDTO_PropertyChanged);
+            this.baseDTO = this.goodsIssueViewModel;
         }
 
         Binding bindingEntryDate;
@@ -56,8 +56,8 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
         {
             base.InitializeCommonControlBinding();
 
-            this.bindingReference = this.textexReference.DataBindings.Add("Text", this.goodsReceiptViewModel, "Reference", true, DataSourceUpdateMode.OnPropertyChanged);
-            this.bindingEntryDate = this.dateTimexEntryDate.DataBindings.Add("Value", this.goodsReceiptViewModel, "EntryDate", true);
+            this.bindingReference = this.textexReference.DataBindings.Add("Text", this.goodsIssueViewModel, "Reference", true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingEntryDate = this.dateTimexEntryDate.DataBindings.Add("Value", this.goodsIssueViewModel, "EntryDate", true);
 
 
             this.bindingReference.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
@@ -70,7 +70,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
 
             this.naviGroupDetails.DataBindings.Add("ExpandedHeight", this.numericUpDownSizingDetail, "Value", true, DataSourceUpdateMode.OnPropertyChanged);
             this.numericUpDownSizingDetail.Minimum = this.naviGroupDetails.HeaderHeight * 2;
-            this.numericUpDownSizingDetail.Maximum = this.naviGroupDetails.Height + this.fastGoodsReceiptIndex.Height;
+            this.numericUpDownSizingDetail.Maximum = this.naviGroupDetails.Height + this.fastGoodsIssueIndex.Height;
 
             this.tableLayoutPanelMaster.ColumnStyles[this.tableLayoutPanelMaster.ColumnCount - 1].SizeType = SizeType.Absolute; this.tableLayoutPanelMaster.ColumnStyles[this.tableLayoutPanelMaster.ColumnCount - 1].Width = 10;
             this.tableLayoutPanelExtend.ColumnStyles[this.tableLayoutPanelExtend.ColumnCount - 1].SizeType = SizeType.Absolute; this.tableLayoutPanelExtend.ColumnStyles[this.tableLayoutPanelExtend.ColumnCount - 1].Width = 10;
@@ -79,33 +79,33 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
         protected override void InitializeDataGridBinding()
         {
             this.gridexViewDetails.AutoGenerateColumns = false;
-            this.gridexViewDetails.DataSource = this.goodsReceiptViewModel.ViewDetails;
-            this.dataGridexView1.DataSource = this.goodsReceiptViewModel.PalletDetails;
+            this.gridexViewDetails.DataSource = this.goodsIssueViewModel.ViewDetails;
+            this.dataGridexView1.DataSource = this.goodsIssueViewModel.PalletDetails;
 
             //StackedHeaderDecorator stackedHeaderDecorator = new StackedHeaderDecorator(this.dataGridViewDetails);
         }
 
         protected override Controllers.BaseController myController
         {
-            get { return new GoodsReceiptController(CommonNinject.Kernel.Get<IGoodsReceiptService>(), this.goodsReceiptViewModel); }
+            get { return new GoodsIssueController(CommonNinject.Kernel.Get<IGoodsIssueService>(), this.goodsIssueViewModel); }
         }
 
         public override void Loading()
         {
-            this.fastGoodsReceiptIndex.SetObjects(this.goodsReceiptAPIs.GetGoodsReceiptIndexes());
+            this.fastGoodsIssueIndex.SetObjects(this.goodsIssueAPIs.GetGoodsIssueIndexes());
             base.Loading();
         }
 
         protected override DialogResult wizardMaster()
         {
-            WizardMaster wizardMaster = new WizardMaster(this.goodsReceiptAPIs, this.goodsReceiptViewModel);
+            WizardMaster wizardMaster = new WizardMaster(this.goodsIssueAPIs, this.goodsIssueViewModel);
             return wizardMaster.ShowDialog();
         }
 
         protected override void wizardDetail()
         {
             base.wizardDetail();
-            WizardDetail wizardDetail = new WizardDetail(this.goodsReceiptAPIs, this.goodsReceiptViewModel);
+            WizardDetail wizardDetail = new WizardDetail(this.goodsIssueAPIs, this.goodsIssueViewModel);
             wizardDetail.ShowDialog();
         }
 

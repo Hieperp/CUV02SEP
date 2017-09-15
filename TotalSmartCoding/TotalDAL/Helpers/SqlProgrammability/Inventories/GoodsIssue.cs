@@ -203,6 +203,27 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryString = queryString + "                   INNER JOIN Commodities ON DeliveryAdviceDetails.CommodityID = Commodities.CommodityID " + "\r\n";
 
             return queryString;
+
+
+
+            //queryString = " @LocationID Int, @TransferOrderID Int " + "\r\n";
+            //queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            //queryString = queryString + " AS " + "\r\n";
+            //queryString = queryString + "    BEGIN " + "\r\n";
+
+            //queryString = queryString + "       SELECT      TransferOrderDetails.TransferOrderDetailID, GoodsReceiptDetails.GoodsReceiptDetailID, GoodsReceiptDetails.SupplierID, Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, Commodities.CommodityTypeID, Warehouses.WarehouseID, Warehouses.Code AS WarehouseCode, GoodsReceiptDetails.ChassisCode, GoodsReceiptDetails.EngineCode, GoodsReceiptDetails.ColorCode, " + "\r\n";
+            //queryString = queryString + "                   ROUND(TransferOrderDetails.Quantity - TransferOrderDetails.QuantityTransfer, " + GlobalEnums.rndQuantity + ") AS QuantityOrderPending, ROUND(ISNULL(GoodsReceiptDetails.Quantity - GoodsReceiptDetails.QuantityIssue, 0), " + GlobalEnums.rndQuantity + ") AS QuantityAvailable, TransferOrderDetails.Remarks, CAST(IIF(TransferOrderDetails.Remarks = GoodsReceiptDetails.ChassisCode + '#' + GoodsReceiptDetails.EngineCode AND ROUND(GoodsReceiptDetails.Quantity - GoodsReceiptDetails.QuantityIssue, " + GlobalEnums.rndQuantity + ") > 0, 1, 0) AS bit) AS IsSelected" + "\r\n";
+            //queryString = queryString + "       FROM        TransferOrderDetails INNER JOIN" + "\r\n";
+            //queryString = queryString + "                   Warehouses ON TransferOrderDetails.TransferOrderID = @TransferOrderID AND TransferOrderDetails.CommodityTypeID = " + (int)GlobalEnums.CommodityTypeID.Vehicles + " AND ROUND(TransferOrderDetails.Quantity - TransferOrderDetails.QuantityTransfer, " + GlobalEnums.rndQuantity + ") > 0 AND TransferOrderDetails.WarehouseID = Warehouses.WarehouseID AND Warehouses.LocationID = @LocationID INNER JOIN" + "\r\n";
+            //queryString = queryString + "                   Commodities ON TransferOrderDetails.CommodityID = Commodities.CommodityID LEFT JOIN" + "\r\n";
+            //queryString = queryString + "                   GoodsReceiptDetails ON ROUND(GoodsReceiptDetails.Quantity - GoodsReceiptDetails.QuantityIssue, " + GlobalEnums.rndQuantity + ") > 0 AND TransferOrderDetails.WarehouseID = GoodsReceiptDetails.WarehouseID AND TransferOrderDetails.CommodityID = GoodsReceiptDetails.CommodityID " + "\r\n";
+
+            //queryString = queryString + "       " + "\r\n";
+
+            //queryString = queryString + "    END " + "\r\n";
+
+            //this.totalBikePortalsEntities.CreateStoredProcedure("GetPendingVehicleTransferOrders", queryString);
+
         }
 
         private string BuildSQLEdit(bool isDeliveryAdviceID, bool isDeliveryAdviceDetailIDs)

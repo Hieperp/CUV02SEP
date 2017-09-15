@@ -34,8 +34,8 @@
             this.buttonAdd = new System.Windows.Forms.ToolStripButton();
             this.fastPendingPallets = new BrightIdeasSoftware.FastObjectListView();
             this.olvIsSelected = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvPickupEntryDate = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvPickupReference = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvDeliveryAdviceEntryDate = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvDeliveryAdviceReference = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvCommodityCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvPalletCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvCommodityName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -113,8 +113,8 @@
             // fastPendingPallets
             // 
             this.fastPendingPallets.AllColumns.Add(this.olvIsSelected);
-            this.fastPendingPallets.AllColumns.Add(this.olvPickupEntryDate);
-            this.fastPendingPallets.AllColumns.Add(this.olvPickupReference);
+            this.fastPendingPallets.AllColumns.Add(this.olvDeliveryAdviceEntryDate);
+            this.fastPendingPallets.AllColumns.Add(this.olvDeliveryAdviceReference);
             this.fastPendingPallets.AllColumns.Add(this.olvCommodityCode);
             this.fastPendingPallets.AllColumns.Add(this.olvPalletCode);
             this.fastPendingPallets.AllColumns.Add(this.olvCommodityName);
@@ -122,8 +122,8 @@
             this.fastPendingPallets.CheckedAspectName = "IsSelected";
             this.fastPendingPallets.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.olvIsSelected,
-            this.olvPickupEntryDate,
-            this.olvPickupReference,
+            this.olvDeliveryAdviceEntryDate,
+            this.olvDeliveryAdviceReference,
             this.olvCommodityCode,
             this.olvPalletCode,
             this.olvCommodityName});
@@ -154,19 +154,19 @@
             this.olvIsSelected.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvIsSelected.Width = 20;
             // 
-            // olvPickupEntryDate
+            // olvDeliveryAdviceEntryDate
             // 
-            this.olvPickupEntryDate.AspectName = "PickupEntryDate";
-            this.olvPickupEntryDate.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvPickupEntryDate.Text = "Date";
-            this.olvPickupEntryDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvPickupEntryDate.Width = 170;
+            this.olvDeliveryAdviceEntryDate.AspectName = "DeliveryAdviceEntryDate";
+            this.olvDeliveryAdviceEntryDate.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvDeliveryAdviceEntryDate.Text = "Date";
+            this.olvDeliveryAdviceEntryDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvDeliveryAdviceEntryDate.Width = 170;
             // 
-            // olvPickupReference
+            // olvDeliveryAdviceReference
             // 
-            this.olvPickupReference.AspectName = "PickupReference";
-            this.olvPickupReference.Text = "Reference";
-            this.olvPickupReference.Width = 137;
+            this.olvDeliveryAdviceReference.AspectName = "DeliveryAdviceReference";
+            this.olvDeliveryAdviceReference.Text = "Reference";
+            this.olvDeliveryAdviceReference.Width = 137;
             // 
             // olvCommodityCode
             // 
@@ -247,7 +247,7 @@
             // 
             // olvColumn2
             // 
-            this.olvColumn2.AspectName = "PickupEntryDate";
+            this.olvColumn2.AspectName = "DeliveryAdviceEntryDate";
             this.olvColumn2.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvColumn2.Text = "Date";
             this.olvColumn2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -255,7 +255,7 @@
             // 
             // olvColumn3
             // 
-            this.olvColumn3.AspectName = "PickupReference";
+            this.olvColumn3.AspectName = "DeliveryAdviceReference";
             this.olvColumn3.Text = "Reference";
             this.olvColumn3.Width = 137;
             // 
@@ -326,7 +326,7 @@
             // 
             // olvColumn8
             // 
-            this.olvColumn8.AspectName = "PickupEntryDate";
+            this.olvColumn8.AspectName = "DeliveryAdviceEntryDate";
             this.olvColumn8.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvColumn8.Text = "Date";
             this.olvColumn8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -334,7 +334,7 @@
             // 
             // olvColumn9
             // 
-            this.olvColumn9.AspectName = "PickupReference";
+            this.olvColumn9.AspectName = "DeliveryAdviceReference";
             this.olvColumn9.Text = "Reference";
             this.olvColumn9.Width = 137;
             // 
@@ -391,9 +391,9 @@
         private System.Windows.Forms.ToolStripButton buttonAddExit;
         private BrightIdeasSoftware.FastObjectListView fastPendingPallets;
         private System.Windows.Forms.Panel panelMaster;
-        private BrightIdeasSoftware.OLVColumn olvPickupEntryDate;
+        private BrightIdeasSoftware.OLVColumn olvDeliveryAdviceEntryDate;
         private BrightIdeasSoftware.OLVColumn olvCommodityCode;
-        private BrightIdeasSoftware.OLVColumn olvPickupReference;
+        private BrightIdeasSoftware.OLVColumn olvDeliveryAdviceReference;
         private BrightIdeasSoftware.OLVColumn olvPalletCode;
         private BrightIdeasSoftware.OLVColumn olvIsSelected;
         private BrightIdeasSoftware.OLVColumn olvCommodityName;
