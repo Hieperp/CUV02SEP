@@ -34,6 +34,12 @@ namespace TotalDAL.Repositories
 
             //return;
 
+            Helpers.SqlProgrammability.Inventories.GoodsIssue goodsIssue = new Helpers.SqlProgrammability.Inventories.GoodsIssue(totalSmartCodingEntities);
+            goodsIssue.RestoreProcedure();
+
+            
+            //return;
+
             Helpers.SqlProgrammability.Sales.DeliveryAdvice deliveryAdvice = new Helpers.SqlProgrammability.Sales.DeliveryAdvice(totalSmartCodingEntities);
             deliveryAdvice.RestoreProcedure();
 

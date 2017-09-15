@@ -60,8 +60,8 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
                 this.fastPendingCartons.SetObjects(pendingPickupDetails.Where(w => w.CartonID != null));
                 this.fastPendingPacks.SetObjects(pendingPickupDetails.Where(w => w.PackID != null));
 
-                this.customTabBatch.TabPages[0].Text = "Pending " + this.fastPendingPallets.GetItemCount().ToString("N0") + " pallet" + (this.fastPendingPacks.GetItemCount() > 1 ? "s      " : "      ");
-                this.customTabBatch.TabPages[1].Text = "Pending " + this.fastPendingCartons.GetItemCount().ToString("N0") + " carton" + (this.fastPendingPacks.GetItemCount() > 1 ? "s      " : "      ");
+                this.customTabBatch.TabPages[0].Text = "Pending " + this.fastPendingPallets.GetItemCount().ToString("N0") + " pallet" + (this.fastPendingPallets.GetItemCount() > 1 ? "s      " : "      ");
+                this.customTabBatch.TabPages[1].Text = "Pending " + this.fastPendingCartons.GetItemCount().ToString("N0") + " carton" + (this.fastPendingCartons.GetItemCount() > 1 ? "s      " : "      ");
                 this.customTabBatch.TabPages[2].Text = "Pending " + this.fastPendingPacks.GetItemCount().ToString("N0") + " pack" + (this.fastPendingPacks.GetItemCount() > 1 ? "s      " : "      ");
             }
             catch (Exception exception)

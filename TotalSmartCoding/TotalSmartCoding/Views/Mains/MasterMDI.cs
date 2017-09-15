@@ -19,6 +19,7 @@ using System.IO;
 using System.Reflection;
 using TotalBase;
 using TotalSmartCoding.Views.Sales.SalesOrders;
+using TotalSmartCoding.Views.Sales.DeliveryAdvices;
 
 namespace TotalSmartCoding.Views.Mains
 {
@@ -418,13 +419,13 @@ namespace TotalSmartCoding.Views.Mains
             //Pickups grForm;
             //grForm = new Pickups();
 
-            //Open new form
-            //Pickups grForm;  //
-            GoodsReceipts grForm;
-            //childForm = new Batches();
-            //childForm = new DeliveryAdvices();
-            //grForm = new Pickups(); //
-            grForm = new GoodsReceipts();
+            ////Open new form
+            ////Pickups grForm;  //
+            //GoodsReceipts grForm;
+            ////childForm = new Batches();
+            ////childForm = new DeliveryAdvices();
+            ////grForm = new Pickups(); //
+            //grForm = new GoodsReceipts();
 
 
 
@@ -435,7 +436,8 @@ namespace TotalSmartCoding.Views.Mains
             //grForm = new SalesOrders();
 
 
-
+            DeliveryAdvices grForm;
+            grForm = new DeliveryAdvices();
 
             if (grForm != null)
             {

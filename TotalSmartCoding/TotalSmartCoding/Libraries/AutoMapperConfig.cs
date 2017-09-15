@@ -49,7 +49,11 @@ namespace TotalSmartCoding.Libraries
                 cfg.CreateMap<SalesOrderDetailDTO, SalesOrderDetail>();
 
 
-
+                cfg.CreateMap<DeliveryAdvice, DeliveryAdviceViewModel>();
+                cfg.CreateMap<DeliveryAdvice, DeliveryAdviceDTO>();
+                cfg.CreateMap<DeliveryAdvicePrimitiveDTO, DeliveryAdvice>();
+                cfg.CreateMap<DeliveryAdviceViewDetail, DeliveryAdviceDetailDTO>();
+                cfg.CreateMap<DeliveryAdviceDetailDTO, DeliveryAdviceDetail>();
 
 
 

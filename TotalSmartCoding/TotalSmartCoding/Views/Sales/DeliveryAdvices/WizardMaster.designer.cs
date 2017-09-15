@@ -32,11 +32,11 @@
             this.buttonESC = new System.Windows.Forms.ToolStripButton();
             this.buttonOK = new System.Windows.Forms.ToolStripButton();
             this.fastPendingSalesOrders = new BrightIdeasSoftware.FastObjectListView();
-            this.olvPickupEntryDate = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvPickupReference = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvWarehouseName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvSalesOrderEntryDate = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvSalesOrderReference = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvCustomerName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.fastPendingSalesOrderCustomers = new BrightIdeasSoftware.FastObjectListView();
-            this.olvWarehouseID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvCustomerID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvWarehouseName1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.panelMaster = new System.Windows.Forms.Panel();
             this.toolStrip1.SuspendLayout();
@@ -84,13 +84,13 @@
             // 
             // fastPendingSalesOrders
             // 
-            this.fastPendingSalesOrders.AllColumns.Add(this.olvPickupEntryDate);
-            this.fastPendingSalesOrders.AllColumns.Add(this.olvPickupReference);
-            this.fastPendingSalesOrders.AllColumns.Add(this.olvWarehouseName);
+            this.fastPendingSalesOrders.AllColumns.Add(this.olvSalesOrderEntryDate);
+            this.fastPendingSalesOrders.AllColumns.Add(this.olvSalesOrderReference);
+            this.fastPendingSalesOrders.AllColumns.Add(this.olvCustomerName);
             this.fastPendingSalesOrders.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.olvPickupEntryDate,
-            this.olvPickupReference,
-            this.olvWarehouseName});
+            this.olvSalesOrderEntryDate,
+            this.olvSalesOrderReference,
+            this.olvCustomerName});
             this.fastPendingSalesOrders.Cursor = System.Windows.Forms.Cursors.Default;
             this.fastPendingSalesOrders.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fastPendingSalesOrders.FullRowSelect = true;
@@ -108,27 +108,27 @@
             this.fastPendingSalesOrders.View = System.Windows.Forms.View.Details;
             this.fastPendingSalesOrders.VirtualMode = true;
             // 
-            // olvPickupEntryDate
+            // olvSalesOrderEntryDate
             // 
-            this.olvPickupEntryDate.AspectName = "PickupEntryDate";
-            this.olvPickupEntryDate.Width = 170;
+            this.olvSalesOrderEntryDate.AspectName = "SalesOrderEntryDate";
+            this.olvSalesOrderEntryDate.Width = 170;
             // 
-            // olvPickupReference
+            // olvSalesOrderReference
             // 
-            this.olvPickupReference.AspectName = "PickupReference";
-            this.olvPickupReference.Width = 137;
+            this.olvSalesOrderReference.AspectName = "SalesOrderReference";
+            this.olvSalesOrderReference.Width = 137;
             // 
-            // olvWarehouseName
+            // olvCustomerName
             // 
-            this.olvWarehouseName.AspectName = "WarehouseName";
-            this.olvWarehouseName.Width = 192;
+            this.olvCustomerName.AspectName = "CustomerName";
+            this.olvCustomerName.Width = 192;
             // 
             // fastPendingSalesOrderCustomers
             // 
-            this.fastPendingSalesOrderCustomers.AllColumns.Add(this.olvWarehouseID);
+            this.fastPendingSalesOrderCustomers.AllColumns.Add(this.olvCustomerID);
             this.fastPendingSalesOrderCustomers.AllColumns.Add(this.olvWarehouseName1);
             this.fastPendingSalesOrderCustomers.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.olvWarehouseID,
+            this.olvCustomerID,
             this.olvWarehouseName1});
             this.fastPendingSalesOrderCustomers.Cursor = System.Windows.Forms.Cursors.Default;
             this.fastPendingSalesOrderCustomers.Dock = System.Windows.Forms.DockStyle.Top;
@@ -148,14 +148,14 @@
             this.fastPendingSalesOrderCustomers.View = System.Windows.Forms.View.Details;
             this.fastPendingSalesOrderCustomers.VirtualMode = true;
             // 
-            // olvWarehouseID
+            // olvCustomerID
             // 
-            this.olvWarehouseID.AspectName = "WarehouseID";
-            this.olvWarehouseID.Width = 161;
+            this.olvCustomerID.AspectName = "CustomerID";
+            this.olvCustomerID.Width = 161;
             // 
             // olvWarehouseName1
             // 
-            this.olvWarehouseName1.AspectName = "WarehouseName";
+            this.olvWarehouseName1.AspectName = "CustomerName";
             this.olvWarehouseName1.Width = 263;
             // 
             // panelMaster
@@ -201,10 +201,10 @@
         private BrightIdeasSoftware.FastObjectListView fastPendingSalesOrders;
         private BrightIdeasSoftware.FastObjectListView fastPendingSalesOrderCustomers;
         private System.Windows.Forms.Panel panelMaster;
-        private BrightIdeasSoftware.OLVColumn olvPickupEntryDate;
-        private BrightIdeasSoftware.OLVColumn olvWarehouseName;
-        private BrightIdeasSoftware.OLVColumn olvWarehouseID;
+        private BrightIdeasSoftware.OLVColumn olvSalesOrderEntryDate;
+        private BrightIdeasSoftware.OLVColumn olvCustomerName;
+        private BrightIdeasSoftware.OLVColumn olvCustomerID;
         private BrightIdeasSoftware.OLVColumn olvWarehouseName1;
-        private BrightIdeasSoftware.OLVColumn olvPickupReference;
+        private BrightIdeasSoftware.OLVColumn olvSalesOrderReference;
     }
 }

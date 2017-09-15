@@ -75,7 +75,10 @@ namespace TotalSmartCoding.Libraries
                 Kernel.Bind<ISalesOrderAPIRepository>().To<SalesOrderAPIRepository>();
                 Kernel.Bind<SalesOrderViewModel>().ToSelf();
 
-
+                Kernel.Bind<IDeliveryAdviceService>().To<DeliveryAdviceService>();
+                Kernel.Bind<IDeliveryAdviceRepository>().To<DeliveryAdviceRepository>();
+                Kernel.Bind<IDeliveryAdviceAPIRepository>().To<DeliveryAdviceAPIRepository>();
+                Kernel.Bind<DeliveryAdviceViewModel>().ToSelf();
 
 
                 Kernel.Bind<IAspNetUserRepository>().To<AspNetUserRepository>();
