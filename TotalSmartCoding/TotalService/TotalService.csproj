@@ -56,6 +56,7 @@
     <Compile Include="GenericService.cs" />
     <Compile Include="GenericWithDetailService.cs" />
     <Compile Include="GenericWithViewDetailService.cs" />
+    <Compile Include="Inventories\GoodsIssueService.cs" />
     <Compile Include="Inventories\GoodsReceiptService.cs" />
     <Compile Include="Inventories\PickupService.cs" />
     <Compile Include="Productions\BatchService.cs" />

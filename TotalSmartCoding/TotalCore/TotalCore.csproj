@@ -62,6 +62,7 @@
     <Compile Include="Repositories\IGenericAPIRepository.cs" />
     <Compile Include="Repositories\IGenericRepository.cs" />
     <Compile Include="Repositories\IGenericWithDetailRepository.cs" />
+    <Compile Include="Repositories\Inventories\IGoodsIssueRepository.cs" />
     <Compile Include="Repositories\Inventories\IGoodsReceiptRepository.cs" />
     <Compile Include="Repositories\Inventories\IPickupRepository.cs" />
     <Compile Include="Repositories\Productions\IBatchRepository.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="Services\IGenericService.cs" />
     <Compile Include="Services\IGenericWithDetailService.cs" />
     <Compile Include="Services\IGenericWithViewDetailService.cs" />
+    <Compile Include="Services\Inventories\IGoodsIssueService.cs" />
     <Compile Include="Services\Inventories\IGoodsReceiptService.cs" />
     <Compile Include="Services\Inventories\IPickupService.cs" />
     <Compile Include="Services\Productions\IBatchService.cs" />

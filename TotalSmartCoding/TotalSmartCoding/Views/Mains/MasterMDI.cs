@@ -14,7 +14,7 @@ using TotalSmartCoding.Views.Commons;
 
 using TotalSmartCoding.Views.Productions;
 using TotalSmartCoding.Views.Inventories.Pickups;
-using TotalSmartCoding.Views.Inventories.GoodsReceipts;
+using TotalSmartCoding.Views.Inventories.GoodsIssues;
 using System.IO;
 using System.Reflection;
 using TotalBase;

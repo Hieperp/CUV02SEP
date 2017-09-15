@@ -489,4 +489,23 @@ namespace TotalModel.Models
 
 
 
+
+    public partial class GoodsIssueIndex : IBaseIndex
+    {
+        public int Id { get { return this.GoodsIssueID; } }
+    }
+
+    public partial class GoodsIssue : IPrimitiveEntity, IBaseEntity, IBaseDetailEntity<GoodsIssueDetail>
+    {
+        public int GetID() { return this.GoodsIssueID; }
+
+        public ICollection<GoodsIssueDetail> GetDetails() { return this.GoodsIssueDetails; }
+    }
+
+
+    public partial class GoodsIssueDetail : IPrimitiveEntity, IHelperEntryDate
+    {
+        public int GetID() { return this.GoodsIssueDetailID; }
+    }
+
 }

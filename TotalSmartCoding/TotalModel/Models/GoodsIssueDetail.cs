@@ -12,34 +12,27 @@ namespace TotalModel.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class DeliveryAdviceDetail
+    public partial class GoodsIssueDetail
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public DeliveryAdviceDetail()
-        {
-            this.GoodsIssueDetails = new HashSet<GoodsIssueDetail>();
-        }
-    
+        public int GoodsIssueDetailID { get; set; }
+        public int GoodsIssueID { get; set; }
         public int DeliveryAdviceDetailID { get; set; }
         public int DeliveryAdviceID { get; set; }
-        public Nullable<int> SalesOrderDetailID { get; set; }
-        public Nullable<int> SalesOrderID { get; set; }
+        public int GoodsReceiptDetailID { get; set; }
+        public int GoodsReceiptID { get; set; }
         public System.DateTime EntryDate { get; set; }
         public int LocationID { get; set; }
         public int CustomerID { get; set; }
         public int CommodityID { get; set; }
         public decimal Quantity { get; set; }
-        public decimal QuantityIssue { get; set; }
         public decimal LineVolume { get; set; }
-        public decimal LineVolumeIssue { get; set; }
         public string Remarks { get; set; }
         public bool Approved { get; set; }
     
         public virtual Commodity Commodity { get; set; }
         public virtual Customer Customer { get; set; }
-        public virtual DeliveryAdvice DeliveryAdvice { get; set; }
-        public virtual SalesOrderDetail SalesOrderDetail { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GoodsIssueDetail> GoodsIssueDetails { get; set; }
+        public virtual DeliveryAdviceDetail DeliveryAdviceDetail { get; set; }
+        public virtual GoodsIssue GoodsIssue { get; set; }
+        public virtual GoodsReceiptDetail GoodsReceiptDetail { get; set; }
     }
 }

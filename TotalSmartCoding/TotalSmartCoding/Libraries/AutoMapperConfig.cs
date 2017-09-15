@@ -56,6 +56,11 @@ namespace TotalSmartCoding.Libraries
                 cfg.CreateMap<DeliveryAdviceDetailDTO, DeliveryAdviceDetail>();
 
 
+                cfg.CreateMap<GoodsIssue, GoodsIssueViewModel>();
+                cfg.CreateMap<GoodsIssue, GoodsIssueDTO>();
+                cfg.CreateMap<GoodsIssuePrimitiveDTO, GoodsIssue>();
+                cfg.CreateMap<GoodsIssueViewDetail, GoodsIssueDetailDTO>();
+                cfg.CreateMap<GoodsIssueDetailDTO, GoodsIssueDetail>();
 
 
 

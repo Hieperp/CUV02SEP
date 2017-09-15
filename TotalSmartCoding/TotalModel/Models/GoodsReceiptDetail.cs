@@ -14,6 +14,12 @@ namespace TotalModel.Models
     
     public partial class GoodsReceiptDetail
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public GoodsReceiptDetail()
+        {
+            this.GoodsIssueDetails = new HashSet<GoodsIssueDetail>();
+        }
+    
         public int GoodsReceiptDetailID { get; set; }
         public int GoodsReceiptID { get; set; }
         public Nullable<int> PickupDetailID { get; set; }
@@ -44,5 +50,7 @@ namespace TotalModel.Models
         public virtual Pack Pack { get; set; }
         public virtual Pallet Pallet { get; set; }
         public virtual Commodity Commodity { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GoodsIssueDetail> GoodsIssueDetails { get; set; }
     }
 }
