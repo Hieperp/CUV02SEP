@@ -5,8 +5,12 @@ using System.Collections.Generic;
 using System.Linq;
 using BrightIdeasSoftware;
 
+using Ninject;
+
 using TotalModel.Models;
+using TotalCore.Repositories.Inventories;
 using TotalDTO.Inventories;
+using TotalSmartCoding.Libraries;
 using TotalSmartCoding.Controllers.APIs.Inventories;
 using TotalSmartCoding.Libraries.Helpers;
 using TotalSmartCoding.ViewModels.Inventories;
@@ -16,10 +20,10 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
 {
     public partial class WizardDetail : Form
     {
-        private GoodsIssueAPIs goodsIssueAPIs;
         private GoodsIssueViewModel goodsIssueViewModel;
+        private PendingDeliveryAdviceDetail pendingDeliveryAdviceDetail;
         private CustomTabControl customTabBatch;
-        public WizardDetail(GoodsIssueAPIs goodsIssueAPIs, GoodsIssueViewModel goodsIssueViewModel)
+        public WizardDetail(GoodsIssueViewModel goodsIssueViewModel, PendingDeliveryAdviceDetail pendingDeliveryAdviceDetail)
         {
             InitializeComponent();
 
@@ -45,8 +49,8 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
             this.panelMaster.Controls.Add(this.customTabBatch);
 
 
-            this.goodsIssueAPIs = goodsIssueAPIs;
             this.goodsIssueViewModel = goodsIssueViewModel;
+            this.pendingDeliveryAdviceDetail = pendingDeliveryAdviceDetail;
         }
 
 
@@ -54,12 +58,13 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
         {
             try
             {
-                List<PendingDeliveryAdviceDetail> pendingDeliveryAdviceDetails = this.goodsIssueAPIs.GetPendingDeliveryAdviceDetails(this.goodsIssueViewModel.LocationID, this.goodsIssueViewModel.GoodsIssueID, this.goodsIssueViewModel.DeliveryAdviceID, this.goodsIssueViewModel.CustomerID, string.Join(",", this.goodsIssueViewModel.ViewDetails.Select(d => d.DeliveryAdviceDetailID)), false);
+                GoodsReceiptAPIs goodsReceiptAPIs = new GoodsReceiptAPIs(CommonNinject.Kernel.Get<IGoodsReceiptAPIRepository>());
 
-                this.fastPendingPallets.SetObjects(pendingDeliveryAdviceDetails);
-                //this.fastPendingPallets.SetObjects(pendingDeliveryAdviceDetails.Where(w => w.PalletID != null));
-                //this.fastPendingCartons.SetObjects(pendingDeliveryAdviceDetails.Where(w => w.CartonID != null));
-                //this.fastPendingPacks.SetObjects(pendingDeliveryAdviceDetails.Where(w => w.PackID != null));
+                List<GoodsReceiptDetailAvailable> pendingDeliveryAdviceDetails = goodsReceiptAPIs.GetGoodsReceiptDetailAvailables(this.pendingDeliveryAdviceDetail.LocationID, this.pendingDeliveryAdviceDetail.CommodityID);
+
+                this.fastPendingPallets.SetObjects(pendingDeliveryAdviceDetails.Where(w => w.PalletID != null));
+                this.fastPendingCartons.SetObjects(pendingDeliveryAdviceDetails.Where(w => w.CartonID != null));
+                this.fastPendingPacks.SetObjects(pendingDeliveryAdviceDetails.Where(w => w.PackID != null));
 
                 this.customTabBatch.TabPages[0].Text = "Pending " + this.fastPendingPallets.GetItemCount().ToString("N0") + " pallet" + (this.fastPendingPallets.GetItemCount() > 1 ? "s      " : "      ");
                 this.customTabBatch.TabPages[1].Text = "Pending " + this.fastPendingCartons.GetItemCount().ToString("N0") + " carton" + (this.fastPendingCartons.GetItemCount() > 1 ? "s      " : "      ");
@@ -84,33 +89,38 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                     {
                         foreach (var checkedObjects in fastPendingList.CheckedObjects)
                         {
-                            PendingDeliveryAdviceDetail pendingDeliveryAdviceDetail = (PendingDeliveryAdviceDetail)checkedObjects;
+                            GoodsReceiptDetailAvailable goodsReceiptDetailAvailable = (GoodsReceiptDetailAvailable)checkedObjects;
                             GoodsIssueDetailDTO goodsIssueDetailDTO = new GoodsIssueDetailDTO()
                             {
                                 GoodsIssueID = this.goodsIssueViewModel.GoodsIssueID,
 
-                                DeliveryAdviceID = pendingDeliveryAdviceDetail.DeliveryAdviceID,
-                                DeliveryAdviceDetailID = pendingDeliveryAdviceDetail.DeliveryAdviceDetailID,
-                                DeliveryAdviceReference = pendingDeliveryAdviceDetail.DeliveryAdviceReference,
-                                DeliveryAdviceEntryDate = pendingDeliveryAdviceDetail.DeliveryAdviceEntryDate,
+                                DeliveryAdviceID = this.pendingDeliveryAdviceDetail.DeliveryAdviceID,
+                                DeliveryAdviceDetailID = this.pendingDeliveryAdviceDetail.DeliveryAdviceDetailID,
+                                DeliveryAdviceReference = this.pendingDeliveryAdviceDetail.DeliveryAdviceReference,
+                                DeliveryAdviceEntryDate = this.pendingDeliveryAdviceDetail.DeliveryAdviceEntryDate,
 
-                                //BinLocationID = pendingDeliveryAdviceDetail.BinLocationID,
-                                //BinLocationCode = pendingDeliveryAdviceDetail.BinLocationCode,
+                                CommodityID = this.pendingDeliveryAdviceDetail.CommodityID,
+                                CommodityCode = this.pendingDeliveryAdviceDetail.CommodityCode,
+                                CommodityName = this.pendingDeliveryAdviceDetail.CommodityName,
 
-                                CommodityID = pendingDeliveryAdviceDetail.CommodityID,
-                                CommodityCode = pendingDeliveryAdviceDetail.CommodityCode,
-                                CommodityName = pendingDeliveryAdviceDetail.CommodityName,
+                                GoodsReceiptID = goodsReceiptDetailAvailable.GoodsReceiptID,
+                                GoodsReceiptDetailID = goodsReceiptDetailAvailable.GoodsReceiptDetailID,
 
-                                Quantity = (decimal)pendingDeliveryAdviceDetail.QuantityRemains,
-                                //Volume = pendingDeliveryAdviceDetail.Volume,
-                                
+                                BinLocationID = goodsReceiptDetailAvailable.BinLocationID,
+                                BinLocationCode = goodsReceiptDetailAvailable.BinLocationCode,
 
-                                //PackID = pendingDeliveryAdviceDetail.PackID,
-                                //PackCode = pendingDeliveryAdviceDetail.PackCode,
-                                //CartonID = pendingDeliveryAdviceDetail.CartonID,
-                                //CartonCode = pendingDeliveryAdviceDetail.CartonCode,
-                                //PalletID = pendingDeliveryAdviceDetail.PalletID,
-                                //PalletCode = pendingDeliveryAdviceDetail.PalletCode,
+                                WarehouseID = goodsReceiptDetailAvailable.WarehouseID,
+                                WarehouseCode = goodsReceiptDetailAvailable.WarehouseCode,
+
+                                Quantity = goodsReceiptDetailAvailable.QuantityAvailable,
+                                LineVolume = goodsReceiptDetailAvailable.LineVolumeAvailable,
+
+                                PackID = goodsReceiptDetailAvailable.PackID,
+                                PackCode = goodsReceiptDetailAvailable.PackCode,
+                                CartonID = goodsReceiptDetailAvailable.CartonID,
+                                CartonCode = goodsReceiptDetailAvailable.CartonCode,
+                                PalletID = goodsReceiptDetailAvailable.PalletID,
+                                PalletCode = goodsReceiptDetailAvailable.PalletCode
                             };
                             this.goodsIssueViewModel.ViewDetails.Add(goodsIssueDetailDTO);
                         }

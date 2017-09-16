@@ -33,23 +33,23 @@ namespace TotalModel.Models
         public int PreparedPersonID { get; set; }
         public int OrganizationalUnitID { get; set; }
         public int LocationID { get; set; }
+        public int TotalPackCounts { get; set; }
+        public int TotalCartonCounts { get; set; }
+        public int TotalPalletCounts { get; set; }
         public decimal TotalQuantity { get; set; }
-        public decimal TotalVolume { get; set; }
+        public decimal TotalLineVolume { get; set; }
         public string Description { get; set; }
         public string Remarks { get; set; }
         public System.DateTime CreatedDate { get; set; }
         public System.DateTime EditedDate { get; set; }
         public bool Approved { get; set; }
         public Nullable<System.DateTime> ApprovedDate { get; set; }
-        public int TotalPackCounts { get; set; }
-        public int TotalCartonCounts { get; set; }
-        public int TotalPalletCounts { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GoodsReceiptDetail> GoodsReceiptDetails { get; set; }
         public virtual GoodsReceiptType GoodsReceiptType { get; set; }
         public virtual Location Location { get; set; }
-        public virtual Warehouse Warehouse { get; set; }
         public virtual Pickup Pickup { get; set; }
+        public virtual Warehouse Warehouse { get; set; }
     }
 }

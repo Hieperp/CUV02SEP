@@ -32,6 +32,9 @@ namespace TotalModel.Models
         public Nullable<int> CartonID { get; set; }
         public string CartonCode { get; set; }
         public decimal Quantity { get; set; }
-        public decimal Volume { get; set; }
+        public int PackCounts { get; set; }
+        public int CartonCounts { get; set; }
+        public int PalletCounts { get; set; }
+        public decimal LineVolume { get; set; }
     }
 }

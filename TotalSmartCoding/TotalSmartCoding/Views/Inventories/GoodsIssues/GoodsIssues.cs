@@ -25,6 +25,9 @@ using TotalCore.Repositories.Inventories;
 using TotalSmartCoding.Controllers.APIs.Inventories;
 using TotalCore.Services.Inventories;
 using TotalSmartCoding.ViewModels.Inventories;
+using TotalBase;
+using TotalDTO.Inventories;
+using TotalModel.Models;
 
 namespace TotalSmartCoding.Views.Inventories.GoodsIssues
 {
@@ -63,8 +66,15 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
             this.bindingReference.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingEntryDate.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
 
+            this.goodsIssueViewModel.PropertyChanged += goodsIssueViewModel_PropertyChanged;
 
             this.tableLayoutMaster.ColumnStyles[this.tableLayoutMaster.ColumnCount - 1].SizeType = SizeType.Absolute; this.tableLayoutMaster.ColumnStyles[this.tableLayoutMaster.ColumnCount - 1].Width = 10;
+        }
+
+        private void goodsIssueViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName != null && (e.PropertyName == CommonExpressions.PropertyName<GoodsIssueDTO>(p => p.GoodsIssueID) || e.PropertyName == CommonExpressions.PropertyName<GoodsIssueDTO>(p => p.DeliveryAdviceID) || e.PropertyName == CommonExpressions.PropertyName<GoodsIssueDTO>(p => p.CustomerID))) //this.EditableMode && 
+                this.getPendingItems();
         }
 
         protected override void InitializeDataGridBinding()
@@ -87,17 +97,51 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
             base.Loading();
         }
 
+        private void getPendingItems() //THIS MAY ALSO LOAD PENDING PALLET/ CARTON/ PACK
+        {
+            try
+            {
+                this.fastPendingDeliveryAdviceDetails.SetObjects(this.goodsIssueAPIs.GetPendingDeliveryAdviceDetails(this.goodsIssueViewModel.LocationID, this.goodsIssueViewModel.GoodsIssueID, this.goodsIssueViewModel.DeliveryAdviceID, this.goodsIssueViewModel.CustomerID, string.Join(",", this.goodsIssueViewModel.ViewDetails.Select(d => d.DeliveryAdviceDetailID)), false));
+                this.naviPendingDeliveryAdviceDetails.Text = "Pending " + this.fastPendingDeliveryAdviceDetails.GetItemCount().ToString("N0") + " item" + (this.fastPendingDeliveryAdviceDetails.GetItemCount() > 1 ? "s      " : "      ");
+            }
+            catch (Exception exception)
+            {
+                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+            }
+        }
+
         protected override DialogResult wizardMaster()
         {
             WizardMaster wizardMaster = new WizardMaster(this.goodsIssueAPIs, this.goodsIssueViewModel);
             return wizardMaster.ShowDialog();
         }
 
-        protected override void wizardDetail()
+        //protected override void wizardDetail()
+        //{
+        //    base.wizardDetail();
+        //    WizardDetail wizardDetail = new WizardDetail(this.goodsIssueAPIs, this.goodsIssueViewModel);
+        //    wizardDetail.ShowDialog();
+        //}
+
+        private void fastPendingDeliveryAdviceDetails_MouseClick(object sender, MouseEventArgs e)
         {
-            base.wizardDetail();
-            WizardDetail wizardDetail = new WizardDetail(this.goodsIssueAPIs, this.goodsIssueViewModel);
-            wizardDetail.ShowDialog();
+            try
+            {
+                if (this.EditableMode && this.goodsIssueViewModel.Editable)
+                {
+                    PendingDeliveryAdviceDetail pendingDeliveryAdviceDetail = (PendingDeliveryAdviceDetail)this.fastPendingDeliveryAdviceDetails.SelectedObject;
+                    if (pendingDeliveryAdviceDetail != null)
+                    {
+                        WizardDetail wizardDetail = new WizardDetail(this.goodsIssueViewModel, pendingDeliveryAdviceDetail);
+                        if (wizardDetail.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                            getPendingItems();
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+            }
         }
 
 

@@ -26,6 +26,12 @@ namespace TotalDTO.Inventories
 
         public int CustomerID { get; set; }
 
+        public int GoodsReceiptID { get; set; }
+        public int GoodsReceiptDetailID { get; set; }
+
+        public int WarehouseID { get; set; }
+        public string WarehouseCode { get; set; }
+
         public int BinLocationID { get; set; }
         public string BinLocationCode { get; set; }
 

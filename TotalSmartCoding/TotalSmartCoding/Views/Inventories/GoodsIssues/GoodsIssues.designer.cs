@@ -61,9 +61,9 @@
             this.olvReference = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.naviIndex = new Guifreaks.Navisuite.NaviBar(this.components);
             this.naviGoodsReceiptIndex = new Guifreaks.Navisuite.NaviBand(this.components);
-            this.naviPendingItems = new Guifreaks.Navisuite.NaviBar(this.components);
+            this.naviPendingDeliveryAdviceDetails = new Guifreaks.Navisuite.NaviBar(this.components);
             this.naviPendingDeliveryAdvices = new Guifreaks.Navisuite.NaviBand(this.components);
-            this.fastPendingDeliveryAdvices = new BrightIdeasSoftware.FastObjectListView();
+            this.fastPendingDeliveryAdviceDetails = new BrightIdeasSoftware.FastObjectListView();
             this.olvCommodityCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.naviDetails = new Guifreaks.Navisuite.NaviGroup(this.components);
@@ -104,10 +104,10 @@
             this.naviIndex.SuspendLayout();
             this.naviGoodsReceiptIndex.ClientArea.SuspendLayout();
             this.naviGoodsReceiptIndex.SuspendLayout();
-            this.naviPendingItems.SuspendLayout();
+            this.naviPendingDeliveryAdviceDetails.SuspendLayout();
             this.naviPendingDeliveryAdvices.ClientArea.SuspendLayout();
             this.naviPendingDeliveryAdvices.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.fastPendingDeliveryAdvices)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fastPendingDeliveryAdviceDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.naviDetails)).BeginInit();
             this.naviDetails.SuspendLayout();
             this.tableLayoutMaster.SuspendLayout();
@@ -387,26 +387,26 @@
             this.naviGoodsReceiptIndex.SmallImageIndex = 0;
             this.naviGoodsReceiptIndex.TabIndex = 72;
             // 
-            // naviPendingItems
+            // naviPendingDeliveryAdviceDetails
             // 
-            this.naviPendingItems.ActiveBand = this.naviPendingDeliveryAdvices;
-            this.naviPendingItems.Controls.Add(this.naviPendingDeliveryAdvices);
-            this.naviPendingItems.Dock = System.Windows.Forms.DockStyle.Right;
-            this.naviPendingItems.Font = new System.Drawing.Font("Cambria", 31.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.naviPendingItems.HeaderHeight = 50;
-            this.naviPendingItems.Location = new System.Drawing.Point(1366, 0);
-            this.naviPendingItems.Name = "naviPendingItems";
-            this.naviPendingItems.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.naviPendingItems.Size = new System.Drawing.Size(483, 863);
-            this.naviPendingItems.TabIndex = 73;
-            this.naviPendingItems.Text = "naviBar1";
+            this.naviPendingDeliveryAdviceDetails.ActiveBand = this.naviPendingDeliveryAdvices;
+            this.naviPendingDeliveryAdviceDetails.Controls.Add(this.naviPendingDeliveryAdvices);
+            this.naviPendingDeliveryAdviceDetails.Dock = System.Windows.Forms.DockStyle.Right;
+            this.naviPendingDeliveryAdviceDetails.Font = new System.Drawing.Font("Cambria", 31.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.naviPendingDeliveryAdviceDetails.HeaderHeight = 50;
+            this.naviPendingDeliveryAdviceDetails.Location = new System.Drawing.Point(1366, 0);
+            this.naviPendingDeliveryAdviceDetails.Name = "naviPendingDeliveryAdviceDetails";
+            this.naviPendingDeliveryAdviceDetails.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.naviPendingDeliveryAdviceDetails.Size = new System.Drawing.Size(483, 863);
+            this.naviPendingDeliveryAdviceDetails.TabIndex = 73;
+            this.naviPendingDeliveryAdviceDetails.Text = "naviBar1";
             // 
             // naviPendingDeliveryAdvices
             // 
             // 
             // naviPendingDeliveryAdvices.ClientArea
             // 
-            this.naviPendingDeliveryAdvices.ClientArea.Controls.Add(this.fastPendingDeliveryAdvices);
+            this.naviPendingDeliveryAdvices.ClientArea.Controls.Add(this.fastPendingDeliveryAdviceDetails);
             this.naviPendingDeliveryAdvices.ClientArea.LayoutStyle = Guifreaks.Navisuite.NaviLayoutStyle.StyleFromOwner;
             this.naviPendingDeliveryAdvices.ClientArea.Location = new System.Drawing.Point(0, 0);
             this.naviPendingDeliveryAdvices.ClientArea.Name = "ClientArea";
@@ -420,32 +420,33 @@
             this.naviPendingDeliveryAdvices.SmallImageIndex = 0;
             this.naviPendingDeliveryAdvices.TabIndex = 3;
             // 
-            // fastPendingDeliveryAdvices
+            // fastPendingDeliveryAdviceDetails
             // 
-            this.fastPendingDeliveryAdvices.AllColumns.Add(this.olvCommodityCode);
-            this.fastPendingDeliveryAdvices.AllColumns.Add(this.olvCode);
-            this.fastPendingDeliveryAdvices.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.fastPendingDeliveryAdviceDetails.AllColumns.Add(this.olvCommodityCode);
+            this.fastPendingDeliveryAdviceDetails.AllColumns.Add(this.olvCode);
+            this.fastPendingDeliveryAdviceDetails.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.olvCommodityCode,
             this.olvCode});
-            this.fastPendingDeliveryAdvices.Cursor = System.Windows.Forms.Cursors.Default;
-            this.fastPendingDeliveryAdvices.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fastPendingDeliveryAdvices.Font = new System.Drawing.Font("Sitka Banner", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fastPendingDeliveryAdvices.FullRowSelect = true;
-            this.fastPendingDeliveryAdvices.HideSelection = false;
-            this.fastPendingDeliveryAdvices.HighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
-            this.fastPendingDeliveryAdvices.Location = new System.Drawing.Point(0, 0);
-            this.fastPendingDeliveryAdvices.Name = "fastPendingDeliveryAdvices";
-            this.fastPendingDeliveryAdvices.OwnerDraw = true;
-            this.fastPendingDeliveryAdvices.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.fastPendingDeliveryAdvices.RowHeight = 45;
-            this.fastPendingDeliveryAdvices.ShowGroups = false;
-            this.fastPendingDeliveryAdvices.Size = new System.Drawing.Size(481, 773);
-            this.fastPendingDeliveryAdvices.TabIndex = 74;
-            this.fastPendingDeliveryAdvices.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
-            this.fastPendingDeliveryAdvices.UseCompatibleStateImageBehavior = false;
-            this.fastPendingDeliveryAdvices.UseFiltering = true;
-            this.fastPendingDeliveryAdvices.View = System.Windows.Forms.View.Details;
-            this.fastPendingDeliveryAdvices.VirtualMode = true;
+            this.fastPendingDeliveryAdviceDetails.Cursor = System.Windows.Forms.Cursors.Default;
+            this.fastPendingDeliveryAdviceDetails.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fastPendingDeliveryAdviceDetails.Font = new System.Drawing.Font("Sitka Banner", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fastPendingDeliveryAdviceDetails.FullRowSelect = true;
+            this.fastPendingDeliveryAdviceDetails.HideSelection = false;
+            this.fastPendingDeliveryAdviceDetails.HighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
+            this.fastPendingDeliveryAdviceDetails.Location = new System.Drawing.Point(0, 0);
+            this.fastPendingDeliveryAdviceDetails.Name = "fastPendingDeliveryAdviceDetails";
+            this.fastPendingDeliveryAdviceDetails.OwnerDraw = true;
+            this.fastPendingDeliveryAdviceDetails.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.fastPendingDeliveryAdviceDetails.RowHeight = 45;
+            this.fastPendingDeliveryAdviceDetails.ShowGroups = false;
+            this.fastPendingDeliveryAdviceDetails.Size = new System.Drawing.Size(481, 773);
+            this.fastPendingDeliveryAdviceDetails.TabIndex = 74;
+            this.fastPendingDeliveryAdviceDetails.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
+            this.fastPendingDeliveryAdviceDetails.UseCompatibleStateImageBehavior = false;
+            this.fastPendingDeliveryAdviceDetails.UseFiltering = true;
+            this.fastPendingDeliveryAdviceDetails.View = System.Windows.Forms.View.Details;
+            this.fastPendingDeliveryAdviceDetails.VirtualMode = true;
+            this.fastPendingDeliveryAdviceDetails.MouseClick += new System.Windows.Forms.MouseEventHandler(this.fastPendingDeliveryAdviceDetails_MouseClick);
             // 
             // olvCommodityCode
             // 
@@ -850,14 +851,14 @@
             this.ClientSize = new System.Drawing.Size(1849, 863);
             this.Controls.Add(this.panelMaster);
             this.Controls.Add(this.naviDetails);
-            this.Controls.Add(this.naviPendingItems);
+            this.Controls.Add(this.naviPendingDeliveryAdviceDetails);
             this.Controls.Add(this.naviIndex);
             this.Controls.Add(this.toolStripChildForm);
             this.Name = "GoodsIssues";
             this.Text = "Goods Issues";
             this.Controls.SetChildIndex(this.toolStripChildForm, 0);
             this.Controls.SetChildIndex(this.naviIndex, 0);
-            this.Controls.SetChildIndex(this.naviPendingItems, 0);
+            this.Controls.SetChildIndex(this.naviPendingDeliveryAdviceDetails, 0);
             this.Controls.SetChildIndex(this.naviDetails, 0);
             this.Controls.SetChildIndex(this.panelMaster, 0);
             this.toolStripChildForm.ResumeLayout(false);
@@ -868,10 +869,10 @@
             this.naviIndex.ResumeLayout(false);
             this.naviGoodsReceiptIndex.ClientArea.ResumeLayout(false);
             this.naviGoodsReceiptIndex.ResumeLayout(false);
-            this.naviPendingItems.ResumeLayout(false);
+            this.naviPendingDeliveryAdviceDetails.ResumeLayout(false);
             this.naviPendingDeliveryAdvices.ClientArea.ResumeLayout(false);
             this.naviPendingDeliveryAdvices.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.fastPendingDeliveryAdvices)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fastPendingDeliveryAdviceDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.naviDetails)).EndInit();
             this.naviDetails.ResumeLayout(false);
             this.naviDetails.PerformLayout();
@@ -915,9 +916,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Remarks;
         private Guifreaks.Navisuite.NaviBar naviIndex;
         private Guifreaks.Navisuite.NaviBand naviGoodsReceiptIndex;
-        private Guifreaks.Navisuite.NaviBar naviPendingItems;
+        private Guifreaks.Navisuite.NaviBar naviPendingDeliveryAdviceDetails;
         private Guifreaks.Navisuite.NaviBand naviPendingDeliveryAdvices;
-        private BrightIdeasSoftware.FastObjectListView fastPendingDeliveryAdvices;
+        private BrightIdeasSoftware.FastObjectListView fastPendingDeliveryAdviceDetails;
         private BrightIdeasSoftware.OLVColumn olvCommodityCode;
         private BrightIdeasSoftware.OLVColumn olvCode;
         private Guifreaks.Navisuite.NaviGroup naviDetails;

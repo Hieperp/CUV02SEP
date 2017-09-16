@@ -101,7 +101,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
                                 CommodityName = pendingPickupDetail.CommodityName,
 
                                 Quantity = (decimal)pendingPickupDetail.QuantityRemains,
-                                Volume = pendingPickupDetail.Volume,
+                                LineVolume = pendingPickupDetail.LineVolume,
                                 
 
                                 PackID = pendingPickupDetail.PackID,

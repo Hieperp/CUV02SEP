@@ -17,8 +17,8 @@ namespace TotalModel.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Pickup()
         {
-            this.GoodsReceipts = new HashSet<GoodsReceipt>();
             this.PickupDetails = new HashSet<PickupDetail>();
+            this.GoodsReceipts = new HashSet<GoodsReceipt>();
         }
     
         public int PickupID { get; set; }
@@ -36,7 +36,7 @@ namespace TotalModel.Models
         public int TotalCartonCounts { get; set; }
         public int TotalPalletCounts { get; set; }
         public decimal TotalQuantity { get; set; }
-        public decimal TotalVolume { get; set; }
+        public decimal TotalLineVolume { get; set; }
         public string Description { get; set; }
         public string Remarks { get; set; }
         public System.DateTime CreatedDate { get; set; }
@@ -45,11 +45,11 @@ namespace TotalModel.Models
         public Nullable<System.DateTime> ApprovedDate { get; set; }
     
         public virtual FillingLine FillingLine { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GoodsReceipt> GoodsReceipts { get; set; }
         public virtual Location Location { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PickupDetail> PickupDetails { get; set; }
         public virtual Warehouse Warehouse { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GoodsReceipt> GoodsReceipts { get; set; }
     }
 }

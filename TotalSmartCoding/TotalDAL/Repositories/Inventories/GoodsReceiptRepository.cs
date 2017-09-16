@@ -46,6 +46,10 @@ namespace TotalDAL.Repositories.Inventories
             return base.TotalSmartCodingEntities.GetPendingPickupDetails(locationID, goodsReceiptID, pickupID, warehouseID, pickupDetailIDs, isReadonly).ToList();
         }
 
+        public List<GoodsReceiptDetailAvailable> GetGoodsReceiptDetailAvailables(int? locationID, int? commodityID)
+        {
+            return base.TotalSmartCodingEntities.GetGoodsReceiptDetailAvailables(locationID, commodityID).ToList();
+        }
     }
 
 

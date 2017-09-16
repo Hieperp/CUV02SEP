@@ -18,10 +18,10 @@ namespace TotalModel.Models
         public Warehouse()
         {
             this.BinLocations = new HashSet<BinLocation>();
-            this.GoodsReceiptDetails = new HashSet<GoodsReceiptDetail>();
-            this.GoodsReceipts = new HashSet<GoodsReceipt>();
             this.PickupDetails = new HashSet<PickupDetail>();
             this.Pickups = new HashSet<Pickup>();
+            this.GoodsReceiptDetails = new HashSet<GoodsReceiptDetail>();
+            this.GoodsReceipts = new HashSet<GoodsReceipt>();
         }
     
         public int WarehouseID { get; set; }
@@ -29,21 +29,21 @@ namespace TotalModel.Models
         public string Name { get; set; }
         public int WarehouseCategoryID { get; set; }
         public int LocationID { get; set; }
-        public bool IsBook { get; set; }
-        public bool IsInvoice { get; set; }
+        public bool Bookable { get; set; }
+        public bool Issuable { get; set; }
         public bool IsDefault { get; set; }
         public string Remarks { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BinLocation> BinLocations { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GoodsReceiptDetail> GoodsReceiptDetails { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GoodsReceipt> GoodsReceipts { get; set; }
         public virtual Location Location { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PickupDetail> PickupDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pickup> Pickups { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GoodsReceiptDetail> GoodsReceiptDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GoodsReceipt> GoodsReceipts { get; set; }
     }
 }

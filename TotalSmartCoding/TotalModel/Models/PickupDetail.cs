@@ -31,24 +31,24 @@ namespace TotalModel.Models
         public Nullable<int> PackID { get; set; }
         public Nullable<int> CartonID { get; set; }
         public Nullable<int> PalletID { get; set; }
-        public decimal Quantity { get; set; }
-        public decimal QuantityReceipt { get; set; }
-        public decimal Volume { get; set; }
-        public decimal VolumeReceipt { get; set; }
-        public string Remarks { get; set; }
-        public bool Approved { get; set; }
         public int PackCounts { get; set; }
         public int CartonCounts { get; set; }
         public int PalletCounts { get; set; }
+        public decimal Quantity { get; set; }
+        public decimal QuantityReceipt { get; set; }
+        public decimal LineVolume { get; set; }
+        public decimal LineVolumeReceipt { get; set; }
+        public string Remarks { get; set; }
+        public bool Approved { get; set; }
     
         public virtual BinLocation BinLocation { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GoodsReceiptDetail> GoodsReceiptDetails { get; set; }
-        public virtual Warehouse Warehouse { get; set; }
         public virtual Carton Carton { get; set; }
+        public virtual Commodity Commodity { get; set; }
         public virtual Pack Pack { get; set; }
         public virtual Pallet Pallet { get; set; }
         public virtual Pickup Pickup { get; set; }
-        public virtual Commodity Commodity { get; set; }
+        public virtual Warehouse Warehouse { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GoodsReceiptDetail> GoodsReceiptDetails { get; set; }
     }
 }

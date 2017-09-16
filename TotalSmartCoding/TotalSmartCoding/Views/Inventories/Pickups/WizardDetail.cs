@@ -80,9 +80,9 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
                     PackCounts = this.pendingPallet.PackCounts,
                     CartonCounts = this.pendingPallet.CartonCounts,
                     PalletCounts = this.pendingPallet.PalletCounts,
-                    Volume = this.pendingPallet.Volume,
-
-                    Quantity = (decimal)this.pendingPallet.QuantityRemains
+                    
+                    Quantity = (decimal)this.pendingPallet.QuantityRemains,
+                    LineVolume = this.pendingPallet.LineVolume
                 };
 
                 this.pickupDetailDTO.PropertyChanged += pickupDetailDTO_PropertyChanged;

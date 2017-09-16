@@ -194,7 +194,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
         {
             string queryString = "";
 
-            queryString = queryString + "       SELECT      DeliveryAdvices.DeliveryAdviceID, DeliveryAdviceDetails.DeliveryAdviceDetailID, DeliveryAdvices.Reference AS DeliveryAdviceReference, DeliveryAdvices.EntryDate AS DeliveryAdviceEntryDate, " + "\r\n";
+            queryString = queryString + "       SELECT      DeliveryAdvices.LocationID, DeliveryAdvices.DeliveryAdviceID, DeliveryAdviceDetails.DeliveryAdviceDetailID, DeliveryAdvices.Reference AS DeliveryAdviceReference, DeliveryAdvices.EntryDate AS DeliveryAdviceEntryDate, " + "\r\n";
             queryString = queryString + "                   Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, " + "\r\n";
             queryString = queryString + "                   ROUND(DeliveryAdviceDetails.Quantity - DeliveryAdviceDetails.QuantityIssue,  " + (int)GlobalEnums.rndQuantity + ") AS QuantityRemains, CAST(0 AS decimal(18, 2)) AS Quantity, ROUND(DeliveryAdviceDetails.LineVolume - DeliveryAdviceDetails.LineVolumeIssue,  " + (int)GlobalEnums.rndVolume + ") AS LineVolumeRemains, CAST(0 AS decimal(18, 2)) AS LineVolume, DeliveryAdvices.Description, DeliveryAdviceDetails.Remarks, CAST(1 AS bit) AS IsSelected " + "\r\n";
             
@@ -202,35 +202,14 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryString = queryString + "                   INNER JOIN DeliveryAdviceDetails ON " + (isDeliveryAdviceID ? " DeliveryAdvices.DeliveryAdviceID = @DeliveryAdviceID " : "DeliveryAdvices.LocationID = @LocationID AND DeliveryAdvices.CustomerID = @CustomerID ") + " AND DeliveryAdviceDetails.Approved = 1 AND ROUND(DeliveryAdviceDetails.Quantity - DeliveryAdviceDetails.QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") > 0 AND DeliveryAdvices.DeliveryAdviceID = DeliveryAdviceDetails.DeliveryAdviceID" + (isDeliveryAdviceDetailIDs ? " AND DeliveryAdviceDetails.DeliveryAdviceDetailID NOT IN (SELECT Id FROM dbo.SplitToIntList (@DeliveryAdviceDetailIDs))" : "") + "\r\n";
             queryString = queryString + "                   INNER JOIN Commodities ON DeliveryAdviceDetails.CommodityID = Commodities.CommodityID " + "\r\n";
 
-            return queryString;
-
-
-
-            //queryString = " @LocationID Int, @TransferOrderID Int " + "\r\n";
-            //queryString = queryString + " WITH ENCRYPTION " + "\r\n";
-            //queryString = queryString + " AS " + "\r\n";
-            //queryString = queryString + "    BEGIN " + "\r\n";
-
-            //queryString = queryString + "       SELECT      TransferOrderDetails.TransferOrderDetailID, GoodsReceiptDetails.GoodsReceiptDetailID, GoodsReceiptDetails.SupplierID, Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, Commodities.CommodityTypeID, Warehouses.WarehouseID, Warehouses.Code AS WarehouseCode, GoodsReceiptDetails.ChassisCode, GoodsReceiptDetails.EngineCode, GoodsReceiptDetails.ColorCode, " + "\r\n";
-            //queryString = queryString + "                   ROUND(TransferOrderDetails.Quantity - TransferOrderDetails.QuantityTransfer, " + GlobalEnums.rndQuantity + ") AS QuantityOrderPending, ROUND(ISNULL(GoodsReceiptDetails.Quantity - GoodsReceiptDetails.QuantityIssue, 0), " + GlobalEnums.rndQuantity + ") AS QuantityAvailable, TransferOrderDetails.Remarks, CAST(IIF(TransferOrderDetails.Remarks = GoodsReceiptDetails.ChassisCode + '#' + GoodsReceiptDetails.EngineCode AND ROUND(GoodsReceiptDetails.Quantity - GoodsReceiptDetails.QuantityIssue, " + GlobalEnums.rndQuantity + ") > 0, 1, 0) AS bit) AS IsSelected" + "\r\n";
-            //queryString = queryString + "       FROM        TransferOrderDetails INNER JOIN" + "\r\n";
-            //queryString = queryString + "                   Warehouses ON TransferOrderDetails.TransferOrderID = @TransferOrderID AND TransferOrderDetails.CommodityTypeID = " + (int)GlobalEnums.CommodityTypeID.Vehicles + " AND ROUND(TransferOrderDetails.Quantity - TransferOrderDetails.QuantityTransfer, " + GlobalEnums.rndQuantity + ") > 0 AND TransferOrderDetails.WarehouseID = Warehouses.WarehouseID AND Warehouses.LocationID = @LocationID INNER JOIN" + "\r\n";
-            //queryString = queryString + "                   Commodities ON TransferOrderDetails.CommodityID = Commodities.CommodityID LEFT JOIN" + "\r\n";
-            //queryString = queryString + "                   GoodsReceiptDetails ON ROUND(GoodsReceiptDetails.Quantity - GoodsReceiptDetails.QuantityIssue, " + GlobalEnums.rndQuantity + ") > 0 AND TransferOrderDetails.WarehouseID = GoodsReceiptDetails.WarehouseID AND TransferOrderDetails.CommodityID = GoodsReceiptDetails.CommodityID " + "\r\n";
-
-            //queryString = queryString + "       " + "\r\n";
-
-            //queryString = queryString + "    END " + "\r\n";
-
-            //this.totalBikePortalsEntities.CreateStoredProcedure("GetPendingVehicleTransferOrders", queryString);
-
+            return queryString;            
         }
 
         private string BuildSQLEdit(bool isDeliveryAdviceID, bool isDeliveryAdviceDetailIDs)
         {
             string queryString = "";
 
-            queryString = queryString + "       SELECT      DeliveryAdvices.DeliveryAdviceID, DeliveryAdviceDetails.DeliveryAdviceDetailID, DeliveryAdvices.Reference AS DeliveryAdviceReference, DeliveryAdvices.EntryDate AS DeliveryAdviceEntryDate, " + "\r\n";
+            queryString = queryString + "       SELECT      DeliveryAdvices.LocationID, DeliveryAdvices.DeliveryAdviceID, DeliveryAdviceDetails.DeliveryAdviceDetailID, DeliveryAdvices.Reference AS DeliveryAdviceReference, DeliveryAdvices.EntryDate AS DeliveryAdviceEntryDate, " + "\r\n";
             queryString = queryString + "                   Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, " + "\r\n";
             queryString = queryString + "                   ROUND(DeliveryAdviceDetails.Quantity - DeliveryAdviceDetails.QuantityIssue + GoodsIssueDetails.Quantity,  " + (int)GlobalEnums.rndQuantity + ") AS QuantityRemains, CAST(0 AS decimal(18, 2)) AS Quantity, ROUND(DeliveryAdviceDetails.LineVolume - DeliveryAdviceDetails.LineVolumeIssue + GoodsIssueDetails.LineVolume,  " + (int)GlobalEnums.rndVolume + ") AS LineVolumeRemains, CAST(0 AS decimal(18, 2)) AS LineVolume, DeliveryAdvices.Description, DeliveryAdviceDetails.Remarks, CAST(1 AS bit) AS IsSelected " + "\r\n";
             
@@ -255,13 +234,18 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
             //queryString = queryString + "   IF (SELECT HasDeliveryAdvice FROM GoodsIssues WHERE GoodsIssueID = @EntityID) = 1 " + "\r\n";
             queryString = queryString + "       BEGIN " + "\r\n";
-            queryString = queryString + "           UPDATE          DeliveryAdviceDetails " + "\r\n";
-            queryString = queryString + "           SET             DeliveryAdviceDetails.QuantityIssue = ROUND(DeliveryAdviceDetails.QuantityIssue + GoodsIssueDetails.Quantity * @SaveRelativeOption, " + (int)GlobalEnums.rndQuantity + "), DeliveryAdviceDetails.LineVolumeIssue = ROUND(DeliveryAdviceDetails.LineVolumeIssue + GoodsIssueDetails.LineVolume * @SaveRelativeOption, " + (int)GlobalEnums.rndVolume + ") " + "\r\n";
-            
-            queryString = queryString + "           FROM            GoodsIssueDetails " + "\r\n";
-            queryString = queryString + "                           INNER JOIN DeliveryAdviceDetails ON DeliveryAdviceDetails.Approved = 1 AND GoodsIssueDetails.GoodsIssueID = @EntityID AND GoodsIssueDetails.DeliveryAdviceDetailID = DeliveryAdviceDetails.DeliveryAdviceDetailID " + "\r\n";
 
-            queryString = queryString + "           IF @@ROWCOUNT <> (SELECT COUNT(*) FROM GoodsIssueDetails WHERE GoodsIssueID = @EntityID) " + "\r\n";
+            queryString = queryString + "           UPDATE          DeliveryAdviceDetails" + "\r\n";
+            queryString = queryString + "           SET             DeliveryAdviceDetails.QuantityIssue = ROUND(DeliveryAdviceDetails.QuantityIssue + GoodsIssueDetails.Quantity * @SaveRelativeOption, " + (int)GlobalEnums.rndQuantity + "), DeliveryAdviceDetails.LineVolumeIssue = ROUND(DeliveryAdviceDetails.LineVolumeIssue + GoodsIssueDetails.LineVolume * @SaveRelativeOption, " + (int)GlobalEnums.rndVolume + ") " + "\r\n";
+            queryString = queryString + "           FROM            (SELECT DeliveryAdviceDetailID, SUM(Quantity) AS Quantity, SUM(LineVolume) AS LineVolume FROM GoodsIssueDetails WHERE GoodsIssueID = @EntityID AND DeliveryAdviceDetailID IS NOT NULL GROUP BY DeliveryAdviceDetailID) GoodsIssueDetails " + "\r\n";
+            queryString = queryString + "                           INNER JOIN DeliveryAdviceDetails ON GoodsIssueDetails.DeliveryAdviceDetailID = DeliveryAdviceDetails.DeliveryAdviceDetailID" + "\r\n";
+
+            queryString = queryString + "           UPDATE          GoodsReceiptDetails" + "\r\n";
+            queryString = queryString + "           SET             GoodsReceiptDetails.QuantityIssue = ROUND(GoodsReceiptDetails.QuantityIssue + GoodsIssueDetails.Quantity * @SaveRelativeOption, " + (int)GlobalEnums.rndQuantity + "), GoodsReceiptDetails.LineVolumeIssue = ROUND(GoodsReceiptDetails.LineVolumeIssue + GoodsIssueDetails.LineVolume * @SaveRelativeOption, " + (int)GlobalEnums.rndVolume + ") " + "\r\n";
+            queryString = queryString + "           FROM            (SELECT GoodsReceiptDetailID, SUM(Quantity) AS Quantity, SUM(LineVolume) AS LineVolume FROM GoodsIssueDetails WHERE GoodsIssueID = @EntityID GROUP BY GoodsReceiptDetailID) GoodsIssueDetails " + "\r\n";
+            queryString = queryString + "                           INNER JOIN GoodsReceiptDetails ON GoodsIssueDetails.GoodsReceiptDetailID = GoodsReceiptDetails.GoodsReceiptDetailID" + "\r\n";
+
+            queryString = queryString + "           IF @@ROWCOUNT > (SELECT COUNT(*) FROM GoodsIssueDetails WHERE GoodsIssueID = @EntityID) " + "\r\n";
             queryString = queryString + "               BEGIN " + "\r\n";
             queryString = queryString + "                   DECLARE     @msg NVARCHAR(300) = N'Phiếu giao hàng đã hủy, hoặc chưa duyệt' ; " + "\r\n";
             queryString = queryString + "                   THROW       61001,  @msg, 1; " + "\r\n";
@@ -273,10 +257,11 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
         private void GoodsIssuePostSaveValidate()
         {
-            string[] queryArray = new string[2];
+            string[] queryArray = new string[3];
 
             queryArray[0] = " SELECT TOP 1 @FoundEntity = N'Ngày đề nghị giao hàng: ' + CAST(DeliveryAdvices.EntryDate AS nvarchar) FROM GoodsIssueDetails INNER JOIN DeliveryAdvices ON GoodsIssueDetails.GoodsIssueID = @EntityID AND GoodsIssueDetails.DeliveryAdviceID = DeliveryAdvices.DeliveryAdviceID AND GoodsIssueDetails.EntryDate < DeliveryAdvices.EntryDate ";
-            queryArray[1] = " SELECT TOP 1 @FoundEntity = N'Số lượng xuất kho vượt quá số lượng đề nghị: ' + CAST(ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") AS nvarchar) + ' Hoặc khối lượng: ' + CAST(ROUND(LineVolume - LineVolumeIssue, " + (int)GlobalEnums.rndVolume + ") AS nvarchar) FROM DeliveryAdviceDetails WHERE (ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") < 0) OR (ROUND(LineVolume - LineVolumeIssue, " + (int)GlobalEnums.rndVolume + ") < 0) ";
+            queryArray[1] = " SELECT TOP 1 @FoundEntity = N'Số lượng xuất kho vượt quá số lượng đề nghị: ' + CAST(ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") AS nvarchar) + N' Hoặc khối lượng: ' + CAST(ROUND(LineVolume - LineVolumeIssue, " + (int)GlobalEnums.rndVolume + ") AS nvarchar) FROM DeliveryAdviceDetails WHERE (ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") < 0) OR (ROUND(LineVolume - LineVolumeIssue, " + (int)GlobalEnums.rndVolume + ") < 0) ";
+            queryArray[2] = " SELECT TOP 1 @FoundEntity = N'Số lượng xuất kho vượt quá số lượng tồn kho: ' + CAST(ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") AS nvarchar) + N' Hoặc khối lượng: ' + CAST(ROUND(LineVolume - LineVolumeIssue, " + (int)GlobalEnums.rndVolume + ") AS nvarchar) FROM GoodsReceiptDetails WHERE (ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") < 0) OR (ROUND(LineVolume - LineVolumeIssue, " + (int)GlobalEnums.rndVolume + ") < 0) ";
             
             this.totalSmartCodingEntities.CreateProcedureToCheckExisting("GoodsIssuePostSaveValidate", queryArray);
         }

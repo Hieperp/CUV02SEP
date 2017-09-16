@@ -23,6 +23,6 @@ namespace TotalModel.Models
         public decimal TotalQuantity { get; set; }
         public bool Approved { get; set; }
         public string WarehouseName { get; set; }
-        public decimal TotalVolume { get; set; }
+        public decimal TotalLineVolume { get; set; }
     }
 }

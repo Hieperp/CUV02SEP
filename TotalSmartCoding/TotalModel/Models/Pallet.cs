@@ -18,8 +18,8 @@ namespace TotalModel.Models
         public Pallet()
         {
             this.Cartons = new HashSet<Carton>();
-            this.GoodsReceiptDetails = new HashSet<GoodsReceiptDetail>();
             this.PickupDetails = new HashSet<PickupDetail>();
+            this.GoodsReceiptDetails = new HashSet<GoodsReceiptDetail>();
         }
     
         public int PalletID { get; set; }
@@ -29,19 +29,19 @@ namespace TotalModel.Models
         public int CommodityID { get; set; }
         public int LocationID { get; set; }
         public string Code { get; set; }
-        public decimal Volume { get; set; }
         public int PackCounts { get; set; }
         public int CartonCounts { get; set; }
         public decimal Quantity { get; set; }
         public decimal QuantityPickup { get; set; }
+        public decimal LineVolume { get; set; }
         public int EntryStatusID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Carton> Cartons { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GoodsReceiptDetail> GoodsReceiptDetails { get; set; }
+        public virtual Commodity Commodity { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PickupDetail> PickupDetails { get; set; }
-        public virtual Commodity Commodity { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GoodsReceiptDetail> GoodsReceiptDetails { get; set; }
     }
 }

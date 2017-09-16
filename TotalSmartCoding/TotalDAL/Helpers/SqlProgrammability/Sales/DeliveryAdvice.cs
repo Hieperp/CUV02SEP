@@ -250,7 +250,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
             string[] queryArray = new string[2];
 
             queryArray[0] = " SELECT TOP 1 @FoundEntity = N'Ngày đề nghị giao hàng: ' + CAST(SalesOrders.EntryDate AS nvarchar) FROM DeliveryAdviceDetails INNER JOIN SalesOrders ON DeliveryAdviceDetails.DeliveryAdviceID = @EntityID AND DeliveryAdviceDetails.SalesOrderID = SalesOrders.SalesOrderID AND DeliveryAdviceDetails.EntryDate < SalesOrders.EntryDate ";
-            queryArray[1] = " SELECT TOP 1 @FoundEntity = N'Số lượng đề nghị giao vượt quá số lượng đặt hàng: ' + CAST(ROUND(Quantity - QuantityAdvice, " + (int)GlobalEnums.rndQuantity + ") AS nvarchar) + ' Hoặc khối lượng: ' + CAST(ROUND(LineVolume - LineVolumeAdvice, " + (int)GlobalEnums.rndVolume + ") AS nvarchar) FROM SalesOrderDetails WHERE (ROUND(Quantity - QuantityAdvice, " + (int)GlobalEnums.rndQuantity + ") < 0) OR (ROUND(LineVolume - LineVolumeAdvice, " + (int)GlobalEnums.rndVolume + ") < 0)";
+            queryArray[1] = " SELECT TOP 1 @FoundEntity = N'Số lượng đề nghị giao vượt quá số lượng đặt hàng: ' + CAST(ROUND(Quantity - QuantityAdvice, " + (int)GlobalEnums.rndQuantity + ") AS nvarchar) + N' Hoặc khối lượng: ' + CAST(ROUND(LineVolume - LineVolumeAdvice, " + (int)GlobalEnums.rndVolume + ") AS nvarchar) FROM SalesOrderDetails WHERE (ROUND(Quantity - QuantityAdvice, " + (int)GlobalEnums.rndQuantity + ") < 0) OR (ROUND(LineVolume - LineVolumeAdvice, " + (int)GlobalEnums.rndVolume + ") < 0)";
             
             this.totalSmartCodingEntities.CreateProcedureToCheckExisting("DeliveryAdvicePostSaveValidate", queryArray);
         }

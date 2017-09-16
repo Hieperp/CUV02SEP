@@ -45,7 +45,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
-            queryString = queryString + "       SELECT      Pickups.PickupID, CAST(Pickups.EntryDate AS DATE) AS EntryDate, Pickups.Reference, Locations.Code AS LocationCode, Warehouses.Name AS WarehouseName, Pickups.Description, Pickups.TotalQuantity, Pickups.TotalVolume, Pickups.Approved " + "\r\n";
+            queryString = queryString + "       SELECT      Pickups.PickupID, CAST(Pickups.EntryDate AS DATE) AS EntryDate, Pickups.Reference, Locations.Code AS LocationCode, Warehouses.Name AS WarehouseName, Pickups.Description, Pickups.TotalQuantity, Pickups.TotalLineVolume, Pickups.Approved " + "\r\n";
             queryString = queryString + "       FROM        Pickups " + "\r\n";
             queryString = queryString + "                   INNER JOIN Locations ON Pickups.EntryDate >= @FromDate AND Pickups.EntryDate <= @ToDate AND Pickups.OrganizationalUnitID IN (SELECT AccessControls.OrganizationalUnitID FROM AccessControls INNER JOIN AspNetUsers ON AccessControls.UserID = AspNetUsers.UserID WHERE AspNetUsers.Id = @AspUserID AND AccessControls.NMVNTaskID = " + (int)TotalBase.Enums.GlobalEnums.NmvnTaskID.Pickup + " AND AccessControls.AccessLevel > 0) AND Locations.LocationID = Pickups.LocationID " + "\r\n";
             queryString = queryString + "                   INNER JOIN Warehouses ON Pickups.WarehouseID = Warehouses.WarehouseID " + "\r\n";
@@ -71,7 +71,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
             queryString = queryString + "       SELECT      PickupDetails.PickupDetailID, PickupDetails.PickupID, Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, PickupDetails.BinLocationID, BinLocations.Code AS BinLocationCode, " + "\r\n";
             queryString = queryString + "                   PickupDetails.PackID, Packs.Code AS PackCode, Packs.EntryDate AS PackEntryDate, PickupDetails.CartonID, Cartons.Code AS CartonCode, Cartons.EntryDate AS CartonEntryDate, PickupDetails.PalletID, Pallets.Code AS PalletCode, Pallets.EntryDate AS PalletEntryDate, " + "\r\n";
-            queryString = queryString + "                   PickupDetails.PackCounts, PickupDetails.CartonCounts, PickupDetails.PalletCounts, PickupDetails.Quantity, PickupDetails.Volume, PickupDetails.Remarks " + "\r\n";
+            queryString = queryString + "                   PickupDetails.PackCounts, PickupDetails.CartonCounts, PickupDetails.PalletCounts, PickupDetails.Quantity, PickupDetails.LineVolume, PickupDetails.Remarks " + "\r\n";
             queryString = queryString + "       FROM        PickupDetails " + "\r\n";
             queryString = queryString + "                   INNER JOIN Commodities ON PickupDetails.PickupID = @PickupID AND PickupDetails.CommodityID = Commodities.CommodityID " + "\r\n";
             queryString = queryString + "                   INNER JOIN BinLocations ON PickupDetails.BinLocationID = BinLocations.BinLocationID " + "\r\n";
@@ -145,7 +145,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             string queryString = "";
 
             queryString = queryString + "       SELECT      Pallets.PalletID, Pallets.EntryDate, Pallets.Code, Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, " + "\r\n";
-            queryString = queryString + "                   ROUND(Pallets.Quantity - Pallets.QuantityPickup,  " + (int)GlobalEnums.rndQuantity + ") AS QuantityRemains, CAST(0 AS decimal(18, 2)) AS Quantity, Pallets.PackCounts, Pallets.CartonCounts, 1 AS PalletCounts, Pallets.Volume " + "\r\n";
+            queryString = queryString + "                   ROUND(Pallets.Quantity - Pallets.QuantityPickup,  " + (int)GlobalEnums.rndQuantity + ") AS QuantityRemains, CAST(0 AS decimal(18, 2)) AS Quantity, Pallets.PackCounts, Pallets.CartonCounts, 1 AS PalletCounts, Pallets.LineVolume " + "\r\n";
 
             queryString = queryString + "       FROM        Pallets " + "\r\n";
             queryString = queryString + "                   INNER JOIN Commodities ON Pallets.LocationID = @LocationID AND ROUND(Pallets.Quantity - Pallets.QuantityPickup, " + (int)GlobalEnums.rndQuantity + ") > 0 AND Pallets.CommodityID = Commodities.CommodityID " + (isPalletIDs ? " AND Pallets.PalletID NOT IN (SELECT Id FROM dbo.SplitToIntList (@PalletIDs))" : "") + "\r\n";
@@ -157,7 +157,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
         {
             string queryString = "";
             queryString = queryString + "       SELECT      Pallets.PalletID, Pallets.EntryDate, Pallets.Code, Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, " + "\r\n";
-            queryString = queryString + "                   ROUND(Pallets.Quantity - Pallets.QuantityPickup + Pallets.Quantity,  " + (int)GlobalEnums.rndQuantity + ") AS QuantityRemains, CAST(0 AS decimal(18, 2)) AS Quantity, Pallets.PackCounts, Pallets.CartonCounts, 1 AS PalletCounts, Pallets.Volume " + "\r\n";
+            queryString = queryString + "                   ROUND(Pallets.Quantity - Pallets.QuantityPickup + Pallets.Quantity,  " + (int)GlobalEnums.rndQuantity + ") AS QuantityRemains, CAST(0 AS decimal(18, 2)) AS Quantity, Pallets.PackCounts, Pallets.CartonCounts, 1 AS PalletCounts, Pallets.LineVolume " + "\r\n";
 
             queryString = queryString + "       FROM        PickupDetails" + "\r\n";
             queryString = queryString + "                   INNER JOIN Pallets ON PickupDetails.PickupID = @PickupID AND PickupDetails.PalletID = Pallets.PalletID " + (isPalletIDs ? " AND Pallets.PalletID NOT IN (SELECT Id FROM dbo.SplitToIntList (@PalletIDs))" : "") + "\r\n";
