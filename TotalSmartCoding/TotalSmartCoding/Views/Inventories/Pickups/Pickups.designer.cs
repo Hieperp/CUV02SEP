@@ -35,7 +35,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.tableLayoutPanelMaster = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutMaster = new System.Windows.Forms.TableLayoutPanel();
             this.textexRemarks = new CustomControls.TextexBox();
             this.textexTotalVolume = new CustomControls.TextexBox();
             this.textexTotalPack = new CustomControls.TextexBox();
@@ -79,7 +79,7 @@
             this.olvID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvEntryDate = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.naviPendingItems = new Guifreaks.Navisuite.NaviBar(this.components);
-            this.naviPendingPallet = new Guifreaks.Navisuite.NaviBand(this.components);
+            this.naviPendingPallets = new Guifreaks.Navisuite.NaviBand(this.components);
             this.fastPendingPallets = new BrightIdeasSoftware.FastObjectListView();
             this.olvCommodityCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -93,7 +93,7 @@
             this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tableLayoutPanelMaster.SuspendLayout();
+            this.tableLayoutMaster.SuspendLayout();
             this.toolStripChildForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.naviDetails)).BeginInit();
             this.naviDetails.SuspendLayout();
@@ -101,8 +101,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridexPalletDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fastPickupIndex)).BeginInit();
             this.naviPendingItems.SuspendLayout();
-            this.naviPendingPallet.ClientArea.SuspendLayout();
-            this.naviPendingPallet.SuspendLayout();
+            this.naviPendingPallets.ClientArea.SuspendLayout();
+            this.naviPendingPallets.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastPendingPallets)).BeginInit();
             this.naviIndex.SuspendLayout();
             this.naviPickupIndex.ClientArea.SuspendLayout();
@@ -111,53 +111,53 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridexPackDetails)).BeginInit();
             this.SuspendLayout();
             // 
-            // tableLayoutPanelMaster
+            // tableLayoutMaster
             // 
-            this.tableLayoutPanelMaster.AutoSize = true;
-            this.tableLayoutPanelMaster.BackColor = System.Drawing.Color.Transparent;
-            this.tableLayoutPanelMaster.ColumnCount = 6;
-            this.tableLayoutPanelMaster.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanelMaster.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanelMaster.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
-            this.tableLayoutPanelMaster.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanelMaster.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanelMaster.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 27F));
-            this.tableLayoutPanelMaster.Controls.Add(this.textexRemarks, 4, 5);
-            this.tableLayoutPanelMaster.Controls.Add(this.textexTotalVolume, 4, 4);
-            this.tableLayoutPanelMaster.Controls.Add(this.textexTotalPack, 4, 3);
-            this.tableLayoutPanelMaster.Controls.Add(this.textexTotalCarton, 4, 2);
-            this.tableLayoutPanelMaster.Controls.Add(this.textexTotalPallet, 4, 1);
-            this.tableLayoutPanelMaster.Controls.Add(this.label1, 3, 5);
-            this.tableLayoutPanelMaster.Controls.Add(this.label8, 3, 4);
-            this.tableLayoutPanelMaster.Controls.Add(this.label5, 3, 3);
-            this.tableLayoutPanelMaster.Controls.Add(this.label2, 3, 2);
-            this.tableLayoutPanelMaster.Controls.Add(this.label4, 3, 1);
-            this.tableLayoutPanelMaster.Controls.Add(this.combexStorekeeperID, 1, 5);
-            this.tableLayoutPanelMaster.Controls.Add(this.combexForkliftDriverID, 1, 4);
-            this.tableLayoutPanelMaster.Controls.Add(this.textexReference, 1, 2);
-            this.tableLayoutPanelMaster.Controls.Add(this.dateTimexEntryDate, 1, 1);
-            this.tableLayoutPanelMaster.Controls.Add(this.label9, 0, 5);
-            this.tableLayoutPanelMaster.Controls.Add(this.label3, 0, 4);
-            this.tableLayoutPanelMaster.Controls.Add(this.label10, 0, 3);
-            this.tableLayoutPanelMaster.Controls.Add(this.label7, 0, 2);
-            this.tableLayoutPanelMaster.Controls.Add(this.label6, 0, 1);
-            this.tableLayoutPanelMaster.Controls.Add(this.textexWarehouseCode, 1, 3);
-            this.tableLayoutPanelMaster.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanelMaster.Location = new System.Drawing.Point(0, 53);
-            this.tableLayoutPanelMaster.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanelMaster.Name = "tableLayoutPanelMaster";
-            this.tableLayoutPanelMaster.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.tableLayoutPanelMaster.RowCount = 7;
-            this.tableLayoutPanelMaster.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 5F));
-            this.tableLayoutPanelMaster.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanelMaster.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanelMaster.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanelMaster.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanelMaster.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanelMaster.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanelMaster.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanelMaster.Size = new System.Drawing.Size(1097, 262);
-            this.tableLayoutPanelMaster.TabIndex = 62;
+            this.tableLayoutMaster.AutoSize = true;
+            this.tableLayoutMaster.BackColor = System.Drawing.Color.Transparent;
+            this.tableLayoutMaster.ColumnCount = 6;
+            this.tableLayoutMaster.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutMaster.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutMaster.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.tableLayoutMaster.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutMaster.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutMaster.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+            this.tableLayoutMaster.Controls.Add(this.textexRemarks, 4, 5);
+            this.tableLayoutMaster.Controls.Add(this.textexTotalVolume, 4, 4);
+            this.tableLayoutMaster.Controls.Add(this.textexTotalPack, 4, 3);
+            this.tableLayoutMaster.Controls.Add(this.textexTotalCarton, 4, 2);
+            this.tableLayoutMaster.Controls.Add(this.textexTotalPallet, 4, 1);
+            this.tableLayoutMaster.Controls.Add(this.label1, 3, 5);
+            this.tableLayoutMaster.Controls.Add(this.label8, 3, 4);
+            this.tableLayoutMaster.Controls.Add(this.label5, 3, 3);
+            this.tableLayoutMaster.Controls.Add(this.label2, 3, 2);
+            this.tableLayoutMaster.Controls.Add(this.label4, 3, 1);
+            this.tableLayoutMaster.Controls.Add(this.combexStorekeeperID, 1, 5);
+            this.tableLayoutMaster.Controls.Add(this.combexForkliftDriverID, 1, 4);
+            this.tableLayoutMaster.Controls.Add(this.textexReference, 1, 2);
+            this.tableLayoutMaster.Controls.Add(this.dateTimexEntryDate, 1, 1);
+            this.tableLayoutMaster.Controls.Add(this.label9, 0, 5);
+            this.tableLayoutMaster.Controls.Add(this.label3, 0, 4);
+            this.tableLayoutMaster.Controls.Add(this.label10, 0, 3);
+            this.tableLayoutMaster.Controls.Add(this.label7, 0, 2);
+            this.tableLayoutMaster.Controls.Add(this.label6, 0, 1);
+            this.tableLayoutMaster.Controls.Add(this.textexWarehouseCode, 1, 3);
+            this.tableLayoutMaster.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutMaster.Location = new System.Drawing.Point(0, 53);
+            this.tableLayoutMaster.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutMaster.Name = "tableLayoutMaster";
+            this.tableLayoutMaster.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            this.tableLayoutMaster.RowCount = 7;
+            this.tableLayoutMaster.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 5F));
+            this.tableLayoutMaster.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutMaster.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutMaster.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutMaster.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutMaster.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutMaster.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutMaster.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutMaster.Size = new System.Drawing.Size(1097, 262);
+            this.tableLayoutMaster.TabIndex = 62;
             // 
             // textexRemarks
             // 
@@ -432,7 +432,7 @@
             // 
             this.naviDetails.Caption = "   Pickup for";
             this.naviDetails.Controls.Add(this.labelFillingLineName);
-            this.naviDetails.Controls.Add(this.tableLayoutPanelMaster);
+            this.naviDetails.Controls.Add(this.tableLayoutMaster);
             this.naviDetails.Dock = System.Windows.Forms.DockStyle.Top;
             this.naviDetails.ExpandedHeight = 315;
             this.naviDetails.Font = new System.Drawing.Font("Cambria", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -641,8 +641,8 @@
             // 
             // naviPendingItems
             // 
-            this.naviPendingItems.ActiveBand = this.naviPendingPallet;
-            this.naviPendingItems.Controls.Add(this.naviPendingPallet);
+            this.naviPendingItems.ActiveBand = this.naviPendingPallets;
+            this.naviPendingItems.Controls.Add(this.naviPendingPallets);
             this.naviPendingItems.Dock = System.Windows.Forms.DockStyle.Right;
             this.naviPendingItems.Font = new System.Drawing.Font("Cambria", 31.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.naviPendingItems.HeaderHeight = 50;
@@ -653,24 +653,24 @@
             this.naviPendingItems.TabIndex = 69;
             this.naviPendingItems.Text = "naviBar1";
             // 
-            // naviPendingPallet
+            // naviPendingPallets
             // 
             // 
-            // naviPendingPallet.ClientArea
+            // naviPendingPallets.ClientArea
             // 
-            this.naviPendingPallet.ClientArea.Controls.Add(this.fastPendingPallets);
-            this.naviPendingPallet.ClientArea.LayoutStyle = Guifreaks.Navisuite.NaviLayoutStyle.StyleFromOwner;
-            this.naviPendingPallet.ClientArea.Location = new System.Drawing.Point(0, 0);
-            this.naviPendingPallet.ClientArea.Name = "ClientArea";
-            this.naviPendingPallet.ClientArea.Size = new System.Drawing.Size(481, 705);
-            this.naviPendingPallet.ClientArea.TabIndex = 0;
-            this.naviPendingPallet.LargeImageIndex = 0;
-            this.naviPendingPallet.LayoutStyle = Guifreaks.Navisuite.NaviLayoutStyle.StyleFromOwner;
-            this.naviPendingPallet.Location = new System.Drawing.Point(1, 50);
-            this.naviPendingPallet.Name = "naviPendingPallet";
-            this.naviPendingPallet.Size = new System.Drawing.Size(481, 705);
-            this.naviPendingPallet.SmallImageIndex = 0;
-            this.naviPendingPallet.TabIndex = 3;
+            this.naviPendingPallets.ClientArea.Controls.Add(this.fastPendingPallets);
+            this.naviPendingPallets.ClientArea.LayoutStyle = Guifreaks.Navisuite.NaviLayoutStyle.StyleFromOwner;
+            this.naviPendingPallets.ClientArea.Location = new System.Drawing.Point(0, 0);
+            this.naviPendingPallets.ClientArea.Name = "ClientArea";
+            this.naviPendingPallets.ClientArea.Size = new System.Drawing.Size(481, 705);
+            this.naviPendingPallets.ClientArea.TabIndex = 0;
+            this.naviPendingPallets.LargeImageIndex = 0;
+            this.naviPendingPallets.LayoutStyle = Guifreaks.Navisuite.NaviLayoutStyle.StyleFromOwner;
+            this.naviPendingPallets.Location = new System.Drawing.Point(1, 50);
+            this.naviPendingPallets.Name = "naviPendingPallets";
+            this.naviPendingPallets.Size = new System.Drawing.Size(481, 705);
+            this.naviPendingPallets.SmallImageIndex = 0;
+            this.naviPendingPallets.TabIndex = 3;
             // 
             // fastPendingPallets
             // 
@@ -851,8 +851,8 @@
             this.Controls.SetChildIndex(this.naviIndex, 0);
             this.Controls.SetChildIndex(this.naviDetails, 0);
             this.Controls.SetChildIndex(this.panelMaster, 0);
-            this.tableLayoutPanelMaster.ResumeLayout(false);
-            this.tableLayoutPanelMaster.PerformLayout();
+            this.tableLayoutMaster.ResumeLayout(false);
+            this.tableLayoutMaster.PerformLayout();
             this.toolStripChildForm.ResumeLayout(false);
             this.toolStripChildForm.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.naviDetails)).EndInit();
@@ -862,8 +862,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridexPalletDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fastPickupIndex)).EndInit();
             this.naviPendingItems.ResumeLayout(false);
-            this.naviPendingPallet.ClientArea.ResumeLayout(false);
-            this.naviPendingPallet.ResumeLayout(false);
+            this.naviPendingPallets.ClientArea.ResumeLayout(false);
+            this.naviPendingPallets.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.fastPendingPallets)).EndInit();
             this.naviIndex.ResumeLayout(false);
             this.naviPickupIndex.ClientArea.ResumeLayout(false);
@@ -877,7 +877,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelMaster;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutMaster;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label4;
         private Guifreaks.Navisuite.NaviGroup naviDetails;
@@ -911,7 +911,7 @@
         private CustomControls.TextexBox textexTotalVolume;
         private CustomControls.TextexBox textexRemarks;
         private Guifreaks.Navisuite.NaviBand naviPickupIndex;
-        private Guifreaks.Navisuite.NaviBand naviPendingPallet;
+        private Guifreaks.Navisuite.NaviBand naviPendingPallets;
         private BrightIdeasSoftware.FastObjectListView fastPendingPallets;
         private BrightIdeasSoftware.OLVColumn olvCommodityCode;
         private BrightIdeasSoftware.OLVColumn olvCode;
