@@ -96,6 +96,31 @@ namespace TotalDTO.Helpers
             set { ApplyPropertyChange<QuantityDetailDTO, decimal>(ref this.packageVolume, o => o.PackageVolume, Math.Round(value, (int)GlobalEnums.rndVolume)); }
         }
 
+
+
+
+
+
+
+
+        private decimal quantityAvailable;
+        [DefaultValue(0)]
+        [Range(0, 99999999999, ErrorMessage = "Số lượng không hợp lệ")]
+        public virtual decimal QuantityAvailable
+        {
+            get { return this.quantityAvailable; }
+            set { ApplyPropertyChange<QuantityDetailDTO, decimal>(ref this.quantityAvailable, o => o.QuantityAvailable, Math.Round(value, (int)GlobalEnums.rndQuantity)); }
+        }
+
+        private decimal lineVolumeAvailable;
+        [DefaultValue(0)]
+        [Range(0, 99999999999, ErrorMessage = "LineVolumeAvailable không hợp lệ")]
+        public virtual decimal LineVolumeAvailable
+        {
+            get { return this.lineVolumeAvailable; }
+            set { ApplyPropertyChange<QuantityDetailDTO, decimal>(ref this.lineVolumeAvailable, o => o.LineVolumeAvailable, Math.Round(value, (int)GlobalEnums.rndVolume)); }
+        }
+
         private decimal quantity;
         [DefaultValue(0)]
         [Range(0, 99999999999, ErrorMessage = "Số lượng không hợp lệ")]

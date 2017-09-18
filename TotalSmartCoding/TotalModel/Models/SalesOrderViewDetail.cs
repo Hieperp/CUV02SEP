@@ -25,5 +25,7 @@ namespace TotalModel.Models
         public string PackageSize { get; set; }
         public decimal PackageVolume { get; set; }
         public decimal LineVolume { get; set; }
+        public decimal QuantityAvailable { get; set; }
+        public decimal LineVolumeAvailable { get; set; }
     }
 }

@@ -68,10 +68,14 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
-            queryString = queryString + "       SELECT      SalesOrderDetails.SalesOrderDetailID, SalesOrderDetails.SalesOrderID, Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, " + "\r\n";
-            queryString = queryString + "                   Commodities.Unit, Commodities.PackageSize, Commodities.Volume, Commodities.PackageVolume, SalesOrderDetails.Quantity, SalesOrderDetails.LineVolume, SalesOrderDetails.Remarks " + "\r\n";
-            queryString = queryString + "       FROM        SalesOrderDetails " + "\r\n";
-            queryString = queryString + "                   INNER JOIN Commodities ON SalesOrderDetails.SalesOrderID = @SalesOrderID AND SalesOrderDetails.CommodityID = Commodities.CommodityID " + "\r\n";
+            queryString = queryString + "       DECLARE     @SalesOrderDetails TABLE (SalesOrderID int NOT NULL, SalesOrderDetailID int NOT NULL, EntryDate datetime NOT NULL, LocationID int NOT NULL, CommodityID int NOT NULL, Quantity decimal(18, 2) NOT NULL, LineVolume decimal(18, 2) NOT NULL, Remarks nvarchar(100) NULL) " + "\r\n";
+            queryString = queryString + "       INSERT INTO @SalesOrderDetails (SalesOrderID, SalesOrderDetailID, EntryDate, LocationID, CommodityID, Quantity, LineVolume, Remarks) SELECT SalesOrderID, SalesOrderDetailID, EntryDate, LocationID, CommodityID, Quantity, LineVolume, Remarks FROM SalesOrderDetails WHERE SalesOrderID = @SalesOrderID " + "\r\n";
+
+            queryString = queryString + "       SELECT      SalesOrderDetails.SalesOrderDetailID, SalesOrderDetails.SalesOrderID, Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, Commodities.Unit, Commodities.PackageSize, Commodities.Volume, Commodities.PackageVolume, " + "\r\n";
+            queryString = queryString + "                   ISNULL(CommoditiesAvailable.QuantityAvailable, 0) AS QuantityAvailable, ISNULL(CommoditiesAvailable.LineVolumeAvailable, 0) AS LineVolumeAvailable, SalesOrderDetails.Quantity, SalesOrderDetails.LineVolume, SalesOrderDetails.Remarks " + "\r\n";
+            queryString = queryString + "       FROM        @SalesOrderDetails SalesOrderDetails " + "\r\n";
+            queryString = queryString + "                   INNER JOIN Commodities ON SalesOrderDetails.CommodityID = Commodities.CommodityID" + "\r\n";
+            queryString = queryString + "                   LEFT JOIN (SELECT LocationID, CommodityID, SUM(Quantity - QuantityIssue) AS QuantityAvailable, SUM(LineVolume - LineVolumeIssue) AS LineVolumeAvailable FROM GoodsReceiptDetails WHERE ROUND(Quantity - QuantityIssue, 0) > 0 AND LocationID = (SELECT TOP 1 LocationID FROM @SalesOrderDetails) AND CommodityID IN (SELECT DISTINCT CommodityID FROM @SalesOrderDetails) GROUP BY LocationID, CommodityID) CommoditiesAvailable ON SalesOrderDetails.CommodityID = CommoditiesAvailable.CommodityID " + "\r\n";
 
             queryString = queryString + "    END " + "\r\n";
 

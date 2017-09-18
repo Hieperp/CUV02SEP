@@ -25,5 +25,13 @@ namespace TotalModel.Models
         public decimal Quantity { get; set; }
         public decimal LineVolume { get; set; }
         public string Remarks { get; set; }
+        public string Unit { get; set; }
+        public string PackageSize { get; set; }
+        public decimal Volume { get; set; }
+        public decimal PackageVolume { get; set; }
+        public decimal QuantityAvailable { get; set; }
+        public decimal LineVolumeAvailable { get; set; }
+        public Nullable<decimal> QuantityRemains { get; set; }
+        public Nullable<decimal> LineVolumeRemains { get; set; }
     }
 }

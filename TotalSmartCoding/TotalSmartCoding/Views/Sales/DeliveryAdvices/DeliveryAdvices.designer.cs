@@ -60,6 +60,8 @@
             this.olvReference = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.CommodityCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CommodityName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QuantityAvailable = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LineVolumeAvailable = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LineVolume = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PalletCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -92,7 +94,7 @@
             this.tableLayoutPanelMaster.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.tableLayoutPanelMaster.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.0191F));
             this.tableLayoutPanelMaster.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.32023F));
-            this.tableLayoutPanelMaster.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 245F));
+            this.tableLayoutPanelMaster.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 248F));
             this.tableLayoutPanelMaster.Controls.Add(this.label6, 0, 0);
             this.tableLayoutPanelMaster.Controls.Add(this.label7, 0, 1);
             this.tableLayoutPanelMaster.Controls.Add(this.label1, 6, 1);
@@ -140,7 +142,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(717, 41);
+            this.label1.Location = new System.Drawing.Point(715, 41);
             this.label1.Margin = new System.Windows.Forms.Padding(3);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(98, 14);
@@ -152,7 +154,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Location = new System.Drawing.Point(358, 3);
+            this.label4.Location = new System.Drawing.Point(357, 3);
             this.label4.Margin = new System.Windows.Forms.Padding(1);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(102, 34);
@@ -164,7 +166,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label14.Location = new System.Drawing.Point(715, 3);
+            this.label14.Location = new System.Drawing.Point(713, 3);
             this.label14.Margin = new System.Windows.Forms.Padding(1);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(102, 34);
@@ -176,7 +178,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(360, 41);
+            this.label2.Location = new System.Drawing.Point(359, 41);
             this.label2.Margin = new System.Windows.Forms.Padding(3);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(98, 14);
@@ -192,7 +194,7 @@
             this.dateTimexEntryDate.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.dateTimexEntryDate.Name = "dateTimexEntryDate";
             this.dateTimexEntryDate.ReadOnly = false;
-            this.dateTimexEntryDate.Size = new System.Drawing.Size(239, 22);
+            this.dateTimexEntryDate.Size = new System.Drawing.Size(238, 22);
             this.dateTimexEntryDate.TabIndex = 70;
             // 
             // textexReference
@@ -202,7 +204,7 @@
             this.textexReference.Location = new System.Drawing.Point(107, 39);
             this.textexReference.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.textexReference.Name = "textexReference";
-            this.textexReference.Size = new System.Drawing.Size(239, 22);
+            this.textexReference.Size = new System.Drawing.Size(238, 22);
             this.textexReference.TabIndex = 71;
             // 
             // toolStripNaviGroupDetails
@@ -234,7 +236,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label11.Location = new System.Drawing.Point(358, 5);
+            this.label11.Location = new System.Drawing.Point(357, 5);
             this.label11.Margin = new System.Windows.Forms.Padding(3);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(97, 20);
@@ -246,7 +248,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label12.Location = new System.Drawing.Point(713, 5);
+            this.label12.Location = new System.Drawing.Point(711, 5);
             this.label12.Margin = new System.Windows.Forms.Padding(3);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(97, 20);
@@ -309,6 +311,8 @@
             this.gridexViewDetails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CommodityCode,
             this.CommodityName,
+            this.QuantityAvailable,
+            this.LineVolumeAvailable,
             this.Quantity,
             this.LineVolume,
             this.PalletCode,
@@ -386,7 +390,7 @@
             this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.019F));
             this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.32099F));
-            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 251F));
+            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 254F));
             this.tableLayoutPanelExtend.Controls.Add(this.combexCommodityID, 0, 0);
             this.tableLayoutPanelExtend.Controls.Add(this.label11, 3, 0);
             this.tableLayoutPanelExtend.Controls.Add(this.label12, 6, 0);
@@ -412,7 +416,7 @@
             this.combexCommodityID.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.combexCommodityID.Name = "combexCommodityID";
             this.combexCommodityID.ReadOnly = false;
-            this.combexCommodityID.Size = new System.Drawing.Size(238, 24);
+            this.combexCommodityID.Size = new System.Drawing.Size(237, 24);
             this.combexCommodityID.TabIndex = 72;
             // 
             // label10
@@ -486,6 +490,20 @@
             this.CommodityName.DataPropertyName = "CommodityName";
             this.CommodityName.HeaderText = "Item Name";
             this.CommodityName.Name = "CommodityName";
+            // 
+            // QuantityAvailable
+            // 
+            this.QuantityAvailable.DataPropertyName = "QuantityAvailable";
+            this.QuantityAvailable.HeaderText = "QuantityAvailable";
+            this.QuantityAvailable.Name = "QuantityAvailable";
+            this.QuantityAvailable.ReadOnly = true;
+            // 
+            // LineVolumeAvailable
+            // 
+            this.LineVolumeAvailable.DataPropertyName = "LineVolumeAvailable";
+            this.LineVolumeAvailable.HeaderText = "LineVolumeAvailable";
+            this.LineVolumeAvailable.Name = "LineVolumeAvailable";
+            this.LineVolumeAvailable.ReadOnly = true;
             // 
             // Quantity
             // 
@@ -589,6 +607,8 @@
         private CustomControls.DataGridexView gridexViewDetails;
         private System.Windows.Forms.DataGridViewTextBoxColumn CommodityCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn CommodityName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn QuantityAvailable;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LineVolumeAvailable;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn LineVolume;
         private System.Windows.Forms.DataGridViewTextBoxColumn PalletCode;

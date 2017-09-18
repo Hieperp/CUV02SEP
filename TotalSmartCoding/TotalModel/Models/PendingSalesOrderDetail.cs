@@ -20,15 +20,16 @@ namespace TotalModel.Models
         public int CommodityID { get; set; }
         public string CommodityCode { get; set; }
         public string CommodityName { get; set; }
-        public Nullable<decimal> QuantityRemains { get; set; }
+        public decimal QuantityRemains { get; set; }
         public Nullable<decimal> Quantity { get; set; }
-        public Nullable<decimal> LineVolumeRemains { get; set; }
+        public decimal LineVolumeRemains { get; set; }
         public Nullable<decimal> LineVolume { get; set; }
-        public string Description { get; set; }
         public string Remarks { get; set; }
         public Nullable<bool> IsSelected { get; set; }
         public string PackageSize { get; set; }
         public decimal Volume { get; set; }
         public decimal PackageVolume { get; set; }
+        public decimal QuantityAvailable { get; set; }
+        public decimal LineVolumeAvailable { get; set; }
     }
 }
