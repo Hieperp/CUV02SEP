@@ -11,6 +11,8 @@ using TotalModel;
 using TotalBase.Enums;
 using TotalDTO.Helpers;
 using TotalDTO.Commons;
+using TotalModel.Helpers;
+using TotalBase;
 
 namespace TotalDTO.Inventories
 {
@@ -30,6 +32,22 @@ namespace TotalDTO.Inventories
         }
 
 
+
+
+        private int warehouseID;
+        [DefaultValue(null)]
+        public int WarehouseID
+        {
+            get { return this.warehouseID; }
+            set { ApplyPropertyChange<GoodsReceiptPrimitiveDTO, int>(ref this.warehouseID, o => o.WarehouseID, value); }
+        }
+        private string warehouseName;
+        [DefaultValue("")]
+        public string WarehouseName
+        {
+            get { return this.warehouseName; }
+            set { ApplyPropertyChange<GoodsReceiptDTO, string>(ref this.warehouseName, o => o.WarehouseName, value); }
+        }
 
 
         private int warehouseAdjustmentTypeID;
@@ -63,8 +81,20 @@ namespace TotalDTO.Inventories
         {
             base.PerformPresaveRule();
 
-            this.DtoDetails().ToList().ForEach(e => { e.WarehouseAdjustmentTypeID = this.WarehouseAdjustmentTypeID; });
+            this.DtoDetails().ToList().ForEach(e => { e.WarehouseID = this.WarehouseID; e.WarehouseAdjustmentTypeID = this.WarehouseAdjustmentTypeID; });
         }
+
+        protected override List<ValidationRule> CreateRules()
+        {
+            List<ValidationRule> validationRules = base.CreateRules();
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<WarehouseAdjustmentPrimitiveDTO>(p => p.WarehouseID), "Vui lòng chọn kho.", delegate { return (this.WarehouseID != null && this.WarehouseID > 0); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<WarehouseAdjustmentPrimitiveDTO>(p => p.WarehouseAdjustmentTypeID), "Vui lòng chọn tài xế.", delegate { return (this.WarehouseAdjustmentTypeID != null && this.WarehouseAdjustmentTypeID > 0); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<WarehouseAdjustmentPrimitiveDTO>(p => p.StorekeeperID), "Vui lòng chọn nhân viên kho.", delegate { return (this.StorekeeperID != null && this.StorekeeperID > 0); }));
+
+            return validationRules;
+
+        }
+
     }
 
     public class WarehouseAdjustmentDTO : WarehouseAdjustmentPrimitiveDTO, IBaseDetailEntity<WarehouseAdjustmentDetailDTO>

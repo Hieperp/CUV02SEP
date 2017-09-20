@@ -119,7 +119,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
             {
                 if (sender.Equals(this.buttonOK))
                 {
-                    if (this.pickupViewModel.WarehouseID != null && this.pickupViewModel.ForkliftDriverID != null && this.pickupViewModel.StorekeeperID != null)
+                    if (this.pickupViewModel.FillingLineID != null && this.pickupViewModel.WarehouseID != null && this.pickupViewModel.ForkliftDriverID != null && this.pickupViewModel.StorekeeperID != null)
                     this.DialogResult = DialogResult.OK;
                     else
                         CustomMsgBox.Show(this, "Vui lòng chọn kho, tài xế và nhân viên kho.", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Stop);

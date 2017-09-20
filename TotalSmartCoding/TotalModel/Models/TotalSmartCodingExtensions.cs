@@ -280,6 +280,20 @@ namespace TotalModel.Models
         public System.DateTime EditedDate { get; set; }
     }
 
+    public partial class WarehouseAdjustmentType : IPrimitiveEntity, IBaseEntity
+    {
+        public int GetID() { return this.WarehouseAdjustmentTypeID; }
+
+        public int LocationID { get; set; }
+
+        public int UserID { get; set; }
+        public int PreparedPersonID { get; set; }
+        public int OrganizationalUnitID { get; set; }
+
+        public System.DateTime CreatedDate { get; set; }
+        public System.DateTime EditedDate { get; set; }
+    }
+
     public partial class BinLocation : IPrimitiveEntity, IBaseEntity
     {
         public int GetID() { return this.BinLocationID; }

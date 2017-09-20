@@ -85,6 +85,15 @@ namespace TotalSmartCoding.Libraries
                 Kernel.Bind<IGoodsIssueAPIRepository>().To<GoodsIssueAPIRepository>();
                 Kernel.Bind<GoodsIssueViewModel>().ToSelf();
 
+                Kernel.Bind<IWarehouseAdjustmentService>().To<WarehouseAdjustmentService>();
+                Kernel.Bind<IWarehouseAdjustmentRepository>().To<WarehouseAdjustmentRepository>();
+                Kernel.Bind<IWarehouseAdjustmentAPIRepository>().To<WarehouseAdjustmentAPIRepository>();
+                Kernel.Bind<WarehouseAdjustmentViewModel>().ToSelf();
+
+
+
+
+
 
                 Kernel.Bind<IAspNetUserRepository>().To<AspNetUserRepository>();
 
@@ -113,6 +122,11 @@ namespace TotalSmartCoding.Libraries
                 Kernel.Bind<IWarehouseRepository>().To<WarehouseRepository>();
                 Kernel.Bind<IWarehouseAPIRepository>().To<WarehouseAPIRepository>();
                 //Kernel.Bind<WarehouseViewModel>().ToSelf();
+
+                //Kernel.Bind<IWarehouseAdjustmentTypeService>().To<WarehouseAdjustmentTypeService>();
+                Kernel.Bind<IWarehouseAdjustmentTypeRepository>().To<WarehouseAdjustmentTypeRepository>();
+                Kernel.Bind<IWarehouseAdjustmentTypeAPIRepository>().To<WarehouseAdjustmentTypeAPIRepository>();
+                //Kernel.Bind<WarehouseAdjustmentTypeViewModel>().ToSelf();
 
 
                 //Kernel.Bind<IBinLocationService>().To<BinLocationService>();

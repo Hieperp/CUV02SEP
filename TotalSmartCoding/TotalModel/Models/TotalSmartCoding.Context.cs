@@ -56,8 +56,8 @@ namespace TotalModel.Models
         public virtual DbSet<SalesOrderDetail> SalesOrderDetails { get; set; }
         public virtual DbSet<SalesOrder> SalesOrders { get; set; }
         public virtual DbSet<WarehouseAdjustmentDetail> WarehouseAdjustmentDetails { get; set; }
-        public virtual DbSet<WarehouseAdjustment> WarehouseAdjustments { get; set; }
         public virtual DbSet<WarehouseAdjustmentType> WarehouseAdjustmentTypes { get; set; }
+        public virtual DbSet<WarehouseAdjustment> WarehouseAdjustments { get; set; }
     
         public virtual ObjectResult<Nullable<int>> GetAccessLevel(Nullable<int> userID, Nullable<int> nMVNTaskID, Nullable<int> organizationalUnitID)
         {
@@ -1259,6 +1259,28 @@ namespace TotalModel.Models
                 new ObjectParameter("Approved", typeof(bool));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("WarehouseAdjustmentToggleApproved", entityIDParameter, approvedParameter);
+        }
+    
+        public virtual ObjectResult<WarehouseAdjustmentTypeBase> GetWarehouseAdjustmentTypeBases()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<WarehouseAdjustmentTypeBase>("GetWarehouseAdjustmentTypeBases");
+        }
+    
+        public virtual ObjectResult<WarehouseAdjustmentTypeIndex> GetWarehouseAdjustmentTypeIndexes(string aspUserID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
+        {
+            var aspUserIDParameter = aspUserID != null ?
+                new ObjectParameter("AspUserID", aspUserID) :
+                new ObjectParameter("AspUserID", typeof(string));
+    
+            var fromDateParameter = fromDate.HasValue ?
+                new ObjectParameter("FromDate", fromDate) :
+                new ObjectParameter("FromDate", typeof(System.DateTime));
+    
+            var toDateParameter = toDate.HasValue ?
+                new ObjectParameter("ToDate", toDate) :
+                new ObjectParameter("ToDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<WarehouseAdjustmentTypeIndex>("GetWarehouseAdjustmentTypeIndexes", aspUserIDParameter, fromDateParameter, toDateParameter);
         }
     }
 }

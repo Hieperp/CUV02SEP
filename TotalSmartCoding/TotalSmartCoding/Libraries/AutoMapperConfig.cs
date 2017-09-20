@@ -64,6 +64,11 @@ namespace TotalSmartCoding.Libraries
 
 
 
+                cfg.CreateMap<WarehouseAdjustment, WarehouseAdjustmentViewModel>();
+                cfg.CreateMap<WarehouseAdjustment, WarehouseAdjustmentDTO>();
+                cfg.CreateMap<WarehouseAdjustmentPrimitiveDTO, WarehouseAdjustment>();
+                cfg.CreateMap<WarehouseAdjustmentViewDetail, WarehouseAdjustmentDetailDTO>();
+                cfg.CreateMap<WarehouseAdjustmentDetailDTO, WarehouseAdjustmentDetail>();
 
 
 
@@ -94,6 +99,7 @@ namespace TotalSmartCoding.Libraries
                 //cfg.CreateMap<Employee, EmployeeBaseDTO>();
                 cfg.CreateMap<Customer, CustomerBaseDTO>();
                 cfg.CreateMap<Warehouse, WarehouseBaseDTO>();
+                cfg.CreateMap<WarehouseAdjustmentType, WarehouseAdjustmentTypeBaseDTO>();
             });
         }
     }

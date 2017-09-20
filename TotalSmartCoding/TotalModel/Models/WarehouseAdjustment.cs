@@ -23,7 +23,6 @@ namespace TotalModel.Models
         public int WarehouseAdjustmentID { get; set; }
         public System.DateTime EntryDate { get; set; }
         public string Reference { get; set; }
-        public int CustomerID { get; set; }
         public int WarehouseAdjustmentTypeID { get; set; }
         public int StorekeeperID { get; set; }
         public int UserID { get; set; }
@@ -39,7 +38,6 @@ namespace TotalModel.Models
         public bool Approved { get; set; }
         public Nullable<System.DateTime> ApprovedDate { get; set; }
     
-        public virtual Customer Customer { get; set; }
         public virtual Location Location { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WarehouseAdjustmentDetail> WarehouseAdjustmentDetails { get; set; }

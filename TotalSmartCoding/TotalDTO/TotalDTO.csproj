@@ -62,6 +62,7 @@
     <Compile Include="Commons\EmployeeDTO.cs" />
     <Compile Include="Commons\PromotionDTO.cs" />
     <Compile Include="Commons\VoidTypeDTO.cs" />
+    <Compile Include="Commons\WarehouseAdjustmentTypeDTO.cs" />
     <Compile Include="Commons\WarehouseDTO.cs" />
     <Compile Include="CustomValidation.cs" />
     <Compile Include="Helpers\AmountDetailDTO.cs" />
