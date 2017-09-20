@@ -20,6 +20,7 @@ using System.Reflection;
 using TotalBase;
 using TotalSmartCoding.Views.Sales.SalesOrders;
 using TotalSmartCoding.Views.Sales.DeliveryAdvices;
+using TotalSmartCoding.Views.Inventories.GoodsReceipts;
 
 namespace TotalSmartCoding.Views.Mains
 {
@@ -436,11 +437,11 @@ namespace TotalSmartCoding.Views.Mains
             //grForm = new SalesOrders();
 
 
-            DeliveryAdvices grForm;
-            grForm = new DeliveryAdvices();
+            //DeliveryAdvices grForm;
+            //grForm = new DeliveryAdvices();
 
-            //GoodsIssues grForm;
-            //grForm = new GoodsIssues();
+            GoodsIssues grForm;
+            grForm = new GoodsIssues();
 
             if (grForm != null)
             {

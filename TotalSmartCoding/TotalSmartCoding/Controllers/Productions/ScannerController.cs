@@ -140,7 +140,7 @@ namespace TotalSmartCoding.Controllers.Productions
                     this.NotifyPropertyChanged("CartonPendingQueue");
                 }
 
-                if (false && !GlobalEnums.OnTestPalletReceivedNow)
+                if (!GlobalEnums.OnTestPalletReceivedNow)
                 {
                     IList<Pallet> pallets = this.palletController.palletService.GetPallets(this.FillingData.FillingLineID, (int)GlobalVariables.BarcodeStatus.Freshnew + "," + (int)GlobalVariables.BarcodeStatus.Readytoset);
                     if (pallets.Count > 0)
@@ -777,7 +777,7 @@ namespace TotalSmartCoding.Controllers.Productions
         private bool waitforPallet(ref string stringReceived)
         {
             if (GlobalEnums.OnTestScanner || GlobalEnums.OnTestPalletScanner)
-                if ((GlobalEnums.OnTestPrinter || GlobalEnums.OnTestPalletReceivedNow) && ((DateTime.Now.Second % 10) == 0 || GlobalEnums.OnTestPalletReceivedNow) && (this.cartonsetQueue.Count > 0 || !this.FillingData.HasCarton)) { stringReceived = "226775310870301174438888" + DateTime.Now.Millisecond.ToString("000000"); } else stringReceived = ""; //GlobalEnums.OnTestPalletReceivedNow = false;
+                if ((GlobalEnums.OnTestPalletReceivedNow) && ((DateTime.Now.Second % 10) == 0 || GlobalEnums.OnTestPalletReceivedNow) && (this.cartonsetQueue.Count > 0 || !this.FillingData.HasCarton)) { stringReceived = "226775310870301174438888" + DateTime.Now.Millisecond.ToString("000000"); GlobalEnums.OnTestPalletReceivedNow = false; } else stringReceived = "";
             else
                 stringReceived = this.ionetSocketPallet.ReadoutStream().Trim();
 
