@@ -1440,6 +1440,7 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
         <Function Name="GetGoodsReceiptDetailAvailables" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="LocationID" Type="int" Mode="In" />
           <Parameter Name="CommodityID" Type="int" Mode="In" />
+          <Parameter Name="GoodsReceiptDetailIDs" Type="varchar" Mode="In" />
         </Function>
         <Function Name="GetGoodsReceiptIndexes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="AspUserID" Type="nvarchar" Mode="In" />
@@ -2533,6 +2534,7 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <FunctionImport Name="GetGoodsReceiptDetailAvailables" ReturnType="Collection(TotalSmartCodingModel.GoodsReceiptDetailAvailable)">
             <Parameter Name="LocationID" Mode="In" Type="Int32" />
             <Parameter Name="CommodityID" Mode="In" Type="Int32" />
+            <Parameter Name="GoodsReceiptDetailIDs" Mode="In" Type="String" />
           </FunctionImport>
           <EntitySet Name="WarehouseAdjustmentDetails" EntityType="TotalSmartCodingModel.WarehouseAdjustmentDetail" />
           <EntitySet Name="WarehouseAdjustmentTypes" EntityType="TotalSmartCodingModel.WarehouseAdjustmentType" />

@@ -197,7 +197,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
         {
             string queryString = "";
 
-            queryString = queryString + "       SELECT      Pickups.PickupID, PickupDetails.PickupDetailID, Pickups.Reference AS PickupReference, Pickups.EntryDate AS PickupEntryDate, " + "\r\n";            
+            queryString = queryString + "       SELECT      Pickups.PickupID, PickupDetails.PickupDetailID, Pickups.Reference AS PickupReference, Pickups.EntryDate AS PickupEntryDate, " + "\r\n";
             queryString = queryString + "                   Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, PickupDetails.BinLocationID, BinLocations.Code AS BinLocationCode, PickupDetails.PackID, Packs.Code AS PackCode, PickupDetails.CartonID, Cartons.Code AS CartonCode, PickupDetails.PalletID, Pallets.Code AS PalletCode, " + "\r\n";
             queryString = queryString + "                   ROUND(PickupDetails.Quantity - PickupDetails.QuantityReceipt,  " + (int)GlobalEnums.rndQuantity + ") AS QuantityRemains, CAST(0 AS decimal(18, 2)) AS Quantity, PickupDetails.PackCounts, PickupDetails.CartonCounts, PickupDetails.PalletCounts, PickupDetails.LineVolume, Pickups.Description, PickupDetails.Remarks, CAST(1 AS bit) AS IsSelected " + "\r\n";
 
@@ -215,7 +215,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
         private string BuildSQLEdit(bool isPickupID, bool isPickupDetailIDs)
         {
             string queryString = "";
-            
+
             queryString = queryString + "       SELECT      Pickups.PickupID, PickupDetails.PickupDetailID, Pickups.Reference AS PickupReference, Pickups.EntryDate AS PickupEntryDate, " + "\r\n";
             queryString = queryString + "                   Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, PickupDetails.BinLocationID, BinLocations.Code AS BinLocationCode, PickupDetails.PackID, Packs.Code AS PackCode, PickupDetails.CartonID, Cartons.Code AS CartonCode, PickupDetails.PalletID, Pallets.Code AS PalletCode, " + "\r\n";
             queryString = queryString + "                   ROUND(PickupDetails.Quantity - PickupDetails.QuantityReceipt + GoodsReceiptDetails.Quantity,  " + (int)GlobalEnums.rndQuantity + ") AS QuantityRemains, CAST(0 AS decimal(18, 2)) AS Quantity, PickupDetails.PackCounts, PickupDetails.CartonCounts, PickupDetails.PalletCounts, PickupDetails.LineVolume, Pickups.Description, PickupDetails.Remarks, CAST(1 AS bit) AS IsSelected " + "\r\n";
@@ -324,16 +324,45 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
         private void GetGoodsReceiptDetailAvailables()
         {
-            string queryString = " @LocationID Int, @CommodityID Int " + "\r\n";
+            string queryString = " @LocationID Int, @CommodityID Int, @GoodsReceiptDetailIDs varchar(3999) " + "\r\n";
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
-            queryString = queryString + "    BEGIN " + "\r\n";
+
+            queryString = queryString + "   BEGIN " + "\r\n";
+
+            queryString = queryString + "       IF  (@CommodityID <> 0) " + "\r\n";
+            queryString = queryString + "           " + this.AvailableBuildSQLCommmodity(true) + "\r\n";
+            queryString = queryString + "       ELSE " + "\r\n";
+            queryString = queryString + "           " + this.AvailableBuildSQLCommmodity(false) + "\r\n";
+
+            queryString = queryString + "   END " + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("GetGoodsReceiptDetailAvailables", queryString);
+        }
+
+        private string AvailableBuildSQLCommmodity(bool isCommodityID)
+        {
+            string queryString = "";
+            queryString = queryString + "   BEGIN " + "\r\n";
+            queryString = queryString + "       IF  (@GoodsReceiptDetailIDs <> '') " + "\r\n";
+            queryString = queryString + "           " + this.AvailableBuildSQLGoodsReceiptDetailIDs(isCommodityID, true) + "\r\n";
+            queryString = queryString + "       ELSE " + "\r\n";
+            queryString = queryString + "           " + this.AvailableBuildSQLGoodsReceiptDetailIDs(isCommodityID, false) + "\r\n";
+            queryString = queryString + "   END " + "\r\n";
+
+            return queryString;
+        }
+
+        private string AvailableBuildSQLGoodsReceiptDetailIDs(bool isCommodityID, bool isGoodsReceiptDetailIDs)
+        {
+            string queryString = "";
+            queryString = queryString + "   BEGIN " + "\r\n";
 
             queryString = queryString + "       SELECT      GoodsReceiptDetails.GoodsReceiptID, GoodsReceiptDetails.GoodsReceiptDetailID, GoodsReceiptDetails.WarehouseID, Warehouses.Code AS WarehouseCode, GoodsReceiptDetails.BinLocationID, BinLocations.Code AS BinLocationCode, GoodsReceiptDetails.PackID, Packs.Code AS PackCode, GoodsReceiptDetails.CartonID, Cartons.Code AS CartonCode, GoodsReceiptDetails.PalletID, Pallets.Code AS PalletCode, GoodsReceiptDetails.Remarks, " + "\r\n";
             queryString = queryString + "                   ROUND(ISNULL(GoodsReceiptDetails.Quantity - GoodsReceiptDetails.QuantityIssue, 0), " + GlobalEnums.rndQuantity + ") AS QuantityAvailable, ROUND(ISNULL(GoodsReceiptDetails.LineVolume - GoodsReceiptDetails.LineVolumeIssue, 0), " + GlobalEnums.rndVolume + ") AS LineVolumeAvailable, CAST(0 AS bit) AS IsSelected " + "\r\n";
 
             queryString = queryString + "       FROM        GoodsReceiptDetails " + "\r\n";
-            queryString = queryString + "                   INNER JOIN Warehouses ON ROUND(GoodsReceiptDetails.Quantity - GoodsReceiptDetails.QuantityIssue, " + GlobalEnums.rndQuantity + ") > 0 AND GoodsReceiptDetails.LocationID = @LocationID AND GoodsReceiptDetails.CommodityID = @CommodityID AND GoodsReceiptDetails.Approved = 1 AND Warehouses.Issuable = 1 AND GoodsReceiptDetails.WarehouseID = Warehouses.WarehouseID " + "\r\n";
+            queryString = queryString + "                   INNER JOIN Warehouses ON ROUND(GoodsReceiptDetails.Quantity - GoodsReceiptDetails.QuantityIssue, " + GlobalEnums.rndQuantity + ") > 0 AND GoodsReceiptDetails.LocationID = @LocationID " + (isCommodityID ? " AND GoodsReceiptDetails.CommodityID = @CommodityID" : "") + " AND GoodsReceiptDetails.Approved = 1 AND Warehouses.Issuable = 1 AND GoodsReceiptDetails.WarehouseID = Warehouses.WarehouseID " + (isGoodsReceiptDetailIDs ? " AND GoodsReceiptDetails.GoodsReceiptDetailID NOT IN (SELECT Id FROM dbo.SplitToIntList (@GoodsReceiptDetailIDs))" : "") + "\r\n";
             queryString = queryString + "                   INNER JOIN BinLocations ON GoodsReceiptDetails.BinLocationID = BinLocations.BinLocationID " + "\r\n";
             queryString = queryString + "                   LEFT JOIN Packs ON GoodsReceiptDetails.PackID = Packs.PackID " + "\r\n";
             queryString = queryString + "                   LEFT JOIN Cartons ON GoodsReceiptDetails.CartonID = Cartons.CartonID " + "\r\n";
@@ -341,11 +370,10 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
             queryString = queryString + "       ORDER BY    GoodsReceiptDetails.EntryDate, BinLocations.Code " + "\r\n"; //===> GoodsReceiptDetails.BatchDate
 
-            queryString = queryString + "    END " + "\r\n";
+            queryString = queryString + "   END " + "\r\n";
 
-            this.totalSmartCodingEntities.CreateStoredProcedure("GetGoodsReceiptDetailAvailables", queryString);
+            return queryString;
         }
-
 
         #endregion
     }
