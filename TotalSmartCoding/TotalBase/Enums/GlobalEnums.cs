@@ -100,7 +100,7 @@
 
 
             GoodsReceipt = 8077,
-            InventoryAdjustment = 8078,
+            WarehouseAdjustment = 8078,
             VehicleAdjustment = 8078008,
             PartAdjustment = 8078009,
 

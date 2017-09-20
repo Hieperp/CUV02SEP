@@ -29,7 +29,12 @@ namespace TotalDAL.Repositories
 
             //if (!GlobalVariables.shouldRestoreProcedure) //return;
 
-            return;
+            //return;
+
+            //return;
+
+            Helpers.SqlProgrammability.Inventories.WarehouseAdjustment warehouseAdjustment = new Helpers.SqlProgrammability.Inventories.WarehouseAdjustment(totalSmartCodingEntities);
+            warehouseAdjustment.RestoreProcedure();
 
 
             return;
