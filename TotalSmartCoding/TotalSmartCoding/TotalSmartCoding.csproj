@@ -146,6 +146,7 @@
     <Compile Include="ViewModels\Inventories\GoodsIssueViewModel.cs" />
     <Compile Include="ViewModels\Inventories\GoodsReceiptViewModel.cs" />
     <Compile Include="ViewModels\Inventories\PickupViewModel.cs" />
+    <Compile Include="ViewModels\Inventories\WarehouseAdjustmentViewModel.cs" />
     <Compile Include="ViewModels\Productions\BatchViewModel.cs" />
     <Compile Include="ViewModels\Productions\CartonViewModel.cs" />
     <Compile Include="ViewModels\Productions\PackViewModel.cs" />
@@ -219,6 +220,7 @@
     <Compile Include="Views\Inventories\Pickups\WizardDetail.Designer.cs">
       <DependentUpon>WizardDetail.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Inventories\WarehouseAdjustments\Class1.cs" />
     <Compile Include="Views\Mains\BaseView.cs">
       <SubType>Form</SubType>
     </Compile>

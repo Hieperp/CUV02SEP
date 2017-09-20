@@ -508,4 +508,25 @@ namespace TotalModel.Models
         public int GetID() { return this.GoodsIssueDetailID; }
     }
 
+
+
+
+    public partial class WarehouseAdjustmentIndex : IBaseIndex
+    {
+        public int Id { get { return this.WarehouseAdjustmentID; } }
+    }
+
+    public partial class WarehouseAdjustment : IPrimitiveEntity, IBaseEntity, IBaseDetailEntity<WarehouseAdjustmentDetail>
+    {
+        public int GetID() { return this.WarehouseAdjustmentID; }
+
+        public ICollection<WarehouseAdjustmentDetail> GetDetails() { return this.WarehouseAdjustmentDetails; }
+    }
+
+
+    public partial class WarehouseAdjustmentDetail : IPrimitiveEntity, IHelperEntryDate
+    {
+        public int GetID() { return this.WarehouseAdjustmentDetailID; }
+    }
+
 }

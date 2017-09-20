@@ -21,6 +21,8 @@ namespace TotalModel.Models
             this.DeliveryAdvices = new HashSet<DeliveryAdvice>();
             this.GoodsIssueDetails = new HashSet<GoodsIssueDetail>();
             this.GoodsIssues = new HashSet<GoodsIssue>();
+            this.WarehouseAdjustmentDetails = new HashSet<WarehouseAdjustmentDetail>();
+            this.WarehouseAdjustments = new HashSet<WarehouseAdjustment>();
         }
     
         public int CustomerID { get; set; }
@@ -57,5 +59,9 @@ namespace TotalModel.Models
         public virtual ICollection<GoodsIssueDetail> GoodsIssueDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GoodsIssue> GoodsIssues { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<WarehouseAdjustmentDetail> WarehouseAdjustmentDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<WarehouseAdjustment> WarehouseAdjustments { get; set; }
     }
 }

@@ -260,6 +260,21 @@
     <Compile Include="Models\Warehouse.cs">
       <DependentUpon>TotalSmartCoding.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\WarehouseAdjustment.cs">
+      <DependentUpon>TotalSmartCoding.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WarehouseAdjustmentDetail.cs">
+      <DependentUpon>TotalSmartCoding.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WarehouseAdjustmentIndex.cs">
+      <DependentUpon>TotalSmartCoding.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WarehouseAdjustmentType.cs">
+      <DependentUpon>TotalSmartCoding.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WarehouseAdjustmentViewDetail.cs">
+      <DependentUpon>TotalSmartCoding.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\WarehouseBase.cs">
       <DependentUpon>TotalSmartCoding.tt</DependentUpon>
     </Compile>

@@ -82,6 +82,7 @@
     <Compile Include="Repositories\Inventories\GoodsIssueRepository.cs" />
     <Compile Include="Repositories\Inventories\GoodsReceiptRepository.cs" />
     <Compile Include="Repositories\Inventories\PickupRepository.cs" />
+    <Compile Include="Repositories\Inventories\WarehouseAdjustmentRepository.cs" />
     <Compile Include="Repositories\Productions\BatchRepository.cs" />
     <Compile Include="Repositories\Productions\CartonRepository.cs" />
     <Compile Include="Repositories\Productions\PackRepository.cs" />

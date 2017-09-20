@@ -65,6 +65,7 @@
     <Compile Include="Repositories\Inventories\IGoodsIssueRepository.cs" />
     <Compile Include="Repositories\Inventories\IGoodsReceiptRepository.cs" />
     <Compile Include="Repositories\Inventories\IPickupRepository.cs" />
+    <Compile Include="Repositories\Inventories\IWarehouseAdjustmentRepository.cs" />
     <Compile Include="Repositories\Productions\IBatchRepository.cs" />
     <Compile Include="Repositories\Productions\ICartonRepository.cs" />
     <Compile Include="Repositories\Productions\IPackRepository.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="Services\Inventories\IGoodsIssueService.cs" />
     <Compile Include="Services\Inventories\IGoodsReceiptService.cs" />
     <Compile Include="Services\Inventories\IPickupService.cs" />
+    <Compile Include="Services\Inventories\IWarehouseAdjustmentService.cs" />
     <Compile Include="Services\Productions\IBatchService.cs" />
     <Compile Include="Services\Productions\ICartonService.cs" />
     <Compile Include="Services\Productions\IPackService.cs" />
