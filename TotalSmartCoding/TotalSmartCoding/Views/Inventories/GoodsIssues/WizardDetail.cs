@@ -60,7 +60,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
             {
                 GoodsReceiptAPIs goodsReceiptAPIs = new GoodsReceiptAPIs(CommonNinject.Kernel.Get<IGoodsReceiptAPIRepository>());
 
-                List<GoodsReceiptDetailAvailable> pendingDeliveryAdviceDetails = goodsReceiptAPIs.GetGoodsReceiptDetailAvailables(this.pendingDeliveryAdviceDetail.LocationID, this.pendingDeliveryAdviceDetail.CommodityID);
+                List<GoodsReceiptDetailAvailable> pendingDeliveryAdviceDetails = goodsReceiptAPIs.GetGoodsReceiptDetailAvailables(this.pendingDeliveryAdviceDetail.LocationID, this.pendingDeliveryAdviceDetail.CommodityID, string.Join(",", this.goodsIssueViewModel.ViewDetails.Select(d => d.GoodsReceiptDetailID)));
 
                 this.fastPendingPallets.SetObjects(pendingDeliveryAdviceDetails.Where(w => w.PalletID != null));
                 this.fastPendingCartons.SetObjects(pendingDeliveryAdviceDetails.Where(w => w.CartonID != null));
