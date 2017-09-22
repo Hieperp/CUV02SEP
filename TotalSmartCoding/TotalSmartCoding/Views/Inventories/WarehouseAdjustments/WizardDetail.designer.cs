@@ -41,12 +41,7 @@
             this.olvCommodityName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.panelMaster = new System.Windows.Forms.Panel();
             this.fastPendingCartons = new BrightIdeasSoftware.FastObjectListView();
-            this.olvColumn1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvColumn2 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvColumn3 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvColumn4 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvCartonCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvColumn6 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.fastPendingPacks = new BrightIdeasSoftware.FastObjectListView();
             this.olvColumn7 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn8 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -148,7 +143,6 @@
             // 
             // olvIsSelected
             // 
-            this.olvIsSelected.HeaderCheckBox = true;
             this.olvIsSelected.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvIsSelected.Text = "";
             this.olvIsSelected.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -203,21 +197,10 @@
             // 
             // fastPendingCartons
             // 
-            this.fastPendingCartons.AllColumns.Add(this.olvColumn1);
-            this.fastPendingCartons.AllColumns.Add(this.olvColumn2);
-            this.fastPendingCartons.AllColumns.Add(this.olvColumn3);
-            this.fastPendingCartons.AllColumns.Add(this.olvColumn4);
             this.fastPendingCartons.AllColumns.Add(this.olvCartonCode);
-            this.fastPendingCartons.AllColumns.Add(this.olvColumn6);
-            this.fastPendingCartons.CheckBoxes = true;
-            this.fastPendingCartons.CheckedAspectName = "IsSelected";
+            this.fastPendingCartons.CheckedAspectName = "";
             this.fastPendingCartons.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.olvColumn1,
-            this.olvColumn2,
-            this.olvColumn3,
-            this.olvColumn4,
-            this.olvCartonCode,
-            this.olvColumn6});
+            this.olvCartonCode});
             this.fastPendingCartons.Cursor = System.Windows.Forms.Cursors.Default;
             this.fastPendingCartons.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fastPendingCartons.FullRowSelect = true;
@@ -235,50 +218,16 @@
             this.fastPendingCartons.UseFiltering = true;
             this.fastPendingCartons.View = System.Windows.Forms.View.Details;
             this.fastPendingCartons.VirtualMode = true;
-            // 
-            // olvColumn1
-            // 
-            this.olvColumn1.HeaderCheckBox = true;
-            this.olvColumn1.HeaderCheckState = System.Windows.Forms.CheckState.Checked;
-            this.olvColumn1.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvColumn1.Text = "";
-            this.olvColumn1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvColumn1.Width = 20;
-            // 
-            // olvColumn2
-            // 
-            this.olvColumn2.AspectName = "DeliveryAdviceEntryDate";
-            this.olvColumn2.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvColumn2.Text = "Date";
-            this.olvColumn2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvColumn2.Width = 170;
-            // 
-            // olvColumn3
-            // 
-            this.olvColumn3.AspectName = "DeliveryAdviceReference";
-            this.olvColumn3.Text = "Reference";
-            this.olvColumn3.Width = 137;
-            // 
-            // olvColumn4
-            // 
-            this.olvColumn4.AspectName = "CommodityCode";
-            this.olvColumn4.Text = "Item";
-            this.olvColumn4.Width = 192;
+            this.fastPendingCartons.ItemsChanged += new System.EventHandler<BrightIdeasSoftware.ItemsChangedEventArgs>(this.fastObjectListView_ItemsChanged);
             // 
             // olvCartonCode
             // 
-            this.olvCartonCode.AspectName = "CartonCode";
+            this.olvCartonCode.AspectName = "Code";
             this.olvCartonCode.FillsFreeSpace = true;
             this.olvCartonCode.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvCartonCode.Text = "Carton Code";
             this.olvCartonCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvCartonCode.Width = 200;
-            // 
-            // olvColumn6
-            // 
-            this.olvColumn6.AspectName = "CommodityName";
-            this.olvColumn6.FillsFreeSpace = true;
-            this.olvColumn6.Text = "Item Name";
             // 
             // fastPendingPacks
             // 
@@ -317,8 +266,6 @@
             // 
             // olvColumn7
             // 
-            this.olvColumn7.HeaderCheckBox = true;
-            this.olvColumn7.HeaderCheckState = System.Windows.Forms.CheckState.Checked;
             this.olvColumn7.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvColumn7.Text = "";
             this.olvColumn7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -398,12 +345,7 @@
         private BrightIdeasSoftware.OLVColumn olvIsSelected;
         private BrightIdeasSoftware.OLVColumn olvCommodityName;
         private BrightIdeasSoftware.FastObjectListView fastPendingCartons;
-        private BrightIdeasSoftware.OLVColumn olvColumn1;
-        private BrightIdeasSoftware.OLVColumn olvColumn2;
-        private BrightIdeasSoftware.OLVColumn olvColumn3;
-        private BrightIdeasSoftware.OLVColumn olvColumn4;
         private BrightIdeasSoftware.OLVColumn olvCartonCode;
-        private BrightIdeasSoftware.OLVColumn olvColumn6;
         private BrightIdeasSoftware.FastObjectListView fastPendingPacks;
         private BrightIdeasSoftware.OLVColumn olvColumn7;
         private BrightIdeasSoftware.OLVColumn olvColumn8;

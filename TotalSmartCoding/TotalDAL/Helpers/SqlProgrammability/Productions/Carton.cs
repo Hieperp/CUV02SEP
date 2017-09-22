@@ -88,11 +88,17 @@ namespace TotalDAL.Helpers.SqlProgrammability.Productions
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
 
-            queryString = queryString + "       " + "\r\n";
-            queryString = queryString + "   IF (@PalletID IS NULL) " + "\r\n";
-            queryString = queryString + "       " + sqlSelect + "\r\n";
+            queryString = queryString + "   IF ((@FillingLineID IS NULL OR @FillingLineID = 0) AND @EntryStatusIDs IS NULL AND @PalletID IS NOT NULL) " + "\r\n";
+            queryString = queryString + "       BEGIN " + "\r\n";
+            queryString = queryString + "           SELECT * FROM Cartons WHERE PalletID = @PalletID " + "\r\n";
+            queryString = queryString + "       END " + "\r\n";
             queryString = queryString + "   ELSE " + "\r\n";
-            queryString = queryString + "       " + sqlSelect + " AND PalletID = @PalletID " + "\r\n";
+            queryString = queryString + "       BEGIN " + "\r\n";
+            queryString = queryString + "           IF (@PalletID IS NULL) " + "\r\n";
+            queryString = queryString + "               " + sqlSelect + "\r\n";
+            queryString = queryString + "           ELSE " + "\r\n";
+            queryString = queryString + "               " + sqlSelect + " AND PalletID = @PalletID " + "\r\n";
+            queryString = queryString + "       END " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("GetCartons", queryString);
         }

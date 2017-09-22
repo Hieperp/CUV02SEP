@@ -16,11 +16,11 @@ namespace TotalModel.Models
     {
         public int WarehouseAdjustmentDetailID { get; set; }
         public int WarehouseAdjustmentID { get; set; }
-        public int GoodsReceiptDetailID { get; set; }
-        public int GoodsReceiptID { get; set; }
+        public Nullable<int> GoodsReceiptDetailID { get; set; }
+        public Nullable<int> GoodsReceiptID { get; set; }
         public System.DateTime EntryDate { get; set; }
         public int LocationID { get; set; }
-        public int CustomerID { get; set; }
+        public int WarehouseID { get; set; }
         public int CommodityID { get; set; }
         public decimal Quantity { get; set; }
         public decimal LineVolume { get; set; }
@@ -28,7 +28,6 @@ namespace TotalModel.Models
         public bool Approved { get; set; }
     
         public virtual Commodity Commodity { get; set; }
-        public virtual Customer Customer { get; set; }
         public virtual GoodsReceiptDetail GoodsReceiptDetail { get; set; }
         public virtual WarehouseAdjustment WarehouseAdjustment { get; set; }
     }

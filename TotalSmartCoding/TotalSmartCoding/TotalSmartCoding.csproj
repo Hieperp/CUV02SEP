@@ -98,6 +98,7 @@
     <Compile Include="Controllers\APIs\Inventories\GoodsIssueAPIs.cs" />
     <Compile Include="Controllers\APIs\Inventories\PickupAPIs.cs" />
     <Compile Include="Controllers\APIs\Inventories\WarehouseAdjustmentAPIs.cs" />
+    <Compile Include="Controllers\APIs\Productions\CartonAPIs.cs" />
     <Compile Include="Controllers\APIs\Sales\DeliveryAdviceAPIs.cs" />
     <Compile Include="Controllers\APIs\Sales\SalesOrderAPIs.cs" />
     <Compile Include="Controllers\Inventories\GoodsIssueController.cs" />

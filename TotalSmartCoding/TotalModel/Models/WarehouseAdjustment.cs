@@ -37,10 +37,12 @@ namespace TotalModel.Models
         public System.DateTime EditedDate { get; set; }
         public bool Approved { get; set; }
         public Nullable<System.DateTime> ApprovedDate { get; set; }
+        public int WarehouseID { get; set; }
     
         public virtual Location Location { get; set; }
+        public virtual WarehouseAdjustmentType WarehouseAdjustmentType { get; set; }
+        public virtual Warehouse Warehouse { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WarehouseAdjustmentDetail> WarehouseAdjustmentDetails { get; set; }
-        public virtual WarehouseAdjustmentType WarehouseAdjustmentType { get; set; }
     }
 }

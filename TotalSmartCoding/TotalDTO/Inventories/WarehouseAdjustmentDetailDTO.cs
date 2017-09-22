@@ -20,8 +20,8 @@ namespace TotalDTO.Inventories
 
         public int WarehouseAdjustmentTypeID { get; set; }
 
-        public int GoodsReceiptID { get; set; }
-        public int GoodsReceiptDetailID { get; set; }
+        public int? GoodsReceiptID { get; set; }
+        public int? GoodsReceiptDetailID { get; set; }
 
         public int WarehouseID { get; set; }
         public string WarehouseCode { get; set; }
