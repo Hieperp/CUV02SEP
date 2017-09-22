@@ -5,8 +5,12 @@ using System.Collections.Generic;
 using System.Linq;
 using BrightIdeasSoftware;
 
+using Ninject;
+
 using TotalModel.Models;
+using TotalCore.Repositories.Inventories;
 using TotalDTO.Inventories;
+using TotalSmartCoding.Libraries;
 using TotalSmartCoding.Controllers.APIs.Inventories;
 using TotalSmartCoding.Libraries.Helpers;
 using TotalSmartCoding.ViewModels.Inventories;
@@ -16,10 +20,9 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
 {
     public partial class WizardDetail : Form
     {
-        private WarehouseAdjustmentAPIs warehouseAdjustmentAPIs;
         private WarehouseAdjustmentViewModel warehouseAdjustmentViewModel;
         private CustomTabControl customTabBatch;
-        public WizardDetail(WarehouseAdjustmentAPIs warehouseAdjustmentAPIs, WarehouseAdjustmentViewModel warehouseAdjustmentViewModel)
+        public WizardDetail(WarehouseAdjustmentViewModel warehouseAdjustmentViewModel)
         {
             InitializeComponent();
 
@@ -45,7 +48,6 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
             this.panelMaster.Controls.Add(this.customTabBatch);
 
 
-            this.warehouseAdjustmentAPIs = warehouseAdjustmentAPIs;
             this.warehouseAdjustmentViewModel = warehouseAdjustmentViewModel;
         }
 
@@ -54,15 +56,17 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
         {
             try
             {
-                //List<PendingPickupDetail> pendingPickupDetails = this.warehouseAdjustmentAPIs.GetPendingPickupDetails(this.warehouseAdjustmentViewModel.LocationID, this.warehouseAdjustmentViewModel.WarehouseAdjustmentID, this.warehouseAdjustmentViewModel.PickupID, this.warehouseAdjustmentViewModel.WarehouseID, string.Join(",", this.warehouseAdjustmentViewModel.ViewDetails.Select(d => d.PickupDetailID)), false);
+                GoodsReceiptAPIs goodsReceiptAPIs = new GoodsReceiptAPIs(CommonNinject.Kernel.Get<IGoodsReceiptAPIRepository>());
 
-                //this.fastPendingPallets.SetObjects(pendingPickupDetails.Where(w => w.PalletID != null));
-                //this.fastPendingCartons.SetObjects(pendingPickupDetails.Where(w => w.CartonID != null));
-                //this.fastPendingPacks.SetObjects(pendingPickupDetails.Where(w => w.PackID != null));
+                List<GoodsReceiptDetailAvailable> goodsReceiptDetailAvailables = goodsReceiptAPIs.GetGoodsReceiptDetailAvailables(this.warehouseAdjustmentViewModel.LocationID, null, string.Join(",", this.warehouseAdjustmentViewModel.ViewDetails.Select(d => d.GoodsReceiptDetailID)));
 
-                //this.customTabBatch.TabPages[0].Text = "Pending " + this.fastPendingPallets.GetItemCount().ToString("N0") + " pallet" + (this.fastPendingPallets.GetItemCount() > 1 ? "s      " : "      ");
-                //this.customTabBatch.TabPages[1].Text = "Pending " + this.fastPendingCartons.GetItemCount().ToString("N0") + " carton" + (this.fastPendingCartons.GetItemCount() > 1 ? "s      " : "      ");
-                //this.customTabBatch.TabPages[2].Text = "Pending " + this.fastPendingPacks.GetItemCount().ToString("N0") + " pack" + (this.fastPendingPacks.GetItemCount() > 1 ? "s      " : "      ");
+                this.fastPendingPallets.SetObjects(goodsReceiptDetailAvailables.Where(w => w.PalletID != null));
+                this.fastPendingCartons.SetObjects(goodsReceiptDetailAvailables.Where(w => w.CartonID != null));
+                this.fastPendingPacks.SetObjects(goodsReceiptDetailAvailables.Where(w => w.PackID != null));
+
+                this.customTabBatch.TabPages[0].Text = "Pending " + this.fastPendingPallets.GetItemCount().ToString("N0") + " pallet" + (this.fastPendingPallets.GetItemCount() > 1 ? "s      " : "      ");
+                this.customTabBatch.TabPages[1].Text = "Pending " + this.fastPendingCartons.GetItemCount().ToString("N0") + " carton" + (this.fastPendingCartons.GetItemCount() > 1 ? "s      " : "      ");
+                this.customTabBatch.TabPages[2].Text = "Pending " + this.fastPendingPacks.GetItemCount().ToString("N0") + " pack" + (this.fastPendingPacks.GetItemCount() > 1 ? "s      " : "      ");
             }
             catch (Exception exception)
             {
@@ -83,33 +87,33 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
                     {
                         foreach (var checkedObjects in fastPendingList.CheckedObjects)
                         {
-                            PendingPickupDetail pendingPickupDetail = (PendingPickupDetail)checkedObjects;
+                            GoodsReceiptDetailAvailable goodsReceiptDetailAvailable = (GoodsReceiptDetailAvailable)checkedObjects;
                             WarehouseAdjustmentDetailDTO warehouseAdjustmentDetailDTO = new WarehouseAdjustmentDetailDTO()
                             {
                                 WarehouseAdjustmentID = this.warehouseAdjustmentViewModel.WarehouseAdjustmentID,
 
-                                //PickupID = pendingPickupDetail.PickupID,
-                                //PickupDetailID = pendingPickupDetail.PickupDetailID,
-                                //PickupReference = pendingPickupDetail.PickupReference,
-                                //PickupEntryDate = pendingPickupDetail.PickupEntryDate,
+                                CommodityID = goodsReceiptDetailAvailable.CommodityID,
+                                CommodityCode = goodsReceiptDetailAvailable.CommodityCode,
+                                CommodityName = goodsReceiptDetailAvailable.CommodityName,
 
-                                BinLocationID = pendingPickupDetail.BinLocationID,
-                                BinLocationCode = pendingPickupDetail.BinLocationCode,
+                                GoodsReceiptID = goodsReceiptDetailAvailable.GoodsReceiptID,
+                                GoodsReceiptDetailID = goodsReceiptDetailAvailable.GoodsReceiptDetailID,
 
-                                CommodityID = pendingPickupDetail.CommodityID,
-                                CommodityCode = pendingPickupDetail.CommodityCode,
-                                CommodityName = pendingPickupDetail.CommodityName,
+                                BinLocationID = goodsReceiptDetailAvailable.BinLocationID,
+                                BinLocationCode = goodsReceiptDetailAvailable.BinLocationCode,
 
-                                Quantity = (decimal)pendingPickupDetail.QuantityRemains,
-                                LineVolume = pendingPickupDetail.LineVolume,
-                                
+                                WarehouseID = goodsReceiptDetailAvailable.WarehouseID,
+                                WarehouseCode = goodsReceiptDetailAvailable.WarehouseCode,
 
-                                PackID = pendingPickupDetail.PackID,
-                                PackCode = pendingPickupDetail.PackCode,
-                                CartonID = pendingPickupDetail.CartonID,
-                                CartonCode = pendingPickupDetail.CartonCode,
-                                PalletID = pendingPickupDetail.PalletID,
-                                PalletCode = pendingPickupDetail.PalletCode,
+                                Quantity = -goodsReceiptDetailAvailable.QuantityAvailable,
+                                LineVolume = -goodsReceiptDetailAvailable.LineVolumeAvailable,
+
+                                PackID = goodsReceiptDetailAvailable.PackID,
+                                PackCode = goodsReceiptDetailAvailable.PackCode,
+                                CartonID = goodsReceiptDetailAvailable.CartonID,
+                                CartonCode = goodsReceiptDetailAvailable.CartonCode,
+                                PalletID = goodsReceiptDetailAvailable.PalletID,
+                                PalletCode = goodsReceiptDetailAvailable.PalletCode
                             };
                             this.warehouseAdjustmentViewModel.ViewDetails.Add(warehouseAdjustmentDetailDTO);
                         }
@@ -131,6 +135,11 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
             {
                 ExceptionHandlers.ShowExceptionMessageBox(this, exception);
             }
+        }
+
+        private void fastPendingPallets_ItemChecked(object sender, ItemCheckedEventArgs e)
+        {
+            MessageBox.Show("2" + e.Item.Index.ToString());
         }
     }
 }

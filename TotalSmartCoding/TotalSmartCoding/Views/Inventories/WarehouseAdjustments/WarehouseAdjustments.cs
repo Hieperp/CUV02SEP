@@ -102,12 +102,12 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
             return wizardMaster.ShowDialog();
         }
 
-        //protected override void wizardDetail()
-        //{
-        //    base.wizardDetail();
-        //    WizardDetail wizardDetail = new WizardDetail(this.warehouseAdjustmentAPIs, this.warehouseAdjustmentViewModel);
-        //    wizardDetail.ShowDialog();
-        //}
+        protected override void wizardDetail()
+        {
+            base.wizardDetail();
+            WizardDetail wizardDetail = new WizardDetail(this.warehouseAdjustmentViewModel);
+            wizardDetail.ShowDialog();
+        }
 
 
 

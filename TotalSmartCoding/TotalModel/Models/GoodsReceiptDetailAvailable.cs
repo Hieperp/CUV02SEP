@@ -29,5 +29,8 @@ namespace TotalModel.Models
         public string PalletCode { get; set; }
         public int GoodsReceiptID { get; set; }
         public int GoodsReceiptDetailID { get; set; }
+        public int CommodityID { get; set; }
+        public string CommodityCode { get; set; }
+        public string CommodityName { get; set; }
     }
 }

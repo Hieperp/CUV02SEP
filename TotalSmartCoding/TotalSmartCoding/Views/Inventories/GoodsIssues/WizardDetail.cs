@@ -60,11 +60,11 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
             {
                 GoodsReceiptAPIs goodsReceiptAPIs = new GoodsReceiptAPIs(CommonNinject.Kernel.Get<IGoodsReceiptAPIRepository>());
 
-                List<GoodsReceiptDetailAvailable> pendingDeliveryAdviceDetails = goodsReceiptAPIs.GetGoodsReceiptDetailAvailables(this.pendingDeliveryAdviceDetail.LocationID, this.pendingDeliveryAdviceDetail.CommodityID, string.Join(",", this.goodsIssueViewModel.ViewDetails.Select(d => d.GoodsReceiptDetailID)));
+                List<GoodsReceiptDetailAvailable> goodsReceiptDetailAvailables = goodsReceiptAPIs.GetGoodsReceiptDetailAvailables(this.pendingDeliveryAdviceDetail.LocationID, this.pendingDeliveryAdviceDetail.CommodityID, string.Join(",", this.goodsIssueViewModel.ViewDetails.Select(d => d.GoodsReceiptDetailID)));
 
-                this.fastPendingPallets.SetObjects(pendingDeliveryAdviceDetails.Where(w => w.PalletID != null));
-                this.fastPendingCartons.SetObjects(pendingDeliveryAdviceDetails.Where(w => w.CartonID != null));
-                this.fastPendingPacks.SetObjects(pendingDeliveryAdviceDetails.Where(w => w.PackID != null));
+                this.fastPendingPallets.SetObjects(goodsReceiptDetailAvailables.Where(w => w.PalletID != null));
+                this.fastPendingCartons.SetObjects(goodsReceiptDetailAvailables.Where(w => w.CartonID != null));
+                this.fastPendingPacks.SetObjects(goodsReceiptDetailAvailables.Where(w => w.PackID != null));
 
                 this.customTabBatch.TabPages[0].Text = "Pending " + this.fastPendingPallets.GetItemCount().ToString("N0") + " pallet" + (this.fastPendingPallets.GetItemCount() > 1 ? "s      " : "      ");
                 this.customTabBatch.TabPages[1].Text = "Pending " + this.fastPendingCartons.GetItemCount().ToString("N0") + " carton" + (this.fastPendingCartons.GetItemCount() > 1 ? "s      " : "      ");
@@ -99,9 +99,9 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                                 DeliveryAdviceReference = this.pendingDeliveryAdviceDetail.DeliveryAdviceReference,
                                 DeliveryAdviceEntryDate = this.pendingDeliveryAdviceDetail.DeliveryAdviceEntryDate,
 
-                                CommodityID = this.pendingDeliveryAdviceDetail.CommodityID,
-                                CommodityCode = this.pendingDeliveryAdviceDetail.CommodityCode,
-                                CommodityName = this.pendingDeliveryAdviceDetail.CommodityName,
+                                CommodityID = goodsReceiptDetailAvailable.CommodityID,
+                                CommodityCode = goodsReceiptDetailAvailable.CommodityCode,
+                                CommodityName = goodsReceiptDetailAvailable.CommodityName,
 
                                 GoodsReceiptID = goodsReceiptDetailAvailable.GoodsReceiptID,
                                 GoodsReceiptDetailID = goodsReceiptDetailAvailable.GoodsReceiptDetailID,
