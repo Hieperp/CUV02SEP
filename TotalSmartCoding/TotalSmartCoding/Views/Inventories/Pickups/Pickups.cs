@@ -186,9 +186,22 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
 
 
             this.bindingForkliftDriverID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.fastPickupIndex.AboutToCreateGroups += fastPickupIndex_AboutToCreateGroups;
 
+            this.olvColumn1.Renderer = new MappedImageRenderer(new Object[] {
+                2, this.imageList1.Images[0]
+            });
 
             this.tableLayoutMaster.ColumnStyles[this.tableLayoutMaster.ColumnCount - 1].SizeType = SizeType.Absolute; this.tableLayoutMaster.ColumnStyles[this.tableLayoutMaster.ColumnCount - 1].Width = 10;
+        }
+
+        private void fastPickupIndex_AboutToCreateGroups(object sender, CreateGroupsEventArgs e)
+        {
+            if (e.Groups != null && e.Groups[0] != null)
+            {
+                e.Groups[0].TitleImage = "ABC";
+                e.Groups[0].Subtitle = "AAaa";
+            }
         }
 
         protected override void InitializeDataGridBinding()
@@ -210,7 +223,10 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
 
         public override void Loading()
         {
+            this.fastPickupIndex.ShowGroups = true;
             this.fastPickupIndex.SetObjects(this.pickupAPIs.GetPickupIndexes());
+            this.fastPickupIndex.Sort(this.olvEntryDate);
+
             base.Loading();
 
             this.getPendingItems(); //CALL AFTER LOAD

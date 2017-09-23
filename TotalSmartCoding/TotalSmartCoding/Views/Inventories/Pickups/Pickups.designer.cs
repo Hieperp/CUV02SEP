@@ -33,6 +33,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Pickups));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutMaster = new System.Windows.Forms.TableLayoutPanel();
@@ -77,7 +78,10 @@
             this.PackCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fastPickupIndex = new BrightIdeasSoftware.FastObjectListView();
             this.olvID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvEntryDate = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvReference = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.naviPendingItems = new Guifreaks.Navisuite.NaviBar(this.components);
             this.naviPendingPallets = new Guifreaks.Navisuite.NaviBand(this.components);
             this.fastPendingPallets = new BrightIdeasSoftware.FastObjectListView();
@@ -601,14 +605,18 @@
             // fastPickupIndex
             // 
             this.fastPickupIndex.AllColumns.Add(this.olvID);
+            this.fastPickupIndex.AllColumns.Add(this.olvColumn1);
             this.fastPickupIndex.AllColumns.Add(this.olvEntryDate);
+            this.fastPickupIndex.AllColumns.Add(this.olvReference);
             this.fastPickupIndex.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.olvID,
-            this.olvEntryDate});
+            this.olvColumn1,
+            this.olvReference});
             this.fastPickupIndex.Cursor = System.Windows.Forms.Cursors.Default;
             this.fastPickupIndex.Dock = System.Windows.Forms.DockStyle.Fill;
             this.fastPickupIndex.Font = new System.Drawing.Font("Sitka Banner", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fastPickupIndex.FullRowSelect = true;
+            this.fastPickupIndex.GroupImageList = this.imageList1;
             this.fastPickupIndex.HideSelection = false;
             this.fastPickupIndex.HighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastPickupIndex.Location = new System.Drawing.Point(0, 0);
@@ -629,15 +637,34 @@
             this.olvID.Text = "";
             this.olvID.Width = 0;
             // 
+            // olvColumn1
+            // 
+            this.olvColumn1.AspectName = "PickupID";
+            // 
             // olvEntryDate
             // 
             this.olvEntryDate.AspectName = "EntryDate";
             this.olvEntryDate.AspectToStringFormat = "{0:d}";
-            this.olvEntryDate.FillsFreeSpace = true;
+            this.olvEntryDate.DisplayIndex = 1;
             this.olvEntryDate.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvEntryDate.IsVisible = false;
             this.olvEntryDate.Text = "Date";
             this.olvEntryDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvEntryDate.Width = 169;
+            this.olvEntryDate.Width = 300;
+            // 
+            // olvReference
+            // 
+            this.olvReference.AspectName = "Reference";
+            this.olvReference.FillsFreeSpace = true;
+            this.olvReference.Groupable = false;
+            this.olvReference.Text = "Reference";
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "ABC");
+            this.imageList1.Images.SetKeyName(1, "Custom-Icon-Design-Pretty-Office-11-Number-2.ico");
             // 
             // naviPendingItems
             // 
@@ -935,6 +962,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn15;
+        private BrightIdeasSoftware.OLVColumn olvReference;
+        private System.Windows.Forms.ImageList imageList1;
+        private BrightIdeasSoftware.OLVColumn olvColumn1;
 
     }
 }
