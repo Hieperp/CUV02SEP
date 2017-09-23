@@ -417,8 +417,8 @@ namespace TotalSmartCoding.Views.Mains
         {
             if (GlobalVariables.FillingLineID != GlobalVariables.FillingLine.None) return;
 
-            //Pickups grForm;
-            //grForm = new Pickups();
+            Pickups grForm;
+            grForm = new Pickups();
 
             ////Open new form
             ////Pickups grForm;  //
@@ -444,8 +444,8 @@ namespace TotalSmartCoding.Views.Mains
             //grForm = new GoodsIssues();
 
 
-            WarehouseAdjustments grForm;
-            grForm = new WarehouseAdjustments();
+            //WarehouseAdjustments grForm;
+            //grForm = new WarehouseAdjustments();
 
 
             if (grForm != null)

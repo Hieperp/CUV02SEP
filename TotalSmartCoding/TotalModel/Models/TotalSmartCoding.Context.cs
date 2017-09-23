@@ -630,7 +630,7 @@ namespace TotalModel.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CartonUpdateEntryStatus", cartonIDsParameter, entryStatusIDParameter);
         }
     
-        public virtual int GetCartons(Nullable<int> fillingLineID, string entryStatusIDs, Nullable<int> palletID)
+        public virtual ObjectResult<Carton> GetCartons(Nullable<int> fillingLineID, string entryStatusIDs, Nullable<int> palletID)
         {
             var fillingLineIDParameter = fillingLineID.HasValue ?
                 new ObjectParameter("FillingLineID", fillingLineID) :
@@ -644,10 +644,27 @@ namespace TotalModel.Models
                 new ObjectParameter("PalletID", palletID) :
                 new ObjectParameter("PalletID", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GetCartons", fillingLineIDParameter, entryStatusIDsParameter, palletIDParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Carton>("GetCartons", fillingLineIDParameter, entryStatusIDsParameter, palletIDParameter);
         }
     
-        public virtual int GetPacks(Nullable<int> fillingLineID, string entryStatusIDs, Nullable<int> cartonID)
+        public virtual ObjectResult<Carton> GetCartons(Nullable<int> fillingLineID, string entryStatusIDs, Nullable<int> palletID, MergeOption mergeOption)
+        {
+            var fillingLineIDParameter = fillingLineID.HasValue ?
+                new ObjectParameter("FillingLineID", fillingLineID) :
+                new ObjectParameter("FillingLineID", typeof(int));
+    
+            var entryStatusIDsParameter = entryStatusIDs != null ?
+                new ObjectParameter("EntryStatusIDs", entryStatusIDs) :
+                new ObjectParameter("EntryStatusIDs", typeof(string));
+    
+            var palletIDParameter = palletID.HasValue ?
+                new ObjectParameter("PalletID", palletID) :
+                new ObjectParameter("PalletID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Carton>("GetCartons", mergeOption, fillingLineIDParameter, entryStatusIDsParameter, palletIDParameter);
+        }
+    
+        public virtual ObjectResult<Pack> GetPacks(Nullable<int> fillingLineID, string entryStatusIDs, Nullable<int> cartonID)
         {
             var fillingLineIDParameter = fillingLineID.HasValue ?
                 new ObjectParameter("FillingLineID", fillingLineID) :
@@ -661,10 +678,10 @@ namespace TotalModel.Models
                 new ObjectParameter("CartonID", cartonID) :
                 new ObjectParameter("CartonID", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GetPacks", fillingLineIDParameter, entryStatusIDsParameter, cartonIDParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Pack>("GetPacks", fillingLineIDParameter, entryStatusIDsParameter, cartonIDParameter);
         }
     
-        public virtual int GetPallets(Nullable<int> fillingLineID, string entryStatusIDs)
+        public virtual ObjectResult<Pack> GetPacks(Nullable<int> fillingLineID, string entryStatusIDs, Nullable<int> cartonID, MergeOption mergeOption)
         {
             var fillingLineIDParameter = fillingLineID.HasValue ?
                 new ObjectParameter("FillingLineID", fillingLineID) :
@@ -674,7 +691,37 @@ namespace TotalModel.Models
                 new ObjectParameter("EntryStatusIDs", entryStatusIDs) :
                 new ObjectParameter("EntryStatusIDs", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GetPallets", fillingLineIDParameter, entryStatusIDsParameter);
+            var cartonIDParameter = cartonID.HasValue ?
+                new ObjectParameter("CartonID", cartonID) :
+                new ObjectParameter("CartonID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Pack>("GetPacks", mergeOption, fillingLineIDParameter, entryStatusIDsParameter, cartonIDParameter);
+        }
+    
+        public virtual ObjectResult<Pallet> GetPallets(Nullable<int> fillingLineID, string entryStatusIDs)
+        {
+            var fillingLineIDParameter = fillingLineID.HasValue ?
+                new ObjectParameter("FillingLineID", fillingLineID) :
+                new ObjectParameter("FillingLineID", typeof(int));
+    
+            var entryStatusIDsParameter = entryStatusIDs != null ?
+                new ObjectParameter("EntryStatusIDs", entryStatusIDs) :
+                new ObjectParameter("EntryStatusIDs", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Pallet>("GetPallets", fillingLineIDParameter, entryStatusIDsParameter);
+        }
+    
+        public virtual ObjectResult<Pallet> GetPallets(Nullable<int> fillingLineID, string entryStatusIDs, MergeOption mergeOption)
+        {
+            var fillingLineIDParameter = fillingLineID.HasValue ?
+                new ObjectParameter("FillingLineID", fillingLineID) :
+                new ObjectParameter("FillingLineID", typeof(int));
+    
+            var entryStatusIDsParameter = entryStatusIDs != null ?
+                new ObjectParameter("EntryStatusIDs", entryStatusIDs) :
+                new ObjectParameter("EntryStatusIDs", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Pallet>("GetPallets", mergeOption, fillingLineIDParameter, entryStatusIDsParameter);
         }
     
         public virtual ObjectResult<string> PackEditable(Nullable<int> entityID)

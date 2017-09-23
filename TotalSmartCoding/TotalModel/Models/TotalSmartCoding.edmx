@@ -2170,17 +2170,17 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
             <Parameter Name="CartonIDs" Mode="In" Type="String" />
             <Parameter Name="EntryStatusID" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="GetCartons">
+          <FunctionImport Name="GetCartons" EntitySet="Cartons" ReturnType="Collection(TotalSmartCodingModel.Carton)">
             <Parameter Name="FillingLineID" Mode="In" Type="Int32" />
             <Parameter Name="EntryStatusIDs" Mode="In" Type="String" />
             <Parameter Name="PalletID" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="GetPacks">
+          <FunctionImport Name="GetPacks" EntitySet="Packs" ReturnType="Collection(TotalSmartCodingModel.Pack)">
             <Parameter Name="FillingLineID" Mode="In" Type="Int32" />
             <Parameter Name="EntryStatusIDs" Mode="In" Type="String" />
             <Parameter Name="CartonID" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="GetPallets">
+          <FunctionImport Name="GetPallets" EntitySet="Pallets" ReturnType="Collection(TotalSmartCodingModel.Pallet)">
             <Parameter Name="FillingLineID" Mode="In" Type="Int32" />
             <Parameter Name="EntryStatusIDs" Mode="In" Type="String" />
           </FunctionImport>
