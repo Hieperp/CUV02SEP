@@ -26,7 +26,7 @@ namespace TotalDTO.Productions
         public decimal Quantity { get { return 1; } }
         public virtual int PackCounts { get; set; }
 
-        public decimal Volume { get; set; }
+        public decimal LineVolume { get; set; }
 
         public int EntryStatusID { get; set; }
 

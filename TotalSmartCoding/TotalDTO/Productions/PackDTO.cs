@@ -14,7 +14,7 @@ namespace TotalDTO.Productions
             : base(fillingData)
         {
             if (fillingData != null)
-                this.Volume = fillingData.Volume;
+                this.LineVolume = fillingData.Volume;
         }
 
 
