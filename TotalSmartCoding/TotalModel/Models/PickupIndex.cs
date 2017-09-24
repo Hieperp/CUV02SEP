@@ -22,5 +22,6 @@ namespace TotalModel.Models
         public decimal TotalQuantity { get; set; }
         public bool Approved { get; set; }
         public decimal TotalLineVolume { get; set; }
+        public string FillingLineNickName { get; set; }
     }
 }

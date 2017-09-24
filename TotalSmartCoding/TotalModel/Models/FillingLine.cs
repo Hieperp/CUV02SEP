@@ -37,6 +37,7 @@ namespace TotalModel.Models
         public string DatabaseName { get; set; }
         public string Remarks { get; set; }
         public bool InActive { get; set; }
+        public string NickName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Batch> Batches { get; set; }

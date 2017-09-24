@@ -14,6 +14,7 @@ namespace TotalDTO.Helpers
         where TQuantityDetailDTO : class, IQuantityDetailDTO
     {
         public virtual decimal TotalQuantity { get { return this.DtoDetails().Select(o => o.Quantity).Sum(); } }
+        public virtual decimal TotalLineVolume { get { return this.DtoDetails().Select(o => o.LineVolume).Sum(); } }
         public virtual decimal TotalVolume { get { return this.DtoDetails().Select(o => o.Volume).Sum(); } }
 
 

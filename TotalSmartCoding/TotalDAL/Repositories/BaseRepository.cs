@@ -33,6 +33,11 @@ namespace TotalDAL.Repositories
 
             //return;
 
+            Helpers.SqlProgrammability.Inventories.Pickup pickup = new Helpers.SqlProgrammability.Inventories.Pickup(totalSmartCodingEntities);
+            pickup.RestoreProcedure();
+
+            return;
+
             Helpers.SqlProgrammability.Productions.Carton carton = new Helpers.SqlProgrammability.Productions.Carton(totalSmartCodingEntities);
             carton.RestoreProcedure();
 
@@ -97,10 +102,7 @@ namespace TotalDAL.Repositories
             pallet.RestoreProcedure();
 
 
-            //return;
-
-            Helpers.SqlProgrammability.Inventories.Pickup pickup = new Helpers.SqlProgrammability.Inventories.Pickup(totalSmartCodingEntities);
-            pickup.RestoreProcedure();
+            
 
             //return;
 

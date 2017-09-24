@@ -34,6 +34,9 @@
         public static int rndAmount = 0;
         public static int rndDiscountPercent = 1;
 
+        public const string formatQuantity = "#,##0";
+        public const string formatVolume = "#,##0.00";
+
         
         public static int rndWeight = 2;
 

@@ -84,6 +84,11 @@ namespace TotalDTO.Inventories
         public override int PreparedPersonID { get { return 1; } }
 
 
+        public string Caption
+        {
+            get { return this.fillingLineName + "             Pallet count: " + this.TotalPalletCounts.ToString() + ",    Quantity: " + this.TotalQuantity.ToString() + ",    Volume: " + this.TotalLineVolume.ToString("N2"); }
+        }
+
         public override void PerformPresaveRule()
         {
             base.PerformPresaveRule();

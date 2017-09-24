@@ -11,11 +11,7 @@ using BrightIdeasSoftware;
 
 using Ninject;
 
-
-
 using TotalSmartCoding.Views.Mains;
-
-
 
 using TotalBase.Enums;
 using TotalSmartCoding.Libraries;
@@ -74,7 +70,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
                 this.naviIndex.Bands[0].ClientArea.Controls.Add(this.fastPickupIndex);
 
                 this.customTabBatch = new CustomTabControl();
-                this.setFont(new Font("Niagara Engraved", 16), new Font("Sitka Banner", 16), new Font("Niagara Engraved", 16));
+                this.setFont(new Font("Niagara Engraved", 16), new Font("Garamond", 14), new Font("Niagara Engraved", 16));
 
                 this.customTabBatch.DisplayStyle = TabStyle.VisualStudio;
 
@@ -92,7 +88,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
                 this.gridexPackDetails.Dock = DockStyle.Fill;
                 this.panelMaster.Controls.Add(this.customTabBatch);
 
-                this.naviDetails.ExpandedHeight = this.naviDetails.HeaderHeight + this.textexTotalPallet.Size.Height + this.textexTotalCarton.Size.Height + this.textexTotalPack.Size.Height + this.textexRemarks.Size.Height + 5 + 5 * 10 + 3;
+                this.naviDetails.ExpandedHeight = this.naviDetails.HeaderHeight + this.textexTotalPalletCounts.Size.Height + this.textexTotalQuantity.Size.Height + this.textexTotalLineVolume.Size.Height + this.textexDescription.Size.Height + 5 + 5 * 10 + 3;
                 this.naviDetails.Expanded = false;
             }
             catch (Exception exception)
@@ -113,7 +109,8 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
             List<Control> controls = ViewHelpers.GetAllControls(this);
             foreach (Control control in controls)
             {
-                if (control is TextBox || control is ComboBox || control is DateTimePicker || control is FastObjectListView) control.Font = font;
+                if (control is Label || control is TextBox || control is ComboBox || control is DateTimePicker) control.Font = titleFont;
+                else if (control is FastObjectListView) control.Font = font;
                 else if (control is DataGridView)
                 {
                     DataGridView dataGridView = control as DataGridView;
@@ -146,7 +143,12 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
         Binding bindingReference;
         Binding bindingFillingLineName;
         Binding bindingWarehouseCode;
+        Binding bindingDescription;
         Binding bindingRemarks;
+
+        Binding bindingTotalPalletCounts;
+        Binding bindingTotalQuantity;
+        Binding bindingTotalLineVolume;
 
         Binding bindingForkliftDriverID;
         Binding bindingStorekeeperID;
@@ -155,12 +157,18 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
         {
             base.InitializeCommonControlBinding();
 
-            this.bindingFillingLineName = this.labelFillingLineName.DataBindings.Add("Text", this.pickupViewModel, CommonExpressions.PropertyName<PickupViewModel>(p => p.FillingLineName));
+            this.bindingFillingLineName = this.labelFillingLineName.DataBindings.Add("Text", this.pickupViewModel, CommonExpressions.PropertyName<PickupViewModel>(p => p.Caption));
 
             this.bindingEntryDate = this.dateTimexEntryDate.DataBindings.Add("Value", this.pickupViewModel, CommonExpressions.PropertyName<PickupViewModel>(p => p.EntryDate), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingReference = this.textexReference.DataBindings.Add("Text", this.pickupViewModel, CommonExpressions.PropertyName<PickupViewModel>(p => p.Reference), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingWarehouseCode = this.textexWarehouseCode.DataBindings.Add("Text", this.pickupViewModel, CommonExpressions.PropertyName<PickupViewModel>(p => p.WarehouseName), true, DataSourceUpdateMode.OnPropertyChanged);
+
+            this.bindingDescription = this.textexDescription.DataBindings.Add("Text", this.pickupViewModel, CommonExpressions.PropertyName<PickupViewModel>(p => p.Description), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingRemarks = this.textexRemarks.DataBindings.Add("Text", this.pickupViewModel, CommonExpressions.PropertyName<PickupViewModel>(p => p.Remarks), true, DataSourceUpdateMode.OnPropertyChanged);
+
+            this.bindingTotalPalletCounts = this.textexTotalPalletCounts.DataBindings.Add("Text", this.pickupViewModel, CommonExpressions.PropertyName<PickupViewModel>(p => p.TotalPalletCounts), true, DataSourceUpdateMode.OnValidation, 0, GlobalEnums.formatQuantity);
+            this.bindingTotalQuantity = this.textexTotalQuantity.DataBindings.Add("Text", this.pickupViewModel, CommonExpressions.PropertyName<PickupViewModel>(p => p.TotalQuantity), true, DataSourceUpdateMode.OnValidation, 0, GlobalEnums.formatQuantity);
+            this.bindingTotalLineVolume = this.textexTotalLineVolume.DataBindings.Add("Text", this.pickupViewModel, CommonExpressions.PropertyName<PickupViewModel>(p => p.TotalLineVolume), true, DataSourceUpdateMode.OnValidation, 0, GlobalEnums.formatVolume);
 
 
             EmployeeAPIs employeeAPIs = new EmployeeAPIs(CommonNinject.Kernel.Get<IEmployeeAPIRepository>());
@@ -177,30 +185,36 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
             this.bindingStorekeeperID = this.combexStorekeeperID.DataBindings.Add("SelectedValue", this.pickupViewModel, CommonExpressions.PropertyName<PickupViewModel>(p => p.StorekeeperID), true, DataSourceUpdateMode.OnPropertyChanged);
 
 
+            this.bindingEntryDate.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingReference.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingFillingLineName.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingWarehouseCode.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingDescription.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingRemarks.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
 
-            this.bindingEntryDate.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
-
+            this.bindingTotalPalletCounts.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingTotalQuantity.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingTotalLineVolume.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
 
             this.bindingForkliftDriverID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.fastPickupIndex.AboutToCreateGroups += fastPickupIndex_AboutToCreateGroups;
 
-            this.olvColumn1.Renderer = new MappedImageRenderer(new Object[] {
-                2, this.imageList1.Images[0]
-            });
+            this.fastPickupIndex.ShowGroups = true;
+            this.olvApproved.Renderer = new MappedImageRenderer(new Object[] { false, this.imageList24.Images["Placeholder"] });
 
             this.tableLayoutMaster.ColumnStyles[this.tableLayoutMaster.ColumnCount - 1].SizeType = SizeType.Absolute; this.tableLayoutMaster.ColumnStyles[this.tableLayoutMaster.ColumnCount - 1].Width = 10;
         }
 
         private void fastPickupIndex_AboutToCreateGroups(object sender, CreateGroupsEventArgs e)
         {
-            if (e.Groups != null && e.Groups[0] != null)
+            if (e.Groups != null && e.Groups.Count > 0)
             {
-                e.Groups[0].TitleImage = "ABC";
-                e.Groups[0].Subtitle = "AAaa";
+                foreach (OLVGroup olvGroup in e.Groups)
+                {
+                    olvGroup.TitleImage = "Forklift";
+                    olvGroup.Subtitle = "Row count: " + olvGroup.Contents.Count.ToString();
+                    if ((DateTime)olvGroup.Key != DateTime.Today) olvGroup.Collapsed = true;
+                }
             }
         }
 
@@ -223,9 +237,8 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
 
         public override void Loading()
         {
-            this.fastPickupIndex.ShowGroups = true;
             this.fastPickupIndex.SetObjects(this.pickupAPIs.GetPickupIndexes());
-            this.fastPickupIndex.Sort(this.olvEntryDate);
+            this.fastPickupIndex.Sort(this.olvEntryDate, SortOrder.Descending);
 
             base.Loading();
 
@@ -272,7 +285,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
             }
         }
 
-        
+
         private void timerLoadPending_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
             try
