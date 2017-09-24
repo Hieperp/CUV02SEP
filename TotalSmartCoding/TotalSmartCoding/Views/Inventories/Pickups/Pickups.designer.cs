@@ -456,7 +456,7 @@
             // 
             // gridexPalletDetails
             // 
-            this.gridexPalletDetails.AllowAddRow = true;
+            this.gridexPalletDetails.AllowAddRow = false;
             this.gridexPalletDetails.AllowDeleteRow = true;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
@@ -474,7 +474,7 @@
             this.Quantity,
             this.LineVolume});
             this.gridexPalletDetails.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridexPalletDetails.Editable = true;
+            this.gridexPalletDetails.Editable = false;
             this.gridexPalletDetails.Location = new System.Drawing.Point(0, 3);
             this.gridexPalletDetails.Name = "gridexPalletDetails";
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Cambria", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -482,6 +482,7 @@
             this.gridexPalletDetails.RowTemplate.Height = 45;
             this.gridexPalletDetails.Size = new System.Drawing.Size(1019, 477);
             this.gridexPalletDetails.TabIndex = 65;
+            this.gridexPalletDetails.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.gridexPalletDetails_UserDeletedRow);
             // 
             // CommodityCode
             // 

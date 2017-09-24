@@ -74,7 +74,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
 
                 this.customTabBatch.DisplayStyle = TabStyle.VisualStudio;
 
-                this.customTabBatch.TabPages.Add("tabDetailPallets", "Pickup pallet list          ");
+                this.customTabBatch.TabPages.Add("tabDetailPallets", "Pickup pallet list                    ");
                 this.customTabBatch.TabPages[0].Controls.Add(this.gridexPalletDetails);
 
                 this.customTabBatch.Dock = DockStyle.Fill;
@@ -250,21 +250,26 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
         protected override DialogResult wizardMaster()
         {
             WizardMaster wizardMaster = new WizardMaster(this.pickupAPIs, this.pickupViewModel);
-            return wizardMaster.ShowDialog();
+            DialogResult dialogResult = wizardMaster.ShowDialog();
+            if (dialogResult == System.Windows.Forms.DialogResult.OK) this.Save(false);
+            return dialogResult;
         }
 
         private void fastPendingPallets_MouseClick(object sender, MouseEventArgs e)
         {
             try
             {
-                if (this.EditableMode && this.pickupViewModel.Editable)
+                if (this.EditableMode && this.pickupViewModel.Editable && this.pickupViewModel.IsValid)
                 {
                     PendingPallet pendingPallet = (PendingPallet)this.fastPendingPallets.SelectedObject;
                     if (pendingPallet != null)
                     {
                         WizardDetail wizardDetail = new WizardDetail(this.pickupViewModel, pendingPallet);
                         if (wizardDetail.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                            getPendingItems();
+                        {
+                            this.Save(false);
+                            this.getPendingItems();
+                        }
                     }
                 }
             }
@@ -274,6 +279,21 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
             }
         }
 
+        private void gridexPalletDetails_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            try
+            {
+                if (this.pickupViewModel.IsDirty && this.pickupViewModel.IsValid)
+                {
+                    this.Save(false);
+                    this.getPendingItems();
+                }
+            }
+            catch (Exception exception)
+            {
+                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+            }
+        }
 
         private void timerLoadPending_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
@@ -284,6 +304,8 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
             }
             catch { }
         }
+
+
 
 
 

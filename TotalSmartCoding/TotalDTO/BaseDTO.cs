@@ -52,8 +52,14 @@ namespace TotalDTO
         public int ApproverID { get; set; }
 
 
+        private string description;
         [Display(Name = "Diễn giải")]
-        public string Description { get; set; }
+        [DefaultValue(null)]
+        public string Description
+        {
+            get { return this.description; }
+            set { ApplyPropertyChange<BaseDTO, string>(ref this.description, o => o.Description, value); }
+        }
 
 
         public bool GlobalLocked { get; set; }

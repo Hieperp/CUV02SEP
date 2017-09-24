@@ -81,7 +81,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
                     PackCounts = this.pendingPallet.PackCounts,
                     CartonCounts = this.pendingPallet.CartonCounts,
                     PalletCounts = this.pendingPallet.PalletCounts,
-                    
+
                     Quantity = (decimal)this.pendingPallet.QuantityRemains,
                     LineVolume = (decimal)this.pendingPallet.LineVolumeRemains
                 };
@@ -147,7 +147,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
                 else
                     this.textexBinLocationFilters.Text = this.textexBinLocationFilters.Text + (sender as ToolStripButton).Text;
 
-                this.ActiveControl = this.textexBinLocationFilters;                
+                this.ActiveControl = this.textexBinLocationFilters;
                 this.textexBinLocationFilters.SelectionStart = this.textexBinLocationFilters.Text.Length;
             }
             catch { }
@@ -168,7 +168,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
             {
                 if (sender.Equals(this.buttonAdd) && this.pickupDetailDTO.IsValid)
                 {
-                    this.pickupViewModel.ViewDetails.Insert(0,pickupDetailDTO);
+                    this.pickupViewModel.ViewDetails.Add(pickupDetailDTO);
                     this.DialogResult = DialogResult.OK;
                 }
 

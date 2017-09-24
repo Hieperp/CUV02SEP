@@ -505,7 +505,12 @@ namespace TotalSmartCoding.Controllers
 
                 if (!this.TryValidateModel(dto)) return false;//Check DTO IsValid
                 else
-                    if (this.GenericService.Save(dto))
+                {
+                    this.simpleViewModel.StopTracking(); //THIS WILL BREAK THE EVENT HANDLER WHEN DOING PerformPresaveRule. 
+                    bool saveResult = this.GenericService.Save(dto); //LATER: WE MAY SET RaiseListChangedEvents = false FOR THE viewDetailViewModel OBJECT, BY override Save() METHOD IN GenericViewDetailController TO INCREASE THE SPEED OF SAVE METHOD
+                    this.simpleViewModel.StartTracking();
+
+                    if (saveResult)
                     {
                         simpleViewModel.SetID(dto.GetID());
                         this.Edit(simpleViewModel.GetID()); //WINFORM: RELOAD AFTER SAVE (IN MVC: WE REDIRECT TO NEW ACTION/ OR RELOAD CURRENT VIEW AGIAN => THIS WILL RELOAD AUTOMATICALLY AFTER SAVE SUCCESSFULY)
@@ -516,10 +521,11 @@ namespace TotalSmartCoding.Controllers
                     }
                     else
                         return false;
-
+                }
             }
             catch (Exception exception)
             {
+                this.simpleViewModel.StartTracking();
                 throw exception;
             }
         }

@@ -32,12 +32,14 @@ namespace TotalSmartCoding.Views.Mains
     {
         #region CONTRUCTOR
         protected BaseDTO baseDTO { get; set; }
+        protected bool EscapeAfterSave { get; set; }
 
         public BaseView()
         {
             InitializeComponent();
 
             this.baseDTO = new BaseDTO(); //JUST FOR CREATE AN EMPTY BaseDTO IN BaseView AT DESIGN TIME ONLY (NOT FUNCTIONAL AT RUN TIME) 
+            this.EscapeAfterSave = true;
 
             this.fastListIndex = new FastObjectListView();
         }
@@ -98,25 +100,23 @@ namespace TotalSmartCoding.Views.Mains
                 if (controlExtension != null)
                 {
                     if (controlExtension.Editable)
-                    {
-                        if (control is DataGridexView)
-                        {
-                            DataGridexView dataGridexView = control as DataGridexView;
-                            if (dataGridexView != null && dataGridexView.AllowAddRow)
-                                control.DataBindings.Add("AllowUserToAddRows", this, "EditableMode");
-                            else
-                                ((DataGridView)control).AllowUserToAddRows = false;
-
-                            if (dataGridexView != null && dataGridexView.AllowDeleteRow)
-                                control.DataBindings.Add("AllowUserToDeleteRows", this, "EditableMode");
-                            else
-                                ((DataGridView)control).AllowUserToDeleteRows = false;
-                        }
-
                         control.DataBindings.Add("ReadOnly", this, "ReadonlyMode");
-                    }
                     else
                         controlExtension.ReadOnly = true;
+
+                    if (control is DataGridexView)
+                    {
+                        DataGridexView dataGridexView = control as DataGridexView;
+                        if (dataGridexView != null && dataGridexView.AllowAddRow)
+                            control.DataBindings.Add("AllowUserToAddRows", this, "EditableMode");
+                        else
+                            ((DataGridView)control).AllowUserToAddRows = false;
+
+                        if (dataGridexView != null && dataGridexView.AllowDeleteRow)
+                            control.DataBindings.Add("AllowUserToDeleteRows", this, "EditableMode");
+                        else
+                            ((DataGridView)control).AllowUserToDeleteRows = false;
+                    }
                 }
             }
 
@@ -170,18 +170,18 @@ namespace TotalSmartCoding.Views.Mains
         {
             //if (baseIndexID != null && baseIndexID > 0)
             //{
-                IBaseIndex baseIndex = this.fastListIndex.Objects.Cast<IBaseIndex>().FirstOrDefault(w => w.Id == baseIndexID);
-                if (baseIndex == null && (IBaseIndex)this.fastListIndex.SelectedObject != null)
-                    fastListIndex_SelectedIndexChanged(this.fastListIndex, new EventArgs());
-                else
+            IBaseIndex baseIndex = this.fastListIndex.Objects.Cast<IBaseIndex>().FirstOrDefault(w => w.Id == baseIndexID);
+            if (baseIndex == null && (IBaseIndex)this.fastListIndex.SelectedObject != null)
+                fastListIndex_SelectedIndexChanged(this.fastListIndex, new EventArgs());
+            else
+            {
+                if (baseIndex == null) baseIndex = this.fastListIndex.Objects.Cast<IBaseIndex>().FirstOrDefault();
+                if (baseIndex != null)
                 {
-                    if (baseIndex == null) baseIndex = this.fastListIndex.Objects.Cast<IBaseIndex>().FirstOrDefault();
-                    if (baseIndex != null)
-                    {
-                        this.fastListIndex.SelectObject(baseIndex);
-                        this.fastListIndex.EnsureModelVisible(baseIndex);
-                    }
+                    this.fastListIndex.SelectObject(baseIndex);
+                    this.fastListIndex.EnsureModelVisible(baseIndex);
                 }
+            }
             //}
             //else
             //    if (this.ReadonlyMode && this.fastListIndex.GetItemCount() > 0) this.fastListIndex.SelectedIndex = 0;
@@ -385,7 +385,7 @@ namespace TotalSmartCoding.Views.Mains
             {
                 if (this.myController.Save())
                 {
-                    this.Escape();
+                    if (this.EscapeAfterSave) this.Escape();
                     this.Loading();
                 }
             }
@@ -393,6 +393,14 @@ namespace TotalSmartCoding.Views.Mains
             {
                 ExceptionHandlers.ShowExceptionMessageBox(this, exception);
             }
+        }
+
+        public void Save(bool escapeAfterSave)
+        {
+            bool currentEscapeAfterSave = this.EscapeAfterSave;
+            this.EscapeAfterSave = escapeAfterSave;
+            this.Save();
+            this.EscapeAfterSave = currentEscapeAfterSave;
         }
 
         public void Delete()

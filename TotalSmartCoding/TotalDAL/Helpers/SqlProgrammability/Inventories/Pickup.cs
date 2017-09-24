@@ -79,6 +79,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryString = queryString + "                   LEFT JOIN Packs ON PickupDetails.PackID = Packs.PackID " + "\r\n";
             queryString = queryString + "                   LEFT JOIN Cartons ON PickupDetails.CartonID = Cartons.CartonID " + "\r\n";
             queryString = queryString + "                   LEFT JOIN Pallets ON PickupDetails.PalletID = Pallets.PalletID " + "\r\n";
+            queryString = queryString + "       ORDER BY    PickupDetails.PickupDetailID DESC " + "\r\n";
 
             queryString = queryString + "    END " + "\r\n";
 
