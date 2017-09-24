@@ -35,6 +35,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
         Binding bindingCommodityCode;
         Binding bindingCommodityName;
         Binding bindingQuantity;
+        Binding bindingLineVolume;
 
         public WizardDetail(PickupViewModel pickupViewModel, PendingPallet pendingPallet)
         {
@@ -52,7 +53,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
             this.fastBinLocations.Dock = DockStyle.Fill;
             this.splitContainer2.Panel2.Controls.Add(this.tabBinLocation);
 
-            this.splitContainer2.SplitterDistance = this.textexCode.Height + this.textexCommodityCode.Height + this.textexCommodityName.Height + this.textexQuantity.Height + this.textexBinLocationFilters.Height + 30;
+            this.splitContainer2.SplitterDistance = this.textexCode.Height + this.textexCommodityCode.Height + this.textexCommodityName.Height + this.textexQuantity.Height + this.textexLineVolume.Height + this.textexBinLocationFilters.Height + 30;
             this.splitContainer1.SplitterDistance = this.Width - this.Softkey001.Width - this.Softkey002.Width - this.Softkey003.Width - this.Softkey004.Width - 22;
             this.ActiveControl = this.textexBinLocationFilters;
 
@@ -82,15 +83,16 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
                     PalletCounts = this.pendingPallet.PalletCounts,
                     
                     Quantity = (decimal)this.pendingPallet.QuantityRemains,
-                    LineVolume = this.pendingPallet.LineVolume
+                    LineVolume = (decimal)this.pendingPallet.LineVolumeRemains
                 };
 
                 this.pickupDetailDTO.PropertyChanged += pickupDetailDTO_PropertyChanged;
 
                 this.bindingCodeID = this.textexCode.DataBindings.Add("Text", this.pickupDetailDTO, CommonExpressions.PropertyName<PickupDetailDTO>(p => p.PalletCode));
                 this.bindingCommodityCode = this.textexCommodityCode.DataBindings.Add("Text", this.pickupDetailDTO, CommonExpressions.PropertyName<PickupDetailDTO>(p => p.CommodityCode));
-                this.bindingCommodityName = this.textexCommodityName.DataBindings.Add("Text", this.pickupDetailDTO, CommonExpressions.PropertyName<PickupDetailDTO>(p => p.BinLocationID));
+                this.bindingCommodityName = this.textexCommodityName.DataBindings.Add("Text", this.pickupDetailDTO, CommonExpressions.PropertyName<PickupDetailDTO>(p => p.CommodityName));
                 this.bindingQuantity = this.textexQuantity.DataBindings.Add("Text", this.pickupDetailDTO, CommonExpressions.PropertyName<PickupDetailDTO>(p => p.Quantity));
+                this.bindingLineVolume = this.textexLineVolume.DataBindings.Add("Text", this.pickupDetailDTO, CommonExpressions.PropertyName<PickupDetailDTO>(p => p.LineVolume));
 
                 this.fastBinLocations.SetObjects((new BinLocationAPIs(CommonNinject.Kernel.Get<IBinLocationAPIRepository>())).GetBinLocationBases());
 
@@ -102,6 +104,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
                 this.bindingCommodityCode.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
                 this.bindingCommodityName.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
                 this.bindingQuantity.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+                this.bindingLineVolume.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
 
                 this.errorProviderMaster.DataSource = this.pickupDetailDTO;
             }
@@ -165,7 +168,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
             {
                 if (sender.Equals(this.buttonAdd) && this.pickupDetailDTO.IsValid)
                 {
-                    this.pickupViewModel.ViewDetails.Add(pickupDetailDTO);
+                    this.pickupViewModel.ViewDetails.Insert(0,pickupDetailDTO);
                     this.DialogResult = DialogResult.OK;
                 }
 

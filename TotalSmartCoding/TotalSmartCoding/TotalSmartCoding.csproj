@@ -982,6 +982,10 @@
     <None Include="Resources\Icons8-Windows-8-Numbers-5.ico" />
     <None Include="Resources\Icons8-Windows-8-Numbers-6.ico" />
     <None Include="Resources\Icons8-Windows-8-Numbers-0.ico" />
+    <None Include="Resources\letter-uppercase-M-icon.ico" />
+    <None Include="Resources\letter-uppercase-N-icon.ico" />
+    <None Include="Resources\letter-uppercase-O-icon.ico" />
+    <None Include="Resources\letter-uppercase-P-icon.ico" />
     <Content Include="Resources\Toolbar Image1.png" />
     <None Include="Resources\Umar123-Carton.ico" />
     <Content Include="Resources\warning__1_.ico" />

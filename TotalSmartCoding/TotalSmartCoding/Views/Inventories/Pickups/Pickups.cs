@@ -74,18 +74,11 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
 
                 this.customTabBatch.DisplayStyle = TabStyle.VisualStudio;
 
-                this.customTabBatch.TabPages.Add("tabDetailPallets", "Pallet details          ");
-                this.customTabBatch.TabPages.Add("tabDetailCartons", "Carton details          ");
-                this.customTabBatch.TabPages.Add("tabDetailPacks", "Pack details          ");
+                this.customTabBatch.TabPages.Add("tabDetailPallets", "Pickup pallet list          ");
                 this.customTabBatch.TabPages[0].Controls.Add(this.gridexPalletDetails);
-                this.customTabBatch.TabPages[1].Controls.Add(this.gridexCartonDetails);
-                this.customTabBatch.TabPages[2].Controls.Add(this.gridexPackDetails);
-
 
                 this.customTabBatch.Dock = DockStyle.Fill;
                 this.gridexPalletDetails.Dock = DockStyle.Fill;
-                this.gridexCartonDetails.Dock = DockStyle.Fill;
-                this.gridexPackDetails.Dock = DockStyle.Fill;
                 this.panelMaster.Controls.Add(this.customTabBatch);
 
                 this.naviDetails.ExpandedHeight = this.naviDetails.HeaderHeight + this.textexTotalPalletCounts.Size.Height + this.textexTotalQuantity.Size.Height + this.textexTotalLineVolume.Size.Height + this.textexDescription.Size.Height + 5 + 5 * 10 + 3;
@@ -221,11 +214,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
         protected override void InitializeDataGridBinding()
         {
             this.gridexPalletDetails.AutoGenerateColumns = false;
-            this.gridexCartonDetails.AutoGenerateColumns = false;
-            this.gridexPackDetails.AutoGenerateColumns = false;
-
             this.gridexPalletDetails.DataSource = this.pickupViewModel.ViewDetails;
-            this.gridexCartonDetails.DataSource = this.pickupViewModel.PalletDetails;
 
             //StackedHeaderDecorator stackedHeaderDecorator = new StackedHeaderDecorator(this.dataGridViewDetails);
         }

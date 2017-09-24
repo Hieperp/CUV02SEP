@@ -2163,6 +2163,46 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap letter_uppercase_M_icon {
+            get {
+                object obj = ResourceManager.GetObject("letter-uppercase-M-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap letter_uppercase_N_icon {
+            get {
+                object obj = ResourceManager.GetObject("letter-uppercase-N-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap letter_uppercase_O_icon {
+            get {
+                object obj = ResourceManager.GetObject("letter-uppercase-O-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap letter_uppercase_P_icon {
+            get {
+                object obj = ResourceManager.GetObject("letter-uppercase-P-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap lock_disabled_icon_24 {
             get {
                 object obj = ResourceManager.GetObject("lock-disabled-icon-24", resourceCulture);

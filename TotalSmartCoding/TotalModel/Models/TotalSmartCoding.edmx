@@ -2760,11 +2760,10 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Type="String" Name="CommodityCode" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="CommodityName" Nullable="false" MaxLength="200" />
           <Property Type="Decimal" Name="QuantityRemains" Nullable="true" Precision="19" Scale="2" />
-          <Property Type="Decimal" Name="Quantity" Nullable="true" Precision="18" Scale="2" />
           <Property Type="Int32" Name="PackCounts" Nullable="false" />
           <Property Type="Int32" Name="CartonCounts" Nullable="false" />
           <Property Type="Int32" Name="PalletCounts" Nullable="false" />
-          <Property Type="Decimal" Name="LineVolume" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="LineVolumeRemains" Nullable="true" Precision="19" Scale="2" />
         </ComplexType>
         <ComplexType Name="EmployeeBase">
           <Property Type="Int32" Name="EmployeeID" Nullable="false" />
@@ -4712,11 +4711,10 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
                 <ScalarProperty Name="CommodityCode" ColumnName="CommodityCode" />
                 <ScalarProperty Name="CommodityName" ColumnName="CommodityName" />
                 <ScalarProperty Name="QuantityRemains" ColumnName="QuantityRemains" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="PackCounts" ColumnName="PackCounts" />
                 <ScalarProperty Name="CartonCounts" ColumnName="CartonCounts" />
                 <ScalarProperty Name="PalletCounts" ColumnName="PalletCounts" />
-                <ScalarProperty Name="LineVolume" ColumnName="LineVolume" />
+                <ScalarProperty Name="LineVolumeRemains" ColumnName="LineVolumeRemains" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
