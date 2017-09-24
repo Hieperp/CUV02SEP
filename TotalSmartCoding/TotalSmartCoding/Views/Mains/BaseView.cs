@@ -260,8 +260,8 @@ namespace TotalSmartCoding.Views.Mains
         public virtual bool Importable { get { return false; } }
         public virtual bool Exportable { get { return false; } }
 
-        public virtual bool Approvable { get { return false; } }
-        public virtual bool Unapprovable { get { return false; } }
+        public virtual bool Approvable { get { return this.baseDTO.Approvable; } }
+        public virtual bool Unapprovable { get { return this.baseDTO.UnApprovable; } }
 
         public virtual bool Printable { get { return false; } }
         public virtual bool Filterable { get { return true; } }

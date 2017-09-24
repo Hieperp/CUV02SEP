@@ -27,7 +27,8 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
 
             this.customTabBatch.TabPages.Add("tabPendingPickups", "Receipt by pickup                  ");
             this.customTabBatch.TabPages.Add("tabPendingPickupWarehouses", "Receipt by warehouse          ");
-            this.customTabBatch.TabPages.Add("tabPendingPickups", "Transfer Receipt                    ");
+            this.customTabBatch.TabPages.Add("tabPendingTransfers", "Transfer Receipt                    ");
+            this.customTabBatch.TabPages.Add("tabPendingPurchases", "Purchase Receipt                    ");
             this.customTabBatch.TabPages[0].Controls.Add(this.fastPendingPickups);
             this.customTabBatch.TabPages[1].Controls.Add(this.fastPendingPickupWarehouses);
 

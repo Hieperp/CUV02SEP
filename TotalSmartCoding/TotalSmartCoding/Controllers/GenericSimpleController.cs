@@ -637,6 +637,9 @@ namespace TotalSmartCoding.Controllers
 
                 if (forAlter)//NOW THIS GlobalLocked attribute ONLY be considered WHEN ALTER ACTION to USE IN ALTER VIEW: to ALLOW or NOT ALTER.
                     simpleViewModel.GlobalLocked = this.GenericService.GlobalLocked(simpleViewModel);
+
+                simpleViewModel.Approvable = this.GenericService.Approvable(simpleViewModel);
+                simpleViewModel.UnApprovable = this.GenericService.UnApprovable(simpleViewModel);
             }
 
             simpleViewModel.ShowDiscount = this.GetShowDiscount(simpleViewModel);

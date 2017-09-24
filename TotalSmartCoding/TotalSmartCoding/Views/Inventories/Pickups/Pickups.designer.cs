@@ -57,7 +57,6 @@
             this.textexWarehouseCode = new CustomControls.TextexBox();
             this.toolStripChildForm = new System.Windows.Forms.ToolStrip();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.naviDetails = new Guifreaks.Navisuite.NaviGroup(this.components);
             this.labelFillingLineName = new System.Windows.Forms.Label();
             this.gridexPalletDetails = new CustomControls.DataGridexView();
@@ -403,8 +402,7 @@
             this.toolStripChildForm.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.toolStripChildForm.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStripChildForm.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton2,
-            this.toolStripSeparator1});
+            this.toolStripButton2});
             this.toolStripChildForm.Location = new System.Drawing.Point(0, 0);
             this.toolStripChildForm.Name = "toolStripChildForm";
             this.toolStripChildForm.Size = new System.Drawing.Size(1837, 39);
@@ -422,11 +420,6 @@
             this.toolStripButton2.Text = "Disconnect";
             this.toolStripButton2.Visible = false;
             // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 39);
-            // 
             // naviDetails
             // 
             this.naviDetails.Caption = "   Pickup for";
@@ -437,7 +430,7 @@
             this.naviDetails.Font = new System.Drawing.Font("Cambria", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.naviDetails.HeaderContextMenuStrip = null;
             this.naviDetails.HeaderHeight = 51;
-            this.naviDetails.Location = new System.Drawing.Point(295, 0);
+            this.naviDetails.Location = new System.Drawing.Point(295, 39);
             this.naviDetails.Name = "naviDetails";
             this.naviDetails.Padding = new System.Windows.Forms.Padding(0, 53, 0, 0);
             this.naviDetails.Size = new System.Drawing.Size(1019, 315);
@@ -480,7 +473,7 @@
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Cambria", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridexPalletDetails.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.gridexPalletDetails.RowTemplate.Height = 45;
-            this.gridexPalletDetails.Size = new System.Drawing.Size(1019, 477);
+            this.gridexPalletDetails.Size = new System.Drawing.Size(1019, 438);
             this.gridexPalletDetails.TabIndex = 65;
             this.gridexPalletDetails.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.gridexPalletDetails_UserDeletedRow);
             // 
@@ -552,7 +545,7 @@
             this.fastPickupIndex.OwnerDraw = true;
             this.fastPickupIndex.RowHeight = 45;
             this.fastPickupIndex.ShowGroups = false;
-            this.fastPickupIndex.Size = new System.Drawing.Size(293, 705);
+            this.fastPickupIndex.Size = new System.Drawing.Size(293, 666);
             this.fastPickupIndex.TabIndex = 68;
             this.fastPickupIndex.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastPickupIndex.UseCompatibleStateImageBehavior = false;
@@ -619,10 +612,10 @@
             this.naviPendingItems.Dock = System.Windows.Forms.DockStyle.Right;
             this.naviPendingItems.Font = new System.Drawing.Font("Cambria", 31.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.naviPendingItems.HeaderHeight = 50;
-            this.naviPendingItems.Location = new System.Drawing.Point(1314, 0);
+            this.naviPendingItems.Location = new System.Drawing.Point(1314, 39);
             this.naviPendingItems.Name = "naviPendingItems";
             this.naviPendingItems.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.naviPendingItems.Size = new System.Drawing.Size(523, 795);
+            this.naviPendingItems.Size = new System.Drawing.Size(523, 756);
             this.naviPendingItems.TabIndex = 69;
             this.naviPendingItems.Text = "naviBar1";
             // 
@@ -635,13 +628,13 @@
             this.naviPendingPallets.ClientArea.LayoutStyle = Guifreaks.Navisuite.NaviLayoutStyle.StyleFromOwner;
             this.naviPendingPallets.ClientArea.Location = new System.Drawing.Point(0, 0);
             this.naviPendingPallets.ClientArea.Name = "ClientArea";
-            this.naviPendingPallets.ClientArea.Size = new System.Drawing.Size(521, 705);
+            this.naviPendingPallets.ClientArea.Size = new System.Drawing.Size(521, 666);
             this.naviPendingPallets.ClientArea.TabIndex = 0;
             this.naviPendingPallets.LargeImageIndex = 0;
             this.naviPendingPallets.LayoutStyle = Guifreaks.Navisuite.NaviLayoutStyle.StyleFromOwner;
             this.naviPendingPallets.Location = new System.Drawing.Point(1, 50);
             this.naviPendingPallets.Name = "naviPendingPallets";
-            this.naviPendingPallets.Size = new System.Drawing.Size(521, 705);
+            this.naviPendingPallets.Size = new System.Drawing.Size(521, 666);
             this.naviPendingPallets.SmallImageIndex = 0;
             this.naviPendingPallets.TabIndex = 3;
             // 
@@ -662,7 +655,7 @@
             this.fastPendingPallets.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.fastPendingPallets.RowHeight = 45;
             this.fastPendingPallets.ShowGroups = false;
-            this.fastPendingPallets.Size = new System.Drawing.Size(521, 705);
+            this.fastPendingPallets.Size = new System.Drawing.Size(521, 666);
             this.fastPendingPallets.TabIndex = 69;
             this.fastPendingPallets.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastPendingPallets.UseCompatibleStateImageBehavior = false;
@@ -689,13 +682,13 @@
             this.naviPickupIndex.ClientArea.LayoutStyle = Guifreaks.Navisuite.NaviLayoutStyle.StyleFromOwner;
             this.naviPickupIndex.ClientArea.Location = new System.Drawing.Point(0, 0);
             this.naviPickupIndex.ClientArea.Name = "ClientArea";
-            this.naviPickupIndex.ClientArea.Size = new System.Drawing.Size(293, 705);
+            this.naviPickupIndex.ClientArea.Size = new System.Drawing.Size(293, 666);
             this.naviPickupIndex.ClientArea.TabIndex = 0;
             this.naviPickupIndex.LargeImageIndex = 0;
             this.naviPickupIndex.LayoutStyle = Guifreaks.Navisuite.NaviLayoutStyle.StyleFromOwner;
             this.naviPickupIndex.Location = new System.Drawing.Point(1, 50);
             this.naviPickupIndex.Name = "naviPickupIndex";
-            this.naviPickupIndex.Size = new System.Drawing.Size(293, 705);
+            this.naviPickupIndex.Size = new System.Drawing.Size(293, 666);
             this.naviPickupIndex.SmallImageIndex = 0;
             this.naviPickupIndex.TabIndex = 72;
             // 
@@ -705,9 +698,9 @@
             this.naviIndex.Controls.Add(this.naviPickupIndex);
             this.naviIndex.Dock = System.Windows.Forms.DockStyle.Left;
             this.naviIndex.HeaderHeight = 50;
-            this.naviIndex.Location = new System.Drawing.Point(0, 0);
+            this.naviIndex.Location = new System.Drawing.Point(0, 39);
             this.naviIndex.Name = "naviIndex";
-            this.naviIndex.Size = new System.Drawing.Size(295, 795);
+            this.naviIndex.Size = new System.Drawing.Size(295, 756);
             this.naviIndex.TabIndex = 71;
             this.naviIndex.Text = "naviBar2";
             // 
@@ -716,10 +709,10 @@
             this.panelMaster.BackColor = System.Drawing.SystemColors.Window;
             this.panelMaster.Controls.Add(this.gridexPalletDetails);
             this.panelMaster.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelMaster.Location = new System.Drawing.Point(295, 315);
+            this.panelMaster.Location = new System.Drawing.Point(295, 354);
             this.panelMaster.Name = "panelMaster";
             this.panelMaster.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.panelMaster.Size = new System.Drawing.Size(1019, 480);
+            this.panelMaster.Size = new System.Drawing.Size(1019, 441);
             this.panelMaster.TabIndex = 72;
             // 
             // imageList24
@@ -779,7 +772,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ToolStrip toolStripChildForm;
         private System.Windows.Forms.ToolStripButton toolStripButton2;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private CustomControls.DateTimexPicker dateTimexEntryDate;
         private BrightIdeasSoftware.FastObjectListView fastPickupIndex;
         private BrightIdeasSoftware.OLVColumn olvID;

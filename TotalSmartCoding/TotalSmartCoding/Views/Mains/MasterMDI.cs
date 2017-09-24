@@ -21,6 +21,7 @@ using TotalBase;
 using TotalSmartCoding.Views.Sales.SalesOrders;
 using TotalSmartCoding.Views.Sales.DeliveryAdvices;
 using TotalSmartCoding.Views.Inventories.WarehouseAdjustments;
+using TotalSmartCoding.Views.Inventories.GoodsReceipts;
 
 namespace TotalSmartCoding.Views.Mains
 {
@@ -222,7 +223,7 @@ namespace TotalSmartCoding.Views.Mains
                     this.toolStripSeparatorImport.Visible = importable || exportable;
 
                     this.buttonApprove.Visible = approvable || unapprovable;
-                    this.buttonApprove.Enabled = approvable || unapprovable;
+                    this.buttonApprove.Enabled = (approvable || unapprovable) && readonlyMode;
                     this.buttonApprove.Text = approvable ? "Verify" : "Unverify";
                     this.toolStripSeparatorApprove.Visible = approvable || unapprovable;
 
@@ -420,12 +421,7 @@ namespace TotalSmartCoding.Views.Mains
             Pickups grForm;
             grForm = new Pickups();
 
-            ////Open new form
-            ////Pickups grForm;  //
             //GoodsReceipts grForm;
-            ////childForm = new Batches();
-            ////childForm = new DeliveryAdvices();
-            ////grForm = new Pickups(); //
             //grForm = new GoodsReceipts();
 
 

@@ -905,6 +905,9 @@
     <None Include="Resources\Green-cross.ico" />
     <None Include="Resources\Carlosjj-Google-Jfk-Maps.ico" />
     <None Include="Resources\Graphicloads-100-Flat-2-Inside-logout.ico" />
+    <None Include="Resources\Check-Saki-Ok.ico" />
+    <None Include="Resources\Check-Sleek-Ok.ico" />
+    <None Include="Resources\Check-Snowish-Ok.ico" />
     <Content Include="Resources\Icons-Land-Play-Stop-Pause-Play-Pressed.ico" />
     <None Include="Resources\Land-Play.ico" />
     <None Include="Resources\palet031.ico" />
