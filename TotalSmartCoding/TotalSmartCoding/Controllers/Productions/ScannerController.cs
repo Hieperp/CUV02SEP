@@ -50,6 +50,7 @@ namespace TotalSmartCoding.Controllers.Productions
         }
 
         private BarcodeQueue<PalletDTO> palletQueue;
+        private BarcodeQueue<PalletDTO> palletPickupQueue;
 
 
         private BarcodeScannerStatus[] barcodeScannerStatus;
@@ -84,6 +85,7 @@ namespace TotalSmartCoding.Controllers.Productions
                 this.cartonsetQueue = new BarcodeQueue<CartonDTO>() { ItemPerSet = this.FillingData.CartonPerPallet };
 
                 this.palletQueue = new BarcodeQueue<PalletDTO>();
+                this.palletPickupQueue = new BarcodeQueue<PalletDTO>();
 
 
                 base.FillingData.PropertyChanged += new PropertyChangedEventHandler(fillingData_PropertyChanged);
@@ -140,18 +142,28 @@ namespace TotalSmartCoding.Controllers.Productions
                     this.NotifyPropertyChanged("CartonPendingQueue");
                 }
 
-                if (!GlobalEnums.OnTestPalletReceivedNow)
+                if (!GlobalEnums.OnTestPalletReceivedNow) this.InitializePallet();
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
+        }
+
+        public void InitializePallet()
+        {
+            try
+            {
+                IList<Pallet> pallets = this.palletController.palletService.GetPallets(this.FillingData.FillingLineID, (int)GlobalVariables.BarcodeStatus.Freshnew + "," + (int)GlobalVariables.BarcodeStatus.Readytoset);
+                if (pallets.Count > 0)
                 {
-                    IList<Pallet> pallets = this.palletController.palletService.GetPallets(this.FillingData.FillingLineID, (int)GlobalVariables.BarcodeStatus.Freshnew + "," + (int)GlobalVariables.BarcodeStatus.Readytoset);
-                    if (pallets.Count > 0)
+                    pallets.Each(pallet =>
                     {
-                        pallets.Each(pallet =>
-                        {
-                            PalletDTO palletDTO = Mapper.Map<Pallet, PalletDTO>(pallet);
-                            this.palletQueue.Enqueue(palletDTO, false);
-                        });
-                        this.NotifyPropertyChanged("PalletQueue");
-                    }
+                        PalletDTO palletDTO = Mapper.Map<Pallet, PalletDTO>(pallet);
+                        if (palletDTO.QuantityPickup == 0) this.palletQueue.Enqueue(palletDTO, false); else this.palletPickupQueue.Enqueue(palletDTO, false);
+                    });
+                    this.NotifyPropertyChanged("PalletQueue");
+                    this.NotifyPropertyChanged("PalletPickupQueue");
                 }
             }
             catch (Exception exception)
@@ -193,6 +205,7 @@ namespace TotalSmartCoding.Controllers.Productions
         public int CartonQueueCount { get { return this.cartonQueue.Count; } }
         public int CartonsetQueueCount { get { return this.cartonsetQueue.Count; } }
         public int PalletQueueCount { get { return this.palletQueue.Count; } }
+        public int PalletPickupQueueCount { get { return this.palletPickupQueue.Count; } }
 
         public bool AllQueueEmpty { get { return (this.packQueue == null && this.packsetQueue == null && this.cartonPendingQueue == null && this.cartonQueue == null && this.cartonsetQueue == null) || (this.PackQueueCount == 0 && this.packsetQueue.Count == 0 && this.CartonPendingQueueCount == 0 && this.CartonQueueCount == 0 && this.cartonsetQueue.Count == 0); } } // && this.PalletQueueCount == 0 : HIEN TAI: KHONG CO CACH NAO UNWRAP PALLET TO CARTON => SO NO NEED TO CHECK ALL PalletQueueCount
 
@@ -315,6 +328,17 @@ namespace TotalSmartCoding.Controllers.Productions
             else return null;
         }
 
+        public DataTable GetPalletPickupQueue()
+        {
+            if (this.palletPickupQueue != null)
+            {
+                lock (this.palletPickupQueue)
+                {
+                    return this.palletPickupQueue.ConverttoTable();
+                }
+            }
+            else return null;
+        }
 
 
 

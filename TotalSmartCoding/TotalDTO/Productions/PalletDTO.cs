@@ -35,6 +35,7 @@ namespace TotalDTO.Productions
         { }
 
 
+        public decimal QuantityPickup { get; set; }
         public string CartonIDs { get; set; }
 
 
