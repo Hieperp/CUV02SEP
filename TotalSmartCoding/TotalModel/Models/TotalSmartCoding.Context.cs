@@ -478,11 +478,15 @@ namespace TotalModel.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PickupToggleApproved", entityIDParameter, approvedParameter);
         }
     
-        public virtual ObjectResult<PendingPallet> GetPendingPallets(Nullable<int> locationID, Nullable<int> pickupID, string palletIDs, Nullable<bool> isReadonly)
+        public virtual ObjectResult<PendingPallet> GetPendingPallets(Nullable<int> locationID, Nullable<int> fillingLineID, Nullable<int> pickupID, string palletIDs, Nullable<bool> isReadonly)
         {
             var locationIDParameter = locationID.HasValue ?
                 new ObjectParameter("LocationID", locationID) :
                 new ObjectParameter("LocationID", typeof(int));
+    
+            var fillingLineIDParameter = fillingLineID.HasValue ?
+                new ObjectParameter("FillingLineID", fillingLineID) :
+                new ObjectParameter("FillingLineID", typeof(int));
     
             var pickupIDParameter = pickupID.HasValue ?
                 new ObjectParameter("PickupID", pickupID) :
@@ -496,7 +500,7 @@ namespace TotalModel.Models
                 new ObjectParameter("IsReadonly", isReadonly) :
                 new ObjectParameter("IsReadonly", typeof(bool));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PendingPallet>("GetPendingPallets", locationIDParameter, pickupIDParameter, palletIDsParameter, isReadonlyParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PendingPallet>("GetPendingPallets", locationIDParameter, fillingLineIDParameter, pickupIDParameter, palletIDsParameter, isReadonlyParameter);
         }
     
         public virtual ObjectResult<EmployeeBase> GetEmployeeBases()

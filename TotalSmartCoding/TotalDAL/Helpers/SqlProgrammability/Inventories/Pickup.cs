@@ -93,7 +93,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
         {
             string queryString;
 
-            queryString = " @LocationID Int, @PickupID Int, @PalletIDs varchar(3999), @IsReadonly bit " + "\r\n";
+            queryString = " @LocationID Int, @FillingLineID Int, @PickupID Int, @PalletIDs varchar(3999), @IsReadonly bit " + "\r\n";
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
 
@@ -118,14 +118,14 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryString = queryString + "       IF (@PickupID <= 0) " + "\r\n";
             queryString = queryString + "               BEGIN " + "\r\n";
             queryString = queryString + "                   " + this.BuildSQLNew(isPalletIDs) + "\r\n";
-            queryString = queryString + "                   ORDER BY Pallets.EntryDate DESC, Pallets.PalletID DESC  " + "\r\n";
+            queryString = queryString + "                   ORDER BY Pallets.EntryDate, Pallets.PalletID  " + "\r\n";
             queryString = queryString + "               END " + "\r\n";
             queryString = queryString + "       ELSE " + "\r\n";
 
             queryString = queryString + "               IF (@IsReadonly = 1) " + "\r\n";
             queryString = queryString + "                   BEGIN " + "\r\n";
             queryString = queryString + "                       " + this.BuildSQLEdit(isPalletIDs) + "\r\n";
-            queryString = queryString + "                       ORDER BY Pallets.EntryDate DESC, Pallets.PalletID DESC  " + "\r\n";
+            queryString = queryString + "                       ORDER BY Pallets.EntryDate, Pallets.PalletID  " + "\r\n";
             queryString = queryString + "                   END " + "\r\n";
 
             queryString = queryString + "               ELSE " + "\r\n"; //FULL SELECT FOR EDIT MODE
@@ -134,7 +134,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryString = queryString + "                       " + this.BuildSQLNew(isPalletIDs) + " WHERE Pallets.PalletID NOT IN (SELECT PalletID FROM PickupDetails WHERE PickupID = @PickupID) " + "\r\n";
             queryString = queryString + "                       UNION ALL " + "\r\n";
             queryString = queryString + "                       " + this.BuildSQLEdit(isPalletIDs) + "\r\n";
-            queryString = queryString + "                       ORDER BY Pallets.EntryDate DESC, Pallets.PalletID DESC  " + "\r\n";
+            queryString = queryString + "                       ORDER BY Pallets.EntryDate, Pallets.PalletID  " + "\r\n";
             queryString = queryString + "                   END " + "\r\n";
 
             queryString = queryString + "   END " + "\r\n";
@@ -150,7 +150,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryString = queryString + "                   ROUND(Pallets.Quantity - Pallets.QuantityPickup,  " + (int)GlobalEnums.rndQuantity + ") AS QuantityRemains, ROUND(Pallets.LineVolume - Pallets.LineVolumePickup,  " + (int)GlobalEnums.rndVolume + ") AS LineVolumeRemains, Pallets.PackCounts, Pallets.CartonCounts, 1 AS PalletCounts " + "\r\n";
 
             queryString = queryString + "       FROM        Pallets " + "\r\n";
-            queryString = queryString + "                   INNER JOIN Commodities ON Pallets.LocationID = @LocationID AND ROUND(Pallets.Quantity - Pallets.QuantityPickup, " + (int)GlobalEnums.rndQuantity + ") > 0 AND Pallets.CommodityID = Commodities.CommodityID " + (isPalletIDs ? " AND Pallets.PalletID NOT IN (SELECT Id FROM dbo.SplitToIntList (@PalletIDs))" : "") + "\r\n";
+            queryString = queryString + "                   INNER JOIN Commodities ON Pallets.LocationID = @LocationID AND Pallets.FillingLineID = @FillingLineID AND ROUND(Pallets.Quantity - Pallets.QuantityPickup, " + (int)GlobalEnums.rndQuantity + ") > 0 AND Pallets.CommodityID = Commodities.CommodityID " + (isPalletIDs ? " AND Pallets.PalletID NOT IN (SELECT Id FROM dbo.SplitToIntList (@PalletIDs))" : "") + "\r\n";
 
             return queryString;
         }

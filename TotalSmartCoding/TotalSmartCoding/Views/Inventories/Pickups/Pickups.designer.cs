@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Pickups));
             this.tableLayoutMaster = new System.Windows.Forms.TableLayoutPanel();
             this.textexRemarks = new CustomControls.TextexBox();
@@ -69,13 +69,13 @@
             this.olvID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvEntryDate = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvFillingLineNickName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvReference = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvPickupIndexReference = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvApproved = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.imageList32 = new System.Windows.Forms.ImageList(this.components);
             this.naviPendingItems = new Guifreaks.Navisuite.NaviBar(this.components);
             this.naviPendingPallets = new Guifreaks.Navisuite.NaviBand(this.components);
             this.fastPendingPallets = new BrightIdeasSoftware.FastObjectListView();
-            this.olvCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvPendingPalletCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.naviPickupIndex = new Guifreaks.Navisuite.NaviBand(this.components);
             this.naviIndex = new Guifreaks.Navisuite.NaviBar(this.components);
             this.panelMaster = new System.Windows.Forms.Panel();
@@ -451,14 +451,14 @@
             // 
             this.gridexPalletDetails.AllowAddRow = false;
             this.gridexPalletDetails.AllowDeleteRow = true;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Cambria", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridexPalletDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Cambria", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridexPalletDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.gridexPalletDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridexPalletDetails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CommodityCode,
@@ -470,8 +470,8 @@
             this.gridexPalletDetails.Editable = false;
             this.gridexPalletDetails.Location = new System.Drawing.Point(0, 3);
             this.gridexPalletDetails.Name = "gridexPalletDetails";
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Cambria", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridexPalletDetails.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Cambria", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridexPalletDetails.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.gridexPalletDetails.RowTemplate.Height = 45;
             this.gridexPalletDetails.Size = new System.Drawing.Size(1019, 477);
             this.gridexPalletDetails.TabIndex = 65;
@@ -505,8 +505,8 @@
             // 
             this.Quantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Quantity.DataPropertyName = "Quantity";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.Quantity.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Quantity.DefaultCellStyle = dataGridViewCellStyle6;
             this.Quantity.FillWeight = 10F;
             this.Quantity.HeaderText = "Qty";
             this.Quantity.Name = "Quantity";
@@ -515,8 +515,8 @@
             // 
             this.LineVolume.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.LineVolume.DataPropertyName = "LineVolume";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.LineVolume.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.LineVolume.DefaultCellStyle = dataGridViewCellStyle7;
             this.LineVolume.FillWeight = 11F;
             this.LineVolume.HeaderText = "Volume";
             this.LineVolume.Name = "LineVolume";
@@ -526,12 +526,12 @@
             this.fastPickupIndex.AllColumns.Add(this.olvID);
             this.fastPickupIndex.AllColumns.Add(this.olvEntryDate);
             this.fastPickupIndex.AllColumns.Add(this.olvFillingLineNickName);
-            this.fastPickupIndex.AllColumns.Add(this.olvReference);
+            this.fastPickupIndex.AllColumns.Add(this.olvPickupIndexReference);
             this.fastPickupIndex.AllColumns.Add(this.olvApproved);
             this.fastPickupIndex.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.olvID,
             this.olvFillingLineNickName,
-            this.olvReference,
+            this.olvPickupIndexReference,
             this.olvApproved});
             this.fastPickupIndex.Cursor = System.Windows.Forms.Cursors.Default;
             this.fastPickupIndex.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -578,12 +578,13 @@
             this.olvFillingLineNickName.Text = "";
             this.olvFillingLineNickName.Width = 85;
             // 
-            // olvReference
+            // olvPickupIndexReference
             // 
-            this.olvReference.AspectName = "Reference";
-            this.olvReference.Groupable = false;
-            this.olvReference.Text = "Pickups";
-            this.olvReference.Width = 85;
+            this.olvPickupIndexReference.AspectName = "Reference";
+            this.olvPickupIndexReference.Groupable = false;
+            this.olvPickupIndexReference.HeaderForeColor = System.Drawing.Color.Firebrick;
+            this.olvPickupIndexReference.Text = "Pickups";
+            this.olvPickupIndexReference.Width = 85;
             // 
             // olvApproved
             // 
@@ -640,9 +641,9 @@
             // 
             // fastPendingPallets
             // 
-            this.fastPendingPallets.AllColumns.Add(this.olvCode);
+            this.fastPendingPallets.AllColumns.Add(this.olvPendingPalletCode);
             this.fastPendingPallets.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.olvCode});
+            this.olvPendingPalletCode});
             this.fastPendingPallets.Cursor = System.Windows.Forms.Cursors.Default;
             this.fastPendingPallets.Dock = System.Windows.Forms.DockStyle.Fill;
             this.fastPendingPallets.Font = new System.Drawing.Font("Sitka Banner", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -664,14 +665,16 @@
             this.fastPendingPallets.VirtualMode = true;
             this.fastPendingPallets.MouseClick += new System.Windows.Forms.MouseEventHandler(this.fastPendingPallets_MouseClick);
             // 
-            // olvCode
+            // olvPendingPalletCode
             // 
-            this.olvCode.AspectName = "Code";
-            this.olvCode.FillsFreeSpace = true;
-            this.olvCode.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvCode.Text = "                         Pending Pallet";
-            this.olvCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvCode.Width = 400;
+            this.olvPendingPalletCode.AspectName = "Code";
+            this.olvPendingPalletCode.FillsFreeSpace = true;
+            this.olvPendingPalletCode.HeaderFont = new System.Drawing.Font("Niagara Engraved", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.olvPendingPalletCode.HeaderForeColor = System.Drawing.Color.Firebrick;
+            this.olvPendingPalletCode.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvPendingPalletCode.Text = "                         Pending Pallet";
+            this.olvPendingPalletCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvPendingPalletCode.Width = 400;
             // 
             // naviPickupIndex
             // 
@@ -798,10 +801,10 @@
         private Guifreaks.Navisuite.NaviBand naviPickupIndex;
         private Guifreaks.Navisuite.NaviBand naviPendingPallets;
         private BrightIdeasSoftware.FastObjectListView fastPendingPallets;
-        private BrightIdeasSoftware.OLVColumn olvCode;
+        private BrightIdeasSoftware.OLVColumn olvPendingPalletCode;
         private CustomControls.TextexBox textexWarehouseCode;
         private System.Windows.Forms.Label labelFillingLineName;
-        private BrightIdeasSoftware.OLVColumn olvReference;
+        private BrightIdeasSoftware.OLVColumn olvPickupIndexReference;
         private System.Windows.Forms.ImageList imageList32;
         private System.Windows.Forms.ImageList imageList24;
         private BrightIdeasSoftware.OLVColumn olvApproved;

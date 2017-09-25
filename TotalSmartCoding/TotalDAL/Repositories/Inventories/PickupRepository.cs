@@ -32,9 +32,9 @@ namespace TotalDAL.Repositories.Inventories
         }
 
 
-        public List<PendingPallet> GetPendingPallets(int? locationID, int? pickupID, string palletIDs, bool isReadonly)
+        public List<PendingPallet> GetPendingPallets(int? locationID, int? fillingLineID, int? pickupID, string palletIDs, bool isReadonly)
         {
-            return base.TotalSmartCodingEntities.GetPendingPallets(locationID, pickupID, palletIDs, isReadonly).ToList();
+            return base.TotalSmartCodingEntities.GetPendingPallets(locationID, fillingLineID, pickupID, palletIDs, isReadonly).ToList();
         }
 
     }

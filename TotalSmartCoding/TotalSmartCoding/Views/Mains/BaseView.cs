@@ -374,7 +374,7 @@ namespace TotalSmartCoding.Views.Mains
             }
         }
 
-        private void invokeEdit(int? id)
+        protected virtual void invokeEdit(int? id)
         {
             this.myController.Edit(id);
         }

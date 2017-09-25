@@ -30,6 +30,10 @@ namespace TotalDAL.Repositories
             //if (!GlobalVariables.shouldRestoreProcedure) //return;
 
             return;
+            return;
+
+            Helpers.SqlProgrammability.Commons.FillingLine fillingLine = new Helpers.SqlProgrammability.Commons.FillingLine(totalSmartCodingEntities);
+            fillingLine.RestoreProcedure();
 
             return;
 
@@ -115,10 +119,7 @@ namespace TotalDAL.Repositories
             Helpers.SqlProgrammability.Commons.BinLocation binLocation = new Helpers.SqlProgrammability.Commons.BinLocation(totalSmartCodingEntities);
             binLocation.RestoreProcedure();
 
-            //return;
-
-            Helpers.SqlProgrammability.Commons.FillingLine fillingLine = new Helpers.SqlProgrammability.Commons.FillingLine(totalSmartCodingEntities);
-            fillingLine.RestoreProcedure();
+            
 
             //return;
 

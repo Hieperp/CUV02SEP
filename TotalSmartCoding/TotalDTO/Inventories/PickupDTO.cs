@@ -46,6 +46,13 @@ namespace TotalDTO.Inventories
             get { return this.fillingLineName; }
             set { ApplyPropertyChange<PickupDTO, string>(ref this.fillingLineName, o => o.FillingLineName, value, false); }
         }
+        private string fillingLineNickName;
+        [DefaultValue("")]
+        public string FillingLineNickName
+        {
+            get { return this.fillingLineNickName; }
+            set { ApplyPropertyChange<PickupDTO, string>(ref this.fillingLineNickName, o => o.FillingLineNickName, value, false); }
+        }
 
 
         private Nullable<int> warehouseID;

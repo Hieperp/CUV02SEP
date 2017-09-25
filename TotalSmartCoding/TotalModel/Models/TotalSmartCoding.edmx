@@ -1484,6 +1484,7 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
         </Function>
         <Function Name="GetPendingPallets" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="LocationID" Type="int" Mode="In" />
+          <Parameter Name="FillingLineID" Type="int" Mode="In" />
           <Parameter Name="PickupID" Type="int" Mode="In" />
           <Parameter Name="PalletIDs" Type="varchar" Mode="In" />
           <Parameter Name="IsReadonly" Type="bit" Mode="In" />
@@ -2098,6 +2099,7 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           </FunctionImport>
           <FunctionImport Name="GetPendingPallets" ReturnType="Collection(TotalSmartCodingModel.PendingPallet)">
             <Parameter Name="LocationID" Mode="In" Type="Int32" />
+            <Parameter Name="FillingLineID" Mode="In" Type="Int32" />
             <Parameter Name="PickupID" Mode="In" Type="Int32" />
             <Parameter Name="PalletIDs" Mode="In" Type="String" />
             <Parameter Name="IsReadonly" Mode="In" Type="Boolean" />
@@ -2798,6 +2800,7 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Type="Int32" Name="FillingLineID" Nullable="false" />
           <Property Type="String" Name="Code" Nullable="false" MaxLength="10" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="60" />
+          <Property Type="String" Name="NickName" Nullable="true" MaxLength="60" />
         </ComplexType>
         <ComplexType Name="FillingLineIndex">
           <Property Type="Int32" Name="FillingLineID" Nullable="false" />
@@ -4770,6 +4773,7 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
                 <ScalarProperty Name="FillingLineID" ColumnName="FillingLineID" />
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="NickName" ColumnName="NickName" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

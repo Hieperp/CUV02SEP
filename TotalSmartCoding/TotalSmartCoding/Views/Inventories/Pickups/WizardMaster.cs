@@ -53,7 +53,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
                 FillingLineAPIs fillingLineAPIs = new FillingLineAPIs(CommonNinject.Kernel.Get<IFillingLineAPIRepository>());
 
                 this.combexFillingLineID.DataSource = fillingLineAPIs.GetFillingLineBases();
-                this.combexFillingLineID.DisplayMember = CommonExpressions.PropertyName<FillingLineBase>(p => p.Name);
+                this.combexFillingLineID.DisplayMember = CommonExpressions.PropertyName<FillingLineBase>(p => p.NickName);
                 this.combexFillingLineID.ValueMember = CommonExpressions.PropertyName<FillingLineBase>(p => p.FillingLineID);
                 this.bindingFillingLineID = this.combexFillingLineID.DataBindings.Add("SelectedValue", this.pickupViewModel, CommonExpressions.PropertyName<PickupViewModel>(p => p.FillingLineID), true, DataSourceUpdateMode.OnPropertyChanged);
 
@@ -109,6 +109,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
                 {
                     FillingLineBase fillingLineBase = (FillingLineBase)this.combexFillingLineID.SelectedItem;
                     this.pickupViewModel.FillingLineName = fillingLineBase.Name;
+                    this.pickupViewModel.FillingLineNickName = fillingLineBase.NickName;
                 }
             }
         }

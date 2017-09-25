@@ -21,9 +21,9 @@ namespace TotalSmartCoding.Controllers.APIs.Inventories
             return this.pickupAPIRepository.GetEntityIndexes<PickupIndex>(ContextAttributes.AspUserID, ContextAttributes.FromDate, ContextAttributes.ToDate);
         }
 
-        public List<PendingPallet> GetPendingPallets(int? locationID, int? pickupID, string palletIDs, bool isReadonly)
+        public List<PendingPallet> GetPendingPallets(int? locationID, int? fillingLineID, int? pickupID, string palletIDs, bool isReadonly)
         {
-            return this.pickupAPIRepository.GetPendingPallets(locationID, pickupID, palletIDs, isReadonly);
+            return this.pickupAPIRepository.GetPendingPallets(locationID, fillingLineID, pickupID, palletIDs, isReadonly);
         }
     }
 }
