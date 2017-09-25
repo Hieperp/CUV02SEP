@@ -908,6 +908,7 @@
     <None Include="Resources\Check-Saki-Ok.ico" />
     <None Include="Resources\Check-Sleek-Ok.ico" />
     <None Include="Resources\Check-Snowish-Ok.ico" />
+    <None Include="Resources\FullPallet-32.png" />
     <Content Include="Resources\Icons-Land-Play-Stop-Pause-Play-Pressed.ico" />
     <None Include="Resources\Land-Play.ico" />
     <None Include="Resources\palet031.ico" />
@@ -989,6 +990,9 @@
     <None Include="Resources\letter-uppercase-N-icon.ico" />
     <None Include="Resources\letter-uppercase-O-icon.ico" />
     <None Include="Resources\letter-uppercase-P-icon.ico" />
+    <None Include="Resources\PalletBin32.png" />
+    <None Include="Resources\PalletForklift32.png" />
+    <None Include="Resources\PalletForklift32A.png" />
     <Content Include="Resources\Toolbar Image1.png" />
     <None Include="Resources\Umar123-Carton.ico" />
     <Content Include="Resources\warning__1_.ico" />

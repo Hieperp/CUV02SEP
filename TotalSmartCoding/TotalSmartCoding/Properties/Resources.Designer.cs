@@ -1563,6 +1563,16 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap FullPallet_32 {
+            get {
+                object obj = ResourceManager.GetObject("FullPallet-32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Get_Info_B {
             get {
                 object obj = ResourceManager.GetObject("Get-Info-B", resourceCulture);
@@ -2456,6 +2466,36 @@ namespace TotalSmartCoding.Properties {
         internal static System.Drawing.Bitmap palet04 {
             get {
                 object obj = ResourceManager.GetObject("palet04", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap PalletBin32 {
+            get {
+                object obj = ResourceManager.GetObject("PalletBin32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap PalletForklift32 {
+            get {
+                object obj = ResourceManager.GetObject("PalletForklift32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap PalletForklift32A {
+            get {
+                object obj = ResourceManager.GetObject("PalletForklift32A", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
