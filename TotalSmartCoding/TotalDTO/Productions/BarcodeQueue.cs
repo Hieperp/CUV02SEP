@@ -177,6 +177,14 @@ namespace TotalDTO.Productions
         }
 
 
+        public void Clear()
+        {
+            foreach (List<TBarcodeDTO> subQueue in this.list2DBarcode)
+            {
+                subQueue.Clear();
+            }
+        }
+
         public void Enqueue(TBarcodeDTO messageData)
         {
             this.Enqueue(messageData, true);

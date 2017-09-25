@@ -53,10 +53,22 @@ namespace TotalModel
             set { ApplyPropertyChange<BaseModel, string>(ref this.remarks, o => o.Remarks, value); }
         }
 
-        public virtual bool Approved { get; set; }
+        private bool approved;
+        [DefaultValue(false)]
+        public bool Approved
+        {
+            get { return this.approved; }
+            set { ApplyPropertyChange<BaseModel, bool>(ref this.approved, o => o.Approved, value); }
+        }
         public Nullable<System.DateTime> ApprovedDate { get; set; }
-        
-        public virtual bool InActive { get; set; }
+                
+        private bool inActive;
+        [DefaultValue(false)]
+        public bool InActive
+        {
+            get { return this.inActive; }
+            set { ApplyPropertyChange<BaseModel, bool>(ref this.inActive, o => o.InActive, value); }
+        }
         public Nullable<System.DateTime> InActiveDate { get; set; }
         
         public bool InActivePartial { get; set; }

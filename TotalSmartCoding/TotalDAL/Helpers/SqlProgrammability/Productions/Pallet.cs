@@ -24,6 +24,8 @@ namespace TotalDAL.Helpers.SqlProgrammability.Productions
 
 
             this.GetPallets();
+            this.GetPalletChanged();
+
             this.PalletUpdateEntryStatus();
         }
 
@@ -73,14 +75,25 @@ namespace TotalDAL.Helpers.SqlProgrammability.Productions
 
 
 
-
-        private void GetPallets()
+        private void GetPalletChanged()
         {
-            string queryString = " @FillingLineID int, @EntryStatusIDs varchar(3999) " + "\r\n";
+            string queryString = " @FillingLineID int " + "\r\n";
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
 
-            queryString = queryString + "       SELECT * FROM Pallets WHERE FillingLineID = @FillingLineID AND EntryStatusID IN (SELECT Id FROM dbo.SplitToIntList (@EntryStatusIDs))  " + "\r\n";
+            queryString = queryString + "       SELECT PalletChanged FROM FillingLines WHERE FillingLineID = @FillingLineID " + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("GetPalletChanged", queryString);
+        }
+
+        private void GetPallets()
+        {
+            string queryString = " @FillingLineID int, @BatchID int, @EntryStatusIDs varchar(3999) " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+
+            queryString = queryString + "       UPDATE FillingLines SET PalletChanged = 0 WHERE FillingLineID = @FillingLineID " + "\r\n";
+            queryString = queryString + "       SELECT * FROM Pallets WHERE FillingLineID = @FillingLineID AND (QuantityPickup = 0 OR BatchID = @BatchID) AND EntryStatusID IN (SELECT Id FROM dbo.SplitToIntList (@EntryStatusIDs))  " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("GetPallets", queryString);
         }

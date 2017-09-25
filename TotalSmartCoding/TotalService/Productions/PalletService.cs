@@ -30,9 +30,14 @@ namespace TotalService.Productions
         }
 
 
-        public IList<Pallet> GetPallets(GlobalVariables.FillingLine fillingLineID, string entryStatusIDs)
+        public bool GetPalletChanged(GlobalVariables.FillingLine fillingLineID)
         {
-            return this.palletRepository.GetPallets(fillingLineID, entryStatusIDs);
+            return this.palletRepository.GetPalletChanged(fillingLineID);
+        }
+
+        public IList<Pallet> GetPallets(GlobalVariables.FillingLine fillingLineID, int batchID, string entryStatusIDs)
+        {
+            return this.palletRepository.GetPallets(fillingLineID, batchID, entryStatusIDs);
         }
 
         public bool UpdateEntryStatus(string palletIDs, GlobalVariables.BarcodeStatus barcodeStatus)

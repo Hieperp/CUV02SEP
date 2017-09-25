@@ -15,9 +15,15 @@ namespace TotalDAL.Repositories.Productions
         }
 
 
-        public IList<Pallet> GetPallets(GlobalVariables.FillingLine fillingLineID, string entryStatusIDs)
+        public bool GetPalletChanged(GlobalVariables.FillingLine fillingLineID)
         {
-            return this.TotalSmartCodingEntities.GetPallets((int)fillingLineID, entryStatusIDs).ToList();
+            bool? palletChanged = this.TotalSmartCodingEntities.GetPalletChanged((int)fillingLineID).Single();
+            return palletChanged == null ? false : (bool)palletChanged;
+        }
+
+        public IList<Pallet> GetPallets(GlobalVariables.FillingLine fillingLineID, int batchID, string entryStatusIDs)
+        {
+            return this.TotalSmartCodingEntities.GetPallets((int)fillingLineID, batchID, entryStatusIDs).ToList();
         }
 
         public void UpdateEntryStatus(string palletIDs, GlobalVariables.BarcodeStatus barcodeStatus)

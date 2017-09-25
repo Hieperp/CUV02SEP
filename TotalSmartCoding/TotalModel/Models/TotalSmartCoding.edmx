@@ -206,6 +206,7 @@
           <Property Name="ServerName" Type="nvarchar" MaxLength="100" />
           <Property Name="DatabaseName" Type="nvarchar" MaxLength="100" />
           <Property Name="Remarks" Type="nvarchar" MaxLength="100" />
+          <Property Name="PalletChanged" Type="bit" Nullable="false" />
           <Property Name="InActive" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="GoodsIssueDetails">
@@ -1459,8 +1460,12 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Parameter Name="EntryStatusIDs" Type="varchar" Mode="In" />
           <Parameter Name="CartonID" Type="int" Mode="In" />
         </Function>
+        <Function Name="GetPalletChanged" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FillingLineID" Type="int" Mode="In" />
+        </Function>
         <Function Name="GetPallets" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="FillingLineID" Type="int" Mode="In" />
+          <Parameter Name="BatchID" Type="int" Mode="In" />
           <Parameter Name="EntryStatusIDs" Type="varchar" Mode="In" />
         </Function>
         <Function Name="GetPendingDeliveryAdviceCustomers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -2183,6 +2188,7 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           </FunctionImport>
           <FunctionImport Name="GetPallets" EntitySet="Pallets" ReturnType="Collection(TotalSmartCodingModel.Pallet)">
             <Parameter Name="FillingLineID" Mode="In" Type="Int32" />
+            <Parameter Name="BatchID" Mode="In" Type="Int32" />
             <Parameter Name="EntryStatusIDs" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="PackEditable" ReturnType="Collection(String)">
@@ -2598,6 +2604,9 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
             <End Role="Pallet" EntitySet="Pallets" />
             <End Role="PickupDetail" EntitySet="PickupDetails" />
           </AssociationSet>
+          <FunctionImport Name="GetPalletChanged" ReturnType="Collection(Boolean)">
+          <Parameter Name="FillingLineID" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
           <Property Type="Int32" Name="PickupID" Nullable="false" />
@@ -2938,6 +2947,7 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <NavigationProperty Name="Cartons" Relationship="TotalSmartCodingModel.FK_Cartons_FillingLines" FromRole="FillingLine" ToRole="Carton" />
           <NavigationProperty Name="Packs" Relationship="TotalSmartCodingModel.FK_Packs_FillingLines" FromRole="FillingLine" ToRole="Pack" />
           <Property Name="NickName" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="PalletChanged" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="GoodsReceiptType">
           <Key>
@@ -4896,6 +4906,7 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <EntitySetMapping Name="FillingLines">
             <EntityTypeMapping TypeName="TotalSmartCodingModel.FillingLine">
               <MappingFragment StoreEntitySet="FillingLines">
+                <ScalarProperty Name="PalletChanged" ColumnName="PalletChanged" />
                 <ScalarProperty Name="NickName" ColumnName="NickName" />
                 <ScalarProperty Name="InActive" ColumnName="InActive" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
@@ -5742,6 +5753,7 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetPalletChanged" FunctionName="TotalSmartCodingModel.Store.GetPalletChanged" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

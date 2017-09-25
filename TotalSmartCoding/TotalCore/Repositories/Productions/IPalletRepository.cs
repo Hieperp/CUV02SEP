@@ -7,7 +7,8 @@ namespace TotalCore.Repositories.Productions
 {
     public interface IPalletRepository : IGenericRepository<Pallet>
     {
-        IList<Pallet> GetPallets(GlobalVariables.FillingLine fillingLineID, string entryStatusIDs);
+        bool GetPalletChanged(GlobalVariables.FillingLine fillingLineID);
+        IList<Pallet> GetPallets(GlobalVariables.FillingLine fillingLineID, int batchID, string entryStatusIDs);
 
         void UpdateEntryStatus(string cartonIDs, GlobalVariables.BarcodeStatus barcodeStatus);
     }

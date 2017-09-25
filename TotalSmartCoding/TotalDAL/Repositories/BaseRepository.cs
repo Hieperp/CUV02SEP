@@ -31,7 +31,7 @@ namespace TotalDAL.Repositories
 
             return;
 
-            //return;
+            return;
 
             Helpers.SqlProgrammability.Inventories.Pickup pickup = new Helpers.SqlProgrammability.Inventories.Pickup(totalSmartCodingEntities);
             pickup.RestoreProcedure();

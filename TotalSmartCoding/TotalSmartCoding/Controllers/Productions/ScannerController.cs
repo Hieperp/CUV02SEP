@@ -154,17 +154,27 @@ namespace TotalSmartCoding.Controllers.Productions
         {
             try
             {
-                IList<Pallet> pallets = this.palletController.palletService.GetPallets(this.FillingData.FillingLineID, (int)GlobalVariables.BarcodeStatus.Freshnew + "," + (int)GlobalVariables.BarcodeStatus.Readytoset);
-                if (pallets.Count > 0)
+                lock (this.palletQueue)
                 {
-                    pallets.Each(pallet =>
+                    lock (this.palletPickupQueue)
                     {
-                        PalletDTO palletDTO = Mapper.Map<Pallet, PalletDTO>(pallet);
-                        if (palletDTO.QuantityPickup == 0) this.palletQueue.Enqueue(palletDTO, false); else this.palletPickupQueue.Enqueue(palletDTO, false);
-                    });
-                    this.NotifyPropertyChanged("PalletQueue");
-                    this.NotifyPropertyChanged("PalletPickupQueue");
+                        this.palletQueue.Clear();
+                        this.palletPickupQueue.Clear();
+
+                        IPalletService localPalletService = CommonNinject.Kernel.Get<IPalletService>(); //SHOULD TO CREATE NEW IPalletService => INSTEAF OF USING CURRENT this.cartonController.cartonService: TO AVOID CASH OF ENTITYFRAMEWORK
+                        IList<Pallet> pallets = localPalletService.GetPallets(this.FillingData.FillingLineID, this.FillingData.BatchID, (int)GlobalVariables.BarcodeStatus.Freshnew + "," + (int)GlobalVariables.BarcodeStatus.Readytoset);
+                        if (pallets.Count > 0)
+                        {
+                            pallets.Each(pallet =>
+                            {
+                                PalletDTO palletDTO = Mapper.Map<Pallet, PalletDTO>(pallet);
+                                if (palletDTO.QuantityPickup == 0) this.palletQueue.Enqueue(palletDTO, false); else this.palletPickupQueue.Enqueue(palletDTO, false);
+                            });
+                        }
+                    }
                 }
+                this.NotifyPropertyChanged("PalletQueue");
+                this.NotifyPropertyChanged("PalletPickupQueue");
             }
             catch (Exception exception)
             {
@@ -537,13 +547,16 @@ namespace TotalSmartCoding.Controllers.Productions
                         cartonsetQueueChanged = this.MakeCartonset(); cartonQueueChanged = cartonQueueChanged || cartonsetQueueChanged;
                     }
 
-                    if (this.OnScanning && this.FillingData.HasPallet)
+                    if (this.FillingData.HasPallet)
                     {
-                        if (this.waitforPallet(ref stringReceived))
+                        if (this.OnScanning && this.waitforPallet(ref stringReceived))
                         {
                             palletQueueChanged = this.ReceivePallet(stringReceived) || palletQueueChanged;
                             cartonsetQueueChanged = cartonsetQueueChanged || palletQueueChanged;
                         }
+                        else
+                            if (this.palletController.palletService.GetPalletChanged(this.FillingData.FillingLineID))
+                                this.InitializePallet();
                     }
 
 
