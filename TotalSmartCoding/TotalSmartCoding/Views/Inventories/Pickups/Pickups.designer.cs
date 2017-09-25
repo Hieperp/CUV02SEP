@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Pickups));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutMaster = new System.Windows.Forms.TableLayoutPanel();
             this.textexRemarks = new CustomControls.TextexBox();
             this.textexDescription = new CustomControls.TextexBox();
@@ -60,11 +60,6 @@
             this.naviDetails = new Guifreaks.Navisuite.NaviGroup(this.components);
             this.labelFillingLineName = new System.Windows.Forms.Label();
             this.gridexPalletDetails = new CustomControls.DataGridexView();
-            this.CommodityCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PalletCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BinLocationCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LineVolume = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fastPickupIndex = new BrightIdeasSoftware.FastObjectListView();
             this.olvID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvEntryDate = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -80,6 +75,12 @@
             this.naviIndex = new Guifreaks.Navisuite.NaviBar(this.components);
             this.panelMaster = new System.Windows.Forms.Panel();
             this.imageList24 = new System.Windows.Forms.ImageList(this.components);
+            this.imageList16 = new System.Windows.Forms.ImageList(this.components);
+            this.CommodityCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PalletCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BinLocationCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LineVolume = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutMaster.SuspendLayout();
             this.toolStripChildForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.naviDetails)).BeginInit();
@@ -451,14 +452,14 @@
             // 
             this.gridexPalletDetails.AllowAddRow = false;
             this.gridexPalletDetails.AllowDeleteRow = true;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Cambria", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridexPalletDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Garamond", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridexPalletDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.gridexPalletDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridexPalletDetails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CommodityCode,
@@ -470,56 +471,12 @@
             this.gridexPalletDetails.Editable = false;
             this.gridexPalletDetails.Location = new System.Drawing.Point(0, 3);
             this.gridexPalletDetails.Name = "gridexPalletDetails";
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Cambria", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridexPalletDetails.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Garamond", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridexPalletDetails.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.gridexPalletDetails.RowTemplate.Height = 45;
             this.gridexPalletDetails.Size = new System.Drawing.Size(1019, 477);
             this.gridexPalletDetails.TabIndex = 65;
             this.gridexPalletDetails.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.gridexPalletDetails_UserDeletedRow);
-            // 
-            // CommodityCode
-            // 
-            this.CommodityCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CommodityCode.DataPropertyName = "CommodityCode";
-            this.CommodityCode.FillWeight = 14F;
-            this.CommodityCode.HeaderText = "Item";
-            this.CommodityCode.Name = "CommodityCode";
-            // 
-            // PalletCode
-            // 
-            this.PalletCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.PalletCode.DataPropertyName = "PalletCode";
-            this.PalletCode.FillWeight = 50F;
-            this.PalletCode.HeaderText = "Pallet Code";
-            this.PalletCode.Name = "PalletCode";
-            // 
-            // BinLocationCode
-            // 
-            this.BinLocationCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.BinLocationCode.DataPropertyName = "BinLocationCode";
-            this.BinLocationCode.FillWeight = 15F;
-            this.BinLocationCode.HeaderText = "Location";
-            this.BinLocationCode.Name = "BinLocationCode";
-            // 
-            // Quantity
-            // 
-            this.Quantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Quantity.DataPropertyName = "Quantity";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.Quantity.DefaultCellStyle = dataGridViewCellStyle6;
-            this.Quantity.FillWeight = 10F;
-            this.Quantity.HeaderText = "Qty";
-            this.Quantity.Name = "Quantity";
-            // 
-            // LineVolume
-            // 
-            this.LineVolume.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.LineVolume.DataPropertyName = "LineVolume";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.LineVolume.DefaultCellStyle = dataGridViewCellStyle7;
-            this.LineVolume.FillWeight = 11F;
-            this.LineVolume.HeaderText = "Volume";
-            this.LineVolume.Name = "LineVolume";
             // 
             // fastPickupIndex
             // 
@@ -726,6 +683,59 @@
             this.imageList24.Images.SetKeyName(1, "LocationPin");
             this.imageList24.Images.SetKeyName(2, "Flashing");
             // 
+            // imageList16
+            // 
+            this.imageList16.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList16.ImageStream")));
+            this.imageList16.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList16.Images.SetKeyName(0, "Placeholder16");
+            // 
+            // CommodityCode
+            // 
+            this.CommodityCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CommodityCode.DataPropertyName = "CommodityCode";
+            this.CommodityCode.FillWeight = 14F;
+            this.CommodityCode.HeaderText = "Item";
+            this.CommodityCode.MinimumWidth = 120;
+            this.CommodityCode.Name = "CommodityCode";
+            // 
+            // PalletCode
+            // 
+            this.PalletCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.PalletCode.DataPropertyName = "PalletCode";
+            this.PalletCode.FillWeight = 57F;
+            this.PalletCode.HeaderText = "Pallet Code";
+            this.PalletCode.MinimumWidth = 320;
+            this.PalletCode.Name = "PalletCode";
+            // 
+            // BinLocationCode
+            // 
+            this.BinLocationCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.BinLocationCode.DataPropertyName = "BinLocationCode";
+            this.BinLocationCode.FillWeight = 15F;
+            this.BinLocationCode.HeaderText = "Location";
+            this.BinLocationCode.Name = "BinLocationCode";
+            // 
+            // Quantity
+            // 
+            this.Quantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Quantity.DataPropertyName = "Quantity";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Quantity.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Quantity.FillWeight = 5F;
+            this.Quantity.HeaderText = "Qty";
+            this.Quantity.MinimumWidth = 60;
+            this.Quantity.Name = "Quantity";
+            // 
+            // LineVolume
+            // 
+            this.LineVolume.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.LineVolume.DataPropertyName = "LineVolume";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.LineVolume.DefaultCellStyle = dataGridViewCellStyle3;
+            this.LineVolume.FillWeight = 9F;
+            this.LineVolume.HeaderText = "Volume";
+            this.LineVolume.Name = "LineVolume";
+            // 
             // Pickups
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -809,6 +819,7 @@
         private System.Windows.Forms.ImageList imageList24;
         private BrightIdeasSoftware.OLVColumn olvApproved;
         private BrightIdeasSoftware.OLVColumn olvFillingLineNickName;
+        private System.Windows.Forms.ImageList imageList16;
         private System.Windows.Forms.DataGridViewTextBoxColumn CommodityCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn PalletCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn BinLocationCode;

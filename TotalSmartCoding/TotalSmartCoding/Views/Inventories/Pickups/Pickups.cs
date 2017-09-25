@@ -97,7 +97,6 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
             this.naviDetails.Font = titleFont;
             this.olvPendingPalletCode.HeaderFont = titleFont;
             this.olvPickupIndexReference.HeaderFont = titleFont;
-            this.labelFillingLineName.Font = titleFont;
             this.labelFillingLineName.Left = 78;
             this.labelFillingLineName.Top = 14;
 
@@ -109,7 +108,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
                 else if (control is DataGridView)
                 {
                     DataGridView dataGridView = control as DataGridView;
-                    dataGridView.ColumnHeadersDefaultCellStyle.Font = font;
+                    dataGridView.ColumnHeadersDefaultCellStyle.Font = titleFont;
                     dataGridView.RowsDefaultCellStyle.Font = font;
                 }
             }
@@ -195,7 +194,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
             this.fastPickupIndex.AboutToCreateGroups += fastPickupIndex_AboutToCreateGroups;
 
             this.fastPickupIndex.ShowGroups = true;
-            this.olvApproved.Renderer = new MappedImageRenderer(new Object[] { false, this.imageList24.Images["Placeholder"] });
+            this.olvApproved.Renderer = new MappedImageRenderer(new Object[] { false, this.imageList16.Images["Placeholder16"] });
 
             this.tableLayoutMaster.ColumnStyles[this.tableLayoutMaster.ColumnCount - 1].SizeType = SizeType.Absolute; this.tableLayoutMaster.ColumnStyles[this.tableLayoutMaster.ColumnCount - 1].Width = 10;
         }

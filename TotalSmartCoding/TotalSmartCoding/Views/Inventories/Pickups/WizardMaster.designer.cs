@@ -43,8 +43,10 @@
             this.combexFillingLineID = new CustomControls.CombexBox();
             this.label2 = new System.Windows.Forms.Label();
             this.errorProviderMaster = new System.Windows.Forms.ErrorProvider(this.components);
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderMaster)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -55,10 +57,10 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.buttonESC,
             this.buttonOK});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 227);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 236);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStrip1.Size = new System.Drawing.Size(775, 55);
+            this.toolStrip1.Size = new System.Drawing.Size(834, 55);
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -94,7 +96,7 @@
             this.combexWarehouseID.Editable = true;
             this.combexWarehouseID.Font = new System.Drawing.Font("Garamond", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combexWarehouseID.FormattingEnabled = true;
-            this.combexWarehouseID.Location = new System.Drawing.Point(236, 65);
+            this.combexWarehouseID.Location = new System.Drawing.Point(298, 68);
             this.combexWarehouseID.Margin = new System.Windows.Forms.Padding(2, 1, 1, 1);
             this.combexWarehouseID.Name = "combexWarehouseID";
             this.combexWarehouseID.ReadOnly = false;
@@ -108,7 +110,7 @@
             this.combexForkliftDriverID.Editable = true;
             this.combexForkliftDriverID.Font = new System.Drawing.Font("Garamond", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combexForkliftDriverID.FormattingEnabled = true;
-            this.combexForkliftDriverID.Location = new System.Drawing.Point(236, 101);
+            this.combexForkliftDriverID.Location = new System.Drawing.Point(298, 106);
             this.combexForkliftDriverID.Margin = new System.Windows.Forms.Padding(2, 1, 1, 1);
             this.combexForkliftDriverID.Name = "combexForkliftDriverID";
             this.combexForkliftDriverID.ReadOnly = false;
@@ -122,7 +124,7 @@
             this.combexStorekeeperID.Editable = true;
             this.combexStorekeeperID.Font = new System.Drawing.Font("Garamond", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combexStorekeeperID.FormattingEnabled = true;
-            this.combexStorekeeperID.Location = new System.Drawing.Point(236, 137);
+            this.combexStorekeeperID.Location = new System.Drawing.Point(298, 144);
             this.combexStorekeeperID.Margin = new System.Windows.Forms.Padding(2, 1, 1, 1);
             this.combexStorekeeperID.Name = "combexStorekeeperID";
             this.combexStorekeeperID.ReadOnly = false;
@@ -133,7 +135,7 @@
             // 
             this.textexRemarks.Editable = true;
             this.textexRemarks.Font = new System.Drawing.Font("Garamond", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textexRemarks.Location = new System.Drawing.Point(236, 173);
+            this.textexRemarks.Location = new System.Drawing.Point(298, 182);
             this.textexRemarks.Margin = new System.Windows.Forms.Padding(2, 1, 1, 1);
             this.textexRemarks.Name = "textexRemarks";
             this.textexRemarks.Size = new System.Drawing.Size(509, 33);
@@ -145,7 +147,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Garamond", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(116, 68);
+            this.label10.Location = new System.Drawing.Point(178, 71);
             this.label10.Margin = new System.Windows.Forms.Padding(2);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(116, 27);
@@ -159,7 +161,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Garamond", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(80, 104);
+            this.label3.Location = new System.Drawing.Point(142, 109);
             this.label3.Margin = new System.Windows.Forms.Padding(2);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(152, 27);
@@ -173,7 +175,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Garamond", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(97, 140);
+            this.label9.Location = new System.Drawing.Point(159, 147);
             this.label9.Margin = new System.Windows.Forms.Padding(1);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(135, 27);
@@ -187,7 +189,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Garamond", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(147, 176);
+            this.label1.Location = new System.Drawing.Point(209, 185);
             this.label1.Margin = new System.Windows.Forms.Padding(2);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(85, 27);
@@ -202,7 +204,7 @@
             this.combexFillingLineID.Editable = true;
             this.combexFillingLineID.Font = new System.Drawing.Font("Garamond", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combexFillingLineID.FormattingEnabled = true;
-            this.combexFillingLineID.Location = new System.Drawing.Point(236, 29);
+            this.combexFillingLineID.Location = new System.Drawing.Point(298, 30);
             this.combexFillingLineID.Margin = new System.Windows.Forms.Padding(2, 1, 1, 1);
             this.combexFillingLineID.Name = "combexFillingLineID";
             this.combexFillingLineID.ReadOnly = false;
@@ -215,7 +217,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Garamond", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(67, 32);
+            this.label2.Location = new System.Drawing.Point(129, 33);
             this.label2.Margin = new System.Windows.Forms.Padding(2);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(165, 27);
@@ -227,11 +229,21 @@
             // 
             this.errorProviderMaster.ContainerControl = this;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::TotalSmartCoding.Properties.Resources.Placeholder48;
+            this.pictureBox1.Location = new System.Drawing.Point(39, 30);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(48, 48);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 95;
+            this.pictureBox1.TabStop = false;
+            // 
             // WizardMaster
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(775, 282);
+            this.ClientSize = new System.Drawing.Size(834, 291);
             this.Controls.Add(this.combexFillingLineID);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.combexWarehouseID);
@@ -243,6 +255,7 @@
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -253,6 +266,7 @@
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderMaster)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -274,5 +288,6 @@
         private CustomControls.CombexBox combexFillingLineID;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ErrorProvider errorProviderMaster;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
