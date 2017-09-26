@@ -35,7 +35,8 @@ namespace TotalModel
         [UIHint("DateTimeReadonly")]
         [Display(Name = "Ngày lập")]
         [Required(ErrorMessage = "Vui lòng nhập ngày lập")]
-        public DateTime? EntryDate {
+        public DateTime? EntryDate
+        {
             get { return this.entryDate; }
             set { ApplyPropertyChange<BaseModel, DateTime?>(ref this.entryDate, o => o.EntryDate, value); }
         }
@@ -43,6 +44,8 @@ namespace TotalModel
 
 
         public int LocationID { get; set; }
+
+        public virtual string Caption { get { return ""; } }
 
         private string remarks;
         [Display(Name = "Ghi chú")]
@@ -61,7 +64,7 @@ namespace TotalModel
             set { ApplyPropertyChange<BaseModel, bool>(ref this.approved, o => o.Approved, value); }
         }
         public Nullable<System.DateTime> ApprovedDate { get; set; }
-                
+
         private bool inActive;
         [DefaultValue(false)]
         public bool InActive
@@ -70,7 +73,7 @@ namespace TotalModel
             set { ApplyPropertyChange<BaseModel, bool>(ref this.inActive, o => o.InActive, value); }
         }
         public Nullable<System.DateTime> InActiveDate { get; set; }
-        
+
         public bool InActivePartial { get; set; }
         public Nullable<System.DateTime> InActivePartialDate { get; set; }
 

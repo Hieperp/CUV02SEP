@@ -11,6 +11,8 @@ using TotalModel;
 using TotalBase.Enums;
 using TotalDTO.Helpers;
 using TotalDTO.Commons;
+using TotalModel.Helpers;
+using TotalBase;
 
 namespace TotalDTO.Inventories
 {
@@ -35,6 +37,13 @@ namespace TotalDTO.Inventories
         {
             get { return this.goodsReceiptTypeID; }
             set { ApplyPropertyChange<GoodsReceiptPrimitiveDTO, int>(ref this.goodsReceiptTypeID, o => o.GoodsReceiptTypeID, value); }
+        }
+        private string goodsReceiptTypeName;
+        [DefaultValue("")]
+        public string GoodsReceiptTypeName
+        {
+            get { return this.goodsReceiptTypeName; }
+            set { ApplyPropertyChange<GoodsReceiptDTO, string>(ref this.goodsReceiptTypeName, o => o.GoodsReceiptTypeName, value); }
         }
 
 
@@ -68,7 +77,7 @@ namespace TotalDTO.Inventories
 
 
         private int storekeeperID;
-        [DefaultValue(1)]
+        //[DefaultValue(null)]
         public int StorekeeperID
         {
             get { return this.storekeeperID; }
@@ -77,6 +86,12 @@ namespace TotalDTO.Inventories
 
 
         public override int PreparedPersonID { get { return 1; } }
+
+
+        public override string Caption
+        {
+            get { return this.GoodsReceiptTypeName + ", " + this.WarehouseName + ", " + this.EntryDate.ToString() + "             Pallet count: " + this.TotalPalletCounts.ToString() + ",    Quantity: " + this.TotalQuantity.ToString() + ",    Volume: " + this.TotalLineVolume.ToString("N2"); }
+        }
 
         public override void PerformPresaveRule()
         {
@@ -125,6 +140,17 @@ namespace TotalDTO.Inventories
         public BindingListView<GoodsReceiptDetailDTO> CartonDetails { get; private set; }
         public BindingListView<GoodsReceiptDetailDTO> PalletDetails { get; private set; }
 
+
+
+        protected override List<ValidationRule> CreateRules()
+        {
+            List<ValidationRule> validationRules = base.CreateRules();
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<PickupDTO>(p => p.WarehouseID), "Vui lòng chọn kho.", delegate { return (this.WarehouseID != null && this.WarehouseID > 0); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<PickupDTO>(p => p.StorekeeperID), "Vui lòng chọn nhân viên kho.", delegate { return (this.StorekeeperID != null && this.StorekeeperID > 0); }));
+
+            return validationRules;
+
+        }
     }
 
 }

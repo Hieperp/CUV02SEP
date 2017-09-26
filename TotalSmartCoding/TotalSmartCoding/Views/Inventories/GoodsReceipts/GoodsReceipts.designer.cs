@@ -37,18 +37,25 @@
             this.textexReference = new CustomControls.TextexBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.combexStorekeeperID = new CustomControls.CombexBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textexWarehouseName = new CustomControls.TextexBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.toolStripChildForm = new System.Windows.Forms.ToolStrip();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.naviGroupDetails = new Guifreaks.Navisuite.NaviGroup(this.components);
-            this.toolStripNaviGroupDetails = new System.Windows.Forms.ToolStrip();
-            this.toolStripButtonShowDetailsExtend = new System.Windows.Forms.ToolStripButton();
+            this.labelCaption = new System.Windows.Forms.Label();
+            this.toolStripNaviGroup = new System.Windows.Forms.ToolStrip();
+            this.buttonExpandTop = new System.Windows.Forms.ToolStripButton();
             this.panelCenter = new System.Windows.Forms.Panel();
             this.toolStripCarton = new System.Windows.Forms.ToolStrip();
+            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.buttonAddCartons = new System.Windows.Forms.ToolStripButton();
             this.toolStripPallet = new System.Windows.Forms.ToolStrip();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.buttonAddPallets = new System.Windows.Forms.ToolStripButton();
             this.textexDescription = new CustomControls.TextexBox();
             this.textexRemarks = new CustomControls.TextexBox();
@@ -70,7 +77,7 @@
             this.CartonCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PackCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Remarks = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.naviGroup1 = new Guifreaks.Navisuite.NaviGroup(this.components);
+            this.naviGroupTop = new Guifreaks.Navisuite.NaviGroup(this.components);
             this.tableLayoutPanelExtend = new System.Windows.Forms.TableLayoutPanel();
             this.combexCommodityID = new CustomControls.CombexBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -83,14 +90,14 @@
             this.toolStripChildForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.naviGroupDetails)).BeginInit();
             this.naviGroupDetails.SuspendLayout();
-            this.toolStripNaviGroupDetails.SuspendLayout();
+            this.toolStripNaviGroup.SuspendLayout();
             this.panelCenter.SuspendLayout();
             this.toolStripCarton.SuspendLayout();
             this.toolStripPallet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridexCartonDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridexPalletDetails)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.naviGroup1)).BeginInit();
-            this.naviGroup1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.naviGroupTop)).BeginInit();
+            this.naviGroupTop.SuspendLayout();
             this.tableLayoutPanelExtend.SuspendLayout();
             this.panelLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastGoodsReceiptIndex)).BeginInit();
@@ -101,24 +108,32 @@
             this.layoutLeft.AutoSize = true;
             this.layoutLeft.BackColor = System.Drawing.Color.Ivory;
             this.layoutLeft.ColumnCount = 2;
-            this.layoutLeft.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.layoutLeft.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.layoutLeft.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.layoutLeft.Controls.Add(this.dateTimexEntryDate, 0, 1);
             this.layoutLeft.Controls.Add(this.textexReference, 0, 3);
             this.layoutLeft.Controls.Add(this.label6, 0, 0);
             this.layoutLeft.Controls.Add(this.label7, 0, 2);
+            this.layoutLeft.Controls.Add(this.combexStorekeeperID, 0, 7);
+            this.layoutLeft.Controls.Add(this.label1, 0, 6);
+            this.layoutLeft.Controls.Add(this.label2, 0, 4);
+            this.layoutLeft.Controls.Add(this.textexWarehouseName, 0, 5);
             this.layoutLeft.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutLeft.Location = new System.Drawing.Point(0, 0);
             this.layoutLeft.Margin = new System.Windows.Forms.Padding(0);
             this.layoutLeft.Name = "layoutLeft";
             this.layoutLeft.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.layoutLeft.RowCount = 5;
+            this.layoutLeft.RowCount = 9;
             this.layoutLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.layoutLeft.Size = new System.Drawing.Size(356, 393);
+            this.layoutLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutLeft.Size = new System.Drawing.Size(394, 411);
             this.layoutLeft.TabIndex = 62;
             // 
             // dateTimexEntryDate
@@ -130,18 +145,18 @@
             this.dateTimexEntryDate.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.dateTimexEntryDate.Name = "dateTimexEntryDate";
             this.dateTimexEntryDate.ReadOnly = false;
-            this.dateTimexEntryDate.Size = new System.Drawing.Size(312, 28);
+            this.dateTimexEntryDate.Size = new System.Drawing.Size(350, 28);
             this.dateTimexEntryDate.TabIndex = 70;
             // 
             // textexReference
             // 
             this.textexReference.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textexReference.Editable = true;
-            this.textexReference.Font = new System.Drawing.Font("Calibri Light", 10.2F);
+            this.textexReference.Editable = false;
+            this.textexReference.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textexReference.Location = new System.Drawing.Point(3, 97);
             this.textexReference.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.textexReference.Name = "textexReference";
-            this.textexReference.Size = new System.Drawing.Size(312, 28);
+            this.textexReference.Size = new System.Drawing.Size(350, 28);
             this.textexReference.TabIndex = 71;
             // 
             // label6
@@ -152,7 +167,7 @@
             this.label6.Location = new System.Drawing.Point(0, 12);
             this.label6.Margin = new System.Windows.Forms.Padding(0, 10, 3, 1);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(313, 21);
+            this.label6.Size = new System.Drawing.Size(351, 21);
             this.label6.TabIndex = 30;
             this.label6.Text = "Receipt Date";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -161,24 +176,75 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label7.Font = new System.Drawing.Font("Calibri Light", 10.2F);
+            this.label7.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(0, 74);
             this.label7.Margin = new System.Windows.Forms.Padding(0, 10, 3, 1);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(313, 21);
+            this.label7.Size = new System.Drawing.Size(351, 21);
             this.label7.TabIndex = 31;
-            this.label7.Text = "Marketing Program";
+            this.label7.Text = "Reference";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // combexStorekeeperID
+            // 
+            this.combexStorekeeperID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.combexStorekeeperID.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.combexStorekeeperID.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.combexStorekeeperID.Editable = true;
+            this.combexStorekeeperID.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.combexStorekeeperID.FormattingEnabled = true;
+            this.combexStorekeeperID.Location = new System.Drawing.Point(3, 221);
+            this.combexStorekeeperID.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
+            this.combexStorekeeperID.Name = "combexStorekeeperID";
+            this.combexStorekeeperID.ReadOnly = false;
+            this.combexStorekeeperID.Size = new System.Drawing.Size(350, 29);
+            this.combexStorekeeperID.TabIndex = 75;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(0, 198);
+            this.label1.Margin = new System.Windows.Forms.Padding(0, 10, 3, 1);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(351, 21);
+            this.label1.TabIndex = 76;
+            this.label1.Text = "Storekeeper";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(0, 136);
+            this.label2.Margin = new System.Windows.Forms.Padding(0, 10, 3, 1);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(88, 21);
+            this.label2.TabIndex = 77;
+            this.label2.Text = "Warehouse";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // textexWarehouseName
+            // 
+            this.textexWarehouseName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textexWarehouseName.Editable = false;
+            this.textexWarehouseName.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textexWarehouseName.Location = new System.Drawing.Point(3, 159);
+            this.textexWarehouseName.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
+            this.textexWarehouseName.Name = "textexWarehouseName";
+            this.textexWarehouseName.Size = new System.Drawing.Size(350, 28);
+            this.textexWarehouseName.TabIndex = 78;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label11.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(199, 5);
+            this.label11.Location = new System.Drawing.Point(168, 5);
             this.label11.Margin = new System.Windows.Forms.Padding(3);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(50, 75);
+            this.label11.Size = new System.Drawing.Size(40, 84);
             this.label11.TabIndex = 45;
             this.label11.Text = "Noted By";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -188,10 +254,10 @@
             this.label12.AutoSize = true;
             this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label12.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(395, 5);
+            this.label12.Location = new System.Drawing.Point(333, 5);
             this.label12.Margin = new System.Windows.Forms.Padding(3);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(50, 75);
+            this.label12.Size = new System.Drawing.Size(40, 84);
             this.label12.TabIndex = 47;
             this.label12.Text = "Approved By";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -226,49 +292,62 @@
             // 
             // naviGroupDetails
             // 
-            this.naviGroupDetails.Caption = "   Detail pane, click here to collapse or expand me";
-            this.naviGroupDetails.Controls.Add(this.toolStripNaviGroupDetails);
+            this.naviGroupDetails.Caption = "   Goods receipts for";
+            this.naviGroupDetails.Controls.Add(this.labelCaption);
+            this.naviGroupDetails.Controls.Add(this.toolStripNaviGroup);
             this.naviGroupDetails.Controls.Add(this.panelCenter);
-            this.naviGroupDetails.Controls.Add(this.naviGroup1);
+            this.naviGroupDetails.Controls.Add(this.naviGroupTop);
             this.naviGroupDetails.Controls.Add(this.panelLeft);
             this.naviGroupDetails.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.naviGroupDetails.ExpandedHeight = 425;
-            this.naviGroupDetails.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.naviGroupDetails.ExpandedHeight = 445;
+            this.naviGroupDetails.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.naviGroupDetails.HeaderContextMenuStrip = null;
-            this.naviGroupDetails.HeaderHeight = 30;
-            this.naviGroupDetails.Location = new System.Drawing.Point(0, 229);
+            this.naviGroupDetails.HeaderHeight = 32;
+            this.naviGroupDetails.Location = new System.Drawing.Point(0, 209);
             this.naviGroupDetails.Name = "naviGroupDetails";
-            this.naviGroupDetails.Padding = new System.Windows.Forms.Padding(0, 32, 0, 0);
-            this.naviGroupDetails.Size = new System.Drawing.Size(1364, 425);
+            this.naviGroupDetails.Padding = new System.Windows.Forms.Padding(0, 34, 0, 0);
+            this.naviGroupDetails.Size = new System.Drawing.Size(1364, 445);
             this.naviGroupDetails.TabIndex = 30;
             this.naviGroupDetails.Text = "naviGroup1";
             this.naviGroupDetails.HeaderMouseClick += new System.Windows.Forms.MouseEventHandler(this.naviGroupDetails_HeaderMouseClick);
             // 
-            // toolStripNaviGroupDetails
+            // labelCaption
             // 
-            this.toolStripNaviGroupDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.toolStripNaviGroupDetails.BackColor = System.Drawing.Color.Transparent;
-            this.toolStripNaviGroupDetails.Dock = System.Windows.Forms.DockStyle.None;
-            this.toolStripNaviGroupDetails.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStripNaviGroupDetails.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolStripNaviGroupDetails.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButtonShowDetailsExtend});
-            this.toolStripNaviGroupDetails.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.toolStripNaviGroupDetails.Location = new System.Drawing.Point(1337, 3);
-            this.toolStripNaviGroupDetails.Name = "toolStripNaviGroupDetails";
-            this.toolStripNaviGroupDetails.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStripNaviGroupDetails.Size = new System.Drawing.Size(27, 27);
-            this.toolStripNaviGroupDetails.TabIndex = 74;
+            this.labelCaption.AutoSize = true;
+            this.labelCaption.BackColor = System.Drawing.Color.Transparent;
+            this.labelCaption.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCaption.ForeColor = System.Drawing.Color.Firebrick;
+            this.labelCaption.Location = new System.Drawing.Point(157, 9);
+            this.labelCaption.Name = "labelCaption";
+            this.labelCaption.Size = new System.Drawing.Size(89, 21);
+            this.labelCaption.TabIndex = 75;
+            this.labelCaption.Text = "DRUM LINE";
             // 
-            // toolStripButtonShowDetailsExtend
+            // toolStripNaviGroup
             // 
-            this.toolStripButtonShowDetailsExtend.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonShowDetailsExtend.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonShowDetailsExtend.Image")));
-            this.toolStripButtonShowDetailsExtend.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonShowDetailsExtend.Name = "toolStripButtonShowDetailsExtend";
-            this.toolStripButtonShowDetailsExtend.Size = new System.Drawing.Size(24, 24);
-            this.toolStripButtonShowDetailsExtend.Text = "toolStripButton1";
-            this.toolStripButtonShowDetailsExtend.Click += new System.EventHandler(this.toolStripButtonShowDetailsExtend_Click);
+            this.toolStripNaviGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.toolStripNaviGroup.BackColor = System.Drawing.Color.Transparent;
+            this.toolStripNaviGroup.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStripNaviGroup.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStripNaviGroup.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStripNaviGroup.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.buttonExpandTop});
+            this.toolStripNaviGroup.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
+            this.toolStripNaviGroup.Location = new System.Drawing.Point(1337, 5);
+            this.toolStripNaviGroup.Name = "toolStripNaviGroup";
+            this.toolStripNaviGroup.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.toolStripNaviGroup.Size = new System.Drawing.Size(27, 27);
+            this.toolStripNaviGroup.TabIndex = 74;
+            // 
+            // buttonExpandTop
+            // 
+            this.buttonExpandTop.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.buttonExpandTop.Image = ((System.Drawing.Image)(resources.GetObject("buttonExpandTop.Image")));
+            this.buttonExpandTop.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonExpandTop.Name = "buttonExpandTop";
+            this.buttonExpandTop.Size = new System.Drawing.Size(24, 24);
+            this.buttonExpandTop.Text = "toolStripButton1";
+            this.buttonExpandTop.Click += new System.EventHandler(this.buttonExpandTop_Click);
             // 
             // panelCenter
             // 
@@ -280,9 +359,9 @@
             this.panelCenter.Controls.Add(this.gridexCartonDetails);
             this.panelCenter.Controls.Add(this.gridexPalletDetails);
             this.panelCenter.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelCenter.Location = new System.Drawing.Point(356, 120);
+            this.panelCenter.Location = new System.Drawing.Point(394, 122);
             this.panelCenter.Name = "panelCenter";
-            this.panelCenter.Size = new System.Drawing.Size(1008, 305);
+            this.panelCenter.Size = new System.Drawing.Size(970, 323);
             this.panelCenter.TabIndex = 72;
             // 
             // toolStripCarton
@@ -294,13 +373,20 @@
             this.toolStripCarton.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStripCarton.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStripCarton.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabel2,
             this.buttonAddCartons});
             this.toolStripCarton.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
-            this.toolStripCarton.Location = new System.Drawing.Point(717, 9);
+            this.toolStripCarton.Location = new System.Drawing.Point(690, 9);
             this.toolStripCarton.Name = "toolStripCarton";
             this.toolStripCarton.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStripCarton.Size = new System.Drawing.Size(40, 57);
+            this.toolStripCarton.Size = new System.Drawing.Size(29, 36);
             this.toolStripCarton.TabIndex = 76;
+            // 
+            // toolStripLabel2
+            // 
+            this.toolStripLabel2.Name = "toolStripLabel2";
+            this.toolStripLabel2.Size = new System.Drawing.Size(27, 0);
+            this.toolStripLabel2.TextDirection = System.Windows.Forms.ToolStripTextDirection.Vertical270;
             // 
             // buttonAddCartons
             // 
@@ -309,11 +395,12 @@
             this.buttonAddCartons.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.buttonAddCartons.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonAddCartons.Name = "buttonAddCartons";
-            this.buttonAddCartons.Size = new System.Drawing.Size(38, 28);
+            this.buttonAddCartons.Size = new System.Drawing.Size(27, 28);
             this.buttonAddCartons.Text = "Add items from pickups";
             this.buttonAddCartons.TextDirection = System.Windows.Forms.ToolStripTextDirection.Vertical270;
             this.buttonAddCartons.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.buttonAddCartons.ToolTipText = "Add items from pickups";
+            this.buttonAddCartons.Click += new System.EventHandler(this.buttonAddDetails_Click);
             // 
             // toolStripPallet
             // 
@@ -324,13 +411,20 @@
             this.toolStripPallet.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStripPallet.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStripPallet.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabel1,
             this.buttonAddPallets});
             this.toolStripPallet.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
-            this.toolStripPallet.Location = new System.Drawing.Point(661, 9);
+            this.toolStripPallet.Location = new System.Drawing.Point(623, 9);
             this.toolStripPallet.Name = "toolStripPallet";
             this.toolStripPallet.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStripPallet.Size = new System.Drawing.Size(29, 33);
+            this.toolStripPallet.Size = new System.Drawing.Size(29, 36);
             this.toolStripPallet.TabIndex = 75;
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(27, 0);
+            this.toolStripLabel1.TextDirection = System.Windows.Forms.ToolStripTextDirection.Vertical270;
             // 
             // buttonAddPallets
             // 
@@ -344,6 +438,7 @@
             this.buttonAddPallets.TextDirection = System.Windows.Forms.ToolStripTextDirection.Vertical270;
             this.buttonAddPallets.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.buttonAddPallets.ToolTipText = "Add items from pickups";
+            this.buttonAddPallets.Click += new System.EventHandler(this.buttonAddDetails_Click);
             // 
             // textexDescription
             // 
@@ -352,11 +447,11 @@
             this.textexDescription.Dock = System.Windows.Forms.DockStyle.Right;
             this.textexDescription.Editable = true;
             this.textexDescription.Font = new System.Drawing.Font("Calibri Light", 10.2F);
-            this.textexDescription.Location = new System.Drawing.Point(848, 0);
+            this.textexDescription.Location = new System.Drawing.Point(810, 0);
             this.textexDescription.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.textexDescription.Multiline = true;
             this.textexDescription.Name = "textexDescription";
-            this.textexDescription.Size = new System.Drawing.Size(80, 305);
+            this.textexDescription.Size = new System.Drawing.Size(80, 323);
             this.textexDescription.TabIndex = 73;
             // 
             // textexRemarks
@@ -366,11 +461,11 @@
             this.textexRemarks.Dock = System.Windows.Forms.DockStyle.Right;
             this.textexRemarks.Editable = true;
             this.textexRemarks.Font = new System.Drawing.Font("Calibri Light", 10.2F);
-            this.textexRemarks.Location = new System.Drawing.Point(928, 0);
+            this.textexRemarks.Location = new System.Drawing.Point(890, 0);
             this.textexRemarks.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.textexRemarks.Multiline = true;
             this.textexRemarks.Name = "textexRemarks";
-            this.textexRemarks.Size = new System.Drawing.Size(80, 305);
+            this.textexRemarks.Size = new System.Drawing.Size(80, 323);
             this.textexRemarks.TabIndex = 72;
             // 
             // gridexCartonDetails
@@ -475,7 +570,7 @@
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridexPalletDetails.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.gridexPalletDetails.RowTemplate.Height = 24;
-            this.gridexPalletDetails.Size = new System.Drawing.Size(334, 305);
+            this.gridexPalletDetails.Size = new System.Drawing.Size(334, 323);
             this.gridexPalletDetails.TabIndex = 65;
             // 
             // CommodityCode
@@ -526,20 +621,20 @@
             this.Remarks.HeaderText = "Remarks";
             this.Remarks.Name = "Remarks";
             // 
-            // naviGroup1
+            // naviGroupTop
             // 
-            this.naviGroup1.Caption = null;
-            this.naviGroup1.Controls.Add(this.tableLayoutPanelExtend);
-            this.naviGroup1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.naviGroup1.ExpandedHeight = 88;
-            this.naviGroup1.HeaderContextMenuStrip = null;
-            this.naviGroup1.HeaderHeight = 0;
-            this.naviGroup1.Location = new System.Drawing.Point(356, 32);
-            this.naviGroup1.Name = "naviGroup1";
-            this.naviGroup1.Padding = new System.Windows.Forms.Padding(1, 2, 1, 1);
-            this.naviGroup1.Size = new System.Drawing.Size(1008, 88);
-            this.naviGroup1.TabIndex = 67;
-            this.naviGroup1.Text = "naviGroup1";
+            this.naviGroupTop.Caption = null;
+            this.naviGroupTop.Controls.Add(this.tableLayoutPanelExtend);
+            this.naviGroupTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.naviGroupTop.ExpandedHeight = 88;
+            this.naviGroupTop.HeaderContextMenuStrip = null;
+            this.naviGroupTop.HeaderHeight = 0;
+            this.naviGroupTop.Location = new System.Drawing.Point(394, 34);
+            this.naviGroupTop.Name = "naviGroupTop";
+            this.naviGroupTop.Padding = new System.Windows.Forms.Padding(1, 2, 1, 1);
+            this.naviGroupTop.Size = new System.Drawing.Size(970, 88);
+            this.naviGroupTop.TabIndex = 67;
+            this.naviGroupTop.Tag = "UnExpandable";
             // 
             // tableLayoutPanelExtend
             // 
@@ -555,7 +650,7 @@
             this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.019F));
             this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.32099F));
-            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 425F));
+            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 480F));
             this.tableLayoutPanelExtend.Controls.Add(this.combexCommodityID, 0, 0);
             this.tableLayoutPanelExtend.Controls.Add(this.label11, 3, 0);
             this.tableLayoutPanelExtend.Controls.Add(this.label12, 6, 0);
@@ -567,7 +662,7 @@
             this.tableLayoutPanelExtend.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
             this.tableLayoutPanelExtend.RowCount = 1;
             this.tableLayoutPanelExtend.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanelExtend.Size = new System.Drawing.Size(1006, 85);
+            this.tableLayoutPanelExtend.Size = new System.Drawing.Size(968, 85);
             this.tableLayoutPanelExtend.TabIndex = 8;
             // 
             // combexCommodityID
@@ -578,11 +673,11 @@
             this.combexCommodityID.Editable = true;
             this.combexCommodityID.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combexCommodityID.FormattingEnabled = true;
-            this.combexCommodityID.Location = new System.Drawing.Point(59, 3);
+            this.combexCommodityID.Location = new System.Drawing.Point(49, 3);
             this.combexCommodityID.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.combexCommodityID.Name = "combexCommodityID";
             this.combexCommodityID.ReadOnly = false;
-            this.combexCommodityID.Size = new System.Drawing.Size(126, 29);
+            this.combexCommodityID.Size = new System.Drawing.Size(105, 29);
             this.combexCommodityID.TabIndex = 72;
             // 
             // label10
@@ -593,7 +688,7 @@
             this.label10.Location = new System.Drawing.Point(3, 5);
             this.label10.Margin = new System.Windows.Forms.Padding(3);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(50, 75);
+            this.label10.Size = new System.Drawing.Size(40, 84);
             this.label10.TabIndex = 35;
             this.label10.Text = "Requested By";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -603,10 +698,10 @@
             this.panelLeft.BackColor = System.Drawing.Color.Ivory;
             this.panelLeft.Controls.Add(this.layoutLeft);
             this.panelLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelLeft.Location = new System.Drawing.Point(0, 32);
+            this.panelLeft.Location = new System.Drawing.Point(0, 34);
             this.panelLeft.Margin = new System.Windows.Forms.Padding(6);
             this.panelLeft.Name = "panelLeft";
-            this.panelLeft.Size = new System.Drawing.Size(356, 393);
+            this.panelLeft.Size = new System.Drawing.Size(394, 411);
             this.panelLeft.TabIndex = 73;
             // 
             // fastGoodsReceiptIndex
@@ -629,7 +724,7 @@
             this.fastGoodsReceiptIndex.Name = "fastGoodsReceiptIndex";
             this.fastGoodsReceiptIndex.OwnerDraw = true;
             this.fastGoodsReceiptIndex.ShowGroups = false;
-            this.fastGoodsReceiptIndex.Size = new System.Drawing.Size(1364, 229);
+            this.fastGoodsReceiptIndex.Size = new System.Drawing.Size(1364, 209);
             this.fastGoodsReceiptIndex.TabIndex = 68;
             this.fastGoodsReceiptIndex.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastGoodsReceiptIndex.UseCompatibleStateImageBehavior = false;
@@ -679,8 +774,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.naviGroupDetails)).EndInit();
             this.naviGroupDetails.ResumeLayout(false);
             this.naviGroupDetails.PerformLayout();
-            this.toolStripNaviGroupDetails.ResumeLayout(false);
-            this.toolStripNaviGroupDetails.PerformLayout();
+            this.toolStripNaviGroup.ResumeLayout(false);
+            this.toolStripNaviGroup.PerformLayout();
             this.panelCenter.ResumeLayout(false);
             this.panelCenter.PerformLayout();
             this.toolStripCarton.ResumeLayout(false);
@@ -689,9 +784,9 @@
             this.toolStripPallet.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridexCartonDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridexPalletDetails)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.naviGroup1)).EndInit();
-            this.naviGroup1.ResumeLayout(false);
-            this.naviGroup1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.naviGroupTop)).EndInit();
+            this.naviGroupTop.ResumeLayout(false);
+            this.naviGroupTop.PerformLayout();
             this.tableLayoutPanelExtend.ResumeLayout(false);
             this.tableLayoutPanelExtend.PerformLayout();
             this.panelLeft.ResumeLayout(false);
@@ -740,17 +835,24 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
-        private Guifreaks.Navisuite.NaviGroup naviGroup1;
+        private Guifreaks.Navisuite.NaviGroup naviGroupTop;
         private System.Windows.Forms.Panel panelCenter;
         private System.Windows.Forms.Panel panelLeft;
-        private System.Windows.Forms.ToolStrip toolStripNaviGroupDetails;
-        private System.Windows.Forms.ToolStripButton toolStripButtonShowDetailsExtend;
+        private System.Windows.Forms.ToolStrip toolStripNaviGroup;
+        private System.Windows.Forms.ToolStripButton buttonExpandTop;
         private CustomControls.TextexBox textexRemarks;
         private CustomControls.TextexBox textexDescription;
         private System.Windows.Forms.ToolStrip toolStripPallet;
         private System.Windows.Forms.ToolStripButton buttonAddPallets;
         private System.Windows.Forms.ToolStrip toolStripCarton;
         private System.Windows.Forms.ToolStripButton buttonAddCartons;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel2;
+        private CustomControls.CombexBox combexStorekeeperID;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelCaption;
+        private System.Windows.Forms.Label label2;
+        private CustomControls.TextexBox textexWarehouseName;
 
     }
 }

@@ -203,6 +203,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
             this.bindingTotalLineVolume.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
 
             this.bindingForkliftDriverID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingStorekeeperID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.fastPickupIndex.AboutToCreateGroups += fastPickupIndex_AboutToCreateGroups;
 
             this.fastPickupIndex.ShowGroups = true;

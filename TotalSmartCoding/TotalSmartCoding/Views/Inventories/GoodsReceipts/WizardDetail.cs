@@ -81,37 +81,43 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
 
                     if (fastPendingList != null)
                     {
-                        foreach (var checkedObjects in fastPendingList.CheckedObjects)
+                        if (fastPendingList.CheckedObjects.Count > 0)
                         {
-                            PendingPickupDetail pendingPickupDetail = (PendingPickupDetail)checkedObjects;
-                            GoodsReceiptDetailDTO goodsReceiptDetailDTO = new GoodsReceiptDetailDTO()
+                            this.goodsReceiptViewModel.ViewDetails.RaiseListChangedEvents = false;
+                            foreach (var checkedObjects in fastPendingList.CheckedObjects)
                             {
-                                GoodsReceiptID = this.goodsReceiptViewModel.GoodsReceiptID,
+                                PendingPickupDetail pendingPickupDetail = (PendingPickupDetail)checkedObjects;
+                                GoodsReceiptDetailDTO goodsReceiptDetailDTO = new GoodsReceiptDetailDTO()
+                                {
+                                    GoodsReceiptID = this.goodsReceiptViewModel.GoodsReceiptID,
 
-                                PickupID = pendingPickupDetail.PickupID,
-                                PickupDetailID = pendingPickupDetail.PickupDetailID,
-                                PickupReference = pendingPickupDetail.PickupReference,
-                                PickupEntryDate = pendingPickupDetail.PickupEntryDate,
+                                    PickupID = pendingPickupDetail.PickupID,
+                                    PickupDetailID = pendingPickupDetail.PickupDetailID,
+                                    PickupReference = pendingPickupDetail.PickupReference,
+                                    PickupEntryDate = pendingPickupDetail.PickupEntryDate,
 
-                                BinLocationID = pendingPickupDetail.BinLocationID,
-                                BinLocationCode = pendingPickupDetail.BinLocationCode,
+                                    BinLocationID = pendingPickupDetail.BinLocationID,
+                                    BinLocationCode = pendingPickupDetail.BinLocationCode,
 
-                                CommodityID = pendingPickupDetail.CommodityID,
-                                CommodityCode = pendingPickupDetail.CommodityCode,
-                                CommodityName = pendingPickupDetail.CommodityName,
+                                    CommodityID = pendingPickupDetail.CommodityID,
+                                    CommodityCode = pendingPickupDetail.CommodityCode,
+                                    CommodityName = pendingPickupDetail.CommodityName,
 
-                                Quantity = (decimal)pendingPickupDetail.QuantityRemains,
-                                LineVolume = pendingPickupDetail.LineVolume,
-                                
+                                    Quantity = (decimal)pendingPickupDetail.QuantityRemains,
+                                    LineVolume = pendingPickupDetail.LineVolume,
 
-                                PackID = pendingPickupDetail.PackID,
-                                PackCode = pendingPickupDetail.PackCode,
-                                CartonID = pendingPickupDetail.CartonID,
-                                CartonCode = pendingPickupDetail.CartonCode,
-                                PalletID = pendingPickupDetail.PalletID,
-                                PalletCode = pendingPickupDetail.PalletCode,
-                            };
-                            this.goodsReceiptViewModel.ViewDetails.Add(goodsReceiptDetailDTO);
+
+                                    PackID = pendingPickupDetail.PackID,
+                                    PackCode = pendingPickupDetail.PackCode,
+                                    CartonID = pendingPickupDetail.CartonID,
+                                    CartonCode = pendingPickupDetail.CartonCode,
+                                    PalletID = pendingPickupDetail.PalletID,
+                                    PalletCode = pendingPickupDetail.PalletCode,
+                                };
+                                this.goodsReceiptViewModel.ViewDetails.Add(goodsReceiptDetailDTO);
+                            }
+                            this.goodsReceiptViewModel.ViewDetails.RaiseListChangedEvents = true;
+                            this.goodsReceiptViewModel.ViewDetails.ResetBindings();
                         }
                     }
 

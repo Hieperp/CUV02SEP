@@ -311,10 +311,11 @@
         public enum GoodsReceiptTypeID
         {
             AllGoodsReceipt = 999,
-            PurchaseInvoice = 1,
-            GoodsReturn = 2,
+            Pickup = 1,
+            PurchaseInvoice = 2,
             StockTransfer = 3,
-            InventoryAdjustment = 4
+            InventoryAdjustment = 4,
+            SalesReturn = 5
         };
 
         public enum SalesInvoiceTypeID

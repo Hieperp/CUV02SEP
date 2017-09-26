@@ -74,6 +74,9 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
                         if (pendingPickup != null) {                            
                             this.goodsReceiptViewModel.PickupID = pendingPickup.PickupID;
                             this.goodsReceiptViewModel.PickupReferences = pendingPickup.PickupReference;
+                            
+                            this.goodsReceiptViewModel.GoodsReceiptTypeID = pendingPickup.GoodsReceiptTypeID;
+                            this.goodsReceiptViewModel.GoodsReceiptTypeName = pendingPickup.GoodsReceiptTypeName;
                             this.goodsReceiptViewModel.WarehouseID = pendingPickup.WarehouseID;
                             this.goodsReceiptViewModel.WarehouseName = pendingPickup.WarehouseName;
                             nextOK = true;
@@ -84,6 +87,8 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
                         PendingPickupWarehouse pendingPickupWarehouse = (PendingPickupWarehouse)this.fastPendingPickupWarehouses.SelectedObject;
                         if (pendingPickupWarehouse != null)
                         {
+                            this.goodsReceiptViewModel.GoodsReceiptTypeID = pendingPickupWarehouse.GoodsReceiptTypeID;
+                            this.goodsReceiptViewModel.GoodsReceiptTypeName = pendingPickupWarehouse.GoodsReceiptTypeName;
                             this.goodsReceiptViewModel.WarehouseID = pendingPickupWarehouse.WarehouseID;
                             this.goodsReceiptViewModel.WarehouseName = pendingPickupWarehouse.WarehouseName;
                             nextOK = true;

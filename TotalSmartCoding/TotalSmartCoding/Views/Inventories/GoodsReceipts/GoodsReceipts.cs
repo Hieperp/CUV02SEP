@@ -25,6 +25,10 @@ using TotalCore.Repositories.Inventories;
 using TotalSmartCoding.Controllers.APIs.Inventories;
 using TotalCore.Services.Inventories;
 using TotalSmartCoding.ViewModels.Inventories;
+using TotalSmartCoding.Controllers.APIs.Commons;
+using TotalCore.Repositories.Commons;
+using TotalBase;
+using TotalModel.Models;
 
 namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
 {
@@ -64,13 +68,13 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
 
                 this.customTabLeft.TabPages.Add("tabLeftAA", "Receipts   ");
                 this.customTabLeft.TabPages[0].BackColor = this.panelLeft.BackColor;
-                this.customTabLeft.TabPages[0].Padding = new Padding(10, 0, 0, 0);
+                this.customTabLeft.TabPages[0].Padding = new Padding(15, 0, 0, 0);
                 this.customTabLeft.TabPages[0].Controls.Add(this.layoutLeft);
 
                 this.customTabLeft.Dock = DockStyle.Fill;
                 this.panelLeft.Controls.Add(this.customTabLeft);
 
-                this.layoutLeft.ColumnStyles[this.layoutLeft.ColumnCount - 1].SizeType = SizeType.Absolute; this.layoutLeft.ColumnStyles[this.layoutLeft.ColumnCount - 1].Width = 10;                
+                this.layoutLeft.ColumnStyles[this.layoutLeft.ColumnCount - 1].SizeType = SizeType.Absolute; this.layoutLeft.ColumnStyles[this.layoutLeft.ColumnCount - 1].Width = 15;
                 #endregion TabLeft
 
                 #region TabCenter
@@ -81,7 +85,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
                 this.customTabCenter.TabPages.Add("tabCenterBB", "Carton List   ");
                 this.customTabCenter.TabPages.Add("tabCenterBB", "Description               ");
                 this.customTabCenter.TabPages.Add("tabCenterBB", "Remarks               ");
-                
+
                 this.customTabCenter.TabPages[0].Controls.Add(this.gridexPalletDetails);
                 this.customTabCenter.TabPages[0].Controls.Add(this.toolStripPallet);
                 this.customTabCenter.TabPages[1].Controls.Add(this.gridexCartonDetails);
@@ -103,7 +107,8 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
                 this.panelCenter.Controls.Add(this.customTabCenter);
                 #endregion TabCenter
 
-                this.toolStripButtonShowDetailsExtend_Click(this.toolStripButtonShowDetailsExtend, new EventArgs());
+                this.tableLayoutPanelExtend.ColumnStyles[this.tableLayoutPanelExtend.ColumnCount - 1].SizeType = SizeType.Absolute; this.tableLayoutPanelExtend.ColumnStyles[this.tableLayoutPanelExtend.ColumnCount - 1].Width = 15;
+                this.buttonExpandTop_Click(this.buttonExpandTop, new EventArgs());
 
             }
             catch (Exception exception)
@@ -114,40 +119,59 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
 
         Binding bindingEntryDate;
         Binding bindingReference;
+        Binding bindingWarehouseName;
+        Binding bindingDescription;
+        Binding bindingRemarks;
+        Binding bindingCaption;
+
+        Binding bindingStorekeeperID;
 
         protected override void InitializeCommonControlBinding()
         {
             base.InitializeCommonControlBinding();
 
-            this.bindingReference = this.textexReference.DataBindings.Add("Text", this.goodsReceiptViewModel, "Reference", true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingEntryDate = this.dateTimexEntryDate.DataBindings.Add("Value", this.goodsReceiptViewModel, "EntryDate", true);
+            this.bindingReference = this.textexReference.DataBindings.Add("Text", this.goodsReceiptViewModel, "Reference", true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingWarehouseName = this.textexWarehouseName.DataBindings.Add("Text", this.goodsReceiptViewModel, "WarehouseName", true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingDescription = this.textexDescription.DataBindings.Add("Text", this.goodsReceiptViewModel, "Description", true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingRemarks = this.textexRemarks.DataBindings.Add("Text", this.goodsReceiptViewModel, "Remarks", true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingCaption = this.labelCaption.DataBindings.Add("Text", this.goodsReceiptViewModel, CommonExpressions.PropertyName<GoodsReceiptViewModel>(p => p.Caption));
 
+            EmployeeAPIs employeeAPIs = new EmployeeAPIs(CommonNinject.Kernel.Get<IEmployeeAPIRepository>());
 
-            this.bindingReference.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.combexStorekeeperID.DataSource = employeeAPIs.GetEmployeeBases();
+            this.combexStorekeeperID.DisplayMember = CommonExpressions.PropertyName<EmployeeBase>(p => p.Name);
+            this.combexStorekeeperID.ValueMember = CommonExpressions.PropertyName<EmployeeBase>(p => p.EmployeeID);
+            this.bindingStorekeeperID = this.combexStorekeeperID.DataBindings.Add("SelectedValue", this.goodsReceiptViewModel, CommonExpressions.PropertyName<GoodsReceiptViewModel>(p => p.StorekeeperID), true, DataSourceUpdateMode.OnPropertyChanged);
+
             this.bindingEntryDate.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingReference.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingWarehouseName.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingDescription.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingRemarks.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingCaption.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
 
-
-
-
-
-            
-            this.tableLayoutPanelExtend.ColumnStyles[this.tableLayoutPanelExtend.ColumnCount - 1].SizeType = SizeType.Absolute; this.tableLayoutPanelExtend.ColumnStyles[this.tableLayoutPanelExtend.ColumnCount - 1].Width = 10;
+            this.bindingStorekeeperID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
         }
 
         protected override void InitializeDataGridBinding()
         {
             this.gridexPalletDetails.AutoGenerateColumns = false;
-            this.gridexPalletDetails.DataSource = this.goodsReceiptViewModel.ViewDetails;
-            this.gridexCartonDetails.DataSource = this.goodsReceiptViewModel.PalletDetails;
+            this.gridexPalletDetails.DataSource = this.goodsReceiptViewModel.PalletDetails;
+            this.gridexCartonDetails.DataSource = this.goodsReceiptViewModel.ViewDetails;
 
             //StackedHeaderDecorator stackedHeaderDecorator = new StackedHeaderDecorator(this.dataGridViewDetails);
         }
 
-        protected override void InitializeReadOnlyModeBinding()
-        {
-            base.InitializeReadOnlyModeBinding();
-            //this.buttonAddPallets.bi control.DataBindings.Add("AllowUserToAddRows", this, "EditableMode");
-        }
+        //protected override void NotifyPropertyChanged(string propertyName)
+        //{
+        //    base.NotifyPropertyChanged(propertyName);
+        //    if (propertyName == "IsDirty")
+        //    {
+        //        this.customTabCenter.TabPages[0].Text = "Pallets [" + this.goodsReceiptViewModel.PalletDetails.Count.ToString("N0") + " item(s)]         ";
+        //        this.customTabCenter.TabPages[1].Text = "Cartons [" + this.goodsReceiptViewModel.ViewDetails.Count.ToString("N0") + " item(s)]         ";
+        //    }
+        //}
 
         protected override Controllers.BaseController myController
         {
@@ -173,17 +197,35 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
             wizardDetail.ShowDialog();
         }
 
-        private void naviGroupDetails_HeaderMouseClick(object sender, MouseEventArgs e)
+        private void buttonAddDetails_Click(object sender, EventArgs e)
         {
-            this.toolStripNaviGroupDetails.Visible = this.naviGroupDetails.Expanded;
+            try
+            {
+                if (this.EditableMode)
+                    this.wizardDetail();
+            }
+            catch (Exception exception)
+            {
+                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+            }
         }
 
-        private void toolStripButtonShowDetailsExtend_Click(object sender, EventArgs e)
+        private void naviGroupDetails_HeaderMouseClick(object sender, MouseEventArgs e)
         {
-            this.naviGroup1.Expanded = !this.naviGroup1.Expanded;
-            this.naviGroup1.Padding = new Padding(0, 0, 0, 0);
-            //this.toolStripButtonShowDetailsExtend.Image = this.naviGroup1.Expanded ? ResourceIcon.Chevron_Collapse.ToBitmap() : ResourceIcon.Chevron_Expand.ToBitmap();
+            this.toolStripNaviGroup.Visible = this.naviGroupDetails.Expanded;
         }
+
+        private void buttonExpandTop_Click(object sender, EventArgs e)
+        {
+            if (this.naviGroupTop.Tag.ToString() == "Expandable" || this.naviGroupTop.Expanded)
+            {
+                this.naviGroupTop.Expanded = !this.naviGroupTop.Expanded;
+                this.naviGroupTop.Padding = new Padding(0, 0, 0, 0);
+                //this.toolStripButtonShowDetailsExtend.Image = this.naviGroup1.Expanded ? ResourceIcon.Chevron_Collapse.ToBitmap() : ResourceIcon.Chevron_Expand.ToBitmap();
+            }
+        }
+
+
 
 
 

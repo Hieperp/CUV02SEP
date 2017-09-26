@@ -2683,11 +2683,15 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Type="DateTime" Name="PickupEntryDate" Nullable="false" Precision="23" />
           <Property Type="String" Name="WarehouseName" Nullable="false" MaxLength="60" />
           <Property Type="String" Name="Remarks" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="GoodsReceiptTypeID" Nullable="false" />
+          <Property Type="String" Name="GoodsReceiptTypeName" Nullable="true" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="PendingPickupWarehouse">
           <Property Type="Int32" Name="WarehouseID" Nullable="false" />
           <Property Type="String" Name="WarehouseCode" Nullable="false" MaxLength="10" />
           <Property Type="String" Name="WarehouseName" Nullable="false" MaxLength="60" />
+          <Property Type="Int32" Name="GoodsReceiptTypeID" Nullable="false" />
+          <Property Type="String" Name="GoodsReceiptTypeName" Nullable="true" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="BatchIndex">
           <Property Type="Int32" Name="BatchID" Nullable="false" />
@@ -4598,6 +4602,8 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
                 <ScalarProperty Name="PickupEntryDate" ColumnName="PickupEntryDate" />
                 <ScalarProperty Name="WarehouseName" ColumnName="WarehouseName" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="GoodsReceiptTypeID" ColumnName="GoodsReceiptTypeID" />
+                <ScalarProperty Name="GoodsReceiptTypeName" ColumnName="GoodsReceiptTypeName" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -4607,6 +4613,8 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
                 <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
                 <ScalarProperty Name="WarehouseCode" ColumnName="WarehouseCode" />
                 <ScalarProperty Name="WarehouseName" ColumnName="WarehouseName" />
+                <ScalarProperty Name="GoodsReceiptTypeID" ColumnName="GoodsReceiptTypeID" />
+                <ScalarProperty Name="GoodsReceiptTypeName" ColumnName="GoodsReceiptTypeName" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

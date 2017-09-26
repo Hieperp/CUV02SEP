@@ -21,5 +21,7 @@ namespace TotalModel.Models
         public System.DateTime PickupEntryDate { get; set; }
         public string WarehouseName { get; set; }
         public string Remarks { get; set; }
+        public int GoodsReceiptTypeID { get; set; }
+        public string GoodsReceiptTypeName { get; set; }
     }
 }
