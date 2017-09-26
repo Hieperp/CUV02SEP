@@ -175,7 +175,7 @@
             this.naviBarModuleMaster.Location = new System.Drawing.Point(0, 110);
             this.naviBarModuleMaster.Margin = new System.Windows.Forms.Padding(4);
             this.naviBarModuleMaster.Name = "naviBarModuleMaster";
-            this.naviBarModuleMaster.Size = new System.Drawing.Size(291, 808);
+            this.naviBarModuleMaster.Size = new System.Drawing.Size(291, 807);
             this.naviBarModuleMaster.TabIndex = 14;
             this.naviBarModuleMaster.Text = "naviBar1";
             this.naviBarModuleMaster.Visible = false;
@@ -229,6 +229,7 @@
             // 
             // statusStrip
             // 
+            this.statusStrip.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.statusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel,
@@ -242,17 +243,17 @@
             this.statusFillingLine,
             this.toolStripSplitButton5,
             this.statusUserDescription});
-            this.statusStrip.Location = new System.Drawing.Point(0, 918);
+            this.statusStrip.Location = new System.Drawing.Point(0, 917);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-            this.statusStrip.Size = new System.Drawing.Size(1745, 25);
+            this.statusStrip.Size = new System.Drawing.Size(1745, 26);
             this.statusStrip.TabIndex = 28;
             this.statusStrip.Text = "StatusStrip";
             // 
             // toolStripStatusLabel
             // 
             this.toolStripStatusLabel.Name = "toolStripStatusLabel";
-            this.toolStripStatusLabel.Size = new System.Drawing.Size(244, 20);
+            this.toolStripStatusLabel.Size = new System.Drawing.Size(244, 21);
             this.toolStripStatusLabel.Text = "Designed by Le Minh Hiep               ";
             // 
             // toolStripSplitButton1
@@ -261,13 +262,13 @@
             this.toolStripSplitButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton1.Image")));
             this.toolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripSplitButton1.Name = "toolStripSplitButton1";
-            this.toolStripSplitButton1.Size = new System.Drawing.Size(19, 23);
+            this.toolStripSplitButton1.Size = new System.Drawing.Size(19, 24);
             this.toolStripSplitButton1.Text = "toolStripSplitButton1";
             // 
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(427, 20);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(427, 21);
             this.toolStripStatusLabel1.Text = " Cell phone: +84-0903-880-501     +84-0919-878-329                 ";
             // 
             // toolStripSplitButton2
@@ -276,14 +277,14 @@
             this.toolStripSplitButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton2.Image")));
             this.toolStripSplitButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripSplitButton2.Name = "toolStripSplitButton2";
-            this.toolStripSplitButton2.Size = new System.Drawing.Size(19, 23);
+            this.toolStripSplitButton2.Size = new System.Drawing.Size(19, 24);
             this.toolStripSplitButton2.Text = "toolStripSplitButton2";
             // 
             // toolStripStatusLabel2
             // 
             this.toolStripStatusLabel2.AutoSize = false;
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(320, 20);
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(320, 21);
             this.toolStripStatusLabel2.Text = "Email: hieple.erp@gmail.com;    hieperp@gmail.com;    ";
             this.toolStripStatusLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -293,14 +294,14 @@
             this.toolStripSplitButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton3.Image")));
             this.toolStripSplitButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripSplitButton3.Name = "toolStripSplitButton3";
-            this.toolStripSplitButton3.Size = new System.Drawing.Size(19, 23);
+            this.toolStripSplitButton3.Size = new System.Drawing.Size(19, 24);
             this.toolStripSplitButton3.Text = "toolStripSplitButton3";
             // 
             // statusVersion
             // 
             this.statusVersion.AutoSize = false;
             this.statusVersion.Name = "statusVersion";
-            this.statusVersion.Size = new System.Drawing.Size(260, 20);
+            this.statusVersion.Size = new System.Drawing.Size(260, 21);
             this.statusVersion.Text = "Version 1.91i Date: 19.Feb.2016 ";
             this.statusVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -310,14 +311,14 @@
             this.toolStripSplitButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton4.Image")));
             this.toolStripSplitButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripSplitButton4.Name = "toolStripSplitButton4";
-            this.toolStripSplitButton4.Size = new System.Drawing.Size(19, 23);
+            this.toolStripSplitButton4.Size = new System.Drawing.Size(19, 24);
             this.toolStripSplitButton4.Text = "toolStripSplitButton4";
             // 
             // statusFillingLine
             // 
             this.statusFillingLine.AutoSize = false;
             this.statusFillingLine.Name = "statusFillingLine";
-            this.statusFillingLine.Size = new System.Drawing.Size(110, 20);
+            this.statusFillingLine.Size = new System.Drawing.Size(110, 21);
             this.statusFillingLine.Text = "NOF 1  ";
             this.statusFillingLine.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -327,14 +328,14 @@
             this.toolStripSplitButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton5.Image")));
             this.toolStripSplitButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripSplitButton5.Name = "toolStripSplitButton5";
-            this.toolStripSplitButton5.Size = new System.Drawing.Size(19, 23);
+            this.toolStripSplitButton5.Size = new System.Drawing.Size(19, 24);
             this.toolStripSplitButton5.Text = "toolStripSplitButton5";
             // 
             // statusUserDescription
             // 
             this.statusUserDescription.AutoSize = false;
             this.statusUserDescription.Name = "statusUserDescription";
-            this.statusUserDescription.Size = new System.Drawing.Size(200, 20);
+            this.statusUserDescription.Size = new System.Drawing.Size(200, 21);
             this.statusUserDescription.Text = "Le Minh Hiep";
             this.statusUserDescription.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -368,6 +369,7 @@
             // buttonEscape
             // 
             this.buttonEscape.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.buttonEscape.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonEscape.Image = global::TotalSmartCoding.Properties.Resources.DataEsc;
             this.buttonEscape.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.buttonEscape.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -384,6 +386,7 @@
             // buttonNew
             // 
             this.buttonNew.Enabled = false;
+            this.buttonNew.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonNew.Image = global::TotalSmartCoding.Properties.Resources.DataNew;
             this.buttonNew.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.buttonNew.ImageTransparentColor = System.Drawing.Color.Black;
@@ -395,6 +398,7 @@
             // buttonEdit
             // 
             this.buttonEdit.Enabled = false;
+            this.buttonEdit.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonEdit.Image = global::TotalSmartCoding.Properties.Resources.DataEdit;
             this.buttonEdit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.buttonEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -406,6 +410,7 @@
             // buttonSave
             // 
             this.buttonSave.Enabled = false;
+            this.buttonSave.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonSave.Image = global::TotalSmartCoding.Properties.Resources.DataSave;
             this.buttonSave.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.buttonSave.ImageTransparentColor = System.Drawing.Color.Black;
@@ -417,6 +422,7 @@
             // buttonDelete
             // 
             this.buttonDelete.Enabled = false;
+            this.buttonDelete.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonDelete.Image = global::TotalSmartCoding.Properties.Resources.Recycle_Bin_full;
             this.buttonDelete.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.buttonDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -433,6 +439,7 @@
             // buttonImport
             // 
             this.buttonImport.Enabled = false;
+            this.buttonImport.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonImport.Image = global::TotalSmartCoding.Properties.Resources.Benjigarner_Softdimension_Excel;
             this.buttonImport.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.buttonImport.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -443,6 +450,7 @@
             // buttonExport
             // 
             this.buttonExport.Enabled = false;
+            this.buttonExport.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonExport.Image = global::TotalSmartCoding.Properties.Resources.Custom_Icon_Design_Pretty_Office_6_Import_export;
             this.buttonExport.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.buttonExport.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -458,6 +466,7 @@
             // buttonApprove
             // 
             this.buttonApprove.Enabled = false;
+            this.buttonApprove.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonApprove.Image = global::TotalSmartCoding.Properties.Resources.Check_Saki_Ok;
             this.buttonApprove.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.buttonApprove.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -475,6 +484,7 @@
             // 
             this.buttonPrintPreview.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.buttonPrintPreview.Enabled = false;
+            this.buttonPrintPreview.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonPrintPreview.Image = global::TotalSmartCoding.Properties.Resources.Actions_document_print_preview;
             this.buttonPrintPreview.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.buttonPrintPreview.ImageTransparentColor = System.Drawing.Color.Black;
@@ -486,6 +496,7 @@
             // 
             this.buttonPrint.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.buttonPrint.Enabled = false;
+            this.buttonPrint.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonPrint.Image = global::TotalSmartCoding.Properties.Resources.Actions_document_print;
             this.buttonPrint.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.buttonPrint.ImageTransparentColor = System.Drawing.Color.Black;
@@ -519,6 +530,7 @@
             // buttonLockedDate
             // 
             this.buttonLockedDate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.buttonLockedDate.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonLockedDate.Image = global::TotalSmartCoding.Properties.Resources.Data_Lock_24;
             this.buttonLockedDate.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.buttonLockedDate.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -529,6 +541,7 @@
             // txtLockedDate
             // 
             this.txtLockedDate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtLockedDate.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLockedDate.Name = "txtLockedDate";
             this.txtLockedDate.Size = new System.Drawing.Size(99, 55);
             this.txtLockedDate.Text = "01/09/2017";
@@ -541,13 +554,15 @@
             // 
             // toolStripLabel1
             // 
+            this.toolStripLabel1.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(42, 52);
+            this.toolStripLabel1.Size = new System.Drawing.Size(46, 52);
             this.toolStripLabel1.Text = "Filter";
             // 
             // textFillterLowerDate
             // 
             this.textFillterLowerDate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textFillterLowerDate.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textFillterLowerDate.Name = "textFillterLowerDate";
             this.textFillterLowerDate.Size = new System.Drawing.Size(99, 55);
             this.textFillterLowerDate.Text = "31/12/2013";
@@ -556,6 +571,7 @@
             // textFillterUpperDate
             // 
             this.textFillterUpperDate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textFillterUpperDate.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textFillterUpperDate.Name = "textFillterUpperDate";
             this.textFillterUpperDate.Size = new System.Drawing.Size(99, 55);
             this.textFillterUpperDate.Text = "01/01/2018";
@@ -564,6 +580,7 @@
             // buttonLoading
             // 
             this.buttonLoading.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.buttonLoading.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonLoading.Image = global::TotalSmartCoding.Properties.Resources.refresh;
             this.buttonLoading.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.buttonLoading.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -582,6 +599,7 @@
             this.comboFilterTexts.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.comboFilterTexts.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
             this.comboFilterTexts.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
+            this.comboFilterTexts.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboFilterTexts.Name = "comboFilterTexts";
             this.comboFilterTexts.Size = new System.Drawing.Size(500, 55);
             this.comboFilterTexts.TextChanged += new System.EventHandler(this.comboFilterTexts_TextChanged);
@@ -589,6 +607,7 @@
             // buttonClearFilters
             // 
             this.buttonClearFilters.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.buttonClearFilters.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonClearFilters.Image = global::TotalSmartCoding.Properties.Resources.Edit_clear;
             this.buttonClearFilters.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.buttonClearFilters.ImageTransparentColor = System.Drawing.Color.Magenta;

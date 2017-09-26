@@ -49,15 +49,6 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.naviGroupDetails = new Guifreaks.Navisuite.NaviGroup(this.components);
             this.gridexViewDetails = new CustomControls.DataGridexView();
-            this.numericUpDownSizingDetail = new System.Windows.Forms.NumericUpDown();
-            this.naviGroupDetailsExtend = new Guifreaks.Navisuite.NaviGroup(this.components);
-            this.tableLayoutPanelExtend = new System.Windows.Forms.TableLayoutPanel();
-            this.combexCommodityID = new CustomControls.CombexBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.fastDeliveryAdviceIndex = new BrightIdeasSoftware.FastObjectListView();
-            this.olvID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvEntryDate = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvReference = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.CommodityCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CommodityName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.QuantityAvailable = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -68,6 +59,15 @@
             this.CartonCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PackCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Remarks = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numericUpDownSizingDetail = new System.Windows.Forms.NumericUpDown();
+            this.naviGroupDetailsExtend = new Guifreaks.Navisuite.NaviGroup(this.components);
+            this.tableLayoutPanelExtend = new System.Windows.Forms.TableLayoutPanel();
+            this.combexCommodityID = new CustomControls.CombexBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.fastDeliveryAdviceIndex = new BrightIdeasSoftware.FastObjectListView();
+            this.olvID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvEntryDate = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvReference = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.tableLayoutPanelMaster.SuspendLayout();
             this.toolStripNaviGroupDetails.SuspendLayout();
             this.toolStripChildForm.SuspendLayout();
@@ -94,7 +94,7 @@
             this.tableLayoutPanelMaster.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.tableLayoutPanelMaster.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.0191F));
             this.tableLayoutPanelMaster.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.32023F));
-            this.tableLayoutPanelMaster.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 248F));
+            this.tableLayoutPanelMaster.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 251F));
             this.tableLayoutPanelMaster.Controls.Add(this.label6, 0, 0);
             this.tableLayoutPanelMaster.Controls.Add(this.label7, 0, 1);
             this.tableLayoutPanelMaster.Controls.Add(this.label1, 6, 1);
@@ -121,7 +121,7 @@
             this.label6.Location = new System.Drawing.Point(1, 3);
             this.label6.Margin = new System.Windows.Forms.Padding(1);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(102, 34);
+            this.label6.Size = new System.Drawing.Size(101, 34);
             this.label6.TabIndex = 30;
             this.label6.Text = "Date";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -133,7 +133,7 @@
             this.label7.Location = new System.Drawing.Point(3, 41);
             this.label7.Margin = new System.Windows.Forms.Padding(3);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(98, 14);
+            this.label7.Size = new System.Drawing.Size(97, 14);
             this.label7.TabIndex = 31;
             this.label7.Text = "Marketing Program";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -142,10 +142,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(715, 41);
+            this.label1.Location = new System.Drawing.Point(713, 41);
             this.label1.Margin = new System.Windows.Forms.Padding(3);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(98, 14);
+            this.label1.Size = new System.Drawing.Size(97, 14);
             this.label1.TabIndex = 57;
             this.label1.Text = "Remarks";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -154,10 +154,10 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Location = new System.Drawing.Point(357, 3);
+            this.label4.Location = new System.Drawing.Point(356, 3);
             this.label4.Margin = new System.Windows.Forms.Padding(1);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(102, 34);
+            this.label4.Size = new System.Drawing.Size(101, 34);
             this.label4.TabIndex = 28;
             this.label4.Text = "Payment Period";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -166,10 +166,10 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label14.Location = new System.Drawing.Point(713, 3);
+            this.label14.Location = new System.Drawing.Point(711, 3);
             this.label14.Margin = new System.Windows.Forms.Padding(1);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(102, 34);
+            this.label14.Size = new System.Drawing.Size(101, 34);
             this.label14.TabIndex = 51;
             this.label14.Text = "Payment Machanic";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -178,10 +178,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(359, 41);
+            this.label2.Location = new System.Drawing.Point(358, 41);
             this.label2.Margin = new System.Windows.Forms.Padding(3);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(98, 14);
+            this.label2.Size = new System.Drawing.Size(97, 14);
             this.label2.TabIndex = 56;
             this.label2.Text = "Payment Type";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -190,7 +190,7 @@
             // 
             this.dateTimexEntryDate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dateTimexEntryDate.Editable = true;
-            this.dateTimexEntryDate.Location = new System.Drawing.Point(107, 3);
+            this.dateTimexEntryDate.Location = new System.Drawing.Point(106, 3);
             this.dateTimexEntryDate.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.dateTimexEntryDate.Name = "dateTimexEntryDate";
             this.dateTimexEntryDate.ReadOnly = false;
@@ -201,7 +201,7 @@
             // 
             this.textexReference.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexReference.Editable = true;
-            this.textexReference.Location = new System.Drawing.Point(107, 39);
+            this.textexReference.Location = new System.Drawing.Point(106, 39);
             this.textexReference.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.textexReference.Name = "textexReference";
             this.textexReference.Size = new System.Drawing.Size(238, 22);
@@ -236,7 +236,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label11.Location = new System.Drawing.Point(357, 5);
+            this.label11.Location = new System.Drawing.Point(356, 5);
             this.label11.Margin = new System.Windows.Forms.Padding(3);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(97, 20);
@@ -248,7 +248,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label12.Location = new System.Drawing.Point(711, 5);
+            this.label12.Location = new System.Drawing.Point(709, 5);
             this.label12.Margin = new System.Windows.Forms.Padding(3);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(97, 20);
@@ -329,156 +329,6 @@
             this.gridexViewDetails.Size = new System.Drawing.Size(813, 313);
             this.gridexViewDetails.TabIndex = 65;
             // 
-            // numericUpDownSizingDetail
-            // 
-            this.numericUpDownSizingDetail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericUpDownSizingDetail.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDownSizingDetail.Increment = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numericUpDownSizingDetail.Location = new System.Drawing.Point(1292, 0);
-            this.numericUpDownSizingDetail.Maximum = new decimal(new int[] {
-            788,
-            0,
-            0,
-            0});
-            this.numericUpDownSizingDetail.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericUpDownSizingDetail.Name = "numericUpDownSizingDetail";
-            this.numericUpDownSizingDetail.Size = new System.Drawing.Size(17, 26);
-            this.numericUpDownSizingDetail.TabIndex = 6;
-            this.numericUpDownSizingDetail.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.numericUpDownSizingDetail.Value = new decimal(new int[] {
-            425,
-            0,
-            0,
-            0});
-            // 
-            // naviGroupDetailsExtend
-            // 
-            this.naviGroupDetailsExtend.Caption = "";
-            this.naviGroupDetailsExtend.Controls.Add(this.tableLayoutPanelExtend);
-            this.naviGroupDetailsExtend.Dock = System.Windows.Forms.DockStyle.Top;
-            this.naviGroupDetailsExtend.ExpandedHeight = 30;
-            this.naviGroupDetailsExtend.HeaderContextMenuStrip = null;
-            this.naviGroupDetailsExtend.HeaderHeight = 0;
-            this.naviGroupDetailsExtend.LayoutStyle = Guifreaks.Navisuite.NaviLayoutStyle.Office2010Blue;
-            this.naviGroupDetailsExtend.Location = new System.Drawing.Point(0, 82);
-            this.naviGroupDetailsExtend.Margin = new System.Windows.Forms.Padding(0);
-            this.naviGroupDetailsExtend.Name = "naviGroupDetailsExtend";
-            this.naviGroupDetailsExtend.Padding = new System.Windows.Forms.Padding(0, 2, 0, 0);
-            this.naviGroupDetailsExtend.Size = new System.Drawing.Size(1309, 30);
-            this.naviGroupDetailsExtend.TabIndex = 22;
-            this.naviGroupDetailsExtend.Text = "naviGroup1";
-            // 
-            // tableLayoutPanelExtend
-            // 
-            this.tableLayoutPanelExtend.AutoSize = true;
-            this.tableLayoutPanelExtend.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tableLayoutPanelExtend.BackColor = System.Drawing.Color.Transparent;
-            this.tableLayoutPanelExtend.ColumnCount = 9;
-            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.00901F));
-            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.32099F));
-            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
-            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.00901F));
-            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.32099F));
-            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
-            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.019F));
-            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.32099F));
-            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 254F));
-            this.tableLayoutPanelExtend.Controls.Add(this.combexCommodityID, 0, 0);
-            this.tableLayoutPanelExtend.Controls.Add(this.label11, 3, 0);
-            this.tableLayoutPanelExtend.Controls.Add(this.label12, 6, 0);
-            this.tableLayoutPanelExtend.Controls.Add(this.label10, 0, 0);
-            this.tableLayoutPanelExtend.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanelExtend.Location = new System.Drawing.Point(0, 2);
-            this.tableLayoutPanelExtend.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanelExtend.Name = "tableLayoutPanelExtend";
-            this.tableLayoutPanelExtend.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.tableLayoutPanelExtend.RowCount = 1;
-            this.tableLayoutPanelExtend.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanelExtend.Size = new System.Drawing.Size(1309, 28);
-            this.tableLayoutPanelExtend.TabIndex = 8;
-            // 
-            // combexCommodityID
-            // 
-            this.combexCommodityID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.combexCommodityID.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.combexCommodityID.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.combexCommodityID.Editable = true;
-            this.combexCommodityID.FormattingEnabled = true;
-            this.combexCommodityID.Location = new System.Drawing.Point(106, 3);
-            this.combexCommodityID.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
-            this.combexCommodityID.Name = "combexCommodityID";
-            this.combexCommodityID.ReadOnly = false;
-            this.combexCommodityID.Size = new System.Drawing.Size(237, 24);
-            this.combexCommodityID.TabIndex = 72;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label10.Location = new System.Drawing.Point(3, 5);
-            this.label10.Margin = new System.Windows.Forms.Padding(3);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(97, 20);
-            this.label10.TabIndex = 35;
-            this.label10.Text = "Requested By";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // fastDeliveryAdviceIndex
-            // 
-            this.fastDeliveryAdviceIndex.AllColumns.Add(this.olvID);
-            this.fastDeliveryAdviceIndex.AllColumns.Add(this.olvEntryDate);
-            this.fastDeliveryAdviceIndex.AllColumns.Add(this.olvReference);
-            this.fastDeliveryAdviceIndex.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.olvID,
-            this.olvEntryDate,
-            this.olvReference});
-            this.fastDeliveryAdviceIndex.Cursor = System.Windows.Forms.Cursors.Default;
-            this.fastDeliveryAdviceIndex.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fastDeliveryAdviceIndex.FullRowSelect = true;
-            this.fastDeliveryAdviceIndex.HideSelection = false;
-            this.fastDeliveryAdviceIndex.HighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
-            this.fastDeliveryAdviceIndex.Location = new System.Drawing.Point(0, 0);
-            this.fastDeliveryAdviceIndex.Name = "fastDeliveryAdviceIndex";
-            this.fastDeliveryAdviceIndex.OwnerDraw = true;
-            this.fastDeliveryAdviceIndex.ShowGroups = false;
-            this.fastDeliveryAdviceIndex.Size = new System.Drawing.Size(1309, 189);
-            this.fastDeliveryAdviceIndex.TabIndex = 68;
-            this.fastDeliveryAdviceIndex.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
-            this.fastDeliveryAdviceIndex.UseCompatibleStateImageBehavior = false;
-            this.fastDeliveryAdviceIndex.UseFiltering = true;
-            this.fastDeliveryAdviceIndex.View = System.Windows.Forms.View.Details;
-            this.fastDeliveryAdviceIndex.VirtualMode = true;
-            // 
-            // olvID
-            // 
-            this.olvID.Text = "";
-            this.olvID.Width = 0;
-            // 
-            // olvEntryDate
-            // 
-            this.olvEntryDate.AspectName = "EntryDate";
-            this.olvEntryDate.AspectToStringFormat = "{0:d}";
-            this.olvEntryDate.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvEntryDate.Text = "Date";
-            this.olvEntryDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvEntryDate.Width = 169;
-            // 
-            // olvReference
-            // 
-            this.olvReference.AspectName = "Reference";
-            this.olvReference.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvReference.Text = "Batch #";
-            this.olvReference.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvReference.Width = 257;
-            // 
             // CommodityCode
             // 
             this.CommodityCode.DataPropertyName = "CommodityCode";
@@ -540,6 +390,156 @@
             this.Remarks.DataPropertyName = "Remarks";
             this.Remarks.HeaderText = "Remarks";
             this.Remarks.Name = "Remarks";
+            // 
+            // numericUpDownSizingDetail
+            // 
+            this.numericUpDownSizingDetail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.numericUpDownSizingDetail.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numericUpDownSizingDetail.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numericUpDownSizingDetail.Location = new System.Drawing.Point(1292, 0);
+            this.numericUpDownSizingDetail.Maximum = new decimal(new int[] {
+            788,
+            0,
+            0,
+            0});
+            this.numericUpDownSizingDetail.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDownSizingDetail.Name = "numericUpDownSizingDetail";
+            this.numericUpDownSizingDetail.Size = new System.Drawing.Size(17, 26);
+            this.numericUpDownSizingDetail.TabIndex = 6;
+            this.numericUpDownSizingDetail.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.numericUpDownSizingDetail.Value = new decimal(new int[] {
+            425,
+            0,
+            0,
+            0});
+            // 
+            // naviGroupDetailsExtend
+            // 
+            this.naviGroupDetailsExtend.Caption = "";
+            this.naviGroupDetailsExtend.Controls.Add(this.tableLayoutPanelExtend);
+            this.naviGroupDetailsExtend.Dock = System.Windows.Forms.DockStyle.Top;
+            this.naviGroupDetailsExtend.ExpandedHeight = 30;
+            this.naviGroupDetailsExtend.HeaderContextMenuStrip = null;
+            this.naviGroupDetailsExtend.HeaderHeight = 0;
+            this.naviGroupDetailsExtend.LayoutStyle = Guifreaks.Navisuite.NaviLayoutStyle.Office2010Blue;
+            this.naviGroupDetailsExtend.Location = new System.Drawing.Point(0, 82);
+            this.naviGroupDetailsExtend.Margin = new System.Windows.Forms.Padding(0);
+            this.naviGroupDetailsExtend.Name = "naviGroupDetailsExtend";
+            this.naviGroupDetailsExtend.Padding = new System.Windows.Forms.Padding(0, 2, 0, 0);
+            this.naviGroupDetailsExtend.Size = new System.Drawing.Size(1309, 30);
+            this.naviGroupDetailsExtend.TabIndex = 22;
+            this.naviGroupDetailsExtend.Text = "naviGroup1";
+            // 
+            // tableLayoutPanelExtend
+            // 
+            this.tableLayoutPanelExtend.AutoSize = true;
+            this.tableLayoutPanelExtend.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanelExtend.BackColor = System.Drawing.Color.Transparent;
+            this.tableLayoutPanelExtend.ColumnCount = 9;
+            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.00901F));
+            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.32099F));
+            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.00901F));
+            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.32099F));
+            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.019F));
+            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.32099F));
+            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 257F));
+            this.tableLayoutPanelExtend.Controls.Add(this.combexCommodityID, 0, 0);
+            this.tableLayoutPanelExtend.Controls.Add(this.label11, 3, 0);
+            this.tableLayoutPanelExtend.Controls.Add(this.label12, 6, 0);
+            this.tableLayoutPanelExtend.Controls.Add(this.label10, 0, 0);
+            this.tableLayoutPanelExtend.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanelExtend.Location = new System.Drawing.Point(0, 2);
+            this.tableLayoutPanelExtend.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanelExtend.Name = "tableLayoutPanelExtend";
+            this.tableLayoutPanelExtend.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            this.tableLayoutPanelExtend.RowCount = 1;
+            this.tableLayoutPanelExtend.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanelExtend.Size = new System.Drawing.Size(1309, 28);
+            this.tableLayoutPanelExtend.TabIndex = 8;
+            // 
+            // combexCommodityID
+            // 
+            this.combexCommodityID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.combexCommodityID.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.combexCommodityID.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.combexCommodityID.Editable = true;
+            this.combexCommodityID.FormattingEnabled = true;
+            this.combexCommodityID.Location = new System.Drawing.Point(106, 3);
+            this.combexCommodityID.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
+            this.combexCommodityID.Name = "combexCommodityID";
+            this.combexCommodityID.ReadOnly = false;
+            this.combexCommodityID.Size = new System.Drawing.Size(236, 24);
+            this.combexCommodityID.TabIndex = 72;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label10.Location = new System.Drawing.Point(3, 5);
+            this.label10.Margin = new System.Windows.Forms.Padding(3);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(97, 20);
+            this.label10.TabIndex = 35;
+            this.label10.Text = "Requested By";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // fastDeliveryAdviceIndex
+            // 
+            this.fastDeliveryAdviceIndex.AllColumns.Add(this.olvID);
+            this.fastDeliveryAdviceIndex.AllColumns.Add(this.olvEntryDate);
+            this.fastDeliveryAdviceIndex.AllColumns.Add(this.olvReference);
+            this.fastDeliveryAdviceIndex.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.olvID,
+            this.olvEntryDate,
+            this.olvReference});
+            this.fastDeliveryAdviceIndex.Cursor = System.Windows.Forms.Cursors.Default;
+            this.fastDeliveryAdviceIndex.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fastDeliveryAdviceIndex.FullRowSelect = true;
+            this.fastDeliveryAdviceIndex.HideSelection = false;
+            this.fastDeliveryAdviceIndex.HighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
+            this.fastDeliveryAdviceIndex.Location = new System.Drawing.Point(0, 0);
+            this.fastDeliveryAdviceIndex.Name = "fastDeliveryAdviceIndex";
+            this.fastDeliveryAdviceIndex.OwnerDraw = true;
+            this.fastDeliveryAdviceIndex.ShowGroups = false;
+            this.fastDeliveryAdviceIndex.Size = new System.Drawing.Size(1309, 189);
+            this.fastDeliveryAdviceIndex.TabIndex = 68;
+            this.fastDeliveryAdviceIndex.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
+            this.fastDeliveryAdviceIndex.UseCompatibleStateImageBehavior = false;
+            this.fastDeliveryAdviceIndex.UseFiltering = true;
+            this.fastDeliveryAdviceIndex.View = System.Windows.Forms.View.Details;
+            this.fastDeliveryAdviceIndex.VirtualMode = true;
+            // 
+            // olvID
+            // 
+            this.olvID.Text = "";
+            this.olvID.Width = 0;
+            // 
+            // olvEntryDate
+            // 
+            this.olvEntryDate.AspectName = "EntryDate";
+            this.olvEntryDate.AspectToStringFormat = "{0:d}";
+            this.olvEntryDate.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvEntryDate.Text = "Date";
+            this.olvEntryDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvEntryDate.Width = 169;
+            // 
+            // olvReference
+            // 
+            this.olvReference.AspectName = "Reference";
+            this.olvReference.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvReference.Text = "Batch #";
+            this.olvReference.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvReference.Width = 257;
             // 
             // DeliveryAdvices
             // 

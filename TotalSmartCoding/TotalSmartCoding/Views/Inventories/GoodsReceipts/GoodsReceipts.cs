@@ -30,6 +30,9 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
 {
     public partial class GoodsReceipts : BaseView
     {
+        private CustomTabControl customTabLeft;
+        private CustomTabControl customTabCenter;
+
         private GoodsReceiptAPIs goodsReceiptAPIs;
         private GoodsReceiptViewModel goodsReceiptViewModel { get; set; }
 
@@ -47,6 +50,49 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
             this.goodsReceiptViewModel = CommonNinject.Kernel.Get<GoodsReceiptViewModel>();
             this.goodsReceiptViewModel.PropertyChanged += new PropertyChangedEventHandler(ModelDTO_PropertyChanged);
             this.baseDTO = this.goodsReceiptViewModel;
+        }
+
+        protected override void InitializeTabControl()
+        {
+            try
+            {
+                base.InitializeTabControl();
+
+                this.customTabLeft = new CustomTabControl();
+                this.customTabLeft.DisplayStyle = TabStyle.VisualStudio;
+
+                this.customTabLeft.TabPages.Add("tabLeftAA", "Receipts   ");
+                this.customTabLeft.TabPages[0].BackColor = this.panelLeft.BackColor;
+                this.customTabLeft.TabPages[0].Padding = new Padding(10, 0, 0, 0);
+                this.customTabLeft.TabPages[0].Controls.Add(this.layoutLeft);
+
+                this.customTabLeft.Dock = DockStyle.Fill;
+                this.panelLeft.Controls.Add(this.customTabLeft);
+
+                this.layoutLeft.ColumnStyles[this.layoutLeft.ColumnCount - 1].SizeType = SizeType.Absolute; this.layoutLeft.ColumnStyles[this.layoutLeft.ColumnCount - 1].Width = 10;
+
+
+                this.customTabCenter = new CustomTabControl();
+                this.customTabCenter.DisplayStyle = TabStyle.VisualStudio;
+
+                this.customTabCenter.TabPages.Add("tabCenterAA", "Pallets   ");
+                this.customTabCenter.TabPages.Add("tabCenterBB", "Cartons   ");
+                //this.customTabCenter.TabPages[0].BackColor = this.panelCenter.BackColor;
+                //this.customTabCenter.TabPages[0].Padding = new Padding(10, 0, 0, 0);
+                this.customTabCenter.TabPages[0].Controls.Add(this.gridexPalletDetails);
+                this.customTabCenter.TabPages[1].Controls.Add(this.gridexCartonDetails);
+                this.gridexPalletDetails.Dock = DockStyle.Fill;
+                this.gridexCartonDetails.Dock = DockStyle.Fill;
+
+                this.customTabCenter.Dock = DockStyle.Fill;
+                this.panelCenter.Controls.Add(this.customTabCenter);
+
+                
+            }
+            catch (Exception exception)
+            {
+                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+            }
         }
 
         Binding bindingEntryDate;
@@ -67,20 +113,15 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
 
 
 
-
-            this.naviGroupDetails.DataBindings.Add("ExpandedHeight", this.numericUpDownSizingDetail, "Value", true, DataSourceUpdateMode.OnPropertyChanged);
-            this.numericUpDownSizingDetail.Minimum = this.naviGroupDetails.HeaderHeight * 2;
-            this.numericUpDownSizingDetail.Maximum = this.naviGroupDetails.Height + this.fastGoodsReceiptIndex.Height;
-
-            this.tableLayoutPanelMaster.ColumnStyles[this.tableLayoutPanelMaster.ColumnCount - 1].SizeType = SizeType.Absolute; this.tableLayoutPanelMaster.ColumnStyles[this.tableLayoutPanelMaster.ColumnCount - 1].Width = 10;
+            
             this.tableLayoutPanelExtend.ColumnStyles[this.tableLayoutPanelExtend.ColumnCount - 1].SizeType = SizeType.Absolute; this.tableLayoutPanelExtend.ColumnStyles[this.tableLayoutPanelExtend.ColumnCount - 1].Width = 10;
         }
 
         protected override void InitializeDataGridBinding()
         {
-            this.gridexViewDetails.AutoGenerateColumns = false;
-            this.gridexViewDetails.DataSource = this.goodsReceiptViewModel.ViewDetails;
-            this.dataGridexView1.DataSource = this.goodsReceiptViewModel.PalletDetails;
+            this.gridexPalletDetails.AutoGenerateColumns = false;
+            this.gridexPalletDetails.DataSource = this.goodsReceiptViewModel.ViewDetails;
+            this.gridexCartonDetails.DataSource = this.goodsReceiptViewModel.PalletDetails;
 
             //StackedHeaderDecorator stackedHeaderDecorator = new StackedHeaderDecorator(this.dataGridViewDetails);
         }
@@ -107,6 +148,18 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
             base.wizardDetail();
             WizardDetail wizardDetail = new WizardDetail(this.goodsReceiptAPIs, this.goodsReceiptViewModel);
             wizardDetail.ShowDialog();
+        }
+
+        private void naviGroupDetails_HeaderMouseClick(object sender, MouseEventArgs e)
+        {
+            this.toolStripNaviGroupDetails.Visible = this.naviGroupDetails.Expanded;
+        }
+
+        private void toolStripButtonShowDetailsExtend_Click(object sender, EventArgs e)
+        {
+            this.naviGroup1.Expanded = !this.naviGroup1.Expanded;
+            this.naviGroup1.Padding = new Padding(0, 0, 0, 0);
+            //this.toolStripButtonShowDetailsExtend.Image = this.naviGroup1.Expanded ? ResourceIcon.Chevron_Collapse.ToBitmap() : ResourceIcon.Chevron_Expand.ToBitmap();
         }
 
 

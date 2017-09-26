@@ -67,10 +67,12 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
         {
             try
             {
+                base.InitializeTabControl();
+
                 this.naviIndex.Bands[0].ClientArea.Controls.Add(this.fastPickupIndex);
 
                 this.customTabBatch = new CustomTabControl();
-                this.setFont(new Font("Niagara Engraved", 16), new Font("Garamond", 14), new Font("Niagara Engraved", 16));
+                this.setFont(new Font("Niagara Engraved", 16), new Font("Calibri", 13), new Font("Niagara Engraved", 16));
 
                 this.customTabBatch.DisplayStyle = TabStyle.VisualStudio;
 
@@ -103,7 +105,8 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
             List<Control> controls = ViewHelpers.GetAllControls(this);
             foreach (Control control in controls)
             {
-                if (control is Label || control is TextBox || control is ComboBox || control is DateTimePicker) control.Font = titleFont;
+                if (control is Label) control.Font = titleFont;
+                else if (control is TextBox || control is ComboBox || control is DateTimePicker) control.Font = font;
                 else if (control is FastObjectListView) control.Font = font;
                 else if (control is DataGridView)
                 {

@@ -94,13 +94,13 @@
             this.combexWarehouseID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.combexWarehouseID.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.combexWarehouseID.Editable = true;
-            this.combexWarehouseID.Font = new System.Drawing.Font("Garamond", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.combexWarehouseID.Font = new System.Drawing.Font("Calibri", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combexWarehouseID.FormattingEnabled = true;
             this.combexWarehouseID.Location = new System.Drawing.Point(298, 68);
             this.combexWarehouseID.Margin = new System.Windows.Forms.Padding(2, 1, 1, 1);
             this.combexWarehouseID.Name = "combexWarehouseID";
             this.combexWarehouseID.ReadOnly = false;
-            this.combexWarehouseID.Size = new System.Drawing.Size(509, 34);
+            this.combexWarehouseID.Size = new System.Drawing.Size(509, 35);
             this.combexWarehouseID.TabIndex = 86;
             // 
             // combexForkliftDriverID
@@ -108,13 +108,13 @@
             this.combexForkliftDriverID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.combexForkliftDriverID.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.combexForkliftDriverID.Editable = true;
-            this.combexForkliftDriverID.Font = new System.Drawing.Font("Garamond", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.combexForkliftDriverID.Font = new System.Drawing.Font("Calibri", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combexForkliftDriverID.FormattingEnabled = true;
             this.combexForkliftDriverID.Location = new System.Drawing.Point(298, 106);
             this.combexForkliftDriverID.Margin = new System.Windows.Forms.Padding(2, 1, 1, 1);
             this.combexForkliftDriverID.Name = "combexForkliftDriverID";
             this.combexForkliftDriverID.ReadOnly = false;
-            this.combexForkliftDriverID.Size = new System.Drawing.Size(509, 34);
+            this.combexForkliftDriverID.Size = new System.Drawing.Size(509, 35);
             this.combexForkliftDriverID.TabIndex = 87;
             // 
             // combexStorekeeperID
@@ -122,23 +122,23 @@
             this.combexStorekeeperID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.combexStorekeeperID.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.combexStorekeeperID.Editable = true;
-            this.combexStorekeeperID.Font = new System.Drawing.Font("Garamond", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.combexStorekeeperID.Font = new System.Drawing.Font("Calibri", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combexStorekeeperID.FormattingEnabled = true;
             this.combexStorekeeperID.Location = new System.Drawing.Point(298, 144);
             this.combexStorekeeperID.Margin = new System.Windows.Forms.Padding(2, 1, 1, 1);
             this.combexStorekeeperID.Name = "combexStorekeeperID";
             this.combexStorekeeperID.ReadOnly = false;
-            this.combexStorekeeperID.Size = new System.Drawing.Size(509, 34);
+            this.combexStorekeeperID.Size = new System.Drawing.Size(509, 35);
             this.combexStorekeeperID.TabIndex = 88;
             // 
             // textexRemarks
             // 
             this.textexRemarks.Editable = true;
-            this.textexRemarks.Font = new System.Drawing.Font("Garamond", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textexRemarks.Font = new System.Drawing.Font("Calibri", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textexRemarks.Location = new System.Drawing.Point(298, 182);
             this.textexRemarks.Margin = new System.Windows.Forms.Padding(2, 1, 1, 1);
             this.textexRemarks.Name = "textexRemarks";
-            this.textexRemarks.Size = new System.Drawing.Size(509, 33);
+            this.textexRemarks.Size = new System.Drawing.Size(509, 34);
             this.textexRemarks.TabIndex = 92;
             // 
             // label10
@@ -146,11 +146,11 @@
             this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Garamond", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(178, 71);
+            this.label10.Font = new System.Drawing.Font("Niagara Engraved", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(189, 67);
             this.label10.Margin = new System.Windows.Forms.Padding(2);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(116, 27);
+            this.label10.Size = new System.Drawing.Size(87, 30);
             this.label10.TabIndex = 85;
             this.label10.Text = "Warehouse";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -160,11 +160,11 @@
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Garamond", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(142, 109);
+            this.label3.Font = new System.Drawing.Font("Niagara Engraved", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(171, 105);
             this.label3.Margin = new System.Windows.Forms.Padding(2);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(152, 27);
+            this.label3.Size = new System.Drawing.Size(105, 30);
             this.label3.TabIndex = 90;
             this.label3.Text = "Forklift Driver";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -174,11 +174,11 @@
             this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Garamond", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(159, 147);
+            this.label9.Font = new System.Drawing.Font("Niagara Engraved", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(174, 144);
             this.label9.Margin = new System.Windows.Forms.Padding(1);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(135, 27);
+            this.label9.Size = new System.Drawing.Size(102, 30);
             this.label9.TabIndex = 91;
             this.label9.Text = "Store Keeper";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -188,11 +188,11 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Garamond", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(209, 185);
+            this.label1.Font = new System.Drawing.Font("Niagara Engraved", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(213, 181);
             this.label1.Margin = new System.Windows.Forms.Padding(2);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(85, 27);
+            this.label1.Size = new System.Drawing.Size(63, 30);
             this.label1.TabIndex = 89;
             this.label1.Text = "Remark";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -202,13 +202,13 @@
             this.combexFillingLineID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.combexFillingLineID.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.combexFillingLineID.Editable = true;
-            this.combexFillingLineID.Font = new System.Drawing.Font("Garamond", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.combexFillingLineID.Font = new System.Drawing.Font("Calibri", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combexFillingLineID.FormattingEnabled = true;
             this.combexFillingLineID.Location = new System.Drawing.Point(298, 30);
             this.combexFillingLineID.Margin = new System.Windows.Forms.Padding(2, 1, 1, 1);
             this.combexFillingLineID.Name = "combexFillingLineID";
             this.combexFillingLineID.ReadOnly = false;
-            this.combexFillingLineID.Size = new System.Drawing.Size(509, 34);
+            this.combexFillingLineID.Size = new System.Drawing.Size(509, 35);
             this.combexFillingLineID.TabIndex = 94;
             // 
             // label2
@@ -216,11 +216,11 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Garamond", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(129, 33);
+            this.label2.Font = new System.Drawing.Font("Niagara Engraved", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(159, 29);
             this.label2.Margin = new System.Windows.Forms.Padding(2);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(165, 27);
+            this.label2.Size = new System.Drawing.Size(117, 30);
             this.label2.TabIndex = 93;
             this.label2.Text = "Production Line";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;

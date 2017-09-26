@@ -93,7 +93,7 @@ namespace TotalDTO.Inventories
 
         public string Caption
         {
-            get { return this.fillingLineName + "             Pallet count: " + this.TotalPalletCounts.ToString() + ",    Quantity: " + this.TotalQuantity.ToString() + ",    Volume: " + this.TotalLineVolume.ToString("N2"); }
+            get { return this.fillingLineName + ", " + this.WarehouseName + ", " + this.EntryDate.ToString() + "             Pallet count: " + this.TotalPalletCounts.ToString() + ",    Quantity: " + this.TotalQuantity.ToString() + ",    Volume: " + this.TotalLineVolume.ToString("N2"); }
         }
 
         public override void PerformPresaveRule()

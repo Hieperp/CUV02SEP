@@ -155,11 +155,11 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Font = new System.Drawing.Font("Garamond", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Niagara Engraved", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(2, 22);
             this.label2.Margin = new System.Windows.Forms.Padding(2);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(260, 31);
+            this.label2.Size = new System.Drawing.Size(260, 32);
             this.label2.TabIndex = 103;
             this.label2.Text = "Barcode";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -168,11 +168,11 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label10.Font = new System.Drawing.Font("Garamond", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(2, 57);
+            this.label10.Font = new System.Drawing.Font("Niagara Engraved", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(2, 58);
             this.label10.Margin = new System.Windows.Forms.Padding(2);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(260, 31);
+            this.label10.Size = new System.Drawing.Size(260, 32);
             this.label10.TabIndex = 95;
             this.label10.Text = "Item Code";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -181,11 +181,11 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label9.Font = new System.Drawing.Font("Garamond", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(1, 196);
+            this.label9.Font = new System.Drawing.Font("Niagara Engraved", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(1, 201);
             this.label9.Margin = new System.Windows.Forms.Padding(1);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(262, 33);
+            this.label9.Size = new System.Drawing.Size(262, 34);
             this.label9.TabIndex = 101;
             this.label9.Text = "Bin Location";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -194,59 +194,59 @@
             // 
             this.textexCode.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexCode.Editable = true;
-            this.textexCode.Font = new System.Drawing.Font("Garamond", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textexCode.Font = new System.Drawing.Font("Calibri", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textexCode.Location = new System.Drawing.Point(266, 21);
             this.textexCode.Margin = new System.Windows.Forms.Padding(2, 1, 1, 1);
             this.textexCode.Name = "textexCode";
             this.textexCode.ReadOnly = true;
-            this.textexCode.Size = new System.Drawing.Size(590, 33);
+            this.textexCode.Size = new System.Drawing.Size(590, 34);
             this.textexCode.TabIndex = 104;
             // 
             // textexCommodityCode
             // 
             this.textexCommodityCode.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexCommodityCode.Editable = true;
-            this.textexCommodityCode.Font = new System.Drawing.Font("Garamond", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textexCommodityCode.Location = new System.Drawing.Point(266, 56);
+            this.textexCommodityCode.Font = new System.Drawing.Font("Calibri", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textexCommodityCode.Location = new System.Drawing.Point(266, 57);
             this.textexCommodityCode.Margin = new System.Windows.Forms.Padding(2, 1, 1, 1);
             this.textexCommodityCode.Name = "textexCommodityCode";
             this.textexCommodityCode.ReadOnly = true;
-            this.textexCommodityCode.Size = new System.Drawing.Size(590, 33);
+            this.textexCommodityCode.Size = new System.Drawing.Size(590, 34);
             this.textexCommodityCode.TabIndex = 105;
             // 
             // textexCommodityName
             // 
             this.textexCommodityName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexCommodityName.Editable = true;
-            this.textexCommodityName.Font = new System.Drawing.Font("Garamond", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textexCommodityName.Location = new System.Drawing.Point(266, 91);
+            this.textexCommodityName.Font = new System.Drawing.Font("Calibri", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textexCommodityName.Location = new System.Drawing.Point(266, 93);
             this.textexCommodityName.Margin = new System.Windows.Forms.Padding(2, 1, 1, 1);
             this.textexCommodityName.Name = "textexCommodityName";
             this.textexCommodityName.ReadOnly = true;
-            this.textexCommodityName.Size = new System.Drawing.Size(590, 33);
+            this.textexCommodityName.Size = new System.Drawing.Size(590, 34);
             this.textexCommodityName.TabIndex = 106;
             // 
             // textexQuantity
             // 
             this.textexQuantity.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexQuantity.Editable = true;
-            this.textexQuantity.Font = new System.Drawing.Font("Garamond", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textexQuantity.Location = new System.Drawing.Point(266, 126);
+            this.textexQuantity.Font = new System.Drawing.Font("Calibri", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textexQuantity.Location = new System.Drawing.Point(266, 129);
             this.textexQuantity.Margin = new System.Windows.Forms.Padding(2, 1, 1, 1);
             this.textexQuantity.Name = "textexQuantity";
             this.textexQuantity.ReadOnly = true;
-            this.textexQuantity.Size = new System.Drawing.Size(590, 33);
+            this.textexQuantity.Size = new System.Drawing.Size(590, 34);
             this.textexQuantity.TabIndex = 108;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Font = new System.Drawing.Font("Garamond", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(2, 127);
+            this.label4.Font = new System.Drawing.Font("Niagara Engraved", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(2, 130);
             this.label4.Margin = new System.Windows.Forms.Padding(2);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(260, 31);
+            this.label4.Size = new System.Drawing.Size(260, 32);
             this.label4.TabIndex = 107;
             this.label4.Text = "Quantity";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -269,7 +269,7 @@
             this.olvType});
             this.fastBinLocations.Cursor = System.Windows.Forms.Cursors.Default;
             this.fastBinLocations.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fastBinLocations.Font = new System.Drawing.Font("Garamond", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fastBinLocations.Font = new System.Drawing.Font("Calibri", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fastBinLocations.FullRowSelect = true;
             this.fastBinLocations.HideSelection = false;
             this.fastBinLocations.HighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
@@ -291,12 +291,14 @@
             // 
             // olvNo
             // 
+            this.olvNo.HeaderFont = new System.Drawing.Font("Niagara Engraved", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.olvNo.Text = "";
             this.olvNo.Width = 15;
             // 
             // olvCode
             // 
             this.olvCode.AspectName = "Code";
+            this.olvCode.HeaderFont = new System.Drawing.Font("Niagara Engraved", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.olvCode.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvCode.Text = "Code";
             this.olvCode.Width = 200;
@@ -304,6 +306,7 @@
             // olvQuantity
             // 
             this.olvQuantity.AspectName = "";
+            this.olvQuantity.HeaderFont = new System.Drawing.Font("Niagara Engraved", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.olvQuantity.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvQuantity.Text = "No of Pallets";
             this.olvQuantity.Width = 160;
@@ -312,6 +315,7 @@
             // 
             this.olvType.AspectName = "";
             this.olvType.FillsFreeSpace = true;
+            this.olvType.HeaderFont = new System.Drawing.Font("Niagara Engraved", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.olvType.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvType.Text = "Type";
             this.olvType.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -395,11 +399,11 @@
             // 
             this.textexBinLocationFilters.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexBinLocationFilters.Editable = true;
-            this.textexBinLocationFilters.Font = new System.Drawing.Font("Garamond", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textexBinLocationFilters.Location = new System.Drawing.Point(266, 196);
+            this.textexBinLocationFilters.Font = new System.Drawing.Font("Calibri", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textexBinLocationFilters.Location = new System.Drawing.Point(266, 201);
             this.textexBinLocationFilters.Margin = new System.Windows.Forms.Padding(2, 1, 1, 1);
             this.textexBinLocationFilters.Name = "textexBinLocationFilters";
-            this.textexBinLocationFilters.Size = new System.Drawing.Size(590, 33);
+            this.textexBinLocationFilters.Size = new System.Drawing.Size(590, 34);
             this.textexBinLocationFilters.TabIndex = 109;
             this.textexBinLocationFilters.TextChanged += new System.EventHandler(this.textexBinLocationFilters_TextChanged);
             // 
@@ -407,11 +411,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("Garamond", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(2, 92);
+            this.label1.Font = new System.Drawing.Font("Niagara Engraved", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(2, 94);
             this.label1.Margin = new System.Windows.Forms.Padding(2);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(260, 31);
+            this.label1.Size = new System.Drawing.Size(260, 32);
             this.label1.TabIndex = 110;
             this.label1.Text = "Item Description";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -420,23 +424,23 @@
             // 
             this.textexLineVolume.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexLineVolume.Editable = true;
-            this.textexLineVolume.Font = new System.Drawing.Font("Garamond", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textexLineVolume.Location = new System.Drawing.Point(266, 161);
+            this.textexLineVolume.Font = new System.Drawing.Font("Calibri", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textexLineVolume.Location = new System.Drawing.Point(266, 165);
             this.textexLineVolume.Margin = new System.Windows.Forms.Padding(2, 1, 1, 1);
             this.textexLineVolume.Name = "textexLineVolume";
             this.textexLineVolume.ReadOnly = true;
-            this.textexLineVolume.Size = new System.Drawing.Size(590, 33);
+            this.textexLineVolume.Size = new System.Drawing.Size(590, 34);
             this.textexLineVolume.TabIndex = 111;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Font = new System.Drawing.Font("Garamond", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(2, 162);
+            this.label3.Font = new System.Drawing.Font("Niagara Engraved", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(2, 166);
             this.label3.Margin = new System.Windows.Forms.Padding(2);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(260, 31);
+            this.label3.Size = new System.Drawing.Size(260, 32);
             this.label3.TabIndex = 112;
             this.label3.Text = "Volume";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
