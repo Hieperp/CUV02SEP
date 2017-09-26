@@ -29,6 +29,7 @@ using TotalSmartCoding.Controllers.APIs.Commons;
 using TotalCore.Repositories.Commons;
 using TotalBase;
 using TotalModel.Models;
+using TotalDTO.Inventories;
 
 namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
 {
@@ -108,6 +109,8 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
                 #endregion TabCenter
 
                 this.tableLayoutPanelExtend.ColumnStyles[this.tableLayoutPanelExtend.ColumnCount - 1].SizeType = SizeType.Absolute; this.tableLayoutPanelExtend.ColumnStyles[this.tableLayoutPanelExtend.ColumnCount - 1].Width = 15;
+
+                this.buttonExpandTop.Visible = this.naviGroupTop.Tag.ToString() == "Expandable";
                 this.buttonExpandTop_Click(this.buttonExpandTop, new EventArgs());
 
             }
@@ -130,12 +133,12 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
         {
             base.InitializeCommonControlBinding();
 
-            this.bindingEntryDate = this.dateTimexEntryDate.DataBindings.Add("Value", this.goodsReceiptViewModel, "EntryDate", true);
-            this.bindingReference = this.textexReference.DataBindings.Add("Text", this.goodsReceiptViewModel, "Reference", true, DataSourceUpdateMode.OnPropertyChanged);
-            this.bindingWarehouseName = this.textexWarehouseName.DataBindings.Add("Text", this.goodsReceiptViewModel, "WarehouseName", true, DataSourceUpdateMode.OnPropertyChanged);
-            this.bindingDescription = this.textexDescription.DataBindings.Add("Text", this.goodsReceiptViewModel, "Description", true, DataSourceUpdateMode.OnPropertyChanged);
-            this.bindingRemarks = this.textexRemarks.DataBindings.Add("Text", this.goodsReceiptViewModel, "Remarks", true, DataSourceUpdateMode.OnPropertyChanged);
-            this.bindingCaption = this.labelCaption.DataBindings.Add("Text", this.goodsReceiptViewModel, CommonExpressions.PropertyName<GoodsReceiptViewModel>(p => p.Caption));
+            this.bindingEntryDate = this.dateTimexEntryDate.DataBindings.Add("Value", this.goodsReceiptViewModel, CommonExpressions.PropertyName<GoodsReceiptDTO>(p => p.EntryDate), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingReference = this.textexReference.DataBindings.Add("Text", this.goodsReceiptViewModel, CommonExpressions.PropertyName<GoodsReceiptDTO>(p => p.Reference), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingWarehouseName = this.textexWarehouseName.DataBindings.Add("Text", this.goodsReceiptViewModel, CommonExpressions.PropertyName<GoodsReceiptDTO>(p => p.WarehouseName), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingDescription = this.textexDescription.DataBindings.Add("Text", this.goodsReceiptViewModel, CommonExpressions.PropertyName<GoodsReceiptDTO>(p => p.Description), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingRemarks = this.textexRemarks.DataBindings.Add("Text", this.goodsReceiptViewModel, CommonExpressions.PropertyName<GoodsReceiptDTO>(p => p.Remarks), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingCaption = this.labelCaption.DataBindings.Add("Text", this.goodsReceiptViewModel, CommonExpressions.PropertyName<GoodsReceiptDTO>(p => p.Caption));
 
             EmployeeAPIs employeeAPIs = new EmployeeAPIs(CommonNinject.Kernel.Get<IEmployeeAPIRepository>());
 
@@ -153,10 +156,11 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
 
             this.bindingStorekeeperID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
         }
-
+        
         protected override void InitializeDataGridBinding()
         {
             this.gridexPalletDetails.AutoGenerateColumns = false;
+            this.gridexPalletDetails.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             this.gridexPalletDetails.DataSource = this.goodsReceiptViewModel.PalletDetails;
             this.gridexCartonDetails.DataSource = this.goodsReceiptViewModel.ViewDetails;
 
@@ -169,6 +173,9 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
             {
                 this.customTabCenter.TabPages[0].Text = "Pallets [" + this.goodsReceiptViewModel.PalletDetails.Count.ToString("N0") + " item(s)]             ";
                 this.customTabCenter.TabPages[1].Text = "Cartons [" + this.goodsReceiptViewModel.ViewDetails.Count.ToString("N0") + " item(s)]             ";
+
+                this.gridexPalletDetails.Columns[CommonExpressions.PropertyName<GoodsReceiptDetailDTO>(p => p.PickupReference)].Visible = this.goodsReceiptViewModel.PickupID == null;
+                this.gridexPalletDetails.Columns[CommonExpressions.PropertyName<GoodsReceiptDetailDTO>(p => p.PickupEntryDate)].Visible = this.goodsReceiptViewModel.PickupID == null;
             }
         }
 

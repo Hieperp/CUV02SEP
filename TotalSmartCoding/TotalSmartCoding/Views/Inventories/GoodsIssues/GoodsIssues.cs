@@ -80,6 +80,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
         protected override void InitializeDataGridBinding()
         {
             this.gridexViewDetails.AutoGenerateColumns = false;
+            this.gridexViewDetails.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             this.gridexViewDetails.DataSource = this.goodsIssueViewModel.ViewDetails;
             this.dataGridexView1.DataSource = this.goodsIssueViewModel.PalletDetails;
 

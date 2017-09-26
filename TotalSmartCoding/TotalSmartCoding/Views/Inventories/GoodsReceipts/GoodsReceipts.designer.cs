@@ -31,7 +31,9 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GoodsReceipts));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.layoutLeft = new System.Windows.Forms.TableLayoutPanel();
             this.dateTimexEntryDate = new CustomControls.DateTimexPicker();
             this.textexReference = new CustomControls.TextexBox();
@@ -69,14 +71,14 @@
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gridexPalletDetails = new CustomControls.DataGridexView();
+            this.PickupReference = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PickupEntryDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CommodityCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CommodityName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BinLocationCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PalletCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Volume = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PalletCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CartonCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PackCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Remarks = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.naviGroupTop = new Guifreaks.Navisuite.NaviGroup(this.components);
             this.tableLayoutPanelExtend = new System.Windows.Forms.TableLayoutPanel();
             this.combexCommodityID = new CustomControls.CombexBox();
@@ -241,10 +243,10 @@
             this.label11.AutoSize = true;
             this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label11.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(168, 5);
+            this.label11.Location = new System.Drawing.Point(156, 5);
             this.label11.Margin = new System.Windows.Forms.Padding(3);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(40, 84);
+            this.label11.Size = new System.Drawing.Size(37, 84);
             this.label11.TabIndex = 45;
             this.label11.Text = "Noted By";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -254,10 +256,10 @@
             this.label12.AutoSize = true;
             this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label12.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(333, 5);
+            this.label12.Location = new System.Drawing.Point(309, 5);
             this.label12.Margin = new System.Windows.Forms.Padding(3);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(40, 84);
+            this.label12.Size = new System.Drawing.Size(37, 84);
             this.label12.TabIndex = 47;
             this.label12.Text = "Approved By";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -546,80 +548,100 @@
             // 
             // gridexPalletDetails
             // 
-            this.gridexPalletDetails.AllowAddRow = true;
+            this.gridexPalletDetails.AllowAddRow = false;
             this.gridexPalletDetails.AllowDeleteRow = true;
             this.gridexPalletDetails.BackgroundColor = System.Drawing.Color.Ivory;
             this.gridexPalletDetails.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridexPalletDetails.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.gridexPalletDetails.ColumnHeadersHeight = 24;
             this.gridexPalletDetails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.PickupReference,
+            this.PickupEntryDate,
             this.CommodityCode,
             this.CommodityName,
-            this.Quantity,
-            this.Volume,
+            this.BinLocationCode,
             this.PalletCode,
-            this.CartonCode,
-            this.PackCode,
-            this.Remarks});
+            this.Quantity,
+            this.Volume});
             this.gridexPalletDetails.Dock = System.Windows.Forms.DockStyle.Left;
-            this.gridexPalletDetails.Editable = true;
+            this.gridexPalletDetails.Editable = false;
             this.gridexPalletDetails.GridColor = System.Drawing.SystemColors.ControlLight;
             this.gridexPalletDetails.Location = new System.Drawing.Point(0, 0);
             this.gridexPalletDetails.Name = "gridexPalletDetails";
             this.gridexPalletDetails.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridexPalletDetails.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridexPalletDetails.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.gridexPalletDetails.RowTemplate.Height = 24;
             this.gridexPalletDetails.Size = new System.Drawing.Size(334, 323);
             this.gridexPalletDetails.TabIndex = 65;
             // 
+            // PickupReference
+            // 
+            this.PickupReference.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.PickupReference.DataPropertyName = "PickupReference";
+            this.PickupReference.FillWeight = 6F;
+            this.PickupReference.HeaderText = "Pickup";
+            this.PickupReference.Name = "PickupReference";
+            // 
+            // PickupEntryDate
+            // 
+            this.PickupEntryDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.PickupEntryDate.DataPropertyName = "PickupEntryDate";
+            this.PickupEntryDate.FillWeight = 12F;
+            this.PickupEntryDate.HeaderText = "Pickup Date";
+            this.PickupEntryDate.Name = "PickupEntryDate";
+            // 
             // CommodityCode
             // 
+            this.CommodityCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.CommodityCode.DataPropertyName = "CommodityCode";
+            this.CommodityCode.FillWeight = 7F;
             this.CommodityCode.HeaderText = "Item Code";
             this.CommodityCode.Name = "CommodityCode";
             // 
             // CommodityName
             // 
+            this.CommodityName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.CommodityName.DataPropertyName = "CommodityName";
+            this.CommodityName.FillWeight = 27F;
             this.CommodityName.HeaderText = "Item Name";
             this.CommodityName.Name = "CommodityName";
             // 
+            // BinLocationCode
+            // 
+            this.BinLocationCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.BinLocationCode.DataPropertyName = "BinLocationCode";
+            this.BinLocationCode.FillWeight = 12F;
+            this.BinLocationCode.HeaderText = "Bin Location";
+            this.BinLocationCode.Name = "BinLocationCode";
+            // 
+            // PalletCode
+            // 
+            this.PalletCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.PalletCode.DataPropertyName = "PalletCode";
+            this.PalletCode.FillWeight = 24F;
+            this.PalletCode.HeaderText = "Pallet";
+            this.PalletCode.Name = "PalletCode";
+            // 
             // Quantity
             // 
+            this.Quantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Quantity.DataPropertyName = "Quantity";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Quantity.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Quantity.FillWeight = 5F;
             this.Quantity.HeaderText = "Quantity";
             this.Quantity.Name = "Quantity";
             // 
             // Volume
             // 
-            this.Volume.DataPropertyName = "Volume";
+            this.Volume.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Volume.DataPropertyName = "LineVolume";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Volume.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Volume.FillWeight = 7F;
             this.Volume.HeaderText = "Volume";
             this.Volume.Name = "Volume";
-            // 
-            // PalletCode
-            // 
-            this.PalletCode.DataPropertyName = "PalletCode";
-            this.PalletCode.HeaderText = "Pallet";
-            this.PalletCode.Name = "PalletCode";
-            // 
-            // CartonCode
-            // 
-            this.CartonCode.DataPropertyName = "CartonCode";
-            this.CartonCode.HeaderText = "Carton";
-            this.CartonCode.Name = "CartonCode";
-            // 
-            // PackCode
-            // 
-            this.PackCode.DataPropertyName = "PackCode";
-            this.PackCode.HeaderText = "Pack";
-            this.PackCode.Name = "PackCode";
-            // 
-            // Remarks
-            // 
-            this.Remarks.DataPropertyName = "Remarks";
-            this.Remarks.HeaderText = "Remarks";
-            this.Remarks.Name = "Remarks";
             // 
             // naviGroupTop
             // 
@@ -650,7 +672,7 @@
             this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.019F));
             this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.32099F));
-            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 480F));
+            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 516F));
             this.tableLayoutPanelExtend.Controls.Add(this.combexCommodityID, 0, 0);
             this.tableLayoutPanelExtend.Controls.Add(this.label11, 3, 0);
             this.tableLayoutPanelExtend.Controls.Add(this.label12, 6, 0);
@@ -673,11 +695,11 @@
             this.combexCommodityID.Editable = true;
             this.combexCommodityID.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combexCommodityID.FormattingEnabled = true;
-            this.combexCommodityID.Location = new System.Drawing.Point(49, 3);
+            this.combexCommodityID.Location = new System.Drawing.Point(46, 3);
             this.combexCommodityID.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.combexCommodityID.Name = "combexCommodityID";
             this.combexCommodityID.ReadOnly = false;
-            this.combexCommodityID.Size = new System.Drawing.Size(105, 29);
+            this.combexCommodityID.Size = new System.Drawing.Size(96, 29);
             this.combexCommodityID.TabIndex = 72;
             // 
             // label10
@@ -688,7 +710,7 @@
             this.label10.Location = new System.Drawing.Point(3, 5);
             this.label10.Margin = new System.Windows.Forms.Padding(3);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(40, 84);
+            this.label10.Size = new System.Drawing.Size(37, 84);
             this.label10.TabIndex = 35;
             this.label10.Text = "Requested By";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -818,14 +840,6 @@
         private BrightIdeasSoftware.OLVColumn olvEntryDate;
         private BrightIdeasSoftware.OLVColumn olvReference;
         private CustomControls.DataGridexView gridexPalletDetails;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CommodityCode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CommodityName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Volume;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PalletCode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CartonCode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PackCode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Remarks;
         private CustomControls.DataGridexView gridexCartonDetails;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
@@ -853,6 +867,14 @@
         private System.Windows.Forms.Label labelCaption;
         private System.Windows.Forms.Label label2;
         private CustomControls.TextexBox textexWarehouseName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PickupReference;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PickupEntryDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CommodityCode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CommodityName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BinLocationCode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PalletCode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Volume;
 
     }
 }

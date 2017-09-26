@@ -24,7 +24,6 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
             InitializeComponent();
 
             this.customTabBatch = new CustomTabControl();
-            //this.customTabBatch.ImageList = this.imageListTabControl;
 
             this.customTabBatch.Font = this.fastPendingPallets.Font;
             this.customTabBatch.DisplayStyle = TabStyle.VisualStudio;
@@ -104,7 +103,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
                                     CommodityName = pendingPickupDetail.CommodityName,
 
                                     Quantity = (decimal)pendingPickupDetail.QuantityRemains,
-                                    LineVolume = pendingPickupDetail.LineVolume,
+                                    LineVolume = (decimal)pendingPickupDetail.LineVolumeRemains,
 
 
                                     PackID = pendingPickupDetail.PackID,

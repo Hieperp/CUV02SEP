@@ -228,6 +228,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
         protected override void InitializeDataGridBinding()
         {
             this.gridexPalletDetails.AutoGenerateColumns = false;
+            this.gridexPalletDetails.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             this.gridexPalletDetails.DataSource = this.pickupViewModel.ViewDetails;
 
             //StackedHeaderDecorator stackedHeaderDecorator = new StackedHeaderDecorator(this.dataGridViewDetails);

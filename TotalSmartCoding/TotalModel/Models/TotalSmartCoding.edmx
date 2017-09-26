@@ -2635,6 +2635,7 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Type="Int32" Name="CartonCounts" Nullable="false" />
           <Property Type="Int32" Name="PalletCounts" Nullable="false" />
           <Property Type="Decimal" Name="LineVolume" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="LineVolumeRemains" Nullable="true" Precision="19" Scale="2" />
         </ComplexType>
         <ComplexType Name="GoodsReceiptIndex">
           <Property Type="Int32" Name="GoodsReceiptID" Nullable="false" />
@@ -4537,6 +4538,7 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
                 <ScalarProperty Name="CartonCounts" ColumnName="CartonCounts" />
                 <ScalarProperty Name="PalletCounts" ColumnName="PalletCounts" />
                 <ScalarProperty Name="LineVolume" ColumnName="LineVolume" />
+                <ScalarProperty Name="LineVolumeRemains" ColumnName="LineVolumeRemains" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
