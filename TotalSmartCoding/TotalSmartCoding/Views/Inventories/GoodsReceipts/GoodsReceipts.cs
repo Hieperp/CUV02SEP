@@ -81,10 +81,10 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
                 this.customTabCenter = new CustomTabControl();
                 this.customTabCenter.DisplayStyle = TabStyle.VisualStudio;
 
-                this.customTabCenter.TabPages.Add("tabCenterAA", "Pallet list   ");
-                this.customTabCenter.TabPages.Add("tabCenterBB", "Carton List   ");
-                this.customTabCenter.TabPages.Add("tabCenterBB", "Description               ");
-                this.customTabCenter.TabPages.Add("tabCenterBB", "Remarks               ");
+                this.customTabCenter.TabPages.Add("tabCenterAA", "Pallets                  ");
+                this.customTabCenter.TabPages.Add("tabCenterBB", "Cartons                  ");
+                this.customTabCenter.TabPages.Add("tabCenterBB", "Description            ");
+                this.customTabCenter.TabPages.Add("tabCenterBB", "Remarks                    ");
 
                 this.customTabCenter.TabPages[0].Controls.Add(this.gridexPalletDetails);
                 this.customTabCenter.TabPages[0].Controls.Add(this.toolStripPallet);
@@ -160,18 +160,17 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
             this.gridexPalletDetails.DataSource = this.goodsReceiptViewModel.PalletDetails;
             this.gridexCartonDetails.DataSource = this.goodsReceiptViewModel.ViewDetails;
 
-            //StackedHeaderDecorator stackedHeaderDecorator = new StackedHeaderDecorator(this.dataGridViewDetails);
+            this.goodsReceiptViewModel.ViewDetails.ListChanged += ViewDetails_ListChanged;
         }
 
-        //protected override void NotifyPropertyChanged(string propertyName)
-        //{
-        //    base.NotifyPropertyChanged(propertyName);
-        //    if (propertyName == "IsDirty")
-        //    {
-        //        this.customTabCenter.TabPages[0].Text = "Pallets [" + this.goodsReceiptViewModel.PalletDetails.Count.ToString("N0") + " item(s)]         ";
-        //        this.customTabCenter.TabPages[1].Text = "Cartons [" + this.goodsReceiptViewModel.ViewDetails.Count.ToString("N0") + " item(s)]         ";
-        //    }
-        //}
+        private void ViewDetails_ListChanged(object sender, ListChangedEventArgs e)
+        {
+            if (e.ListChangedType == ListChangedType.ItemAdded || e.ListChangedType == ListChangedType.ItemDeleted || e.ListChangedType == ListChangedType.Reset)
+            {
+                this.customTabCenter.TabPages[0].Text = "Pallets [" + this.goodsReceiptViewModel.PalletDetails.Count.ToString("N0") + " item(s)]             ";
+                this.customTabCenter.TabPages[1].Text = "Cartons [" + this.goodsReceiptViewModel.ViewDetails.Count.ToString("N0") + " item(s)]             ";
+            }
+        }
 
         protected override Controllers.BaseController myController
         {
@@ -224,10 +223,5 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
                 //this.toolStripButtonShowDetailsExtend.Image = this.naviGroup1.Expanded ? ResourceIcon.Chevron_Collapse.ToBitmap() : ResourceIcon.Chevron_Expand.ToBitmap();
             }
         }
-
-
-
-
-
     }
 }

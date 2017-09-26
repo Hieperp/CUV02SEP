@@ -113,6 +113,10 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
                                     CartonCode = pendingPickupDetail.CartonCode,
                                     PalletID = pendingPickupDetail.PalletID,
                                     PalletCode = pendingPickupDetail.PalletCode,
+
+                                    PackCounts = pendingPickupDetail.PackCounts,
+                                    CartonCounts = pendingPickupDetail.CartonCounts,
+                                    PalletCounts = pendingPickupDetail.PalletCounts
                                 };
                                 this.goodsReceiptViewModel.ViewDetails.Add(goodsReceiptDetailDTO);
                             }
