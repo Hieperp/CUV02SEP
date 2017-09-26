@@ -31,7 +31,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
 {
     public partial class Pickups : BaseView
     {
-        private CustomTabControl customTabBatch;
+        private CustomTabControl customTabCenter;
 
         private PickupAPIs pickupAPIs;
         private PickupViewModel pickupViewModel { get; set; }
@@ -71,19 +71,28 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
 
                 this.naviIndex.Bands[0].ClientArea.Controls.Add(this.fastPickupIndex);
 
-                this.customTabBatch = new CustomTabControl();
+                this.customTabCenter = new CustomTabControl();
                 this.setFont(new Font("Niagara Engraved", 16), new Font("Calibri", 13), new Font("Niagara Engraved", 16));
 
-                this.customTabBatch.DisplayStyle = TabStyle.VisualStudio;
+                this.customTabCenter.DisplayStyle = TabStyle.VisualStudio;
 
-                this.customTabBatch.TabPages.Add("tabDetailPallets", "Pickup pallet list                    ");
-                this.customTabBatch.TabPages[0].Controls.Add(this.gridexPalletDetails);
+                this.customTabCenter.TabPages.Add("tabDetailPallets", "Pickup pallet list                    ");
+                this.customTabCenter.TabPages.Add("tabDescription", "Description                    ");
+                this.customTabCenter.TabPages.Add("tabRemarks", "Remarks                    ");
+                this.customTabCenter.TabPages[0].Controls.Add(this.gridexPalletDetails);
+                this.customTabCenter.TabPages[1].Controls.Add(this.textexDescription);
+                this.customTabCenter.TabPages[2].Controls.Add(this.textexRemarks);
 
-                this.customTabBatch.Dock = DockStyle.Fill;
+                this.customTabCenter.TabPages[1].Padding = new Padding(30, 30, 30, 30);
+                this.customTabCenter.TabPages[2].Padding = new Padding(30, 30, 30, 30);
+
+                this.customTabCenter.Dock = DockStyle.Fill;
                 this.gridexPalletDetails.Dock = DockStyle.Fill;
-                this.panelMaster.Controls.Add(this.customTabBatch);
+                this.textexDescription.Dock = DockStyle.Fill;
+                this.textexRemarks.Dock = DockStyle.Fill;
+                this.panelMaster.Controls.Add(this.customTabCenter);
 
-                this.naviDetails.ExpandedHeight = this.naviDetails.HeaderHeight + this.textexTotalPalletCounts.Size.Height + this.textexTotalQuantity.Size.Height + this.textexTotalLineVolume.Size.Height + this.textexDescription.Size.Height + 5 + 5 * 10 + 3;
+                this.naviDetails.ExpandedHeight = this.naviDetails.HeaderHeight + this.textexTotalPalletCounts.Size.Height + this.textexTotalQuantity.Size.Height + this.textexTotalLineVolume.Size.Height + 5 + 4 * 10 + 6;
                 this.naviDetails.Expanded = false;
             }
             catch (Exception exception)
@@ -95,7 +104,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
 
         private void setFont(Font titleFont, Font font, Font toolbarFont)
         {
-            this.customTabBatch.Font = titleFont;
+            this.customTabCenter.Font = titleFont;
             this.naviDetails.Font = titleFont;
             this.olvPendingPalletCode.HeaderFont = titleFont;
             this.olvPickupIndexReference.HeaderFont = titleFont;

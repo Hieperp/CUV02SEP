@@ -403,6 +403,16 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Add_detail_24 {
+            get {
+                object obj = ResourceManager.GetObject("Add-detail-24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap addressbook_edit {
             get {
                 object obj = ResourceManager.GetObject("addressbook-edit", resourceCulture);

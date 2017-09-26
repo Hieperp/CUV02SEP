@@ -46,6 +46,12 @@
             this.toolStripNaviGroupDetails = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonShowDetailsExtend = new System.Windows.Forms.ToolStripButton();
             this.panelCenter = new System.Windows.Forms.Panel();
+            this.toolStripCarton = new System.Windows.Forms.ToolStrip();
+            this.buttonAddCartons = new System.Windows.Forms.ToolStripButton();
+            this.toolStripPallet = new System.Windows.Forms.ToolStrip();
+            this.buttonAddPallets = new System.Windows.Forms.ToolStripButton();
+            this.textexDescription = new CustomControls.TextexBox();
+            this.textexRemarks = new CustomControls.TextexBox();
             this.gridexCartonDetails = new CustomControls.DataGridexView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -79,6 +85,8 @@
             this.naviGroupDetails.SuspendLayout();
             this.toolStripNaviGroupDetails.SuspendLayout();
             this.panelCenter.SuspendLayout();
+            this.toolStripCarton.SuspendLayout();
+            this.toolStripPallet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridexCartonDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridexPalletDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.naviGroup1)).BeginInit();
@@ -167,10 +175,10 @@
             this.label11.AutoSize = true;
             this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label11.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(227, 5);
+            this.label11.Location = new System.Drawing.Point(199, 5);
             this.label11.Margin = new System.Windows.Forms.Padding(3);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(58, 75);
+            this.label11.Size = new System.Drawing.Size(50, 75);
             this.label11.TabIndex = 45;
             this.label11.Text = "Noted By";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -180,10 +188,10 @@
             this.label12.AutoSize = true;
             this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label12.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(451, 5);
+            this.label12.Location = new System.Drawing.Point(395, 5);
             this.label12.Margin = new System.Windows.Forms.Padding(3);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(58, 75);
+            this.label12.Size = new System.Drawing.Size(50, 75);
             this.label12.TabIndex = 47;
             this.label12.Text = "Approved By";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -218,7 +226,7 @@
             // 
             // naviGroupDetails
             // 
-            this.naviGroupDetails.Caption = "   Details";
+            this.naviGroupDetails.Caption = "   Detail pane, click here to collapse or expand me";
             this.naviGroupDetails.Controls.Add(this.toolStripNaviGroupDetails);
             this.naviGroupDetails.Controls.Add(this.panelCenter);
             this.naviGroupDetails.Controls.Add(this.naviGroup1);
@@ -265,6 +273,10 @@
             // panelCenter
             // 
             this.panelCenter.BackColor = System.Drawing.Color.Ivory;
+            this.panelCenter.Controls.Add(this.toolStripCarton);
+            this.panelCenter.Controls.Add(this.toolStripPallet);
+            this.panelCenter.Controls.Add(this.textexDescription);
+            this.panelCenter.Controls.Add(this.textexRemarks);
             this.panelCenter.Controls.Add(this.gridexCartonDetails);
             this.panelCenter.Controls.Add(this.gridexPalletDetails);
             this.panelCenter.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -273,13 +285,102 @@
             this.panelCenter.Size = new System.Drawing.Size(1008, 305);
             this.panelCenter.TabIndex = 72;
             // 
+            // toolStripCarton
+            // 
+            this.toolStripCarton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.toolStripCarton.BackColor = System.Drawing.Color.Transparent;
+            this.toolStripCarton.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStripCarton.Font = new System.Drawing.Font("Segoe UI Light", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripCarton.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStripCarton.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStripCarton.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.buttonAddCartons});
+            this.toolStripCarton.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
+            this.toolStripCarton.Location = new System.Drawing.Point(717, 9);
+            this.toolStripCarton.Name = "toolStripCarton";
+            this.toolStripCarton.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.toolStripCarton.Size = new System.Drawing.Size(40, 57);
+            this.toolStripCarton.TabIndex = 76;
+            // 
+            // buttonAddCartons
+            // 
+            this.buttonAddCartons.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.buttonAddCartons.Image = global::TotalSmartCoding.Properties.Resources.Add_detail_24;
+            this.buttonAddCartons.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonAddCartons.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonAddCartons.Name = "buttonAddCartons";
+            this.buttonAddCartons.Size = new System.Drawing.Size(38, 28);
+            this.buttonAddCartons.Text = "Add items from pickups";
+            this.buttonAddCartons.TextDirection = System.Windows.Forms.ToolStripTextDirection.Vertical270;
+            this.buttonAddCartons.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.buttonAddCartons.ToolTipText = "Add items from pickups";
+            // 
+            // toolStripPallet
+            // 
+            this.toolStripPallet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.toolStripPallet.BackColor = System.Drawing.Color.Transparent;
+            this.toolStripPallet.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStripPallet.Font = new System.Drawing.Font("Segoe UI Light", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripPallet.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStripPallet.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStripPallet.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.buttonAddPallets});
+            this.toolStripPallet.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
+            this.toolStripPallet.Location = new System.Drawing.Point(661, 9);
+            this.toolStripPallet.Name = "toolStripPallet";
+            this.toolStripPallet.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.toolStripPallet.Size = new System.Drawing.Size(29, 33);
+            this.toolStripPallet.TabIndex = 75;
+            // 
+            // buttonAddPallets
+            // 
+            this.buttonAddPallets.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.buttonAddPallets.Image = global::TotalSmartCoding.Properties.Resources.Add_detail_24;
+            this.buttonAddPallets.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonAddPallets.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonAddPallets.Name = "buttonAddPallets";
+            this.buttonAddPallets.Size = new System.Drawing.Size(27, 28);
+            this.buttonAddPallets.Text = "Add items from pickups";
+            this.buttonAddPallets.TextDirection = System.Windows.Forms.ToolStripTextDirection.Vertical270;
+            this.buttonAddPallets.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.buttonAddPallets.ToolTipText = "Add items from pickups";
+            // 
+            // textexDescription
+            // 
+            this.textexDescription.BackColor = System.Drawing.SystemColors.Control;
+            this.textexDescription.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textexDescription.Dock = System.Windows.Forms.DockStyle.Right;
+            this.textexDescription.Editable = true;
+            this.textexDescription.Font = new System.Drawing.Font("Calibri Light", 10.2F);
+            this.textexDescription.Location = new System.Drawing.Point(848, 0);
+            this.textexDescription.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
+            this.textexDescription.Multiline = true;
+            this.textexDescription.Name = "textexDescription";
+            this.textexDescription.Size = new System.Drawing.Size(80, 305);
+            this.textexDescription.TabIndex = 73;
+            // 
+            // textexRemarks
+            // 
+            this.textexRemarks.BackColor = System.Drawing.SystemColors.Control;
+            this.textexRemarks.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textexRemarks.Dock = System.Windows.Forms.DockStyle.Right;
+            this.textexRemarks.Editable = true;
+            this.textexRemarks.Font = new System.Drawing.Font("Calibri Light", 10.2F);
+            this.textexRemarks.Location = new System.Drawing.Point(928, 0);
+            this.textexRemarks.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
+            this.textexRemarks.Multiline = true;
+            this.textexRemarks.Name = "textexRemarks";
+            this.textexRemarks.Size = new System.Drawing.Size(80, 305);
+            this.textexRemarks.TabIndex = 72;
+            // 
             // gridexCartonDetails
             // 
             this.gridexCartonDetails.AllowAddRow = false;
             this.gridexCartonDetails.AllowDeleteRow = false;
             this.gridexCartonDetails.BackgroundColor = System.Drawing.Color.Ivory;
             this.gridexCartonDetails.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.gridexCartonDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridexCartonDetails.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.gridexCartonDetails.ColumnHeadersHeight = 24;
             this.gridexCartonDetails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
@@ -289,14 +390,15 @@
             this.dataGridViewTextBoxColumn6,
             this.dataGridViewTextBoxColumn7,
             this.dataGridViewTextBoxColumn8});
-            this.gridexCartonDetails.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridexCartonDetails.Editable = true;
-            this.gridexCartonDetails.Location = new System.Drawing.Point(526, 0);
+            this.gridexCartonDetails.GridColor = System.Drawing.SystemColors.ControlLight;
+            this.gridexCartonDetails.Location = new System.Drawing.Point(328, 0);
             this.gridexCartonDetails.Name = "gridexCartonDetails";
+            this.gridexCartonDetails.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridexCartonDetails.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.gridexCartonDetails.RowTemplate.Height = 24;
-            this.gridexCartonDetails.Size = new System.Drawing.Size(482, 305);
+            this.gridexCartonDetails.Size = new System.Drawing.Size(286, 305);
             this.gridexCartonDetails.TabIndex = 66;
             // 
             // dataGridViewTextBoxColumn1
@@ -353,7 +455,8 @@
             this.gridexPalletDetails.AllowDeleteRow = true;
             this.gridexPalletDetails.BackgroundColor = System.Drawing.Color.Ivory;
             this.gridexPalletDetails.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.gridexPalletDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridexPalletDetails.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.gridexPalletDetails.ColumnHeadersHeight = 24;
             this.gridexPalletDetails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CommodityCode,
             this.CommodityName,
@@ -365,12 +468,14 @@
             this.Remarks});
             this.gridexPalletDetails.Dock = System.Windows.Forms.DockStyle.Left;
             this.gridexPalletDetails.Editable = true;
+            this.gridexPalletDetails.GridColor = System.Drawing.SystemColors.ControlLight;
             this.gridexPalletDetails.Location = new System.Drawing.Point(0, 0);
             this.gridexPalletDetails.Name = "gridexPalletDetails";
+            this.gridexPalletDetails.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridexPalletDetails.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.gridexPalletDetails.RowTemplate.Height = 24;
-            this.gridexPalletDetails.Size = new System.Drawing.Size(526, 305);
+            this.gridexPalletDetails.Size = new System.Drawing.Size(334, 305);
             this.gridexPalletDetails.TabIndex = 65;
             // 
             // CommodityCode
@@ -450,7 +555,7 @@
             this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.019F));
             this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.32099F));
-            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 341F));
+            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 425F));
             this.tableLayoutPanelExtend.Controls.Add(this.combexCommodityID, 0, 0);
             this.tableLayoutPanelExtend.Controls.Add(this.label11, 3, 0);
             this.tableLayoutPanelExtend.Controls.Add(this.label12, 6, 0);
@@ -473,11 +578,11 @@
             this.combexCommodityID.Editable = true;
             this.combexCommodityID.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combexCommodityID.FormattingEnabled = true;
-            this.combexCommodityID.Location = new System.Drawing.Point(67, 3);
+            this.combexCommodityID.Location = new System.Drawing.Point(59, 3);
             this.combexCommodityID.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.combexCommodityID.Name = "combexCommodityID";
             this.combexCommodityID.ReadOnly = false;
-            this.combexCommodityID.Size = new System.Drawing.Size(146, 29);
+            this.combexCommodityID.Size = new System.Drawing.Size(126, 29);
             this.combexCommodityID.TabIndex = 72;
             // 
             // label10
@@ -488,7 +593,7 @@
             this.label10.Location = new System.Drawing.Point(3, 5);
             this.label10.Margin = new System.Windows.Forms.Padding(3);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(58, 75);
+            this.label10.Size = new System.Drawing.Size(50, 75);
             this.label10.TabIndex = 35;
             this.label10.Text = "Requested By";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -577,6 +682,11 @@
             this.toolStripNaviGroupDetails.ResumeLayout(false);
             this.toolStripNaviGroupDetails.PerformLayout();
             this.panelCenter.ResumeLayout(false);
+            this.panelCenter.PerformLayout();
+            this.toolStripCarton.ResumeLayout(false);
+            this.toolStripCarton.PerformLayout();
+            this.toolStripPallet.ResumeLayout(false);
+            this.toolStripPallet.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridexCartonDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridexPalletDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.naviGroup1)).EndInit();
@@ -635,6 +745,12 @@
         private System.Windows.Forms.Panel panelLeft;
         private System.Windows.Forms.ToolStrip toolStripNaviGroupDetails;
         private System.Windows.Forms.ToolStripButton toolStripButtonShowDetailsExtend;
+        private CustomControls.TextexBox textexRemarks;
+        private CustomControls.TextexBox textexDescription;
+        private System.Windows.Forms.ToolStrip toolStripPallet;
+        private System.Windows.Forms.ToolStripButton buttonAddPallets;
+        private System.Windows.Forms.ToolStrip toolStripCarton;
+        private System.Windows.Forms.ToolStripButton buttonAddCartons;
 
     }
 }

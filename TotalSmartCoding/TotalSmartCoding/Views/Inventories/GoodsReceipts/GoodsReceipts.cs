@@ -58,6 +58,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
             {
                 base.InitializeTabControl();
 
+                #region TabLeft
                 this.customTabLeft = new CustomTabControl();
                 this.customTabLeft.DisplayStyle = TabStyle.VisualStudio;
 
@@ -69,25 +70,41 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
                 this.customTabLeft.Dock = DockStyle.Fill;
                 this.panelLeft.Controls.Add(this.customTabLeft);
 
-                this.layoutLeft.ColumnStyles[this.layoutLeft.ColumnCount - 1].SizeType = SizeType.Absolute; this.layoutLeft.ColumnStyles[this.layoutLeft.ColumnCount - 1].Width = 10;
+                this.layoutLeft.ColumnStyles[this.layoutLeft.ColumnCount - 1].SizeType = SizeType.Absolute; this.layoutLeft.ColumnStyles[this.layoutLeft.ColumnCount - 1].Width = 10;                
+                #endregion TabLeft
 
-
+                #region TabCenter
                 this.customTabCenter = new CustomTabControl();
                 this.customTabCenter.DisplayStyle = TabStyle.VisualStudio;
 
-                this.customTabCenter.TabPages.Add("tabCenterAA", "Pallets   ");
-                this.customTabCenter.TabPages.Add("tabCenterBB", "Cartons   ");
-                //this.customTabCenter.TabPages[0].BackColor = this.panelCenter.BackColor;
-                //this.customTabCenter.TabPages[0].Padding = new Padding(10, 0, 0, 0);
+                this.customTabCenter.TabPages.Add("tabCenterAA", "Pallet list   ");
+                this.customTabCenter.TabPages.Add("tabCenterBB", "Carton List   ");
+                this.customTabCenter.TabPages.Add("tabCenterBB", "Description               ");
+                this.customTabCenter.TabPages.Add("tabCenterBB", "Remarks               ");
+                
                 this.customTabCenter.TabPages[0].Controls.Add(this.gridexPalletDetails);
+                this.customTabCenter.TabPages[0].Controls.Add(this.toolStripPallet);
                 this.customTabCenter.TabPages[1].Controls.Add(this.gridexCartonDetails);
+                this.customTabCenter.TabPages[1].Controls.Add(this.toolStripCarton);
+                this.customTabCenter.TabPages[2].Controls.Add(this.textexDescription);
+                this.customTabCenter.TabPages[3].Controls.Add(this.textexRemarks);
+                this.customTabCenter.TabPages[2].Padding = new Padding(30, 30, 30, 30);
+                this.customTabCenter.TabPages[3].Padding = new Padding(30, 30, 30, 30);
+                this.customTabCenter.TabPages[0].BackColor = this.panelCenter.BackColor;
+                this.customTabCenter.TabPages[1].BackColor = this.panelCenter.BackColor;
+                this.toolStripPallet.Dock = DockStyle.Left;
                 this.gridexPalletDetails.Dock = DockStyle.Fill;
+                this.toolStripCarton.Dock = DockStyle.Left;
                 this.gridexCartonDetails.Dock = DockStyle.Fill;
+                this.textexDescription.Dock = DockStyle.Fill;
+                this.textexRemarks.Dock = DockStyle.Fill;
 
                 this.customTabCenter.Dock = DockStyle.Fill;
                 this.panelCenter.Controls.Add(this.customTabCenter);
+                #endregion TabCenter
 
-                
+                this.toolStripButtonShowDetailsExtend_Click(this.toolStripButtonShowDetailsExtend, new EventArgs());
+
             }
             catch (Exception exception)
             {
@@ -124,6 +141,12 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
             this.gridexCartonDetails.DataSource = this.goodsReceiptViewModel.PalletDetails;
 
             //StackedHeaderDecorator stackedHeaderDecorator = new StackedHeaderDecorator(this.dataGridViewDetails);
+        }
+
+        protected override void InitializeReadOnlyModeBinding()
+        {
+            base.InitializeReadOnlyModeBinding();
+            //this.buttonAddPallets.bi control.DataBindings.Add("AllowUserToAddRows", this, "EditableMode");
         }
 
         protected override Controllers.BaseController myController
