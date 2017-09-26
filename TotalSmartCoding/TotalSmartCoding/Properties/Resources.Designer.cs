@@ -943,6 +943,16 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Check_Saki_Cross {
+            get {
+                object obj = ResourceManager.GetObject("Check-Saki-Cross", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Check_Saki_Ok {
             get {
                 object obj = ResourceManager.GetObject("Check-Saki-Ok", resourceCulture);

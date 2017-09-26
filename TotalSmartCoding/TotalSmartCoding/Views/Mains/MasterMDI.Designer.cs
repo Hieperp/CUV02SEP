@@ -467,7 +467,7 @@
             // 
             this.buttonApprove.Enabled = false;
             this.buttonApprove.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonApprove.Image = global::TotalSmartCoding.Properties.Resources.Check_Saki_Ok;
+            this.buttonApprove.Image = global::TotalSmartCoding.Properties.Resources.Check_Saki_Cross;
             this.buttonApprove.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.buttonApprove.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonApprove.Name = "buttonApprove";

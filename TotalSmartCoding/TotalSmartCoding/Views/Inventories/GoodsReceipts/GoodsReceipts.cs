@@ -17,6 +17,7 @@ using TotalSmartCoding.Views.Mains;
 
 
 using TotalBase.Enums;
+using TotalSmartCoding.Properties;
 using TotalSmartCoding.Libraries;
 using TotalSmartCoding.Libraries.Helpers;
 
@@ -30,6 +31,7 @@ using TotalCore.Repositories.Commons;
 using TotalBase;
 using TotalModel.Models;
 using TotalDTO.Inventories;
+
 
 namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
 {
@@ -227,7 +229,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
             {
                 this.naviGroupTop.Expanded = !this.naviGroupTop.Expanded;
                 this.naviGroupTop.Padding = new Padding(0, 0, 0, 0);
-                //this.toolStripButtonShowDetailsExtend.Image = this.naviGroup1.Expanded ? ResourceIcon.Chevron_Collapse.ToBitmap() : ResourceIcon.Chevron_Expand.ToBitmap();
+                this.buttonExpandTop.Image = this.naviGroupTop.Expanded ? Resources.chevron : Resources.chevron_expand;
             }
         }
     }

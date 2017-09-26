@@ -15,6 +15,7 @@ using TotalSmartCoding.Views.Commons;
 using TotalSmartCoding.Views.Productions;
 using TotalSmartCoding.Views.Inventories.Pickups;
 using TotalSmartCoding.Views.Inventories.GoodsIssues;
+using TotalSmartCoding.Properties;
 using System.IO;
 using System.Reflection;
 using TotalBase;
@@ -225,6 +226,8 @@ namespace TotalSmartCoding.Views.Mains
                     this.buttonApprove.Visible = approvable || unapprovable;
                     this.buttonApprove.Enabled = (approvable || unapprovable) && readonlyMode;
                     this.buttonApprove.Text = approvable ? "Verify" : "Unverify";
+                    this.buttonApprove.Image = approvable ? Resources.Check_Saki_Ok : Resources.Check_Saki_Cross;
+
                     this.toolStripSeparatorApprove.Visible = approvable || unapprovable;
 
                     this.buttonPrint.Visible = printable;
