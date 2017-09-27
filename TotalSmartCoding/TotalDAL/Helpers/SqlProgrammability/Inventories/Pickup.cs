@@ -70,7 +70,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
-            queryString = queryString + "       SELECT      PickupDetails.PickupDetailID, PickupDetails.PickupID, Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, PickupDetails.BinLocationID, BinLocations.Code AS BinLocationCode, " + "\r\n";
+            queryString = queryString + "       SELECT      PickupDetails.PickupDetailID, PickupDetails.PickupID, Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, PickupDetails.BatchID, PickupDetails.BatchEntryDate, PickupDetails.BinLocationID, BinLocations.Code AS BinLocationCode, " + "\r\n";
             queryString = queryString + "                   PickupDetails.PackID, Packs.Code AS PackCode, Packs.EntryDate AS PackEntryDate, PickupDetails.CartonID, Cartons.Code AS CartonCode, Cartons.EntryDate AS CartonEntryDate, PickupDetails.PalletID, Pallets.Code AS PalletCode, Pallets.EntryDate AS PalletEntryDate, " + "\r\n";
             queryString = queryString + "                   PickupDetails.PackCounts, PickupDetails.CartonCounts, PickupDetails.PalletCounts, PickupDetails.Quantity, PickupDetails.LineVolume, PickupDetails.Remarks " + "\r\n";
             queryString = queryString + "       FROM        PickupDetails " + "\r\n";
@@ -145,12 +145,13 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
         private string BuildSQLNew(bool isPalletIDs)
         {
             string queryString = "";
-                        
-            queryString = queryString + "       SELECT      Pallets.PalletID, Pallets.EntryDate, Pallets.Code, Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, " + "\r\n";
+
+            queryString = queryString + "       SELECT      Pallets.PalletID, Pallets.EntryDate, Pallets.Code, Pallets.BatchID, Batches.EntryDate AS BatchEntryDate, Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, " + "\r\n";
             queryString = queryString + "                   ROUND(Pallets.Quantity - Pallets.QuantityPickup,  " + (int)GlobalEnums.rndQuantity + ") AS QuantityRemains, ROUND(Pallets.LineVolume - Pallets.LineVolumePickup,  " + (int)GlobalEnums.rndVolume + ") AS LineVolumeRemains, Pallets.PackCounts, Pallets.CartonCounts, 1 AS PalletCounts " + "\r\n";
 
             queryString = queryString + "       FROM        Pallets " + "\r\n";
             queryString = queryString + "                   INNER JOIN Commodities ON Pallets.LocationID = @LocationID AND Pallets.FillingLineID = @FillingLineID AND ROUND(Pallets.Quantity - Pallets.QuantityPickup, " + (int)GlobalEnums.rndQuantity + ") > 0 AND Pallets.CommodityID = Commodities.CommodityID " + (isPalletIDs ? " AND Pallets.PalletID NOT IN (SELECT Id FROM dbo.SplitToIntList (@PalletIDs))" : "") + "\r\n";
+            queryString = queryString + "                   INNER JOIN Batches ON Pallets.BatchID = Batches.BatchID " + "\r\n";
 
             return queryString;
         }
@@ -158,7 +159,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
         private string BuildSQLEdit(bool isPalletIDs)
         {
             string queryString = "";
-            queryString = queryString + "       SELECT      Pallets.PalletID, Pallets.EntryDate, Pallets.Code, Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, " + "\r\n";
+            queryString = queryString + "       SELECT      Pallets.PalletID, Pallets.EntryDate, Pallets.Code, Pallets.BatchID, PickupDetails.BatchEntryDate, Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, " + "\r\n";
             queryString = queryString + "                   ROUND(Pallets.Quantity - Pallets.QuantityPickup + Pallets.Quantity,  " + (int)GlobalEnums.rndQuantity + ") AS QuantityRemains, ROUND(Pallets.LineVolume - Pallets.LineVolumePickup + Pallets.LineVolume,  " + (int)GlobalEnums.rndVolume + ") AS LineVolumeRemains, Pallets.PackCounts, Pallets.CartonCounts, 1 AS PalletCounts " + "\r\n";
 
             queryString = queryString + "       FROM        PickupDetails" + "\r\n";

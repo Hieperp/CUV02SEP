@@ -70,6 +70,9 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
                 {
                     PickupID = this.pickupViewModel.PickupID,
 
+                    BatchID = this.pendingPallet.BatchID,
+                    BatchEntryDate = this.pendingPallet.BatchEntryDate,
+
                     PalletID = this.pendingPallet.PalletID,
                     PalletCode = this.pendingPallet.Code,
                     PalletEntryDate = this.pendingPallet.EntryDate,

@@ -17,8 +17,8 @@ namespace TotalModel.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Pickup()
         {
-            this.PickupDetails = new HashSet<PickupDetail>();
             this.GoodsReceipts = new HashSet<GoodsReceipt>();
+            this.PickupDetails = new HashSet<PickupDetail>();
         }
     
         public int PickupID { get; set; }
@@ -46,10 +46,10 @@ namespace TotalModel.Models
     
         public virtual FillingLine FillingLine { get; set; }
         public virtual Location Location { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PickupDetail> PickupDetails { get; set; }
         public virtual Warehouse Warehouse { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GoodsReceipt> GoodsReceipts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PickupDetail> PickupDetails { get; set; }
     }
 }

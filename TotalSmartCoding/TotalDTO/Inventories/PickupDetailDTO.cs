@@ -22,10 +22,10 @@ namespace TotalDTO.Inventories
         public int PickupDetailID { get; set; }
         public int PickupID { get; set; }
 
-        public Nullable<int> WarehouseID { get; set; }
+        public int BatchID { get; set; }
+        public System.DateTime BatchEntryDate { get; set; }
 
-        //[DefaultValue(null)]
-        //public Nullable<int> BinLocationID { get; set; }
+        public Nullable<int> WarehouseID { get; set; }
 
         private Nullable<int> binLocationID;
         [DefaultValue(null)]
