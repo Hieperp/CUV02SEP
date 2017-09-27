@@ -266,6 +266,8 @@
           <Property Name="WarehouseID" Type="int" Nullable="false" />
           <Property Name="BinLocationID" Type="int" Nullable="false" />
           <Property Name="CommodityID" Type="int" Nullable="false" />
+          <Property Name="BatchID" Type="int" />
+          <Property Name="BatchEntryDate" Type="date" />
           <Property Name="PackID" Type="int" />
           <Property Name="CartonID" Type="int" />
           <Property Name="PalletID" Type="int" />
@@ -2638,6 +2640,8 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Type="Int32" Name="PalletCounts" Nullable="false" />
           <Property Type="Decimal" Name="LineVolume" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="LineVolumeRemains" Nullable="true" Precision="19" Scale="2" />
+          <Property Type="Int32" Name="BatchID" Nullable="false" />
+          <Property Type="DateTime" Name="BatchEntryDate" Nullable="false" />
         </ComplexType>
         <ComplexType Name="GoodsReceiptIndex">
           <Property Type="Int32" Name="GoodsReceiptID" Nullable="false" />
@@ -2676,6 +2680,8 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Type="Int32" Name="CartonCounts" Nullable="false" />
           <Property Type="Int32" Name="PalletCounts" Nullable="false" />
           <Property Type="Decimal" Name="LineVolume" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="BatchID" Nullable="true" />
+          <Property Type="DateTime" Name="BatchEntryDate" Nullable="true" />
         </ComplexType>
         <ComplexType Name="PendingPickup">
           <Property Type="Int32" Name="PickupID" Nullable="false" />
@@ -3612,6 +3618,8 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <NavigationProperty Name="Pack" Relationship="TotalSmartCodingModel.FK_GoodsReceiptDetails_Packs" FromRole="GoodsReceiptDetail" ToRole="Pack" />
           <NavigationProperty Name="Pallet" Relationship="TotalSmartCodingModel.FK_GoodsReceiptDetails_Pallets" FromRole="GoodsReceiptDetail" ToRole="Pallet" />
           <NavigationProperty Name="PickupDetail" Relationship="TotalSmartCodingModel.FK_GoodsReceiptDetails_PickupDetails" FromRole="GoodsReceiptDetail" ToRole="PickupDetail" />
+          <Property Name="BatchID" Type="Int32" />
+          <Property Name="BatchEntryDate" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="GoodsReceipt">
           <Key>
@@ -4547,6 +4555,8 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
                 <ScalarProperty Name="PalletCounts" ColumnName="PalletCounts" />
                 <ScalarProperty Name="LineVolume" ColumnName="LineVolume" />
                 <ScalarProperty Name="LineVolumeRemains" ColumnName="LineVolumeRemains" />
+                <ScalarProperty Name="BatchID" ColumnName="BatchID" />
+                <ScalarProperty Name="BatchEntryDate" ColumnName="BatchEntryDate" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -4598,6 +4608,8 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
                 <ScalarProperty Name="CartonCounts" ColumnName="CartonCounts" />
                 <ScalarProperty Name="PalletCounts" ColumnName="PalletCounts" />
                 <ScalarProperty Name="LineVolume" ColumnName="LineVolume" />
+                <ScalarProperty Name="BatchID" ColumnName="BatchID" />
+                <ScalarProperty Name="BatchEntryDate" ColumnName="BatchEntryDate" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -5416,6 +5428,8 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <EntitySetMapping Name="GoodsReceiptDetails">
             <EntityTypeMapping TypeName="TotalSmartCodingModel.GoodsReceiptDetail">
               <MappingFragment StoreEntitySet="GoodsReceiptDetails">
+                <ScalarProperty Name="BatchEntryDate" ColumnName="BatchEntryDate" />
+                <ScalarProperty Name="BatchID" ColumnName="BatchID" />
                 <ScalarProperty Name="Reference" ColumnName="Reference" />
                 <ScalarProperty Name="Approved" ColumnName="Approved" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />

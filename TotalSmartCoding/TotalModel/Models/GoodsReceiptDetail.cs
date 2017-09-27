@@ -43,6 +43,8 @@ namespace TotalModel.Models
         public string Remarks { get; set; }
         public bool Approved { get; set; }
         public string Reference { get; set; }
+        public Nullable<int> BatchID { get; set; }
+        public Nullable<System.DateTime> BatchEntryDate { get; set; }
     
         public virtual BinLocation BinLocation { get; set; }
         public virtual Commodity Commodity { get; set; }

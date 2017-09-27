@@ -36,5 +36,7 @@ namespace TotalModel.Models
         public int CartonCounts { get; set; }
         public int PalletCounts { get; set; }
         public decimal LineVolume { get; set; }
+        public Nullable<int> BatchID { get; set; }
+        public Nullable<System.DateTime> BatchEntryDate { get; set; }
     }
 }

@@ -421,11 +421,11 @@ namespace TotalSmartCoding.Views.Mains
         {
             if (GlobalVariables.FillingLineID != GlobalVariables.FillingLine.None) return;
 
-            Pickups grForm;
-            grForm = new Pickups();
+            //Pickups grForm;
+            //grForm = new Pickups();
 
-            //GoodsReceipts grForm;
-            //grForm = new GoodsReceipts();
+            GoodsReceipts grForm;
+            grForm = new GoodsReceipts();
 
 
 

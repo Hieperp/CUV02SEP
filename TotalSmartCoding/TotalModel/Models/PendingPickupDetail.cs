@@ -38,5 +38,7 @@ namespace TotalModel.Models
         public int PalletCounts { get; set; }
         public decimal LineVolume { get; set; }
         public Nullable<decimal> LineVolumeRemains { get; set; }
+        public int BatchID { get; set; }
+        public System.DateTime BatchEntryDate { get; set; }
     }
 }
