@@ -13,30 +13,29 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
     {
         private GoodsReceiptAPIs goodsReceiptAPIs;
         private GoodsReceiptViewModel goodsReceiptViewModel;
-        private CustomTabControl customTabBatch;
+        private CustomTabControl customTabMain;
         public WizardMaster(GoodsReceiptAPIs goodsReceiptAPIs, GoodsReceiptViewModel goodsReceiptViewModel)
         {
             InitializeComponent();
 
-            this.customTabBatch = new CustomTabControl();
-            //this.customTabBatch.ImageList = this.imageListTabControl;
+            this.customTabMain = new CustomTabControl();
 
-            this.customTabBatch.Font = this.fastPendingPickups.Font;
-            this.customTabBatch.DisplayStyle = TabStyle.VisualStudio;
-            this.customTabBatch.DisplayStyleProvider.ImageAlign = ContentAlignment.MiddleLeft;
+            this.customTabMain.Font = this.fastPendingPickups.Font;
+            this.customTabMain.DisplayStyle = TabStyle.VisualStudio;
+            this.customTabMain.DisplayStyleProvider.ImageAlign = ContentAlignment.MiddleLeft;
 
-            this.customTabBatch.TabPages.Add("tabPendingPickups", "Receipt by pickup                  ");
-            this.customTabBatch.TabPages.Add("tabPendingPickupWarehouses", "Receipt by warehouse          ");
-            this.customTabBatch.TabPages.Add("tabPendingTransfers", "Transfer Receipt                    ");
-            this.customTabBatch.TabPages.Add("tabPendingPurchases", "Purchase Receipt                    ");
-            this.customTabBatch.TabPages[0].Controls.Add(this.fastPendingPickups);
-            this.customTabBatch.TabPages[1].Controls.Add(this.fastPendingPickupWarehouses);
+            this.customTabMain.TabPages.Add("tabPendingPickups", "Receipt by pickup                  ");
+            this.customTabMain.TabPages.Add("tabPendingPickupWarehouses", "Receipt by warehouse          ");
+            this.customTabMain.TabPages.Add("tabPendingTransfers", "Transfer Receipt                    ");
+            this.customTabMain.TabPages.Add("tabPendingPurchases", "Purchase Receipt                    ");
+            this.customTabMain.TabPages[0].Controls.Add(this.fastPendingPickups);
+            this.customTabMain.TabPages[1].Controls.Add(this.fastPendingPickupWarehouses);
 
 
-            this.customTabBatch.Dock = DockStyle.Fill;
+            this.customTabMain.Dock = DockStyle.Fill;
             this.fastPendingPickups.Dock = DockStyle.Fill;
             this.fastPendingPickupWarehouses.Dock = DockStyle.Fill;
-            this.panelMaster.Controls.Add(this.customTabBatch);
+            this.panelMaster.Controls.Add(this.customTabMain);
 
 
             this.goodsReceiptAPIs = goodsReceiptAPIs;
@@ -66,9 +65,10 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
                 if (sender.Equals(this.buttonOK))
                 {
                     this.goodsReceiptViewModel.GoodsReceiptTypeID = 1; //GoodsReceiptTypeID = 1-FROM PRODUCTION/ LATER: WE SHOULD IMPLEMENT FOR EXPORT: GoodsReceiptTypeID = 2
+                    this.goodsReceiptViewModel.HasPickup = true;
 
                     bool nextOK = false;
-                    if (this.customTabBatch.SelectedIndex == 0)
+                    if (this.customTabMain.SelectedIndex == 0)
                     {
                         PendingPickup pendingPickup = (PendingPickup)this.fastPendingPickups.SelectedObject;
                         if (pendingPickup != null) {                            
@@ -82,7 +82,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
                             nextOK = true;
                         }
                     }
-                    if (this.customTabBatch.SelectedIndex == 1)
+                    if (this.customTabMain.SelectedIndex == 1)
                     {
                         PendingPickupWarehouse pendingPickupWarehouse = (PendingPickupWarehouse)this.fastPendingPickupWarehouses.SelectedObject;
                         if (pendingPickupWarehouse != null)

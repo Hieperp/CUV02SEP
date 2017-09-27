@@ -2643,6 +2643,16 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Placeholder16 {
+            get {
+                object obj = ResourceManager.GetObject("Placeholder16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Placeholder48 {
             get {
                 object obj = ResourceManager.GetObject("Placeholder48", resourceCulture);

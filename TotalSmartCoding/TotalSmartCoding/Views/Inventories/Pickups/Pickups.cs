@@ -26,6 +26,7 @@ using TotalSmartCoding.Controllers.APIs.Commons;
 using TotalCore.Repositories.Commons;
 using TotalBase;
 using TotalModel.Models;
+using TotalSmartCoding.Properties;
 
 namespace TotalSmartCoding.Views.Inventories.Pickups
 {
@@ -207,7 +208,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
             this.fastPickupIndex.AboutToCreateGroups += fastPickupIndex_AboutToCreateGroups;
 
             this.fastPickupIndex.ShowGroups = true;
-            this.olvApproved.Renderer = new MappedImageRenderer(new Object[] { false, this.imageList16.Images["Placeholder16"] });
+            this.olvApproved.Renderer = new MappedImageRenderer(new Object[] { false, Resources.Placeholder16 });
 
             this.tableLayoutMaster.ColumnStyles[this.tableLayoutMaster.ColumnCount - 1].SizeType = SizeType.Absolute; this.tableLayoutMaster.ColumnStyles[this.tableLayoutMaster.ColumnCount - 1].Width = 10;
         }

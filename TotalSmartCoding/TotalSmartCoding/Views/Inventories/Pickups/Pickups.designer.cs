@@ -77,8 +77,6 @@
             this.naviPickupIndex = new Guifreaks.Navisuite.NaviBand(this.components);
             this.naviIndex = new Guifreaks.Navisuite.NaviBar(this.components);
             this.panelMaster = new System.Windows.Forms.Panel();
-            this.imageList24 = new System.Windows.Forms.ImageList(this.components);
-            this.imageList16 = new System.Windows.Forms.ImageList(this.components);
             this.tableLayoutMaster.SuspendLayout();
             this.toolStripChildForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.naviDetails)).BeginInit();
@@ -379,7 +377,7 @@
             this.toolStripButton2});
             this.toolStripChildForm.Location = new System.Drawing.Point(0, 0);
             this.toolStripChildForm.Name = "toolStripChildForm";
-            this.toolStripChildForm.Size = new System.Drawing.Size(1837, 39);
+            this.toolStripChildForm.Size = new System.Drawing.Size(1645, 39);
             this.toolStripChildForm.TabIndex = 29;
             this.toolStripChildForm.Text = "toolStrip1";
             this.toolStripChildForm.Visible = false;
@@ -706,20 +704,6 @@
             this.panelMaster.Size = new System.Drawing.Size(827, 412);
             this.panelMaster.TabIndex = 72;
             // 
-            // imageList24
-            // 
-            this.imageList24.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList24.ImageStream")));
-            this.imageList24.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList24.Images.SetKeyName(0, "Placeholder");
-            this.imageList24.Images.SetKeyName(1, "LocationPin");
-            this.imageList24.Images.SetKeyName(2, "Flashing");
-            // 
-            // imageList16
-            // 
-            this.imageList16.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList16.ImageStream")));
-            this.imageList16.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList16.Images.SetKeyName(0, "Placeholder16");
-            // 
             // Pickups
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -799,10 +783,8 @@
         private System.Windows.Forms.Label labelFillingLineName;
         private BrightIdeasSoftware.OLVColumn olvPickupIndexReference;
         private System.Windows.Forms.ImageList imageList32;
-        private System.Windows.Forms.ImageList imageList24;
         private BrightIdeasSoftware.OLVColumn olvApproved;
         private BrightIdeasSoftware.OLVColumn olvFillingLineNickName;
-        private System.Windows.Forms.ImageList imageList16;
         private System.Windows.Forms.DataGridViewTextBoxColumn CommodityCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn PalletCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn BinLocationCode;

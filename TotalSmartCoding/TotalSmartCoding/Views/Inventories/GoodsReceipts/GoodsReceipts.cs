@@ -31,6 +31,7 @@ using TotalCore.Repositories.Commons;
 using TotalBase;
 using TotalModel.Models;
 using TotalDTO.Inventories;
+using BrightIdeasSoftware;
 
 
 namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
@@ -157,8 +158,24 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
             this.bindingCaption.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
 
             this.bindingStorekeeperID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.fastGoodsReceiptIndex.AboutToCreateGroups += fastGoodsReceiptIndex_AboutToCreateGroups;
+
+            this.fastGoodsReceiptIndex.ShowGroups = true;
+            this.olvApproved.Renderer = new MappedImageRenderer(new Object[] { false, Resources.Placeholder16 });
         }
-        
+
+        private void fastGoodsReceiptIndex_AboutToCreateGroups(object sender, CreateGroupsEventArgs e)
+        {
+            if (e.Groups != null && e.Groups.Count > 0)
+            {
+                foreach (OLVGroup olvGroup in e.Groups)
+                {
+                    olvGroup.TitleImage = "Storage32";
+                    olvGroup.Subtitle = "List count: " + olvGroup.Contents.Count.ToString();
+                }
+            }
+        }
+
         protected override void InitializeDataGridBinding()
         {
             this.gridexPalletDetails.AutoGenerateColumns = false;
@@ -194,6 +211,15 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
         public override void Loading()
         {
             this.fastGoodsReceiptIndex.SetObjects(this.goodsReceiptAPIs.GetGoodsReceiptIndexes());
+            this.fastGoodsReceiptIndex.Sort(this.olvEntryDate, SortOrder.Descending);
+            
+            foreach (OLVColumn a in this.fastGoodsReceiptIndex.Columns )
+            {
+                string ab = a.AspectName;
+                int i = a.Width;
+                string b = a.AspectName;
+            }
+
             base.Loading();
         }
 

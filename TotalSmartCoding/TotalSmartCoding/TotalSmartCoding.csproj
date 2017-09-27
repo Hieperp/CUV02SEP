@@ -1008,6 +1008,7 @@
     <None Include="Resources\Pallet-32C.png" />
     <None Include="Resources\Placeholder48.png" />
     <None Include="Resources\Placeholder64.png" />
+    <None Include="Resources\Placeholder16.png" />
     <Content Include="Resources\Toolbar Image1.png" />
     <None Include="Resources\Umar123-Carton.ico" />
     <Content Include="Resources\warning__1_.ico" />

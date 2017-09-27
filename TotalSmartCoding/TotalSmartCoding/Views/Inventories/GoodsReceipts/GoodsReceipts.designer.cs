@@ -31,9 +31,9 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GoodsReceipts));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.layoutLeft = new System.Windows.Forms.TableLayoutPanel();
@@ -56,6 +56,14 @@
             this.buttonExpandTop = new System.Windows.Forms.ToolStripButton();
             this.panelCenter = new System.Windows.Forms.Panel();
             this.gridexCartonDetails = new CustomControls.DataGridexView();
+            this.CartonPickupReference = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CartonPickupEntryDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CartonCommodityCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CartonCommodityName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CartonBinLocationCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CartonCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CartonQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CartonLineVolume = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStripCarton = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.buttonAddCartons = new System.Windows.Forms.ToolStripButton();
@@ -65,6 +73,14 @@
             this.textexDescription = new CustomControls.TextexBox();
             this.textexRemarks = new CustomControls.TextexBox();
             this.gridexPalletDetails = new CustomControls.DataGridexView();
+            this.PalletPickupReference = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PalletPickupEntryDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PalletCommodityCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PalletCommodityName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PalletBinLocationCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PalletCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PalletQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PalletVolume = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.naviGroupTop = new Guifreaks.Navisuite.NaviGroup(this.components);
             this.tableLayoutPanelExtend = new System.Windows.Forms.TableLayoutPanel();
             this.combexCommodityID = new CustomControls.CombexBox();
@@ -74,22 +90,15 @@
             this.olvID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvEntryDate = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvReference = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.CartonPickupReference = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CartonPickupEntryDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CartonCommodityCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CartonCommodityName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CartonBinLocationCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CartonCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CartonQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CartonLineVolume = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PalletPickupReference = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PalletPickupEntryDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PalletCommodityCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PalletCommodityName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PalletBinLocationCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PalletCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PalletQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PalletVolume = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.olvGoodsReceiptTypeCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvPickupReferences = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvLocationCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvWarehouseName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvDescription = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvTotalQuantity = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvTotalLineVolume = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvApproved = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.imageList32 = new System.Windows.Forms.ImageList(this.components);
             this.layoutLeft.SuspendLayout();
             this.toolStripChildForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.naviGroupDetails)).BeginInit();
@@ -245,10 +254,10 @@
             this.label11.AutoSize = true;
             this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label11.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(152, 5);
+            this.label11.Location = new System.Drawing.Point(145, 5);
             this.label11.Margin = new System.Windows.Forms.Padding(3);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(36, 84);
+            this.label11.Size = new System.Drawing.Size(33, 105);
             this.label11.TabIndex = 45;
             this.label11.Text = "Noted By";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -258,10 +267,10 @@
             this.label12.AutoSize = true;
             this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label12.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(301, 5);
+            this.label12.Location = new System.Drawing.Point(287, 5);
             this.label12.Margin = new System.Windows.Forms.Padding(3);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(36, 84);
+            this.label12.Size = new System.Drawing.Size(33, 105);
             this.label12.TabIndex = 47;
             this.label12.Text = "Approved By";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -275,7 +284,7 @@
             this.toolStripSeparator1});
             this.toolStripChildForm.Location = new System.Drawing.Point(0, 0);
             this.toolStripChildForm.Name = "toolStripChildForm";
-            this.toolStripChildForm.Size = new System.Drawing.Size(1309, 39);
+            this.toolStripChildForm.Size = new System.Drawing.Size(1364, 39);
             this.toolStripChildForm.TabIndex = 29;
             this.toolStripChildForm.Text = "toolStrip1";
             this.toolStripChildForm.Visible = false;
@@ -288,11 +297,13 @@
             this.toolStripButton2.Name = "toolStripButton2";
             this.toolStripButton2.Size = new System.Drawing.Size(118, 36);
             this.toolStripButton2.Text = "Disconnect";
+            this.toolStripButton2.Visible = false;
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 39);
+            this.toolStripSeparator1.Visible = false;
             // 
             // naviGroupDetails
             // 
@@ -396,6 +407,74 @@
             this.gridexCartonDetails.RowTemplate.Height = 24;
             this.gridexCartonDetails.Size = new System.Drawing.Size(334, 323);
             this.gridexCartonDetails.TabIndex = 77;
+            // 
+            // CartonPickupReference
+            // 
+            this.CartonPickupReference.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CartonPickupReference.DataPropertyName = "PickupReference";
+            this.CartonPickupReference.FillWeight = 6F;
+            this.CartonPickupReference.HeaderText = "Pickup";
+            this.CartonPickupReference.Name = "CartonPickupReference";
+            // 
+            // CartonPickupEntryDate
+            // 
+            this.CartonPickupEntryDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CartonPickupEntryDate.DataPropertyName = "PickupEntryDate";
+            this.CartonPickupEntryDate.FillWeight = 12F;
+            this.CartonPickupEntryDate.HeaderText = "Pickup Date";
+            this.CartonPickupEntryDate.Name = "CartonPickupEntryDate";
+            // 
+            // CartonCommodityCode
+            // 
+            this.CartonCommodityCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CartonCommodityCode.DataPropertyName = "CommodityCode";
+            this.CartonCommodityCode.FillWeight = 7F;
+            this.CartonCommodityCode.HeaderText = "Item Code";
+            this.CartonCommodityCode.Name = "CartonCommodityCode";
+            // 
+            // CartonCommodityName
+            // 
+            this.CartonCommodityName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CartonCommodityName.DataPropertyName = "CommodityName";
+            this.CartonCommodityName.FillWeight = 27F;
+            this.CartonCommodityName.HeaderText = "Description";
+            this.CartonCommodityName.Name = "CartonCommodityName";
+            // 
+            // CartonBinLocationCode
+            // 
+            this.CartonBinLocationCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CartonBinLocationCode.DataPropertyName = "BinLocationCode";
+            this.CartonBinLocationCode.FillWeight = 12F;
+            this.CartonBinLocationCode.HeaderText = "Bin Location";
+            this.CartonBinLocationCode.Name = "CartonBinLocationCode";
+            // 
+            // CartonCode
+            // 
+            this.CartonCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CartonCode.DataPropertyName = "CartonCode";
+            this.CartonCode.FillWeight = 24F;
+            this.CartonCode.HeaderText = "Carton";
+            this.CartonCode.Name = "CartonCode";
+            // 
+            // CartonQuantity
+            // 
+            this.CartonQuantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CartonQuantity.DataPropertyName = "Quantity";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.CartonQuantity.DefaultCellStyle = dataGridViewCellStyle1;
+            this.CartonQuantity.FillWeight = 5F;
+            this.CartonQuantity.HeaderText = "Qty";
+            this.CartonQuantity.Name = "CartonQuantity";
+            // 
+            // CartonLineVolume
+            // 
+            this.CartonLineVolume.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CartonLineVolume.DataPropertyName = "LineVolume";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.CartonLineVolume.DefaultCellStyle = dataGridViewCellStyle2;
+            this.CartonLineVolume.FillWeight = 7F;
+            this.CartonLineVolume.HeaderText = "Volume";
+            this.CartonLineVolume.Name = "CartonLineVolume";
             // 
             // toolStripCarton
             // 
@@ -530,207 +609,6 @@
             this.gridexPalletDetails.Size = new System.Drawing.Size(334, 323);
             this.gridexPalletDetails.TabIndex = 65;
             // 
-            // naviGroupTop
-            // 
-            this.naviGroupTop.Caption = null;
-            this.naviGroupTop.Controls.Add(this.tableLayoutPanelExtend);
-            this.naviGroupTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.naviGroupTop.ExpandedHeight = 88;
-            this.naviGroupTop.HeaderContextMenuStrip = null;
-            this.naviGroupTop.HeaderHeight = 0;
-            this.naviGroupTop.Location = new System.Drawing.Point(394, 34);
-            this.naviGroupTop.Name = "naviGroupTop";
-            this.naviGroupTop.Padding = new System.Windows.Forms.Padding(1, 2, 1, 1);
-            this.naviGroupTop.Size = new System.Drawing.Size(970, 88);
-            this.naviGroupTop.TabIndex = 67;
-            this.naviGroupTop.Tag = "UnExpandable";
-            // 
-            // tableLayoutPanelExtend
-            // 
-            this.tableLayoutPanelExtend.AutoSize = true;
-            this.tableLayoutPanelExtend.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tableLayoutPanelExtend.BackColor = System.Drawing.Color.Ivory;
-            this.tableLayoutPanelExtend.ColumnCount = 9;
-            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.00901F));
-            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.32099F));
-            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
-            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.00901F));
-            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.32099F));
-            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
-            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.019F));
-            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.32099F));
-            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 528F));
-            this.tableLayoutPanelExtend.Controls.Add(this.combexCommodityID, 0, 0);
-            this.tableLayoutPanelExtend.Controls.Add(this.label11, 3, 0);
-            this.tableLayoutPanelExtend.Controls.Add(this.label12, 6, 0);
-            this.tableLayoutPanelExtend.Controls.Add(this.label10, 0, 0);
-            this.tableLayoutPanelExtend.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanelExtend.Location = new System.Drawing.Point(1, 2);
-            this.tableLayoutPanelExtend.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanelExtend.Name = "tableLayoutPanelExtend";
-            this.tableLayoutPanelExtend.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.tableLayoutPanelExtend.RowCount = 1;
-            this.tableLayoutPanelExtend.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanelExtend.Size = new System.Drawing.Size(968, 85);
-            this.tableLayoutPanelExtend.TabIndex = 8;
-            // 
-            // combexCommodityID
-            // 
-            this.combexCommodityID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.combexCommodityID.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.combexCommodityID.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.combexCommodityID.Editable = true;
-            this.combexCommodityID.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.combexCommodityID.FormattingEnabled = true;
-            this.combexCommodityID.Location = new System.Drawing.Point(45, 3);
-            this.combexCommodityID.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
-            this.combexCommodityID.Name = "combexCommodityID";
-            this.combexCommodityID.ReadOnly = false;
-            this.combexCommodityID.Size = new System.Drawing.Size(93, 29);
-            this.combexCommodityID.TabIndex = 72;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label10.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(3, 5);
-            this.label10.Margin = new System.Windows.Forms.Padding(3);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(36, 84);
-            this.label10.TabIndex = 35;
-            this.label10.Text = "Requested By";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // panelLeft
-            // 
-            this.panelLeft.BackColor = System.Drawing.Color.Ivory;
-            this.panelLeft.Controls.Add(this.layoutLeft);
-            this.panelLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelLeft.Location = new System.Drawing.Point(0, 34);
-            this.panelLeft.Margin = new System.Windows.Forms.Padding(6);
-            this.panelLeft.Name = "panelLeft";
-            this.panelLeft.Size = new System.Drawing.Size(394, 411);
-            this.panelLeft.TabIndex = 73;
-            // 
-            // fastGoodsReceiptIndex
-            // 
-            this.fastGoodsReceiptIndex.AllColumns.Add(this.olvID);
-            this.fastGoodsReceiptIndex.AllColumns.Add(this.olvEntryDate);
-            this.fastGoodsReceiptIndex.AllColumns.Add(this.olvReference);
-            this.fastGoodsReceiptIndex.BackColor = System.Drawing.Color.Ivory;
-            this.fastGoodsReceiptIndex.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.olvID,
-            this.olvEntryDate,
-            this.olvReference});
-            this.fastGoodsReceiptIndex.Cursor = System.Windows.Forms.Cursors.Default;
-            this.fastGoodsReceiptIndex.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fastGoodsReceiptIndex.Font = new System.Drawing.Font("Calibri Light", 10.2F);
-            this.fastGoodsReceiptIndex.FullRowSelect = true;
-            this.fastGoodsReceiptIndex.HideSelection = false;
-            this.fastGoodsReceiptIndex.HighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
-            this.fastGoodsReceiptIndex.Location = new System.Drawing.Point(0, 0);
-            this.fastGoodsReceiptIndex.Name = "fastGoodsReceiptIndex";
-            this.fastGoodsReceiptIndex.OwnerDraw = true;
-            this.fastGoodsReceiptIndex.ShowGroups = false;
-            this.fastGoodsReceiptIndex.Size = new System.Drawing.Size(1364, 209);
-            this.fastGoodsReceiptIndex.TabIndex = 68;
-            this.fastGoodsReceiptIndex.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
-            this.fastGoodsReceiptIndex.UseCompatibleStateImageBehavior = false;
-            this.fastGoodsReceiptIndex.UseFiltering = true;
-            this.fastGoodsReceiptIndex.View = System.Windows.Forms.View.Details;
-            this.fastGoodsReceiptIndex.VirtualMode = true;
-            // 
-            // olvID
-            // 
-            this.olvID.Text = "";
-            this.olvID.Width = 0;
-            // 
-            // olvEntryDate
-            // 
-            this.olvEntryDate.AspectName = "EntryDate";
-            this.olvEntryDate.AspectToStringFormat = "{0:d}";
-            this.olvEntryDate.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvEntryDate.Text = "Date";
-            this.olvEntryDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvEntryDate.Width = 169;
-            // 
-            // olvReference
-            // 
-            this.olvReference.AspectName = "Reference";
-            this.olvReference.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvReference.Text = "Batch #";
-            this.olvReference.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvReference.Width = 257;
-            // 
-            // CartonPickupReference
-            // 
-            this.CartonPickupReference.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CartonPickupReference.DataPropertyName = "PickupReference";
-            this.CartonPickupReference.FillWeight = 6F;
-            this.CartonPickupReference.HeaderText = "Pickup";
-            this.CartonPickupReference.Name = "CartonPickupReference";
-            // 
-            // CartonPickupEntryDate
-            // 
-            this.CartonPickupEntryDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CartonPickupEntryDate.DataPropertyName = "PickupEntryDate";
-            this.CartonPickupEntryDate.FillWeight = 12F;
-            this.CartonPickupEntryDate.HeaderText = "Pickup Date";
-            this.CartonPickupEntryDate.Name = "CartonPickupEntryDate";
-            // 
-            // CartonCommodityCode
-            // 
-            this.CartonCommodityCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CartonCommodityCode.DataPropertyName = "CommodityCode";
-            this.CartonCommodityCode.FillWeight = 7F;
-            this.CartonCommodityCode.HeaderText = "Item Code";
-            this.CartonCommodityCode.Name = "CartonCommodityCode";
-            // 
-            // CartonCommodityName
-            // 
-            this.CartonCommodityName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CartonCommodityName.DataPropertyName = "CommodityName";
-            this.CartonCommodityName.FillWeight = 27F;
-            this.CartonCommodityName.HeaderText = "Description";
-            this.CartonCommodityName.Name = "CartonCommodityName";
-            // 
-            // CartonBinLocationCode
-            // 
-            this.CartonBinLocationCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CartonBinLocationCode.DataPropertyName = "BinLocationCode";
-            this.CartonBinLocationCode.FillWeight = 12F;
-            this.CartonBinLocationCode.HeaderText = "Bin Location";
-            this.CartonBinLocationCode.Name = "CartonBinLocationCode";
-            // 
-            // CartonCode
-            // 
-            this.CartonCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CartonCode.DataPropertyName = "CartonCode";
-            this.CartonCode.FillWeight = 24F;
-            this.CartonCode.HeaderText = "Carton";
-            this.CartonCode.Name = "CartonCode";
-            // 
-            // CartonQuantity
-            // 
-            this.CartonQuantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CartonQuantity.DataPropertyName = "Quantity";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.CartonQuantity.DefaultCellStyle = dataGridViewCellStyle1;
-            this.CartonQuantity.FillWeight = 5F;
-            this.CartonQuantity.HeaderText = "Quantity";
-            this.CartonQuantity.Name = "CartonQuantity";
-            // 
-            // CartonLineVolume
-            // 
-            this.CartonLineVolume.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CartonLineVolume.DataPropertyName = "LineVolume";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.CartonLineVolume.DefaultCellStyle = dataGridViewCellStyle2;
-            this.CartonLineVolume.FillWeight = 7F;
-            this.CartonLineVolume.HeaderText = "Volume";
-            this.CartonLineVolume.Name = "CartonLineVolume";
-            // 
             // PalletPickupReference
             // 
             this.PalletPickupReference.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -786,7 +664,7 @@
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             this.PalletQuantity.DefaultCellStyle = dataGridViewCellStyle4;
             this.PalletQuantity.FillWeight = 5F;
-            this.PalletQuantity.HeaderText = "Quantity";
+            this.PalletQuantity.HeaderText = "Qty";
             this.PalletQuantity.Name = "PalletQuantity";
             // 
             // PalletVolume
@@ -798,6 +676,222 @@
             this.PalletVolume.FillWeight = 7F;
             this.PalletVolume.HeaderText = "Volume";
             this.PalletVolume.Name = "PalletVolume";
+            // 
+            // naviGroupTop
+            // 
+            this.naviGroupTop.Caption = null;
+            this.naviGroupTop.Controls.Add(this.tableLayoutPanelExtend);
+            this.naviGroupTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.naviGroupTop.ExpandedHeight = 88;
+            this.naviGroupTop.HeaderContextMenuStrip = null;
+            this.naviGroupTop.HeaderHeight = 0;
+            this.naviGroupTop.Location = new System.Drawing.Point(394, 34);
+            this.naviGroupTop.Name = "naviGroupTop";
+            this.naviGroupTop.Padding = new System.Windows.Forms.Padding(1, 2, 1, 1);
+            this.naviGroupTop.Size = new System.Drawing.Size(970, 88);
+            this.naviGroupTop.TabIndex = 67;
+            this.naviGroupTop.Tag = "UnExpandable";
+            // 
+            // tableLayoutPanelExtend
+            // 
+            this.tableLayoutPanelExtend.AutoSize = true;
+            this.tableLayoutPanelExtend.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanelExtend.BackColor = System.Drawing.Color.Ivory;
+            this.tableLayoutPanelExtend.ColumnCount = 9;
+            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.00901F));
+            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.32099F));
+            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.00901F));
+            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.32099F));
+            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.019F));
+            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.32099F));
+            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 549F));
+            this.tableLayoutPanelExtend.Controls.Add(this.combexCommodityID, 0, 0);
+            this.tableLayoutPanelExtend.Controls.Add(this.label11, 3, 0);
+            this.tableLayoutPanelExtend.Controls.Add(this.label12, 6, 0);
+            this.tableLayoutPanelExtend.Controls.Add(this.label10, 0, 0);
+            this.tableLayoutPanelExtend.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanelExtend.Location = new System.Drawing.Point(1, 2);
+            this.tableLayoutPanelExtend.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanelExtend.Name = "tableLayoutPanelExtend";
+            this.tableLayoutPanelExtend.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            this.tableLayoutPanelExtend.RowCount = 1;
+            this.tableLayoutPanelExtend.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanelExtend.Size = new System.Drawing.Size(968, 85);
+            this.tableLayoutPanelExtend.TabIndex = 8;
+            // 
+            // combexCommodityID
+            // 
+            this.combexCommodityID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.combexCommodityID.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.combexCommodityID.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.combexCommodityID.Editable = true;
+            this.combexCommodityID.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.combexCommodityID.FormattingEnabled = true;
+            this.combexCommodityID.Location = new System.Drawing.Point(42, 3);
+            this.combexCommodityID.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
+            this.combexCommodityID.Name = "combexCommodityID";
+            this.combexCommodityID.ReadOnly = false;
+            this.combexCommodityID.Size = new System.Drawing.Size(89, 29);
+            this.combexCommodityID.TabIndex = 72;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label10.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(3, 5);
+            this.label10.Margin = new System.Windows.Forms.Padding(3);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(33, 105);
+            this.label10.TabIndex = 35;
+            this.label10.Text = "Requested By";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // panelLeft
+            // 
+            this.panelLeft.BackColor = System.Drawing.Color.Ivory;
+            this.panelLeft.Controls.Add(this.layoutLeft);
+            this.panelLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelLeft.Location = new System.Drawing.Point(0, 34);
+            this.panelLeft.Margin = new System.Windows.Forms.Padding(6);
+            this.panelLeft.Name = "panelLeft";
+            this.panelLeft.Size = new System.Drawing.Size(394, 411);
+            this.panelLeft.TabIndex = 73;
+            // 
+            // fastGoodsReceiptIndex
+            // 
+            this.fastGoodsReceiptIndex.AllColumns.Add(this.olvID);
+            this.fastGoodsReceiptIndex.AllColumns.Add(this.olvEntryDate);
+            this.fastGoodsReceiptIndex.AllColumns.Add(this.olvReference);
+            this.fastGoodsReceiptIndex.AllColumns.Add(this.olvGoodsReceiptTypeCode);
+            this.fastGoodsReceiptIndex.AllColumns.Add(this.olvPickupReferences);
+            this.fastGoodsReceiptIndex.AllColumns.Add(this.olvLocationCode);
+            this.fastGoodsReceiptIndex.AllColumns.Add(this.olvWarehouseName);
+            this.fastGoodsReceiptIndex.AllColumns.Add(this.olvDescription);
+            this.fastGoodsReceiptIndex.AllColumns.Add(this.olvTotalQuantity);
+            this.fastGoodsReceiptIndex.AllColumns.Add(this.olvTotalLineVolume);
+            this.fastGoodsReceiptIndex.AllColumns.Add(this.olvApproved);
+            this.fastGoodsReceiptIndex.BackColor = System.Drawing.Color.Ivory;
+            this.fastGoodsReceiptIndex.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.olvID,
+            this.olvEntryDate,
+            this.olvReference,
+            this.olvGoodsReceiptTypeCode,
+            this.olvPickupReferences,
+            this.olvLocationCode,
+            this.olvWarehouseName,
+            this.olvDescription,
+            this.olvTotalQuantity,
+            this.olvTotalLineVolume,
+            this.olvApproved});
+            this.fastGoodsReceiptIndex.Cursor = System.Windows.Forms.Cursors.Default;
+            this.fastGoodsReceiptIndex.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fastGoodsReceiptIndex.Font = new System.Drawing.Font("Calibri Light", 10.2F);
+            this.fastGoodsReceiptIndex.FullRowSelect = true;
+            this.fastGoodsReceiptIndex.GroupImageList = this.imageList32;
+            this.fastGoodsReceiptIndex.HideSelection = false;
+            this.fastGoodsReceiptIndex.HighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
+            this.fastGoodsReceiptIndex.Location = new System.Drawing.Point(0, 0);
+            this.fastGoodsReceiptIndex.Name = "fastGoodsReceiptIndex";
+            this.fastGoodsReceiptIndex.OwnerDraw = true;
+            this.fastGoodsReceiptIndex.ShowGroups = false;
+            this.fastGoodsReceiptIndex.Size = new System.Drawing.Size(1364, 209);
+            this.fastGoodsReceiptIndex.TabIndex = 68;
+            this.fastGoodsReceiptIndex.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
+            this.fastGoodsReceiptIndex.UseCompatibleStateImageBehavior = false;
+            this.fastGoodsReceiptIndex.UseFiltering = true;
+            this.fastGoodsReceiptIndex.View = System.Windows.Forms.View.Details;
+            this.fastGoodsReceiptIndex.VirtualMode = true;
+            // 
+            // olvID
+            // 
+            this.olvID.Text = "";
+            this.olvID.Width = 0;
+            // 
+            // olvEntryDate
+            // 
+            this.olvEntryDate.AspectName = "EntryDate";
+            this.olvEntryDate.AspectToStringFormat = "{0:d}";
+            this.olvEntryDate.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvEntryDate.Text = "Date";
+            this.olvEntryDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvEntryDate.Width = 113;
+            // 
+            // olvReference
+            // 
+            this.olvReference.AspectName = "Reference";
+            this.olvReference.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvReference.Text = "Reference";
+            this.olvReference.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvReference.Width = 90;
+            // 
+            // olvGoodsReceiptTypeCode
+            // 
+            this.olvGoodsReceiptTypeCode.AspectName = "GoodsReceiptTypeCode";
+            this.olvGoodsReceiptTypeCode.Text = "Receipt Type";
+            this.olvGoodsReceiptTypeCode.Width = 113;
+            // 
+            // olvPickupReferences
+            // 
+            this.olvPickupReferences.AspectName = "PickupReferences";
+            this.olvPickupReferences.Text = "Vouchers";
+            this.olvPickupReferences.Width = 209;
+            // 
+            // olvLocationCode
+            // 
+            this.olvLocationCode.AspectName = "LocationCode";
+            this.olvLocationCode.Text = "Location";
+            this.olvLocationCode.Width = 72;
+            // 
+            // olvWarehouseName
+            // 
+            this.olvWarehouseName.AspectName = "WarehouseName";
+            this.olvWarehouseName.Text = "Warehouse";
+            this.olvWarehouseName.Width = 94;
+            // 
+            // olvDescription
+            // 
+            this.olvDescription.AspectName = "Description";
+            this.olvDescription.Text = "Description";
+            this.olvDescription.Width = 599;
+            // 
+            // olvTotalQuantity
+            // 
+            this.olvTotalQuantity.AspectName = "TotalQuantity";
+            this.olvTotalQuantity.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.olvTotalQuantity.Text = "Quantity";
+            this.olvTotalQuantity.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.olvTotalQuantity.Width = 81;
+            // 
+            // olvTotalLineVolume
+            // 
+            this.olvTotalLineVolume.AspectName = "TotalLineVolume";
+            this.olvTotalLineVolume.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.olvTotalLineVolume.Text = "Volume";
+            this.olvTotalLineVolume.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.olvTotalLineVolume.Width = 90;
+            // 
+            // olvApproved
+            // 
+            this.olvApproved.AspectName = "Approved";
+            this.olvApproved.FillsFreeSpace = true;
+            this.olvApproved.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvApproved.Text = "";
+            this.olvApproved.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvApproved.Width = 54;
+            // 
+            // imageList32
+            // 
+            this.imageList32.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList32.ImageStream")));
+            this.imageList32.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList32.Images.SetKeyName(0, "Forklift");
+            this.imageList32.Images.SetKeyName(1, "ForkliftYellow");
+            this.imageList32.Images.SetKeyName(2, "ForkliftOrange");
+            this.imageList32.Images.SetKeyName(3, "ForkliftJapan");
+            this.imageList32.Images.SetKeyName(4, "Placeholder32");
+            this.imageList32.Images.SetKeyName(5, "Storage32");
             // 
             // GoodsReceipts
             // 
@@ -882,6 +976,15 @@
         private System.Windows.Forms.Label label2;
         private CustomControls.TextexBox textexWarehouseName;
         private CustomControls.DataGridexView gridexCartonDetails;
+        private System.Windows.Forms.ImageList imageList32;
+        private BrightIdeasSoftware.OLVColumn olvApproved;
+        private BrightIdeasSoftware.OLVColumn olvGoodsReceiptTypeCode;
+        private BrightIdeasSoftware.OLVColumn olvPickupReferences;
+        private BrightIdeasSoftware.OLVColumn olvLocationCode;
+        private BrightIdeasSoftware.OLVColumn olvWarehouseName;
+        private BrightIdeasSoftware.OLVColumn olvDescription;
+        private BrightIdeasSoftware.OLVColumn olvTotalQuantity;
+        private BrightIdeasSoftware.OLVColumn olvTotalLineVolume;
         private System.Windows.Forms.DataGridViewTextBoxColumn CartonPickupReference;
         private System.Windows.Forms.DataGridViewTextBoxColumn CartonPickupEntryDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn CartonCommodityCode;
