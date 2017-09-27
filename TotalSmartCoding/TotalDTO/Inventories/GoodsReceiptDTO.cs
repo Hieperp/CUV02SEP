@@ -118,8 +118,8 @@ namespace TotalDTO.Inventories
             this.CartonDetails = new BindingListView<GoodsReceiptDetailDTO>(this.GoodsReceiptViewDetails);
             this.PalletDetails = new BindingListView<GoodsReceiptDetailDTO>(this.GoodsReceiptViewDetails);
 
-            this.PalletDetails.ApplyFilter(f => f.PackID != null);
-            this.PalletDetails.ApplyFilter(f => f.CartonID != null);
+            this.PackDetails.ApplyFilter(f => f.PackID != null);
+            this.CartonDetails.ApplyFilter(f => f.CartonID != null);
             this.PalletDetails.ApplyFilter(f => f.PalletID != null);
         }
 
