@@ -192,6 +192,7 @@
             // 
             // panelMaster
             // 
+            this.panelMaster.BackColor = System.Drawing.Color.Ivory;
             this.panelMaster.Controls.Add(this.fastPendingPallets);
             this.panelMaster.Controls.Add(this.fastPendingCartons);
             this.panelMaster.Controls.Add(this.fastPendingPacks);

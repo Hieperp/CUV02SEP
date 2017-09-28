@@ -424,16 +424,13 @@ namespace TotalSmartCoding.Views.Mains
             //Pickups grForm;
             //grForm = new Pickups();
 
-            GoodsReceipts grForm;
-            grForm = new GoodsReceipts();
+            //GoodsReceipts grForm;
+            //grForm = new GoodsReceipts();
 
 
 
-            ////Open new form
-            //SalesOrders grForm;
-            ////childForm = new Batches();
-            ////childForm = new DeliveryAdvices();
-            //grForm = new SalesOrders();
+            SalesOrders grForm;
+            grForm = new SalesOrders();
 
 
             //DeliveryAdvices grForm;

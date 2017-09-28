@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.buttonESC = new System.Windows.Forms.ToolStripButton();
+            this.buttonOK = new System.Windows.Forms.ToolStripButton();
             this.fastPendingPickups = new BrightIdeasSoftware.FastObjectListView();
             this.olvPickupEntryDate = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvPickupReference = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -37,8 +39,6 @@
             this.olvWarehouseID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvWarehouseName1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.panelMaster = new System.Windows.Forms.Panel();
-            this.buttonESC = new System.Windows.Forms.ToolStripButton();
-            this.buttonOK = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastPendingPickups)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fastPendingPickupWarehouses)).BeginInit();
@@ -59,6 +59,28 @@
             this.toolStrip1.Size = new System.Drawing.Size(1147, 55);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // buttonESC
+            // 
+            this.buttonESC.Image = global::TotalSmartCoding.Properties.Resources.signout_icon_24;
+            this.buttonESC.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonESC.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonESC.Name = "buttonESC";
+            this.buttonESC.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.buttonESC.Size = new System.Drawing.Size(81, 52);
+            this.buttonESC.Text = "Cancel";
+            this.buttonESC.Click += new System.EventHandler(this.buttonOKESC_Click);
+            // 
+            // buttonOK
+            // 
+            this.buttonOK.Image = global::TotalSmartCoding.Properties.Resources.Oxygen_Icons_org_Oxygen_Actions_go_next_view;
+            this.buttonOK.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonOK.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonOK.Name = "buttonOK";
+            this.buttonOK.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.buttonOK.Size = new System.Drawing.Size(92, 52);
+            this.buttonOK.Text = "Next";
+            this.buttonOK.Click += new System.EventHandler(this.buttonOKESC_Click);
             // 
             // fastPendingPickups
             // 
@@ -138,6 +160,7 @@
             // 
             // panelMaster
             // 
+            this.panelMaster.BackColor = System.Drawing.Color.Ivory;
             this.panelMaster.Controls.Add(this.fastPendingPickups);
             this.panelMaster.Controls.Add(this.fastPendingPickupWarehouses);
             this.panelMaster.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -146,28 +169,6 @@
             this.panelMaster.Padding = new System.Windows.Forms.Padding(0, 9, 0, 0);
             this.panelMaster.Size = new System.Drawing.Size(1147, 548);
             this.panelMaster.TabIndex = 71;
-            // 
-            // buttonESC
-            // 
-            this.buttonESC.Image = global::TotalSmartCoding.Properties.Resources.signout_icon_24;
-            this.buttonESC.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.buttonESC.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonESC.Name = "buttonESC";
-            this.buttonESC.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.buttonESC.Size = new System.Drawing.Size(81, 52);
-            this.buttonESC.Text = "Cancel";
-            this.buttonESC.Click += new System.EventHandler(this.buttonOKESC_Click);
-            // 
-            // buttonOK
-            // 
-            this.buttonOK.Image = global::TotalSmartCoding.Properties.Resources.Oxygen_Icons_org_Oxygen_Actions_go_next_view;
-            this.buttonOK.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.buttonOK.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonOK.Name = "buttonOK";
-            this.buttonOK.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.buttonOK.Size = new System.Drawing.Size(92, 52);
-            this.buttonOK.Text = "Next";
-            this.buttonOK.Click += new System.EventHandler(this.buttonOKESC_Click);
             // 
             // WizardMaster
             // 
