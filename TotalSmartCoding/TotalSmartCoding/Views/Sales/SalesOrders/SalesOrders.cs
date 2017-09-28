@@ -103,11 +103,10 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
                 this.panelCenter.Controls.Add(this.customTabCenter);
                 #endregion TabCenter
 
-                this.tableLayoutPanelExtend.ColumnStyles[this.tableLayoutPanelExtend.ColumnCount - 1].SizeType = SizeType.Absolute; this.tableLayoutPanelExtend.ColumnStyles[this.tableLayoutPanelExtend.ColumnCount - 1].Width = 15;
+                this.layoutTop.ColumnStyles[this.layoutTop.ColumnCount - 1].SizeType = SizeType.Absolute; this.layoutTop.ColumnStyles[this.layoutTop.ColumnCount - 1].Width = 15;
 
                 this.buttonExpandTop.Visible = this.naviGroupTop.Tag.ToString() == "Expandable";
                 this.buttonExpandTop_Click(this.buttonExpandTop, new EventArgs());
-
             }
             catch (Exception exception)
             {
@@ -172,7 +171,7 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
             {
                 foreach (OLVGroup olvGroup in e.Groups)
                 {
-                    olvGroup.TitleImage = "Storage32";
+                    olvGroup.TitleImage = "Sign_Order_32";
                     olvGroup.Subtitle = "Count: " + olvGroup.Contents.Count.ToString() + " Order(s)";
                 }
             }

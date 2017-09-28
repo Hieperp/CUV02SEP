@@ -933,6 +933,9 @@
     <None Include="Resources\Add-icon-16.png" />
     <None Include="Resources\Add-continue.ico" />
     <None Include="Resources\Add-close.ico" />
+    <None Include="Resources\Customer Orange 24.png" />
+    <None Include="Resources\Customer Orange 241.png" />
+    <None Include="Resources\Customer Blue 24.png" />
     <Content Include="Resources\Icons-Land-Play-Stop-Pause-Play-Pressed.ico" />
     <None Include="Resources\Land-Play.ico" />
     <None Include="Resources\palet031.ico" />
@@ -1024,8 +1027,11 @@
     <None Include="Resources\Placeholder48.png" />
     <None Include="Resources\Placeholder64.png" />
     <None Include="Resources\Placeholder16.png" />
+    <None Include="Resources\Shipping-free-24.png" />
+    <None Include="Resources\Phone-icon-24.png" />
     <Content Include="Resources\Toolbar Image1.png" />
     <None Include="Resources\Umar123-Carton.ico" />
+    <None Include="Resources\Truck-24.png" />
     <Content Include="Resources\warning__1_.ico" />
   </ItemGroup>
   <ItemGroup />
