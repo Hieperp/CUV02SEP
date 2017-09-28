@@ -918,6 +918,12 @@
     <None Include="Resources\Box-full-32S2.png" />
     <None Include="Resources\Add-detail-24.png" />
     <None Include="Resources\Check-Saki-Cross.ico" />
+    <None Include="Resources\AddNew.ico" />
+    <None Include="Resources\Add-Person.ico" />
+    <None Include="Resources\Add-icon-24.png" />
+    <None Include="Resources\Add-icon-16.png" />
+    <None Include="Resources\Add-continue.ico" />
+    <None Include="Resources\Add-close.ico" />
     <Content Include="Resources\Icons-Land-Play-Stop-Pause-Play-Pressed.ico" />
     <None Include="Resources\Land-Play.ico" />
     <None Include="Resources\palet031.ico" />

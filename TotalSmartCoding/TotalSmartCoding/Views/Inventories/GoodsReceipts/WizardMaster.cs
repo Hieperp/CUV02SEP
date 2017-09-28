@@ -24,10 +24,11 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
             this.customTabMain.DisplayStyle = TabStyle.VisualStudio;
             this.customTabMain.DisplayStyleProvider.ImageAlign = ContentAlignment.MiddleLeft;
 
-            this.customTabMain.TabPages.Add("tabPendingPickups", "Receipt by pickup                  ");
-            this.customTabMain.TabPages.Add("tabPendingPickupWarehouses", "Receipt by warehouse          ");
-            this.customTabMain.TabPages.Add("tabPendingTransfers", "Transfer Receipt                    ");
-            this.customTabMain.TabPages.Add("tabPendingPurchases", "Purchase Receipt                    ");
+            this.customTabMain.TabPages.Add("tabPendingPickups", "Receipt by pickup       ");
+            this.customTabMain.TabPages.Add("tabPendingPickupWarehouses", "Receipt by warehouse   ");
+            this.customTabMain.TabPages.Add("tabPendingTransfers", "Transfer Receipt     ");
+            this.customTabMain.TabPages.Add("tabPendingPurchases", "Purchase Invoice     ");
+            this.customTabMain.TabPages.Add("tabPendingPurchases", "Sales Return     ");
             this.customTabMain.TabPages[0].Controls.Add(this.fastPendingPickups);
             this.customTabMain.TabPages[1].Controls.Add(this.fastPendingPickupWarehouses);
 
@@ -73,7 +74,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
                         PendingPickup pendingPickup = (PendingPickup)this.fastPendingPickups.SelectedObject;
                         if (pendingPickup != null) {                            
                             this.goodsReceiptViewModel.PickupID = pendingPickup.PickupID;
-                            this.goodsReceiptViewModel.PickupReferences = pendingPickup.PickupReference;
+                            this.goodsReceiptViewModel.PickupReference = pendingPickup.PickupReference;
                             
                             this.goodsReceiptViewModel.GoodsReceiptTypeID = pendingPickup.GoodsReceiptTypeID;
                             this.goodsReceiptViewModel.GoodsReceiptTypeName = pendingPickup.GoodsReceiptTypeName;
@@ -98,7 +99,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
                     if (nextOK)
                         this.DialogResult = DialogResult.OK;
                     else
-                        CustomMsgBox.Show(this, "Vui lòng chọn phiếu giao thành phẩm sau đóng gói, hoặc kho nhận hàng.", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Stop);                    
+                        CustomMsgBox.Show(this, "Vui lòng chọn phiếu giao thành phẩm sau đóng gói, hoặc kho nhận.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Stop);                    
                 }
 
                 if (sender.Equals(this.buttonESC))

@@ -90,7 +90,7 @@
             // 
             // buttonAddExit
             // 
-            this.buttonAddExit.Image = global::TotalSmartCoding.Properties.Resources.Oxygen_Icons_org_Oxygen_Actions_go_next_view;
+            this.buttonAddExit.Image = global::TotalSmartCoding.Properties.Resources.Add_close;
             this.buttonAddExit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.buttonAddExit.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonAddExit.Name = "buttonAddExit";
@@ -101,7 +101,7 @@
             // 
             // buttonAdd
             // 
-            this.buttonAdd.Image = global::TotalSmartCoding.Properties.Resources.Oxygen_Icons_org_Oxygen_Actions_go_previous_view;
+            this.buttonAdd.Image = global::TotalSmartCoding.Properties.Resources.Add_continue;
             this.buttonAdd.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.buttonAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonAdd.Name = "buttonAdd";
@@ -150,6 +150,7 @@
             this.olvIsSelected.HeaderCheckBox = true;
             this.olvIsSelected.HeaderCheckState = System.Windows.Forms.CheckState.Checked;
             this.olvIsSelected.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvIsSelected.Sortable = false;
             this.olvIsSelected.Text = "";
             this.olvIsSelected.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvIsSelected.Width = 20;
@@ -241,6 +242,7 @@
             this.olvColumn1.HeaderCheckBox = true;
             this.olvColumn1.HeaderCheckState = System.Windows.Forms.CheckState.Checked;
             this.olvColumn1.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvColumn1.Sortable = false;
             this.olvColumn1.Text = "";
             this.olvColumn1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvColumn1.Width = 20;
@@ -320,6 +322,7 @@
             this.olvColumn7.HeaderCheckBox = true;
             this.olvColumn7.HeaderCheckState = System.Windows.Forms.CheckState.Checked;
             this.olvColumn7.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvColumn7.Sortable = false;
             this.olvColumn7.Text = "";
             this.olvColumn7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvColumn7.Width = 20;

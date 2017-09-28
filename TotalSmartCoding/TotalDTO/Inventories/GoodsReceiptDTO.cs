@@ -55,6 +55,9 @@ namespace TotalDTO.Inventories
             get { return this.pickupID; }
             set { ApplyPropertyChange<GoodsReceiptPrimitiveDTO, Nullable<int>>(ref this.pickupID, o => o.PickupID, value); }
         }
+        [DefaultValue(null)]
+        public string PickupReference { get; set; }
+        [DefaultValue(null)]
         public string PickupReferences { get; set; }
 
 
@@ -90,7 +93,7 @@ namespace TotalDTO.Inventories
 
         public override string Caption
         {
-            get { return this.GoodsReceiptTypeName + ", " + this.WarehouseName + ", " + this.EntryDate.ToString() + "             Pallet count: " + this.TotalPalletCounts.ToString() + ",    Quantity: " + this.TotalQuantity.ToString() + ",    Volume: " + this.TotalLineVolume.ToString("N2"); }
+            get { return this.GoodsReceiptTypeName + ": " + (this.PickupID != null ? this.PickupReference : this.PickupReferences) + "             " + this.WarehouseName + (this.WarehouseName != ""? ", ":"") + this.EntryDate.ToString() + "             Total Quantity: " + this.TotalQuantity.ToString() + ",    Total Volume: " + this.TotalLineVolume.ToString("N2"); }
         }
 
         public override void PerformPresaveRule()
@@ -108,7 +111,7 @@ namespace TotalDTO.Inventories
         public GoodsReceiptDTO()
         {
             this.GoodsReceiptViewDetails = new BindingList<GoodsReceiptDetailDTO>();
-            
+
 
 
 

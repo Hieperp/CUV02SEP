@@ -387,12 +387,12 @@
             // 
             this.buttonNew.Enabled = false;
             this.buttonNew.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonNew.Image = global::TotalSmartCoding.Properties.Resources.DataNew;
+            this.buttonNew.Image = global::TotalSmartCoding.Properties.Resources.AddNew;
             this.buttonNew.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.buttonNew.ImageTransparentColor = System.Drawing.Color.Black;
             this.buttonNew.Name = "buttonNew";
-            this.buttonNew.Size = new System.Drawing.Size(91, 52);
-            this.buttonNew.Text = "New";
+            this.buttonNew.Size = new System.Drawing.Size(89, 52);
+            this.buttonNew.Text = "Add";
             this.buttonNew.Click += new System.EventHandler(this.buttonNew_Click);
             // 
             // buttonEdit
