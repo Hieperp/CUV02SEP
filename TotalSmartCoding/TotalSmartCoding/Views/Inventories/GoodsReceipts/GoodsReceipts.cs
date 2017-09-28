@@ -70,7 +70,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
                 this.customTabLeft = new CustomTabControl();
                 this.customTabLeft.DisplayStyle = TabStyle.VisualStudio;
 
-                this.customTabLeft.TabPages.Add("tabLeftAA", "Receipts   ");
+                this.customTabLeft.TabPages.Add("tabLeftAA", "Goods Receipt ");
                 this.customTabLeft.TabPages[0].BackColor = this.panelLeft.BackColor;
                 this.customTabLeft.TabPages[0].Padding = new Padding(15, 0, 0, 0);
                 this.customTabLeft.TabPages[0].Controls.Add(this.layoutLeft);
@@ -162,6 +162,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
 
             this.fastGoodsReceiptIndex.ShowGroups = true;
             this.olvApproved.Renderer = new MappedImageRenderer(new Object[] { false, Resources.Placeholder16 });
+            this.naviGroupDetails.ExpandedHeight = this.naviGroupDetails.Size.Height;
         }
 
         private void fastGoodsReceiptIndex_AboutToCreateGroups(object sender, CreateGroupsEventArgs e)
@@ -211,16 +212,14 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
         public override void Loading()
         {
             this.fastGoodsReceiptIndex.SetObjects(this.goodsReceiptAPIs.GetGoodsReceiptIndexes());
-            this.fastGoodsReceiptIndex.Sort(this.olvEntryDate, SortOrder.Descending);
             
-            foreach (OLVColumn a in this.fastGoodsReceiptIndex.Columns )
-            {
-                string ab = a.AspectName;
-                int i = a.Width;
-                string b = a.AspectName;
-            }
-
             base.Loading();
+        }
+
+        protected override void DoAfterLoad()
+        {
+            base.DoAfterLoad();
+            this.fastGoodsReceiptIndex.Sort(this.olvEntryDate, SortOrder.Descending);
         }
 
         protected override DialogResult wizardMaster()
@@ -255,7 +254,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
         }
 
         private void buttonExpandTop_Click(object sender, EventArgs e)
-        {
+        {            
             if (this.naviGroupTop.Tag.ToString() == "Expandable" || this.naviGroupTop.Expanded)
             {
                 this.naviGroupTop.Expanded = !this.naviGroupTop.Expanded;

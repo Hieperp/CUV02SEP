@@ -31,6 +31,14 @@ namespace TotalDTO.Sales
             set { ApplyPropertyChange<SalesOrderPrimitiveDTO, int>(ref this.salesOrderID, o => o.SalesOrderID, value); }
         }
 
+        
+        private string voucherNo;
+        [DefaultValue("")]
+        public string VoucherNo
+        {
+            get { return this.voucherNo; }
+            set { ApplyPropertyChange<SalesOrderDTO, string>(ref this.voucherNo, o => o.VoucherNo, value); }
+        }
 
         private Nullable<int> customerID;
         [DefaultValue(null)]

@@ -423,7 +423,7 @@
             // 
             this.buttonDelete.Enabled = false;
             this.buttonDelete.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonDelete.Image = global::TotalSmartCoding.Properties.Resources.Recycle_Bin_full;
+            this.buttonDelete.Image = global::TotalSmartCoding.Properties.Resources.Check_Saki_Cross;
             this.buttonDelete.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.buttonDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonDelete.Name = "buttonDelete";

@@ -62,12 +62,15 @@ namespace TotalSmartCoding.Views.Mains
                 this.InitializeReadOnlyModeBinding();
 
                 this.Loading();
+                this.DoAfterLoad();
             }
             catch (Exception exception)
             {
                 ExceptionHandlers.ShowExceptionMessageBox(this, exception);
             }
         }
+
+        protected virtual void DoAfterLoad() { }
 
         Binding bindingIsDirty;
 

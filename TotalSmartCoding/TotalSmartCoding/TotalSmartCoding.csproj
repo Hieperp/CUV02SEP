@@ -299,6 +299,12 @@
     <Compile Include="Views\Sales\DeliveryAdvices\WizardMaster.designer.cs">
       <DependentUpon>WizardMaster.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Sales\SalesOrders\SalesOrders.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Sales\SalesOrders\SalesOrders.designer.cs">
+      <DependentUpon>SalesOrders.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Sales\SalesOrders\SalesOrdersXYZ.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -381,6 +387,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Sales\DeliveryAdvices\WizardMaster.resx">
       <DependentUpon>WizardMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Sales\SalesOrders\SalesOrders.resx">
+      <DependentUpon>SalesOrders.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Sales\SalesOrders\SalesOrdersXYZ.resx">
       <DependentUpon>SalesOrdersXYZ.cs</DependentUpon>

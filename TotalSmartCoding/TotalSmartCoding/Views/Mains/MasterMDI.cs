@@ -429,9 +429,11 @@ namespace TotalSmartCoding.Views.Mains
 
 
 
-            SalesOrderYXZs grForm;
-            grForm = new SalesOrderYXZs();
+            //SalesOrderYXZs grForm;
+            //grForm = new SalesOrderYXZs();
 
+            SalesOrders grForm;
+            grForm = new SalesOrders();
 
             //DeliveryAdvices grForm;
             //grForm = new DeliveryAdvices();
