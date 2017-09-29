@@ -281,11 +281,11 @@
     <Compile Include="Views\Productions\SmartCoding.designer.cs">
       <DependentUpon>SmartCoding.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Sales\DeliveryAdvices\DeliveryAdvices.cs">
+    <Compile Include="Views\Sales\DeliveryAdvices\DeliveryAdviceXYZs.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\Sales\DeliveryAdvices\DeliveryAdvices.designer.cs">
-      <DependentUpon>DeliveryAdvices.cs</DependentUpon>
+    <Compile Include="Views\Sales\DeliveryAdvices\DeliveryAdviceXYZs.designer.cs">
+      <DependentUpon>DeliveryAdviceXYZs.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Sales\DeliveryAdvices\WizardDetail.cs">
       <SubType>Form</SubType>
@@ -385,8 +385,8 @@
     <EmbeddedResource Include="Views\Productions\SmartCoding.resx">
       <DependentUpon>SmartCoding.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Sales\DeliveryAdvices\DeliveryAdvices.resx">
-      <DependentUpon>DeliveryAdvices.cs</DependentUpon>
+    <EmbeddedResource Include="Views\Sales\DeliveryAdvices\DeliveryAdviceXYZs.resx">
+      <DependentUpon>DeliveryAdviceXYZs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Sales\DeliveryAdvices\WizardDetail.resx">
       <DependentUpon>WizardDetail.cs</DependentUpon>
