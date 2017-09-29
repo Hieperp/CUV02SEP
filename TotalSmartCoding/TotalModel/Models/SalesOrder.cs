@@ -24,7 +24,10 @@ namespace TotalModel.Models
         public int SalesOrderID { get; set; }
         public System.DateTime EntryDate { get; set; }
         public string Reference { get; set; }
+        public string VoucherCode { get; set; }
         public int CustomerID { get; set; }
+        public string ContactInfo { get; set; }
+        public string ShippingAddress { get; set; }
         public int SalespersonID { get; set; }
         public int UserID { get; set; }
         public int PreparedPersonID { get; set; }
@@ -38,12 +41,12 @@ namespace TotalModel.Models
         public System.DateTime EditedDate { get; set; }
         public bool Approved { get; set; }
         public Nullable<System.DateTime> ApprovedDate { get; set; }
-        public string VoucherNo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DeliveryAdvice> DeliveryAdvices { get; set; }
         public virtual Location Location { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SalesOrderDetail> SalesOrderDetails { get; set; }
+        public virtual Customer Customer { get; set; }
     }
 }

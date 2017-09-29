@@ -19,7 +19,6 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
 {
     public partial class WizardMaster : Form
     {
-        private PickupAPIs pickupAPIs;
         private PickupViewModel pickupViewModel;
 
         Binding bindingWarehouseID;
@@ -29,11 +28,10 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
 
         Binding bindingRemarks;
 
-        public WizardMaster(PickupAPIs pickupAPIs, PickupViewModel pickupViewModel)
+        public WizardMaster(PickupViewModel pickupViewModel)
         {
             InitializeComponent();
 
-            this.pickupAPIs = pickupAPIs;
             this.pickupViewModel = pickupViewModel;
         }
 

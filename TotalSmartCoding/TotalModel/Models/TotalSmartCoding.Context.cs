@@ -30,7 +30,6 @@ namespace TotalModel.Models
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<Batch> Batches { get; set; }
         public virtual DbSet<BinLocation> BinLocations { get; set; }
-        public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<FillingLine> FillingLines { get; set; }
         public virtual DbSet<GoodsReceiptType> GoodsReceiptTypes { get; set; }
@@ -50,7 +49,6 @@ namespace TotalModel.Models
         public virtual DbSet<GoodsIssueDetail> GoodsIssueDetails { get; set; }
         public virtual DbSet<GoodsIssue> GoodsIssues { get; set; }
         public virtual DbSet<SalesOrderDetail> SalesOrderDetails { get; set; }
-        public virtual DbSet<SalesOrder> SalesOrders { get; set; }
         public virtual DbSet<WarehouseAdjustmentType> WarehouseAdjustmentTypes { get; set; }
         public virtual DbSet<WarehouseAdjustment> WarehouseAdjustments { get; set; }
         public virtual DbSet<WarehouseAdjustmentDetail> WarehouseAdjustmentDetails { get; set; }
@@ -58,6 +56,8 @@ namespace TotalModel.Models
         public virtual DbSet<Pack> Packs { get; set; }
         public virtual DbSet<Pallet> Pallets { get; set; }
         public virtual DbSet<PickupDetail> PickupDetails { get; set; }
+        public virtual DbSet<SalesOrder> SalesOrders { get; set; }
+        public virtual DbSet<Customer> Customers { get; set; }
     
         public virtual ObjectResult<Nullable<int>> GetAccessLevel(Nullable<int> userID, Nullable<int> nMVNTaskID, Nullable<int> organizationalUnitID)
         {

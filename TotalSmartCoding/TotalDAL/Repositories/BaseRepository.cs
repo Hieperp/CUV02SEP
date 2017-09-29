@@ -32,6 +32,10 @@ namespace TotalDAL.Repositories
             return;
             return;
 
+            Helpers.SqlProgrammability.Commons.Customer customer = new Helpers.SqlProgrammability.Commons.Customer(totalSmartCodingEntities);
+            customer.RestoreProcedure();
+            //return;
+
             Helpers.SqlProgrammability.Sales.SalesOrder salesOrder = new Helpers.SqlProgrammability.Sales.SalesOrder(totalSmartCodingEntities);
             salesOrder.RestoreProcedure();
 
@@ -80,10 +84,7 @@ namespace TotalDAL.Repositories
             deliveryAdvice.RestoreProcedure();
 
 
-            //return;
-
-            Helpers.SqlProgrammability.Commons.Customer customer = new Helpers.SqlProgrammability.Commons.Customer(totalSmartCodingEntities);
-            customer.RestoreProcedure();
+            
 
             //return;
 

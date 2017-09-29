@@ -62,23 +62,25 @@
             // 
             // buttonESC
             // 
+            this.buttonESC.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonESC.Image = global::TotalSmartCoding.Properties.Resources.signout_icon_24;
             this.buttonESC.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.buttonESC.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonESC.Name = "buttonESC";
             this.buttonESC.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.buttonESC.Size = new System.Drawing.Size(81, 52);
+            this.buttonESC.Size = new System.Drawing.Size(83, 52);
             this.buttonESC.Text = "Cancel";
             this.buttonESC.Click += new System.EventHandler(this.buttonOKESC_Click);
             // 
             // buttonOK
             // 
+            this.buttonOK.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonOK.Image = global::TotalSmartCoding.Properties.Resources.Oxygen_Icons_org_Oxygen_Actions_go_next_view;
             this.buttonOK.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.buttonOK.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.buttonOK.Size = new System.Drawing.Size(92, 52);
+            this.buttonOK.Size = new System.Drawing.Size(94, 52);
             this.buttonOK.Text = "Next";
             this.buttonOK.Click += new System.EventHandler(this.buttonOKESC_Click);
             // 

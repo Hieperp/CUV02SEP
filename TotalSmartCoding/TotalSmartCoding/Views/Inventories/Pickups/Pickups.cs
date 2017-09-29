@@ -269,7 +269,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
 
         protected override DialogResult wizardMaster()
         {
-            WizardMaster wizardMaster = new WizardMaster(this.pickupAPIs, this.pickupViewModel);
+            WizardMaster wizardMaster = new WizardMaster(this.pickupViewModel);
             DialogResult dialogResult = wizardMaster.ShowDialog();
             if (dialogResult == System.Windows.Forms.DialogResult.OK) this.Save(false);
             return dialogResult;

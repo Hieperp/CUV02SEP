@@ -116,7 +116,9 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
 
         Binding bindingEntryDate;
         Binding bindingReference;
-        Binding bindingVoucherNo;
+        Binding bindingVoucherCode;
+        Binding bindingContactInfo;
+        Binding bindingDeliveryAddress;
         Binding bindingDescription;
         Binding bindingRemarks;
         Binding bindingCaption;
@@ -130,7 +132,9 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
 
             this.bindingEntryDate = this.dateTimexEntryDate.DataBindings.Add("Value", this.salesOrderViewModel, CommonExpressions.PropertyName<SalesOrderDTO>(p => p.EntryDate), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingReference = this.textexReference.DataBindings.Add("Text", this.salesOrderViewModel, CommonExpressions.PropertyName<SalesOrderDTO>(p => p.Reference), true, DataSourceUpdateMode.OnPropertyChanged);
-            this.bindingVoucherNo = this.textexVoucherNo.DataBindings.Add("Text", this.salesOrderViewModel, CommonExpressions.PropertyName<SalesOrderDTO>(p => p.VoucherNo), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingVoucherCode = this.textexVoucherCode.DataBindings.Add("Text", this.salesOrderViewModel, CommonExpressions.PropertyName<SalesOrderDTO>(p => p.VoucherCode), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingContactInfo = this.textexContactInfo.DataBindings.Add("Text", this.salesOrderViewModel, CommonExpressions.PropertyName<SalesOrderDTO>(p => p.ContactInfo), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingDeliveryAddress = this.textexDeliveryAddress.DataBindings.Add("Text", this.salesOrderViewModel, CommonExpressions.PropertyName<SalesOrderDTO>(p => p.ShippingAddress), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingDescription = this.textexDescription.DataBindings.Add("Text", this.salesOrderViewModel, CommonExpressions.PropertyName<SalesOrderDTO>(p => p.Description), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingRemarks = this.textexRemarks.DataBindings.Add("Text", this.salesOrderViewModel, CommonExpressions.PropertyName<SalesOrderDTO>(p => p.Remarks), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingCaption = this.labelCaption.DataBindings.Add("Text", this.salesOrderViewModel, CommonExpressions.PropertyName<SalesOrderDTO>(p => p.Caption));
@@ -151,7 +155,9 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
 
             this.bindingEntryDate.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingReference.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
-            this.bindingVoucherNo.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingVoucherCode.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingContactInfo.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingDeliveryAddress.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingDescription.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingRemarks.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingCaption.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
@@ -163,6 +169,22 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
             this.fastSalesOrderIndex.ShowGroups = true;
             this.olvApproved.Renderer = new MappedImageRenderer(new Object[] { false, Resources.Placeholder16 });
             this.naviGroupDetails.ExpandedHeight = this.naviGroupDetails.Size.Height;
+        }
+
+        protected override void CommonControl_BindingComplete(object sender, BindingCompleteEventArgs e)
+        {
+            base.CommonControl_BindingComplete(sender, e);
+            if (this.EditableMode && sender.Equals(this.bindingCustomerID))
+            {
+                if (this.combexCustomerID.SelectedItem != null)
+                {
+                    CustomerBase customerBase = (CustomerBase)this.combexCustomerID.SelectedItem;
+                    this.salesOrderViewModel.CustomerName = customerBase.Name;
+                    //THIS CommonControl_BindingComplete WILL BE RAISED FOR EVERY BINDING => SO WE CAN NOT UPDATE RELATIVE PROPERTY BY THIS WAY. SHOULD THINK OF NEW WAY FOR UPDATE SUCH RELATIVE PROPERTY (SUCH AS: ContactInfo, ShippingAddress OF Customer)
+                    //this.salesOrderViewModel.ContactInfo = customerBase.ContactInfo;
+                    //this.salesOrderViewModel.ShippingAddress = customerBase.ShippingAddress;
+                }
+            }
         }
 
         private void fastSalesOrderIndex_AboutToCreateGroups(object sender, CreateGroupsEventArgs e)
@@ -242,6 +264,12 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
         {
             base.DoAfterLoad();
             this.fastSalesOrderIndex.Sort(this.olvEntryDate, SortOrder.Descending);
+        }
+
+        protected override DialogResult wizardMaster()
+        {
+            WizardMaster wizardMaster = new WizardMaster(this.salesOrderViewModel);
+            return wizardMaster.ShowDialog();
         }
 
         private void naviGroupDetails_HeaderMouseClick(object sender, MouseEventArgs e)

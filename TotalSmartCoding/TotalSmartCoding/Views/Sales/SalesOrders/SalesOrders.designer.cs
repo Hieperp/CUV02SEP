@@ -41,7 +41,7 @@
             this.combexSalespersonID = new CustomControls.CombexBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textexVoucherNo = new CustomControls.TextexBox();
+            this.textexVoucherCode = new CustomControls.TextexBox();
             this.toolStripChildForm = new System.Windows.Forms.ToolStrip();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -66,14 +66,14 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.textexDeliveryAddress = new CustomControls.TextexBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textexContactName = new CustomControls.TextexBox();
+            this.textexContactInfo = new CustomControls.TextexBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panelLeft = new System.Windows.Forms.Panel();
             this.fastSalesOrderIndex = new BrightIdeasSoftware.FastObjectListView();
             this.olvID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvEntryDate = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvReference = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvVoucherNo = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvVoucherCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvCustomerCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvCustomerName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvLocationCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -112,7 +112,7 @@
             this.layoutLeft.Controls.Add(this.combexSalespersonID, 0, 7);
             this.layoutLeft.Controls.Add(this.label1, 0, 6);
             this.layoutLeft.Controls.Add(this.label2, 0, 4);
-            this.layoutLeft.Controls.Add(this.textexVoucherNo, 0, 5);
+            this.layoutLeft.Controls.Add(this.textexVoucherCode, 0, 5);
             this.layoutLeft.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutLeft.Location = new System.Drawing.Point(0, 0);
             this.layoutLeft.Margin = new System.Windows.Forms.Padding(0);
@@ -220,16 +220,16 @@
             this.label2.Text = "Voucher #";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // textexVoucherNo
+            // textexVoucherCode
             // 
-            this.textexVoucherNo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textexVoucherNo.Editable = true;
-            this.textexVoucherNo.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textexVoucherNo.Location = new System.Drawing.Point(3, 159);
-            this.textexVoucherNo.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
-            this.textexVoucherNo.Name = "textexVoucherNo";
-            this.textexVoucherNo.Size = new System.Drawing.Size(350, 28);
-            this.textexVoucherNo.TabIndex = 78;
+            this.textexVoucherCode.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textexVoucherCode.Editable = true;
+            this.textexVoucherCode.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textexVoucherCode.Location = new System.Drawing.Point(3, 159);
+            this.textexVoucherCode.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
+            this.textexVoucherCode.Name = "textexVoucherCode";
+            this.textexVoucherCode.Size = new System.Drawing.Size(350, 28);
+            this.textexVoucherCode.TabIndex = 78;
             // 
             // toolStripChildForm
             // 
@@ -486,7 +486,7 @@
             this.layoutTop.Controls.Add(this.pictureBox1, 0, 1);
             this.layoutTop.Controls.Add(this.textexDeliveryAddress, 1, 2);
             this.layoutTop.Controls.Add(this.label3, 0, 2);
-            this.layoutTop.Controls.Add(this.textexContactName, 4, 1);
+            this.layoutTop.Controls.Add(this.textexContactInfo, 4, 1);
             this.layoutTop.Controls.Add(this.pictureBox2, 3, 1);
             this.layoutTop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutTop.Location = new System.Drawing.Point(1, 2);
@@ -508,11 +508,10 @@
             this.combexCustomerID.Dock = System.Windows.Forms.DockStyle.Fill;
             this.combexCustomerID.Editable = true;
             this.combexCustomerID.FormattingEnabled = true;
-            this.combexCustomerID.Location = new System.Drawing.Point(168, 13);
-            this.combexCustomerID.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
+            this.combexCustomerID.Location = new System.Drawing.Point(168, 15);
             this.combexCustomerID.Name = "combexCustomerID";
             this.combexCustomerID.ReadOnly = false;
-            this.combexCustomerID.Size = new System.Drawing.Size(491, 29);
+            this.combexCustomerID.Size = new System.Drawing.Size(489, 29);
             this.combexCustomerID.TabIndex = 74;
             // 
             // pictureBox1
@@ -543,17 +542,17 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(159, 34);
             this.label3.TabIndex = 77;
-            this.label3.Text = "Delivery Address";
+            this.label3.Text = "Shipping Address";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // textexContactName
+            // textexContactInfo
             // 
-            this.textexContactName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textexContactName.Editable = true;
-            this.textexContactName.Location = new System.Drawing.Point(788, 15);
-            this.textexContactName.Name = "textexContactName";
-            this.textexContactName.Size = new System.Drawing.Size(324, 28);
-            this.textexContactName.TabIndex = 78;
+            this.textexContactInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textexContactInfo.Editable = true;
+            this.textexContactInfo.Location = new System.Drawing.Point(788, 15);
+            this.textexContactInfo.Name = "textexContactInfo";
+            this.textexContactInfo.Size = new System.Drawing.Size(324, 28);
+            this.textexContactInfo.TabIndex = 78;
             // 
             // pictureBox2
             // 
@@ -581,7 +580,7 @@
             this.fastSalesOrderIndex.AllColumns.Add(this.olvID);
             this.fastSalesOrderIndex.AllColumns.Add(this.olvEntryDate);
             this.fastSalesOrderIndex.AllColumns.Add(this.olvReference);
-            this.fastSalesOrderIndex.AllColumns.Add(this.olvVoucherNo);
+            this.fastSalesOrderIndex.AllColumns.Add(this.olvVoucherCode);
             this.fastSalesOrderIndex.AllColumns.Add(this.olvCustomerCode);
             this.fastSalesOrderIndex.AllColumns.Add(this.olvCustomerName);
             this.fastSalesOrderIndex.AllColumns.Add(this.olvLocationCode);
@@ -594,7 +593,7 @@
             this.olvID,
             this.olvEntryDate,
             this.olvReference,
-            this.olvVoucherNo,
+            this.olvVoucherCode,
             this.olvCustomerCode,
             this.olvCustomerName,
             this.olvLocationCode,
@@ -643,11 +642,11 @@
             this.olvReference.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvReference.Width = 90;
             // 
-            // olvVoucherNo
+            // olvVoucherCode
             // 
-            this.olvVoucherNo.AspectName = "VoucherNo";
-            this.olvVoucherNo.Text = "Voucher #";
-            this.olvVoucherNo.Width = 120;
+            this.olvVoucherCode.AspectName = "VoucherCode";
+            this.olvVoucherCode.Text = "Voucher #";
+            this.olvVoucherCode.Width = 150;
             // 
             // olvCustomerCode
             // 
@@ -671,7 +670,7 @@
             // 
             this.olvDescription.AspectName = "Description";
             this.olvDescription.Text = "Description";
-            this.olvDescription.Width = 573;
+            this.olvDescription.Width = 543;
             // 
             // olvTotalQuantity
             // 
@@ -685,7 +684,7 @@
             // olvTotalLineVolume
             // 
             this.olvTotalLineVolume.AspectName = "TotalLineVolume";
-            this.olvTotalLineVolume.AspectToStringFormat = "{0:#,###.00}";
+            this.olvTotalLineVolume.AspectToStringFormat = "{0:#,###.##}";
             this.olvTotalLineVolume.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.olvTotalLineVolume.Text = "Volume";
             this.olvTotalLineVolume.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -781,13 +780,13 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label labelCaption;
         private System.Windows.Forms.Label label2;
-        private CustomControls.TextexBox textexVoucherNo;
+        private CustomControls.TextexBox textexVoucherCode;
         private System.Windows.Forms.ImageList imageList32;
         private BrightIdeasSoftware.OLVColumn olvApproved;
         private BrightIdeasSoftware.OLVColumn olvCustomerCode;
         private BrightIdeasSoftware.OLVColumn olvCustomerName;
         private BrightIdeasSoftware.OLVColumn olvLocationCode;
-        private BrightIdeasSoftware.OLVColumn olvVoucherNo;
+        private BrightIdeasSoftware.OLVColumn olvVoucherCode;
         private BrightIdeasSoftware.OLVColumn olvDescription;
         private BrightIdeasSoftware.OLVColumn olvTotalQuantity;
         private BrightIdeasSoftware.OLVColumn olvTotalLineVolume;
@@ -802,7 +801,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private CustomControls.TextexBox textexDeliveryAddress;
         private System.Windows.Forms.Label label3;
-        private CustomControls.TextexBox textexContactName;
+        private CustomControls.TextexBox textexContactInfo;
         private System.Windows.Forms.PictureBox pictureBox2;
 
     }

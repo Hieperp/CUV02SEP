@@ -44,7 +44,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
-            queryString = queryString + "       SELECT      SalesOrders.SalesOrderID, CAST(SalesOrders.EntryDate AS DATE) AS EntryDate, SalesOrders.Reference, SalesOrders.VoucherNo, Locations.Code AS LocationCode, Customers.Code AS CustomerCode, Customers.Name AS CustomerName, SalesOrders.Description, SalesOrders.TotalQuantity, SalesOrders.TotalLineVolume, SalesOrders.Approved " + "\r\n";
+            queryString = queryString + "       SELECT      SalesOrders.SalesOrderID, CAST(SalesOrders.EntryDate AS DATE) AS EntryDate, SalesOrders.Reference, SalesOrders.VoucherCode, Locations.Code AS LocationCode, Customers.Code AS CustomerCode, Customers.Name AS CustomerName, SalesOrders.Description, SalesOrders.TotalQuantity, SalesOrders.TotalLineVolume, SalesOrders.Approved " + "\r\n";
             queryString = queryString + "       FROM        SalesOrders " + "\r\n";
             queryString = queryString + "                   INNER JOIN Locations ON SalesOrders.EntryDate >= @FromDate AND SalesOrders.EntryDate <= @ToDate AND SalesOrders.OrganizationalUnitID IN (SELECT AccessControls.OrganizationalUnitID FROM AccessControls INNER JOIN AspNetUsers ON AccessControls.UserID = AspNetUsers.UserID WHERE AspNetUsers.Id = @AspUserID AND AccessControls.NMVNTaskID = " + (int)TotalBase.Enums.GlobalEnums.NmvnTaskID.SalesOrder + " AND AccessControls.AccessLevel > 0) AND Locations.LocationID = SalesOrders.LocationID " + "\r\n";
             queryString = queryString + "                   INNER JOIN Customers ON SalesOrders.CustomerID = Customers.CustomerID " + "\r\n";

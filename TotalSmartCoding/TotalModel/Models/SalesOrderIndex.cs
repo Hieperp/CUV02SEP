@@ -23,6 +23,6 @@ namespace TotalModel.Models
         public bool Approved { get; set; }
         public decimal TotalLineVolume { get; set; }
         public string CustomerCode { get; set; }
-        public string VoucherNo { get; set; }
+        public string VoucherCode { get; set; }
     }
 }

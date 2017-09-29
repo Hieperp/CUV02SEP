@@ -31,13 +31,13 @@ namespace TotalDTO.Sales
             set { ApplyPropertyChange<SalesOrderPrimitiveDTO, int>(ref this.salesOrderID, o => o.SalesOrderID, value); }
         }
 
-        
-        private string voucherNo;
+
+        private string voucherCode;
         [DefaultValue("")]
-        public string VoucherNo
+        public string VoucherCode
         {
-            get { return this.voucherNo; }
-            set { ApplyPropertyChange<SalesOrderDTO, string>(ref this.voucherNo, o => o.VoucherNo, value); }
+            get { return this.voucherCode; }
+            set { ApplyPropertyChange<SalesOrderDTO, string>(ref this.voucherCode, o => o.VoucherCode, value); }
         }
 
         private Nullable<int> customerID;
@@ -55,7 +55,21 @@ namespace TotalDTO.Sales
             set { ApplyPropertyChange<SalesOrderDTO, string>(ref this.customerName, o => o.CustomerName, value, false); }
         }
 
+        private string contactInfo;
+        [DefaultValue("")]
+        public string ContactInfo
+        {
+            get { return this.contactInfo; }
+            set { ApplyPropertyChange<SalesOrderDTO, string>(ref this.contactInfo, o => o.ContactInfo, value); }
+        }
 
+        private string shippingAddress;
+        [DefaultValue("")]
+        public string ShippingAddress
+        {
+            get { return this.shippingAddress; }
+            set { ApplyPropertyChange<SalesOrderDTO, string>(ref this.shippingAddress, o => o.ShippingAddress, value); }
+        }
 
         private Nullable<int> salespersonID;
         [DefaultValue(null)]
@@ -67,6 +81,10 @@ namespace TotalDTO.Sales
 
         public override int PreparedPersonID { get { return 1; } }
 
+        public override string Caption
+        {
+            get { return this.CustomerName + (this.ContactInfo != null && this.ContactInfo.Trim() != "" ? ", " : "") + this.ContactInfo + (this.CustomerName != "" ? ", " : "") + this.EntryDate.ToString() + "             Total Quantity: " + this.TotalQuantity.ToString() + ",    Total Volume: " + this.TotalLineVolume.ToString("N2"); }
+        }
 
         public override void PerformPresaveRule()
         {

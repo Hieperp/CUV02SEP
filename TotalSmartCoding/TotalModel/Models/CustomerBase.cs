@@ -16,5 +16,8 @@ namespace TotalModel.Models
         public int CustomerID { get; set; }
         public string Code { get; set; }
         public string Name { get; set; }
+        public string ContactInfo { get; set; }
+        public int SalespersonID { get; set; }
+        public string ShippingAddress { get; set; }
     }
 }
