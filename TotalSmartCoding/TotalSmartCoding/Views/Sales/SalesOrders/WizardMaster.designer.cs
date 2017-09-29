@@ -30,13 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.buttonESC = new System.Windows.Forms.ToolStripButton();
-            this.buttonOK = new System.Windows.Forms.ToolStripButton();
             this.errorProviderMaster = new System.Windows.Forms.ErrorProvider(this.components);
             this.layoutTop = new System.Windows.Forms.TableLayoutPanel();
             this.combexCustomerID = new CustomControls.CombexBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
             this.textexShippingAddress = new CustomControls.TextexBox();
             this.textexContactInfo = new CustomControls.TextexBox();
@@ -45,6 +42,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.buttonESC = new System.Windows.Forms.ToolStripButton();
+            this.buttonOK = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderMaster)).BeginInit();
             this.layoutTop.SuspendLayout();
@@ -66,31 +66,6 @@
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // buttonESC
-            // 
-            this.buttonESC.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonESC.Image = global::TotalSmartCoding.Properties.Resources.signout_icon_24;
-            this.buttonESC.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.buttonESC.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonESC.Name = "buttonESC";
-            this.buttonESC.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.buttonESC.Size = new System.Drawing.Size(83, 52);
-            this.buttonESC.Text = "Cancel";
-            this.buttonESC.Click += new System.EventHandler(this.buttonOKESC_Click);
-            // 
-            // buttonOK
-            // 
-            this.buttonOK.Enabled = false;
-            this.buttonOK.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonOK.Image = global::TotalSmartCoding.Properties.Resources.Oxygen_Icons_org_Oxygen_Actions_go_next_view;
-            this.buttonOK.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.buttonOK.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonOK.Name = "buttonOK";
-            this.buttonOK.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.buttonOK.Size = new System.Drawing.Size(94, 52);
-            this.buttonOK.Text = "Next";
-            this.buttonOK.Click += new System.EventHandler(this.buttonOKESC_Click);
-            // 
             // errorProviderMaster
             // 
             this.errorProviderMaster.ContainerControl = this;
@@ -105,7 +80,7 @@
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75F));
-            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 22F));
             this.layoutTop.Controls.Add(this.combexCustomerID, 3, 1);
             this.layoutTop.Controls.Add(this.label4, 2, 2);
             this.layoutTop.Controls.Add(this.pictureBox2, 1, 1);
@@ -144,7 +119,7 @@
             this.combexCustomerID.Location = new System.Drawing.Point(251, 35);
             this.combexCustomerID.Name = "combexCustomerID";
             this.combexCustomerID.ReadOnly = false;
-            this.combexCustomerID.Size = new System.Drawing.Size(487, 29);
+            this.combexCustomerID.Size = new System.Drawing.Size(486, 29);
             this.combexCustomerID.TabIndex = 74;
             // 
             // label4
@@ -158,17 +133,6 @@
             this.label4.TabIndex = 77;
             this.label4.Text = "Contact Info";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::TotalSmartCoding.Properties.Resources.Sign_Order_48;
-            this.pictureBox2.Location = new System.Drawing.Point(33, 35);
-            this.pictureBox2.Name = "pictureBox2";
-            this.layoutTop.SetRowSpan(this.pictureBox2, 3);
-            this.pictureBox2.Size = new System.Drawing.Size(48, 48);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox2.TabIndex = 75;
-            this.pictureBox2.TabStop = false;
             // 
             // label5
             // 
@@ -189,7 +153,7 @@
             this.textexShippingAddress.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textexShippingAddress.Location = new System.Drawing.Point(251, 104);
             this.textexShippingAddress.Name = "textexShippingAddress";
-            this.textexShippingAddress.Size = new System.Drawing.Size(487, 28);
+            this.textexShippingAddress.Size = new System.Drawing.Size(486, 28);
             this.textexShippingAddress.TabIndex = 76;
             // 
             // textexContactInfo
@@ -199,7 +163,7 @@
             this.textexContactInfo.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textexContactInfo.Location = new System.Drawing.Point(251, 70);
             this.textexContactInfo.Name = "textexContactInfo";
-            this.textexContactInfo.Size = new System.Drawing.Size(487, 28);
+            this.textexContactInfo.Size = new System.Drawing.Size(486, 28);
             this.textexContactInfo.TabIndex = 79;
             // 
             // combexSalespersonID
@@ -213,7 +177,7 @@
             this.combexSalespersonID.Location = new System.Drawing.Point(251, 138);
             this.combexSalespersonID.Name = "combexSalespersonID";
             this.combexSalespersonID.ReadOnly = false;
-            this.combexSalespersonID.Size = new System.Drawing.Size(487, 29);
+            this.combexSalespersonID.Size = new System.Drawing.Size(486, 29);
             this.combexSalespersonID.TabIndex = 80;
             // 
             // textexRemarks
@@ -223,7 +187,7 @@
             this.textexRemarks.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textexRemarks.Location = new System.Drawing.Point(251, 173);
             this.textexRemarks.Name = "textexRemarks";
-            this.textexRemarks.Size = new System.Drawing.Size(487, 28);
+            this.textexRemarks.Size = new System.Drawing.Size(486, 28);
             this.textexRemarks.TabIndex = 81;
             // 
             // label1
@@ -261,6 +225,42 @@
             this.label3.TabIndex = 84;
             this.label3.Text = "Remarks";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::TotalSmartCoding.Properties.Resources.Sign_Order_48;
+            this.pictureBox2.Location = new System.Drawing.Point(33, 35);
+            this.pictureBox2.Name = "pictureBox2";
+            this.layoutTop.SetRowSpan(this.pictureBox2, 3);
+            this.pictureBox2.Size = new System.Drawing.Size(48, 48);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox2.TabIndex = 75;
+            this.pictureBox2.TabStop = false;
+            // 
+            // buttonESC
+            // 
+            this.buttonESC.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonESC.Image = global::TotalSmartCoding.Properties.Resources.signout_icon_24;
+            this.buttonESC.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonESC.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonESC.Name = "buttonESC";
+            this.buttonESC.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.buttonESC.Size = new System.Drawing.Size(83, 52);
+            this.buttonESC.Text = "Cancel";
+            this.buttonESC.Click += new System.EventHandler(this.buttonOKESC_Click);
+            // 
+            // buttonOK
+            // 
+            this.buttonOK.Enabled = false;
+            this.buttonOK.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonOK.Image = global::TotalSmartCoding.Properties.Resources.Oxygen_Icons_org_Oxygen_Actions_go_next_view;
+            this.buttonOK.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonOK.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonOK.Name = "buttonOK";
+            this.buttonOK.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.buttonOK.Size = new System.Drawing.Size(94, 52);
+            this.buttonOK.Text = "Next";
+            this.buttonOK.Click += new System.EventHandler(this.buttonOKESC_Click);
             // 
             // WizardMaster
             // 

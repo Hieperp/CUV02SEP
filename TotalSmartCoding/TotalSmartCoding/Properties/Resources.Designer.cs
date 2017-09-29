@@ -1723,6 +1723,36 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Forklift128 {
+            get {
+                object obj = ResourceManager.GetObject("Forklift128", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Forklift16 {
+            get {
+                object obj = ResourceManager.GetObject("Forklift16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Forklift24 {
+            get {
+                object obj = ResourceManager.GetObject("Forklift24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Forklift32 {
             get {
                 object obj = ResourceManager.GetObject("Forklift32", resourceCulture);
@@ -1736,6 +1766,16 @@ namespace TotalSmartCoding.Properties {
         internal static System.Drawing.Bitmap Forklift48 {
             get {
                 object obj = ResourceManager.GetObject("Forklift48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Forklift64 {
+            get {
+                object obj = ResourceManager.GetObject("Forklift64", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

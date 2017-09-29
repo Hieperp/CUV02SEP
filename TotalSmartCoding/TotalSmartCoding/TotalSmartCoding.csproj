@@ -947,6 +947,10 @@
     <None Include="Resources\Customer Blue 24.png" />
     <None Include="Resources\Forklift32.png" />
     <None Include="Resources\Forklift48.png" />
+    <None Include="Resources\Forklift16.png" />
+    <None Include="Resources\Forklift24.png" />
+    <None Include="Resources\Forklift64.png" />
+    <None Include="Resources\Forklift128.png" />
     <Content Include="Resources\Icons-Land-Play-Stop-Pause-Play-Pressed.ico" />
     <None Include="Resources\Land-Play.ico" />
     <None Include="Resources\palet031.ico" />
