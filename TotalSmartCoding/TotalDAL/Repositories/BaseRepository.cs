@@ -29,7 +29,11 @@ namespace TotalDAL.Repositories
 
             //if (!GlobalVariables.shouldRestoreProcedure) //return;
 
-            return;
+            //return;
+            //return;
+
+            Helpers.SqlProgrammability.Sales.DeliveryAdvice deliveryAdvice = new Helpers.SqlProgrammability.Sales.DeliveryAdvice(totalSmartCodingEntities);
+            deliveryAdvice.RestoreProcedure();
             return;
 
             Helpers.SqlProgrammability.Commons.Customer customer = new Helpers.SqlProgrammability.Commons.Customer(totalSmartCodingEntities);
@@ -78,10 +82,7 @@ namespace TotalDAL.Repositories
             goodsIssue.RestoreProcedure();
 
             
-            //return;
-
-            Helpers.SqlProgrammability.Sales.DeliveryAdvice deliveryAdvice = new Helpers.SqlProgrammability.Sales.DeliveryAdvice(totalSmartCodingEntities);
-            deliveryAdvice.RestoreProcedure();
+            
 
 
             

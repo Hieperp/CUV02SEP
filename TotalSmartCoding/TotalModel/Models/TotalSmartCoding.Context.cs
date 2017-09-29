@@ -41,7 +41,6 @@ namespace TotalModel.Models
         public virtual DbSet<Territory> Territories { get; set; }
         public virtual DbSet<Commodity> Commodities { get; set; }
         public virtual DbSet<DeliveryAdviceDetail> DeliveryAdviceDetails { get; set; }
-        public virtual DbSet<DeliveryAdvice> DeliveryAdvices { get; set; }
         public virtual DbSet<Warehouse> Warehouses { get; set; }
         public virtual DbSet<Pickup> Pickups { get; set; }
         public virtual DbSet<GoodsReceiptDetail> GoodsReceiptDetails { get; set; }
@@ -58,6 +57,7 @@ namespace TotalModel.Models
         public virtual DbSet<PickupDetail> PickupDetails { get; set; }
         public virtual DbSet<SalesOrder> SalesOrders { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<DeliveryAdvice> DeliveryAdvices { get; set; }
     
         public virtual ObjectResult<Nullable<int>> GetAccessLevel(Nullable<int> userID, Nullable<int> nMVNTaskID, Nullable<int> organizationalUnitID)
         {

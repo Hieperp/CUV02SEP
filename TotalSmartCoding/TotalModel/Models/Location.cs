@@ -19,13 +19,13 @@ namespace TotalModel.Models
         {
             this.Employees = new HashSet<Employee>();
             this.OrganizationalUnits = new HashSet<OrganizationalUnit>();
-            this.DeliveryAdvices = new HashSet<DeliveryAdvice>();
             this.Warehouses = new HashSet<Warehouse>();
             this.Pickups = new HashSet<Pickup>();
             this.GoodsReceipts = new HashSet<GoodsReceipt>();
             this.GoodsIssues = new HashSet<GoodsIssue>();
             this.WarehouseAdjustments = new HashSet<WarehouseAdjustment>();
             this.SalesOrders = new HashSet<SalesOrder>();
+            this.DeliveryAdvices = new HashSet<DeliveryAdvice>();
         }
     
         public int LocationID { get; set; }
@@ -45,8 +45,6 @@ namespace TotalModel.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrganizationalUnit> OrganizationalUnits { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DeliveryAdvice> DeliveryAdvices { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Warehouse> Warehouses { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pickup> Pickups { get; set; }
@@ -58,5 +56,7 @@ namespace TotalModel.Models
         public virtual ICollection<WarehouseAdjustment> WarehouseAdjustments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SalesOrder> SalesOrders { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DeliveryAdvice> DeliveryAdvices { get; set; }
     }
 }

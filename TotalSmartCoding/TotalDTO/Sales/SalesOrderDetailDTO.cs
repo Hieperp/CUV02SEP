@@ -17,6 +17,7 @@ namespace TotalDTO.Sales
 
         public int SalesOrderDetailID { get; set; }
         public int SalesOrderID { get; set; }
+        public string VoucherCode { get; set; }
 
         public Nullable<int> CustomerID { get; set; }
     }

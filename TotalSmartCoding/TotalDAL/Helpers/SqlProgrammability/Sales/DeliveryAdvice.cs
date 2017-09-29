@@ -100,7 +100,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
 
-            queryString = queryString + "       SELECT          SalesOrders.SalesOrderID, SalesOrders.Reference AS SalesOrderReference, SalesOrders.EntryDate AS SalesOrderEntryDate, SalesOrders.CustomerID, Customers.Code AS CustomerCode, Customers.Name AS CustomerName, SalesOrders.Description, SalesOrders.Remarks " + "\r\n";
+            queryString = queryString + "       SELECT          SalesOrders.SalesOrderID, SalesOrders.Reference AS SalesOrderReference, SalesOrders.EntryDate AS SalesOrderEntryDate, SalesOrders.VoucherCode, SalesOrders.CustomerID, Customers.Code AS CustomerCode, Customers.Name AS CustomerName, SalesOrders.ContactInfo, SalesOrders.ShippingAddress, SalesOrders.SalespersonID, SalesOrders.Description, SalesOrders.Remarks " + "\r\n";
             queryString = queryString + "       FROM            SalesOrders " + "\r\n";
             queryString = queryString + "                       INNER JOIN Customers ON SalesOrders.SalesOrderID IN (SELECT SalesOrderID FROM SalesOrderDetails WHERE LocationID = @LocationID AND Approved = 1 AND ROUND(Quantity - QuantityAdvice, " + (int)GlobalEnums.rndQuantity + ") > 0) AND SalesOrders.CustomerID = Customers.CustomerID " + "\r\n";
 
@@ -113,8 +113,8 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
 
-            queryString = queryString + "       SELECT          Customers.CustomerID, Customers.Code AS CustomerCode, Customers.Name AS CustomerName " + "\r\n";
-            queryString = queryString + "       FROM           (SELECT DISTINCT CustomerID FROM SalesOrderDetails WHERE LocationID = @LocationID AND Approved = 1 AND ROUND(Quantity - QuantityAdvice, " + (int)GlobalEnums.rndQuantity + ") > 0) CustomerPENDING " + "\r\n";
+            queryString = queryString + "       SELECT          Customers.CustomerID, Customers.Code AS CustomerCode, Customers.Name AS CustomerName, CustomerPENDING.ContactInfo, CustomerPENDING.ShippingAddress, CustomerPENDING.SalespersonID " + "\r\n";
+            queryString = queryString + "       FROM           (SELECT CustomerID, MIN(ContactInfo) AS ContactInfo, MIN(ShippingAddress) AS ShippingAddress, MIN(SalespersonID) AS SalespersonID FROM SalesOrders WHERE SalesOrderID IN (SELECT DISTINCT SalesOrderID FROM SalesOrderDetails WHERE LocationID = @LocationID AND Approved = 1 AND ROUND(Quantity - QuantityAdvice, " + (int)GlobalEnums.rndQuantity + ") > 0) GROUP BY CustomerID) CustomerPENDING " + "\r\n";
             queryString = queryString + "                       INNER JOIN Customers ON CustomerPENDING.CustomerID = Customers.CustomerID " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("GetPendingSalesOrderCustomers", queryString);
@@ -132,7 +132,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
 
             queryString = queryString + "   BEGIN " + "\r\n";
 
-            queryString = queryString + "       DECLARE     @SalesOrderDetails TABLE (IsNewOrEdit bit NOT NULL, SalesOrderID int NOT NULL, SalesOrderDetailID int NOT NULL, EntryDate datetime NOT NULL, Reference nvarchar(10) NULL, LocationID int NOT NULL, CommodityID int NOT NULL, QuantityRemains decimal(18, 2) NOT NULL, LineVolumeRemains decimal(18, 2) NOT NULL, Remarks nvarchar(100) NULL) " + "\r\n";
+            queryString = queryString + "       DECLARE     @SalesOrderDetails TABLE (IsNewOrEdit bit NOT NULL, SalesOrderID int NOT NULL, SalesOrderDetailID int NOT NULL, EntryDate datetime NOT NULL, Reference nvarchar(10) NULL, VoucherCode nvarchar(60) NULL, LocationID int NOT NULL, CommodityID int NOT NULL, QuantityRemains decimal(18, 2) NOT NULL, LineVolumeRemains decimal(18, 2) NOT NULL, Remarks nvarchar(100) NULL) " + "\r\n";
             queryString = queryString + "       DECLARE     @CommoditiesAvailable TABLE (LocationID int NOT NULL, CommodityID int NOT NULL, QuantityAvailable decimal(18, 2) NOT NULL, LineVolumeAvailable decimal(18, 2) NOT NULL) " + "\r\n";
 
             queryString = queryString + "       IF  (@SalesOrderID <> 0) " + "\r\n";
@@ -199,16 +199,16 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
 
             if (sqlNew)
             {
-                queryString = queryString + "       INSERT INTO @SalesOrderDetails (IsNewOrEdit, SalesOrderID, SalesOrderDetailID, EntryDate, Reference, LocationID, CommodityID, QuantityRemains, LineVolumeRemains, Remarks) " + "\r\n";
-                queryString = queryString + "       SELECT      1 AS IsNewOrEdit, SalesOrderID, SalesOrderDetailID, EntryDate, Reference, LocationID, CommodityID, ROUND(Quantity - QuantityAdvice,  " + (int)GlobalEnums.rndQuantity + ") AS QuantityRemains, ROUND(LineVolume - LineVolumeAdvice,  " + (int)GlobalEnums.rndVolume + ") AS LineVolumeRemains, Remarks " + "\r\n";
+                queryString = queryString + "       INSERT INTO @SalesOrderDetails (IsNewOrEdit, SalesOrderID, SalesOrderDetailID, EntryDate, Reference, VoucherCode, LocationID, CommodityID, QuantityRemains, LineVolumeRemains, Remarks) " + "\r\n";
+                queryString = queryString + "       SELECT      1 AS IsNewOrEdit, SalesOrderID, SalesOrderDetailID, EntryDate, Reference, VoucherCode, LocationID, CommodityID, ROUND(Quantity - QuantityAdvice,  " + (int)GlobalEnums.rndQuantity + ") AS QuantityRemains, ROUND(LineVolume - LineVolumeAdvice,  " + (int)GlobalEnums.rndVolume + ") AS LineVolumeRemains, Remarks " + "\r\n";
                 queryString = queryString + "       FROM        SalesOrderDetails " + "\r\n";
                 queryString = queryString + "       WHERE       " + (isSalesOrderID ? " SalesOrderID = @SalesOrderID " : "LocationID = @LocationID AND CustomerID = @CustomerID ") + " AND Approved = 1 AND ROUND(Quantity - QuantityAdvice, " + (int)GlobalEnums.rndQuantity + ") > 0 " + (isSalesOrderDetailIDs ? " AND SalesOrderDetailID NOT IN (SELECT Id FROM dbo.SplitToIntList (@SalesOrderDetailIDs))" : "") + (sqlNew && sqlEdit ? " AND SalesOrderDetailID NOT IN (SELECT SalesOrderDetailID FROM DeliveryAdviceDetails WHERE DeliveryAdviceID = @DeliveryAdviceID) " : "") + "\r\n";
             }
 
             if (sqlEdit)
             {
-                queryString = queryString + "       INSERT INTO @SalesOrderDetails (IsNewOrEdit, SalesOrderID, SalesOrderDetailID, EntryDate, Reference, LocationID, CommodityID, QuantityRemains, LineVolumeRemains, Remarks) " + "\r\n";
-                queryString = queryString + "       SELECT      0 AS IsNewOrEdit, SalesOrderDetails.SalesOrderID, SalesOrderDetails.SalesOrderDetailID, SalesOrderDetails.EntryDate, SalesOrderDetails.Reference, SalesOrderDetails.LocationID, SalesOrderDetails.CommodityID, ROUND(SalesOrderDetails.Quantity - SalesOrderDetails.QuantityAdvice + DeliveryAdviceDetails.Quantity,  " + (int)GlobalEnums.rndQuantity + ") AS QuantityRemains, ROUND(SalesOrderDetails.LineVolume - SalesOrderDetails.LineVolumeAdvice + DeliveryAdviceDetails.LineVolume, " + (int)GlobalEnums.rndVolume + ") AS LineVolumeRemains, SalesOrderDetails.Remarks " + "\r\n";
+                queryString = queryString + "       INSERT INTO @SalesOrderDetails (IsNewOrEdit, SalesOrderID, SalesOrderDetailID, EntryDate, Reference, VoucherCode, LocationID, CommodityID, QuantityRemains, LineVolumeRemains, Remarks) " + "\r\n";
+                queryString = queryString + "       SELECT      0 AS IsNewOrEdit, SalesOrderDetails.SalesOrderID, SalesOrderDetails.SalesOrderDetailID, SalesOrderDetails.EntryDate, SalesOrderDetails.Reference, SalesOrderDetails.VoucherCode, SalesOrderDetails.LocationID, SalesOrderDetails.CommodityID, ROUND(SalesOrderDetails.Quantity - SalesOrderDetails.QuantityAdvice + DeliveryAdviceDetails.Quantity,  " + (int)GlobalEnums.rndQuantity + ") AS QuantityRemains, ROUND(SalesOrderDetails.LineVolume - SalesOrderDetails.LineVolumeAdvice + DeliveryAdviceDetails.LineVolume, " + (int)GlobalEnums.rndVolume + ") AS LineVolumeRemains, SalesOrderDetails.Remarks " + "\r\n";
                 queryString = queryString + "       FROM        SalesOrderDetails " + "\r\n";
                 queryString = queryString + "                   INNER JOIN DeliveryAdviceDetails ON DeliveryAdviceDetails.DeliveryAdviceID = @DeliveryAdviceID AND SalesOrderDetails.SalesOrderDetailID = DeliveryAdviceDetails.SalesOrderDetailID" + (isSalesOrderDetailIDs ? " AND SalesOrderDetails.SalesOrderDetailID NOT IN (SELECT Id FROM dbo.SplitToIntList (@SalesOrderDetailIDs))" : "") + "\r\n";
             }
@@ -223,7 +223,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
         {
             string queryString = "";
 
-            queryString = queryString + "       SELECT      SalesOrderDetails.SalesOrderID, SalesOrderDetails.SalesOrderDetailID, SalesOrderDetails.Reference AS SalesOrderReference, SalesOrderDetails.EntryDate AS SalesOrderEntryDate, " + "\r\n";
+            queryString = queryString + "       SELECT      SalesOrderDetails.SalesOrderID, SalesOrderDetails.SalesOrderDetailID, SalesOrderDetails.Reference AS SalesOrderReference, SalesOrderDetails.EntryDate AS SalesOrderEntryDate, SalesOrderDetails.VoucherCode AS SalesOrderVoucherCode, " + "\r\n";
             queryString = queryString + "                   Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, Commodities.PackageSize, Commodities.Volume, Commodities.PackageVolume, " + "\r\n";
             queryString = queryString + "                   ISNULL(CommoditiesAvailable.QuantityAvailable, 0) AS QuantityAvailable, ISNULL(CommoditiesAvailable.LineVolumeAvailable, 0) AS LineVolumeAvailable, SalesOrderDetails.QuantityRemains, CAST(0 AS decimal(18, 2)) AS Quantity, SalesOrderDetails.LineVolumeRemains, CAST(0 AS decimal(18, 2)) AS LineVolume, SalesOrderDetails.Remarks, CAST(1 AS bit) AS IsSelected " + "\r\n";
 
@@ -238,7 +238,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
         {
             string queryString = "";
 
-            queryString = queryString + "       SELECT      SalesOrderDetails.SalesOrderID, SalesOrderDetails.SalesOrderDetailID, SalesOrderDetails.Reference AS SalesOrderReference, SalesOrderDetails.EntryDate AS SalesOrderEntryDate, " + "\r\n";
+            queryString = queryString + "       SELECT      SalesOrderDetails.SalesOrderID, SalesOrderDetails.SalesOrderDetailID, SalesOrderDetails.Reference AS SalesOrderReference, SalesOrderDetails.EntryDate AS SalesOrderEntryDate, SalesOrderDetails.VoucherCode AS SalesOrderVoucherCode, " + "\r\n";
             queryString = queryString + "                   Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, Commodities.PackageSize, Commodities.Volume, Commodities.PackageVolume, " + "\r\n";
             queryString = queryString + "                   ISNULL(CommoditiesAvailable.QuantityAvailable, 0) AS QuantityAvailable, ISNULL(CommoditiesAvailable.LineVolumeAvailable, 0) AS LineVolumeAvailable, SalesOrderDetails.QuantityRemains, CAST(0 AS decimal(18, 2)) AS Quantity, SalesOrderDetails.LineVolumeRemains, CAST(0 AS decimal(18, 2)) AS LineVolume, SalesOrderDetails.Remarks, CAST(1 AS bit) AS IsSelected " + "\r\n";
 

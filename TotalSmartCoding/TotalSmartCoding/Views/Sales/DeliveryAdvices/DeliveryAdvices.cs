@@ -70,7 +70,7 @@ namespace TotalSmartCoding.Views.Sales.DeliveryAdvices
                 this.customTabLeft = new CustomTabControl();
                 this.customTabLeft.DisplayStyle = TabStyle.VisualStudio;
 
-                this.customTabLeft.TabPages.Add("tabLeftAA", "Sales Order  ");
+                this.customTabLeft.TabPages.Add("tabLeftAA", "Delivery Advice   ");
                 this.customTabLeft.TabPages[0].BackColor = this.panelLeft.BackColor;
                 this.customTabLeft.TabPages[0].Padding = new Padding(15, 0, 0, 0);
                 this.customTabLeft.TabPages[0].Controls.Add(this.layoutLeft);
@@ -85,16 +85,18 @@ namespace TotalSmartCoding.Views.Sales.DeliveryAdvices
                 this.customTabCenter = new CustomTabControl();
                 this.customTabCenter.DisplayStyle = TabStyle.VisualStudio;
 
-                this.customTabCenter.TabPages.Add("tabCenterAA", "Order Lines            ");
+                this.customTabCenter.TabPages.Add("tabCenterAA", "Advice Line Details ");
                 this.customTabCenter.TabPages.Add("tabCenterBB", "Description            ");
                 this.customTabCenter.TabPages.Add("tabCenterBB", "Remarks                    ");
 
                 this.customTabCenter.TabPages[0].Controls.Add(this.gridexViewDetails);
+                this.customTabCenter.TabPages[0].Controls.Add(this.toolStripPallet);
                 this.customTabCenter.TabPages[1].Controls.Add(this.textexDescription);
                 this.customTabCenter.TabPages[2].Controls.Add(this.textexRemarks);
                 this.customTabCenter.TabPages[1].Padding = new Padding(30, 30, 30, 30);
                 this.customTabCenter.TabPages[2].Padding = new Padding(30, 30, 30, 30);
                 this.customTabCenter.TabPages[0].BackColor = this.panelCenter.BackColor;
+                this.toolStripPallet.Dock = DockStyle.Left;
                 this.gridexViewDetails.Dock = DockStyle.Fill;
                 this.textexDescription.Dock = DockStyle.Fill;
                 this.textexRemarks.Dock = DockStyle.Fill;
@@ -194,7 +196,7 @@ namespace TotalSmartCoding.Views.Sales.DeliveryAdvices
                 foreach (OLVGroup olvGroup in e.Groups)
                 {
                     olvGroup.TitleImage = "Sign_Order_32";
-                    olvGroup.Subtitle = "Count: " + olvGroup.Contents.Count.ToString() + " Order(s)";
+                    olvGroup.Subtitle = "Count: " + olvGroup.Contents.Count.ToString() + " Advice(s)";
                 }
             }
         }
@@ -238,7 +240,7 @@ namespace TotalSmartCoding.Views.Sales.DeliveryAdvices
         private void ViewDetails_ListChanged(object sender, ListChangedEventArgs e)
         {
             if (e.ListChangedType == ListChangedType.ItemAdded || e.ListChangedType == ListChangedType.ItemDeleted || e.ListChangedType == ListChangedType.Reset)
-                this.customTabCenter.TabPages[0].Text = "Order Lines [" + this.deliveryAdviceViewModel.ViewDetails.Count.ToString("N0") + " item(s)]             ";
+                this.customTabCenter.TabPages[0].Text = "Advice Line Details [" + this.deliveryAdviceViewModel.ViewDetails.Count.ToString("N0") + " item(s)]             ";
 
             if (this.EditableMode && e.PropertyDescriptor != null && e.NewIndex >= 0 && e.NewIndex < this.deliveryAdviceViewModel.ViewDetails.Count)
             {
@@ -268,8 +270,28 @@ namespace TotalSmartCoding.Views.Sales.DeliveryAdvices
 
         protected override DialogResult wizardMaster()
         {
-            WizardMaster wizardMaster = new WizardMaster(this.deliveryAdviceViewModel);
+            WizardMaster wizardMaster = new WizardMaster(this.deliveryAdviceAPIs, this.deliveryAdviceViewModel);
             return wizardMaster.ShowDialog();
+        }
+
+        protected override void wizardDetail()
+        {
+            base.wizardDetail();
+            WizardDetail wizardDetail = new WizardDetail(this.deliveryAdviceAPIs, this.deliveryAdviceViewModel);
+            wizardDetail.ShowDialog();
+        }
+
+        private void buttonAddDetails_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (this.EditableMode)
+                    this.wizardDetail();
+            }
+            catch (Exception exception)
+            {
+                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+            }
         }
 
         private void naviGroupDetails_HeaderMouseClick(object sender, MouseEventArgs e)
@@ -289,7 +311,9 @@ namespace TotalSmartCoding.Views.Sales.DeliveryAdvices
 
         private void gridexViewDetails_ReadOnlyChanged(object sender, EventArgs e)
         {
-            string columnName = CommonExpressions.PropertyName<DeliveryAdviceDetailDTO>(p => p.CommodityName);
+            string columnName = CommonExpressions.PropertyName<DeliveryAdviceDetailDTO>(p => p.CommodityID);
+            this.gridexViewDetails.Columns[CommonExpressions.PropertyName<DeliveryAdviceDetailDTO>(p => p.CommodityID)].ReadOnly = true;
+            columnName = CommonExpressions.PropertyName<DeliveryAdviceDetailDTO>(p => p.CommodityName);
             this.gridexViewDetails.Columns[columnName].ReadOnly = true;
             columnName = CommonExpressions.PropertyName<DeliveryAdviceDetailDTO>(p => p.PackageSize);
             this.gridexViewDetails.Columns[columnName].ReadOnly = true;

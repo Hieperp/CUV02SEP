@@ -56,7 +56,7 @@ namespace TotalDTO.Sales
         }
 
         private string contactInfo;
-        [DefaultValue("")]
+        [DefaultValue(null)]
         public string ContactInfo
         {
             get { return this.contactInfo; }
@@ -64,7 +64,7 @@ namespace TotalDTO.Sales
         }
 
         private string shippingAddress;
-        [DefaultValue("")]
+        [DefaultValue(null)]
         public string ShippingAddress
         {
             get { return this.shippingAddress; }
@@ -90,7 +90,7 @@ namespace TotalDTO.Sales
         {
             base.PerformPresaveRule();
 
-            this.DtoDetails().ToList().ForEach(e => { e.CustomerID = this.CustomerID; });
+            this.DtoDetails().ToList().ForEach(e => { e.CustomerID = this.CustomerID; e.VoucherCode = this.VoucherCode; });
         }
     }
 

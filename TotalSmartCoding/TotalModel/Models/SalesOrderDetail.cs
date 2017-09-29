@@ -33,6 +33,7 @@ namespace TotalModel.Models
         public decimal LineVolumeAdvice { get; set; }
         public string Remarks { get; set; }
         public bool Approved { get; set; }
+        public string VoucherCode { get; set; }
     
         public virtual Commodity Commodity { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

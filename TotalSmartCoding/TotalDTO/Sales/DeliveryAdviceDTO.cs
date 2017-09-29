@@ -44,6 +44,15 @@ namespace TotalDTO.Sales
 
         public bool HasSalesOrder { get; set; }
 
+        private string voucherCode;
+        [DefaultValue("")]
+        public string VoucherCode
+        {
+            get { return this.voucherCode; }
+            set { ApplyPropertyChange<SalesOrderDTO, string>(ref this.voucherCode, o => o.VoucherCode, value); }
+        }
+        public string SalesOrderVoucherCodes { get; set; }
+
         private int customerID;
         [DefaultValue(null)]
         public int CustomerID
@@ -59,25 +68,46 @@ namespace TotalDTO.Sales
             set { ApplyPropertyChange<DeliveryAdviceDTO, string>(ref this.customerName, o => o.CustomerName, value); }
         }
 
-
-        private int salesPersonID;
-        [DefaultValue(1)]
-        public int SalesPersonID
+        private string contactInfo;
+        [DefaultValue(null)]
+        public string ContactInfo
         {
-            get { return this.salesPersonID; }
-            set { ApplyPropertyChange<DeliveryAdvicePrimitiveDTO, int>(ref this.salesPersonID, o => o.SalesPersonID, value); }
+            get { return this.contactInfo; }
+            set { ApplyPropertyChange<SalesOrderDTO, string>(ref this.contactInfo, o => o.ContactInfo, value); }
+        }
+
+        private string shippingAddress;
+        [DefaultValue(null)]
+        public string ShippingAddress
+        {
+            get { return this.shippingAddress; }
+            set { ApplyPropertyChange<SalesOrderDTO, string>(ref this.shippingAddress, o => o.ShippingAddress, value); }
+        }
+
+        private Nullable<int> salespersonID;
+        [DefaultValue(null)]
+        public Nullable<int> SalespersonID
+        {
+            get { return this.salespersonID; }
+            set { ApplyPropertyChange<DeliveryAdvicePrimitiveDTO, Nullable<int>>(ref this.salespersonID, o => o.SalespersonID, value); }
         }
 
 
         public override int PreparedPersonID { get { return 1; } }
 
+        public override string Caption
+        {
+            get { return this.CustomerName + (this.ContactInfo != null && this.ContactInfo.Trim() != "" ? ", " : "") + this.ContactInfo + (this.CustomerName != "" ? ", " : "") + this.EntryDate.ToString() + "             Total Quantity: " + this.TotalQuantity.ToString() + ",    Total Volume: " + this.TotalLineVolume.ToString("N2"); }
+        }
+
         public override void PerformPresaveRule()
         {
             base.PerformPresaveRule();
 
-            string salesOrderReferences = "";
-            this.DtoDetails().ToList().ForEach(e => { e.CustomerID = this.CustomerID; if (this.HasSalesOrder && salesOrderReferences.IndexOf(e.SalesOrderReference) < 0) salesOrderReferences = salesOrderReferences + (salesOrderReferences != "" ? ", " : "") + e.SalesOrderReference; });
+            string salesOrderReferences = ""; string salesOrderVoucherCodes = "";
+            this.DtoDetails().ToList().ForEach(e => { e.CustomerID = this.CustomerID; if (this.HasSalesOrder && salesOrderReferences.IndexOf(e.SalesOrderReference) < 0) salesOrderReferences = salesOrderReferences + (salesOrderReferences != "" ? ", " : "") + e.SalesOrderReference; if (this.HasSalesOrder && salesOrderVoucherCodes.IndexOf(e.SalesOrderVoucherCode) < 0) salesOrderVoucherCodes = salesOrderVoucherCodes + (salesOrderVoucherCodes != "" ? ", " : "") + e.SalesOrderVoucherCode; });
             this.SalesOrderReferences = salesOrderReferences;
+            this.SalesOrderVoucherCodes = salesOrderVoucherCodes;
         }
     }
 

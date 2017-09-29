@@ -31,5 +31,6 @@ namespace TotalModel.Models
         public decimal PackageVolume { get; set; }
         public decimal QuantityAvailable { get; set; }
         public decimal LineVolumeAvailable { get; set; }
+        public string SalesOrderVoucherCode { get; set; }
     }
 }

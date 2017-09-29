@@ -25,9 +25,9 @@ namespace TotalSmartCoding.Views.Sales.DeliveryAdvices
             this.customTabBatch.DisplayStyle = TabStyle.VisualStudio;
             this.customTabBatch.DisplayStyleProvider.ImageAlign = ContentAlignment.MiddleLeft;
 
-            this.customTabBatch.TabPages.Add("tabPendingSalesOrders", "Receipt by salesOrder                  ");
-            this.customTabBatch.TabPages.Add("tabPendingSalesOrderCustomers", "Receipt by customer          ");
-            this.customTabBatch.TabPages.Add("tabPendingSalesOrders", "Transfer Receipt                    ");
+            this.customTabBatch.TabPages.Add("tabPendingSalesOrders", "Advice by Sales Orders ");
+            this.customTabBatch.TabPages.Add("tabPendingSalesOrderCustomers", "Advice by Customers    ");
+            this.customTabBatch.TabPages.Add("tabNewDeliveryAdvice", "Advice without Sales Order ");
             this.customTabBatch.TabPages[0].Controls.Add(this.fastPendingSalesOrders);
             this.customTabBatch.TabPages[1].Controls.Add(this.fastPendingSalesOrderCustomers);
 
@@ -64,6 +64,8 @@ namespace TotalSmartCoding.Views.Sales.DeliveryAdvices
             {
                 if (sender.Equals(this.buttonOK))
                 {
+                    this.deliveryAdviceViewModel.HasSalesOrder = true;
+
                     bool nextOK = false;
                     if (this.customTabBatch.SelectedIndex == 0)
                     {
@@ -71,8 +73,14 @@ namespace TotalSmartCoding.Views.Sales.DeliveryAdvices
                         if (pendingSalesOrder != null) {                            
                             this.deliveryAdviceViewModel.SalesOrderID = pendingSalesOrder.SalesOrderID;
                             this.deliveryAdviceViewModel.SalesOrderReferences = pendingSalesOrder.SalesOrderReference;
+                            this.deliveryAdviceViewModel.VoucherCode = pendingSalesOrder.VoucherCode;
+
                             this.deliveryAdviceViewModel.CustomerID = pendingSalesOrder.CustomerID;
                             this.deliveryAdviceViewModel.CustomerName = pendingSalesOrder.CustomerName;
+                            this.deliveryAdviceViewModel.ContactInfo = pendingSalesOrder.ContactInfo;
+                            this.deliveryAdviceViewModel.ShippingAddress = pendingSalesOrder.ShippingAddress;
+                            
+                            this.deliveryAdviceViewModel.SalespersonID = pendingSalesOrder.SalespersonID;
                             nextOK = true;
                         }
                     }
@@ -83,6 +91,10 @@ namespace TotalSmartCoding.Views.Sales.DeliveryAdvices
                         {
                             this.deliveryAdviceViewModel.CustomerID = pendingSalesOrderCustomer.CustomerID;
                             this.deliveryAdviceViewModel.CustomerName = pendingSalesOrderCustomer.CustomerName;
+                            this.deliveryAdviceViewModel.ContactInfo = pendingSalesOrderCustomer.ContactInfo;
+                            this.deliveryAdviceViewModel.ShippingAddress = pendingSalesOrderCustomer.ShippingAddress;
+
+                            this.deliveryAdviceViewModel.SalespersonID = pendingSalesOrderCustomer.SalespersonID;
                             nextOK = true;
                         }
                     }
