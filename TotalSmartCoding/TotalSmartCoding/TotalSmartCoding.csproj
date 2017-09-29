@@ -281,6 +281,12 @@
     <Compile Include="Views\Productions\SmartCoding.designer.cs">
       <DependentUpon>SmartCoding.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Sales\DeliveryAdvices\DeliveryAdvices.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Sales\DeliveryAdvices\DeliveryAdvices.designer.cs">
+      <DependentUpon>DeliveryAdvices.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Sales\DeliveryAdvices\DeliveryAdviceXYZs.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -384,6 +390,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Productions\SmartCoding.resx">
       <DependentUpon>SmartCoding.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Sales\DeliveryAdvices\DeliveryAdvices.resx">
+      <DependentUpon>DeliveryAdvices.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Sales\DeliveryAdvices\DeliveryAdviceXYZs.resx">
       <DependentUpon>DeliveryAdviceXYZs.cs</DependentUpon>
