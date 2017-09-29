@@ -951,6 +951,9 @@
     <None Include="Resources\Forklift24.png" />
     <None Include="Resources\Forklift64.png" />
     <None Include="Resources\Forklift128.png" />
+    <None Include="Resources\Actions-NOTok-icon.png" />
+    <None Include="Resources\Actions-ok-icon.png" />
+    <None Include="Resources\Cross-UnVerify.png" />
     <Content Include="Resources\Icons-Land-Play-Stop-Pause-Play-Pressed.ico" />
     <None Include="Resources\Land-Play.ico" />
     <None Include="Resources\palet031.ico" />
@@ -1046,9 +1049,13 @@
     <None Include="Resources\Phone-icon-24.png" />
     <None Include="Resources\Sign_Order_48.png" />
     <None Include="Resources\Sign_Order_32.png" />
+    <None Include="Resources\japanese-cross.png" />
     <Content Include="Resources\Toolbar Image1.png" />
     <None Include="Resources\Umar123-Carton.ico" />
     <None Include="Resources\Truck-24.png" />
+    <None Include="Resources\UnVerify.png" />
+    <None Include="Resources\UnVerifyLightMagenta.png" />
+    <None Include="Resources\UnVerifyVeryLightMagenta.png" />
     <Content Include="Resources\warning__1_.ico" />
   </ItemGroup>
   <ItemGroup />

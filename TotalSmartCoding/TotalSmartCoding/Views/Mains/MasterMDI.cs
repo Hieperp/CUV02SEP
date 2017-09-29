@@ -225,8 +225,8 @@ namespace TotalSmartCoding.Views.Mains
 
                     this.buttonApprove.Visible = approvable || unapprovable;
                     this.buttonApprove.Enabled = (approvable || unapprovable) && readonlyMode;
-                    this.buttonApprove.Text = approvable ? "Verify" : "Unverify";
-                    this.buttonApprove.Image = approvable ? Resources.Check_Saki_Ok : Resources.Check_Saki_Cross;
+                    this.buttonApprove.Text = approvable ? "Verify" : "Un-verify";
+                    this.buttonApprove.Image = approvable ? Resources.Check_Saki_Ok : Resources.Cross_UnVerify;
 
                     this.toolStripSeparatorApprove.Visible = approvable || unapprovable;
 

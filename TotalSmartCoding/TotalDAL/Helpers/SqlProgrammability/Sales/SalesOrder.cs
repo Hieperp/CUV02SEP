@@ -121,10 +121,10 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
 
         private void SalesOrderEditable()
         {
-            string[] queryArray = new string[0];
+            string[] queryArray = new string[2];
 
-            //queryArray[0] = " SELECT TOP 1 @FoundEntity = SalesOrderID FROM GoodsReceipts WHERE SalesOrderID = @EntityID ";
-            //queryArray[1] = " SELECT TOP 1 @FoundEntity = SalesOrderID FROM GoodsReceiptDetails WHERE SalesOrderID = @EntityID ";
+            queryArray[0] = " SELECT TOP 1 @FoundEntity = SalesOrderID FROM DeliveryAdvices WHERE SalesOrderID = @EntityID ";
+            queryArray[1] = " SELECT TOP 1 @FoundEntity = SalesOrderID FROM DeliveryAdviceDetails WHERE SalesOrderID = @EntityID ";
 
             this.totalSmartCodingEntities.CreateProcedureToCheckExisting("SalesOrderEditable", queryArray);
         }

@@ -375,7 +375,7 @@
             this.MinimizeBox = false;
             this.Name = "WizardDetail";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Create Wizard";
+            this.Text = "Select and add items";
             this.Load += new System.EventHandler(this.WizardDetail_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();

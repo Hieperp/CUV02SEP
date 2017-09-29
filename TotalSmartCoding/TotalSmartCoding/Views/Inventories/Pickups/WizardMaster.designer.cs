@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.buttonESC = new System.Windows.Forms.ToolStripButton();
+            this.buttonOK = new System.Windows.Forms.ToolStripButton();
             this.combexWarehouseID = new CustomControls.CombexBox();
             this.combexForkliftDriverID = new CustomControls.CombexBox();
             this.combexStorekeeperID = new CustomControls.CombexBox();
@@ -41,8 +43,6 @@
             this.combexFillingLineID = new CustomControls.CombexBox();
             this.label2 = new System.Windows.Forms.Label();
             this.errorProviderMaster = new System.Windows.Forms.ErrorProvider(this.components);
-            this.buttonESC = new System.Windows.Forms.ToolStripButton();
-            this.buttonOK = new System.Windows.Forms.ToolStripButton();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderMaster)).BeginInit();
@@ -63,6 +63,31 @@
             this.toolStrip1.Size = new System.Drawing.Size(834, 55);
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // buttonESC
+            // 
+            this.buttonESC.Font = new System.Drawing.Font("Niagara Engraved", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonESC.Image = global::TotalSmartCoding.Properties.Resources.signout_icon_24;
+            this.buttonESC.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonESC.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonESC.Name = "buttonESC";
+            this.buttonESC.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.buttonESC.Size = new System.Drawing.Size(85, 52);
+            this.buttonESC.Text = "Cancel";
+            this.buttonESC.Click += new System.EventHandler(this.buttonOKESC_Click);
+            // 
+            // buttonOK
+            // 
+            this.buttonOK.Enabled = false;
+            this.buttonOK.Font = new System.Drawing.Font("Niagara Engraved", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonOK.Image = global::TotalSmartCoding.Properties.Resources.Oxygen_Icons_org_Oxygen_Actions_go_next_view;
+            this.buttonOK.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonOK.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonOK.Name = "buttonOK";
+            this.buttonOK.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.buttonOK.Size = new System.Drawing.Size(93, 52);
+            this.buttonOK.Text = "Next";
+            this.buttonOK.Click += new System.EventHandler(this.buttonOKESC_Click);
             // 
             // combexWarehouseID
             // 
@@ -204,31 +229,6 @@
             // 
             this.errorProviderMaster.ContainerControl = this;
             // 
-            // buttonESC
-            // 
-            this.buttonESC.Font = new System.Drawing.Font("Niagara Engraved", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonESC.Image = global::TotalSmartCoding.Properties.Resources.signout_icon_24;
-            this.buttonESC.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.buttonESC.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonESC.Name = "buttonESC";
-            this.buttonESC.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.buttonESC.Size = new System.Drawing.Size(85, 52);
-            this.buttonESC.Text = "Cancel";
-            this.buttonESC.Click += new System.EventHandler(this.buttonOKESC_Click);
-            // 
-            // buttonOK
-            // 
-            this.buttonOK.Enabled = false;
-            this.buttonOK.Font = new System.Drawing.Font("Niagara Engraved", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonOK.Image = global::TotalSmartCoding.Properties.Resources.Oxygen_Icons_org_Oxygen_Actions_go_next_view;
-            this.buttonOK.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.buttonOK.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonOK.Name = "buttonOK";
-            this.buttonOK.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.buttonOK.Size = new System.Drawing.Size(93, 52);
-            this.buttonOK.Text = "Next";
-            this.buttonOK.Click += new System.EventHandler(this.buttonOKESC_Click);
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::TotalSmartCoding.Properties.Resources.Forklift48;
@@ -261,7 +261,7 @@
             this.MinimizeBox = false;
             this.Name = "WizardMaster";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Create Wizard";
+            this.Text = "Create Wizard [New Pickup]";
             this.Load += new System.EventHandler(this.WizardMaster_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();

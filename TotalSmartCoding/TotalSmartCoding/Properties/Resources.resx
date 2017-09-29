@@ -148,6 +148,9 @@
   <data name="Keys" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Keys.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Actions-ok-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Actions-ok-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="sign-out-option" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sign-out-option.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -171,9 +174,6 @@
   </data>
   <data name="1-icon642" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\1-icon642.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Actions-edit-find" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Actions-edit-find.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -274,8 +274,8 @@
   <data name="if_oil_64502-24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\if_oil_64502-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Chromatix-Keyboard-Keys-0" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Chromatix-Keyboard-Keys-0.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="export-arrow-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\export-arrow-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Placeholder48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Placeholder48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -334,9 +334,6 @@
   <data name="Icons8-Windows-8-Numbers-1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icons8-Windows-8-Numbers-1.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Check-Saki-Ok" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Check-Saki-Ok.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="refresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\refresh.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -348,6 +345,9 @@
   </data>
   <data name="Designcontest-Ecommerce-Business-Shipping" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Designcontest-Ecommerce-Business-Shipping.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Deleket-Soft-Scraps-Document-Preview" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Deleket-Soft-Scraps-Document-Preview.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="blue-recycle-bin" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\blue-recycle-bin.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -373,6 +373,9 @@
   <data name="Key (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Key (2).ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="UnVerify" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnVerify.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Play_Normal_Red_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Play_Normal_Red_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -396,9 +399,6 @@
   </data>
   <data name="Actions-trash-empty" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Actions-trash-empty.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Pallet-32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Pallet-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="connect_no" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\connect_no.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -424,14 +424,14 @@
   <data name="pallet-32B" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\pallet-32B.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Actions-NOTok-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Actions-NOTok-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="ButtonImage1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ButtonImage1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="palet-01-png-36" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\palet-01-png-36.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="blank-keyboard-key-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\blank-keyboard-key-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Barcode-green-32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Barcode-green-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -454,8 +454,8 @@
   <data name="Actions-document-save-as" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Actions-document-save-as.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Graphicloads-100-Flat-Home" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Graphicloads-100-Flat-Home.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Check-Snowish-Ok" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Check-Snowish-Ok.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Truck-24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Truck-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -487,6 +487,9 @@
   <data name="Alarm-Warning" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Alarm-Warning.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Chromatix-Keyboard-Keys-0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Chromatix-Keyboard-Keys-0.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="8-icon641" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\8-icon641.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -499,8 +502,14 @@
   <data name="Alarm-Error" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Alarm-Error.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Stop_Disabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Stop_Disabled.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Oxygen-Icons.org-Oxygen-Actions-go-next-view" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Oxygen-Icons.org-Oxygen-Actions-go-next-view.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Antrepo-Cargo-Boxes-Palet-02" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Antrepo-Cargo-Boxes-Palet-02.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="fork6" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\fork6.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -531,9 +540,6 @@
   </data>
   <data name="Graphicrating-Koloria-Warning" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Graphicrating-Koloria-Warning.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Check-Snowish-Ok" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Check-Snowish-Ok.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="if_oil_64502" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\if_oil_64502.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -577,6 +583,9 @@
   <data name="addressbook-edit" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\addressbook-edit.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Status-security-high" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Status-security-high.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Sign_Order_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Sign_Order_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -586,14 +595,14 @@
   <data name="Toolbar Image" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Toolbar Image.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Graphicloads-100-Flat-Home" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Graphicloads-100-Flat-Home.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Check-Sleek-Ok" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Check-Sleek-Ok.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Recycle-Bin-full" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Recycle-Bin-full.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Custom-Icon-Design-Pretty-Office-5-Navigate-right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Custom-Icon-Design-Pretty-Office-5-Navigate-right.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="letter-uppercase-K-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\letter-uppercase-K-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -619,9 +628,6 @@
   <data name="signout-icon-24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\signout-icon-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="letter-uppercase-H-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\letter-uppercase-H-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Custom-Icon-Design-Pretty-Office-5-Hide-right" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Custom-Icon-Design-Pretty-Office-5-Hide-right.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -646,17 +652,20 @@
   <data name="Chromatix-Keyboard-Keys-9" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Chromatix-Keyboard-Keys-9.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Forklift128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Forklift128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="1-icon64" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\1-icon64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="export-arrow-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\export-arrow-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="sign-out-gray" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sign-out-gray.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Data-Lock-24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Data-Lock-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="7-icon64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\7-icon64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="barcode" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\barcode.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -693,6 +702,9 @@
   </data>
   <data name="self" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\self.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="japanese-cross" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\japanese-cross.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DataEsc" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DataEsc.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -817,11 +829,17 @@
   <data name="if_gas_1055052" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\if_gas_1055052.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Benjigarner-Softdimension-Excel1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Benjigarner-Softdimension-Excel1.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="PalletBin32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PalletBin32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Floppy-Drive" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Floppy-Drive.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="UnVerifyLightMagenta" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnVerifyLightMagenta.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="letter-i-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\letter-i-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -838,14 +856,17 @@
   <data name="Actions-messagebox-warning" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Actions-messagebox-warning.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Stop_Disabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Stop_Disabled.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="UnVerifyVeryLightMagenta" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnVerifyVeryLightMagenta.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Benjigarner-Softdimension-Excel" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Benjigarner-Softdimension-Excel.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="3floppy-mount" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\3floppy-mount.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="0-icon64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\0-icon64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Open-Folder-Add" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Open-Folder-Add.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -1075,14 +1096,14 @@
   <data name="Treetog-Junior-Folder-user" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Treetog-Junior-Folder-user.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Benjigarner-Softdimension-Excel1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Benjigarner-Softdimension-Excel1.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Actions-edit-find" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Actions-edit-find.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Antrepo-Cargo-Boxes-Palet-02" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Antrepo-Cargo-Boxes-Palet-02.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Check-Saki-Ok" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Check-Saki-Ok.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Deleket-Soft-Scraps-Document-Preview" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Deleket-Soft-Scraps-Document-Preview.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Custom-Icon-Design-Pretty-Office-5-Navigate-right" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Custom-Icon-Design-Pretty-Office-5-Navigate-right.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="if_oil_645021" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\if_oil_64502.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -1102,22 +1123,22 @@
   <data name="trash-empty" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\trash-empty.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Status-security-high" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Status-security-high.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Pallet-32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Pallet-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="7-icon64" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\7-icon64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="letter-uppercase-H-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\letter-uppercase-H-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="RUN-icon64" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\RUN-icon64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="0-icon64" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\0-icon64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="blank-keyboard-key-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\blank-keyboard-key-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="2D-Barcode" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\2D-Barcode.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Forklift128" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Forklift128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Cross-UnVerify" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Cross-UnVerify.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

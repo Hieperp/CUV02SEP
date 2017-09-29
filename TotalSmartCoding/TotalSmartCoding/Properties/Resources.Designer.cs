@@ -393,6 +393,26 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Actions_NOTok_icon {
+            get {
+                object obj = ResourceManager.GetObject("Actions-NOTok-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Actions_ok_icon {
+            get {
+                object obj = ResourceManager.GetObject("Actions-ok-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Actions_trash_empty {
             get {
                 object obj = ResourceManager.GetObject("Actions-trash-empty", resourceCulture);
@@ -1283,6 +1303,16 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Cross_UnVerify {
+            get {
+                object obj = ResourceManager.GetObject("Cross-UnVerify", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Custom_Icon_Design_Office_Forward {
             get {
                 object obj = ResourceManager.GetObject("Custom-Icon-Design-Office-Forward", resourceCulture);
@@ -2146,6 +2176,16 @@ namespace TotalSmartCoding.Properties {
         internal static System.Drawing.Bitmap Internet_Connect {
             get {
                 object obj = ResourceManager.GetObject("Internet-Connect", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap japanese_cross {
+            get {
+                object obj = ResourceManager.GetObject("japanese-cross", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -3336,6 +3376,36 @@ namespace TotalSmartCoding.Properties {
         internal static System.Drawing.Bitmap Umar123_Carton {
             get {
                 object obj = ResourceManager.GetObject("Umar123-Carton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap UnVerify {
+            get {
+                object obj = ResourceManager.GetObject("UnVerify", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap UnVerifyLightMagenta {
+            get {
+                object obj = ResourceManager.GetObject("UnVerifyLightMagenta", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap UnVerifyVeryLightMagenta {
+            get {
+                object obj = ResourceManager.GetObject("UnVerifyVeryLightMagenta", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
