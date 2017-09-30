@@ -184,9 +184,15 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
             queryString = queryString + "           UPDATE          FillingLines SET PalletChanged = 1 WHERE FillingLineID = (SELECT FillingLineID FROM Pickups WHERE PickupID = @EntityID) " + "\r\n";
 
+            queryString = queryString + "           IF (@SaveRelativeOption = 1) ";
+            queryString = queryString + "               BEGIN ";
+            queryString = queryString + "                   UPDATE          PickupDetails " + "\r\n";
+            queryString = queryString + "                   SET             PickupDetails.Reference = Pickups.Reference " + "\r\n";
+            queryString = queryString + "                   FROM            Pickups INNER JOIN PickupDetails ON Pickups.PickupID = @EntityID AND Pickups.PickupID = PickupDetails.PickupID " + "\r\n";
+            queryString = queryString + "               END ";
+
             queryString = queryString + "           UPDATE          Pallets " + "\r\n";
-            queryString = queryString + "           SET             Pallets.QuantityPickup = ROUND(Pallets.QuantityPickup + PickupDetails.Quantity * @SaveRelativeOption, " + (int)GlobalEnums.rndQuantity + "), Pallets.LineVolumePickup = ROUND(Pallets.LineVolumePickup + PickupDetails.LineVolume * @SaveRelativeOption, " + (int)GlobalEnums.rndVolume + ") " + "\r\n";
-            
+            queryString = queryString + "           SET             Pallets.QuantityPickup = ROUND(Pallets.QuantityPickup + PickupDetails.Quantity * @SaveRelativeOption, " + (int)GlobalEnums.rndQuantity + "), Pallets.LineVolumePickup = ROUND(Pallets.LineVolumePickup + PickupDetails.LineVolume * @SaveRelativeOption, " + (int)GlobalEnums.rndVolume + ") " + "\r\n";            
             queryString = queryString + "           FROM            PickupDetails " + "\r\n";
             queryString = queryString + "                           INNER JOIN Pallets ON PickupDetails.PickupID = @EntityID AND PickupDetails.PalletID = Pallets.PalletID " + "\r\n";
 

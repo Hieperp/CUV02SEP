@@ -2660,7 +2660,6 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Type="Int32" Name="CartonID" Nullable="true" />
           <Property Type="String" Name="CartonCode" Nullable="true" MaxLength="50" />
           <Property Type="Decimal" Name="QuantityRemains" Nullable="true" Precision="19" Scale="2" />
-          <Property Type="String" Name="Description" Nullable="true" MaxLength="100" />
           <Property Type="Int32" Name="PackCounts" Nullable="false" />
           <Property Type="Int32" Name="CartonCounts" Nullable="false" />
           <Property Type="Int32" Name="PalletCounts" Nullable="false" />
@@ -4608,7 +4607,6 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
                 <ScalarProperty Name="CartonID" ColumnName="CartonID" />
                 <ScalarProperty Name="CartonCode" ColumnName="CartonCode" />
                 <ScalarProperty Name="QuantityRemains" ColumnName="QuantityRemains" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="PackCounts" ColumnName="PackCounts" />
                 <ScalarProperty Name="CartonCounts" ColumnName="CartonCounts" />
                 <ScalarProperty Name="PalletCounts" ColumnName="PalletCounts" />
