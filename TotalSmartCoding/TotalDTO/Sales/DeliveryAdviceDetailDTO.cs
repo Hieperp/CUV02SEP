@@ -3,6 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 using TotalModel;
 using TotalDTO.Helpers;
+using System.Collections.Generic;
+using TotalModel.Helpers;
+using TotalBase;
 
 namespace TotalDTO.Sales
 {
@@ -26,6 +29,15 @@ namespace TotalDTO.Sales
         public string SalesOrderVoucherCode { get; set; }
 
         public int CustomerID { get; set; }
+
+
+        protected override List<ValidationRule> CreateRules()
+        {
+            List<ValidationRule> validationRules = base.CreateRules();
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<DeliveryAdviceDetailDTO>(p => p.DeliveryAdviceDetailID), "Số lượng xuất không được lớn hơn số lượng tồn.", delegate { return (this.Quantity <= this.QuantityAvailable && this.Quantity <= this.QuantityRemains && this.LineVolume <= this.LineVolumeAvailable && this.LineVolume <= this.LineVolumeRemains); }));
+            
+            return validationRules;
+        }
     }
 
 

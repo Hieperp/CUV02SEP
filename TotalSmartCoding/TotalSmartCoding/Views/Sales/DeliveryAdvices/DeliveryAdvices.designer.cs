@@ -789,7 +789,7 @@
             // olvTotalLineVolume
             // 
             this.olvTotalLineVolume.AspectName = "TotalLineVolume";
-            this.olvTotalLineVolume.AspectToStringFormat = "{0:#,###.##}";
+            this.olvTotalLineVolume.AspectToStringFormat = "{0:#,##0.00}";
             this.olvTotalLineVolume.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.olvTotalLineVolume.Text = "Volume";
             this.olvTotalLineVolume.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;

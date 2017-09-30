@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
+using TotalModel.Helpers;
+
 namespace TotalDTO.Helpers
 {
     public interface IAmountDTO : IQuantityDTO
@@ -10,7 +12,7 @@ namespace TotalDTO.Helpers
     }
 
     public abstract class AmountDTO<TAmountDetailDTO> : QuantityDTO<TAmountDetailDTO>, IAmountDTO
-        where TAmountDetailDTO : class, IAmountDetailDTO
+        where TAmountDetailDTO : NotifyValidationRule, IAmountDetailDTO
     {
         [Display(Name = "Tổng tiền")]
         public decimal TotalAmount { get; set; }

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
+using TotalModel.Helpers;
+
 
 namespace TotalDTO.Helpers
 {
@@ -11,7 +13,7 @@ namespace TotalDTO.Helpers
     }
 
     public abstract class QuantityDTO<TQuantityDetailDTO> : BaseWithDetailDTO<TQuantityDetailDTO>, IQuantityDTO
-        where TQuantityDetailDTO : class, IQuantityDetailDTO
+        where TQuantityDetailDTO : NotifyValidationRule, IQuantityDetailDTO
     {
         public virtual decimal TotalQuantity { get { return this.DtoDetails().Select(o => o.Quantity).Sum(); } }
         public virtual decimal TotalLineVolume { get { return this.DtoDetails().Select(o => o.LineVolume).Sum(); } }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 using TotalBase.Enums;
+using TotalModel.Helpers;
 
 namespace TotalDTO.Helpers
 {
@@ -19,7 +20,7 @@ namespace TotalDTO.Helpers
     }
 
     public abstract class ListedAmountDiscountVATAmountDTO<TListedAmountDiscountVATAmountDetailDTO> : DiscountVATAmountDTO<TListedAmountDiscountVATAmountDetailDTO>, IListedAmountDiscountVATAmountDTO
-        where TListedAmountDiscountVATAmountDetailDTO : class, IListedAmountDiscountVATAmountDetailDTO
+        where TListedAmountDiscountVATAmountDetailDTO : NotifyValidationRule, IListedAmountDiscountVATAmountDetailDTO
     {
         [Display(Name = "Tổng tiền")]
         public decimal TotalListedAmount { get; set; }

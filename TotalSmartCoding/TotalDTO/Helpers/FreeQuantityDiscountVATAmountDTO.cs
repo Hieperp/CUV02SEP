@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
+using TotalModel.Helpers;
+
 namespace TotalDTO.Helpers
 {
     public interface IFreeQuantityDiscountVATAmountDTO : IListedAmountDiscountVATAmountDTO
@@ -10,7 +12,7 @@ namespace TotalDTO.Helpers
     }
 
     public abstract class FreeQuantityDiscountVATAmountDTO<TFreeQuantityDiscountVATAmountDetailDTO> : ListedAmountDiscountVATAmountDTO<TFreeQuantityDiscountVATAmountDetailDTO>, IFreeQuantityDiscountVATAmountDTO
-        where TFreeQuantityDiscountVATAmountDetailDTO : class, IFreeQuantityDiscountVATAmountDetailDTO
+        where TFreeQuantityDiscountVATAmountDetailDTO : NotifyValidationRule, IFreeQuantityDiscountVATAmountDetailDTO
     {
         [Display(Name = "TC quà tặng")]
         public decimal TotalFreeQuantity { get; set; }

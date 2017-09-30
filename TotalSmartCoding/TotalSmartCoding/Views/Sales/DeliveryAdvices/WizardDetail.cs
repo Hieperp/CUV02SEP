@@ -86,8 +86,14 @@ namespace TotalSmartCoding.Views.Sales.DeliveryAdvices
                             Volume = pendingSalesOrderDetail.Volume,
                             PackageVolume = pendingSalesOrderDetail.PackageVolume,
 
-                            Quantity = (decimal)pendingSalesOrderDetail.QuantityRemains,
-                            LineVolume = (decimal)pendingSalesOrderDetail.LineVolumeRemains
+                            QuantityAvailable = pendingSalesOrderDetail.QuantityAvailable,
+                            LineVolumeAvailable = pendingSalesOrderDetail.LineVolumeAvailable,
+
+                            QuantityRemains = pendingSalesOrderDetail.QuantityRemains,
+                            LineVolumeRemains = pendingSalesOrderDetail.LineVolumeRemains,
+
+                            Quantity = pendingSalesOrderDetail.QuantityRemains,
+                            LineVolume = pendingSalesOrderDetail.LineVolumeRemains
                         };
                         this.deliveryAdviceViewModel.ViewDetails.Add(deliveryAdviceDetailDTO);
                     }

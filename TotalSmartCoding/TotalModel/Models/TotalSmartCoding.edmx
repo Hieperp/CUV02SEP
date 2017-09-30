@@ -3267,10 +3267,12 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Type="String" Name="PackageSize" Nullable="true" MaxLength="60" />
           <Property Type="Decimal" Name="Volume" Nullable="false" Precision="18" Scale="3" />
           <Property Type="Decimal" Name="PackageVolume" Nullable="false" Precision="18" Scale="3" />
-          <Property Type="Decimal" Name="QuantityAvailable" Nullable="false" Precision="38" Scale="2" />
-          <Property Type="Decimal" Name="LineVolumeAvailable" Nullable="false" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="QuantityAvailable" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="LineVolumeAvailable" Nullable="true" Precision="38" Scale="2" />
           <Property Type="Decimal" Name="QuantityRemains" Nullable="true" Precision="20" Scale="2" />
           <Property Type="Decimal" Name="LineVolumeRemains" Nullable="true" Precision="20" Scale="2" />
+          <Property Type="Decimal" Name="QuantityIssue" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="LineVolumeIssue" Nullable="false" Precision="18" Scale="2" />
         </ComplexType>
         <ComplexType Name="PendingSalesOrderCustomer">
           <Property Type="Int32" Name="CustomerID" Nullable="false" />
@@ -3297,8 +3299,8 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Type="String" Name="PackageSize" Nullable="true" MaxLength="60" />
           <Property Type="Decimal" Name="Volume" Nullable="false" Precision="18" Scale="3" />
           <Property Type="Decimal" Name="PackageVolume" Nullable="false" Precision="18" Scale="3" />
-          <Property Type="Decimal" Name="QuantityAvailable" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="LineVolumeAvailable" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="QuantityAvailable" Nullable="false" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="LineVolumeAvailable" Nullable="false" Precision="38" Scale="2" />
           <Property Type="String" Name="SalesOrderVoucherCode" Nullable="true" MaxLength="60" />
         </ComplexType>
         <ComplexType Name="PendingSalesOrder">
@@ -5245,6 +5247,8 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
                 <ScalarProperty Name="LineVolumeAvailable" ColumnName="LineVolumeAvailable" />
                 <ScalarProperty Name="QuantityRemains" ColumnName="QuantityRemains" />
                 <ScalarProperty Name="LineVolumeRemains" ColumnName="LineVolumeRemains" />
+                <ScalarProperty Name="QuantityIssue" ColumnName="QuantityIssue" />
+                <ScalarProperty Name="LineVolumeIssue" ColumnName="LineVolumeIssue" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

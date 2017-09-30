@@ -32,6 +32,7 @@ using TotalBase;
 using TotalModel.Models;
 using TotalDTO.Inventories;
 using BrightIdeasSoftware;
+using TotalSmartCoding.Libraries.StackedHeaders;
 
 
 namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
@@ -187,6 +188,9 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
             this.gridexCartonDetails.DataSource = this.goodsReceiptViewModel.CartonDetails;
 
             this.goodsReceiptViewModel.ViewDetails.ListChanged += ViewDetails_ListChanged;
+
+            StackedHeaderDecorator stackedHeaderDecoratorPallet = new StackedHeaderDecorator(this.gridexPalletDetails);
+            StackedHeaderDecorator stackedHeaderDecoratorCarton = new StackedHeaderDecorator(this.gridexCartonDetails);
         }
 
         private void ViewDetails_ListChanged(object sender, ListChangedEventArgs e)
