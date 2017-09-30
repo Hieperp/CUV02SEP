@@ -87,13 +87,13 @@ namespace TotalSmartCoding.Libraries.StackedHeaders
 
         private void RenderColumnHeaders()
         {
-            objGraphics.FillRectangle(new SolidBrush(SystemColors.InactiveBorder), //LEMINHHIEP: CHANGE FROM objDataGrid.ColumnHeadersDefaultCellStyle.BackColor TO SystemColors.InactiveBorder
+            objGraphics.FillRectangle(new SolidBrush(SystemColors.InactiveBorder), //LEMINHHIEP: CHANGE FROM: objDataGrid.ColumnHeadersDefaultCellStyle.BackColor TO: SystemColors.InactiveBorder
                                       new Rectangle(objDataGrid.DisplayRectangle.X, objDataGrid.DisplayRectangle.Y,
-                                                    objDataGrid.DisplayRectangle.Width, objDataGrid.ColumnHeadersHeight - 2)); //LEMINHHIEP: CHANGE FROM objDataGrid.ColumnHeadersHeight TO objDataGrid.ColumnHeadersHeight - 2
+                                                    objDataGrid.DisplayRectangle.Width, objDataGrid.ColumnHeadersHeight - 2)); //LEMINHHIEP: CHANGE FROM: objDataGrid.ColumnHeadersHeight TO: objDataGrid.ColumnHeadersHeight - 2
 
             foreach (Header objChild in objHeaderTree.Children)
             {
-                objChild.Measure(objDataGrid, 0, objDataGrid.ColumnHeadersHeight / (iNoOfLevels - 1)); //LEMINHHIEP: CHANGE FROM iNoOfLevels TO (iNoOfLevels - 1)
+                objChild.Measure(objDataGrid, 0, objDataGrid.ColumnHeadersHeight / (iNoOfLevels - 1)); //LEMINHHIEP: CHANGE FROM: iNoOfLevels TO: (iNoOfLevels - 1)
                 objChild.AcceptRenderer(this);
             }
         }
@@ -152,7 +152,7 @@ namespace TotalSmartCoding.Libraries.StackedHeaders
                 }
                 r1.X -= 1;
                 objGraphics.SetClip(r1);
-                r1.X = x - objDataGrid.HorizontalScrollingOffset - 1; //LEMINHHIEP: CHANGE FROM x - objDataGrid.HorizontalScrollingOffset TO x - objDataGrid.HorizontalScrollingOffset - 1
+                r1.X = x - objDataGrid.HorizontalScrollingOffset - 1; //LEMINHHIEP: CHANGE FROM: x - objDataGrid.HorizontalScrollingOffset TO: x - objDataGrid.HorizontalScrollingOffset - 1
                 r1.Width -= 1;
                 objGraphics.DrawRectangle(Pens.Lavender, r1);
                 r1.X -= 1;
