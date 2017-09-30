@@ -65,7 +65,7 @@ namespace TotalDTO.Sales
         public string CustomerName
         {
             get { return this.customerName; }
-            set { ApplyPropertyChange<DeliveryAdviceDTO, string>(ref this.customerName, o => o.CustomerName, value); }
+            set { ApplyPropertyChange<DeliveryAdviceDTO, string>(ref this.customerName, o => o.CustomerName, value, false); }
         }
 
         private string contactInfo;
@@ -105,7 +105,7 @@ namespace TotalDTO.Sales
             base.PerformPresaveRule();
 
             string salesOrderReferences = ""; string salesOrderVoucherCodes = "";
-            this.DtoDetails().ToList().ForEach(e => { e.CustomerID = this.CustomerID; if (this.HasSalesOrder && salesOrderReferences.IndexOf(e.SalesOrderReference) < 0) salesOrderReferences = salesOrderReferences + (salesOrderReferences != "" ? ", " : "") + e.SalesOrderReference; if (this.HasSalesOrder && salesOrderVoucherCodes.IndexOf(e.SalesOrderVoucherCode) < 0) salesOrderVoucherCodes = salesOrderVoucherCodes + (salesOrderVoucherCodes != "" ? ", " : "") + e.SalesOrderVoucherCode; });
+            this.DtoDetails().ToList().ForEach(e => { e.CustomerID = this.CustomerID; if (this.HasSalesOrder && salesOrderReferences.IndexOf(e.SalesOrderReference) < 0) salesOrderReferences = salesOrderReferences + (salesOrderReferences != "" ? ", " : "") + e.SalesOrderReference; if (this.HasSalesOrder && e.SalesOrderVoucherCode != null && salesOrderVoucherCodes.IndexOf(e.SalesOrderVoucherCode) < 0) salesOrderVoucherCodes = salesOrderVoucherCodes + (salesOrderVoucherCodes != "" ? ", " : "") + e.SalesOrderVoucherCode; });
             this.SalesOrderReferences = salesOrderReferences;
             this.SalesOrderVoucherCodes = salesOrderVoucherCodes;
         }

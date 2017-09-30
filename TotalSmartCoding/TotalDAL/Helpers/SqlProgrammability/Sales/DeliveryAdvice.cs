@@ -262,6 +262,14 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
 
             //queryString = queryString + "   IF (SELECT HasSalesOrder FROM DeliveryAdvices WHERE DeliveryAdviceID = @EntityID) = 1 " + "\r\n";
             queryString = queryString + "       BEGIN " + "\r\n";
+
+            queryString = queryString + "           IF (@SaveRelativeOption = 1) ";
+            queryString = queryString + "               BEGIN ";
+            queryString = queryString + "                   UPDATE          DeliveryAdviceDetails " + "\r\n";
+            queryString = queryString + "                   SET             DeliveryAdviceDetails.Reference = DeliveryAdvices.Reference " + "\r\n";
+            queryString = queryString + "                   FROM            DeliveryAdvices INNER JOIN DeliveryAdviceDetails ON DeliveryAdvices.DeliveryAdviceID = @EntityID AND DeliveryAdvices.DeliveryAdviceID = DeliveryAdviceDetails.DeliveryAdviceID " + "\r\n";
+            queryString = queryString + "               END ";
+
             queryString = queryString + "           UPDATE          SalesOrderDetails " + "\r\n";
             queryString = queryString + "           SET             SalesOrderDetails.QuantityAdvice = ROUND(SalesOrderDetails.QuantityAdvice + DeliveryAdviceDetails.Quantity * @SaveRelativeOption, " + (int)GlobalEnums.rndQuantity + "), SalesOrderDetails.LineVolumeAdvice = ROUND(SalesOrderDetails.LineVolumeAdvice + DeliveryAdviceDetails.LineVolume * @SaveRelativeOption, " + (int)GlobalEnums.rndVolume + ")  " + "\r\n";
             queryString = queryString + "           FROM            DeliveryAdviceDetails " + "\r\n";

@@ -92,6 +92,12 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
 
+            queryString = queryString + "   IF (@SaveRelativeOption = 1) ";
+            queryString = queryString + "       BEGIN ";
+            queryString = queryString + "           UPDATE          SalesOrderDetails " + "\r\n";
+            queryString = queryString + "           SET             SalesOrderDetails.Reference = SalesOrders.Reference, SalesOrderDetails.VoucherCode = SalesOrders.VoucherCode " + "\r\n";
+            queryString = queryString + "           FROM            SalesOrders INNER JOIN SalesOrderDetails ON SalesOrders.SalesOrderID = @EntityID AND SalesOrders.SalesOrderID = SalesOrderDetails.SalesOrderID " + "\r\n";
+            queryString = queryString + "       END ";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("SalesOrderSaveRelative", queryString);
         }

@@ -243,7 +243,12 @@ namespace TotalSmartCoding.Views.Sales.DeliveryAdvices
         private void ViewDetails_ListChanged(object sender, ListChangedEventArgs e)
         {
             if (e.ListChangedType == ListChangedType.ItemAdded || e.ListChangedType == ListChangedType.ItemDeleted || e.ListChangedType == ListChangedType.Reset)
+            {
                 this.customTabCenter.TabPages[0].Text = "Advice Line Details [" + this.deliveryAdviceViewModel.ViewDetails.Count.ToString("N0") + " item(s)]             ";
+
+                this.gridexViewDetails.Columns[CommonExpressions.PropertyName<DeliveryAdviceDetailDTO>(p => p.SalesOrderReference)].Visible = this.deliveryAdviceViewModel.SalesOrderID == null;
+                this.gridexViewDetails.Columns[CommonExpressions.PropertyName<DeliveryAdviceDetailDTO>(p => p.SalesOrderEntryDate)].Visible = this.deliveryAdviceViewModel.SalesOrderID == null;
+            }
 
             if (this.EditableMode && e.PropertyDescriptor != null && e.NewIndex >= 0 && e.NewIndex < this.deliveryAdviceViewModel.ViewDetails.Count)
             {

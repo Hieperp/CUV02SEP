@@ -3,18 +3,22 @@
     public class SimpleInitReference
     {
         protected readonly string tableName;
+        protected readonly string tableDetailName;
         protected readonly string identityName;
         protected readonly string referenceName;
         protected readonly int referenceLength;
         protected readonly string prefixLetter;
 
-        public SimpleInitReference(string tableName, string identityName, string referenceName, int referenceLength, string prefixLetter)
+        public SimpleInitReference(string tableName, string identityName, string referenceName, int referenceLength, string prefixLetter): this(tableName, identityName, referenceName, referenceLength, prefixLetter, null)
+        { }
+        public SimpleInitReference(string tableName, string identityName, string referenceName, int referenceLength, string prefixLetter, string tableDetailName)
         {
             this.tableName = tableName;
             this.identityName = identityName;
             this.referenceName = referenceName;
             this.referenceLength = referenceLength;
             this.prefixLetter = prefixLetter;
+            this.tableDetailName = tableDetailName;
         }
 
         public string CreateQuery()
@@ -36,6 +40,13 @@
             queryString = queryString + "   UPDATE      " + this.tableName + "\r\n";
             queryString = queryString + "   SET         " + this.referenceName + " = @PrefixLetter + RIGHT(CAST(100000000 + @columnNameMax as varchar), " + this.referenceLength + " - LEN(@PrefixLetter)) " + "\r\n";
             queryString = queryString + "   WHERE       " + this.identityName + " = @EntityID " + "\r\n";
+
+            if (this.tableDetailName != null)
+            {
+                queryString = queryString + "   UPDATE      " + this.tableDetailName + "\r\n";
+                queryString = queryString + "   SET         " + this.referenceName + " = @PrefixLetter + RIGHT(CAST(100000000 + @columnNameMax as varchar), " + this.referenceLength + " - LEN(@PrefixLetter)) " + "\r\n";
+                queryString = queryString + "   WHERE       " + this.identityName + " = @EntityID " + "\r\n";
+            }
 
             return queryString;
         }
