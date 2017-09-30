@@ -653,7 +653,7 @@
             this.CommodityID.DataPropertyName = "CommodityID";
             this.CommodityID.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
             this.CommodityID.FillWeight = 9F;
-            this.CommodityID.HeaderText = "Code";
+            this.CommodityID.HeaderText = "Items.Code";
             this.CommodityID.Name = "CommodityID";
             this.CommodityID.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.CommodityID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
@@ -663,7 +663,7 @@
             this.CommodityName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.CommodityName.DataPropertyName = "CommodityName";
             this.CommodityName.FillWeight = 30F;
-            this.CommodityName.HeaderText = "Description";
+            this.CommodityName.HeaderText = "Items.Description";
             this.CommodityName.Name = "CommodityName";
             // 
             // PackageSize
