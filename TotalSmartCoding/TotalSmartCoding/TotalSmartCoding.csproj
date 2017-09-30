@@ -138,6 +138,10 @@
     <Compile Include="Controllers\Productions\PrinterController.cs" />
     <Compile Include="Controllers\Productions\ScannerController.cs" />
     <Compile Include="Libraries\Helpers\ViewHelpers.cs" />
+    <Compile Include="Libraries\StackedHeaders\Header.cs" />
+    <Compile Include="Libraries\StackedHeaders\IStackedHeaderGenerator.cs" />
+    <Compile Include="Libraries\StackedHeaders\StackedHeaderDecorator.cs" />
+    <Compile Include="Libraries\StackedHeaders\StackedHeaderGenerator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
