@@ -87,7 +87,7 @@ namespace TotalSmartCoding.Libraries.StackedHeaders
 
         private void RenderColumnHeaders()
         {
-            objGraphics.FillRectangle(new SolidBrush(objDataGrid.ColumnHeadersDefaultCellStyle.BackColor),
+            objGraphics.FillRectangle(new SolidBrush(SystemColors.InactiveBorder), //LEMINHHIEP: CHANGE FROM objDataGrid.ColumnHeadersDefaultCellStyle.BackColor TO SystemColors.InactiveBorder
                                       new Rectangle(objDataGrid.DisplayRectangle.X, objDataGrid.DisplayRectangle.Y,
                                                     objDataGrid.DisplayRectangle.Width, objDataGrid.ColumnHeadersHeight));
 
@@ -120,9 +120,8 @@ namespace TotalSmartCoding.Libraries.StackedHeaders
                 r1.X -= 1;
                 r1.Width = objDataGrid.Columns[objHeader.ColumnId].Width;
                 objGraphics.DrawRectangle(Pens.Lavender, r1);
-                objGraphics.DrawString(objHeader.Name,
-                                       objDataGrid.ColumnHeadersDefaultCellStyle.Font,
-                                       new SolidBrush(objDataGrid.ColumnHeadersDefaultCellStyle.ForeColor),
+                objGraphics.DrawString(objHeader.Name, objDataGrid.ColumnHeadersDefaultCellStyle.Font,
+                                       new SolidBrush(Color.FromArgb(188, objDataGrid.ColumnHeadersDefaultCellStyle.ForeColor)), //LEMINHHIEP: ADD Color.FromArgb
                                        r1,
                                        objFormat);
                 objGraphics.ResetClip();
@@ -158,7 +157,7 @@ namespace TotalSmartCoding.Libraries.StackedHeaders
                 objGraphics.DrawRectangle(Pens.Lavender, r1);
                 r1.X -= 1;
                 objGraphics.DrawString(objHeader.Name, objDataGrid.ColumnHeadersDefaultCellStyle.Font,
-                                       new SolidBrush(objDataGrid.ColumnHeadersDefaultCellStyle.ForeColor),
+                                       new SolidBrush(Color.FromArgb(188, objDataGrid.ColumnHeadersDefaultCellStyle.ForeColor)), //LEMINHHIEP: ADD Color.FromArgb
                                        r1, objFormat);
                 objGraphics.ResetClip();
             }
