@@ -32,6 +32,7 @@ using TotalBase;
 using TotalModel.Models;
 using TotalDTO.Sales;
 using BrightIdeasSoftware;
+using TotalSmartCoding.Libraries.StackedHeaders;
 
 
 namespace TotalSmartCoding.Views.Sales.SalesOrders
@@ -220,6 +221,8 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
             comboBoxColumn.DataSource = commodityAPIs.GetCommodityBases(true);
             comboBoxColumn.DisplayMember = CommonExpressions.PropertyName<CommodityBase>(p => p.Code);
             comboBoxColumn.ValueMember = CommonExpressions.PropertyName<CommodityBase>(p => p.CommodityID);
+
+            StackedHeaderDecorator stackedHeaderDecorator = new StackedHeaderDecorator(this.gridexViewDetails);
         }
 
         private void bindingSourceViewDetails_AddingNew(object sender, AddingNewEventArgs e)

@@ -62,7 +62,7 @@ namespace TotalSmartCoding.Libraries.StackedHeaders
             iNoOfLevels = NoOfLevels(objHeaderTree);
             objGraphics = e.Graphics;
             objDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            objDataGrid.ColumnHeadersHeight = iNoOfLevels * 20;
+            objDataGrid.ColumnHeadersHeight = iNoOfLevels * 15; //LEMINHHIEP: ORIGINAL: iNoOfLevels * 20;
             if (null != objHeaderTree)
             {
                 RenderColumnHeaders();
@@ -89,11 +89,11 @@ namespace TotalSmartCoding.Libraries.StackedHeaders
         {
             objGraphics.FillRectangle(new SolidBrush(SystemColors.InactiveBorder), //LEMINHHIEP: CHANGE FROM objDataGrid.ColumnHeadersDefaultCellStyle.BackColor TO SystemColors.InactiveBorder
                                       new Rectangle(objDataGrid.DisplayRectangle.X, objDataGrid.DisplayRectangle.Y,
-                                                    objDataGrid.DisplayRectangle.Width, objDataGrid.ColumnHeadersHeight));
+                                                    objDataGrid.DisplayRectangle.Width, objDataGrid.ColumnHeadersHeight - 1)); //LEMINHHIEP: CHANGE FROM objDataGrid.ColumnHeadersHeight TO objDataGrid.ColumnHeadersHeight - 1
 
             foreach (Header objChild in objHeaderTree.Children)
             {
-                objChild.Measure(objDataGrid, 0, objDataGrid.ColumnHeadersHeight / iNoOfLevels);
+                objChild.Measure(objDataGrid, 0, objDataGrid.ColumnHeadersHeight / (iNoOfLevels - 1)); //LEMINHHIEP: CHANGE FROM iNoOfLevels TO (iNoOfLevels - 1)
                 objChild.AcceptRenderer(this);
             }
         }
