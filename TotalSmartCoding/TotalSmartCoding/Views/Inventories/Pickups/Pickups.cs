@@ -254,6 +254,12 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
             this.getPendingItems();
         }
 
+        public override void Save(bool escapeAfterSave)
+        {
+            base.Save(escapeAfterSave);
+            this.getPendingItems();
+        }
+
         private void getPendingItems() //THIS MAY ALSO LOAD PENDING PALLET/ CARTON/ PACK
         {
             try
@@ -279,17 +285,13 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
         {
             try
             {
-                if (this.EditableMode && this.pickupViewModel.Editable && this.pickupViewModel.IsValid)
+                if (this.EditableMode && this.pickupViewModel.Editable && this.pickupViewModel.IsValid && !this.pickupViewModel.IsDirty)
                 {
                     PendingPallet pendingPallet = (PendingPallet)this.fastPendingPallets.SelectedObject;
                     if (pendingPallet != null)
                     {
                         WizardDetail wizardDetail = new WizardDetail(this.pickupViewModel, pendingPallet);
-                        if (wizardDetail.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                        {
-                            this.Save(false);
-                            this.getPendingItems();
-                        }
+                        if (wizardDetail.ShowDialog() == System.Windows.Forms.DialogResult.OK) this.Save(false);
                     }
                 }
             }
@@ -303,11 +305,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
         {
             try
             {
-                if (this.pickupViewModel.IsDirty && this.pickupViewModel.IsValid)
-                {
-                    this.Save(false);
-                    this.getPendingItems();
-                }
+                if (this.pickupViewModel.IsDirty && this.pickupViewModel.IsValid) this.Save(false);
             }
             catch (Exception exception)
             {

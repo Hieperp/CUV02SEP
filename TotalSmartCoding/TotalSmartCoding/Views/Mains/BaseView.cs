@@ -398,7 +398,7 @@ namespace TotalSmartCoding.Views.Mains
             }
         }
 
-        public void Save(bool escapeAfterSave)
+        public virtual void Save(bool escapeAfterSave)
         {
             bool currentEscapeAfterSave = this.EscapeAfterSave;
             this.EscapeAfterSave = escapeAfterSave;

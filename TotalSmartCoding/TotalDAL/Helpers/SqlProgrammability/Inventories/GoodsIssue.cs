@@ -124,7 +124,10 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
         }
 
 
-
+        private bool alwaysTrue = true; 
+        //HERE: WE ALWAYS AND ONLY CALL GetPendingDeliveryAdviceDetails AFTER SAVE SUCCESSFUL
+        //AT GoodsIssues VIEWS: WE DON'T ALLOW TO USE CURRENT RESULT FROM GetPendingDeliveryAdviceDetails IF THE LAST SAVE IS NOT SUCCESSFULLY. WHEN SAVE SUCCESSFUL, THE GetPendingDeliveryAdviceDetails IS CALL IMMEDIATELY
+        //SO => HERE: WE DON'T CARE BOTH: @DeliveryAdviceDetailIDs AND BuildSQLEdit
         private void GetPendingDeliveryAdviceDetails()
         {
             string queryString;
@@ -148,13 +151,17 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
         private string BuildSQLDeliveryAdvice(bool isDeliveryAdviceID)
         {
             string queryString = "";
-            queryString = queryString + "   BEGIN " + "\r\n";
-            queryString = queryString + "       IF  (@DeliveryAdviceDetailIDs <> '') " + "\r\n";
-            queryString = queryString + "           " + this.BuildSQLDeliveryAdviceDeliveryAdviceDetailIDs(isDeliveryAdviceID, true) + "\r\n";
-            queryString = queryString + "       ELSE " + "\r\n";
-            queryString = queryString + "           " + this.BuildSQLDeliveryAdviceDeliveryAdviceDetailIDs(isDeliveryAdviceID, false) + "\r\n";
-            queryString = queryString + "   END " + "\r\n";
-
+            if (this.alwaysTrue)
+                queryString = queryString + "           " + this.BuildSQLDeliveryAdviceDeliveryAdviceDetailIDs(isDeliveryAdviceID, false) + "\r\n";
+            else
+            {
+                queryString = queryString + "   BEGIN " + "\r\n";
+                queryString = queryString + "       IF  (@DeliveryAdviceDetailIDs <> '') " + "\r\n";
+                queryString = queryString + "           " + this.BuildSQLDeliveryAdviceDeliveryAdviceDetailIDs(isDeliveryAdviceID, true) + "\r\n";
+                queryString = queryString + "       ELSE " + "\r\n";
+                queryString = queryString + "           " + this.BuildSQLDeliveryAdviceDeliveryAdviceDetailIDs(isDeliveryAdviceID, false) + "\r\n";
+                queryString = queryString + "   END " + "\r\n";
+            }
             return queryString;
         }
 
@@ -163,27 +170,37 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             string queryString = "";
             queryString = queryString + "   BEGIN " + "\r\n";
 
-            queryString = queryString + "       IF (@GoodsIssueID <= 0) " + "\r\n";
-            queryString = queryString + "               BEGIN " + "\r\n";
-            queryString = queryString + "                   " + this.BuildSQLNew(isDeliveryAdviceID, isDeliveryAdviceDetailIDs) + "\r\n";
-            queryString = queryString + "                   ORDER BY DeliveryAdvices.EntryDate, DeliveryAdvices.DeliveryAdviceID, DeliveryAdviceDetails.DeliveryAdviceDetailID " + "\r\n";
-            queryString = queryString + "               END " + "\r\n";
-            queryString = queryString + "       ELSE " + "\r\n";
+            if (this.alwaysTrue)
+            {
+                queryString = queryString + "               BEGIN " + "\r\n";
+                queryString = queryString + "                   " + this.BuildSQLNew(isDeliveryAdviceID, isDeliveryAdviceDetailIDs) + "\r\n";
+                queryString = queryString + "                   ORDER BY DeliveryAdvices.EntryDate, DeliveryAdvices.DeliveryAdviceID, DeliveryAdviceDetails.DeliveryAdviceDetailID " + "\r\n";
+                queryString = queryString + "               END " + "\r\n";
+            }
+            else
+            {
+                queryString = queryString + "       IF (@GoodsIssueID <= 0) " + "\r\n";
+                queryString = queryString + "               BEGIN " + "\r\n";
+                queryString = queryString + "                   " + this.BuildSQLNew(isDeliveryAdviceID, isDeliveryAdviceDetailIDs) + "\r\n";
+                queryString = queryString + "                   ORDER BY DeliveryAdvices.EntryDate, DeliveryAdvices.DeliveryAdviceID, DeliveryAdviceDetails.DeliveryAdviceDetailID " + "\r\n";
+                queryString = queryString + "               END " + "\r\n";
+                queryString = queryString + "       ELSE " + "\r\n";
 
-            queryString = queryString + "               IF (@IsReadonly = 1) " + "\r\n";
-            queryString = queryString + "                   BEGIN " + "\r\n";
-            queryString = queryString + "                       " + this.BuildSQLEdit(isDeliveryAdviceID, isDeliveryAdviceDetailIDs) + "\r\n";
-            queryString = queryString + "                       ORDER BY DeliveryAdvices.EntryDate, DeliveryAdvices.DeliveryAdviceID, DeliveryAdviceDetails.DeliveryAdviceDetailID " + "\r\n";
-            queryString = queryString + "                   END " + "\r\n";
+                queryString = queryString + "               IF (@IsReadonly = 1) " + "\r\n";
+                queryString = queryString + "                   BEGIN " + "\r\n";
+                queryString = queryString + "                       " + this.BuildSQLEdit(isDeliveryAdviceID, isDeliveryAdviceDetailIDs) + "\r\n";
+                queryString = queryString + "                       ORDER BY DeliveryAdvices.EntryDate, DeliveryAdvices.DeliveryAdviceID, DeliveryAdviceDetails.DeliveryAdviceDetailID " + "\r\n";
+                queryString = queryString + "                   END " + "\r\n";
 
-            queryString = queryString + "               ELSE " + "\r\n"; //FULL SELECT FOR EDIT MODE
+                queryString = queryString + "               ELSE " + "\r\n"; //FULL SELECT FOR EDIT MODE
 
-            queryString = queryString + "                   BEGIN " + "\r\n";
-            queryString = queryString + "                       " + this.BuildSQLNew(isDeliveryAdviceID, isDeliveryAdviceDetailIDs) + " WHERE DeliveryAdviceDetails.DeliveryAdviceDetailID NOT IN (SELECT DeliveryAdviceDetailID FROM GoodsIssueDetails WHERE GoodsIssueID = @GoodsIssueID) " + "\r\n";
-            queryString = queryString + "                       UNION ALL " + "\r\n";
-            queryString = queryString + "                       " + this.BuildSQLEdit(isDeliveryAdviceID, isDeliveryAdviceDetailIDs) + "\r\n";
-            queryString = queryString + "                       ORDER BY DeliveryAdvices.EntryDate, DeliveryAdvices.DeliveryAdviceID, DeliveryAdviceDetails.DeliveryAdviceDetailID " + "\r\n";
-            queryString = queryString + "                   END " + "\r\n";
+                queryString = queryString + "                   BEGIN " + "\r\n";
+                queryString = queryString + "                       " + this.BuildSQLNew(isDeliveryAdviceID, isDeliveryAdviceDetailIDs) + " WHERE DeliveryAdviceDetails.DeliveryAdviceDetailID NOT IN (SELECT DeliveryAdviceDetailID FROM GoodsIssueDetails WHERE GoodsIssueID = @GoodsIssueID) " + "\r\n";
+                queryString = queryString + "                       UNION ALL " + "\r\n";
+                queryString = queryString + "                       " + this.BuildSQLEdit(isDeliveryAdviceID, isDeliveryAdviceDetailIDs) + "\r\n";
+                queryString = queryString + "                       ORDER BY DeliveryAdvices.EntryDate, DeliveryAdvices.DeliveryAdviceID, DeliveryAdviceDetails.DeliveryAdviceDetailID " + "\r\n";
+                queryString = queryString + "                   END " + "\r\n";
+            }
 
             queryString = queryString + "   END " + "\r\n";
 
@@ -195,7 +212,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             string queryString = "";
 
             queryString = queryString + "       SELECT      DeliveryAdvices.LocationID, DeliveryAdvices.DeliveryAdviceID, DeliveryAdviceDetails.DeliveryAdviceDetailID, DeliveryAdvices.Reference AS DeliveryAdviceReference, DeliveryAdvices.EntryDate AS DeliveryAdviceEntryDate, " + "\r\n";
-            queryString = queryString + "                   Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, " + "\r\n";
+            queryString = queryString + "                   Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, Commodities.PackageSize, Commodities.Volume, Commodities.PackageVolume, " + "\r\n";
             queryString = queryString + "                   ROUND(DeliveryAdviceDetails.Quantity - DeliveryAdviceDetails.QuantityIssue,  " + (int)GlobalEnums.rndQuantity + ") AS QuantityRemains, CAST(0 AS decimal(18, 2)) AS Quantity, ROUND(DeliveryAdviceDetails.LineVolume - DeliveryAdviceDetails.LineVolumeIssue,  " + (int)GlobalEnums.rndVolume + ") AS LineVolumeRemains, CAST(0 AS decimal(18, 2)) AS LineVolume, DeliveryAdvices.Description, DeliveryAdviceDetails.Remarks, CAST(1 AS bit) AS IsSelected " + "\r\n";
             
             queryString = queryString + "       FROM        DeliveryAdvices " + "\r\n";
@@ -210,7 +227,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             string queryString = "";
 
             queryString = queryString + "       SELECT      DeliveryAdvices.LocationID, DeliveryAdvices.DeliveryAdviceID, DeliveryAdviceDetails.DeliveryAdviceDetailID, DeliveryAdvices.Reference AS DeliveryAdviceReference, DeliveryAdvices.EntryDate AS DeliveryAdviceEntryDate, " + "\r\n";
-            queryString = queryString + "                   Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, " + "\r\n";
+            queryString = queryString + "                   Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, Commodities.PackageSize, Commodities.Volume, Commodities.PackageVolume, " + "\r\n";
             queryString = queryString + "                   ROUND(DeliveryAdviceDetails.Quantity - DeliveryAdviceDetails.QuantityIssue + GoodsIssueDetails.Quantity,  " + (int)GlobalEnums.rndQuantity + ") AS QuantityRemains, CAST(0 AS decimal(18, 2)) AS Quantity, ROUND(DeliveryAdviceDetails.LineVolume - DeliveryAdviceDetails.LineVolumeIssue + GoodsIssueDetails.LineVolume,  " + (int)GlobalEnums.rndVolume + ") AS LineVolumeRemains, CAST(0 AS decimal(18, 2)) AS LineVolume, DeliveryAdvices.Description, DeliveryAdviceDetails.Remarks, CAST(1 AS bit) AS IsSelected " + "\r\n";
             
             queryString = queryString + "       FROM        DeliveryAdviceDetails " + "\r\n";

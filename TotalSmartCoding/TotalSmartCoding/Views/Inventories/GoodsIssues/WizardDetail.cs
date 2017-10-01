@@ -99,9 +99,14 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                                 DeliveryAdviceReference = this.pendingDeliveryAdviceDetail.DeliveryAdviceReference,
                                 DeliveryAdviceEntryDate = this.pendingDeliveryAdviceDetail.DeliveryAdviceEntryDate,
 
-                                CommodityID = goodsReceiptDetailAvailable.CommodityID,
-                                CommodityCode = goodsReceiptDetailAvailable.CommodityCode,
-                                CommodityName = goodsReceiptDetailAvailable.CommodityName,
+                                CommodityID = this.pendingDeliveryAdviceDetail.CommodityID,
+                                CommodityCode = this.pendingDeliveryAdviceDetail.CommodityCode,
+                                CommodityName = this.pendingDeliveryAdviceDetail.CommodityName,
+
+                                PackageSize = this.pendingDeliveryAdviceDetail.PackageSize,
+
+                                Volume = this.pendingDeliveryAdviceDetail.Volume,
+                                PackageVolume = this.pendingDeliveryAdviceDetail.PackageVolume,
 
                                 GoodsReceiptID = goodsReceiptDetailAvailable.GoodsReceiptID,
                                 GoodsReceiptDetailID = goodsReceiptDetailAvailable.GoodsReceiptDetailID,
@@ -112,15 +117,21 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                                 WarehouseID = goodsReceiptDetailAvailable.WarehouseID,
                                 WarehouseCode = goodsReceiptDetailAvailable.WarehouseCode,
 
-                                Quantity = goodsReceiptDetailAvailable.QuantityAvailable,
-                                LineVolume = goodsReceiptDetailAvailable.LineVolumeAvailable,
-
                                 PackID = goodsReceiptDetailAvailable.PackID,
                                 PackCode = goodsReceiptDetailAvailable.PackCode,
                                 CartonID = goodsReceiptDetailAvailable.CartonID,
                                 CartonCode = goodsReceiptDetailAvailable.CartonCode,
                                 PalletID = goodsReceiptDetailAvailable.PalletID,
-                                PalletCode = goodsReceiptDetailAvailable.PalletCode
+                                PalletCode = goodsReceiptDetailAvailable.PalletCode,
+
+                                QuantityAvailable = goodsReceiptDetailAvailable.QuantityAvailable,
+                                LineVolumeAvailable = goodsReceiptDetailAvailable.LineVolumeAvailable,
+
+                                QuantityRemains = (decimal)this.pendingDeliveryAdviceDetail.QuantityRemains,
+                                LineVolumeRemains = (decimal)this.pendingDeliveryAdviceDetail.LineVolumeRemains,
+
+                                Quantity = goodsReceiptDetailAvailable.QuantityAvailable, //SHOULD: Quantity = QuantityAvailable (ALSO: LineVolume = LineVolumeAvailable): BECAUSE: WE ISSUE BY WHOLE UNIT OF PALLET/ OR CARTON/ OR PACK
+                                LineVolume = goodsReceiptDetailAvailable.LineVolumeAvailable //IF Quantity > QuantityRemains (OR LineVolume > LineVolumeRemains) => THE GoodsIssueDetailDTO WILL BREAK THE ValidationRule => CAN NOT SAVE => USER MUST SELECT OTHER APPROPRIATE UNIT OF PALLET/ OR CARTON/ OR PACK WHICH MATCH THE Quantity/ LineVolume                                
                             };
                             this.goodsIssueViewModel.ViewDetails.Add(goodsIssueDetailDTO);
                         }

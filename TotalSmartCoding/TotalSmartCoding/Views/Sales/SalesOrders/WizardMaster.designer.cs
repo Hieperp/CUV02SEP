@@ -103,13 +103,12 @@
             // 
             this.layoutTop.AutoSize = true;
             this.layoutTop.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.layoutTop.BackColor = System.Drawing.Color.Ivory;
             this.layoutTop.ColumnCount = 5;
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75F));
-            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 22F));
+            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.layoutTop.Controls.Add(this.combexCustomerID, 3, 1);
             this.layoutTop.Controls.Add(this.label4, 2, 2);
             this.layoutTop.Controls.Add(this.pictureBox2, 1, 1);
@@ -154,7 +153,7 @@
             this.combexCustomerID.Location = new System.Drawing.Point(261, 35);
             this.combexCustomerID.Name = "combexCustomerID";
             this.combexCustomerID.ReadOnly = false;
-            this.combexCustomerID.Size = new System.Drawing.Size(518, 29);
+            this.combexCustomerID.Size = new System.Drawing.Size(517, 29);
             this.combexCustomerID.TabIndex = 74;
             // 
             // label4
@@ -199,7 +198,7 @@
             this.textexShippingAddress.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textexShippingAddress.Location = new System.Drawing.Point(261, 104);
             this.textexShippingAddress.Name = "textexShippingAddress";
-            this.textexShippingAddress.Size = new System.Drawing.Size(518, 28);
+            this.textexShippingAddress.Size = new System.Drawing.Size(517, 28);
             this.textexShippingAddress.TabIndex = 76;
             // 
             // textexContactInfo
@@ -209,7 +208,7 @@
             this.textexContactInfo.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textexContactInfo.Location = new System.Drawing.Point(261, 70);
             this.textexContactInfo.Name = "textexContactInfo";
-            this.textexContactInfo.Size = new System.Drawing.Size(518, 28);
+            this.textexContactInfo.Size = new System.Drawing.Size(517, 28);
             this.textexContactInfo.TabIndex = 79;
             // 
             // combexSalespersonID
@@ -223,7 +222,7 @@
             this.combexSalespersonID.Location = new System.Drawing.Point(261, 202);
             this.combexSalespersonID.Name = "combexSalespersonID";
             this.combexSalespersonID.ReadOnly = false;
-            this.combexSalespersonID.Size = new System.Drawing.Size(518, 29);
+            this.combexSalespersonID.Size = new System.Drawing.Size(517, 29);
             this.combexSalespersonID.TabIndex = 80;
             // 
             // textexRemarks
@@ -233,7 +232,7 @@
             this.textexRemarks.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textexRemarks.Location = new System.Drawing.Point(261, 237);
             this.textexRemarks.Name = "textexRemarks";
-            this.textexRemarks.Size = new System.Drawing.Size(518, 28);
+            this.textexRemarks.Size = new System.Drawing.Size(517, 28);
             this.textexRemarks.TabIndex = 81;
             // 
             // label1
@@ -281,7 +280,7 @@
             this.dateTimexDeliveryDate.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.dateTimexDeliveryDate.Name = "dateTimexDeliveryDate";
             this.dateTimexDeliveryDate.ReadOnly = false;
-            this.dateTimexDeliveryDate.Size = new System.Drawing.Size(520, 28);
+            this.dateTimexDeliveryDate.Size = new System.Drawing.Size(519, 28);
             this.dateTimexDeliveryDate.TabIndex = 85;
             // 
             // label6
@@ -305,7 +304,7 @@
             this.textexVoucherCode.Location = new System.Drawing.Point(261, 136);
             this.textexVoucherCode.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.textexVoucherCode.Name = "textexVoucherCode";
-            this.textexVoucherCode.Size = new System.Drawing.Size(520, 28);
+            this.textexVoucherCode.Size = new System.Drawing.Size(519, 28);
             this.textexVoucherCode.TabIndex = 87;
             // 
             // label7

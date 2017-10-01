@@ -433,6 +433,9 @@ namespace TotalSmartCoding.Views.Mains
             //DeliveryAdvices grForm;
             //grForm = new DeliveryAdvices();
 
+            //GoodsIssueXYZs grForm;
+            //grForm = new GoodsIssueXYZs();
+
             GoodsIssues grForm;
             grForm = new GoodsIssues();
 
