@@ -74,7 +74,7 @@
             // 
             // buttonAddExit
             // 
-            this.buttonAddExit.Image = global::TotalSmartCoding.Properties.Resources.Oxygen_Icons_org_Oxygen_Actions_go_next_view;
+            this.buttonAddExit.Image = global::TotalSmartCoding.Properties.Resources.Add_close;
             this.buttonAddExit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.buttonAddExit.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonAddExit.Name = "buttonAddExit";
@@ -85,7 +85,7 @@
             // 
             // buttonAdd
             // 
-            this.buttonAdd.Image = global::TotalSmartCoding.Properties.Resources.Oxygen_Icons_org_Oxygen_Actions_go_previous_view;
+            this.buttonAdd.Image = global::TotalSmartCoding.Properties.Resources.Add_continue;
             this.buttonAdd.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.buttonAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonAdd.Name = "buttonAdd";
@@ -196,7 +196,7 @@
             this.MinimizeBox = false;
             this.Name = "WizardDetail";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Create Wizard";
+            this.Text = "Select and add items";
             this.Load += new System.EventHandler(this.WizardDetail_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();

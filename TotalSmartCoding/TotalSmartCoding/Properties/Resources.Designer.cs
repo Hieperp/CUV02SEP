@@ -1063,6 +1063,16 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Checklist32 {
+            get {
+                object obj = ResourceManager.GetObject("Checklist32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap chevron {
             get {
                 object obj = ResourceManager.GetObject("chevron", resourceCulture);
@@ -1576,6 +1586,16 @@ namespace TotalSmartCoding.Properties {
         internal static System.Drawing.Bitmap Edit_clear {
             get {
                 object obj = ResourceManager.GetObject("Edit-clear", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap edit_tasks_32 {
+            get {
+                object obj = ResourceManager.GetObject("edit_tasks-32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

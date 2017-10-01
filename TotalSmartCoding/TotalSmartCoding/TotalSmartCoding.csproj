@@ -967,6 +967,8 @@
     <None Include="Resources\Actions-NOTok-icon.png" />
     <None Include="Resources\Actions-ok-icon.png" />
     <None Include="Resources\Cross-UnVerify.png" />
+    <None Include="Resources\edit_tasks-32.png" />
+    <None Include="Resources\Checklist32.png" />
     <Content Include="Resources\Icons-Land-Play-Stop-Pause-Play-Pressed.ico" />
     <None Include="Resources\Land-Play.ico" />
     <None Include="Resources\palet031.ico" />

@@ -181,7 +181,7 @@
             this.MinimizeBox = false;
             this.Name = "WizardMaster";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Create Wizard";
+            this.Text = "Create Wizard [Delivery Advice]";
             this.Load += new System.EventHandler(this.Wizard_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();

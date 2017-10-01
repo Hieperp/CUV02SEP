@@ -196,7 +196,7 @@ namespace TotalSmartCoding.Views.Sales.DeliveryAdvices
             {
                 foreach (OLVGroup olvGroup in e.Groups)
                 {
-                    olvGroup.TitleImage = "Sign_Order_32";
+                    olvGroup.TitleImage = "Schedule-32";
                     olvGroup.Subtitle = "Count: " + olvGroup.Contents.Count.ToString() + " Advice(s)";
                 }
             }

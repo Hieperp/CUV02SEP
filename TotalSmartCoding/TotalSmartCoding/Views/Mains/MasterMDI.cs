@@ -427,14 +427,14 @@ namespace TotalSmartCoding.Views.Mains
             //GoodsReceipts grForm;
             //grForm = new GoodsReceipts();
 
-            SalesOrders grForm;
-            grForm = new SalesOrders();
+            //SalesOrders grForm;
+            //grForm = new SalesOrders();
 
             //DeliveryAdvices grForm;
             //grForm = new DeliveryAdvices();
 
-            //GoodsIssues grForm;
-            //grForm = new GoodsIssues();
+            GoodsIssues grForm;
+            grForm = new GoodsIssues();
 
             //WarehouseAdjustments grForm;
             //grForm = new WarehouseAdjustments();

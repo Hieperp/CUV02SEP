@@ -217,6 +217,9 @@
   <data name="Numbers-3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Numbers-3.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="System-Key" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\System-Key.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="bar-code (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bar-code (1).ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -253,8 +256,8 @@
   <data name="Sign-Info-icon-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Sign-Info-icon-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Fuel-icon-32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Fuel-icon-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="AddNew" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AddNew.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Play-Normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Play-Normal.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -376,8 +379,8 @@
   <data name="UnVerify" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\UnVerify.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Play_Normal_Red_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Play_Normal_Red_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Cross-UnVerify" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Cross-UnVerify.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Alarm-Warning1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Alarm-Warning1.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -472,9 +475,6 @@
   <data name="Shipping5" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Shipping5.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="AddNew" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AddNew.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Robsonbillponte-IRob-Folder-Utilities-Folder" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Robsonbillponte-IRob-Folder-Utilities-Folder.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -568,14 +568,11 @@
   <data name="letter-uppercase-B-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\letter-uppercase-B-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Custom-Icon-Design-Pretty-Office-6-User-mapping" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Custom-Icon-Design-Pretty-Office-6-User-mapping.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Custom-Icon-Design-Pretty-Office-6-Import-export" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Custom-Icon-Design-Pretty-Office-6-Import-export.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="System-Key" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\System-Key.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="japanese-cross" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\japanese-cross.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Thvg-Wood-Folders-Matte-Utilities" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Thvg-Wood-Folders-Matte-Utilities.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -603,6 +600,9 @@
   </data>
   <data name="Recycle-Bin-full" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Recycle-Bin-full.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sign-out-very-light-gray" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sign-out-very-light-gray.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="letter-uppercase-K-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\letter-uppercase-K-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -702,9 +702,6 @@
   </data>
   <data name="self" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\self.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="japanese-cross" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\japanese-cross.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DataEsc" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DataEsc.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -820,8 +817,8 @@
   <data name="Oxygen-Icons.org-Oxygen-Actions-go-previous-view" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Oxygen-Icons.org-Oxygen-Actions-go-previous-view.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="0-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\0-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Play_Normal_Red_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Play_Normal_Red_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Graphicloads-100-Flat-Home1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Graphicloads-100-Flat-Home.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -916,8 +913,8 @@
   <data name="Hopstarter-Warning" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Hopstarter-Warning.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="sign-out-very-light-gray" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sign-out-very-light-gray.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Custom-Icon-Design-Pretty-Office-6-User-mapping" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Custom-Icon-Design-Pretty-Office-6-User-mapping.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Oxygen-Icons.org-Oxygen-Actions-edit-find" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Oxygen-Icons.org-Oxygen-Actions-edit-find.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -936,6 +933,9 @@
   </data>
   <data name="Map-pin-20" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Map-pin-20.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Fuel-icon-32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Fuel-icon-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="1-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\1-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -1030,6 +1030,9 @@
   <data name="Sign-out-01" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Sign-out-01.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="0-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\0-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Numbers-5" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Numbers-5.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -1041,6 +1044,9 @@
   </data>
   <data name="Carlosjj-Google-Jfk-Maps" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Carlosjj-Google-Jfk-Maps.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="edit_tasks-32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\edit_tasks-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="UpgradeReport_Minus" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\UpgradeReport_Minus.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -1138,7 +1144,7 @@
   <data name="2D-Barcode" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\2D-Barcode.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Cross-UnVerify" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Cross-UnVerify.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Checklist32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Checklist32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -254,14 +254,14 @@
             this.toolStripSeparator1});
             this.toolStripChildForm.Location = new System.Drawing.Point(0, 0);
             this.toolStripChildForm.Name = "toolStripChildForm";
-            this.toolStripChildForm.Size = new System.Drawing.Size(1364, 39);
+            this.toolStripChildForm.Size = new System.Drawing.Size(1531, 39);
             this.toolStripChildForm.TabIndex = 29;
             this.toolStripChildForm.Text = "toolStrip1";
             this.toolStripChildForm.Visible = false;
             // 
             // toolStripButton2
             // 
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.Image = global::TotalSmartCoding.Properties.Resources.Checklist32;
             this.toolStripButton2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
@@ -816,6 +816,10 @@
             this.imageList32.Images.SetKeyName(5, "Storage32");
             this.imageList32.Images.SetKeyName(6, "Sales-Order-32");
             this.imageList32.Images.SetKeyName(7, "Sign_Order_32");
+            this.imageList32.Images.SetKeyName(8, "DeliveyList32");
+            this.imageList32.Images.SetKeyName(9, "Checklist32");
+            this.imageList32.Images.SetKeyName(10, "Schedule-32");
+            this.imageList32.Images.SetKeyName(11, "item_List-32");
             // 
             // DeliveryAdvices
             // 
