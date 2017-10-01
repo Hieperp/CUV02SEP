@@ -30,10 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GoodsIssues));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GoodsIssues));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutMaster = new System.Windows.Forms.TableLayoutPanel();
             this.label8 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -58,34 +59,38 @@
             this.naviDetails = new Guifreaks.Navisuite.NaviGroup(this.components);
             this.labelFillingLineName = new System.Windows.Forms.Label();
             this.gridexPalletDetails = new CustomControls.DataGridexView();
-            this.CommodityCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PalletCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BinLocationCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LineVolume = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fastGoodsIssueIndex = new BrightIdeasSoftware.FastObjectListView();
             this.olvID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvEntryDate = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvGoodsIssueIndexReference = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvCustomer = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvGoodsIssueIndexReference = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvApproved = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.imageList32 = new System.Windows.Forms.ImageList(this.components);
-            this.naviPendingItems = new Guifreaks.Navisuite.NaviBar(this.components);
-            this.naviPendingPallets = new Guifreaks.Navisuite.NaviBand(this.components);
+            this.naviPendingDeliveryAdviceDetails = new Guifreaks.Navisuite.NaviBar(this.components);
+            this.naviPendingItems = new Guifreaks.Navisuite.NaviBand(this.components);
             this.fastPendingDeliveryAdviceDetails = new BrightIdeasSoftware.FastObjectListView();
+            this.olvDeliveryAdviceReference = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvCommodityCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvQuantityRemains = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvLineVolumeRemains = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.naviPickupIndex = new Guifreaks.Navisuite.NaviBand(this.components);
             this.naviIndex = new Guifreaks.Navisuite.NaviBar(this.components);
             this.panelMaster = new System.Windows.Forms.Panel();
+            this.CommodityCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PalletCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BatchEntryDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BinLocationCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LineVolume = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutMaster.SuspendLayout();
             this.toolStripChildForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.naviDetails)).BeginInit();
             this.naviDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridexPalletDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fastGoodsIssueIndex)).BeginInit();
+            this.naviPendingDeliveryAdviceDetails.SuspendLayout();
+            this.naviPendingItems.ClientArea.SuspendLayout();
             this.naviPendingItems.SuspendLayout();
-            this.naviPendingPallets.ClientArea.SuspendLayout();
-            this.naviPendingPallets.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastPendingDeliveryAdviceDetails)).BeginInit();
             this.naviPickupIndex.ClientArea.SuspendLayout();
             this.naviPickupIndex.SuspendLayout();
@@ -133,7 +138,7 @@
             this.tableLayoutMaster.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutMaster.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutMaster.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutMaster.Size = new System.Drawing.Size(567, 189);
+            this.tableLayoutMaster.Size = new System.Drawing.Size(567, 0);
             this.tableLayoutMaster.TabIndex = 62;
             // 
             // label8
@@ -352,7 +357,7 @@
             this.textexRemarks.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
             this.textexRemarks.Multiline = true;
             this.textexRemarks.Name = "textexRemarks";
-            this.textexRemarks.Size = new System.Drawing.Size(136, 370);
+            this.textexRemarks.Size = new System.Drawing.Size(136, 561);
             this.textexRemarks.TabIndex = 84;
             // 
             // textexDescription
@@ -366,7 +371,7 @@
             this.textexDescription.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
             this.textexDescription.Multiline = true;
             this.textexDescription.Name = "textexDescription";
-            this.textexDescription.Size = new System.Drawing.Size(0, 370);
+            this.textexDescription.Size = new System.Drawing.Size(0, 561);
             this.textexDescription.TabIndex = 83;
             // 
             // toolStripChildForm
@@ -394,10 +399,11 @@
             // 
             // naviDetails
             // 
-            this.naviDetails.Caption = "   Pickup for";
+            this.naviDetails.Caption = "   Issue for";
             this.naviDetails.Controls.Add(this.labelFillingLineName);
             this.naviDetails.Controls.Add(this.tableLayoutMaster);
             this.naviDetails.Dock = System.Windows.Forms.DockStyle.Top;
+            this.naviDetails.Expanded = false;
             this.naviDetails.ExpandedHeight = 242;
             this.naviDetails.Font = new System.Drawing.Font("Cambria", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.naviDetails.HeaderContextMenuStrip = null;
@@ -406,7 +412,7 @@
             this.naviDetails.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.naviDetails.Name = "naviDetails";
             this.naviDetails.Padding = new System.Windows.Forms.Padding(0, 53, 0, 0);
-            this.naviDetails.Size = new System.Drawing.Size(567, 242);
+            this.naviDetails.Size = new System.Drawing.Size(567, 51);
             this.naviDetails.TabIndex = 30;
             // 
             // labelFillingLineName
@@ -414,12 +420,12 @@
             this.labelFillingLineName.AutoSize = true;
             this.labelFillingLineName.BackColor = System.Drawing.Color.Transparent;
             this.labelFillingLineName.ForeColor = System.Drawing.Color.Firebrick;
-            this.labelFillingLineName.Location = new System.Drawing.Point(154, 8);
+            this.labelFillingLineName.Location = new System.Drawing.Point(141, 8);
             this.labelFillingLineName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelFillingLineName.Name = "labelFillingLineName";
-            this.labelFillingLineName.Size = new System.Drawing.Size(156, 33);
+            this.labelFillingLineName.Size = new System.Drawing.Size(281, 33);
             this.labelFillingLineName.TabIndex = 63;
-            this.labelFillingLineName.Text = "DRUM LINE";
+            this.labelFillingLineName.Text = "CHEVRON VIET NAME";
             // 
             // gridexPalletDetails
             // 
@@ -440,6 +446,7 @@
             this.gridexPalletDetails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CommodityCode,
             this.PalletCode,
+            this.BatchEntryDate,
             this.BinLocationCode,
             this.Quantity,
             this.LineVolume});
@@ -450,73 +457,23 @@
             this.gridexPalletDetails.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.gridexPalletDetails.Name = "gridexPalletDetails";
             this.gridexPalletDetails.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Garamond", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridexPalletDetails.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Garamond", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridexPalletDetails.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.gridexPalletDetails.RowTemplate.Height = 45;
-            this.gridexPalletDetails.Size = new System.Drawing.Size(561, 370);
+            this.gridexPalletDetails.Size = new System.Drawing.Size(561, 561);
             this.gridexPalletDetails.TabIndex = 65;
             this.gridexPalletDetails.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.gridexPalletDetails_UserDeletedRow);
-            // 
-            // CommodityCode
-            // 
-            this.CommodityCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CommodityCode.DataPropertyName = "CommodityCode";
-            this.CommodityCode.FillWeight = 14F;
-            this.CommodityCode.HeaderText = "Item";
-            this.CommodityCode.MinimumWidth = 9;
-            this.CommodityCode.Name = "CommodityCode";
-            // 
-            // PalletCode
-            // 
-            this.PalletCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.PalletCode.DataPropertyName = "PalletCode";
-            this.PalletCode.FillWeight = 57F;
-            this.PalletCode.HeaderText = "Pallet Code";
-            this.PalletCode.MinimumWidth = 9;
-            this.PalletCode.Name = "PalletCode";
-            // 
-            // BinLocationCode
-            // 
-            this.BinLocationCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.BinLocationCode.DataPropertyName = "BinLocationCode";
-            this.BinLocationCode.FillWeight = 15F;
-            this.BinLocationCode.HeaderText = "Location";
-            this.BinLocationCode.MinimumWidth = 9;
-            this.BinLocationCode.Name = "BinLocationCode";
-            // 
-            // Quantity
-            // 
-            this.Quantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Quantity.DataPropertyName = "Quantity";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.Quantity.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Quantity.FillWeight = 5F;
-            this.Quantity.HeaderText = "Qty";
-            this.Quantity.MinimumWidth = 9;
-            this.Quantity.Name = "Quantity";
-            // 
-            // LineVolume
-            // 
-            this.LineVolume.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.LineVolume.DataPropertyName = "LineVolume";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.LineVolume.DefaultCellStyle = dataGridViewCellStyle3;
-            this.LineVolume.FillWeight = 9F;
-            this.LineVolume.HeaderText = "Volume";
-            this.LineVolume.MinimumWidth = 9;
-            this.LineVolume.Name = "LineVolume";
             // 
             // fastGoodsIssueIndex
             // 
             this.fastGoodsIssueIndex.AllColumns.Add(this.olvID);
             this.fastGoodsIssueIndex.AllColumns.Add(this.olvEntryDate);
-            this.fastGoodsIssueIndex.AllColumns.Add(this.olvGoodsIssueIndexReference);
             this.fastGoodsIssueIndex.AllColumns.Add(this.olvCustomer);
+            this.fastGoodsIssueIndex.AllColumns.Add(this.olvGoodsIssueIndexReference);
             this.fastGoodsIssueIndex.AllColumns.Add(this.olvApproved);
             this.fastGoodsIssueIndex.BackColor = System.Drawing.Color.Ivory;
             this.fastGoodsIssueIndex.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.olvID,
-            this.olvGoodsIssueIndexReference,
             this.olvCustomer,
             this.olvApproved});
             this.fastGoodsIssueIndex.Cursor = System.Windows.Forms.Cursors.Default;
@@ -556,23 +513,23 @@
             this.olvEntryDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvEntryDate.Width = 10;
             // 
+            // olvCustomer
+            // 
+            this.olvCustomer.AspectName = "CustomerName";
+            this.olvCustomer.HeaderForeColor = System.Drawing.Color.Firebrick;
+            this.olvCustomer.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvCustomer.Text = "Customers";
+            this.olvCustomer.Width = 170;
+            // 
             // olvGoodsIssueIndexReference
             // 
             this.olvGoodsIssueIndexReference.AspectName = "Reference";
             this.olvGoodsIssueIndexReference.DisplayIndex = 2;
             this.olvGoodsIssueIndexReference.Groupable = false;
             this.olvGoodsIssueIndexReference.HeaderForeColor = System.Drawing.Color.Firebrick;
+            this.olvGoodsIssueIndexReference.IsVisible = false;
             this.olvGoodsIssueIndexReference.Text = "Issues";
             this.olvGoodsIssueIndexReference.Width = 85;
-            // 
-            // olvCustomer
-            // 
-            this.olvCustomer.AspectName = "CustomerName";
-            this.olvCustomer.DisplayIndex = 1;
-            this.olvCustomer.Groupable = false;
-            this.olvCustomer.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvCustomer.Text = "";
-            this.olvCustomer.Width = 85;
             // 
             // olvApproved
             // 
@@ -593,49 +550,57 @@
             this.imageList32.Images.SetKeyName(2, "ForkliftOrange");
             this.imageList32.Images.SetKeyName(3, "ForkliftJapan");
             this.imageList32.Images.SetKeyName(4, "Placeholder32");
+            this.imageList32.Images.SetKeyName(5, "ForkliftYellow-32");
+            this.imageList32.Images.SetKeyName(6, "Forklift_yellow-32");
+            // 
+            // naviPendingDeliveryAdviceDetails
+            // 
+            this.naviPendingDeliveryAdviceDetails.ActiveBand = this.naviPendingItems;
+            this.naviPendingDeliveryAdviceDetails.Controls.Add(this.naviPendingItems);
+            this.naviPendingDeliveryAdviceDetails.Dock = System.Windows.Forms.DockStyle.Right;
+            this.naviPendingDeliveryAdviceDetails.Font = new System.Drawing.Font("Cambria", 31.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.naviPendingDeliveryAdviceDetails.HeaderHeight = 50;
+            this.naviPendingDeliveryAdviceDetails.Location = new System.Drawing.Point(862, 0);
+            this.naviPendingDeliveryAdviceDetails.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.naviPendingDeliveryAdviceDetails.Name = "naviPendingDeliveryAdviceDetails";
+            this.naviPendingDeliveryAdviceDetails.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.naviPendingDeliveryAdviceDetails.Size = new System.Drawing.Size(524, 615);
+            this.naviPendingDeliveryAdviceDetails.TabIndex = 69;
+            this.naviPendingDeliveryAdviceDetails.Text = "naviBar1";
             // 
             // naviPendingItems
             // 
-            this.naviPendingItems.ActiveBand = this.naviPendingPallets;
-            this.naviPendingItems.Controls.Add(this.naviPendingPallets);
-            this.naviPendingItems.Dock = System.Windows.Forms.DockStyle.Right;
-            this.naviPendingItems.Font = new System.Drawing.Font("Cambria", 31.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.naviPendingItems.HeaderHeight = 50;
-            this.naviPendingItems.Location = new System.Drawing.Point(862, 0);
+            // 
+            // naviPendingItems.ClientArea
+            // 
+            this.naviPendingItems.ClientArea.Controls.Add(this.fastPendingDeliveryAdviceDetails);
+            this.naviPendingItems.ClientArea.LayoutStyle = Guifreaks.Navisuite.NaviLayoutStyle.StyleFromOwner;
+            this.naviPendingItems.ClientArea.Location = new System.Drawing.Point(0, 0);
+            this.naviPendingItems.ClientArea.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.naviPendingItems.ClientArea.Name = "ClientArea";
+            this.naviPendingItems.ClientArea.Size = new System.Drawing.Size(522, 525);
+            this.naviPendingItems.ClientArea.TabIndex = 0;
+            this.naviPendingItems.LargeImageIndex = 0;
+            this.naviPendingItems.LayoutStyle = Guifreaks.Navisuite.NaviLayoutStyle.StyleFromOwner;
+            this.naviPendingItems.Location = new System.Drawing.Point(1, 50);
             this.naviPendingItems.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.naviPendingItems.Name = "naviPendingItems";
-            this.naviPendingItems.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.naviPendingItems.Size = new System.Drawing.Size(524, 615);
-            this.naviPendingItems.TabIndex = 69;
-            this.naviPendingItems.Text = "naviBar1";
-            // 
-            // naviPendingPallets
-            // 
-            // 
-            // naviPendingPallets.ClientArea
-            // 
-            this.naviPendingPallets.ClientArea.Controls.Add(this.fastPendingDeliveryAdviceDetails);
-            this.naviPendingPallets.ClientArea.LayoutStyle = Guifreaks.Navisuite.NaviLayoutStyle.StyleFromOwner;
-            this.naviPendingPallets.ClientArea.Location = new System.Drawing.Point(0, 0);
-            this.naviPendingPallets.ClientArea.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.naviPendingPallets.ClientArea.Name = "ClientArea";
-            this.naviPendingPallets.ClientArea.Size = new System.Drawing.Size(522, 525);
-            this.naviPendingPallets.ClientArea.TabIndex = 0;
-            this.naviPendingPallets.LargeImageIndex = 0;
-            this.naviPendingPallets.LayoutStyle = Guifreaks.Navisuite.NaviLayoutStyle.StyleFromOwner;
-            this.naviPendingPallets.Location = new System.Drawing.Point(1, 50);
-            this.naviPendingPallets.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.naviPendingPallets.Name = "naviPendingPallets";
-            this.naviPendingPallets.Size = new System.Drawing.Size(522, 525);
-            this.naviPendingPallets.SmallImageIndex = 0;
-            this.naviPendingPallets.TabIndex = 3;
+            this.naviPendingItems.Size = new System.Drawing.Size(522, 525);
+            this.naviPendingItems.SmallImageIndex = 0;
+            this.naviPendingItems.TabIndex = 3;
             // 
             // fastPendingDeliveryAdviceDetails
             // 
+            this.fastPendingDeliveryAdviceDetails.AllColumns.Add(this.olvDeliveryAdviceReference);
             this.fastPendingDeliveryAdviceDetails.AllColumns.Add(this.olvCommodityCode);
+            this.fastPendingDeliveryAdviceDetails.AllColumns.Add(this.olvQuantityRemains);
+            this.fastPendingDeliveryAdviceDetails.AllColumns.Add(this.olvLineVolumeRemains);
             this.fastPendingDeliveryAdviceDetails.BackColor = System.Drawing.Color.Ivory;
             this.fastPendingDeliveryAdviceDetails.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.olvCommodityCode});
+            this.olvDeliveryAdviceReference,
+            this.olvCommodityCode,
+            this.olvQuantityRemains,
+            this.olvLineVolumeRemains});
             this.fastPendingDeliveryAdviceDetails.Cursor = System.Windows.Forms.Cursors.Default;
             this.fastPendingDeliveryAdviceDetails.Dock = System.Windows.Forms.DockStyle.Fill;
             this.fastPendingDeliveryAdviceDetails.Font = new System.Drawing.Font("Sitka Banner", 16.2F);
@@ -658,16 +623,45 @@
             this.fastPendingDeliveryAdviceDetails.VirtualMode = true;
             this.fastPendingDeliveryAdviceDetails.MouseClick += new System.Windows.Forms.MouseEventHandler(this.fastPendingPallets_MouseClick);
             // 
+            // olvDeliveryAdviceReference
+            // 
+            this.olvDeliveryAdviceReference.AspectName = "DeliveryAdviceReference";
+            this.olvDeliveryAdviceReference.HeaderForeColor = System.Drawing.Color.Firebrick;
+            this.olvDeliveryAdviceReference.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvDeliveryAdviceReference.Text = "Pending D.A.";
+            this.olvDeliveryAdviceReference.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvDeliveryAdviceReference.Width = 100;
+            // 
             // olvCommodityCode
             // 
             this.olvCommodityCode.AspectName = "CommodityCode";
-            this.olvCommodityCode.FillsFreeSpace = true;
             this.olvCommodityCode.HeaderFont = new System.Drawing.Font("Niagara Engraved", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.olvCommodityCode.HeaderForeColor = System.Drawing.Color.Firebrick;
             this.olvCommodityCode.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvCommodityCode.Text = "                         Pending Items";
+            this.olvCommodityCode.Text = "Pending Items";
             this.olvCommodityCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvCommodityCode.Width = 400;
+            this.olvCommodityCode.Width = 110;
+            // 
+            // olvQuantityRemains
+            // 
+            this.olvQuantityRemains.AspectName = "QuantityRemains";
+            this.olvQuantityRemains.AspectToStringFormat = "{0:#,#}";
+            this.olvQuantityRemains.HeaderForeColor = System.Drawing.Color.Firebrick;
+            this.olvQuantityRemains.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.olvQuantityRemains.Text = "Quantity";
+            this.olvQuantityRemains.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.olvQuantityRemains.Width = 75;
+            // 
+            // olvLineVolumeRemains
+            // 
+            this.olvLineVolumeRemains.AspectName = "LineVolumeRemains";
+            this.olvLineVolumeRemains.AspectToStringFormat = "{0:#,##0.00}";
+            this.olvLineVolumeRemains.FillsFreeSpace = true;
+            this.olvLineVolumeRemains.HeaderForeColor = System.Drawing.Color.Firebrick;
+            this.olvLineVolumeRemains.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.olvLineVolumeRemains.Text = "Volume";
+            this.olvLineVolumeRemains.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.olvLineVolumeRemains.Width = 80;
             // 
             // naviPickupIndex
             // 
@@ -711,12 +705,71 @@
             this.panelMaster.Controls.Add(this.textexRemarks);
             this.panelMaster.Controls.Add(this.gridexPalletDetails);
             this.panelMaster.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelMaster.Location = new System.Drawing.Point(295, 242);
+            this.panelMaster.Location = new System.Drawing.Point(295, 51);
             this.panelMaster.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panelMaster.Name = "panelMaster";
             this.panelMaster.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.panelMaster.Size = new System.Drawing.Size(567, 373);
+            this.panelMaster.Size = new System.Drawing.Size(567, 564);
             this.panelMaster.TabIndex = 72;
+            // 
+            // CommodityCode
+            // 
+            this.CommodityCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CommodityCode.DataPropertyName = "CommodityCode";
+            this.CommodityCode.FillWeight = 13F;
+            this.CommodityCode.HeaderText = "Item";
+            this.CommodityCode.MinimumWidth = 9;
+            this.CommodityCode.Name = "CommodityCode";
+            // 
+            // PalletCode
+            // 
+            this.PalletCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.PalletCode.DataPropertyName = "PalletCode";
+            this.PalletCode.FillWeight = 48F;
+            this.PalletCode.HeaderText = "Pallet Code";
+            this.PalletCode.MinimumWidth = 9;
+            this.PalletCode.Name = "PalletCode";
+            // 
+            // BatchEntryDate
+            // 
+            this.BatchEntryDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.BatchEntryDate.DataPropertyName = "BatchEntryDate";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.BatchEntryDate.DefaultCellStyle = dataGridViewCellStyle2;
+            this.BatchEntryDate.FillWeight = 12F;
+            this.BatchEntryDate.HeaderText = "Batch Date";
+            this.BatchEntryDate.Name = "BatchEntryDate";
+            // 
+            // BinLocationCode
+            // 
+            this.BinLocationCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.BinLocationCode.DataPropertyName = "BinLocationCode";
+            this.BinLocationCode.FillWeight = 13F;
+            this.BinLocationCode.HeaderText = "Location";
+            this.BinLocationCode.MinimumWidth = 9;
+            this.BinLocationCode.Name = "BinLocationCode";
+            // 
+            // Quantity
+            // 
+            this.Quantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Quantity.DataPropertyName = "Quantity";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Quantity.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Quantity.FillWeight = 5F;
+            this.Quantity.HeaderText = "Qty";
+            this.Quantity.MinimumWidth = 9;
+            this.Quantity.Name = "Quantity";
+            // 
+            // LineVolume
+            // 
+            this.LineVolume.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.LineVolume.DataPropertyName = "LineVolume";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.LineVolume.DefaultCellStyle = dataGridViewCellStyle4;
+            this.LineVolume.FillWeight = 9F;
+            this.LineVolume.HeaderText = "Volume";
+            this.LineVolume.MinimumWidth = 9;
+            this.LineVolume.Name = "LineVolume";
             // 
             // GoodsIssues
             // 
@@ -726,14 +779,14 @@
             this.Controls.Add(this.panelMaster);
             this.Controls.Add(this.naviDetails);
             this.Controls.Add(this.naviIndex);
-            this.Controls.Add(this.naviPendingItems);
+            this.Controls.Add(this.naviPendingDeliveryAdviceDetails);
             this.Controls.Add(this.toolStripChildForm);
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "GoodsIssues";
             this.Text = "Goods Issues";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Pickups_FormClosing);
             this.Controls.SetChildIndex(this.toolStripChildForm, 0);
-            this.Controls.SetChildIndex(this.naviPendingItems, 0);
+            this.Controls.SetChildIndex(this.naviPendingDeliveryAdviceDetails, 0);
             this.Controls.SetChildIndex(this.naviIndex, 0);
             this.Controls.SetChildIndex(this.naviDetails, 0);
             this.Controls.SetChildIndex(this.panelMaster, 0);
@@ -746,9 +799,9 @@
             this.naviDetails.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridexPalletDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fastGoodsIssueIndex)).EndInit();
+            this.naviPendingDeliveryAdviceDetails.ResumeLayout(false);
+            this.naviPendingItems.ClientArea.ResumeLayout(false);
             this.naviPendingItems.ResumeLayout(false);
-            this.naviPendingPallets.ClientArea.ResumeLayout(false);
-            this.naviPendingPallets.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.fastPendingDeliveryAdviceDetails)).EndInit();
             this.naviPickupIndex.ClientArea.ResumeLayout(false);
             this.naviPickupIndex.ResumeLayout(false);
@@ -774,7 +827,7 @@
         private BrightIdeasSoftware.OLVColumn olvID;
         private BrightIdeasSoftware.OLVColumn olvEntryDate;
         private CustomControls.DataGridexView gridexPalletDetails;
-        private Guifreaks.Navisuite.NaviBar naviPendingItems;
+        private Guifreaks.Navisuite.NaviBar naviPendingDeliveryAdviceDetails;
         private Guifreaks.Navisuite.NaviBar naviIndex;
         private System.Windows.Forms.Panel panelMaster;
         private System.Windows.Forms.Label label7;
@@ -791,7 +844,7 @@
         private CustomControls.TextexBox textexDescription;
         private CustomControls.TextexBox textexRemarks;
         private Guifreaks.Navisuite.NaviBand naviPickupIndex;
-        private Guifreaks.Navisuite.NaviBand naviPendingPallets;
+        private Guifreaks.Navisuite.NaviBand naviPendingItems;
         private BrightIdeasSoftware.FastObjectListView fastPendingDeliveryAdviceDetails;
         private BrightIdeasSoftware.OLVColumn olvCommodityCode;
         private CustomControls.TextexBox textexWarehouseCode;
@@ -800,8 +853,12 @@
         private System.Windows.Forms.ImageList imageList32;
         private BrightIdeasSoftware.OLVColumn olvApproved;
         private BrightIdeasSoftware.OLVColumn olvCustomer;
+        private BrightIdeasSoftware.OLVColumn olvQuantityRemains;
+        private BrightIdeasSoftware.OLVColumn olvLineVolumeRemains;
+        private BrightIdeasSoftware.OLVColumn olvDeliveryAdviceReference;
         private System.Windows.Forms.DataGridViewTextBoxColumn CommodityCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn PalletCode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BatchEntryDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn BinLocationCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn LineVolume;

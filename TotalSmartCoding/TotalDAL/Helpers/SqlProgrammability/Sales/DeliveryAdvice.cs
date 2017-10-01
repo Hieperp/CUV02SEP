@@ -79,7 +79,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
             queryString = queryString + "                   " + this.BuildSQLCommoditiesAvailable("@DeliveryAdviceDetails", true, true, true) + "\r\n";
 
             queryString = queryString + "       SELECT      DeliveryAdviceDetails.DeliveryAdviceDetailID, DeliveryAdviceDetails.DeliveryAdviceID, DeliveryAdviceDetails.SalesOrderID, DeliveryAdviceDetails.SalesOrderDetailID, SalesOrderDetails.Reference AS SalesOrderReference, SalesOrderDetails.EntryDate AS SalesOrderEntryDate, SalesOrderDetails.VoucherCode, Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, Commodities.Unit, Commodities.PackageSize, Commodities.Volume, Commodities.PackageVolume, " + "\r\n";
-            queryString = queryString + "                   ROUND(ISNULL(CommoditiesAvailable.QuantityAvailable, 0) + DeliveryAdviceDetails.QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") AS QuantityAvailable, ROUND(ISNULL(CommoditiesAvailable.LineVolumeAvailable, 0) + DeliveryAdviceDetails.LineVolumeIssue, " + (int)GlobalEnums.rndVolume + ") AS LineVolumeAvailable, ROUND(ISNULL(SalesOrderDetails.Quantity - SalesOrderDetails.QuantityAdvice, 0) + DeliveryAdviceDetails.Quantity, " + (int)GlobalEnums.rndQuantity + ") AS QuantityRemains, ROUND(ISNULL(SalesOrderDetails.LineVolume - SalesOrderDetails.LineVolumeAdvice, 0) + DeliveryAdviceDetails.LineVolume, " + (int)GlobalEnums.rndVolume + ") AS LineVolumeRemains, DeliveryAdviceDetails.Quantity, DeliveryAdviceDetails.LineVolume, DeliveryAdviceDetails.QuantityIssue, DeliveryAdviceDetails.LineVolumeIssue, DeliveryAdviceDetails.Remarks " + "\r\n";
+            queryString = queryString + "                   ISNULL(CommoditiesAvailable.QuantityAvailable, 0) AS QuantityAvailable, ISNULL(CommoditiesAvailable.LineVolumeAvailable, 0) AS LineVolumeAvailable, ROUND(ISNULL(SalesOrderDetails.Quantity - SalesOrderDetails.QuantityAdvice, 0) + DeliveryAdviceDetails.Quantity, " + (int)GlobalEnums.rndQuantity + ") AS QuantityRemains, ROUND(ISNULL(SalesOrderDetails.LineVolume - SalesOrderDetails.LineVolumeAdvice, 0) + DeliveryAdviceDetails.LineVolume, " + (int)GlobalEnums.rndVolume + ") AS LineVolumeRemains, DeliveryAdviceDetails.Quantity, DeliveryAdviceDetails.LineVolume, DeliveryAdviceDetails.QuantityIssue, DeliveryAdviceDetails.LineVolumeIssue, DeliveryAdviceDetails.Remarks " + "\r\n";
             queryString = queryString + "       FROM        @DeliveryAdviceDetails DeliveryAdviceDetails " + "\r\n";
             queryString = queryString + "                   INNER JOIN Commodities ON DeliveryAdviceDetails.CommodityID = Commodities.CommodityID" + "\r\n";
             queryString = queryString + "                   LEFT JOIN SalesOrderDetails ON DeliveryAdviceDetails.SalesOrderDetailID = SalesOrderDetails.SalesOrderDetailID " + "\r\n";
@@ -234,6 +234,12 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
 
                 queryString = queryString + "           INSERT INTO @CommoditiesAvailable (LocationID, CommodityID, QuantityAvailable, LineVolumeAvailable) " + "\r\n";
                 queryString = queryString + "           SELECT      LocationID, CommodityID, SUM(-Quantity + QuantityIssue) AS QuantityAvailable, SUM(-LineVolume + LineVolumeIssue) AS LineVolumeAvailable FROM DeliveryAdviceDetails WHERE ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") > 0 " + (sqlEdit ? " AND DeliveryAdviceID <> @DeliveryAdviceID" : "") + " GROUP BY LocationID, CommodityID " + "\r\n";
+
+                if (sqlEdit)
+                {
+                    queryString = queryString + "       INSERT INTO @CommoditiesAvailable (LocationID, CommodityID, QuantityAvailable, LineVolumeAvailable) " + "\r\n";
+                    queryString = queryString + "       SELECT      LocationID, CommodityID, SUM(QuantityIssue) AS QuantityAvailable, SUM(LineVolumeIssue) AS LineVolumeAvailable FROM DeliveryAdviceDetails WHERE QuantityIssue > 0 AND DeliveryAdviceID = @DeliveryAdviceID GROUP BY LocationID, CommodityID " + "\r\n";
+                }
             }
 
             return queryString;
@@ -260,7 +266,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
 
             queryString = queryString + "       SELECT      SalesOrderDetails.SalesOrderID, SalesOrderDetails.SalesOrderDetailID, SalesOrderDetails.Reference AS SalesOrderReference, SalesOrderDetails.EntryDate AS SalesOrderEntryDate, SalesOrderDetails.VoucherCode AS SalesOrderVoucherCode, " + "\r\n";
             queryString = queryString + "                   Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, Commodities.PackageSize, Commodities.Volume, Commodities.PackageVolume, " + "\r\n";
-            queryString = queryString + "                   ISNULL(CommoditiesAvailable.QuantityAvailable, " + (int)GlobalEnums.rndQuantity + ") AS QuantityAvailable, ISNULL(CommoditiesAvailable.LineVolumeAvailable, 0) AS LineVolumeAvailable, SalesOrderDetails.QuantityRemains, CAST(0 AS decimal(18, 2)) AS Quantity, SalesOrderDetails.LineVolumeRemains, CAST(0 AS decimal(18, 2)) AS LineVolume, SalesOrderDetails.Remarks, CAST(1 AS bit) AS IsSelected " + "\r\n";
+            queryString = queryString + "                   ISNULL(CommoditiesAvailable.QuantityAvailable, 0) AS QuantityAvailable, ISNULL(CommoditiesAvailable.LineVolumeAvailable, 0) AS LineVolumeAvailable, SalesOrderDetails.QuantityRemains, CAST(0 AS decimal(18, 2)) AS Quantity, SalesOrderDetails.LineVolumeRemains, CAST(0 AS decimal(18, 2)) AS LineVolume, SalesOrderDetails.Remarks, CAST(1 AS bit) AS IsSelected " + "\r\n";
 
             queryString = queryString + "       FROM        @SalesOrderDetails SalesOrderDetails " + "\r\n";
             queryString = queryString + "                   INNER JOIN Commodities ON SalesOrderDetails.IsNewOrEdit = 0 AND SalesOrderDetails.CommodityID = Commodities.CommodityID " + "\r\n";
@@ -330,10 +336,10 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
 
         private void DeliveryAdviceEditable()
         {
-            string[] queryArray = new string[0];
+            string[] queryArray = new string[2];
 
-            //queryArray[0] = " SELECT TOP 1 @FoundEntity = DeliveryAdviceID FROM DeliveryAdvices WHERE DeliveryAdviceID = @EntityID AND (InActive = 1 OR InActivePartial = 1)"; //Don't allow approve after void
-            //queryArray[1] = " SELECT TOP 1 @FoundEntity = DeliveryAdviceID FROM GoodsIssueDetails WHERE DeliveryAdviceID = @EntityID ";
+            queryArray[0] = " SELECT TOP 1 @FoundEntity = DeliveryAdviceID FROM DeliveryAdvices WHERE DeliveryAdviceID = @EntityID AND (InActive = 1 OR InActivePartial = 1)"; //Don't allow approve after void
+            queryArray[1] = " SELECT TOP 1 @FoundEntity = DeliveryAdviceID FROM GoodsIssueDetails WHERE DeliveryAdviceID = @EntityID ";
 
             this.totalSmartCodingEntities.CreateProcedureToCheckExisting("DeliveryAdviceEditable", queryArray);
         }

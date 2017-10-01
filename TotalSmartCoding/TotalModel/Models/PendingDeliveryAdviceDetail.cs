@@ -24,7 +24,6 @@ namespace TotalModel.Models
         public Nullable<decimal> Quantity { get; set; }
         public Nullable<decimal> LineVolumeRemains { get; set; }
         public Nullable<decimal> LineVolume { get; set; }
-        public string Description { get; set; }
         public string Remarks { get; set; }
         public Nullable<bool> IsSelected { get; set; }
         public int LocationID { get; set; }

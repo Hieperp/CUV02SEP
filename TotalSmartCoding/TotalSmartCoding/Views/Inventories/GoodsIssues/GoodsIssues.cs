@@ -77,7 +77,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
 
                 this.customTabCenter.DisplayStyle = TabStyle.VisualStudio;
 
-                this.customTabCenter.TabPages.Add("tabDetailPallets", "GoodsIssue pallet list                    ");
+                this.customTabCenter.TabPages.Add("tabDetailPallets", "Issue pallet list                    ");
                 this.customTabCenter.TabPages.Add("tabDescription", "Description                    ");
                 this.customTabCenter.TabPages.Add("tabRemarks", "Remarks                    ");
                 this.customTabCenter.TabPages[0].Controls.Add(this.gridexPalletDetails);
@@ -107,8 +107,12 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
         {
             this.customTabCenter.Font = titleFont;
             this.naviDetails.Font = titleFont;
-            this.olvCommodityCode.HeaderFont = titleFont;
+            this.olvCustomer.HeaderFont = titleFont;
             this.olvGoodsIssueIndexReference.HeaderFont = titleFont;
+            this.olvDeliveryAdviceReference.HeaderFont = titleFont;
+            this.olvCommodityCode.HeaderFont = titleFont;
+            this.olvQuantityRemains.HeaderFont = titleFont;
+            this.olvLineVolumeRemains.HeaderFont = titleFont;
             this.labelFillingLineName.Left = 78;
             this.labelFillingLineName.Top = 14;
 
@@ -219,7 +223,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
             {
                 foreach (OLVGroup olvGroup in e.Groups)
                 {
-                    olvGroup.TitleImage = "Forklift";
+                    olvGroup.TitleImage = "Forklift_Yellow-32";
                     olvGroup.Subtitle = "List count: " + olvGroup.Contents.Count.ToString();
                     if ((DateTime)olvGroup.Key != DateTime.Today) olvGroup.Collapsed = true;
                 }
@@ -231,8 +235,6 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
             this.gridexPalletDetails.AutoGenerateColumns = false;
             this.gridexPalletDetails.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             this.gridexPalletDetails.DataSource = this.goodsIssueViewModel.ViewDetails;
-
-            //StackedHeaderDecorator stackedHeaderDecorator = new StackedHeaderDecorator(this.dataGridViewDetails);
         }
 
         protected override Controllers.BaseController myController
@@ -260,27 +262,17 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
             this.getPendingItems();
         }
 
-        private void getPendingItems() //THIS MAY ALSO LOAD PENDING PALLET/ CARTON/ PACK
+        private void getPendingItems()
         {
             try
             {
                 this.fastPendingDeliveryAdviceDetails.SetObjects(this.goodsIssueAPIs.GetPendingDeliveryAdviceDetails(this.goodsIssueViewModel.LocationID, this.goodsIssueViewModel.GoodsIssueID, this.goodsIssueViewModel.DeliveryAdviceID, this.goodsIssueViewModel.CustomerID, string.Join(",", this.goodsIssueViewModel.ViewDetails.Select(d => d.DeliveryAdviceDetailID)), false));
-                //this.naviPendingDeliveryAdviceDetails.Text = "Pending " + this.fastPendingDeliveryAdviceDetails.GetItemCount().ToString("N0") + " item" + (this.fastPendingDeliveryAdviceDetails.GetItemCount() > 1 ? "s      " : "      ");
+                //this.naviPendingItems.Text = "Pending " + this.fastPendingDeliveryAdviceDetails.GetItemCount().ToString("N0") + " row" + (this.fastPendingDeliveryAdviceDetails.GetItemCount() > 1 ? "s" : "");
             }
             catch (Exception exception)
             {
                 ExceptionHandlers.ShowExceptionMessageBox(this, exception);
             }
-
-            //////try
-            //////{
-            //////    this.fastPendingDeliveryAdviceDetails.SetObjects(this.goodsIssueAPIs.GetPendingPallets(this.goodsIssueViewModel.LocationID, this.goodsIssueViewModel.FillingLineID, this.goodsIssueViewModel.GoodsIssueID, string.Join(",", this.goodsIssueViewModel.ViewDetails.Where(w => w.PalletID != null).Select(d => d.PalletID)), false));
-            //////    this.olvPendingPalletCode.Text = "Line " + this.goodsIssueViewModel.FillingLineNickName + "   -   Pending " + this.fastPendingDeliveryAdviceDetails.GetItemCount().ToString("N0") + " pallet" + (this.fastPendingDeliveryAdviceDetails.GetItemCount() > 1 ? "s" : "");
-            //////}
-            //////catch (Exception exception)
-            //////{
-            //////    ExceptionHandlers.ShowExceptionMessageBox(this, exception);
-            //////}
         }
 
         protected override DialogResult wizardMaster()

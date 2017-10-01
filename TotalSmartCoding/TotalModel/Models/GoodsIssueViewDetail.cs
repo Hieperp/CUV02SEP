@@ -37,5 +37,6 @@ namespace TotalModel.Models
         public decimal Quantity { get; set; }
         public decimal LineVolume { get; set; }
         public string Remarks { get; set; }
+        public Nullable<System.DateTime> BatchEntryDate { get; set; }
     }
 }

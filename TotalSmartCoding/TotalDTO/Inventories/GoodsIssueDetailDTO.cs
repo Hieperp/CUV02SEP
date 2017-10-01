@@ -28,6 +28,9 @@ namespace TotalDTO.Inventories
 
         public int GoodsReceiptID { get; set; }
         public int GoodsReceiptDetailID { get; set; }
+        public string GoodsReceiptReference { get; set; }
+        public Nullable<System.DateTime> GoodsReceiptEntryDate { get; set; }
+        public Nullable<System.DateTime> BatchEntryDate { get; set; }
 
         public int WarehouseID { get; set; }
         public string WarehouseCode { get; set; }

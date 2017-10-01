@@ -30,12 +30,14 @@ namespace TotalDTO.Sales
 
         public int CustomerID { get; set; }
 
+        public decimal QuantityIssue { get; set; }
+        public decimal LineVolumeIssue { get; set; }
 
         protected override List<ValidationRule> CreateRules()
         {
             List<ValidationRule> validationRules = base.CreateRules();
             validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<DeliveryAdviceDetailDTO>(p => p.DeliveryAdviceDetailID), "Số lượng xuất không được lớn hơn số lượng tồn.", delegate { return (this.Quantity <= this.QuantityAvailable && this.Quantity <= this.QuantityRemains && this.LineVolume <= this.LineVolumeAvailable && this.LineVolume <= this.LineVolumeRemains); }));
-            
+
             return validationRules;
         }
     }

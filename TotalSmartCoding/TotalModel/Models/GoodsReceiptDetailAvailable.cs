@@ -32,5 +32,8 @@ namespace TotalModel.Models
         public int CommodityID { get; set; }
         public string CommodityCode { get; set; }
         public string CommodityName { get; set; }
+        public Nullable<System.DateTime> BatchEntryDate { get; set; }
+        public string GoodsReceiptReference { get; set; }
+        public System.DateTime GoodsReceiptEntryDate { get; set; }
     }
 }

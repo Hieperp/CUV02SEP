@@ -35,6 +35,9 @@ namespace TotalModel.Models
         public string Remarks { get; set; }
         public bool Approved { get; set; }
         public string Reference { get; set; }
+        public bool InActive { get; set; }
+        public bool InActivePartial { get; set; }
+        public Nullable<System.DateTime> InActivePartialDate { get; set; }
     
         public virtual Commodity Commodity { get; set; }
         public virtual SalesOrderDetail SalesOrderDetail { get; set; }
