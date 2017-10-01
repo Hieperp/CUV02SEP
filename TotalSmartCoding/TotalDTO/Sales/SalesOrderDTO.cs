@@ -40,6 +40,14 @@ namespace TotalDTO.Sales
             set { ApplyPropertyChange<SalesOrderDTO, string>(ref this.voucherCode, o => o.VoucherCode, value); }
         }
 
+        private Nullable<DateTime> deliveryDate;
+        //[DefaultValue(null)]
+        public Nullable<DateTime> DeliveryDate
+        {
+            get { return this.deliveryDate; }
+            set { ApplyPropertyChange<SalesOrderPrimitiveDTO, Nullable<DateTime>>(ref this.deliveryDate, o => o.DeliveryDate, value); }
+        }
+
         private Nullable<int> customerID;
         [DefaultValue(null)]
         public Nullable<int> CustomerID
@@ -83,7 +91,7 @@ namespace TotalDTO.Sales
 
         public override string Caption
         {
-            get { return this.CustomerName + (this.ContactInfo != null && this.ContactInfo.Trim() != "" ? ", " : "") + this.ContactInfo + (this.CustomerName != "" ? ", " : "") + this.EntryDate.ToString() + "             Total Quantity: " + this.TotalQuantity.ToString() + ",    Total Volume: " + this.TotalLineVolume.ToString("N2"); }
+            get { return "Customer: " + this.CustomerName + (this.ContactInfo != null && this.ContactInfo.Trim() != "" ? ", " : "") + this.ContactInfo + (this.CustomerName != "" ? ", " : "") + "SO Date: " + this.EntryDate.ToString() + "             Total Quantity: " + this.TotalQuantity.ToString() + ",    Total Volume: " + this.TotalLineVolume.ToString("N2"); }
         }
 
         public override void PerformPresaveRule()

@@ -39,6 +39,11 @@ namespace TotalDTO.Sales
             get { return this.salesOrderID; }
             set { ApplyPropertyChange<DeliveryAdvicePrimitiveDTO, Nullable<int>>(ref this.salesOrderID, o => o.SalesOrderID, value); }
         }
+        [DefaultValue(null)]
+        public Nullable<DateTime> SalesOrderEntryDate { get; set; }
+        [DefaultValue(null)]
+        public string SalesOrderReference { get; set; }
+        [DefaultValue(null)]
         public string SalesOrderReferences { get; set; }
 
 
@@ -51,7 +56,6 @@ namespace TotalDTO.Sales
             get { return this.voucherCode; }
             set { ApplyPropertyChange<SalesOrderDTO, string>(ref this.voucherCode, o => o.VoucherCode, value); }
         }
-        public string SalesOrderVoucherCodes { get; set; }
 
         private int customerID;
         [DefaultValue(null)]
@@ -97,17 +101,17 @@ namespace TotalDTO.Sales
 
         public override string Caption
         {
-            get { return this.CustomerName + (this.ContactInfo != null && this.ContactInfo.Trim() != "" ? ", " : "") + this.ContactInfo + (this.CustomerName != "" ? ", " : "") + this.EntryDate.ToString() + "             Total Quantity: " + this.TotalQuantity.ToString() + ",    Total Volume: " + this.TotalLineVolume.ToString("N2"); }
+            get { return (this.HasSalesOrder ? "Sales Order " + (this.SalesOrderID != null ? this.SalesOrderReference + ", on " + this.SalesOrderEntryDate.ToString() : this.SalesOrderReferences) + ", " : "") + "Customer: " + this.CustomerName + (this.CustomerName != "" ? ", " : "") + "DA Date: " + this.EntryDate.ToString() + "             Total Quantity: " + this.TotalQuantity.ToString() + ",    Total Volume: " + this.TotalLineVolume.ToString("N2"); }
         }
 
         public override void PerformPresaveRule()
         {
             base.PerformPresaveRule();
 
-            string salesOrderReferences = ""; string salesOrderVoucherCodes = "";
-            this.DtoDetails().ToList().ForEach(e => { e.CustomerID = this.CustomerID; if (this.HasSalesOrder && salesOrderReferences.IndexOf(e.SalesOrderReference) < 0) salesOrderReferences = salesOrderReferences + (salesOrderReferences != "" ? ", " : "") + e.SalesOrderReference; if (this.HasSalesOrder && e.SalesOrderVoucherCode != null && salesOrderVoucherCodes.IndexOf(e.SalesOrderVoucherCode) < 0) salesOrderVoucherCodes = salesOrderVoucherCodes + (salesOrderVoucherCodes != "" ? ", " : "") + e.SalesOrderVoucherCode; });
+            string salesOrderReferences = ""; string voucherCode = "";
+            this.DtoDetails().ToList().ForEach(e => { e.CustomerID = this.CustomerID; if (this.HasSalesOrder && salesOrderReferences.IndexOf(e.SalesOrderReference) < 0) salesOrderReferences = salesOrderReferences + (salesOrderReferences != "" ? ", " : "") + e.SalesOrderReference; if (this.HasSalesOrder && e.VoucherCode != null && voucherCode.IndexOf(e.VoucherCode) < 0) voucherCode = voucherCode + (voucherCode != "" ? ", " : "") + e.VoucherCode; });
             this.SalesOrderReferences = salesOrderReferences;
-            this.SalesOrderVoucherCodes = salesOrderVoucherCodes;
+            if (this.HasSalesOrder) this.VoucherCode = voucherCode;
         }
     }
 

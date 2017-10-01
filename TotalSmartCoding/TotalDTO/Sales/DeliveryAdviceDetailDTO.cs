@@ -26,7 +26,7 @@ namespace TotalDTO.Sales
 
         public string SalesOrderReference { get; set; }
         public Nullable<System.DateTime> SalesOrderEntryDate { get; set; }
-        public string SalesOrderVoucherCode { get; set; }
+        public string VoucherCode { get; set; }
 
         public int CustomerID { get; set; }
 

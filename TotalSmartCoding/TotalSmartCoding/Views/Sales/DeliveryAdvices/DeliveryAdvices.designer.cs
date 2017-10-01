@@ -86,7 +86,7 @@
             this.olvID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvEntryDate = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvReference = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvVoucherCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvSalesOrderReferences = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvCustomerCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvCustomerName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvLocationCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -685,7 +685,7 @@
             this.fastDeliveryAdviceIndex.AllColumns.Add(this.olvID);
             this.fastDeliveryAdviceIndex.AllColumns.Add(this.olvEntryDate);
             this.fastDeliveryAdviceIndex.AllColumns.Add(this.olvReference);
-            this.fastDeliveryAdviceIndex.AllColumns.Add(this.olvVoucherCode);
+            this.fastDeliveryAdviceIndex.AllColumns.Add(this.olvSalesOrderReferences);
             this.fastDeliveryAdviceIndex.AllColumns.Add(this.olvCustomerCode);
             this.fastDeliveryAdviceIndex.AllColumns.Add(this.olvCustomerName);
             this.fastDeliveryAdviceIndex.AllColumns.Add(this.olvLocationCode);
@@ -698,7 +698,7 @@
             this.olvID,
             this.olvEntryDate,
             this.olvReference,
-            this.olvVoucherCode,
+            this.olvSalesOrderReferences,
             this.olvCustomerCode,
             this.olvCustomerName,
             this.olvLocationCode,
@@ -747,11 +747,11 @@
             this.olvReference.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvReference.Width = 90;
             // 
-            // olvVoucherCode
+            // olvSalesOrderReferences
             // 
-            this.olvVoucherCode.AspectName = "VoucherCode";
-            this.olvVoucherCode.Text = "Voucher #";
-            this.olvVoucherCode.Width = 150;
+            this.olvSalesOrderReferences.AspectName = "SalesOrderReferences";
+            this.olvSalesOrderReferences.Text = "Voucher #";
+            this.olvSalesOrderReferences.Width = 180;
             // 
             // olvCustomerCode
             // 
@@ -763,7 +763,7 @@
             // 
             this.olvCustomerName.AspectName = "CustomerName";
             this.olvCustomerName.Text = "Customer Name";
-            this.olvCustomerName.Width = 209;
+            this.olvCustomerName.Width = 309;
             // 
             // olvLocationCode
             // 
@@ -775,7 +775,7 @@
             // 
             this.olvDescription.AspectName = "Description";
             this.olvDescription.Text = "Description";
-            this.olvDescription.Width = 543;
+            this.olvDescription.Width = 413;
             // 
             // olvTotalQuantity
             // 
@@ -893,7 +893,7 @@
         private BrightIdeasSoftware.OLVColumn olvCustomerCode;
         private BrightIdeasSoftware.OLVColumn olvCustomerName;
         private BrightIdeasSoftware.OLVColumn olvLocationCode;
-        private BrightIdeasSoftware.OLVColumn olvVoucherCode;
+        private BrightIdeasSoftware.OLVColumn olvSalesOrderReferences;
         private BrightIdeasSoftware.OLVColumn olvDescription;
         private BrightIdeasSoftware.OLVColumn olvTotalQuantity;
         private BrightIdeasSoftware.OLVColumn olvTotalLineVolume;

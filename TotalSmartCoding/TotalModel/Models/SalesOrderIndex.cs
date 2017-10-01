@@ -24,5 +24,6 @@ namespace TotalModel.Models
         public decimal TotalLineVolume { get; set; }
         public string CustomerCode { get; set; }
         public string VoucherCode { get; set; }
+        public Nullable<System.DateTime> DeliveryDate { get; set; }
     }
 }

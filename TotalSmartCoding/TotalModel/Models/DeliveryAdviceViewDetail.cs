@@ -35,5 +35,6 @@ namespace TotalModel.Models
         public Nullable<decimal> LineVolumeRemains { get; set; }
         public decimal QuantityIssue { get; set; }
         public decimal LineVolumeIssue { get; set; }
+        public string VoucherCode { get; set; }
     }
 }

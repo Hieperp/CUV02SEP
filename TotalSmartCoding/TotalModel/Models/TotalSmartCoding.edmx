@@ -160,6 +160,7 @@
           <Property Name="HasSalesOrder" Type="bit" Nullable="false" />
           <Property Name="SalesOrderID" Type="int" />
           <Property Name="SalesOrderReferences" Type="nvarchar" MaxLength="100" />
+          <Property Name="VoucherCode" Type="nvarchar" MaxLength="120" />
           <Property Name="CustomerID" Type="int" Nullable="false" />
           <Property Name="SalespersonID" Type="int" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
@@ -500,6 +501,7 @@
           <Property Name="CustomerID" Type="int" Nullable="false" />
           <Property Name="ContactInfo" Type="nvarchar" MaxLength="100" />
           <Property Name="ShippingAddress" Type="nvarchar" MaxLength="200" />
+          <Property Name="DeliveryDate" Type="datetime" />
           <Property Name="SalespersonID" Type="int" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
           <Property Name="PreparedPersonID" Type="int" Nullable="false" />
@@ -3125,6 +3127,7 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Type="Decimal" Name="TotalLineVolume" Nullable="false" Precision="18" Scale="2" />
           <Property Type="String" Name="CustomerCode" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="VoucherCode" Nullable="true" MaxLength="60" />
+          <Property Type="DateTime" Name="DeliveryDate" Nullable="true" Precision="23" />
         </ComplexType>
         <ComplexType Name="SalesOrderViewDetail">
           <Property Type="Int32" Name="SalesOrderDetailID" Nullable="false" />
@@ -3249,6 +3252,7 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Type="Decimal" Name="TotalQuantity" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="TotalLineVolume" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Boolean" Name="Approved" Nullable="false" />
+          <Property Type="String" Name="CustomerCode" Nullable="false" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="DeliveryAdviceViewDetail">
           <Property Type="Int32" Name="DeliveryAdviceDetailID" Nullable="false" />
@@ -3273,6 +3277,7 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Type="Decimal" Name="LineVolumeRemains" Nullable="true" Precision="20" Scale="2" />
           <Property Type="Decimal" Name="QuantityIssue" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="LineVolumeIssue" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="VoucherCode" Nullable="true" MaxLength="60" />
         </ComplexType>
         <ComplexType Name="PendingSalesOrderCustomer">
           <Property Type="Int32" Name="CustomerID" Nullable="false" />
@@ -4364,6 +4369,7 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <NavigationProperty Name="SalesOrderDetails" Relationship="TotalSmartCodingModel.FK_SalesOrderDetails_SalesOrders" FromRole="SalesOrder" ToRole="SalesOrderDetail" />
           <NavigationProperty Name="Customer" Relationship="TotalSmartCodingModel.FK_SalesOrders_Customers" FromRole="SalesOrder" ToRole="Customer" />
           <NavigationProperty Name="DeliveryAdvices" Relationship="TotalSmartCodingModel.FK_DeliveryAdvices_SalesOrders" FromRole="SalesOrder" ToRole="DeliveryAdvice" />
+          <Property Name="DeliveryDate" Type="DateTime" Precision="3" />
         </EntityType>
         <Association Name="FK_SalesOrders_Locations">
           <End Type="TotalSmartCodingModel.Location" Role="Location" Multiplicity="1" />
@@ -4514,6 +4520,7 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <NavigationProperty Name="Location" Relationship="TotalSmartCodingModel.FK_DeliveryAdvices_Locations" FromRole="DeliveryAdvice" ToRole="Location" />
           <NavigationProperty Name="SalesOrder" Relationship="TotalSmartCodingModel.FK_DeliveryAdvices_SalesOrders" FromRole="DeliveryAdvice" ToRole="SalesOrder" />
           <NavigationProperty Name="GoodsIssues" Relationship="TotalSmartCodingModel.FK_GoodsIssues_DeliveryAdvices" FromRole="DeliveryAdvice" ToRole="GoodsIssue" />
+          <Property Name="VoucherCode" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_DeliveryAdvices_Customers">
           <End Type="TotalSmartCodingModel.Customer" Role="Customer" Multiplicity="1" />
@@ -5106,6 +5113,7 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
                 <ScalarProperty Name="TotalLineVolume" ColumnName="TotalLineVolume" />
                 <ScalarProperty Name="CustomerCode" ColumnName="CustomerCode" />
                 <ScalarProperty Name="VoucherCode" ColumnName="VoucherCode" />
+                <ScalarProperty Name="DeliveryDate" ColumnName="DeliveryDate" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -5221,6 +5229,7 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
                 <ScalarProperty Name="TotalQuantity" ColumnName="TotalQuantity" />
                 <ScalarProperty Name="TotalLineVolume" ColumnName="TotalLineVolume" />
                 <ScalarProperty Name="Approved" ColumnName="Approved" />
+                <ScalarProperty Name="CustomerCode" ColumnName="CustomerCode" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -5249,6 +5258,7 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
                 <ScalarProperty Name="LineVolumeRemains" ColumnName="LineVolumeRemains" />
                 <ScalarProperty Name="QuantityIssue" ColumnName="QuantityIssue" />
                 <ScalarProperty Name="LineVolumeIssue" ColumnName="LineVolumeIssue" />
+                <ScalarProperty Name="VoucherCode" ColumnName="VoucherCode" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -5796,6 +5806,7 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <EntitySetMapping Name="SalesOrders">
             <EntityTypeMapping TypeName="TotalSmartCodingModel.SalesOrder">
               <MappingFragment StoreEntitySet="SalesOrders">
+                <ScalarProperty Name="DeliveryDate" ColumnName="DeliveryDate" />
                 <ScalarProperty Name="ApprovedDate" ColumnName="ApprovedDate" />
                 <ScalarProperty Name="Approved" ColumnName="Approved" />
                 <ScalarProperty Name="EditedDate" ColumnName="EditedDate" />
@@ -5853,6 +5864,7 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <EntitySetMapping Name="DeliveryAdvices">
             <EntityTypeMapping TypeName="TotalSmartCodingModel.DeliveryAdvice">
               <MappingFragment StoreEntitySet="DeliveryAdvices">
+                <ScalarProperty Name="VoucherCode" ColumnName="VoucherCode" />
                 <ScalarProperty Name="ApprovedDate" ColumnName="ApprovedDate" />
                 <ScalarProperty Name="Approved" ColumnName="Approved" />
                 <ScalarProperty Name="EditedDate" ColumnName="EditedDate" />

@@ -43,6 +43,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.textexVoucherCode = new CustomControls.TextexBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.dateTimexDeliveryDate = new CustomControls.DateTimexPicker();
             this.toolStripChildForm = new System.Windows.Forms.ToolStrip();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -75,6 +77,7 @@
             this.olvEntryDate = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvReference = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvVoucherCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvDeliveryDate = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvCustomerCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvCustomerName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvLocationCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -110,16 +113,20 @@
             this.layoutLeft.Controls.Add(this.textexReference, 0, 3);
             this.layoutLeft.Controls.Add(this.label6, 0, 0);
             this.layoutLeft.Controls.Add(this.label7, 0, 2);
-            this.layoutLeft.Controls.Add(this.combexSalespersonID, 0, 7);
-            this.layoutLeft.Controls.Add(this.label1, 0, 6);
+            this.layoutLeft.Controls.Add(this.combexSalespersonID, 0, 9);
+            this.layoutLeft.Controls.Add(this.label1, 0, 8);
             this.layoutLeft.Controls.Add(this.label2, 0, 4);
             this.layoutLeft.Controls.Add(this.textexVoucherCode, 0, 5);
+            this.layoutLeft.Controls.Add(this.label4, 0, 6);
+            this.layoutLeft.Controls.Add(this.dateTimexDeliveryDate, 0, 7);
             this.layoutLeft.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutLeft.Location = new System.Drawing.Point(0, 0);
             this.layoutLeft.Margin = new System.Windows.Forms.Padding(0);
             this.layoutLeft.Name = "layoutLeft";
             this.layoutLeft.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.layoutLeft.RowCount = 9;
+            this.layoutLeft.RowCount = 11;
+            this.layoutLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutLeft.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -189,7 +196,7 @@
             this.combexSalespersonID.Editable = true;
             this.combexSalespersonID.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combexSalespersonID.FormattingEnabled = true;
-            this.combexSalespersonID.Location = new System.Drawing.Point(3, 221);
+            this.combexSalespersonID.Location = new System.Drawing.Point(3, 283);
             this.combexSalespersonID.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.combexSalespersonID.Name = "combexSalespersonID";
             this.combexSalespersonID.ReadOnly = false;
@@ -201,7 +208,7 @@
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(0, 198);
+            this.label1.Location = new System.Drawing.Point(0, 260);
             this.label1.Margin = new System.Windows.Forms.Padding(0, 10, 3, 1);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(351, 21);
@@ -212,11 +219,12 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label2.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(0, 136);
             this.label2.Margin = new System.Windows.Forms.Padding(0, 10, 3, 1);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(78, 21);
+            this.label2.Size = new System.Drawing.Size(351, 21);
             this.label2.TabIndex = 77;
             this.label2.Text = "Voucher #";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -231,6 +239,31 @@
             this.textexVoucherCode.Name = "textexVoucherCode";
             this.textexVoucherCode.Size = new System.Drawing.Size(350, 28);
             this.textexVoucherCode.TabIndex = 78;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label4.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(0, 198);
+            this.label4.Margin = new System.Windows.Forms.Padding(0, 10, 3, 1);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(351, 21);
+            this.label4.TabIndex = 79;
+            this.label4.Text = "Delivery Lead Time";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // dateTimexDeliveryDate
+            // 
+            this.dateTimexDeliveryDate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dateTimexDeliveryDate.Editable = true;
+            this.dateTimexDeliveryDate.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimexDeliveryDate.Location = new System.Drawing.Point(3, 221);
+            this.dateTimexDeliveryDate.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
+            this.dateTimexDeliveryDate.Name = "dateTimexDeliveryDate";
+            this.dateTimexDeliveryDate.ReadOnly = false;
+            this.dateTimexDeliveryDate.Size = new System.Drawing.Size(350, 28);
+            this.dateTimexDeliveryDate.TabIndex = 80;
             // 
             // toolStripChildForm
             // 
@@ -288,7 +321,7 @@
             this.labelCaption.BackColor = System.Drawing.Color.Transparent;
             this.labelCaption.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelCaption.ForeColor = System.Drawing.Color.Firebrick;
-            this.labelCaption.Location = new System.Drawing.Point(157, 9);
+            this.labelCaption.Location = new System.Drawing.Point(129, 9);
             this.labelCaption.Name = "labelCaption";
             this.labelCaption.Size = new System.Drawing.Size(191, 21);
             this.labelCaption.TabIndex = 75;
@@ -584,6 +617,7 @@
             this.fastSalesOrderIndex.AllColumns.Add(this.olvEntryDate);
             this.fastSalesOrderIndex.AllColumns.Add(this.olvReference);
             this.fastSalesOrderIndex.AllColumns.Add(this.olvVoucherCode);
+            this.fastSalesOrderIndex.AllColumns.Add(this.olvDeliveryDate);
             this.fastSalesOrderIndex.AllColumns.Add(this.olvCustomerCode);
             this.fastSalesOrderIndex.AllColumns.Add(this.olvCustomerName);
             this.fastSalesOrderIndex.AllColumns.Add(this.olvLocationCode);
@@ -597,6 +631,7 @@
             this.olvEntryDate,
             this.olvReference,
             this.olvVoucherCode,
+            this.olvDeliveryDate,
             this.olvCustomerCode,
             this.olvCustomerName,
             this.olvLocationCode,
@@ -649,7 +684,15 @@
             // 
             this.olvVoucherCode.AspectName = "VoucherCode";
             this.olvVoucherCode.Text = "Voucher #";
-            this.olvVoucherCode.Width = 150;
+            this.olvVoucherCode.Width = 120;
+            // 
+            // olvDeliveryDate
+            // 
+            this.olvDeliveryDate.AspectName = "DeliveryDate";
+            this.olvDeliveryDate.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvDeliveryDate.Text = "Delivery Date";
+            this.olvDeliveryDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvDeliveryDate.Width = 100;
             // 
             // olvCustomerCode
             // 
@@ -661,7 +704,7 @@
             // 
             this.olvCustomerName.AspectName = "CustomerName";
             this.olvCustomerName.Text = "Customer Name";
-            this.olvCustomerName.Width = 209;
+            this.olvCustomerName.Width = 309;
             // 
             // olvLocationCode
             // 
@@ -673,7 +716,7 @@
             // 
             this.olvDescription.AspectName = "Description";
             this.olvDescription.Text = "Description";
-            this.olvDescription.Width = 543;
+            this.olvDescription.Width = 373;
             // 
             // olvTotalQuantity
             // 
@@ -806,6 +849,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn LineVolume;
         private System.Windows.Forms.DataGridViewTextBoxColumn Remarks;
+        private BrightIdeasSoftware.OLVColumn olvDeliveryDate;
+        private System.Windows.Forms.Label label4;
+        private CustomControls.DateTimexPicker dateTimexDeliveryDate;
 
     }
 }

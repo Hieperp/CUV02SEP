@@ -77,6 +77,8 @@ namespace TotalSmartCoding.Views.Sales.DeliveryAdvices
                             SalesOrderReference = pendingSalesOrderDetail.SalesOrderReference,
                             SalesOrderEntryDate = pendingSalesOrderDetail.SalesOrderEntryDate,
 
+                            VoucherCode = pendingSalesOrderDetail.SalesOrderVoucherCode,
+
                             CommodityID = pendingSalesOrderDetail.CommodityID,
                             CommodityCode = pendingSalesOrderDetail.CommodityCode,
                             CommodityName = pendingSalesOrderDetail.CommodityName,
