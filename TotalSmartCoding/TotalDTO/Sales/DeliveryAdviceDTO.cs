@@ -31,6 +31,7 @@ namespace TotalDTO.Sales
 
 
 
+        public bool HasSalesOrder { get; set; }
 
         private Nullable<int> salesOrderID;
         [DefaultValue(null)]
@@ -45,9 +46,6 @@ namespace TotalDTO.Sales
         public string SalesOrderReference { get; set; }
         [DefaultValue(null)]
         public string SalesOrderReferences { get; set; }
-
-
-        public bool HasSalesOrder { get; set; }
 
         private string voucherCode;
         [DefaultValue("")]

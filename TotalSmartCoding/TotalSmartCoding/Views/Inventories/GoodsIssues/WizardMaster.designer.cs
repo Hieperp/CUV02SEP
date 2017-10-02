@@ -36,9 +36,11 @@
             this.olvDeliveryAdviceReference = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvCustomerName1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.fastPendingDeliveryAdviceCustomers = new BrightIdeasSoftware.FastObjectListView();
-            this.olvCustomerID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvCustomerCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvCustomerName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.panelMaster = new System.Windows.Forms.Panel();
+            this.olvSalesOrderReferences = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvVoucherCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastPendingDeliveryAdvices)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fastPendingDeliveryAdviceCustomers)).BeginInit();
@@ -86,10 +88,14 @@
             // 
             this.fastPendingDeliveryAdvices.AllColumns.Add(this.olvDeliveryAdviceEntryDate);
             this.fastPendingDeliveryAdvices.AllColumns.Add(this.olvDeliveryAdviceReference);
+            this.fastPendingDeliveryAdvices.AllColumns.Add(this.olvSalesOrderReferences);
+            this.fastPendingDeliveryAdvices.AllColumns.Add(this.olvVoucherCode);
             this.fastPendingDeliveryAdvices.AllColumns.Add(this.olvCustomerName1);
             this.fastPendingDeliveryAdvices.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.olvDeliveryAdviceEntryDate,
             this.olvDeliveryAdviceReference,
+            this.olvSalesOrderReferences,
+            this.olvVoucherCode,
             this.olvCustomerName1});
             this.fastPendingDeliveryAdvices.Cursor = System.Windows.Forms.Cursors.Default;
             this.fastPendingDeliveryAdvices.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -111,24 +117,30 @@
             // olvDeliveryAdviceEntryDate
             // 
             this.olvDeliveryAdviceEntryDate.AspectName = "DeliveryAdviceEntryDate";
-            this.olvDeliveryAdviceEntryDate.Width = 170;
+            this.olvDeliveryAdviceEntryDate.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvDeliveryAdviceEntryDate.Text = "D.A. Date";
+            this.olvDeliveryAdviceEntryDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvDeliveryAdviceEntryDate.Width = 120;
             // 
             // olvDeliveryAdviceReference
             // 
             this.olvDeliveryAdviceReference.AspectName = "DeliveryAdviceReference";
-            this.olvDeliveryAdviceReference.Width = 137;
+            this.olvDeliveryAdviceReference.Text = "Reference";
+            this.olvDeliveryAdviceReference.Width = 80;
             // 
             // olvCustomerName1
             // 
             this.olvCustomerName1.AspectName = "CustomerName";
+            this.olvCustomerName1.FillsFreeSpace = true;
+            this.olvCustomerName1.Text = "Customer";
             this.olvCustomerName1.Width = 192;
             // 
             // fastPendingDeliveryAdviceCustomers
             // 
-            this.fastPendingDeliveryAdviceCustomers.AllColumns.Add(this.olvCustomerID);
+            this.fastPendingDeliveryAdviceCustomers.AllColumns.Add(this.olvCustomerCode);
             this.fastPendingDeliveryAdviceCustomers.AllColumns.Add(this.olvCustomerName);
             this.fastPendingDeliveryAdviceCustomers.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.olvCustomerID,
+            this.olvCustomerCode,
             this.olvCustomerName});
             this.fastPendingDeliveryAdviceCustomers.Cursor = System.Windows.Forms.Cursors.Default;
             this.fastPendingDeliveryAdviceCustomers.Dock = System.Windows.Forms.DockStyle.Top;
@@ -148,14 +160,17 @@
             this.fastPendingDeliveryAdviceCustomers.View = System.Windows.Forms.View.Details;
             this.fastPendingDeliveryAdviceCustomers.VirtualMode = true;
             // 
-            // olvCustomerID
+            // olvCustomerCode
             // 
-            this.olvCustomerID.AspectName = "CustomerID";
-            this.olvCustomerID.Width = 161;
+            this.olvCustomerCode.AspectName = "CustomerCode";
+            this.olvCustomerCode.Text = "Customer Code";
+            this.olvCustomerCode.Width = 145;
             // 
             // olvCustomerName
             // 
             this.olvCustomerName.AspectName = "CustomerName";
+            this.olvCustomerName.FillsFreeSpace = true;
+            this.olvCustomerName.Text = "Name";
             this.olvCustomerName.Width = 263;
             // 
             // panelMaster
@@ -169,6 +184,18 @@
             this.panelMaster.Size = new System.Drawing.Size(1147, 548);
             this.panelMaster.TabIndex = 71;
             // 
+            // olvSalesOrderReferences
+            // 
+            this.olvSalesOrderReferences.AspectName = "SalesOrderReferences";
+            this.olvSalesOrderReferences.Text = "Sales Order";
+            this.olvSalesOrderReferences.Width = 120;
+            // 
+            // olvVoucherCode
+            // 
+            this.olvVoucherCode.AspectName = "VoucherCode";
+            this.olvVoucherCode.Text = "Voucher";
+            this.olvVoucherCode.Width = 180;
+            // 
             // WizardMaster
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -181,7 +208,7 @@
             this.MinimizeBox = false;
             this.Name = "WizardMaster";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Create Wizard";
+            this.Text = "Create Wizard [Add New Goods Issue]";
             this.Load += new System.EventHandler(this.Wizard_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
@@ -203,8 +230,10 @@
         private System.Windows.Forms.Panel panelMaster;
         private BrightIdeasSoftware.OLVColumn olvDeliveryAdviceEntryDate;
         private BrightIdeasSoftware.OLVColumn olvCustomerName1;
-        private BrightIdeasSoftware.OLVColumn olvCustomerID;
+        private BrightIdeasSoftware.OLVColumn olvCustomerCode;
         private BrightIdeasSoftware.OLVColumn olvCustomerName;
         private BrightIdeasSoftware.OLVColumn olvDeliveryAdviceReference;
+        private BrightIdeasSoftware.OLVColumn olvSalesOrderReferences;
+        private BrightIdeasSoftware.OLVColumn olvVoucherCode;
     }
 }

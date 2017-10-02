@@ -21,5 +21,7 @@ namespace TotalModel.Models
         public string CustomerName { get; set; }
         public string Description { get; set; }
         public string Remarks { get; set; }
+        public string SalesOrderReferences { get; set; }
+        public string VoucherCode { get; set; }
     }
 }

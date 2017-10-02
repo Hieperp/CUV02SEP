@@ -31,16 +31,16 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GoodsIssues));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GoodsIssues));
             this.tableLayoutMaster = new System.Windows.Forms.TableLayoutPanel();
             this.label8 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.textexReference = new CustomControls.TextexBox();
+            this.textexVehicle = new CustomControls.TextexBox();
             this.dateTimexEntryDate = new CustomControls.DateTimexPicker();
             this.label3 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -49,7 +49,7 @@
             this.textexTotalLineVolume = new CustomControls.TextexBox();
             this.textexTotalQuantity = new CustomControls.TextexBox();
             this.textexTotalPalletCounts = new CustomControls.TextexBox();
-            this.textexWarehouseCode = new CustomControls.TextexBox();
+            this.textexTotalCartonCounts = new CustomControls.TextexBox();
             this.combexForkliftDriverID = new CustomControls.CombexBox();
             this.combexStorekeeperID = new CustomControls.CombexBox();
             this.textexRemarks = new CustomControls.TextexBox();
@@ -57,8 +57,15 @@
             this.toolStripChildForm = new System.Windows.Forms.ToolStrip();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.naviDetails = new Guifreaks.Navisuite.NaviGroup(this.components);
-            this.labelFillingLineName = new System.Windows.Forms.Label();
+            this.labelCaption = new System.Windows.Forms.Label();
             this.gridexPalletDetails = new CustomControls.DataGridexView();
+            this.DeliveryAdviceReference = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CommodityCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PalletCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BatchEntryDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BinLocationCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LineVolume = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fastGoodsIssueIndex = new BrightIdeasSoftware.FastObjectListView();
             this.olvID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvEntryDate = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -76,12 +83,6 @@
             this.naviPickupIndex = new Guifreaks.Navisuite.NaviBand(this.components);
             this.naviIndex = new Guifreaks.Navisuite.NaviBar(this.components);
             this.panelMaster = new System.Windows.Forms.Panel();
-            this.CommodityCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PalletCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BatchEntryDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BinLocationCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LineVolume = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutMaster.SuspendLayout();
             this.toolStripChildForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.naviDetails)).BeginInit();
@@ -113,7 +114,7 @@
             this.tableLayoutMaster.Controls.Add(this.label5, 3, 3);
             this.tableLayoutMaster.Controls.Add(this.label2, 3, 2);
             this.tableLayoutMaster.Controls.Add(this.label4, 3, 1);
-            this.tableLayoutMaster.Controls.Add(this.textexReference, 1, 2);
+            this.tableLayoutMaster.Controls.Add(this.textexVehicle, 1, 2);
             this.tableLayoutMaster.Controls.Add(this.dateTimexEntryDate, 1, 1);
             this.tableLayoutMaster.Controls.Add(this.label3, 0, 4);
             this.tableLayoutMaster.Controls.Add(this.label10, 0, 3);
@@ -122,7 +123,7 @@
             this.tableLayoutMaster.Controls.Add(this.textexTotalLineVolume, 4, 4);
             this.tableLayoutMaster.Controls.Add(this.textexTotalQuantity, 4, 3);
             this.tableLayoutMaster.Controls.Add(this.textexTotalPalletCounts, 4, 2);
-            this.tableLayoutMaster.Controls.Add(this.textexWarehouseCode, 4, 1);
+            this.tableLayoutMaster.Controls.Add(this.textexTotalCartonCounts, 4, 1);
             this.tableLayoutMaster.Controls.Add(this.combexForkliftDriverID, 1, 3);
             this.tableLayoutMaster.Controls.Add(this.combexStorekeeperID, 1, 4);
             this.tableLayoutMaster.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -138,7 +139,7 @@
             this.tableLayoutMaster.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutMaster.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutMaster.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutMaster.Size = new System.Drawing.Size(567, 0);
+            this.tableLayoutMaster.Size = new System.Drawing.Size(567, 189);
             this.tableLayoutMaster.TabIndex = 62;
             // 
             // label8
@@ -146,7 +147,7 @@
             this.label8.AutoSize = true;
             this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label8.Font = new System.Drawing.Font("Niagara Engraved", 16.2F);
-            this.label8.Location = new System.Drawing.Point(256, 178);
+            this.label8.Location = new System.Drawing.Point(256, 202);
             this.label8.Margin = new System.Windows.Forms.Padding(1);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(96, 64);
@@ -159,7 +160,7 @@
             this.label5.AutoSize = true;
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label5.Font = new System.Drawing.Font("Niagara Engraved", 16.2F);
-            this.label5.Location = new System.Drawing.Point(256, 112);
+            this.label5.Location = new System.Drawing.Point(256, 136);
             this.label5.Margin = new System.Windows.Forms.Padding(1);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(96, 64);
@@ -172,7 +173,7 @@
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label2.Font = new System.Drawing.Font("Niagara Engraved", 16.2F);
-            this.label2.Location = new System.Drawing.Point(259, 48);
+            this.label2.Location = new System.Drawing.Point(259, 72);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(90, 60);
@@ -188,21 +189,21 @@
             this.label4.Location = new System.Drawing.Point(256, 8);
             this.label4.Margin = new System.Windows.Forms.Padding(1);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(96, 36);
+            this.label4.Size = new System.Drawing.Size(96, 60);
             this.label4.TabIndex = 28;
-            this.label4.Text = "Warehouse";
+            this.label4.Text = "Carton Count";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // textexReference
+            // textexVehicle
             // 
-            this.textexReference.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textexReference.Editable = false;
-            this.textexReference.Font = new System.Drawing.Font("Niagara Engraved", 16.2F);
-            this.textexReference.Location = new System.Drawing.Point(102, 46);
-            this.textexReference.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
-            this.textexReference.Name = "textexReference";
-            this.textexReference.Size = new System.Drawing.Size(142, 36);
-            this.textexReference.TabIndex = 71;
+            this.textexVehicle.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textexVehicle.Editable = true;
+            this.textexVehicle.Font = new System.Drawing.Font("Niagara Engraved", 16.2F);
+            this.textexVehicle.Location = new System.Drawing.Point(102, 70);
+            this.textexVehicle.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
+            this.textexVehicle.Name = "textexVehicle";
+            this.textexVehicle.Size = new System.Drawing.Size(142, 36);
+            this.textexVehicle.TabIndex = 71;
             // 
             // dateTimexEntryDate
             // 
@@ -222,7 +223,7 @@
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label3.Font = new System.Drawing.Font("Niagara Engraved", 16.2F);
-            this.label3.Location = new System.Drawing.Point(4, 180);
+            this.label3.Location = new System.Drawing.Point(4, 204);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(90, 60);
@@ -235,7 +236,7 @@
             this.label10.AutoSize = true;
             this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label10.Font = new System.Drawing.Font("Niagara Engraved", 16.2F);
-            this.label10.Location = new System.Drawing.Point(4, 114);
+            this.label10.Location = new System.Drawing.Point(4, 138);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(90, 60);
@@ -248,12 +249,12 @@
             this.label7.AutoSize = true;
             this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label7.Font = new System.Drawing.Font("Niagara Engraved", 16.2F);
-            this.label7.Location = new System.Drawing.Point(4, 48);
+            this.label7.Location = new System.Drawing.Point(4, 72);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(90, 60);
             this.label7.TabIndex = 31;
-            this.label7.Text = "Reference";
+            this.label7.Text = "Vehicle";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label6
@@ -264,7 +265,7 @@
             this.label6.Location = new System.Drawing.Point(1, 8);
             this.label6.Margin = new System.Windows.Forms.Padding(1);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(96, 36);
+            this.label6.Size = new System.Drawing.Size(96, 60);
             this.label6.TabIndex = 30;
             this.label6.Text = "Date";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -274,7 +275,7 @@
             this.textexTotalLineVolume.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexTotalLineVolume.Editable = false;
             this.textexTotalLineVolume.Font = new System.Drawing.Font("Niagara Engraved", 16.2F);
-            this.textexTotalLineVolume.Location = new System.Drawing.Point(357, 178);
+            this.textexTotalLineVolume.Location = new System.Drawing.Point(357, 202);
             this.textexTotalLineVolume.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
             this.textexTotalLineVolume.Name = "textexTotalLineVolume";
             this.textexTotalLineVolume.Size = new System.Drawing.Size(142, 36);
@@ -286,7 +287,7 @@
             this.textexTotalQuantity.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexTotalQuantity.Editable = false;
             this.textexTotalQuantity.Font = new System.Drawing.Font("Niagara Engraved", 16.2F);
-            this.textexTotalQuantity.Location = new System.Drawing.Point(357, 112);
+            this.textexTotalQuantity.Location = new System.Drawing.Point(357, 136);
             this.textexTotalQuantity.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
             this.textexTotalQuantity.Name = "textexTotalQuantity";
             this.textexTotalQuantity.Size = new System.Drawing.Size(142, 36);
@@ -298,23 +299,24 @@
             this.textexTotalPalletCounts.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexTotalPalletCounts.Editable = false;
             this.textexTotalPalletCounts.Font = new System.Drawing.Font("Niagara Engraved", 16.2F);
-            this.textexTotalPalletCounts.Location = new System.Drawing.Point(357, 46);
+            this.textexTotalPalletCounts.Location = new System.Drawing.Point(357, 70);
             this.textexTotalPalletCounts.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
             this.textexTotalPalletCounts.Name = "textexTotalPalletCounts";
             this.textexTotalPalletCounts.Size = new System.Drawing.Size(142, 36);
             this.textexTotalPalletCounts.TabIndex = 80;
             this.textexTotalPalletCounts.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // textexWarehouseCode
+            // textexTotalCartonCounts
             // 
-            this.textexWarehouseCode.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textexWarehouseCode.Editable = false;
-            this.textexWarehouseCode.Font = new System.Drawing.Font("Niagara Engraved", 16.2F);
-            this.textexWarehouseCode.Location = new System.Drawing.Point(357, 8);
-            this.textexWarehouseCode.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
-            this.textexWarehouseCode.Name = "textexWarehouseCode";
-            this.textexWarehouseCode.Size = new System.Drawing.Size(142, 36);
-            this.textexWarehouseCode.TabIndex = 85;
+            this.textexTotalCartonCounts.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textexTotalCartonCounts.Editable = false;
+            this.textexTotalCartonCounts.Font = new System.Drawing.Font("Niagara Engraved", 16.2F);
+            this.textexTotalCartonCounts.Location = new System.Drawing.Point(357, 8);
+            this.textexTotalCartonCounts.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
+            this.textexTotalCartonCounts.Name = "textexTotalCartonCounts";
+            this.textexTotalCartonCounts.Size = new System.Drawing.Size(142, 36);
+            this.textexTotalCartonCounts.TabIndex = 85;
+            this.textexTotalCartonCounts.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // combexForkliftDriverID
             // 
@@ -324,7 +326,7 @@
             this.combexForkliftDriverID.Editable = true;
             this.combexForkliftDriverID.Font = new System.Drawing.Font("Niagara Engraved", 16.2F);
             this.combexForkliftDriverID.FormattingEnabled = true;
-            this.combexForkliftDriverID.Location = new System.Drawing.Point(102, 112);
+            this.combexForkliftDriverID.Location = new System.Drawing.Point(102, 136);
             this.combexForkliftDriverID.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
             this.combexForkliftDriverID.Name = "combexForkliftDriverID";
             this.combexForkliftDriverID.ReadOnly = false;
@@ -339,7 +341,7 @@
             this.combexStorekeeperID.Editable = true;
             this.combexStorekeeperID.Font = new System.Drawing.Font("Niagara Engraved", 16.2F);
             this.combexStorekeeperID.FormattingEnabled = true;
-            this.combexStorekeeperID.Location = new System.Drawing.Point(102, 178);
+            this.combexStorekeeperID.Location = new System.Drawing.Point(102, 202);
             this.combexStorekeeperID.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
             this.combexStorekeeperID.Name = "combexStorekeeperID";
             this.combexStorekeeperID.ReadOnly = false;
@@ -357,7 +359,7 @@
             this.textexRemarks.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
             this.textexRemarks.Multiline = true;
             this.textexRemarks.Name = "textexRemarks";
-            this.textexRemarks.Size = new System.Drawing.Size(136, 561);
+            this.textexRemarks.Size = new System.Drawing.Size(136, 370);
             this.textexRemarks.TabIndex = 84;
             // 
             // textexDescription
@@ -371,7 +373,7 @@
             this.textexDescription.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
             this.textexDescription.Multiline = true;
             this.textexDescription.Name = "textexDescription";
-            this.textexDescription.Size = new System.Drawing.Size(0, 561);
+            this.textexDescription.Size = new System.Drawing.Size(0, 370);
             this.textexDescription.TabIndex = 83;
             // 
             // toolStripChildForm
@@ -400,10 +402,9 @@
             // naviDetails
             // 
             this.naviDetails.Caption = "   Issue for";
-            this.naviDetails.Controls.Add(this.labelFillingLineName);
+            this.naviDetails.Controls.Add(this.labelCaption);
             this.naviDetails.Controls.Add(this.tableLayoutMaster);
             this.naviDetails.Dock = System.Windows.Forms.DockStyle.Top;
-            this.naviDetails.Expanded = false;
             this.naviDetails.ExpandedHeight = 242;
             this.naviDetails.Font = new System.Drawing.Font("Cambria", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.naviDetails.HeaderContextMenuStrip = null;
@@ -412,20 +413,20 @@
             this.naviDetails.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.naviDetails.Name = "naviDetails";
             this.naviDetails.Padding = new System.Windows.Forms.Padding(0, 53, 0, 0);
-            this.naviDetails.Size = new System.Drawing.Size(567, 51);
+            this.naviDetails.Size = new System.Drawing.Size(567, 242);
             this.naviDetails.TabIndex = 30;
             // 
-            // labelFillingLineName
+            // labelCaption
             // 
-            this.labelFillingLineName.AutoSize = true;
-            this.labelFillingLineName.BackColor = System.Drawing.Color.Transparent;
-            this.labelFillingLineName.ForeColor = System.Drawing.Color.Firebrick;
-            this.labelFillingLineName.Location = new System.Drawing.Point(141, 8);
-            this.labelFillingLineName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelFillingLineName.Name = "labelFillingLineName";
-            this.labelFillingLineName.Size = new System.Drawing.Size(281, 33);
-            this.labelFillingLineName.TabIndex = 63;
-            this.labelFillingLineName.Text = "CHEVRON VIET NAME";
+            this.labelCaption.AutoSize = true;
+            this.labelCaption.BackColor = System.Drawing.Color.Transparent;
+            this.labelCaption.ForeColor = System.Drawing.Color.Firebrick;
+            this.labelCaption.Location = new System.Drawing.Point(141, 8);
+            this.labelCaption.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelCaption.Name = "labelCaption";
+            this.labelCaption.Size = new System.Drawing.Size(281, 33);
+            this.labelCaption.TabIndex = 63;
+            this.labelCaption.Text = "CHEVRON VIET NAME";
             // 
             // gridexPalletDetails
             // 
@@ -444,6 +445,7 @@
             this.gridexPalletDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.gridexPalletDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridexPalletDetails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.DeliveryAdviceReference,
             this.CommodityCode,
             this.PalletCode,
             this.BatchEntryDate,
@@ -460,9 +462,76 @@
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Garamond", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridexPalletDetails.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.gridexPalletDetails.RowTemplate.Height = 45;
-            this.gridexPalletDetails.Size = new System.Drawing.Size(561, 561);
+            this.gridexPalletDetails.Size = new System.Drawing.Size(561, 370);
             this.gridexPalletDetails.TabIndex = 65;
             this.gridexPalletDetails.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.gridexPalletDetails_UserDeletedRow);
+            // 
+            // DeliveryAdviceReference
+            // 
+            this.DeliveryAdviceReference.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.DeliveryAdviceReference.DataPropertyName = "DeliveryAdviceReference";
+            this.DeliveryAdviceReference.FillWeight = 9F;
+            this.DeliveryAdviceReference.HeaderText = "D.A.";
+            this.DeliveryAdviceReference.Name = "DeliveryAdviceReference";
+            // 
+            // CommodityCode
+            // 
+            this.CommodityCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CommodityCode.DataPropertyName = "CommodityCode";
+            this.CommodityCode.FillWeight = 9F;
+            this.CommodityCode.HeaderText = "Item";
+            this.CommodityCode.MinimumWidth = 9;
+            this.CommodityCode.Name = "CommodityCode";
+            // 
+            // PalletCode
+            // 
+            this.PalletCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.PalletCode.DataPropertyName = "PalletCode";
+            this.PalletCode.FillWeight = 45F;
+            this.PalletCode.HeaderText = "Pallet Code";
+            this.PalletCode.MinimumWidth = 9;
+            this.PalletCode.Name = "PalletCode";
+            // 
+            // BatchEntryDate
+            // 
+            this.BatchEntryDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.BatchEntryDate.DataPropertyName = "BatchEntryDate";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.BatchEntryDate.DefaultCellStyle = dataGridViewCellStyle2;
+            this.BatchEntryDate.FillWeight = 12F;
+            this.BatchEntryDate.HeaderText = "Batch Date";
+            this.BatchEntryDate.Name = "BatchEntryDate";
+            // 
+            // BinLocationCode
+            // 
+            this.BinLocationCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.BinLocationCode.DataPropertyName = "BinLocationCode";
+            this.BinLocationCode.FillWeight = 10F;
+            this.BinLocationCode.HeaderText = "Location";
+            this.BinLocationCode.MinimumWidth = 9;
+            this.BinLocationCode.Name = "BinLocationCode";
+            // 
+            // Quantity
+            // 
+            this.Quantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Quantity.DataPropertyName = "Quantity";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Quantity.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Quantity.FillWeight = 5F;
+            this.Quantity.HeaderText = "Qty";
+            this.Quantity.MinimumWidth = 9;
+            this.Quantity.Name = "Quantity";
+            // 
+            // LineVolume
+            // 
+            this.LineVolume.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.LineVolume.DataPropertyName = "LineVolume";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.LineVolume.DefaultCellStyle = dataGridViewCellStyle4;
+            this.LineVolume.FillWeight = 10F;
+            this.LineVolume.HeaderText = "Volume";
+            this.LineVolume.MinimumWidth = 9;
+            this.LineVolume.Name = "LineVolume";
             // 
             // fastGoodsIssueIndex
             // 
@@ -705,71 +774,12 @@
             this.panelMaster.Controls.Add(this.textexRemarks);
             this.panelMaster.Controls.Add(this.gridexPalletDetails);
             this.panelMaster.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelMaster.Location = new System.Drawing.Point(295, 51);
+            this.panelMaster.Location = new System.Drawing.Point(295, 242);
             this.panelMaster.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panelMaster.Name = "panelMaster";
             this.panelMaster.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.panelMaster.Size = new System.Drawing.Size(567, 564);
+            this.panelMaster.Size = new System.Drawing.Size(567, 373);
             this.panelMaster.TabIndex = 72;
-            // 
-            // CommodityCode
-            // 
-            this.CommodityCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CommodityCode.DataPropertyName = "CommodityCode";
-            this.CommodityCode.FillWeight = 13F;
-            this.CommodityCode.HeaderText = "Item";
-            this.CommodityCode.MinimumWidth = 9;
-            this.CommodityCode.Name = "CommodityCode";
-            // 
-            // PalletCode
-            // 
-            this.PalletCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.PalletCode.DataPropertyName = "PalletCode";
-            this.PalletCode.FillWeight = 48F;
-            this.PalletCode.HeaderText = "Pallet Code";
-            this.PalletCode.MinimumWidth = 9;
-            this.PalletCode.Name = "PalletCode";
-            // 
-            // BatchEntryDate
-            // 
-            this.BatchEntryDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.BatchEntryDate.DataPropertyName = "BatchEntryDate";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.BatchEntryDate.DefaultCellStyle = dataGridViewCellStyle2;
-            this.BatchEntryDate.FillWeight = 12F;
-            this.BatchEntryDate.HeaderText = "Batch Date";
-            this.BatchEntryDate.Name = "BatchEntryDate";
-            // 
-            // BinLocationCode
-            // 
-            this.BinLocationCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.BinLocationCode.DataPropertyName = "BinLocationCode";
-            this.BinLocationCode.FillWeight = 13F;
-            this.BinLocationCode.HeaderText = "Location";
-            this.BinLocationCode.MinimumWidth = 9;
-            this.BinLocationCode.Name = "BinLocationCode";
-            // 
-            // Quantity
-            // 
-            this.Quantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Quantity.DataPropertyName = "Quantity";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.Quantity.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Quantity.FillWeight = 5F;
-            this.Quantity.HeaderText = "Qty";
-            this.Quantity.MinimumWidth = 9;
-            this.Quantity.Name = "Quantity";
-            // 
-            // LineVolume
-            // 
-            this.LineVolume.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.LineVolume.DataPropertyName = "LineVolume";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.LineVolume.DefaultCellStyle = dataGridViewCellStyle4;
-            this.LineVolume.FillWeight = 9F;
-            this.LineVolume.HeaderText = "Volume";
-            this.LineVolume.MinimumWidth = 9;
-            this.LineVolume.Name = "LineVolume";
             // 
             // GoodsIssues
             // 
@@ -832,7 +842,7 @@
         private System.Windows.Forms.Panel panelMaster;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label2;
-        private CustomControls.TextexBox textexReference;
+        private CustomControls.TextexBox textexVehicle;
         private CustomControls.CombexBox combexForkliftDriverID;
         private CustomControls.CombexBox combexStorekeeperID;
         private System.Windows.Forms.Label label3;
@@ -847,8 +857,8 @@
         private Guifreaks.Navisuite.NaviBand naviPendingItems;
         private BrightIdeasSoftware.FastObjectListView fastPendingDeliveryAdviceDetails;
         private BrightIdeasSoftware.OLVColumn olvCommodityCode;
-        private CustomControls.TextexBox textexWarehouseCode;
-        private System.Windows.Forms.Label labelFillingLineName;
+        private CustomControls.TextexBox textexTotalCartonCounts;
+        private System.Windows.Forms.Label labelCaption;
         private BrightIdeasSoftware.OLVColumn olvGoodsIssueIndexReference;
         private System.Windows.Forms.ImageList imageList32;
         private BrightIdeasSoftware.OLVColumn olvApproved;
@@ -856,6 +866,7 @@
         private BrightIdeasSoftware.OLVColumn olvQuantityRemains;
         private BrightIdeasSoftware.OLVColumn olvLineVolumeRemains;
         private BrightIdeasSoftware.OLVColumn olvDeliveryAdviceReference;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DeliveryAdviceReference;
         private System.Windows.Forms.DataGridViewTextBoxColumn CommodityCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn PalletCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn BatchEntryDate;

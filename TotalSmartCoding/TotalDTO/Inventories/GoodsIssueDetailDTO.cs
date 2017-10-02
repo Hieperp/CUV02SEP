@@ -3,6 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 using TotalModel;
 using TotalDTO.Helpers;
+using System.Collections.Generic;
+using TotalModel.Helpers;
+using TotalBase;
 
 namespace TotalDTO.Inventories
 {
@@ -46,10 +49,13 @@ namespace TotalDTO.Inventories
 
         public Nullable<int> PalletID { get; set; }
         public string PalletCode { get; set; }
+
+        protected override List<ValidationRule> CreateRules()
+        {
+            List<ValidationRule> validationRules = base.CreateRules();
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<GoodsIssueDetailDTO>(p => p.GoodsIssueDetailID), "Số lượng xuất không được lớn hơn số lượng yêu cầu.", delegate { return (this.Quantity <= this.QuantityAvailable && this.Quantity <= this.QuantityRemains && this.LineVolume <= this.LineVolumeAvailable && this.LineVolume <= this.LineVolumeRemains); }));
+
+            return validationRules;
+        }
     }
-
-
-
-
-
 }

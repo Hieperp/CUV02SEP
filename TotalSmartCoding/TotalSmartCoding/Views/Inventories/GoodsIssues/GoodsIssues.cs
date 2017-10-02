@@ -113,14 +113,14 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
             this.olvCommodityCode.HeaderFont = titleFont;
             this.olvQuantityRemains.HeaderFont = titleFont;
             this.olvLineVolumeRemains.HeaderFont = titleFont;
-            this.labelFillingLineName.Left = 78;
-            this.labelFillingLineName.Top = 14;
+            this.labelCaption.Left = 78;
+            this.labelCaption.Top = 14;
 
             List<Control> controls = ViewHelpers.GetAllControls(this);
             foreach (Control control in controls)
             {
-                if (control is Label) control.Font = titleFont;
-                else if (control is TextBox || control is ComboBox || control is DateTimePicker) control.Font = font;
+                if (control is Label ) control.Font = titleFont;
+                else                     if (control is TextBox || control is ComboBox || control is DateTimePicker) control.Font = font;
                 else if (control is FastObjectListView) control.Font = font;
                 else if (control is DataGridView)
                 {
@@ -143,20 +143,17 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                     }
                 }
             }
-
-
-
         }
 
 
 
         Binding bindingEntryDate;
-        Binding bindingReference;
-        Binding bindingFillingLineName;
-        Binding bindingWarehouseCode;
+        Binding bindingVehicle;
+        Binding bindingCaption;
         Binding bindingDescription;
         Binding bindingRemarks;
 
+        Binding bindingTotalCartonCounts;
         Binding bindingTotalPalletCounts;
         Binding bindingTotalQuantity;
         Binding bindingTotalLineVolume;
@@ -168,15 +165,15 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
         {
             base.InitializeCommonControlBinding();
 
-            this.bindingFillingLineName = this.labelFillingLineName.DataBindings.Add("Text", this.goodsIssueViewModel, CommonExpressions.PropertyName<GoodsIssueViewModel>(p => p.Caption));
+            this.bindingCaption = this.labelCaption.DataBindings.Add("Text", this.goodsIssueViewModel, CommonExpressions.PropertyName<GoodsIssueViewModel>(p => p.Caption));
 
             this.bindingEntryDate = this.dateTimexEntryDate.DataBindings.Add("Value", this.goodsIssueViewModel, CommonExpressions.PropertyName<GoodsIssueViewModel>(p => p.EntryDate), true, DataSourceUpdateMode.OnPropertyChanged);
-            this.bindingReference = this.textexReference.DataBindings.Add("Text", this.goodsIssueViewModel, CommonExpressions.PropertyName<GoodsIssueViewModel>(p => p.Reference), true, DataSourceUpdateMode.OnPropertyChanged);
-            this.bindingWarehouseCode = this.textexWarehouseCode.DataBindings.Add("Text", this.goodsIssueViewModel, CommonExpressions.PropertyName<GoodsIssueViewModel>(p => p.CustomerName), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingVehicle = this.textexVehicle.DataBindings.Add("Text", this.goodsIssueViewModel, CommonExpressions.PropertyName<GoodsIssueViewModel>(p => p.Vehicle), true, DataSourceUpdateMode.OnPropertyChanged);
 
             this.bindingDescription = this.textexDescription.DataBindings.Add("Text", this.goodsIssueViewModel, CommonExpressions.PropertyName<GoodsIssueViewModel>(p => p.Description), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingRemarks = this.textexRemarks.DataBindings.Add("Text", this.goodsIssueViewModel, CommonExpressions.PropertyName<GoodsIssueViewModel>(p => p.Remarks), true, DataSourceUpdateMode.OnPropertyChanged);
 
+            this.bindingTotalCartonCounts = this.textexTotalCartonCounts.DataBindings.Add("Text", this.goodsIssueViewModel, CommonExpressions.PropertyName<GoodsIssueViewModel>(p => p.TotalCartonCounts), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingTotalPalletCounts = this.textexTotalPalletCounts.DataBindings.Add("Text", this.goodsIssueViewModel, CommonExpressions.PropertyName<GoodsIssueViewModel>(p => p.TotalPalletCounts), true, DataSourceUpdateMode.OnValidation, 0, GlobalEnums.formatQuantity);
             this.bindingTotalQuantity = this.textexTotalQuantity.DataBindings.Add("Text", this.goodsIssueViewModel, CommonExpressions.PropertyName<GoodsIssueViewModel>(p => p.TotalQuantity), true, DataSourceUpdateMode.OnValidation, 0, GlobalEnums.formatQuantity);
             this.bindingTotalLineVolume = this.textexTotalLineVolume.DataBindings.Add("Text", this.goodsIssueViewModel, CommonExpressions.PropertyName<GoodsIssueViewModel>(p => p.TotalLineVolume), true, DataSourceUpdateMode.OnValidation, 0, GlobalEnums.formatVolume);
@@ -184,10 +181,10 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
 
             EmployeeAPIs employeeAPIs = new EmployeeAPIs(CommonNinject.Kernel.Get<IEmployeeAPIRepository>());
 
-            //this.combexForkliftDriverID.DataSource = employeeAPIs.GetEmployeeBases();
-            //this.combexForkliftDriverID.DisplayMember = CommonExpressions.PropertyName<EmployeeBase>(p => p.Name);
-            //this.combexForkliftDriverID.ValueMember = CommonExpressions.PropertyName<EmployeeBase>(p => p.EmployeeID);
-            //this.bindingForkliftDriverID = this.combexForkliftDriverID.DataBindings.Add("SelectedValue", this.goodsIssueViewModel, CommonExpressions.PropertyName<GoodsIssueViewModel>(p => p.ForkliftDriverID), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.combexForkliftDriverID.DataSource = employeeAPIs.GetEmployeeBases();
+            this.combexForkliftDriverID.DisplayMember = CommonExpressions.PropertyName<EmployeeBase>(p => p.Name);
+            this.combexForkliftDriverID.ValueMember = CommonExpressions.PropertyName<EmployeeBase>(p => p.EmployeeID);
+            this.bindingForkliftDriverID = this.combexForkliftDriverID.DataBindings.Add("SelectedValue", this.goodsIssueViewModel, CommonExpressions.PropertyName<GoodsIssueViewModel>(p => p.ForkliftDriverID), true, DataSourceUpdateMode.OnPropertyChanged);
 
 
             this.combexStorekeeperID.DataSource = employeeAPIs.GetEmployeeBases();
@@ -197,12 +194,12 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
 
 
             this.bindingEntryDate.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
-            this.bindingReference.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
-            this.bindingFillingLineName.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
-            this.bindingWarehouseCode.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingVehicle.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingCaption.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingDescription.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingRemarks.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
 
+            this.bindingTotalCartonCounts.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingTotalPalletCounts.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingTotalQuantity.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingTotalLineVolume.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);

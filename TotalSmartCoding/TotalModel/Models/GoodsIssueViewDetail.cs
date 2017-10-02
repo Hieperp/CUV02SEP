@@ -38,5 +38,12 @@ namespace TotalModel.Models
         public decimal LineVolume { get; set; }
         public string Remarks { get; set; }
         public Nullable<System.DateTime> BatchEntryDate { get; set; }
+        public int PackCounts { get; set; }
+        public int CartonCounts { get; set; }
+        public int PalletCounts { get; set; }
+        public Nullable<decimal> QuantityAvailable { get; set; }
+        public Nullable<decimal> LineVolumeAvailable { get; set; }
+        public Nullable<decimal> QuantityRemains { get; set; }
+        public Nullable<decimal> LineVolumeRemains { get; set; }
     }
 }

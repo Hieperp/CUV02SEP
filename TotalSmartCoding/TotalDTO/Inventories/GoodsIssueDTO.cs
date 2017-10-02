@@ -11,6 +11,8 @@ using TotalModel;
 using TotalBase.Enums;
 using TotalDTO.Helpers;
 using TotalDTO.Commons;
+using TotalModel.Helpers;
+using TotalBase;
 
 namespace TotalDTO.Inventories
 {
@@ -30,7 +32,6 @@ namespace TotalDTO.Inventories
         }
 
 
-
         private Nullable<int> deliveryAdviceID;
         [DefaultValue(null)]
         public Nullable<int> DeliveryAdviceID
@@ -38,8 +39,12 @@ namespace TotalDTO.Inventories
             get { return this.deliveryAdviceID; }
             set { ApplyPropertyChange<GoodsIssuePrimitiveDTO, Nullable<int>>(ref this.deliveryAdviceID, o => o.DeliveryAdviceID, value); }
         }
+        [DefaultValue(null)]
+        public Nullable<DateTime> DeliveryAdviceEntryDate { get; set; }
+        [DefaultValue(null)]
+        public string DeliveryAdviceReference { get; set; }
+        [DefaultValue(null)]
         public string DeliveryAdviceReferences { get; set; }
-
 
         private int customerID;
         [DefaultValue(null)]
@@ -56,17 +61,36 @@ namespace TotalDTO.Inventories
             set { ApplyPropertyChange<GoodsIssueDTO, string>(ref this.customerName, o => o.CustomerName, value); }
         }
 
+        private Nullable<int> forkliftDriverID;
+        //[DefaultValue(null)]
+        public Nullable<int> ForkliftDriverID
+        {
+            get { return this.forkliftDriverID; }
+            set { ApplyPropertyChange<PickupPrimitiveDTO, Nullable<int>>(ref this.forkliftDriverID, o => o.ForkliftDriverID, value); }
+        }
 
         private int storekeeperID;
-        [DefaultValue(1)]
+        //[DefaultValue(null)]
         public int StorekeeperID
         {
             get { return this.storekeeperID; }
             set { ApplyPropertyChange<GoodsIssuePrimitiveDTO, int>(ref this.storekeeperID, o => o.StorekeeperID, value); }
         }
 
+        private string vehicle;
+        [DefaultValue(null)]
+        public string Vehicle
+        {
+            get { return this.vehicle; }
+            set { ApplyPropertyChange<GoodsIssuePrimitiveDTO, string>(ref this.vehicle, o => o.Vehicle, value); }
+        }
 
         public override int PreparedPersonID { get { return 1; } }
+
+        public override string Caption
+        {
+            get { return "D.A: " + (this.DeliveryAdviceID != null ? this.DeliveryAdviceReference + ", on " + this.DeliveryAdviceEntryDate.ToString() : this.DeliveryAdviceReferences) + ", " + (this.CustomerName != "" ? "Customer: " : "") + this.CustomerName.Substring(0, this.CustomerName.Length > 16? 15: this.CustomerName.Length) + (this.CustomerName != "" ? ", " : "") + "Issue: " + this.Reference + "             Total Quantity: " + this.TotalQuantity.ToString() + ",    Total Volume: " + this.TotalLineVolume.ToString("N2"); }
+        }
 
         public override void PerformPresaveRule()
         {
@@ -75,6 +99,16 @@ namespace TotalDTO.Inventories
             string deliveryAdviceReferences = "";
             this.DtoDetails().ToList().ForEach(e => { e.CustomerID = this.CustomerID; if (deliveryAdviceReferences.IndexOf(e.DeliveryAdviceReference) < 0) deliveryAdviceReferences = deliveryAdviceReferences + (deliveryAdviceReferences != "" ? ", " : "") + e.DeliveryAdviceReference; });
             this.DeliveryAdviceReferences = deliveryAdviceReferences;
+        }
+
+        protected override List<ValidationRule> CreateRules()
+        {
+            List<ValidationRule> validationRules = base.CreateRules();
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<GoodsIssuePrimitiveDTO>(p => p.CustomerID), "Vui lòng chọn khách hàng.", delegate { return (this.CustomerID != null && this.CustomerID > 0); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<GoodsIssuePrimitiveDTO>(p => p.ForkliftDriverID), "Vui lòng chọn tài xếxyz123.", delegate { return (this.ForkliftDriverID != null && this.ForkliftDriverID > 0); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<GoodsIssuePrimitiveDTO>(p => p.StorekeeperID), "Vui lòng chọn nhân viên kho.", delegate { return (this.StorekeeperID != null && this.StorekeeperID > 0); }));
+
+            return validationRules;
         }
     }
 

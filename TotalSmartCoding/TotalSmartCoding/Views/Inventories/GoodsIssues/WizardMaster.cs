@@ -25,9 +25,9 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
             this.customTabBatch.DisplayStyle = TabStyle.VisualStudio;
             this.customTabBatch.DisplayStyleProvider.ImageAlign = ContentAlignment.MiddleLeft;
 
-            this.customTabBatch.TabPages.Add("tabPendingDeliveryAdvices", "Issue by deliveryAdvice                  ");
-            this.customTabBatch.TabPages.Add("tabPendingDeliveryAdviceCustomers", "Issue by customer          ");
-            this.customTabBatch.TabPages.Add("tabPendingDeliveryAdvices", "Transfer Issue                    ");
+            this.customTabBatch.TabPages.Add("tabPendingDeliveryAdvices", "Issue by Delivery Advice        ");
+            this.customTabBatch.TabPages.Add("tabPendingDeliveryAdviceCustomers", "Issue by Customer      ");
+            this.customTabBatch.TabPages.Add("tabPendingDeliveryAdvices", "Transfer Issue              ");
             this.customTabBatch.TabPages[0].Controls.Add(this.fastPendingDeliveryAdvices);
             this.customTabBatch.TabPages[1].Controls.Add(this.fastPendingDeliveryAdviceCustomers);
 

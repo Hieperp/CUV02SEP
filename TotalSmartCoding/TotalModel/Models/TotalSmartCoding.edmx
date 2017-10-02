@@ -249,6 +249,7 @@
           <Property Name="DeliveryAdviceID" Type="int" />
           <Property Name="DeliveryAdviceReferences" Type="nvarchar" MaxLength="100" />
           <Property Name="CustomerID" Type="int" Nullable="false" />
+          <Property Name="ForkliftDriverID" Type="int" Nullable="false" />
           <Property Name="StorekeeperID" Type="int" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
           <Property Name="PreparedPersonID" Type="int" Nullable="false" />
@@ -256,6 +257,7 @@
           <Property Name="LocationID" Type="int" Nullable="false" />
           <Property Name="TotalQuantity" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="TotalLineVolume" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Vehicle" Type="nvarchar" MaxLength="100" />
           <Property Name="Description" Type="nvarchar" MaxLength="100" />
           <Property Name="Remarks" Type="nvarchar" MaxLength="100" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
@@ -3371,6 +3373,13 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Type="Decimal" Name="LineVolume" Nullable="false" Precision="18" Scale="2" />
           <Property Type="String" Name="Remarks" Nullable="true" MaxLength="100" />
           <Property Type="DateTime" Name="BatchEntryDate" Nullable="true" />
+          <Property Type="Int32" Name="PackCounts" Nullable="false" />
+          <Property Type="Int32" Name="CartonCounts" Nullable="false" />
+          <Property Type="Int32" Name="PalletCounts" Nullable="false" />
+          <Property Type="Decimal" Name="QuantityAvailable" Nullable="true" Precision="20" Scale="2" />
+          <Property Type="Decimal" Name="LineVolumeAvailable" Nullable="true" Precision="20" Scale="2" />
+          <Property Type="Decimal" Name="QuantityRemains" Nullable="true" Precision="20" Scale="2" />
+          <Property Type="Decimal" Name="LineVolumeRemains" Nullable="true" Precision="20" Scale="2" />
         </ComplexType>
         <ComplexType Name="PendingDeliveryAdviceCustomer">
           <Property Type="Int32" Name="CustomerID" Nullable="false" />
@@ -3405,6 +3414,8 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Type="String" Name="CustomerName" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="Description" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="Remarks" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="SalesOrderReferences" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="VoucherCode" Nullable="true" MaxLength="120" />
         </ComplexType>
         <EntityType Name="Warehouse">
           <Key>
@@ -3740,6 +3751,8 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <NavigationProperty Name="Location" Relationship="TotalSmartCodingModel.FK_GoodsIssues_Locations" FromRole="GoodsIssue" ToRole="Location" />
           <NavigationProperty Name="Customer" Relationship="TotalSmartCodingModel.FK_GoodsIssues_Customers" FromRole="GoodsIssue" ToRole="Customer" />
           <NavigationProperty Name="DeliveryAdvice" Relationship="TotalSmartCodingModel.FK_GoodsIssues_DeliveryAdvices" FromRole="GoodsIssue" ToRole="DeliveryAdvice" />
+          <Property Name="ForkliftDriverID" Type="Int32" Nullable="false" />
+          <Property Name="Vehicle" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="SalesOrderDetail">
           <Key>
@@ -3853,8 +3866,8 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Type="Int32" Name="BinLocationID" Nullable="false" />
           <Property Type="String" Name="BinLocationCode" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="Remarks" Nullable="true" MaxLength="100" />
-          <Property Type="Decimal" Name="QuantityAvailable" Nullable="false" Precision="19" Scale="2" />
-          <Property Type="Decimal" Name="LineVolumeAvailable" Nullable="false" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="QuantityAvailable" Nullable="true" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="LineVolumeAvailable" Nullable="true" Precision="19" Scale="2" />
           <Property Type="Boolean" Name="IsSelected" Nullable="true" />
           <Property Type="Int32" Name="PackID" Nullable="true" />
           <Property Type="String" Name="PackCode" Nullable="true" MaxLength="50" />
@@ -3870,6 +3883,9 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Type="DateTime" Name="BatchEntryDate" Nullable="true" />
           <Property Type="String" Name="GoodsReceiptReference" Nullable="true" MaxLength="10" />
           <Property Type="DateTime" Name="GoodsReceiptEntryDate" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="PackCounts" Nullable="false" />
+          <Property Type="Int32" Name="CartonCounts" Nullable="false" />
+          <Property Type="Int32" Name="PalletCounts" Nullable="false" />
         </ComplexType>
         <EntityType Name="WarehouseAdjustmentType">
           <Key>
@@ -5387,6 +5403,13 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
                 <ScalarProperty Name="LineVolume" ColumnName="LineVolume" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
                 <ScalarProperty Name="BatchEntryDate" ColumnName="BatchEntryDate" />
+                <ScalarProperty Name="PackCounts" ColumnName="PackCounts" />
+                <ScalarProperty Name="CartonCounts" ColumnName="CartonCounts" />
+                <ScalarProperty Name="PalletCounts" ColumnName="PalletCounts" />
+                <ScalarProperty Name="QuantityAvailable" ColumnName="QuantityAvailable" />
+                <ScalarProperty Name="LineVolumeAvailable" ColumnName="LineVolumeAvailable" />
+                <ScalarProperty Name="QuantityRemains" ColumnName="QuantityRemains" />
+                <ScalarProperty Name="LineVolumeRemains" ColumnName="LineVolumeRemains" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -5433,6 +5456,8 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
                 <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="SalesOrderReferences" ColumnName="SalesOrderReferences" />
+                <ScalarProperty Name="VoucherCode" ColumnName="VoucherCode" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -5568,6 +5593,8 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <EntitySetMapping Name="GoodsIssues">
             <EntityTypeMapping TypeName="TotalSmartCodingModel.GoodsIssue">
               <MappingFragment StoreEntitySet="GoodsIssues">
+                <ScalarProperty Name="Vehicle" ColumnName="Vehicle" />
+                <ScalarProperty Name="ForkliftDriverID" ColumnName="ForkliftDriverID" />
                 <ScalarProperty Name="ApprovedDate" ColumnName="ApprovedDate" />
                 <ScalarProperty Name="Approved" ColumnName="Approved" />
                 <ScalarProperty Name="EditedDate" ColumnName="EditedDate" />
@@ -5635,6 +5662,9 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
                 <ScalarProperty Name="BatchEntryDate" ColumnName="BatchEntryDate" />
                 <ScalarProperty Name="GoodsReceiptReference" ColumnName="GoodsReceiptReference" />
                 <ScalarProperty Name="GoodsReceiptEntryDate" ColumnName="GoodsReceiptEntryDate" />
+                <ScalarProperty Name="PackCounts" ColumnName="PackCounts" />
+                <ScalarProperty Name="CartonCounts" ColumnName="CartonCounts" />
+                <ScalarProperty Name="PalletCounts" ColumnName="PalletCounts" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

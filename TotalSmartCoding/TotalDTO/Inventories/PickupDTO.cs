@@ -102,6 +102,18 @@ namespace TotalDTO.Inventories
 
             this.DtoDetails().ToList().ForEach(e => { e.WarehouseID = this.WarehouseID; });
         }
+
+        protected override List<ValidationRule> CreateRules()
+        {
+            List<ValidationRule> validationRules = base.CreateRules();
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<PickupPrimitiveDTO>(p => p.FillingLineID), "Vui lòng chọn chuyền.", delegate { return (this.FillingLineID != null && this.FillingLineID > 0); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<PickupPrimitiveDTO>(p => p.WarehouseID), "Vui lòng chọn kho.", delegate { return (this.WarehouseID != null && this.WarehouseID > 0); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<PickupPrimitiveDTO>(p => p.ForkliftDriverID), "Vui lòng chọn tài xế.", delegate { return (this.ForkliftDriverID != null && this.ForkliftDriverID > 0); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<PickupPrimitiveDTO>(p => p.StorekeeperID), "Vui lòng chọn nhân viên kho.", delegate { return (this.StorekeeperID != null && this.StorekeeperID > 0); }));
+
+            return validationRules;
+
+        }
     }
 
     public class PickupDTO : PickupPrimitiveDTO, IBaseDetailEntity<PickupDetailDTO>
@@ -140,20 +152,7 @@ namespace TotalDTO.Inventories
         public BindingListView<PickupDetailDTO> PackDetails { get; private set; }
         public BindingListView<PickupDetailDTO> CartonDetails { get; private set; }
         public BindingListView<PickupDetailDTO> PalletDetails { get; private set; }
-
-
-
-        protected override List<ValidationRule> CreateRules()
-        {
-            List<ValidationRule> validationRules = base.CreateRules();
-            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<PickupDTO>(p => p.FillingLineID), "Vui lòng chọn chuyền.", delegate { return (this.FillingLineID != null && this.FillingLineID > 0); }));
-            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<PickupDTO>(p => p.WarehouseID), "Vui lòng chọn kho.", delegate { return (this.WarehouseID != null && this.WarehouseID > 0); }));
-            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<PickupDTO>(p => p.ForkliftDriverID), "Vui lòng chọn tài xế.", delegate { return (this.ForkliftDriverID != null && this.ForkliftDriverID > 0); }));
-            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<PickupDTO>(p => p.StorekeeperID), "Vui lòng chọn nhân viên kho.", delegate { return (this.StorekeeperID != null && this.StorekeeperID > 0); }));
-
-            return validationRules;
-
-        }
+        
     }
 
 }

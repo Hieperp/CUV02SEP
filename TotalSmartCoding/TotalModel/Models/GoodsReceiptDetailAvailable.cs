@@ -18,8 +18,8 @@ namespace TotalModel.Models
         public int BinLocationID { get; set; }
         public string BinLocationCode { get; set; }
         public string Remarks { get; set; }
-        public decimal QuantityAvailable { get; set; }
-        public decimal LineVolumeAvailable { get; set; }
+        public Nullable<decimal> QuantityAvailable { get; set; }
+        public Nullable<decimal> LineVolumeAvailable { get; set; }
         public Nullable<bool> IsSelected { get; set; }
         public Nullable<int> PackID { get; set; }
         public string PackCode { get; set; }
@@ -35,5 +35,8 @@ namespace TotalModel.Models
         public Nullable<System.DateTime> BatchEntryDate { get; set; }
         public string GoodsReceiptReference { get; set; }
         public System.DateTime GoodsReceiptEntryDate { get; set; }
+        public int PackCounts { get; set; }
+        public int CartonCounts { get; set; }
+        public int PalletCounts { get; set; }
     }
 }
