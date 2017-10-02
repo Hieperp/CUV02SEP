@@ -10,6 +10,10 @@ namespace TotalSmartCoding.Libraries.Helpers
         ToolStrip toolstripChild { get; }
     }
 
+    public interface IToolstripTablet
+    {
+        void ApplyFilter(string filterTexts);
+    }
 
     public interface IToolstripChild : INotifyPropertyChanged
     {

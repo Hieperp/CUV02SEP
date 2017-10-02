@@ -74,7 +74,7 @@
             // 
             // buttonAddExit
             // 
-            this.buttonAddExit.Image = global::TotalSmartCoding.Properties.Resources.Add_close;
+            this.buttonAddExit.Image = global::TotalSmartCoding.Properties.Resources.Add_continue;
             this.buttonAddExit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.buttonAddExit.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonAddExit.Name = "buttonAddExit";
@@ -85,7 +85,7 @@
             // 
             // buttonAdd
             // 
-            this.buttonAdd.Image = global::TotalSmartCoding.Properties.Resources.Add_continue;
+            this.buttonAdd.Image = global::TotalSmartCoding.Properties.Resources.Add_close;
             this.buttonAdd.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.buttonAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonAdd.Name = "buttonAdd";

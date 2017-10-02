@@ -1753,6 +1753,16 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Fnd_Oxygen {
+            get {
+                object obj = ResourceManager.GetObject("Fnd-Oxygen", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap folder_printer {
             get {
                 object obj = ResourceManager.GetObject("folder-printer", resourceCulture);
@@ -3036,6 +3046,16 @@ namespace TotalSmartCoding.Properties {
         internal static System.Drawing.Bitmap search {
             get {
                 object obj = ResourceManager.GetObject("search", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Search_vista {
+            get {
+                object obj = ResourceManager.GetObject("Search-vista", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

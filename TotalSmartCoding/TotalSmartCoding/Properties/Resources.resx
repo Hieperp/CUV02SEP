@@ -487,9 +487,6 @@
   <data name="Alarm-Warning" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Alarm-Warning.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Chromatix-Keyboard-Keys-0" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Chromatix-Keyboard-Keys-0.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="8-icon641" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\8-icon641.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -511,11 +508,17 @@
   <data name="Antrepo-Cargo-Boxes-Palet-02" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Antrepo-Cargo-Boxes-Palet-02.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Chromatix-Keyboard-Keys-Blank-keyboard-key" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Chromatix-Keyboard-Keys-Blank-keyboard-key.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="fork6" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\fork6.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="signout-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\signout-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Checklist32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Checklist32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="6-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\6-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -646,8 +649,8 @@
   <data name="letter-b-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\letter-b-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Chromatix-Keyboard-Keys-Blank-keyboard-key" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Chromatix-Keyboard-Keys-Blank-keyboard-key.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Benjigarner-Softdimension-Excel1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Benjigarner-Softdimension-Excel1.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Chromatix-Keyboard-Keys-9" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Chromatix-Keyboard-Keys-9.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -826,9 +829,6 @@
   <data name="if_gas_1055052" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\if_gas_1055052.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Benjigarner-Softdimension-Excel1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Benjigarner-Softdimension-Excel1.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="PalletBin32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PalletBin32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -906,6 +906,9 @@
   </data>
   <data name="Add-continue" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Add-continue.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Search-vista" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Search-vista.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Avosoft-Toolbar-Printer" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Avosoft-Toolbar-Printer.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -1039,6 +1042,9 @@
   <data name="letter-uppercase-A-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\letter-uppercase-A-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="sign-out-option1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sign-out-option1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Check-Saki-Cross" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Check-Saki-Cross.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -1063,8 +1069,8 @@
   <data name="5-icon64" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\5-icon64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="sign-out-option1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sign-out-option1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Chromatix-Keyboard-Keys-0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Chromatix-Keyboard-Keys-0.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Edit-clear" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Edit-clear.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -1144,7 +1150,7 @@
   <data name="2D-Barcode" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\2D-Barcode.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Checklist32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Checklist32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Fnd-Oxygen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Fnd-Oxygen.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

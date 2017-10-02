@@ -28,7 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panelLeft = new System.Windows.Forms.Panel();
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TabletMDI));
+            this.imageListModuleMasterSmall = new System.Windows.Forms.ImageList(this.components);
+            this.imageListModuleMasterLarge = new System.Windows.Forms.ImageList(this.components);
+            this.imageListTaskMaster = new System.Windows.Forms.ImageList(this.components);
+            this.InvisibleMainMenuStripOfMDI = new System.Windows.Forms.MenuStrip();
+            this.panelRight = new System.Windows.Forms.Panel();
             this.toolStrip8 = new System.Windows.Forms.ToolStrip();
             this.Softkey609 = new System.Windows.Forms.ToolStripButton();
             this.Softkey608 = new System.Windows.Forms.ToolStripButton();
@@ -64,12 +70,27 @@
             this.Softkey003 = new System.Windows.Forms.ToolStripButton();
             this.Softkey002 = new System.Windows.Forms.ToolStripButton();
             this.Softkey001 = new System.Windows.Forms.ToolStripButton();
-            this.InvisibleMainMenuStripOfMDI = new System.Windows.Forms.MenuStrip();
-            this.toolstripMain = new System.Windows.Forms.ToolStrip();
-            this.toolStripTop = new System.Windows.Forms.ToolStrip();
-            this.comboFilterTexts = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.buttonLoading = new System.Windows.Forms.ToolStripButton();
+            this.textBoxFilters = new System.Windows.Forms.ToolStripTextBox();
             this.buttonClearFilters = new System.Windows.Forms.ToolStripButton();
-            this.panelLeft.SuspendLayout();
+            this.toolstripMain = new System.Windows.Forms.ToolStrip();
+            this.buttonEscape = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
+            this.toolStrip9 = new System.Windows.Forms.ToolStrip();
+            this.toolStripButton8 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton9 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton10 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton11 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton12 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.panelRight.SuspendLayout();
             this.toolStrip8.SuspendLayout();
             this.toolStrip7.SuspendLayout();
             this.toolStrip6.SuspendLayout();
@@ -77,25 +98,119 @@
             this.toolStrip5.SuspendLayout();
             this.toolStrip4.SuspendLayout();
             this.toolStrip2.SuspendLayout();
-            this.toolStripTop.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
+            this.toolstripMain.SuspendLayout();
+            this.toolStrip9.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panelLeft
+            // imageListModuleMasterSmall
             // 
-            this.panelLeft.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panelLeft.Controls.Add(this.toolStrip8);
-            this.panelLeft.Controls.Add(this.toolStrip7);
-            this.panelLeft.Controls.Add(this.toolStrip6);
-            this.panelLeft.Controls.Add(this.toolStrip3);
-            this.panelLeft.Controls.Add(this.toolStrip5);
-            this.panelLeft.Controls.Add(this.toolStrip4);
-            this.panelLeft.Controls.Add(this.toolStrip2);
-            this.panelLeft.Controls.Add(this.toolStripTop);
-            this.panelLeft.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelLeft.Location = new System.Drawing.Point(876, 0);
-            this.panelLeft.Name = "panelLeft";
-            this.panelLeft.Size = new System.Drawing.Size(368, 555);
-            this.panelLeft.TabIndex = 9;
+            this.imageListModuleMasterSmall.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListModuleMasterSmall.ImageStream")));
+            this.imageListModuleMasterSmall.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageListModuleMasterSmall.Images.SetKeyName(0, "Fatcow-Farm-Fresh-Pill-add.ico");
+            this.imageListModuleMasterSmall.Images.SetKeyName(1, "Aha-Soft-Medical-Health-care-shield.ico");
+            this.imageListModuleMasterSmall.Images.SetKeyName(2, "Fatcow-Farm-Fresh-Group-add.ico");
+            this.imageListModuleMasterSmall.Images.SetKeyName(3, "Iconfactory-Echelon-System-ROM.ico");
+            this.imageListModuleMasterSmall.Images.SetKeyName(4, "Fatcow-Farm-Fresh-Drugs-com.ico");
+            this.imageListModuleMasterSmall.Images.SetKeyName(5, "Fatcow-Farm-Fresh-Database-lightning.ico");
+            this.imageListModuleMasterSmall.Images.SetKeyName(6, "Fatcow-Farm-Fresh-Advertising.ico");
+            this.imageListModuleMasterSmall.Images.SetKeyName(7, "Graphicrating-Quartz-Chart-1.ico");
+            this.imageListModuleMasterSmall.Images.SetKeyName(8, "Simon-Cook-Xtra-Orange-Documents.ico");
+            // 
+            // imageListModuleMasterLarge
+            // 
+            this.imageListModuleMasterLarge.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListModuleMasterLarge.ImageStream")));
+            this.imageListModuleMasterLarge.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageListModuleMasterLarge.Images.SetKeyName(0, "Fatcow-Farm-Fresh-Pill-add.ico");
+            this.imageListModuleMasterLarge.Images.SetKeyName(1, "Aha-Soft-Medical-Health-care-shield.ico");
+            this.imageListModuleMasterLarge.Images.SetKeyName(2, "Fatcow-Farm-Fresh-Group-add.ico");
+            this.imageListModuleMasterLarge.Images.SetKeyName(3, "Iconfactory-Echelon-System-ROM.ico");
+            this.imageListModuleMasterLarge.Images.SetKeyName(4, "Fatcow-Farm-Fresh-Drugs-com.ico");
+            this.imageListModuleMasterLarge.Images.SetKeyName(5, "Fatcow-Farm-Fresh-Database-lightning.ico");
+            this.imageListModuleMasterLarge.Images.SetKeyName(6, "Fatcow-Farm-Fresh-Advertising.ico");
+            this.imageListModuleMasterLarge.Images.SetKeyName(7, "Graphicrating-Quartz-Chart-1.ico");
+            this.imageListModuleMasterLarge.Images.SetKeyName(8, "Simon-Cook-Xtra-Orange-Documents.ico");
+            // 
+            // imageListTaskMaster
+            // 
+            this.imageListTaskMaster.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListTaskMaster.ImageStream")));
+            this.imageListTaskMaster.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageListTaskMaster.Images.SetKeyName(0, "Status-security-high.ico");
+            this.imageListTaskMaster.Images.SetKeyName(1, "Gakuseisean-Ivista-2-Misc-Download-Database.ico");
+            this.imageListTaskMaster.Images.SetKeyName(2, "Custom-Icon-Design-Pretty-Office-6-Import-export.ico");
+            this.imageListTaskMaster.Images.SetKeyName(3, "Deleket-Soft-Scraps-Calendar-Green.ico");
+            this.imageListTaskMaster.Images.SetKeyName(4, "bio hasard.ico");
+            this.imageListTaskMaster.Images.SetKeyName(5, "Call Bell.ico");
+            this.imageListTaskMaster.Images.SetKeyName(6, "drug basket.ico");
+            this.imageListTaskMaster.Images.SetKeyName(7, "genetics.ico");
+            this.imageListTaskMaster.Images.SetKeyName(8, "head physician.ico");
+            this.imageListTaskMaster.Images.SetKeyName(9, "health care shield.ico");
+            this.imageListTaskMaster.Images.SetKeyName(10, "health care shield-16.ico");
+            this.imageListTaskMaster.Images.SetKeyName(11, "health care shield-Red-Cross-16.ico");
+            this.imageListTaskMaster.Images.SetKeyName(12, "medical invoice information.ico");
+            this.imageListTaskMaster.Images.SetKeyName(13, "stomatologist.ico");
+            this.imageListTaskMaster.Images.SetKeyName(14, "stomatologist-16.ico");
+            this.imageListTaskMaster.Images.SetKeyName(15, "5");
+            this.imageListTaskMaster.Images.SetKeyName(16, "urologist.ico");
+            this.imageListTaskMaster.Images.SetKeyName(17, "Bussiness Group.ico");
+            this.imageListTaskMaster.Images.SetKeyName(18, "Category.ico");
+            this.imageListTaskMaster.Images.SetKeyName(19, "Commodity List.ico");
+            this.imageListTaskMaster.Images.SetKeyName(20, "Influencer.ico");
+            this.imageListTaskMaster.Images.SetKeyName(21, "Item Class.ico");
+            this.imageListTaskMaster.Images.SetKeyName(22, "PM_APM.ico");
+            this.imageListTaskMaster.Images.SetKeyName(23, "Promotion Investmen.ico");
+            this.imageListTaskMaster.Images.SetKeyName(24, "Customer Channel 2.ico");
+            this.imageListTaskMaster.Images.SetKeyName(25, "Customer Channel.ico");
+            this.imageListTaskMaster.Images.SetKeyName(26, "Customer Class.ico");
+            this.imageListTaskMaster.Images.SetKeyName(27, "Customer Group.ico");
+            this.imageListTaskMaster.Images.SetKeyName(28, "Customer List.ico");
+            this.imageListTaskMaster.Images.SetKeyName(29, "Territory.ico");
+            this.imageListTaskMaster.Images.SetKeyName(30, "Channel.ico");
+            this.imageListTaskMaster.Images.SetKeyName(31, "Distributor List.ico");
+            this.imageListTaskMaster.Images.SetKeyName(32, "Distributor Type.ico");
+            this.imageListTaskMaster.Images.SetKeyName(33, "Database User List.ico");
+            this.imageListTaskMaster.Images.SetKeyName(34, "Exception List.ico");
+            this.imageListTaskMaster.Images.SetKeyName(35, "Salesmen List.ico");
+            this.imageListTaskMaster.Images.SetKeyName(36, "Staff Category.ico");
+            this.imageListTaskMaster.Images.SetKeyName(37, "Staff List.ico");
+            this.imageListTaskMaster.Images.SetKeyName(38, "Team.ico");
+            this.imageListTaskMaster.Images.SetKeyName(39, "Title.ico");
+            this.imageListTaskMaster.Images.SetKeyName(40, "Type.ico");
+            this.imageListTaskMaster.Images.SetKeyName(41, "CustomerList.ico");
+            this.imageListTaskMaster.Images.SetKeyName(42, "In Market Call Sheet.ico");
+            this.imageListTaskMaster.Images.SetKeyName(43, "Promotion Campaign.ico");
+            this.imageListTaskMaster.Images.SetKeyName(44, "Salesmen Forecast.ico");
+            this.imageListTaskMaster.Images.SetKeyName(45, "Salesmen Quota.ico");
+            this.imageListTaskMaster.Images.SetKeyName(46, "Salesmen Target.ico");
+            this.imageListTaskMaster.Images.SetKeyName(47, "SellingIn_SellingOut.ico");
+            // 
+            // InvisibleMainMenuStripOfMDI
+            // 
+            this.InvisibleMainMenuStripOfMDI.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.InvisibleMainMenuStripOfMDI.Location = new System.Drawing.Point(0, 0);
+            this.InvisibleMainMenuStripOfMDI.Name = "InvisibleMainMenuStripOfMDI";
+            this.InvisibleMainMenuStripOfMDI.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
+            this.InvisibleMainMenuStripOfMDI.Size = new System.Drawing.Size(1103, 28);
+            this.InvisibleMainMenuStripOfMDI.TabIndex = 16;
+            this.InvisibleMainMenuStripOfMDI.Text = "MenuStrip";
+            this.InvisibleMainMenuStripOfMDI.Visible = false;
+            // 
+            // panelRight
+            // 
+            this.panelRight.Controls.Add(this.toolStrip9);
+            this.panelRight.Controls.Add(this.toolStrip8);
+            this.panelRight.Controls.Add(this.toolStrip7);
+            this.panelRight.Controls.Add(this.toolStrip6);
+            this.panelRight.Controls.Add(this.toolStrip3);
+            this.panelRight.Controls.Add(this.toolStrip5);
+            this.panelRight.Controls.Add(this.toolStrip4);
+            this.panelRight.Controls.Add(this.toolStrip2);
+            this.panelRight.Controls.Add(this.toolStrip1);
+            this.panelRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panelRight.Location = new System.Drawing.Point(724, 0);
+            this.panelRight.Name = "panelRight";
+            this.panelRight.Size = new System.Drawing.Size(379, 635);
+            this.panelRight.TabIndex = 30;
             // 
             // toolStrip8
             // 
@@ -106,11 +221,12 @@
             this.Softkey609,
             this.Softkey608,
             this.Softkey607,
-            this.Softkey606});
+            this.Softkey606,
+            this.toolStripButton7});
             this.toolStrip8.Location = new System.Drawing.Point(0, 409);
             this.toolStrip8.Name = "toolStrip8";
             this.toolStrip8.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStrip8.Size = new System.Drawing.Size(364, 59);
+            this.toolStrip8.Size = new System.Drawing.Size(379, 59);
             this.toolStrip8.TabIndex = 15;
             this.toolStrip8.Text = "toolStrip8";
             // 
@@ -164,11 +280,12 @@
             this.Softkey605,
             this.Softkey604,
             this.Softkey603,
-            this.Softkey602});
+            this.Softkey602,
+            this.toolStripButton6});
             this.toolStrip7.Location = new System.Drawing.Point(0, 350);
             this.toolStrip7.Name = "toolStrip7";
             this.toolStrip7.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStrip7.Size = new System.Drawing.Size(364, 59);
+            this.toolStrip7.Size = new System.Drawing.Size(379, 59);
             this.toolStrip7.TabIndex = 14;
             this.toolStrip7.Text = "toolStrip7";
             // 
@@ -222,11 +339,12 @@
             this.SoftkeyBlank,
             this.SoftkeyBackspace,
             this.Softkey601,
-            this.Softkey600});
+            this.Softkey600,
+            this.toolStripButton5});
             this.toolStrip6.Location = new System.Drawing.Point(0, 291);
             this.toolStrip6.Name = "toolStrip6";
             this.toolStrip6.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStrip6.Size = new System.Drawing.Size(364, 59);
+            this.toolStrip6.Size = new System.Drawing.Size(379, 59);
             this.toolStrip6.TabIndex = 13;
             this.toolStrip6.Text = "toolStrip6";
             // 
@@ -278,11 +396,12 @@
             this.Softkey016,
             this.Softkey015,
             this.Softkey014,
-            this.Softkey013});
+            this.Softkey013,
+            this.toolStripButton4});
             this.toolStrip3.Location = new System.Drawing.Point(0, 232);
             this.toolStrip3.Name = "toolStrip3";
             this.toolStrip3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStrip3.Size = new System.Drawing.Size(364, 59);
+            this.toolStrip3.Size = new System.Drawing.Size(379, 59);
             this.toolStrip3.TabIndex = 16;
             this.toolStrip3.Text = "toolStrip3";
             // 
@@ -336,11 +455,12 @@
             this.Softkey012,
             this.Softkey011,
             this.Softkey010,
-            this.Softkey009});
+            this.Softkey009,
+            this.toolStripButton3});
             this.toolStrip5.Location = new System.Drawing.Point(0, 173);
             this.toolStrip5.Name = "toolStrip5";
             this.toolStrip5.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStrip5.Size = new System.Drawing.Size(364, 59);
+            this.toolStrip5.Size = new System.Drawing.Size(379, 59);
             this.toolStrip5.TabIndex = 12;
             this.toolStrip5.Text = "toolStrip5";
             // 
@@ -394,11 +514,12 @@
             this.Softkey008,
             this.Softkey007,
             this.Softkey006,
-            this.Softkey005});
+            this.Softkey005,
+            this.toolStripButton2});
             this.toolStrip4.Location = new System.Drawing.Point(0, 114);
             this.toolStrip4.Name = "toolStrip4";
             this.toolStrip4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStrip4.Size = new System.Drawing.Size(364, 59);
+            this.toolStrip4.Size = new System.Drawing.Size(379, 59);
             this.toolStrip4.TabIndex = 11;
             this.toolStrip4.Text = "toolStrip4";
             // 
@@ -452,11 +573,12 @@
             this.Softkey004,
             this.Softkey003,
             this.Softkey002,
-            this.Softkey001});
+            this.Softkey001,
+            this.toolStripButton1});
             this.toolStrip2.Location = new System.Drawing.Point(0, 55);
             this.toolStrip2.Name = "toolStrip2";
             this.toolStrip2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStrip2.Size = new System.Drawing.Size(364, 59);
+            this.toolStrip2.Size = new System.Drawing.Size(379, 59);
             this.toolStrip2.TabIndex = 10;
             this.toolStrip2.Text = "toolStrip2";
             // 
@@ -500,54 +622,42 @@
             this.Softkey001.Tag = "A";
             this.Softkey001.Text = "A";
             // 
-            // InvisibleMainMenuStripOfMDI
+            // toolStrip1
             // 
-            this.InvisibleMainMenuStripOfMDI.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.InvisibleMainMenuStripOfMDI.Location = new System.Drawing.Point(0, 0);
-            this.InvisibleMainMenuStripOfMDI.Name = "InvisibleMainMenuStripOfMDI";
-            this.InvisibleMainMenuStripOfMDI.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.InvisibleMainMenuStripOfMDI.Size = new System.Drawing.Size(876, 28);
-            this.InvisibleMainMenuStripOfMDI.TabIndex = 17;
-            this.InvisibleMainMenuStripOfMDI.Text = "MenuStrip";
-            this.InvisibleMainMenuStripOfMDI.Visible = false;
-            // 
-            // toolstripMain
-            // 
-            this.toolstripMain.BackgroundImage = global::TotalSmartCoding.Properties.Resources.Toolbar_Image;
-            this.toolstripMain.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.toolstripMain.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolstripMain.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolstripMain.Location = new System.Drawing.Point(0, 555);
-            this.toolstripMain.Name = "toolstripMain";
-            this.toolstripMain.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolstripMain.Size = new System.Drawing.Size(1244, 25);
-            this.toolstripMain.TabIndex = 18;
-            this.toolstripMain.Text = "toolStrip1";
-            // 
-            // toolStripTop
-            // 
-            this.toolStripTop.BackColor = System.Drawing.SystemColors.Control;
-            this.toolStripTop.BackgroundImage = global::TotalSmartCoding.Properties.Resources.Toolbar_Image;
-            this.toolStripTop.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStripTop.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolStripTop.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.comboFilterTexts,
+            this.toolStrip1.BackColor = System.Drawing.SystemColors.Control;
+            this.toolStrip1.BackgroundImage = global::TotalSmartCoding.Properties.Resources.Toolbar_Image;
+            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabel1,
+            this.buttonLoading,
+            this.textBoxFilters,
             this.buttonClearFilters});
-            this.toolStripTop.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.toolStripTop.Location = new System.Drawing.Point(0, 0);
-            this.toolStripTop.Name = "toolStripTop";
-            this.toolStripTop.Size = new System.Drawing.Size(364, 55);
-            this.toolStripTop.TabIndex = 17;
-            this.toolStripTop.Text = "toolStrip1";
+            this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(379, 55);
+            this.toolStrip1.TabIndex = 5;
+            this.toolStrip1.Text = "toolStrip1";
             // 
-            // comboFilterTexts
+            // buttonLoading
             // 
-            this.comboFilterTexts.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.comboFilterTexts.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
-            this.comboFilterTexts.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
-            this.comboFilterTexts.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboFilterTexts.Name = "comboFilterTexts";
-            this.comboFilterTexts.Size = new System.Drawing.Size(250, 55);
+            this.buttonLoading.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.buttonLoading.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonLoading.Image = global::TotalSmartCoding.Properties.Resources.Fnd_Oxygen;
+            this.buttonLoading.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonLoading.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonLoading.Name = "buttonLoading";
+            this.buttonLoading.Size = new System.Drawing.Size(52, 52);
+            this.buttonLoading.Text = "Refresh";
+            // 
+            // textBoxFilters
+            // 
+            this.textBoxFilters.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBoxFilters.Font = new System.Drawing.Font("Segoe UI", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxFilters.Name = "textBoxFilters";
+            this.textBoxFilters.Size = new System.Drawing.Size(218, 55);
+            this.textBoxFilters.TextChanged += new System.EventHandler(this.textBoxFilters_TextChanged);
             // 
             // buttonClearFilters
             // 
@@ -559,25 +669,192 @@
             this.buttonClearFilters.Name = "buttonClearFilters";
             this.buttonClearFilters.Size = new System.Drawing.Size(52, 52);
             this.buttonClearFilters.Text = "Find";
+            this.buttonClearFilters.Click += new System.EventHandler(this.buttonClearFilters_Click);
+            // 
+            // toolstripMain
+            // 
+            this.toolstripMain.BackColor = System.Drawing.SystemColors.Control;
+            this.toolstripMain.BackgroundImage = global::TotalSmartCoding.Properties.Resources.Toolbar_Image;
+            this.toolstripMain.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.toolstripMain.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolstripMain.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolstripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.buttonEscape});
+            this.toolstripMain.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
+            this.toolstripMain.Location = new System.Drawing.Point(0, 635);
+            this.toolstripMain.Name = "toolstripMain";
+            this.toolstripMain.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.toolstripMain.Size = new System.Drawing.Size(1103, 25);
+            this.toolstripMain.TabIndex = 10;
+            this.toolstripMain.Text = "ToolStrip";
+            // 
+            // buttonEscape
+            // 
+            this.buttonEscape.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.buttonEscape.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonEscape.Image = global::TotalSmartCoding.Properties.Resources.DataEsc;
+            this.buttonEscape.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonEscape.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonEscape.Name = "buttonEscape";
+            this.buttonEscape.Size = new System.Drawing.Size(52, 52);
+            this.buttonEscape.Text = "ESC";
+            this.buttonEscape.Visible = false;
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = global::TotalSmartCoding.Properties.Resources.esc;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(56, 56);
+            this.toolStripButton1.Text = "toolStripButton1";
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton2.Image = global::TotalSmartCoding.Properties.Resources.esc;
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(56, 56);
+            this.toolStripButton2.Text = "toolStripButton2";
+            // 
+            // toolStripButton3
+            // 
+            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton3.Image = global::TotalSmartCoding.Properties.Resources.esc;
+            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton3.Name = "toolStripButton3";
+            this.toolStripButton3.Size = new System.Drawing.Size(56, 56);
+            this.toolStripButton3.Text = "toolStripButton3";
+            // 
+            // toolStripButton4
+            // 
+            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton4.Image = global::TotalSmartCoding.Properties.Resources.esc;
+            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton4.Name = "toolStripButton4";
+            this.toolStripButton4.Size = new System.Drawing.Size(56, 56);
+            this.toolStripButton4.Text = "toolStripButton4";
+            // 
+            // toolStripButton5
+            // 
+            this.toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton5.Image = global::TotalSmartCoding.Properties.Resources.esc;
+            this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton5.Name = "toolStripButton5";
+            this.toolStripButton5.Size = new System.Drawing.Size(56, 56);
+            this.toolStripButton5.Text = "toolStripButton5";
+            // 
+            // toolStripButton6
+            // 
+            this.toolStripButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton6.Image = global::TotalSmartCoding.Properties.Resources.esc;
+            this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton6.Name = "toolStripButton6";
+            this.toolStripButton6.Size = new System.Drawing.Size(56, 56);
+            this.toolStripButton6.Text = "toolStripButton6";
+            // 
+            // toolStripButton7
+            // 
+            this.toolStripButton7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton7.Image = global::TotalSmartCoding.Properties.Resources.esc;
+            this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton7.Name = "toolStripButton7";
+            this.toolStripButton7.Size = new System.Drawing.Size(56, 56);
+            this.toolStripButton7.Text = "toolStripButton7";
+            // 
+            // toolStrip9
+            // 
+            this.toolStrip9.BackColor = System.Drawing.Color.Transparent;
+            this.toolStrip9.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip9.ImageScalingSize = new System.Drawing.Size(52, 52);
+            this.toolStrip9.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton8,
+            this.toolStripButton9,
+            this.toolStripButton10,
+            this.toolStripButton11,
+            this.toolStripButton12});
+            this.toolStrip9.Location = new System.Drawing.Point(0, 468);
+            this.toolStrip9.Name = "toolStrip9";
+            this.toolStrip9.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.toolStrip9.Size = new System.Drawing.Size(379, 59);
+            this.toolStrip9.TabIndex = 17;
+            this.toolStrip9.Text = "toolStrip9";
+            // 
+            // toolStripButton8
+            // 
+            this.toolStripButton8.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton8.Image = global::TotalSmartCoding.Properties.Resources._9_icon64;
+            this.toolStripButton8.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton8.Name = "toolStripButton8";
+            this.toolStripButton8.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.toolStripButton8.Size = new System.Drawing.Size(56, 56);
+            this.toolStripButton8.Tag = "9";
+            this.toolStripButton8.Text = "9";
+            // 
+            // toolStripButton9
+            // 
+            this.toolStripButton9.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton9.Image = global::TotalSmartCoding.Properties.Resources._8_icon64;
+            this.toolStripButton9.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton9.Name = "toolStripButton9";
+            this.toolStripButton9.Size = new System.Drawing.Size(56, 56);
+            this.toolStripButton9.Tag = "8";
+            this.toolStripButton9.Text = "8";
+            // 
+            // toolStripButton10
+            // 
+            this.toolStripButton10.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton10.Image = global::TotalSmartCoding.Properties.Resources._7_icon64;
+            this.toolStripButton10.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton10.Name = "toolStripButton10";
+            this.toolStripButton10.Size = new System.Drawing.Size(56, 56);
+            this.toolStripButton10.Tag = "7";
+            this.toolStripButton10.Text = "7";
+            // 
+            // toolStripButton11
+            // 
+            this.toolStripButton11.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton11.Image = global::TotalSmartCoding.Properties.Resources._6_icon64;
+            this.toolStripButton11.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton11.Name = "toolStripButton11";
+            this.toolStripButton11.Size = new System.Drawing.Size(56, 56);
+            this.toolStripButton11.Tag = "6";
+            this.toolStripButton11.Text = "6";
+            // 
+            // toolStripButton12
+            // 
+            this.toolStripButton12.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton12.Image = global::TotalSmartCoding.Properties.Resources.esc;
+            this.toolStripButton12.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton12.Name = "toolStripButton12";
+            this.toolStripButton12.Size = new System.Drawing.Size(56, 56);
+            this.toolStripButton12.Text = "toolStripButton7";
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(13, 52);
+            this.toolStripLabel1.Text = " ";
             // 
             // TabletMDI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1244, 580);
-            this.Controls.Add(this.InvisibleMainMenuStripOfMDI);
-            this.Controls.Add(this.panelLeft);
+            this.ClientSize = new System.Drawing.Size(1103, 660);
+            this.Controls.Add(this.panelRight);
             this.Controls.Add(this.toolstripMain);
+            this.Controls.Add(this.InvisibleMainMenuStripOfMDI);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.InvisibleMainMenuStripOfMDI;
             this.Name = "TabletMDI";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Tablet";
-            this.Load += new System.EventHandler(this.TabletMDI_Load);
-            this.MdiChildActivate += new System.EventHandler(this.TabletMDI_MdiChildActivate);
-            this.panelLeft.ResumeLayout(false);
-            this.panelLeft.PerformLayout();
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.MasterMdi_Load);
+            this.MdiChildActivate += new System.EventHandler(this.MasterMdi_MdiChildActivate);
+            this.panelRight.ResumeLayout(false);
+            this.panelRight.PerformLayout();
             this.toolStrip8.ResumeLayout(false);
             this.toolStrip8.PerformLayout();
             this.toolStrip7.ResumeLayout(false);
@@ -592,8 +869,12 @@
             this.toolStrip4.PerformLayout();
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
-            this.toolStripTop.ResumeLayout(false);
-            this.toolStripTop.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
+            this.toolstripMain.ResumeLayout(false);
+            this.toolstripMain.PerformLayout();
+            this.toolStrip9.ResumeLayout(false);
+            this.toolStrip9.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -601,7 +882,16 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel panelLeft;
+        private System.Windows.Forms.ImageList imageListModuleMasterSmall;
+        private System.Windows.Forms.ImageList imageListModuleMasterLarge;
+        private System.Windows.Forms.ImageList imageListTaskMaster;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton buttonLoading;
+        private System.Windows.Forms.ToolStripButton buttonClearFilters;
+        private System.Windows.Forms.ToolStrip toolstripMain;
+        private System.Windows.Forms.ToolStripButton buttonEscape;
+        private System.Windows.Forms.MenuStrip InvisibleMainMenuStripOfMDI;
+        private System.Windows.Forms.Panel panelRight;
         private System.Windows.Forms.ToolStrip toolStrip8;
         private System.Windows.Forms.ToolStripButton Softkey609;
         private System.Windows.Forms.ToolStripButton Softkey608;
@@ -637,10 +927,21 @@
         private System.Windows.Forms.ToolStripButton Softkey003;
         private System.Windows.Forms.ToolStripButton Softkey002;
         private System.Windows.Forms.ToolStripButton Softkey001;
-        private System.Windows.Forms.MenuStrip InvisibleMainMenuStripOfMDI;
-        private System.Windows.Forms.ToolStrip toolstripMain;
-        private System.Windows.Forms.ToolStrip toolStripTop;
-        private System.Windows.Forms.ToolStripComboBox comboFilterTexts;
-        private System.Windows.Forms.ToolStripButton buttonClearFilters;
+        private System.Windows.Forms.ToolStripTextBox textBoxFilters;
+        private System.Windows.Forms.ToolStrip toolStrip9;
+        private System.Windows.Forms.ToolStripButton toolStripButton8;
+        private System.Windows.Forms.ToolStripButton toolStripButton9;
+        private System.Windows.Forms.ToolStripButton toolStripButton10;
+        private System.Windows.Forms.ToolStripButton toolStripButton11;
+        private System.Windows.Forms.ToolStripButton toolStripButton12;
+        private System.Windows.Forms.ToolStripButton toolStripButton7;
+        private System.Windows.Forms.ToolStripButton toolStripButton6;
+        private System.Windows.Forms.ToolStripButton toolStripButton5;
+        private System.Windows.Forms.ToolStripButton toolStripButton4;
+        private System.Windows.Forms.ToolStripButton toolStripButton3;
+        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+
     }
 }

@@ -18,7 +18,7 @@ using TotalSmartCoding.ViewModels.Inventories;
 
 namespace TotalSmartCoding.Views.Inventories.GoodsIssues
 {
-    public partial class WizardDetail : Form, IToolstripMerge
+    public partial class WizardDetail : Form, IToolstripMerge, IToolstripTablet
     {
         public virtual ToolStrip toolstripChild { get; protected set; }
 
@@ -31,7 +31,6 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
 
             this.toolstripChild = this.toolStrip1;
             this.customTabBatch = new CustomTabControl();
-            //this.customTabBatch.ImageList = this.imageListTabControl;
 
             this.customTabBatch.Font = this.fastPendingPallets.Font;
             this.customTabBatch.DisplayStyle = TabStyle.VisualStudio;
@@ -79,12 +78,18 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
             }
         }
 
+        public void ApplyFilter(string filterTexts)
+        {
+            OLVHelpers.ApplyFilters(this.fastPendingPallets, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
+            OLVHelpers.ApplyFilters(this.fastPendingCartons, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
+            OLVHelpers.ApplyFilters(this.fastPendingPacks, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
+        }
 
         private void buttonAddESC_Click(object sender, EventArgs e)
         {
             try
             {
-                if (sender.Equals(this.buttonAdd) || sender.Equals(this.buttonAddExit))
+                if (sender.Equals(this.buttonAddExit))
                 {
                     FastObjectListView fastPendingList = this.customTabBatch.SelectedIndex == 0 ? this.fastPendingPallets : (this.customTabBatch.SelectedIndex == 1 ? this.fastPendingCartons : this.customTabBatch.SelectedIndex == 2 ? this.fastPendingPacks : null);
 
@@ -148,16 +153,11 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                         }
                     }
 
-
-                    if (sender.Equals(this.buttonAddExit))
-                        this.DialogResult = DialogResult.OK;
-                    else
-                        this.WizardDetail_Load(this, new EventArgs());
+                    this.MdiParent.DialogResult = DialogResult.OK;
                 }
 
                 if (sender.Equals(this.buttonESC))
-                    this.DialogResult = DialogResult.Cancel;
-
+                    this.MdiParent.DialogResult = DialogResult.Cancel;
 
             }
             catch (Exception exception)

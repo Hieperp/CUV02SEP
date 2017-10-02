@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.buttonESC = new System.Windows.Forms.ToolStripButton();
+            this.buttonAddExit = new System.Windows.Forms.ToolStripButton();
             this.fastPendingPallets = new BrightIdeasSoftware.FastObjectListView();
             this.olvIsSelected = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvDeliveryAdviceEntryDate = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -51,9 +53,6 @@
             this.olvColumn10 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvPackCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn12 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.buttonESC = new System.Windows.Forms.ToolStripButton();
-            this.buttonAddExit = new System.Windows.Forms.ToolStripButton();
-            this.buttonAdd = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastPendingPallets)).BeginInit();
             this.panelMaster.SuspendLayout();
@@ -68,8 +67,7 @@
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.buttonESC,
-            this.buttonAddExit,
-            this.buttonAdd});
+            this.buttonAddExit});
             this.toolStrip1.Location = new System.Drawing.Point(0, 548);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -77,6 +75,28 @@
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             this.toolStrip1.Visible = false;
+            // 
+            // buttonESC
+            // 
+            this.buttonESC.Image = global::TotalSmartCoding.Properties.Resources.signout_icon_24;
+            this.buttonESC.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonESC.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonESC.Name = "buttonESC";
+            this.buttonESC.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.buttonESC.Size = new System.Drawing.Size(73, 52);
+            this.buttonESC.Text = "Close";
+            this.buttonESC.Click += new System.EventHandler(this.buttonAddESC_Click);
+            // 
+            // buttonAddExit
+            // 
+            this.buttonAddExit.Image = global::TotalSmartCoding.Properties.Resources.Add_continue;
+            this.buttonAddExit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonAddExit.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonAddExit.Name = "buttonAddExit";
+            this.buttonAddExit.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.buttonAddExit.Size = new System.Drawing.Size(158, 52);
+            this.buttonAddExit.Text = "Add and Close";
+            this.buttonAddExit.Click += new System.EventHandler(this.buttonAddESC_Click);
             // 
             // fastPendingPallets
             // 
@@ -116,7 +136,6 @@
             // olvIsSelected
             // 
             this.olvIsSelected.HeaderCheckBox = true;
-            this.olvIsSelected.HeaderCheckState = System.Windows.Forms.CheckState.Checked;
             this.olvIsSelected.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvIsSelected.Text = "";
             this.olvIsSelected.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -166,7 +185,7 @@
             this.panelMaster.Location = new System.Drawing.Point(0, 0);
             this.panelMaster.Name = "panelMaster";
             this.panelMaster.Padding = new System.Windows.Forms.Padding(0, 9, 0, 0);
-            this.panelMaster.Size = new System.Drawing.Size(1147, 548);
+            this.panelMaster.Size = new System.Drawing.Size(1147, 603);
             this.panelMaster.TabIndex = 71;
             // 
             // fastPendingCartons
@@ -207,7 +226,6 @@
             // olvColumn1
             // 
             this.olvColumn1.HeaderCheckBox = true;
-            this.olvColumn1.HeaderCheckState = System.Windows.Forms.CheckState.Checked;
             this.olvColumn1.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvColumn1.Text = "";
             this.olvColumn1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -286,7 +304,6 @@
             // olvColumn7
             // 
             this.olvColumn7.HeaderCheckBox = true;
-            this.olvColumn7.HeaderCheckState = System.Windows.Forms.CheckState.Checked;
             this.olvColumn7.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvColumn7.Text = "";
             this.olvColumn7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -326,39 +343,6 @@
             this.olvColumn12.AspectName = "CommodityName";
             this.olvColumn12.FillsFreeSpace = true;
             this.olvColumn12.Text = "Item Name";
-            // 
-            // buttonESC
-            // 
-            this.buttonESC.Image = global::TotalSmartCoding.Properties.Resources.signout_icon_24;
-            this.buttonESC.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.buttonESC.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonESC.Name = "buttonESC";
-            this.buttonESC.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.buttonESC.Size = new System.Drawing.Size(73, 52);
-            this.buttonESC.Text = "Close";
-            this.buttonESC.Click += new System.EventHandler(this.buttonAddESC_Click);
-            // 
-            // buttonAddExit
-            // 
-            this.buttonAddExit.Image = global::TotalSmartCoding.Properties.Resources.Oxygen_Icons_org_Oxygen_Actions_go_next_view;
-            this.buttonAddExit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.buttonAddExit.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonAddExit.Name = "buttonAddExit";
-            this.buttonAddExit.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.buttonAddExit.Size = new System.Drawing.Size(158, 52);
-            this.buttonAddExit.Text = "Add and Close";
-            this.buttonAddExit.Click += new System.EventHandler(this.buttonAddESC_Click);
-            // 
-            // buttonAdd
-            // 
-            this.buttonAdd.Image = global::TotalSmartCoding.Properties.Resources.Oxygen_Icons_org_Oxygen_Actions_go_previous_view;
-            this.buttonAdd.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.buttonAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonAdd.Name = "buttonAdd";
-            this.buttonAdd.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.buttonAdd.Size = new System.Drawing.Size(89, 52);
-            this.buttonAdd.Text = "Add";
-            this.buttonAdd.Click += new System.EventHandler(this.buttonAddESC_Click);
             // 
             // WizardDetail
             // 
@@ -409,6 +393,5 @@
         private BrightIdeasSoftware.OLVColumn olvColumn10;
         private BrightIdeasSoftware.OLVColumn olvPackCode;
         private BrightIdeasSoftware.OLVColumn olvColumn12;
-        private System.Windows.Forms.ToolStripButton buttonAdd;
     }
 }

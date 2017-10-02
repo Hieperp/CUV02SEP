@@ -174,12 +174,6 @@
     <Compile Include="Views\Commons\CustomMessageBox.Designer.cs">
       <DependentUpon>CustomMessageBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Inventories\GoodsIssues\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\Inventories\GoodsIssues\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\Inventories\GoodsIssues\GoodsIssues.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -267,17 +261,17 @@
     <Compile Include="Views\Mains\BasicView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\Mains\MasterMDI.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\Mains\MasterMDI.Designer.cs">
-      <DependentUpon>MasterMDI.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\Mains\Logon.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\Mains\Logon.designer.cs">
       <DependentUpon>Logon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Mains\MasterMDI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Mains\MasterMDI.Designer.cs">
+      <DependentUpon>MasterMDI.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Mains\TabletMDI.cs">
       <SubType>Form</SubType>
@@ -356,9 +350,6 @@
     <EmbeddedResource Include="Views\Commons\CustomMessageBox.resx">
       <DependentUpon>CustomMessageBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Inventories\GoodsIssues\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Views\Inventories\GoodsIssues\GoodsIssues.resx">
       <DependentUpon>GoodsIssues.cs</DependentUpon>
     </EmbeddedResource>
@@ -404,11 +395,11 @@
     <EmbeddedResource Include="Views\Mains\BasicView.resx">
       <DependentUpon>BasicView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Mains\MasterMDI.resx">
-      <DependentUpon>MasterMDI.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Views\Mains\Logon.resx">
       <DependentUpon>Logon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Mains\MasterMDI.resx">
+      <DependentUpon>MasterMDI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Mains\TabletMDI.resx">
       <DependentUpon>TabletMDI.cs</DependentUpon>
@@ -996,6 +987,7 @@
     <None Include="Resources\Cross-UnVerify.png" />
     <None Include="Resources\edit_tasks-32.png" />
     <None Include="Resources\Checklist32.png" />
+    <None Include="Resources\Fnd-Oxygen.ico" />
     <Content Include="Resources\Icons-Land-Play-Stop-Pause-Play-Pressed.ico" />
     <None Include="Resources\Land-Play.ico" />
     <None Include="Resources\palet031.ico" />
@@ -1092,6 +1084,7 @@
     <None Include="Resources\Sign_Order_48.png" />
     <None Include="Resources\Sign_Order_32.png" />
     <None Include="Resources\japanese-cross.png" />
+    <None Include="Resources\Search-vista.ico" />
     <Content Include="Resources\Toolbar Image1.png" />
     <None Include="Resources\Umar123-Carton.ico" />
     <None Include="Resources\Truck-24.png" />
