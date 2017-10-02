@@ -27,6 +27,7 @@ using TotalCore.Repositories.Commons;
 using TotalBase;
 using TotalModel.Models;
 using TotalSmartCoding.Properties;
+using TotalDTO.Inventories;
 
 namespace TotalSmartCoding.Views.Inventories.GoodsIssues
 {
@@ -77,18 +78,21 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
 
                 this.customTabCenter.DisplayStyle = TabStyle.VisualStudio;
 
-                this.customTabCenter.TabPages.Add("tabDetailPallets", "Issue pallet list                    ");
-                this.customTabCenter.TabPages.Add("tabDescription", "Description                    ");
-                this.customTabCenter.TabPages.Add("tabRemarks", "Remarks                    ");
+                this.customTabCenter.TabPages.Add("tabDetailPallets", "Pallet Details        ");
+                this.customTabCenter.TabPages.Add("tabDetailPallets", "Carton Details        ");
+                this.customTabCenter.TabPages.Add("tabDescription", "Description         ");
+                this.customTabCenter.TabPages.Add("tabRemarks", "Remarks                 ");
                 this.customTabCenter.TabPages[0].Controls.Add(this.gridexPalletDetails);
-                this.customTabCenter.TabPages[1].Controls.Add(this.textexDescription);
-                this.customTabCenter.TabPages[2].Controls.Add(this.textexRemarks);
+                this.customTabCenter.TabPages[1].Controls.Add(this.gridexCartonDetails);
+                this.customTabCenter.TabPages[2].Controls.Add(this.textexDescription);
+                this.customTabCenter.TabPages[3].Controls.Add(this.textexRemarks);
 
-                this.customTabCenter.TabPages[1].Padding = new Padding(30, 30, 30, 30);
                 this.customTabCenter.TabPages[2].Padding = new Padding(30, 30, 30, 30);
+                this.customTabCenter.TabPages[3].Padding = new Padding(30, 30, 30, 30);
 
                 this.customTabCenter.Dock = DockStyle.Fill;
                 this.gridexPalletDetails.Dock = DockStyle.Fill;
+                this.gridexCartonDetails.Dock = DockStyle.Fill;
                 this.textexDescription.Dock = DockStyle.Fill;
                 this.textexRemarks.Dock = DockStyle.Fill;
                 this.panelMaster.Controls.Add(this.customTabCenter);
@@ -230,9 +234,28 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
         protected override void InitializeDataGridBinding()
         {
             this.gridexPalletDetails.AutoGenerateColumns = false;
+            this.gridexCartonDetails.AutoGenerateColumns = false;
             this.gridexPalletDetails.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            this.gridexPalletDetails.DataSource = this.goodsIssueViewModel.ViewDetails;
+            this.gridexCartonDetails.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            this.gridexPalletDetails.DataSource = this.goodsIssueViewModel.PalletDetails;
+            this.gridexCartonDetails.DataSource = this.goodsIssueViewModel.CartonDetails;
+
+            this.goodsIssueViewModel.ViewDetails.ListChanged += ViewDetails_ListChanged;
         }
+
+        private void ViewDetails_ListChanged(object sender, ListChangedEventArgs e)
+        {
+            if (e.ListChangedType == ListChangedType.ItemAdded || e.ListChangedType == ListChangedType.ItemDeleted || e.ListChangedType == ListChangedType.Reset)
+            {
+                this.customTabCenter.TabPages[0].Text = "Pallet Details [" + this.goodsIssueViewModel.PalletDetails.Count.ToString("N0") + " item(s)]             ";
+                this.customTabCenter.TabPages[1].Text = "Carton Details [" + this.goodsIssueViewModel.CartonDetails.Count.ToString("N0") + " item(s)]             ";
+
+                this.gridexPalletDetails.Columns["Pallet" + CommonExpressions.PropertyName<GoodsIssueDetailDTO>(p => p.DeliveryAdviceReference)].Visible = this.goodsIssueViewModel.DeliveryAdviceID == null;
+                this.gridexCartonDetails.Columns["Carton" + CommonExpressions.PropertyName<GoodsIssueDetailDTO>(p => p.DeliveryAdviceReference)].Visible = this.goodsIssueViewModel.DeliveryAdviceID == null;
+            }
+        }
+
 
         protected override Controllers.BaseController myController
         {
@@ -300,7 +323,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
             }
         }
 
-        private void gridexPalletDetails_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        private void gridexViewDetails_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
             try
             {

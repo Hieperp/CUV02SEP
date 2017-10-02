@@ -104,6 +104,15 @@ namespace TotalDTO.Inventories
             this.DtoDetails().ToList().ForEach(e => { e.WarehouseID = this.WarehouseID; if (this.HasPickup && pickupReferences.IndexOf(e.PickupReference) < 0) pickupReferences = pickupReferences + (pickupReferences != "" ? ", " : "") + e.PickupReference; });
             this.PickupReferences = pickupReferences;
         }
+
+        protected override List<ValidationRule> CreateRules()
+        {
+            List<ValidationRule> validationRules = base.CreateRules();
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<GoodsReceiptPrimitiveDTO>(p => p.WarehouseID), "Vui lòng chọn kho.", delegate { return (this.WarehouseID != null && this.WarehouseID > 0); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<GoodsReceiptPrimitiveDTO>(p => p.StorekeeperID), "Vui lòng chọn nhân viên kho.", delegate { return (this.StorekeeperID != null && this.StorekeeperID > 0); }));
+
+            return validationRules;
+        }
     }
 
     public class GoodsReceiptDTO : GoodsReceiptPrimitiveDTO, IBaseDetailEntity<GoodsReceiptDetailDTO>
@@ -142,18 +151,6 @@ namespace TotalDTO.Inventories
         public BindingListView<GoodsReceiptDetailDTO> PackDetails { get; private set; }
         public BindingListView<GoodsReceiptDetailDTO> CartonDetails { get; private set; }
         public BindingListView<GoodsReceiptDetailDTO> PalletDetails { get; private set; }
-
-
-
-        protected override List<ValidationRule> CreateRules()
-        {
-            List<ValidationRule> validationRules = base.CreateRules();
-            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<PickupDTO>(p => p.WarehouseID), "Vui lòng chọn kho.", delegate { return (this.WarehouseID != null && this.WarehouseID > 0); }));
-            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<PickupDTO>(p => p.StorekeeperID), "Vui lòng chọn nhân viên kho.", delegate { return (this.StorekeeperID != null && this.StorekeeperID > 0); }));
-
-            return validationRules;
-
-        }
     }
 
 }

@@ -78,8 +78,8 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
                 this.customTabCenter.DisplayStyle = TabStyle.VisualStudio;
 
                 this.customTabCenter.TabPages.Add("tabDetailPallets", "Pickup pallet list                    ");
-                this.customTabCenter.TabPages.Add("tabDescription", "Description                    ");
-                this.customTabCenter.TabPages.Add("tabRemarks", "Remarks                    ");
+                this.customTabCenter.TabPages.Add("tabDescription", "Description         ");
+                this.customTabCenter.TabPages.Add("tabRemarks", "Remarks                 ");
                 this.customTabCenter.TabPages[0].Controls.Add(this.gridexPalletDetails);
                 this.customTabCenter.TabPages[1].Controls.Add(this.textexDescription);
                 this.customTabCenter.TabPages[2].Controls.Add(this.textexRemarks);

@@ -89,7 +89,7 @@ namespace TotalDTO.Inventories
 
         public override string Caption
         {
-            get { return "D.A: " + (this.DeliveryAdviceID != null ? this.DeliveryAdviceReference + ", on " + this.DeliveryAdviceEntryDate.ToString() : this.DeliveryAdviceReferences) + ", " + (this.CustomerName != "" ? "Customer: " : "") + this.CustomerName.Substring(0, this.CustomerName.Length > 16? 15: this.CustomerName.Length) + (this.CustomerName != "" ? ", " : "") + "Issue: " + this.Reference + "             Total Quantity: " + this.TotalQuantity.ToString() + ",    Total Volume: " + this.TotalLineVolume.ToString("N2"); }
+            get { return "D.A: " + (this.DeliveryAdviceID != null ? this.DeliveryAdviceReference + ", on " + this.DeliveryAdviceEntryDate.ToString() : this.DeliveryAdviceReferences) + ", " + (this.CustomerName != null ? "Customer: " + this.CustomerName.Substring(0, this.CustomerName.Length > 26 ? 25 : this.CustomerName.Length) + ", " : "") + "Issue: " + (this.Reference != null ? this.Reference : "...") + "             Total Quantity: " + this.TotalQuantity.ToString() + ",    Total Volume: " + this.TotalLineVolume.ToString("N2"); }
         }
 
         public override void PerformPresaveRule()
@@ -127,8 +127,8 @@ namespace TotalDTO.Inventories
             this.CartonDetails = new BindingListView<GoodsIssueDetailDTO>(this.GoodsIssueViewDetails);
             this.PalletDetails = new BindingListView<GoodsIssueDetailDTO>(this.GoodsIssueViewDetails);
 
-            this.PalletDetails.ApplyFilter(f => f.PackID != null);
-            this.PalletDetails.ApplyFilter(f => f.CartonID != null);
+            this.PackDetails.ApplyFilter(f => f.PackID != null);
+            this.CartonDetails.ApplyFilter(f => f.CartonID != null);
             this.PalletDetails.ApplyFilter(f => f.PalletID != null);
         }
 
@@ -148,7 +148,6 @@ namespace TotalDTO.Inventories
         public BindingListView<GoodsIssueDetailDTO> PackDetails { get; private set; }
         public BindingListView<GoodsIssueDetailDTO> CartonDetails { get; private set; }
         public BindingListView<GoodsIssueDetailDTO> PalletDetails { get; private set; }
-
     }
 
 }
