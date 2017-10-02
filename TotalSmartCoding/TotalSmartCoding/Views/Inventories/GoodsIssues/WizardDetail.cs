@@ -18,8 +18,10 @@ using TotalSmartCoding.ViewModels.Inventories;
 
 namespace TotalSmartCoding.Views.Inventories.GoodsIssues
 {
-    public partial class WizardDetail : Form
+    public partial class WizardDetail : Form, IToolstripMerge
     {
+        public virtual ToolStrip toolstripChild { get; protected set; }
+
         private GoodsIssueViewModel goodsIssueViewModel;
         private PendingDeliveryAdviceDetail pendingDeliveryAdviceDetail;
         private CustomTabControl customTabBatch;
@@ -27,6 +29,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
         {
             InitializeComponent();
 
+            this.toolstripChild = this.toolStrip1;
             this.customTabBatch = new CustomTabControl();
             //this.customTabBatch.ImageList = this.imageListTabControl;
 

@@ -174,6 +174,12 @@
     <Compile Include="Views\Commons\CustomMessageBox.Designer.cs">
       <DependentUpon>CustomMessageBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Inventories\GoodsIssues\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Inventories\GoodsIssues\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Inventories\GoodsIssues\GoodsIssues.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -273,6 +279,12 @@
     <Compile Include="Views\Mains\Logon.designer.cs">
       <DependentUpon>Logon.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Mains\TabletMDI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Mains\TabletMDI.Designer.cs">
+      <DependentUpon>TabletMDI.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Productions\Batches.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -344,6 +356,9 @@
     <EmbeddedResource Include="Views\Commons\CustomMessageBox.resx">
       <DependentUpon>CustomMessageBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Inventories\GoodsIssues\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Inventories\GoodsIssues\GoodsIssues.resx">
       <DependentUpon>GoodsIssues.cs</DependentUpon>
     </EmbeddedResource>
@@ -394,6 +409,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Mains\Logon.resx">
       <DependentUpon>Logon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Mains\TabletMDI.resx">
+      <DependentUpon>TabletMDI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Productions\Batches.resx">
       <DependentUpon>Batches.cs</DependentUpon>

@@ -123,8 +123,8 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
             List<Control> controls = ViewHelpers.GetAllControls(this);
             foreach (Control control in controls)
             {
-                if (control is Label ) control.Font = titleFont;
-                else                     if (control is TextBox || control is ComboBox || control is DateTimePicker) control.Font = font;
+                if (control is Label) control.Font = titleFont;
+                else if (control is TextBox || control is ComboBox || control is DateTimePicker) control.Font = font;
                 else if (control is FastObjectListView) control.Font = font;
                 else if (control is DataGridView)
                 {
@@ -297,6 +297,14 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
 
         protected override DialogResult wizardMaster()
         {
+
+            Form1 wizardDetail = new Form1();
+            TabletMDI tabletMDI = new TabletMDI(wizardDetail);
+            tabletMDI.ShowDialog();
+
+            return System.Windows.Forms.DialogResult.Cancel;
+
+
             WizardMaster wizardMaster = new WizardMaster(this.goodsIssueAPIs, this.goodsIssueViewModel);
             DialogResult dialogResult = wizardMaster.ShowDialog();
             if (dialogResult == System.Windows.Forms.DialogResult.OK) this.Save(false);
@@ -313,7 +321,8 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                     if (pendingDeliveryAdviceDetail != null)
                     {
                         WizardDetail wizardDetail = new WizardDetail(this.goodsIssueViewModel, pendingDeliveryAdviceDetail);
-                        if (wizardDetail.ShowDialog() == System.Windows.Forms.DialogResult.OK) this.Save(false);
+                        TabletMDI tabletMDI = new TabletMDI(wizardDetail);
+                        if (tabletMDI.ShowDialog() == System.Windows.Forms.DialogResult.OK) this.Save(false);
                     }
                 }
             }
