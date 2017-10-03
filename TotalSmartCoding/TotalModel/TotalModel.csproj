@@ -171,6 +171,12 @@
     <Compile Include="Models\ModuleDetail.cs">
       <DependentUpon>TotalSmartCoding.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ModuleIndex.cs">
+      <DependentUpon>TotalSmartCoding.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModuleViewDetail.cs">
+      <DependentUpon>TotalSmartCoding.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\OrganizationalUnit.cs">
       <DependentUpon>TotalSmartCoding.tt</DependentUpon>
     </Compile>

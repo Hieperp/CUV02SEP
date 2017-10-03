@@ -32,6 +32,11 @@ namespace TotalDAL.Repositories
             return;
             return;
 
+            Helpers.SqlProgrammability.Generals.Module Module = new Helpers.SqlProgrammability.Generals.Module(totalSmartCodingEntities);
+            Module.RestoreProcedure();
+
+            return;
+
             Helpers.SqlProgrammability.Inventories.GoodsIssue goodsIssue = new Helpers.SqlProgrammability.Inventories.GoodsIssue(totalSmartCodingEntities);
             goodsIssue.RestoreProcedure();
 
@@ -164,7 +169,7 @@ namespace TotalDAL.Repositories
 
         public int GetModuleID(GlobalEnums.NmvnTaskID nmvnTaskID)
         {
-            var moduleDetail = this.totalSmartCodingEntities.ModuleDetails.Where(w => w.TaskID == (int)nmvnTaskID).FirstOrDefault();
+            var moduleDetail = this.totalSmartCodingEntities.ModuleDetails.Where(w => w.ModuleDetailID == (int)nmvnTaskID).FirstOrDefault();
             return moduleDetail != null ? moduleDetail.ModuleID : 0;
         }
 

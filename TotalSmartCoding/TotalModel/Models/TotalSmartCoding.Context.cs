@@ -34,8 +34,6 @@ namespace TotalModel.Models
         public virtual DbSet<FillingLine> FillingLines { get; set; }
         public virtual DbSet<GoodsReceiptType> GoodsReceiptTypes { get; set; }
         public virtual DbSet<Location> Locations { get; set; }
-        public virtual DbSet<ModuleDetail> ModuleDetails { get; set; }
-        public virtual DbSet<Module> Modules { get; set; }
         public virtual DbSet<OrganizationalUnit> OrganizationalUnits { get; set; }
         public virtual DbSet<OrganizationalUnitUser> OrganizationalUnitUsers { get; set; }
         public virtual DbSet<Territory> Territories { get; set; }
@@ -58,6 +56,8 @@ namespace TotalModel.Models
         public virtual DbSet<SalesOrder> SalesOrders { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<DeliveryAdvice> DeliveryAdvices { get; set; }
+        public virtual DbSet<ModuleDetail> ModuleDetails { get; set; }
+        public virtual DbSet<Module> Modules { get; set; }
     
         public virtual ObjectResult<Nullable<int>> GetAccessLevel(Nullable<int> userID, Nullable<int> nMVNTaskID, Nullable<int> organizationalUnitID)
         {
@@ -1306,6 +1306,32 @@ namespace TotalModel.Models
                 new ObjectParameter("FillingLineID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<bool>>("GetPalletChanged", fillingLineIDParameter);
+        }
+    
+        public virtual ObjectResult<ModuleIndex> GetModuleIndexes(string aspUserID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
+        {
+            var aspUserIDParameter = aspUserID != null ?
+                new ObjectParameter("AspUserID", aspUserID) :
+                new ObjectParameter("AspUserID", typeof(string));
+    
+            var fromDateParameter = fromDate.HasValue ?
+                new ObjectParameter("FromDate", fromDate) :
+                new ObjectParameter("FromDate", typeof(System.DateTime));
+    
+            var toDateParameter = toDate.HasValue ?
+                new ObjectParameter("ToDate", toDate) :
+                new ObjectParameter("ToDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ModuleIndex>("GetModuleIndexes", aspUserIDParameter, fromDateParameter, toDateParameter);
+        }
+    
+        public virtual ObjectResult<ModuleViewDetail> GetModuleViewDetails(Nullable<int> moduleID)
+        {
+            var moduleIDParameter = moduleID.HasValue ?
+                new ObjectParameter("ModuleID", moduleID) :
+                new ObjectParameter("ModuleID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ModuleViewDetail>("GetModuleViewDetails", moduleIDParameter);
         }
     }
 }

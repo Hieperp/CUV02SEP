@@ -12,8 +12,6 @@
         <EntityTypeShape EntityType="TotalSmartCodingModel.FillingLine" Width="1.5" PointX="0.75" PointY="5.125" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.GoodsReceiptType" Width="1.25" PointX="5.25" PointY="24.5" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.Location" Width="1.5" PointX="6" PointY="8.25" />
-        <EntityTypeShape EntityType="TotalSmartCodingModel.ModuleDetail" Width="1.5" PointX="12.75" PointY="4.75" />
-        <EntityTypeShape EntityType="TotalSmartCodingModel.Module" Width="1.5" PointX="12.75" PointY="8.75" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.OrganizationalUnit" Width="1.5" PointX="8.25" PointY="29.5" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.OrganizationalUnitUser" Width="1.5" PointX="10.5" PointY="29.5" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.Territory" Width="1.5" PointX="0.75" PointY="0.75" />
@@ -99,6 +97,8 @@
         <AssociationConnector Association="TotalSmartCodingModel.FK_DeliveryAdvices_Locations" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_DeliveryAdvices_SalesOrders" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssues_DeliveryAdvices" />
+        <EntityTypeShape EntityType="TotalSmartCodingModel.ModuleDetail" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="TotalSmartCodingModel.Module" Width="1.5" PointX="5.375" PointY="4.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -10,15 +10,19 @@
 namespace TotalModel.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Module
+    public partial class ModuleViewDetail
     {
         public int ModuleID { get; set; }
-        public string Code { get; set; }
-        public string Name { get; set; }
-        public int SerialID { get; set; }
+        public string SoftDescription { get; set; }
+        public string Description { get; set; }
+        public string DescriptionEN { get; set; }
+        public string Actions { get; set; }
+        public string Controller { get; set; }
+        public double LastOpen { get; set; }
+        public double SerialID { get; set; }
         public string ImageIndex { get; set; }
-        public int InActive { get; set; }
+        public double InActive { get; set; }
+        public int ModuleDetailID { get; set; }
     }
 }

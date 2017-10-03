@@ -29,6 +29,8 @@ using TotalService.Sales;
 using TotalDAL.Repositories.Sales;
 using TotalCore.Repositories.Sales;
 using TotalSmartCoding.ViewModels.Sales;
+using TotalCore.Repositories.Generals;
+using TotalDAL.Repositories.Generals;
 //using TotalDAL.Repositories.Inventories;
 
 //using TotalService.Inventories;
@@ -98,6 +100,11 @@ namespace TotalSmartCoding.Libraries
                 Kernel.Bind<IAspNetUserRepository>().To<AspNetUserRepository>();
 
 
+
+                //Kernel.Bind<IModuleService>().To<ModuleService>();
+                Kernel.Bind<IModuleRepository>().To<ModuleRepository>();
+                Kernel.Bind<IModuleAPIRepository>().To<ModuleAPIRepository>();
+                //Kernel.Bind<ModuleViewModel>().ToSelf();
 
 
                 //Kernel.Bind<ICustomerService>().To<CustomerService>();

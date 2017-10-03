@@ -8,6 +8,10 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
+using Ninject;
+
+
 using TotalBase.Enums;
 using TotalSmartCoding.Libraries.Helpers;
 using TotalSmartCoding.Views.Commons;
@@ -23,6 +27,11 @@ using TotalSmartCoding.Views.Sales.SalesOrders;
 using TotalSmartCoding.Views.Sales.DeliveryAdvices;
 using TotalSmartCoding.Views.Inventories.WarehouseAdjustments;
 using TotalSmartCoding.Views.Inventories.GoodsReceipts;
+using Guifreaks.Navisuite;
+using TotalSmartCoding.Libraries;
+using TotalSmartCoding.Controllers.APIs.Generals;
+using TotalCore.Repositories.Generals;
+using TotalModel.Models;
 
 namespace TotalSmartCoding.Views.Mains
 {
@@ -84,7 +93,7 @@ namespace TotalSmartCoding.Views.Mains
 
 
 
-                //InitializeModuleMaster();
+                InitializeModuleMaster();
 
                 if (childForm != null)
                 {
@@ -131,6 +140,17 @@ namespace TotalSmartCoding.Views.Mains
             this.listViewTaskMaster.Columns[0].Width = this.listViewTaskMaster.Columns[0].Width + (this.naviBarModuleMaster.Collapsed ? -4 : 4);
         }
 
+        private void CommonControl_BindingComplete(object sender, BindingCompleteEventArgs e)
+        {
+            if (e.BindingCompleteState == BindingCompleteState.Exception) { ExceptionHandlers.ShowExceptionMessageBox(this, e.ErrorText); e.Cancel = true; }
+        }
+
+        #endregion Contractor
+
+
+
+
+        #region Load and Open Module, Task
 
         private void naviBarModuleMaster_ActiveBandChanged(object sender, EventArgs e)
         {
@@ -143,19 +163,163 @@ namespace TotalSmartCoding.Views.Mains
                 this.listViewTaskMaster.Visible = true;
                 SetWindowTheme(listViewTaskMaster.Handle, "explorer", null);
 
-                //int moduleID; if (int.TryParse(this.naviBarModuleMaster.ActiveBand.Tag.ToString(), out  moduleID)) InitializeTaskMaster(moduleID);
+                int moduleID; if (int.TryParse(this.naviBarModuleMaster.ActiveBand.Tag.ToString(), out  moduleID)) InitializeTaskMaster(moduleID);
             }
             catch (Exception exception)
             {
                 ExceptionHandlers.ShowExceptionMessageBox(this, exception);
             }
         }
-        private void CommonControl_BindingComplete(object sender, BindingCompleteEventArgs e)
+
+        private void InitializeModuleMaster()
         {
-            if (e.BindingCompleteState == BindingCompleteState.Exception) { ExceptionHandlers.ShowExceptionMessageBox(this, e.ErrorText); e.Cancel = true; }
+            try
+            {
+                //PublicModuleMasterTableAdapter publicModuleMasterTableAdapter = new PublicModuleMasterTableAdapter();
+                //GlobalControlingDTS.PublicModuleMasterDataTable publicModuleMasterDataTable = publicModuleMasterTableAdapter.GetData();
+
+                //foreach (GlobalControlingDTS.PublicModuleMasterRow publicModuleMasterRow in publicModuleMasterDataTable.Rows)
+                //{
+                //    NaviBand naviBand = new NaviBand();
+
+                //    naviBand.Text = publicModuleMasterRow.Description;
+                //    naviBand.Tag = publicModuleMasterRow.ModuleID.ToString();
+
+                //    naviBand.SmallImage = this.imageListModuleMasterSmall.Images[publicModuleMasterRow.ImageIndex];
+                //    naviBand.LargeImage = this.imageListModuleMasterLarge.Images[publicModuleMasterRow.ImageIndex];
+
+                //    this.naviBarModuleMaster.Bands.Add(naviBand);
+                //}
+
+
+                for (int i = 1; i <= 6; i++)
+                {
+                    if (i != 4 && i != 5)
+                    {
+                        NaviBand naviBand = new NaviBand();
+
+                        naviBand.Text = (i == 1 ? "Commons" : (i == 2 ? "Productions" : (i == 3 ? "Sales Admins" : (i == 6 ? "Inventories" : "Reports"))));
+                        naviBand.Tag = i.ToString();
+
+                        naviBand.SmallImage = this.imageListModuleMasterSmall.Images[i];
+                        naviBand.LargeImage = this.imageListModuleMasterLarge.Images[i];
+
+                        this.naviBarModuleMaster.Bands.Add(naviBand);
+                    }
+                }
+
+
+
+                this.naviBarModuleMaster.VisibleLargeButtons = this.naviBarModuleMaster.Bands.Count;
+                this.naviBarModuleMaster.PopupHeight = this.naviBarModuleMaster.Height + this.naviBarModuleMaster.HeaderHeight - (this.naviBarModuleMaster.ButtonHeight) * this.naviBarModuleMaster.Bands.Count - 15;
+            }
+            catch (Exception exception)
+            {
+                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+            }
         }
 
-        #endregion Contractor
+        private void InitializeTaskMaster(int moduleID)
+        {
+            try
+            {
+                this.listViewTaskMaster.Items.Clear();
+
+                ModuleAPIs moduleAPIs = new ModuleAPIs(CommonNinject.Kernel.Get<IModuleAPIRepository>());
+
+                IList<ModuleViewDetail> moduleViewDetails = moduleAPIs.GetModuleViewDetails(moduleID);
+
+                foreach (ModuleViewDetail moduleViewDetail in moduleViewDetails)
+                {
+                    this.listViewTaskMaster.Items.Add(moduleViewDetail.ModuleDetailID.ToString(), moduleViewDetail.Description, moduleViewDetail.ImageIndex);
+                }
+
+                SetWindowTheme(listViewTaskMaster.Handle, "explorer", null);
+            }
+            catch (Exception exception)
+            {
+                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+            }
+
+        }
+
+        private void listViewTaskMaster_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (this.listViewTaskMaster.SelectedItems.Count > 0)
+                {
+                    //Get taskID by ListViewItem key (The key defined when add ListViewItem to ListView)
+                    int taskID; if (!int.TryParse(this.listViewTaskMaster.SelectedItems[0].Name, out taskID)) return;
+
+                    //Find and active the current form
+                    for (int i = 0; i < this.MdiChildren.Length; i++)
+                    {
+                        IToolstripChild mdiChildCallToolStrip = this.MdiChildren[i] as IToolstripChild;
+                        if (mdiChildCallToolStrip != null)
+                        {
+                            if (taskID == (int)mdiChildCallToolStrip.NMVNTaskID)
+                            {
+                                Form mdiChildrenForm = (Form)this.MdiChildren[i];
+                                mdiChildrenForm.Activate();
+                                return;
+                            }
+                        }
+
+                    }
+
+                    //Open new form
+                    Form childForm;
+                    switch (taskID)
+                    {
+                        case (int)GlobalEnums.NmvnTaskID.Pickup:
+                            childForm = new Pickups();
+                            break;
+
+                        case (int)GlobalEnums.NmvnTaskID.GoodsReceipt:
+                            childForm = new GoodsReceipts();
+                            break;
+
+                        case (int)GlobalEnums.NmvnTaskID.SalesOrder:
+                            childForm = new SalesOrders();
+                            break;
+
+                        case (int)GlobalEnums.NmvnTaskID.DeliveryAdvice:
+                            childForm = new DeliveryAdvices();
+                            break;
+
+                        case (int)GlobalEnums.NmvnTaskID.GoodsIssue:
+                            childForm = new GoodsIssues();
+                            break;
+
+                        case (int)GlobalEnums.NmvnTaskID.WarehouseAdjustment:
+                            childForm = new WarehouseAdjustments();
+                            break;
+
+                        default:
+                            childForm = new BaseView();
+                            break;
+                    }
+
+                    if (childForm != null)
+                    {
+                        childForm.MdiParent = this;
+                        childForm.WindowState = FormWindowState.Maximized;
+                        childForm.Show();
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+            }
+        }
+
+        #endregion Load and Open Module, Task
+
+
+
+
 
 
         #region Form Events: Merge toolstrip & Set toolbar context
@@ -376,7 +540,7 @@ namespace TotalSmartCoding.Views.Mains
         private void buttonApprove_Click(object sender, EventArgs e)
         {
             try
-            {                
+            {
                 IToolstripChild toolstripChild = ActiveMdiChild as IToolstripChild;
                 if (toolstripChild != null) toolstripChild.Approve();
             }
@@ -421,6 +585,9 @@ namespace TotalSmartCoding.Views.Mains
         {
             if (GlobalVariables.FillingLineID != GlobalVariables.FillingLine.None) return;
 
+            this.buttonNaviBarHeader_Click(this.buttonNaviBarHeader, new EventArgs());
+            return;
+
             //Pickups grForm;
             //grForm = new Pickups();
 
@@ -430,14 +597,11 @@ namespace TotalSmartCoding.Views.Mains
             //SalesOrders grForm;
             //grForm = new SalesOrders();
 
-            //DeliveryAdvices grForm;
-            //grForm = new DeliveryAdvices();
+            DeliveryAdvices grForm;
+            grForm = new DeliveryAdvices();
 
-            //GoodsIssueXYZs grForm;
-            //grForm = new GoodsIssueXYZs();
-
-            GoodsIssues grForm;
-            grForm = new GoodsIssues();
+            //GoodsIssues grForm;
+            //grForm = new GoodsIssues();
 
             //WarehouseAdjustments grForm;
             //grForm = new WarehouseAdjustments();

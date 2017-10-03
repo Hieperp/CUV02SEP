@@ -14,7 +14,7 @@ namespace TotalModel.Models
     
     public partial class ModuleDetail
     {
-        public int TaskID { get; set; }
+        public int ModuleDetailID { get; set; }
         public int ModuleID { get; set; }
         public string SoftDescription { get; set; }
         public string Description { get; set; }

@@ -95,6 +95,7 @@
     <Compile Include="Controllers\APIs\Commons\FillingLineAPIs.cs" />
     <Compile Include="Controllers\APIs\Commons\WarehouseAdjustmentTypeAPIs.cs" />
     <Compile Include="Controllers\APIs\Commons\WarehouseAPIs.cs" />
+    <Compile Include="Controllers\APIs\Generals\ModuleAPIs.cs" />
     <Compile Include="Controllers\APIs\Inventories\GoodsIssueAPIs.cs" />
     <Compile Include="Controllers\APIs\Inventories\PickupAPIs.cs" />
     <Compile Include="Controllers\APIs\Inventories\WarehouseAdjustmentAPIs.cs" />

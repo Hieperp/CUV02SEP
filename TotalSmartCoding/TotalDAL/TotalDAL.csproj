@@ -57,6 +57,7 @@
     <Compile Include="Helpers\SqlProgrammability\Commons\FillingLine.cs" />
     <Compile Include="Helpers\SqlProgrammability\Commons\Warehouse.cs" />
     <Compile Include="Helpers\SqlProgrammability\Commons\WarehouseAdjustmentType.cs" />
+    <Compile Include="Helpers\SqlProgrammability\Generals\Module.cs" />
     <Compile Include="Helpers\SqlProgrammability\InitReference.cs" />
     <Compile Include="Helpers\SqlProgrammability\Inventories\GoodsIssue.cs" />
     <Compile Include="Helpers\SqlProgrammability\Inventories\GoodsReceipt.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="Repositories\Commons\FillingLineRepository.cs" />
     <Compile Include="Repositories\Commons\WarehouseAdjustmentTypeRepository.cs" />
     <Compile Include="Repositories\Commons\WarehouseRepository.cs" />
+    <Compile Include="Repositories\Generals\ModuleRepository.cs" />
     <Compile Include="Repositories\GenericAPIRepository.cs" />
     <Compile Include="Repositories\GenericRepository.cs" />
     <Compile Include="Repositories\GenericWithDetailRepository.cs" />
