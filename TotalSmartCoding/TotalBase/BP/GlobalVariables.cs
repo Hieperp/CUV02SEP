@@ -250,7 +250,7 @@ namespace TotalBase
             switch (GlobalVariables.FillingLineID)
             {
                 case FillingLine.Smallpack:
-                    return 4;
+                    return 6;
                 case FillingLine.Pail:
                     return 1;
                 case FillingLine.Drum:
