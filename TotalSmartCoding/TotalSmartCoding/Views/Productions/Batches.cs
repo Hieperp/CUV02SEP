@@ -140,10 +140,11 @@ namespace TotalSmartCoding.Views.Productions
             this.bindingRemarks = this.textexRemarks.DataBindings.Add("Text", this.batchViewModel, "Remarks", true, DataSourceUpdateMode.OnPropertyChanged);
 
             this.textexCommodityName.DataBindings.Add("Text", this.batchViewModel, CommonExpressions.PropertyName<BatchViewModel>(p => p.CommodityName), true);
+            this.textexCommodityAPICode.DataBindings.Add("Text", this.batchViewModel, CommonExpressions.PropertyName<BatchViewModel>(p => p.CommodityAPICode), true);
 
             CommodityAPIs commodityAPIs = new CommodityAPIs(CommonNinject.Kernel.Get<ICommodityAPIRepository>());
 
-            this.combexCommodityID.DataSource = commodityAPIs.GetCommodityBases();
+            this.combexCommodityID.DataSource = commodityAPIs.GetCommodityBases().Where(p => p.FillingLineIDs.Contains(((int)GlobalVariables.FillingLineID).ToString())).ToList();
             this.combexCommodityID.DisplayMember = CommonExpressions.PropertyName<CommodityBase>(p => p.Code);
             this.combexCommodityID.ValueMember = CommonExpressions.PropertyName<CommodityBase>(p => p.CommodityID);
             this.bindingCommodityID = this.combexCommodityID.DataBindings.Add("SelectedValue", this.batchViewModel, CommonExpressions.PropertyName<BatchViewModel>(p => p.CommodityID), true, DataSourceUpdateMode.OnPropertyChanged);
@@ -169,6 +170,7 @@ namespace TotalSmartCoding.Views.Productions
                 {
                     CommodityBase commodityBase = (CommodityBase)this.combexCommodityID.SelectedItem;
                     this.batchViewModel.CommodityName = commodityBase.Name;
+                    this.batchViewModel.CommodityAPICode = commodityBase.APICode;
                 }
             }
         }

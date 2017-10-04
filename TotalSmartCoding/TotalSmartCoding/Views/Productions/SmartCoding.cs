@@ -87,6 +87,7 @@ namespace TotalSmartCoding.Views.Productions
 
                 this.textBoxFillingLineName.TextBox.DataBindings.Add("Text", this.fillingData, "FillingLineName");
                 this.textBoxCommodityCode.TextBox.DataBindings.Add("Text", this.fillingData, "CommodityCode");
+                this.textBoxCommodityAPICode.TextBox.DataBindings.Add("Text", this.fillingData, "CommodityAPICode");
                 this.textBoxCommodityOfficialCode.TextBox.DataBindings.Add("Text", this.fillingData, "CommodityOfficialCode");
                 this.textBoxBatchCode.TextBox.DataBindings.Add("Text", this.fillingData, "BatchCode");
                 this.textNextPackNo.TextBox.DataBindings.Add("Text", this.fillingData, "NextPackNo");

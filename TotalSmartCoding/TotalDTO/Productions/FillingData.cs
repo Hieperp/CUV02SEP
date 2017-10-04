@@ -25,6 +25,7 @@ namespace TotalDTO.Productions
 
         private int commodityID;
         private string commodityCode;
+        private string commodityAPICode;
         private string commodityOfficialCode;
         private decimal volume;
 
@@ -89,6 +90,12 @@ namespace TotalDTO.Productions
             set { ApplyPropertyChange<FillingData, string>(ref this.commodityCode, o => o.CommodityCode, value); }
         }
 
+        public string CommodityAPICode
+        {
+            get { return this.commodityAPICode; }
+            set { ApplyPropertyChange<FillingData, string>(ref this.commodityAPICode, o => o.CommodityAPICode, value); }
+        }
+
         public string CommodityOfficialCode
         {
             get { return this.commodityOfficialCode; }
@@ -127,26 +134,7 @@ namespace TotalDTO.Productions
         public string BatchCode   //ResetSerialNumber
         {
             get { return this.batchCode; }
-            set
-            {
-                if (this.batchCode != value)
-                {
-                    if (value.Length == 8)
-                    {
-                        ApplyPropertyChange<FillingData, string>(ref this.batchCode, o => o.BatchCode, value);
-
-                        //DataTable dataTableFillingLineData = SQLDatabase.GetDataTable("SELECT LastPackNo, LastCartonNo FROM FillingLineData WHERE FillingLineID = " + (int)this.FillingLineID + " AND ProductID = " + this.ProductID + " AND SettingMonthID = " + this.SettingMonthID + " AND BatchNo = " + this.BatchNo);
-                        //if (dataTableFillingLineData.Rows.Count > 0)
-                        //    this.ResetSerialNumber(dataTableFillingLineData.Rows[0]["NextPackNo"].ToString(), this.LastPackNo, dataTableFillingLineData.Rows[0]["NextCartonNo"].ToString(), this.MonthCartonNumber);
-                        //else
-                        //    this.ResetSerialNumber("000001", this.LastPackNo, "900001", this.MonthCartonNumber);
-                    }
-                    else
-                    {
-                        throw new System.InvalidOperationException("NMVN: Invalid batch number format.");
-                    }
-                }
-            }
+            set { ApplyPropertyChange<FillingData, string>(ref this.batchCode, o => o.BatchCode, value); }
         }
 
 
@@ -338,30 +326,30 @@ namespace TotalDTO.Productions
 
 
 
-        public string FirstLine(bool isReadableText)
+        public string FirstLineA1(bool isReadableText)
+        {
+            return "CXVHP";
+        }
+
+        public string FirstLineA2(bool isReadableText)
+        {
+            return this.SettingDate.ToString("yyMMdd");
+        }
+
+
+        public string SecondLineA1(bool isReadableText)
         {
             return this.CommodityCode;
         }
 
-
-        public string SecondLine(bool isReadableText)
-        {
-            return this.SecondLineA1(isReadableText) + this.SecondLineA2(isReadableText);
-        }
-
-        public string SecondLineA1(bool isReadableText)
-        {
-            return this.BatchCode.Substring(0, 6);
-        }
-
         public string SecondLineA2(bool isReadableText)
         {
-            return this.SettingDate.ToString("ddMMyy");
+            return this.CommodityAPICode;
         }
 
-        public string ThirdLine(bool isReadableText)
+        public string ThirdLineA1(bool isReadableText)
         {
-            return this.FillingLineCode;
+            return this.BatchCode.Substring(0, 6);
         }
 
     }

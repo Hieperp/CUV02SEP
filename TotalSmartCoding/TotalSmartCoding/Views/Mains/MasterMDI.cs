@@ -97,7 +97,7 @@ namespace TotalSmartCoding.Views.Mains
 
                 if (childForm != null)
                 {
-
+                    this.naviBarModuleMaster.Visible = false;
                     childForm.MdiParent = this;
                     //childForm.Owner = this;
                     childForm.WindowState = FormWindowState.Maximized;

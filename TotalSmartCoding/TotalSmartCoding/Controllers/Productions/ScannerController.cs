@@ -879,7 +879,7 @@ namespace TotalSmartCoding.Controllers.Productions
         private string interpretBarcode(string barcode)
         {
             if (barcode == "NoRead")
-                barcode = this.FillingData.FirstLine(false) + this.FillingData.SecondLine(false) + new String('X', 5) + DateTime.Now.ToString("hhmm");
+                barcode = this.FillingData.FirstLineA1(false) + this.FillingData.FirstLineA2(false) + this.FillingData.SecondLineA1(false) + this.FillingData.SecondLineA2(false) + new String('X', 5) + DateTime.Now.ToString("hhmm");
             return barcode;
         }
 

@@ -20,5 +20,7 @@ namespace TotalModel.Models
         public decimal Volume { get; set; }
         public string PackageSize { get; set; }
         public decimal PackageVolume { get; set; }
+        public string APICode { get; set; }
+        public string FillingLineIDs { get; set; }
     }
 }

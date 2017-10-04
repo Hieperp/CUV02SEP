@@ -48,6 +48,8 @@ namespace TotalModel.Models
         public string Remarks { get; set; }
         public Nullable<bool> Discontinue { get; set; }
         public Nullable<bool> InActive { get; set; }
+        public string APICode { get; set; }
+        public string FillingLineIDs { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Batch> Batches { get; set; }

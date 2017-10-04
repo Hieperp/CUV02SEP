@@ -90,6 +90,8 @@
           <Property Name="Unit" Type="nvarchar" MaxLength="10" />
           <Property Name="PackageSize" Type="nvarchar" MaxLength="60" />
           <Property Name="Origin" Type="nvarchar" MaxLength="60" />
+          <Property Name="APICode" Type="nvarchar" MaxLength="60" />
+          <Property Name="FillingLineIDs" Type="nvarchar" MaxLength="60" />
           <Property Name="Volume" Type="decimal" Precision="18" Scale="3" Nullable="false" />
           <Property Name="Weight" Type="decimal" Precision="18" Scale="3" Nullable="false" />
           <Property Name="PackPerCarton" Type="int" Nullable="false" />
@@ -2778,6 +2780,7 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Type="String" Name="BatchCode" Nullable="false" MaxLength="20" />
           <Property Type="Boolean" Name="InActive" Nullable="false" />
           <Property Type="Decimal" Name="Volume" Nullable="false" Precision="18" Scale="3" />
+          <Property Type="String" Name="CommodityAPICode" Nullable="true" MaxLength="60" />
         </ComplexType>
         <ComplexType Name="CommodityIndex">
           <Property Type="Int32" Name="CommodityID" Nullable="false" />
@@ -2792,6 +2795,8 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Type="Decimal" Name="Volume" Nullable="false" Precision="18" Scale="3" />
           <Property Type="String" Name="PackageSize" Nullable="true" MaxLength="60" />
           <Property Type="Decimal" Name="PackageVolume" Nullable="false" Precision="18" Scale="3" />
+          <Property Type="String" Name="APICode" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="FillingLineIDs" Nullable="true" MaxLength="60" />
           </ComplexType>
         <ComplexType Name="PickupIndex">
           <Property Type="Int32" Name="PickupID" Nullable="false" />
@@ -3177,6 +3182,8 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <NavigationProperty Name="Packs" Relationship="TotalSmartCodingModel.FK_Packs_Commodities" FromRole="Commodity" ToRole="Pack" />
           <NavigationProperty Name="Pallets" Relationship="TotalSmartCodingModel.FK_Pallets_Commodities" FromRole="Commodity" ToRole="Pallet" />
           <NavigationProperty Name="PickupDetails" Relationship="TotalSmartCodingModel.FK_PickupDetails_Commodities" FromRole="Commodity" ToRole="PickupDetail" />
+          <Property Name="APICode" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="FillingLineIDs" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Batches_Commodities">
           <End Type="TotalSmartCodingModel.Commodity" Role="Commodity" Multiplicity="1" />
@@ -4805,6 +4812,7 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
                 <ScalarProperty Name="BatchCode" ColumnName="BatchCode" />
                 <ScalarProperty Name="InActive" ColumnName="InActive" />
                 <ScalarProperty Name="Volume" ColumnName="Volume" />
+                <ScalarProperty Name="CommodityAPICode" ColumnName="CommodityAPICode" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -4829,6 +4837,8 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
                 <ScalarProperty Name="Volume" ColumnName="Volume" />
                 <ScalarProperty Name="PackageSize" ColumnName="PackageSize" />
                 <ScalarProperty Name="PackageVolume" ColumnName="PackageVolume" />
+                <ScalarProperty Name="APICode" ColumnName="APICode" />
+                <ScalarProperty Name="FillingLineIDs" ColumnName="FillingLineIDs" />
                 </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -5189,6 +5199,8 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <EntitySetMapping Name="Commodities">
             <EntityTypeMapping TypeName="TotalSmartCodingModel.Commodity">
               <MappingFragment StoreEntitySet="Commodities">
+                <ScalarProperty Name="FillingLineIDs" ColumnName="FillingLineIDs" />
+                <ScalarProperty Name="APICode" ColumnName="APICode" />
                 <ScalarProperty Name="InActive" ColumnName="InActive" />
                 <ScalarProperty Name="Discontinue" ColumnName="Discontinue" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />

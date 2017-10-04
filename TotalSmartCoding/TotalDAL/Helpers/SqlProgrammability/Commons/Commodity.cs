@@ -96,7 +96,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
-            queryString = queryString + "       SELECT      CommodityID, Code, Name, Unit, Volume, PackageSize, PackageVolume " + "\r\n";
+            queryString = queryString + "       SELECT      CommodityID, Code, Name, Unit, APICode, Volume, PackageSize, PackageVolume, FillingLineIDs " + "\r\n";
             queryString = queryString + "       FROM        Commodities " + "\r\n";
             queryString = queryString + "       WHERE       InActive = 0 " + "\r\n";
 

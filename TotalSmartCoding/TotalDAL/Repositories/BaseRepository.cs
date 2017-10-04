@@ -32,6 +32,16 @@ namespace TotalDAL.Repositories
             return;
             return;
 
+            Helpers.SqlProgrammability.Commons.Commodity commodity = new Helpers.SqlProgrammability.Commons.Commodity(totalSmartCodingEntities);
+            commodity.RestoreProcedure();
+
+            return;
+
+            Helpers.SqlProgrammability.Productions.Batch batch = new Helpers.SqlProgrammability.Productions.Batch(totalSmartCodingEntities);
+            batch.RestoreProcedure();
+
+            return;
+
             Helpers.SqlProgrammability.Generals.Module Module = new Helpers.SqlProgrammability.Generals.Module(totalSmartCodingEntities);
             Module.RestoreProcedure();
 
@@ -98,17 +108,9 @@ namespace TotalDAL.Repositories
 
             
 
-            return;
-
-            Helpers.SqlProgrammability.Commons.Commodity commodity = new Helpers.SqlProgrammability.Commons.Commodity(totalSmartCodingEntities);
-            commodity.RestoreProcedure();
-
             
 
-            return;
-
-            Helpers.SqlProgrammability.Productions.Batch batch = new Helpers.SqlProgrammability.Productions.Batch(totalSmartCodingEntities);
-            batch.RestoreProcedure();
+            
 
             return;
 

@@ -182,7 +182,7 @@ namespace TotalSmartCoding.Views.Sales.DeliveryAdvices
                 if (this.combexCustomerID.SelectedItem != null)
                 {
                     CustomerBase customerBase = (CustomerBase)this.combexCustomerID.SelectedItem;
-                    this.deliveryAdviceViewModel.CustomerName = customerBase.Name;
+                    this.deliveryAdviceViewModel.CustomerName = customerBase.Name; //HERE: CHANGE => DONT SET setDirty: SEE ApplyPropertyChange FOR MORE INFO
                     //THIS CommonControl_BindingComplete WILL BE RAISED FOR EVERY BINDING => SO WE CAN NOT UPDATE RELATIVE PROPERTY BY THIS WAY. SHOULD THINK OF NEW WAY FOR UPDATE SUCH RELATIVE PROPERTY (SUCH AS: ContactInfo, ShippingAddress OF Customer)
                     //this.deliveryAdviceViewModel.ContactInfo = customerBase.ContactInfo;
                     //this.deliveryAdviceViewModel.ShippingAddress = customerBase.ShippingAddress;
