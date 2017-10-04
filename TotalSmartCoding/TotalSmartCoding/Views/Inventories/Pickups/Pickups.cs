@@ -73,7 +73,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
                 this.naviIndex.Bands[0].ClientArea.Controls.Add(this.fastPickupIndex);
 
                 this.customTabCenter = new CustomTabControl();
-                this.setFont(new Font("Niagara Engraved", 16), new Font("Calibri", 13), new Font("Niagara Engraved", 16));
+                if (GlobalVariables.ConfigFillingLineID == (int)GlobalVariables.FillingLine.Pickup) this.setFont(new Font("Niagara Engraved", 16), new Font("Calibri", 13), new Font("Niagara Engraved", 16));
 
                 this.customTabCenter.DisplayStyle = TabStyle.VisualStudio;
 

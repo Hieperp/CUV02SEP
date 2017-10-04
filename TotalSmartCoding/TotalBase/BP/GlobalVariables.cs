@@ -58,7 +58,7 @@ namespace TotalBase
 
 
             Pickup = 68,
-            Issue = 88
+            GoodsIssue = 88
         }
 
 
@@ -124,6 +124,7 @@ namespace TotalBase
         public static int LocationID = -1;
 
 
+        public static int ConfigFillingLineID = -1;
 
         public static FillingLine FillingLineID = FillingLine.Pail;
         public static string FillingLineCode = "P1";

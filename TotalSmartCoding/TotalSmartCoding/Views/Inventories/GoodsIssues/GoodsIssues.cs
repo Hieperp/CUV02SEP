@@ -74,7 +74,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                 this.naviIndex.Bands[0].ClientArea.Controls.Add(this.fastGoodsIssueIndex);
 
                 this.customTabCenter = new CustomTabControl();
-                this.setFont(new Font("Niagara Engraved", 16), new Font("Calibri", 13), new Font("Niagara Engraved", 16));
+                if (GlobalVariables.ConfigFillingLineID == (int)GlobalVariables.FillingLine.GoodsIssue) this.setFont(new Font("Niagara Engraved", 16), new Font("Calibri", 13), new Font("Niagara Engraved", 16));
 
                 this.customTabCenter.DisplayStyle = TabStyle.VisualStudio;
 

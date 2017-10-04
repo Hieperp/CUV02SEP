@@ -60,11 +60,11 @@ namespace TotalSmartCoding.Views.Mains
                 this.comboFillingLineID.DisplayMember = CommonExpressions.PropertyName<FillingLineBase>(p => p.Name);
                 this.comboFillingLineID.ValueMember = CommonExpressions.PropertyName<FillingLineBase>(p => p.FillingLineID);
 
-                int fillingLineID = 0;
-                if (int.TryParse(CommonConfigs.ReadSetting("FillingLineID"), out fillingLineID) && fillingLineID >= 1 && fillingLineID <= 3)
-                    this.comboFillingLineID.SelectedValue = fillingLineID;
+                if (int.TryParse(CommonConfigs.ReadSetting("FillingLineID"), out GlobalVariables.ConfigFillingLineID))
+                    if (GlobalVariables.ConfigFillingLineID >= 1 && GlobalVariables.ConfigFillingLineID <= 3)
+                        this.comboFillingLineID.SelectedValue = GlobalVariables.ConfigFillingLineID;
 
-                if (fillingLineID == 0)
+                if (!(GlobalVariables.ConfigFillingLineID == (int)GlobalVariables.FillingLine.Smallpack || GlobalVariables.ConfigFillingLineID == (int)GlobalVariables.FillingLine.Pail || GlobalVariables.ConfigFillingLineID == (int)GlobalVariables.FillingLine.Drum))
                 {
                     this.lbProductionLineID.Visible = false;
                     this.comboFillingLineID.Visible = false;
@@ -94,8 +94,8 @@ namespace TotalSmartCoding.Views.Mains
                     this.comboBoxAutonicsPortName.Items.Add("COM0");
                 }
 
-                string comportName = CommonConfigs.ReadSetting("ComportName"); 
-                if (this.comboBoxAutonicsPortName.Items.IndexOf(comportName) >=0 )
+                string comportName = CommonConfigs.ReadSetting("ComportName");
+                if (this.comboBoxAutonicsPortName.Items.IndexOf(comportName) >= 0)
                     this.comboBoxAutonicsPortName.SelectedIndex = this.comboBoxAutonicsPortName.Items.IndexOf(comportName);
 
 
@@ -153,7 +153,7 @@ namespace TotalSmartCoding.Views.Mains
             {
                 ContextAttributes.User = new UserInformation(1, 1, this.comboBoxEmployeeID.Text, new DateTime());
 
-                if ( (this.comboFillingLineID.Visible && this.comboFillingLineID.SelectedIndex < 0) || this.comboBoxAutonicsPortName.SelectedIndex < 0) throw new System.ArgumentException("Vui lòng chọn chuyền sản xuất (NOF1, NOF2, NOF...), và chọn đúng cổng COM để chạy phần mềm"); // || (this.comboFillingLineID.Enabled && (GlobalVariables.ProductionLine)this.comboFillingLineID.SelectedValue == GlobalVariables.ProductionLine.SERVER)
+                if ((this.comboFillingLineID.Visible && this.comboFillingLineID.SelectedIndex < 0) || this.comboBoxAutonicsPortName.SelectedIndex < 0) throw new System.ArgumentException("Vui lòng chọn chuyền sản xuất (NOF1, NOF2, NOF...), và chọn đúng cổng COM để chạy phần mềm"); // || (this.comboFillingLineID.Enabled && (GlobalVariables.ProductionLine)this.comboFillingLineID.SelectedValue == GlobalVariables.ProductionLine.SERVER)
 
                 if (this.comboFillingLineID.Visible)
                 {

@@ -1,15 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using TotalBase;
-using TotalSmartCoding.Views.Mains;
-
-using TotalSmartCoding.Libraries;
 using TotalBase.Enums;
+using TotalSmartCoding.Libraries;
+using TotalSmartCoding.Views.Mains;
 using TotalSmartCoding.Views.Productions;
+using TotalSmartCoding.Views.Inventories.Pickups;
+using TotalSmartCoding.Views.Inventories.GoodsIssues;
 
 namespace TotalSmartCoding
 {
@@ -34,15 +35,22 @@ namespace TotalSmartCoding
             //if (logon.ShowDialog() == DialogResult.OK) Application.Run(new MasterMDI(GlobalEnums.NmvnTaskID.SmartCoding));
             if (logon.ShowDialog() == DialogResult.OK)
             {
-                if (GlobalVariables.FillingLineID == GlobalVariables.FillingLine.None)
-                    Application.Run(new MasterMDI());
-                else
+                if (GlobalVariables.FillingLineID == GlobalVariables.FillingLine.Smallpack || GlobalVariables.FillingLineID == GlobalVariables.FillingLine.Pail || GlobalVariables.FillingLineID == GlobalVariables.FillingLine.Drum)
                     Application.Run(new MasterMDI(GlobalEnums.NmvnTaskID.SmartCoding, new SmartCoding()));
+                else
+                {
+                    if (GlobalVariables.ConfigFillingLineID == (int)GlobalVariables.FillingLine.Pickup)
+                        Application.Run(new MasterMDI(GlobalEnums.NmvnTaskID.Pickup, new Pickups()));
+                    else if (GlobalVariables.ConfigFillingLineID == (int)GlobalVariables.FillingLine.GoodsIssue)
+                        Application.Run(new MasterMDI(GlobalEnums.NmvnTaskID.GoodsIssue, new GoodsIssues()));
+                    else
+                        Application.Run(new MasterMDI());
+                }
             }
             logon.Dispose();
 
 
-            
+
         }
     }
 }

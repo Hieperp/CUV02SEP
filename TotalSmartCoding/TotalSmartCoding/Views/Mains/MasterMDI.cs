@@ -1,44 +1,47 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+using System.IO;
+using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Text;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using Ninject;
+using Guifreaks.Navisuite;
 
-
+using TotalBase;
 using TotalBase.Enums;
+
+using TotalCore.Repositories.Generals;
+using TotalModel.Models;
+
+using TotalSmartCoding.Properties;
+using TotalSmartCoding.Libraries;
 using TotalSmartCoding.Libraries.Helpers;
+using TotalSmartCoding.Controllers.APIs.Generals;
+
 using TotalSmartCoding.Views.Commons;
 
 using TotalSmartCoding.Views.Productions;
+
 using TotalSmartCoding.Views.Inventories.Pickups;
 using TotalSmartCoding.Views.Inventories.GoodsIssues;
-using TotalSmartCoding.Properties;
-using System.IO;
-using System.Reflection;
-using TotalBase;
-using TotalSmartCoding.Views.Sales.SalesOrders;
-using TotalSmartCoding.Views.Sales.DeliveryAdvices;
 using TotalSmartCoding.Views.Inventories.WarehouseAdjustments;
 using TotalSmartCoding.Views.Inventories.GoodsReceipts;
-using Guifreaks.Navisuite;
-using TotalSmartCoding.Libraries;
-using TotalSmartCoding.Controllers.APIs.Generals;
-using TotalCore.Repositories.Generals;
-using TotalModel.Models;
+
+using TotalSmartCoding.Views.Sales.SalesOrders;
+using TotalSmartCoding.Views.Sales.DeliveryAdvices;
 
 namespace TotalSmartCoding.Views.Mains
 {
     public partial class MasterMDI : Form
     {
         #region Contractor
-
 
         Binding beginingDateBinding;
         Binding endingDateBinding;
@@ -59,28 +62,52 @@ namespace TotalSmartCoding.Views.Mains
             : this(nmvnTaskID, null)
         { }
 
-        public MasterMDI(Form childForm)
-            : this(GlobalEnums.NmvnTaskID.UnKnown, childForm)
+        public MasterMDI(Form loadedView)
+            : this(GlobalEnums.NmvnTaskID.UnKnown, loadedView)
         { }
 
-        public MasterMDI(GlobalEnums.NmvnTaskID nmvnTaskID, Form childForm)
+        public MasterMDI(GlobalEnums.NmvnTaskID nmvnTaskID, Form loadedView)
         {
             InitializeComponent();
-            
+
             try
             {
                 this.nmvnTaskID = nmvnTaskID;
-                if (this.nmvnTaskID == GlobalEnums.NmvnTaskID.Batch) { this.Size = new Size(1120, 630); this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog; this.MinimizeBox = false; this.MaximizeBox = false; this.WindowState = FormWindowState.Normal; }
 
+                switch (this.nmvnTaskID)
+                {
+                    case GlobalEnums.NmvnTaskID.SmartCoding:
+                        this.buttonEscape.Visible = false;
+                        this.buttonLoading.Visible = false;
+                        this.buttonNew.Visible = false;
+                        this.buttonEdit.Visible = false;
+                        this.buttonSave.Visible = false;
+                        this.buttonDelete.Visible = false;
+                        this.buttonImport.Visible = false;
+                        this.buttonExport.Visible = false;
+                        this.toolStripSeparatorImport.Visible = false;
+                        this.buttonApprove.Visible = false;
+                        this.toolStripSeparatorApprove.Visible = false;
+                        this.buttonPrint.Visible = false;
+                        this.buttonPrintPreview.Visible = false;
+                        this.toolStripSeparatorPrint.Visible = false;
+                        this.separatorESC.Visible = false;
+                        this.toolStripTopHead.Visible = false;
+                        break;
+                    case GlobalEnums.NmvnTaskID.Batch:
+                        this.Size = new Size(1120, 630);
+                        this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+                        this.MinimizeBox = false; this.MaximizeBox = false; this.WindowState = FormWindowState.Normal;
+                        break;
+                    default:
+                        break;
+                }
 
                 this.beginingDateBinding = this.textFillterLowerDate.TextBox.DataBindings.Add("Text", GlobalEnums.GlobalOptionSetting, "LowerFillterDate", true);
                 this.endingDateBinding = this.textFillterUpperDate.TextBox.DataBindings.Add("Text", GlobalEnums.GlobalOptionSetting, "UpperFillterDate", true);
 
-
                 this.beginingDateBinding.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
                 this.endingDateBinding.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
-
-
 
                 this.buttonNaviBarHeaderVisibleBinding = this.buttonNaviBarHeader.DataBindings.Add("Visible", this.naviBarModuleMaster, "Collapsed", true, DataSourceUpdateMode.OnPropertyChanged);
                 this.buttonNaviBarHeaderVisibleBinding.Parse += new ConvertEventHandler(buttonNaviBarHeaderVisibleBinding_Parse);
@@ -89,21 +116,16 @@ namespace TotalSmartCoding.Views.Mains
                 this.listViewTaskMaster.Dock = DockStyle.Fill;
                 this.listViewTaskMaster.Columns.Add(new ColumnHeader() { Width = this.listViewTaskMaster.Width });
 
-
-                if (childForm != null)
+                if (loadedView != null)
                 {
                     this.naviBarModuleMaster.Visible = false;
-                    childForm.MdiParent = this;
-                    //childForm.Owner = this;
-                    childForm.WindowState = FormWindowState.Maximized;
-                    childForm.Show();
+                    this.OpenView(loadedView);
                 }
                 else
                 {
                     this.InitializeModuleMaster();
-                    this.OpenTestView();
+                    this.buttonNaviBarHeader_Click(this.buttonNaviBarHeader, new EventArgs());
                 }
-
 
                 DateTime buildDate = new FileInfo(Assembly.GetExecutingAssembly().Location).LastWriteTime;
                 this.statusVersion.Text = "Version 1.0i Date: " + buildDate.ToString("dd/MM/yyyy hh:mm:ss");
@@ -117,13 +139,37 @@ namespace TotalSmartCoding.Views.Mains
             }
         }
 
+        private void MasterMDI_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < this.MdiChildren.Length; i++)
+                {
+                    IToolstripChild mdiChildCallToolStrip = this.MdiChildren[i] as IToolstripChild;
+                    if (mdiChildCallToolStrip != null)
+                    {
+                        if (mdiChildCallToolStrip.ReadonlyMode) ((Form)mdiChildCallToolStrip).Close();
+                    }
+                    else
+                        this.MdiChildren[i].Close();
+                }
 
-        void buttonNaviBarHeaderVisibleBinding_Parse(object sender, ConvertEventArgs e)
+                if (this.MdiChildren.Length > 0)
+                    e.Cancel = true;
+            }
+            catch (Exception exception)
+            {
+                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+            }
+        }
+
+
+        private void buttonNaviBarHeaderVisibleBinding_Parse(object sender, ConvertEventArgs e)
         {
             e.Value = !(bool)e.Value;
         }
 
-        void buttonNaviBarHeaderVisibleBinding_Format(object sender, ConvertEventArgs e)
+        private void buttonNaviBarHeaderVisibleBinding_Format(object sender, ConvertEventArgs e)
         {
             e.Value = !(bool)e.Value;
         }
@@ -142,7 +188,7 @@ namespace TotalSmartCoding.Views.Mains
         {
             if (e.BindingCompleteState == BindingCompleteState.Exception) { ExceptionHandlers.ShowExceptionMessageBox(this, e.ErrorText); e.Cancel = true; }
         }
-
+        
         #endregion Contractor
 
 
@@ -267,44 +313,39 @@ namespace TotalSmartCoding.Views.Mains
                     }
 
                     //Open new form
-                    Form childForm;
+                    Form openingView;
                     switch (taskID)
                     {
                         case (int)GlobalEnums.NmvnTaskID.Pickup:
-                            childForm = new Pickups();
+                            openingView = new Pickups();
                             break;
 
                         case (int)GlobalEnums.NmvnTaskID.GoodsReceipt:
-                            childForm = new GoodsReceipts();
+                            openingView = new GoodsReceipts();
                             break;
 
                         case (int)GlobalEnums.NmvnTaskID.SalesOrder:
-                            childForm = new SalesOrders();
+                            openingView = new SalesOrders();
                             break;
 
                         case (int)GlobalEnums.NmvnTaskID.DeliveryAdvice:
-                            childForm = new DeliveryAdvices();
+                            openingView = new DeliveryAdvices();
                             break;
 
                         case (int)GlobalEnums.NmvnTaskID.GoodsIssue:
-                            childForm = new GoodsIssues();
+                            openingView = new GoodsIssues();
                             break;
 
                         case (int)GlobalEnums.NmvnTaskID.WarehouseAdjustment:
-                            childForm = new WarehouseAdjustments();
+                            openingView = new WarehouseAdjustments();
                             break;
 
                         default:
-                            childForm = new BaseView();
+                            openingView = new BaseView();
                             break;
                     }
 
-                    if (childForm != null)
-                    {
-                        childForm.MdiParent = this;
-                        childForm.WindowState = FormWindowState.Maximized;
-                        childForm.Show();
-                    }
+                    if (openingView != null) this.OpenView(openingView);
                 }
             }
             catch (Exception exception)
@@ -312,6 +353,14 @@ namespace TotalSmartCoding.Views.Mains
                 ExceptionHandlers.ShowExceptionMessageBox(this, exception);
             }
         }
+
+        private void OpenView(Form openingView)
+        {
+            openingView.MdiParent = this; //childForm.Owner = this;
+            openingView.WindowState = FormWindowState.Maximized;
+            openingView.Show();
+        }
+
 
         #endregion Load and Open Module, Task
 
@@ -578,122 +627,6 @@ namespace TotalSmartCoding.Views.Mains
         #endregion <Call Tool Strip>
 
 
-
-        private void OpenTestView()
-        {
-            if (GlobalVariables.FillingLineID != GlobalVariables.FillingLine.None) return;
-
-            this.buttonNaviBarHeader_Click(this.buttonNaviBarHeader, new EventArgs());
-            return;
-
-            //Pickups grForm;
-            //grForm = new Pickups();
-
-            //GoodsReceipts grForm;
-            //grForm = new GoodsReceipts();
-
-            //SalesOrders grForm;
-            //grForm = new SalesOrders();
-
-            DeliveryAdvices grForm;
-            grForm = new DeliveryAdvices();
-
-            //GoodsIssues grForm;
-            //grForm = new GoodsIssues();
-
-            //WarehouseAdjustments grForm;
-            //grForm = new WarehouseAdjustments();
-
-
-            if (grForm != null)
-            {
-                grForm.MdiParent = this;
-                grForm.WindowState = FormWindowState.Maximized;
-                grForm.Show();
-            }
-
-        }
-
-        private void toolStripButton2_Click(object sender, EventArgs e)
-        {
-            OpenTestView();
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-        private void MasterMdi_Load(object sender, EventArgs e)
-        {
-            //this.toolStripMDIMain.Visible = false;
-
-            try
-            {
-                switch (this.nmvnTaskID)
-                {
-
-                    case GlobalEnums.NmvnTaskID.SmartCoding:
-
-                        this.buttonEscape.Visible = false;
-                        this.buttonLoading.Visible = false;
-                        this.buttonNew.Visible = false;
-                        this.buttonEdit.Visible = false;
-                        this.buttonSave.Visible = false;
-                        this.buttonDelete.Visible = false;
-                        this.buttonImport.Visible = false;
-                        this.buttonExport.Visible = false;
-                        this.toolStripSeparatorImport.Visible = false;
-                        this.buttonApprove.Visible = false;
-                        this.toolStripSeparatorApprove.Visible = false;
-                        this.buttonPrint.Visible = false;
-                        this.buttonPrintPreview.Visible = false;
-                        this.toolStripSeparatorPrint.Visible = false;
-
-                        this.separatorESC.Visible = false;
-                        this.toolStripTopHead.Visible = false;
-                        
-                        break;
-                    default:
-                        break;
-                }
-            }
-            catch (Exception exception)
-            {
-                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
-            }
-
-        }
-
-        private void MasterMDI_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            try
-            {
-                for (int i = 0; i < this.MdiChildren.Length; i++)
-                {
-                    IToolstripChild mdiChildCallToolStrip = this.MdiChildren[i] as IToolstripChild;
-                    if (mdiChildCallToolStrip != null)
-                    {
-                        if (mdiChildCallToolStrip.ReadonlyMode) ((Form)mdiChildCallToolStrip).Close();
-                    }
-                    else
-                        this.MdiChildren[i].Close();
-                }
-
-                if (this.MdiChildren.Length > 0)
-                    e.Cancel = true;
-            }
-            catch (Exception exception)
-            {
-                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
-            }
-        }
 
 
 
