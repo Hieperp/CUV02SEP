@@ -47,7 +47,6 @@ namespace TotalModel.Models
         public Nullable<System.DateTime> BatchEntryDate { get; set; }
     
         public virtual BinLocation BinLocation { get; set; }
-        public virtual Commodity Commodity { get; set; }
         public virtual GoodsReceipt GoodsReceipt { get; set; }
         public virtual Warehouse Warehouse { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -58,5 +57,6 @@ namespace TotalModel.Models
         public virtual Pack Pack { get; set; }
         public virtual Pallet Pallet { get; set; }
         public virtual PickupDetail PickupDetail { get; set; }
+        public virtual Commodity Commodity { get; set; }
     }
 }

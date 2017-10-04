@@ -29,13 +29,13 @@ namespace TotalDAL.Repositories
 
             //if (!GlobalVariables.shouldRestoreProcedure) return;
 
-            return;
-            return;
+            //return;
+            //return;
 
             Helpers.SqlProgrammability.Commons.Commodity commodity = new Helpers.SqlProgrammability.Commons.Commodity(totalSmartCodingEntities);
             commodity.RestoreProcedure();
 
-            return;
+            //return;
 
             Helpers.SqlProgrammability.Productions.Batch batch = new Helpers.SqlProgrammability.Productions.Batch(totalSmartCodingEntities);
             batch.RestoreProcedure();

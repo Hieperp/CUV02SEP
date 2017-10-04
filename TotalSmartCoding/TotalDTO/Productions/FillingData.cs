@@ -29,7 +29,7 @@ namespace TotalDTO.Productions
         private string commodityOfficialCode;
         private decimal volume;
 
-        private int noExpiryDate;
+        private int shelflife;
         private bool isPailLabel;
 
         private string batchCode;
@@ -110,10 +110,10 @@ namespace TotalDTO.Productions
 
 
 
-        public int NoExpiryDate
+        public int Shelflife
         {
-            get { return this.noExpiryDate; }
-            set { ApplyPropertyChange<FillingData, int>(ref this.noExpiryDate, o => o.NoExpiryDate, value); }
+            get { return this.shelflife; }
+            set { ApplyPropertyChange<FillingData, int>(ref this.shelflife, o => o.Shelflife, value); }
         }
 
         public bool IsPailLabel
@@ -349,7 +349,7 @@ namespace TotalDTO.Productions
 
         public string ThirdLineA1(bool isReadableText)
         {
-            return this.BatchCode.Substring(0, 6);
+            return this.BatchCode.Substring(0, 7);
         }
 
     }

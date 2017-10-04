@@ -223,7 +223,7 @@ namespace TotalSmartCoding.Controllers.Productions
 
         private string firstLine(bool isReadableText)
         {
-            return this.firstLineA1(isReadableText) + this.firstLineA2(isReadableText);
+            return this.firstLineA2(isReadableText);
         }
 
         private string firstLineA1(bool isReadableText)
@@ -238,7 +238,7 @@ namespace TotalSmartCoding.Controllers.Productions
 
         public string secondLine(bool isReadableText)
         {
-            return this.secondLineA1(isReadableText) + this.secondLineA2(isReadableText);
+            return this.secondLineA1(isReadableText); // + this.secondLineA2(isReadableText)
         }
 
         public string secondLineA1(bool isReadableText)
@@ -342,12 +342,12 @@ namespace TotalSmartCoding.Controllers.Productions
         private string wholeMessageLine()
         {//THE FUNCTION laserDigitMessage totally base on this.wholeMessageLine. Later, if there is any thing change in this.wholeMessageLine, THE FUNCTION laserDigitMessage should be considered
             if (this.printerName == GlobalVariables.PrinterName.DigitInkjet)
-                return this.firstLine(true) + " " + this.secondLineA1(true) + this.thirdLine(true, 1); //GlobalVariables.charESC + "u/1/" + 
+                return this.firstLineA2(true) + " " + this.thirdLine(true, 1); //GlobalVariables.charESC + "u/1/" + 
             else if (this.printerName == GlobalVariables.PrinterName.PackInkjet || this.printerName == GlobalVariables.PrinterName.CartonInkjet)
             {
                 return GlobalVariables.charESC + "u/3/" + GlobalVariables.charESC + "/z/1/0/26/20/20/1/0/0/0/" + this.firstLine(false) + this.secondLine(false) + this.thirdLine(false, 2) + "/" + GlobalVariables.charESC + "/z/0" + //2D DATA MATRIX Barcode
-                       GlobalVariables.charESC + "u/1/" + " " + this.firstLine(true) + "/" +
-                       GlobalVariables.charESC + "/r/" + " " + GlobalVariables.charESC + "u/1/" + this.secondLine(true) +
+                       GlobalVariables.charESC + "u/1/" + " " + this.firstLineA1(true) + this.firstLine(true) + "/" +
+                       GlobalVariables.charESC + "/r/" + " " + GlobalVariables.charESC + "u/1/" + this.secondLine(true) + this.secondLineA2(true) +
                        GlobalVariables.charESC + "/r/" + " " + GlobalVariables.charESC + "u/1/" + this.thirdLine(true, 1);
             }
             else //this.printerName == GlobalVariables.PrinterName.PalletLabel
@@ -357,12 +357,13 @@ namespace TotalSmartCoding.Controllers.Productions
                 stringMessageBegin = stringMessageBegin + "^XA"; //[^XA - Indicates start of label format.]
                 stringMessageBegin = stringMessageBegin + "^LH70,20"; //[^LH - Sets label home position 80 dots to the right and 30 dots down from top edge of label.]
 
-                stringMessageText = stringMessageText + "^FO880,10 ^AV ^FD" + this.firstLineA1(true) + "^FS";//[^FO0,330 - Set field origin 10 dots to the right and 330 dots down from the home position defined by the ^LH instruction.] [^AG - Select font “G.”] [^FD - Start of field data.] [ZEBRA - Actual field data.] [^FS - End of field data.]
-                stringMessageText = stringMessageText + "^FO880,64 ^AV ^FD" + this.firstLineA2(true) + "^FS";
-                stringMessageText = stringMessageText + "^FO880,128 ^AV ^FD" + this.secondLineA1(true) + "^FS";
-                stringMessageText = stringMessageText + "^FO880,192 ^AV ^FD" + this.secondLineA2(true) + "^FS";
-                stringMessageText = stringMessageText + "^FO880,256 ^AV ^FD" + this.thirdLineA1(true) + "^FS";
-                stringMessageText = stringMessageText + "^FO880,320 ^AV ^FD" + this.thirdLineA2(true, 0) + "^FS";
+                stringMessageText = stringMessageText + "^FO770,10 ^AV ^FD" + this.firstLineA1(true) + "^FS";//[^FO0,330 - Set field origin 10 dots to the right and 330 dots down from the home position defined by the ^LH instruction.] [^AG - Select font “G.”] [^FD - Start of field data.] [ZEBRA - Actual field data.] [^FS - End of field data.]
+                stringMessageText = stringMessageText + "^FO770,65 ^AV ^FD" + this.firstLineA2(true) + "^FS";
+                stringMessageText = stringMessageText + "^FO770,128 ^AV ^FD" + this.secondLineA1(true) + "^FS";
+                stringMessageText = stringMessageText + "^FO770,192 ^AV ^FD" + this.secondLineA2(true) + "^FS";
+                stringMessageText = stringMessageText + "^FO770,256 ^AV ^FD" + this.thirdLineA1(true) + "^FS";
+                stringMessageText = stringMessageText + "^FO770,320 ^AV ^FD" + this.thirdLineA2(true, 0) + "^FS";
+
 
                 stringMessageEnd = stringMessageEnd + "^XZ"; //[^XZ - Indicates end of label format.]
 

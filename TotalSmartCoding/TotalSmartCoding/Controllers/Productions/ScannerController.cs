@@ -702,7 +702,7 @@ namespace TotalSmartCoding.Controllers.Productions
         private bool waitforCarton(ref string stringReceived)
         {
             if (GlobalEnums.OnTestScanner)
-                if ((DateTime.Now.Second % 6) == 0 && (this.packsetQueue.Count > 0 || !this.FillingData.HasPack)) { stringReceived = GlobalEnums.OnTestCartonNoreadNow ? "NoRead" : "226775310870301174438888" + DateTime.Now.Millisecond.ToString("000000"); GlobalEnums.OnTestCartonNoreadNow = false; } else stringReceived = "";
+                if ((DateTime.Now.Second % 6) == 0 && (this.packsetQueue.Count > 0 || !this.FillingData.HasPack)) { stringReceived = GlobalEnums.OnTestCartonNoreadNow ? "NoRead" : "0123456789012345678901234567890123456" + DateTime.Now.Millisecond.ToString("000000"); GlobalEnums.OnTestCartonNoreadNow = false; } else stringReceived = "";
             else
                 stringReceived = this.ionetSocketCarton.ReadoutStream().Trim();
 
@@ -814,7 +814,7 @@ namespace TotalSmartCoding.Controllers.Productions
         private bool waitforPallet(ref string stringReceived)
         {
             if (GlobalEnums.OnTestScanner || GlobalEnums.OnTestPalletScanner)
-                if ((GlobalEnums.OnTestPalletReceivedNow) && ((DateTime.Now.Second % 10) == 0 || GlobalEnums.OnTestPalletReceivedNow) && (this.cartonsetQueue.Count > 0 || !this.FillingData.HasCarton)) { stringReceived = "226775310870301174438888" + DateTime.Now.Millisecond.ToString("000000"); GlobalEnums.OnTestPalletReceivedNow = false; } else stringReceived = "";
+                if ((GlobalEnums.OnTestPalletReceivedNow) && ((DateTime.Now.Second % 10) == 0 || GlobalEnums.OnTestPalletReceivedNow) && (this.cartonsetQueue.Count > 0 || !this.FillingData.HasCarton)) { stringReceived = "0123456789012345678901234567890123456" + DateTime.Now.Millisecond.ToString("000000"); GlobalEnums.OnTestPalletReceivedNow = false; } else stringReceived = "";
             else
                 stringReceived = this.ionetSocketPallet.ReadoutStream().Trim();
 

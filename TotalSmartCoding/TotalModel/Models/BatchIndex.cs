@@ -19,7 +19,6 @@ namespace TotalModel.Models
         public int FillingLineID { get; set; }
         public int CommodityID { get; set; }
         public int CartonPerPallet { get; set; }
-        public int NoExpiryDate { get; set; }
         public string Description { get; set; }
         public string Remarks { get; set; }
         public System.DateTime CreatedDate { get; set; }
@@ -36,5 +35,6 @@ namespace TotalModel.Models
         public bool InActive { get; set; }
         public decimal Volume { get; set; }
         public string CommodityAPICode { get; set; }
+        public int Shelflife { get; set; }
     }
 }

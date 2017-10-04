@@ -20,6 +20,7 @@ using TotalSmartCoding.Libraries;
 using TotalSmartCoding.Libraries.Helpers;
 using TotalSmartCoding.Views.Commons;
 using TotalSmartCoding.Views.Mains;
+//using System.Diagnostics;
 
 
 namespace TotalSmartCoding.Views.Productions
@@ -107,8 +108,8 @@ namespace TotalSmartCoding.Views.Productions
                 this.buttonCartonNoreadNow.Visible = GlobalEnums.OnTestScanner;
                 this.buttonPalletReceivedNow.Visible = GlobalEnums.OnTestScanner;
 
-                if (!fillingData.HasPack) { this.labelNextPackNo.Visible = false; this.textNextPackNo.Visible = false; this.dgvCartonPendingQueue.RowTemplate.Height = 210; this.dgvCartonQueue.RowTemplate.Height = 210; this.dgvCartonsetQueue.RowTemplate.Height = 210; this.dgvPalletQueue.RowTemplate.Height = 210; this.dgvPalletPickupQueue.RowTemplate.Height = 210; }
-                if (!fillingData.HasCarton) { this.labelNextCartonNo.Visible = false; this.textNextCartonNo.Visible = false; }
+                if (!fillingData.HasPack) { this.labelNextPackNo.Visible = false; this.textNextPackNo.Visible = false; this.dgvCartonPendingQueue.RowTemplate.Height = 280; this.dgvCartonQueue.RowTemplate.Height = 280; this.dgvCartonsetQueue.RowTemplate.Height = 280; }
+                if (!fillingData.HasCarton) { this.labelNextCartonNo.Visible = false; this.textNextCartonNo.Visible = false; this.dgvPalletQueue.RowTemplate.Height = 280; this.dgvPalletPickupQueue.RowTemplate.Height = 280; }
 
             }
             catch (Exception exception)
@@ -228,9 +229,9 @@ namespace TotalSmartCoding.Views.Productions
                 case GlobalVariables.FillingLine.Smallpack:
                     return 225;
                 case GlobalVariables.FillingLine.Pail:
-                    return 551;
+                    return 458;
                 case GlobalVariables.FillingLine.Drum:
-                    return 277; //86;
+                    return 347; //86;
                 default:
                     return 1;
             }
@@ -243,14 +244,14 @@ namespace TotalSmartCoding.Views.Productions
                 case GlobalVariables.FillingLine.Smallpack:
                     return 111;
                 case GlobalVariables.FillingLine.Pail:
-                    return 274;
+                    return 344;
                 case GlobalVariables.FillingLine.Drum:
                     return 0; //86;
                 default:
                     return 1;
             }
         }
-                
+
         #endregion Contructor & Implement Interface
 
         #region Toolstrip bar
@@ -366,6 +367,10 @@ namespace TotalSmartCoding.Views.Productions
         {
             try
             {
+                //Debug.Print(this.splitContainerPack.SplitterDistance.ToString());
+                //Debug.Print(this.splitContainerCarton.SplitterDistance.ToString());
+                //Debug.Print(this.splitContainerPallet.SplitterDistance.ToString());
+
                 MasterMDI masterMDI = new MasterMDI(GlobalEnums.NmvnTaskID.Batch, new Batches(this, this.scannerController.AllQueueEmpty));
 
                 masterMDI.ShowDialog();
@@ -594,7 +599,7 @@ namespace TotalSmartCoding.Views.Productions
         {
             try
             {
-                e.Value = this.GetSerialNumber(e.Value.ToString());
+                e.Value = this.GetSerialNumber(e.Value.ToString(), sender);
             }
             catch
             { }
@@ -634,6 +639,8 @@ namespace TotalSmartCoding.Views.Productions
         }
 
         private string GetSerialNumber(string printedBarcode)
+        { return this.GetSerialNumber(printedBarcode, null); }
+        private string GetSerialNumber(string printedBarcode, object sender)
         {
             int indexOfDoubleTabChar = printedBarcode.IndexOf(GlobalVariables.doubleTabChar.ToString());
             if (indexOfDoubleTabChar == 0)
@@ -645,7 +652,12 @@ namespace TotalSmartCoding.Views.Productions
                     printedBarcode = printedBarcode.Substring(indexOfDoubleTabChar - 6, 6);
 
                 if (!this.fillingData.HasPack && printedBarcode.Length >= 29)
-                    printedBarcode = printedBarcode.Substring(0, indexOfDoubleTabChar);
+                {
+                    if (this.fillingData.HasCarton && sender.Equals(this.dgvPalletQueue) || sender.Equals(this.dgvPalletPickupQueue))
+                        printedBarcode = printedBarcode.Substring(indexOfDoubleTabChar - 6, 6);
+                    else
+                        printedBarcode = printedBarcode.Substring(0, indexOfDoubleTabChar);
+                }
             }
 
             //////--BP CASTROL
