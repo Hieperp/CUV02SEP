@@ -9,6 +9,7 @@ using TotalSmartCoding.Views.Mains;
 
 using TotalSmartCoding.Libraries;
 using TotalBase.Enums;
+using TotalSmartCoding.Views.Productions;
 
 namespace TotalSmartCoding
 {
@@ -36,7 +37,7 @@ namespace TotalSmartCoding
                 if (GlobalVariables.FillingLineID == GlobalVariables.FillingLine.None)
                     Application.Run(new MasterMDI());
                 else
-                    Application.Run(new MasterMDI(GlobalEnums.NmvnTaskID.SmartCoding));
+                    Application.Run(new MasterMDI(GlobalEnums.NmvnTaskID.SmartCoding, new SmartCoding()));
             }
             logon.Dispose();
 

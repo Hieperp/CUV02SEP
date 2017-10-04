@@ -54,7 +54,11 @@ namespace TotalBase
             None = 0,
             Smallpack = 1,
             Pail = 2,
-            Drum = 3
+            Drum = 3,
+
+
+            Pickup = 68,
+            Issue = 88
         }
 
 

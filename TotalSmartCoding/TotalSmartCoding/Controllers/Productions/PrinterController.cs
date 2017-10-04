@@ -355,14 +355,14 @@ namespace TotalSmartCoding.Controllers.Productions
                 string stringMessage = ""; string stringMessageBegin = ""; string stringMessageEnd = ""; string stringMessageText = "";
 
                 stringMessageBegin = stringMessageBegin + "^XA"; //[^XA - Indicates start of label format.]
-                stringMessageBegin = stringMessageBegin + "^LH70,20"; //[^LH - Sets label home position 80 dots to the right and 30 dots down from top edge of label.]
+                stringMessageBegin = stringMessageBegin + "^LH60,20"; //[^LH - Sets label home position 80 dots to the right and 30 dots down from top edge of label.]
 
-                stringMessageText = stringMessageText + "^FO770,10 ^AV ^FD" + this.firstLineA1(true) + "^FS";//[^FO0,330 - Set field origin 10 dots to the right and 330 dots down from the home position defined by the ^LH instruction.] [^AG - Select font “G.”] [^FD - Start of field data.] [ZEBRA - Actual field data.] [^FS - End of field data.]
-                stringMessageText = stringMessageText + "^FO770,65 ^AV ^FD" + this.firstLineA2(true) + "^FS";
-                stringMessageText = stringMessageText + "^FO770,128 ^AV ^FD" + this.secondLineA1(true) + "^FS";
-                stringMessageText = stringMessageText + "^FO770,192 ^AV ^FD" + this.secondLineA2(true) + "^FS";
-                stringMessageText = stringMessageText + "^FO770,256 ^AV ^FD" + this.thirdLineA1(true) + "^FS";
-                stringMessageText = stringMessageText + "^FO770,320 ^AV ^FD" + this.thirdLineA2(true, 0) + "^FS";
+                stringMessageText = stringMessageText + "^FO785,10 ^AV ^FD" + this.firstLineA1(true) + "^FS";//[^FO0,330 - Set field origin 10 dots to the right and 330 dots down from the home position defined by the ^LH instruction.] [^AG - Select font “G.”] [^FD - Start of field data.] [ZEBRA - Actual field data.] [^FS - End of field data.]
+                stringMessageText = stringMessageText + "^FO785,68 ^AV ^FD" + this.firstLineA2(true) + "^FS";
+                stringMessageText = stringMessageText + "^FO785,131 ^AV ^FD" + this.secondLineA1(true) + "^FS";
+                stringMessageText = stringMessageText + "^FO785,194 ^AV ^FD" + this.secondLineA2(true) + "^FS";
+                stringMessageText = stringMessageText + "^FO785,257 ^AV ^FD" + this.thirdLineA1(true) + "^FS";
+                stringMessageText = stringMessageText + "^FO785,320 ^AV ^FD" + this.thirdLineA2(true, 0) + "^FS";
 
 
                 stringMessageEnd = stringMessageEnd + "^XZ"; //[^XZ - Indicates end of label format.]
@@ -370,7 +370,7 @@ namespace TotalSmartCoding.Controllers.Productions
                 if (this.OnPrinting)
                 {
                     stringMessage = stringMessage + stringMessageBegin;
-                    stringMessage = stringMessage + "^FO0,10  ^BC,360,N  ^FD" + this.firstLine(false) + this.secondLine(false) + this.thirdLine(false, 0) + "^FS";// [^FO0,10 - Set field origin 10 dots to the right and 10 dots down from the home position defined by the ^LH instruction.] [^BC - Select Code 128 bar code.] [^FD - Start of field data for the bar code.] [AAA001 - Actual field data.] [^FS - End of field data.]
+                    stringMessage = stringMessage + "^FO0,20  ^BC,360,N  ^FD" + this.firstLine(false) + this.secondLine(false) + this.thirdLine(false, 0) + "^FS";// [^FO0,10 - Set field origin 10 dots to the right and 10 dots down from the home position defined by the ^LH instruction.] [^BC - Select Code 128 bar code.] [^FD - Start of field data for the bar code.] [AAA001 - Actual field data.] [^FS - End of field data.]
                     stringMessage = stringMessage + stringMessageText;
                     stringMessage = stringMessage + stringMessageEnd;
                 }

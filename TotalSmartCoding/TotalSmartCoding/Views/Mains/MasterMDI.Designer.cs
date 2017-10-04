@@ -64,7 +64,7 @@
             this.toolStripSeparatorPrint = new System.Windows.Forms.ToolStripSeparator();
             this.buttonPrintPreview = new System.Windows.Forms.ToolStripButton();
             this.buttonPrint = new System.Windows.Forms.ToolStripButton();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripTopHead = new System.Windows.Forms.ToolStrip();
             this.buttonLockedDate = new System.Windows.Forms.ToolStripButton();
             this.txtLockedDate = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
@@ -78,7 +78,7 @@
             this.naviBarModuleMaster.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.toolstripMain.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
+            this.toolStripTopHead.SuspendLayout();
             this.SuspendLayout();
             // 
             // imageListModuleMasterSmall
@@ -504,12 +504,12 @@
             this.buttonPrint.Size = new System.Drawing.Size(52, 52);
             this.buttonPrint.Text = "Print";
             // 
-            // toolStrip1
+            // toolStripTopHead
             // 
-            this.toolStrip1.BackColor = System.Drawing.SystemColors.Control;
-            this.toolStrip1.BackgroundImage = global::TotalSmartCoding.Properties.Resources.Toolbar_Image;
-            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripTopHead.BackColor = System.Drawing.SystemColors.Control;
+            this.toolStripTopHead.BackgroundImage = global::TotalSmartCoding.Properties.Resources.Toolbar_Image;
+            this.toolStripTopHead.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStripTopHead.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.buttonLockedDate,
             this.txtLockedDate,
             this.toolStripSeparator12,
@@ -520,12 +520,12 @@
             this.toolStripSeparator13,
             this.comboFilterTexts,
             this.buttonClearFilters});
-            this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1745, 55);
-            this.toolStrip1.TabIndex = 5;
-            this.toolStrip1.Text = "toolStrip1";
+            this.toolStripTopHead.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
+            this.toolStripTopHead.Location = new System.Drawing.Point(0, 0);
+            this.toolStripTopHead.Name = "toolStripTopHead";
+            this.toolStripTopHead.Size = new System.Drawing.Size(1745, 55);
+            this.toolStripTopHead.TabIndex = 5;
+            this.toolStripTopHead.Text = "toolStrip1";
             // 
             // buttonLockedDate
             // 
@@ -623,7 +623,7 @@
             this.ClientSize = new System.Drawing.Size(1745, 943);
             this.Controls.Add(this.naviBarModuleMaster);
             this.Controls.Add(this.toolstripMain);
-            this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.toolStripTopHead);
             this.Controls.Add(this.InvisibleMainMenuStripOfMDI);
             this.Controls.Add(this.statusStrip);
             this.IsMdiContainer = true;
@@ -640,8 +640,8 @@
             this.statusStrip.PerformLayout();
             this.toolstripMain.ResumeLayout(false);
             this.toolstripMain.PerformLayout();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
+            this.toolStripTopHead.ResumeLayout(false);
+            this.toolStripTopHead.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -652,7 +652,7 @@
         private System.Windows.Forms.ImageList imageListModuleMasterSmall;
         private System.Windows.Forms.ImageList imageListModuleMasterLarge;
         private System.Windows.Forms.ImageList imageListTaskMaster;
-        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStrip toolStripTopHead;
         private System.Windows.Forms.ToolStripTextBox txtLockedDate;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;

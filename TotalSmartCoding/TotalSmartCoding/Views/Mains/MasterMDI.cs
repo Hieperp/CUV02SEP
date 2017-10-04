@@ -66,8 +66,7 @@ namespace TotalSmartCoding.Views.Mains
         public MasterMDI(GlobalEnums.NmvnTaskID nmvnTaskID, Form childForm)
         {
             InitializeComponent();
-
-
+            
             try
             {
                 this.nmvnTaskID = nmvnTaskID;
@@ -91,10 +90,6 @@ namespace TotalSmartCoding.Views.Mains
                 this.listViewTaskMaster.Columns.Add(new ColumnHeader() { Width = this.listViewTaskMaster.Width });
 
 
-
-
-                InitializeModuleMaster();
-
                 if (childForm != null)
                 {
                     this.naviBarModuleMaster.Visible = false;
@@ -104,14 +99,17 @@ namespace TotalSmartCoding.Views.Mains
                     childForm.Show();
                 }
                 else
-                    OpenTestView();
+                {
+                    this.InitializeModuleMaster();
+                    this.OpenTestView();
+                }
+
 
                 DateTime buildDate = new FileInfo(Assembly.GetExecutingAssembly().Location).LastWriteTime;
                 this.statusVersion.Text = "Version 1.0i Date: " + buildDate.ToString("dd/MM/yyyy hh:mm:ss");
 
                 this.statusFillingLine.Text = GlobalVariables.FillingLineName;
                 this.statusUserDescription.Text = ContextAttributes.User.UserDescription;
-
             }
             catch (Exception exception)
             {
@@ -611,7 +609,6 @@ namespace TotalSmartCoding.Views.Mains
             {
                 grForm.MdiParent = this;
                 grForm.WindowState = FormWindowState.Maximized;
-                //childForm.ControlBox = false;
                 grForm.Show();
             }
 
@@ -639,8 +636,6 @@ namespace TotalSmartCoding.Views.Mains
 
             try
             {
-                Form childForm;
-
                 switch (this.nmvnTaskID)
                 {
 
@@ -662,21 +657,11 @@ namespace TotalSmartCoding.Views.Mains
                         this.toolStripSeparatorPrint.Visible = false;
 
                         this.separatorESC.Visible = false;
-                        this.toolStrip1.Visible = false;
-                        this.naviBarModuleMaster.Visible = false;
-
-                        childForm = new SmartCoding();
+                        this.toolStripTopHead.Visible = false;
+                        
                         break;
                     default:
-                        childForm = new BaseView();
                         break;
-                }
-
-                if (this.nmvnTaskID != GlobalEnums.NmvnTaskID.UnKnown && this.nmvnTaskID != GlobalEnums.NmvnTaskID.Batch)
-                {
-                    childForm.MdiParent = this;
-                    //childForm.WindowState = FormWindowState.Maximized;
-                    childForm.Show();
                 }
             }
             catch (Exception exception)
