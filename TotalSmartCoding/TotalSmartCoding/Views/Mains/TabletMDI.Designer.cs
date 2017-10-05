@@ -223,7 +223,7 @@
             this.toolStripButton10,
             this.toolStripButton11,
             this.toolStripButton12});
-            this.toolStrip9.Location = new System.Drawing.Point(0, 468);
+            this.toolStrip9.Location = new System.Drawing.Point(0, 458);
             this.toolStrip9.Name = "toolStrip9";
             this.toolStrip9.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.toolStrip9.Size = new System.Drawing.Size(379, 59);
@@ -291,7 +291,7 @@
             this.Softkey607,
             this.Softkey606,
             this.toolStripButton7});
-            this.toolStrip8.Location = new System.Drawing.Point(0, 409);
+            this.toolStrip8.Location = new System.Drawing.Point(0, 399);
             this.toolStrip8.Name = "toolStrip8";
             this.toolStrip8.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.toolStrip8.Size = new System.Drawing.Size(379, 59);
@@ -359,7 +359,7 @@
             this.Softkey603,
             this.Softkey602,
             this.toolStripButton6});
-            this.toolStrip7.Location = new System.Drawing.Point(0, 350);
+            this.toolStrip7.Location = new System.Drawing.Point(0, 340);
             this.toolStrip7.Name = "toolStrip7";
             this.toolStrip7.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.toolStrip7.Size = new System.Drawing.Size(379, 59);
@@ -427,7 +427,7 @@
             this.Softkey601,
             this.Softkey600,
             this.toolStripButton5});
-            this.toolStrip6.Location = new System.Drawing.Point(0, 291);
+            this.toolStrip6.Location = new System.Drawing.Point(0, 281);
             this.toolStrip6.Name = "toolStrip6";
             this.toolStrip6.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.toolStrip6.Size = new System.Drawing.Size(379, 59);
@@ -493,7 +493,7 @@
             this.Softkey014,
             this.Softkey013,
             this.toolStripButton4});
-            this.toolStrip3.Location = new System.Drawing.Point(0, 232);
+            this.toolStrip3.Location = new System.Drawing.Point(0, 222);
             this.toolStrip3.Name = "toolStrip3";
             this.toolStrip3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.toolStrip3.Size = new System.Drawing.Size(379, 59);
@@ -561,7 +561,7 @@
             this.Softkey010,
             this.Softkey009,
             this.toolStripButton3});
-            this.toolStrip5.Location = new System.Drawing.Point(0, 173);
+            this.toolStrip5.Location = new System.Drawing.Point(0, 163);
             this.toolStrip5.Name = "toolStrip5";
             this.toolStrip5.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.toolStrip5.Size = new System.Drawing.Size(379, 59);
@@ -629,7 +629,7 @@
             this.Softkey006,
             this.Softkey005,
             this.toolStripButton2});
-            this.toolStrip4.Location = new System.Drawing.Point(0, 114);
+            this.toolStrip4.Location = new System.Drawing.Point(0, 104);
             this.toolStrip4.Name = "toolStrip4";
             this.toolStrip4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.toolStrip4.Size = new System.Drawing.Size(379, 59);
@@ -690,7 +690,7 @@
             // 
             this.toolStrip2.BackColor = System.Drawing.Color.Transparent;
             this.toolStrip2.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStrip2.ImageScalingSize = new System.Drawing.Size(52, 52);
+            this.toolStrip2.ImageScalingSize = new System.Drawing.Size(42, 42);
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Softkey004,
             this.Softkey003,
@@ -700,7 +700,7 @@
             this.toolStrip2.Location = new System.Drawing.Point(0, 55);
             this.toolStrip2.Name = "toolStrip2";
             this.toolStrip2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStrip2.Size = new System.Drawing.Size(379, 59);
+            this.toolStrip2.Size = new System.Drawing.Size(379, 49);
             this.toolStrip2.TabIndex = 10;
             this.toolStrip2.Text = "toolStrip2";
             // 
@@ -710,7 +710,7 @@
             this.Softkey004.Image = global::TotalSmartCoding.Properties.Resources.letter_uppercase_D_icon;
             this.Softkey004.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Softkey004.Name = "Softkey004";
-            this.Softkey004.Size = new System.Drawing.Size(56, 56);
+            this.Softkey004.Size = new System.Drawing.Size(46, 46);
             this.Softkey004.Tag = "D";
             this.Softkey004.Text = "D";
             // 
@@ -720,7 +720,7 @@
             this.Softkey003.Image = global::TotalSmartCoding.Properties.Resources.letter_uppercase_C_icon;
             this.Softkey003.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Softkey003.Name = "Softkey003";
-            this.Softkey003.Size = new System.Drawing.Size(56, 56);
+            this.Softkey003.Size = new System.Drawing.Size(46, 46);
             this.Softkey003.Tag = "C";
             this.Softkey003.Text = "C";
             // 
@@ -730,7 +730,7 @@
             this.Softkey002.Image = global::TotalSmartCoding.Properties.Resources.letter_uppercase_B_icon;
             this.Softkey002.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Softkey002.Name = "Softkey002";
-            this.Softkey002.Size = new System.Drawing.Size(56, 56);
+            this.Softkey002.Size = new System.Drawing.Size(46, 46);
             this.Softkey002.Tag = "B";
             this.Softkey002.Text = "B";
             // 
@@ -740,7 +740,7 @@
             this.Softkey001.Image = global::TotalSmartCoding.Properties.Resources.letter_uppercase_A_icon;
             this.Softkey001.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Softkey001.Name = "Softkey001";
-            this.Softkey001.Size = new System.Drawing.Size(56, 56);
+            this.Softkey001.Size = new System.Drawing.Size(46, 46);
             this.Softkey001.Tag = "A";
             this.Softkey001.Text = "A";
             // 
@@ -750,7 +750,7 @@
             this.toolStripButton1.Image = global::TotalSmartCoding.Properties.Resources.esc;
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(56, 56);
+            this.toolStripButton1.Size = new System.Drawing.Size(46, 46);
             this.toolStripButton1.Text = "toolStripButton1";
             // 
             // toolStrip1

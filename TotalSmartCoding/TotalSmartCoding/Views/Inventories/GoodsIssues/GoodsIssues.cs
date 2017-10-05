@@ -118,7 +118,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
             this.olvQuantityRemains.HeaderFont = titleFont;
             this.olvLineVolumeRemains.HeaderFont = titleFont;
             this.labelCaption.Left = 78;
-            this.labelCaption.Top = 14;
+            this.labelCaption.Top = 10;
 
             List<Control> controls = ViewHelpers.GetAllControls(this);
             foreach (Control control in controls)
@@ -297,6 +297,16 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
 
         protected override DialogResult wizardMaster()
         {
+            WizardDetail wizardDetail = new WizardDetail(this.goodsIssueViewModel, new PendingDeliveryAdviceDetail());
+                        TabletMDI tabletMDI = new TabletMDI(wizardDetail);
+                        tabletMDI.ShowDialog();
+
+
+
+
+
+
+
             WizardMaster wizardMaster = new WizardMaster(this.goodsIssueAPIs, this.goodsIssueViewModel);
             DialogResult dialogResult = wizardMaster.ShowDialog();
             if (dialogResult == System.Windows.Forms.DialogResult.OK) this.Save(false);

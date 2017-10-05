@@ -17,12 +17,12 @@ namespace TotalModel.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Warehouse()
         {
-            this.BinLocations = new HashSet<BinLocation>();
             this.Pickups = new HashSet<Pickup>();
             this.GoodsReceiptDetails = new HashSet<GoodsReceiptDetail>();
             this.GoodsReceipts = new HashSet<GoodsReceipt>();
             this.WarehouseAdjustments = new HashSet<WarehouseAdjustment>();
             this.PickupDetails = new HashSet<PickupDetail>();
+            this.BinLocations = new HashSet<BinLocation>();
         }
     
         public int WarehouseID { get; set; }
@@ -35,8 +35,6 @@ namespace TotalModel.Models
         public bool IsDefault { get; set; }
         public string Remarks { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BinLocation> BinLocations { get; set; }
         public virtual Location Location { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pickup> Pickups { get; set; }
@@ -48,5 +46,7 @@ namespace TotalModel.Models
         public virtual ICollection<WarehouseAdjustment> WarehouseAdjustments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PickupDetail> PickupDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BinLocation> BinLocations { get; set; }
     }
 }

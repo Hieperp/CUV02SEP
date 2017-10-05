@@ -7,7 +7,6 @@
       <Diagram DiagramId="ab048d88ef8447d09896e176a9d6d497" Name="Diagram1" ZoomLevel="72">
         <EntityTypeShape EntityType="TotalSmartCodingModel.AspNetUser" Width="1.5" PointX="2.75" PointY="0.75" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.Batch" Width="1.5" PointX="3" PointY="11.125" />
-        <EntityTypeShape EntityType="TotalSmartCodingModel.BinLocation" Width="1.5" PointX="10.5" PointY="8.75" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.Employee" Width="1.5" PointX="8.25" PointY="2.25" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.FillingLine" Width="1.5" PointX="0.75" PointY="5.125" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.GoodsReceiptType" Width="1.25" PointX="5.25" PointY="24.5" />
@@ -22,7 +21,6 @@
         <AssociationConnector Association="TotalSmartCodingModel.FK_Territories_Territories" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.DeliveryAdviceDetail" Width="1.5" PointX="16.75" PointY="13" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.Warehouse" Width="1.5" PointX="8.25" PointY="8.625" />
-        <AssociationConnector Association="TotalSmartCodingModel.FK_BinLocations_Warehouses" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_Warehouses_Locations" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.Pickup" Width="1.5" PointX="10.5" PointY="12.875" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_Pickups_FillingLines" />
@@ -30,7 +28,6 @@
         <AssociationConnector Association="TotalSmartCodingModel.FK_Pickups_Warehouses" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.GoodsReceiptDetail" Width="1.5" PointX="19" PointY="12.625" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.GoodsReceipt" Width="1.5" PointX="16.75" PointY="4.625" />
-        <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsReceiptDetails_BinLocations" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsReceiptDetails_GoodsReceipts" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsReceiptDetails_Warehouses" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsReceipts_GoodsReceiptTypes" />
@@ -64,7 +61,6 @@
         <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsReceiptDetails_Packs" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsReceiptDetails_Pallets" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.PickupDetail" Width="1.5" PointX="12.75" PointY="11.75" />
-        <AssociationConnector Association="TotalSmartCodingModel.FK_PickupDetails_BinLocations" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_PickupDetails_Cartons" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsReceiptDetails_PickupDetails" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_PickupDetails_Packs" />
@@ -99,6 +95,10 @@
         <AssociationConnector Association="TotalSmartCodingModel.FK_PickupDetails_Commodities" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_SalesOrderDetails_Commodities" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_WarehouseAdjustmentDetails_Commodities" />
+        <EntityTypeShape EntityType="TotalSmartCodingModel.BinLocation" Width="1.5" PointX="10.75" PointY="32.875" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_BinLocations_Warehouses" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsReceiptDetails_BinLocations" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_PickupDetails_BinLocations" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -26,6 +26,9 @@ namespace TotalModel.Models
         public string Name { get; set; }
         public int LocationID { get; set; }
         public int WarehouseID { get; set; }
+        public int ToiDa { get; set; }
+        public int TongSo { get; set; }
+        public int DeXuat { get; set; }
         public string Remarks { get; set; }
         public bool InActive { get; set; }
     

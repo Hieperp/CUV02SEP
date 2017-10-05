@@ -73,7 +73,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
                 this.naviIndex.Bands[0].ClientArea.Controls.Add(this.fastPickupIndex);
 
                 this.customTabCenter = new CustomTabControl();
-                if (GlobalVariables.ConfigFillingLineID == (int)GlobalVariables.FillingLine.Pickup) this.setFont(new Font("Niagara Engraved", 16), new Font("Calibri", 13), new Font("Niagara Engraved", 16));
+                if (GlobalVariables.ConfigFillingLineID == (int)GlobalVariables.FillingLine.Pickup) this.setFont(new Font("Niagara Engraved", 15), new Font("Calibri", 11), new Font("Niagara Engraved", 15));
 
                 this.customTabCenter.DisplayStyle = TabStyle.VisualStudio;
 
@@ -109,8 +109,8 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
             this.naviDetails.Font = titleFont;
             this.olvPendingPalletCode.HeaderFont = titleFont;
             this.olvPickupIndexReference.HeaderFont = titleFont;
-            this.labelFillingLineName.Left = 78;
-            this.labelFillingLineName.Top = 14;
+            this.labelFillingLineName.Left = 68;
+            this.labelFillingLineName.Top = 10;
 
             List<Control> controls = ViewHelpers.GetAllControls(this);
             foreach (Control control in controls)
@@ -220,7 +220,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
                 foreach (OLVGroup olvGroup in e.Groups)
                 {
                     olvGroup.TitleImage = "Forklift";
-                    olvGroup.Subtitle = "List count: " + olvGroup.Contents.Count.ToString();
+                    olvGroup.Subtitle = "Count: " + olvGroup.Contents.Count.ToString();
                     if ((DateTime)olvGroup.Key != DateTime.Today) olvGroup.Collapsed = true;
                 }
             }
