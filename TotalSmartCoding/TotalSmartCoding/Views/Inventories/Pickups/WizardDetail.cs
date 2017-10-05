@@ -22,9 +22,10 @@ using System.ComponentModel;
 
 namespace TotalSmartCoding.Views.Inventories.Pickups
 {
-    public partial class WizardDetail : Form
+    public partial class WizardDetail : Form, IToolstripMerge, IToolstripTablet
     {
         private CustomTabControl tabBinLocation;
+        public virtual ToolStrip toolstripChild { get; protected set; }
 
         private PickupViewModel pickupViewModel;
 
@@ -41,6 +42,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
         {
             InitializeComponent();
 
+            this.toolstripChild = this.toolStrip1;
             this.tabBinLocation = new CustomTabControl();
 
             this.tabBinLocation.Font = new Font("Niagara Engraved", 16);
@@ -141,7 +143,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
         {
             try
             {
-                this.fastBinLocations.SelectedObject = null;
+                
 
                 if (sender.Equals(this.SoftkeyBackspace))
                 {
@@ -156,11 +158,18 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
             catch { }
         }
 
+        public void ApplyFilter(string filterTexts)
+        {
+            this.fastBinLocations.SelectedObject = null;
+            OLVHelpers.ApplyFilters(this.fastBinLocations, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
+        }
+
+
         private void textexBinLocationFilters_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                OLVHelpers.ApplyFilters(this.fastBinLocations, this.textexBinLocationFilters.Text.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
+                
             }
             catch { }
         }
@@ -172,11 +181,11 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
                 if (sender.Equals(this.buttonAdd) && this.pickupDetailDTO.IsValid)
                 {
                     this.pickupViewModel.ViewDetails.Add(pickupDetailDTO);
-                    this.DialogResult = DialogResult.OK;
+                    this.MdiParent.DialogResult = DialogResult.OK;
                 }
 
                 if (sender.Equals(this.buttonESC))
-                    this.DialogResult = DialogResult.Cancel;
+                    this.MdiParent.DialogResult = DialogResult.Cancel;
             }
             catch (Exception exception)
             {

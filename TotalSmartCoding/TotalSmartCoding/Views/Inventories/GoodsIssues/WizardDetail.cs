@@ -20,11 +20,12 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
 {
     public partial class WizardDetail : Form, IToolstripMerge, IToolstripTablet
     {
+        private CustomTabControl customTabBatch;
         public virtual ToolStrip toolstripChild { get; protected set; }
 
         private GoodsIssueViewModel goodsIssueViewModel;
         private PendingDeliveryAdviceDetail pendingDeliveryAdviceDetail;
-        private CustomTabControl customTabBatch;
+        
         public WizardDetail(GoodsIssueViewModel goodsIssueViewModel, PendingDeliveryAdviceDetail pendingDeliveryAdviceDetail)
         {
             InitializeComponent();

@@ -291,7 +291,11 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
                     if (pendingPallet != null)
                     {
                         WizardDetail wizardDetail = new WizardDetail(this.pickupViewModel, pendingPallet);
-                        if (wizardDetail.ShowDialog() == System.Windows.Forms.DialogResult.OK) this.Save(false);
+                        //if (wizardDetail.ShowDialog() == System.Windows.Forms.DialogResult.OK) this.Save(false);
+
+                        TabletMDI tabletMDI = new TabletMDI(wizardDetail);
+                        if (tabletMDI.ShowDialog() == System.Windows.Forms.DialogResult.OK) this.Save(false);
+
                     }
                 }
             }
