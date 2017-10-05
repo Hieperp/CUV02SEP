@@ -32,7 +32,7 @@ namespace TotalSmartCoding.Views.Mains
 
         private Form childForm;
         private GlobalEnums.NmvnTaskID nmvnTaskID;
-        
+
         public TabletMDI()
             : this(GlobalEnums.NmvnTaskID.UnKnown)
         { }
@@ -53,7 +53,7 @@ namespace TotalSmartCoding.Views.Mains
                 this.nmvnTaskID = nmvnTaskID;
                 this.childForm = childForm;
 
-                this.Size = new Size(1120, 600); this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog; this.MinimizeBox = false; this.MaximizeBox = false; this.WindowState = FormWindowState.Normal;
+                this.Size = new Size(800, 435); this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog; this.MinimizeBox = false; this.MaximizeBox = false; this.WindowState = FormWindowState.Normal; this.textBoxFilters.Width = this.panelRight.Width - this.SoftkeyClearFilters.Width - 8;
             }
             catch (Exception exception)
             {
@@ -98,6 +98,26 @@ namespace TotalSmartCoding.Views.Mains
 
 
         #region <Call Tool Strip>
+
+        private void softkey_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (sender.Equals(this.SoftkeyClearFilters))
+                    this.textBoxFilters.Text = "";
+                else if (sender.Equals(this.SoftkeyBackspace))
+                {
+                    if (this.textBoxFilters.Text.Length > 0) this.textBoxFilters.Text = this.textBoxFilters.Text.Substring(0, this.textBoxFilters.Text.Length - 1);
+                }
+                else
+                    this.textBoxFilters.Text = this.textBoxFilters.Text + (sender as ToolStripButton).Text;
+
+                this.ActiveControl = this.textBoxFilters.TextBox;
+                this.textBoxFilters.SelectionStart = this.textBoxFilters.Text.Length;
+            }
+            catch { }
+        }
+
         private void textBoxFilters_TextChanged(object sender, EventArgs e)
         {
             try
@@ -111,12 +131,8 @@ namespace TotalSmartCoding.Views.Mains
             }
         }
 
-        private void buttonClearFilters_Click(object sender, EventArgs e)
-        {
-            this.textBoxFilters.Text = "";
-        }
         #endregion <Call Tool Strip>
 
-        
+
     }
 }

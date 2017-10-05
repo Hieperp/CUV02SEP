@@ -2393,6 +2393,16 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Letter_uppercase__Arrow_left {
+            get {
+                object obj = ResourceManager.GetObject("Letter-uppercase--Arrow-left", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap letter_uppercase_A_icon {
             get {
                 object obj = ResourceManager.GetObject("letter-uppercase-A-icon", resourceCulture);
@@ -2403,9 +2413,29 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Letter_uppercase_At {
+            get {
+                object obj = ResourceManager.GetObject("Letter-uppercase-At", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap letter_uppercase_B_icon {
             get {
                 object obj = ResourceManager.GetObject("letter-uppercase-B-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Letter_uppercase_Blank {
+            get {
+                object obj = ResourceManager.GetObject("Letter-uppercase-Blank", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -2523,6 +2553,16 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Letter_uppercase_Minus {
+            get {
+                object obj = ResourceManager.GetObject("Letter-uppercase-Minus", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap letter_uppercase_N_icon {
             get {
                 object obj = ResourceManager.GetObject("letter-uppercase-N-icon", resourceCulture);
@@ -2553,6 +2593,106 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Letter_uppercase_Q {
+            get {
+                object obj = ResourceManager.GetObject("Letter-uppercase-Q", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Letter_uppercase_R {
+            get {
+                object obj = ResourceManager.GetObject("Letter-uppercase-R", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Letter_uppercase_S {
+            get {
+                object obj = ResourceManager.GetObject("Letter-uppercase-S", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Letter_uppercase_T {
+            get {
+                object obj = ResourceManager.GetObject("Letter-uppercase-T", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Letter_uppercase_U {
+            get {
+                object obj = ResourceManager.GetObject("Letter-uppercase-U", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Letter_uppercase_V {
+            get {
+                object obj = ResourceManager.GetObject("Letter-uppercase-V", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Letter_uppercase_W {
+            get {
+                object obj = ResourceManager.GetObject("Letter-uppercase-W", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Letter_uppercase_X {
+            get {
+                object obj = ResourceManager.GetObject("Letter-uppercase-X", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Letter_uppercase_Y {
+            get {
+                object obj = ResourceManager.GetObject("Letter-uppercase-Y", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Letter_uppercase_Z {
+            get {
+                object obj = ResourceManager.GetObject("Letter-uppercase-Z", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap lock_disabled_icon_24 {
             get {
                 object obj = ResourceManager.GetObject("lock-disabled-icon-24", resourceCulture);
@@ -2576,6 +2716,106 @@ namespace TotalSmartCoding.Properties {
         internal static System.Drawing.Bitmap money_dollar_icon {
             get {
                 object obj = ResourceManager.GetObject("money-dollar-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Number_Keys_0 {
+            get {
+                object obj = ResourceManager.GetObject("Number-Keys-0", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Number_Keys_1 {
+            get {
+                object obj = ResourceManager.GetObject("Number-Keys-1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Number_Keys_2 {
+            get {
+                object obj = ResourceManager.GetObject("Number-Keys-2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Number_Keys_3 {
+            get {
+                object obj = ResourceManager.GetObject("Number-Keys-3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Number_Keys_4 {
+            get {
+                object obj = ResourceManager.GetObject("Number-Keys-4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Number_Keys_5 {
+            get {
+                object obj = ResourceManager.GetObject("Number-Keys-5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Number_Keys_6 {
+            get {
+                object obj = ResourceManager.GetObject("Number-Keys-6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Number_Keys_7 {
+            get {
+                object obj = ResourceManager.GetObject("Number-Keys-7", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Number_Keys_8 {
+            get {
+                object obj = ResourceManager.GetObject("Number-Keys-8", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Number_Keys_9 {
+            get {
+                object obj = ResourceManager.GetObject("Number-Keys-9", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

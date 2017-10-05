@@ -35,7 +35,13 @@ namespace TotalDTO.Inventories
             set { ApplyPropertyChange<PickupDetailDTO, Nullable<int>>(ref this.binLocationID, o => o.BinLocationID, value); }
         }
 
-        public string BinLocationCode { get; set; }
+        private string binLocationCode;
+        [DefaultValue("")]
+        public virtual string BinLocationCode
+        {
+            get { return this.binLocationCode; }
+            set { ApplyPropertyChange<PickupDetailDTO, string>(ref this.binLocationCode, o => o.BinLocationCode, value, false); }
+        }
 
         public Nullable<int> PackID { get; set; }
         public string PackCode { get; set; }

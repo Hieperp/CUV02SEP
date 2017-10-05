@@ -32,10 +32,15 @@ namespace TotalDAL.Repositories
             //return;
             //return;
 
+            Helpers.SqlProgrammability.Commons.BinLocation binLocation = new Helpers.SqlProgrammability.Commons.BinLocation(totalSmartCodingEntities);
+            binLocation.RestoreProcedure();
+
+            return;
+
             Helpers.SqlProgrammability.Commons.Commodity commodity = new Helpers.SqlProgrammability.Commons.Commodity(totalSmartCodingEntities);
             commodity.RestoreProcedure();
 
-            //return;
+            return;
 
             Helpers.SqlProgrammability.Productions.Batch batch = new Helpers.SqlProgrammability.Productions.Batch(totalSmartCodingEntities);
             batch.RestoreProcedure();
@@ -132,11 +137,7 @@ namespace TotalDAL.Repositories
             accessControl.RestoreProcedure();
 
 
-            return;
-
-            Helpers.SqlProgrammability.Commons.BinLocation binLocation = new Helpers.SqlProgrammability.Commons.BinLocation(totalSmartCodingEntities);
-            binLocation.RestoreProcedure();
-
+            
             
 
             return;

@@ -61,6 +61,8 @@ namespace TotalDTO.Helpers
             set { ApplyPropertyChange<QuantityDetailDTO, string>(ref this.commodityName, o => o.CommodityName, value); }
         }
 
+        public string CommodityCodeAndName { get { return this.CommodityCode + "-" + this.CommodityName; } }
+
         private string unit;
         [DefaultValue("")]
         public virtual string Unit

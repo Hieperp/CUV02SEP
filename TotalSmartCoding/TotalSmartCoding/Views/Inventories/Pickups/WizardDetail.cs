@@ -33,8 +33,8 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
         private PickupDetailDTO pickupDetailDTO;
 
         Binding bindingCodeID;
-        Binding bindingCommodityCode;
-        Binding bindingCommodityName;
+        Binding bindingCommodityCodeAndName;
+        Binding bindingBinLocationCode;
         Binding bindingQuantity;
         Binding bindingLineVolume;
 
@@ -44,8 +44,6 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
 
             this.toolstripChild = this.toolStrip1;
             this.tabBinLocation = new CustomTabControl();
-
-            this.tabBinLocation.Font = new Font("Niagara Engraved", 16);
             this.tabBinLocation.DisplayStyle = TabStyle.VisualStudio;
 
             this.tabBinLocation.TabPages.Add("tabBinLocations", "Available Bin Location   ");
@@ -53,16 +51,35 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
 
             this.tabBinLocation.Dock = DockStyle.Fill;
             this.fastBinLocations.Dock = DockStyle.Fill;
-            this.splitContainer2.Panel2.Controls.Add(this.tabBinLocation);
+            this.splitContainerCenter.Panel2.Controls.Add(this.tabBinLocation);
 
-            this.splitContainer2.SplitterDistance = this.textexCode.Height + this.textexCommodityCode.Height + this.textexCommodityName.Height + this.textexQuantity.Height + this.textexLineVolume.Height + this.textexBinLocationFilters.Height + 30;
-            this.splitContainer1.SplitterDistance = this.Width - this.Softkey001.Width - this.Softkey002.Width - this.Softkey003.Width - this.Softkey004.Width - 22;
-            this.ActiveControl = this.textexBinLocationFilters;
+            if (GlobalVariables.ConfigFillingLineID == (int)GlobalVariables.FillingLine.Pickup) this.setFont(new Font("Niagara Engraved", 14), new Font("Calibri", 11), new Font("Niagara Engraved", 14));
+
+            this.splitContainerCenter.SplitterDistance = this.textexCode.Height + this.textexCommodityCodeAndName.Height + this.textexQuantity.Height + this.textexLineVolume.Height + this.textexBinLocationCode.Height + 5 * 10 + 28;
 
             this.pickupViewModel = pickupViewModel;
             this.pendingPallet = pendingPallet;
         }
 
+
+        private void setFont(Font titleFont, Font font, Font toolbarFont)
+        {
+            this.tabBinLocation.Font = titleFont;
+
+            List<Control> controls = ViewHelpers.GetAllControls(this);
+            foreach (Control control in controls)
+            {
+                if (control is Label) control.Font = titleFont;
+                else if (control is TextBox || control is ComboBox || control is DateTimePicker) control.Font = font;
+                else if (control is FastObjectListView) control.Font = font;
+                else if (control is DataGridView)
+                {
+                    DataGridView dataGridView = control as DataGridView;
+                    dataGridView.ColumnHeadersDefaultCellStyle.Font = titleFont;
+                    dataGridView.RowsDefaultCellStyle.Font = font;
+                }
+            }
+        }
 
         private void WizardDetail_Load(object sender, EventArgs e)
         {
@@ -94,20 +111,20 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
                 this.pickupDetailDTO.PropertyChanged += pickupDetailDTO_PropertyChanged;
 
                 this.bindingCodeID = this.textexCode.DataBindings.Add("Text", this.pickupDetailDTO, CommonExpressions.PropertyName<PickupDetailDTO>(p => p.PalletCode));
-                this.bindingCommodityCode = this.textexCommodityCode.DataBindings.Add("Text", this.pickupDetailDTO, CommonExpressions.PropertyName<PickupDetailDTO>(p => p.CommodityCode));
-                this.bindingCommodityName = this.textexCommodityName.DataBindings.Add("Text", this.pickupDetailDTO, CommonExpressions.PropertyName<PickupDetailDTO>(p => p.CommodityName));
+                this.bindingCommodityCodeAndName = this.textexCommodityCodeAndName.DataBindings.Add("Text", this.pickupDetailDTO, CommonExpressions.PropertyName<PickupDetailDTO>(p => p.CommodityCodeAndName));
+                this.bindingBinLocationCode = this.textexBinLocationCode.DataBindings.Add("Text", this.pickupDetailDTO, CommonExpressions.PropertyName<PickupDetailDTO>(p => p.BinLocationCode));
                 this.bindingQuantity = this.textexQuantity.DataBindings.Add("Text", this.pickupDetailDTO, CommonExpressions.PropertyName<PickupDetailDTO>(p => p.Quantity));
                 this.bindingLineVolume = this.textexLineVolume.DataBindings.Add("Text", this.pickupDetailDTO, CommonExpressions.PropertyName<PickupDetailDTO>(p => p.LineVolume));
 
                 this.fastBinLocations.SetObjects((new BinLocationAPIs(CommonNinject.Kernel.Get<IBinLocationAPIRepository>())).GetBinLocationBases());
 
-                this.tabBinLocation.TabPages[0].Text = this.fastBinLocations.GetItemCount().ToString("N0") + " Bin" + (this.fastBinLocations.GetItemCount() > 1 ? "s" : "") + " Available       ";
+                this.tabBinLocation.TabPages[0].Text = "Available " + this.fastBinLocations.GetItemCount().ToString("N0") + " Bin" + (this.fastBinLocations.GetItemCount() > 1 ? "s" : "") + "        ";
 
 
 
                 this.bindingCodeID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
-                this.bindingCommodityCode.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
-                this.bindingCommodityName.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+                this.bindingCommodityCodeAndName.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+                this.bindingBinLocationCode.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
                 this.bindingQuantity.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
                 this.bindingLineVolume.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
 
@@ -139,39 +156,11 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
             else { this.pickupDetailDTO.BinLocationID = null; this.pickupDetailDTO.BinLocationCode = ""; };
         }
 
-        private void softkey_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                
-
-                if (sender.Equals(this.SoftkeyBackspace))
-                {
-                    if (this.textexBinLocationFilters.Text.Length > 0) this.textexBinLocationFilters.Text = this.textexBinLocationFilters.Text.Substring(0, this.textexBinLocationFilters.Text.Length - 1);
-                }
-                else
-                    this.textexBinLocationFilters.Text = this.textexBinLocationFilters.Text + (sender as ToolStripButton).Text;
-
-                this.ActiveControl = this.textexBinLocationFilters;
-                this.textexBinLocationFilters.SelectionStart = this.textexBinLocationFilters.Text.Length;
-            }
-            catch { }
-        }
-
         public void ApplyFilter(string filterTexts)
         {
             this.fastBinLocations.SelectedObject = null;
             OLVHelpers.ApplyFilters(this.fastBinLocations, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
-        }
-
-
-        private void textexBinLocationFilters_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                
-            }
-            catch { }
+            this.tabBinLocation.TabPages[0].Text = "Available " + this.fastBinLocations.GetItemCount().ToString("N0") + " Bin" + (this.fastBinLocations.GetItemCount() > 1 ? "s" : "") + "        ";
         }
 
         private void buttonAddESC_Click(object sender, EventArgs e)
