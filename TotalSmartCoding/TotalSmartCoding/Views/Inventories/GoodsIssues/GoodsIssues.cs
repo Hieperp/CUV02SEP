@@ -297,16 +297,6 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
 
         protected override DialogResult wizardMaster()
         {
-            WizardDetail wizardDetail = new WizardDetail(this.goodsIssueViewModel, new PendingDeliveryAdviceDetail());
-                        TabletMDI tabletMDI = new TabletMDI(wizardDetail);
-                        tabletMDI.ShowDialog();
-
-
-
-
-
-
-
             WizardMaster wizardMaster = new WizardMaster(this.goodsIssueAPIs, this.goodsIssueViewModel);
             DialogResult dialogResult = wizardMaster.ShowDialog();
             if (dialogResult == System.Windows.Forms.DialogResult.OK) this.Save(false);

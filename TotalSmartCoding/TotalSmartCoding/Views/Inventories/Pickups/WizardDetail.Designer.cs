@@ -103,10 +103,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(2, 29);
+            this.label2.Location = new System.Drawing.Point(2, 20);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(173, 24);
+            this.label2.Size = new System.Drawing.Size(174, 24);
             this.label2.TabIndex = 103;
             this.label2.Text = "Barcode";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -115,10 +115,10 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label10.Location = new System.Drawing.Point(2, 59);
+            this.label10.Location = new System.Drawing.Point(2, 50);
             this.label10.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(173, 24);
+            this.label10.Size = new System.Drawing.Size(174, 24);
             this.label10.TabIndex = 95;
             this.label10.Text = "Item Description";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -127,10 +127,10 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label9.Location = new System.Drawing.Point(1, 147);
+            this.label9.Location = new System.Drawing.Point(1, 138);
             this.label9.Margin = new System.Windows.Forms.Padding(1);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(175, 28);
+            this.label9.Size = new System.Drawing.Size(176, 28);
             this.label9.TabIndex = 101;
             this.label9.Text = "Bin Location";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -139,43 +139,43 @@
             // 
             this.textexCode.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexCode.Editable = true;
-            this.textexCode.Location = new System.Drawing.Point(179, 27);
+            this.textexCode.Location = new System.Drawing.Point(180, 18);
             this.textexCode.Margin = new System.Windows.Forms.Padding(2, 1, 1, 1);
             this.textexCode.Name = "textexCode";
             this.textexCode.ReadOnly = true;
-            this.textexCode.Size = new System.Drawing.Size(395, 28);
+            this.textexCode.Size = new System.Drawing.Size(398, 28);
             this.textexCode.TabIndex = 104;
             // 
             // textexCommodityCodeAndName
             // 
             this.textexCommodityCodeAndName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexCommodityCodeAndName.Editable = true;
-            this.textexCommodityCodeAndName.Location = new System.Drawing.Point(179, 57);
+            this.textexCommodityCodeAndName.Location = new System.Drawing.Point(180, 48);
             this.textexCommodityCodeAndName.Margin = new System.Windows.Forms.Padding(2, 1, 1, 1);
             this.textexCommodityCodeAndName.Name = "textexCommodityCodeAndName";
             this.textexCommodityCodeAndName.ReadOnly = true;
-            this.textexCommodityCodeAndName.Size = new System.Drawing.Size(395, 28);
+            this.textexCommodityCodeAndName.Size = new System.Drawing.Size(398, 28);
             this.textexCommodityCodeAndName.TabIndex = 105;
             // 
             // textexQuantity
             // 
             this.textexQuantity.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexQuantity.Editable = true;
-            this.textexQuantity.Location = new System.Drawing.Point(179, 87);
+            this.textexQuantity.Location = new System.Drawing.Point(180, 78);
             this.textexQuantity.Margin = new System.Windows.Forms.Padding(2, 1, 1, 1);
             this.textexQuantity.Name = "textexQuantity";
             this.textexQuantity.ReadOnly = true;
-            this.textexQuantity.Size = new System.Drawing.Size(395, 28);
+            this.textexQuantity.Size = new System.Drawing.Size(398, 28);
             this.textexQuantity.TabIndex = 108;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Location = new System.Drawing.Point(2, 89);
+            this.label4.Location = new System.Drawing.Point(2, 80);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(173, 24);
+            this.label4.Size = new System.Drawing.Size(174, 24);
             this.label4.TabIndex = 107;
             this.label4.Text = "Quantity";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -209,7 +209,7 @@
             this.fastBinLocations.RowHeight = 32;
             this.fastBinLocations.ShowGroups = false;
             this.fastBinLocations.ShowImagesOnSubItems = true;
-            this.fastBinLocations.Size = new System.Drawing.Size(595, 377);
+            this.fastBinLocations.Size = new System.Drawing.Size(595, 181);
             this.fastBinLocations.TabIndex = 109;
             this.fastBinLocations.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastBinLocations.UseCompatibleStateImageBehavior = false;
@@ -265,8 +265,8 @@
             // splitContainerCenter.Panel2
             // 
             this.splitContainerCenter.Panel2.Controls.Add(this.fastBinLocations);
-            this.splitContainerCenter.Size = new System.Drawing.Size(595, 765);
-            this.splitContainerCenter.SplitterDistance = 383;
+            this.splitContainerCenter.Size = new System.Drawing.Size(595, 372);
+            this.splitContainerCenter.SplitterDistance = 186;
             this.splitContainerCenter.SplitterWidth = 5;
             this.splitContainerCenter.TabIndex = 0;
             // 
@@ -275,7 +275,7 @@
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.84455F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 69.15545F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 19F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 15F));
             this.tableLayoutPanel1.Controls.Add(this.label9, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.textexQuantity, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.label4, 0, 3);
@@ -291,14 +291,14 @@
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 7;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 17F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(595, 383);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(595, 186);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // textexBinLocationCode
@@ -306,32 +306,32 @@
             this.textexBinLocationCode.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexBinLocationCode.Editable = true;
             this.textexBinLocationCode.ForeColor = System.Drawing.Color.Firebrick;
-            this.textexBinLocationCode.Location = new System.Drawing.Point(179, 147);
+            this.textexBinLocationCode.Location = new System.Drawing.Point(180, 138);
             this.textexBinLocationCode.Margin = new System.Windows.Forms.Padding(2, 1, 1, 1);
             this.textexBinLocationCode.Name = "textexBinLocationCode";
             this.textexBinLocationCode.ReadOnly = true;
-            this.textexBinLocationCode.Size = new System.Drawing.Size(395, 28);
+            this.textexBinLocationCode.Size = new System.Drawing.Size(398, 28);
             this.textexBinLocationCode.TabIndex = 109;
             // 
             // textexLineVolume
             // 
             this.textexLineVolume.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexLineVolume.Editable = true;
-            this.textexLineVolume.Location = new System.Drawing.Point(179, 117);
+            this.textexLineVolume.Location = new System.Drawing.Point(180, 108);
             this.textexLineVolume.Margin = new System.Windows.Forms.Padding(2, 1, 1, 1);
             this.textexLineVolume.Name = "textexLineVolume";
             this.textexLineVolume.ReadOnly = true;
-            this.textexLineVolume.Size = new System.Drawing.Size(395, 28);
+            this.textexLineVolume.Size = new System.Drawing.Size(398, 28);
             this.textexLineVolume.TabIndex = 111;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Location = new System.Drawing.Point(2, 119);
+            this.label3.Location = new System.Drawing.Point(2, 110);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(173, 24);
+            this.label3.Size = new System.Drawing.Size(174, 24);
             this.label3.TabIndex = 112;
             this.label3.Text = "Volume";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -340,7 +340,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(595, 765);
+            this.ClientSize = new System.Drawing.Size(595, 372);
             this.Controls.Add(this.splitContainerCenter);
             this.Controls.Add(this.toolStrip1);
             this.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

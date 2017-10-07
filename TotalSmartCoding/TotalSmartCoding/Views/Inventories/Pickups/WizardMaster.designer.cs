@@ -164,7 +164,7 @@
             this.combexWarehouseID.Margin = new System.Windows.Forms.Padding(2, 1, 1, 1);
             this.combexWarehouseID.Name = "combexWarehouseID";
             this.combexWarehouseID.ReadOnly = false;
-            this.combexWarehouseID.Size = new System.Drawing.Size(370, 29);
+            this.combexWarehouseID.Size = new System.Drawing.Size(369, 29);
             this.combexWarehouseID.TabIndex = 86;
             // 
             // combexForkliftDriverID
@@ -178,7 +178,7 @@
             this.combexForkliftDriverID.Margin = new System.Windows.Forms.Padding(2, 1, 1, 1);
             this.combexForkliftDriverID.Name = "combexForkliftDriverID";
             this.combexForkliftDriverID.ReadOnly = false;
-            this.combexForkliftDriverID.Size = new System.Drawing.Size(370, 29);
+            this.combexForkliftDriverID.Size = new System.Drawing.Size(369, 29);
             this.combexForkliftDriverID.TabIndex = 87;
             // 
             // combexStorekeeperID
@@ -192,7 +192,7 @@
             this.combexStorekeeperID.Margin = new System.Windows.Forms.Padding(2, 1, 1, 1);
             this.combexStorekeeperID.Name = "combexStorekeeperID";
             this.combexStorekeeperID.ReadOnly = false;
-            this.combexStorekeeperID.Size = new System.Drawing.Size(370, 29);
+            this.combexStorekeeperID.Size = new System.Drawing.Size(369, 29);
             this.combexStorekeeperID.TabIndex = 88;
             // 
             // textexRemarks
@@ -202,7 +202,7 @@
             this.textexRemarks.Location = new System.Drawing.Point(221, 148);
             this.textexRemarks.Margin = new System.Windows.Forms.Padding(2, 1, 1, 1);
             this.textexRemarks.Name = "textexRemarks";
-            this.textexRemarks.Size = new System.Drawing.Size(370, 28);
+            this.textexRemarks.Size = new System.Drawing.Size(369, 28);
             this.textexRemarks.TabIndex = 92;
             // 
             // combexFillingLineID
@@ -216,7 +216,7 @@
             this.combexFillingLineID.Margin = new System.Windows.Forms.Padding(2, 1, 1, 1);
             this.combexFillingLineID.Name = "combexFillingLineID";
             this.combexFillingLineID.ReadOnly = false;
-            this.combexFillingLineID.Size = new System.Drawing.Size(370, 29);
+            this.combexFillingLineID.Size = new System.Drawing.Size(369, 29);
             this.combexFillingLineID.TabIndex = 94;
             // 
             // label4
@@ -240,7 +240,7 @@
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75F));
-            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 19F));
+            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.layoutTop.Controls.Add(this.label4, 2, 2);
             this.layoutTop.Controls.Add(this.combexFillingLineID, 3, 1);
             this.layoutTop.Controls.Add(this.pictureBox1, 1, 1);
