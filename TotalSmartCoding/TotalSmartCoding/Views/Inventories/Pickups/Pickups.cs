@@ -73,13 +73,13 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
                 this.naviIndex.Bands[0].ClientArea.Controls.Add(this.fastPickupIndex);
 
                 this.customTabCenter = new CustomTabControl();
-                if (GlobalVariables.ConfigFillingLineID == (int)GlobalVariables.FillingLine.Pickup) this.setFont(new Font("Niagara Engraved", 15), new Font("Calibri", 11), new Font("Niagara Engraved", 15));
+                if (GlobalVariables.ConfigFillingLineID == (int)GlobalVariables.FillingLine.Pickup) this.setFont(new Font("Calibri", 11), new Font("Calibri", 11), new Font("Calibri", 11));
 
                 this.customTabCenter.DisplayStyle = TabStyle.VisualStudio;
 
-                this.customTabCenter.TabPages.Add("tabDetailPallets", "Pickup pallet list                    ");
-                this.customTabCenter.TabPages.Add("tabDescription", "Description         ");
-                this.customTabCenter.TabPages.Add("tabRemarks", "Remarks                 ");
+                this.customTabCenter.TabPages.Add("tabDetailPallets", "Pickup pallet list   ");
+                this.customTabCenter.TabPages.Add("tabDescription", "Description  ");
+                this.customTabCenter.TabPages.Add("tabRemarks", "Remarks    ");
                 this.customTabCenter.TabPages[0].Controls.Add(this.gridexPalletDetails);
                 this.customTabCenter.TabPages[1].Controls.Add(this.textexDescription);
                 this.customTabCenter.TabPages[2].Controls.Add(this.textexRemarks);
@@ -109,8 +109,8 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
             this.naviDetails.Font = titleFont;
             this.olvPendingPalletCode.HeaderFont = titleFont;
             this.olvPickupIndexReference.HeaderFont = titleFont;
-            this.labelFillingLineName.Left = 68;
-            this.labelFillingLineName.Top = 10;
+            this.labelFillingLineName.Left = 78;
+            this.labelFillingLineName.Top = 12;
 
             List<Control> controls = ViewHelpers.GetAllControls(this);
             foreach (Control control in controls)

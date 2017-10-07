@@ -7,7 +7,7 @@
         public static bool OnTestPalletScanner = false; //3 //WHEN REAL TEST WITHOUT PalletScanner
 
         public static bool OnTestPrinter = false; //2
-        public static bool OnTestDigit = true; //WHEN REAL TEST WITHOUT DIGIT PRINTER
+        public static bool OnTestDigit = false; //WHEN REAL TEST WITHOUT DIGIT PRINTER
         public static bool OnTestZebra = false; //false: WILL SEND TEST PRINT WHEN CONNECTED
 
         public static bool SendToZebra = true;

@@ -659,6 +659,7 @@
             this.olvPendingPalletCode.HeaderFont = new System.Drawing.Font("Niagara Engraved", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.olvPendingPalletCode.HeaderForeColor = System.Drawing.Color.Firebrick;
             this.olvPendingPalletCode.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvPendingPalletCode.Sortable = false;
             this.olvPendingPalletCode.Text = "                         Pending Pallet";
             this.olvPendingPalletCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvPendingPalletCode.Width = 400;

@@ -166,7 +166,7 @@ namespace TotalSmartCoding.Views.Mains
 
                 GlobalVariables.ComportName = (string)this.comboBoxAutonicsPortName.SelectedValue;
 
-                CommonConfigs.AddUpdateAppSettings("FillingLineID", ((int)GlobalVariables.FillingLineID).ToString());
+                CommonConfigs.AddUpdateAppSettings("FillingLineID", (GlobalVariables.ConfigFillingLineID).ToString());
                 CommonConfigs.AddUpdateAppSettings("ComportName", GlobalVariables.ComportName);
 
                 //if (this.comboBoxEmployeeID.SelectedIndex < 0 || this.EmployeeID < 0) throw new System.ArgumentException("Vui lòng chọn tên người sử dụng!");

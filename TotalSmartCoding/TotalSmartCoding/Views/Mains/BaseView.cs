@@ -326,7 +326,8 @@ namespace TotalSmartCoding.Views.Mains
                     this.CancelDirty(false);
             }
             else
-                this.Close(); //Unload this module
+                if (GlobalVariables.ConfigFillingLineID == (int)GlobalVariables.FillingLine.None)
+                    this.Close(); //Unload this module
         }
 
         private void CancelDirty(bool withRestore)

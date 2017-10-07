@@ -13,6 +13,8 @@ using TotalSmartCoding.Controllers.APIs.Inventories;
 using TotalSmartCoding.Libraries;
 using TotalSmartCoding.Libraries.Helpers;
 using TotalSmartCoding.ViewModels.Inventories;
+using System.Collections.Generic;
+using BrightIdeasSoftware;
 
 
 namespace TotalSmartCoding.Views.Inventories.Pickups
@@ -32,9 +34,35 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
         {
             InitializeComponent();
 
+            if (GlobalVariables.ConfigFillingLineID == (int)GlobalVariables.FillingLine.Pickup) this.setFont(new Font("Calibri", 11), new Font("Calibri", 11), new Font("Calibri", 11));
+
             this.pickupViewModel = pickupViewModel;
         }
 
+        private void setFont(Font titleFont, Font font, Font toolbarFont)
+        {
+            List<Control> controls = ViewHelpers.GetAllControls(this);
+            foreach (Control control in controls)
+            {
+                if (control is Label) control.Font = titleFont;
+                else if (control is TextBox || control is ComboBox || control is DateTimePicker) control.Font = font;
+                else if (control is FastObjectListView) control.Font = font;
+                else if (control is DataGridView)
+                {
+                    DataGridView dataGridView = control as DataGridView;
+                    dataGridView.ColumnHeadersDefaultCellStyle.Font = titleFont;
+                    dataGridView.RowsDefaultCellStyle.Font = font;
+                }
+                else if (control is ToolStrip)
+                {
+                    foreach (ToolStripItem item in ((ToolStrip)control).Items)
+                    {
+                        if (item is ToolStripLabel || item is ToolStripTextBox || item is ToolStripComboBox || item is ToolStripButton)
+                            item.Font = toolbarFont;
+                    }
+                }
+            }
+        }
         private void WizardMaster_Load(object sender, EventArgs e)
         {
             try

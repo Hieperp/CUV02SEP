@@ -53,7 +53,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
             this.fastBinLocations.Dock = DockStyle.Fill;
             this.splitContainerCenter.Panel2.Controls.Add(this.tabBinLocation);
 
-            if (GlobalVariables.ConfigFillingLineID == (int)GlobalVariables.FillingLine.Pickup) this.setFont(new Font("Niagara Engraved", 14), new Font("Calibri", 11), new Font("Niagara Engraved", 14));
+            if (GlobalVariables.ConfigFillingLineID == (int)GlobalVariables.FillingLine.Pickup) this.setFont(new Font("Calibri", 11), new Font("Calibri", 11), new Font("Calibri", 11));
 
             this.splitContainerCenter.SplitterDistance = this.textexCode.Height + this.textexCommodityCodeAndName.Height + this.textexQuantity.Height + this.textexLineVolume.Height + this.textexBinLocationCode.Height + 5 * 10 + 28;
 
@@ -71,12 +71,28 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
             {
                 if (control is Label) control.Font = titleFont;
                 else if (control is TextBox || control is ComboBox || control is DateTimePicker) control.Font = font;
-                else if (control is FastObjectListView) control.Font = font;
+                else if (control is FastObjectListView)
+                {
+                    control.Font = font;
+                    FastObjectListView fastObjectListView = control as FastObjectListView;
+                    foreach (OLVColumn olvColumn in fastObjectListView.Columns)
+                    {
+                        olvColumn.HeaderFont = titleFont;
+                    }
+                }
                 else if (control is DataGridView)
                 {
                     DataGridView dataGridView = control as DataGridView;
                     dataGridView.ColumnHeadersDefaultCellStyle.Font = titleFont;
                     dataGridView.RowsDefaultCellStyle.Font = font;
+                }
+                else if (control is ToolStrip)
+                {
+                    foreach (ToolStripItem item in ((ToolStrip)control).Items)
+                    {
+                        if (item is ToolStripLabel || item is ToolStripTextBox || item is ToolStripComboBox || item is ToolStripButton)
+                            item.Font = toolbarFont;
+                    }
                 }
             }
         }
