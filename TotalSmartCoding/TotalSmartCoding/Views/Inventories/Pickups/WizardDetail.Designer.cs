@@ -68,17 +68,16 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.buttonESC,
             this.buttonAdd});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 531);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 713);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStrip1.Size = new System.Drawing.Size(529, 52);
+            this.toolStrip1.Size = new System.Drawing.Size(595, 52);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             this.toolStrip1.Visible = false;
             // 
             // buttonESC
             // 
-            this.buttonESC.Font = new System.Drawing.Font("Niagara Engraved", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonESC.Image = global::TotalSmartCoding.Properties.Resources.signout_icon_24;
             this.buttonESC.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.buttonESC.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -91,13 +90,12 @@
             // buttonAdd
             // 
             this.buttonAdd.Enabled = false;
-            this.buttonAdd.Font = new System.Drawing.Font("Niagara Engraved", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonAdd.Image = global::TotalSmartCoding.Properties.Resources.export_arrow_48;
             this.buttonAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonAdd.Margin = new System.Windows.Forms.Padding(0);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.buttonAdd.Size = new System.Drawing.Size(248, 52);
+            this.buttonAdd.Size = new System.Drawing.Size(247, 52);
             this.buttonAdd.Text = "Add this pallet to pickup list";
             this.buttonAdd.Click += new System.EventHandler(this.buttonAddESC_Click);
             // 
@@ -105,11 +103,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Font = new System.Drawing.Font("Niagara Engraved", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(2, 22);
-            this.label2.Margin = new System.Windows.Forms.Padding(2);
+            this.label2.Location = new System.Drawing.Point(2, 29);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(154, 32);
+            this.label2.Size = new System.Drawing.Size(173, 24);
             this.label2.TabIndex = 103;
             this.label2.Text = "Barcode";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -118,11 +115,10 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label10.Font = new System.Drawing.Font("Niagara Engraved", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(2, 58);
-            this.label10.Margin = new System.Windows.Forms.Padding(2);
+            this.label10.Location = new System.Drawing.Point(2, 59);
+            this.label10.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(154, 32);
+            this.label10.Size = new System.Drawing.Size(173, 24);
             this.label10.TabIndex = 95;
             this.label10.Text = "Item Description";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -131,11 +127,10 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label9.Font = new System.Drawing.Font("Niagara Engraved", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(1, 165);
+            this.label9.Location = new System.Drawing.Point(1, 147);
             this.label9.Margin = new System.Windows.Forms.Padding(1);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(156, 34);
+            this.label9.Size = new System.Drawing.Size(175, 28);
             this.label9.TabIndex = 101;
             this.label9.Text = "Bin Location";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -144,47 +139,43 @@
             // 
             this.textexCode.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexCode.Editable = true;
-            this.textexCode.Font = new System.Drawing.Font("Calibri", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textexCode.Location = new System.Drawing.Point(160, 21);
+            this.textexCode.Location = new System.Drawing.Point(179, 27);
             this.textexCode.Margin = new System.Windows.Forms.Padding(2, 1, 1, 1);
             this.textexCode.Name = "textexCode";
             this.textexCode.ReadOnly = true;
-            this.textexCode.Size = new System.Drawing.Size(352, 34);
+            this.textexCode.Size = new System.Drawing.Size(395, 28);
             this.textexCode.TabIndex = 104;
             // 
             // textexCommodityCodeAndName
             // 
             this.textexCommodityCodeAndName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexCommodityCodeAndName.Editable = true;
-            this.textexCommodityCodeAndName.Font = new System.Drawing.Font("Calibri", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textexCommodityCodeAndName.Location = new System.Drawing.Point(160, 57);
+            this.textexCommodityCodeAndName.Location = new System.Drawing.Point(179, 57);
             this.textexCommodityCodeAndName.Margin = new System.Windows.Forms.Padding(2, 1, 1, 1);
             this.textexCommodityCodeAndName.Name = "textexCommodityCodeAndName";
             this.textexCommodityCodeAndName.ReadOnly = true;
-            this.textexCommodityCodeAndName.Size = new System.Drawing.Size(352, 34);
+            this.textexCommodityCodeAndName.Size = new System.Drawing.Size(395, 28);
             this.textexCommodityCodeAndName.TabIndex = 105;
             // 
             // textexQuantity
             // 
             this.textexQuantity.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexQuantity.Editable = true;
-            this.textexQuantity.Font = new System.Drawing.Font("Calibri", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textexQuantity.Location = new System.Drawing.Point(160, 93);
+            this.textexQuantity.Location = new System.Drawing.Point(179, 87);
             this.textexQuantity.Margin = new System.Windows.Forms.Padding(2, 1, 1, 1);
             this.textexQuantity.Name = "textexQuantity";
             this.textexQuantity.ReadOnly = true;
-            this.textexQuantity.Size = new System.Drawing.Size(352, 34);
+            this.textexQuantity.Size = new System.Drawing.Size(395, 28);
             this.textexQuantity.TabIndex = 108;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Font = new System.Drawing.Font("Niagara Engraved", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(2, 94);
-            this.label4.Margin = new System.Windows.Forms.Padding(2);
+            this.label4.Location = new System.Drawing.Point(2, 89);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(154, 32);
+            this.label4.Size = new System.Drawing.Size(173, 24);
             this.label4.TabIndex = 107;
             this.label4.Text = "Quantity";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -207,18 +198,18 @@
             this.olvType});
             this.fastBinLocations.Cursor = System.Windows.Forms.Cursors.Default;
             this.fastBinLocations.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fastBinLocations.Font = new System.Drawing.Font("Calibri", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fastBinLocations.FullRowSelect = true;
             this.fastBinLocations.HideSelection = false;
             this.fastBinLocations.HighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastBinLocations.HighlightForegroundColor = System.Drawing.Color.Black;
             this.fastBinLocations.Location = new System.Drawing.Point(0, 0);
+            this.fastBinLocations.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.fastBinLocations.Name = "fastBinLocations";
             this.fastBinLocations.OwnerDraw = true;
             this.fastBinLocations.RowHeight = 32;
             this.fastBinLocations.ShowGroups = false;
             this.fastBinLocations.ShowImagesOnSubItems = true;
-            this.fastBinLocations.Size = new System.Drawing.Size(529, 287);
+            this.fastBinLocations.Size = new System.Drawing.Size(595, 377);
             this.fastBinLocations.TabIndex = 109;
             this.fastBinLocations.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastBinLocations.UseCompatibleStateImageBehavior = false;
@@ -263,6 +254,7 @@
             // 
             this.splitContainerCenter.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerCenter.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerCenter.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.splitContainerCenter.Name = "splitContainerCenter";
             this.splitContainerCenter.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -273,8 +265,9 @@
             // splitContainerCenter.Panel2
             // 
             this.splitContainerCenter.Panel2.Controls.Add(this.fastBinLocations);
-            this.splitContainerCenter.Size = new System.Drawing.Size(529, 583);
-            this.splitContainerCenter.SplitterDistance = 292;
+            this.splitContainerCenter.Size = new System.Drawing.Size(595, 765);
+            this.splitContainerCenter.SplitterDistance = 383;
+            this.splitContainerCenter.SplitterWidth = 5;
             this.splitContainerCenter.TabIndex = 0;
             // 
             // tableLayoutPanel1
@@ -282,7 +275,7 @@
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.84455F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 69.15545F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 15F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 19F));
             this.tableLayoutPanel1.Controls.Add(this.label9, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.textexQuantity, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.label4, 0, 3);
@@ -295,64 +288,64 @@
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 4);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 7;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(529, 292);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(595, 383);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // textexBinLocationCode
             // 
             this.textexBinLocationCode.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexBinLocationCode.Editable = true;
-            this.textexBinLocationCode.Font = new System.Drawing.Font("Calibri", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textexBinLocationCode.ForeColor = System.Drawing.Color.Firebrick;
-            this.textexBinLocationCode.Location = new System.Drawing.Point(160, 165);
+            this.textexBinLocationCode.Location = new System.Drawing.Point(179, 147);
             this.textexBinLocationCode.Margin = new System.Windows.Forms.Padding(2, 1, 1, 1);
             this.textexBinLocationCode.Name = "textexBinLocationCode";
             this.textexBinLocationCode.ReadOnly = true;
-            this.textexBinLocationCode.Size = new System.Drawing.Size(352, 34);
+            this.textexBinLocationCode.Size = new System.Drawing.Size(395, 28);
             this.textexBinLocationCode.TabIndex = 109;
             // 
             // textexLineVolume
             // 
             this.textexLineVolume.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexLineVolume.Editable = true;
-            this.textexLineVolume.Font = new System.Drawing.Font("Calibri", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textexLineVolume.Location = new System.Drawing.Point(160, 129);
+            this.textexLineVolume.Location = new System.Drawing.Point(179, 117);
             this.textexLineVolume.Margin = new System.Windows.Forms.Padding(2, 1, 1, 1);
             this.textexLineVolume.Name = "textexLineVolume";
             this.textexLineVolume.ReadOnly = true;
-            this.textexLineVolume.Size = new System.Drawing.Size(352, 34);
+            this.textexLineVolume.Size = new System.Drawing.Size(395, 28);
             this.textexLineVolume.TabIndex = 111;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Font = new System.Drawing.Font("Niagara Engraved", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(2, 130);
-            this.label3.Margin = new System.Windows.Forms.Padding(2);
+            this.label3.Location = new System.Drawing.Point(2, 119);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(154, 32);
+            this.label3.Size = new System.Drawing.Size(173, 24);
             this.label3.TabIndex = 112;
             this.label3.Text = "Volume";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // WizardDetail
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(529, 583);
+            this.ClientSize = new System.Drawing.Size(595, 765);
             this.Controls.Add(this.splitContainerCenter);
             this.Controls.Add(this.toolStrip1);
+            this.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "WizardDetail";

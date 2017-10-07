@@ -73,8 +73,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
                 this.naviIndex.Bands[0].ClientArea.Controls.Add(this.fastPickupIndex);
 
                 this.customTabCenter = new CustomTabControl();
-                if (GlobalVariables.ConfigFillingLineID == (int)GlobalVariables.FillingLine.Pickup) this.setFont(new Font("Calibri", 11), new Font("Calibri", 11), new Font("Calibri", 11));
-
+                
                 this.customTabCenter.DisplayStyle = TabStyle.VisualStudio;
 
                 this.customTabCenter.TabPages.Add("tabDetailPallets", "Pickup pallet list   ");
@@ -95,55 +94,15 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
 
                 this.naviDetails.ExpandedHeight = this.naviDetails.HeaderHeight + this.textexTotalPalletCounts.Size.Height + this.textexTotalQuantity.Size.Height + this.textexTotalLineVolume.Size.Height + 5 + 4 * 10 + 6;
                 this.naviDetails.Expanded = false;
+
+                this.labelFillingLineName.Left = 78; this.labelFillingLineName.Top = 12;
+                if (GlobalVariables.ConfigFillingLineID == (int)GlobalVariables.FillingLine.Pickup) { ViewHelpers.SetFont(this, new Font("Calibri", 11), new Font("Calibri", 11), new Font("Calibri", 11)); ViewHelpers.SetFont(this.MdiParent, new Font("Calibri", 11), new Font("Calibri", 11), new Font("Calibri", 11)); }
             }
             catch (Exception exception)
             {
                 ExceptionHandlers.ShowExceptionMessageBox(this, exception);
             }
         }
-
-
-        private void setFont(Font titleFont, Font font, Font toolbarFont)
-        {
-            this.customTabCenter.Font = titleFont;
-            this.naviDetails.Font = titleFont;
-            this.olvPendingPalletCode.HeaderFont = titleFont;
-            this.olvPickupIndexReference.HeaderFont = titleFont;
-            this.labelFillingLineName.Left = 78;
-            this.labelFillingLineName.Top = 12;
-
-            List<Control> controls = ViewHelpers.GetAllControls(this);
-            foreach (Control control in controls)
-            {
-                if (control is Label) control.Font = titleFont;
-                else if (control is TextBox || control is ComboBox || control is DateTimePicker) control.Font = font;
-                else if (control is FastObjectListView) control.Font = font;
-                else if (control is DataGridView)
-                {
-                    DataGridView dataGridView = control as DataGridView;
-                    dataGridView.ColumnHeadersDefaultCellStyle.Font = titleFont;
-                    dataGridView.RowsDefaultCellStyle.Font = font;
-                }
-            }
-
-
-            List<Control> parentControls = ViewHelpers.GetAllControls(this.MdiParent);
-            foreach (Control parentControl in parentControls)
-            {
-                if (parentControl is ToolStrip)
-                {
-                    foreach (ToolStripItem item in ((ToolStrip)parentControl).Items)
-                    {
-                        if (item is ToolStripLabel || item is ToolStripTextBox || item is ToolStripComboBox || item is ToolStripButton)
-                            item.Font = toolbarFont;
-                    }
-                }
-            }
-
-
-
-        }
-
 
 
         Binding bindingEntryDate;
@@ -290,9 +249,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
                     PendingPallet pendingPallet = (PendingPallet)this.fastPendingPallets.SelectedObject;
                     if (pendingPallet != null)
                     {
-                        WizardDetail wizardDetail = new WizardDetail(this.pickupViewModel, pendingPallet);
-                        //if (wizardDetail.ShowDialog() == System.Windows.Forms.DialogResult.OK) this.Save(false);
-
+                        WizardDetail wizardDetail = new WizardDetail(this.pickupViewModel, pendingPallet);                        
                         TabletMDI tabletMDI = new TabletMDI(wizardDetail);
                         if (tabletMDI.ShowDialog() == System.Windows.Forms.DialogResult.OK) this.Save(false);
 
