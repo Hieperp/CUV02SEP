@@ -184,7 +184,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                                 Quantity = (decimal)goodsReceiptDetailAvailable.QuantityAvailable, //SHOULD: Quantity = QuantityAvailable (ALSO: LineVolume = LineVolumeAvailable): BECAUSE: WE ISSUE BY WHOLE UNIT OF PALLET/ OR CARTON/ OR PACK
                                 LineVolume = (decimal)goodsReceiptDetailAvailable.LineVolumeAvailable //IF Quantity > QuantityRemains (OR LineVolume > LineVolumeRemains) => THE GoodsIssueDetailDTO WILL BREAK THE ValidationRule => CAN NOT SAVE => USER MUST SELECT OTHER APPROPRIATE UNIT OF PALLET/ OR CARTON/ OR PACK WHICH MATCH THE Quantity/ LineVolume                                
                             };
-                            this.goodsIssueViewModel.ViewDetails.Add(goodsIssueDetailDTO);
+                            this.goodsIssueViewModel.ViewDetails.Insert(0, goodsIssueDetailDTO);
                         }
                     }
 
