@@ -97,7 +97,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
                 this.bindingLineVolume = this.textexLineVolume.DataBindings.Add("Text", this.pickupDetailDTO, CommonExpressions.PropertyName<PickupDetailDTO>(p => p.LineVolume));
 
                 this.fastBinLocations.SetObjects((new BinLocationAPIs(CommonNinject.Kernel.Get<IBinLocationAPIRepository>())).GetBinLocationBases());
-                this.SetRowCount();
+                this.ShowRowCount();
 
                 this.bindingCodeID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
                 this.bindingCommodityCodeAndName.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
@@ -138,10 +138,10 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
             this.fastBinLocations.SelectedObject = null;
             OLVHelpers.ApplyFilters(this.fastBinLocations, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
 
-            this.SetRowCount();
+            this.ShowRowCount();
         }
 
-        private void SetRowCount()
+        private void ShowRowCount()
         {
             this.tabBinLocation.TabPages[0].Text = "Available " + this.fastBinLocations.GetItemCount().ToString("N0") + " Bin" + (this.fastBinLocations.GetItemCount() > 1 ? "s" : "") + "        ";
         }

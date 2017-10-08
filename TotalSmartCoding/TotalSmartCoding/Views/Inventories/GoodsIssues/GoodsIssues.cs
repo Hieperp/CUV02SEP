@@ -74,8 +74,6 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                 this.naviIndex.Bands[0].ClientArea.Controls.Add(this.fastGoodsIssueIndex);
 
                 this.customTabCenter = new CustomTabControl();
-                if (GlobalVariables.ConfigFillingLineID == (int)GlobalVariables.FillingLine.GoodsIssue) this.setFont(new Font("Niagara Engraved", 16), new Font("Calibri", 13), new Font("Niagara Engraved", 16));
-
                 this.customTabCenter.DisplayStyle = TabStyle.VisualStudio;
 
                 this.customTabCenter.TabPages.Add("tabDetailPallets", "Pallet Details        ");
@@ -99,53 +97,13 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
 
                 this.naviDetails.ExpandedHeight = this.naviDetails.HeaderHeight + this.textexTotalPalletCounts.Size.Height + this.textexTotalQuantity.Size.Height + this.textexTotalLineVolume.Size.Height + 5 + 4 * 10 + 6;
                 this.naviDetails.Expanded = false;
+
+                this.labelCaption.Left = 78; this.labelCaption.Top = 12;
+                if (GlobalVariables.ConfigFillingLineID == (int)GlobalVariables.FillingLine.GoodsIssue) { ViewHelpers.SetFont(this, new Font("Calibri", 11), new Font("Calibri", 11), new Font("Calibri", 11)); ViewHelpers.SetFont(this.MdiParent, new Font("Calibri", 11), new Font("Calibri", 11), new Font("Calibri", 11)); }
             }
             catch (Exception exception)
             {
                 ExceptionHandlers.ShowExceptionMessageBox(this, exception);
-            }
-        }
-
-
-        private void setFont(Font titleFont, Font font, Font toolbarFont)
-        {
-            this.customTabCenter.Font = titleFont;
-            this.naviDetails.Font = titleFont;
-            this.olvCustomer.HeaderFont = titleFont;
-            this.olvGoodsIssueIndexReference.HeaderFont = titleFont;
-            this.olvDeliveryAdviceReference.HeaderFont = titleFont;
-            this.olvCommodityCode.HeaderFont = titleFont;
-            this.olvQuantityRemains.HeaderFont = titleFont;
-            this.olvLineVolumeRemains.HeaderFont = titleFont;
-            this.labelCaption.Left = 78;
-            this.labelCaption.Top = 10;
-
-            List<Control> controls = ViewHelpers.GetAllControls(this);
-            foreach (Control control in controls)
-            {
-                if (control is Label) control.Font = titleFont;
-                else if (control is TextBox || control is ComboBox || control is DateTimePicker) control.Font = font;
-                else if (control is FastObjectListView) control.Font = font;
-                else if (control is DataGridView)
-                {
-                    DataGridView dataGridView = control as DataGridView;
-                    dataGridView.ColumnHeadersDefaultCellStyle.Font = titleFont;
-                    dataGridView.RowsDefaultCellStyle.Font = font;
-                }
-            }
-
-
-            List<Control> parentControls = ViewHelpers.GetAllControls(this.MdiParent);
-            foreach (Control parentControl in parentControls)
-            {
-                if (parentControl is ToolStrip)
-                {
-                    foreach (ToolStripItem item in ((ToolStrip)parentControl).Items)
-                    {
-                        if (item is ToolStripLabel || item is ToolStripTextBox || item is ToolStripComboBox || item is ToolStripButton)
-                            item.Font = toolbarFont;
-                    }
-                }
             }
         }
 

@@ -14,6 +14,7 @@ using TotalSmartCoding.Libraries;
 using TotalSmartCoding.Controllers.APIs.Inventories;
 using TotalSmartCoding.Libraries.Helpers;
 using TotalSmartCoding.ViewModels.Inventories;
+using TotalBase;
 
 
 namespace TotalSmartCoding.Views.Inventories.GoodsIssues
@@ -25,7 +26,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
 
         private GoodsIssueViewModel goodsIssueViewModel;
         private PendingDeliveryAdviceDetail pendingDeliveryAdviceDetail;
-        
+
         public WizardDetail(GoodsIssueViewModel goodsIssueViewModel, PendingDeliveryAdviceDetail pendingDeliveryAdviceDetail)
         {
             InitializeComponent();
@@ -33,29 +34,29 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
             this.toolstripChild = this.toolStrip1;
             this.customTabBatch = new CustomTabControl();
 
-            this.customTabBatch.Font = this.fastPendingPallets.Font;
+            this.customTabBatch.Font = this.fastAvailablePallets.Font;
             this.customTabBatch.DisplayStyle = TabStyle.VisualStudio;
             this.customTabBatch.DisplayStyleProvider.ImageAlign = ContentAlignment.MiddleLeft;
 
             this.customTabBatch.TabPages.Add("tabPendingPallets", "Pending pallets");
             this.customTabBatch.TabPages.Add("tabPendingCartons", "Pending cartons");
             this.customTabBatch.TabPages.Add("tabPendingPacks", "Pending packs");
-            this.customTabBatch.TabPages[0].Controls.Add(this.fastPendingPallets);
-            this.customTabBatch.TabPages[1].Controls.Add(this.fastPendingCartons);
-            this.customTabBatch.TabPages[2].Controls.Add(this.fastPendingPacks);
+            this.customTabBatch.TabPages[0].Controls.Add(this.fastAvailablePallets);
+            this.customTabBatch.TabPages[1].Controls.Add(this.fastAvailableCartons);
+            this.customTabBatch.TabPages[2].Controls.Add(this.fastAvailablePacks);
 
 
             this.customTabBatch.Dock = DockStyle.Fill;
-            this.fastPendingPallets.Dock = DockStyle.Fill;
-            this.fastPendingCartons.Dock = DockStyle.Fill;
-            this.fastPendingPacks.Dock = DockStyle.Fill;
+            this.fastAvailablePallets.Dock = DockStyle.Fill;
+            this.fastAvailableCartons.Dock = DockStyle.Fill;
+            this.fastAvailablePacks.Dock = DockStyle.Fill;
             this.panelMaster.Controls.Add(this.customTabBatch);
 
+            if (GlobalVariables.ConfigFillingLineID == (int)GlobalVariables.FillingLine.GoodsIssue) ViewHelpers.SetFont(this, new Font("Calibri", 11), new Font("Calibri", 11), new Font("Calibri", 11));
 
             this.goodsIssueViewModel = goodsIssueViewModel;
             this.pendingDeliveryAdviceDetail = pendingDeliveryAdviceDetail;
         }
-
 
         private void WizardDetail_Load(object sender, EventArgs e)
         {
@@ -65,11 +66,11 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
 
                 List<GoodsReceiptDetailAvailable> goodsReceiptDetailAvailables = goodsReceiptAPIs.GetGoodsReceiptDetailAvailables(this.pendingDeliveryAdviceDetail.LocationID, this.pendingDeliveryAdviceDetail.CommodityID, string.Join(",", this.goodsIssueViewModel.ViewDetails.Select(d => d.GoodsReceiptDetailID)));
 
-                this.fastPendingPallets.SetObjects(goodsReceiptDetailAvailables.Where(w => w.PalletID != null));
-                this.fastPendingCartons.SetObjects(goodsReceiptDetailAvailables.Where(w => w.CartonID != null));
-                this.fastPendingPacks.SetObjects(goodsReceiptDetailAvailables.Where(w => w.PackID != null));
+                this.fastAvailablePallets.SetObjects(goodsReceiptDetailAvailables.Where(w => w.PalletID != null));
+                this.fastAvailableCartons.SetObjects(goodsReceiptDetailAvailables.Where(w => w.CartonID != null));
+                this.fastAvailablePacks.SetObjects(goodsReceiptDetailAvailables.Where(w => w.PackID != null));
 
-                this.SetRowCount();
+                this.ShowRowCount();
             }
             catch (Exception exception)
             {
@@ -79,20 +80,44 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
 
         public void ApplyFilter(string filterTexts)
         {
-            this.fastPendingPallets.CheckedObjects = null;
+            this.fastAvailablePallets.CheckedObjects = null;
+            this.fastAvailableCartons.CheckedObjects = null;
+            this.fastAvailablePacks.CheckedObjects = null;
 
-            OLVHelpers.ApplyFilters(this.fastPendingPallets, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
-            OLVHelpers.ApplyFilters(this.fastPendingCartons, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
-            OLVHelpers.ApplyFilters(this.fastPendingPacks, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
+            this.fastAvailablePallets.SelectedObject = null;
+            this.fastAvailableCartons.SelectedObject = null;
+            this.fastAvailablePacks.SelectedObject = null;
 
-            this.SetRowCount();
+            OLVHelpers.ApplyFilters(this.fastAvailablePallets, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
+            OLVHelpers.ApplyFilters(this.fastAvailableCartons, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
+            OLVHelpers.ApplyFilters(this.fastAvailablePacks, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
+
+            this.ShowRowCount();
         }
 
-        private void SetRowCount()
+        private void ShowRowCount()
         {
-            this.customTabBatch.TabPages[0].Text = "Pending " + this.fastPendingPallets.GetItemCount().ToString("N0") + " pallet" + (this.fastPendingPallets.GetItemCount() > 1 ? "s      " : "      ");
-            this.customTabBatch.TabPages[1].Text = "Pending " + this.fastPendingCartons.GetItemCount().ToString("N0") + " carton" + (this.fastPendingCartons.GetItemCount() > 1 ? "s      " : "      ");
-            this.customTabBatch.TabPages[2].Text = "Pending " + this.fastPendingPacks.GetItemCount().ToString("N0") + " pack" + (this.fastPendingPacks.GetItemCount() > 1 ? "s      " : "      ");
+            this.customTabBatch.TabPages[0].Text = "Pending " + this.fastAvailablePallets.GetItemCount().ToString("N0") + " pallet" + (this.fastAvailablePallets.GetItemCount() > 1 ? "s      " : "      ");
+            this.customTabBatch.TabPages[1].Text = "Pending " + this.fastAvailableCartons.GetItemCount().ToString("N0") + " carton" + (this.fastAvailableCartons.GetItemCount() > 1 ? "s      " : "      ");
+            this.customTabBatch.TabPages[2].Text = "Pending " + this.fastAvailablePacks.GetItemCount().ToString("N0") + " pack" + (this.fastAvailablePacks.GetItemCount() > 1 ? "s      " : "      ");
+        }
+
+
+        private void fastAvailableGoodsReceiptDetails_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            FastObjectListView fastAvailableGoodsReceiptDetails = (FastObjectListView)sender;
+            if (fastAvailableGoodsReceiptDetails != null && fastAvailableGoodsReceiptDetails.SelectedObject != null)
+            {//CLEAR ALL CHECKED OBJECTS => THEN CHECK THE CURRENT SELECTED ROW
+                GoodsReceiptDetailAvailable goodsReceiptDetailAvailable = (GoodsReceiptDetailAvailable)fastAvailableGoodsReceiptDetails.SelectedObject;
+                if (goodsReceiptDetailAvailable != null) { fastAvailableGoodsReceiptDetails.CheckedObjects = null; fastAvailableGoodsReceiptDetails.CheckObject(goodsReceiptDetailAvailable); }
+            }
+        }
+
+        private void fastAvailableGoodsReceiptDetails_ItemChecked(object sender, ItemCheckedEventArgs e)
+        {
+            if (this.fastAvailablePallets.CheckedObjects != null && this.fastAvailablePallets.CheckedObjects.Count > 0) this.buttonAddExit.Enabled = true; else this.buttonAddExit.Enabled = false;
+            if (!this.buttonAddExit.Enabled && this.fastAvailableCartons.CheckedObjects != null && this.fastAvailableCartons.CheckedObjects.Count > 0) this.buttonAddExit.Enabled = true;
+            if (!this.buttonAddExit.Enabled && this.fastAvailablePacks.CheckedObjects != null && this.fastAvailablePacks.CheckedObjects.Count > 0) this.buttonAddExit.Enabled = true;
         }
 
         private void buttonAddESC_Click(object sender, EventArgs e)
@@ -101,11 +126,11 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
             {
                 if (sender.Equals(this.buttonAddExit))
                 {
-                    FastObjectListView fastPendingList = this.customTabBatch.SelectedIndex == 0 ? this.fastPendingPallets : (this.customTabBatch.SelectedIndex == 1 ? this.fastPendingCartons : this.customTabBatch.SelectedIndex == 2 ? this.fastPendingPacks : null);
+                    FastObjectListView fastAvailableGoodsReceiptDetails = this.customTabBatch.SelectedIndex == 0 ? this.fastAvailablePallets : (this.customTabBatch.SelectedIndex == 1 ? this.fastAvailableCartons : this.customTabBatch.SelectedIndex == 2 ? this.fastAvailablePacks : null);
 
-                    if (fastPendingList != null)
+                    if (fastAvailableGoodsReceiptDetails != null)
                     {
-                        foreach (var checkedObjects in fastPendingList.CheckedObjects)
+                        foreach (var checkedObjects in fastAvailableGoodsReceiptDetails.CheckedObjects)
                         {
                             GoodsReceiptDetailAvailable goodsReceiptDetailAvailable = (GoodsReceiptDetailAvailable)checkedObjects;
                             GoodsIssueDetailDTO goodsIssueDetailDTO = new GoodsIssueDetailDTO()
@@ -175,5 +200,6 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                 ExceptionHandlers.ShowExceptionMessageBox(this, exception);
             }
         }
+
     }
 }
