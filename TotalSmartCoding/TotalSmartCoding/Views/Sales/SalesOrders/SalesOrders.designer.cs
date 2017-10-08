@@ -172,7 +172,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(351, 21);
             this.label6.TabIndex = 30;
-            this.label6.Text = "Receipt Date";
+            this.label6.Text = "Order Date";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label7
@@ -692,7 +692,7 @@
             this.olvDeliveryDate.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvDeliveryDate.Text = "Delivery Date";
             this.olvDeliveryDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvDeliveryDate.Width = 100;
+            this.olvDeliveryDate.Width = 145;
             // 
             // olvCustomerCode
             // 
@@ -716,7 +716,7 @@
             // 
             this.olvDescription.AspectName = "Description";
             this.olvDescription.Text = "Description";
-            this.olvDescription.Width = 373;
+            this.olvDescription.Width = 328;
             // 
             // olvTotalQuantity
             // 

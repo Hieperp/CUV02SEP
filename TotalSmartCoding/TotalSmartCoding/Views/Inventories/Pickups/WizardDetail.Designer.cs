@@ -143,7 +143,7 @@
             this.textexCode.Margin = new System.Windows.Forms.Padding(2, 1, 1, 1);
             this.textexCode.Name = "textexCode";
             this.textexCode.ReadOnly = true;
-            this.textexCode.Size = new System.Drawing.Size(398, 28);
+            this.textexCode.Size = new System.Drawing.Size(397, 28);
             this.textexCode.TabIndex = 104;
             // 
             // textexCommodityCodeAndName
@@ -154,7 +154,7 @@
             this.textexCommodityCodeAndName.Margin = new System.Windows.Forms.Padding(2, 1, 1, 1);
             this.textexCommodityCodeAndName.Name = "textexCommodityCodeAndName";
             this.textexCommodityCodeAndName.ReadOnly = true;
-            this.textexCommodityCodeAndName.Size = new System.Drawing.Size(398, 28);
+            this.textexCommodityCodeAndName.Size = new System.Drawing.Size(397, 28);
             this.textexCommodityCodeAndName.TabIndex = 105;
             // 
             // textexQuantity
@@ -165,7 +165,7 @@
             this.textexQuantity.Margin = new System.Windows.Forms.Padding(2, 1, 1, 1);
             this.textexQuantity.Name = "textexQuantity";
             this.textexQuantity.ReadOnly = true;
-            this.textexQuantity.Size = new System.Drawing.Size(398, 28);
+            this.textexQuantity.Size = new System.Drawing.Size(397, 28);
             this.textexQuantity.TabIndex = 108;
             // 
             // label4
@@ -220,14 +220,12 @@
             // 
             // olvNo
             // 
-            this.olvNo.HeaderFont = new System.Drawing.Font("Niagara Engraved", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.olvNo.Text = "";
             this.olvNo.Width = 15;
             // 
             // olvCode
             // 
             this.olvCode.AspectName = "Code";
-            this.olvCode.HeaderFont = new System.Drawing.Font("Niagara Engraved", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.olvCode.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvCode.Text = "Code";
             this.olvCode.Width = 200;
@@ -235,7 +233,6 @@
             // olvQuantity
             // 
             this.olvQuantity.AspectName = "";
-            this.olvQuantity.HeaderFont = new System.Drawing.Font("Niagara Engraved", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.olvQuantity.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvQuantity.Text = "No of Pallets";
             this.olvQuantity.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -245,7 +242,6 @@
             // 
             this.olvType.AspectName = "";
             this.olvType.FillsFreeSpace = true;
-            this.olvType.HeaderFont = new System.Drawing.Font("Niagara Engraved", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.olvType.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvType.Text = "Type";
             this.olvType.Width = 150;
@@ -275,7 +271,7 @@
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.84455F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 69.15545F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 15F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 16F));
             this.tableLayoutPanel1.Controls.Add(this.label9, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.textexQuantity, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.label4, 0, 3);
@@ -310,7 +306,7 @@
             this.textexBinLocationCode.Margin = new System.Windows.Forms.Padding(2, 1, 1, 1);
             this.textexBinLocationCode.Name = "textexBinLocationCode";
             this.textexBinLocationCode.ReadOnly = true;
-            this.textexBinLocationCode.Size = new System.Drawing.Size(398, 28);
+            this.textexBinLocationCode.Size = new System.Drawing.Size(397, 28);
             this.textexBinLocationCode.TabIndex = 109;
             // 
             // textexLineVolume
@@ -321,7 +317,7 @@
             this.textexLineVolume.Margin = new System.Windows.Forms.Padding(2, 1, 1, 1);
             this.textexLineVolume.Name = "textexLineVolume";
             this.textexLineVolume.ReadOnly = true;
-            this.textexLineVolume.Size = new System.Drawing.Size(398, 28);
+            this.textexLineVolume.Size = new System.Drawing.Size(397, 28);
             this.textexLineVolume.TabIndex = 111;
             // 
             // label3

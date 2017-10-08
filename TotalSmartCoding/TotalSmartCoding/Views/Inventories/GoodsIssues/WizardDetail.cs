@@ -69,9 +69,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                 this.fastPendingCartons.SetObjects(goodsReceiptDetailAvailables.Where(w => w.CartonID != null));
                 this.fastPendingPacks.SetObjects(goodsReceiptDetailAvailables.Where(w => w.PackID != null));
 
-                this.customTabBatch.TabPages[0].Text = "Pending " + this.fastPendingPallets.GetItemCount().ToString("N0") + " pallet" + (this.fastPendingPallets.GetItemCount() > 1 ? "s      " : "      ");
-                this.customTabBatch.TabPages[1].Text = "Pending " + this.fastPendingCartons.GetItemCount().ToString("N0") + " carton" + (this.fastPendingCartons.GetItemCount() > 1 ? "s      " : "      ");
-                this.customTabBatch.TabPages[2].Text = "Pending " + this.fastPendingPacks.GetItemCount().ToString("N0") + " pack" + (this.fastPendingPacks.GetItemCount() > 1 ? "s      " : "      ");
+                this.SetRowCount();
             }
             catch (Exception exception)
             {
@@ -81,9 +79,20 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
 
         public void ApplyFilter(string filterTexts)
         {
+            this.fastPendingPallets.CheckedObjects = null;
+
             OLVHelpers.ApplyFilters(this.fastPendingPallets, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
             OLVHelpers.ApplyFilters(this.fastPendingCartons, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
             OLVHelpers.ApplyFilters(this.fastPendingPacks, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
+
+            this.SetRowCount();
+        }
+
+        private void SetRowCount()
+        {
+            this.customTabBatch.TabPages[0].Text = "Pending " + this.fastPendingPallets.GetItemCount().ToString("N0") + " pallet" + (this.fastPendingPallets.GetItemCount() > 1 ? "s      " : "      ");
+            this.customTabBatch.TabPages[1].Text = "Pending " + this.fastPendingCartons.GetItemCount().ToString("N0") + " carton" + (this.fastPendingCartons.GetItemCount() > 1 ? "s      " : "      ");
+            this.customTabBatch.TabPages[2].Text = "Pending " + this.fastPendingPacks.GetItemCount().ToString("N0") + " pack" + (this.fastPendingPacks.GetItemCount() > 1 ? "s      " : "      ");
         }
 
         private void buttonAddESC_Click(object sender, EventArgs e)
