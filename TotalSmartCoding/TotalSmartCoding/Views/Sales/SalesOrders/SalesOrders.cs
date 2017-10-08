@@ -275,7 +275,9 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
         protected override DialogResult wizardMaster()
         {
             WizardMaster wizardMaster = new WizardMaster(this.salesOrderViewModel);
-            return wizardMaster.ShowDialog();
+            DialogResult dialogResult = wizardMaster.ShowDialog();
+            wizardMaster.Dispose();
+            return dialogResult;
         }
 
         private void naviGroupDetails_HeaderMouseClick(object sender, MouseEventArgs e)
