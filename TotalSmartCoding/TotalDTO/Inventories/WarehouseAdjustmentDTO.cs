@@ -42,7 +42,7 @@ namespace TotalDTO.Inventories
             set { ApplyPropertyChange<GoodsReceiptPrimitiveDTO, int>(ref this.warehouseID, o => o.WarehouseID, value); }
         }
         private string warehouseName;
-        [DefaultValue("")]
+        [DefaultValue(null)]
         public string WarehouseName
         {
             get { return this.warehouseName; }
@@ -58,7 +58,7 @@ namespace TotalDTO.Inventories
             set { ApplyPropertyChange<WarehouseAdjustmentPrimitiveDTO, int>(ref this.warehouseAdjustmentTypeID, o => o.WarehouseAdjustmentTypeID, value); }
         }
         private string warehouseAdjustmentTypeName;
-        [DefaultValue("")]
+        [DefaultValue(null)]
         public string WarehouseAdjustmentTypeName
         {
             get { return this.warehouseAdjustmentTypeName; }

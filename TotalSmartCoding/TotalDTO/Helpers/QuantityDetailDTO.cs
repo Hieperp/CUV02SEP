@@ -46,7 +46,7 @@ namespace TotalDTO.Helpers
         }
 
         private string commodityCode;
-        [DefaultValue("")]
+        [DefaultValue(null)]
         public virtual string CommodityCode
         {
             get { return this.commodityCode; }
@@ -54,7 +54,7 @@ namespace TotalDTO.Helpers
         }
 
         private string commodityName;
-        [DefaultValue("")]
+        [DefaultValue(null)]
         public virtual string CommodityName
         {
             get { return this.commodityName; }
@@ -64,7 +64,7 @@ namespace TotalDTO.Helpers
         public string CommodityCodeAndName { get { return this.CommodityCode + "-" + this.CommodityName; } }
 
         private string unit;
-        [DefaultValue("")]
+        [DefaultValue(null)]
         public virtual string Unit
         {
             get { return this.unit; }
@@ -72,7 +72,7 @@ namespace TotalDTO.Helpers
         }
 
         private string packageSize;
-        [DefaultValue("")]
+        [DefaultValue(null)]
         public virtual string PackageSize
         {
             get { return this.packageSize; }

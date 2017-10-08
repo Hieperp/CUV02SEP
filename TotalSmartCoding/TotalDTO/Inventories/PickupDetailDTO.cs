@@ -36,7 +36,7 @@ namespace TotalDTO.Inventories
         }
 
         private string binLocationCode;
-        [DefaultValue("")]
+        [DefaultValue(null)]
         public virtual string BinLocationCode
         {
             get { return this.binLocationCode; }

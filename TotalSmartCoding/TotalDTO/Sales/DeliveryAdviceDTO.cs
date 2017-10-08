@@ -48,7 +48,7 @@ namespace TotalDTO.Sales
         public string SalesOrderReferences { get; set; }
 
         private string voucherCode;
-        [DefaultValue("")]
+        [DefaultValue(null)]
         public string VoucherCode
         {
             get { return this.voucherCode; }
@@ -63,7 +63,7 @@ namespace TotalDTO.Sales
             set { ApplyPropertyChange<DeliveryAdvicePrimitiveDTO, int>(ref this.customerID, o => o.CustomerID, value); }
         }
         private string customerName;
-        [DefaultValue("")]
+        [DefaultValue(null)]
         public string CustomerName
         {
             get { return this.customerName; }

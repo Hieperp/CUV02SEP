@@ -20,6 +20,14 @@ namespace TotalDTO.Sales
     {
         public override GlobalEnums.NmvnTaskID NMVNTaskID { get { return GlobalEnums.NmvnTaskID.SalesOrder; } }
 
+        public SalesOrderPrimitiveDTO() { this.DeliveryDate = DateTime.Now; }
+
+        public override void Init()
+        {
+            base.Init();
+            this.DeliveryDate = DateTime.Now;
+        }
+
         public override int GetID() { return this.SalesOrderID; }
         public void SetID(int id) { this.SalesOrderID = id; }
 
@@ -33,7 +41,7 @@ namespace TotalDTO.Sales
 
 
         private string voucherCode;
-        [DefaultValue("")]
+        [DefaultValue(null)]
         public string VoucherCode
         {
             get { return this.voucherCode; }
@@ -41,7 +49,6 @@ namespace TotalDTO.Sales
         }
 
         private Nullable<DateTime> deliveryDate;
-        //[DefaultValue(null)]
         public Nullable<DateTime> DeliveryDate
         {
             get { return this.deliveryDate; }
@@ -56,7 +63,7 @@ namespace TotalDTO.Sales
             set { ApplyPropertyChange<SalesOrderPrimitiveDTO, Nullable<int>>(ref this.customerID, o => o.CustomerID, value); }
         }
         private string customerName;
-        [DefaultValue("")]
+        [DefaultValue(null)]
         public string CustomerName
         {
             get { return this.customerName; }

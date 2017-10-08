@@ -17,7 +17,7 @@ namespace TotalDTO
         {
             get
             {
-                return base.IsValid;
+                //return base.IsValid;
 
                 List<TDtoDetail> inValidMarketingPaymentDetail = this.DtoDetails().ToList().Where(marketingPaymentDetail => !marketingPaymentDetail.IsValid).ToList();
                 return base.IsValid && inValidMarketingPaymentDetail.Count == 0;

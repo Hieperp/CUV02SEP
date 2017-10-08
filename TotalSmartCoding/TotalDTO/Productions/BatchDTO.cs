@@ -25,7 +25,7 @@ namespace TotalDTO.Productions
         }
 
         private string code;
-        [DefaultValue("")]
+        [DefaultValue(null)]
         public string Code
         {
             get { return this.code; }
@@ -84,7 +84,7 @@ namespace TotalDTO.Productions
         }
 
         private string commodityName;
-        [DefaultValue("")]
+        [DefaultValue(null)]
         public string CommodityName
         {
             get { return this.commodityName; }
@@ -92,7 +92,7 @@ namespace TotalDTO.Productions
         }
 
         private string commodityAPICode;
-        [DefaultValue("")]
+        [DefaultValue(null)]
         public string CommodityAPICode
         {
             get { return this.commodityAPICode; }

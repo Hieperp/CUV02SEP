@@ -54,7 +54,7 @@ namespace TotalDTO.Inventories
             set { ApplyPropertyChange<GoodsIssuePrimitiveDTO, int>(ref this.customerID, o => o.CustomerID, value); }
         }
         private string customerName;
-        [DefaultValue("")]
+        [DefaultValue(null)]
         public string CustomerName
         {
             get { return this.customerName; }

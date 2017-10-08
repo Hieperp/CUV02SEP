@@ -40,14 +40,14 @@ namespace TotalDTO.Inventories
             set { ApplyPropertyChange<PickupPrimitiveDTO, Nullable<int>>(ref this.fillingLineID, o => o.FillingLineID, value); }
         }
         private string fillingLineName;
-        [DefaultValue("")]
+        [DefaultValue(null)]
         public string FillingLineName
         {
             get { return this.fillingLineName; }
             set { ApplyPropertyChange<PickupDTO, string>(ref this.fillingLineName, o => o.FillingLineName, value, false); }
         }
         private string fillingLineNickName;
-        [DefaultValue("")]
+        [DefaultValue(null)]
         public string FillingLineNickName
         {
             get { return this.fillingLineNickName; }
@@ -63,7 +63,7 @@ namespace TotalDTO.Inventories
             set { ApplyPropertyChange<PickupPrimitiveDTO, Nullable<int>>(ref this.warehouseID, o => o.WarehouseID, value); }
         }
         private string warehouseName;
-        [DefaultValue("")]
+        [DefaultValue(null)]
         public string WarehouseName
         {
             get { return this.warehouseName; }
