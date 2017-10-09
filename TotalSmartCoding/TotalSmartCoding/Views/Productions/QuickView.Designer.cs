@@ -56,7 +56,7 @@
             this.fastBarcodes.Name = "fastBarcodes";
             this.fastBarcodes.OwnerDraw = true;
             this.fastBarcodes.ShowGroups = false;
-            this.fastBarcodes.Size = new System.Drawing.Size(372, 623);
+            this.fastBarcodes.Size = new System.Drawing.Size(571, 811);
             this.fastBarcodes.TabIndex = 71;
             this.fastBarcodes.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastBarcodes.UseCompatibleStateImageBehavior = false;
@@ -64,6 +64,7 @@
             this.fastBarcodes.View = System.Windows.Forms.View.Details;
             this.fastBarcodes.VirtualMode = true;
             this.fastBarcodes.FormatRow += new System.EventHandler<BrightIdeasSoftware.FormatRowEventArgs>(this.fastBarcodes_FormatRow);
+            this.fastBarcodes.MouseDown += new System.Windows.Forms.MouseEventHandler(this.fastBarcodes_MouseDown);
             // 
             // olvColumn1
             // 
@@ -87,7 +88,7 @@
             this.textFilter.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textFilter.Location = new System.Drawing.Point(97, 0);
             this.textFilter.Name = "textFilter";
-            this.textFilter.Size = new System.Drawing.Size(372, 27);
+            this.textFilter.Size = new System.Drawing.Size(571, 27);
             this.textFilter.TabIndex = 72;
             this.textFilter.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textFilter.TextChanged += new System.EventHandler(this.textFilter_TextChanged);
@@ -98,7 +99,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(97, 650);
+            this.panel1.Size = new System.Drawing.Size(97, 838);
             this.panel1.TabIndex = 73;
             // 
             // pictureBox1
@@ -114,7 +115,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(469, 650);
+            this.ClientSize = new System.Drawing.Size(668, 838);
             this.Controls.Add(this.fastBarcodes);
             this.Controls.Add(this.textFilter);
             this.Controls.Add(this.panel1);

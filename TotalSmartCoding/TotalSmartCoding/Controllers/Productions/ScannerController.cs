@@ -352,58 +352,6 @@ namespace TotalSmartCoding.Controllers.Productions
 
 
 
-        #region
-
-        public IList<BarcodeDTO> GetBarcodeList(int cartonID, int palletID)
-        {
-            try
-            {
-                IList<BarcodeDTO> barcodeList = new List<BarcodeDTO>();
-
-                if (cartonID > 0)
-                {
-                    lock (this.packController)
-                    {
-                        IList<Pack> packs = this.packController.packService.GetPacks(this.FillingData.FillingLineID, (int)GlobalVariables.BarcodeStatus.Freshnew + "," + (int)GlobalVariables.BarcodeStatus.Readytoset + "," + (int)GlobalVariables.BarcodeStatus.Wrapped, cartonID);
-                        if (packs.Count > 0)
-                        {
-                            packs.Each(pack =>
-                            {
-                                PackDTO packDTO = Mapper.Map<Pack, PackDTO>(pack);
-                                barcodeList.Add(packDTO);
-                            });
-                        }
-                    }
-                }
-                else
-                    if (palletID > 0)
-                    {
-                        lock (this.cartonController)
-                        {
-                            IList<Carton> cartons = this.cartonController.cartonService.GetCartons(this.FillingData.FillingLineID, (int)GlobalVariables.BarcodeStatus.Freshnew + "," + (int)GlobalVariables.BarcodeStatus.Readytoset + "," + (int)GlobalVariables.BarcodeStatus.Wrapped + "," + (int)GlobalVariables.BarcodeStatus.Pending + "," + (int)GlobalVariables.BarcodeStatus.Noread, palletID);
-                            if (cartons.Count > 0)
-                            {
-                                cartons.Each(carton =>
-                                {
-                                    CartonDTO cartonDTO = Mapper.Map<Carton, CartonDTO>(carton);
-                                    barcodeList.Add(cartonDTO);
-                                });
-                            }
-                        }
-                    }
-
-                return barcodeList;
-            }
-            catch (Exception exception)
-            {
-                throw exception;
-            }
-        }
-
-        #endregion
-
-
-
         private bool Connect()
         {
             try

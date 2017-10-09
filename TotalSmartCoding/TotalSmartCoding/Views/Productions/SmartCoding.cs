@@ -29,6 +29,8 @@ namespace TotalSmartCoding.Views.Productions
     {
         #region Declaration
 
+        private ScannerAPIs scannerAPIs;
+
         private readonly FillingData fillingData;
 
 
@@ -68,6 +70,8 @@ namespace TotalSmartCoding.Views.Productions
                 this.fillingData = new FillingData();
 
                 this.Initialize();
+
+                this.scannerAPIs = new ScannerAPIs(CommonNinject.Kernel.Get<IPackRepository>(), CommonNinject.Kernel.Get<ICartonRepository>());
 
                 IBatchService batchService = CommonNinject.Kernel.Get<IBatchService>();//ALL PrinterController MUST SHARE THE SAME IBatchService, BECAUSE WE NEED TO LOCK IBatchService IN ORDER TO CORRECTED UPDATE DATA BY IBatchService
 
@@ -653,7 +657,7 @@ namespace TotalSmartCoding.Views.Productions
 
                 if (!this.fillingData.HasPack && printedBarcode.Length >= 29)
                 {
-                    if (this.fillingData.HasCarton && sender.Equals(this.dgvPalletQueue) || sender.Equals(this.dgvPalletPickupQueue))
+                    if (sender != null && (this.fillingData.HasCarton && sender.Equals(this.dgvPalletQueue) || sender.Equals(this.dgvPalletPickupQueue)))
                         printedBarcode = printedBarcode.Substring(indexOfDoubleTabChar - 6, 6);
                     else
                         printedBarcode = printedBarcode.Substring(0, indexOfDoubleTabChar);
@@ -818,7 +822,9 @@ namespace TotalSmartCoding.Views.Productions
                         int barcodeID = this.getBarcodeID(dataGridView.CurrentCell, out selectedBarcode);
                         if (barcodeID > 0)
                         {
-                            QuickView quickView = new QuickView(this.scannerController.GetBarcodeList(sender.Equals(this.dgvCartonPendingQueue) || sender.Equals(this.dgvCartonQueue) || sender.Equals(this.dgvCartonsetQueue) ? barcodeID : 0, sender.Equals(this.dgvCartonPendingQueue) || sender.Equals(this.dgvCartonQueue) || sender.Equals(this.dgvCartonsetQueue) ? 0 : barcodeID));
+                            int cartonID = sender.Equals(this.dgvCartonPendingQueue) || sender.Equals(this.dgvCartonQueue) || sender.Equals(this.dgvCartonsetQueue) ? barcodeID : 0;
+                            int palletID = sender.Equals(this.dgvCartonPendingQueue) || sender.Equals(this.dgvCartonQueue) || sender.Equals(this.dgvCartonsetQueue) ? 0 : barcodeID;
+                            QuickView quickView = new QuickView(this.scannerAPIs.GetBarcodeList(this.fillingData.FillingLineID, cartonID, palletID), (cartonID != 0 ? "Carton: " : "Pallet: ") + selectedBarcode);
                             quickView.ShowDialog();
                         }
                     }
@@ -879,8 +885,8 @@ namespace TotalSmartCoding.Views.Productions
         private void buttonCartonQueueCount_Click(object sender, EventArgs e)
         {
             try
-            {//HERE: WE CHECK CONDITION BEFORE CALL ToggleLastCartonset (TO PROTEST ACCIDENTAL PRESS BY WORKER). SURELY, WE CAN OMIT THESE CONDITION
-                if (this.scannerController.PackQueueCount == 0 && this.scannerController.PacksetQueueCount == 0 && this.scannerController.CartonQueueCount > 0 && this.scannerController.CartonQueueCount < this.fillingData.CartonPerPallet && this.scannerController.CartonPendingQueueCount == 0 && this.scannerController.CartonsetQueueCount == 0 && CustomMsgBox.Show(this, "Số lượng carton ít hơn số lượng cần đóng pallet.\r\n\r\nBạn có muốn đóng pallet ngay bây giờ không?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2) == System.Windows.Forms.DialogResult.Yes)
+            {//HERE: WE CHECK CONDITION BEFORE CALL ToggleLastCartonset (TO PROTEST ACCIDENTAL PRESS BY WORKER). SURELY, WE CAN OMIT THESE CONDITION  ============> NOW, 09-OCT-2017: WE OMIT SOME CONDITIONS!!! LATER: WE CAN RE-ADD THESE CONDITIONS FOR CHECKING AGAIN, IF NEEDED!!!         this.scannerController.PackQueueCount == 0 && this.scannerController.PacksetQueueCount == 0 && this.scannerController.CartonPendingQueueCount == 0 && 
+                if (this.scannerController.CartonQueueCount > 0 && this.scannerController.CartonQueueCount < this.fillingData.CartonPerPallet && this.scannerController.CartonsetQueueCount == 0 && CustomMsgBox.Show(this, "Số lượng carton ít hơn số lượng cần đóng pallet.\r\n\r\nBạn có muốn đóng pallet ngay bây giờ không?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2) == System.Windows.Forms.DialogResult.Yes)
                     this.scannerController.ToggleLastCartonset(true);
             }
             catch (Exception exception)
