@@ -74,7 +74,6 @@
             this.checkEmptyData.TabIndex = 28;
             this.checkEmptyData.Text = "Empty Database";
             this.checkEmptyData.UseVisualStyleBackColor = true;
-            this.checkEmptyData.Visible = false;
             // 
             // buttonListEmployee
             // 
