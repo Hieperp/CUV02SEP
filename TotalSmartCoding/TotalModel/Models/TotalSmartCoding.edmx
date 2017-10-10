@@ -359,9 +359,9 @@
           </Key>
           <Property Name="ModuleDetailID" Type="int" Nullable="false" />
           <Property Name="ModuleID" Type="int" Nullable="false" />
-          <Property Name="SoftDescription" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="Description" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="DescriptionEN" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Actions" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Controller" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="LastOpen" Type="float" Nullable="false" />
@@ -2606,7 +2606,6 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
             <End Role="DeliveryAdvice" EntitySet="DeliveryAdvices" />
             <End Role="GoodsIssue" EntitySet="GoodsIssues" />
           </AssociationSet>
-          <EntitySet Name="ModuleDetails" EntityType="TotalSmartCodingModel.ModuleDetail" />
           <EntitySet Name="Modules" EntityType="TotalSmartCodingModel.Module" />
           <FunctionImport Name="GetModuleIndexes" ReturnType="Collection(TotalSmartCodingModel.ModuleIndex)">
             <Parameter Name="AspUserID" Mode="In" Type="String" />
@@ -2676,8 +2675,9 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
             <End Role="Batch" EntitySet="Batches" />
           </AssociationSet>
           <FunctionImport Name="GetVersionID" ReturnType="Collection(Int32)">
-            <Parameter Name="ConfigID" Mode="In" Type="Int32" />
+          <Parameter Name="ConfigID" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="ModuleDetails" EntityType="TotalSmartCodingModel.ModuleDetail" />
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
           <Property Type="Int32" Name="PickupID" Nullable="false" />
@@ -4383,22 +4383,6 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="ModuleDetail">
-          <Key>
-            <PropertyRef Name="ModuleDetailID" />
-          </Key>
-          <Property Name="ModuleDetailID" Type="Int32" Nullable="false" />
-          <Property Name="ModuleID" Type="Int32" Nullable="false" />
-          <Property Name="SoftDescription" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="DescriptionEN" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Actions" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Controller" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="LastOpen" Type="Double" Nullable="false" />
-          <Property Name="SerialID" Type="Double" Nullable="false" />
-          <Property Name="ImageIndex" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="InActive" Type="Double" Nullable="false" />
-        </EntityType>
         <EntityType Name="Module">
           <Key>
             <PropertyRef Name="ModuleID" />
@@ -4417,9 +4401,6 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
         </ComplexType>
         <ComplexType Name="ModuleViewDetail">
           <Property Type="Int32" Name="ModuleID" Nullable="false" />
-          <Property Type="String" Name="SoftDescription" Nullable="false" MaxLength="100" />
-          <Property Type="String" Name="Description" Nullable="false" MaxLength="100" />
-          <Property Type="String" Name="DescriptionEN" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="Actions" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="Controller" Nullable="false" MaxLength="100" />
           <Property Type="Double" Name="LastOpen" Nullable="false" />
@@ -4427,6 +4408,9 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Type="String" Name="ImageIndex" Nullable="false" MaxLength="50" />
           <Property Type="Double" Name="InActive" Nullable="false" />
           <Property Type="Int32" Name="ModuleDetailID" Nullable="false" />
+          <Property Type="String" Name="Code" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="FullName" Nullable="false" MaxLength="100" />
         </ComplexType>
         <EntityType Name="Commodity">
           <Key>
@@ -4674,6 +4658,22 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="ModuleDetail">
+          <Key>
+            <PropertyRef Name="ModuleDetailID" />
+          </Key>
+          <Property Name="ModuleDetailID" Type="Int32" Nullable="false" />
+          <Property Name="ModuleID" Type="Int32" Nullable="false" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Actions" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Controller" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LastOpen" Type="Double" Nullable="false" />
+          <Property Name="SerialID" Type="Double" Nullable="false" />
+          <Property Name="ImageIndex" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="InActive" Type="Double" Nullable="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -5922,23 +5922,6 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ModuleDetails">
-            <EntityTypeMapping TypeName="TotalSmartCodingModel.ModuleDetail">
-              <MappingFragment StoreEntitySet="ModuleDetails">
-                <ScalarProperty Name="InActive" ColumnName="InActive" />
-                <ScalarProperty Name="ImageIndex" ColumnName="ImageIndex" />
-                <ScalarProperty Name="SerialID" ColumnName="SerialID" />
-                <ScalarProperty Name="LastOpen" ColumnName="LastOpen" />
-                <ScalarProperty Name="Controller" ColumnName="Controller" />
-                <ScalarProperty Name="Actions" ColumnName="Actions" />
-                <ScalarProperty Name="DescriptionEN" ColumnName="DescriptionEN" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="SoftDescription" ColumnName="SoftDescription" />
-                <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
-                <ScalarProperty Name="ModuleDetailID" ColumnName="ModuleDetailID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Modules">
             <EntityTypeMapping TypeName="TotalSmartCodingModel.Module">
               <MappingFragment StoreEntitySet="Modules">
@@ -5964,9 +5947,6 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
             <ResultMapping>
               <ComplexTypeMapping TypeName="TotalSmartCodingModel.ModuleViewDetail">
                 <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
-                <ScalarProperty Name="SoftDescription" ColumnName="SoftDescription" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="DescriptionEN" ColumnName="DescriptionEN" />
                 <ScalarProperty Name="Actions" ColumnName="Actions" />
                 <ScalarProperty Name="Controller" ColumnName="Controller" />
                 <ScalarProperty Name="LastOpen" ColumnName="LastOpen" />
@@ -5974,6 +5954,9 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
                 <ScalarProperty Name="ImageIndex" ColumnName="ImageIndex" />
                 <ScalarProperty Name="InActive" ColumnName="InActive" />
                 <ScalarProperty Name="ModuleDetailID" ColumnName="ModuleDetailID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -6044,6 +6027,23 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="GetVersionID" FunctionName="TotalSmartCodingModel.Store.GetVersionID" />
+          <EntitySetMapping Name="ModuleDetails">
+            <EntityTypeMapping TypeName="TotalSmartCodingModel.ModuleDetail">
+              <MappingFragment StoreEntitySet="ModuleDetails">
+                <ScalarProperty Name="InActive" ColumnName="InActive" />
+                <ScalarProperty Name="ImageIndex" ColumnName="ImageIndex" />
+                <ScalarProperty Name="SerialID" ColumnName="SerialID" />
+                <ScalarProperty Name="LastOpen" ColumnName="LastOpen" />
+                <ScalarProperty Name="Controller" ColumnName="Controller" />
+                <ScalarProperty Name="Actions" ColumnName="Actions" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
+                <ScalarProperty Name="ModuleDetailID" ColumnName="ModuleDetailID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -53,11 +53,11 @@ namespace TotalModel.Models
         public virtual DbSet<SalesOrder> SalesOrders { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<DeliveryAdvice> DeliveryAdvices { get; set; }
-        public virtual DbSet<ModuleDetail> ModuleDetails { get; set; }
         public virtual DbSet<Module> Modules { get; set; }
         public virtual DbSet<Commodity> Commodities { get; set; }
         public virtual DbSet<BinLocation> BinLocations { get; set; }
         public virtual DbSet<Batch> Batches { get; set; }
+        public virtual DbSet<ModuleDetail> ModuleDetails { get; set; }
     
         public virtual ObjectResult<Nullable<int>> GetAccessLevel(Nullable<int> userID, Nullable<int> nMVNTaskID, Nullable<int> organizationalUnitID)
         {

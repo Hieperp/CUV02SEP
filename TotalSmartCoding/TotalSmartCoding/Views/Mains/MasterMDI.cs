@@ -275,7 +275,7 @@ namespace TotalSmartCoding.Views.Mains
 
                 foreach (ModuleViewDetail moduleViewDetail in moduleViewDetails)
                 {
-                    this.listViewTaskMaster.Items.Add(moduleViewDetail.ModuleDetailID.ToString(), moduleViewDetail.Description, moduleViewDetail.ImageIndex);
+                    this.listViewTaskMaster.Items.Add(moduleViewDetail.ModuleDetailID.ToString(), moduleViewDetail.Name, moduleViewDetail.ImageIndex);
                 }
 
                 SetWindowTheme(listViewTaskMaster.Handle, "explorer", null);

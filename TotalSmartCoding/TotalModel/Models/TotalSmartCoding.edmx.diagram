@@ -80,7 +80,6 @@
         <AssociationConnector Association="TotalSmartCodingModel.FK_DeliveryAdvices_Locations" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_DeliveryAdvices_SalesOrders" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssues_DeliveryAdvices" />
-        <EntityTypeShape EntityType="TotalSmartCodingModel.ModuleDetail" Width="1.5" PointX="5.375" PointY="0.75" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.Module" Width="1.5" PointX="5.375" PointY="4.75" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.Commodity" Width="1.5" PointX="0.75" PointY="13.25" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_Cartons_Commodities" />
@@ -99,6 +98,7 @@
         <EntityTypeShape EntityType="TotalSmartCodingModel.Batch" Width="1.5" PointX="3" PointY="10.375" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_Batches_Commodities" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_Batches_FillingLines" />
+        <EntityTypeShape EntityType="TotalSmartCodingModel.ModuleDetail" Width="1.5" PointX="5.375" PointY="0.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
