@@ -34,7 +34,7 @@ namespace TotalSmartCoding.Libraries
             try
             {
                 var appSettings = ConfigurationManager.AppSettings;
-                return appSettings[key] ?? "Not Found";
+                return appSettings[key] ?? "";
             }
             catch (ConfigurationErrorsException e)
             {
@@ -42,7 +42,7 @@ namespace TotalSmartCoding.Libraries
             }
         }
 
-        public static void AddUpdateAppSettings(string key, string value)
+        public static void AddUpdateAppSetting(string key, string value)
         {
             try
             {

@@ -99,7 +99,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                 this.naviDetails.Expanded = false;
 
                 this.labelCaption.Left = 78; this.labelCaption.Top = 12;
-                if (GlobalVariables.ConfigFillingLineID == (int)GlobalVariables.FillingLine.GoodsIssue) { ViewHelpers.SetFont(this, new Font("Calibri", 11), new Font("Calibri", 11), new Font("Calibri", 11)); ViewHelpers.SetFont(this.MdiParent, new Font("Calibri", 11), new Font("Calibri", 11), new Font("Calibri", 11)); }
+                if (GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.GoodsIssue) { ViewHelpers.SetFont(this, new Font("Calibri", 11), new Font("Calibri", 11), new Font("Calibri", 11)); ViewHelpers.SetFont(this.MdiParent, new Font("Calibri", 11), new Font("Calibri", 11), new Font("Calibri", 11)); }
             }
             catch (Exception exception)
             {

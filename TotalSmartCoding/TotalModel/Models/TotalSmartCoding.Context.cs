@@ -1333,5 +1333,14 @@ namespace TotalModel.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ModuleViewDetail>("GetModuleViewDetails", moduleIDParameter);
         }
+    
+        public virtual ObjectResult<Nullable<int>> GetVersionID(Nullable<int> configID)
+        {
+            var configIDParameter = configID.HasValue ?
+                new ObjectParameter("ConfigID", configID) :
+                new ObjectParameter("ConfigID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("GetVersionID", configIDParameter);
+        }
     }
 }

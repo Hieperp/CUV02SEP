@@ -37,7 +37,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
             this.fastPendingDeliveryAdviceCustomers.Dock = DockStyle.Fill;
             this.panelMaster.Controls.Add(this.customTabBatch);
 
-            if (GlobalVariables.ConfigFillingLineID == (int)GlobalVariables.FillingLine.GoodsIssue) ViewHelpers.SetFont(this, new Font("Calibri", 11), new Font("Calibri", 11), new Font("Calibri", 11));
+            if (GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.GoodsIssue) ViewHelpers.SetFont(this, new Font("Calibri", 11), new Font("Calibri", 11), new Font("Calibri", 11));
 
             this.goodsIssueAPIs = goodsIssueAPIs;
             this.goodsIssueViewModel = goodsIssueViewModel;

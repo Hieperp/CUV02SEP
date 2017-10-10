@@ -36,7 +36,7 @@ namespace TotalBase
 
         public const char doubleTabChar = (char)09;
 
-        
+
 
 
         public const char charLF = (char)10;//char.ConvertFromUtf32( );//
@@ -88,15 +88,15 @@ namespace TotalBase
             Wrapped = 6,
 
             Pending = 8,
-            
+
             Noread = 9,
-            
+
             EmptyCarton = 10,
-            
+
             HasSent = 99,
             Deleted = 199
         }
-        
+
         public enum ZebraStatus
         {
             Freshnew = 0,
@@ -104,13 +104,13 @@ namespace TotalBase
 
 
             Printed = 1,
-            
-            
+
+
             //WAIT FOR 3 TIMES TO ENSURE RECEIVE ACK/ NACK FROM ZEBRA PRINTER
             Printing1 = 90,
             Printing2 = 91,
             Printing3 = 92,
-            
+
             Reprinting1 = -90,
             Reprinting2 = -91,
             Reprinting3 = -92
@@ -124,7 +124,17 @@ namespace TotalBase
         public static int LocationID = -1;
 
 
-        public static int ConfigFillingLineID = -1;
+        public static int ConfigID = -1;
+        public static int ConfigVersionID(int configID)
+        {
+            if (configID == (int)GlobalVariables.FillingLine.None)
+                return 2;
+            else if (configID == (int)GlobalVariables.FillingLine.Smallpack || configID == (int)GlobalVariables.FillingLine.Pail || configID == (int)GlobalVariables.FillingLine.Drum)
+                return 2;
+            else
+                return -1;
+        }
+
 
         public static FillingLine FillingLineID = FillingLine.Pail;
         public static string FillingLineCode = "P1";
@@ -181,7 +191,7 @@ namespace TotalBase
                             return "127.0.0.1";
                     }
 
-                
+
                 default:
                     return "127.0.0.1";
             }
@@ -223,7 +233,7 @@ namespace TotalBase
                         default:
                             return "127.0.0.1";
                     }
-                
+
                 case FillingLine.Drum:
                     switch (barcodeScannerName)
                     {
@@ -239,7 +249,7 @@ namespace TotalBase
                             return "127.0.0.1";
                     }
 
-                
+
                 default:
                     return "127.0.0.1";
             }

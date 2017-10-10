@@ -96,7 +96,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
                 this.naviDetails.Expanded = false;
 
                 this.labelFillingLineName.Left = 78; this.labelFillingLineName.Top = 12;
-                if (GlobalVariables.ConfigFillingLineID == (int)GlobalVariables.FillingLine.Pickup) { ViewHelpers.SetFont(this, new Font("Calibri", 11), new Font("Calibri", 11), new Font("Calibri", 11)); ViewHelpers.SetFont(this.MdiParent, new Font("Calibri", 11), new Font("Calibri", 11), new Font("Calibri", 11)); }
+                if (GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Pickup) { ViewHelpers.SetFont(this, new Font("Calibri", 11), new Font("Calibri", 11), new Font("Calibri", 11)); ViewHelpers.SetFont(this.MdiParent, new Font("Calibri", 11), new Font("Calibri", 11), new Font("Calibri", 11)); }
             }
             catch (Exception exception)
             {

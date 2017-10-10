@@ -11,6 +11,9 @@ namespace TotalCore.Repositories
     {
         bool IsDirty();
 
+        int? GetVersionID(int configID);
+        bool VersionValidate(int configID, int configVersionID);
+
         int GetModuleID(GlobalEnums.NmvnTaskID nmvnTaskID);
 
         ICollection<TElement> ExecuteFunction<TElement>(string functionName, params ObjectParameter[] parameters);

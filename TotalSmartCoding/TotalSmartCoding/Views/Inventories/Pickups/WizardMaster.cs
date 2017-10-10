@@ -34,7 +34,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
         {
             InitializeComponent();
 
-            if (GlobalVariables.ConfigFillingLineID == (int)GlobalVariables.FillingLine.Pickup) ViewHelpers.SetFont(this, new Font("Calibri", 11), new Font("Calibri", 11), new Font("Calibri", 11));
+            if (GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Pickup) ViewHelpers.SetFont(this, new Font("Calibri", 11), new Font("Calibri", 11), new Font("Calibri", 11));
 
             this.pickupViewModel = pickupViewModel;
         }

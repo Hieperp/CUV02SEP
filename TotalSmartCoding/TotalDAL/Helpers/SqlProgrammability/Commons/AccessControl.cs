@@ -24,6 +24,8 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             this.GetShowDiscount();
             //this.GetShowDiscountByCustomer();
             this.UpdateLockedDate();
+
+            this.GetVersionID();
         }
 
         /// <summary>
@@ -138,5 +140,25 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
 
             this.totalSmartCodingEntities.CreateStoredProcedure("UpdateLockedDate", queryString);
         }
+
+
+
+
+
+
+
+
+        private void GetVersionID()
+        {
+            string queryString = " @ConfigID Int " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+
+            queryString = queryString + "       SELECT      MAX(VersionID) AS VersionID FROM Configs WHERE ConfigID = @ConfigID " + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("GetVersionID", queryString);
+        }
+
+
     }
 }

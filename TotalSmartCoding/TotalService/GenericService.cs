@@ -12,6 +12,7 @@ using TotalModel.Models;
 using TotalDTO;
 using TotalCore.Repositories;
 using TotalCore.Services;
+using TotalBase;
 
 
 namespace TotalService
@@ -84,7 +85,7 @@ namespace TotalService
 
         public virtual bool GlobalLocked(TDto dto)
         {
-            return (dto.EntryDate <= this.genericRepository.GetEditLockedDate(this.LocationID, this.nmvnTaskID));
+            return (!this.genericRepository.VersionValidate(GlobalVariables.ConfigID, GlobalVariables.ConfigVersionID(GlobalVariables.ConfigID)) || dto.EntryDate <= this.genericRepository.GetEditLockedDate(this.LocationID, this.nmvnTaskID));
         }
 
         public override GlobalEnums.AccessLevel GetAccessLevel(int? organizationalUnitID)
@@ -226,7 +227,7 @@ namespace TotalService
                 try
                 {
                     if ((!dto.Approved && !this.Approvable(dto)) || (dto.Approved && !this.UnApprovable(dto))) throw new System.ArgumentException("Lỗi " + (dto.Approved ? "hủy " : "") + "duyệt dữ liệu", "Bạn không có quyền hoặc dữ liệu này đã bị khóa.");
-                                        
+
                     this.ToggleApprovedMe(dto);
 
                     this.genericRepository.SaveChanges();
@@ -329,7 +330,7 @@ namespace TotalService
                 }
             }
         }
-       
+
 
 
         public virtual void PreSaveRoutines(TDto dto)

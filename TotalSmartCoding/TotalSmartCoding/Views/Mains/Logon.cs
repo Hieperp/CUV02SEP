@@ -60,11 +60,11 @@ namespace TotalSmartCoding.Views.Mains
                 this.comboFillingLineID.DisplayMember = CommonExpressions.PropertyName<FillingLineBase>(p => p.Name);
                 this.comboFillingLineID.ValueMember = CommonExpressions.PropertyName<FillingLineBase>(p => p.FillingLineID);
 
-                if (int.TryParse(CommonConfigs.ReadSetting("FillingLineID"), out GlobalVariables.ConfigFillingLineID))
-                    if (GlobalVariables.ConfigFillingLineID >= 1 && GlobalVariables.ConfigFillingLineID <= 3)
-                        this.comboFillingLineID.SelectedValue = GlobalVariables.ConfigFillingLineID;
+                if (int.TryParse(CommonConfigs.ReadSetting("ConfigID"), out GlobalVariables.ConfigID))
+                    if (GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Smallpack || GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Pail || GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Drum)
+                        this.comboFillingLineID.SelectedValue = GlobalVariables.ConfigID;
 
-                if (!(GlobalVariables.ConfigFillingLineID == (int)GlobalVariables.FillingLine.Smallpack || GlobalVariables.ConfigFillingLineID == (int)GlobalVariables.FillingLine.Pail || GlobalVariables.ConfigFillingLineID == (int)GlobalVariables.FillingLine.Drum))
+                if (!(GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Smallpack || GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Pail || GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Drum))
                 {
                     this.lbProductionLineID.Visible = false;
                     this.comboFillingLineID.Visible = false;
@@ -76,9 +76,9 @@ namespace TotalSmartCoding.Views.Mains
 
                 //this.bindingFillingLineID = this.comboFillingLineID.DataBindings.Add("SelectedValue", GlobalVariables., CommonExpressions.PropertyName<PickupViewModel>(p => p.FillingLineID), true, DataSourceUpdateMode.OnPropertyChanged);
 
-                //string a = CommonConfigs.ReadSetting("FillingLineID");
-                //CommonConfigs.AddUpdateAppSettings("FillingLineID", "2");
-                //a = CommonConfigs.ReadSetting("FillingLineID");
+                //string a = CommonConfigs.ReadSetting("ConfigID");
+                //CommonConfigs.AddUpdateAppSettings("ConfigID", "2");
+                //a = CommonConfigs.ReadSetting("ConfigID");
 
                 //DataTable dataTable = ADODatabase.GetDataTable("SELECT * FROM ListProductionLine WHERE (ProductionLineID > 0 AND ProductionLineID <= 6) OR ProductionLineID = 99");
                 //this.comboFillingLineID.DataSource = dataTable;
@@ -153,7 +153,7 @@ namespace TotalSmartCoding.Views.Mains
             {
                 ContextAttributes.User = new UserInformation(1, 1, this.comboBoxEmployeeID.Text, new DateTime());
 
-                if ((this.comboFillingLineID.Visible && this.comboFillingLineID.SelectedIndex < 0) || this.comboBoxAutonicsPortName.SelectedIndex < 0) throw new System.ArgumentException("Vui lòng chọn chuyền sản xuất (NOF1, NOF2, NOF...), và chọn đúng cổng COM để chạy phần mềm"); // || (this.comboFillingLineID.Enabled && (GlobalVariables.ProductionLine)this.comboFillingLineID.SelectedValue == GlobalVariables.ProductionLine.SERVER)
+                if (this.comboFillingLineID.Visible && (this.comboFillingLineID.SelectedIndex < 0 || this.comboBoxAutonicsPortName.SelectedIndex < 0)) throw new System.ArgumentException("Vui lòng chọn chuyền sản xuất (NOF1, NOF2, NOF...), và chọn đúng cổng COM để chạy phần mềm"); // || (this.comboFillingLineID.Enabled && (GlobalVariables.ProductionLine)this.comboFillingLineID.SelectedValue == GlobalVariables.ProductionLine.SERVER)
 
                 if (this.comboFillingLineID.Visible)
                 {
@@ -166,8 +166,8 @@ namespace TotalSmartCoding.Views.Mains
 
                 GlobalVariables.ComportName = (string)this.comboBoxAutonicsPortName.SelectedValue;
 
-                CommonConfigs.AddUpdateAppSettings("FillingLineID", (GlobalVariables.ConfigFillingLineID).ToString());
-                CommonConfigs.AddUpdateAppSettings("ComportName", GlobalVariables.ComportName);
+                CommonConfigs.AddUpdateAppSetting("ConfigID", (GlobalVariables.ConfigID).ToString());
+                CommonConfigs.AddUpdateAppSetting("ComportName", GlobalVariables.ComportName);
 
                 //if (this.comboBoxEmployeeID.SelectedIndex < 0 || this.EmployeeID < 0) throw new System.ArgumentException("Vui lòng chọn tên người sử dụng!");
 
@@ -216,10 +216,11 @@ namespace TotalSmartCoding.Views.Mains
                 //    publicAuthenticationPassword.Dispose();
                 //}
 
+                IBaseRepository baseRepository = CommonNinject.Kernel.Get<IBaseRepository>();
+                this.VersionValidate(baseRepository);
+
                 if (this.checkEmptyData.Checked)
                 {
-                    IBaseRepository baseRepository = CommonNinject.Kernel.Get<IBaseRepository>();
-
                     baseRepository.ExecuteStoreCommand("DELETE FROM     WarehouseAdjustmentDetails", new ObjectParameter[] { });
                     baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('WarehouseAdjustmentDetails', RESEED, 0)", new ObjectParameter[] { });
 
@@ -281,6 +282,23 @@ namespace TotalSmartCoding.Views.Mains
                 ExceptionHandlers.ShowExceptionMessageBox(this, exception);
 
                 this.DialogResult = DialogResult.None;
+            }
+        }
+
+        private bool VersionValidate(IBaseRepository baseRepository)
+        {
+            try
+            {
+                baseRepository.ExecuteStoreCommand("UPDATE Configs SET VersionID = " + GlobalVariables.ConfigVersionID(GlobalVariables.ConfigID) + " WHERE ConfigID = " + GlobalVariables.ConfigID + " AND VersionID < " + GlobalVariables.ConfigVersionID(GlobalVariables.ConfigID), new ObjectParameter[] { });
+                if (baseRepository.VersionValidate(GlobalVariables.ConfigID, GlobalVariables.ConfigVersionID(GlobalVariables.ConfigID)))
+                    CommonConfigs.AddUpdateAppSetting("VersionID", GlobalVariables.ConfigVersionID(GlobalVariables.ConfigID).ToString());
+
+                return true;
+            }
+            catch (Exception exception)
+            {
+                CommonConfigs.AddUpdateAppSetting("VersionID", "-9");
+                throw exception;
             }
         }
 

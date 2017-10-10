@@ -53,7 +53,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
             this.fastBinLocations.Dock = DockStyle.Fill;
             this.splitContainerCenter.Panel2.Controls.Add(this.tabBinLocation);
 
-            if (GlobalVariables.ConfigFillingLineID == (int)GlobalVariables.FillingLine.Pickup) ViewHelpers.SetFont(this, new Font("Calibri", 11), new Font("Calibri", 11), new Font("Calibri", 11));
+            if (GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Pickup) ViewHelpers.SetFont(this, new Font("Calibri", 11), new Font("Calibri", 11), new Font("Calibri", 11));
 
             this.splitContainerCenter.SplitterDistance = this.textexCode.Height + this.textexCommodityCodeAndName.Height + this.textexQuantity.Height + this.textexLineVolume.Height + this.textexBinLocationCode.Height + 5 * 5 + 15;
 
