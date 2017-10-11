@@ -340,7 +340,10 @@
 		<col def="S0">ISDotNetInstallerArgsCommit</col>
 		<col def="S0">ISDotNetInstallerArgsUninstall</col>
 		<col def="S0">ISDotNetInstallerArgsRollback</col>
+		<row><td>ISX_DEFAULTCOMPONENT</td><td>{992A7ED0-C92F-4EBC-925B-3B88FDC0370B}</td><td>INSTALLDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Microsoft.ExceptionMessageBox.dll</td><td>{40842F5D-3279-41B1-A97C-F0E75867EA72}</td><td>INSTALLDIR</td><td>2</td><td/><td>microsoft.exceptionmessagebo</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>StartUpSmartCoding.exe</td><td>{C2579122-153A-4503-9E24-A47F6372E699}</td><td>INSTALLDIR</td><td>2</td><td/><td>startupsmartcoding.exe</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>StartUpSmartCoding.vshost.exe</td><td>{300DA447-0B5E-40AA-A2D1-C64E79E3BA90}</td><td>INSTALLDIR</td><td>2</td><td/><td>startupsmartcoding.vshost.ex</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>TotalSmartCoding.Primary_output</td><td>{D75D73C0-F4E7-4E8B-B871-9A12648DFFD5}</td><td>INSTALLDIR</td><td>2</td><td/><td>totalsmartcoding.primary_out</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 	</table>
 
@@ -1050,7 +1053,10 @@
 	<table name="CreateFolder">
 		<col key="yes" def="s72">Directory_</col>
 		<col key="yes" def="s72">Component_</col>
+		<row><td>INSTALLDIR</td><td>ISX_DEFAULTCOMPONENT</td></row>
 		<row><td>INSTALLDIR</td><td>Microsoft.ExceptionMessageBox.dll</td></row>
+		<row><td>INSTALLDIR</td><td>StartUpSmartCoding.exe</td></row>
+		<row><td>INSTALLDIR</td><td>StartUpSmartCoding.vshost.exe</td></row>
 		<row><td>INSTALLDIR</td><td>TotalSmartCoding.Primary_output</td></row>
 	</table>
 
@@ -1182,6 +1188,8 @@
 		<row><td>WindowsFolder</td><td>TARGETDIR</td><td>.:Windows</td><td/><td>0</td><td/></row>
 		<row><td>WindowsVolume</td><td>TARGETDIR</td><td>.:WinRoot</td><td/><td>0</td><td/></row>
 		<row><td>datmyc_1._lt_dat_my_co.__ltd.</td><td>ProgramMenuFolder</td><td>DATMYC~1._LT|Dat My Co., Ltd.</td><td/><td>1</td><td/></row>
+		<row><td>dmcsol_1_dmc_solutions</td><td>ProgramMenuFolder</td><td>DMCSOL~1|DMC Solutions</td><td/><td>1</td><td/></row>
+		<row><td>smart2_1_smart_2d_coding</td><td>dmcsol_1_dmc_solutions</td><td>SMART2~1|Smart 2D Coding</td><td/><td>1</td><td/></row>
 		<row><td>total2_1_total_2d_coding_solution</td><td>datmyc_1._lt_dat_my_co.__ltd.</td><td>TOTAL2~1|Total 2D Coding Solution</td><td/><td>1</td><td/></row>
 	</table>
 
@@ -1874,7 +1882,10 @@
 	<table name="FeatureComponents">
 		<col key="yes" def="s38">Feature_</col>
 		<col key="yes" def="s72">Component_</col>
+		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT</td></row>
 		<row><td>AlwaysInstall</td><td>Microsoft.ExceptionMessageBox.dll</td></row>
+		<row><td>AlwaysInstall</td><td>StartUpSmartCoding.exe</td></row>
+		<row><td>AlwaysInstall</td><td>StartUpSmartCoding.vshost.exe</td></row>
 		<row><td>AlwaysInstall</td><td>TotalSmartCoding.Primary_output</td></row>
 	</table>
 
@@ -1891,6 +1902,12 @@
 		<col def="I4">ISAttributes</col>
 		<col def="S72">ISComponentSubFolder_</col>
 		<row><td>microsoft.exceptionmessagebo</td><td>Microsoft.ExceptionMessageBox.dll</td><td>MICROS~1.DLL|Microsoft.ExceptionMessageBox.dll</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Program Files (x86)\Microsoft SQL Server\110\SDK\Assemblies\Microsoft.ExceptionMessageBox.dll</td><td>1</td><td/></row>
+		<row><td>startupsmartcoding.exe</td><td>StartUpSmartCoding.exe</td><td>STARTU~1.EXE|StartUpSmartCoding.exe</td><td>0</td><td/><td/><td/><td>1</td><td>D:\VC PROJECTS\Chevron VN\Github30SEP\trunk\TotalSmartCoding\packages\StartUpSmartCoding\StartUpSmartCoding.exe</td><td>1</td><td/></row>
+		<row><td>startupsmartcoding.exe.confi</td><td>ISX_DEFAULTCOMPONENT</td><td>STARTU~1.CON|StartUpSmartCoding.exe.config</td><td>0</td><td/><td/><td/><td>1</td><td>D:\VC PROJECTS\Chevron VN\Github30SEP\trunk\TotalSmartCoding\packages\StartUpSmartCoding\StartUpSmartCoding.exe.config</td><td>1</td><td/></row>
+		<row><td>startupsmartcoding.pdb</td><td>ISX_DEFAULTCOMPONENT</td><td>STARTU~1.PDB|StartUpSmartCoding.pdb</td><td>0</td><td/><td/><td/><td>1</td><td>D:\VC PROJECTS\Chevron VN\Github30SEP\trunk\TotalSmartCoding\packages\StartUpSmartCoding\StartUpSmartCoding.pdb</td><td>1</td><td/></row>
+		<row><td>startupsmartcoding.vshost.ex</td><td>StartUpSmartCoding.vshost.exe</td><td>STARTU~1.EXE|StartUpSmartCoding.vshost.exe</td><td>0</td><td/><td/><td/><td>1</td><td>D:\VC PROJECTS\Chevron VN\Github30SEP\trunk\TotalSmartCoding\packages\StartUpSmartCoding\StartUpSmartCoding.vshost.exe</td><td>1</td><td/></row>
+		<row><td>startupsmartcoding.vshost.ex1</td><td>ISX_DEFAULTCOMPONENT</td><td>STARTU~1.CON|StartUpSmartCoding.vshost.exe.config</td><td>0</td><td/><td/><td/><td>1</td><td>D:\VC PROJECTS\Chevron VN\Github30SEP\trunk\TotalSmartCoding\packages\StartUpSmartCoding\StartUpSmartCoding.vshost.exe.config</td><td>1</td><td/></row>
+		<row><td>startupsmartcoding.vshost.ex2</td><td>ISX_DEFAULTCOMPONENT</td><td>STARTU~1.MAN|StartUpSmartCoding.vshost.exe.manifest</td><td>0</td><td/><td/><td/><td>1</td><td>D:\VC PROJECTS\Chevron VN\Github30SEP\trunk\TotalSmartCoding\packages\StartUpSmartCoding\StartUpSmartCoding.vshost.exe.manifest</td><td>1</td><td/></row>
 		<row><td>totalsmartcoding.primary_out</td><td>TotalSmartCoding.Primary_output</td><td>TotalSmartCoding.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;TotalSmartCoding&gt;|Built</td><td>3</td><td/></row>
 	</table>
 
@@ -2033,7 +2050,10 @@
 		<col def="S0">FTPLocation</col>
 		<col def="S0">HTTPLocation</col>
 		<col def="S0">Miscellaneous</col>
+		<row><td>ISX_DEFAULTCOMPONENT</td><td/><td/><td>_12A40A5E_8753_41AB_9533_2ECB3C5D7C0B_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Microsoft.ExceptionMessageBox.dll</td><td/><td/><td>_B514F1B1_B273_4AC3_9BF2_E6CBD188DD04_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>StartUpSmartCoding.exe</td><td/><td/><td>_E00138DA_C189_4F9C_BD4A_61A0E8B961F3_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>StartUpSmartCoding.vshost.exe</td><td/><td/><td>_ED64729E_DFAB_435F_9A3C_EB285D45C93E_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>TotalSmartCoding.Primary_output</td><td/><td/><td>_F0CA18D2_1D26_4F34_9142_41076A137327_FILTER</td><td/><td/><td/><td/></row>
 	</table>
 
@@ -2623,7 +2643,7 @@
 		<col def="I2">Encoded</col>
 		<col def="S0">Comment</col>
 		<col def="I4">TimeStamp</col>
-		<row><td>COMPANY_NAME</td><td>1033</td><td>DMC Solutions</td><td>0</td><td/><td>1151690927</td></row>
+		<row><td>COMPANY_NAME</td><td>1033</td><td>DMC Solutions</td><td>0</td><td/><td>1562740201</td></row>
 		<row><td>DN_AlwaysInstall</td><td>1033</td><td>Always Install</td><td>0</td><td/><td>-1272616953</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_COLOR</td><td>1033</td><td>The color settings of your system are not adequate for running [ProductName].</td><td>0</td><td/><td>-1272616953</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_DOTNETVERSION45FULL</td><td>1033</td><td>Microsoft .NET Framework 4.5 Full package or greater needs to be installed for this installation to continue.</td><td>0</td><td/><td>-1272593241</td></row>
@@ -3437,6 +3457,12 @@
 		<row><td>IDS_SETUPEXE_EXPIRE_MSG</td><td>1033</td><td>This setup works until %s. The setup will now exit.</td><td>0</td><td/><td>-1272616953</td></row>
 		<row><td>IDS_SETUPEXE_LAUNCH_COND_E</td><td>1033</td><td>This setup was built with an evaluation version of InstallShield and can only be launched from setup.exe.</td><td>0</td><td/><td>-1272616953</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME1</td><td>1033</td><td>Smart 2D Coding Solution</td><td>0</td><td/><td>-1272638633</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME2</td><td>1033</td><td>LAUNCH~1.EXE|Launch StartUpSmartCoding.exe</td><td>0</td><td/><td>1562731113</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME3</td><td>1033</td><td>LAUNCH~1.EXE|Launch StartUpSmartCoding.vshost.exe</td><td>0</td><td/><td>1562731113</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME4</td><td>1033</td><td>LAUNCH~1.EXE|Launch StartUpSmartCoding.exe</td><td>0</td><td/><td>1562757865</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME5</td><td>1033</td><td>LAUNCH~1.EXE|Launch StartUpSmartCoding.vshost.exe</td><td>0</td><td/><td>1562757865</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME6</td><td>1033</td><td>Launch Smart Coding</td><td>0</td><td/><td>1562748425</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME7</td><td>1033</td><td>LAUNCH~1.EXE|Launch StartUpSmartCoding.vshost.exe</td><td>0</td><td/><td>1562754089</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO</td><td>1033</td><td>From the list of servers below, select the database server you would like to target.</td><td>0</td><td/><td>-1272616953</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO_DB</td><td>1033</td><td>From the list of catalog names below, select the database catalog you would like to target.</td><td>0</td><td/><td>-1272616953</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO_TEMPLATE</td><td>1033</td><td>[IS_SQLBROWSE_INTRO]</td><td>0</td><td/><td>-1272616953</td></row>
@@ -3725,9 +3751,10 @@
 		<row><td>IDS__TargetReq_DESC_PROCESSOR</td><td>1033</td><td>The processor is not adequate for running [ProductName].</td><td>0</td><td/><td>-1272616953</td></row>
 		<row><td>IDS__TargetReq_DESC_RAM</td><td>1033</td><td>The amount of RAM is not adequate for running [ProductName].</td><td>0</td><td/><td>-1272616953</td></row>
 		<row><td>IDS__TargetReq_DESC_RESOLUTION</td><td>1033</td><td>The screen resolution is not adequate for running [ProductName].</td><td>0</td><td/><td>-1272616953</td></row>
-		<row><td>ID_STRING1</td><td>1033</td><td>http://www.DMCSolutions.com</td><td>0</td><td/><td>1151690927</td></row>
-		<row><td>ID_STRING2</td><td>1033</td><td>DMC Solutions</td><td>0</td><td/><td>1151690927</td></row>
+		<row><td>ID_STRING1</td><td>1033</td><td>http://www.DMCSolutions.com</td><td>0</td><td/><td>1562740201</td></row>
+		<row><td>ID_STRING2</td><td>1033</td><td>DMC Solutions</td><td>0</td><td/><td>1562740201</td></row>
 		<row><td>ID_STRING3</td><td>1033</td><td>Launch |Built</td><td>0</td><td/><td>-1272614872</td></row>
+		<row><td>ID_STRING4</td><td>1033</td><td>LAUNCH~1.EXE|Launch StartUpSmartCoding.exe</td><td>0</td><td/><td>1562743945</td></row>
 		<row><td>IIDS_UITEXT_FeatureUninstalled</td><td>1033</td><td>This feature will remain uninstalled.</td><td>0</td><td/><td>-1272616953</td></row>
 	</table>
 
@@ -3842,6 +3869,12 @@
 		<col def="S255">ISBuildSourcePath</col>
 		<col def="I2">ISIconIndex</col>
 		<row><td>ARPPRODUCTICON.exe</td><td/><td>C:\Users\Hiep\Downloads\Barcode2D.ico</td><td>0</td></row>
+		<row><td>StartUpSmartCoding_10E5EE2098564846BF1D60EFAC609210.exe</td><td/><td>&lt;ISProductFolder&gt;\redist\Language Independent\OS Independent\GenericExe.ico</td><td>0</td></row>
+		<row><td>StartUpSmartCoding_18865BD3DD92463B9CE810B549BDD4F1.exe</td><td/><td>&lt;ISProductFolder&gt;\redist\Language Independent\OS Independent\GenericExe.ico</td><td>0</td></row>
+		<row><td>StartUpSmartCoding_1E8646C3296A4C7C94A683F7BAB07AAE.exe</td><td/><td>D:\VC PROJECTS\Chevron VN\Github30SEP\trunk\TotalSmartCoding\packages\StartUpSmartCoding\StartUpSmartCoding.exe</td><td>0</td></row>
+		<row><td>StartUpSmartCoding_7A0416908B884BCB83BCB7CE6A9EE6F9.exe</td><td/><td>D:\VC PROJECTS\Chevron VN\Github30SEP\trunk\TotalSmartCoding\TotalInstallShield\TotalInstallShield\StartUpSmartCoding\StartUpSmartCoding.exe</td><td>0</td></row>
+		<row><td>StartUpSmartCoding_E28723C8BB6C444383E6F0A77DA48CB2.exe</td><td/><td>D:\VC PROJECTS\Chevron VN\Github30SEP\trunk\TotalSmartCoding\packages\StartUpSmartCoding\StartUpSmartCoding.exe</td><td>0</td></row>
+		<row><td>StartUpSmartCoding_F787226F76EC468DBE05239C1893B802.exe</td><td/><td>D:\VC PROJECTS\Chevron VN\Github30SEP\trunk\TotalSmartCoding\packages\StartUpSmartCoding\StartUpSmartCoding.exe</td><td>0</td></row>
 	</table>
 
 	<table name="IniFile">
@@ -4427,6 +4460,7 @@ RABWAEQALQA1AAEARQB4AHAAcgBlAHMAcwA=
 		<col def="i2">InstallMode</col>
 		<row><td>FileKey1</td><td>TotalSmartCoding.Primary_output</td><td/><td>datmyc_1._lt_dat_my_co.__ltd.</td><td>2</td></row>
 		<row><td>FileKey2</td><td>TotalSmartCoding.Primary_output</td><td/><td>total2_1_total_2d_coding_solution</td><td>2</td></row>
+		<row><td>StartUpSmartCoding.exe</td><td>StartUpSmartCoding.exe</td><td/><td>smart2_1_smart_2d_coding</td><td>2</td></row>
 		<row><td>_Built</td><td>TotalSmartCoding.Primary_output</td><td/><td>total2_1_total_2d_coding_solution</td><td>2</td></row>
 	</table>
 
@@ -4513,8 +4547,9 @@ RABWAEQALQA1AAEARQB4AHAAcgBlAHMAcwA=
 		<col def="S255">ISComments</col>
 		<col def="S255">ISShortcutName</col>
 		<col def="I4">ISAttributes</col>
+		<row><td>StartUpSmartCoding.exe</td><td>smart2_1_smart_2d_coding</td><td>##IDS_SHORTCUT_DISPLAY_NAME6##</td><td>StartUpSmartCoding.exe</td><td>AlwaysInstall</td><td/><td/><td/><td>StartUpSmartCoding_1E8646C3296A4C7C94A683F7BAB07AAE.exe</td><td>1</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>StartUpSmartCoding.exe1</td><td>DesktopFolder</td><td>##IDS_SHORTCUT_DISPLAY_NAME6##</td><td>StartUpSmartCoding.exe</td><td>AlwaysInstall</td><td/><td/><td/><td>StartUpSmartCoding_F787226F76EC468DBE05239C1893B802.exe</td><td>1</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
 		<row><td>_Built</td><td>total2_1_total_2d_coding_solution</td><td>##IDS_SHORTCUT_DISPLAY_NAME1##</td><td>TotalSmartCoding.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td/><td/><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
-		<row><td>_Built1</td><td>DesktopFolder</td><td>##IDS_SHORTCUT_DISPLAY_NAME1##</td><td>TotalSmartCoding.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td/><td/><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="Signature">
