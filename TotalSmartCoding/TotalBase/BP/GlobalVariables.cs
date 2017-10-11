@@ -129,8 +129,11 @@ namespace TotalBase
         {
             if (configID == (int)GlobalVariables.FillingLine.None)
                 return 2;
+
+
+
             else if (configID == (int)GlobalVariables.FillingLine.Smallpack || configID == (int)GlobalVariables.FillingLine.Pail || configID == (int)GlobalVariables.FillingLine.Drum)
-                return 2;
+                return 2; //PAY ATTENTION WHEN CHANGE THIS VALUE
             else
                 return -1;
         }
