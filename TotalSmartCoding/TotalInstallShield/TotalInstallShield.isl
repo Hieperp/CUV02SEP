@@ -342,6 +342,8 @@
 		<col def="S0">ISDotNetInstallerArgsRollback</col>
 		<row><td>ISX_DEFAULTCOMPONENT</td><td>{992A7ED0-C92F-4EBC-925B-3B88FDC0370B}</td><td>INSTALLDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Microsoft.ExceptionMessageBox.dll</td><td>{40842F5D-3279-41B1-A97C-F0E75867EA72}</td><td>INSTALLDIR</td><td>2</td><td/><td>microsoft.exceptionmessagebo</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>Microsoft.ReportViewer.Common.dll</td><td>{5B07E1CF-68C0-4431-B6EC-28192AB80567}</td><td>INSTALLDIR</td><td>2</td><td/><td>microsoft.reportviewer.commo</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>Microsoft.ReportViewer.WinForms.DLL</td><td>{2835FCB1-6641-4FEA-8870-DAAFC9B132BD}</td><td>INSTALLDIR</td><td>2</td><td/><td>microsoft.reportviewer.winfo</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>StartUpSmartCoding.exe</td><td>{C2579122-153A-4503-9E24-A47F6372E699}</td><td>INSTALLDIR</td><td>2</td><td/><td>startupsmartcoding.exe</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>StartUpSmartCoding.vshost.exe</td><td>{300DA447-0B5E-40AA-A2D1-C64E79E3BA90}</td><td>INSTALLDIR</td><td>2</td><td/><td>startupsmartcoding.vshost.ex</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>TotalSmartCoding.Primary_output</td><td>{D75D73C0-F4E7-4E8B-B871-9A12648DFFD5}</td><td>INSTALLDIR</td><td>2</td><td/><td>totalsmartcoding.primary_out</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
@@ -1055,6 +1057,8 @@
 		<col key="yes" def="s72">Component_</col>
 		<row><td>INSTALLDIR</td><td>ISX_DEFAULTCOMPONENT</td></row>
 		<row><td>INSTALLDIR</td><td>Microsoft.ExceptionMessageBox.dll</td></row>
+		<row><td>INSTALLDIR</td><td>Microsoft.ReportViewer.Common.dll</td></row>
+		<row><td>INSTALLDIR</td><td>Microsoft.ReportViewer.WinForms.DLL</td></row>
 		<row><td>INSTALLDIR</td><td>StartUpSmartCoding.exe</td></row>
 		<row><td>INSTALLDIR</td><td>StartUpSmartCoding.vshost.exe</td></row>
 		<row><td>INSTALLDIR</td><td>TotalSmartCoding.Primary_output</td></row>
@@ -1884,6 +1888,8 @@
 		<col key="yes" def="s72">Component_</col>
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT</td></row>
 		<row><td>AlwaysInstall</td><td>Microsoft.ExceptionMessageBox.dll</td></row>
+		<row><td>AlwaysInstall</td><td>Microsoft.ReportViewer.Common.dll</td></row>
+		<row><td>AlwaysInstall</td><td>Microsoft.ReportViewer.WinForms.DLL</td></row>
 		<row><td>AlwaysInstall</td><td>StartUpSmartCoding.exe</td></row>
 		<row><td>AlwaysInstall</td><td>StartUpSmartCoding.vshost.exe</td></row>
 		<row><td>AlwaysInstall</td><td>TotalSmartCoding.Primary_output</td></row>
@@ -1902,6 +1908,8 @@
 		<col def="I4">ISAttributes</col>
 		<col def="S72">ISComponentSubFolder_</col>
 		<row><td>microsoft.exceptionmessagebo</td><td>Microsoft.ExceptionMessageBox.dll</td><td>MICROS~1.DLL|Microsoft.ExceptionMessageBox.dll</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Program Files (x86)\Microsoft SQL Server\110\SDK\Assemblies\Microsoft.ExceptionMessageBox.dll</td><td>1</td><td/></row>
+		<row><td>microsoft.reportviewer.commo</td><td>Microsoft.ReportViewer.Common.dll</td><td>MICROS~1.DLL|Microsoft.ReportViewer.Common.dll</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Windows\assembly\GAC_MSIL\Microsoft.ReportViewer.Common\11.0.0.0__89845dcd8080cc91\Microsoft.ReportViewer.Common.dll</td><td>1</td><td/></row>
+		<row><td>microsoft.reportviewer.winfo</td><td>Microsoft.ReportViewer.WinForms.DLL</td><td>MICROS~1.DLL|Microsoft.ReportViewer.WinForms.DLL</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Windows\assembly\GAC_MSIL\Microsoft.ReportViewer.WinForms\11.0.0.0__89845dcd8080cc91\Microsoft.ReportViewer.WinForms.DLL</td><td>1</td><td/></row>
 		<row><td>startupsmartcoding.exe</td><td>StartUpSmartCoding.exe</td><td>STARTU~1.EXE|StartUpSmartCoding.exe</td><td>0</td><td/><td/><td/><td>1</td><td>D:\VC PROJECTS\Chevron VN\Github30SEP\trunk\TotalSmartCoding\packages\StartUpSmartCoding\StartUpSmartCoding.exe</td><td>1</td><td/></row>
 		<row><td>startupsmartcoding.exe.confi</td><td>ISX_DEFAULTCOMPONENT</td><td>STARTU~1.CON|StartUpSmartCoding.exe.config</td><td>0</td><td/><td/><td/><td>1</td><td>D:\VC PROJECTS\Chevron VN\Github30SEP\trunk\TotalSmartCoding\packages\StartUpSmartCoding\StartUpSmartCoding.exe.config</td><td>1</td><td/></row>
 		<row><td>startupsmartcoding.pdb</td><td>ISX_DEFAULTCOMPONENT</td><td>STARTU~1.PDB|StartUpSmartCoding.pdb</td><td>0</td><td/><td/><td/><td>1</td><td>D:\VC PROJECTS\Chevron VN\Github30SEP\trunk\TotalSmartCoding\packages\StartUpSmartCoding\StartUpSmartCoding.pdb</td><td>1</td><td/></row>
@@ -2052,6 +2060,8 @@
 		<col def="S0">Miscellaneous</col>
 		<row><td>ISX_DEFAULTCOMPONENT</td><td/><td/><td>_12A40A5E_8753_41AB_9533_2ECB3C5D7C0B_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Microsoft.ExceptionMessageBox.dll</td><td/><td/><td>_B514F1B1_B273_4AC3_9BF2_E6CBD188DD04_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>Microsoft.ReportViewer.Common.dll</td><td/><td/><td>_86637DE9_B68A_427E_96CA_C0377A2165B3_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>Microsoft.ReportViewer.WinForms.DLL</td><td/><td/><td>_E3F04C25_0571_461F_BEF5_82F11B972542_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>StartUpSmartCoding.exe</td><td/><td/><td>_E00138DA_C189_4F9C_BD4A_61A0E8B961F3_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>StartUpSmartCoding.vshost.exe</td><td/><td/><td>_ED64729E_DFAB_435F_9A3C_EB285D45C93E_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>TotalSmartCoding.Primary_output</td><td/><td/><td>_F0CA18D2_1D26_4F34_9142_41076A137327_FILTER</td><td/><td/><td/><td/></row>
@@ -2643,7 +2653,7 @@
 		<col def="I2">Encoded</col>
 		<col def="S0">Comment</col>
 		<col def="I4">TimeStamp</col>
-		<row><td>COMPANY_NAME</td><td>1033</td><td>DMC Solutions</td><td>0</td><td/><td>1562740201</td></row>
+		<row><td>COMPANY_NAME</td><td>1033</td><td>DMC Solutions</td><td>0</td><td/><td>1696943127</td></row>
 		<row><td>DN_AlwaysInstall</td><td>1033</td><td>Always Install</td><td>0</td><td/><td>-1272616953</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_COLOR</td><td>1033</td><td>The color settings of your system are not adequate for running [ProductName].</td><td>0</td><td/><td>-1272616953</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_DOTNETVERSION45FULL</td><td>1033</td><td>Microsoft .NET Framework 4.5 Full package or greater needs to be installed for this installation to continue.</td><td>0</td><td/><td>-1272593241</td></row>
@@ -3751,8 +3761,8 @@
 		<row><td>IDS__TargetReq_DESC_PROCESSOR</td><td>1033</td><td>The processor is not adequate for running [ProductName].</td><td>0</td><td/><td>-1272616953</td></row>
 		<row><td>IDS__TargetReq_DESC_RAM</td><td>1033</td><td>The amount of RAM is not adequate for running [ProductName].</td><td>0</td><td/><td>-1272616953</td></row>
 		<row><td>IDS__TargetReq_DESC_RESOLUTION</td><td>1033</td><td>The screen resolution is not adequate for running [ProductName].</td><td>0</td><td/><td>-1272616953</td></row>
-		<row><td>ID_STRING1</td><td>1033</td><td>http://www.DMCSolutions.com</td><td>0</td><td/><td>1562740201</td></row>
-		<row><td>ID_STRING2</td><td>1033</td><td>DMC Solutions</td><td>0</td><td/><td>1562740201</td></row>
+		<row><td>ID_STRING1</td><td>1033</td><td>http://www.DMCSolutions.com</td><td>0</td><td/><td>1696943127</td></row>
+		<row><td>ID_STRING2</td><td>1033</td><td>DMC Solutions</td><td>0</td><td/><td>1696943127</td></row>
 		<row><td>ID_STRING3</td><td>1033</td><td>Launch |Built</td><td>0</td><td/><td>-1272614872</td></row>
 		<row><td>ID_STRING4</td><td>1033</td><td>LAUNCH~1.EXE|Launch StartUpSmartCoding.exe</td><td>0</td><td/><td>1562743945</td></row>
 		<row><td>IIDS_UITEXT_FeatureUninstalled</td><td>1033</td><td>This feature will remain uninstalled.</td><td>0</td><td/><td>-1272616953</td></row>

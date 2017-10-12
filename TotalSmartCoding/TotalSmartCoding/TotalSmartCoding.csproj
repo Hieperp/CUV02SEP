@@ -67,6 +67,12 @@
     <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
       <Private>True</Private>
@@ -79,6 +85,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -263,6 +270,12 @@
     <Compile Include="Views\Mains\BasicView.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Views\Mains\SsrsViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Mains\SsrsViewer.Designer.cs">
+      <DependentUpon>SsrsViewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Mains\Logon.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -396,6 +409,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Mains\BasicView.resx">
       <DependentUpon>BasicView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Mains\SsrsViewer.resx">
+      <DependentUpon>SsrsViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Mains\Logon.resx">
       <DependentUpon>Logon.cs</DependentUpon>
