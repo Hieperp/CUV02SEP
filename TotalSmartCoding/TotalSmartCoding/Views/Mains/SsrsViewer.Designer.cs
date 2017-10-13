@@ -46,7 +46,7 @@
             this.Controls.Add(this.reportViewer1);
             this.Name = "SsrsViewer";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.SsrsViewer_Load);
             this.ResumeLayout(false);
 
         }

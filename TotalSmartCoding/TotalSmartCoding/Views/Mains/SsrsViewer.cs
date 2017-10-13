@@ -17,7 +17,7 @@ namespace TotalSmartCoding.Views.Mains
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void SsrsViewer_Load(object sender, EventArgs e)
         {
 
             this.reportViewer1.RefreshReport();

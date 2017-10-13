@@ -487,8 +487,15 @@ namespace TotalSmartCoding.Controllers.Productions
 
                     if (this.OnScanning && this.FillingData.HasCarton)
                     {
+                        if (this.PackQueueCount > 80)
+                        {
+                            this.MainStatus = ""; this.MainStatus = "Waiting for Carton";
+                        }
+
                         if (this.waitforCarton(ref stringReceived))
                         {
+                            this.MainStatus = ""; this.MainStatus = stringReceived;
+
                             cartonQueueChanged = this.ReceiveCarton(stringReceived) || cartonQueueChanged;
                             packsetQueueChanged = packsetQueueChanged || cartonQueueChanged; cartonPendingQueueChanged = cartonQueueChanged;
                         }
@@ -676,6 +683,8 @@ namespace TotalSmartCoding.Controllers.Productions
 
             foreach (string stringBarcode in arrayBarcode)
             {
+                this.MainStatus = ""; this.MainStatus = "ReceiveCarton"; this.MainStatus = stringBarcode;
+
                 string receivedBarcode = stringBarcode.Trim();
                 if (!this.FillingData.HasPack) receivedBarcode = receivedBarcode.Replace("NoRead", "").Trim(); //IGNORE WHEN NoRead (IF MATCHING BEFORE FILLING: USER MUST RE-PRINT BEFORE READ AGAIN. IF MATCHING AFTER FILL: USER MUST TRY TO READ UNTILL SUCCESS, OTHERWISE: THEY EMPTY THE BOX => THE RE-PRINT BEFORE READ AGAIN)
 
@@ -699,6 +708,8 @@ namespace TotalSmartCoding.Controllers.Productions
                     if (!GlobalVariables.IgnoreEmptyCarton || this.packsetQueue.Count > 0 || !this.FillingData.HasPack) //BY NOT this.FillingData.HasPack: this.packsetQueue.Count WILL ALWAYS BE: 0 (NO PACK RECEIVED)
                     {//IF this.packsetQueue.Count <= 0 => THIS WILL SAVE AN EMPTY CARTON. this.packsetQueue.EntityIDs WILL BE BLANK => NO PACK BE UPDATED FOR THIS CARTON
 
+                        this.MainStatus = ""; this.MainStatus = "matchPacktoCarton"; this.MainStatus = cartonCode;
+
                         CartonDTO cartonDTO = new CartonDTO(this.FillingData) { Code = this.interpretBarcode(cartonCode), PackCounts = this.packsetQueue.Count, Quantity = 1, LineVolume = (this.FillingData.HasPack ? this.packsetQueue.TotalLineVolume : this.FillingData.Volume) };
                         if (isPending) cartonDTO.EntryStatusID = (int)GlobalVariables.BarcodeStatus.Noread;
 
@@ -710,6 +721,8 @@ namespace TotalSmartCoding.Controllers.Productions
                                 this.packsetQueue = new BarcodeQueue<PackDTO>(this.FillingData.NoSubQueue, this.FillingData.ItemPerSubQueue, false) { ItemPerSet = this.FillingData.PackPerCarton }; //CLEAR AFTER ADD TO CartonDTO
                             else
                                 throw new Exception("Lỗi lưu mã vạch carton: " + cartonDTO.Code);
+
+                            this.MainStatus = ""; this.MainStatus = "Save"; this.MainStatus = cartonCode;
                         }
 
                         if (isPending)
