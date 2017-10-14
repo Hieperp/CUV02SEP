@@ -99,6 +99,7 @@
         <AssociationConnector Association="TotalSmartCodingModel.FK_Batches_Commodities" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_Batches_FillingLines" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.ModuleDetail" Width="1.5" PointX="5.375" PointY="0.75" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_DeliveryAdviceDetails_Batches" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

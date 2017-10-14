@@ -38,6 +38,7 @@ namespace TotalModel.Models
         public bool InActive { get; set; }
         public bool InActivePartial { get; set; }
         public Nullable<System.DateTime> InActivePartialDate { get; set; }
+        public Nullable<int> BatchID { get; set; }
     
         public virtual SalesOrderDetail SalesOrderDetail { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -45,5 +46,6 @@ namespace TotalModel.Models
         public virtual Customer Customer { get; set; }
         public virtual DeliveryAdvice DeliveryAdvice { get; set; }
         public virtual Commodity Commodity { get; set; }
+        public virtual Batch Batch { get; set; }
     }
 }

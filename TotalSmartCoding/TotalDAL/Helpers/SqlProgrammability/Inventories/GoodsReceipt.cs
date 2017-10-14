@@ -329,7 +329,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
         private void GetGoodsReceiptDetailAvailables()
         {
-            string queryString = " @LocationID Int, @CommodityID Int, @GoodsReceiptDetailIDs varchar(3999) " + "\r\n";
+            string queryString = " @LocationID Int, @CommodityID Int, @BatchID Int, @GoodsReceiptDetailIDs varchar(3999) " + "\r\n";
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
 
@@ -349,32 +349,45 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
         {
             string queryString = "";
             queryString = queryString + "   BEGIN " + "\r\n";
-            queryString = queryString + "       IF  (@GoodsReceiptDetailIDs <> '') " + "\r\n";
-            queryString = queryString + "           " + this.AvailableBuildSQLGoodsReceiptDetailIDs(isCommodityID, true) + "\r\n";
+            queryString = queryString + "       IF  (NOT @BatchID IS NULL) " + "\r\n";
+            queryString = queryString + "           " + this.AvailableBuildSQLCommmodityBatch(isCommodityID, true) + "\r\n";
             queryString = queryString + "       ELSE " + "\r\n";
-            queryString = queryString + "           " + this.AvailableBuildSQLGoodsReceiptDetailIDs(isCommodityID, false) + "\r\n";
+            queryString = queryString + "           " + this.AvailableBuildSQLCommmodityBatch(isCommodityID, false) + "\r\n";
             queryString = queryString + "   END " + "\r\n";
 
             return queryString;
         }
 
-        private string AvailableBuildSQLGoodsReceiptDetailIDs(bool isCommodityID, bool isGoodsReceiptDetailIDs)
+        private string AvailableBuildSQLCommmodityBatch(bool isCommodityID, bool isBatchID)
+        {
+            string queryString = "";
+            queryString = queryString + "   BEGIN " + "\r\n";
+            queryString = queryString + "       IF  (@GoodsReceiptDetailIDs <> '') " + "\r\n";
+            queryString = queryString + "           " + this.AvailableBuildSQLGoodsReceiptDetailIDs(isCommodityID, isBatchID, true) + "\r\n";
+            queryString = queryString + "       ELSE " + "\r\n";
+            queryString = queryString + "           " + this.AvailableBuildSQLGoodsReceiptDetailIDs(isCommodityID, isBatchID, false) + "\r\n";
+            queryString = queryString + "   END " + "\r\n";
+
+            return queryString;
+        }
+
+        private string AvailableBuildSQLGoodsReceiptDetailIDs(bool isCommodityID, bool isBatchID, bool isGoodsReceiptDetailIDs)
         {
             string queryString = "";
             queryString = queryString + "   BEGIN " + "\r\n";
 
             queryString = queryString + "       SELECT      GoodsReceiptDetails.GoodsReceiptID, GoodsReceiptDetails.GoodsReceiptDetailID, GoodsReceiptDetails.Reference AS GoodsReceiptReference, GoodsReceiptDetails.EntryDate AS GoodsReceiptEntryDate, GoodsReceiptDetails.BatchEntryDate, GoodsReceiptDetails.WarehouseID, Warehouses.Code AS WarehouseCode, Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, GoodsReceiptDetails.BinLocationID, BinLocations.Code AS BinLocationCode, GoodsReceiptDetails.PackID, Packs.Code AS PackCode, GoodsReceiptDetails.CartonID, Cartons.Code AS CartonCode, GoodsReceiptDetails.PalletID, Pallets.Code AS PalletCode, GoodsReceiptDetails.Remarks, " + "\r\n";
             queryString = queryString + "                   GoodsReceiptDetails.PackCounts, GoodsReceiptDetails.CartonCounts, GoodsReceiptDetails.PalletCounts, ROUND(GoodsReceiptDetails.Quantity - GoodsReceiptDetails.QuantityIssue, " + GlobalEnums.rndQuantity + ") AS QuantityAvailable, ROUND(GoodsReceiptDetails.LineVolume - GoodsReceiptDetails.LineVolumeIssue, " + GlobalEnums.rndVolume + ") AS LineVolumeAvailable, CAST(0 AS bit) AS IsSelected " + "\r\n";
-
+            
             queryString = queryString + "       FROM        GoodsReceiptDetails " + "\r\n";
-            queryString = queryString + "                   INNER JOIN Warehouses ON ROUND(GoodsReceiptDetails.Quantity - GoodsReceiptDetails.QuantityIssue, " + GlobalEnums.rndQuantity + ") > 0 AND GoodsReceiptDetails.LocationID = @LocationID " + (isCommodityID ? " AND GoodsReceiptDetails.CommodityID = @CommodityID" : "") + " AND GoodsReceiptDetails.Approved = 1 AND Warehouses.Issuable = 1 AND GoodsReceiptDetails.WarehouseID = Warehouses.WarehouseID " + (isGoodsReceiptDetailIDs ? " AND GoodsReceiptDetails.GoodsReceiptDetailID NOT IN (SELECT Id FROM dbo.SplitToIntList (@GoodsReceiptDetailIDs))" : "") + "\r\n";
+            queryString = queryString + "                   INNER JOIN Warehouses ON ROUND(GoodsReceiptDetails.Quantity - GoodsReceiptDetails.QuantityIssue, " + GlobalEnums.rndQuantity + ") > 0 AND GoodsReceiptDetails.LocationID = @LocationID " + (isCommodityID ? " AND GoodsReceiptDetails.CommodityID = @CommodityID" : "") + " AND GoodsReceiptDetails.Approved = 1 AND Warehouses.Issuable = 1 AND GoodsReceiptDetails.WarehouseID = Warehouses.WarehouseID " + (isBatchID ? " AND GoodsReceiptDetails.BatchID = @BatchID" : "") + (isGoodsReceiptDetailIDs ? " AND GoodsReceiptDetails.GoodsReceiptDetailID NOT IN (SELECT Id FROM dbo.SplitToIntList (@GoodsReceiptDetailIDs))" : "") + "\r\n";
             queryString = queryString + "                   INNER JOIN Commodities ON GoodsReceiptDetails.CommodityID = Commodities.CommodityID " + "\r\n";
             queryString = queryString + "                   INNER JOIN BinLocations ON GoodsReceiptDetails.BinLocationID = BinLocations.BinLocationID " + "\r\n";
             queryString = queryString + "                   LEFT JOIN Packs ON GoodsReceiptDetails.PackID = Packs.PackID " + "\r\n";
             queryString = queryString + "                   LEFT JOIN Cartons ON GoodsReceiptDetails.CartonID = Cartons.CartonID " + "\r\n";
             queryString = queryString + "                   LEFT JOIN Pallets ON GoodsReceiptDetails.PalletID = Pallets.PalletID " + "\r\n";
 
-            queryString = queryString + "       ORDER BY    GoodsReceiptDetails.BatchEntryDate, GoodsReceiptDetails.GoodsReceiptDetailID, BinLocations.Code " + "\r\n"; //===> GoodsReceiptDetails.BatchDate
+            queryString = queryString + "       ORDER BY    GoodsReceiptDetails.BatchEntryDate, GoodsReceiptDetails.GoodsReceiptDetailID, BinLocations.Code " + "\r\n";
 
             queryString = queryString + "   END " + "\r\n";
 

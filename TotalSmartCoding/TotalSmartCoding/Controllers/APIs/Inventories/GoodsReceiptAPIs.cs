@@ -37,9 +37,9 @@ namespace TotalSmartCoding.Controllers.APIs.Inventories
             return this.goodsReceiptAPIRepository.GetPendingPickupDetails(locationID, goodsReceiptID, pickupID, warehouseID, pickupDetailIDs, isReadonly);
         }
 
-        public List<GoodsReceiptDetailAvailable> GetGoodsReceiptDetailAvailables(int? locationID, int? commodityID, string goodsReceiptDetailIDs)
+        public List<GoodsReceiptDetailAvailable> GetGoodsReceiptDetailAvailables(int? locationID, int? commodityID, int? batchID, string goodsReceiptDetailIDs)
         {
-            return this.goodsReceiptAPIRepository.GetGoodsReceiptDetailAvailables(locationID, commodityID, goodsReceiptDetailIDs);
+            return this.goodsReceiptAPIRepository.GetGoodsReceiptDetailAvailables(locationID, commodityID, batchID, goodsReceiptDetailIDs);
         }
     }
 }

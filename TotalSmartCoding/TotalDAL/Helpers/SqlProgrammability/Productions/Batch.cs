@@ -30,6 +30,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Productions
 
 
             this.BatchCommonUpdate();
+            this.GetBatchAvailables();
         }
 
 
@@ -135,5 +136,26 @@ namespace TotalDAL.Helpers.SqlProgrammability.Productions
 
             this.totalSmartCodingEntities.CreateStoredProcedure("BatchCommonUpdate", queryString);
         }
+
+
+        private void GetBatchAvailables()
+        {
+            string queryString;
+
+            queryString = " @LocationID Int, @CommodityID Int, @BatchID Int " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+            queryString = queryString + "    BEGIN " + "\r\n";
+
+            queryString = queryString + "       SELECT      BatchID, EntryDate, Code " + "\r\n";
+            queryString = queryString + "       FROM        Batches " + "\r\n";
+            queryString = queryString + "       WHERE       BatchID = @BatchID OR BatchID IN (SELECT BatchID FROM GoodsReceiptDetails WHERE ROUND(Quantity - QuantityIssue, " + GlobalEnums.rndQuantity + ") > 0 AND LocationID = @LocationID AND CommodityID = @CommodityID AND Approved = 1 AND WarehouseID IN (SELECT WarehouseID FROM Warehouses WHERE Issuable = 1)) " + "\r\n";
+
+            queryString = queryString + "    END " + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("GetBatchAvailables", queryString);
+        }
+
+
     }
 }

@@ -324,6 +324,12 @@
     <Compile Include="Views\Sales\DeliveryAdvices\DeliveryAdviceXYZs.designer.cs">
       <DependentUpon>DeliveryAdviceXYZs.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Sales\DeliveryAdvices\OptionBatches.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Sales\DeliveryAdvices\OptionBatches.Designer.cs">
+      <DependentUpon>OptionBatches.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Sales\DeliveryAdvices\WizardDetail.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -436,6 +442,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Sales\DeliveryAdvices\DeliveryAdviceXYZs.resx">
       <DependentUpon>DeliveryAdviceXYZs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Sales\DeliveryAdvices\OptionBatches.resx">
+      <DependentUpon>OptionBatches.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Sales\DeliveryAdvices\WizardDetail.resx">
       <DependentUpon>WizardDetail.cs</DependentUpon>

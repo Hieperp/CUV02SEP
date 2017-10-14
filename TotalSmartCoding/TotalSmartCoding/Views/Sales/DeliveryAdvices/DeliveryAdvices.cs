@@ -205,7 +205,7 @@ namespace TotalSmartCoding.Views.Sales.DeliveryAdvices
         private BindingSource bindingSourceViewDetails = new BindingSource();
 
         protected override void InitializeDataGridBinding()
-        {            
+        {
             this.gridexViewDetails.AutoGenerateColumns = false;
             this.gridexViewDetails.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
@@ -266,7 +266,7 @@ namespace TotalSmartCoding.Views.Sales.DeliveryAdvices
         public override void Loading()
         {
             this.fastDeliveryAdviceIndex.SetObjects(this.deliveryAdviceAPIs.GetDeliveryAdviceIndexes());
-            
+
             base.Loading();
         }
 
@@ -314,6 +314,14 @@ namespace TotalSmartCoding.Views.Sales.DeliveryAdvices
                 this.naviGroupTop.Expanded = !this.naviGroupTop.Expanded;
                 this.naviGroupTop.Padding = new Padding(0, 0, 0, 0);
                 this.buttonExpandTop.Image = this.naviGroupTop.Expanded ? Resources.chevron : Resources.chevron_expand;
+            }
+        }
+
+        private void gridexViewDetails_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex == 1)
+            {
+
             }
         }
 

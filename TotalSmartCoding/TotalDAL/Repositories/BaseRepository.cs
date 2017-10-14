@@ -32,6 +32,17 @@ namespace TotalDAL.Repositories
             return;
             return;
 
+            Helpers.SqlProgrammability.Productions.Batch batch = new Helpers.SqlProgrammability.Productions.Batch(totalSmartCodingEntities);
+            batch.RestoreProcedure();
+
+            return;
+
+            Helpers.SqlProgrammability.Inventories.GoodsReceipt goodsReceipt = new Helpers.SqlProgrammability.Inventories.GoodsReceipt(totalSmartCodingEntities);
+            goodsReceipt.RestoreProcedure();
+
+
+            return;
+
             Helpers.SqlProgrammability.Commons.AccessControl accessControl = new Helpers.SqlProgrammability.Commons.AccessControl(totalSmartCodingEntities);
             accessControl.RestoreProcedure();
 
@@ -50,10 +61,7 @@ namespace TotalDAL.Repositories
             Helpers.SqlProgrammability.Commons.Commodity commodity = new Helpers.SqlProgrammability.Commons.Commodity(totalSmartCodingEntities);
             commodity.RestoreProcedure();
 
-            return;
-
-            Helpers.SqlProgrammability.Productions.Batch batch = new Helpers.SqlProgrammability.Productions.Batch(totalSmartCodingEntities);
-            batch.RestoreProcedure();
+            
 
             return;
 
@@ -61,12 +69,6 @@ namespace TotalDAL.Repositories
             Module.RestoreProcedure();
 
             
-
-            return;
-
-            Helpers.SqlProgrammability.Inventories.GoodsReceipt goodsReceipt = new Helpers.SqlProgrammability.Inventories.GoodsReceipt(totalSmartCodingEntities);
-            goodsReceipt.RestoreProcedure();
-
 
             return;
 

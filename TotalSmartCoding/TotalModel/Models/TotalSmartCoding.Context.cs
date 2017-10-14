@@ -1181,7 +1181,7 @@ namespace TotalModel.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GoodsIssueToggleApproved", entityIDParameter, approvedParameter);
         }
     
-        public virtual ObjectResult<GoodsReceiptDetailAvailable> GetGoodsReceiptDetailAvailables(Nullable<int> locationID, Nullable<int> commodityID, string goodsReceiptDetailIDs)
+        public virtual ObjectResult<GoodsReceiptDetailAvailable> GetGoodsReceiptDetailAvailables(Nullable<int> locationID, Nullable<int> commodityID, Nullable<int> batchID, string goodsReceiptDetailIDs)
         {
             var locationIDParameter = locationID.HasValue ?
                 new ObjectParameter("LocationID", locationID) :
@@ -1191,11 +1191,15 @@ namespace TotalModel.Models
                 new ObjectParameter("CommodityID", commodityID) :
                 new ObjectParameter("CommodityID", typeof(int));
     
+            var batchIDParameter = batchID.HasValue ?
+                new ObjectParameter("BatchID", batchID) :
+                new ObjectParameter("BatchID", typeof(int));
+    
             var goodsReceiptDetailIDsParameter = goodsReceiptDetailIDs != null ?
                 new ObjectParameter("GoodsReceiptDetailIDs", goodsReceiptDetailIDs) :
                 new ObjectParameter("GoodsReceiptDetailIDs", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GoodsReceiptDetailAvailable>("GetGoodsReceiptDetailAvailables", locationIDParameter, commodityIDParameter, goodsReceiptDetailIDsParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GoodsReceiptDetailAvailable>("GetGoodsReceiptDetailAvailables", locationIDParameter, commodityIDParameter, batchIDParameter, goodsReceiptDetailIDsParameter);
         }
     
         public virtual ObjectResult<WarehouseAdjustmentIndex> GetWarehouseAdjustmentIndexes(string aspUserID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)

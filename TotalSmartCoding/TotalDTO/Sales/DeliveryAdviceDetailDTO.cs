@@ -26,8 +26,13 @@ namespace TotalDTO.Sales
 
         public string SalesOrderReference { get; set; }
         public Nullable<System.DateTime> SalesOrderEntryDate { get; set; }
-        public string VoucherCode { get; set; }
 
+
+        public Nullable<int> BatchID { get; set; }
+        public string BatchCode { get; set; }
+
+
+        public string VoucherCode { get; set; }
         public int CustomerID { get; set; }
 
         public decimal QuantityIssue { get; set; }

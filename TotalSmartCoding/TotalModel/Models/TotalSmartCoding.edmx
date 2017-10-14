@@ -148,6 +148,7 @@
           <Property Name="LocationID" Type="int" Nullable="false" />
           <Property Name="CustomerID" Type="int" Nullable="false" />
           <Property Name="CommodityID" Type="int" Nullable="false" />
+          <Property Name="BatchID" Type="int" />
           <Property Name="Quantity" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="QuantityIssue" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="LineVolume" Type="decimal" Precision="18" Scale="2" Nullable="false" />
@@ -684,6 +685,18 @@
             </Principal>
             <Dependent Role="Customers">
               <PropertyRef Name="SalespersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DeliveryAdviceDetails_Batches">
+          <End Role="Batches" Type="Self.Batches" Multiplicity="0..1" />
+          <End Role="DeliveryAdviceDetails" Type="Self.DeliveryAdviceDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Batches">
+              <PropertyRef Name="BatchID" />
+            </Principal>
+            <Dependent Role="DeliveryAdviceDetails">
+              <PropertyRef Name="BatchID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1484,6 +1497,7 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
         <Function Name="GetGoodsReceiptDetailAvailables" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="LocationID" Type="int" Mode="In" />
           <Parameter Name="CommodityID" Type="int" Mode="In" />
+          <Parameter Name="BatchID" Type="int" Mode="In" />
           <Parameter Name="GoodsReceiptDetailIDs" Type="varchar" Mode="In" />
         </Function>
         <Function Name="GetGoodsReceiptIndexes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -1792,6 +1806,10 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <AssociationSet Name="FK_Customers_Employees" Association="Self.FK_Customers_Employees">
             <End Role="Employees" EntitySet="Employees" />
             <End Role="Customers" EntitySet="Customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DeliveryAdviceDetails_Batches" Association="Self.FK_DeliveryAdviceDetails_Batches">
+            <End Role="Batches" EntitySet="Batches" />
+            <End Role="DeliveryAdviceDetails" EntitySet="DeliveryAdviceDetails" />
           </AssociationSet>
           <AssociationSet Name="FK_DeliveryAdviceDetails_Commodities" Association="Self.FK_DeliveryAdviceDetails_Commodities">
             <End Role="Commodities" EntitySet="Commodities" />
@@ -2440,6 +2458,7 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <FunctionImport Name="GetGoodsReceiptDetailAvailables" ReturnType="Collection(TotalSmartCodingModel.GoodsReceiptDetailAvailable)">
             <Parameter Name="LocationID" Mode="In" Type="Int32" />
             <Parameter Name="CommodityID" Mode="In" Type="Int32" />
+            <Parameter Name="BatchID" Mode="In" Type="Int32" />
             <Parameter Name="GoodsReceiptDetailIDs" Mode="In" Type="String" />
           </FunctionImport>
           <EntitySet Name="WarehouseAdjustmentTypes" EntityType="TotalSmartCodingModel.WarehouseAdjustmentType" />
@@ -2678,6 +2697,10 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Parameter Name="ConfigID" Mode="In" Type="Int32" />
           </FunctionImport>
           <EntitySet Name="ModuleDetails" EntityType="TotalSmartCodingModel.ModuleDetail" />
+          <AssociationSet Name="FK_DeliveryAdviceDetails_Batches" Association="TotalSmartCodingModel.FK_DeliveryAdviceDetails_Batches">
+            <End Role="Batch" EntitySet="Batches" />
+            <End Role="DeliveryAdviceDetail" EntitySet="DeliveryAdviceDetails" />
+          </AssociationSet>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
           <Property Type="Int32" Name="PickupID" Nullable="false" />
@@ -3147,6 +3170,8 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Name="InActivePartial" Type="Boolean" Nullable="false" />
           <Property Name="InActivePartialDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Commodity" Relationship="TotalSmartCodingModel.FK_DeliveryAdviceDetails_Commodities" FromRole="DeliveryAdviceDetail" ToRole="Commodity" />
+          <Property Name="BatchID" Type="Int32" />
+          <NavigationProperty Name="Batch" Relationship="TotalSmartCodingModel.FK_DeliveryAdviceDetails_Batches" FromRole="DeliveryAdviceDetail" ToRole="Batch" />
         </EntityType>
         <ComplexType Name="DeliveryAdviceIndex">
           <Property Type="Int32" Name="DeliveryAdviceID" Nullable="false" />
@@ -4633,6 +4658,7 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Name="InActiveDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Commodity" Relationship="TotalSmartCodingModel.FK_Batches_Commodities" FromRole="Batch" ToRole="Commodity" />
           <NavigationProperty Name="FillingLine" Relationship="TotalSmartCodingModel.FK_Batches_FillingLines" FromRole="Batch" ToRole="FillingLine" />
+          <NavigationProperty Name="DeliveryAdviceDetails" Relationship="TotalSmartCodingModel.FK_DeliveryAdviceDetails_Batches" FromRole="Batch" ToRole="DeliveryAdviceDetail" />
         </EntityType>
         <Association Name="FK_Batches_Commodities">
           <End Type="TotalSmartCodingModel.Commodity" Role="Commodity" Multiplicity="1" />
@@ -4674,6 +4700,18 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Name="ImageIndex" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="InActive" Type="Double" Nullable="false" />
         </EntityType>
+        <Association Name="FK_DeliveryAdviceDetails_Batches">
+          <End Type="TotalSmartCodingModel.Batch" Role="Batch" Multiplicity="0..1" />
+          <End Type="TotalSmartCodingModel.DeliveryAdviceDetail" Role="DeliveryAdviceDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Batch">
+              <PropertyRef Name="BatchID" />
+            </Principal>
+            <Dependent Role="DeliveryAdviceDetail">
+              <PropertyRef Name="BatchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -5198,6 +5236,7 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <EntitySetMapping Name="DeliveryAdviceDetails">
             <EntityTypeMapping TypeName="TotalSmartCodingModel.DeliveryAdviceDetail">
               <MappingFragment StoreEntitySet="DeliveryAdviceDetails">
+                <ScalarProperty Name="BatchID" ColumnName="BatchID" />
                 <ScalarProperty Name="InActivePartialDate" ColumnName="InActivePartialDate" />
                 <ScalarProperty Name="InActivePartial" ColumnName="InActivePartial" />
                 <ScalarProperty Name="InActive" ColumnName="InActive" />
