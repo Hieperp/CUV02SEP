@@ -36,5 +36,11 @@ namespace TotalSmartCoding.Controllers.APIs.Sales
         {
             return this.deliveryAdviceAPIRepository.GetPendingSalesOrderDetails(locationID, deliveryAdviceID, salesOrderID, customerID, salesOrderDetailIDs, isReadonly);
         }
+
+        public IList<BatchAvailable> GetBatchAvailables(int? locationID, int? deliveryAdviceID, int? commodityID, bool withNullRow)
+        {
+            return this.deliveryAdviceAPIRepository.GetBatchAvailables(locationID, deliveryAdviceID, commodityID, withNullRow);
+        }
+
     }
 }

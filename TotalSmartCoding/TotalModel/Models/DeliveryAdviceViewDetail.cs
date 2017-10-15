@@ -36,5 +36,9 @@ namespace TotalModel.Models
         public decimal QuantityIssue { get; set; }
         public decimal LineVolumeIssue { get; set; }
         public string VoucherCode { get; set; }
+        public Nullable<int> BatchID { get; set; }
+        public string BatchCode { get; set; }
+        public decimal QuantityBatchAvailable { get; set; }
+        public decimal LineVolumeBatchAvailable { get; set; }
     }
 }

@@ -14,6 +14,7 @@ namespace TotalCore.Repositories.Sales
         List<PendingSalesOrder> GetPendingSalesOrders(int? locationID);
         List<PendingSalesOrderCustomer> GetPendingSalesOrderCustomers(int? locationID);
         List<PendingSalesOrderDetail> GetPendingSalesOrderDetails(int? locationID, int? deliveryAdviceID, int? salesOrderID, int? customerID, string salesOrderDetailIDs, bool isReadonly);
+        List<BatchAvailable> GetBatchAvailables(int? locationID, int? deliveryAdviceID, int? commodityID, bool withNullRow);
     }
 
 }

@@ -281,10 +281,14 @@ namespace TotalSmartCoding.Views.Mains
                     this.editableMode = value && this.Editable;
                     this.NotifyPropertyChanged("EditableMode");
                     this.NotifyPropertyChanged("ReadonlyMode");
+
+                    this.EditableModeChanged(this.EditableMode);
                 }
             }
         }
         public bool ReadonlyMode { get { return !this.editableMode; } }
+
+        protected virtual void EditableModeChanged(bool editableMode) { }
 
         #endregion Context toolbar
 

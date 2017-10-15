@@ -190,6 +190,12 @@ namespace TotalSmartCoding.Views.Sales.DeliveryAdvices
             }
         }
 
+        protected override void EditableModeChanged(bool editableMode)
+        {
+            base.EditableModeChanged(editableMode);
+            this.menuOptionBatches.Visible = editableMode;
+        }
+
         private void fastDeliveryAdviceIndex_AboutToCreateGroups(object sender, CreateGroupsEventArgs e)
         {
             if (e.Groups != null && e.Groups.Count > 0)
@@ -202,17 +208,13 @@ namespace TotalSmartCoding.Views.Sales.DeliveryAdvices
             }
         }
 
-        private BindingSource bindingSourceViewDetails = new BindingSource();
-
         protected override void InitializeDataGridBinding()
         {
             this.gridexViewDetails.AutoGenerateColumns = false;
             this.gridexViewDetails.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-            this.bindingSourceViewDetails.DataSource = this.deliveryAdviceViewModel.ViewDetails;
-            this.gridexViewDetails.DataSource = this.bindingSourceViewDetails;
+            this.gridexViewDetails.DataSource = this.deliveryAdviceViewModel.ViewDetails;
 
-            this.bindingSourceViewDetails.AddingNew += bindingSourceViewDetails_AddingNew;
             this.deliveryAdviceViewModel.ViewDetails.ListChanged += ViewDetails_ListChanged;
             this.gridexViewDetails.EditingControlShowing += new DataGridViewEditingControlShowingEventHandler(this.gridexViewDetails_EditingControlShowing);
 
@@ -227,27 +229,13 @@ namespace TotalSmartCoding.Views.Sales.DeliveryAdvices
             StackedHeaderDecorator stackedHeaderDecorator = new StackedHeaderDecorator(this.gridexViewDetails);
         }
 
-        private void bindingSourceViewDetails_AddingNew(object sender, AddingNewEventArgs e)
-        {   //ONLY WHEN USING COMBOBOX TO ADD NEW ROW TO datagridview => WE SHOULD USE BindingSource => THEN WE HANDLE AN EVENT HANDLER FOR AddingNew EVENT
-            //In this form, the datagridview using a combobox for add new item => add new row to the datagridview
-            //If user cancel the combobox => the datagridview will not cancel new adding row (event no new row added???)
-            //This will raise error when user move the cursor to the new row (means: the datagridview will add new row again!!!)
-            //I find an workarround to handle this error from this https://stackoverflow.com/questions/2359124/datagridview-throwing-invalidoperationexception-operation-is-not-valid-whe
-            //The following code: will remove current pending new row => in order add another new row again
-            if (this.gridexViewDetails.Rows.Count == this.bindingSourceViewDetails.Count)
-                this.bindingSourceViewDetails.RemoveAt(this.bindingSourceViewDetails.Count - 1);
-            //-----------The following is explanation from internet (the link above): The reason it works is because on a DataGridView where AllowUserToAddRows is true, it adds an empty row at the end of its rows which if bound to a list creates a null element at the end of your list. Your code removes that element and then the AddNew in the BindingList will trigger the DataGridView to add it again. 
-            //This code bypass the error, BUT NOT SOLVE THE PROBLEM COMPLETELY. SO: WE SHOULD ADVICE USER NOT CANCEL THE COMBOBOX => INSTEAD: CANCEL THE ROW AFTER SELECT THE COMBOBOX
-        }
-
         private void ViewDetails_ListChanged(object sender, ListChangedEventArgs e)
         {
             if (e.ListChangedType == ListChangedType.ItemAdded || e.ListChangedType == ListChangedType.ItemDeleted || e.ListChangedType == ListChangedType.Reset)
             {
                 this.customTabCenter.TabPages[0].Text = "Advice Line Details [" + this.deliveryAdviceViewModel.ViewDetails.Count.ToString("N0") + " item(s)]             ";
 
-                this.gridexViewDetails.Columns[CommonExpressions.PropertyName<DeliveryAdviceDetailDTO>(p => p.SalesOrderReference)].Visible = this.deliveryAdviceViewModel.SalesOrderID == null;
-                this.gridexViewDetails.Columns[CommonExpressions.PropertyName<DeliveryAdviceDetailDTO>(p => p.SalesOrderEntryDate)].Visible = this.deliveryAdviceViewModel.SalesOrderID == null;
+                this.customizeColumnWidth();
             }
 
             if (this.EditableMode && e.PropertyDescriptor != null && e.NewIndex >= 0 && e.NewIndex < this.deliveryAdviceViewModel.ViewDetails.Count)
@@ -256,6 +244,18 @@ namespace TotalSmartCoding.Views.Sales.DeliveryAdvices
                 if (deliveryAdviceDetailDTO != null)
                     this.CalculateQuantityDetailDTO(deliveryAdviceDetailDTO, e.PropertyDescriptor.Name);
             }
+        }
+
+        private void customizeColumnWidth()
+        {
+            this.gridexViewDetails.Columns[CommonExpressions.PropertyName<DeliveryAdviceDetailDTO>(p => p.SalesOrderReference)].Visible = this.deliveryAdviceViewModel.SalesOrderID == null;
+            this.gridexViewDetails.Columns[CommonExpressions.PropertyName<DeliveryAdviceDetailDTO>(p => p.SalesOrderEntryDate)].Visible = this.deliveryAdviceViewModel.SalesOrderID == null;
+
+            bool hasOptionBatches = this.deliveryAdviceViewModel.HasOptionBatches;
+            this.gridexViewDetails.Columns[CommonExpressions.PropertyName<DeliveryAdviceDetailDTO>(p => p.BatchCode)].Visible = hasOptionBatches;
+            this.gridexViewDetails.Columns[CommonExpressions.PropertyName<DeliveryAdviceDetailDTO>(p => p.QuantityBatchAvailable)].Visible = hasOptionBatches;
+
+            this.gridexViewDetails.Columns[CommonExpressions.PropertyName<DeliveryAdviceDetailDTO>(p => p.CommodityName)].Visible = !(this.deliveryAdviceViewModel.SalesOrderID == null && hasOptionBatches);
         }
 
         protected override Controllers.BaseController myController
@@ -317,11 +317,25 @@ namespace TotalSmartCoding.Views.Sales.DeliveryAdvices
             }
         }
 
-        private void gridexViewDetails_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void menuOptionBatches_Click(object sender, EventArgs e)
         {
-            if (e.RowIndex == 1)
+            try
             {
-
+                if (this.EditableMode)
+                {
+                    DeliveryAdviceDetailDTO deliveryAdviceDetailDTO = this.gridexViewDetails.CurrentRow.DataBoundItem as DeliveryAdviceDetailDTO;
+                    if (deliveryAdviceDetailDTO != null)
+                    {
+                        deliveryAdviceDetailDTO.DeliveryAdviceID = this.deliveryAdviceViewModel.DeliveryAdviceID;
+                        deliveryAdviceDetailDTO.LocationID = this.deliveryAdviceViewModel.LocationID;
+                        OptionBatches optionBatches = new OptionBatches(this.deliveryAdviceAPIs, deliveryAdviceDetailDTO);
+                        optionBatches.ShowDialog(); this.customizeColumnWidth();
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
             }
         }
 
@@ -335,6 +349,6 @@ namespace TotalSmartCoding.Views.Sales.DeliveryAdvices
             this.gridexViewDetails.Columns[columnName].ReadOnly = true;
             columnName = CommonExpressions.PropertyName<DeliveryAdviceDetailDTO>(p => p.PackageVolume);
             this.gridexViewDetails.Columns[columnName].ReadOnly = true;
-        }
+        }        
     }
 }

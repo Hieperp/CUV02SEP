@@ -36,6 +36,8 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
             this.DeliveryAdviceToggleApproved();
 
             this.DeliveryAdviceInitReference();
+
+            this.GetBatchAvailables();
         }
 
 
@@ -72,18 +74,20 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
+            queryString = queryString + "       DECLARE     @DeliveryAdviceDetails TABLE (DeliveryAdviceID int NOT NULL, DeliveryAdviceDetailID int NOT NULL, SalesOrderID int NULL, SalesOrderDetailID int NULL, EntryDate datetime NOT NULL, LocationID int NOT NULL, CommodityID int NOT NULL, BatchID int NULL, Quantity decimal(18, 2) NOT NULL, LineVolume decimal(18, 2) NOT NULL, QuantityIssue decimal(18, 2) NOT NULL, LineVolumeIssue decimal(18, 2) NOT NULL, Remarks nvarchar(100) NULL) " + "\r\n";
+            queryString = queryString + "       INSERT INTO @DeliveryAdviceDetails (DeliveryAdviceID, DeliveryAdviceDetailID, SalesOrderID, SalesOrderDetailID, EntryDate, LocationID, CommodityID, BatchID, Quantity, LineVolume, QuantityIssue, LineVolumeIssue, Remarks) SELECT DeliveryAdviceID, DeliveryAdviceDetailID, SalesOrderID, SalesOrderDetailID, EntryDate, LocationID, CommodityID, BatchID, Quantity, LineVolume, QuantityIssue, LineVolumeIssue, Remarks FROM DeliveryAdviceDetails WHERE DeliveryAdviceID = @DeliveryAdviceID " + "\r\n";
 
-            queryString = queryString + "       DECLARE     @DeliveryAdviceDetails TABLE (DeliveryAdviceID int NOT NULL, DeliveryAdviceDetailID int NOT NULL, SalesOrderID int NULL, SalesOrderDetailID int NULL, EntryDate datetime NOT NULL, LocationID int NOT NULL, CommodityID int NOT NULL, Quantity decimal(18, 2) NOT NULL, LineVolume decimal(18, 2) NOT NULL, QuantityIssue decimal(18, 2) NOT NULL, LineVolumeIssue decimal(18, 2) NOT NULL, Remarks nvarchar(100) NULL) " + "\r\n";
-            queryString = queryString + "       INSERT INTO @DeliveryAdviceDetails (DeliveryAdviceID, DeliveryAdviceDetailID, SalesOrderID, SalesOrderDetailID, EntryDate, LocationID, CommodityID, Quantity, LineVolume, QuantityIssue, LineVolumeIssue, Remarks) SELECT DeliveryAdviceID, DeliveryAdviceDetailID, SalesOrderID, SalesOrderDetailID, EntryDate, LocationID, CommodityID, Quantity, LineVolume, QuantityIssue, LineVolumeIssue, Remarks FROM DeliveryAdviceDetails WHERE DeliveryAdviceID = @DeliveryAdviceID " + "\r\n";
+            queryString = queryString + "                   " + this.BuildSQLCommoditiesAvailable("@DeliveryAdviceDetails", true, true, true, true, false) + "\r\n";
 
-            queryString = queryString + "                   " + this.BuildSQLCommoditiesAvailable("@DeliveryAdviceDetails", true, true, true) + "\r\n";
-
-            queryString = queryString + "       SELECT      DeliveryAdviceDetails.DeliveryAdviceDetailID, DeliveryAdviceDetails.DeliveryAdviceID, DeliveryAdviceDetails.SalesOrderID, DeliveryAdviceDetails.SalesOrderDetailID, SalesOrderDetails.Reference AS SalesOrderReference, SalesOrderDetails.EntryDate AS SalesOrderEntryDate, SalesOrderDetails.VoucherCode, Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, Commodities.Unit, Commodities.PackageSize, Commodities.Volume, Commodities.PackageVolume, " + "\r\n";
-            queryString = queryString + "                   ISNULL(CommoditiesAvailable.QuantityAvailable, 0) AS QuantityAvailable, ISNULL(CommoditiesAvailable.LineVolumeAvailable, 0) AS LineVolumeAvailable, ROUND(ISNULL(SalesOrderDetails.Quantity - SalesOrderDetails.QuantityAdvice, 0) + DeliveryAdviceDetails.Quantity, " + (int)GlobalEnums.rndQuantity + ") AS QuantityRemains, ROUND(ISNULL(SalesOrderDetails.LineVolume - SalesOrderDetails.LineVolumeAdvice, 0) + DeliveryAdviceDetails.LineVolume, " + (int)GlobalEnums.rndVolume + ") AS LineVolumeRemains, DeliveryAdviceDetails.Quantity, DeliveryAdviceDetails.LineVolume, DeliveryAdviceDetails.QuantityIssue, DeliveryAdviceDetails.LineVolumeIssue, DeliveryAdviceDetails.Remarks " + "\r\n";
+            queryString = queryString + "       SELECT      DeliveryAdviceDetails.DeliveryAdviceDetailID, DeliveryAdviceDetails.DeliveryAdviceID, DeliveryAdviceDetails.SalesOrderID, DeliveryAdviceDetails.SalesOrderDetailID, SalesOrderDetails.Reference AS SalesOrderReference, SalesOrderDetails.EntryDate AS SalesOrderEntryDate, SalesOrderDetails.VoucherCode, Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, Commodities.Unit, Commodities.PackageSize, Commodities.Volume, Commodities.PackageVolume, DeliveryAdviceDetails.BatchID, Batches.Code AS BatchCode, " + "\r\n";
+            queryString = queryString + "                   ISNULL(CommoditiesAvailable.QuantityAvailable, 0) AS QuantityAvailable, ISNULL(CommoditiesAvailable.LineVolumeAvailable, 0) AS LineVolumeAvailable, ISNULL(CommoditiesAvailableByBatches.QuantityAvailable, 0) AS QuantityBatchAvailable, ISNULL(CommoditiesAvailableByBatches.LineVolumeAvailable, 0) AS LineVolumeBatchAvailable, ROUND(ISNULL(SalesOrderDetails.Quantity - SalesOrderDetails.QuantityAdvice, 0) + DeliveryAdviceDetails.Quantity, " + (int)GlobalEnums.rndQuantity + ") AS QuantityRemains, ROUND(ISNULL(SalesOrderDetails.LineVolume - SalesOrderDetails.LineVolumeAdvice, 0) + DeliveryAdviceDetails.LineVolume, " + (int)GlobalEnums.rndVolume + ") AS LineVolumeRemains, DeliveryAdviceDetails.Quantity, DeliveryAdviceDetails.LineVolume, DeliveryAdviceDetails.QuantityIssue, DeliveryAdviceDetails.LineVolumeIssue, DeliveryAdviceDetails.Remarks " + "\r\n";
             queryString = queryString + "       FROM        @DeliveryAdviceDetails DeliveryAdviceDetails " + "\r\n";
             queryString = queryString + "                   INNER JOIN Commodities ON DeliveryAdviceDetails.CommodityID = Commodities.CommodityID" + "\r\n";
+            queryString = queryString + "                   LEFT JOIN Batches ON DeliveryAdviceDetails.BatchID = Batches.BatchID " + "\r\n";
             queryString = queryString + "                   LEFT JOIN SalesOrderDetails ON DeliveryAdviceDetails.SalesOrderDetailID = SalesOrderDetails.SalesOrderDetailID " + "\r\n";
+
             queryString = queryString + "                   LEFT JOIN (SELECT CommodityID, SUM(QuantityAvailable) AS QuantityAvailable, SUM(LineVolumeAvailable) AS LineVolumeAvailable FROM @CommoditiesAvailable GROUP BY CommodityID) CommoditiesAvailable ON DeliveryAdviceDetails.CommodityID = CommoditiesAvailable.CommodityID " + "\r\n";
+            queryString = queryString + "                   LEFT JOIN (SELECT CommodityID, BatchID, SUM(QuantityAvailable) AS QuantityAvailable, SUM(LineVolumeAvailable) AS LineVolumeAvailable FROM @CommoditiesAvailableByBatches GROUP BY CommodityID, BatchID) CommoditiesAvailableByBatches ON DeliveryAdviceDetails.BatchID = CommoditiesAvailableByBatches.BatchID AND DeliveryAdviceDetails.CommodityID = CommoditiesAvailableByBatches.CommodityID " + "\r\n";
 
             queryString = queryString + "    END " + "\r\n";
 
@@ -135,7 +139,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
             queryString = queryString + "   BEGIN " + "\r\n";
 
             queryString = queryString + "       DECLARE     @SalesOrderDetails TABLE (IsNewOrEdit bit NOT NULL, SalesOrderID int NOT NULL, SalesOrderDetailID int NOT NULL, EntryDate datetime NOT NULL, Reference nvarchar(10) NULL, VoucherCode nvarchar(60) NULL, LocationID int NOT NULL, CommodityID int NOT NULL, QuantityRemains decimal(18, 2) NOT NULL, LineVolumeRemains decimal(18, 2) NOT NULL, Remarks nvarchar(100) NULL) " + "\r\n";
-            queryString = queryString + "                   " + this.BuildSQLCommoditiesAvailable("@SalesOrderDetails", true, false, false) + "\r\n";
+            queryString = queryString + "                   " + this.BuildSQLCommoditiesAvailable("@SalesOrderDetails", true, false, false, false, false) + "\r\n";
 
             queryString = queryString + "       IF  (@SalesOrderID <> 0) " + "\r\n";
             queryString = queryString + "           " + this.BuildSQLSalesOrder(true) + "\r\n";
@@ -215,18 +219,32 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
                 queryString = queryString + "                   INNER JOIN DeliveryAdviceDetails ON DeliveryAdviceDetails.DeliveryAdviceID = @DeliveryAdviceID AND SalesOrderDetails.SalesOrderDetailID = DeliveryAdviceDetails.SalesOrderDetailID" + (isSalesOrderDetailIDs ? " AND SalesOrderDetails.SalesOrderDetailID NOT IN (SELECT Id FROM dbo.SplitToIntList (@SalesOrderDetailIDs))" : "") + "\r\n";
             }
 
-            queryString = queryString + "                       " + this.BuildSQLCommoditiesAvailable("@SalesOrderDetails", false, true, sqlEdit) + "\r\n";
+            queryString = queryString + "                       " + this.BuildSQLCommoditiesAvailable("@SalesOrderDetails", false, true, sqlEdit, false, false) + "\r\n";
 
             return queryString;
         }
 
-        private string BuildSQLCommoditiesAvailable(string searchTable, bool declareTableAvailable, bool getAvailable, bool sqlEdit)
+        /// <summary>
+        /// NOTES: BE CAREFULL WITH parameters: searchTable, declareTableAvailable, getAvailable, sqlEdit, byBatchID 
+        /// byBatchID = TRUE: ONLY WHEN: GetDeliveryAdviceViewDetails AND GetBatchAvailables
+        /// getAllBatch = TRUE: ONLY WHEN: GetBatchAvailables. SEE THE CODING FOR MORE DETAIL
+        /// </summary>
+        /// <param name="searchTable"></param>
+        /// <param name="declareTableAvailable"></param>
+        /// <param name="getAvailable"></param>
+        /// <param name="sqlEdit"></param>
+        /// <param name="byBatchID"></param>
+        /// <returns></returns>
+        private string BuildSQLCommoditiesAvailable(string searchTable, bool declareTableAvailable, bool getAvailable, bool sqlEdit, bool byBatchID, bool getAllBatch)
         {
             string queryString = "";
 
             if (declareTableAvailable)
+            {
                 queryString = queryString + "           DECLARE     @CommoditiesAvailable TABLE (LocationID int NOT NULL, CommodityID int NOT NULL, QuantityAvailable decimal(18, 2) NOT NULL, LineVolumeAvailable decimal(18, 2) NOT NULL) " + "\r\n";
-
+                if (byBatchID)
+                    queryString = queryString + "       DECLARE     @CommoditiesAvailableByBatches TABLE (LocationID int NOT NULL, CommodityID int NOT NULL, BatchID int NULL, QuantityAvailable decimal(18, 2) NOT NULL, LineVolumeAvailable decimal(18, 2) NOT NULL) " + "\r\n";
+            }
             if (getAvailable)
             {
                 queryString = queryString + "           INSERT INTO @CommoditiesAvailable (LocationID, CommodityID, QuantityAvailable, LineVolumeAvailable) " + "\r\n";
@@ -235,10 +253,42 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
                 queryString = queryString + "           INSERT INTO @CommoditiesAvailable (LocationID, CommodityID, QuantityAvailable, LineVolumeAvailable) " + "\r\n";
                 queryString = queryString + "           SELECT      LocationID, CommodityID, SUM(-Quantity + QuantityIssue) AS QuantityAvailable, SUM(-LineVolume + LineVolumeIssue) AS LineVolumeAvailable FROM DeliveryAdviceDetails WHERE ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") > 0 " + (sqlEdit ? " AND DeliveryAdviceID <> @DeliveryAdviceID" : "") + " GROUP BY LocationID, CommodityID " + "\r\n";
 
+                if (byBatchID)
+                {
+                    if (!getAllBatch)
+                    {
+                        queryString = queryString + "   IF (NOT(SELECT TOP 1 BatchID FROM " + searchTable + " WHERE NOT BatchID IS NULL) IS NULL) " + "\r\n";
+                        queryString = queryString + "       BEGIN " + "\r\n";
+                    }
+                    queryString = queryString + "               INSERT INTO @CommoditiesAvailableByBatches (LocationID, CommodityID, BatchID, QuantityAvailable, LineVolumeAvailable) " + "\r\n";
+                    queryString = queryString + "               SELECT      LocationID, CommodityID, BatchID, SUM(Quantity - QuantityIssue) AS QuantityAvailable, SUM(LineVolume - LineVolumeIssue) AS LineVolumeAvailable FROM GoodsReceiptDetails WHERE Approved = 1 AND ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") > 0 AND LocationID = (SELECT TOP 1 LocationID FROM " + searchTable + ") AND CommodityID IN (SELECT DISTINCT CommodityID FROM " + searchTable + ") GROUP BY LocationID, CommodityID, BatchID " + "\r\n";
+
+                    queryString = queryString + "               INSERT INTO @CommoditiesAvailableByBatches (LocationID, CommodityID, BatchID, QuantityAvailable, LineVolumeAvailable) " + "\r\n";
+                    queryString = queryString + "               SELECT      LocationID, CommodityID, BatchID, SUM(-Quantity + QuantityIssue) AS QuantityAvailable, SUM(-LineVolume + LineVolumeIssue) AS LineVolumeAvailable FROM DeliveryAdviceDetails WHERE ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") > 0 " + (sqlEdit ? " AND DeliveryAdviceID <> @DeliveryAdviceID" : "") + " AND NOT BatchID IS NULL GROUP BY LocationID, CommodityID, BatchID " + "\r\n";
+                    if (!getAllBatch)
+                    {
+                        queryString = queryString + "       END " + "\r\n";
+                    }
+                }
+
                 if (sqlEdit)
                 {
                     queryString = queryString + "       INSERT INTO @CommoditiesAvailable (LocationID, CommodityID, QuantityAvailable, LineVolumeAvailable) " + "\r\n";
                     queryString = queryString + "       SELECT      LocationID, CommodityID, SUM(QuantityIssue) AS QuantityAvailable, SUM(LineVolumeIssue) AS LineVolumeAvailable FROM DeliveryAdviceDetails WHERE QuantityIssue > 0 AND DeliveryAdviceID = @DeliveryAdviceID GROUP BY LocationID, CommodityID " + "\r\n";
+                    if (byBatchID)
+                    {
+                        if (!getAllBatch)
+                        {
+                            queryString = queryString + "   IF (NOT(SELECT TOP 1 BatchID FROM " + searchTable + " WHERE NOT BatchID IS NULL) IS NULL) " + "\r\n";
+                            queryString = queryString + "       BEGIN " + "\r\n";
+                        }
+                        queryString = queryString + "               INSERT INTO @CommoditiesAvailableByBatches (LocationID, CommodityID, BatchID, QuantityAvailable, LineVolumeAvailable) " + "\r\n";
+                        queryString = queryString + "               SELECT      LocationID, CommodityID, BatchID, SUM(QuantityIssue) AS QuantityAvailable, SUM(LineVolumeIssue) AS LineVolumeAvailable FROM DeliveryAdviceDetails WHERE QuantityIssue > 0 AND DeliveryAdviceID = @DeliveryAdviceID AND NOT BatchID IS NULL GROUP BY LocationID, CommodityID, BatchID " + "\r\n";
+                        if (!getAllBatch)
+                        {
+                            queryString = queryString + "       END " + "\r\n";
+                        }
+                    }
                 }
             }
 
@@ -275,6 +325,29 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
             return queryString;
         }
 
+
+        private void GetBatchAvailables()
+        {
+            string queryString;
+
+            queryString = " @LocationID Int, @DeliveryAdviceID Int, @CommodityID Int " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+            queryString = queryString + "    BEGIN " + "\r\n";
+
+            queryString = queryString + "       DECLARE     @SearchTable TABLE (LocationID int NOT NULL, CommodityID int NOT NULL) " + "\r\n";
+            queryString = queryString + "       INSERT INTO @SearchTable (LocationID, CommodityID) VALUES(@LocationID, @CommodityID) " + "\r\n";
+
+            queryString = queryString + "                   " + this.BuildSQLCommoditiesAvailable("@SearchTable", true, true, true, true, true) + "\r\n";
+
+            queryString = queryString + "       SELECT      CommoditiesAvailableByBatches.BatchID, Batches.EntryDate, Batches.Code, CommoditiesAvailableByBatches.QuantityAvailable, CommoditiesAvailableByBatches.LineVolumeAvailable " + "\r\n";
+            queryString = queryString + "       FROM       (SELECT BatchID, SUM(QuantityAvailable) AS QuantityAvailable, SUM(LineVolumeAvailable) AS LineVolumeAvailable FROM @CommoditiesAvailableByBatches GROUP BY BatchID) CommoditiesAvailableByBatches " + "\r\n";
+            queryString = queryString + "                   INNER JOIN Batches ON CommoditiesAvailableByBatches.BatchID = Batches.BatchID " + "\r\n";
+
+            queryString = queryString + "    END " + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("GetBatchAvailables", queryString);
+        }
         #endregion Y
 
 

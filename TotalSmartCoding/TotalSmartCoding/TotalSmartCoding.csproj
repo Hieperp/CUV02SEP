@@ -1136,6 +1136,8 @@
     <None Include="Resources\Letter-uppercase-Minus.ico" />
     <None Include="Resources\Letter-uppercase-Blank.ico" />
     <None Include="Resources\Letter-uppercase--Arrow-left.ico" />
+    <None Include="Resources\ok-Green.ico" />
+    <None Include="Resources\Ok-Saki-Snowish.ico" />
     <Content Include="Resources\Toolbar Image1.png" />
     <None Include="Resources\Umar123-Carton.ico" />
     <None Include="Resources\Truck-24.png" />

@@ -1436,6 +1436,11 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Parameter Name="NMVNTaskID" Type="int" Mode="In" />
           <Parameter Name="OrganizationalUnitID" Type="int" Mode="In" />
         </Function>
+        <Function Name="GetBatchAvailables" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LocationID" Type="int" Mode="In" />
+          <Parameter Name="DeliveryAdviceID" Type="int" Mode="In" />
+          <Parameter Name="CommodityID" Type="int" Mode="In" />
+        </Function>
         <Function Name="GetBatchIndexes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="AspUserID" Type="nvarchar" Mode="In" />
           <Parameter Name="FromDate" Type="datetime" Mode="In" />
@@ -2701,6 +2706,11 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
             <End Role="Batch" EntitySet="Batches" />
             <End Role="DeliveryAdviceDetail" EntitySet="DeliveryAdviceDetails" />
           </AssociationSet>
+          <FunctionImport Name="GetBatchAvailables" ReturnType="Collection(TotalSmartCodingModel.BatchAvailable)">
+            <Parameter Name="LocationID" Mode="In" Type="Int32" />
+            <Parameter Name="DeliveryAdviceID" Mode="In" Type="Int32" />
+            <Parameter Name="CommodityID" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
           <Property Type="Int32" Name="PickupID" Nullable="false" />
@@ -3210,6 +3220,10 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Type="Decimal" Name="QuantityIssue" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="LineVolumeIssue" Nullable="false" Precision="18" Scale="2" />
           <Property Type="String" Name="VoucherCode" Nullable="true" MaxLength="60" />
+          <Property Type="Int32" Name="BatchID" Nullable="true" />
+          <Property Type="String" Name="BatchCode" Nullable="true" MaxLength="20" />
+          <Property Type="Decimal" Name="QuantityBatchAvailable" Nullable="false" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="LineVolumeBatchAvailable" Nullable="false" Precision="38" Scale="2" />
         </ComplexType>
         <ComplexType Name="PendingSalesOrderCustomer">
           <Property Type="Int32" Name="CustomerID" Nullable="false" />
@@ -4712,6 +4726,13 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="BatchAvailable">
+          <Property Type="Int32" Name="BatchID" Nullable="true" />
+          <Property Type="DateTime" Name="EntryDate" Nullable="false" />
+          <Property Type="String" Name="Code" Nullable="false" MaxLength="20" />
+          <Property Type="Decimal" Name="QuantityAvailable" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="LineVolumeAvailable" Nullable="true" Precision="38" Scale="2" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -5306,6 +5327,10 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
                 <ScalarProperty Name="QuantityIssue" ColumnName="QuantityIssue" />
                 <ScalarProperty Name="LineVolumeIssue" ColumnName="LineVolumeIssue" />
                 <ScalarProperty Name="VoucherCode" ColumnName="VoucherCode" />
+                <ScalarProperty Name="BatchID" ColumnName="BatchID" />
+                <ScalarProperty Name="BatchCode" ColumnName="BatchCode" />
+                <ScalarProperty Name="QuantityBatchAvailable" ColumnName="QuantityBatchAvailable" />
+                <ScalarProperty Name="LineVolumeBatchAvailable" ColumnName="LineVolumeBatchAvailable" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -6083,6 +6108,17 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetBatchAvailables" FunctionName="TotalSmartCodingModel.Store.GetBatchAvailables">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TotalSmartCodingModel.BatchAvailable">
+                <ScalarProperty Name="BatchID" ColumnName="BatchID" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="QuantityAvailable" ColumnName="QuantityAvailable" />
+                <ScalarProperty Name="LineVolumeAvailable" ColumnName="LineVolumeAvailable" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

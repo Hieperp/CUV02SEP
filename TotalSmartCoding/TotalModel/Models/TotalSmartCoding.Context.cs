@@ -1346,5 +1346,22 @@ namespace TotalModel.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("GetVersionID", configIDParameter);
         }
+    
+        public virtual ObjectResult<BatchAvailable> GetBatchAvailables(Nullable<int> locationID, Nullable<int> deliveryAdviceID, Nullable<int> commodityID)
+        {
+            var locationIDParameter = locationID.HasValue ?
+                new ObjectParameter("LocationID", locationID) :
+                new ObjectParameter("LocationID", typeof(int));
+    
+            var deliveryAdviceIDParameter = deliveryAdviceID.HasValue ?
+                new ObjectParameter("DeliveryAdviceID", deliveryAdviceID) :
+                new ObjectParameter("DeliveryAdviceID", typeof(int));
+    
+            var commodityIDParameter = commodityID.HasValue ?
+                new ObjectParameter("CommodityID", commodityID) :
+                new ObjectParameter("CommodityID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BatchAvailable>("GetBatchAvailables", locationIDParameter, deliveryAdviceIDParameter, commodityIDParameter);
+        }
     }
 }

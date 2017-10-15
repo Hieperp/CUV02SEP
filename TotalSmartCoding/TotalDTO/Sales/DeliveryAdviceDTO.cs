@@ -127,6 +127,16 @@ namespace TotalDTO.Sales
         public ICollection<DeliveryAdviceDetailDTO> GetDetails() { return this.DeliveryAdviceViewDetails; }
 
         protected override IEnumerable<DeliveryAdviceDetailDTO> DtoDetails() { return this.DeliveryAdviceViewDetails; }
+
+
+        public bool HasOptionBatches
+        {
+            get
+            {
+                foreach (var deliveryAdviceDetailDTO in this.DtoDetails()) { if (deliveryAdviceDetailDTO.BatchID != null) return true; }
+                return false;
+            }
+        }
     }
 
 }
