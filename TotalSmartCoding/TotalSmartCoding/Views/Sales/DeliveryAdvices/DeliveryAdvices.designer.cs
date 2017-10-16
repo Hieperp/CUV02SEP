@@ -80,6 +80,8 @@
             this.VolumeRemains = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LineVolume = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LineVolumeIssue = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contextMenuDetails = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.menuOptionBatches = new System.Windows.Forms.ToolStripMenuItem();
             this.naviGroupTop = new Guifreaks.Navisuite.NaviGroup(this.components);
             this.layoutTop = new System.Windows.Forms.TableLayoutPanel();
             this.combexCustomerID = new CustomControls.CombexBox();
@@ -102,8 +104,6 @@
             this.olvTotalLineVolume = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvApproved = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.imageList32 = new System.Windows.Forms.ImageList(this.components);
-            this.contextMenuDetails = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.menuOptionBatches = new System.Windows.Forms.ToolStripMenuItem();
             this.layoutLeft.SuspendLayout();
             this.toolStripChildForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.naviGroupDetails)).BeginInit();
@@ -112,6 +112,7 @@
             this.panelCenter.SuspendLayout();
             this.toolStripPallet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridexViewDetails)).BeginInit();
+            this.contextMenuDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.naviGroupTop)).BeginInit();
             this.naviGroupTop.SuspendLayout();
             this.layoutTop.SuspendLayout();
@@ -119,7 +120,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panelLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastDeliveryAdviceIndex)).BeginInit();
-            this.contextMenuDetails.SuspendLayout();
             this.SuspendLayout();
             // 
             // layoutLeft
@@ -615,6 +615,22 @@
             this.LineVolumeIssue.HeaderText = "Volume.Issued";
             this.LineVolumeIssue.Name = "LineVolumeIssue";
             // 
+            // contextMenuDetails
+            // 
+            this.contextMenuDetails.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuDetails.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuOptionBatches});
+            this.contextMenuDetails.Name = "contextMenuDetails";
+            this.contextMenuDetails.Size = new System.Drawing.Size(225, 30);
+            this.contextMenuDetails.Text = "Context MenuDetails";
+            // 
+            // menuOptionBatches
+            // 
+            this.menuOptionBatches.Name = "menuOptionBatches";
+            this.menuOptionBatches.Size = new System.Drawing.Size(224, 26);
+            this.menuOptionBatches.Text = "Set batch for this line";
+            this.menuOptionBatches.Click += new System.EventHandler(this.menuOptionBatches_Click);
+            // 
             // naviGroupTop
             // 
             this.naviGroupTop.BackColor = System.Drawing.Color.Ivory;
@@ -877,22 +893,6 @@
             this.imageList32.Images.SetKeyName(10, "Schedule-32");
             this.imageList32.Images.SetKeyName(11, "item_List-32");
             // 
-            // contextMenuDetails
-            // 
-            this.contextMenuDetails.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.contextMenuDetails.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuOptionBatches});
-            this.contextMenuDetails.Name = "contextMenuDetails";
-            this.contextMenuDetails.Size = new System.Drawing.Size(225, 30);
-            this.contextMenuDetails.Text = "Context MenuDetails";
-            // 
-            // menuOptionBatches
-            // 
-            this.menuOptionBatches.Name = "menuOptionBatches";
-            this.menuOptionBatches.Size = new System.Drawing.Size(224, 26);
-            this.menuOptionBatches.Text = "Set batch for this line";
-            this.menuOptionBatches.Click += new System.EventHandler(this.menuOptionBatches_Click);
-            // 
             // DeliveryAdvices
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -920,6 +920,7 @@
             this.toolStripPallet.ResumeLayout(false);
             this.toolStripPallet.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridexViewDetails)).EndInit();
+            this.contextMenuDetails.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.naviGroupTop)).EndInit();
             this.naviGroupTop.ResumeLayout(false);
             this.naviGroupTop.PerformLayout();
@@ -930,7 +931,6 @@
             this.panelLeft.ResumeLayout(false);
             this.panelLeft.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastDeliveryAdviceIndex)).EndInit();
-            this.contextMenuDetails.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

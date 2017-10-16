@@ -30,5 +30,7 @@ namespace TotalModel.Models
         public string PackageSize { get; set; }
         public decimal Volume { get; set; }
         public decimal PackageVolume { get; set; }
+        public Nullable<int> BatchID { get; set; }
+        public string BatchCode { get; set; }
     }
 }

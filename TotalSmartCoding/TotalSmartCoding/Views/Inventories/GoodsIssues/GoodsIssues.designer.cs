@@ -81,6 +81,7 @@
             this.fastPendingDeliveryAdviceDetails = new BrightIdeasSoftware.FastObjectListView();
             this.olvDeliveryAdviceReference = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvCommodityCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvBatchCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvQuantityRemains = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvLineVolumeRemains = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.naviPickupIndex = new Guifreaks.Navisuite.NaviBand(this.components);
@@ -653,12 +654,14 @@
             // 
             this.fastPendingDeliveryAdviceDetails.AllColumns.Add(this.olvDeliveryAdviceReference);
             this.fastPendingDeliveryAdviceDetails.AllColumns.Add(this.olvCommodityCode);
+            this.fastPendingDeliveryAdviceDetails.AllColumns.Add(this.olvBatchCode);
             this.fastPendingDeliveryAdviceDetails.AllColumns.Add(this.olvQuantityRemains);
             this.fastPendingDeliveryAdviceDetails.AllColumns.Add(this.olvLineVolumeRemains);
             this.fastPendingDeliveryAdviceDetails.BackColor = System.Drawing.Color.Ivory;
             this.fastPendingDeliveryAdviceDetails.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.olvDeliveryAdviceReference,
             this.olvCommodityCode,
+            this.olvBatchCode,
             this.olvQuantityRemains,
             this.olvLineVolumeRemains});
             this.fastPendingDeliveryAdviceDetails.Cursor = System.Windows.Forms.Cursors.Default;
@@ -687,18 +690,26 @@
             this.olvDeliveryAdviceReference.AspectName = "DeliveryAdviceReference";
             this.olvDeliveryAdviceReference.HeaderForeColor = System.Drawing.Color.Firebrick;
             this.olvDeliveryAdviceReference.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvDeliveryAdviceReference.Text = "Pending D.A.";
+            this.olvDeliveryAdviceReference.Text = "D.A.";
             this.olvDeliveryAdviceReference.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvDeliveryAdviceReference.Width = 100;
+            this.olvDeliveryAdviceReference.Width = 70;
             // 
             // olvCommodityCode
             // 
             this.olvCommodityCode.AspectName = "CommodityCode";
             this.olvCommodityCode.HeaderForeColor = System.Drawing.Color.Firebrick;
             this.olvCommodityCode.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvCommodityCode.Text = "Pending Items";
+            this.olvCommodityCode.Text = "Items";
             this.olvCommodityCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvCommodityCode.Width = 110;
+            this.olvCommodityCode.Width = 85;
+            // 
+            // olvBatchCode
+            // 
+            this.olvBatchCode.AspectName = "BatchCode";
+            this.olvBatchCode.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvBatchCode.Text = "Batches";
+            this.olvBatchCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvBatchCode.Width = 80;
             // 
             // olvQuantityRemains
             // 
@@ -708,7 +719,7 @@
             this.olvQuantityRemains.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.olvQuantityRemains.Text = "Quantity";
             this.olvQuantityRemains.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.olvQuantityRemains.Width = 75;
+            this.olvQuantityRemains.Width = 70;
             // 
             // olvLineVolumeRemains
             // 
@@ -719,7 +730,7 @@
             this.olvLineVolumeRemains.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.olvLineVolumeRemains.Text = "Volume";
             this.olvLineVolumeRemains.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.olvLineVolumeRemains.Width = 80;
+            this.olvLineVolumeRemains.Width = 75;
             // 
             // naviPickupIndex
             // 
@@ -975,6 +986,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CartonBinLocationCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn CartonQuantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn CartonLineVolume;
+        private BrightIdeasSoftware.OLVColumn olvBatchCode;
 
     }
 }
