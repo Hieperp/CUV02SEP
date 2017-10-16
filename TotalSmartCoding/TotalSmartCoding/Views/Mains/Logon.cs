@@ -169,6 +169,9 @@ namespace TotalSmartCoding.Views.Mains
                 CommonConfigs.AddUpdateAppSetting("ConfigID", (GlobalVariables.ConfigID).ToString());
                 CommonConfigs.AddUpdateAppSetting("ComportName", GlobalVariables.ComportName);
 
+                CommonConfigs.AddUpdateAppSetting("ReportServerUrl", GlobalVariables.ReportServerUrl); //WILL BE REMOVE THIS LINE
+                GlobalVariables.ReportServerUrl = CommonConfigs.ReadSetting("ComportName");
+
                 //if (this.comboBoxEmployeeID.SelectedIndex < 0 || this.EmployeeID < 0) throw new System.ArgumentException("Vui lòng chọn tên người sử dụng!");
 
                 //if (!this.commonMetaList.CheckPasswordSuccessful(this.EmployeeID, this.textBoxPassword.Text)) throw new System.ArgumentException("Sai mật khẩu! Vui lòng kiểm tra lại trước khi tiếp tục.");

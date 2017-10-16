@@ -59,11 +59,11 @@
             this.toolStripSeparatorImport = new System.Windows.Forms.ToolStripSeparator();
             this.buttonImport = new System.Windows.Forms.ToolStripButton();
             this.buttonExport = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparatorApprove = new System.Windows.Forms.ToolStripSeparator();
-            this.buttonApprove = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparatorPrint = new System.Windows.Forms.ToolStripSeparator();
             this.buttonPrintPreview = new System.Windows.Forms.ToolStripButton();
             this.buttonPrint = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparatorApprove = new System.Windows.Forms.ToolStripSeparator();
+            this.buttonApprove = new System.Windows.Forms.ToolStripButton();
             this.toolStripTopHead = new System.Windows.Forms.ToolStrip();
             this.buttonLockedDate = new System.Windows.Forms.ToolStripButton();
             this.txtLockedDate = new System.Windows.Forms.ToolStripTextBox();
@@ -354,11 +354,11 @@
             this.toolStripSeparatorImport,
             this.buttonImport,
             this.buttonExport,
-            this.toolStripSeparatorApprove,
-            this.buttonApprove,
             this.toolStripSeparatorPrint,
             this.buttonPrintPreview,
-            this.buttonPrint});
+            this.buttonPrint,
+            this.toolStripSeparatorApprove,
+            this.buttonApprove});
             this.toolstripMain.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.toolstripMain.Location = new System.Drawing.Point(0, 55);
             this.toolstripMain.Name = "toolstripMain";
@@ -458,23 +458,6 @@
             this.buttonExport.Size = new System.Drawing.Size(104, 52);
             this.buttonExport.Text = "Export";
             // 
-            // toolStripSeparatorApprove
-            // 
-            this.toolStripSeparatorApprove.Name = "toolStripSeparatorApprove";
-            this.toolStripSeparatorApprove.Size = new System.Drawing.Size(6, 55);
-            // 
-            // buttonApprove
-            // 
-            this.buttonApprove.Enabled = false;
-            this.buttonApprove.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonApprove.Image = global::TotalSmartCoding.Properties.Resources.Cross_UnVerify;
-            this.buttonApprove.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.buttonApprove.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonApprove.Name = "buttonApprove";
-            this.buttonApprove.Size = new System.Drawing.Size(83, 52);
-            this.buttonApprove.Text = "Verify";
-            this.buttonApprove.Click += new System.EventHandler(this.buttonApprove_Click);
-            // 
             // toolStripSeparatorPrint
             // 
             this.toolStripSeparatorPrint.Name = "toolStripSeparatorPrint";
@@ -491,6 +474,7 @@
             this.buttonPrintPreview.Name = "buttonPrintPreview";
             this.buttonPrintPreview.Size = new System.Drawing.Size(52, 52);
             this.buttonPrintPreview.Text = "Print Preview";
+            this.buttonPrintPreview.Click += new System.EventHandler(this.buttonPrintPreview_Click);
             // 
             // buttonPrint
             // 
@@ -503,6 +487,24 @@
             this.buttonPrint.Name = "buttonPrint";
             this.buttonPrint.Size = new System.Drawing.Size(52, 52);
             this.buttonPrint.Text = "Print";
+            this.buttonPrint.Click += new System.EventHandler(this.buttonPrint_Click);
+            // 
+            // toolStripSeparatorApprove
+            // 
+            this.toolStripSeparatorApprove.Name = "toolStripSeparatorApprove";
+            this.toolStripSeparatorApprove.Size = new System.Drawing.Size(6, 55);
+            // 
+            // buttonApprove
+            // 
+            this.buttonApprove.Enabled = false;
+            this.buttonApprove.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonApprove.Image = global::TotalSmartCoding.Properties.Resources.Cross_UnVerify;
+            this.buttonApprove.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonApprove.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonApprove.Name = "buttonApprove";
+            this.buttonApprove.Size = new System.Drawing.Size(83, 52);
+            this.buttonApprove.Text = "Verify";
+            this.buttonApprove.Click += new System.EventHandler(this.buttonApprove_Click);
             // 
             // toolStripTopHead
             // 

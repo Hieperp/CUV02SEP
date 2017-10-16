@@ -153,6 +153,8 @@ namespace TotalBase
         public static string ComportName = "COM6";
 
 
+        public static string ReportServerUrl = "http://vnhpbcvmsql01/ReportServer_SQL01";
+
         public const int ServerLineID = 99;
 
 

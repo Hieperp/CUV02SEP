@@ -33,6 +33,8 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             this.PickupToggleApproved();
 
             this.PickupInitReference();
+
+            this.GetPickupSheet();
         }
 
 
@@ -268,5 +270,35 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
 
         #endregion
+
+
+        private void GetPickupSheet()
+        {
+            string queryString;
+
+            queryString = " @PickupID Int " + "\r\n";
+            //queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+            queryString = queryString + "    BEGIN " + "\r\n";
+
+            queryString = queryString + "       SELECT      Pickups.PickupID, Pickups.EntryDate, Pickups.Reference, Pickups.FillingLineID, FillingLines.Code AS FillingLineCode, FillingLines.Name AS FillingLineName, Pickups.WarehouseID, Warehouses.Code AS WarehouseCode, Pickups.ForkliftDriverID, ForkliftDrivers.Name AS ForkliftDriverName, Pickups.StorekeeperID, Storekeepers.Name AS StorekeeperName, " + "\r\n";
+            queryString = queryString + "                   Pickups.TotalQuantity, Pickups.TotalLineVolume, Pickups.Description, Pickups.Remarks, Batches.BatchID, Batches.Code AS BatchCode, PickupDetails.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, Commodities.PackageSize, PickupDetails.BinLocationID, BinLocations.Code AS BinLocationCode, PickupDetails.PalletID, Pallets.Code AS PalletCode, PickupDetails.Quantity, PickupDetails.LineVolume " + "\r\n";
+            queryString = queryString + "       FROM        Pickups " + "\r\n";
+            queryString = queryString + "                   INNER JOIN FillingLines ON Pickups.PickupID = @PickupID AND Pickups.FillingLineID = FillingLines.FillingLineID " + "\r\n";
+            queryString = queryString + "                   INNER JOIN Warehouses ON Pickups.WarehouseID = Warehouses.WarehouseID " + "\r\n";
+            queryString = queryString + "                   INNER JOIN Employees AS ForkliftDrivers ON Pickups.ForkliftDriverID = ForkliftDrivers.EmployeeID " + "\r\n";
+            queryString = queryString + "                   INNER JOIN Employees AS Storekeepers ON Pickups.StorekeeperID = Storekeepers.EmployeeID " + "\r\n";
+            queryString = queryString + "                   INNER JOIN PickupDetails ON Pickups.PickupID = PickupDetails.PickupID " + "\r\n";
+            queryString = queryString + "                   INNER JOIN Batches ON PickupDetails.BatchID = Batches.BatchID " + "\r\n";
+            queryString = queryString + "                   INNER JOIN Commodities ON PickupDetails.CommodityID = Commodities.CommodityID " + "\r\n";
+            queryString = queryString + "                   INNER JOIN BinLocations ON PickupDetails.BinLocationID = BinLocations.BinLocationID " + "\r\n";
+            queryString = queryString + "                   INNER JOIN Pallets ON PickupDetails.PalletID = Pallets.PalletID " + "\r\n";
+            queryString = queryString + "       ORDER BY    PickupDetails.PickupDetailID " + "\r\n";
+
+            queryString = queryString + "    END " + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("GetPickupSheet", queryString);
+        }
+
     }
 }

@@ -441,11 +441,11 @@ namespace TotalSmartCoding.Views.Mains
 
                     this.toolStripSeparatorApprove.Visible = approvable || unapprovable;
 
-                    this.buttonPrint.Visible = printable;
+                    //this.buttonPrint.Visible = printable;
                     this.buttonPrint.Enabled = printable;
-                    this.buttonPrintPreview.Visible = printable;
+                    //this.buttonPrintPreview.Visible = printable;
                     this.buttonPrintPreview.Enabled = printable;
-                    this.toolStripSeparatorPrint.Visible = printable;
+                    //this.toolStripSeparatorPrint.Visible = printable;
                 }
             }
             catch (Exception exception)
@@ -598,7 +598,7 @@ namespace TotalSmartCoding.Views.Mains
         }
 
 
-        private void toolStripButtonPrint_Click(object sender, EventArgs e)
+        private void buttonPrint_Click(object sender, EventArgs e)
         {
             try
             {
@@ -611,7 +611,7 @@ namespace TotalSmartCoding.Views.Mains
             }
         }
 
-        private void toolStripButtonPrintPreview_Click(object sender, EventArgs e)
+        private void buttonPrintPreview_Click(object sender, EventArgs e)
         {
             try
             {
