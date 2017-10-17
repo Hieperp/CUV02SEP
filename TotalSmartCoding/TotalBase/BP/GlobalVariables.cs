@@ -137,7 +137,7 @@ namespace TotalBase
 
 
             else if (configID == (int)GlobalVariables.FillingLine.Smallpack || configID == (int)GlobalVariables.FillingLine.Pail || configID == (int)GlobalVariables.FillingLine.Drum)
-                return 3; //PAY ATTENTION WHEN CHANGE THIS VALUE
+                return 5; //PAY ATTENTION WHEN CHANGE THIS VALUE
             else
                 return -1;
         }
