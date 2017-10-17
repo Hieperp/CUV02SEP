@@ -98,14 +98,17 @@ namespace TotalSmartCoding.Views.Sales.DeliveryAdvices
         protected override DialogResult wizardMaster()
         {
             WizardMaster wizardMaster = new WizardMaster(this.deliveryAdviceAPIs, this.deliveryAdviceViewModel);
-            return wizardMaster.ShowDialog();
+            DialogResult dialogResult = wizardMaster.ShowDialog();
+
+            wizardMaster.Dispose();
+            return dialogResult;
         }
 
         protected override void wizardDetail()
         {
             base.wizardDetail();
             WizardDetail wizardDetail = new WizardDetail(this.deliveryAdviceAPIs, this.deliveryAdviceViewModel);
-            wizardDetail.ShowDialog();
+            wizardDetail.ShowDialog(); wizardDetail.Dispose();
         }
 
 

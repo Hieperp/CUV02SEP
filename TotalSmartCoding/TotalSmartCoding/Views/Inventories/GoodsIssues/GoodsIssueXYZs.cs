@@ -114,7 +114,10 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
         protected override DialogResult wizardMaster()
         {
             WizardMaster wizardMaster = new WizardMaster(this.goodsIssueAPIs, this.goodsIssueViewModel);
-            return wizardMaster.ShowDialog();
+            DialogResult dialogResult = wizardMaster.ShowDialog();
+
+            wizardMaster.Dispose();
+            return dialogResult;
         }
 
         //protected override void wizardDetail()
@@ -122,6 +125,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
         //    base.wizardDetail();
         //    WizardDetail wizardDetail = new WizardDetail(this.goodsIssueAPIs, this.goodsIssueViewModel);
         //    wizardDetail.ShowDialog();
+        //    wizardDetail.Dispose();
         //}
 
         private void fastPendingDeliveryAdviceDetails_MouseClick(object sender, MouseEventArgs e)
@@ -136,6 +140,8 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                         WizardDetail wizardDetail = new WizardDetail(this.goodsIssueViewModel, pendingDeliveryAdviceDetail);
                         if (wizardDetail.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                             getPendingItems();
+
+                        wizardDetail.Dispose();
                     }
                 }
             }

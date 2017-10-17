@@ -258,6 +258,8 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
             WizardMaster wizardMaster = new WizardMaster(this.goodsIssueAPIs, this.goodsIssueViewModel);
             DialogResult dialogResult = wizardMaster.ShowDialog();
             if (dialogResult == System.Windows.Forms.DialogResult.OK) this.Save(false);
+
+            wizardMaster.Dispose();
             return dialogResult;
         }
 
@@ -274,6 +276,8 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                         TabletMDI tabletMDI = new TabletMDI(wizardDetail);
                         if (tabletMDI.ShowDialog() == System.Windows.Forms.DialogResult.OK) 
                             this.Save(false);
+
+                        wizardDetail.Dispose(); tabletMDI.Dispose();
                     }
                 }
             }

@@ -279,7 +279,10 @@ namespace TotalSmartCoding.Views.Sales.DeliveryAdvices
         protected override DialogResult wizardMaster()
         {
             WizardMaster wizardMaster = new WizardMaster(this.deliveryAdviceAPIs, this.deliveryAdviceViewModel);
-            return wizardMaster.ShowDialog();
+            DialogResult dialogResult = wizardMaster.ShowDialog();
+            
+            wizardMaster.Dispose();
+            return dialogResult;
         }
 
         protected override void wizardDetail()
@@ -287,6 +290,8 @@ namespace TotalSmartCoding.Views.Sales.DeliveryAdvices
             base.wizardDetail();
             WizardDetail wizardDetail = new WizardDetail(this.deliveryAdviceAPIs, this.deliveryAdviceViewModel);
             wizardDetail.ShowDialog();
+
+            wizardDetail.Dispose();
         }
 
         private void buttonAddDetails_Click(object sender, EventArgs e)
@@ -330,6 +335,8 @@ namespace TotalSmartCoding.Views.Sales.DeliveryAdvices
                         deliveryAdviceDetailDTO.LocationID = this.deliveryAdviceViewModel.LocationID;
                         OptionBatches optionBatches = new OptionBatches(this.deliveryAdviceAPIs, deliveryAdviceDetailDTO);
                         optionBatches.ShowDialog(); this.customizeColumnWidth();
+
+                        optionBatches.Dispose();
                     }
                 }
             }

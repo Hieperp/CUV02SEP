@@ -237,6 +237,8 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
             WizardMaster wizardMaster = new WizardMaster(this.pickupViewModel);
             DialogResult dialogResult = wizardMaster.ShowDialog();
             if (dialogResult == System.Windows.Forms.DialogResult.OK) this.Save(false);
+
+            wizardMaster.Dispose();
             return dialogResult;
         }
 
@@ -253,6 +255,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
                         TabletMDI tabletMDI = new TabletMDI(wizardDetail);
                         if (tabletMDI.ShowDialog() == System.Windows.Forms.DialogResult.OK) this.Save(false);
 
+                        wizardDetail.Dispose(); tabletMDI.Dispose();
                     }
                 }
             }

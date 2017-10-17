@@ -229,7 +229,10 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
         protected override DialogResult wizardMaster()
         {
             WizardMaster wizardMaster = new WizardMaster(this.goodsReceiptAPIs, this.goodsReceiptViewModel);
-            return wizardMaster.ShowDialog();
+            DialogResult dialogResult = wizardMaster.ShowDialog();
+
+            wizardMaster.Dispose();
+            return dialogResult;
         }
 
         protected override void wizardDetail()
@@ -237,6 +240,8 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
             base.wizardDetail();
             WizardDetail wizardDetail = new WizardDetail(this.goodsReceiptAPIs, this.goodsReceiptViewModel);
             wizardDetail.ShowDialog();
+
+            wizardDetail.Dispose();
         }
 
         private void buttonAddDetails_Click(object sender, EventArgs e)

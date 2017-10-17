@@ -27,7 +27,6 @@ namespace TotalSmartCoding
             CustomMessageBox customMessageBox = new CustomMessageBox(text, caption, buttons, icon, defaultButton);
             DialogResult dialogResult = customMessageBox.ShowDialog(owner);
 
-
             customMessageBox.Dispose();
             return dialogResult;
         }
@@ -78,6 +77,8 @@ namespace TotalSmartCoding
             DialogResult dialogResult = form.ShowDialog();
             value = textBox.Text;
             value = value.Trim();
+
+            form.Dispose();
             return dialogResult;
         }
     }

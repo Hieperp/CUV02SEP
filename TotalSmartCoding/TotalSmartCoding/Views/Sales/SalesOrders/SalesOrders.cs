@@ -276,6 +276,7 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
         {
             WizardMaster wizardMaster = new WizardMaster(this.salesOrderViewModel);
             DialogResult dialogResult = wizardMaster.ShowDialog();
+
             wizardMaster.Dispose();
             return dialogResult;
         }

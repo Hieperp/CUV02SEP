@@ -42,6 +42,7 @@ namespace TotalSmartCoding.Libraries.Helpers
 
                 DataHelpers.ExportToExcel(dataTableExport, "ExportData");
                 //}
+                //saveFileDialogMain.Dispose();
             }
         }
 

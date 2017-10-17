@@ -825,7 +825,7 @@ namespace TotalSmartCoding.Views.Productions
                             int cartonID = sender.Equals(this.dgvCartonPendingQueue) || sender.Equals(this.dgvCartonQueue) || sender.Equals(this.dgvCartonsetQueue) ? barcodeID : 0;
                             int palletID = sender.Equals(this.dgvCartonPendingQueue) || sender.Equals(this.dgvCartonQueue) || sender.Equals(this.dgvCartonsetQueue) ? 0 : barcodeID;
                             QuickView quickView = new QuickView(this.scannerAPIs.GetBarcodeList(this.fillingData.FillingLineID, cartonID, palletID), (cartonID != 0 ? "Carton: " : "Pallet: ") + selectedBarcode);
-                            quickView.ShowDialog();
+                            quickView.ShowDialog(); quickView.Dispose();
                         }
                     }
                 }

@@ -99,14 +99,19 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
         protected override DialogResult wizardMaster()
         {
             WizardMaster wizardMaster = new WizardMaster(this.warehouseAdjustmentViewModel);
-            return wizardMaster.ShowDialog();
+            DialogResult dialogResult = wizardMaster.ShowDialog();
+
+            wizardMaster.Dispose();
+            return dialogResult;
         }
 
         protected override void wizardDetail()
         {
             base.wizardDetail();
             WizardDetail wizardDetail = new WizardDetail(this.warehouseAdjustmentViewModel);
+
             wizardDetail.ShowDialog();
+            wizardDetail.Dispose();
         }
 
 

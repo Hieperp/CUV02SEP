@@ -50,7 +50,7 @@ namespace TotalSmartCoding.Views.Productions
                         if (cartonDTO != null)
                         {
                             QuickView quickView = new QuickView(this.scannerAPIs.GetBarcodeList((GlobalVariables.FillingLine)cartonDTO.FillingLineID, cartonDTO.CartonID, 0), "Carton: " + cartonDTO.Code);
-                            quickView.ShowDialog();
+                            quickView.ShowDialog(); quickView.Dispose();
                         }
                     }
                 }

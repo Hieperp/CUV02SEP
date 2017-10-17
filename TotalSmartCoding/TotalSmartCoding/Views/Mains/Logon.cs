@@ -170,7 +170,7 @@ namespace TotalSmartCoding.Views.Mains
                 CommonConfigs.AddUpdateAppSetting("ComportName", GlobalVariables.ComportName);
 
                 CommonConfigs.AddUpdateAppSetting("ReportServerUrl", GlobalVariables.ReportServerUrl); //WILL BE REMOVE THIS LINE
-                GlobalVariables.ReportServerUrl = CommonConfigs.ReadSetting("ComportName");
+                GlobalVariables.ReportServerUrl = CommonConfigs.ReadSetting("ReportServerUrl");
 
                 //if (this.comboBoxEmployeeID.SelectedIndex < 0 || this.EmployeeID < 0) throw new System.ArgumentException("Vui lòng chọn tên người sử dụng!");
 
