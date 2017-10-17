@@ -27,6 +27,7 @@ using TotalCore.Repositories.Commons;
 using TotalBase;
 using TotalModel.Models;
 using TotalSmartCoding.Properties;
+using TotalSmartCoding.ViewModels.Helpers;
 
 namespace TotalSmartCoding.Views.Inventories.Pickups
 {
@@ -73,7 +74,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
                 this.naviIndex.Bands[0].ClientArea.Controls.Add(this.fastPickupIndex);
 
                 this.customTabCenter = new CustomTabControl();
-                
+
                 this.customTabCenter.DisplayStyle = TabStyle.VisualStudio;
 
                 this.customTabCenter.TabPages.Add("tabDetailPallets", "Pickup pallet list   ");
@@ -251,7 +252,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
                     PendingPallet pendingPallet = (PendingPallet)this.fastPendingPallets.SelectedObject;
                     if (pendingPallet != null)
                     {
-                        WizardDetail wizardDetail = new WizardDetail(this.pickupViewModel, pendingPallet);                        
+                        WizardDetail wizardDetail = new WizardDetail(this.pickupViewModel, pendingPallet);
                         TabletMDI tabletMDI = new TabletMDI(wizardDetail);
                         if (tabletMDI.ShowDialog() == System.Windows.Forms.DialogResult.OK) this.Save(false);
 
@@ -288,7 +289,13 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
         }
 
 
-
+        protected override PrintViewModel InitPrintViewModel()
+        {
+            PrintViewModel printViewModel = base.InitPrintViewModel();
+            printViewModel.ReportPath = "PickupSheet";
+            printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("PickupID", this.pickupViewModel.PickupID.ToString()));
+            return printViewModel;
+        }
 
 
     }

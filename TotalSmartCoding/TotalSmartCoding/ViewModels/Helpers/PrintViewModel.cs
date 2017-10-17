@@ -1,5 +1,5 @@
 ﻿using Microsoft.Reporting.WinForms;
-
+using System.Collections.Generic;
 using TotalBase;
 
 namespace TotalSmartCoding.ViewModels.Helpers
@@ -18,6 +18,8 @@ namespace TotalSmartCoding.ViewModels.Helpers
 
         public string ReportServerUrl = GlobalVariables.ReportServerUrl;
 
-        public ReportParameter[] ReportParameters { get; set; }
+        public List<ReportParameter> ReportParameters { get; set; }
+
+        public PrintViewModel() { this.ReportParameters = new List<ReportParameter>(); }
     }
 }

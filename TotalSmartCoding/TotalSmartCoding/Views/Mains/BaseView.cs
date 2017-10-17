@@ -23,6 +23,7 @@ using TotalSmartCoding.Libraries;
 using TotalSmartCoding.Libraries.Helpers;
 using TotalSmartCoding.Controllers;
 using TotalSmartCoding.Controllers.APIs.Commons;
+using TotalSmartCoding.ViewModels.Helpers;
 
 
 
@@ -482,8 +483,18 @@ namespace TotalSmartCoding.Views.Mains
 
         public void Print(GlobalEnums.PrintDestination printDestination)
         {
-            CustomMsgBox.Show(Form.ActiveForm, "Print");
+            try
+            {
+                SsrsViewer ssrsViewer = new SsrsViewer(this.InitPrintViewModel());
+                ssrsViewer.Show();
+            }
+            catch (Exception exception)
+            {
+                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+            }
         }
+
+        protected virtual PrintViewModel InitPrintViewModel() { return new PrintViewModel(); }
 
         public void Import()
         {

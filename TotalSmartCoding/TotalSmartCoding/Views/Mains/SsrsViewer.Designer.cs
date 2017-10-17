@@ -48,6 +48,7 @@
             this.Controls.Add(this.ssrsMainViewer);
             this.Name = "SsrsViewer";
             this.Text = "Print Preview";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.SsrsViewer_Load);
             this.ResumeLayout(false);
 

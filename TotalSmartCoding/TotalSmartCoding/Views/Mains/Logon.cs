@@ -292,7 +292,12 @@ namespace TotalSmartCoding.Views.Mains
         {
             try
             {
-                baseRepository.ExecuteStoreCommand("UPDATE Configs SET VersionID = " + GlobalVariables.ConfigVersionID(GlobalVariables.ConfigID) + " WHERE ConfigID = " + GlobalVariables.ConfigID + " AND VersionID < " + GlobalVariables.ConfigVersionID(GlobalVariables.ConfigID), new ObjectParameter[] { });
+                foreach (GlobalVariables.FillingLine fillingLine in Enum.GetValues(typeof(GlobalVariables.FillingLine)))
+                {
+                    baseRepository.ExecuteStoreCommand("UPDATE Configs SET VersionID = " + GlobalVariables.ConfigVersionID((int)fillingLine) + " WHERE ConfigID = " + (int)fillingLine + " AND VersionID < " + GlobalVariables.ConfigVersionID((int)fillingLine), new ObjectParameter[] { });
+                }
+
+
                 if (baseRepository.VersionValidate(GlobalVariables.ConfigID, GlobalVariables.ConfigVersionID(GlobalVariables.ConfigID)))
                     CommonConfigs.AddUpdateAppSetting("VersionID", GlobalVariables.ConfigVersionID(GlobalVariables.ConfigID).ToString());
 

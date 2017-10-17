@@ -38,7 +38,7 @@ namespace TotalSmartCoding.Views.Mains
                 serverReport.ReportServerUrl = new Uri(this.printViewModel.ReportServerUrl); //// Set the report server URL and report path  
                 serverReport.ReportPath = "/" + this.printViewModel.ReportFolder + "/" + this.printViewModel.ReportPath;
 
-                if (this.printViewModel.ReportParameters != null)
+                if (this.printViewModel.ReportParameters != null && this.printViewModel.ReportParameters.Count > 0)
                     this.ssrsMainViewer.ServerReport.SetParameters(this.printViewModel.ReportParameters); // Set the report parameters for the report  
 
                 this.ssrsMainViewer.RefreshReport();
