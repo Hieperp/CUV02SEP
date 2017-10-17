@@ -6,11 +6,14 @@ using System.Windows.Forms;
 
 using TotalBase;
 using TotalBase.Enums;
+using System.Threading;
+
 using TotalSmartCoding.Libraries;
 using TotalSmartCoding.Views.Mains;
 using TotalSmartCoding.Views.Productions;
 using TotalSmartCoding.Views.Inventories.Pickups;
 using TotalSmartCoding.Views.Inventories.GoodsIssues;
+
 
 namespace TotalSmartCoding
 {
@@ -19,9 +22,14 @@ namespace TotalSmartCoding
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
+        private static Mutex mutex = null;
         [STAThread]
         static void Main()
         {
+            const string applicationName = "TotalSmartCodingSolution"; bool createdNew;
+            mutex = new Mutex(true, applicationName, out createdNew);
+            if (!createdNew) { return; }   //app is already running! Exiting the application  
+
             Registries.ProductName = Application.ProductName.ToUpper();
 
             Application.EnableVisualStyles();
