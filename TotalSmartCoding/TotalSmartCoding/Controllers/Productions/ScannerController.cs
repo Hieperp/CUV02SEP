@@ -217,6 +217,21 @@ namespace TotalSmartCoding.Controllers.Productions
         public int PalletQueueCount { get { return this.palletQueue.Count; } }
         public int PalletPickupQueueCount { get { return this.palletPickupQueue.Count; } }
 
+
+        private int cartonIgnoreCount;
+        public int CartonIgnoreCount
+        {
+            get { return this.cartonIgnoreCount; }
+            set
+            {
+                if (this.cartonIgnoreCount != value)
+                {
+                    this.cartonIgnoreCount = value;
+                    this.NotifyPropertyChanged("CartonIgnoreCount");
+                }
+            }
+        }
+
         public bool AllQueueEmpty { get { return (this.packQueue == null && this.packsetQueue == null && this.cartonPendingQueue == null && this.cartonQueue == null && this.cartonsetQueue == null) || (this.PackQueueCount == 0 && this.packsetQueue.Count == 0 && this.CartonPendingQueueCount == 0 && this.CartonQueueCount == 0 && this.cartonsetQueue.Count == 0); } } // && this.PalletQueueCount == 0 : HIEN TAI: KHONG CO CACH NAO UNWRAP PALLET TO CARTON => SO NO NEED TO CHECK ALL PalletQueueCount
 
         #endregion Public Properties
@@ -356,6 +371,7 @@ namespace TotalSmartCoding.Controllers.Productions
         {
             try
             {
+                this.CartonIgnoreCount = 0;
                 if (GlobalEnums.OnTestScanner)
                 {
                     //this.StartScanner();
@@ -547,9 +563,9 @@ namespace TotalSmartCoding.Controllers.Productions
         {
             if (GlobalEnums.OnTestScanner)
                 if ((DateTime.Now.Second % 2) == 0) stringReceived = "226775310870301174438888" + DateTime.Now.Millisecond.ToString("000000"); else stringReceived = "";
-            else            
+            else
                 stringReceived = this.ionetSocketPack.ReadoutStream().Trim();
-            
+
             return stringReceived != "";
         }
 
@@ -681,11 +697,15 @@ namespace TotalSmartCoding.Controllers.Productions
 
                 //NOTES: this.FillingData.HasPack && lastCartonCode == receivedBarcode: KHI HasPack: TRÙNG CARTON  || HOẶC LÀ "NoRead": THI CẦN PHẢI ĐƯA SANG 1 QUEUE KHÁC. XỬ LÝ CUỐI CA
                 if (receivedBarcode != "" && (this.FillingData.HasPack || lastCartonCode != receivedBarcode || receivedBarcode == "NoRead"))
+                {
                     if (this.matchPacktoCarton(receivedBarcode, receivedBarcode == "NoRead"))
                     {
                         lastCartonCode = receivedBarcode;
                         barcodeReceived = true;
                     }
+                    else
+                        this.CartonIgnoreCount++;
+                }
             }
             return barcodeReceived;
         }

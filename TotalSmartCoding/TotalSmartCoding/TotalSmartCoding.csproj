@@ -905,6 +905,7 @@
     <None Include="Resources\Warning.ico" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\ToolbarImageStretch.png" />
     <Content Include="SmartCodingSolution.ico" />
     <None Include="Resources\Yellow-cross.ico" />
     <None Include="Resources\White-Pallet.ico" />

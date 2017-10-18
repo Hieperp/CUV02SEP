@@ -112,8 +112,8 @@ namespace TotalSmartCoding.Views.Productions
                 this.buttonCartonNoreadNow.Visible = GlobalEnums.OnTestScanner;
                 this.buttonPalletReceivedNow.Visible = GlobalEnums.OnTestScanner;
 
-                if (!fillingData.HasPack) { this.labelNextPackNo.Visible = false; this.textNextPackNo.Visible = false; this.dgvCartonPendingQueue.RowTemplate.Height = 280; this.dgvCartonQueue.RowTemplate.Height = 280; this.dgvCartonsetQueue.RowTemplate.Height = 280; }
-                if (!fillingData.HasCarton) { this.labelNextCartonNo.Visible = false; this.textNextCartonNo.Visible = false; this.dgvPalletQueue.RowTemplate.Height = 280; this.dgvPalletPickupQueue.RowTemplate.Height = 280; }
+                if (!fillingData.HasPack) { this.labelNextPackNo.Visible = false; this.textNextPackNo.Visible = false; this.dgvCartonPendingQueue.RowTemplate.Height = 280; this.dgvCartonQueue.RowTemplate.Height = 280; this.dgvCartonsetQueue.RowTemplate.Height = 280; this.labelLEDPack.Visible = false; this.labelLEDCartonIgnore.Visible = false; }
+                if (!fillingData.HasCarton) { this.labelNextCartonNo.Visible = false; this.textNextCartonNo.Visible = false; this.dgvPalletQueue.RowTemplate.Height = 280; this.dgvPalletPickupQueue.RowTemplate.Height = 280; this.labelLEDCarton.Visible = false; this.labelLEDCartonPending.Visible = false; }
 
             }
             catch (Exception exception)
@@ -157,10 +157,10 @@ namespace TotalSmartCoding.Views.Productions
 
 
 
-                this.splitDigit.SplitterDistance = this.Width / 5;
-                this.splitPack.SplitterDistance = this.Width / 5;
-                this.splitCarton.SplitterDistance = this.Width / 5;
-                this.splitPallet.SplitterDistance = this.Width / 5;
+                this.splitDigit.SplitterDistance = this.splitContainerMaster.Panel1.Width / 5;
+                this.splitPack.SplitterDistance = this.splitContainerMaster.Panel1.Width / 5;
+                this.splitCarton.SplitterDistance = this.splitContainerMaster.Panel1.Width / 5;
+                this.splitPallet.SplitterDistance = this.splitContainerMaster.Panel1.Width / 5;
             }
             catch { }
         }
@@ -500,9 +500,12 @@ namespace TotalSmartCoding.Views.Productions
 
                         this.buttonDeleteAllPack.Text = "[" + this.scannerController.PackQueueCount.ToString("N0") + "]";
                         this.buttonPackQueueCount.Text = this.scannerController.NextPackQueueDescription;
+                        this.labelLEDPack.Text = this.scannerController.PackQueueCount.ToString("N0");
                     }
 
                     if (e.PropertyName == "PacksetQueue") { this.dgvPacksetQueue.DataSource = this.scannerController.GetPacksetQueue(); this.buttonPacksetQueueCount.Text = "[" + this.scannerController.PacksetQueueCount.ToString("N0") + "]"; }
+
+                    if (e.PropertyName == "CartonIgnoreCount") { this.labelLEDCartonIgnore.Text = this.scannerController.CartonIgnoreCount.ToString("N0"); }
 
                     if (e.PropertyName == "CartonPendingQueue")
                     {
@@ -510,6 +513,7 @@ namespace TotalSmartCoding.Views.Productions
                         if (this.dgvCartonPendingQueue.Rows.Count > 1) this.dgvCartonPendingQueue.CurrentCell = this.dgvCartonPendingQueue.Rows[0].Cells[0];
 
                         this.buttonCartonPendingQueueCount.Text = "[" + this.scannerController.CartonPendingQueueCount.ToString("N0") + "]";
+                        this.labelLEDCartonPending.Text = this.scannerController.CartonPendingQueueCount.ToString("N0");
                     }
 
                     if (e.PropertyName == "CartonQueue")
@@ -518,6 +522,7 @@ namespace TotalSmartCoding.Views.Productions
                         if (this.dgvCartonQueue.Rows.Count > 1) this.dgvCartonQueue.CurrentCell = this.dgvCartonQueue.Rows[0].Cells[0];
 
                         this.buttonCartonQueueCount.Text = "[" + this.scannerController.CartonQueueCount.ToString("N0") + "]";
+                        this.labelLEDCarton.Text = this.scannerController.CartonQueueCount.ToString("N0");
                     }
 
                     if (e.PropertyName == "CartonsetQueue") { this.dgvCartonsetQueue.DataSource = this.scannerController.GetCartonsetQueue(); this.buttonCartonsetQueueCount.Text = "[" + this.scannerController.CartonsetQueueCount.ToString("N0") + "]"; }
@@ -526,6 +531,7 @@ namespace TotalSmartCoding.Views.Productions
                     {
                         this.dgvPalletQueue.DataSource = this.scannerController.GetPalletQueue();
                         this.buttonPalletQueueCount.Text = "[" + this.scannerController.PalletQueueCount.ToString("N0") + "]";
+                        this.labelLEDPallet.Text = this.scannerController.PalletQueueCount.ToString("N0");
                     }
 
                     if (e.PropertyName == "PalletPickupQueue")
