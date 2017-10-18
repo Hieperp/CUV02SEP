@@ -103,7 +103,7 @@
             this.tableLayoutMaster.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 11F));
             this.tableLayoutMaster.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutMaster.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutMaster.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 82F));
+            this.tableLayoutMaster.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 97F));
             this.tableLayoutMaster.Controls.Add(this.label8, 3, 4);
             this.tableLayoutMaster.Controls.Add(this.label5, 3, 3);
             this.tableLayoutMaster.Controls.Add(this.label2, 3, 2);
@@ -132,7 +132,7 @@
             this.tableLayoutMaster.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutMaster.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutMaster.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutMaster.Size = new System.Drawing.Size(813, 197);
+            this.tableLayoutMaster.Size = new System.Drawing.Size(828, 197);
             this.tableLayoutMaster.TabIndex = 62;
             // 
             // label8
@@ -330,7 +330,7 @@
             this.textexRemarks.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textexRemarks.Dock = System.Windows.Forms.DockStyle.Right;
             this.textexRemarks.Editable = true;
-            this.textexRemarks.Location = new System.Drawing.Point(660, 4);
+            this.textexRemarks.Location = new System.Drawing.Point(675, 4);
             this.textexRemarks.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.textexRemarks.Multiline = true;
             this.textexRemarks.Name = "textexRemarks";
@@ -347,7 +347,7 @@
             this.textexDescription.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.textexDescription.Multiline = true;
             this.textexDescription.Name = "textexDescription";
-            this.textexDescription.Size = new System.Drawing.Size(29, 612);
+            this.textexDescription.Size = new System.Drawing.Size(44, 612);
             this.textexDescription.TabIndex = 83;
             // 
             // toolStripChildForm
@@ -382,11 +382,11 @@
             this.naviDetails.ExpandedHeight = 242;
             this.naviDetails.HeaderContextMenuStrip = null;
             this.naviDetails.HeaderHeight = 43;
-            this.naviDetails.Location = new System.Drawing.Point(202, 0);
+            this.naviDetails.Location = new System.Drawing.Point(158, 0);
             this.naviDetails.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.naviDetails.Name = "naviDetails";
             this.naviDetails.Padding = new System.Windows.Forms.Padding(0, 45, 0, 0);
-            this.naviDetails.Size = new System.Drawing.Size(813, 242);
+            this.naviDetails.Size = new System.Drawing.Size(828, 242);
             this.naviDetails.TabIndex = 30;
             // 
             // labelFillingLineName
@@ -510,7 +510,7 @@
             this.fastPickupIndex.OwnerDraw = true;
             this.fastPickupIndex.RowHeight = 39;
             this.fastPickupIndex.ShowGroups = false;
-            this.fastPickupIndex.Size = new System.Drawing.Size(200, 776);
+            this.fastPickupIndex.Size = new System.Drawing.Size(156, 776);
             this.fastPickupIndex.TabIndex = 68;
             this.fastPickupIndex.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastPickupIndex.UseCompatibleStateImageBehavior = false;
@@ -576,11 +576,11 @@
             this.naviPendingItems.Controls.Add(this.naviPendingPallets);
             this.naviPendingItems.Dock = System.Windows.Forms.DockStyle.Right;
             this.naviPendingItems.HeaderHeight = 42;
-            this.naviPendingItems.Location = new System.Drawing.Point(1015, 0);
+            this.naviPendingItems.Location = new System.Drawing.Point(986, 0);
             this.naviPendingItems.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.naviPendingItems.Name = "naviPendingItems";
             this.naviPendingItems.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.naviPendingItems.Size = new System.Drawing.Size(418, 858);
+            this.naviPendingItems.Size = new System.Drawing.Size(288, 858);
             this.naviPendingItems.TabIndex = 69;
             this.naviPendingItems.Text = "naviBar1";
             // 
@@ -594,14 +594,14 @@
             this.naviPendingPallets.ClientArea.Location = new System.Drawing.Point(0, 0);
             this.naviPendingPallets.ClientArea.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.naviPendingPallets.ClientArea.Name = "ClientArea";
-            this.naviPendingPallets.ClientArea.Size = new System.Drawing.Size(416, 776);
+            this.naviPendingPallets.ClientArea.Size = new System.Drawing.Size(286, 776);
             this.naviPendingPallets.ClientArea.TabIndex = 0;
             this.naviPendingPallets.LargeImageIndex = 0;
             this.naviPendingPallets.LayoutStyle = Guifreaks.Navisuite.NaviLayoutStyle.StyleFromOwner;
             this.naviPendingPallets.Location = new System.Drawing.Point(1, 42);
             this.naviPendingPallets.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.naviPendingPallets.Name = "naviPendingPallets";
-            this.naviPendingPallets.Size = new System.Drawing.Size(416, 776);
+            this.naviPendingPallets.Size = new System.Drawing.Size(286, 776);
             this.naviPendingPallets.SmallImageIndex = 0;
             this.naviPendingPallets.TabIndex = 3;
             // 
@@ -622,7 +622,7 @@
             this.fastPendingPallets.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.fastPendingPallets.RowHeight = 45;
             this.fastPendingPallets.ShowGroups = false;
-            this.fastPendingPallets.Size = new System.Drawing.Size(416, 776);
+            this.fastPendingPallets.Size = new System.Drawing.Size(286, 776);
             this.fastPendingPallets.TabIndex = 70;
             this.fastPendingPallets.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastPendingPallets.UseCompatibleStateImageBehavior = false;
@@ -651,14 +651,14 @@
             this.naviPickupIndex.ClientArea.Location = new System.Drawing.Point(0, 0);
             this.naviPickupIndex.ClientArea.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.naviPickupIndex.ClientArea.Name = "ClientArea";
-            this.naviPickupIndex.ClientArea.Size = new System.Drawing.Size(200, 776);
+            this.naviPickupIndex.ClientArea.Size = new System.Drawing.Size(156, 776);
             this.naviPickupIndex.ClientArea.TabIndex = 0;
             this.naviPickupIndex.LargeImageIndex = 0;
             this.naviPickupIndex.LayoutStyle = Guifreaks.Navisuite.NaviLayoutStyle.StyleFromOwner;
             this.naviPickupIndex.Location = new System.Drawing.Point(1, 42);
             this.naviPickupIndex.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.naviPickupIndex.Name = "naviPickupIndex";
-            this.naviPickupIndex.Size = new System.Drawing.Size(200, 776);
+            this.naviPickupIndex.Size = new System.Drawing.Size(156, 776);
             this.naviPickupIndex.SmallImageIndex = 0;
             this.naviPickupIndex.TabIndex = 72;
             // 
@@ -671,7 +671,7 @@
             this.naviIndex.Location = new System.Drawing.Point(0, 0);
             this.naviIndex.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.naviIndex.Name = "naviIndex";
-            this.naviIndex.Size = new System.Drawing.Size(202, 858);
+            this.naviIndex.Size = new System.Drawing.Size(158, 858);
             this.naviIndex.TabIndex = 71;
             this.naviIndex.Text = "naviBar2";
             // 
@@ -682,18 +682,18 @@
             this.panelMaster.Controls.Add(this.textexRemarks);
             this.panelMaster.Controls.Add(this.gridexPalletDetails);
             this.panelMaster.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelMaster.Location = new System.Drawing.Point(202, 242);
+            this.panelMaster.Location = new System.Drawing.Point(158, 242);
             this.panelMaster.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelMaster.Name = "panelMaster";
             this.panelMaster.Padding = new System.Windows.Forms.Padding(0, 4, 0, 0);
-            this.panelMaster.Size = new System.Drawing.Size(813, 616);
+            this.panelMaster.Size = new System.Drawing.Size(828, 616);
             this.panelMaster.TabIndex = 72;
             // 
             // Pickups
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1433, 858);
+            this.ClientSize = new System.Drawing.Size(1274, 858);
             this.Controls.Add(this.panelMaster);
             this.Controls.Add(this.naviDetails);
             this.Controls.Add(this.naviIndex);

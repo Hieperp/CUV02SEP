@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Resources\Barcode2D.ico</ApplicationIcon>
+    <ApplicationIcon>SmartCodingSolution.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AutoMapper, Version=6.1.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
@@ -905,6 +905,7 @@
     <None Include="Resources\Warning.ico" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="SmartCodingSolution.ico" />
     <None Include="Resources\Yellow-cross.ico" />
     <None Include="Resources\White-Pallet.ico" />
     <None Include="Resources\Hopstarter-Warning.ico" />
