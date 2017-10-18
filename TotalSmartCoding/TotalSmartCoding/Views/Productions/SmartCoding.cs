@@ -147,7 +147,7 @@ namespace TotalSmartCoding.Views.Productions
             }
         }
 
-        private void splitPallet_Resize(object sender, EventArgs e)
+        private void splitContainerMaster_SizeChanged(object sender, EventArgs e)
         {
             try
             {
@@ -952,7 +952,6 @@ namespace TotalSmartCoding.Views.Productions
         }
 
         #endregion Backup
-
 
     }
 }
