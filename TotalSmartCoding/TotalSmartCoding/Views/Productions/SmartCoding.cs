@@ -505,7 +505,7 @@ namespace TotalSmartCoding.Views.Productions
 
                     if (e.PropertyName == "PacksetQueue") { this.dgvPacksetQueue.DataSource = this.scannerController.GetPacksetQueue(); this.buttonPacksetQueueCount.Text = "[" + this.scannerController.PacksetQueueCount.ToString("N0") + "]"; }
 
-                    if (e.PropertyName == "CartonIgnoreCount") { this.labelLEDCartonIgnore.Text = this.scannerController.CartonIgnoreCount.ToString("N0"); }
+                    if (e.PropertyName == "CartonIgnoreCount") { this.labelLEDCartonIgnore.Text = this.scannerController.CartonIgnoreCount != 0 ? this.scannerController.CartonIgnoreCount.ToString("N0") : "    "; }
 
                     if (e.PropertyName == "CartonPendingQueue")
                     {
@@ -513,7 +513,7 @@ namespace TotalSmartCoding.Views.Productions
                         if (this.dgvCartonPendingQueue.Rows.Count > 1) this.dgvCartonPendingQueue.CurrentCell = this.dgvCartonPendingQueue.Rows[0].Cells[0];
 
                         this.buttonCartonPendingQueueCount.Text = "[" + this.scannerController.CartonPendingQueueCount.ToString("N0") + "]";
-                        this.labelLEDCartonPending.Text = this.scannerController.CartonPendingQueueCount.ToString("N0");
+                        this.labelLEDCartonPending.Text = this.scannerController.CartonPendingQueueCount != 0 ? this.scannerController.CartonPendingQueueCount.ToString("N0") : "    ";
                     }
 
                     if (e.PropertyName == "CartonQueue")
