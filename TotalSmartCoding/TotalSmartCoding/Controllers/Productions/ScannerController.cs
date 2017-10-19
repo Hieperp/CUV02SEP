@@ -31,6 +31,9 @@ namespace TotalSmartCoding.Controllers.Productions
         private CartonController cartonController;
         private PalletController palletController;
 
+        private PackViewModel packViewModel;
+        private CartonViewModel cartonViewModel;
+        private PalletViewModel palletViewModel;
 
         private IONetSocket ionetSocketPack;
         private IONetSocket ionetSocketCarton;
@@ -67,10 +70,13 @@ namespace TotalSmartCoding.Controllers.Productions
                 base.FillingData = fillingData;
 
 
-                this.packController = new PackController(CommonNinject.Kernel.Get<IPackService>(), CommonNinject.Kernel.Get<PackViewModel>());
-                this.cartonController = new CartonController(CommonNinject.Kernel.Get<ICartonService>(), CommonNinject.Kernel.Get<CartonViewModel>());
-                this.palletController = new PalletController(CommonNinject.Kernel.Get<IPalletService>(), CommonNinject.Kernel.Get<PalletViewModel>());
+                this.packViewModel = CommonNinject.Kernel.Get<PackViewModel>();
+                this.cartonViewModel = CommonNinject.Kernel.Get<CartonViewModel>();
+                this.palletViewModel = CommonNinject.Kernel.Get<PalletViewModel>();
 
+                this.packController = new PackController(CommonNinject.Kernel.Get<IPackService>(), this.packViewModel);
+                this.cartonController = new CartonController(CommonNinject.Kernel.Get<ICartonService>(), this.cartonViewModel);
+                this.palletController = new PalletController(CommonNinject.Kernel.Get<IPalletService>(), this.palletViewModel);
 
                 this.ionetSocketPack = new IONetSocket(IPAddress.Parse(GlobalVariables.IpAddress(GlobalVariables.ScannerName.PackScanner)), 23, 120); //PORT 2112: DATA LOGIC
                 this.ionetSocketCarton = new IONetSocket(IPAddress.Parse(GlobalVariables.IpAddress(GlobalVariables.ScannerName.CartonScanner)), 23, 120);
@@ -603,7 +609,8 @@ namespace TotalSmartCoding.Controllers.Productions
 
                 lock (this.packController)
                 {
-                    if (this.packController.packService.Save(packDTO))
+                    PackController freshPackController = new PackController(CommonNinject.Kernel.Get<IPackService>(), this.packViewModel);
+                    if (freshPackController.packService.Save(packDTO))
                         return packDTO;
                     else
                         throw new Exception();
@@ -726,9 +733,10 @@ namespace TotalSmartCoding.Controllers.Productions
 
                         lock (this.cartonController)
                         {
-                            this.cartonController.cartonService.ServiceBag["EntryStatusIDs"] = cartonDTO.EntryStatusID;
-                            this.cartonController.cartonService.ServiceBag["PackIDs"] = this.FillingData.HasPack ? this.packsetQueue.EntityIDs : ""; //VERY IMPORTANT: NEED TO ADD PackIDs TO NEW CartonDTO
-                            if (this.cartonController.cartonService.Save(cartonDTO))
+                            CartonController freshCartonController = new CartonController(CommonNinject.Kernel.Get<ICartonService>(), this.cartonViewModel);
+                            freshCartonController.cartonService.ServiceBag["EntryStatusIDs"] = cartonDTO.EntryStatusID;
+                            freshCartonController.cartonService.ServiceBag["PackIDs"] = this.FillingData.HasPack ? this.packsetQueue.EntityIDs : ""; //VERY IMPORTANT: NEED TO ADD PackIDs TO NEW CartonDTO
+                            if (freshCartonController.cartonService.Save(cartonDTO))
                                 this.packsetQueue = new BarcodeQueue<PackDTO>(this.FillingData.NoSubQueue, this.FillingData.ItemPerSubQueue, false) { ItemPerSet = this.FillingData.PackPerCarton }; //CLEAR AFTER ADD TO CartonDTO
                             else
                                 throw new Exception("Lỗi lưu mã vạch carton: " + cartonDTO.Code);
@@ -830,8 +838,9 @@ namespace TotalSmartCoding.Controllers.Productions
 
                         lock (this.palletController)
                         {
-                            this.palletController.palletService.ServiceBag["CartonIDs"] = this.cartonsetQueue.EntityIDs; //VERY IMPORTANT: NEED TO ADD CartonIDs TO NEW PalletDTO
-                            if (this.palletController.palletService.Save(palletDTO))
+                            PalletController freshPalletController = new PalletController(CommonNinject.Kernel.Get<IPalletService>(), this.palletViewModel);
+                            freshPalletController.palletService.ServiceBag["CartonIDs"] = this.cartonsetQueue.EntityIDs; //VERY IMPORTANT: NEED TO ADD CartonIDs TO NEW PalletDTO
+                            if (freshPalletController.palletService.Save(palletDTO))
                                 this.cartonsetQueue = new BarcodeQueue<CartonDTO>(); //CLEAR AFTER ADD TO PalletDTO
                             else
                                 throw new Exception("Lỗi lưu pallet: " + palletDTO.Code);
