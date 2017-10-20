@@ -77,8 +77,9 @@ namespace TotalDTO
         //}
 
 
-
         public virtual bool Printable { get; set; }
+        public virtual bool PrintVisible { get { return false; } }
+
         public bool Approvable { get; set; }
         public bool UnApprovable { get; set; }
         public bool Deletable { get; set; }

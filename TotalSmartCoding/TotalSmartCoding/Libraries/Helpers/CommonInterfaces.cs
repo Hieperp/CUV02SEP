@@ -50,6 +50,7 @@ namespace TotalSmartCoding.Libraries.Helpers
         bool Unapprovable { get; }
 
         bool Printable { get; }
+        bool PrintVisible { get; }
 
         bool Importable { get; }
         bool Exportable { get; }

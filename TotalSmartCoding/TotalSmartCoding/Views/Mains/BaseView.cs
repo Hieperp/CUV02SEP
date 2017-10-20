@@ -268,6 +268,8 @@ namespace TotalSmartCoding.Views.Mains
         public virtual bool Unapprovable { get { return this.baseDTO.UnApprovable; } }
 
         public virtual bool Printable { get { return this.baseDTO.Printable && this.ReadonlyMode; } }
+        public virtual bool PrintVisible { get { return this.baseDTO.PrintVisible; } }
+
         public virtual bool Filterable { get { return true; } }
 
 

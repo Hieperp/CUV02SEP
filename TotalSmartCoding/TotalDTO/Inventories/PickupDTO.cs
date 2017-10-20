@@ -19,7 +19,9 @@ namespace TotalDTO.Inventories
     public class PickupPrimitiveDTO : QuantityDTO<PickupDetailDTO>, IPrimitiveEntity, IPrimitiveDTO
     {
         public override GlobalEnums.NmvnTaskID NMVNTaskID { get { return GlobalEnums.NmvnTaskID.Pickup; } }
+        
         public override bool Printable { get { return true; } }
+        public override bool PrintVisible { get { return true; } }
 
         public override int GetID() { return this.PickupID; }
         public void SetID(int id) { this.PickupID = id; }

@@ -414,9 +414,13 @@ namespace TotalSmartCoding.Views.Mains
                     bool exportable = toolstripChild.Exportable;
                     bool approvable = toolstripChild.Approvable;
                     bool unapprovable = toolstripChild.Unapprovable;
+                    
                     bool printable = toolstripChild.Printable;
+                    bool printVisible = toolstripChild.PrintVisible;
+
                     bool readonlyMode = toolstripChild.ReadonlyMode;
                     bool editableMode = toolstripChild.EditableMode;
+                    
                     bool isValid = toolstripChild.IsValid;
 
 
@@ -441,11 +445,11 @@ namespace TotalSmartCoding.Views.Mains
 
                     this.toolStripSeparatorApprove.Visible = approvable || unapprovable;
 
-                    //this.buttonPrint.Visible = printable;
                     this.buttonPrint.Enabled = printable;
-                    //this.buttonPrintPreview.Visible = printable;
+                    this.buttonPrint.Visible = printVisible;
                     this.buttonPrintPreview.Enabled = printable;
-                    //this.toolStripSeparatorPrint.Visible = printable;
+                    this.buttonPrintPreview.Visible = printVisible;
+                    this.toolStripSeparatorPrint.Visible = printVisible;
                 }
             }
             catch (Exception exception)

@@ -81,6 +81,8 @@ namespace TotalSmartCoding.Views.Mains
         public virtual bool Unapprovable { get { return false; } }
 
         public virtual bool Printable { get { return false; } }
+        public virtual bool PrintVisible { get { return false; } }
+        
         public virtual bool Filterable { get { return true; } }
 
 
