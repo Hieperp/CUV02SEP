@@ -28,6 +28,7 @@ using TotalBase;
 using TotalModel.Models;
 using TotalSmartCoding.Properties;
 using TotalSmartCoding.ViewModels.Helpers;
+using TotalDTO.Inventories;
 
 namespace TotalSmartCoding.Views.Inventories.Pickups
 {
@@ -195,6 +196,12 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
             //StackedHeaderDecorator stackedHeaderDecorator = new StackedHeaderDecorator(this.dataGridViewDetails);
         }
 
+        protected override void EditableModeChanged(bool editableMode)
+        {
+            base.EditableModeChanged(editableMode);
+            this.toolStripNaviGroup.Visible = editableMode;
+        }
+
         protected override Controllers.BaseController myController
         {
             get { return new PickupController(CommonNinject.Kernel.Get<IPickupService>(), this.pickupViewModel); }
@@ -220,6 +227,18 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
             this.getPendingItems();
         }
 
+        private void callAutoSave()
+        {
+            try
+            {
+                if (this.pickupViewModel.IsDirty && this.pickupViewModel.IsValid) this.Save(false);
+            }
+            catch (Exception exception)
+            {
+                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+            }
+        }
+
         private void getPendingItems() //THIS MAY ALSO LOAD PENDING PALLET/ CARTON/ PACK
         {
             try
@@ -237,7 +256,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
         {
             WizardMaster wizardMaster = new WizardMaster(this.pickupViewModel);
             DialogResult dialogResult = wizardMaster.ShowDialog();
-            if (dialogResult == System.Windows.Forms.DialogResult.OK) this.Save(false);
+            if (dialogResult == System.Windows.Forms.DialogResult.OK) this.callAutoSave();
 
             wizardMaster.Dispose();
             return dialogResult;
@@ -254,7 +273,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
                     {
                         WizardDetail wizardDetail = new WizardDetail(this.pickupViewModel, pendingPallet);
                         TabletMDI tabletMDI = new TabletMDI(wizardDetail);
-                        if (tabletMDI.ShowDialog() == System.Windows.Forms.DialogResult.OK) this.Save(false);
+                        if (tabletMDI.ShowDialog() == System.Windows.Forms.DialogResult.OK) this.callAutoSave();
 
                         wizardDetail.Dispose(); tabletMDI.Dispose();
                     }
@@ -266,16 +285,29 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
             }
         }
 
-        private void gridexPalletDetails_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        private void buttonRemoveDetailItem_Click(object sender, EventArgs e)
         {
             try
             {
-                if (this.pickupViewModel.IsDirty && this.pickupViewModel.IsValid) this.Save(false);
+                if (this.EditableMode && this.pickupViewModel.Editable )
+                {
+                    PickupDetailDTO pickupDetailDTO = this.gridexPalletDetails.CurrentRow.DataBoundItem as PickupDetailDTO;
+                    if (pickupDetailDTO != null && CustomMsgBox.Show(this, "Xác nhận xóa pallet:" + (char)13 + (char)13 + pickupDetailDTO.PalletCode + (char)13 + (char)13 + "Tại vi trí: " + (char)13 + (char)13 + pickupDetailDTO.BinLocationCode, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2) == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        this.pickupViewModel.ViewDetails.Remove(pickupDetailDTO);
+                        this.callAutoSave();
+                    }
+                }
             }
             catch (Exception exception)
             {
                 ExceptionHandlers.ShowExceptionMessageBox(this, exception);
             }
+        }
+
+        private void gridexPalletDetails_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            this.callAutoSave();
         }
 
         private void timerLoadPending_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
@@ -296,6 +328,8 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
             printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("PickupID", this.pickupViewModel.PickupID.ToString()));
             return printViewModel;
         }
+
+        
 
 
     }

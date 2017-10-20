@@ -56,6 +56,8 @@
             this.toolStripChildForm = new System.Windows.Forms.ToolStrip();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.naviDetails = new Guifreaks.Navisuite.NaviGroup(this.components);
+            this.toolStripNaviGroup = new System.Windows.Forms.ToolStrip();
+            this.buttonRemoveDetailItem = new System.Windows.Forms.ToolStripButton();
             this.labelFillingLineName = new System.Windows.Forms.Label();
             this.gridexPalletDetails = new CustomControls.DataGridexView();
             this.CommodityCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -81,6 +83,7 @@
             this.toolStripChildForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.naviDetails)).BeginInit();
             this.naviDetails.SuspendLayout();
+            this.toolStripNaviGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridexPalletDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fastPickupIndex)).BeginInit();
             this.naviPendingItems.SuspendLayout();
@@ -376,6 +379,7 @@
             // naviDetails
             // 
             this.naviDetails.Caption = "   Pickup for";
+            this.naviDetails.Controls.Add(this.toolStripNaviGroup);
             this.naviDetails.Controls.Add(this.labelFillingLineName);
             this.naviDetails.Controls.Add(this.tableLayoutMaster);
             this.naviDetails.Dock = System.Windows.Forms.DockStyle.Top;
@@ -388,6 +392,33 @@
             this.naviDetails.Padding = new System.Windows.Forms.Padding(0, 45, 0, 0);
             this.naviDetails.Size = new System.Drawing.Size(828, 242);
             this.naviDetails.TabIndex = 30;
+            // 
+            // toolStripNaviGroup
+            // 
+            this.toolStripNaviGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.toolStripNaviGroup.BackColor = System.Drawing.Color.Transparent;
+            this.toolStripNaviGroup.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStripNaviGroup.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStripNaviGroup.ImageScalingSize = new System.Drawing.Size(32, 32);
+            this.toolStripNaviGroup.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.buttonRemoveDetailItem});
+            this.toolStripNaviGroup.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
+            this.toolStripNaviGroup.Location = new System.Drawing.Point(768, 0);
+            this.toolStripNaviGroup.Name = "toolStripNaviGroup";
+            this.toolStripNaviGroup.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.toolStripNaviGroup.Size = new System.Drawing.Size(39, 39);
+            this.toolStripNaviGroup.TabIndex = 75;
+            this.toolStripNaviGroup.Visible = false;
+            // 
+            // buttonRemoveDetailItem
+            // 
+            this.buttonRemoveDetailItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.buttonRemoveDetailItem.Image = global::TotalSmartCoding.Properties.Resources.Red_cross;
+            this.buttonRemoveDetailItem.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonRemoveDetailItem.Name = "buttonRemoveDetailItem";
+            this.buttonRemoveDetailItem.Size = new System.Drawing.Size(36, 36);
+            this.buttonRemoveDetailItem.ToolTipText = "Xóa pallet";
+            this.buttonRemoveDetailItem.Click += new System.EventHandler(this.buttonRemoveDetailItem_Click);
             // 
             // labelFillingLineName
             // 
@@ -716,6 +747,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.naviDetails)).EndInit();
             this.naviDetails.ResumeLayout(false);
             this.naviDetails.PerformLayout();
+            this.toolStripNaviGroup.ResumeLayout(false);
+            this.toolStripNaviGroup.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridexPalletDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fastPickupIndex)).EndInit();
             this.naviPendingItems.ResumeLayout(false);
@@ -777,6 +810,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn LineVolume;
         private BrightIdeasSoftware.FastObjectListView fastPendingPallets;
         private BrightIdeasSoftware.OLVColumn olvPendingPalletCode;
+        private System.Windows.Forms.ToolStrip toolStripNaviGroup;
+        private System.Windows.Forms.ToolStripButton buttonRemoveDetailItem;
 
     }
 }
