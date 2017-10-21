@@ -108,13 +108,21 @@ namespace TotalDTO.Inventories
 
 
 
-            this.PackDetails = new BindingListView<WarehouseAdjustmentDetailDTO>(this.WarehouseAdjustmentViewDetails);
-            this.CartonDetails = new BindingListView<WarehouseAdjustmentDetailDTO>(this.WarehouseAdjustmentViewDetails);
-            this.PalletDetails = new BindingListView<WarehouseAdjustmentDetailDTO>(this.WarehouseAdjustmentViewDetails);
+            this.PositivePackDetails = new BindingListView<WarehouseAdjustmentDetailDTO>(this.WarehouseAdjustmentViewDetails);
+            this.PositiveCartonDetails = new BindingListView<WarehouseAdjustmentDetailDTO>(this.WarehouseAdjustmentViewDetails);
+            this.PositivePalletDetails = new BindingListView<WarehouseAdjustmentDetailDTO>(this.WarehouseAdjustmentViewDetails);
 
-            this.PackDetails.ApplyFilter(f => f.PackID != null);
-            this.CartonDetails.ApplyFilter(f => f.CartonID != null);
-            this.PalletDetails.ApplyFilter(f => f.PalletID != null);
+            this.NegativePackDetails = new BindingListView<WarehouseAdjustmentDetailDTO>(this.WarehouseAdjustmentViewDetails);
+            this.NegativeCartonDetails = new BindingListView<WarehouseAdjustmentDetailDTO>(this.WarehouseAdjustmentViewDetails);
+            this.NegativePalletDetails = new BindingListView<WarehouseAdjustmentDetailDTO>(this.WarehouseAdjustmentViewDetails);
+
+            this.PositivePackDetails.ApplyFilter(f => f.PackID != null && f.Quantity >= 0);
+            this.PositiveCartonDetails.ApplyFilter(f => f.CartonID != null && f.Quantity >= 0);
+            this.PositivePalletDetails.ApplyFilter(f => f.PalletID != null && f.Quantity >= 0);
+
+            this.NegativePackDetails.ApplyFilter(f => f.PackID != null && f.Quantity < 0);
+            this.NegativeCartonDetails.ApplyFilter(f => f.CartonID != null && f.Quantity < 0);
+            this.NegativePalletDetails.ApplyFilter(f => f.PalletID != null && f.Quantity < 0);
         }
 
 
@@ -130,10 +138,13 @@ namespace TotalDTO.Inventories
 
 
 
-        public BindingListView<WarehouseAdjustmentDetailDTO> PackDetails { get; private set; }
-        public BindingListView<WarehouseAdjustmentDetailDTO> CartonDetails { get; private set; }
-        public BindingListView<WarehouseAdjustmentDetailDTO> PalletDetails { get; private set; }
+        public BindingListView<WarehouseAdjustmentDetailDTO> PositivePackDetails { get; private set; }
+        public BindingListView<WarehouseAdjustmentDetailDTO> PositiveCartonDetails { get; private set; }
+        public BindingListView<WarehouseAdjustmentDetailDTO> PositivePalletDetails { get; private set; }
 
+        public BindingListView<WarehouseAdjustmentDetailDTO> NegativePackDetails { get; private set; }
+        public BindingListView<WarehouseAdjustmentDetailDTO> NegativeCartonDetails { get; private set; }
+        public BindingListView<WarehouseAdjustmentDetailDTO> NegativePalletDetails { get; private set; }
     }
 
 }

@@ -374,8 +374,8 @@
 
         public enum UpdateWarehouseBalanceOption
         {
-            Add = 1,
-            Minus = -1
+            Positive = 1,
+            Negative = -1
         };
 
 

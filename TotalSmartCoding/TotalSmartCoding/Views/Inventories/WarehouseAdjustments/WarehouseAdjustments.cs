@@ -41,8 +41,8 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
     {
         private CustomTabControl customTabLeft;
         private CustomTabControl customTabCenter;
-        //private CustomTabControl customTabCenter;
-        //private CustomTabControl customTabCenter;
+        private CustomTabControl customTabCenterPositive;
+        private CustomTabControl customTabCenterNegative;
 
         private WarehouseAdjustmentAPIs warehouseAdjustmentAPIs;
         private WarehouseAdjustmentViewModel warehouseAdjustmentViewModel { get; set; }
@@ -88,29 +88,58 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
                 this.customTabCenter = new CustomTabControl();
                 this.customTabCenter.DisplayStyle = TabStyle.VisualStudio;
 
-                this.customTabCenter.TabPages.Add("tabCenterAA", "Pallets                  ");
-                this.customTabCenter.TabPages.Add("tabCenterBB", "Cartons                  ");
-                this.customTabCenter.TabPages.Add("tabCenterBB", "Description            ");
-                this.customTabCenter.TabPages.Add("tabCenterBB", "Remarks                    ");
+                this.customTabCenter.TabPages.Add("tabCenterPositive", "Positive adjustment quantities      ");
+                this.customTabCenter.TabPages.Add("tabCenterNegative", "Negative adjustment quantities      ");
+                this.customTabCenter.TabPages.Add("tabCenterDescription", "Description            ");
+                this.customTabCenter.TabPages.Add("tabCenterRemarks", "Remarks                    ");
 
-                this.customTabCenter.TabPages[0].Controls.Add(this.gridexPalletDetails);
-                this.customTabCenter.TabPages[0].Controls.Add(this.toolStripPallet);
-                this.customTabCenter.TabPages[1].Controls.Add(this.gridexCartonDetails);
-                this.customTabCenter.TabPages[1].Controls.Add(this.toolStripCarton);
+                this.customTabCenterPositive = new CustomTabControl();
+                this.customTabCenterPositive.DisplayStyle = TabStyle.Rounded;
+                this.customTabCenterPositive.TabPages.Add("tabCenterPositivePallets", "Pallets   ");
+                this.customTabCenterPositive.TabPages.Add("tabCenterNegativeCartons", "Cartons   ");
+                this.customTabCenterPositive.TabPages[0].Controls.Add(this.gridexPositivePalletDetails);
+                this.customTabCenterPositive.TabPages[0].Controls.Add(this.toolStripPositivePallet);
+                this.customTabCenterPositive.TabPages[1].Controls.Add(this.gridexPositiveCartonDetails);
+                this.customTabCenterPositive.TabPages[1].Controls.Add(this.toolStripPositiveCarton);
+
+                this.customTabCenterNegative = new CustomTabControl();
+                this.customTabCenterNegative.DisplayStyle = TabStyle.Rounded;
+                this.customTabCenterNegative.TabPages.Add("tabCenterNegativePallets", "Pallets   ");
+                this.customTabCenterNegative.TabPages.Add("tabCenterNegativeCartons", "Cartons   ");
+                this.customTabCenterNegative.TabPages[0].Controls.Add(this.gridexNegativePalletDetails);
+                this.customTabCenterNegative.TabPages[0].Controls.Add(this.toolStripNegativePallet);
+                this.customTabCenterNegative.TabPages[1].Controls.Add(this.gridexNegativeCartonDetails);
+                this.customTabCenterNegative.TabPages[1].Controls.Add(this.toolStripNegativeCarton);
+
+                this.customTabCenter.TabPages[0].Controls.Add(this.customTabCenterPositive);
+                this.customTabCenter.TabPages[1].Controls.Add(this.customTabCenterNegative);
                 this.customTabCenter.TabPages[2].Controls.Add(this.textexDescription);
                 this.customTabCenter.TabPages[3].Controls.Add(this.textexRemarks);
                 this.customTabCenter.TabPages[2].Padding = new Padding(30, 30, 30, 30);
                 this.customTabCenter.TabPages[3].Padding = new Padding(30, 30, 30, 30);
-                this.customTabCenter.TabPages[0].BackColor = this.panelCenter.BackColor;
-                this.customTabCenter.TabPages[1].BackColor = this.panelCenter.BackColor;
-                this.toolStripPallet.Dock = DockStyle.Left;
-                this.gridexPalletDetails.Dock = DockStyle.Fill;
-                this.toolStripCarton.Dock = DockStyle.Left;
-                this.gridexCartonDetails.Dock = DockStyle.Fill;
+                //this.customTabCenter.TabPages[0].BackColor = this.panelCenter.BackColor;
+                //this.customTabCenter.TabPages[1].BackColor = this.panelCenter.BackColor;
+                this.customTabCenterPositive.TabPages[0].BackColor = this.panelCenter.BackColor;
+                this.customTabCenterPositive.TabPages[1].BackColor = this.panelCenter.BackColor;
+                this.customTabCenterNegative.TabPages[0].BackColor = this.panelCenter.BackColor;
+                this.customTabCenterNegative.TabPages[1].BackColor = this.panelCenter.BackColor;
+
+                this.toolStripPositivePallet.Dock = DockStyle.Left;
+                this.gridexPositivePalletDetails.Dock = DockStyle.Fill;
+                this.toolStripPositiveCarton.Dock = DockStyle.Left;
+                this.gridexPositiveCartonDetails.Dock = DockStyle.Fill;
+
+                this.toolStripNegativePallet.Dock = DockStyle.Left;
+                this.gridexNegativePalletDetails.Dock = DockStyle.Fill;
+                this.toolStripNegativeCarton.Dock = DockStyle.Left;
+                this.gridexNegativeCartonDetails.Dock = DockStyle.Fill;
+                
                 this.textexDescription.Dock = DockStyle.Fill;
                 this.textexRemarks.Dock = DockStyle.Fill;
 
                 this.customTabCenter.Dock = DockStyle.Fill;
+                this.customTabCenterPositive.Dock = DockStyle.Fill;
+                this.customTabCenterNegative.Dock = DockStyle.Fill;
                 this.panelCenter.Controls.Add(this.customTabCenter);
                 #endregion TabCenter
 
@@ -182,31 +211,48 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
 
         protected override void InitializeDataGridBinding()
         {
-            this.gridexPalletDetails.AutoGenerateColumns = false;
-            this.gridexCartonDetails.AutoGenerateColumns = false;
-            this.gridexPalletDetails.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            this.gridexCartonDetails.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            this.gridexPalletDetails.DataSource = this.warehouseAdjustmentViewModel.PalletDetails;
-            this.gridexCartonDetails.DataSource = this.warehouseAdjustmentViewModel.CartonDetails;
+            this.gridexPositivePalletDetails.AutoGenerateColumns = false;
+            this.gridexPositiveCartonDetails.AutoGenerateColumns = false;
+            this.gridexNegativePalletDetails.AutoGenerateColumns = false;
+            this.gridexNegativeCartonDetails.AutoGenerateColumns = false;
+            this.gridexPositivePalletDetails.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            this.gridexPositiveCartonDetails.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            this.gridexNegativePalletDetails.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            this.gridexNegativeCartonDetails.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            this.gridexPositivePalletDetails.DataSource = this.warehouseAdjustmentViewModel.PositivePalletDetails;
+            this.gridexPositiveCartonDetails.DataSource = this.warehouseAdjustmentViewModel.PositiveCartonDetails;
+            this.gridexNegativePalletDetails.DataSource = this.warehouseAdjustmentViewModel.NegativePalletDetails;
+            this.gridexNegativeCartonDetails.DataSource = this.warehouseAdjustmentViewModel.NegativeCartonDetails;
 
             this.warehouseAdjustmentViewModel.ViewDetails.ListChanged += ViewDetails_ListChanged;
 
-            StackedHeaderDecorator stackedHeaderDecoratorPallet = new StackedHeaderDecorator(this.gridexPalletDetails);
-            StackedHeaderDecorator stackedHeaderDecoratorCarton = new StackedHeaderDecorator(this.gridexCartonDetails);
+            StackedHeaderDecorator stackedHeaderDecoratorPositivePallet = new StackedHeaderDecorator(this.gridexPositivePalletDetails);
+            StackedHeaderDecorator stackedHeaderDecoratorPositiveCarton = new StackedHeaderDecorator(this.gridexPositiveCartonDetails);
+            StackedHeaderDecorator stackedHeaderDecoratorNegativePallet = new StackedHeaderDecorator(this.gridexNegativePalletDetails);
+            StackedHeaderDecorator stackedHeaderDecoratorNegativeCarton = new StackedHeaderDecorator(this.gridexNegativeCartonDetails);
         }
 
         private void ViewDetails_ListChanged(object sender, ListChangedEventArgs e)
         {
             if (e.ListChangedType == ListChangedType.ItemAdded || e.ListChangedType == ListChangedType.ItemDeleted || e.ListChangedType == ListChangedType.Reset)
             {
-                this.customTabCenter.TabPages[0].Text = "Pallets [" + this.warehouseAdjustmentViewModel.PalletDetails.Count.ToString("N0") + " item(s)]             ";
-                this.customTabCenter.TabPages[1].Text = "Cartons [" + this.warehouseAdjustmentViewModel.CartonDetails.Count.ToString("N0") + " item(s)]             ";
+                this.customTabCenterPositive.TabPages[0].Text = "Pallets [ +" + this.warehouseAdjustmentViewModel.PositivePalletDetails.Count.ToString("N0") + " item(s)]             ";
+                this.customTabCenterPositive.TabPages[1].Text = "Cartons [ +" + this.warehouseAdjustmentViewModel.PositiveCartonDetails.Count.ToString("N0") + " item(s)]             ";
 
-                //this.gridexPalletDetails.Columns["Pallet" + CommonExpressions.PropertyName<WarehouseAdjustmentDetailDTO>(p => p.PickupReference)].Visible = this.warehouseAdjustmentViewModel.PickupID == null;
-                //this.gridexPalletDetails.Columns["Pallet" + CommonExpressions.PropertyName<WarehouseAdjustmentDetailDTO>(p => p.PickupEntryDate)].Visible = this.warehouseAdjustmentViewModel.PickupID == null;
+                this.customTabCenterNegative.TabPages[0].Text = "Pallets [ -" + this.warehouseAdjustmentViewModel.NegativePalletDetails.Count.ToString("N0") + " item(s)]             ";
+                this.customTabCenterNegative.TabPages[1].Text = "Cartons [ -" + this.warehouseAdjustmentViewModel.NegativeCartonDetails.Count.ToString("N0") + " item(s)]             ";
 
-                //this.gridexCartonDetails.Columns["Carton" + CommonExpressions.PropertyName<WarehouseAdjustmentDetailDTO>(p => p.PickupReference)].Visible = this.warehouseAdjustmentViewModel.PickupID == null;
-                //this.gridexCartonDetails.Columns["Carton" + CommonExpressions.PropertyName<WarehouseAdjustmentDetailDTO>(p => p.PickupEntryDate)].Visible = this.warehouseAdjustmentViewModel.PickupID == null;
+                //this.gridexPositivePalletDetails.Columns["Pallet" + CommonExpressions.PropertyName<WarehouseAdjustmentDetailDTO>(p => p.PickupReference)].Visible = this.warehouseAdjustmentViewModel.PickupID == null;
+                //this.gridexPositivePalletDetails.Columns["Pallet" + CommonExpressions.PropertyName<WarehouseAdjustmentDetailDTO>(p => p.PickupEntryDate)].Visible = this.warehouseAdjustmentViewModel.PickupID == null;
+
+                //this.gridexPositiveCartonDetails.Columns["Carton" + CommonExpressions.PropertyName<WarehouseAdjustmentDetailDTO>(p => p.PickupReference)].Visible = this.warehouseAdjustmentViewModel.PickupID == null;
+                //this.gridexPositiveCartonDetails.Columns["Carton" + CommonExpressions.PropertyName<WarehouseAdjustmentDetailDTO>(p => p.PickupEntryDate)].Visible = this.warehouseAdjustmentViewModel.PickupID == null;
+
+                //this.gridexNegativePalletDetails.Columns["Pallet" + CommonExpressions.PropertyName<WarehouseAdjustmentDetailDTO>(p => p.PickupReference)].Visible = this.warehouseAdjustmentViewModel.PickupID == null;
+                //this.gridexNegativePalletDetails.Columns["Pallet" + CommonExpressions.PropertyName<WarehouseAdjustmentDetailDTO>(p => p.PickupEntryDate)].Visible = this.warehouseAdjustmentViewModel.PickupID == null;
+
+                //this.gridexNegativeCartonDetails.Columns["Carton" + CommonExpressions.PropertyName<WarehouseAdjustmentDetailDTO>(p => p.PickupReference)].Visible = this.warehouseAdjustmentViewModel.PickupID == null;
+                //this.gridexNegativeCartonDetails.Columns["Carton" + CommonExpressions.PropertyName<WarehouseAdjustmentDetailDTO>(p => p.PickupEntryDate)].Visible = this.warehouseAdjustmentViewModel.PickupID == null;
             }
         }
 

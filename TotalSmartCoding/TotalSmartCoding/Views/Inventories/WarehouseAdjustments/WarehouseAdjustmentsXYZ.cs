@@ -79,8 +79,8 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
         protected override void InitializeDataGridBinding()
         {
             this.gridexViewDetails.AutoGenerateColumns = false;
-            this.gridexViewDetails.DataSource = this.warehouseAdjustmentViewModel.PalletDetails;
-            this.dataGridexView1.DataSource = this.warehouseAdjustmentViewModel.CartonDetails;
+            this.gridexViewDetails.DataSource = this.warehouseAdjustmentViewModel.PositivePalletDetails;
+            this.dataGridexView1.DataSource = this.warehouseAdjustmentViewModel.PositiveCartonDetails;
 
             //StackedHeaderDecorator stackedHeaderDecorator = new StackedHeaderDecorator(this.dataGridViewDetails);
         }
