@@ -108,7 +108,7 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
         protected override void wizardDetail()
         {
             base.wizardDetail();
-            WizardDetail wizardDetail = new WizardDetail(this.warehouseAdjustmentViewModel);
+            WizardUnpack wizardDetail = new WizardUnpack(this.warehouseAdjustmentViewModel);
 
             wizardDetail.ShowDialog();
             wizardDetail.Dispose();

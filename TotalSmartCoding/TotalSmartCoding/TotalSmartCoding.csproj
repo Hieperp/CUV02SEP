@@ -255,11 +255,11 @@
     <Compile Include="Views\Inventories\WarehouseAdjustments\WarehouseAdjustmentsXYZ.designer.cs">
       <DependentUpon>WarehouseAdjustmentsXYZ.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Inventories\WarehouseAdjustments\WizardDetail.cs">
+    <Compile Include="Views\Inventories\WarehouseAdjustments\WizardUnpack.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\Inventories\WarehouseAdjustments\WizardDetail.designer.cs">
-      <DependentUpon>WizardDetail.cs</DependentUpon>
+    <Compile Include="Views\Inventories\WarehouseAdjustments\WizardUnpack.designer.cs">
+      <DependentUpon>WizardUnpack.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Inventories\WarehouseAdjustments\WizardMaster.cs">
       <SubType>Form</SubType>
@@ -413,8 +413,8 @@
     <EmbeddedResource Include="Views\Inventories\WarehouseAdjustments\WarehouseAdjustmentsXYZ.resx">
       <DependentUpon>WarehouseAdjustmentsXYZ.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Inventories\WarehouseAdjustments\WizardDetail.resx">
-      <DependentUpon>WizardDetail.cs</DependentUpon>
+    <EmbeddedResource Include="Views\Inventories\WarehouseAdjustments\WizardUnpack.resx">
+      <DependentUpon>WizardUnpack.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Inventories\WarehouseAdjustments\WizardMaster.resx">
       <DependentUpon>WizardMaster.cs</DependentUpon>
@@ -915,6 +915,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ToolbarImageStretch.png" />
+    <None Include="Resources\Loader-48.png" />
+    <None Include="Resources\Inventory-maintenance-48.png" />
+    <None Include="Resources\Adjust_48.png" />
     <Content Include="SmartCodingSolution.ico" />
     <None Include="Resources\Yellow-cross.ico" />
     <None Include="Resources\White-Pallet.ico" />

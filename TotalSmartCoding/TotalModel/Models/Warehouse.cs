@@ -22,8 +22,8 @@ namespace TotalModel.Models
             this.PickupDetails = new HashSet<PickupDetail>();
             this.BinLocations = new HashSet<BinLocation>();
             this.WarehouseAdjustmentDetails = new HashSet<WarehouseAdjustmentDetail>();
-            this.WarehouseAdjustments = new HashSet<WarehouseAdjustment>();
             this.GoodsReceiptDetails = new HashSet<GoodsReceiptDetail>();
+            this.WarehouseAdjustments = new HashSet<WarehouseAdjustment>();
         }
     
         public int WarehouseID { get; set; }
@@ -48,8 +48,8 @@ namespace TotalModel.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WarehouseAdjustmentDetail> WarehouseAdjustmentDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<WarehouseAdjustment> WarehouseAdjustments { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GoodsReceiptDetail> GoodsReceiptDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<WarehouseAdjustment> WarehouseAdjustments { get; set; }
     }
 }

@@ -503,6 +503,16 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Adjust_48 {
+            get {
+                object obj = ResourceManager.GetObject("Adjust_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Ahmadhania_Spherical_Back {
             get {
                 object obj = ResourceManager.GetObject("Ahmadhania-Spherical-Back", resourceCulture);
@@ -2213,6 +2223,16 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Inventory_maintenance_48 {
+            get {
+                object obj = ResourceManager.GetObject("Inventory-maintenance-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap japanese_cross {
             get {
                 object obj = ResourceManager.GetObject("japanese-cross", resourceCulture);
@@ -2686,6 +2706,16 @@ namespace TotalSmartCoding.Properties {
         internal static System.Drawing.Bitmap Letter_uppercase_Z {
             get {
                 object obj = ResourceManager.GetObject("Letter-uppercase-Z", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Loader_48 {
+            get {
+                object obj = ResourceManager.GetObject("Loader-48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

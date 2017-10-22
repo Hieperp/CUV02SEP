@@ -56,8 +56,8 @@ namespace TotalModel.Models
         public virtual DbSet<Batch> Batches { get; set; }
         public virtual DbSet<ModuleDetail> ModuleDetails { get; set; }
         public virtual DbSet<WarehouseAdjustmentDetail> WarehouseAdjustmentDetails { get; set; }
-        public virtual DbSet<WarehouseAdjustment> WarehouseAdjustments { get; set; }
         public virtual DbSet<GoodsReceiptDetail> GoodsReceiptDetails { get; set; }
+        public virtual DbSet<WarehouseAdjustment> WarehouseAdjustments { get; set; }
     
         public virtual ObjectResult<Nullable<int>> GetAccessLevel(Nullable<int> userID, Nullable<int> nMVNTaskID, Nullable<int> organizationalUnitID)
         {

@@ -65,6 +65,13 @@ namespace TotalDTO.Inventories
             set { ApplyPropertyChange<WarehouseAdjustmentDTO, string>(ref this.warehouseAdjustmentTypeName, o => o.WarehouseAdjustmentTypeName, value); }
         }
 
+        private string adjustmentJobs;
+        [DefaultValue(null)]
+        public string AdjustmentJobs
+        {
+            get { return this.adjustmentJobs; }
+            set { ApplyPropertyChange<WarehouseAdjustmentDTO, string>(ref this.adjustmentJobs, o => o.AdjustmentJobs, value); }
+        }
 
         private int storekeeperID;
         [DefaultValue(1)]
@@ -76,6 +83,11 @@ namespace TotalDTO.Inventories
 
 
         public override int PreparedPersonID { get { return 1; } }
+
+        public override string Caption
+        {
+            get { return this.WarehouseAdjustmentTypeName + " at Warehouse: " + this.WarehouseName + "             Total Quantity: " + this.TotalQuantity.ToString() + ",    Total Volume: " + this.TotalLineVolume.ToString("N2"); }
+        }
 
         public override void PerformPresaveRule()
         {

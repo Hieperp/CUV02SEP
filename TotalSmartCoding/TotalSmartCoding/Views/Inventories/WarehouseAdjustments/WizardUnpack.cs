@@ -21,7 +21,7 @@ using TotalSmartCoding.ViewModels.Inventories;
 
 namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
 {
-    public partial class WizardDetail : Form
+    public partial class WizardUnpack : Form
     {
         private WarehouseAdjustmentViewModel warehouseAdjustmentViewModel;
         private CustomTabControl customTabBatch;
@@ -29,7 +29,7 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
         private CartonAPIs cartonAPIs;
         private List<Carton> availableCartons;
 
-        public WizardDetail(WarehouseAdjustmentViewModel warehouseAdjustmentViewModel)
+        public WizardUnpack(WarehouseAdjustmentViewModel warehouseAdjustmentViewModel)
         {
             InitializeComponent();
 
@@ -93,6 +93,7 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
 
                     if (fastPendingList != null)
                     {
+                        this.warehouseAdjustmentViewModel.ViewDetails.RaiseListChangedEvents = false;
                         foreach (var checkedObjects in fastPendingList.CheckedObjects)
                         {
                             GoodsReceiptDetailAvailable goodsReceiptDetailAvailable = (GoodsReceiptDetailAvailable)checkedObjects;
@@ -105,6 +106,8 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
                                 this.warehouseAdjustmentViewModel.ViewDetails.Add(warehouseAdjustmentDetailDTO);
                             }
                         }
+                        this.warehouseAdjustmentViewModel.ViewDetails.RaiseListChangedEvents = true;
+                        this.warehouseAdjustmentViewModel.ViewDetails.ResetBindings();
                     }
 
 

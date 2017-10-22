@@ -158,6 +158,7 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
         Binding bindingEntryDate;
         Binding bindingReference;
         Binding bindingWarehouseName;
+        Binding bindingAdjustmentJobs;
         Binding bindingDescription;
         Binding bindingRemarks;
         Binding bindingCaption;
@@ -171,6 +172,7 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
             this.bindingEntryDate = this.dateTimexEntryDate.DataBindings.Add("Value", this.warehouseAdjustmentViewModel, CommonExpressions.PropertyName<WarehouseAdjustmentDTO>(p => p.EntryDate), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingReference = this.textexReference.DataBindings.Add("Text", this.warehouseAdjustmentViewModel, CommonExpressions.PropertyName<WarehouseAdjustmentDTO>(p => p.Reference), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingWarehouseName = this.textexWarehouseName.DataBindings.Add("Text", this.warehouseAdjustmentViewModel, CommonExpressions.PropertyName<WarehouseAdjustmentDTO>(p => p.WarehouseName), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingAdjustmentJobs = this.textexAdjustmentJobs.DataBindings.Add("Text", this.warehouseAdjustmentViewModel, CommonExpressions.PropertyName<WarehouseAdjustmentDTO>(p => p.AdjustmentJobs), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingDescription = this.textexDescription.DataBindings.Add("Text", this.warehouseAdjustmentViewModel, CommonExpressions.PropertyName<WarehouseAdjustmentDTO>(p => p.Description), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingRemarks = this.textexRemarks.DataBindings.Add("Text", this.warehouseAdjustmentViewModel, CommonExpressions.PropertyName<WarehouseAdjustmentDTO>(p => p.Remarks), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingCaption = this.labelCaption.DataBindings.Add("Text", this.warehouseAdjustmentViewModel, CommonExpressions.PropertyName<WarehouseAdjustmentDTO>(p => p.Caption));
@@ -185,6 +187,7 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
             this.bindingEntryDate.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingReference.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingWarehouseName.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingAdjustmentJobs.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingDescription.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingRemarks.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingCaption.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
@@ -203,7 +206,7 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
             {
                 foreach (OLVGroup olvGroup in e.Groups)
                 {
-                    olvGroup.TitleImage = "Storage32";
+                    olvGroup.TitleImage = "Adjustment_32";
                     olvGroup.Subtitle = "List count: " + olvGroup.Contents.Count.ToString();
                 }
             }
@@ -286,7 +289,7 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
         protected override void wizardDetail()
         {
             base.wizardDetail();
-            WizardDetail wizardDetail = new WizardDetail(this.warehouseAdjustmentViewModel);
+            WizardUnpack wizardDetail = new WizardUnpack(this.warehouseAdjustmentViewModel);
             wizardDetail.ShowDialog();
 
             wizardDetail.Dispose();

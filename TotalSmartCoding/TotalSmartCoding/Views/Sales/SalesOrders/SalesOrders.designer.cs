@@ -30,10 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SalesOrders));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.layoutLeft = new System.Windows.Forms.TableLayoutPanel();
             this.dateTimexEntryDate = new CustomControls.DateTimexPicker();
             this.textexReference = new CustomControls.TextexBox();
@@ -415,8 +415,8 @@
             this.gridexViewDetails.Location = new System.Drawing.Point(0, 0);
             this.gridexViewDetails.Name = "gridexViewDetails";
             this.gridexViewDetails.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridexViewDetails.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridexViewDetails.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.gridexViewDetails.RowTemplate.Height = 24;
             this.gridexViewDetails.Size = new System.Drawing.Size(789, 336);
             this.gridexViewDetails.TabIndex = 65;
@@ -453,8 +453,8 @@
             // 
             this.PackageVolume.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.PackageVolume.DataPropertyName = "PackageVolume";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.PackageVolume.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.PackageVolume.DefaultCellStyle = dataGridViewCellStyle1;
             this.PackageVolume.FillWeight = 9F;
             this.PackageVolume.HeaderText = "Package.Volume";
             this.PackageVolume.Name = "PackageVolume";
@@ -463,10 +463,10 @@
             // 
             this.Quantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Quantity.DataPropertyName = "Quantity";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle6.Format = "N0";
-            dataGridViewCellStyle6.NullValue = null;
-            this.Quantity.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Format = "N0";
+            dataGridViewCellStyle2.NullValue = null;
+            this.Quantity.DefaultCellStyle = dataGridViewCellStyle2;
             this.Quantity.FillWeight = 5F;
             this.Quantity.HeaderText = "Quantity";
             this.Quantity.Name = "Quantity";
@@ -475,9 +475,9 @@
             // 
             this.LineVolume.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.LineVolume.DataPropertyName = "LineVolume";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle7.Format = "N2";
-            this.LineVolume.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.Format = "N2";
+            this.LineVolume.DefaultCellStyle = dataGridViewCellStyle3;
             this.LineVolume.FillWeight = 7F;
             this.LineVolume.HeaderText = "Volume";
             this.LineVolume.Name = "LineVolume";
