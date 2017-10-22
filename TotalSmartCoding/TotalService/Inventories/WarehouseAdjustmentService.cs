@@ -5,6 +5,7 @@ using TotalModel.Models;
 using TotalDTO.Inventories;
 using TotalCore.Repositories.Inventories;
 using TotalCore.Services.Inventories;
+using TotalBase.Enums;
 
 namespace TotalService.Inventories
 {
@@ -13,9 +14,13 @@ namespace TotalService.Inventories
         private readonly IGoodsReceiptAPIRepository goodsReceiptAPIRepository;
         private readonly IGoodsReceiptService goodsReceiptService;
 
+        private readonly IWarehouseAdjustmentRepository warehouseAdjustmentRepository;
+
         public WarehouseAdjustmentService(IWarehouseAdjustmentRepository warehouseAdjustmentRepository, IGoodsReceiptAPIRepository goodsReceiptAPIRepository, IGoodsReceiptService goodsReceiptService)
             : base(warehouseAdjustmentRepository, "WarehouseAdjustmentPostSaveValidate", "WarehouseAdjustmentSaveRelative", "WarehouseAdjustmentToggleApproved", null, null, "GetWarehouseAdjustmentViewDetails")
         {
+            this.warehouseAdjustmentRepository = warehouseAdjustmentRepository;
+
             this.goodsReceiptAPIRepository = goodsReceiptAPIRepository;
             this.goodsReceiptService = goodsReceiptService;
         }
@@ -36,6 +41,11 @@ namespace TotalService.Inventories
 
                 goodsReceiptDTO.EntryDate = warehouseAdjustmentDTO.EntryDate;
                 goodsReceiptDTO.WarehouseID = warehouseAdjustmentDTO.WarehouseID;
+                goodsReceiptDTO.WarehouseName = warehouseAdjustmentDTO.WarehouseName;
+
+                goodsReceiptDTO.WarehouseAdjustmentID = warehouseAdjustment.WarehouseAdjustmentID;
+
+                goodsReceiptDTO.GoodsReceiptTypeID = (int)GlobalEnums.GoodsReceiptTypeID.InventoryAdjustment;
 
                 goodsReceiptDTO.StorekeeperID = warehouseAdjustmentDTO.StorekeeperID;
 
@@ -45,7 +55,7 @@ namespace TotalService.Inventories
                 goodsReceiptDTO.Description = warehouseAdjustmentDTO.Description;
                 goodsReceiptDTO.Remarks = warehouseAdjustmentDTO.Remarks;
 
-                List<PendingWarehouseAdjustmentDetail> pendingWarehouseAdjustmentDetails = this.goodsReceiptAPIRepository.GetPendingWarehouseAdjustmentDetails(warehouseAdjustment.LocationID, null, warehouseAdjustment.WarehouseAdjustmentID, warehouseAdjustment.WarehouseID, null, false);
+                List<PendingWarehouseAdjustmentDetail> pendingWarehouseAdjustmentDetails = this.warehouseAdjustmentRepository.GetPendingWarehouseAdjustmentDetails(warehouseAdjustment.LocationID, null, warehouseAdjustment.WarehouseAdjustmentID, warehouseAdjustment.WarehouseID, null, false);
                 foreach (PendingWarehouseAdjustmentDetail pendingWarehouseAdjustmentDetail in pendingWarehouseAdjustmentDetails)
                 {
                     GoodsReceiptDetailDTO goodsReceiptDetailDTO = new GoodsReceiptDetailDTO()

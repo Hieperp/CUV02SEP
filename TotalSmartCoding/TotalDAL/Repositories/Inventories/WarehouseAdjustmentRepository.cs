@@ -15,6 +15,11 @@ namespace TotalDAL.Repositories.Inventories
             : base(totalSmartCodingEntities, "WarehouseAdjustmentEditable", "WarehouseAdjustmentApproved")
         {
         }
+        
+        public List<PendingWarehouseAdjustmentDetail> GetPendingWarehouseAdjustmentDetails(int? locationID, int? goodsReceiptID, int? warehouseAdjustmentID, int? warehouseID, string warehouseAdjustmentDetailIDs, bool isReadonly)
+        {
+            return base.TotalSmartCodingEntities.GetPendingWarehouseAdjustmentDetails(locationID, goodsReceiptID, warehouseAdjustmentID, warehouseID, warehouseAdjustmentDetailIDs, isReadonly).ToList();
+        }
     }
 
 

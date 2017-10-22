@@ -348,8 +348,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             string queryString = " @EntityID int, @SaveRelativeOption int " + "\r\n"; //SaveRelativeOption: 1: Update, -1:Undo
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
-
-            //queryString = queryString + "   IF (SELECT HasPickup FROM GoodsReceipts WHERE GoodsReceiptID = @EntityID) = 1 " + "\r\n";
+            
             queryString = queryString + "       BEGIN " + "\r\n";
 
             queryString = queryString + "           IF (@SaveRelativeOption = 1) ";
@@ -359,16 +358,31 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryString = queryString + "                   FROM            GoodsReceipts INNER JOIN GoodsReceiptDetails ON GoodsReceipts.GoodsReceiptID = @EntityID AND GoodsReceipts.GoodsReceiptID = GoodsReceiptDetails.GoodsReceiptID " + "\r\n";
             queryString = queryString + "               END ";
 
-            queryString = queryString + "           UPDATE          PickupDetails " + "\r\n";
-            queryString = queryString + "           SET             PickupDetails.QuantityReceipt = ROUND(PickupDetails.QuantityReceipt + GoodsReceiptDetails.Quantity * @SaveRelativeOption, " + (int)GlobalEnums.rndQuantity + "), PickupDetails.LineVolumeReceipt = ROUND(PickupDetails.LineVolumeReceipt + GoodsReceiptDetails.LineVolume * @SaveRelativeOption, " + (int)GlobalEnums.rndVolume + ") " + "\r\n";
-            queryString = queryString + "           FROM            GoodsReceiptDetails " + "\r\n";
-            queryString = queryString + "                           INNER JOIN PickupDetails ON PickupDetails.Approved = 1 AND GoodsReceiptDetails.GoodsReceiptID = @EntityID AND GoodsReceiptDetails.PickupDetailID = PickupDetails.PickupDetailID " + "\r\n";
+            queryString = queryString + "           DECLARE @HasPickup bit, @WarehouseAdjustmentID int ";
+            queryString = queryString + "           SELECT @HasPickup = HasPickup, @WarehouseAdjustmentID = WarehouseAdjustmentID FROM GoodsReceipts WHERE GoodsReceiptID = @EntityID ";
+            queryString = queryString + "           IF (@HasPickup = 1 OR NOT @WarehouseAdjustmentID IS NULL) " + "\r\n";
+            queryString = queryString + "               BEGIN  " + "\r\n";
 
-            queryString = queryString + "           IF @@ROWCOUNT <> (SELECT COUNT(*) FROM GoodsReceiptDetails WHERE GoodsReceiptID = @EntityID) " + "\r\n";
-            queryString = queryString + "               BEGIN " + "\r\n";
-            queryString = queryString + "                   DECLARE     @msg NVARCHAR(300) = N'Phiếu giao hàng đã hủy, hoặc chưa duyệt' ; " + "\r\n";
-            queryString = queryString + "                   THROW       61001,  @msg, 1; " + "\r\n";
-            queryString = queryString + "               END " + "\r\n";
+            queryString = queryString + "                   IF (@HasPickup = 1) " + "\r\n";
+            queryString = queryString + "                       UPDATE          PickupDetails " + "\r\n";
+            queryString = queryString + "                       SET             PickupDetails.QuantityReceipt = ROUND(PickupDetails.QuantityReceipt + GoodsReceiptDetails.Quantity * @SaveRelativeOption, " + (int)GlobalEnums.rndQuantity + "), PickupDetails.LineVolumeReceipt = ROUND(PickupDetails.LineVolumeReceipt + GoodsReceiptDetails.LineVolume * @SaveRelativeOption, " + (int)GlobalEnums.rndVolume + ") " + "\r\n";
+            queryString = queryString + "                       FROM            GoodsReceiptDetails " + "\r\n";
+            queryString = queryString + "                                       INNER JOIN PickupDetails ON PickupDetails.Approved = 1 AND GoodsReceiptDetails.GoodsReceiptID = @EntityID AND GoodsReceiptDetails.PickupDetailID = PickupDetails.PickupDetailID " + "\r\n";
+
+            queryString = queryString + "                   IF (NOT @WarehouseAdjustmentID IS NULL) " + "\r\n";
+            queryString = queryString + "                       UPDATE          WarehouseAdjustmentDetails " + "\r\n";
+            queryString = queryString + "                       SET             WarehouseAdjustmentDetails.QuantityReceipt = ROUND(WarehouseAdjustmentDetails.QuantityReceipt + GoodsReceiptDetails.Quantity * @SaveRelativeOption, " + (int)GlobalEnums.rndQuantity + "), WarehouseAdjustmentDetails.LineVolumeReceipt = ROUND(WarehouseAdjustmentDetails.LineVolumeReceipt + GoodsReceiptDetails.LineVolume * @SaveRelativeOption, " + (int)GlobalEnums.rndVolume + ") " + "\r\n";
+            queryString = queryString + "                       FROM            GoodsReceiptDetails " + "\r\n";
+            queryString = queryString + "                                       INNER JOIN WarehouseAdjustmentDetails ON WarehouseAdjustmentDetails.Quantity > 0 AND GoodsReceiptDetails.GoodsReceiptID = @EntityID AND GoodsReceiptDetails.WarehouseAdjustmentDetailID = WarehouseAdjustmentDetails.WarehouseAdjustmentDetailID " + "\r\n";
+            ///--------------------------------------------------update bacj
+            queryString = queryString + "                   IF @@ROWCOUNT <> (SELECT COUNT(*) FROM GoodsReceiptDetails WHERE GoodsReceiptID = @EntityID) " + "\r\n";
+            queryString = queryString + "                       BEGIN " + "\r\n";
+            queryString = queryString + "                           DECLARE     @msg NVARCHAR(300) = N'Phiếu giao hàng đã hủy, hoặc chưa duyệt' ; " + "\r\n";
+            queryString = queryString + "                           THROW       61001,  @msg, 1; " + "\r\n";
+            queryString = queryString + "                       END " + "\r\n";
+
+            queryString = queryString + "               END  " + "\r\n";
+
             queryString = queryString + "       END " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("GoodsReceiptSaveRelative", queryString);

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-
 using TotalModel.Models;
 using TotalSmartCoding.Controllers.APIs.Inventories;
 using TotalSmartCoding.Libraries.Helpers;
@@ -65,7 +64,6 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
             {
                 if (sender.Equals(this.buttonOK))
                 {
-                    this.goodsReceiptViewModel.GoodsReceiptTypeID = 1; //GoodsReceiptTypeID = 1-FROM PRODUCTION/ LATER: WE SHOULD IMPLEMENT FOR EXPORT: GoodsReceiptTypeID = 2
                     this.goodsReceiptViewModel.HasPickup = true;
 
                     bool nextOK = false;

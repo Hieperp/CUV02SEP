@@ -314,8 +314,8 @@
             Pickup = 1,
             PurchaseInvoice = 2,
             StockTransfer = 3,
-            InventoryAdjustment = 4,
-            SalesReturn = 5
+            SalesReturn = 5,
+            InventoryAdjustment = 6
         };
 
         public enum SalesInvoiceTypeID

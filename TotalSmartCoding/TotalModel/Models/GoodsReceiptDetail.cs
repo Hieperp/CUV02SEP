@@ -25,11 +25,16 @@ namespace TotalModel.Models
         public int GoodsReceiptID { get; set; }
         public Nullable<int> PickupDetailID { get; set; }
         public Nullable<int> PickupID { get; set; }
+        public Nullable<int> WarehouseAdjustmentDetailID { get; set; }
+        public Nullable<int> WarehouseAdjustmentID { get; set; }
         public System.DateTime EntryDate { get; set; }
+        public string Reference { get; set; }
         public int LocationID { get; set; }
         public int WarehouseID { get; set; }
         public int BinLocationID { get; set; }
         public int CommodityID { get; set; }
+        public Nullable<int> BatchID { get; set; }
+        public Nullable<System.DateTime> BatchEntryDate { get; set; }
         public Nullable<int> PackID { get; set; }
         public Nullable<int> CartonID { get; set; }
         public Nullable<int> PalletID { get; set; }
@@ -42,25 +47,18 @@ namespace TotalModel.Models
         public decimal LineVolumeIssue { get; set; }
         public string Remarks { get; set; }
         public bool Approved { get; set; }
-        public string Reference { get; set; }
-        public Nullable<int> BatchID { get; set; }
-        public Nullable<System.DateTime> BatchEntryDate { get; set; }
-        public Nullable<int> WarehouseAdjustmentDetailID { get; set; }
-        public Nullable<int> WarehouseAdjustmentID { get; set; }
     
-        public virtual GoodsReceipt GoodsReceipt { get; set; }
-        public virtual Warehouse Warehouse { get; set; }
+        public virtual BinLocation BinLocation { get; set; }
+        public virtual Carton Carton { get; set; }
+        public virtual Commodity Commodity { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GoodsIssueDetail> GoodsIssueDetails { get; set; }
-        public virtual Carton Carton { get; set; }
+        public virtual GoodsReceipt GoodsReceipt { get; set; }
         public virtual Pack Pack { get; set; }
         public virtual Pallet Pallet { get; set; }
         public virtual PickupDetail PickupDetail { get; set; }
-        public virtual Commodity Commodity { get; set; }
-        public virtual BinLocation BinLocation { get; set; }
-        public virtual GoodsReceiptDetail GoodsReceiptDetails1 { get; set; }
-        public virtual GoodsReceiptDetail GoodsReceiptDetail1 { get; set; }
         public virtual WarehouseAdjustmentDetail WarehouseAdjustmentDetail { get; set; }
+        public virtual Warehouse Warehouse { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WarehouseAdjustmentDetail> WarehouseAdjustmentDetails { get; set; }
     }

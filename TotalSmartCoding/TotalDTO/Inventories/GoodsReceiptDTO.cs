@@ -61,6 +61,15 @@ namespace TotalDTO.Inventories
         public string PickupReferences { get; set; }
 
 
+        private Nullable<int> warehouseAdjustmentID;
+        [DefaultValue(null)]
+        public Nullable<int> WarehouseAdjustmentID
+        {
+            get { return this.warehouseAdjustmentID; }
+            set { ApplyPropertyChange<GoodsReceiptPrimitiveDTO, Nullable<int>>(ref this.warehouseAdjustmentID, o => o.WarehouseAdjustmentID, value); }
+        }
+        
+
         public bool HasPickup { get; set; }
 
         private int warehouseID;
