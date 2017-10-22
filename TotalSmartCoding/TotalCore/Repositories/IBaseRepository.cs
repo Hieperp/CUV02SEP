@@ -4,11 +4,14 @@ using System.Data.Entity.Core.Objects;
 using System.Linq.Expressions;
 
 using TotalBase.Enums;
+using TotalModel.Models;
 
 namespace TotalCore.Repositories
 {
     public interface IBaseRepository
     {
+        TotalSmartCodingEntities TotalSmartCodingEntities { get; }
+
         bool IsDirty();
 
         int? GetVersionID(int configID);

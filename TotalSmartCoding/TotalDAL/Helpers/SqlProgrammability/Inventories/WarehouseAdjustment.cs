@@ -69,15 +69,15 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
             queryString = queryString + "       SELECT      WarehouseAdjustmentDetails.WarehouseAdjustmentDetailID, WarehouseAdjustmentDetails.WarehouseAdjustmentID, WarehouseAdjustmentDetails.GoodsReceiptID, WarehouseAdjustmentDetails.GoodsReceiptDetailID, GoodsReceiptDetails.Reference AS GoodsReceiptReference, GoodsReceiptDetails.EntryDate AS GoodsReceiptEntryDate," + "\r\n";
             queryString = queryString + "                   Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, BinLocations.BinLocationID, BinLocations.Code AS BinLocationCode, " + "\r\n";
-            queryString = queryString + "                   GoodsReceiptDetails.PackID, Packs.Code AS PackCode, GoodsReceiptDetails.CartonID, Cartons.Code AS CartonCode, GoodsReceiptDetails.PalletID, Pallets.Code AS PalletCode, " + "\r\n";
-            queryString = queryString + "                   WarehouseAdjustmentDetails.Quantity, WarehouseAdjustmentDetails.LineVolume, WarehouseAdjustmentDetails.Remarks " + "\r\n";
+            queryString = queryString + "                   WarehouseAdjustmentDetails.PackID, Packs.Code AS PackCode, WarehouseAdjustmentDetails.CartonID, Cartons.Code AS CartonCode, WarehouseAdjustmentDetails.PalletID, Pallets.Code AS PalletCode, " + "\r\n";
+            queryString = queryString + "                   ROUND(GoodsReceiptDetails.Quantity - GoodsReceiptDetails.QuantityIssue + (-WarehouseAdjustmentDetails.Quantity), " + (int)GlobalEnums.rndQuantity + ") AS QuantityAvailable, ROUND(GoodsReceiptDetails.LineVolume - GoodsReceiptDetails.LineVolumeIssue + (-WarehouseAdjustmentDetails.LineVolume), " + (int)GlobalEnums.rndVolume + ") AS LineVolumeAvailable, WarehouseAdjustmentDetails.Quantity, WarehouseAdjustmentDetails.LineVolume, WarehouseAdjustmentDetails.Remarks " + "\r\n";
             queryString = queryString + "       FROM        WarehouseAdjustmentDetails " + "\r\n";
-            queryString = queryString + "                   INNER JOIN GoodsReceiptDetails ON WarehouseAdjustmentDetails.WarehouseAdjustmentID = @WarehouseAdjustmentID AND WarehouseAdjustmentDetails.GoodsReceiptDetailID = GoodsReceiptDetails.GoodsReceiptDetailID " + "\r\n";
-            queryString = queryString + "                   INNER JOIN Commodities ON GoodsReceiptDetails.CommodityID = Commodities.CommodityID " + "\r\n";
-            queryString = queryString + "                   INNER JOIN BinLocations ON GoodsReceiptDetails.BinLocationID = BinLocations.BinLocationID " + "\r\n";
-            queryString = queryString + "                   LEFT JOIN Packs ON GoodsReceiptDetails.PackID = Packs.PackID " + "\r\n";
-            queryString = queryString + "                   LEFT JOIN Cartons ON GoodsReceiptDetails.CartonID = Cartons.CartonID " + "\r\n";
-            queryString = queryString + "                   LEFT JOIN Pallets ON GoodsReceiptDetails.PalletID = Pallets.PalletID " + "\r\n";
+            queryString = queryString + "                   INNER JOIN Commodities ON WarehouseAdjustmentDetails.WarehouseAdjustmentID = @WarehouseAdjustmentID AND WarehouseAdjustmentDetails.CommodityID = Commodities.CommodityID " + "\r\n";
+            queryString = queryString + "                   INNER JOIN BinLocations ON WarehouseAdjustmentDetails.BinLocationID = BinLocations.BinLocationID " + "\r\n";
+            queryString = queryString + "                   LEFT JOIN GoodsReceiptDetails ON WarehouseAdjustmentDetails.GoodsReceiptDetailID = GoodsReceiptDetails.GoodsReceiptDetailID " + "\r\n";
+            queryString = queryString + "                   LEFT JOIN Packs ON WarehouseAdjustmentDetails.PackID = Packs.PackID " + "\r\n";
+            queryString = queryString + "                   LEFT JOIN Cartons ON WarehouseAdjustmentDetails.CartonID = Cartons.CartonID " + "\r\n";
+            queryString = queryString + "                   LEFT JOIN Pallets ON WarehouseAdjustmentDetails.PalletID = Pallets.PalletID " + "\r\n";
 
             queryString = queryString + "    END " + "\r\n";
 

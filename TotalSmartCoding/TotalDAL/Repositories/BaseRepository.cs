@@ -32,6 +32,11 @@ namespace TotalDAL.Repositories
             return;
             return;
 
+            Helpers.SqlProgrammability.Inventories.WarehouseAdjustment warehouseAdjustment = new Helpers.SqlProgrammability.Inventories.WarehouseAdjustment(totalSmartCodingEntities);
+            warehouseAdjustment.RestoreProcedure();
+
+            return;
+
             Helpers.SqlProgrammability.Inventories.GoodsReceipt goodsReceipt = new Helpers.SqlProgrammability.Inventories.GoodsReceipt(totalSmartCodingEntities);
             goodsReceipt.RestoreProcedure();
 
@@ -115,11 +120,7 @@ namespace TotalDAL.Repositories
             Helpers.SqlProgrammability.Commons.WarehouseAdjustmentType warehouseAdjustmentType = new Helpers.SqlProgrammability.Commons.WarehouseAdjustmentType(totalSmartCodingEntities);
             warehouseAdjustmentType.RestoreProcedure();
 
-            return;
-
-            Helpers.SqlProgrammability.Inventories.WarehouseAdjustment warehouseAdjustment = new Helpers.SqlProgrammability.Inventories.WarehouseAdjustment(totalSmartCodingEntities);
-            warehouseAdjustment.RestoreProcedure();
-
+            
 
             
             
@@ -179,7 +180,7 @@ namespace TotalDAL.Repositories
             get { return ((IObjectContextAdapter)this.totalSmartCodingEntities).ObjectContext; }
         }
 
-        protected TotalSmartCodingEntities TotalSmartCodingEntities { get { return this.totalSmartCodingEntities; } }
+        public TotalSmartCodingEntities TotalSmartCodingEntities { get { return this.totalSmartCodingEntities; } }
 
 
 

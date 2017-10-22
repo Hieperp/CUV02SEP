@@ -15,10 +15,10 @@ namespace TotalModel.Models
     {
         public int WarehouseAdjustmentDetailID { get; set; }
         public int WarehouseAdjustmentID { get; set; }
-        public int GoodsReceiptID { get; set; }
-        public int GoodsReceiptDetailID { get; set; }
+        public Nullable<int> GoodsReceiptID { get; set; }
+        public Nullable<int> GoodsReceiptDetailID { get; set; }
         public string GoodsReceiptReference { get; set; }
-        public System.DateTime GoodsReceiptEntryDate { get; set; }
+        public Nullable<System.DateTime> GoodsReceiptEntryDate { get; set; }
         public int CommodityID { get; set; }
         public string CommodityCode { get; set; }
         public string CommodityName { get; set; }
@@ -33,5 +33,7 @@ namespace TotalModel.Models
         public decimal Quantity { get; set; }
         public decimal LineVolume { get; set; }
         public string Remarks { get; set; }
+        public Nullable<decimal> QuantityAvailable { get; set; }
+        public Nullable<decimal> LineVolumeAvailable { get; set; }
     }
 }

@@ -6,23 +6,15 @@ using TotalDTO.Inventories;
 using TotalCore.Repositories.Inventories;
 using TotalCore.Services.Inventories;
 using TotalBase.Enums;
+using TotalDAL.Repositories.Inventories;
 
 namespace TotalService.Inventories
 {
     public class WarehouseAdjustmentService : GenericWithViewDetailService<WarehouseAdjustment, WarehouseAdjustmentDetail, WarehouseAdjustmentViewDetail, WarehouseAdjustmentDTO, WarehouseAdjustmentPrimitiveDTO, WarehouseAdjustmentDetailDTO>, IWarehouseAdjustmentService
     {
-        private readonly IGoodsReceiptAPIRepository goodsReceiptAPIRepository;
-        private readonly IGoodsReceiptService goodsReceiptService;
-
-        private readonly IWarehouseAdjustmentRepository warehouseAdjustmentRepository;
-
-        public WarehouseAdjustmentService(IWarehouseAdjustmentRepository warehouseAdjustmentRepository, IGoodsReceiptAPIRepository goodsReceiptAPIRepository, IGoodsReceiptService goodsReceiptService)
+        public WarehouseAdjustmentService(IWarehouseAdjustmentRepository warehouseAdjustmentRepository)
             : base(warehouseAdjustmentRepository, "WarehouseAdjustmentPostSaveValidate", "WarehouseAdjustmentSaveRelative", "WarehouseAdjustmentToggleApproved", null, null, "GetWarehouseAdjustmentViewDetails")
         {
-            this.warehouseAdjustmentRepository = warehouseAdjustmentRepository;
-
-            this.goodsReceiptAPIRepository = goodsReceiptAPIRepository;
-            this.goodsReceiptService = goodsReceiptService;
         }
 
         public override ICollection<WarehouseAdjustmentViewDetail> GetViewDetails(int warehouseAdjustmentID)
@@ -37,6 +29,9 @@ namespace TotalService.Inventories
 
             if (true) //Has Adjust +
             {
+                IGoodsReceiptAPIRepository goodsReceiptAPIRepository = new GoodsReceiptAPIRepository(this.GenericWithDetailRepository.TotalSmartCodingEntities);
+                IGoodsReceiptService goodsReceiptService = new GoodsReceiptService(new GoodsReceiptRepository(this.GenericWithDetailRepository.TotalSmartCodingEntities));
+
                 GoodsReceiptDTO goodsReceiptDTO = new GoodsReceiptDTO();
 
                 goodsReceiptDTO.EntryDate = warehouseAdjustmentDTO.EntryDate;
@@ -55,7 +50,7 @@ namespace TotalService.Inventories
                 goodsReceiptDTO.Description = warehouseAdjustmentDTO.Description;
                 goodsReceiptDTO.Remarks = warehouseAdjustmentDTO.Remarks;
 
-                List<PendingWarehouseAdjustmentDetail> pendingWarehouseAdjustmentDetails = this.warehouseAdjustmentRepository.GetPendingWarehouseAdjustmentDetails(warehouseAdjustment.LocationID, null, warehouseAdjustment.WarehouseAdjustmentID, warehouseAdjustment.WarehouseID, null, false);
+                List<PendingWarehouseAdjustmentDetail> pendingWarehouseAdjustmentDetails = goodsReceiptAPIRepository.GetPendingWarehouseAdjustmentDetails(warehouseAdjustment.LocationID, null, warehouseAdjustment.WarehouseAdjustmentID, warehouseAdjustment.WarehouseID, null, false);
                 foreach (PendingWarehouseAdjustmentDetail pendingWarehouseAdjustmentDetail in pendingWarehouseAdjustmentDetails)
                 {
                     GoodsReceiptDetailDTO goodsReceiptDetailDTO = new GoodsReceiptDetailDTO()
@@ -94,8 +89,8 @@ namespace TotalService.Inventories
                     goodsReceiptDTO.ViewDetails.Add(goodsReceiptDetailDTO);
                 }
 
-                this.goodsReceiptService.UserID = this.UserID; //THE BaseService.UserID IS AUTOMATICALLY SET BY CustomControllerAttribute OF CONTROLLER, ONLY WHEN BaseService IS INITIALIZED BY CONTROLLER. BUT HERE, THE this.goodsReceiptService IS INITIALIZED BY VehiclesInvoiceService => SO SHOULD SET goodsReceiptService.UserID = this.UserID
-                this.goodsReceiptService.Save(goodsReceiptDTO, true);
+                goodsReceiptService.UserID = this.UserID; //THE BaseService.UserID IS AUTOMATICALLY SET BY CustomControllerAttribute OF CONTROLLER, ONLY WHEN BaseService IS INITIALIZED BY CONTROLLER. BUT HERE, THE this.goodsReceiptService IS INITIALIZED BY VehiclesInvoiceService => SO SHOULD SET goodsReceiptService.UserID = this.UserID
+                goodsReceiptService.Save(goodsReceiptDTO, true);
             }
 
             return warehouseAdjustment;
