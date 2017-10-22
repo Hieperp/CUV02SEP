@@ -45,18 +45,23 @@ namespace TotalModel.Models
         public string Reference { get; set; }
         public Nullable<int> BatchID { get; set; }
         public Nullable<System.DateTime> BatchEntryDate { get; set; }
+        public Nullable<int> WarehouseAdjustmentDetailID { get; set; }
+        public Nullable<int> WarehouseAdjustmentID { get; set; }
     
         public virtual GoodsReceipt GoodsReceipt { get; set; }
         public virtual Warehouse Warehouse { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GoodsIssueDetail> GoodsIssueDetails { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<WarehouseAdjustmentDetail> WarehouseAdjustmentDetails { get; set; }
         public virtual Carton Carton { get; set; }
         public virtual Pack Pack { get; set; }
         public virtual Pallet Pallet { get; set; }
         public virtual PickupDetail PickupDetail { get; set; }
         public virtual Commodity Commodity { get; set; }
         public virtual BinLocation BinLocation { get; set; }
+        public virtual GoodsReceiptDetail GoodsReceiptDetails1 { get; set; }
+        public virtual GoodsReceiptDetail GoodsReceiptDetail1 { get; set; }
+        public virtual WarehouseAdjustmentDetail WarehouseAdjustmentDetail { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<WarehouseAdjustmentDetail> WarehouseAdjustmentDetails { get; set; }
     }
 }

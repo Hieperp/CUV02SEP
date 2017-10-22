@@ -95,6 +95,13 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             //queryString = queryString + "   IF (SELECT HasDeliveryAdvice FROM WarehouseAdjustments WHERE WarehouseAdjustmentID = @EntityID) = 1 " + "\r\n";
             queryString = queryString + "       BEGIN " + "\r\n";
 
+            queryString = queryString + "           IF (@SaveRelativeOption = 1) ";
+            queryString = queryString + "               BEGIN ";
+            queryString = queryString + "                   UPDATE          WarehouseAdjustmentDetails " + "\r\n";
+            queryString = queryString + "                   SET             WarehouseAdjustmentDetails.Reference = WarehouseAdjustments.Reference " + "\r\n";
+            queryString = queryString + "                   FROM            WarehouseAdjustments INNER JOIN WarehouseAdjustmentDetails ON WarehouseAdjustments.WarehouseAdjustmentID = @EntityID AND WarehouseAdjustments.WarehouseAdjustmentID = WarehouseAdjustmentDetails.WarehouseAdjustmentID " + "\r\n";
+            queryString = queryString + "               END ";
+
             queryString = queryString + "           UPDATE          GoodsReceiptDetails" + "\r\n";
             queryString = queryString + "           SET             GoodsReceiptDetails.QuantityIssue = ROUND(GoodsReceiptDetails.QuantityIssue + WarehouseAdjustmentDetails.Quantity * @SaveRelativeOption, " + (int)GlobalEnums.rndQuantity + "), GoodsReceiptDetails.LineVolumeIssue = ROUND(GoodsReceiptDetails.LineVolumeIssue + WarehouseAdjustmentDetails.LineVolume * @SaveRelativeOption, " + (int)GlobalEnums.rndVolume + ") " + "\r\n";
             queryString = queryString + "           FROM            (SELECT GoodsReceiptDetailID, SUM(-Quantity) AS Quantity, SUM(-LineVolume) AS LineVolume FROM WarehouseAdjustmentDetails WHERE WarehouseAdjustmentID = @EntityID AND Quantity < 0 GROUP BY GoodsReceiptDetailID) WarehouseAdjustmentDetails " + "\r\n";

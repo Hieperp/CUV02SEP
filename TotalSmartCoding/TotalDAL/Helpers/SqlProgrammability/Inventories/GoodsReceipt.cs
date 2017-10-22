@@ -26,6 +26,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             this.GetPendingPickupWarehouses();
             this.GetPendingPickups();
             this.GetPendingPickupDetails();
+            this.GetPendingWarehouseAdjustmentDetails();
 
             this.GoodsReceiptSaveRelative();
             this.GoodsReceiptPostSaveValidate();
@@ -209,7 +210,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
             return queryString;
         }
-        
+
         private string BuildSQLEdit(bool isPickupID, bool isPickupDetailIDs)
         {
             string queryString = "";
@@ -217,7 +218,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryString = queryString + "       SELECT      PickupDetails.PickupID, PickupDetails.PickupDetailID, PickupDetails.Reference AS PickupReference, PickupDetails.EntryDate AS PickupEntryDate, " + "\r\n";
             queryString = queryString + "                   Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, PickupDetails.BatchID, PickupDetails.BatchEntryDate, PickupDetails.BinLocationID, BinLocations.Code AS BinLocationCode, PickupDetails.PackID, Packs.Code AS PackCode, PickupDetails.CartonID, Cartons.Code AS CartonCode, PickupDetails.PalletID, Pallets.Code AS PalletCode, " + "\r\n";
             queryString = queryString + "                   ROUND(PickupDetails.Quantity - PickupDetails.QuantityReceipt + GoodsReceiptDetails.Quantity,  " + (int)GlobalEnums.rndQuantity + ") AS QuantityRemains, CAST(0 AS decimal(18, 2)) AS Quantity, ROUND(PickupDetails.LineVolume - PickupDetails.LineVolumeReceipt + GoodsReceiptDetails.LineVolume,  " + (int)GlobalEnums.rndVolume + ") AS LineVolumeRemains, PickupDetails.LineVolume, PickupDetails.PackCounts, PickupDetails.CartonCounts, PickupDetails.PalletCounts, PickupDetails.Remarks, CAST(1 AS bit) AS IsSelected " + "\r\n";
-            
+
             queryString = queryString + "       FROM        PickupDetails " + "\r\n";
             queryString = queryString + "                   INNER JOIN GoodsReceiptDetails ON GoodsReceiptDetails.GoodsReceiptID = @GoodsReceiptID AND PickupDetails.PickupDetailID = GoodsReceiptDetails.PickupDetailID" + (isPickupDetailIDs ? " AND PickupDetails.PickupDetailID NOT IN (SELECT Id FROM dbo.SplitToIntList (@PickupDetailIDs))" : "") + "\r\n";
             queryString = queryString + "                   INNER JOIN Commodities ON PickupDetails.CommodityID = Commodities.CommodityID " + "\r\n";
@@ -228,6 +229,114 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
             return queryString;
         }
+
+
+
+        #region WarehouseAdjustment
+
+        private void GetPendingWarehouseAdjustmentDetails()
+        {
+            string queryString;
+
+            queryString = " @LocationID Int, @GoodsReceiptID Int, @WarehouseAdjustmentID Int, @WarehouseID Int, @WarehouseAdjustmentDetailIDs varchar(3999), @IsReadonly bit " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+
+            queryString = queryString + "   BEGIN " + "\r\n";
+
+            queryString = queryString + "       IF  (@WarehouseAdjustmentID <> 0) " + "\r\n";
+            queryString = queryString + "           " + this.BuildSQLWarehouseAdjustment(true) + "\r\n";
+            queryString = queryString + "       ELSE " + "\r\n";
+            queryString = queryString + "           " + this.BuildSQLWarehouseAdjustment(false) + "\r\n";
+
+            queryString = queryString + "   END " + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("GetPendingWarehouseAdjustmentDetails", queryString);
+        }
+
+        private string BuildSQLWarehouseAdjustment(bool isWarehouseAdjustmentID)
+        {
+            string queryString = "";
+            queryString = queryString + "   BEGIN " + "\r\n";
+            queryString = queryString + "       IF  (@WarehouseAdjustmentDetailIDs <> '') " + "\r\n";
+            queryString = queryString + "           " + this.BuildSQLWarehouseAdjustmentWarehouseAdjustmentDetailIDs(isWarehouseAdjustmentID, true) + "\r\n";
+            queryString = queryString + "       ELSE " + "\r\n";
+            queryString = queryString + "           " + this.BuildSQLWarehouseAdjustmentWarehouseAdjustmentDetailIDs(isWarehouseAdjustmentID, false) + "\r\n";
+            queryString = queryString + "   END " + "\r\n";
+
+            return queryString;
+        }
+
+        private string BuildSQLWarehouseAdjustmentWarehouseAdjustmentDetailIDs(bool isWarehouseAdjustmentID, bool isWarehouseAdjustmentDetailIDs)
+        {
+            string queryString = "";
+            queryString = queryString + "   BEGIN " + "\r\n";
+
+            queryString = queryString + "       IF (@GoodsReceiptID <= 0) " + "\r\n";
+            queryString = queryString + "               BEGIN " + "\r\n";
+            queryString = queryString + "                   " + this.BuildSQLWarehouseAdjustmentNew(isWarehouseAdjustmentID, isWarehouseAdjustmentDetailIDs) + "\r\n";
+            queryString = queryString + "                   ORDER BY WarehouseAdjustmentDetails.EntryDate, WarehouseAdjustmentDetails.WarehouseAdjustmentID, WarehouseAdjustmentDetails.WarehouseAdjustmentDetailID " + "\r\n";
+            queryString = queryString + "               END " + "\r\n";
+            queryString = queryString + "       ELSE " + "\r\n";
+
+            queryString = queryString + "               IF (@IsReadonly = 1) " + "\r\n";
+            queryString = queryString + "                   BEGIN " + "\r\n";
+            queryString = queryString + "                       " + this.BuildSQLWarehouseAdjustmentEdit(isWarehouseAdjustmentID, isWarehouseAdjustmentDetailIDs) + "\r\n";
+            queryString = queryString + "                       ORDER BY WarehouseAdjustmentDetails.EntryDate, WarehouseAdjustmentDetails.WarehouseAdjustmentID, WarehouseAdjustmentDetails.WarehouseAdjustmentDetailID " + "\r\n";
+            queryString = queryString + "                   END " + "\r\n";
+
+            queryString = queryString + "               ELSE " + "\r\n"; //FULL SELECT FOR EDIT MODE
+
+            queryString = queryString + "                   BEGIN " + "\r\n";
+            queryString = queryString + "                       " + this.BuildSQLWarehouseAdjustmentNew(isWarehouseAdjustmentID, isWarehouseAdjustmentDetailIDs) + " WHERE WarehouseAdjustmentDetails.WarehouseAdjustmentDetailID NOT IN (SELECT WarehouseAdjustmentDetailID FROM GoodsReceiptDetails WHERE GoodsReceiptID = @GoodsReceiptID) " + "\r\n";
+            queryString = queryString + "                       UNION ALL " + "\r\n";
+            queryString = queryString + "                       " + this.BuildSQLWarehouseAdjustmentEdit(isWarehouseAdjustmentID, isWarehouseAdjustmentDetailIDs) + "\r\n";
+            queryString = queryString + "                       ORDER BY WarehouseAdjustmentDetails.EntryDate, WarehouseAdjustmentDetails.WarehouseAdjustmentID, WarehouseAdjustmentDetails.WarehouseAdjustmentDetailID " + "\r\n";
+            queryString = queryString + "                   END " + "\r\n";
+
+            queryString = queryString + "   END " + "\r\n";
+
+            return queryString;
+        }
+
+        private string BuildSQLWarehouseAdjustmentNew(bool isWarehouseAdjustmentID, bool isWarehouseAdjustmentDetailIDs)
+        {
+            string queryString = "";
+
+            queryString = queryString + "       SELECT      WarehouseAdjustmentDetails.WarehouseAdjustmentID, WarehouseAdjustmentDetails.WarehouseAdjustmentDetailID, WarehouseAdjustmentDetails.Reference AS WarehouseAdjustmentReference, WarehouseAdjustmentDetails.EntryDate AS WarehouseAdjustmentEntryDate, " + "\r\n";
+            queryString = queryString + "                   Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, WarehouseAdjustmentDetails.BatchID, WarehouseAdjustmentDetails.BatchEntryDate, WarehouseAdjustmentDetails.BinLocationID, BinLocations.Code AS BinLocationCode, WarehouseAdjustmentDetails.PackID, Packs.Code AS PackCode, WarehouseAdjustmentDetails.CartonID, Cartons.Code AS CartonCode, WarehouseAdjustmentDetails.PalletID, Pallets.Code AS PalletCode, " + "\r\n";
+            queryString = queryString + "                   ROUND(WarehouseAdjustmentDetails.Quantity - WarehouseAdjustmentDetails.QuantityReceipt,  " + (int)GlobalEnums.rndQuantity + ") AS QuantityRemains, CAST(0 AS decimal(18, 2)) AS Quantity, ROUND(WarehouseAdjustmentDetails.LineVolume - WarehouseAdjustmentDetails.LineVolumeReceipt,  " + (int)GlobalEnums.rndVolume + ") AS LineVolumeRemains, WarehouseAdjustmentDetails.LineVolume, WarehouseAdjustmentDetails.PackCounts, WarehouseAdjustmentDetails.CartonCounts, WarehouseAdjustmentDetails.PalletCounts, WarehouseAdjustmentDetails.Remarks, CAST(1 AS bit) AS IsSelected " + "\r\n";
+
+            queryString = queryString + "       FROM        WarehouseAdjustmentDetails " + "\r\n";
+            queryString = queryString + "                   INNER JOIN Commodities ON " + (isWarehouseAdjustmentID ? " WarehouseAdjustmentDetails.WarehouseAdjustmentID = @WarehouseAdjustmentID " : "WarehouseAdjustmentDetails.LocationID = @LocationID AND WarehouseAdjustmentDetails.WarehouseID = @WarehouseID ") + " AND WarehouseAdjustmentDetails.Quantity > 0 AND ROUND(WarehouseAdjustmentDetails.Quantity - WarehouseAdjustmentDetails.QuantityReceipt, " + (int)GlobalEnums.rndQuantity + ") > 0 AND WarehouseAdjustmentDetails.CommodityID = Commodities.CommodityID " + (isWarehouseAdjustmentDetailIDs ? " AND WarehouseAdjustmentDetails.WarehouseAdjustmentDetailID NOT IN (SELECT Id FROM dbo.SplitToIntList (@WarehouseAdjustmentDetailIDs))" : "") + "\r\n";
+            queryString = queryString + "                   INNER JOIN BinLocations ON WarehouseAdjustmentDetails.BinLocationID = BinLocations.BinLocationID " + "\r\n";
+            queryString = queryString + "                   LEFT JOIN Packs ON WarehouseAdjustmentDetails.PackID = Packs.PackID " + "\r\n";
+            queryString = queryString + "                   LEFT JOIN Cartons ON WarehouseAdjustmentDetails.CartonID = Cartons.CartonID " + "\r\n";
+            queryString = queryString + "                   LEFT JOIN Pallets ON WarehouseAdjustmentDetails.PalletID = Pallets.PalletID " + "\r\n";
+
+            return queryString;
+        }
+
+        private string BuildSQLWarehouseAdjustmentEdit(bool isWarehouseAdjustmentID, bool isWarehouseAdjustmentDetailIDs)
+        {
+            string queryString = "";
+
+            queryString = queryString + "       SELECT      WarehouseAdjustmentDetails.WarehouseAdjustmentID, WarehouseAdjustmentDetails.WarehouseAdjustmentDetailID, WarehouseAdjustmentDetails.Reference AS WarehouseAdjustmentReference, WarehouseAdjustmentDetails.EntryDate AS WarehouseAdjustmentEntryDate, " + "\r\n";
+            queryString = queryString + "                   Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, WarehouseAdjustmentDetails.BatchID, WarehouseAdjustmentDetails.BatchEntryDate, WarehouseAdjustmentDetails.BinLocationID, BinLocations.Code AS BinLocationCode, WarehouseAdjustmentDetails.PackID, Packs.Code AS PackCode, WarehouseAdjustmentDetails.CartonID, Cartons.Code AS CartonCode, WarehouseAdjustmentDetails.PalletID, Pallets.Code AS PalletCode, " + "\r\n";
+            queryString = queryString + "                   ROUND(WarehouseAdjustmentDetails.Quantity - WarehouseAdjustmentDetails.QuantityReceipt + GoodsReceiptDetails.Quantity,  " + (int)GlobalEnums.rndQuantity + ") AS QuantityRemains, CAST(0 AS decimal(18, 2)) AS Quantity, ROUND(WarehouseAdjustmentDetails.LineVolume - WarehouseAdjustmentDetails.LineVolumeReceipt + GoodsReceiptDetails.LineVolume,  " + (int)GlobalEnums.rndVolume + ") AS LineVolumeRemains, WarehouseAdjustmentDetails.LineVolume, WarehouseAdjustmentDetails.PackCounts, WarehouseAdjustmentDetails.CartonCounts, WarehouseAdjustmentDetails.PalletCounts, WarehouseAdjustmentDetails.Remarks, CAST(1 AS bit) AS IsSelected " + "\r\n";
+
+            queryString = queryString + "       FROM        WarehouseAdjustmentDetails " + "\r\n";
+            queryString = queryString + "                   INNER JOIN GoodsReceiptDetails ON GoodsReceiptDetails.GoodsReceiptID = @GoodsReceiptID AND WarehouseAdjustmentDetails.WarehouseAdjustmentDetailID = GoodsReceiptDetails.WarehouseAdjustmentDetailID" + (isWarehouseAdjustmentDetailIDs ? " AND WarehouseAdjustmentDetails.WarehouseAdjustmentDetailID NOT IN (SELECT Id FROM dbo.SplitToIntList (@WarehouseAdjustmentDetailIDs))" : "") + "\r\n";
+            queryString = queryString + "                   INNER JOIN Commodities ON WarehouseAdjustmentDetails.CommodityID = Commodities.CommodityID " + "\r\n";
+            queryString = queryString + "                   INNER JOIN BinLocations ON WarehouseAdjustmentDetails.BinLocationID = BinLocations.BinLocationID " + "\r\n";
+            queryString = queryString + "                   LEFT JOIN Packs ON WarehouseAdjustmentDetails.PackID = Packs.PackID " + "\r\n";
+            queryString = queryString + "                   LEFT JOIN Cartons ON WarehouseAdjustmentDetails.CartonID = Cartons.CartonID " + "\r\n";
+            queryString = queryString + "                   LEFT JOIN Pallets ON WarehouseAdjustmentDetails.PalletID = Pallets.PalletID " + "\r\n";
+
+            return queryString;
+        }
+
+        #endregion WarehouseAdjustment
 
         #endregion Y
 
@@ -254,7 +363,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryString = queryString + "           SET             PickupDetails.QuantityReceipt = ROUND(PickupDetails.QuantityReceipt + GoodsReceiptDetails.Quantity * @SaveRelativeOption, " + (int)GlobalEnums.rndQuantity + "), PickupDetails.LineVolumeReceipt = ROUND(PickupDetails.LineVolumeReceipt + GoodsReceiptDetails.LineVolume * @SaveRelativeOption, " + (int)GlobalEnums.rndVolume + ") " + "\r\n";
             queryString = queryString + "           FROM            GoodsReceiptDetails " + "\r\n";
             queryString = queryString + "                           INNER JOIN PickupDetails ON PickupDetails.Approved = 1 AND GoodsReceiptDetails.GoodsReceiptID = @EntityID AND GoodsReceiptDetails.PickupDetailID = PickupDetails.PickupDetailID " + "\r\n";
-            
+
             queryString = queryString + "           IF @@ROWCOUNT <> (SELECT COUNT(*) FROM GoodsReceiptDetails WHERE GoodsReceiptID = @EntityID) " + "\r\n";
             queryString = queryString + "               BEGIN " + "\r\n";
             queryString = queryString + "                   DECLARE     @msg NVARCHAR(300) = N'Phiếu giao hàng đã hủy, hoặc chưa duyệt' ; " + "\r\n";
@@ -376,9 +485,9 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             string queryString = "";
             queryString = queryString + "   BEGIN " + "\r\n";
 
-            queryString = queryString + "       SELECT      GoodsReceiptDetails.GoodsReceiptID, GoodsReceiptDetails.GoodsReceiptDetailID, GoodsReceiptDetails.Reference AS GoodsReceiptReference, GoodsReceiptDetails.EntryDate AS GoodsReceiptEntryDate, GoodsReceiptDetails.BatchEntryDate, GoodsReceiptDetails.WarehouseID, Warehouses.Code AS WarehouseCode, Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, GoodsReceiptDetails.BinLocationID, BinLocations.Code AS BinLocationCode, GoodsReceiptDetails.PackID, Packs.Code AS PackCode, GoodsReceiptDetails.CartonID, Cartons.Code AS CartonCode, GoodsReceiptDetails.PalletID, Pallets.Code AS PalletCode, GoodsReceiptDetails.Remarks, " + "\r\n";
+            queryString = queryString + "       SELECT      GoodsReceiptDetails.GoodsReceiptID, GoodsReceiptDetails.GoodsReceiptDetailID, GoodsReceiptDetails.Reference AS GoodsReceiptReference, GoodsReceiptDetails.EntryDate AS GoodsReceiptEntryDate, GoodsReceiptDetails.BatchID, GoodsReceiptDetails.BatchEntryDate, GoodsReceiptDetails.WarehouseID, Warehouses.Code AS WarehouseCode, Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, Commodities.PackageSize, Commodities.Volume, Commodities.PackageVolume, GoodsReceiptDetails.BinLocationID, BinLocations.Code AS BinLocationCode, GoodsReceiptDetails.PackID, Packs.Code AS PackCode, GoodsReceiptDetails.CartonID, Cartons.Code AS CartonCode, GoodsReceiptDetails.PalletID, Pallets.Code AS PalletCode, GoodsReceiptDetails.Remarks, " + "\r\n";
             queryString = queryString + "                   GoodsReceiptDetails.PackCounts, GoodsReceiptDetails.CartonCounts, GoodsReceiptDetails.PalletCounts, ROUND(GoodsReceiptDetails.Quantity - GoodsReceiptDetails.QuantityIssue, " + GlobalEnums.rndQuantity + ") AS QuantityAvailable, ROUND(GoodsReceiptDetails.LineVolume - GoodsReceiptDetails.LineVolumeIssue, " + GlobalEnums.rndVolume + ") AS LineVolumeAvailable, CAST(0 AS bit) AS IsSelected " + "\r\n";
-            
+
             queryString = queryString + "       FROM        GoodsReceiptDetails " + "\r\n";
             queryString = queryString + "                   INNER JOIN Warehouses ON ROUND(GoodsReceiptDetails.Quantity - GoodsReceiptDetails.QuantityIssue, " + GlobalEnums.rndQuantity + ") > 0 AND GoodsReceiptDetails.LocationID = @LocationID " + (isCommodityID ? " AND GoodsReceiptDetails.CommodityID = @CommodityID" : "") + " AND GoodsReceiptDetails.Approved = 1 AND Warehouses.Issuable = 1 AND GoodsReceiptDetails.WarehouseID = Warehouses.WarehouseID " + (isBatchID ? " AND GoodsReceiptDetails.BatchID = @BatchID" : "") + (isGoodsReceiptDetailIDs ? " AND GoodsReceiptDetails.GoodsReceiptDetailID NOT IN (SELECT Id FROM dbo.SplitToIntList (@GoodsReceiptDetailIDs))" : "") + "\r\n";
             queryString = queryString + "                   INNER JOIN Commodities ON GoodsReceiptDetails.CommodityID = Commodities.CommodityID " + "\r\n";

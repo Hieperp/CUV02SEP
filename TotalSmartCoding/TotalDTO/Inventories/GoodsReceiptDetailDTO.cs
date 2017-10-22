@@ -24,6 +24,12 @@ namespace TotalDTO.Inventories
         public string PickupReference { get; set; }
         public Nullable<System.DateTime> PickupEntryDate { get; set; }
 
+        public Nullable<int> WarehouseAdjustmentID { get; set; }
+        public Nullable<int> WarehouseAdjustmentDetailID { get; set; }
+
+        public string WarehouseAdjustmentReference { get; set; }
+        public Nullable<System.DateTime> WarehouseAdjustmentEntryDate { get; set; }
+
         public Nullable<int> BatchID { get; set; }
         public Nullable<System.DateTime> BatchEntryDate { get; set; }
 

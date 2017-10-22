@@ -44,8 +44,6 @@ namespace TotalModel.Models
         public virtual DbSet<GoodsIssue> GoodsIssues { get; set; }
         public virtual DbSet<SalesOrderDetail> SalesOrderDetails { get; set; }
         public virtual DbSet<WarehouseAdjustmentType> WarehouseAdjustmentTypes { get; set; }
-        public virtual DbSet<WarehouseAdjustment> WarehouseAdjustments { get; set; }
-        public virtual DbSet<WarehouseAdjustmentDetail> WarehouseAdjustmentDetails { get; set; }
         public virtual DbSet<Carton> Cartons { get; set; }
         public virtual DbSet<Pack> Packs { get; set; }
         public virtual DbSet<Pallet> Pallets { get; set; }
@@ -58,6 +56,8 @@ namespace TotalModel.Models
         public virtual DbSet<BinLocation> BinLocations { get; set; }
         public virtual DbSet<Batch> Batches { get; set; }
         public virtual DbSet<ModuleDetail> ModuleDetails { get; set; }
+        public virtual DbSet<WarehouseAdjustmentDetail> WarehouseAdjustmentDetails { get; set; }
+        public virtual DbSet<WarehouseAdjustment> WarehouseAdjustments { get; set; }
     
         public virtual ObjectResult<Nullable<int>> GetAccessLevel(Nullable<int> userID, Nullable<int> nMVNTaskID, Nullable<int> organizationalUnitID)
         {
@@ -1362,6 +1362,35 @@ namespace TotalModel.Models
                 new ObjectParameter("CommodityID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BatchAvailable>("GetBatchAvailables", locationIDParameter, deliveryAdviceIDParameter, commodityIDParameter);
+        }
+    
+        public virtual ObjectResult<PendingWarehouseAdjustmentDetail> GetPendingWarehouseAdjustmentDetails(Nullable<int> locationID, Nullable<int> goodsReceiptID, Nullable<int> warehouseAdjustmentID, Nullable<int> warehouseID, string warehouseAdjustmentDetailIDs, Nullable<bool> isReadonly)
+        {
+            var locationIDParameter = locationID.HasValue ?
+                new ObjectParameter("LocationID", locationID) :
+                new ObjectParameter("LocationID", typeof(int));
+    
+            var goodsReceiptIDParameter = goodsReceiptID.HasValue ?
+                new ObjectParameter("GoodsReceiptID", goodsReceiptID) :
+                new ObjectParameter("GoodsReceiptID", typeof(int));
+    
+            var warehouseAdjustmentIDParameter = warehouseAdjustmentID.HasValue ?
+                new ObjectParameter("WarehouseAdjustmentID", warehouseAdjustmentID) :
+                new ObjectParameter("WarehouseAdjustmentID", typeof(int));
+    
+            var warehouseIDParameter = warehouseID.HasValue ?
+                new ObjectParameter("WarehouseID", warehouseID) :
+                new ObjectParameter("WarehouseID", typeof(int));
+    
+            var warehouseAdjustmentDetailIDsParameter = warehouseAdjustmentDetailIDs != null ?
+                new ObjectParameter("WarehouseAdjustmentDetailIDs", warehouseAdjustmentDetailIDs) :
+                new ObjectParameter("WarehouseAdjustmentDetailIDs", typeof(string));
+    
+            var isReadonlyParameter = isReadonly.HasValue ?
+                new ObjectParameter("IsReadonly", isReadonly) :
+                new ObjectParameter("IsReadonly", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PendingWarehouseAdjustmentDetail>("GetPendingWarehouseAdjustmentDetails", locationIDParameter, goodsReceiptIDParameter, warehouseAdjustmentIDParameter, warehouseIDParameter, warehouseAdjustmentDetailIDsParameter, isReadonlyParameter);
         }
     }
 }

@@ -156,6 +156,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
 
                                 GoodsReceiptReference = goodsReceiptDetailAvailable.GoodsReceiptReference,
                                 GoodsReceiptEntryDate = goodsReceiptDetailAvailable.GoodsReceiptEntryDate,
+
                                 BatchEntryDate = goodsReceiptDetailAvailable.BatchEntryDate,
 
                                 BinLocationID = goodsReceiptDetailAvailable.BinLocationID,

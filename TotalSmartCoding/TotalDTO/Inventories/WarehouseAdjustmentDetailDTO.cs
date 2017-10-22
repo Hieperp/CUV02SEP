@@ -3,6 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 using TotalModel;
 using TotalDTO.Helpers;
+using System.Collections.Generic;
+using TotalModel.Helpers;
+using TotalBase;
 
 namespace TotalDTO.Inventories
 {
@@ -20,8 +23,14 @@ namespace TotalDTO.Inventories
 
         public int WarehouseAdjustmentTypeID { get; set; }
 
-        public int? GoodsReceiptID { get; set; }
-        public int? GoodsReceiptDetailID { get; set; }
+        public Nullable<int> GoodsReceiptID { get; set; }
+        public Nullable<int> GoodsReceiptDetailID { get; set; }
+
+        public string GoodsReceiptReference { get; set; }
+        public Nullable<System.DateTime> GoodsReceiptEntryDate { get; set; }
+
+        public Nullable<int> BatchID { get; set; }
+        public Nullable<System.DateTime> BatchEntryDate { get; set; }
 
         public int WarehouseID { get; set; }
         public string WarehouseCode { get; set; }
@@ -37,6 +46,14 @@ namespace TotalDTO.Inventories
 
         public Nullable<int> PalletID { get; set; }
         public string PalletCode { get; set; }
+
+        protected override List<ValidationRule> CreateRules()
+        {
+            List<ValidationRule> validationRules = base.CreateRules();
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<WarehouseAdjustmentDetailDTO>(p => p.WarehouseAdjustmentDetailID), "Số lượng xuất không được lớn hơn số lượng yêu cầu.", delegate { return (this.Quantity > 0 || (-this.Quantity <= this.QuantityAvailable && -this.LineVolume <= this.LineVolumeAvailable)); }));
+
+            return validationRules;
+        }
     }
 
 

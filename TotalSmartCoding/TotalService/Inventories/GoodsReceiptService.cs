@@ -15,6 +15,11 @@ namespace TotalService.Inventories
         {
         }
 
+        public new bool Save(GoodsReceiptDTO dto, bool useExistingTransaction)
+        {
+            return base.Save(dto, true);
+        }
+
         public override ICollection<GoodsReceiptViewDetail> GetViewDetails(int goodsReceiptID)
         {
             ObjectParameter[] parameters = new ObjectParameter[] { new ObjectParameter("GoodsReceiptID", goodsReceiptID) };

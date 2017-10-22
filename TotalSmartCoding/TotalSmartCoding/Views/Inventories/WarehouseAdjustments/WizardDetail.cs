@@ -96,15 +96,14 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
                         foreach (var checkedObjects in fastPendingList.CheckedObjects)
                         {
                             GoodsReceiptDetailAvailable goodsReceiptDetailAvailable = (GoodsReceiptDetailAvailable)checkedObjects;
-                            WarehouseAdjustmentDetailDTO warehouseAdjustmentDetailDTO = this.newWarehouseAdjustmentDetailDTO(goodsReceiptDetailAvailable.CommodityID, goodsReceiptDetailAvailable.CommodityCode, goodsReceiptDetailAvailable.CommodityName, goodsReceiptDetailAvailable.GoodsReceiptID, goodsReceiptDetailAvailable.GoodsReceiptDetailID, goodsReceiptDetailAvailable.BinLocationID, goodsReceiptDetailAvailable.BinLocationCode, goodsReceiptDetailAvailable.WarehouseID, goodsReceiptDetailAvailable.WarehouseCode, -(decimal)goodsReceiptDetailAvailable.QuantityAvailable, -(decimal)goodsReceiptDetailAvailable.LineVolumeAvailable, goodsReceiptDetailAvailable.PackID, goodsReceiptDetailAvailable.PackCode, goodsReceiptDetailAvailable.CartonID, goodsReceiptDetailAvailable.CartonCode, goodsReceiptDetailAvailable.PalletID, goodsReceiptDetailAvailable.PalletCode);
+                            WarehouseAdjustmentDetailDTO warehouseAdjustmentDetailDTO = this.newWarehouseAdjustmentDetailDTO(goodsReceiptDetailAvailable.CommodityID, goodsReceiptDetailAvailable.CommodityCode, goodsReceiptDetailAvailable.CommodityName, goodsReceiptDetailAvailable.PackageSize, goodsReceiptDetailAvailable.Volume, goodsReceiptDetailAvailable.PackageVolume, goodsReceiptDetailAvailable.GoodsReceiptID, goodsReceiptDetailAvailable.GoodsReceiptDetailID, goodsReceiptDetailAvailable.GoodsReceiptReference, goodsReceiptDetailAvailable.GoodsReceiptEntryDate, goodsReceiptDetailAvailable.BatchID, goodsReceiptDetailAvailable.BatchEntryDate, goodsReceiptDetailAvailable.BinLocationID, goodsReceiptDetailAvailable.BinLocationCode, goodsReceiptDetailAvailable.WarehouseID, goodsReceiptDetailAvailable.WarehouseCode, goodsReceiptDetailAvailable.PackID, goodsReceiptDetailAvailable.PackCode, goodsReceiptDetailAvailable.CartonID, goodsReceiptDetailAvailable.CartonCode, goodsReceiptDetailAvailable.PalletID, goodsReceiptDetailAvailable.PalletCode, goodsReceiptDetailAvailable.PackCounts, goodsReceiptDetailAvailable.CartonCounts, goodsReceiptDetailAvailable.PalletCounts, (decimal)goodsReceiptDetailAvailable.QuantityAvailable, (decimal)goodsReceiptDetailAvailable.LineVolumeAvailable, -(decimal)goodsReceiptDetailAvailable.QuantityAvailable, -(decimal)goodsReceiptDetailAvailable.LineVolumeAvailable);
                             this.warehouseAdjustmentViewModel.ViewDetails.Add(warehouseAdjustmentDetailDTO);
 
                             foreach (Carton carton in this.availableCartons.Where(w => w.PalletID == goodsReceiptDetailAvailable.PalletID))
                             {
-                                warehouseAdjustmentDetailDTO = this.newWarehouseAdjustmentDetailDTO(goodsReceiptDetailAvailable.CommodityID, goodsReceiptDetailAvailable.CommodityCode, goodsReceiptDetailAvailable.CommodityName, null, null, goodsReceiptDetailAvailable.BinLocationID, goodsReceiptDetailAvailable.BinLocationCode, goodsReceiptDetailAvailable.WarehouseID, goodsReceiptDetailAvailable.WarehouseCode, 1, carton.LineVolume, null, null, carton.CartonID, carton.Code, null, null);
+                                warehouseAdjustmentDetailDTO = this.newWarehouseAdjustmentDetailDTO(goodsReceiptDetailAvailable.CommodityID, goodsReceiptDetailAvailable.CommodityCode, goodsReceiptDetailAvailable.CommodityName, goodsReceiptDetailAvailable.PackageSize, goodsReceiptDetailAvailable.Volume, goodsReceiptDetailAvailable.PackageVolume, null, null, null, null, goodsReceiptDetailAvailable.BatchID, goodsReceiptDetailAvailable.BatchEntryDate, goodsReceiptDetailAvailable.BinLocationID, goodsReceiptDetailAvailable.BinLocationCode, goodsReceiptDetailAvailable.WarehouseID, goodsReceiptDetailAvailable.WarehouseCode, null, null, carton.CartonID, carton.Code, null, null, carton.PackCounts, 1, 0, 0, 0, 1, carton.LineVolume);
                                 this.warehouseAdjustmentViewModel.ViewDetails.Add(warehouseAdjustmentDetailDTO);
                             }
-
                         }
                     }
 
@@ -126,7 +125,7 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
             }
         }
 
-        private WarehouseAdjustmentDetailDTO newWarehouseAdjustmentDetailDTO(int commodityID, string commodityCode, string commodityName, int? goodsReceiptID, int? goodsReceiptDetailID, int binLocationID, string binLocationCode, int warehouseID, string warehouseCode, decimal quantity, decimal lineVolume, int? packID, string packCode, int? cartonID, string cartonCode, int? palletID, string palletCode)
+        private WarehouseAdjustmentDetailDTO newWarehouseAdjustmentDetailDTO(int commodityID, string commodityCode, string commodityName, string packageSize, decimal volume, decimal packageVolume, int? goodsReceiptID, int? goodsReceiptDetailID, string goodsReceiptReference, DateTime? goodsReceiptEntryDate, int? batchID, DateTime? batchEntryDate, int binLocationID, string binLocationCode, int warehouseID, string warehouseCode, int? packID, string packCode, int? cartonID, string cartonCode, int? palletID, string palletCode, int packCounts, int cartonCounts, int palletCounts, decimal quantityAvailable, decimal lineVolumeAvailable, decimal quantity, decimal lineVolume)
         {
             WarehouseAdjustmentDetailDTO warehouseAdjustmentDetailDTO = new WarehouseAdjustmentDetailDTO()
             {
@@ -136,8 +135,19 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
                 CommodityCode = commodityCode,
                 CommodityName = commodityName,
 
+                PackageSize = packageSize,
+
+                Volume = volume,
+                PackageVolume = packageVolume,
+
                 GoodsReceiptID = goodsReceiptID,
                 GoodsReceiptDetailID = goodsReceiptDetailID,
+
+                GoodsReceiptReference = goodsReceiptReference,
+                GoodsReceiptEntryDate = goodsReceiptEntryDate,
+
+                BatchID = batchID,
+                BatchEntryDate = batchEntryDate,
 
                 BinLocationID = binLocationID,
                 BinLocationCode = binLocationCode,
@@ -145,15 +155,22 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
                 WarehouseID = warehouseID,
                 WarehouseCode = warehouseCode,
 
-                Quantity = quantity,
-                LineVolume = lineVolume,
-
                 PackID = packID,
                 PackCode = packCode,
                 CartonID = cartonID,
                 CartonCode = cartonCode,
                 PalletID = palletID,
-                PalletCode = palletCode
+                PalletCode = palletCode,
+
+                PackCounts = packCounts,
+                CartonCounts = cartonCounts,
+                PalletCounts = palletCounts,
+
+                QuantityAvailable = quantityAvailable,
+                LineVolumeAvailable = lineVolumeAvailable,
+
+                Quantity = quantity,
+                LineVolume = lineVolume
             };
             return warehouseAdjustmentDetailDTO;
         }
