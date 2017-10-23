@@ -32,10 +32,15 @@ namespace TotalDAL.Repositories
             //return;
             //return;
 
+            Helpers.SqlProgrammability.Sales.TransferOrder transferOrder = new Helpers.SqlProgrammability.Sales.TransferOrder(totalSmartCodingEntities);
+            transferOrder.RestoreProcedure();
+
+            return;
+
             Helpers.SqlProgrammability.Inventories.WarehouseAdjustment warehouseAdjustment = new Helpers.SqlProgrammability.Inventories.WarehouseAdjustment(totalSmartCodingEntities);
             warehouseAdjustment.RestoreProcedure();
 
-            //return;
+            return;
 
             Helpers.SqlProgrammability.Inventories.GoodsReceipt goodsReceipt = new Helpers.SqlProgrammability.Inventories.GoodsReceipt(totalSmartCodingEntities);
             goodsReceipt.RestoreProcedure();

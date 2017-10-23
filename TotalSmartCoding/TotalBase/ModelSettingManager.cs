@@ -77,11 +77,7 @@ namespace TotalBase
                     return "H";
 
                 case GlobalEnums.NmvnTaskID.TransferOrder:
-                    return @"CASE WHEN @StockTransferTypeID = 
-                                    " + (int)GlobalEnums.StockTransferTypeID.VehicleTransfer + @" THEN 'LX' ELSE 
-                             CASE WHEN @StockTransferTypeID = 
-                                    " + (int)GlobalEnums.StockTransferTypeID.PartTransfer + @" THEN 'LP' ELSE '#' END 
-                             END";
+                    return "TO";
 
                 case GlobalEnums.NmvnTaskID.StockTransfer:
                     return @"CASE WHEN @StockTransferTypeID = 
