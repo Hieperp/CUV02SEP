@@ -363,7 +363,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             string queryString = " @EntityID int, @SaveRelativeOption int " + "\r\n"; //SaveRelativeOption: 1: Update, -1:Undo
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
-            
+
             queryString = queryString + "       BEGIN " + "\r\n";
 
             queryString = queryString + "           IF (@SaveRelativeOption = 1) ";
@@ -428,10 +428,11 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
         private void GoodsReceiptEditable()
         {
-            string[] queryArray = new string[1];
+            string[] queryArray = new string[2]; //IMPORTANT: THESE QUERIES SHOULD BE COPIED TO WarehouseAdjustmentEditable
 
             queryArray[0] = " SELECT TOP 1 @FoundEntity = GoodsReceiptID FROM GoodsIssueDetails WHERE GoodsReceiptID = @EntityID ";
-            //queryArray[1] = FOR TRANSFER??
+            queryArray[1] = " SELECT TOP 1 @FoundEntity = GoodsReceiptID FROM WarehouseAdjustmentDetails WHERE GoodsReceiptID = @EntityID ";
+            //queryArray[2] = FOR TRANSFER??
 
             this.totalSmartCodingEntities.CreateProcedureToCheckExisting("GoodsReceiptEditable", queryArray);
         }

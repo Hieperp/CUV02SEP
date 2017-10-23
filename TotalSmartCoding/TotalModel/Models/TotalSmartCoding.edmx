@@ -583,6 +583,7 @@
           <Property Name="WarehouseID" Type="int" Nullable="false" />
           <Property Name="WarehouseAdjustmentTypeID" Type="int" Nullable="false" />
           <Property Name="StorekeeperID" Type="int" Nullable="false" />
+          <Property Name="HasPositiveLine" Type="bit" Nullable="false" />
           <Property Name="AdjustmentJobs" Type="nvarchar" MaxLength="100" />
           <Property Name="UserID" Type="int" Nullable="false" />
           <Property Name="PreparedPersonID" Type="int" Nullable="false" />
@@ -2868,6 +2869,9 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
             <End Role="GoodsReceiptDetail" EntitySet="GoodsReceiptDetails" />
             <End Role="WarehouseAdjustmentDetail" EntitySet="WarehouseAdjustmentDetails" />
           </AssociationSet>
+          <FunctionImport Name="GetGoodsReceiptIDofWarehouseAdjustment" ReturnType="Collection(Int32)">
+          <Parameter Name="WarehouseAdjustmentID" Mode="In" Type="Int32" />
+          </FunctionImport>
           <EntitySet Name="WarehouseAdjustments" EntityType="TotalSmartCodingModel.WarehouseAdjustment" />
           <AssociationSet Name="FK_GoodsReceipts_WarehouseAdjustments" Association="TotalSmartCodingModel.FK_GoodsReceipts_WarehouseAdjustments">
             <End Role="WarehouseAdjustment" EntitySet="WarehouseAdjustments" />
@@ -2889,9 +2893,6 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
             <End Role="Warehouse" EntitySet="Warehouses" />
             <End Role="WarehouseAdjustment" EntitySet="WarehouseAdjustments" />
           </AssociationSet>
-          <FunctionImport Name="GetGoodsReceiptIDofWarehouseAdjustment" ReturnType="Collection(Int32)">
-            <Parameter Name="WarehouseAdjustmentID" Mode="In" Type="Int32" />
-          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
           <Property Type="Int32" Name="PickupID" Nullable="false" />
@@ -4985,6 +4986,7 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Name="WarehouseID" Type="Int32" Nullable="false" />
           <Property Name="WarehouseAdjustmentTypeID" Type="Int32" Nullable="false" />
           <Property Name="StorekeeperID" Type="Int32" Nullable="false" />
+          <Property Name="HasPositiveLine" Type="Boolean" Nullable="false" />
           <Property Name="AdjustmentJobs" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="UserID" Type="Int32" Nullable="false" />
           <Property Name="PreparedPersonID" Type="Int32" Nullable="false" />
@@ -6484,6 +6486,7 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetGoodsReceiptIDofWarehouseAdjustment" FunctionName="TotalSmartCodingModel.Store.GetGoodsReceiptIDofWarehouseAdjustment" />
           <EntitySetMapping Name="WarehouseAdjustments">
             <EntityTypeMapping TypeName="TotalSmartCodingModel.WarehouseAdjustment">
               <MappingFragment StoreEntitySet="WarehouseAdjustments">
@@ -6503,6 +6506,7 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
                 <ScalarProperty Name="PreparedPersonID" ColumnName="PreparedPersonID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="AdjustmentJobs" ColumnName="AdjustmentJobs" />
+                <ScalarProperty Name="HasPositiveLine" ColumnName="HasPositiveLine" />
                 <ScalarProperty Name="StorekeeperID" ColumnName="StorekeeperID" />
                 <ScalarProperty Name="WarehouseAdjustmentTypeID" ColumnName="WarehouseAdjustmentTypeID" />
                 <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
@@ -6512,7 +6516,6 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="GetGoodsReceiptIDofWarehouseAdjustment" FunctionName="TotalSmartCodingModel.Store.GetGoodsReceiptIDofWarehouseAdjustment" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

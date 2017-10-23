@@ -142,12 +142,18 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
         private void WarehouseAdjustmentEditable()
         {
-            string[] queryArray = new string[0];
+            string[] queryArray = new string[2]; //IMPORTANT: THESE QUERIES ARE COPIED FROM GoodsReceiptEditable
 
-            //queryArray[0] = " SELECT TOP 1 @FoundEntity = WarehouseAdjustmentID FROM WarehouseAdjustments WHERE WarehouseAdjustmentID = @EntityID AND (InActive = 1 OR InActivePartial = 1)"; //Don't allow approve after void
-            //queryArray[1] = " SELECT TOP 1 @FoundEntity = WarehouseAdjustmentID FROM WarehouseAdjustmentDetails WHERE WarehouseAdjustmentID = @EntityID ";
+            string queryString = "       DECLARE @GoodsReceiptID int " + "\r\n";
+            queryString = queryString + "       IF ((SELECT HasPositiveLine FROM WarehouseAdjustments WHERE WarehouseAdjustmentID = @EntityID) = 0) BEGIN SELECT @FoundEntity AS FoundEntity    RETURN 0 END " + "\r\n";
 
-            this.totalSmartCodingEntities.CreateProcedureToCheckExisting("WarehouseAdjustmentEditable", queryArray);
+            queryString = queryString + "       SELECT TOP 1 @GoodsReceiptID = GoodsReceiptID FROM GoodsReceipts WHERE WarehouseAdjustmentID = @EntityID " + "\r\n";
+            queryString = queryString + "       IF (@GoodsReceiptID IS NULL) BEGIN SELECT @FoundEntity AS FoundEntity    RETURN 0 END " + "\r\n";
+
+            queryArray[0] = " SELECT TOP 1 @FoundEntity = GoodsReceiptID FROM GoodsIssueDetails WHERE GoodsReceiptID = @GoodsReceiptID ";
+            queryArray[1] = " SELECT TOP 1 @FoundEntity = GoodsReceiptID FROM WarehouseAdjustmentDetails WHERE GoodsReceiptID = @GoodsReceiptID ";
+
+            this.totalSmartCodingEntities.CreateProcedureToCheckExisting("WarehouseAdjustmentEditable", queryArray, queryString);
         }
 
         private void WarehouseAdjustmentToggleApproved()
@@ -161,6 +167,10 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryString = queryString + "       IF @@ROWCOUNT = 1 " + "\r\n";
             queryString = queryString + "           BEGIN " + "\r\n";
             queryString = queryString + "               UPDATE          WarehouseAdjustmentDetails  SET Approved = @Approved WHERE WarehouseAdjustmentID = @EntityID ; " + "\r\n";
+
+            queryString = queryString + "               UPDATE          GoodsReceipts  SET Approved = @Approved, ApprovedDate = GetDate() WHERE WarehouseAdjustmentID = @EntityID " + "\r\n";
+            queryString = queryString + "               UPDATE          GoodsReceiptDetails  SET Approved = @Approved WHERE WarehouseAdjustmentID = @EntityID ; " + "\r\n";
+
             queryString = queryString + "           END " + "\r\n";
             queryString = queryString + "       ELSE " + "\r\n";
             queryString = queryString + "           BEGIN " + "\r\n";

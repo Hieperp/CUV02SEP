@@ -27,6 +27,7 @@ namespace TotalModel.Models
         public int WarehouseID { get; set; }
         public int WarehouseAdjustmentTypeID { get; set; }
         public int StorekeeperID { get; set; }
+        public bool HasPositiveLine { get; set; }
         public string AdjustmentJobs { get; set; }
         public int UserID { get; set; }
         public int PreparedPersonID { get; set; }

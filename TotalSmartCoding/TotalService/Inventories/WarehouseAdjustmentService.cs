@@ -28,14 +28,14 @@ namespace TotalService.Inventories
         {
             base.SaveRelative(warehouseAdjustment, saveRelativeOption);
 
-            if (true) //Has Adjust + ==> Should has a field
+            if (warehouseAdjustment.HasPositiveLine)
             {
                 IGoodsReceiptAPIRepository goodsReceiptAPIRepository = new GoodsReceiptAPIRepository(this.GenericWithDetailRepository.TotalSmartCodingEntities);
                 IGoodsReceiptService goodsReceiptService = new GoodsReceiptService(new GoodsReceiptRepository(this.GenericWithDetailRepository.TotalSmartCodingEntities));
 
                 //VERY IMPORTANT: THE BaseService.UserID IS AUTOMATICALLY SET BY CustomControllerAttribute OF CONTROLLER, ONLY WHEN BaseService IS INITIALIZED BY CONTROLLER. BUT HERE, THE this.goodsReceiptService IS INITIALIZED BY VehiclesInvoiceService => SO SHOULD SET goodsReceiptService.UserID = this.UserID
-                goodsReceiptService.UserID = this.UserID; 
-               
+                goodsReceiptService.UserID = this.UserID;
+
                 if (saveRelativeOption == SaveRelativeOption.Update)
                 {
                     GoodsReceiptDTO goodsReceiptDTO = new GoodsReceiptDTO();
@@ -92,7 +92,7 @@ namespace TotalService.Inventories
                         };
                         goodsReceiptDTO.ViewDetails.Add(goodsReceiptDetailDTO);
                     }
-                    
+
                     goodsReceiptService.Save(goodsReceiptDTO, true);
                 }
 

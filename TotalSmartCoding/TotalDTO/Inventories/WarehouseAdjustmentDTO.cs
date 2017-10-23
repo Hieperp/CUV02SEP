@@ -84,6 +84,8 @@ namespace TotalDTO.Inventories
 
         public override int PreparedPersonID { get { return 1; } }
 
+        public bool HasPositiveLine { get { return this.DtoDetails().Where(w => w.Quantity > 0).Count() > 0; } }
+
         public override string Caption
         {
             get { return this.WarehouseAdjustmentTypeName + " at Warehouse: " + this.WarehouseName + "             Total Quantity: " + this.TotalQuantity.ToString() + ",    Total Volume: " + this.TotalLineVolume.ToString("N2"); }
