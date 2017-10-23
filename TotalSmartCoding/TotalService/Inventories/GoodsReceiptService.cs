@@ -8,9 +8,32 @@ using TotalCore.Services.Inventories;
 
 namespace TotalService.Inventories
 {
-    public class GoodsReceiptService : GenericWithViewDetailService<GoodsReceipt, GoodsReceiptDetail, GoodsReceiptViewDetail, GoodsReceiptDTO, GoodsReceiptPrimitiveDTO, GoodsReceiptDetailDTO>, IGoodsReceiptService
+    public class GoodsReceiptService : GoodsReceiptBaseService, IGoodsReceiptService
     {
         public GoodsReceiptService(IGoodsReceiptRepository goodsReceiptRepository)
+            : base(goodsReceiptRepository)
+        {
+        }
+
+        public override bool Approvable(GoodsReceiptDTO dto)
+        {
+            return (dto.WarehouseAdjustmentID == null) && base.Approvable(dto);
+        }
+
+        public override bool UnApprovable(GoodsReceiptDTO dto)
+        {
+            return (dto.WarehouseAdjustmentID == null) && base.UnApprovable(dto);
+        }
+
+        public override bool Editable(GoodsReceiptDTO dto)
+        {
+            return (dto.WarehouseAdjustmentID == null) && base.Editable(dto);
+        }
+    }
+
+    public class GoodsReceiptBaseService : GenericWithViewDetailService<GoodsReceipt, GoodsReceiptDetail, GoodsReceiptViewDetail, GoodsReceiptDTO, GoodsReceiptPrimitiveDTO, GoodsReceiptDetailDTO>, IGoodsReceiptBaseService
+    {
+        public GoodsReceiptBaseService(IGoodsReceiptRepository goodsReceiptRepository)
             : base(goodsReceiptRepository, "GoodsReceiptPostSaveValidate", "GoodsReceiptSaveRelative", "GoodsReceiptToggleApproved", null, null, "GetGoodsReceiptViewDetails")
         {
         }

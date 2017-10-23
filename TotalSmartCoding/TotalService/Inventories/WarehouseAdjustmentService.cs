@@ -31,10 +31,10 @@ namespace TotalService.Inventories
             if (warehouseAdjustment.HasPositiveLine)
             {
                 IGoodsReceiptAPIRepository goodsReceiptAPIRepository = new GoodsReceiptAPIRepository(this.GenericWithDetailRepository.TotalSmartCodingEntities);
-                IGoodsReceiptService goodsReceiptService = new GoodsReceiptService(new GoodsReceiptRepository(this.GenericWithDetailRepository.TotalSmartCodingEntities));
+                IGoodsReceiptBaseService goodsReceiptBaseService = new GoodsReceiptBaseService(new GoodsReceiptRepository(this.GenericWithDetailRepository.TotalSmartCodingEntities));
 
-                //VERY IMPORTANT: THE BaseService.UserID IS AUTOMATICALLY SET BY CustomControllerAttribute OF CONTROLLER, ONLY WHEN BaseService IS INITIALIZED BY CONTROLLER. BUT HERE, THE this.goodsReceiptService IS INITIALIZED BY VehiclesInvoiceService => SO SHOULD SET goodsReceiptService.UserID = this.UserID
-                goodsReceiptService.UserID = this.UserID;
+                //VERY IMPORTANT: THE BaseService.UserID IS AUTOMATICALLY SET BY CustomControllerAttribute OF CONTROLLER, ONLY WHEN BaseService IS INITIALIZED BY CONTROLLER. BUT HERE, THE this.goodsReceiptBaseService IS INITIALIZED BY VehiclesInvoiceService => SO SHOULD SET goodsReceiptBaseService.UserID = this.UserID
+                goodsReceiptBaseService.UserID = this.UserID;
 
                 if (saveRelativeOption == SaveRelativeOption.Update)
                 {
@@ -93,14 +93,14 @@ namespace TotalService.Inventories
                         goodsReceiptDTO.ViewDetails.Add(goodsReceiptDetailDTO);
                     }
 
-                    goodsReceiptService.Save(goodsReceiptDTO, true);
+                    goodsReceiptBaseService.Save(goodsReceiptDTO, true);
                 }
 
                 if (saveRelativeOption == SaveRelativeOption.Undo)
                 {//NOTES: THIS UNDO REQUIRE: JUST SAVE ONLY ONE GoodsReceipt FOR AN WarehouseAdjustment
                     int? goodsReceiptID = goodsReceiptAPIRepository.GetGoodsReceiptIDofWarehouseAdjustment(warehouseAdjustment.WarehouseAdjustmentID);
                     if (goodsReceiptID != null)
-                        goodsReceiptService.Delete((int)goodsReceiptID, true);
+                        goodsReceiptBaseService.Delete((int)goodsReceiptID, true);
                     else
                         throw new Exception("Lỗi không tìm thấy phiếu nhập kho cũ của phiếu điều chỉnh kho này!" + "\r\n" + "\r\n" + "Vui lòng kiểm tra lại dữ liệu trước khi tiếp tục.");
                 }
