@@ -16,11 +16,14 @@ namespace TotalModel.Models
     {
         public int GoodsIssueDetailID { get; set; }
         public int GoodsIssueID { get; set; }
-        public int DeliveryAdviceDetailID { get; set; }
-        public int DeliveryAdviceID { get; set; }
+        public Nullable<int> DeliveryAdviceDetailID { get; set; }
+        public Nullable<int> DeliveryAdviceID { get; set; }
+        public Nullable<int> TransferOrderDetailID { get; set; }
+        public Nullable<int> TransferOrderID { get; set; }
         public int GoodsReceiptDetailID { get; set; }
         public int GoodsReceiptID { get; set; }
         public System.DateTime EntryDate { get; set; }
+        public string Reference { get; set; }
         public int LocationID { get; set; }
         public int CustomerID { get; set; }
         public int CommodityID { get; set; }
@@ -28,12 +31,12 @@ namespace TotalModel.Models
         public decimal LineVolume { get; set; }
         public string Remarks { get; set; }
         public bool Approved { get; set; }
-        public string Reference { get; set; }
     
+        public virtual Commodity Commodity { get; set; }
+        public virtual Customer Customer { get; set; }
         public virtual DeliveryAdviceDetail DeliveryAdviceDetail { get; set; }
         public virtual GoodsIssue GoodsIssue { get; set; }
-        public virtual Customer Customer { get; set; }
-        public virtual Commodity Commodity { get; set; }
         public virtual GoodsReceiptDetail GoodsReceiptDetail { get; set; }
+        public virtual TransferOrderDetail TransferOrderDetail { get; set; }
     }
 }
