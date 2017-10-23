@@ -7,6 +7,7 @@ using TotalCore.Repositories.Inventories;
 using TotalCore.Services.Inventories;
 using TotalBase.Enums;
 using TotalDAL.Repositories.Inventories;
+using System;
 
 namespace TotalService.Inventories
 {
@@ -23,77 +24,87 @@ namespace TotalService.Inventories
             return this.GetViewDetails(parameters);
         }
 
-        protected override WarehouseAdjustment SaveMe(WarehouseAdjustmentDTO warehouseAdjustmentDTO)
+        protected override void SaveRelative(WarehouseAdjustment warehouseAdjustment, SaveRelativeOption saveRelativeOption)
         {
-            WarehouseAdjustment warehouseAdjustment = base.SaveMe(warehouseAdjustmentDTO);
+            base.SaveRelative(warehouseAdjustment, saveRelativeOption);
 
-            if (true) //Has Adjust +
+            if (true) //Has Adjust + ==> Should has a field
             {
                 IGoodsReceiptAPIRepository goodsReceiptAPIRepository = new GoodsReceiptAPIRepository(this.GenericWithDetailRepository.TotalSmartCodingEntities);
                 IGoodsReceiptService goodsReceiptService = new GoodsReceiptService(new GoodsReceiptRepository(this.GenericWithDetailRepository.TotalSmartCodingEntities));
 
-                GoodsReceiptDTO goodsReceiptDTO = new GoodsReceiptDTO();
-
-                goodsReceiptDTO.EntryDate = warehouseAdjustmentDTO.EntryDate;
-                goodsReceiptDTO.WarehouseID = warehouseAdjustmentDTO.WarehouseID;
-                goodsReceiptDTO.WarehouseName = warehouseAdjustmentDTO.WarehouseName;
-
-                goodsReceiptDTO.WarehouseAdjustmentID = warehouseAdjustment.WarehouseAdjustmentID;
-
-                goodsReceiptDTO.GoodsReceiptTypeID = (int)GlobalEnums.GoodsReceiptTypeID.InventoryAdjustment;
-
-                goodsReceiptDTO.StorekeeperID = warehouseAdjustmentDTO.StorekeeperID;
-
-                goodsReceiptDTO.PreparedPersonID = warehouseAdjustmentDTO.PreparedPersonID;
-                goodsReceiptDTO.ApproverID = warehouseAdjustmentDTO.ApproverID;
-
-                goodsReceiptDTO.Description = warehouseAdjustmentDTO.Description;
-                goodsReceiptDTO.Remarks = warehouseAdjustmentDTO.Remarks;
-
-                List<PendingWarehouseAdjustmentDetail> pendingWarehouseAdjustmentDetails = goodsReceiptAPIRepository.GetPendingWarehouseAdjustmentDetails(warehouseAdjustment.LocationID, null, warehouseAdjustment.WarehouseAdjustmentID, warehouseAdjustment.WarehouseID, null, false);
-                foreach (PendingWarehouseAdjustmentDetail pendingWarehouseAdjustmentDetail in pendingWarehouseAdjustmentDetails)
+                //VERY IMPORTANT: THE BaseService.UserID IS AUTOMATICALLY SET BY CustomControllerAttribute OF CONTROLLER, ONLY WHEN BaseService IS INITIALIZED BY CONTROLLER. BUT HERE, THE this.goodsReceiptService IS INITIALIZED BY VehiclesInvoiceService => SO SHOULD SET goodsReceiptService.UserID = this.UserID
+                goodsReceiptService.UserID = this.UserID; 
+               
+                if (saveRelativeOption == SaveRelativeOption.Update)
                 {
-                    GoodsReceiptDetailDTO goodsReceiptDetailDTO = new GoodsReceiptDetailDTO()
+                    GoodsReceiptDTO goodsReceiptDTO = new GoodsReceiptDTO();
+
+                    goodsReceiptDTO.EntryDate = warehouseAdjustment.EntryDate;
+                    goodsReceiptDTO.WarehouseID = warehouseAdjustment.WarehouseID;
+
+                    goodsReceiptDTO.WarehouseAdjustmentID = warehouseAdjustment.WarehouseAdjustmentID;
+
+                    goodsReceiptDTO.GoodsReceiptTypeID = (int)GlobalEnums.GoodsReceiptTypeID.InventoryAdjustment;
+
+                    goodsReceiptDTO.StorekeeperID = warehouseAdjustment.StorekeeperID;
+
+                    goodsReceiptDTO.PreparedPersonID = warehouseAdjustment.PreparedPersonID;
+
+                    goodsReceiptDTO.Description = warehouseAdjustment.Description;
+                    goodsReceiptDTO.Remarks = warehouseAdjustment.Remarks;
+
+                    List<PendingWarehouseAdjustmentDetail> pendingWarehouseAdjustmentDetails = goodsReceiptAPIRepository.GetPendingWarehouseAdjustmentDetails(warehouseAdjustment.LocationID, null, warehouseAdjustment.WarehouseAdjustmentID, warehouseAdjustment.WarehouseID, null, false);
+                    foreach (PendingWarehouseAdjustmentDetail pendingWarehouseAdjustmentDetail in pendingWarehouseAdjustmentDetails)
                     {
-                        GoodsReceiptID = goodsReceiptDTO.GoodsReceiptID,
+                        GoodsReceiptDetailDTO goodsReceiptDetailDTO = new GoodsReceiptDetailDTO()
+                        {
+                            GoodsReceiptID = goodsReceiptDTO.GoodsReceiptID,
 
-                        WarehouseAdjustmentID = pendingWarehouseAdjustmentDetail.WarehouseAdjustmentID,
-                        WarehouseAdjustmentDetailID = pendingWarehouseAdjustmentDetail.WarehouseAdjustmentDetailID,
-                        WarehouseAdjustmentReference = pendingWarehouseAdjustmentDetail.WarehouseAdjustmentReference,
-                        WarehouseAdjustmentEntryDate = pendingWarehouseAdjustmentDetail.WarehouseAdjustmentEntryDate,
+                            WarehouseAdjustmentID = pendingWarehouseAdjustmentDetail.WarehouseAdjustmentID,
+                            WarehouseAdjustmentDetailID = pendingWarehouseAdjustmentDetail.WarehouseAdjustmentDetailID,
+                            WarehouseAdjustmentReference = pendingWarehouseAdjustmentDetail.WarehouseAdjustmentReference,
+                            WarehouseAdjustmentEntryDate = pendingWarehouseAdjustmentDetail.WarehouseAdjustmentEntryDate,
 
-                        BatchID = pendingWarehouseAdjustmentDetail.BatchID,
-                        BatchEntryDate = pendingWarehouseAdjustmentDetail.BatchEntryDate,
+                            BatchID = pendingWarehouseAdjustmentDetail.BatchID,
+                            BatchEntryDate = pendingWarehouseAdjustmentDetail.BatchEntryDate,
 
-                        BinLocationID = pendingWarehouseAdjustmentDetail.BinLocationID,
-                        BinLocationCode = pendingWarehouseAdjustmentDetail.BinLocationCode,
+                            BinLocationID = pendingWarehouseAdjustmentDetail.BinLocationID,
+                            BinLocationCode = pendingWarehouseAdjustmentDetail.BinLocationCode,
 
-                        CommodityID = pendingWarehouseAdjustmentDetail.CommodityID,
-                        CommodityCode = pendingWarehouseAdjustmentDetail.CommodityCode,
-                        CommodityName = pendingWarehouseAdjustmentDetail.CommodityName,
+                            CommodityID = pendingWarehouseAdjustmentDetail.CommodityID,
+                            CommodityCode = pendingWarehouseAdjustmentDetail.CommodityCode,
+                            CommodityName = pendingWarehouseAdjustmentDetail.CommodityName,
 
-                        Quantity = (decimal)pendingWarehouseAdjustmentDetail.QuantityRemains,
-                        LineVolume = (decimal)pendingWarehouseAdjustmentDetail.LineVolumeRemains,
+                            Quantity = (decimal)pendingWarehouseAdjustmentDetail.QuantityRemains,
+                            LineVolume = (decimal)pendingWarehouseAdjustmentDetail.LineVolumeRemains,
 
-                        PackID = pendingWarehouseAdjustmentDetail.PackID,
-                        PackCode = pendingWarehouseAdjustmentDetail.PackCode,
-                        CartonID = pendingWarehouseAdjustmentDetail.CartonID,
-                        CartonCode = pendingWarehouseAdjustmentDetail.CartonCode,
-                        PalletID = pendingWarehouseAdjustmentDetail.PalletID,
-                        PalletCode = pendingWarehouseAdjustmentDetail.PalletCode,
+                            PackID = pendingWarehouseAdjustmentDetail.PackID,
+                            PackCode = pendingWarehouseAdjustmentDetail.PackCode,
+                            CartonID = pendingWarehouseAdjustmentDetail.CartonID,
+                            CartonCode = pendingWarehouseAdjustmentDetail.CartonCode,
+                            PalletID = pendingWarehouseAdjustmentDetail.PalletID,
+                            PalletCode = pendingWarehouseAdjustmentDetail.PalletCode,
 
-                        PackCounts = pendingWarehouseAdjustmentDetail.PackCounts,
-                        CartonCounts = pendingWarehouseAdjustmentDetail.CartonCounts,
-                        PalletCounts = pendingWarehouseAdjustmentDetail.PalletCounts
-                    };
-                    goodsReceiptDTO.ViewDetails.Add(goodsReceiptDetailDTO);
+                            PackCounts = pendingWarehouseAdjustmentDetail.PackCounts,
+                            CartonCounts = pendingWarehouseAdjustmentDetail.CartonCounts,
+                            PalletCounts = pendingWarehouseAdjustmentDetail.PalletCounts
+                        };
+                        goodsReceiptDTO.ViewDetails.Add(goodsReceiptDetailDTO);
+                    }
+                    
+                    goodsReceiptService.Save(goodsReceiptDTO, true);
                 }
 
-                goodsReceiptService.UserID = this.UserID; //THE BaseService.UserID IS AUTOMATICALLY SET BY CustomControllerAttribute OF CONTROLLER, ONLY WHEN BaseService IS INITIALIZED BY CONTROLLER. BUT HERE, THE this.goodsReceiptService IS INITIALIZED BY VehiclesInvoiceService => SO SHOULD SET goodsReceiptService.UserID = this.UserID
-                goodsReceiptService.Save(goodsReceiptDTO, true);
+                if (saveRelativeOption == SaveRelativeOption.Undo)
+                {//NOTES: THIS UNDO REQUIRE: JUST SAVE ONLY ONE GoodsReceipt FOR AN WarehouseAdjustment
+                    int? goodsReceiptID = goodsReceiptAPIRepository.GetGoodsReceiptIDofWarehouseAdjustment(warehouseAdjustment.WarehouseAdjustmentID);
+                    if (goodsReceiptID != null)
+                        goodsReceiptService.Delete((int)goodsReceiptID, true);
+                    else
+                        throw new Exception("Lỗi không tìm thấy phiếu nhập kho cũ của phiếu điều chỉnh kho này!" + "\r\n" + "\r\n" + "Vui lòng kiểm tra lại dữ liệu trước khi tiếp tục.");
+                }
             }
-
-            return warehouseAdjustment;
         }
     }
 }

@@ -91,6 +91,7 @@ namespace TotalSmartCoding.Views.Productions
 
 
                 this.textBoxFillingLineName.TextBox.DataBindings.Add("Text", this.fillingData, "FillingLineName");
+                this.textBoxSettingDate.TextBox.DataBindings.Add("Text", this.fillingData, "SettingDateShortDateFormat");
                 this.textBoxCommodityCode.TextBox.DataBindings.Add("Text", this.fillingData, "CommodityCode");
                 this.textBoxCommodityAPICode.TextBox.DataBindings.Add("Text", this.fillingData, "CommodityAPICode");
                 this.textBoxCommodityOfficialCode.TextBox.DataBindings.Add("Text", this.fillingData, "CommodityOfficialCode");
@@ -409,9 +410,9 @@ namespace TotalSmartCoding.Views.Productions
         {
             try
             {
-                this.textBoxCurrentDate.TextBox.Text = DateTime.Now.ToString("dd/MM/yy");
-                if (this.fillingData != null)
-                {
+                //this.textBoxSettingDate.TextBox.Text = DateTime.Now.ToString("dd/MM/yy");
+                //if (this.fillingData != null)
+                //{
                     //if (this.fillingData.SettingMonthID != 1) //GlobalStaticFunction.DateToContinuosMonth()
                     //{
                     //    this.toolStripButtonWarningNewMonth.Visible = !this.toolStripButtonWarningNewMonth.Visible; this.toolStripLabelWarningNewMonth.Visible = !this.toolStripLabelWarningNewMonth.Visible;
@@ -420,7 +421,7 @@ namespace TotalSmartCoding.Views.Productions
                     //{
                     //    this.toolStripButtonWarningNewMonth.Visible = false; this.toolStripLabelWarningNewMonth.Visible = false;
                     //}
-                }
+                //}
             }
             catch (Exception exception)
             {

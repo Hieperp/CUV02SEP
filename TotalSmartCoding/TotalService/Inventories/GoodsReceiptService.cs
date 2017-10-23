@@ -17,7 +17,12 @@ namespace TotalService.Inventories
 
         public new bool Save(GoodsReceiptDTO dto, bool useExistingTransaction)
         {
-            return base.Save(dto, true);
+            return base.Save(dto, useExistingTransaction);
+        }
+
+        public new bool Delete(int id, bool useExistingTransaction)
+        {
+            return base.Delete(id, useExistingTransaction);
         }
 
         public override ICollection<GoodsReceiptViewDetail> GetViewDetails(int goodsReceiptID)

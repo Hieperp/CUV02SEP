@@ -275,37 +275,37 @@ namespace TotalService
 
         public virtual bool Delete(int id)
         {
-            if (id <= 0) return false;
-
-            using (var dbContextTransaction = this.genericRepository.BeginTransaction())
-            {
-                try
-                {
-                    TEntity entity = this.genericRepository.GetByID(id, true);
-                    TDto dto = Mapper.Map<TDto>(entity);
-
-                    if (!this.TryValidateModel(dto)) throw new System.ArgumentException("Lỗi xóa dữ liệu", "Dữ liệu này không hợp lệ.");
-                    if (!this.Deletable(dto)) throw new System.ArgumentException("Lỗi xóa dữ liệu", "Dữ liệu này không thể xóa được.");
-
-                    this.DeleteMe(dto, entity);
-
-                    this.genericRepository.SaveChanges();
-
-                    this.PostSaveValidate(entity);
-
-                    dbContextTransaction.Commit();
-
-                    return true;
-                }
-                catch (Exception ex)
-                {
-                    dbContextTransaction.Rollback();
-                    throw ex;
-                }
-            }
+            return this.Delete(id, false);
         }
 
+        protected virtual bool Delete(int id, bool useExistingTransaction)
+        {
+            if (id <= 0) return false;
 
+            if (useExistingTransaction)
+            {
+                this.DeleteThis(id);
+                return true;
+            }
+            else
+                using (var dbContextTransaction = this.genericRepository.BeginTransaction())
+                {
+                    try
+                    {
+                        this.DeleteThis(id);
+
+                        dbContextTransaction.Commit();
+
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        dbContextTransaction.Rollback();
+                        throw ex;
+                    }
+                }
+        }
+        
         public virtual bool Alter(TDto dto)
         {
             using (var dbContextTransaction = this.genericRepository.BeginTransaction())
@@ -417,6 +417,21 @@ namespace TotalService
             return entity;
         }
 
+
+        protected virtual void DeleteThis(int id)
+        {
+            TEntity entity = this.genericRepository.GetByID(id, true);
+            TDto dto = Mapper.Map<TDto>(entity);
+
+            if (!this.TryValidateModel(dto)) throw new System.ArgumentException("Lỗi xóa dữ liệu", "Dữ liệu này không hợp lệ.");
+            if (!this.Deletable(dto)) throw new System.ArgumentException("Lỗi xóa dữ liệu", "Dữ liệu này không thể xóa được.");
+
+            this.DeleteMe(dto, entity);
+
+            this.genericRepository.SaveChanges();
+
+            this.PostSaveValidate(entity);
+        }
 
         protected virtual void ToggleApprovedMe(TDto dto)
         {

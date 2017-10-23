@@ -143,11 +143,16 @@ namespace TotalDTO.Productions
             get { return this.settingDate; }
             set
             {
-                ApplyPropertyChange<FillingData, DateTime>(ref this.settingDate, o => o.SettingDate, value);
-                //this.SettingMonthID = GlobalStaticFunction.DateToContinuosMonth(this.SettingDate);
+                if (this.settingDate != value)
+                {
+                    ApplyPropertyChange<FillingData, DateTime>(ref this.settingDate, o => o.SettingDate, value);
+                    NotifyPropertyChanged("SettingDateShortDateFormat");
+                    //this.SettingMonthID = GlobalStaticFunction.DateToContinuosMonth(this.SettingDate);
+                }
             }
         }
 
+        public string SettingDateShortDateFormat { get { return this.settingDate.ToShortDateString(); } }
 
 
         //-------------------------

@@ -1392,5 +1392,14 @@ namespace TotalModel.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PendingWarehouseAdjustmentDetail>("GetPendingWarehouseAdjustmentDetails", locationIDParameter, goodsReceiptIDParameter, warehouseAdjustmentIDParameter, warehouseIDParameter, warehouseAdjustmentDetailIDsParameter, isReadonlyParameter);
         }
+    
+        public virtual ObjectResult<Nullable<int>> GetGoodsReceiptIDofWarehouseAdjustment(Nullable<int> warehouseAdjustmentID)
+        {
+            var warehouseAdjustmentIDParameter = warehouseAdjustmentID.HasValue ?
+                new ObjectParameter("WarehouseAdjustmentID", warehouseAdjustmentID) :
+                new ObjectParameter("WarehouseAdjustmentID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("GetGoodsReceiptIDofWarehouseAdjustment", warehouseAdjustmentIDParameter);
+        }
     }
 }

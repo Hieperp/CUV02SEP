@@ -1608,6 +1608,9 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Parameter Name="BatchID" Type="int" Mode="In" />
           <Parameter Name="GoodsReceiptDetailIDs" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="GetGoodsReceiptIDofWarehouseAdjustment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="WarehouseAdjustmentID" Type="int" Mode="In" />
+        </Function>
         <Function Name="GetGoodsReceiptIndexes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="AspUserID" Type="nvarchar" Mode="In" />
           <Parameter Name="FromDate" Type="datetime" Mode="In" />
@@ -2886,6 +2889,9 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
             <End Role="Warehouse" EntitySet="Warehouses" />
             <End Role="WarehouseAdjustment" EntitySet="WarehouseAdjustments" />
           </AssociationSet>
+          <FunctionImport Name="GetGoodsReceiptIDofWarehouseAdjustment" ReturnType="Collection(Int32)">
+            <Parameter Name="WarehouseAdjustmentID" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
           <Property Type="Int32" Name="PickupID" Nullable="false" />
@@ -6506,6 +6512,7 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetGoodsReceiptIDofWarehouseAdjustment" FunctionName="TotalSmartCodingModel.Store.GetGoodsReceiptIDofWarehouseAdjustment" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -16,6 +16,7 @@ namespace TotalCore.Repositories.Inventories
         
         List<PendingPickupDetail> GetPendingPickupDetails(int? locationID, int? goodsReceiptID, int? pickupID, int? warehouseID, string pickupDetailIDs, bool isReadonly);
         List<PendingWarehouseAdjustmentDetail> GetPendingWarehouseAdjustmentDetails(int? locationID, int? goodsReceiptID, int? warehouseAdjustmentID, int? warehouseID, string warehouseAdjustmentDetailIDs, bool isReadonly);
+        int? GetGoodsReceiptIDofWarehouseAdjustment(int? warehouseAdjustmentID);
 
         List<GoodsReceiptDetailAvailable> GetGoodsReceiptDetailAvailables(int? locationID, int? commodityID, int? batchID, string goodsReceiptDetailIDs);
     }

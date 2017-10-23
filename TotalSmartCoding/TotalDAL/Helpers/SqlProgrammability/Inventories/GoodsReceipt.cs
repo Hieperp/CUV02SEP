@@ -27,6 +27,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             this.GetPendingPickups();
             this.GetPendingPickupDetails();
             this.GetPendingWarehouseAdjustmentDetails();
+            this.GetGoodsReceiptIDofWarehouseAdjustment();
 
             this.GoodsReceiptSaveRelative();
             this.GoodsReceiptPostSaveValidate();
@@ -334,6 +335,20 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryString = queryString + "                   LEFT JOIN Pallets ON WarehouseAdjustmentDetails.PalletID = Pallets.PalletID " + "\r\n";
 
             return queryString;
+        }
+
+
+        private void GetGoodsReceiptIDofWarehouseAdjustment()
+        {
+            string queryString;
+
+            queryString = " @WarehouseAdjustmentID Int " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+
+            queryString = queryString + "   SELECT TOP 1 GoodsReceiptID FROM GoodsReceipts WHERE WarehouseAdjustmentID = @WarehouseAdjustmentID " + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("GetGoodsReceiptIDofWarehouseAdjustment", queryString);
         }
 
         #endregion WarehouseAdjustment
