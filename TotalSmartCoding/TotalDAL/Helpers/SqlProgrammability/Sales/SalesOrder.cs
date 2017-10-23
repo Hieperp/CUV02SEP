@@ -95,7 +95,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
             queryString = queryString + "   IF (@SaveRelativeOption = 1) ";
             queryString = queryString + "       BEGIN ";
             queryString = queryString + "           UPDATE          SalesOrderDetails " + "\r\n";
-            queryString = queryString + "           SET             SalesOrderDetails.Reference = SalesOrders.Reference, SalesOrderDetails.VoucherCode = SalesOrders.VoucherCode " + "\r\n";
+            queryString = queryString + "           SET             SalesOrderDetails.Reference = SalesOrders.Reference " + "\r\n";
             queryString = queryString + "           FROM            SalesOrders INNER JOIN SalesOrderDetails ON SalesOrders.SalesOrderID = @EntityID AND SalesOrders.SalesOrderID = SalesOrderDetails.SalesOrderID " + "\r\n";
             queryString = queryString + "       END ";
 

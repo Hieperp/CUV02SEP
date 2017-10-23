@@ -716,7 +716,7 @@
             // 
             this.olvDescription.AspectName = "Description";
             this.olvDescription.Text = "Description";
-            this.olvDescription.Width = 328;
+            this.olvDescription.Width = 308;
             // 
             // olvTotalQuantity
             // 
