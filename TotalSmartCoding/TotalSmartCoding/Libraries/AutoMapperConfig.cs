@@ -56,6 +56,13 @@ namespace TotalSmartCoding.Libraries
                 cfg.CreateMap<DeliveryAdviceDetailDTO, DeliveryAdviceDetail>();
 
 
+                cfg.CreateMap<TransferOrder, TransferOrderViewModel>();
+                cfg.CreateMap<TransferOrder, TransferOrderDTO>();
+                cfg.CreateMap<TransferOrderPrimitiveDTO, TransferOrder>();
+                cfg.CreateMap<TransferOrderViewDetail, TransferOrderDetailDTO>();
+                cfg.CreateMap<TransferOrderDetailDTO, TransferOrderDetail>();
+
+
                 cfg.CreateMap<GoodsIssue, GoodsIssueViewModel>();
                 cfg.CreateMap<GoodsIssue, GoodsIssueDTO>();
                 cfg.CreateMap<GoodsIssuePrimitiveDTO, GoodsIssue>();

@@ -110,11 +110,13 @@
     <Compile Include="Controllers\APIs\Productions\ScannerAPIs.cs" />
     <Compile Include="Controllers\APIs\Sales\DeliveryAdviceAPIs.cs" />
     <Compile Include="Controllers\APIs\Sales\SalesOrderAPIs.cs" />
+    <Compile Include="Controllers\APIs\Sales\TransferOrderAPIs.cs" />
     <Compile Include="Controllers\Inventories\GoodsIssueController.cs" />
     <Compile Include="Controllers\Inventories\PickupController.cs" />
     <Compile Include="Controllers\Inventories\WarehouseAdjustmentController.cs" />
     <Compile Include="Controllers\Sales\DeliveryAdviceController.cs" />
     <Compile Include="Controllers\Sales\SalesOrderController.cs" />
+    <Compile Include="Controllers\Sales\TransferOrderController.cs" />
     <Compile Include="Libraries\AutoMapperConfig.cs" />
     <Compile Include="Libraries\CommonConfigs.cs" />
     <Compile Include="Libraries\CommonRegistries.cs" />
@@ -170,6 +172,7 @@
     <Compile Include="ViewModels\Productions\PalletViewModel.cs" />
     <Compile Include="ViewModels\Sales\DeliveryAdviceViewModel.cs" />
     <Compile Include="ViewModels\Sales\SalesOrderViewModel.cs" />
+    <Compile Include="ViewModels\Sales\TransferOrderViewModel.cs" />
     <Compile Include="Views\Commons\CustomExceptionMessageBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -366,6 +369,18 @@
     <Compile Include="Views\Sales\SalesOrders\WizardMaster.designer.cs">
       <DependentUpon>WizardMaster.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Sales\TransferOrders\TransferOrders.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Sales\TransferOrders\TransferOrders.designer.cs">
+      <DependentUpon>TransferOrders.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sales\TransferOrders\WizardMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Sales\TransferOrders\WizardMaster.designer.cs">
+      <DependentUpon>WizardMaster.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
@@ -468,6 +483,12 @@
       <DependentUpon>SalesOrdersXYZ.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Sales\SalesOrders\WizardMaster.resx">
+      <DependentUpon>WizardMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Sales\TransferOrders\TransferOrders.resx">
+      <DependentUpon>TransferOrders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Sales\TransferOrders\WizardMaster.resx">
       <DependentUpon>WizardMaster.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config">

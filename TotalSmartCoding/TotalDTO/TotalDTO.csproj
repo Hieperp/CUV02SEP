@@ -100,6 +100,8 @@
     <Compile Include="Sales\DeliveryAdviceDTO.cs" />
     <Compile Include="Sales\SalesOrderDetailDTO.cs" />
     <Compile Include="Sales\SalesOrderDTO.cs" />
+    <Compile Include="Sales\TransferOrderDetailDTO.cs" />
+    <Compile Include="Sales\TransferOrderDTO.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

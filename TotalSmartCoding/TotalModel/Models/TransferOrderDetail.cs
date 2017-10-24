@@ -24,7 +24,6 @@ namespace TotalModel.Models
         public int TransferOrderID { get; set; }
         public System.DateTime EntryDate { get; set; }
         public string Reference { get; set; }
-        public string VoucherCode { get; set; }
         public int WarehouseIssueID { get; set; }
         public int WarehouseReceiptID { get; set; }
         public int LocationID { get; set; }

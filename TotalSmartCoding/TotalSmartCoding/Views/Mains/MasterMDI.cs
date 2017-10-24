@@ -36,6 +36,7 @@ using TotalSmartCoding.Views.Inventories.GoodsReceipts;
 
 using TotalSmartCoding.Views.Sales.SalesOrders;
 using TotalSmartCoding.Views.Sales.DeliveryAdvices;
+using TotalSmartCoding.Views.Sales.TransferOrders;
 
 namespace TotalSmartCoding.Views.Mains
 {
@@ -330,6 +331,10 @@ namespace TotalSmartCoding.Views.Mains
 
                         case (int)GlobalEnums.NmvnTaskID.DeliveryAdvice:
                             openingView = new DeliveryAdvices();
+                            break;
+
+                        case (int)GlobalEnums.NmvnTaskID.TransferOrder:
+                            openingView = new TransferOrders();
                             break;
 
                         case (int)GlobalEnums.NmvnTaskID.GoodsIssue:

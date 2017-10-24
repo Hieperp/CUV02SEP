@@ -131,11 +131,7 @@ namespace TotalDTO.Sales
 
         public bool HasOptionBatches
         {
-            get
-            {
-                foreach (var deliveryAdviceDetailDTO in this.DtoDetails()) { if (deliveryAdviceDetailDTO.BatchID != null) return true; }
-                return false;
-            }
+            get { return this.DtoDetails().Where(w => w.BatchID != null).Count() > 0; }
         }
     }
 

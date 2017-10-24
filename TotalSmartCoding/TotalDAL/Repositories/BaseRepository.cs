@@ -29,8 +29,8 @@ namespace TotalDAL.Repositories
 
             //if (!GlobalVariables.shouldRestoreProcedure) return;
 
-            //return;
-            //return;
+            return;
+            return;
 
             Helpers.SqlProgrammability.Sales.TransferOrder transferOrder = new Helpers.SqlProgrammability.Sales.TransferOrder(totalSmartCodingEntities);
             transferOrder.RestoreProcedure();

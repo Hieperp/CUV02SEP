@@ -518,6 +518,27 @@ namespace TotalModel.Models
 
 
 
+
+    public partial class TransferOrderIndex : IBaseIndex
+    {
+        public int Id { get { return this.TransferOrderID; } }
+    }
+
+    public partial class TransferOrder : IPrimitiveEntity, IBaseEntity, IBaseDetailEntity<TransferOrderDetail>
+    {
+        public int GetID() { return this.TransferOrderID; }
+
+        public ICollection<TransferOrderDetail> GetDetails() { return this.TransferOrderDetails; }
+    }
+
+    public partial class TransferOrderDetail : IPrimitiveEntity, IHelperEntryDate
+    {
+        public int GetID() { return this.TransferOrderDetailID; }
+    }
+
+
+
+
     public partial class GoodsIssueIndex : IBaseIndex
     {
         public int Id { get { return this.GoodsIssueID; } }

@@ -82,6 +82,11 @@ namespace TotalSmartCoding.Libraries
                 Kernel.Bind<IDeliveryAdviceAPIRepository>().To<DeliveryAdviceAPIRepository>();
                 Kernel.Bind<DeliveryAdviceViewModel>().ToSelf();
 
+                Kernel.Bind<ITransferOrderService>().To<TransferOrderService>();
+                Kernel.Bind<ITransferOrderRepository>().To<TransferOrderRepository>();
+                Kernel.Bind<ITransferOrderAPIRepository>().To<TransferOrderAPIRepository>();
+                Kernel.Bind<TransferOrderViewModel>().ToSelf();
+
                 Kernel.Bind<IGoodsIssueService>().To<GoodsIssueService>();
                 Kernel.Bind<IGoodsIssueRepository>().To<GoodsIssueRepository>();
                 Kernel.Bind<IGoodsIssueAPIRepository>().To<GoodsIssueAPIRepository>();

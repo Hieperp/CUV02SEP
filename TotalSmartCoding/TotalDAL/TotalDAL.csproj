@@ -94,6 +94,7 @@
     <Compile Include="Repositories\Productions\PalletRepository.cs" />
     <Compile Include="Repositories\Sales\DeliveryAdviceRepository.cs" />
     <Compile Include="Repositories\Sales\SalesOrderRepository.cs" />
+    <Compile Include="Repositories\Sales\TransferOrderRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

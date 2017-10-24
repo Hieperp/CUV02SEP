@@ -107,15 +107,15 @@
         <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssueDetails_GoodsIssues" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssueDetails_GoodsReceiptDetails" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssues_Locations" />
-        <EntityTypeShape EntityType="TotalSmartCodingModel.TransferOrderDetail" Width="1.5" PointX="23.75" PointY="9.25" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.TransferOrder" Width="1.5" PointX="13.5" PointY="3.375" />
-        <AssociationConnector Association="TotalSmartCodingModel.FK_TransferOrderDetails_Commodities" />
-        <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssueDetails_TransferOrderDetails" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssues_TransferOrders" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_TransferOrders_Locations" />
-        <AssociationConnector Association="TotalSmartCodingModel.FK_TransferOrderDetails_TransferOrders" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_TransferOrders_WarehouseIssues" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_TransferOrders_WarehouseReceipts" />
+        <EntityTypeShape EntityType="TotalSmartCodingModel.TransferOrderDetail" Width="1.5" PointX="23.75" PointY="9.375" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_TransferOrderDetails_Commodities" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssueDetails_TransferOrderDetails" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_TransferOrderDetails_TransferOrders" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
