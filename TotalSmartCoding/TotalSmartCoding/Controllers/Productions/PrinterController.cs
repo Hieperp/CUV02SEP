@@ -895,8 +895,8 @@ namespace TotalSmartCoding.Controllers.Productions
                         #endregion Reset Message: this.printerName != GlobalVariables.PrinterName.PalletLabel
 
 
-                        #region Read counter: printerName == PackInkjet || printerName == CartonInkjet
-                        if (this.printerName == GlobalVariables.PrinterName.PackInkjet || this.printerName == GlobalVariables.PrinterName.CartonInkjet)
+                        #region Read counter: printerName == DigitInkjet || printerName == PackInkjet || printerName == CartonInkjet
+                        if (this.printerName == GlobalVariables.PrinterName.DigitInkjet || this.printerName == GlobalVariables.PrinterName.PackInkjet || this.printerName == GlobalVariables.PrinterName.CartonInkjet)
                         {
                             this.ionetSocket.WritetoStream(GlobalVariables.charESC + "/U/001/1/?/" + GlobalVariables.charEOT);//    U: Read Counter 1 (ONLY COUNTER 1---COUNTER 2: THE SAME COUNTER 1: Principlely)
                             if (this.waitforDomino(ref receivedFeedback, false, "U", 13))
@@ -918,7 +918,7 @@ namespace TotalSmartCoding.Controllers.Productions
                     }
 
 
-                    if (!this.OnPrinting || this.printerName != GlobalVariables.PrinterName.CartonInkjet)
+                    if (!this.OnPrinting)
                     {
                         #region Get current status: ONLY printerName != PalletLabel
                         if (this.printerName != GlobalVariables.PrinterName.PalletLabel)
@@ -970,7 +970,7 @@ namespace TotalSmartCoding.Controllers.Productions
                 this.LoopRoutine = false;
                 this.MainStatus = exception.Message;
 
-                this.setLED(this.LedGreenOn, this.LedAmberOn, true);
+                this.setLED(true, this.LedAmberOn, true);
             }
             finally
             {
