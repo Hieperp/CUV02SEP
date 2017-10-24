@@ -65,11 +65,12 @@
             this.Remarks = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.naviGroupTop = new Guifreaks.Navisuite.NaviGroup(this.components);
             this.layoutTop = new System.Windows.Forms.TableLayoutPanel();
-            this.combexWarehouseIssueID = new CustomControls.CombexBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textexTransferJobs = new CustomControls.TextexBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.textexTransferJobs = new CustomControls.TextexBox();
+            this.textexWarehouseIssueName = new CustomControls.TextexBox();
+            this.textexWarehouseReceiptName = new CustomControls.TextexBox();
             this.panelLeft = new System.Windows.Forms.Panel();
             this.fastTransferOrderIndex = new BrightIdeasSoftware.FastObjectListView();
             this.olvID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -212,7 +213,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(351, 21);
             this.label1.TabIndex = 76;
-            this.label1.Text = "Salesperson";
+            this.label1.Text = "Supervisor";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label2
@@ -296,7 +297,7 @@
             // 
             // naviGroupDetails
             // 
-            this.naviGroupDetails.Caption = "   Sales order for";
+            this.naviGroupDetails.Caption = "   Transfer order";
             this.naviGroupDetails.Controls.Add(this.labelCaption);
             this.naviGroupDetails.Controls.Add(this.toolStripNaviGroup);
             this.naviGroupDetails.Controls.Add(this.panelCenter);
@@ -517,11 +518,12 @@
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.layoutTop.Controls.Add(this.combexWarehouseIssueID, 1, 1);
             this.layoutTop.Controls.Add(this.pictureBox1, 0, 1);
             this.layoutTop.Controls.Add(this.label3, 0, 2);
             this.layoutTop.Controls.Add(this.pictureBox2, 3, 1);
             this.layoutTop.Controls.Add(this.textexTransferJobs, 1, 2);
+            this.layoutTop.Controls.Add(this.textexWarehouseIssueName, 1, 1);
+            this.layoutTop.Controls.Add(this.textexWarehouseReceiptName, 4, 1);
             this.layoutTop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutTop.Location = new System.Drawing.Point(1, 2);
             this.layoutTop.Margin = new System.Windows.Forms.Padding(0);
@@ -535,23 +537,10 @@
             this.layoutTop.Size = new System.Drawing.Size(1135, 72);
             this.layoutTop.TabIndex = 8;
             // 
-            // combexWarehouseIssueID
-            // 
-            this.combexWarehouseIssueID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.combexWarehouseIssueID.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.combexWarehouseIssueID.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.combexWarehouseIssueID.Editable = true;
-            this.combexWarehouseIssueID.FormattingEnabled = true;
-            this.combexWarehouseIssueID.Location = new System.Drawing.Point(168, 15);
-            this.combexWarehouseIssueID.Name = "combexWarehouseIssueID";
-            this.combexWarehouseIssueID.ReadOnly = false;
-            this.combexWarehouseIssueID.Size = new System.Drawing.Size(489, 29);
-            this.combexWarehouseIssueID.TabIndex = 74;
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Image = global::TotalSmartCoding.Properties.Resources.Warehouse_Transfer_24;
             this.pictureBox1.Location = new System.Drawing.Point(129, 15);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(33, 28);
@@ -566,8 +555,18 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(159, 34);
             this.label3.TabIndex = 77;
-            this.label3.Text = "Shipping Address";
+            this.label3.Text = "Jobs Description";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pictureBox2.Image = global::TotalSmartCoding.Properties.Resources.Warehouse_Full_24;
+            this.pictureBox2.Location = new System.Drawing.Point(749, 15);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(33, 28);
+            this.pictureBox2.TabIndex = 79;
+            this.pictureBox2.TabStop = false;
             // 
             // textexTransferJobs
             // 
@@ -579,15 +578,25 @@
             this.textexTransferJobs.Size = new System.Drawing.Size(944, 28);
             this.textexTransferJobs.TabIndex = 78;
             // 
-            // pictureBox2
+            // textexWarehouseIssueName
             // 
-            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox2.Image = global::TotalSmartCoding.Properties.Resources.Phone_icon_24;
-            this.pictureBox2.Location = new System.Drawing.Point(749, 15);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(33, 28);
-            this.pictureBox2.TabIndex = 79;
-            this.pictureBox2.TabStop = false;
+            this.textexWarehouseIssueName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textexWarehouseIssueName.Editable = false;
+            this.textexWarehouseIssueName.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textexWarehouseIssueName.Location = new System.Drawing.Point(168, 15);
+            this.textexWarehouseIssueName.Name = "textexWarehouseIssueName";
+            this.textexWarehouseIssueName.Size = new System.Drawing.Size(489, 28);
+            this.textexWarehouseIssueName.TabIndex = 80;
+            // 
+            // textexWarehouseReceiptName
+            // 
+            this.textexWarehouseReceiptName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textexWarehouseReceiptName.Editable = false;
+            this.textexWarehouseReceiptName.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textexWarehouseReceiptName.Location = new System.Drawing.Point(788, 15);
+            this.textexWarehouseReceiptName.Name = "textexWarehouseReceiptName";
+            this.textexWarehouseReceiptName.Size = new System.Drawing.Size(324, 28);
+            this.textexWarehouseReceiptName.TabIndex = 81;
             // 
             // panelLeft
             // 
@@ -678,6 +687,7 @@
             // olvDeliveryDate
             // 
             this.olvDeliveryDate.AspectName = "DeliveryDate";
+            this.olvDeliveryDate.AspectToStringFormat = "{0:d}";
             this.olvDeliveryDate.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvDeliveryDate.Text = "Delivery Date";
             this.olvDeliveryDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -686,14 +696,14 @@
             // olvWarehouseIssueName
             // 
             this.olvWarehouseIssueName.AspectName = "WarehouseIssueName";
-            this.olvWarehouseIssueName.Text = "Issue Warehouse";
-            this.olvWarehouseIssueName.Width = 113;
+            this.olvWarehouseIssueName.Text = "Source Warehouse";
+            this.olvWarehouseIssueName.Width = 211;
             // 
             // olvWarehouseReceiptName
             // 
             this.olvWarehouseReceiptName.AspectName = "WarehouseReceiptName";
-            this.olvWarehouseReceiptName.Text = "Receipt Warehouse";
-            this.olvWarehouseReceiptName.Width = 309;
+            this.olvWarehouseReceiptName.Text = "Destination";
+            this.olvWarehouseReceiptName.Width = 211;
             // 
             // olvLocationCode
             // 
@@ -756,7 +766,7 @@
             this.Controls.Add(this.naviGroupDetails);
             this.Controls.Add(this.toolStripChildForm);
             this.Name = "TransferOrders";
-            this.Text = "Sales Orders";
+            this.Text = "Transfer Orders";
             this.Controls.SetChildIndex(this.toolStripChildForm, 0);
             this.Controls.SetChildIndex(this.naviGroupDetails, 0);
             this.Controls.SetChildIndex(this.fastTransferOrderIndex, 0);
@@ -825,7 +835,6 @@
         private BrightIdeasSoftware.OLVColumn olvDescription;
         private BrightIdeasSoftware.OLVColumn olvTotalQuantity;
         private BrightIdeasSoftware.OLVColumn olvTotalLineVolume;
-        private CustomControls.CombexBox combexWarehouseIssueID;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label3;
         private CustomControls.TextexBox textexTransferJobs;
@@ -840,6 +849,8 @@
         private BrightIdeasSoftware.OLVColumn olvDeliveryDate;
         private System.Windows.Forms.Label label4;
         private CustomControls.DateTimexPicker dateTimexDeliveryDate;
+        private CustomControls.TextexBox textexWarehouseIssueName;
+        private CustomControls.TextexBox textexWarehouseReceiptName;
 
     }
 }

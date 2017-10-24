@@ -160,8 +160,8 @@
   <data name="Excel" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Excel.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ToolbarImageStretch" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ToolbarImageStretch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Warehouse-Transfer-32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Warehouse-Transfer-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Close" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Close.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -193,8 +193,8 @@
   <data name="Check-Saki-Cross" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Check-Saki-Cross.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="export-arrow-32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\export-arrow-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Green-cross" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Green-cross.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="if_oil_64502-28" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\if_oil_64502-28.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -298,6 +298,9 @@
   <data name="Chromatix-Keyboard-Keys-11" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Chromatix-Keyboard-Keys-11.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="ToolbarImageStretch" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ToolbarImageStretch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="1368113865_132657" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\1368113865_132657.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -397,6 +400,9 @@
   <data name="Key (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Key (2).ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Warehouse-Full-20" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Warehouse-Full-20.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="UnVerify" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\UnVerify.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -417,6 +423,9 @@
   </data>
   <data name="Numbers-1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Numbers-1.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Warehouse-Transfer-20" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Warehouse-Transfer-20.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="folder-printer" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\folder-printer.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -445,6 +454,9 @@
   <data name="Chromatix-Keyboard-Keys-4" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Chromatix-Keyboard-Keys-4.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Warehouse-Transfer-24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Warehouse-Transfer-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Letter-uppercase-X" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Letter-uppercase-X.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -462,6 +474,9 @@
   </data>
   <data name="Fnd-Oxygen" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Fnd-Oxygen.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Adjust_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Adjust_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Thvg-Wood-Folders-Matte-Utilities" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Thvg-Wood-Folders-Matte-Utilities.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -522,6 +537,9 @@
   </data>
   <data name="Alarm-Warning" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Alarm-Warning.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Warehouse-Full-32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Warehouse-Full-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="8-icon641" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\8-icon641.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -967,9 +985,6 @@
   <data name="Background2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Background2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Green-cross" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Green-cross.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Benjigarner-Softdimension-Excel2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Benjigarner-Softdimension-Excel2.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -1029,6 +1044,9 @@
   </data>
   <data name="Alarm-Burn" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Alarm-Burn.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="export-arrow-32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\export-arrow-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Honeycomb-Barcode-Scanner-32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Honeycomb-Barcode-Scanner-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -1240,7 +1258,7 @@
   <data name="2D-Barcode" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\2D-Barcode.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Adjust_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Adjust_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Warehouse-Full-24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Warehouse-Full-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

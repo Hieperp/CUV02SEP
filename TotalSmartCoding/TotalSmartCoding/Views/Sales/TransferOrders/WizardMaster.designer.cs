@@ -47,10 +47,10 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.dateTimexEntryDate = new CustomControls.DateTimexPicker();
+            this.combexWarehouseReceiptID = new CustomControls.CombexBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.buttonESC = new System.Windows.Forms.ToolStripButton();
             this.buttonOK = new System.Windows.Forms.ToolStripButton();
-            this.combexWarehouseReceiptID = new CustomControls.CombexBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderMaster)).BeginInit();
             this.layoutTop.SuspendLayout();
@@ -85,7 +85,7 @@
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
-            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 22F));
+            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.layoutTop.Controls.Add(this.combexWarehouseIssueID, 3, 2);
             this.layoutTop.Controls.Add(this.label4, 2, 3);
             this.layoutTop.Controls.Add(this.label5, 2, 2);
@@ -134,7 +134,7 @@
             this.combexWarehouseIssueID.Margin = new System.Windows.Forms.Padding(1);
             this.combexWarehouseIssueID.Name = "combexWarehouseIssueID";
             this.combexWarehouseIssueID.ReadOnly = false;
-            this.combexWarehouseIssueID.Size = new System.Drawing.Size(427, 29);
+            this.combexWarehouseIssueID.Size = new System.Drawing.Size(425, 29);
             this.combexWarehouseIssueID.TabIndex = 74;
             // 
             // label4
@@ -169,7 +169,7 @@
             this.textexTransferJobs.Location = new System.Drawing.Point(268, 120);
             this.textexTransferJobs.Margin = new System.Windows.Forms.Padding(1);
             this.textexTransferJobs.Name = "textexTransferJobs";
-            this.textexTransferJobs.Size = new System.Drawing.Size(427, 28);
+            this.textexTransferJobs.Size = new System.Drawing.Size(425, 28);
             this.textexTransferJobs.TabIndex = 76;
             // 
             // combexSalespersonID
@@ -184,7 +184,7 @@
             this.combexSalespersonID.Margin = new System.Windows.Forms.Padding(1);
             this.combexSalespersonID.Name = "combexSalespersonID";
             this.combexSalespersonID.ReadOnly = false;
-            this.combexSalespersonID.Size = new System.Drawing.Size(427, 29);
+            this.combexSalespersonID.Size = new System.Drawing.Size(425, 29);
             this.combexSalespersonID.TabIndex = 80;
             // 
             // textexRemarks
@@ -195,7 +195,7 @@
             this.textexRemarks.Location = new System.Drawing.Point(268, 241);
             this.textexRemarks.Margin = new System.Windows.Forms.Padding(1);
             this.textexRemarks.Name = "textexRemarks";
-            this.textexRemarks.Size = new System.Drawing.Size(427, 28);
+            this.textexRemarks.Size = new System.Drawing.Size(425, 28);
             this.textexRemarks.TabIndex = 81;
             // 
             // label1
@@ -219,7 +219,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(177, 31);
             this.label2.TabIndex = 83;
-            this.label2.Text = "Salesperson";
+            this.label2.Text = "Supervisor";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label3
@@ -243,7 +243,7 @@
             this.dateTimexDeliveryDate.Margin = new System.Windows.Forms.Padding(1);
             this.dateTimexDeliveryDate.Name = "dateTimexDeliveryDate";
             this.dateTimexDeliveryDate.ReadOnly = false;
-            this.dateTimexDeliveryDate.Size = new System.Drawing.Size(427, 28);
+            this.dateTimexDeliveryDate.Size = new System.Drawing.Size(425, 28);
             this.dateTimexDeliveryDate.TabIndex = 85;
             // 
             // label6
@@ -266,7 +266,7 @@
             this.textexVoucherCode.Location = new System.Drawing.Point(268, 150);
             this.textexVoucherCode.Margin = new System.Windows.Forms.Padding(1);
             this.textexVoucherCode.Name = "textexVoucherCode";
-            this.textexVoucherCode.Size = new System.Drawing.Size(427, 28);
+            this.textexVoucherCode.Size = new System.Drawing.Size(425, 28);
             this.textexVoucherCode.TabIndex = 87;
             // 
             // label7
@@ -302,8 +302,23 @@
             this.dateTimexEntryDate.Margin = new System.Windows.Forms.Padding(1);
             this.dateTimexEntryDate.Name = "dateTimexEntryDate";
             this.dateTimexEntryDate.ReadOnly = false;
-            this.dateTimexEntryDate.Size = new System.Drawing.Size(427, 28);
+            this.dateTimexEntryDate.Size = new System.Drawing.Size(425, 28);
             this.dateTimexEntryDate.TabIndex = 90;
+            // 
+            // combexWarehouseReceiptID
+            // 
+            this.combexWarehouseReceiptID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.combexWarehouseReceiptID.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.combexWarehouseReceiptID.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.combexWarehouseReceiptID.Editable = true;
+            this.combexWarehouseReceiptID.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.combexWarehouseReceiptID.FormattingEnabled = true;
+            this.combexWarehouseReceiptID.Location = new System.Drawing.Point(268, 89);
+            this.combexWarehouseReceiptID.Margin = new System.Windows.Forms.Padding(1);
+            this.combexWarehouseReceiptID.Name = "combexWarehouseReceiptID";
+            this.combexWarehouseReceiptID.ReadOnly = false;
+            this.combexWarehouseReceiptID.Size = new System.Drawing.Size(425, 29);
+            this.combexWarehouseReceiptID.TabIndex = 91;
             // 
             // pictureBox2
             // 
@@ -340,21 +355,6 @@
             this.buttonOK.Size = new System.Drawing.Size(94, 52);
             this.buttonOK.Text = "Next";
             this.buttonOK.Click += new System.EventHandler(this.buttonOKESC_Click);
-            // 
-            // combexWarehouseReceiptID
-            // 
-            this.combexWarehouseReceiptID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.combexWarehouseReceiptID.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.combexWarehouseReceiptID.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.combexWarehouseReceiptID.Editable = true;
-            this.combexWarehouseReceiptID.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.combexWarehouseReceiptID.FormattingEnabled = true;
-            this.combexWarehouseReceiptID.Location = new System.Drawing.Point(268, 89);
-            this.combexWarehouseReceiptID.Margin = new System.Windows.Forms.Padding(1);
-            this.combexWarehouseReceiptID.Name = "combexWarehouseReceiptID";
-            this.combexWarehouseReceiptID.ReadOnly = false;
-            this.combexWarehouseReceiptID.Size = new System.Drawing.Size(427, 29);
-            this.combexWarehouseReceiptID.TabIndex = 91;
             // 
             // WizardMaster
             // 

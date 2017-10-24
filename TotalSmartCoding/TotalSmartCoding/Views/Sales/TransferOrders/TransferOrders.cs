@@ -11,10 +11,7 @@ using System.Windows.Forms;
 using Ninject;
 
 
-
 using TotalSmartCoding.Views.Mains;
-
-
 
 using TotalBase.Enums;
 using TotalSmartCoding.Properties;
@@ -71,7 +68,7 @@ namespace TotalSmartCoding.Views.Sales.TransferOrders
                 this.customTabLeft = new CustomTabControl();
                 this.customTabLeft.DisplayStyle = TabStyle.VisualStudio;
 
-                this.customTabLeft.TabPages.Add("tabLeftAA", "Sales Order  ");
+                this.customTabLeft.TabPages.Add("tabLeftAA", "Transfer Order  ");
                 this.customTabLeft.TabPages[0].BackColor = this.panelLeft.BackColor;
                 this.customTabLeft.TabPages[0].Padding = new Padding(15, 0, 0, 0);
                 this.customTabLeft.TabPages[0].Controls.Add(this.layoutLeft);
@@ -117,14 +114,15 @@ namespace TotalSmartCoding.Views.Sales.TransferOrders
 
         Binding bindingEntryDate;
         Binding bindingReference;
+        Binding bindingWarehouseIssueName;
+        Binding bindingWarehouseReceiptName;
         Binding bindingVoucherCode;
         Binding bindingDeliveryDate;
         Binding bindingTransferJobs;
         Binding bindingDescription;
         Binding bindingRemarks;
         Binding bindingCaption;
-
-        Binding bindingWarehouseIssueID;
+        
         Binding bindingSalespersonID;
 
         protected override void InitializeCommonControlBinding()
@@ -133,19 +131,14 @@ namespace TotalSmartCoding.Views.Sales.TransferOrders
 
             this.bindingEntryDate = this.dateTimexEntryDate.DataBindings.Add("Value", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderDTO>(p => p.EntryDate), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingReference = this.textexReference.DataBindings.Add("Text", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderDTO>(p => p.Reference), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingWarehouseIssueName = this.textexWarehouseIssueName.DataBindings.Add("Text", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderDTO>(p => p.WarehouseIssueName), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingWarehouseReceiptName = this.textexWarehouseReceiptName.DataBindings.Add("Text", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderDTO>(p => p.WarehouseReceiptName), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingVoucherCode = this.textexVoucherCode.DataBindings.Add("Text", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderDTO>(p => p.VoucherCode), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingDeliveryDate = this.dateTimexDeliveryDate.DataBindings.Add("Value", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderDTO>(p => p.DeliveryDate), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingTransferJobs = this.textexTransferJobs.DataBindings.Add("Text", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderDTO>(p => p.TransferJobs), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingDescription = this.textexDescription.DataBindings.Add("Text", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderDTO>(p => p.Description), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingRemarks = this.textexRemarks.DataBindings.Add("Text", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderDTO>(p => p.Remarks), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingCaption = this.labelCaption.DataBindings.Add("Text", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderDTO>(p => p.Caption));
-
-            WarehouseAPIs customerAPIs = new WarehouseAPIs(CommonNinject.Kernel.Get<IWarehouseAPIRepository>());
-
-            this.combexWarehouseIssueID.DataSource = customerAPIs.GetWarehouseBases();
-            this.combexWarehouseIssueID.DisplayMember = CommonExpressions.PropertyName<WarehouseBase>(p => p.Name);
-            this.combexWarehouseIssueID.ValueMember = CommonExpressions.PropertyName<WarehouseBase>(p => p.WarehouseID);
-            this.bindingWarehouseIssueID = this.combexWarehouseIssueID.DataBindings.Add("SelectedValue", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderViewModel>(p => p.WarehouseIssueID), true, DataSourceUpdateMode.OnPropertyChanged);
 
             EmployeeAPIs employeeAPIs = new EmployeeAPIs(CommonNinject.Kernel.Get<IEmployeeAPIRepository>());
 
@@ -156,36 +149,21 @@ namespace TotalSmartCoding.Views.Sales.TransferOrders
 
             this.bindingEntryDate.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);            
             this.bindingReference.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingWarehouseIssueName.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingWarehouseReceiptName.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingVoucherCode.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingDeliveryDate.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingTransferJobs.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingDescription.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingRemarks.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingCaption.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
-
-            this.bindingWarehouseIssueID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            
             this.bindingSalespersonID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.fastTransferOrderIndex.AboutToCreateGroups += fastTransferOrderIndex_AboutToCreateGroups;
 
             this.fastTransferOrderIndex.ShowGroups = true;
             this.olvApproved.Renderer = new MappedImageRenderer(new Object[] { false, Resources.Placeholder16 });
             this.naviGroupDetails.ExpandedHeight = this.naviGroupDetails.Size.Height;
-        }
-
-        protected override void CommonControl_BindingComplete(object sender, BindingCompleteEventArgs e)
-        {
-            base.CommonControl_BindingComplete(sender, e);
-            if (this.EditableMode && sender.Equals(this.bindingWarehouseIssueID))
-            {
-                if (this.combexWarehouseIssueID.SelectedItem != null)
-                {
-                    WarehouseBase customerBase = (WarehouseBase)this.combexWarehouseIssueID.SelectedItem;
-                    this.transferOrderViewModel.WarehouseIssueName = customerBase.Name;
-                    //THIS CommonControl_BindingComplete WILL BE RAISED FOR EVERY BINDING => SO WE CAN NOT UPDATE RELATIVE PROPERTY BY THIS WAY. SHOULD THINK OF NEW WAY FOR UPDATE SUCH RELATIVE PROPERTY (SUCH AS: ContactInfo, ShippingAddress OF Warehouse)
-                    //this.transferOrderViewModel.ContactInfo = customerBase.ContactInfo;
-                    //this.transferOrderViewModel.ShippingAddress = customerBase.ShippingAddress;
-                }
-            }
         }
 
         private void fastTransferOrderIndex_AboutToCreateGroups(object sender, CreateGroupsEventArgs e)

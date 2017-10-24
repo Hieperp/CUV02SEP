@@ -939,6 +939,12 @@
     <None Include="Resources\Loader-48.png" />
     <None Include="Resources\Inventory-maintenance-48.png" />
     <None Include="Resources\Adjust_48.png" />
+    <None Include="Resources\Warehouse-Full-32.png" />
+    <None Include="Resources\Warehouse-Transfer-32.png" />
+    <None Include="Resources\Warehouse-Transfer-20.png" />
+    <None Include="Resources\Warehouse-Full-20.png" />
+    <None Include="Resources\Warehouse-Transfer-24.png" />
+    <None Include="Resources\Warehouse-Full-24.png" />
     <Content Include="SmartCodingSolution.ico" />
     <None Include="Resources\Yellow-cross.ico" />
     <None Include="Resources\White-Pallet.ico" />
