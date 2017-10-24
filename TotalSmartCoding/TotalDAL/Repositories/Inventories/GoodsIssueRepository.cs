@@ -46,6 +46,16 @@ namespace TotalDAL.Repositories.Inventories
             return base.TotalSmartCodingEntities.GetPendingDeliveryAdviceDetails(locationID, goodsIssueID, deliveryAdviceID, customerID, deliveryAdviceDetailIDs, isReadonly).ToList();
         }
 
+
+        public List<PendingTransferOrder> GetPendingTransferOrders(int? locationID)
+        {
+            return base.TotalSmartCodingEntities.GetPendingTransferOrders(locationID).ToList();
+        }
+
+        public List<PendingTransferOrderWarehouse> GetPendingTransferOrderWarehouses(int? locationID)
+        {
+            return base.TotalSmartCodingEntities.GetPendingTransferOrderWarehouses(locationID).ToList();
+        }
     }
 
 

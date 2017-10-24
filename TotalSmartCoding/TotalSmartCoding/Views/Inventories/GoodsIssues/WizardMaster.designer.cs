@@ -34,17 +34,30 @@
             this.fastPendingDeliveryAdvices = new BrightIdeasSoftware.FastObjectListView();
             this.olvDeliveryAdviceEntryDate = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvDeliveryAdviceReference = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvSalesOrderReferences = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvVoucherCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvCustomerName1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.fastPendingDeliveryAdviceCustomers = new BrightIdeasSoftware.FastObjectListView();
             this.olvCustomerCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvCustomerName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.panelMaster = new System.Windows.Forms.Panel();
-            this.olvSalesOrderReferences = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvVoucherCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.fastPendingTransferOrderWarehouses = new BrightIdeasSoftware.FastObjectListView();
+            this.olvWarehouseReceiptCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvWarehouseReceiptName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.fastPendingTransferOrders = new BrightIdeasSoftware.FastObjectListView();
+            this.olvTransferOrderEntryDate = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvTransferOrderReference = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvTransferJobs = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn6 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn7 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvWarehouseIssueCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvWarehouseIssueName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastPendingDeliveryAdvices)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fastPendingDeliveryAdviceCustomers)).BeginInit();
             this.panelMaster.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fastPendingTransferOrderWarehouses)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fastPendingTransferOrders)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -98,15 +111,16 @@
             this.olvVoucherCode,
             this.olvCustomerName1});
             this.fastPendingDeliveryAdvices.Cursor = System.Windows.Forms.Cursors.Default;
+            this.fastPendingDeliveryAdvices.Dock = System.Windows.Forms.DockStyle.Top;
             this.fastPendingDeliveryAdvices.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fastPendingDeliveryAdvices.FullRowSelect = true;
             this.fastPendingDeliveryAdvices.HideSelection = false;
             this.fastPendingDeliveryAdvices.HighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
-            this.fastPendingDeliveryAdvices.Location = new System.Drawing.Point(-3, 313);
+            this.fastPendingDeliveryAdvices.Location = new System.Drawing.Point(0, 87);
             this.fastPendingDeliveryAdvices.Name = "fastPendingDeliveryAdvices";
             this.fastPendingDeliveryAdvices.OwnerDraw = true;
             this.fastPendingDeliveryAdvices.ShowGroups = false;
-            this.fastPendingDeliveryAdvices.Size = new System.Drawing.Size(1147, 232);
+            this.fastPendingDeliveryAdvices.Size = new System.Drawing.Size(1147, 112);
             this.fastPendingDeliveryAdvices.TabIndex = 69;
             this.fastPendingDeliveryAdvices.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastPendingDeliveryAdvices.UseCompatibleStateImageBehavior = false;
@@ -127,6 +141,18 @@
             this.olvDeliveryAdviceReference.AspectName = "DeliveryAdviceReference";
             this.olvDeliveryAdviceReference.Text = "Reference";
             this.olvDeliveryAdviceReference.Width = 80;
+            // 
+            // olvSalesOrderReferences
+            // 
+            this.olvSalesOrderReferences.AspectName = "SalesOrderReferences";
+            this.olvSalesOrderReferences.Text = "Sales Order";
+            this.olvSalesOrderReferences.Width = 120;
+            // 
+            // olvVoucherCode
+            // 
+            this.olvVoucherCode.AspectName = "VoucherCode";
+            this.olvVoucherCode.Text = "Voucher";
+            this.olvVoucherCode.Width = 180;
             // 
             // olvCustomerName1
             // 
@@ -152,7 +178,7 @@
             this.fastPendingDeliveryAdviceCustomers.Name = "fastPendingDeliveryAdviceCustomers";
             this.fastPendingDeliveryAdviceCustomers.OwnerDraw = true;
             this.fastPendingDeliveryAdviceCustomers.ShowGroups = false;
-            this.fastPendingDeliveryAdviceCustomers.Size = new System.Drawing.Size(1147, 447);
+            this.fastPendingDeliveryAdviceCustomers.Size = new System.Drawing.Size(1147, 78);
             this.fastPendingDeliveryAdviceCustomers.TabIndex = 70;
             this.fastPendingDeliveryAdviceCustomers.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastPendingDeliveryAdviceCustomers.UseCompatibleStateImageBehavior = false;
@@ -175,6 +201,8 @@
             // 
             // panelMaster
             // 
+            this.panelMaster.Controls.Add(this.fastPendingTransferOrders);
+            this.panelMaster.Controls.Add(this.fastPendingTransferOrderWarehouses);
             this.panelMaster.Controls.Add(this.fastPendingDeliveryAdvices);
             this.panelMaster.Controls.Add(this.fastPendingDeliveryAdviceCustomers);
             this.panelMaster.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -184,17 +212,123 @@
             this.panelMaster.Size = new System.Drawing.Size(1147, 548);
             this.panelMaster.TabIndex = 71;
             // 
-            // olvSalesOrderReferences
+            // fastPendingTransferOrderWarehouses
             // 
-            this.olvSalesOrderReferences.AspectName = "SalesOrderReferences";
-            this.olvSalesOrderReferences.Text = "Sales Order";
-            this.olvSalesOrderReferences.Width = 120;
+            this.fastPendingTransferOrderWarehouses.AllColumns.Add(this.olvWarehouseIssueCode);
+            this.fastPendingTransferOrderWarehouses.AllColumns.Add(this.olvWarehouseIssueName);
+            this.fastPendingTransferOrderWarehouses.AllColumns.Add(this.olvWarehouseReceiptCode);
+            this.fastPendingTransferOrderWarehouses.AllColumns.Add(this.olvWarehouseReceiptName);
+            this.fastPendingTransferOrderWarehouses.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.olvWarehouseIssueCode,
+            this.olvWarehouseIssueName,
+            this.olvWarehouseReceiptCode,
+            this.olvWarehouseReceiptName});
+            this.fastPendingTransferOrderWarehouses.Cursor = System.Windows.Forms.Cursors.Default;
+            this.fastPendingTransferOrderWarehouses.Dock = System.Windows.Forms.DockStyle.Top;
+            this.fastPendingTransferOrderWarehouses.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fastPendingTransferOrderWarehouses.FullRowSelect = true;
+            this.fastPendingTransferOrderWarehouses.HideSelection = false;
+            this.fastPendingTransferOrderWarehouses.HighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
+            this.fastPendingTransferOrderWarehouses.Location = new System.Drawing.Point(0, 199);
+            this.fastPendingTransferOrderWarehouses.Name = "fastPendingTransferOrderWarehouses";
+            this.fastPendingTransferOrderWarehouses.OwnerDraw = true;
+            this.fastPendingTransferOrderWarehouses.ShowGroups = false;
+            this.fastPendingTransferOrderWarehouses.Size = new System.Drawing.Size(1147, 117);
+            this.fastPendingTransferOrderWarehouses.TabIndex = 71;
+            this.fastPendingTransferOrderWarehouses.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
+            this.fastPendingTransferOrderWarehouses.UseCompatibleStateImageBehavior = false;
+            this.fastPendingTransferOrderWarehouses.UseFiltering = true;
+            this.fastPendingTransferOrderWarehouses.View = System.Windows.Forms.View.Details;
+            this.fastPendingTransferOrderWarehouses.VirtualMode = true;
             // 
-            // olvVoucherCode
+            // olvWarehouseReceiptCode
             // 
-            this.olvVoucherCode.AspectName = "VoucherCode";
-            this.olvVoucherCode.Text = "Voucher";
-            this.olvVoucherCode.Width = 180;
+            this.olvWarehouseReceiptCode.AspectName = "WarehouseReceiptCode";
+            this.olvWarehouseReceiptCode.Text = "Destination Code";
+            this.olvWarehouseReceiptCode.Width = 145;
+            // 
+            // olvWarehouseReceiptName
+            // 
+            this.olvWarehouseReceiptName.AspectName = "WarehouseReceiptName";
+            this.olvWarehouseReceiptName.FillsFreeSpace = true;
+            this.olvWarehouseReceiptName.Text = "Destination Name";
+            this.olvWarehouseReceiptName.Width = 255;
+            // 
+            // fastPendingTransferOrders
+            // 
+            this.fastPendingTransferOrders.AllColumns.Add(this.olvTransferOrderEntryDate);
+            this.fastPendingTransferOrders.AllColumns.Add(this.olvTransferOrderReference);
+            this.fastPendingTransferOrders.AllColumns.Add(this.olvColumn7);
+            this.fastPendingTransferOrders.AllColumns.Add(this.olvColumn6);
+            this.fastPendingTransferOrders.AllColumns.Add(this.olvTransferJobs);
+            this.fastPendingTransferOrders.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.olvTransferOrderEntryDate,
+            this.olvTransferOrderReference,
+            this.olvColumn7,
+            this.olvColumn6,
+            this.olvTransferJobs});
+            this.fastPendingTransferOrders.Cursor = System.Windows.Forms.Cursors.Default;
+            this.fastPendingTransferOrders.Dock = System.Windows.Forms.DockStyle.Top;
+            this.fastPendingTransferOrders.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fastPendingTransferOrders.FullRowSelect = true;
+            this.fastPendingTransferOrders.HideSelection = false;
+            this.fastPendingTransferOrders.HighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
+            this.fastPendingTransferOrders.Location = new System.Drawing.Point(0, 316);
+            this.fastPendingTransferOrders.Name = "fastPendingTransferOrders";
+            this.fastPendingTransferOrders.OwnerDraw = true;
+            this.fastPendingTransferOrders.ShowGroups = false;
+            this.fastPendingTransferOrders.Size = new System.Drawing.Size(1147, 112);
+            this.fastPendingTransferOrders.TabIndex = 72;
+            this.fastPendingTransferOrders.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
+            this.fastPendingTransferOrders.UseCompatibleStateImageBehavior = false;
+            this.fastPendingTransferOrders.UseFiltering = true;
+            this.fastPendingTransferOrders.View = System.Windows.Forms.View.Details;
+            this.fastPendingTransferOrders.VirtualMode = true;
+            // 
+            // olvTransferOrderEntryDate
+            // 
+            this.olvTransferOrderEntryDate.AspectName = "TransferOrderEntryDate";
+            this.olvTransferOrderEntryDate.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvTransferOrderEntryDate.Text = "Order Date";
+            this.olvTransferOrderEntryDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvTransferOrderEntryDate.Width = 120;
+            // 
+            // olvTransferOrderReference
+            // 
+            this.olvTransferOrderReference.AspectName = "TransferOrderReference";
+            this.olvTransferOrderReference.Text = "Reference";
+            this.olvTransferOrderReference.Width = 80;
+            // 
+            // olvTransferJobs
+            // 
+            this.olvTransferJobs.AspectName = "TransferJobs";
+            this.olvTransferJobs.DisplayIndex = 2;
+            this.olvTransferJobs.Text = "Jobs Description";
+            this.olvTransferJobs.Width = 120;
+            // 
+            // olvColumn6
+            // 
+            this.olvColumn6.AspectName = "VoucherCode";
+            this.olvColumn6.Text = "Voucher";
+            this.olvColumn6.Width = 180;
+            // 
+            // olvColumn7
+            // 
+            this.olvColumn7.AspectName = "WarehouseReceiptName";
+            this.olvColumn7.DisplayIndex = 4;
+            this.olvColumn7.FillsFreeSpace = true;
+            this.olvColumn7.Text = "Destination";
+            this.olvColumn7.Width = 192;
+            // 
+            // olvWarehouseIssueCode
+            // 
+            this.olvWarehouseIssueCode.AspectName = "WarehouseIssueCode";
+            this.olvWarehouseIssueCode.Text = "Source Warehouse";
+            // 
+            // olvWarehouseIssueName
+            // 
+            this.olvWarehouseIssueName.AspectName = "WarehouseIssueName";
+            this.olvWarehouseIssueName.Text = "Source Warehouse";
             // 
             // WizardMaster
             // 
@@ -215,6 +349,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.fastPendingDeliveryAdvices)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fastPendingDeliveryAdviceCustomers)).EndInit();
             this.panelMaster.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.fastPendingTransferOrderWarehouses)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fastPendingTransferOrders)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -235,5 +371,16 @@
         private BrightIdeasSoftware.OLVColumn olvDeliveryAdviceReference;
         private BrightIdeasSoftware.OLVColumn olvSalesOrderReferences;
         private BrightIdeasSoftware.OLVColumn olvVoucherCode;
+        private BrightIdeasSoftware.FastObjectListView fastPendingTransferOrders;
+        private BrightIdeasSoftware.OLVColumn olvTransferOrderEntryDate;
+        private BrightIdeasSoftware.OLVColumn olvTransferOrderReference;
+        private BrightIdeasSoftware.OLVColumn olvTransferJobs;
+        private BrightIdeasSoftware.OLVColumn olvColumn6;
+        private BrightIdeasSoftware.OLVColumn olvColumn7;
+        private BrightIdeasSoftware.FastObjectListView fastPendingTransferOrderWarehouses;
+        private BrightIdeasSoftware.OLVColumn olvWarehouseReceiptCode;
+        private BrightIdeasSoftware.OLVColumn olvWarehouseReceiptName;
+        private BrightIdeasSoftware.OLVColumn olvWarehouseIssueCode;
+        private BrightIdeasSoftware.OLVColumn olvWarehouseIssueName;
     }
 }

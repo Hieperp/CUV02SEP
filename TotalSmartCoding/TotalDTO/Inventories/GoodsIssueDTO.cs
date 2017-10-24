@@ -46,12 +46,27 @@ namespace TotalDTO.Inventories
         [DefaultValue(null)]
         public string DeliveryAdviceReferences { get; set; }
 
-        private int customerID;
+
+
+        private Nullable<int> transferOrderID;
         [DefaultValue(null)]
-        public int CustomerID
+        public Nullable<int> TransferOrderID
+        {
+            get { return this.transferOrderID; }
+            set { ApplyPropertyChange<GoodsIssuePrimitiveDTO, Nullable<int>>(ref this.transferOrderID, o => o.TransferOrderID, value); }
+        }
+        [DefaultValue(null)]
+        public Nullable<DateTime> TransferOrderEntryDate { get; set; }
+        [DefaultValue(null)]
+        public string TransferOrderReference { get; set; }
+
+
+        private Nullable<int> customerID;
+        [DefaultValue(null)]
+        public Nullable<int> CustomerID
         {
             get { return this.customerID; }
-            set { ApplyPropertyChange<GoodsIssuePrimitiveDTO, int>(ref this.customerID, o => o.CustomerID, value); }
+            set { ApplyPropertyChange<GoodsIssuePrimitiveDTO, Nullable<int>>(ref this.customerID, o => o.CustomerID, value); }
         }
         private string customerName;
         [DefaultValue(null)]
@@ -60,6 +75,38 @@ namespace TotalDTO.Inventories
             get { return this.customerName; }
             set { ApplyPropertyChange<GoodsIssueDTO, string>(ref this.customerName, o => o.CustomerName, value); }
         }
+
+
+        private Nullable<int> warehouseID;
+        [DefaultValue(null)]
+        public Nullable<int> WarehouseID
+        {
+            get { return this.warehouseID; }
+            set { ApplyPropertyChange<GoodsIssuePrimitiveDTO, Nullable<int>>(ref this.warehouseID, o => o.WarehouseID, value); }
+        }
+        private string warehouseName;
+        [DefaultValue(null)]
+        public string WarehouseName
+        {
+            get { return this.warehouseName; }
+            set { ApplyPropertyChange<GoodsIssueDTO, string>(ref this.warehouseName, o => o.WarehouseName, value); }
+        }
+
+        private Nullable<int> warehouseReceiptID;
+        [DefaultValue(null)]
+        public Nullable<int> WarehouseReceiptID
+        {
+            get { return this.warehouseReceiptID; }
+            set { ApplyPropertyChange<GoodsIssuePrimitiveDTO, Nullable<int>>(ref this.warehouseReceiptID, o => o.WarehouseReceiptID, value); }
+        }
+        private string warehouseReceiptName;
+        [DefaultValue(null)]
+        public string WarehouseReceiptName
+        {
+            get { return this.warehouseReceiptName; }
+            set { ApplyPropertyChange<GoodsIssueDTO, string>(ref this.warehouseReceiptName, o => o.WarehouseReceiptName, value); }
+        }
+
 
         private Nullable<int> forkliftDriverID;
         //[DefaultValue(null)]
@@ -97,7 +144,7 @@ namespace TotalDTO.Inventories
             base.PerformPresaveRule();
 
             string deliveryAdviceReferences = "";
-            this.DtoDetails().ToList().ForEach(e => { e.CustomerID = this.CustomerID; if (deliveryAdviceReferences.IndexOf(e.DeliveryAdviceReference) < 0) deliveryAdviceReferences = deliveryAdviceReferences + (deliveryAdviceReferences != "" ? ", " : "") + e.DeliveryAdviceReference; });
+            this.DtoDetails().ToList().ForEach(e => { e.CustomerID = this.CustomerID; e.WarehouseReceiptID = this.WarehouseReceiptID; if (deliveryAdviceReferences.IndexOf(e.DeliveryAdviceReference) < 0) deliveryAdviceReferences = deliveryAdviceReferences + (deliveryAdviceReferences != "" ? ", " : "") + e.DeliveryAdviceReference; });
             this.DeliveryAdviceReferences = deliveryAdviceReferences;
         }
 

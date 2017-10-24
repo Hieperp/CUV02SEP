@@ -1482,5 +1482,23 @@ namespace TotalModel.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("TransferOrderToggleApproved", entityIDParameter, approvedParameter);
         }
+    
+        public virtual ObjectResult<PendingTransferOrder> GetPendingTransferOrders(Nullable<int> locationID)
+        {
+            var locationIDParameter = locationID.HasValue ?
+                new ObjectParameter("LocationID", locationID) :
+                new ObjectParameter("LocationID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PendingTransferOrder>("GetPendingTransferOrders", locationIDParameter);
+        }
+    
+        public virtual ObjectResult<PendingTransferOrderWarehouse> GetPendingTransferOrderWarehouses(Nullable<int> locationID)
+        {
+            var locationIDParameter = locationID.HasValue ?
+                new ObjectParameter("LocationID", locationID) :
+                new ObjectParameter("LocationID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PendingTransferOrderWarehouse>("GetPendingTransferOrderWarehouses", locationIDParameter);
+        }
     }
 }

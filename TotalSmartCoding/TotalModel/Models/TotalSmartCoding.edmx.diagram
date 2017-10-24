@@ -116,6 +116,8 @@
         <AssociationConnector Association="TotalSmartCodingModel.FK_TransferOrderDetails_Commodities" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssueDetails_TransferOrderDetails" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_TransferOrderDetails_TransferOrders" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssues_WarehouseReceipts" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssues_Warehouses" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -26,6 +26,8 @@ namespace TotalModel.Models
             this.WarehouseAdjustments = new HashSet<WarehouseAdjustment>();
             this.TransferOrders = new HashSet<TransferOrder>();
             this.TransferOrders1 = new HashSet<TransferOrder>();
+            this.GoodsIssues = new HashSet<GoodsIssue>();
+            this.GoodsIssues1 = new HashSet<GoodsIssue>();
         }
     
         public int WarehouseID { get; set; }
@@ -57,5 +59,9 @@ namespace TotalModel.Models
         public virtual ICollection<TransferOrder> TransferOrders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TransferOrder> TransferOrders1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GoodsIssue> GoodsIssues { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GoodsIssue> GoodsIssues1 { get; set; }
     }
 }

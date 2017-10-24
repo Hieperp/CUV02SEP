@@ -222,6 +222,12 @@
     <Compile Include="Models\PendingSalesOrderDetail.cs">
       <DependentUpon>TotalSmartCoding.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\PendingTransferOrder.cs">
+      <DependentUpon>TotalSmartCoding.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PendingTransferOrderWarehouse.cs">
+      <DependentUpon>TotalSmartCoding.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\PendingWarehouseAdjustmentDetail.cs">
       <DependentUpon>TotalSmartCoding.tt</DependentUpon>
     </Compile>

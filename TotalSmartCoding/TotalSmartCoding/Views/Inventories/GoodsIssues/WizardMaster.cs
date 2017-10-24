@@ -19,7 +19,6 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
             InitializeComponent();
 
             this.customTabBatch = new CustomTabControl();
-            //this.customTabBatch.ImageList = this.imageListTabControl;
 
             this.customTabBatch.Font = this.fastPendingDeliveryAdvices.Font;
             this.customTabBatch.DisplayStyle = TabStyle.VisualStudio;
@@ -31,11 +30,17 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
             this.customTabBatch.TabPages.Add("tabPendingDeliveryAdvices", "Issue by Warehouses        ");
             this.customTabBatch.TabPages[0].Controls.Add(this.fastPendingDeliveryAdvices);
             this.customTabBatch.TabPages[1].Controls.Add(this.fastPendingDeliveryAdviceCustomers);
-
+            this.customTabBatch.TabPages[2].Controls.Add(this.fastPendingTransferOrders);
+            this.customTabBatch.TabPages[3].Controls.Add(this.fastPendingTransferOrderWarehouses);
 
             this.customTabBatch.Dock = DockStyle.Fill;
+            
             this.fastPendingDeliveryAdvices.Dock = DockStyle.Fill;
             this.fastPendingDeliveryAdviceCustomers.Dock = DockStyle.Fill;
+            
+            this.fastPendingTransferOrders.Dock = DockStyle.Fill;
+            this.fastPendingTransferOrderWarehouses.Dock = DockStyle.Fill;
+            
             this.panelMaster.Controls.Add(this.customTabBatch);
 
             if (GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.GoodsIssue) ViewHelpers.SetFont(this, new Font("Calibri", 11), new Font("Calibri", 11), new Font("Calibri", 11));
@@ -51,7 +56,9 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
             {
                 this.fastPendingDeliveryAdvices.SetObjects(this.goodsIssueAPIs.GetPendingDeliveryAdvices(this.goodsIssueViewModel.LocationID));
                 this.fastPendingDeliveryAdviceCustomers.SetObjects(this.goodsIssueAPIs.GetPendingDeliveryAdviceCustomers(this.goodsIssueViewModel.LocationID));
-
+                
+                this.fastPendingTransferOrders.SetObjects(this.goodsIssueAPIs.GetPendingTransferOrders(this.goodsIssueViewModel.LocationID));
+                this.fastPendingTransferOrderWarehouses.SetObjects(this.goodsIssueAPIs.GetPendingTransferOrderWarehouses(this.goodsIssueViewModel.LocationID));
             }
             catch (Exception exception)
             {
@@ -88,6 +95,34 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                             nextOK = true;
                         }
                     }
+
+
+
+                    if (this.customTabBatch.SelectedIndex == 2)
+                    {
+                        PendingTransferOrder pendingTransferOrder = (PendingTransferOrder)this.fastPendingTransferOrders.SelectedObject;
+                        if (pendingTransferOrder != null)
+                        {
+                            this.goodsIssueViewModel.TransferOrderID = pendingTransferOrder.TransferOrderID;
+                            this.goodsIssueViewModel.TransferOrderReference = pendingTransferOrder.TransferOrderReference;
+                            this.goodsIssueViewModel.WarehouseReceiptID = pendingTransferOrder.WarehouseReceiptID;
+                            this.goodsIssueViewModel.WarehouseReceiptName = pendingTransferOrder.WarehouseReceiptName;
+                            nextOK = true;
+                        }
+                    }
+                    if (this.customTabBatch.SelectedIndex == 3)
+                    {
+                        PendingTransferOrderWarehouse pendingTransferOrderWarehouse = (PendingTransferOrderWarehouse)this.fastPendingTransferOrderWarehouses.SelectedObject;
+                        if (pendingTransferOrderWarehouse != null)
+                        {
+                            this.goodsIssueViewModel.WarehouseID = pendingTransferOrderWarehouse.WarehouseIssueID;
+                            this.goodsIssueViewModel.WarehouseName = pendingTransferOrderWarehouse.WarehouseIssueName;
+                            this.goodsIssueViewModel.WarehouseReceiptID = pendingTransferOrderWarehouse.WarehouseReceiptID;
+                            this.goodsIssueViewModel.WarehouseReceiptName = pendingTransferOrderWarehouse.WarehouseReceiptName;
+                            nextOK = true;
+                        }
+                    }
+
 
                     if (nextOK)
                         this.DialogResult = DialogResult.OK;

@@ -42,6 +42,8 @@ namespace TotalModel.Models
         public System.DateTime EditedDate { get; set; }
         public bool Approved { get; set; }
         public Nullable<System.DateTime> ApprovedDate { get; set; }
+        public Nullable<int> WarehouseID { get; set; }
+        public Nullable<int> WarehouseReceiptID { get; set; }
     
         public virtual Customer Customer { get; set; }
         public virtual DeliveryAdvice DeliveryAdvice { get; set; }
@@ -49,5 +51,7 @@ namespace TotalModel.Models
         public virtual ICollection<GoodsIssueDetail> GoodsIssueDetails { get; set; }
         public virtual Location Location { get; set; }
         public virtual TransferOrder TransferOrder { get; set; }
+        public virtual Warehouse Warehouse { get; set; }
+        public virtual Warehouse Warehouse1 { get; set; }
     }
 }

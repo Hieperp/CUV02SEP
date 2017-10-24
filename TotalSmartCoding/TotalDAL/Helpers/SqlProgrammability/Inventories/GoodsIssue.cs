@@ -145,7 +145,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
 
-            queryString = queryString + "       SELECT          TransferOrders.TransferOrderID, TransferOrders.Reference AS TransferOrderReference, TransferOrders.EntryDate AS TransferOrderEntryDate, TransferOrders.SalesOrderReferences, TransferOrders.VoucherCode, TransferOrders.WarehouseReceiptID, WarehouseReceipts.Code AS WarehouseReceiptCode, WarehouseReceipts.Name AS WarehouseReceiptName, TransferOrders.Description, TransferOrders.Remarks " + "\r\n";
+            queryString = queryString + "       SELECT          TransferOrders.TransferOrderID, TransferOrders.Reference AS TransferOrderReference, TransferOrders.EntryDate AS TransferOrderEntryDate, TransferOrders.VoucherCode, TransferOrders.TransferJobs, TransferOrders.WarehouseReceiptID, WarehouseReceipts.Code AS WarehouseReceiptCode, WarehouseReceipts.Name AS WarehouseReceiptName, TransferOrders.Description, TransferOrders.Remarks " + "\r\n";
             queryString = queryString + "       FROM            TransferOrders " + "\r\n";
             queryString = queryString + "                       INNER JOIN Warehouses WarehouseReceipts ON TransferOrders.TransferOrderID IN (SELECT TransferOrderID FROM TransferOrderDetails WHERE LocationID = @LocationID AND Approved = 1 AND ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") > 0) AND TransferOrders.WarehouseReceiptID = WarehouseReceipts.WarehouseID " + "\r\n";
 
@@ -158,8 +158,9 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
 
-            queryString = queryString + "       SELECT          WarehouseReceipts.WarehouseID AS WarehouseReceiptID, WarehouseReceipts.Code AS WarehouseReceiptCode, WarehouseReceipts.Name AS WarehouseReceiptName " + "\r\n";
-            queryString = queryString + "       FROM           (SELECT DISTINCT WarehouseReceiptID FROM TransferOrderDetails WHERE LocationID = @LocationID AND Approved = 1 AND ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") > 0) WarehouseReceiptPENDING " + "\r\n";
+            queryString = queryString + "       SELECT          WarehouseIssues.WarehouseID AS WarehouseIssueID, WarehouseIssues.Code AS WarehouseIssueCode, WarehouseIssues.Name AS WarehouseIssueName, WarehouseReceipts.WarehouseID AS WarehouseReceiptID, WarehouseReceipts.Code AS WarehouseReceiptCode, WarehouseReceipts.Name AS WarehouseReceiptName " + "\r\n";
+            queryString = queryString + "       FROM           (SELECT WarehouseIssueID, WarehouseReceiptID FROM TransferOrderDetails WHERE LocationID = @LocationID AND Approved = 1 AND ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") > 0 GROUP BY WarehouseIssueID, WarehouseReceiptID) WarehousePENDING " + "\r\n";
+            queryString = queryString + "                       INNER JOIN Warehouses WarehouseIssues ON WarehousePENDING.WarehouseIssueID = WarehouseIssues.WarehouseID " + "\r\n";
             queryString = queryString + "                       INNER JOIN Warehouses WarehouseReceipts ON WarehousePENDING.WarehouseReceiptID = WarehouseReceipts.WarehouseID " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("GetPendingTransferOrderWarehouses", queryString);
@@ -168,6 +169,8 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
 
 
+
+        //????By Transfer Order? By Warehouse Issue, receipt   =>> WarehouseID, WarehouseReceiptID
 
         private bool alwaysTrue = true;
         //HERE: WE ALWAYS AND ONLY CALL GetPendingDeliveryAdviceDetails AFTER SAVE SUCCESSFUL

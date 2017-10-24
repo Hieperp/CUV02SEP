@@ -258,6 +258,8 @@
           <Property Name="TransferOrderID" Type="int" />
           <Property Name="DeliveryAdviceReferences" Type="nvarchar" MaxLength="100" />
           <Property Name="CustomerID" Type="int" />
+          <Property Name="WarehouseID" Type="int" />
+          <Property Name="WarehouseReceiptID" Type="int" />
           <Property Name="ForkliftDriverID" Type="int" Nullable="false" />
           <Property Name="StorekeeperID" Type="int" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
@@ -989,6 +991,30 @@
             </Principal>
             <Dependent Role="GoodsIssues">
               <PropertyRef Name="TransferOrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GoodsIssues_WarehouseReceipts">
+          <End Role="Warehouses" Type="Self.Warehouses" Multiplicity="0..1" />
+          <End Role="GoodsIssues" Type="Self.GoodsIssues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouses">
+              <PropertyRef Name="WarehouseID" />
+            </Principal>
+            <Dependent Role="GoodsIssues">
+              <PropertyRef Name="WarehouseReceiptID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GoodsIssues_Warehouses">
+          <End Role="Warehouses" Type="Self.Warehouses" Multiplicity="0..1" />
+          <End Role="GoodsIssues" Type="Self.GoodsIssues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouses">
+              <PropertyRef Name="WarehouseID" />
+            </Principal>
+            <Dependent Role="GoodsIssues">
+              <PropertyRef Name="WarehouseID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1830,6 +1856,12 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
         <Function Name="GetPendingSalesOrders" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="LocationID" Type="int" Mode="In" />
         </Function>
+        <Function Name="GetPendingTransferOrders" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LocationID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetPendingTransferOrderWarehouses" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LocationID" Type="int" Mode="In" />
+        </Function>
         <Function Name="GetPendingWarehouseAdjustmentDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="LocationID" Type="int" Mode="In" />
           <Parameter Name="GoodsReceiptID" Type="int" Mode="In" />
@@ -2168,6 +2200,14 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           </AssociationSet>
           <AssociationSet Name="FK_GoodsIssues_TransferOrders" Association="Self.FK_GoodsIssues_TransferOrders">
             <End Role="TransferOrders" EntitySet="TransferOrders" />
+            <End Role="GoodsIssues" EntitySet="GoodsIssues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GoodsIssues_WarehouseReceipts" Association="Self.FK_GoodsIssues_WarehouseReceipts">
+            <End Role="Warehouses" EntitySet="Warehouses" />
+            <End Role="GoodsIssues" EntitySet="GoodsIssues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GoodsIssues_Warehouses" Association="Self.FK_GoodsIssues_Warehouses">
+            <End Role="Warehouses" EntitySet="Warehouses" />
             <End Role="GoodsIssues" EntitySet="GoodsIssues" />
           </AssociationSet>
           <AssociationSet Name="FK_GoodsReceiptDetails_BinLocations" Association="Self.FK_GoodsReceiptDetails_BinLocations">
@@ -3143,6 +3183,20 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
             <End Role="TransferOrder" EntitySet="TransferOrders" />
             <End Role="TransferOrderDetail" EntitySet="TransferOrderDetails" />
           </AssociationSet>
+          <AssociationSet Name="FK_GoodsIssues_WarehouseReceipts" Association="TotalSmartCodingModel.FK_GoodsIssues_WarehouseReceipts">
+            <End Role="Warehouse" EntitySet="Warehouses" />
+            <End Role="GoodsIssue" EntitySet="GoodsIssues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GoodsIssues_Warehouses" Association="TotalSmartCodingModel.FK_GoodsIssues_Warehouses">
+            <End Role="Warehouse" EntitySet="Warehouses" />
+            <End Role="GoodsIssue" EntitySet="GoodsIssues" />
+          </AssociationSet>
+          <FunctionImport Name="GetPendingTransferOrders" ReturnType="Collection(TotalSmartCodingModel.PendingTransferOrder)">
+          <Parameter Name="LocationID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetPendingTransferOrderWarehouses" ReturnType="Collection(TotalSmartCodingModel.PendingTransferOrderWarehouse)">
+          <Parameter Name="LocationID" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
           <Property Type="Int32" Name="PickupID" Nullable="false" />
@@ -3808,6 +3862,8 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <NavigationProperty Name="WarehouseAdjustments" Relationship="TotalSmartCodingModel.FK_WarehouseAdjustments_Warehouses" FromRole="Warehouse" ToRole="WarehouseAdjustment" />
           <NavigationProperty Name="TransferOrders" Relationship="TotalSmartCodingModel.FK_TransferOrders_WarehouseIssues" FromRole="Warehouse" ToRole="TransferOrder" />
           <NavigationProperty Name="TransferOrders1" Relationship="TotalSmartCodingModel.FK_TransferOrders_WarehouseReceipts" FromRole="Warehouse" ToRole="TransferOrder" />
+          <NavigationProperty Name="GoodsIssues" Relationship="TotalSmartCodingModel.FK_GoodsIssues_WarehouseReceipts" FromRole="Warehouse" ToRole="GoodsIssue" />
+          <NavigationProperty Name="GoodsIssues1" Relationship="TotalSmartCodingModel.FK_GoodsIssues_Warehouses" FromRole="Warehouse" ToRole="GoodsIssue" />
         </EntityType>
         <Association Name="FK_Warehouses_Locations">
           <End Type="TotalSmartCodingModel.Location" Role="Location" Multiplicity="1" />
@@ -5231,6 +5287,10 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <NavigationProperty Name="GoodsIssueDetails" Relationship="TotalSmartCodingModel.FK_GoodsIssueDetails_GoodsIssues" FromRole="GoodsIssue" ToRole="GoodsIssueDetail" />
           <NavigationProperty Name="Location" Relationship="TotalSmartCodingModel.FK_GoodsIssues_Locations" FromRole="GoodsIssue" ToRole="Location" />
           <NavigationProperty Name="TransferOrder" Relationship="TotalSmartCodingModel.FK_GoodsIssues_TransferOrders" FromRole="GoodsIssue" ToRole="TransferOrder" />
+          <Property Name="WarehouseID" Type="Int32" />
+          <Property Name="WarehouseReceiptID" Type="Int32" />
+          <NavigationProperty Name="Warehouse" Relationship="TotalSmartCodingModel.FK_GoodsIssues_WarehouseReceipts" FromRole="GoodsIssue" ToRole="Warehouse" />
+          <NavigationProperty Name="Warehouse1" Relationship="TotalSmartCodingModel.FK_GoodsIssues_Warehouses" FromRole="GoodsIssue" ToRole="Warehouse" />
         </EntityType>
         <Association Name="FK_GoodsIssueDetails_Commodities">
           <End Type="TotalSmartCodingModel.Commodity" Role="Commodity" Multiplicity="1" />
@@ -5505,6 +5565,50 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_GoodsIssues_WarehouseReceipts">
+          <End Type="TotalSmartCodingModel.Warehouse" Role="Warehouse" Multiplicity="0..1" />
+          <End Type="TotalSmartCodingModel.GoodsIssue" Role="GoodsIssue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouse">
+              <PropertyRef Name="WarehouseID" />
+            </Principal>
+            <Dependent Role="GoodsIssue">
+              <PropertyRef Name="WarehouseReceiptID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GoodsIssues_Warehouses">
+          <End Type="TotalSmartCodingModel.Warehouse" Role="Warehouse" Multiplicity="0..1" />
+          <End Type="TotalSmartCodingModel.GoodsIssue" Role="GoodsIssue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouse">
+              <PropertyRef Name="WarehouseID" />
+            </Principal>
+            <Dependent Role="GoodsIssue">
+              <PropertyRef Name="WarehouseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="PendingTransferOrder">
+          <Property Type="Int32" Name="TransferOrderID" Nullable="false" />
+          <Property Type="String" Name="TransferOrderReference" Nullable="true" MaxLength="10" />
+          <Property Type="DateTime" Name="TransferOrderEntryDate" Nullable="false" Precision="23" />
+          <Property Type="String" Name="VoucherCode" Nullable="true" MaxLength="60" />
+          <Property Type="Int32" Name="WarehouseReceiptID" Nullable="false" />
+          <Property Type="String" Name="WarehouseReceiptCode" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="WarehouseReceiptName" Nullable="false" MaxLength="60" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Remarks" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="TransferJobs" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="PendingTransferOrderWarehouse">
+          <Property Type="Int32" Name="WarehouseReceiptID" Nullable="false" />
+          <Property Type="String" Name="WarehouseReceiptCode" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="WarehouseReceiptName" Nullable="false" MaxLength="60" />
+          <Property Type="Int32" Name="WarehouseIssueID" Nullable="false" />
+          <Property Type="String" Name="WarehouseIssueCode" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="WarehouseIssueName" Nullable="false" MaxLength="60" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -6930,6 +7034,8 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <EntitySetMapping Name="GoodsIssues">
             <EntityTypeMapping TypeName="TotalSmartCodingModel.GoodsIssue">
               <MappingFragment StoreEntitySet="GoodsIssues">
+                <ScalarProperty Name="WarehouseReceiptID" ColumnName="WarehouseReceiptID" />
+                <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
                 <ScalarProperty Name="ApprovedDate" ColumnName="ApprovedDate" />
                 <ScalarProperty Name="Approved" ColumnName="Approved" />
                 <ScalarProperty Name="EditedDate" ColumnName="EditedDate" />
@@ -7055,6 +7161,34 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetPendingTransferOrders" FunctionName="TotalSmartCodingModel.Store.GetPendingTransferOrders">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TotalSmartCodingModel.PendingTransferOrder">
+                <ScalarProperty Name="TransferOrderID" ColumnName="TransferOrderID" />
+                <ScalarProperty Name="TransferOrderReference" ColumnName="TransferOrderReference" />
+                <ScalarProperty Name="TransferOrderEntryDate" ColumnName="TransferOrderEntryDate" />
+                <ScalarProperty Name="VoucherCode" ColumnName="VoucherCode" />
+                <ScalarProperty Name="WarehouseReceiptID" ColumnName="WarehouseReceiptID" />
+                <ScalarProperty Name="WarehouseReceiptCode" ColumnName="WarehouseReceiptCode" />
+                <ScalarProperty Name="WarehouseReceiptName" ColumnName="WarehouseReceiptName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="TransferJobs" ColumnName="TransferJobs" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetPendingTransferOrderWarehouses" FunctionName="TotalSmartCodingModel.Store.GetPendingTransferOrderWarehouses">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TotalSmartCodingModel.PendingTransferOrderWarehouse">
+                <ScalarProperty Name="WarehouseReceiptID" ColumnName="WarehouseReceiptID" />
+                <ScalarProperty Name="WarehouseReceiptCode" ColumnName="WarehouseReceiptCode" />
+                <ScalarProperty Name="WarehouseReceiptName" ColumnName="WarehouseReceiptName" />
+                <ScalarProperty Name="WarehouseIssueID" ColumnName="WarehouseIssueID" />
+                <ScalarProperty Name="WarehouseIssueCode" ColumnName="WarehouseIssueCode" />
+                <ScalarProperty Name="WarehouseIssueName" ColumnName="WarehouseIssueName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

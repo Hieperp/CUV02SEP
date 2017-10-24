@@ -32,6 +32,11 @@ namespace TotalDAL.Repositories
             return;
             return;
 
+            Helpers.SqlProgrammability.Inventories.GoodsIssue goodsIssue = new Helpers.SqlProgrammability.Inventories.GoodsIssue(totalSmartCodingEntities);
+            goodsIssue.RestoreProcedure();
+
+            return;
+
             Helpers.SqlProgrammability.Sales.TransferOrder transferOrder = new Helpers.SqlProgrammability.Sales.TransferOrder(totalSmartCodingEntities);
             transferOrder.RestoreProcedure();
 
@@ -50,10 +55,7 @@ namespace TotalDAL.Repositories
             Helpers.SqlProgrammability.Inventories.Pickup pickup = new Helpers.SqlProgrammability.Inventories.Pickup(totalSmartCodingEntities);
             pickup.RestoreProcedure();
 
-            return;
-
-            Helpers.SqlProgrammability.Inventories.GoodsIssue goodsIssue = new Helpers.SqlProgrammability.Inventories.GoodsIssue(totalSmartCodingEntities);
-            goodsIssue.RestoreProcedure();
+            
 
             return;
 

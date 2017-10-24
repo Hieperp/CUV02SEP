@@ -21,11 +21,12 @@ namespace TotalSmartCoding.Controllers.APIs.Inventories
             return this.goodsIssueAPIRepository.GetEntityIndexes<GoodsIssueIndex>(ContextAttributes.AspUserID, ContextAttributes.FromDate, ContextAttributes.ToDate);
         }
 
+
+
         public List<PendingDeliveryAdvice> GetPendingDeliveryAdvices(int? locationID)
         {
             return this.goodsIssueAPIRepository.GetPendingDeliveryAdvices(locationID);
         }
-
 
         public List<PendingDeliveryAdviceCustomer> GetPendingDeliveryAdviceCustomers(int? locationID)
         {
@@ -35,6 +36,18 @@ namespace TotalSmartCoding.Controllers.APIs.Inventories
         public List<PendingDeliveryAdviceDetail> GetPendingDeliveryAdviceDetails(int? locationID, int? goodsIssueID, int? deliveryAdviceID, int? customerID, string deliveryAdviceDetailIDs, bool isReadonly)
         {
             return this.goodsIssueAPIRepository.GetPendingDeliveryAdviceDetails(locationID, goodsIssueID, deliveryAdviceID, customerID, deliveryAdviceDetailIDs, isReadonly);
+        }
+
+
+
+        public List<PendingTransferOrder> GetPendingTransferOrders(int? locationID)
+        {
+            return this.goodsIssueAPIRepository.GetPendingTransferOrders(locationID);
+        }
+
+        public List<PendingTransferOrderWarehouse> GetPendingTransferOrderWarehouses(int? locationID)
+        {
+            return this.goodsIssueAPIRepository.GetPendingTransferOrderWarehouses(locationID);
         }
     }
 }

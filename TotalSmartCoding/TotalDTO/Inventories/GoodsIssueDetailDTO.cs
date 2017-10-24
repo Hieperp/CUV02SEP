@@ -27,7 +27,14 @@ namespace TotalDTO.Inventories
         public string DeliveryAdviceReference { get; set; }
         public Nullable<System.DateTime> DeliveryAdviceEntryDate { get; set; }
 
-        public int CustomerID { get; set; }
+        public Nullable<int> TransferOrderID { get; set; }
+        public Nullable<int> TransferOrderDetailID { get; set; }
+
+        public string TransferOrderReference { get; set; }
+        public Nullable<System.DateTime> TransferOrderEntryDate { get; set; }
+
+        public Nullable<int> CustomerID { get; set; }
+        public Nullable<int> WarehouseReceiptID { get; set; }
 
         public int GoodsReceiptID { get; set; }
         public int GoodsReceiptDetailID { get; set; }
