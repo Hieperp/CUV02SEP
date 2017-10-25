@@ -150,7 +150,12 @@ namespace TotalSmartCoding.Controllers.Productions
         private string getNextNo()
         {
             if (this.printerName == GlobalVariables.PrinterName.DigitInkjet || this.printerName == GlobalVariables.PrinterName.PackInkjet)
-                return this.NextPackNo;
+            {
+                if (this.FillingData.FillingLineID == GlobalVariables.FillingLine.Pail)
+                    return this.NextCartonNo;
+                else
+                    return this.NextPackNo;
+            }
             else
                 if (this.printerName == GlobalVariables.PrinterName.CartonInkjet)
                     return this.NextCartonNo;
