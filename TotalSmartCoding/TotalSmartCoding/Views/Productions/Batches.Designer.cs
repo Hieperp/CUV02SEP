@@ -35,8 +35,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.labelNextCartonNo = new System.Windows.Forms.Label();
+            this.labelNextPackNo = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.dateTimexEntryDate = new CustomControls.DateTimexPicker();
             this.textexCode = new CustomControls.TextexBox();
@@ -88,8 +88,8 @@
             this.layoutMaster.Controls.Add(this.label2, 1, 2);
             this.layoutMaster.Controls.Add(this.label14, 1, 4);
             this.layoutMaster.Controls.Add(this.label4, 1, 14);
-            this.layoutMaster.Controls.Add(this.label5, 1, 12);
-            this.layoutMaster.Controls.Add(this.label7, 1, 10);
+            this.layoutMaster.Controls.Add(this.labelNextCartonNo, 1, 12);
+            this.layoutMaster.Controls.Add(this.labelNextPackNo, 1, 10);
             this.layoutMaster.Controls.Add(this.label8, 1, 8);
             this.layoutMaster.Controls.Add(this.dateTimexEntryDate, 1, 1);
             this.layoutMaster.Controls.Add(this.textexCode, 1, 3);
@@ -118,9 +118,9 @@
             this.layoutMaster.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutMaster.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.layoutMaster.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.layoutMaster.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.layoutMaster.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.layoutMaster.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.layoutMaster.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutMaster.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutMaster.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutMaster.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.layoutMaster.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -134,7 +134,7 @@
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(30, 481);
+            this.label1.Location = new System.Drawing.Point(30, 483);
             this.label1.Margin = new System.Windows.Forms.Padding(0, 1, 1, 1);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(419, 28);
@@ -186,7 +186,7 @@
             this.label4.AutoSize = true;
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(30, 422);
+            this.label4.Location = new System.Drawing.Point(30, 424);
             this.label4.Margin = new System.Windows.Forms.Padding(0, 1, 1, 1);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(419, 28);
@@ -194,31 +194,31 @@
             this.label4.Text = "Next Pallet";
             this.label4.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
-            // label5
+            // labelNextCartonNo
             // 
-            this.label5.AutoSize = true;
-            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(30, 363);
-            this.label5.Margin = new System.Windows.Forms.Padding(0, 1, 1, 1);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(419, 28);
-            this.label5.TabIndex = 66;
-            this.label5.Text = "Next Carton";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.labelNextCartonNo.AutoSize = true;
+            this.labelNextCartonNo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelNextCartonNo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNextCartonNo.Location = new System.Drawing.Point(30, 373);
+            this.labelNextCartonNo.Margin = new System.Windows.Forms.Padding(0, 10, 1, 1);
+            this.labelNextCartonNo.Name = "labelNextCartonNo";
+            this.labelNextCartonNo.Size = new System.Drawing.Size(419, 20);
+            this.labelNextCartonNo.TabIndex = 66;
+            this.labelNextCartonNo.Text = "Next Carton";
+            this.labelNextCartonNo.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
-            // label7
+            // labelNextPackNo
             // 
-            this.label7.AutoSize = true;
-            this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(30, 304);
-            this.label7.Margin = new System.Windows.Forms.Padding(0, 1, 1, 1);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(419, 28);
-            this.label7.TabIndex = 67;
-            this.label7.Text = "Next Bottle";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.labelNextPackNo.AutoSize = true;
+            this.labelNextPackNo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelNextPackNo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNextPackNo.Location = new System.Drawing.Point(30, 313);
+            this.labelNextPackNo.Margin = new System.Windows.Forms.Padding(0, 10, 1, 1);
+            this.labelNextPackNo.Name = "labelNextPackNo";
+            this.labelNextPackNo.Size = new System.Drawing.Size(419, 20);
+            this.labelNextPackNo.TabIndex = 67;
+            this.labelNextPackNo.Text = "Next Bottle";
+            this.labelNextPackNo.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
             // label8
             // 
@@ -282,7 +282,7 @@
             // 
             this.textexNextPackNo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexNextPackNo.Editable = true;
-            this.textexNextPackNo.Location = new System.Drawing.Point(33, 334);
+            this.textexNextPackNo.Location = new System.Drawing.Point(33, 335);
             this.textexNextPackNo.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.textexNextPackNo.Name = "textexNextPackNo";
             this.textexNextPackNo.Size = new System.Drawing.Size(416, 27);
@@ -292,7 +292,7 @@
             // 
             this.textexNextCartonNo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexNextCartonNo.Editable = true;
-            this.textexNextCartonNo.Location = new System.Drawing.Point(33, 393);
+            this.textexNextCartonNo.Location = new System.Drawing.Point(33, 395);
             this.textexNextCartonNo.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.textexNextCartonNo.Name = "textexNextCartonNo";
             this.textexNextCartonNo.Size = new System.Drawing.Size(416, 27);
@@ -302,7 +302,7 @@
             // 
             this.textexNextPalletNo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexNextPalletNo.Editable = true;
-            this.textexNextPalletNo.Location = new System.Drawing.Point(33, 452);
+            this.textexNextPalletNo.Location = new System.Drawing.Point(33, 454);
             this.textexNextPalletNo.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.textexNextPalletNo.Name = "textexNextPalletNo";
             this.textexNextPalletNo.Size = new System.Drawing.Size(416, 27);
@@ -312,7 +312,7 @@
             // 
             this.textexRemarks.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexRemarks.Editable = true;
-            this.textexRemarks.Location = new System.Drawing.Point(33, 511);
+            this.textexRemarks.Location = new System.Drawing.Point(33, 513);
             this.textexRemarks.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.textexRemarks.Name = "textexRemarks";
             this.textexRemarks.Size = new System.Drawing.Size(416, 27);
@@ -587,8 +587,8 @@
         private System.Windows.Forms.ToolStripButton buttonApply;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label labelNextCartonNo;
+        private System.Windows.Forms.Label labelNextPackNo;
         private Guifreaks.Navisuite.NaviBar naviBarMaster;
         private System.Windows.Forms.Label label8;
         private Guifreaks.Navisuite.NaviBand naviBand1;
