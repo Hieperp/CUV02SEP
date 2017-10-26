@@ -16,7 +16,6 @@ namespace TotalModel.Models
         public int GoodsIssueID { get; set; }
         public Nullable<System.DateTime> EntryDate { get; set; }
         public string Reference { get; set; }
-        public string DeliveryAdviceReferences { get; set; }
         public string LocationCode { get; set; }
         public decimal TotalQuantity { get; set; }
         public decimal TotalLineVolume { get; set; }
@@ -24,5 +23,6 @@ namespace TotalModel.Models
         public string CustomerCode { get; set; }
         public string CustomerName { get; set; }
         public string WarehouseReceiptName { get; set; }
+        public string PrimaryReferences { get; set; }
     }
 }

@@ -51,8 +51,6 @@ namespace TotalDTO.Inventories
         public Nullable<DateTime> DeliveryAdviceEntryDate { get; set; }
         [DefaultValue(null)]
         public string DeliveryAdviceReference { get; set; }
-        [DefaultValue(null)]
-        public string DeliveryAdviceReferences { get; set; }
 
 
 
@@ -67,6 +65,11 @@ namespace TotalDTO.Inventories
         public Nullable<DateTime> TransferOrderEntryDate { get; set; }
         [DefaultValue(null)]
         public string TransferOrderReference { get; set; }
+
+
+        [DefaultValue(null)]
+        public string PrimaryReferences { get; set; }
+
 
 
         private Nullable<int> customerID;
@@ -144,16 +147,16 @@ namespace TotalDTO.Inventories
 
         public override string Caption
         {
-            get { return "D.A: " + (this.DeliveryAdviceID != null ? this.DeliveryAdviceReference + ", on " + this.DeliveryAdviceEntryDate.ToString() : this.DeliveryAdviceReferences) + ", " + (this.CustomerName != null ? "Customer: " + this.CustomerName.Substring(0, this.CustomerName.Length > 26 ? 25 : this.CustomerName.Length) + ", " : "") + "Issue: " + (this.Reference != null ? this.Reference : "...") + "             Total Quantity: " + this.TotalQuantity.ToString() + ",    Total Volume: " + this.TotalLineVolume.ToString("N2"); }
+            get { return (this.GoodsIssueTypeID == (int)GlobalEnums.GoodsIssueTypeID.DeliveryAdvice ? "D.A: " : "Transfer Order: ") + (this.DeliveryAdviceID != null ? this.DeliveryAdviceReference + ", on " + this.DeliveryAdviceEntryDate.ToString() : (this.TransferOrderID != null ? this.TransferOrderReference + ", on " + this.TransferOrderEntryDate.ToString() : this.PrimaryReferences)) + ", " + (this.CustomerName != null ? "Customer: " + this.CustomerName.Substring(0, this.CustomerName.Length > 16 ? 15 : this.CustomerName.Length) + ", " : "") + (this.WarehouseName != null && this.WarehouseReceiptName != null ? "From: " + this.WarehouseName + " To: " + this.WarehouseReceiptName + ", " : "") + "Issue: " + (this.Reference != null ? this.Reference : "...") + "             Total Quantity: " + this.TotalQuantity.ToString() + ",    Total Volume: " + this.TotalLineVolume.ToString("N2"); }
         }
-         
+
         public override void PerformPresaveRule()
         {
             base.PerformPresaveRule();
 
-            string deliveryAdviceReferences = "";
-            this.DtoDetails().ToList().ForEach(e => { e.CustomerID = this.CustomerID; e.WarehouseReceiptID = this.WarehouseReceiptID; if (this.GoodsIssueTypeID == (int)GlobalEnums.GoodsIssueTypeID.DeliveryAdvice && deliveryAdviceReferences.IndexOf(e.DeliveryAdviceReference) < 0) deliveryAdviceReferences = deliveryAdviceReferences + (deliveryAdviceReferences != "" ? ", " : "") + e.DeliveryAdviceReference; if (this.GoodsIssueTypeID == (int)GlobalEnums.GoodsIssueTypeID.TransferOrder && deliveryAdviceReferences.IndexOf(e.TransferOrderReference) < 0) deliveryAdviceReferences = deliveryAdviceReferences + (deliveryAdviceReferences != "" ? ", " : "") + e.TransferOrderReference; });
-            this.DeliveryAdviceReferences = deliveryAdviceReferences;
+            string primaryReferences = "";
+            this.DtoDetails().ToList().ForEach(e => { e.CustomerID = this.CustomerID; e.WarehouseReceiptID = this.WarehouseReceiptID; if (primaryReferences.IndexOf(e.PrimaryReference) < 0) primaryReferences = primaryReferences + (primaryReferences != "" ? ", " : "") + e.PrimaryReference; });
+            this.PrimaryReferences = primaryReferences;
         }
 
         protected override List<ValidationRule> CreateRules()

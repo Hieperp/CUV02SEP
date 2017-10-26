@@ -33,6 +33,8 @@ namespace TotalDTO.Inventories
         public string TransferOrderReference { get; set; }
         public Nullable<System.DateTime> TransferOrderEntryDate { get; set; }
 
+        public string PrimaryReference { get { return this.DeliveryAdviceReference != null ? this.DeliveryAdviceReference : this.TransferOrderReference; } }
+
         public Nullable<int> CustomerID { get; set; }
         public Nullable<int> WarehouseReceiptID { get; set; }
 

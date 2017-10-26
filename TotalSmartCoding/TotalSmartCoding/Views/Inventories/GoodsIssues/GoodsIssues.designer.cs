@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GoodsIssues));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutMaster = new System.Windows.Forms.TableLayoutPanel();
             this.label8 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -62,7 +62,7 @@
             this.naviDetails = new Guifreaks.Navisuite.NaviGroup(this.components);
             this.labelCaption = new System.Windows.Forms.Label();
             this.gridexPalletDetails = new CustomControls.DataGridexView();
-            this.PalletDeliveryAdviceReference = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PalletPrimaryReference = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PalletCommodityCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PalletCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PalletBatchEntryDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -88,7 +88,7 @@
             this.naviIndex = new Guifreaks.Navisuite.NaviBar(this.components);
             this.panelMaster = new System.Windows.Forms.Panel();
             this.gridexCartonDetails = new CustomControls.DataGridexView();
-            this.CartonDeliveryAdviceReference = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CartonPrimaryReference = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CartonCommodityCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CartonCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CartonBatchEntryDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -430,17 +430,17 @@
             this.gridexPalletDetails.BackgroundColor = System.Drawing.Color.Ivory;
             this.gridexPalletDetails.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridexPalletDetails.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridexPalletDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridexPalletDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.gridexPalletDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridexPalletDetails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.PalletDeliveryAdviceReference,
+            this.PalletPrimaryReference,
             this.PalletCommodityCode,
             this.PalletCode,
             this.PalletBatchEntryDate,
@@ -459,13 +459,13 @@
             this.gridexPalletDetails.TabIndex = 65;
             this.gridexPalletDetails.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.gridexViewDetails_UserDeletedRow);
             // 
-            // PalletDeliveryAdviceReference
+            // PalletPrimaryReference
             // 
-            this.PalletDeliveryAdviceReference.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.PalletDeliveryAdviceReference.DataPropertyName = "DeliveryAdviceReference";
-            this.PalletDeliveryAdviceReference.FillWeight = 9F;
-            this.PalletDeliveryAdviceReference.HeaderText = "D.A.";
-            this.PalletDeliveryAdviceReference.Name = "PalletDeliveryAdviceReference";
+            this.PalletPrimaryReference.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.PalletPrimaryReference.DataPropertyName = "PrimaryReference";
+            this.PalletPrimaryReference.FillWeight = 9F;
+            this.PalletPrimaryReference.HeaderText = "D.A.";
+            this.PalletPrimaryReference.Name = "PalletPrimaryReference";
             // 
             // PalletCommodityCode
             // 
@@ -489,8 +489,8 @@
             // 
             this.PalletBatchEntryDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.PalletBatchEntryDate.DataPropertyName = "BatchEntryDate";
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.PalletBatchEntryDate.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.PalletBatchEntryDate.DefaultCellStyle = dataGridViewCellStyle2;
             this.PalletBatchEntryDate.FillWeight = 12F;
             this.PalletBatchEntryDate.HeaderText = "Batch Date";
             this.PalletBatchEntryDate.Name = "PalletBatchEntryDate";
@@ -508,8 +508,8 @@
             // 
             this.PalletQuantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.PalletQuantity.DataPropertyName = "Quantity";
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.PalletQuantity.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.PalletQuantity.DefaultCellStyle = dataGridViewCellStyle3;
             this.PalletQuantity.FillWeight = 5F;
             this.PalletQuantity.HeaderText = "Qty";
             this.PalletQuantity.MinimumWidth = 9;
@@ -519,8 +519,8 @@
             // 
             this.PalletLineVolume.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.PalletLineVolume.DataPropertyName = "LineVolume";
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.PalletLineVolume.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.PalletLineVolume.DefaultCellStyle = dataGridViewCellStyle4;
             this.PalletLineVolume.FillWeight = 10F;
             this.PalletLineVolume.HeaderText = "Volume";
             this.PalletLineVolume.MinimumWidth = 9;
@@ -788,17 +788,17 @@
             this.gridexCartonDetails.BackgroundColor = System.Drawing.Color.Ivory;
             this.gridexCartonDetails.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridexCartonDetails.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridexCartonDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridexCartonDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.gridexCartonDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridexCartonDetails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.CartonDeliveryAdviceReference,
+            this.CartonPrimaryReference,
             this.CartonCommodityCode,
             this.CartonCode,
             this.CartonBatchEntryDate,
@@ -817,13 +817,13 @@
             this.gridexCartonDetails.TabIndex = 85;
             this.gridexCartonDetails.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.gridexViewDetails_UserDeletedRow);
             // 
-            // CartonDeliveryAdviceReference
+            // CartonPrimaryReference
             // 
-            this.CartonDeliveryAdviceReference.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CartonDeliveryAdviceReference.DataPropertyName = "DeliveryAdviceReference";
-            this.CartonDeliveryAdviceReference.FillWeight = 9F;
-            this.CartonDeliveryAdviceReference.HeaderText = "D.A.";
-            this.CartonDeliveryAdviceReference.Name = "CartonDeliveryAdviceReference";
+            this.CartonPrimaryReference.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CartonPrimaryReference.DataPropertyName = "PrimaryReference";
+            this.CartonPrimaryReference.FillWeight = 9F;
+            this.CartonPrimaryReference.HeaderText = "D.A.";
+            this.CartonPrimaryReference.Name = "CartonPrimaryReference";
             // 
             // CartonCommodityCode
             // 
@@ -847,8 +847,8 @@
             // 
             this.CartonBatchEntryDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.CartonBatchEntryDate.DataPropertyName = "BatchEntryDate";
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.CartonBatchEntryDate.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.CartonBatchEntryDate.DefaultCellStyle = dataGridViewCellStyle6;
             this.CartonBatchEntryDate.FillWeight = 12F;
             this.CartonBatchEntryDate.HeaderText = "Batch Date";
             this.CartonBatchEntryDate.Name = "CartonBatchEntryDate";
@@ -866,8 +866,8 @@
             // 
             this.CartonQuantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.CartonQuantity.DataPropertyName = "Quantity";
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.CartonQuantity.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.CartonQuantity.DefaultCellStyle = dataGridViewCellStyle7;
             this.CartonQuantity.FillWeight = 5F;
             this.CartonQuantity.HeaderText = "Qty";
             this.CartonQuantity.MinimumWidth = 9;
@@ -877,8 +877,8 @@
             // 
             this.CartonLineVolume.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.CartonLineVolume.DataPropertyName = "LineVolume";
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.CartonLineVolume.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.CartonLineVolume.DefaultCellStyle = dataGridViewCellStyle8;
             this.CartonLineVolume.FillWeight = 10F;
             this.CartonLineVolume.HeaderText = "Volume";
             this.CartonLineVolume.MinimumWidth = 9;
@@ -972,21 +972,21 @@
         private BrightIdeasSoftware.OLVColumn olvLineVolumeRemains;
         private BrightIdeasSoftware.OLVColumn olvPrimaryReference;
         private CustomControls.DataGridexView gridexCartonDetails;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PalletDeliveryAdviceReference;
+        private BrightIdeasSoftware.OLVColumn olvBatchCode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PalletPrimaryReference;
         private System.Windows.Forms.DataGridViewTextBoxColumn PalletCommodityCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn PalletCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn PalletBatchEntryDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn PalletBinLocationCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn PalletQuantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn PalletLineVolume;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CartonDeliveryAdviceReference;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CartonPrimaryReference;
         private System.Windows.Forms.DataGridViewTextBoxColumn CartonCommodityCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn CartonCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn CartonBatchEntryDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn CartonBinLocationCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn CartonQuantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn CartonLineVolume;
-        private BrightIdeasSoftware.OLVColumn olvBatchCode;
 
     }
 }

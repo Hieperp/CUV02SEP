@@ -23,10 +23,13 @@ namespace TotalModel.Models
         public int GoodsIssueID { get; set; }
         public System.DateTime EntryDate { get; set; }
         public string Reference { get; set; }
+        public int GoodsIssueTypeID { get; set; }
         public Nullable<int> DeliveryAdviceID { get; set; }
         public Nullable<int> TransferOrderID { get; set; }
-        public string DeliveryAdviceReferences { get; set; }
+        public string PrimaryReferences { get; set; }
         public Nullable<int> CustomerID { get; set; }
+        public Nullable<int> WarehouseID { get; set; }
+        public Nullable<int> WarehouseReceiptID { get; set; }
         public int ForkliftDriverID { get; set; }
         public int StorekeeperID { get; set; }
         public int UserID { get; set; }
@@ -42,18 +45,15 @@ namespace TotalModel.Models
         public System.DateTime EditedDate { get; set; }
         public bool Approved { get; set; }
         public Nullable<System.DateTime> ApprovedDate { get; set; }
-        public Nullable<int> WarehouseID { get; set; }
-        public Nullable<int> WarehouseReceiptID { get; set; }
-        public int GoodsIssueTypeID { get; set; }
     
         public virtual Customer Customer { get; set; }
         public virtual DeliveryAdvice DeliveryAdvice { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GoodsIssueDetail> GoodsIssueDetails { get; set; }
+        public virtual GoodsIssueType GoodsIssueType { get; set; }
         public virtual Location Location { get; set; }
         public virtual TransferOrder TransferOrder { get; set; }
         public virtual Warehouse Warehouse { get; set; }
         public virtual Warehouse Warehouse1 { get; set; }
-        public virtual GoodsIssueType GoodsIssueType { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GoodsIssueDetail> GoodsIssueDetails { get; set; }
     }
 }

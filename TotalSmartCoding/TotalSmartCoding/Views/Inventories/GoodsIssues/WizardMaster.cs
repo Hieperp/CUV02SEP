@@ -84,7 +84,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                             if (pendingDeliveryAdvice != null)
                             {
                                 this.goodsIssueViewModel.DeliveryAdviceID = pendingDeliveryAdvice.DeliveryAdviceID;
-                                this.goodsIssueViewModel.DeliveryAdviceReferences = pendingDeliveryAdvice.DeliveryAdviceReference;
+                                this.goodsIssueViewModel.PrimaryReferences = pendingDeliveryAdvice.DeliveryAdviceReference;
                                 this.goodsIssueViewModel.CustomerID = pendingDeliveryAdvice.CustomerID;
                                 this.goodsIssueViewModel.CustomerName = pendingDeliveryAdvice.CustomerName;
                                 nextOK = true;
