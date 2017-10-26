@@ -137,11 +137,11 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                     PendingDeliveryAdviceDetail pendingDeliveryAdviceDetail = (PendingDeliveryAdviceDetail)this.fastPendingDeliveryAdviceDetails.SelectedObject;
                     if (pendingDeliveryAdviceDetail != null)
                     {
-                        WizardDetail wizardDetail = new WizardDetail(this.goodsIssueViewModel, pendingDeliveryAdviceDetail);
-                        if (wizardDetail.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                            getPendingItems();
+                        //WizardDetail wizardDetail = new WizardDetail(this.goodsIssueViewModel, pendingDeliveryAdviceDetail);
+                        //if (wizardDetail.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                        //    getPendingItems();
 
-                        wizardDetail.Dispose();
+                        //wizardDetail.Dispose();
                     }
                 }
             }

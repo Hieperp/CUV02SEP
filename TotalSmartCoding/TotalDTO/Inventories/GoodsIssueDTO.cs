@@ -31,6 +31,14 @@ namespace TotalDTO.Inventories
             set { ApplyPropertyChange<GoodsIssuePrimitiveDTO, int>(ref this.goodsIssueID, o => o.GoodsIssueID, value); }
         }
 
+        private Nullable<int> goodsIssueTypeID;
+        [DefaultValue(null)]
+        public Nullable<int> GoodsIssueTypeID
+        {
+            get { return this.goodsIssueTypeID; }
+            set { ApplyPropertyChange<GoodsIssuePrimitiveDTO, Nullable<int>>(ref this.goodsIssueTypeID, o => o.GoodsIssueTypeID, value); }
+        }
+        public string GoodsIssueTypeName { get; set; }
 
         private Nullable<int> deliveryAdviceID;
         [DefaultValue(null)]
@@ -151,8 +159,10 @@ namespace TotalDTO.Inventories
         protected override List<ValidationRule> CreateRules()
         {
             List<ValidationRule> validationRules = base.CreateRules();
-            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<GoodsIssuePrimitiveDTO>(p => p.CustomerID), "Vui lòng chọn khách hàng.", delegate { return (this.CustomerID != null && this.CustomerID > 0); }));
-            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<GoodsIssuePrimitiveDTO>(p => p.ForkliftDriverID), "Vui lòng chọn tài xếxyz123.", delegate { return (this.ForkliftDriverID != null && this.ForkliftDriverID > 0); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<GoodsIssuePrimitiveDTO>(p => p.CustomerID), "Vui lòng chọn khách hàng.", delegate { return (this.GoodsIssueTypeID == (int)GlobalEnums.GoodsIssueTypeID.TransferOrder || (this.CustomerID != null && this.CustomerID > 0)); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<GoodsIssuePrimitiveDTO>(p => p.WarehouseID), "Vui lòng chọn kho xuất.", delegate { return (this.GoodsIssueTypeID == (int)GlobalEnums.GoodsIssueTypeID.DeliveryAdvice || (this.WarehouseID != null && this.WarehouseID > 0)); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<GoodsIssuePrimitiveDTO>(p => p.WarehouseReceiptID), "Vui lòng chọn kho nhận.", delegate { return (this.GoodsIssueTypeID == (int)GlobalEnums.GoodsIssueTypeID.DeliveryAdvice || (this.WarehouseReceiptID != null && this.WarehouseReceiptID > 0)); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<GoodsIssuePrimitiveDTO>(p => p.ForkliftDriverID), "Vui lòng chọn tài xế.", delegate { return (this.ForkliftDriverID != null && this.ForkliftDriverID > 0); }));
             validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<GoodsIssuePrimitiveDTO>(p => p.StorekeeperID), "Vui lòng chọn nhân viên kho.", delegate { return (this.StorekeeperID != null && this.StorekeeperID > 0); }));
 
             return validationRules;

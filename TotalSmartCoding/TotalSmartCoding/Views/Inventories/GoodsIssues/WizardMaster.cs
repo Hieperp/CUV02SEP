@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using TotalBase;
+using TotalBase.Enums;
 using TotalModel.Models;
 using TotalSmartCoding.Controllers.APIs.Inventories;
 using TotalSmartCoding.Libraries.Helpers;
@@ -34,13 +35,13 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
             this.customTabBatch.TabPages[3].Controls.Add(this.fastPendingTransferOrderWarehouses);
 
             this.customTabBatch.Dock = DockStyle.Fill;
-            
+
             this.fastPendingDeliveryAdvices.Dock = DockStyle.Fill;
             this.fastPendingDeliveryAdviceCustomers.Dock = DockStyle.Fill;
-            
+
             this.fastPendingTransferOrders.Dock = DockStyle.Fill;
             this.fastPendingTransferOrderWarehouses.Dock = DockStyle.Fill;
-            
+
             this.panelMaster.Controls.Add(this.customTabBatch);
 
             if (GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.GoodsIssue) ViewHelpers.SetFont(this, new Font("Calibri", 11), new Font("Calibri", 11), new Font("Calibri", 11));
@@ -56,7 +57,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
             {
                 this.fastPendingDeliveryAdvices.SetObjects(this.goodsIssueAPIs.GetPendingDeliveryAdvices(this.goodsIssueViewModel.LocationID));
                 this.fastPendingDeliveryAdviceCustomers.SetObjects(this.goodsIssueAPIs.GetPendingDeliveryAdviceCustomers(this.goodsIssueViewModel.LocationID));
-                
+
                 this.fastPendingTransferOrders.SetObjects(this.goodsIssueAPIs.GetPendingTransferOrders(this.goodsIssueViewModel.LocationID));
                 this.fastPendingTransferOrderWarehouses.SetObjects(this.goodsIssueAPIs.GetPendingTransferOrderWarehouses(this.goodsIssueViewModel.LocationID));
             }
@@ -74,52 +75,62 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                 if (sender.Equals(this.buttonOK))
                 {
                     bool nextOK = false;
-                    if (this.customTabBatch.SelectedIndex == 0)
+                    if (this.customTabBatch.SelectedIndex == 0 || this.customTabBatch.SelectedIndex == 1)
                     {
-                        PendingDeliveryAdvice pendingDeliveryAdvice = (PendingDeliveryAdvice)this.fastPendingDeliveryAdvices.SelectedObject;
-                        if (pendingDeliveryAdvice != null) {                            
-                            this.goodsIssueViewModel.DeliveryAdviceID = pendingDeliveryAdvice.DeliveryAdviceID;
-                            this.goodsIssueViewModel.DeliveryAdviceReferences = pendingDeliveryAdvice.DeliveryAdviceReference;
-                            this.goodsIssueViewModel.CustomerID = pendingDeliveryAdvice.CustomerID;
-                            this.goodsIssueViewModel.CustomerName = pendingDeliveryAdvice.CustomerName;
-                            nextOK = true;
-                        }
-                    }
-                    if (this.customTabBatch.SelectedIndex == 1)
-                    {
-                        PendingDeliveryAdviceCustomer pendingDeliveryAdviceCustomer = (PendingDeliveryAdviceCustomer)this.fastPendingDeliveryAdviceCustomers.SelectedObject;
-                        if (pendingDeliveryAdviceCustomer != null)
+                        this.goodsIssueViewModel.GoodsIssueTypeID = (int)GlobalEnums.GoodsIssueTypeID.DeliveryAdvice;
+                        if (this.customTabBatch.SelectedIndex == 0)
                         {
-                            this.goodsIssueViewModel.CustomerID = pendingDeliveryAdviceCustomer.CustomerID;
-                            this.goodsIssueViewModel.CustomerName = pendingDeliveryAdviceCustomer.CustomerName;
-                            nextOK = true;
+                            PendingDeliveryAdvice pendingDeliveryAdvice = (PendingDeliveryAdvice)this.fastPendingDeliveryAdvices.SelectedObject;
+                            if (pendingDeliveryAdvice != null)
+                            {
+                                this.goodsIssueViewModel.DeliveryAdviceID = pendingDeliveryAdvice.DeliveryAdviceID;
+                                this.goodsIssueViewModel.DeliveryAdviceReferences = pendingDeliveryAdvice.DeliveryAdviceReference;
+                                this.goodsIssueViewModel.CustomerID = pendingDeliveryAdvice.CustomerID;
+                                this.goodsIssueViewModel.CustomerName = pendingDeliveryAdvice.CustomerName;
+                                nextOK = true;
+                            }
+                        }
+                        if (this.customTabBatch.SelectedIndex == 1)
+                        {
+                            PendingDeliveryAdviceCustomer pendingDeliveryAdviceCustomer = (PendingDeliveryAdviceCustomer)this.fastPendingDeliveryAdviceCustomers.SelectedObject;
+                            if (pendingDeliveryAdviceCustomer != null)
+                            {
+                                this.goodsIssueViewModel.CustomerID = pendingDeliveryAdviceCustomer.CustomerID;
+                                this.goodsIssueViewModel.CustomerName = pendingDeliveryAdviceCustomer.CustomerName;
+                                nextOK = true;
+                            }
                         }
                     }
 
-
-
-                    if (this.customTabBatch.SelectedIndex == 2)
+                    
+                    if (this.customTabBatch.SelectedIndex == 2 || this.customTabBatch.SelectedIndex == 3)
                     {
-                        PendingTransferOrder pendingTransferOrder = (PendingTransferOrder)this.fastPendingTransferOrders.SelectedObject;
-                        if (pendingTransferOrder != null)
+                        this.goodsIssueViewModel.GoodsIssueTypeID = (int)GlobalEnums.GoodsIssueTypeID.TransferOrder;
+                        if (this.customTabBatch.SelectedIndex == 2)
                         {
-                            this.goodsIssueViewModel.TransferOrderID = pendingTransferOrder.TransferOrderID;
-                            this.goodsIssueViewModel.TransferOrderReference = pendingTransferOrder.TransferOrderReference;
-                            this.goodsIssueViewModel.WarehouseReceiptID = pendingTransferOrder.WarehouseReceiptID;
-                            this.goodsIssueViewModel.WarehouseReceiptName = pendingTransferOrder.WarehouseReceiptName;
-                            nextOK = true;
+                            PendingTransferOrder pendingTransferOrder = (PendingTransferOrder)this.fastPendingTransferOrders.SelectedObject;
+                            if (pendingTransferOrder != null)
+                            {
+                                this.goodsIssueViewModel.TransferOrderID = pendingTransferOrder.TransferOrderID;
+                                this.goodsIssueViewModel.TransferOrderReference = pendingTransferOrder.TransferOrderReference;
+                                this.goodsIssueViewModel.WarehouseID = pendingTransferOrder.WarehouseIssueID;
+                                this.goodsIssueViewModel.WarehouseName = pendingTransferOrder.WarehouseIssueName;
+                                this.goodsIssueViewModel.WarehouseReceiptID = pendingTransferOrder.WarehouseReceiptID;
+                                this.goodsIssueViewModel.WarehouseReceiptName = pendingTransferOrder.WarehouseReceiptName;
+                                nextOK = true;
+                            }
                         }
-                    }
-                    if (this.customTabBatch.SelectedIndex == 3)
-                    {
-                        PendingTransferOrderWarehouse pendingTransferOrderWarehouse = (PendingTransferOrderWarehouse)this.fastPendingTransferOrderWarehouses.SelectedObject;
-                        if (pendingTransferOrderWarehouse != null)
+                        if (this.customTabBatch.SelectedIndex == 3)
                         {
-                            this.goodsIssueViewModel.WarehouseID = pendingTransferOrderWarehouse.WarehouseIssueID;
-                            this.goodsIssueViewModel.WarehouseName = pendingTransferOrderWarehouse.WarehouseIssueName;
-                            this.goodsIssueViewModel.WarehouseReceiptID = pendingTransferOrderWarehouse.WarehouseReceiptID;
-                            this.goodsIssueViewModel.WarehouseReceiptName = pendingTransferOrderWarehouse.WarehouseReceiptName;
-                            nextOK = true;
+                            PendingTransferOrderWarehouse pendingTransferOrderWarehouse = (PendingTransferOrderWarehouse)this.fastPendingTransferOrderWarehouses.SelectedObject;
+                            if (pendingTransferOrderWarehouse != null)
+                            {
+                                this.goodsIssueViewModel.WarehouseID = pendingTransferOrderWarehouse.WarehouseIssueID;
+                                this.goodsIssueViewModel.WarehouseName = pendingTransferOrderWarehouse.WarehouseIssueName;
+                                this.goodsIssueViewModel.WarehouseReceiptID = pendingTransferOrderWarehouse.WarehouseReceiptID;
+                                this.goodsIssueViewModel.WarehouseReceiptName = pendingTransferOrderWarehouse.WarehouseReceiptName;
+                                nextOK = true;
+                            }
                         }
                     }
 
@@ -127,7 +138,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                     if (nextOK)
                         this.DialogResult = DialogResult.OK;
                     else
-                        CustomMsgBox.Show(this, "Vui lòng chọn phiếu giao thành phẩm sau đóng gói, hoặc kho nhận hàng.", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Stop);                    
+                        CustomMsgBox.Show(this, "Vui lòng chọn phiếu giao thành phẩm sau đóng gói, hoặc kho nhận hàng.", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Stop);
                 }
 
                 if (sender.Equals(this.buttonESC))

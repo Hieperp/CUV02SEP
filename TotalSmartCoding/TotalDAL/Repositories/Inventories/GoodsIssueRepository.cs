@@ -41,10 +41,6 @@ namespace TotalDAL.Repositories.Inventories
             return base.TotalSmartCodingEntities.GetPendingDeliveryAdviceCustomers(locationID).ToList();
         }
 
-        public List<PendingDeliveryAdviceDetail> GetPendingDeliveryAdviceDetails(int? locationID, int? goodsIssueID, int? deliveryAdviceID, int? customerID, string deliveryAdviceDetailIDs, bool isReadonly)
-        {
-            return base.TotalSmartCodingEntities.GetPendingDeliveryAdviceDetails(locationID, goodsIssueID, deliveryAdviceID, customerID, deliveryAdviceDetailIDs, isReadonly).ToList();
-        }
 
 
         public List<PendingTransferOrder> GetPendingTransferOrders(int? locationID)
@@ -55,6 +51,17 @@ namespace TotalDAL.Repositories.Inventories
         public List<PendingTransferOrderWarehouse> GetPendingTransferOrderWarehouses(int? locationID)
         {
             return base.TotalSmartCodingEntities.GetPendingTransferOrderWarehouses(locationID).ToList();
+        }
+
+
+        public List<PendingDeliveryAdviceDetail> GetPendingDeliveryAdviceDetails(int? locationID, int? goodsIssueID, int? deliveryAdviceID, int? customerID, string deliveryAdviceDetailIDs, bool isReadonly)
+        {
+            return base.TotalSmartCodingEntities.GetPendingDeliveryAdviceDetails(locationID, goodsIssueID, deliveryAdviceID, customerID, deliveryAdviceDetailIDs, isReadonly).ToList();
+        }
+
+        public List<PendingTransferOrderDetail> GetPendingTransferOrderDetails(int? locationID, int? goodsIssueID, int? warehouseIssueID, int? transferOrderID, int? warehouseReceiptID, string transferOrderDetailIDs, bool isReadonly)
+        {
+            return base.TotalSmartCodingEntities.GetPendingTransferOrderDetails(locationID, goodsIssueID, warehouseIssueID, transferOrderID, warehouseReceiptID, transferOrderDetailIDs, isReadonly).ToList();
         }
     }
 

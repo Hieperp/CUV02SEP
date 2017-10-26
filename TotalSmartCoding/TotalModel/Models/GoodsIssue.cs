@@ -44,6 +44,7 @@ namespace TotalModel.Models
         public Nullable<System.DateTime> ApprovedDate { get; set; }
         public Nullable<int> WarehouseID { get; set; }
         public Nullable<int> WarehouseReceiptID { get; set; }
+        public int GoodsIssueTypeID { get; set; }
     
         public virtual Customer Customer { get; set; }
         public virtual DeliveryAdvice DeliveryAdvice { get; set; }

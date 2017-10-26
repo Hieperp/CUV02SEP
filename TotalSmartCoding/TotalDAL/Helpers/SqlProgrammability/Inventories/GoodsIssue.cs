@@ -25,10 +25,15 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
             this.GetPendingDeliveryAdvices();
             this.GetPendingDeliveryAdviceCustomers();
-            this.GetPendingDeliveryAdviceDetails();
 
             this.GetPendingTransferOrders();
             this.GetPendingTransferOrderWarehouses();
+
+
+            GenerateSQLPendingDetails generatePendingDeliveryAdviceDetails = new GenerateSQLPendingDetails(totalSmartCodingEntities, "GetPendingDeliveryAdviceDetails", "DeliveryAdviceDetails", "DeliveryAdviceID", "@DeliveryAdviceID", "DeliveryAdviceDetailID", "@DeliveryAdviceDetailIDs", "CustomerID", "@CustomerID", false, "DeliveryAdviceReference", "DeliveryAdviceEntryDate");
+            generatePendingDeliveryAdviceDetails.GetPendingDeliveryAdviceDetails();
+            GenerateSQLPendingDetails generatePendingTransferOrderDetails = new GenerateSQLPendingDetails(totalSmartCodingEntities, "GetPendingTransferOrderDetails", "TransferOrderDetails", "TransferOrderID", "@TransferOrderID", "TransferOrderDetailID", "@TransferOrderDetailIDs", "WarehouseReceiptID", "@WarehouseReceiptID", true, "TransferOrderReference", "TransferOrderEntryDate");
+            generatePendingTransferOrderDetails.GetPendingDeliveryAdviceDetails();
 
 
             this.GoodsIssueSaveRelative();
@@ -77,12 +82,12 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
-            queryString = queryString + "       SELECT      GoodsIssueDetails.GoodsIssueDetailID, GoodsIssueDetails.GoodsIssueID, GoodsIssueDetails.DeliveryAdviceID, GoodsIssueDetails.DeliveryAdviceDetailID, DeliveryAdviceDetails.Reference AS DeliveryAdviceReference, DeliveryAdviceDetails.EntryDate AS DeliveryAdviceEntryDate, GoodsIssueDetails.TransferOrderID, GoodsIssueDetails.TransferOrderDetailID, TransferOrderDetails.Reference AS TransferOrderReference, TransferOrderDetails.EntryDate AS TransferOrderEntryDate, " +"\r\n";
+            queryString = queryString + "       SELECT      GoodsIssueDetails.GoodsIssueDetailID, GoodsIssueDetails.GoodsIssueID, GoodsIssueDetails.DeliveryAdviceID, GoodsIssueDetails.DeliveryAdviceDetailID, DeliveryAdviceDetails.Reference AS DeliveryAdviceReference, DeliveryAdviceDetails.EntryDate AS DeliveryAdviceEntryDate, GoodsIssueDetails.TransferOrderID, GoodsIssueDetails.TransferOrderDetailID, TransferOrderDetails.Reference AS TransferOrderReference, TransferOrderDetails.EntryDate AS TransferOrderEntryDate, " + "\r\n";
             queryString = queryString + "                   GoodsIssueDetails.GoodsReceiptID, GoodsIssueDetails.GoodsReceiptDetailID, GoodsReceiptDetails.BatchEntryDate, GoodsReceiptDetails.Reference AS GoodsReceiptReference, GoodsReceiptDetails.EntryDate AS GoodsReceiptEntryDate," + "\r\n";
             queryString = queryString + "                   Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, BinLocations.BinLocationID, BinLocations.Code AS BinLocationCode, " + "\r\n";
             queryString = queryString + "                   GoodsReceiptDetails.PackID, Packs.Code AS PackCode, GoodsReceiptDetails.CartonID, Cartons.Code AS CartonCode, GoodsReceiptDetails.PalletID, Pallets.Code AS PalletCode, GoodsReceiptDetails.PackCounts, GoodsReceiptDetails.CartonCounts, GoodsReceiptDetails.PalletCounts, " + "\r\n";
             queryString = queryString + "                   ROUND(GoodsReceiptDetails.Quantity - GoodsReceiptDetails.QuantityIssue + GoodsIssueDetails.Quantity, " + (int)GlobalEnums.rndQuantity + ") AS QuantityAvailable, ROUND(GoodsReceiptDetails.LineVolume - GoodsReceiptDetails.LineVolumeIssue + GoodsIssueDetails.LineVolume, " + (int)GlobalEnums.rndVolume + ") AS LineVolumeAvailable, ROUND(ISNULL(DeliveryAdviceDetails.Quantity, 0) - ISNULL(DeliveryAdviceDetails.QuantityIssue, 0) + ISNULL(TransferOrderDetails.Quantity, 0) - ISNULL(TransferOrderDetails.QuantityIssue, 0) + GoodsIssueDetails.Quantity, " + (int)GlobalEnums.rndQuantity + ") AS QuantityRemains, ROUND(ISNULL(DeliveryAdviceDetails.LineVolume, 0) - ISNULL(DeliveryAdviceDetails.LineVolumeIssue, 0) + ISNULL(TransferOrderDetails.LineVolume, 0) - ISNULL(TransferOrderDetails.LineVolumeIssue, 0) + GoodsIssueDetails.LineVolume, " + (int)GlobalEnums.rndVolume + ") AS LineVolumeRemains, GoodsIssueDetails.Quantity, GoodsIssueDetails.LineVolume, GoodsIssueDetails.Remarks " + "\r\n";
-            
+
             queryString = queryString + "       FROM        GoodsIssueDetails " + "\r\n";
             queryString = queryString + "                   INNER JOIN Commodities ON GoodsIssueDetails.GoodsIssueID = @GoodsIssueID AND GoodsIssueDetails.CommodityID = Commodities.CommodityID " + "\r\n";
             queryString = queryString + "                   INNER JOIN GoodsReceiptDetails ON GoodsIssueDetails.GoodsReceiptDetailID = GoodsReceiptDetails.GoodsReceiptDetailID " + "\r\n";
@@ -90,7 +95,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
             queryString = queryString + "                   LEFT JOIN DeliveryAdviceDetails ON GoodsIssueDetails.DeliveryAdviceDetailID = DeliveryAdviceDetails.DeliveryAdviceDetailID " + "\r\n";
             queryString = queryString + "                   LEFT JOIN TransferOrderDetails ON GoodsIssueDetails.TransferOrderDetailID = TransferOrderDetails.TransferOrderDetailID " + "\r\n";
-            
+
             queryString = queryString + "                   LEFT JOIN Pallets ON GoodsReceiptDetails.PalletID = Pallets.PalletID " + "\r\n";
             queryString = queryString + "                   LEFT JOIN Packs ON GoodsReceiptDetails.PackID = Packs.PackID " + "\r\n";
             queryString = queryString + "                   LEFT JOIN Cartons ON GoodsReceiptDetails.CartonID = Cartons.CartonID " + "\r\n";
@@ -145,9 +150,10 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
 
-            queryString = queryString + "       SELECT          TransferOrders.TransferOrderID, TransferOrders.Reference AS TransferOrderReference, TransferOrders.EntryDate AS TransferOrderEntryDate, TransferOrders.VoucherCode, TransferOrders.TransferJobs, TransferOrders.WarehouseReceiptID, WarehouseReceipts.Code AS WarehouseReceiptCode, WarehouseReceipts.Name AS WarehouseReceiptName, TransferOrders.Description, TransferOrders.Remarks " + "\r\n";
+            queryString = queryString + "       SELECT          TransferOrders.TransferOrderID, TransferOrders.Reference AS TransferOrderReference, TransferOrders.EntryDate AS TransferOrderEntryDate, TransferOrders.VoucherCode, TransferOrders.TransferJobs, TransferOrders.WarehouseIssueID, WarehouseIssues.Code AS WarehouseIssueCode, WarehouseIssues.Name AS WarehouseIssueName, TransferOrders.WarehouseReceiptID, WarehouseReceipts.Code AS WarehouseReceiptCode, WarehouseReceipts.Name AS WarehouseReceiptName, TransferOrders.Description, TransferOrders.Remarks " + "\r\n";
             queryString = queryString + "       FROM            TransferOrders " + "\r\n";
-            queryString = queryString + "                       INNER JOIN Warehouses WarehouseReceipts ON TransferOrders.TransferOrderID IN (SELECT TransferOrderID FROM TransferOrderDetails WHERE LocationID = @LocationID AND Approved = 1 AND ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") > 0) AND TransferOrders.WarehouseReceiptID = WarehouseReceipts.WarehouseID " + "\r\n";
+            queryString = queryString + "                       INNER JOIN Warehouses WarehouseIssues ON TransferOrders.TransferOrderID IN (SELECT TransferOrderID FROM TransferOrderDetails WHERE LocationID = @LocationID AND Approved = 1 AND ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") > 0) AND TransferOrders.WarehouseIssueID = WarehouseIssues.WarehouseID " + "\r\n";
+            queryString = queryString + "                       INNER JOIN Warehouses WarehouseReceipts ON TransferOrders.WarehouseReceiptID = WarehouseReceipts.WarehouseID " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("GetPendingTransferOrders", queryString);
         }
@@ -166,124 +172,6 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             this.totalSmartCodingEntities.CreateStoredProcedure("GetPendingTransferOrderWarehouses", queryString);
         }
         #endregion TransferOrder
-
-
-
-
-        //????By Transfer Order? By Warehouse Issue, receipt   =>> WarehouseID, WarehouseReceiptID
-
-        private bool alwaysTrue = true;
-        //HERE: WE ALWAYS AND ONLY CALL GetPendingDeliveryAdviceDetails AFTER SAVE SUCCESSFUL
-        //AT GoodsIssues VIEWS: WE DON'T ALLOW TO USE CURRENT RESULT FROM GetPendingDeliveryAdviceDetails IF THE LAST SAVE IS NOT SUCCESSFULLY. WHEN SAVE SUCCESSFUL, THE GetPendingDeliveryAdviceDetails IS CALL IMMEDIATELY
-        //SO => HERE: WE DON'T CARE BOTH: @DeliveryAdviceDetailIDs AND BuildSQLEdit
-        private void GetPendingDeliveryAdviceDetails()
-        {
-            string queryString;
-
-            queryString = " @LocationID Int, @GoodsIssueID Int, @DeliveryAdviceID Int, @CustomerID Int, @DeliveryAdviceDetailIDs varchar(3999), @IsReadonly bit " + "\r\n";
-            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
-            queryString = queryString + " AS " + "\r\n";
-
-            queryString = queryString + "   BEGIN " + "\r\n";
-
-            queryString = queryString + "       IF  (@DeliveryAdviceID <> 0) " + "\r\n";
-            queryString = queryString + "           " + this.BuildSQLDeliveryAdvice(true) + "\r\n";
-            queryString = queryString + "       ELSE " + "\r\n";
-            queryString = queryString + "           " + this.BuildSQLDeliveryAdvice(false) + "\r\n";
-
-            queryString = queryString + "   END " + "\r\n";
-
-            this.totalSmartCodingEntities.CreateStoredProcedure("GetPendingDeliveryAdviceDetails", queryString);
-        }
-
-        private string BuildSQLDeliveryAdvice(bool isDeliveryAdviceID)
-        {
-            string queryString = "";
-            if (this.alwaysTrue)
-                queryString = queryString + "           " + this.BuildSQLDeliveryAdviceDeliveryAdviceDetailIDs(isDeliveryAdviceID, false) + "\r\n";
-            else
-            {
-                queryString = queryString + "   BEGIN " + "\r\n";
-                queryString = queryString + "       IF  (@DeliveryAdviceDetailIDs <> '') " + "\r\n";
-                queryString = queryString + "           " + this.BuildSQLDeliveryAdviceDeliveryAdviceDetailIDs(isDeliveryAdviceID, true) + "\r\n";
-                queryString = queryString + "       ELSE " + "\r\n";
-                queryString = queryString + "           " + this.BuildSQLDeliveryAdviceDeliveryAdviceDetailIDs(isDeliveryAdviceID, false) + "\r\n";
-                queryString = queryString + "   END " + "\r\n";
-            }
-            return queryString;
-        }
-
-        private string BuildSQLDeliveryAdviceDeliveryAdviceDetailIDs(bool isDeliveryAdviceID, bool isDeliveryAdviceDetailIDs)
-        {
-            string queryString = "";
-            queryString = queryString + "   BEGIN " + "\r\n";
-
-            if (this.alwaysTrue)
-            {
-                queryString = queryString + "               BEGIN " + "\r\n";
-                queryString = queryString + "                   " + this.BuildSQLNew(isDeliveryAdviceID, isDeliveryAdviceDetailIDs) + "\r\n";
-                queryString = queryString + "                   ORDER BY DeliveryAdviceDetails.EntryDate, DeliveryAdviceDetails.DeliveryAdviceID, DeliveryAdviceDetails.DeliveryAdviceDetailID " + "\r\n";
-                queryString = queryString + "               END " + "\r\n";
-            }
-            else
-            {
-                queryString = queryString + "       IF (@GoodsIssueID <= 0) " + "\r\n";
-                queryString = queryString + "               BEGIN " + "\r\n";
-                queryString = queryString + "                   " + this.BuildSQLNew(isDeliveryAdviceID, isDeliveryAdviceDetailIDs) + "\r\n";
-                queryString = queryString + "                   ORDER BY DeliveryAdviceDetails.EntryDate, DeliveryAdviceDetails.DeliveryAdviceID, DeliveryAdviceDetails.DeliveryAdviceDetailID " + "\r\n";
-                queryString = queryString + "               END " + "\r\n";
-                queryString = queryString + "       ELSE " + "\r\n";
-
-                queryString = queryString + "               IF (@IsReadonly = 1) " + "\r\n";
-                queryString = queryString + "                   BEGIN " + "\r\n";
-                queryString = queryString + "                       " + this.BuildSQLEdit(isDeliveryAdviceID, isDeliveryAdviceDetailIDs) + "\r\n";
-                queryString = queryString + "                       ORDER BY DeliveryAdviceDetails.EntryDate, DeliveryAdviceDetails.DeliveryAdviceID, DeliveryAdviceDetails.DeliveryAdviceDetailID " + "\r\n";
-                queryString = queryString + "                   END " + "\r\n";
-
-                queryString = queryString + "               ELSE " + "\r\n"; //FULL SELECT FOR EDIT MODE
-
-                queryString = queryString + "                   BEGIN " + "\r\n";
-                queryString = queryString + "                       " + this.BuildSQLNew(isDeliveryAdviceID, isDeliveryAdviceDetailIDs) + " WHERE DeliveryAdviceDetails.DeliveryAdviceDetailID NOT IN (SELECT DeliveryAdviceDetailID FROM GoodsIssueDetails WHERE GoodsIssueID = @GoodsIssueID) " + "\r\n";
-                queryString = queryString + "                       UNION ALL " + "\r\n";
-                queryString = queryString + "                       " + this.BuildSQLEdit(isDeliveryAdviceID, isDeliveryAdviceDetailIDs) + "\r\n";
-                queryString = queryString + "                       ORDER BY DeliveryAdviceDetails.EntryDate, DeliveryAdviceDetails.DeliveryAdviceID, DeliveryAdviceDetails.DeliveryAdviceDetailID " + "\r\n";
-                queryString = queryString + "                   END " + "\r\n";
-            }
-
-            queryString = queryString + "   END " + "\r\n";
-
-            return queryString;
-        }
-
-        private string BuildSQLNew(bool isDeliveryAdviceID, bool isDeliveryAdviceDetailIDs)
-        {
-            string queryString = "";
-
-            queryString = queryString + "       SELECT      DeliveryAdviceDetails.LocationID, DeliveryAdviceDetails.DeliveryAdviceID, DeliveryAdviceDetails.DeliveryAdviceDetailID, DeliveryAdviceDetails.Reference AS DeliveryAdviceReference, DeliveryAdviceDetails.EntryDate AS DeliveryAdviceEntryDate, " + "\r\n";
-            queryString = queryString + "                   Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, Commodities.PackageSize, Commodities.Volume, Commodities.PackageVolume, DeliveryAdviceDetails.BatchID, Batches.Code AS BatchCode, " + "\r\n";
-            queryString = queryString + "                   ROUND(DeliveryAdviceDetails.Quantity - DeliveryAdviceDetails.QuantityIssue,  " + (int)GlobalEnums.rndQuantity + ") AS QuantityRemains, CAST(0 AS decimal(18, 2)) AS Quantity, ROUND(DeliveryAdviceDetails.LineVolume - DeliveryAdviceDetails.LineVolumeIssue,  " + (int)GlobalEnums.rndVolume + ") AS LineVolumeRemains, CAST(0 AS decimal(18, 2)) AS LineVolume, DeliveryAdviceDetails.Remarks, CAST(0 AS bit) AS IsSelected " + "\r\n";
-
-            queryString = queryString + "       FROM        DeliveryAdviceDetails " + "\r\n";
-            queryString = queryString + "                   INNER JOIN Commodities ON " + (isDeliveryAdviceID ? " DeliveryAdviceDetails.DeliveryAdviceID = @DeliveryAdviceID " : "DeliveryAdviceDetails.LocationID = @LocationID AND DeliveryAdviceDetails.CustomerID = @CustomerID ") + " AND DeliveryAdviceDetails.Approved = 1 AND ROUND(DeliveryAdviceDetails.Quantity - DeliveryAdviceDetails.QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") > 0 AND DeliveryAdviceDetails.CommodityID = Commodities.CommodityID" + (isDeliveryAdviceDetailIDs ? " AND DeliveryAdviceDetails.DeliveryAdviceDetailID NOT IN (SELECT Id FROM dbo.SplitToIntList (@DeliveryAdviceDetailIDs))" : "") + "\r\n";
-            queryString = queryString + "                   LEFT JOIN Batches ON DeliveryAdviceDetails.BatchID = Batches.BatchID " + "\r\n";
-            return queryString;
-        }
-
-        private string BuildSQLEdit(bool isDeliveryAdviceID, bool isDeliveryAdviceDetailIDs)
-        {
-            string queryString = "";
-
-            queryString = queryString + "       SELECT      DeliveryAdviceDetails.LocationID, DeliveryAdviceDetails.DeliveryAdviceID, DeliveryAdviceDetails.DeliveryAdviceDetailID, DeliveryAdviceDetails.Reference AS DeliveryAdviceReference, DeliveryAdviceDetails.EntryDate AS DeliveryAdviceEntryDate, " + "\r\n";
-            queryString = queryString + "                   Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, Commodities.PackageSize, Commodities.Volume, Commodities.PackageVolume, DeliveryAdviceDetails.BatchID, Batches.Code AS BatchCode, " + "\r\n";
-            queryString = queryString + "                   ROUND(DeliveryAdviceDetails.Quantity - DeliveryAdviceDetails.QuantityIssue + GoodsIssueDetails.Quantity,  " + (int)GlobalEnums.rndQuantity + ") AS QuantityRemains, CAST(0 AS decimal(18, 2)) AS Quantity, ROUND(DeliveryAdviceDetails.LineVolume - DeliveryAdviceDetails.LineVolumeIssue + GoodsIssueDetails.LineVolume,  " + (int)GlobalEnums.rndVolume + ") AS LineVolumeRemains, CAST(0 AS decimal(18, 2)) AS LineVolume, DeliveryAdviceDetails.Remarks, CAST(0 AS bit) AS IsSelected " + "\r\n";
-
-            queryString = queryString + "       FROM        DeliveryAdviceDetails " + "\r\n";
-            queryString = queryString + "                   INNER JOIN GoodsIssueDetails ON GoodsIssueDetails.GoodsIssueID = @GoodsIssueID AND DeliveryAdviceDetails.DeliveryAdviceDetailID = GoodsIssueDetails.DeliveryAdviceDetailID" + (isDeliveryAdviceDetailIDs ? " AND DeliveryAdviceDetails.DeliveryAdviceDetailID NOT IN (SELECT Id FROM dbo.SplitToIntList (@DeliveryAdviceDetailIDs))" : "") + "\r\n";
-            queryString = queryString + "                   INNER JOIN Commodities ON DeliveryAdviceDetails.CommodityID = Commodities.CommodityID " + "\r\n";
-            queryString = queryString + "                   LEFT JOIN Batches ON DeliveryAdviceDetails.BatchID = Batches.BatchID " + "\r\n";
-
-            return queryString;
-        }
 
         #endregion Y
 
@@ -389,5 +277,175 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
 
         #endregion
+
+
+
+
+
+        #region xyz
+
+
+        public class GenerateSQLPendingDetails
+        {
+            private readonly string functionName;
+
+            private readonly string primaryTableDetails;
+
+            private readonly string primaryKey;
+            private readonly string paraPrimaryKey;
+
+            private readonly string primaryKeyDetail;
+            private readonly string paraPrimaryKeyDetails;
+
+            private readonly string filterKey;
+            private readonly string paraFilterKey;
+
+            private readonly bool isWarehouse;
+
+            private readonly string primaryReference;
+            private readonly string primaryEntryDate;
+
+            private readonly TotalSmartCodingEntities totalSmartCodingEntities;
+
+            public GenerateSQLPendingDetails(TotalSmartCodingEntities totalSmartCodingEntities, string functionName, string primaryTableDetails, string primaryKey, string paraPrimaryKey, string primaryKeyDetails, string paraPrimaryKeyDetails, string filterKey, string paraFilterKey, bool isWarehouse, string primaryReference, string primaryEntryDate)
+            {
+                this.totalSmartCodingEntities = totalSmartCodingEntities;
+
+                this.functionName = functionName;
+                this.primaryTableDetails = primaryTableDetails;
+
+                this.primaryKey = primaryKey;
+                this.paraPrimaryKey = paraPrimaryKey;
+
+                this.filterKey = filterKey;
+                this.paraFilterKey = paraFilterKey;
+
+                this.primaryKeyDetail = primaryKeyDetails;
+                this.paraPrimaryKeyDetails = paraPrimaryKeyDetails;
+
+                this.isWarehouse = isWarehouse;
+
+                this.primaryReference = primaryReference;
+                this.primaryEntryDate = primaryEntryDate;
+            }
+
+
+            private bool alwaysTrue = false;
+            //HERE: WE ALWAYS AND ONLY CALL GetPendingDeliveryAdviceDetails AFTER SAVE SUCCESSFUL
+            //AT GoodsIssues VIEWS: WE DON'T ALLOW TO USE CURRENT RESULT FROM GetPendingDeliveryAdviceDetails IF THE LAST SAVE IS NOT SUCCESSFULLY. WHEN SAVE SUCCESSFUL, THE GetPendingDeliveryAdviceDetails IS CALL IMMEDIATELY
+            //SO => HERE: WE DON'T CARE BOTH: @DeliveryAdviceDetailIDs AND BuildSQLEdit
+            public void GetPendingDeliveryAdviceDetails()
+            {
+                string queryString;
+
+                queryString = " @LocationID Int, @GoodsIssueID Int, " + (this.isWarehouse ? "@WarehouseIssueID Int, " : "") + this.paraPrimaryKey + " Int, " + this.paraFilterKey + " Int, " + this.paraPrimaryKeyDetails + " varchar(3999), @IsReadonly bit " + "\r\n";
+                //queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+                queryString = queryString + " AS " + "\r\n";
+
+                queryString = queryString + "   BEGIN " + "\r\n";
+
+                queryString = queryString + "       IF  (" + this.paraPrimaryKey + " <> 0) " + "\r\n";
+                queryString = queryString + "           " + this.BuildSQLDeliveryAdvice(true) + "\r\n";
+                queryString = queryString + "       ELSE " + "\r\n";
+                queryString = queryString + "           " + this.BuildSQLDeliveryAdvice(false) + "\r\n";
+
+                queryString = queryString + "   END " + "\r\n";
+
+                this.totalSmartCodingEntities.CreateStoredProcedure(functionName, queryString);
+            }
+
+            private string BuildSQLDeliveryAdvice(bool isDeliveryAdviceID)
+            {
+                string queryString = "";
+                if (this.alwaysTrue)
+                    queryString = queryString + "           " + this.BuildSQLDeliveryAdviceDeliveryAdviceDetailIDs(isDeliveryAdviceID, false) + "\r\n";
+                else
+                {
+                    queryString = queryString + "   BEGIN " + "\r\n";
+                    queryString = queryString + "       IF  (" + this.paraPrimaryKeyDetails + " <> '') " + "\r\n";
+                    queryString = queryString + "           " + this.BuildSQLDeliveryAdviceDeliveryAdviceDetailIDs(isDeliveryAdviceID, true) + "\r\n";
+                    queryString = queryString + "       ELSE " + "\r\n";
+                    queryString = queryString + "           " + this.BuildSQLDeliveryAdviceDeliveryAdviceDetailIDs(isDeliveryAdviceID, false) + "\r\n";
+                    queryString = queryString + "   END " + "\r\n";
+                }
+                return queryString;
+            }
+
+            private string BuildSQLDeliveryAdviceDeliveryAdviceDetailIDs(bool isDeliveryAdviceID, bool isDeliveryAdviceDetailIDs)
+            {
+                string queryString = "";
+                queryString = queryString + "   BEGIN " + "\r\n";
+
+                if (this.alwaysTrue)
+                {
+                    queryString = queryString + "               BEGIN " + "\r\n";
+                    queryString = queryString + "                   " + this.BuildSQLNew(isDeliveryAdviceID, isDeliveryAdviceDetailIDs) + "\r\n";
+                    queryString = queryString + "                   ORDER BY " + this.primaryTableDetails + ".EntryDate, " + this.primaryTableDetails + "." + this.primaryKey + ", " + this.primaryTableDetails + "." + this.primaryKeyDetail + " " + "\r\n";
+                    queryString = queryString + "               END " + "\r\n";
+                }
+                else
+                {
+                    queryString = queryString + "       IF (@GoodsIssueID <= 0) " + "\r\n";
+                    queryString = queryString + "               BEGIN " + "\r\n";
+                    queryString = queryString + "                   " + this.BuildSQLNew(isDeliveryAdviceID, isDeliveryAdviceDetailIDs) + "\r\n";
+                    queryString = queryString + "                   ORDER BY " + this.primaryTableDetails + ".EntryDate, " + this.primaryTableDetails + "." + this.primaryKey + ", " + this.primaryTableDetails + "." + this.primaryKeyDetail + " " + "\r\n";
+                    queryString = queryString + "               END " + "\r\n";
+                    queryString = queryString + "       ELSE " + "\r\n";
+
+                    queryString = queryString + "               IF (@IsReadonly = 1) " + "\r\n";
+                    queryString = queryString + "                   BEGIN " + "\r\n";
+                    queryString = queryString + "                       " + this.BuildSQLEdit(isDeliveryAdviceID, isDeliveryAdviceDetailIDs) + "\r\n";
+                    queryString = queryString + "                       ORDER BY " + this.primaryTableDetails + ".EntryDate, " + this.primaryTableDetails + "." + this.primaryKey + ", " + this.primaryTableDetails + "." + this.primaryKeyDetail + " " + "\r\n";
+                    queryString = queryString + "                   END " + "\r\n";
+
+                    queryString = queryString + "               ELSE " + "\r\n"; //FULL SELECT FOR EDIT MODE
+
+                    queryString = queryString + "                   BEGIN " + "\r\n";
+                    queryString = queryString + "                       " + this.BuildSQLNew(isDeliveryAdviceID, isDeliveryAdviceDetailIDs) + " WHERE " + this.primaryTableDetails + "." + this.primaryKeyDetail + " NOT IN (SELECT " + this.primaryKeyDetail + " FROM GoodsIssueDetails WHERE GoodsIssueID = @GoodsIssueID) " + "\r\n";
+                    queryString = queryString + "                       UNION ALL " + "\r\n";
+                    queryString = queryString + "                       " + this.BuildSQLEdit(isDeliveryAdviceID, isDeliveryAdviceDetailIDs) + "\r\n";
+                    queryString = queryString + "                       ORDER BY " + this.primaryTableDetails + ".EntryDate, " + this.primaryTableDetails + "." + this.primaryKey + ", " + this.primaryTableDetails + "." + this.primaryKeyDetail + " " + "\r\n";
+                    queryString = queryString + "                   END " + "\r\n";
+                }
+
+                queryString = queryString + "   END " + "\r\n";
+
+                return queryString;
+            }
+
+            private string BuildSQLNew(bool isDeliveryAdviceID, bool isDeliveryAdviceDetailIDs)
+            {
+                string queryString = "";
+
+                queryString = queryString + "       SELECT      " + this.primaryTableDetails + ".LocationID, " + this.primaryTableDetails + "." + this.primaryKey + ", " + this.primaryTableDetails + "." + this.primaryKeyDetail + ", " + this.primaryTableDetails + ".Reference AS " + this.primaryReference + ", " + this.primaryTableDetails + ".EntryDate AS " + this.primaryEntryDate + ", " + "\r\n";
+                queryString = queryString + "                   Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, Commodities.PackageSize, Commodities.Volume, Commodities.PackageVolume, " + this.primaryTableDetails + ".BatchID, Batches.Code AS BatchCode, " + "\r\n";
+                queryString = queryString + "                   ROUND(" + this.primaryTableDetails + ".Quantity - " + this.primaryTableDetails + ".QuantityIssue,  " + (int)GlobalEnums.rndQuantity + ") AS QuantityRemains, CAST(0 AS decimal(18, 2)) AS Quantity, ROUND(" + this.primaryTableDetails + ".LineVolume - " + this.primaryTableDetails + ".LineVolumeIssue,  " + (int)GlobalEnums.rndVolume + ") AS LineVolumeRemains, CAST(0 AS decimal(18, 2)) AS LineVolume, " + this.primaryTableDetails + ".Remarks, CAST(0 AS bit) AS IsSelected " + "\r\n";
+
+                queryString = queryString + "       FROM        " + this.primaryTableDetails + " " + "\r\n";
+                queryString = queryString + "                   INNER JOIN Commodities ON " + (isDeliveryAdviceID ? " " + this.primaryTableDetails + "." + this.primaryKey + " = " + this.paraPrimaryKey + " " : this.primaryTableDetails + ".LocationID = @LocationID " + (this.isWarehouse ? " AND " + this.primaryTableDetails + ".WarehouseIssueID = @WarehouseIssueID " : "") + " AND " + this.primaryTableDetails + "." + this.filterKey + " = " + this.paraFilterKey) + " AND " + this.primaryTableDetails + ".Approved = 1 AND ROUND(" + this.primaryTableDetails + ".Quantity - " + this.primaryTableDetails + ".QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") > 0 AND " + this.primaryTableDetails + ".CommodityID = Commodities.CommodityID" + (isDeliveryAdviceDetailIDs ? " AND " + this.primaryTableDetails + "." + this.primaryKeyDetail + " NOT IN (SELECT Id FROM dbo.SplitToIntList (" + this.paraPrimaryKeyDetails + "))" : "") + "\r\n";
+                queryString = queryString + "                   LEFT JOIN Batches ON " + this.primaryTableDetails + ".BatchID = Batches.BatchID " + "\r\n";
+                return queryString;
+            }
+
+            private string BuildSQLEdit(bool isDeliveryAdviceID, bool isDeliveryAdviceDetailIDs)
+            {
+                string queryString = "";
+
+                queryString = queryString + "       SELECT      " + this.primaryTableDetails + ".LocationID, " + this.primaryTableDetails + "." + this.primaryKey + ", " + this.primaryTableDetails + "." + this.primaryKeyDetail + ", " + this.primaryTableDetails + ".Reference AS " + this.primaryReference + ", " + this.primaryTableDetails + ".EntryDate AS " + this.primaryEntryDate + ", " + "\r\n";
+                queryString = queryString + "                   Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, Commodities.PackageSize, Commodities.Volume, Commodities.PackageVolume, " + this.primaryTableDetails + ".BatchID, Batches.Code AS BatchCode, " + "\r\n";
+                queryString = queryString + "                   ROUND(" + this.primaryTableDetails + ".Quantity - " + this.primaryTableDetails + ".QuantityIssue + GoodsIssueDetails.Quantity,  " + (int)GlobalEnums.rndQuantity + ") AS QuantityRemains, CAST(0 AS decimal(18, 2)) AS Quantity, ROUND(" + this.primaryTableDetails + ".LineVolume - " + this.primaryTableDetails + ".LineVolumeIssue + GoodsIssueDetails.LineVolume,  " + (int)GlobalEnums.rndVolume + ") AS LineVolumeRemains, CAST(0 AS decimal(18, 2)) AS LineVolume, " + this.primaryTableDetails + ".Remarks, CAST(0 AS bit) AS IsSelected " + "\r\n";
+
+                queryString = queryString + "       FROM        " + this.primaryTableDetails + " " + "\r\n";
+                queryString = queryString + "                   INNER JOIN GoodsIssueDetails ON GoodsIssueDetails.GoodsIssueID = @GoodsIssueID AND " + this.primaryTableDetails + "." + this.primaryKeyDetail + " = GoodsIssueDetails." + this.primaryKeyDetail + "" + (isDeliveryAdviceDetailIDs ? " AND " + this.primaryTableDetails + "." + this.primaryKeyDetail + " NOT IN (SELECT Id FROM dbo.SplitToIntList (" + this.paraPrimaryKeyDetails + "))" : "") + "\r\n";
+                queryString = queryString + "                   INNER JOIN Commodities ON " + this.primaryTableDetails + ".CommodityID = Commodities.CommodityID " + "\r\n";
+                queryString = queryString + "                   LEFT JOIN Batches ON " + this.primaryTableDetails + ".BatchID = Batches.BatchID " + "\r\n";
+
+                return queryString;
+            }
+        }
+
+
+        #endregion xyz
+
     }
 }

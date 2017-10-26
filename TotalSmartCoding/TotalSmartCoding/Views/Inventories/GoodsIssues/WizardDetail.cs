@@ -26,8 +26,9 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
 
         private GoodsIssueViewModel goodsIssueViewModel;
         private PendingDeliveryAdviceDetail pendingDeliveryAdviceDetail;
+        private PendingTransferOrderDetail pendingTransferOrderDetail;
 
-        public WizardDetail(GoodsIssueViewModel goodsIssueViewModel, PendingDeliveryAdviceDetail pendingDeliveryAdviceDetail)
+        public WizardDetail(GoodsIssueViewModel goodsIssueViewModel, PendingDeliveryAdviceDetail pendingDeliveryAdviceDetail, PendingTransferOrderDetail pendingTransferOrderDetail)
         {
             InitializeComponent();
 
@@ -56,6 +57,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
 
             this.goodsIssueViewModel = goodsIssueViewModel;
             this.pendingDeliveryAdviceDetail = pendingDeliveryAdviceDetail;
+            this.pendingTransferOrderDetail = pendingTransferOrderDetail;
         }
 
         private void WizardDetail_Load(object sender, EventArgs e)
@@ -64,7 +66,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
             {
                 GoodsReceiptAPIs goodsReceiptAPIs = new GoodsReceiptAPIs(CommonNinject.Kernel.Get<IGoodsReceiptAPIRepository>());
 
-                List<GoodsReceiptDetailAvailable> goodsReceiptDetailAvailables = goodsReceiptAPIs.GetGoodsReceiptDetailAvailables(this.pendingDeliveryAdviceDetail.LocationID, this.pendingDeliveryAdviceDetail.CommodityID, this.pendingDeliveryAdviceDetail.BatchID, string.Join(",", this.goodsIssueViewModel.ViewDetails.Select(d => d.GoodsReceiptDetailID)));
+                List<GoodsReceiptDetailAvailable> goodsReceiptDetailAvailables = goodsReceiptAPIs.GetGoodsReceiptDetailAvailables(this.pendingDeliveryAdviceDetail != null ? this.pendingDeliveryAdviceDetail.LocationID : this.pendingTransferOrderDetail.LocationID, this.pendingDeliveryAdviceDetail != null ? this.pendingDeliveryAdviceDetail.CommodityID : this.pendingTransferOrderDetail.CommodityID, this.pendingDeliveryAdviceDetail != null ? this.pendingDeliveryAdviceDetail.BatchID : this.pendingTransferOrderDetail.BatchID, string.Join(",", this.goodsIssueViewModel.ViewDetails.Select(d => d.GoodsReceiptDetailID)));
 
                 this.fastAvailablePallets.SetObjects(goodsReceiptDetailAvailables.Where(w => w.PalletID != null));
                 this.fastAvailableCartons.SetObjects(goodsReceiptDetailAvailables.Where(w => w.CartonID != null));
@@ -137,19 +139,24 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                             {
                                 GoodsIssueID = this.goodsIssueViewModel.GoodsIssueID,
 
-                                DeliveryAdviceID = this.pendingDeliveryAdviceDetail.DeliveryAdviceID,
-                                DeliveryAdviceDetailID = this.pendingDeliveryAdviceDetail.DeliveryAdviceDetailID,
-                                DeliveryAdviceReference = this.pendingDeliveryAdviceDetail.DeliveryAdviceReference,
-                                DeliveryAdviceEntryDate = this.pendingDeliveryAdviceDetail.DeliveryAdviceEntryDate,
+                                DeliveryAdviceID = this.pendingDeliveryAdviceDetail != null ? this.pendingDeliveryAdviceDetail.DeliveryAdviceID : (int?)null,
+                                DeliveryAdviceDetailID = this.pendingDeliveryAdviceDetail != null ? this.pendingDeliveryAdviceDetail.DeliveryAdviceDetailID : (int?)null,
+                                DeliveryAdviceReference = this.pendingDeliveryAdviceDetail != null ? this.pendingDeliveryAdviceDetail.DeliveryAdviceReference : null,
+                                DeliveryAdviceEntryDate = this.pendingDeliveryAdviceDetail != null ? this.pendingDeliveryAdviceDetail.DeliveryAdviceEntryDate : (DateTime?)null,
 
-                                CommodityID = this.pendingDeliveryAdviceDetail.CommodityID,
-                                CommodityCode = this.pendingDeliveryAdviceDetail.CommodityCode,
-                                CommodityName = this.pendingDeliveryAdviceDetail.CommodityName,
+                                TransferOrderID = this.pendingTransferOrderDetail != null ? this.pendingTransferOrderDetail.TransferOrderID : (int?)null,
+                                TransferOrderDetailID = this.pendingTransferOrderDetail != null ? this.pendingTransferOrderDetail.TransferOrderDetailID : (int?)null,
+                                TransferOrderReference = this.pendingTransferOrderDetail != null ? this.pendingTransferOrderDetail.TransferOrderReference : null,
+                                TransferOrderEntryDate = this.pendingTransferOrderDetail != null ? this.pendingTransferOrderDetail.TransferOrderEntryDate : (DateTime?)null,
 
-                                PackageSize = this.pendingDeliveryAdviceDetail.PackageSize,
+                                CommodityID = goodsReceiptDetailAvailable.CommodityID,
+                                CommodityCode = goodsReceiptDetailAvailable.CommodityCode,
+                                CommodityName = goodsReceiptDetailAvailable.CommodityName,
 
-                                Volume = this.pendingDeliveryAdviceDetail.Volume,
-                                PackageVolume = this.pendingDeliveryAdviceDetail.PackageVolume,
+                                PackageSize = goodsReceiptDetailAvailable.PackageSize,
+
+                                Volume = goodsReceiptDetailAvailable.Volume,
+                                PackageVolume = goodsReceiptDetailAvailable.PackageVolume,
 
                                 GoodsReceiptID = goodsReceiptDetailAvailable.GoodsReceiptID,
                                 GoodsReceiptDetailID = goodsReceiptDetailAvailable.GoodsReceiptDetailID,
@@ -179,8 +186,8 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                                 QuantityAvailable = (decimal)goodsReceiptDetailAvailable.QuantityAvailable,
                                 LineVolumeAvailable = (decimal)goodsReceiptDetailAvailable.LineVolumeAvailable,
 
-                                QuantityRemains = (decimal)this.pendingDeliveryAdviceDetail.QuantityRemains,
-                                LineVolumeRemains = (decimal)this.pendingDeliveryAdviceDetail.LineVolumeRemains,
+                                QuantityRemains = (decimal)(this.pendingDeliveryAdviceDetail != null ? this.pendingDeliveryAdviceDetail.QuantityRemains : this.pendingTransferOrderDetail.QuantityRemains),
+                                LineVolumeRemains = (decimal)(this.pendingDeliveryAdviceDetail != null ? this.pendingDeliveryAdviceDetail.LineVolumeRemains : this.pendingTransferOrderDetail.LineVolumeRemains),
 
                                 Quantity = (decimal)goodsReceiptDetailAvailable.QuantityAvailable, //SHOULD: Quantity = QuantityAvailable (ALSO: LineVolume = LineVolumeAvailable): BECAUSE: WE ISSUE BY WHOLE UNIT OF PALLET/ OR CARTON/ OR PACK
                                 LineVolume = (decimal)goodsReceiptDetailAvailable.LineVolumeAvailable //IF Quantity > QuantityRemains (OR LineVolume > LineVolumeRemains) => THE GoodsIssueDetailDTO WILL BREAK THE ValidationRule => CAN NOT SAVE => USER MUST SELECT OTHER APPROPRIATE UNIT OF PALLET/ OR CARTON/ OR PACK WHICH MATCH THE Quantity/ LineVolume                                

@@ -318,6 +318,12 @@
             InventoryAdjustment = 6
         };
 
+        public enum GoodsIssueTypeID
+        {
+            DeliveryAdvice = 1,
+            TransferOrder = 2
+        };
+
         public enum SalesInvoiceTypeID
         {
             AllInvoice = 1,

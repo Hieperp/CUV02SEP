@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GoodsIssues));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutMaster = new System.Windows.Forms.TableLayoutPanel();
             this.label8 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -95,6 +95,7 @@
             this.CartonBinLocationCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CartonQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CartonLineVolume = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.olvTransferOrderReference = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.tableLayoutMaster.SuspendLayout();
             this.toolStripChildForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.naviDetails)).BeginInit();
@@ -122,7 +123,7 @@
             this.tableLayoutMaster.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 11F));
             this.tableLayoutMaster.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutMaster.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutMaster.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 92F));
+            this.tableLayoutMaster.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 93F));
             this.tableLayoutMaster.Controls.Add(this.label8, 3, 4);
             this.tableLayoutMaster.Controls.Add(this.label5, 3, 3);
             this.tableLayoutMaster.Controls.Add(this.label2, 3, 2);
@@ -158,10 +159,10 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label8.Location = new System.Drawing.Point(309, 101);
+            this.label8.Location = new System.Drawing.Point(308, 101);
             this.label8.Margin = new System.Windows.Forms.Padding(1);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(117, 28);
+            this.label8.Size = new System.Drawing.Size(116, 28);
             this.label8.TabIndex = 78;
             this.label8.Text = "Total Volume";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -170,10 +171,10 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Location = new System.Drawing.Point(309, 71);
+            this.label5.Location = new System.Drawing.Point(308, 71);
             this.label5.Margin = new System.Windows.Forms.Padding(1);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(117, 28);
+            this.label5.Size = new System.Drawing.Size(116, 28);
             this.label5.TabIndex = 77;
             this.label5.Text = "Total Quantity";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -182,10 +183,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(312, 44);
+            this.label2.Location = new System.Drawing.Point(311, 44);
             this.label2.Margin = new System.Windows.Forms.Padding(4);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(111, 22);
+            this.label2.Size = new System.Drawing.Size(110, 22);
             this.label2.TabIndex = 56;
             this.label2.Text = "Pallet Count";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -194,10 +195,10 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Location = new System.Drawing.Point(309, 11);
+            this.label4.Location = new System.Drawing.Point(308, 11);
             this.label4.Margin = new System.Windows.Forms.Padding(1);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(117, 28);
+            this.label4.Size = new System.Drawing.Size(116, 28);
             this.label4.TabIndex = 28;
             this.label4.Text = "Carton Count";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -206,7 +207,7 @@
             // 
             this.textexVehicle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexVehicle.Editable = true;
-            this.textexVehicle.Location = new System.Drawing.Point(123, 41);
+            this.textexVehicle.Location = new System.Drawing.Point(122, 41);
             this.textexVehicle.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
             this.textexVehicle.Name = "textexVehicle";
             this.textexVehicle.Size = new System.Drawing.Size(173, 28);
@@ -217,7 +218,7 @@
             this.dateTimexEntryDate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dateTimexEntryDate.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
             this.dateTimexEntryDate.Editable = false;
-            this.dateTimexEntryDate.Location = new System.Drawing.Point(123, 11);
+            this.dateTimexEntryDate.Location = new System.Drawing.Point(122, 11);
             this.dateTimexEntryDate.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
             this.dateTimexEntryDate.Name = "dateTimexEntryDate";
             this.dateTimexEntryDate.ReadOnly = false;
@@ -231,7 +232,7 @@
             this.label3.Location = new System.Drawing.Point(4, 104);
             this.label3.Margin = new System.Windows.Forms.Padding(4);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(111, 22);
+            this.label3.Size = new System.Drawing.Size(110, 22);
             this.label3.TabIndex = 76;
             this.label3.Text = "Store Keeper";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -243,7 +244,7 @@
             this.label10.Location = new System.Drawing.Point(4, 74);
             this.label10.Margin = new System.Windows.Forms.Padding(4);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(111, 22);
+            this.label10.Size = new System.Drawing.Size(110, 22);
             this.label10.TabIndex = 35;
             this.label10.Text = "Forklift Driver";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -255,7 +256,7 @@
             this.label7.Location = new System.Drawing.Point(4, 44);
             this.label7.Margin = new System.Windows.Forms.Padding(4);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(111, 22);
+            this.label7.Size = new System.Drawing.Size(110, 22);
             this.label7.TabIndex = 31;
             this.label7.Text = "Vehicle";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -267,7 +268,7 @@
             this.label6.Location = new System.Drawing.Point(1, 11);
             this.label6.Margin = new System.Windows.Forms.Padding(1);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(117, 28);
+            this.label6.Size = new System.Drawing.Size(116, 28);
             this.label6.TabIndex = 30;
             this.label6.Text = "Date";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -276,7 +277,7 @@
             // 
             this.textexTotalLineVolume.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexTotalLineVolume.Editable = false;
-            this.textexTotalLineVolume.Location = new System.Drawing.Point(431, 101);
+            this.textexTotalLineVolume.Location = new System.Drawing.Point(429, 101);
             this.textexTotalLineVolume.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
             this.textexTotalLineVolume.Name = "textexTotalLineVolume";
             this.textexTotalLineVolume.Size = new System.Drawing.Size(173, 28);
@@ -287,7 +288,7 @@
             // 
             this.textexTotalQuantity.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexTotalQuantity.Editable = false;
-            this.textexTotalQuantity.Location = new System.Drawing.Point(431, 71);
+            this.textexTotalQuantity.Location = new System.Drawing.Point(429, 71);
             this.textexTotalQuantity.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
             this.textexTotalQuantity.Name = "textexTotalQuantity";
             this.textexTotalQuantity.Size = new System.Drawing.Size(173, 28);
@@ -298,7 +299,7 @@
             // 
             this.textexTotalPalletCounts.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexTotalPalletCounts.Editable = false;
-            this.textexTotalPalletCounts.Location = new System.Drawing.Point(431, 41);
+            this.textexTotalPalletCounts.Location = new System.Drawing.Point(429, 41);
             this.textexTotalPalletCounts.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
             this.textexTotalPalletCounts.Name = "textexTotalPalletCounts";
             this.textexTotalPalletCounts.Size = new System.Drawing.Size(173, 28);
@@ -309,7 +310,7 @@
             // 
             this.textexTotalCartonCounts.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexTotalCartonCounts.Editable = false;
-            this.textexTotalCartonCounts.Location = new System.Drawing.Point(431, 11);
+            this.textexTotalCartonCounts.Location = new System.Drawing.Point(429, 11);
             this.textexTotalCartonCounts.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
             this.textexTotalCartonCounts.Name = "textexTotalCartonCounts";
             this.textexTotalCartonCounts.Size = new System.Drawing.Size(173, 28);
@@ -323,7 +324,7 @@
             this.combexForkliftDriverID.Dock = System.Windows.Forms.DockStyle.Fill;
             this.combexForkliftDriverID.Editable = true;
             this.combexForkliftDriverID.FormattingEnabled = true;
-            this.combexForkliftDriverID.Location = new System.Drawing.Point(123, 71);
+            this.combexForkliftDriverID.Location = new System.Drawing.Point(122, 71);
             this.combexForkliftDriverID.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
             this.combexForkliftDriverID.Name = "combexForkliftDriverID";
             this.combexForkliftDriverID.ReadOnly = false;
@@ -337,7 +338,7 @@
             this.combexStorekeeperID.Dock = System.Windows.Forms.DockStyle.Fill;
             this.combexStorekeeperID.Editable = true;
             this.combexStorekeeperID.FormattingEnabled = true;
-            this.combexStorekeeperID.Location = new System.Drawing.Point(123, 101);
+            this.combexStorekeeperID.Location = new System.Drawing.Point(122, 101);
             this.combexStorekeeperID.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
             this.combexStorekeeperID.Name = "combexStorekeeperID";
             this.combexStorekeeperID.ReadOnly = false;
@@ -430,14 +431,14 @@
             this.gridexPalletDetails.BackgroundColor = System.Drawing.Color.Ivory;
             this.gridexPalletDetails.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridexPalletDetails.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridexPalletDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridexPalletDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.gridexPalletDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridexPalletDetails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.PalletDeliveryAdviceReference,
@@ -489,8 +490,8 @@
             // 
             this.PalletBatchEntryDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.PalletBatchEntryDate.DataPropertyName = "BatchEntryDate";
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.PalletBatchEntryDate.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.PalletBatchEntryDate.DefaultCellStyle = dataGridViewCellStyle2;
             this.PalletBatchEntryDate.FillWeight = 12F;
             this.PalletBatchEntryDate.HeaderText = "Batch Date";
             this.PalletBatchEntryDate.Name = "PalletBatchEntryDate";
@@ -508,8 +509,8 @@
             // 
             this.PalletQuantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.PalletQuantity.DataPropertyName = "Quantity";
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.PalletQuantity.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.PalletQuantity.DefaultCellStyle = dataGridViewCellStyle3;
             this.PalletQuantity.FillWeight = 5F;
             this.PalletQuantity.HeaderText = "Qty";
             this.PalletQuantity.MinimumWidth = 9;
@@ -519,8 +520,8 @@
             // 
             this.PalletLineVolume.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.PalletLineVolume.DataPropertyName = "LineVolume";
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.PalletLineVolume.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.PalletLineVolume.DefaultCellStyle = dataGridViewCellStyle4;
             this.PalletLineVolume.FillWeight = 10F;
             this.PalletLineVolume.HeaderText = "Volume";
             this.PalletLineVolume.MinimumWidth = 9;
@@ -653,6 +654,7 @@
             // fastPendingDeliveryAdviceDetails
             // 
             this.fastPendingDeliveryAdviceDetails.AllColumns.Add(this.olvDeliveryAdviceReference);
+            this.fastPendingDeliveryAdviceDetails.AllColumns.Add(this.olvTransferOrderReference);
             this.fastPendingDeliveryAdviceDetails.AllColumns.Add(this.olvCommodityCode);
             this.fastPendingDeliveryAdviceDetails.AllColumns.Add(this.olvBatchCode);
             this.fastPendingDeliveryAdviceDetails.AllColumns.Add(this.olvQuantityRemains);
@@ -660,6 +662,7 @@
             this.fastPendingDeliveryAdviceDetails.BackColor = System.Drawing.Color.Ivory;
             this.fastPendingDeliveryAdviceDetails.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.olvDeliveryAdviceReference,
+            this.olvTransferOrderReference,
             this.olvCommodityCode,
             this.olvBatchCode,
             this.olvQuantityRemains,
@@ -788,14 +791,14 @@
             this.gridexCartonDetails.BackgroundColor = System.Drawing.Color.Ivory;
             this.gridexCartonDetails.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridexCartonDetails.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridexCartonDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridexCartonDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.gridexCartonDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridexCartonDetails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CartonDeliveryAdviceReference,
@@ -847,8 +850,8 @@
             // 
             this.CartonBatchEntryDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.CartonBatchEntryDate.DataPropertyName = "BatchEntryDate";
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.CartonBatchEntryDate.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.CartonBatchEntryDate.DefaultCellStyle = dataGridViewCellStyle6;
             this.CartonBatchEntryDate.FillWeight = 12F;
             this.CartonBatchEntryDate.HeaderText = "Batch Date";
             this.CartonBatchEntryDate.Name = "CartonBatchEntryDate";
@@ -866,8 +869,8 @@
             // 
             this.CartonQuantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.CartonQuantity.DataPropertyName = "Quantity";
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.CartonQuantity.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.CartonQuantity.DefaultCellStyle = dataGridViewCellStyle7;
             this.CartonQuantity.FillWeight = 5F;
             this.CartonQuantity.HeaderText = "Qty";
             this.CartonQuantity.MinimumWidth = 9;
@@ -877,12 +880,20 @@
             // 
             this.CartonLineVolume.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.CartonLineVolume.DataPropertyName = "LineVolume";
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.CartonLineVolume.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.CartonLineVolume.DefaultCellStyle = dataGridViewCellStyle8;
             this.CartonLineVolume.FillWeight = 10F;
             this.CartonLineVolume.HeaderText = "Volume";
             this.CartonLineVolume.MinimumWidth = 9;
             this.CartonLineVolume.Name = "CartonLineVolume";
+            // 
+            // olvTransferOrderReference
+            // 
+            this.olvTransferOrderReference.AspectName = "TransferOrderReference";
+            this.olvTransferOrderReference.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvTransferOrderReference.Text = "Order #";
+            this.olvTransferOrderReference.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvTransferOrderReference.Width = 70;
             // 
             // GoodsIssues
             // 
@@ -987,6 +998,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CartonQuantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn CartonLineVolume;
         private BrightIdeasSoftware.OLVColumn olvBatchCode;
+        private BrightIdeasSoftware.OLVColumn olvTransferOrderReference;
 
     }
 }

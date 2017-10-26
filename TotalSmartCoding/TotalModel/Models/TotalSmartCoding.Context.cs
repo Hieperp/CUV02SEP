@@ -1500,5 +1500,38 @@ namespace TotalModel.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PendingTransferOrderWarehouse>("GetPendingTransferOrderWarehouses", locationIDParameter);
         }
+    
+        public virtual ObjectResult<PendingTransferOrderDetail> GetPendingTransferOrderDetails(Nullable<int> locationID, Nullable<int> goodsIssueID, Nullable<int> warehouseIssueID, Nullable<int> transferOrderID, Nullable<int> warehouseReceiptID, string transferOrderDetailIDs, Nullable<bool> isReadonly)
+        {
+            var locationIDParameter = locationID.HasValue ?
+                new ObjectParameter("LocationID", locationID) :
+                new ObjectParameter("LocationID", typeof(int));
+    
+            var goodsIssueIDParameter = goodsIssueID.HasValue ?
+                new ObjectParameter("GoodsIssueID", goodsIssueID) :
+                new ObjectParameter("GoodsIssueID", typeof(int));
+    
+            var warehouseIssueIDParameter = warehouseIssueID.HasValue ?
+                new ObjectParameter("WarehouseIssueID", warehouseIssueID) :
+                new ObjectParameter("WarehouseIssueID", typeof(int));
+    
+            var transferOrderIDParameter = transferOrderID.HasValue ?
+                new ObjectParameter("TransferOrderID", transferOrderID) :
+                new ObjectParameter("TransferOrderID", typeof(int));
+    
+            var warehouseReceiptIDParameter = warehouseReceiptID.HasValue ?
+                new ObjectParameter("WarehouseReceiptID", warehouseReceiptID) :
+                new ObjectParameter("WarehouseReceiptID", typeof(int));
+    
+            var transferOrderDetailIDsParameter = transferOrderDetailIDs != null ?
+                new ObjectParameter("TransferOrderDetailIDs", transferOrderDetailIDs) :
+                new ObjectParameter("TransferOrderDetailIDs", typeof(string));
+    
+            var isReadonlyParameter = isReadonly.HasValue ?
+                new ObjectParameter("IsReadonly", isReadonly) :
+                new ObjectParameter("IsReadonly", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PendingTransferOrderDetail>("GetPendingTransferOrderDetails", locationIDParameter, goodsIssueIDParameter, warehouseIssueIDParameter, transferOrderIDParameter, warehouseReceiptIDParameter, transferOrderDetailIDsParameter, isReadonlyParameter);
+        }
     }
 }

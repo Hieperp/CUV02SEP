@@ -244,7 +244,16 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
         {
             try
             {
-                this.fastPendingDeliveryAdviceDetails.SetObjects(this.goodsIssueAPIs.GetPendingDeliveryAdviceDetails(this.goodsIssueViewModel.LocationID, this.goodsIssueViewModel.GoodsIssueID, this.goodsIssueViewModel.DeliveryAdviceID, this.goodsIssueViewModel.CustomerID, string.Join(",", this.goodsIssueViewModel.ViewDetails.Select(d => d.DeliveryAdviceDetailID)), false));
+                if (this.goodsIssueViewModel.GoodsIssueTypeID == (int)GlobalEnums.GoodsIssueTypeID.DeliveryAdvice)
+                {
+                    this.olvDeliveryAdviceReference.IsVisible = false;
+                    this.fastPendingDeliveryAdviceDetails.SetObjects(this.goodsIssueAPIs.GetPendingDeliveryAdviceDetails(this.goodsIssueViewModel.LocationID, this.goodsIssueViewModel.GoodsIssueID, this.goodsIssueViewModel.DeliveryAdviceID, this.goodsIssueViewModel.CustomerID, string.Join(",", this.goodsIssueViewModel.ViewDetails.Select(d => d.DeliveryAdviceDetailID)), false));
+                }
+                if (this.goodsIssueViewModel.GoodsIssueTypeID == (int)GlobalEnums.GoodsIssueTypeID.TransferOrder)
+                {
+                    this.olvTransferOrderReference.IsVisible = false;
+                    this.fastPendingDeliveryAdviceDetails.SetObjects(this.goodsIssueAPIs.GetPendingTransferOrderDetails(this.goodsIssueViewModel.LocationID, this.goodsIssueViewModel.GoodsIssueID, this.goodsIssueViewModel.WarehouseID, this.goodsIssueViewModel.TransferOrderID, this.goodsIssueViewModel.WarehouseReceiptID, string.Join(",", this.goodsIssueViewModel.ViewDetails.Select(d => d.TransferOrderDetailID)), false));
+                }
                 //this.naviPendingItems.Text = "Pending " + this.fastPendingDeliveryAdviceDetails.GetItemCount().ToString("N0") + " row" + (this.fastPendingDeliveryAdviceDetails.GetItemCount() > 1 ? "s" : "");
             }
             catch (Exception exception)
@@ -269,12 +278,14 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
             {
                 if (this.EditableMode && this.goodsIssueViewModel.Editable && this.goodsIssueViewModel.IsValid && !this.goodsIssueViewModel.IsDirty)
                 {
-                    PendingDeliveryAdviceDetail pendingDeliveryAdviceDetail = (PendingDeliveryAdviceDetail)this.fastPendingDeliveryAdviceDetails.SelectedObject;
-                    if (pendingDeliveryAdviceDetail != null)
+                    PendingDeliveryAdviceDetail pendingDeliveryAdviceDetail = this.fastPendingDeliveryAdviceDetails.SelectedObject as PendingDeliveryAdviceDetail;
+                    PendingTransferOrderDetail pendingTransferOrderDetail = this.fastPendingDeliveryAdviceDetails.SelectedObject as PendingTransferOrderDetail;
+
+                    if (pendingDeliveryAdviceDetail != null || pendingTransferOrderDetail != null)
                     {
-                        WizardDetail wizardDetail = new WizardDetail(this.goodsIssueViewModel, pendingDeliveryAdviceDetail);
+                        WizardDetail wizardDetail = new WizardDetail(this.goodsIssueViewModel, pendingDeliveryAdviceDetail, pendingTransferOrderDetail);
                         TabletMDI tabletMDI = new TabletMDI(wizardDetail);
-                        if (tabletMDI.ShowDialog() == System.Windows.Forms.DialogResult.OK) 
+                        if (tabletMDI.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                             this.Save(false);
 
                         wizardDetail.Dispose(); tabletMDI.Dispose();

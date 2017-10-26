@@ -7,7 +7,7 @@ using TotalModel.Models;
 
 namespace TotalDAL.Helpers.SqlProgrammability
 {
-    class Temporary
+    public class Temporary
     {
         private readonly TotalSmartCodingEntities totalSmartCodingEntities;
 
@@ -18,52 +18,34 @@ namespace TotalDAL.Helpers.SqlProgrammability
 
         public void RestoreProcedure()
         {
-            GenerateSQLPendingDetails generateSQLPendingDetails = new GenerateSQLPendingDetails(totalSmartCodingEntities, "GetPendingDeliveryAdviceDetails", "@DeliveryAdviceID", "@CustomerID", "@DeliveryAdviceDetailIDs");
-            generateSQLPendingDetails.GetPendingDeliveryAdviceDetails();
         }
 
+
+        #region Backup for GetPendingDeliveryAdviceDetails, GetPendingTransferOrderDetails
         //????By Transfer Order? By Warehouse Issue, receipt   =>> WarehouseID, WarehouseReceiptID
-
-
-    }
-
-    class GenerateSQLPendingDetails
-    {
-        private readonly string functionName;
-        private readonly string foreignKey;
-        private readonly string filterKey;
-        private readonly string foreignKeyDetails;
-
-        private readonly TotalSmartCodingEntities totalSmartCodingEntities;
-
-        public GenerateSQLPendingDetails(TotalSmartCodingEntities totalSmartCodingEntities, string functionName, string foreignKey, string filterKey, string foreignKeyDetails)
-        {
-            this.totalSmartCodingEntities = totalSmartCodingEntities;
-        }
-
 
         private bool alwaysTrue = true;
         //HERE: WE ALWAYS AND ONLY CALL GetPendingDeliveryAdviceDetails AFTER SAVE SUCCESSFUL
         //AT GoodsIssues VIEWS: WE DON'T ALLOW TO USE CURRENT RESULT FROM GetPendingDeliveryAdviceDetails IF THE LAST SAVE IS NOT SUCCESSFULLY. WHEN SAVE SUCCESSFUL, THE GetPendingDeliveryAdviceDetails IS CALL IMMEDIATELY
         //SO => HERE: WE DON'T CARE BOTH: @DeliveryAdviceDetailIDs AND BuildSQLEdit
-        public void GetPendingDeliveryAdviceDetails()
+        private void GetPendingDeliveryAdviceDetails()
         {
             string queryString;
 
-            queryString = " @LocationID Int, @GoodsIssueID Int, " + this.foreignKey + " Int, " + this.filterKey + " Int, " + this.foreignKeyDetails + " varchar(3999), @IsReadonly bit " + "\r\n";
+            queryString = " @LocationID Int, @GoodsIssueID Int, @DeliveryAdviceID Int, @CustomerID Int, @DeliveryAdviceDetailIDs varchar(3999), @IsReadonly bit " + "\r\n";
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
 
             queryString = queryString + "   BEGIN " + "\r\n";
 
-            queryString = queryString + "       IF  (" + this.foreignKey + " <> 0) " + "\r\n";
+            queryString = queryString + "       IF  (@DeliveryAdviceID <> 0) " + "\r\n";
             queryString = queryString + "           " + this.BuildSQLDeliveryAdvice(true) + "\r\n";
             queryString = queryString + "       ELSE " + "\r\n";
             queryString = queryString + "           " + this.BuildSQLDeliveryAdvice(false) + "\r\n";
 
             queryString = queryString + "   END " + "\r\n";
 
-            this.totalSmartCodingEntities.CreateStoredProcedure(functionName, queryString);
+            this.totalSmartCodingEntities.CreateStoredProcedure("GetPendingDeliveryAdviceDetails", queryString);
         }
 
         private string BuildSQLDeliveryAdvice(bool isDeliveryAdviceID)
@@ -74,7 +56,7 @@ namespace TotalDAL.Helpers.SqlProgrammability
             else
             {
                 queryString = queryString + "   BEGIN " + "\r\n";
-                queryString = queryString + "       IF  (" + this.foreignKeyDetails + " <> '') " + "\r\n";
+                queryString = queryString + "       IF  (@DeliveryAdviceDetailIDs <> '') " + "\r\n";
                 queryString = queryString + "           " + this.BuildSQLDeliveryAdviceDeliveryAdviceDetailIDs(isDeliveryAdviceID, true) + "\r\n";
                 queryString = queryString + "       ELSE " + "\r\n";
                 queryString = queryString + "           " + this.BuildSQLDeliveryAdviceDeliveryAdviceDetailIDs(isDeliveryAdviceID, false) + "\r\n";
@@ -134,7 +116,7 @@ namespace TotalDAL.Helpers.SqlProgrammability
             queryString = queryString + "                   ROUND(DeliveryAdviceDetails.Quantity - DeliveryAdviceDetails.QuantityIssue,  " + (int)GlobalEnums.rndQuantity + ") AS QuantityRemains, CAST(0 AS decimal(18, 2)) AS Quantity, ROUND(DeliveryAdviceDetails.LineVolume - DeliveryAdviceDetails.LineVolumeIssue,  " + (int)GlobalEnums.rndVolume + ") AS LineVolumeRemains, CAST(0 AS decimal(18, 2)) AS LineVolume, DeliveryAdviceDetails.Remarks, CAST(0 AS bit) AS IsSelected " + "\r\n";
 
             queryString = queryString + "       FROM        DeliveryAdviceDetails " + "\r\n";
-            queryString = queryString + "                   INNER JOIN Commodities ON " + (isDeliveryAdviceID ? " DeliveryAdviceDetails.DeliveryAdviceID = " + this.foreignKey + " " : "DeliveryAdviceDetails.LocationID = @LocationID AND DeliveryAdviceDetails.CustomerID = " + this.filterKey + " ") + " AND DeliveryAdviceDetails.Approved = 1 AND ROUND(DeliveryAdviceDetails.Quantity - DeliveryAdviceDetails.QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") > 0 AND DeliveryAdviceDetails.CommodityID = Commodities.CommodityID" + (isDeliveryAdviceDetailIDs ? " AND DeliveryAdviceDetails.DeliveryAdviceDetailID NOT IN (SELECT Id FROM dbo.SplitToIntList (" + this.foreignKeyDetails + "))" : "") + "\r\n";
+            queryString = queryString + "                   INNER JOIN Commodities ON " + (isDeliveryAdviceID ? " DeliveryAdviceDetails.DeliveryAdviceID = @DeliveryAdviceID " : "DeliveryAdviceDetails.LocationID = @LocationID AND DeliveryAdviceDetails.CustomerID = @CustomerID ") + " AND DeliveryAdviceDetails.Approved = 1 AND ROUND(DeliveryAdviceDetails.Quantity - DeliveryAdviceDetails.QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") > 0 AND DeliveryAdviceDetails.CommodityID = Commodities.CommodityID" + (isDeliveryAdviceDetailIDs ? " AND DeliveryAdviceDetails.DeliveryAdviceDetailID NOT IN (SELECT Id FROM dbo.SplitToIntList (@DeliveryAdviceDetailIDs))" : "") + "\r\n";
             queryString = queryString + "                   LEFT JOIN Batches ON DeliveryAdviceDetails.BatchID = Batches.BatchID " + "\r\n";
             return queryString;
         }
@@ -148,11 +130,14 @@ namespace TotalDAL.Helpers.SqlProgrammability
             queryString = queryString + "                   ROUND(DeliveryAdviceDetails.Quantity - DeliveryAdviceDetails.QuantityIssue + GoodsIssueDetails.Quantity,  " + (int)GlobalEnums.rndQuantity + ") AS QuantityRemains, CAST(0 AS decimal(18, 2)) AS Quantity, ROUND(DeliveryAdviceDetails.LineVolume - DeliveryAdviceDetails.LineVolumeIssue + GoodsIssueDetails.LineVolume,  " + (int)GlobalEnums.rndVolume + ") AS LineVolumeRemains, CAST(0 AS decimal(18, 2)) AS LineVolume, DeliveryAdviceDetails.Remarks, CAST(0 AS bit) AS IsSelected " + "\r\n";
 
             queryString = queryString + "       FROM        DeliveryAdviceDetails " + "\r\n";
-            queryString = queryString + "                   INNER JOIN GoodsIssueDetails ON GoodsIssueDetails.GoodsIssueID = @GoodsIssueID AND DeliveryAdviceDetails.DeliveryAdviceDetailID = GoodsIssueDetails.DeliveryAdviceDetailID" + (isDeliveryAdviceDetailIDs ? " AND DeliveryAdviceDetails.DeliveryAdviceDetailID NOT IN (SELECT Id FROM dbo.SplitToIntList (" + this.foreignKeyDetails + "))" : "") + "\r\n";
+            queryString = queryString + "                   INNER JOIN GoodsIssueDetails ON GoodsIssueDetails.GoodsIssueID = @GoodsIssueID AND DeliveryAdviceDetails.DeliveryAdviceDetailID = GoodsIssueDetails.DeliveryAdviceDetailID" + (isDeliveryAdviceDetailIDs ? " AND DeliveryAdviceDetails.DeliveryAdviceDetailID NOT IN (SELECT Id FROM dbo.SplitToIntList (@DeliveryAdviceDetailIDs))" : "") + "\r\n";
             queryString = queryString + "                   INNER JOIN Commodities ON DeliveryAdviceDetails.CommodityID = Commodities.CommodityID " + "\r\n";
             queryString = queryString + "                   LEFT JOIN Batches ON DeliveryAdviceDetails.BatchID = Batches.BatchID " + "\r\n";
 
             return queryString;
         }
+
+        #endregion Backup for GetPendingDeliveryAdviceDetails, GetPendingTransferOrderDetails
     }
+
 }
