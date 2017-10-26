@@ -240,7 +240,9 @@
           <Property Name="EntryDate" Type="datetime" Nullable="false" />
           <Property Name="Reference" Type="nvarchar" MaxLength="10" />
           <Property Name="LocationID" Type="int" Nullable="false" />
-          <Property Name="CustomerID" Type="int" Nullable="false" />
+          <Property Name="WarehouseID" Type="int" Nullable="false" />
+          <Property Name="CustomerID" Type="int" />
+          <Property Name="WarehouseReceiptID" Type="int" />
           <Property Name="CommodityID" Type="int" Nullable="false" />
           <Property Name="Quantity" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="LineVolume" Type="decimal" Precision="18" Scale="2" Nullable="false" />
@@ -276,6 +278,15 @@
           <Property Name="EditedDate" Type="datetime" Nullable="false" />
           <Property Name="Approved" Type="bit" Nullable="false" />
           <Property Name="ApprovedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="GoodsIssueTypes">
+          <Key>
+            <PropertyRef Name="GoodsIssueTypeID" />
+          </Key>
+          <Property Name="GoodsIssueTypeID" Type="int" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Remarks" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="GoodsReceiptDetails">
           <Key>
@@ -888,7 +899,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_GoodsIssueDetails_Customers">
-          <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+          <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
           <End Role="GoodsIssueDetails" Type="Self.GoodsIssueDetails" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Customers">
@@ -968,6 +979,18 @@
             </Principal>
             <Dependent Role="GoodsIssues">
               <PropertyRef Name="DeliveryAdviceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GoodsIssues_GoodsIssueTypes">
+          <End Role="GoodsIssueTypes" Type="Self.GoodsIssueTypes" Multiplicity="1" />
+          <End Role="GoodsIssues" Type="Self.GoodsIssues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GoodsIssueTypes">
+              <PropertyRef Name="GoodsIssueTypeID" />
+            </Principal>
+            <Dependent Role="GoodsIssues">
+              <PropertyRef Name="GoodsIssueTypeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2087,6 +2110,7 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <EntitySet Name="FillingLines" EntityType="Self.FillingLines" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GoodsIssueDetails" EntityType="Self.GoodsIssueDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GoodsIssues" EntityType="Self.GoodsIssues" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GoodsIssueTypes" EntityType="Self.GoodsIssueTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GoodsReceiptDetails" EntityType="Self.GoodsReceiptDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GoodsReceipts" EntityType="Self.GoodsReceipts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GoodsReceiptTypes" EntityType="Self.GoodsReceiptTypes" Schema="dbo" store:Type="Tables" />
@@ -2202,6 +2226,10 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           </AssociationSet>
           <AssociationSet Name="FK_GoodsIssues_DeliveryAdvices" Association="Self.FK_GoodsIssues_DeliveryAdvices">
             <End Role="DeliveryAdvices" EntitySet="DeliveryAdvices" />
+            <End Role="GoodsIssues" EntitySet="GoodsIssues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GoodsIssues_GoodsIssueTypes" Association="Self.FK_GoodsIssues_GoodsIssueTypes">
+            <End Role="GoodsIssueTypes" EntitySet="GoodsIssueTypes" />
             <End Role="GoodsIssues" EntitySet="GoodsIssues" />
           </AssociationSet>
           <AssociationSet Name="FK_GoodsIssues_Locations" Association="Self.FK_GoodsIssues_Locations">
@@ -3104,35 +3132,14 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
             <End Role="Warehouse" EntitySet="Warehouses" />
             <End Role="WarehouseAdjustment" EntitySet="WarehouseAdjustments" />
           </AssociationSet>
-          <EntitySet Name="GoodsIssueDetails" EntityType="TotalSmartCodingModel.GoodsIssueDetail" />
           <EntitySet Name="GoodsIssues" EntityType="TotalSmartCodingModel.GoodsIssue" />
-          <AssociationSet Name="FK_GoodsIssueDetails_Commodities" Association="TotalSmartCodingModel.FK_GoodsIssueDetails_Commodities">
-            <End Role="Commodity" EntitySet="Commodities" />
-            <End Role="GoodsIssueDetail" EntitySet="GoodsIssueDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_GoodsIssueDetails_Customers" Association="TotalSmartCodingModel.FK_GoodsIssueDetails_Customers">
-            <End Role="Customer" EntitySet="Customers" />
-            <End Role="GoodsIssueDetail" EntitySet="GoodsIssueDetails" />
-          </AssociationSet>
           <AssociationSet Name="FK_GoodsIssues_Customers" Association="TotalSmartCodingModel.FK_GoodsIssues_Customers">
             <End Role="Customer" EntitySet="Customers" />
             <End Role="GoodsIssue" EntitySet="GoodsIssues" />
           </AssociationSet>
-          <AssociationSet Name="FK_GoodsIssueDetails_DeliveryAdviceDetails" Association="TotalSmartCodingModel.FK_GoodsIssueDetails_DeliveryAdviceDetails">
-            <End Role="DeliveryAdviceDetail" EntitySet="DeliveryAdviceDetails" />
-            <End Role="GoodsIssueDetail" EntitySet="GoodsIssueDetails" />
-          </AssociationSet>
           <AssociationSet Name="FK_GoodsIssues_DeliveryAdvices" Association="TotalSmartCodingModel.FK_GoodsIssues_DeliveryAdvices">
             <End Role="DeliveryAdvice" EntitySet="DeliveryAdvices" />
             <End Role="GoodsIssue" EntitySet="GoodsIssues" />
-          </AssociationSet>
-          <AssociationSet Name="FK_GoodsIssueDetails_GoodsIssues" Association="TotalSmartCodingModel.FK_GoodsIssueDetails_GoodsIssues">
-            <End Role="GoodsIssue" EntitySet="GoodsIssues" />
-            <End Role="GoodsIssueDetail" EntitySet="GoodsIssueDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_GoodsIssueDetails_GoodsReceiptDetails" Association="TotalSmartCodingModel.FK_GoodsIssueDetails_GoodsReceiptDetails">
-            <End Role="GoodsReceiptDetail" EntitySet="GoodsReceiptDetails" />
-            <End Role="GoodsIssueDetail" EntitySet="GoodsIssueDetails" />
           </AssociationSet>
           <AssociationSet Name="FK_GoodsIssues_Locations" Association="TotalSmartCodingModel.FK_GoodsIssues_Locations">
             <End Role="Location" EntitySet="Locations" />
@@ -3185,10 +3192,6 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
             <End Role="Commodity" EntitySet="Commodities" />
             <End Role="TransferOrderDetail" EntitySet="TransferOrderDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK_GoodsIssueDetails_TransferOrderDetails" Association="TotalSmartCodingModel.FK_GoodsIssueDetails_TransferOrderDetails">
-            <End Role="TransferOrderDetail" EntitySet="TransferOrderDetails" />
-            <End Role="GoodsIssueDetail" EntitySet="GoodsIssueDetails" />
-          </AssociationSet>
           <AssociationSet Name="FK_TransferOrderDetails_TransferOrders" Association="TotalSmartCodingModel.FK_TransferOrderDetails_TransferOrders">
             <End Role="TransferOrder" EntitySet="TransferOrders" />
             <End Role="TransferOrderDetail" EntitySet="TransferOrderDetails" />
@@ -3216,6 +3219,36 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
             <Parameter Name="TransferOrderDetailIDs" Mode="In" Type="String" />
             <Parameter Name="IsReadonly" Mode="In" Type="Boolean" />
           </FunctionImport>
+          <EntitySet Name="GoodsIssueTypes" EntityType="TotalSmartCodingModel.GoodsIssueType" />
+          <AssociationSet Name="FK_GoodsIssues_GoodsIssueTypes" Association="TotalSmartCodingModel.FK_GoodsIssues_GoodsIssueTypes">
+            <End Role="GoodsIssueType" EntitySet="GoodsIssueTypes" />
+            <End Role="GoodsIssue" EntitySet="GoodsIssues" />
+          </AssociationSet>
+          <EntitySet Name="GoodsIssueDetails" EntityType="TotalSmartCodingModel.GoodsIssueDetail" />
+          <AssociationSet Name="FK_GoodsIssueDetails_Commodities" Association="TotalSmartCodingModel.FK_GoodsIssueDetails_Commodities">
+            <End Role="Commodity" EntitySet="Commodities" />
+            <End Role="GoodsIssueDetail" EntitySet="GoodsIssueDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GoodsIssueDetails_Customers" Association="TotalSmartCodingModel.FK_GoodsIssueDetails_Customers">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="GoodsIssueDetail" EntitySet="GoodsIssueDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GoodsIssueDetails_DeliveryAdviceDetails" Association="TotalSmartCodingModel.FK_GoodsIssueDetails_DeliveryAdviceDetails">
+            <End Role="DeliveryAdviceDetail" EntitySet="DeliveryAdviceDetails" />
+            <End Role="GoodsIssueDetail" EntitySet="GoodsIssueDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GoodsIssueDetails_GoodsIssues" Association="TotalSmartCodingModel.FK_GoodsIssueDetails_GoodsIssues">
+            <End Role="GoodsIssue" EntitySet="GoodsIssues" />
+            <End Role="GoodsIssueDetail" EntitySet="GoodsIssueDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GoodsIssueDetails_GoodsReceiptDetails" Association="TotalSmartCodingModel.FK_GoodsIssueDetails_GoodsReceiptDetails">
+            <End Role="GoodsReceiptDetail" EntitySet="GoodsReceiptDetails" />
+            <End Role="GoodsIssueDetail" EntitySet="GoodsIssueDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GoodsIssueDetails_TransferOrderDetails" Association="TotalSmartCodingModel.FK_GoodsIssueDetails_TransferOrderDetails">
+            <End Role="TransferOrderDetail" EntitySet="TransferOrderDetails" />
+            <End Role="GoodsIssueDetail" EntitySet="GoodsIssueDetails" />
+          </AssociationSet>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
           <Property Type="Int32" Name="PickupID" Nullable="false" />
@@ -3783,16 +3816,17 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Type="Decimal" Name="TotalQuantity" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="TotalLineVolume" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Boolean" Name="Approved" Nullable="false" />
-          <Property Type="String" Name="CustomerCode" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="CustomerName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="CustomerCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CustomerName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="WarehouseReceiptName" Nullable="true" MaxLength="60" />
         </ComplexType>
         <ComplexType Name="GoodsIssueViewDetail">
           <Property Type="Int32" Name="GoodsIssueDetailID" Nullable="false" />
           <Property Type="Int32" Name="GoodsIssueID" Nullable="false" />
-          <Property Type="Int32" Name="DeliveryAdviceID" Nullable="false" />
-          <Property Type="Int32" Name="DeliveryAdviceDetailID" Nullable="false" />
+          <Property Type="Int32" Name="DeliveryAdviceID" Nullable="true" />
+          <Property Type="Int32" Name="DeliveryAdviceDetailID" Nullable="true" />
           <Property Type="String" Name="DeliveryAdviceReference" Nullable="true" MaxLength="10" />
-          <Property Type="DateTime" Name="DeliveryAdviceEntryDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="DeliveryAdviceEntryDate" Nullable="true" Precision="23" />
           <Property Type="Int32" Name="GoodsReceiptID" Nullable="false" />
           <Property Type="Int32" Name="GoodsReceiptDetailID" Nullable="false" />
           <Property Type="String" Name="GoodsReceiptReference" Nullable="true" MaxLength="10" />
@@ -3817,8 +3851,12 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Type="Int32" Name="PalletCounts" Nullable="false" />
           <Property Type="Decimal" Name="QuantityAvailable" Nullable="true" Precision="20" Scale="2" />
           <Property Type="Decimal" Name="LineVolumeAvailable" Nullable="true" Precision="20" Scale="2" />
-          <Property Type="Decimal" Name="QuantityRemains" Nullable="true" Precision="20" Scale="2" />
-          <Property Type="Decimal" Name="LineVolumeRemains" Nullable="true" Precision="20" Scale="2" />
+          <Property Type="Decimal" Name="QuantityRemains" Nullable="true" Precision="22" Scale="2" />
+          <Property Type="Decimal" Name="LineVolumeRemains" Nullable="true" Precision="22" Scale="2" />
+          <Property Type="Int32" Name="TransferOrderID" Nullable="true" />
+          <Property Type="Int32" Name="TransferOrderDetailID" Nullable="true" />
+          <Property Type="String" Name="TransferOrderReference" Nullable="true" MaxLength="10" />
+          <Property Type="DateTime" Name="TransferOrderEntryDate" Nullable="true" Precision="23" />
         </ComplexType>
         <ComplexType Name="PendingDeliveryAdviceCustomer">
           <Property Type="Int32" Name="CustomerID" Nullable="false" />
@@ -3828,8 +3866,6 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
         <ComplexType Name="PendingDeliveryAdviceDetail">
           <Property Type="Int32" Name="DeliveryAdviceID" Nullable="false" />
           <Property Type="Int32" Name="DeliveryAdviceDetailID" Nullable="false" />
-          <Property Type="String" Name="DeliveryAdviceReference" Nullable="true" MaxLength="10" />
-          <Property Type="DateTime" Name="DeliveryAdviceEntryDate" Nullable="false" Precision="23" />
           <Property Type="Int32" Name="CommodityID" Nullable="false" />
           <Property Type="String" Name="CommodityCode" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="CommodityName" Nullable="false" MaxLength="200" />
@@ -3845,6 +3881,8 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Type="Decimal" Name="PackageVolume" Nullable="false" Precision="18" Scale="3" />
           <Property Type="Int32" Name="BatchID" Nullable="true" />
           <Property Type="String" Name="BatchCode" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="PrimaryReference" Nullable="true" MaxLength="10" />
+          <Property Type="DateTime" Name="PrimaryEntryDate" Nullable="false" Precision="23" />
         </ComplexType>
         <ComplexType Name="PendingDeliveryAdvice">
           <Property Type="Int32" Name="DeliveryAdviceID" Nullable="false" />
@@ -4467,8 +4505,8 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <NavigationProperty Name="DeliveryAdviceDetails" Relationship="TotalSmartCodingModel.FK_DeliveryAdviceDetails_Customers" FromRole="Customer" ToRole="DeliveryAdviceDetail" />
           <NavigationProperty Name="SalesOrders" Relationship="TotalSmartCodingModel.FK_SalesOrders_Customers" FromRole="Customer" ToRole="SalesOrder" />
           <NavigationProperty Name="DeliveryAdvices" Relationship="TotalSmartCodingModel.FK_DeliveryAdvices_Customers" FromRole="Customer" ToRole="DeliveryAdvice" />
-          <NavigationProperty Name="GoodsIssueDetails" Relationship="TotalSmartCodingModel.FK_GoodsIssueDetails_Customers" FromRole="Customer" ToRole="GoodsIssueDetail" />
           <NavigationProperty Name="GoodsIssues" Relationship="TotalSmartCodingModel.FK_GoodsIssues_Customers" FromRole="Customer" ToRole="GoodsIssue" />
+          <NavigationProperty Name="GoodsIssueDetails" Relationship="TotalSmartCodingModel.FK_GoodsIssueDetails_Customers" FromRole="Customer" ToRole="GoodsIssueDetail" />
         </EntityType>
         <Association Name="FK_Customers_Employees">
           <End Type="TotalSmartCodingModel.Employee" Role="Employee" Multiplicity="1" />
@@ -4652,8 +4690,8 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <NavigationProperty Name="Batches" Relationship="TotalSmartCodingModel.FK_Batches_Commodities" FromRole="Commodity" ToRole="Batch" />
           <NavigationProperty Name="WarehouseAdjustmentDetails" Relationship="TotalSmartCodingModel.FK_WarehouseAdjustmentDetails_Commodities" FromRole="Commodity" ToRole="WarehouseAdjustmentDetail" />
           <NavigationProperty Name="GoodsReceiptDetails" Relationship="TotalSmartCodingModel.FK_GoodsReceiptDetails_Commodities" FromRole="Commodity" ToRole="GoodsReceiptDetail" />
-          <NavigationProperty Name="GoodsIssueDetails" Relationship="TotalSmartCodingModel.FK_GoodsIssueDetails_Commodities" FromRole="Commodity" ToRole="GoodsIssueDetail" />
           <NavigationProperty Name="TransferOrderDetails" Relationship="TotalSmartCodingModel.FK_TransferOrderDetails_Commodities" FromRole="Commodity" ToRole="TransferOrderDetail" />
+          <NavigationProperty Name="GoodsIssueDetails" Relationship="TotalSmartCodingModel.FK_GoodsIssueDetails_Commodities" FromRole="Commodity" ToRole="GoodsIssueDetail" />
         </EntityType>
         <Association Name="FK_Cartons_Commodities">
           <End Type="TotalSmartCodingModel.Commodity" Role="Commodity" Multiplicity="1" />
@@ -5247,34 +5285,6 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="GoodsIssueDetail">
-          <Key>
-            <PropertyRef Name="GoodsIssueDetailID" />
-          </Key>
-          <Property Name="GoodsIssueDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="GoodsIssueID" Type="Int32" Nullable="false" />
-          <Property Name="DeliveryAdviceDetailID" Type="Int32" />
-          <Property Name="DeliveryAdviceID" Type="Int32" />
-          <Property Name="TransferOrderDetailID" Type="Int32" />
-          <Property Name="TransferOrderID" Type="Int32" />
-          <Property Name="GoodsReceiptDetailID" Type="Int32" Nullable="false" />
-          <Property Name="GoodsReceiptID" Type="Int32" Nullable="false" />
-          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Reference" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="LocationID" Type="Int32" Nullable="false" />
-          <Property Name="CustomerID" Type="Int32" Nullable="false" />
-          <Property Name="CommodityID" Type="Int32" Nullable="false" />
-          <Property Name="Quantity" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="LineVolume" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="Remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Approved" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Commodity" Relationship="TotalSmartCodingModel.FK_GoodsIssueDetails_Commodities" FromRole="GoodsIssueDetail" ToRole="Commodity" />
-          <NavigationProperty Name="Customer" Relationship="TotalSmartCodingModel.FK_GoodsIssueDetails_Customers" FromRole="GoodsIssueDetail" ToRole="Customer" />
-          <NavigationProperty Name="DeliveryAdviceDetail" Relationship="TotalSmartCodingModel.FK_GoodsIssueDetails_DeliveryAdviceDetails" FromRole="GoodsIssueDetail" ToRole="DeliveryAdviceDetail" />
-          <NavigationProperty Name="GoodsIssue" Relationship="TotalSmartCodingModel.FK_GoodsIssueDetails_GoodsIssues" FromRole="GoodsIssueDetail" ToRole="GoodsIssue" />
-          <NavigationProperty Name="GoodsReceiptDetail" Relationship="TotalSmartCodingModel.FK_GoodsIssueDetails_GoodsReceiptDetails" FromRole="GoodsIssueDetail" ToRole="GoodsReceiptDetail" />
-          <NavigationProperty Name="TransferOrderDetail" Relationship="TotalSmartCodingModel.FK_GoodsIssueDetails_TransferOrderDetails" FromRole="GoodsIssueDetail" ToRole="TransferOrderDetail" />
-        </EntityType>
         <EntityType Name="GoodsIssue">
           <Key>
             <PropertyRef Name="GoodsIssueID" />
@@ -5303,7 +5313,6 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Name="ApprovedDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Customer" Relationship="TotalSmartCodingModel.FK_GoodsIssues_Customers" FromRole="GoodsIssue" ToRole="Customer" />
           <NavigationProperty Name="DeliveryAdvice" Relationship="TotalSmartCodingModel.FK_GoodsIssues_DeliveryAdvices" FromRole="GoodsIssue" ToRole="DeliveryAdvice" />
-          <NavigationProperty Name="GoodsIssueDetails" Relationship="TotalSmartCodingModel.FK_GoodsIssueDetails_GoodsIssues" FromRole="GoodsIssue" ToRole="GoodsIssueDetail" />
           <NavigationProperty Name="Location" Relationship="TotalSmartCodingModel.FK_GoodsIssues_Locations" FromRole="GoodsIssue" ToRole="Location" />
           <NavigationProperty Name="TransferOrder" Relationship="TotalSmartCodingModel.FK_GoodsIssues_TransferOrders" FromRole="GoodsIssue" ToRole="TransferOrder" />
           <Property Name="WarehouseID" Type="Int32" />
@@ -5311,31 +5320,9 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <NavigationProperty Name="Warehouse" Relationship="TotalSmartCodingModel.FK_GoodsIssues_WarehouseReceipts" FromRole="GoodsIssue" ToRole="Warehouse" />
           <NavigationProperty Name="Warehouse1" Relationship="TotalSmartCodingModel.FK_GoodsIssues_Warehouses" FromRole="GoodsIssue" ToRole="Warehouse" />
           <Property Name="GoodsIssueTypeID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="GoodsIssueType" Relationship="TotalSmartCodingModel.FK_GoodsIssues_GoodsIssueTypes" FromRole="GoodsIssue" ToRole="GoodsIssueType" />
+          <NavigationProperty Name="GoodsIssueDetails" Relationship="TotalSmartCodingModel.FK_GoodsIssueDetails_GoodsIssues" FromRole="GoodsIssue" ToRole="GoodsIssueDetail" />
         </EntityType>
-        <Association Name="FK_GoodsIssueDetails_Commodities">
-          <End Type="TotalSmartCodingModel.Commodity" Role="Commodity" Multiplicity="1" />
-          <End Type="TotalSmartCodingModel.GoodsIssueDetail" Role="GoodsIssueDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Commodity">
-              <PropertyRef Name="CommodityID" />
-            </Principal>
-            <Dependent Role="GoodsIssueDetail">
-              <PropertyRef Name="CommodityID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_GoodsIssueDetails_Customers">
-          <End Type="TotalSmartCodingModel.Customer" Role="Customer" Multiplicity="1" />
-          <End Type="TotalSmartCodingModel.GoodsIssueDetail" Role="GoodsIssueDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Customer">
-              <PropertyRef Name="CustomerID" />
-            </Principal>
-            <Dependent Role="GoodsIssueDetail">
-              <PropertyRef Name="CustomerID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_GoodsIssues_Customers">
           <End Type="TotalSmartCodingModel.Customer" Role="Customer" Multiplicity="0..1" />
           <End Type="TotalSmartCodingModel.GoodsIssue" Role="GoodsIssue" Multiplicity="*" />
@@ -5348,18 +5335,6 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_GoodsIssueDetails_DeliveryAdviceDetails">
-          <End Type="TotalSmartCodingModel.DeliveryAdviceDetail" Role="DeliveryAdviceDetail" Multiplicity="0..1" />
-          <End Type="TotalSmartCodingModel.GoodsIssueDetail" Role="GoodsIssueDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DeliveryAdviceDetail">
-              <PropertyRef Name="DeliveryAdviceDetailID" />
-            </Principal>
-            <Dependent Role="GoodsIssueDetail">
-              <PropertyRef Name="DeliveryAdviceDetailID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_GoodsIssues_DeliveryAdvices">
           <End Type="TotalSmartCodingModel.DeliveryAdvice" Role="DeliveryAdvice" Multiplicity="0..1" />
           <End Type="TotalSmartCodingModel.GoodsIssue" Role="GoodsIssue" Multiplicity="*" />
@@ -5369,30 +5344,6 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
             </Principal>
             <Dependent Role="GoodsIssue">
               <PropertyRef Name="DeliveryAdviceID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_GoodsIssueDetails_GoodsIssues">
-          <End Type="TotalSmartCodingModel.GoodsIssue" Role="GoodsIssue" Multiplicity="1" />
-          <End Type="TotalSmartCodingModel.GoodsIssueDetail" Role="GoodsIssueDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="GoodsIssue">
-              <PropertyRef Name="GoodsIssueID" />
-            </Principal>
-            <Dependent Role="GoodsIssueDetail">
-              <PropertyRef Name="GoodsIssueID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_GoodsIssueDetails_GoodsReceiptDetails">
-          <End Type="TotalSmartCodingModel.GoodsReceiptDetail" Role="GoodsReceiptDetail" Multiplicity="1" />
-          <End Type="TotalSmartCodingModel.GoodsIssueDetail" Role="GoodsIssueDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="GoodsReceiptDetail">
-              <PropertyRef Name="GoodsReceiptDetailID" />
-            </Principal>
-            <Dependent Role="GoodsIssueDetail">
-              <PropertyRef Name="GoodsReceiptDetailID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -5546,8 +5497,8 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Name="InActivePartial" Type="Boolean" Nullable="false" />
           <Property Name="InActivePartialDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Commodity" Relationship="TotalSmartCodingModel.FK_TransferOrderDetails_Commodities" FromRole="TransferOrderDetail" ToRole="Commodity" />
-          <NavigationProperty Name="GoodsIssueDetails" Relationship="TotalSmartCodingModel.FK_GoodsIssueDetails_TransferOrderDetails" FromRole="TransferOrderDetail" ToRole="GoodsIssueDetail" />
           <NavigationProperty Name="TransferOrder" Relationship="TotalSmartCodingModel.FK_TransferOrderDetails_TransferOrders" FromRole="TransferOrderDetail" ToRole="TransferOrder" />
+          <NavigationProperty Name="GoodsIssueDetails" Relationship="TotalSmartCodingModel.FK_GoodsIssueDetails_TransferOrderDetails" FromRole="TransferOrderDetail" ToRole="GoodsIssueDetail" />
         </EntityType>
         <Association Name="FK_TransferOrderDetails_Commodities">
           <End Type="TotalSmartCodingModel.Commodity" Role="Commodity" Multiplicity="1" />
@@ -5558,18 +5509,6 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
             </Principal>
             <Dependent Role="TransferOrderDetail">
               <PropertyRef Name="CommodityID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_GoodsIssueDetails_TransferOrderDetails">
-          <End Type="TotalSmartCodingModel.TransferOrderDetail" Role="TransferOrderDetail" Multiplicity="0..1" />
-          <End Type="TotalSmartCodingModel.GoodsIssueDetail" Role="GoodsIssueDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TransferOrderDetail">
-              <PropertyRef Name="TransferOrderDetailID" />
-            </Principal>
-            <Dependent Role="GoodsIssueDetail">
-              <PropertyRef Name="TransferOrderDetailID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -5650,9 +5589,133 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Type="Decimal" Name="LineVolume" Nullable="true" Precision="18" Scale="2" />
           <Property Type="String" Name="Remarks" Nullable="true" MaxLength="100" />
           <Property Type="Boolean" Name="IsSelected" Nullable="true" />
-          <Property Type="String" Name="TransferOrderReference" Nullable="true" MaxLength="10" />
-          <Property Type="DateTime" Name="TransferOrderEntryDate" Nullable="false" Precision="23" />
-        </ComplexType>
+          <Property Type="String" Name="PrimaryReference" Nullable="true" MaxLength="10" />
+          <Property Type="DateTime" Name="PrimaryEntryDate" Nullable="false" Precision="23" />
+          </ComplexType>
+        <EntityType Name="GoodsIssueType">
+          <Key>
+            <PropertyRef Name="GoodsIssueTypeID" />
+          </Key>
+          <Property Name="GoodsIssueTypeID" Type="Int32" Nullable="false" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="GoodsIssues" Relationship="TotalSmartCodingModel.FK_GoodsIssues_GoodsIssueTypes" FromRole="GoodsIssueType" ToRole="GoodsIssue" />
+        </EntityType>
+        <Association Name="FK_GoodsIssues_GoodsIssueTypes">
+          <End Type="TotalSmartCodingModel.GoodsIssueType" Role="GoodsIssueType" Multiplicity="1" />
+          <End Type="TotalSmartCodingModel.GoodsIssue" Role="GoodsIssue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GoodsIssueType">
+              <PropertyRef Name="GoodsIssueTypeID" />
+            </Principal>
+            <Dependent Role="GoodsIssue">
+              <PropertyRef Name="GoodsIssueTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="GoodsIssueDetail">
+          <Key>
+            <PropertyRef Name="GoodsIssueDetailID" />
+          </Key>
+          <Property Name="GoodsIssueDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GoodsIssueID" Type="Int32" Nullable="false" />
+          <Property Name="DeliveryAdviceDetailID" Type="Int32" />
+          <Property Name="DeliveryAdviceID" Type="Int32" />
+          <Property Name="TransferOrderDetailID" Type="Int32" />
+          <Property Name="TransferOrderID" Type="Int32" />
+          <Property Name="GoodsReceiptDetailID" Type="Int32" Nullable="false" />
+          <Property Name="GoodsReceiptID" Type="Int32" Nullable="false" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Reference" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="LocationID" Type="Int32" Nullable="false" />
+          <Property Name="WarehouseID" Type="Int32" Nullable="false" />
+          <Property Name="CustomerID" Type="Int32" />
+          <Property Name="WarehouseReceiptID" Type="Int32" />
+          <Property Name="CommodityID" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="LineVolume" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Approved" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Commodity" Relationship="TotalSmartCodingModel.FK_GoodsIssueDetails_Commodities" FromRole="GoodsIssueDetail" ToRole="Commodity" />
+          <NavigationProperty Name="Customer" Relationship="TotalSmartCodingModel.FK_GoodsIssueDetails_Customers" FromRole="GoodsIssueDetail" ToRole="Customer" />
+          <NavigationProperty Name="DeliveryAdviceDetail" Relationship="TotalSmartCodingModel.FK_GoodsIssueDetails_DeliveryAdviceDetails" FromRole="GoodsIssueDetail" ToRole="DeliveryAdviceDetail" />
+          <NavigationProperty Name="GoodsIssue" Relationship="TotalSmartCodingModel.FK_GoodsIssueDetails_GoodsIssues" FromRole="GoodsIssueDetail" ToRole="GoodsIssue" />
+          <NavigationProperty Name="GoodsReceiptDetail" Relationship="TotalSmartCodingModel.FK_GoodsIssueDetails_GoodsReceiptDetails" FromRole="GoodsIssueDetail" ToRole="GoodsReceiptDetail" />
+          <NavigationProperty Name="TransferOrderDetail" Relationship="TotalSmartCodingModel.FK_GoodsIssueDetails_TransferOrderDetails" FromRole="GoodsIssueDetail" ToRole="TransferOrderDetail" />
+        </EntityType>
+        <Association Name="FK_GoodsIssueDetails_Commodities">
+          <End Type="TotalSmartCodingModel.Commodity" Role="Commodity" Multiplicity="1" />
+          <End Type="TotalSmartCodingModel.GoodsIssueDetail" Role="GoodsIssueDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Commodity">
+              <PropertyRef Name="CommodityID" />
+            </Principal>
+            <Dependent Role="GoodsIssueDetail">
+              <PropertyRef Name="CommodityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GoodsIssueDetails_Customers">
+          <End Type="TotalSmartCodingModel.Customer" Role="Customer" Multiplicity="0..1" />
+          <End Type="TotalSmartCodingModel.GoodsIssueDetail" Role="GoodsIssueDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="GoodsIssueDetail">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GoodsIssueDetails_DeliveryAdviceDetails">
+          <End Type="TotalSmartCodingModel.DeliveryAdviceDetail" Role="DeliveryAdviceDetail" Multiplicity="0..1" />
+          <End Type="TotalSmartCodingModel.GoodsIssueDetail" Role="GoodsIssueDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeliveryAdviceDetail">
+              <PropertyRef Name="DeliveryAdviceDetailID" />
+            </Principal>
+            <Dependent Role="GoodsIssueDetail">
+              <PropertyRef Name="DeliveryAdviceDetailID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GoodsIssueDetails_GoodsIssues">
+          <End Type="TotalSmartCodingModel.GoodsIssue" Role="GoodsIssue" Multiplicity="1" />
+          <End Type="TotalSmartCodingModel.GoodsIssueDetail" Role="GoodsIssueDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GoodsIssue">
+              <PropertyRef Name="GoodsIssueID" />
+            </Principal>
+            <Dependent Role="GoodsIssueDetail">
+              <PropertyRef Name="GoodsIssueID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GoodsIssueDetails_GoodsReceiptDetails">
+          <End Type="TotalSmartCodingModel.GoodsReceiptDetail" Role="GoodsReceiptDetail" Multiplicity="1" />
+          <End Type="TotalSmartCodingModel.GoodsIssueDetail" Role="GoodsIssueDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GoodsReceiptDetail">
+              <PropertyRef Name="GoodsReceiptDetailID" />
+            </Principal>
+            <Dependent Role="GoodsIssueDetail">
+              <PropertyRef Name="GoodsReceiptDetailID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GoodsIssueDetails_TransferOrderDetails">
+          <End Type="TotalSmartCodingModel.TransferOrderDetail" Role="TransferOrderDetail" Multiplicity="0..1" />
+          <End Type="TotalSmartCodingModel.GoodsIssueDetail" Role="GoodsIssueDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransferOrderDetail">
+              <PropertyRef Name="TransferOrderDetailID" />
+            </Principal>
+            <Dependent Role="GoodsIssueDetail">
+              <PropertyRef Name="TransferOrderDetailID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -6322,6 +6385,7 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
                 <ScalarProperty Name="Approved" ColumnName="Approved" />
                 <ScalarProperty Name="CustomerCode" ColumnName="CustomerCode" />
                 <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="WarehouseReceiptName" ColumnName="WarehouseReceiptName" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -6360,6 +6424,10 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
                 <ScalarProperty Name="LineVolumeAvailable" ColumnName="LineVolumeAvailable" />
                 <ScalarProperty Name="QuantityRemains" ColumnName="QuantityRemains" />
                 <ScalarProperty Name="LineVolumeRemains" ColumnName="LineVolumeRemains" />
+                <ScalarProperty Name="TransferOrderID" ColumnName="TransferOrderID" />
+                <ScalarProperty Name="TransferOrderDetailID" ColumnName="TransferOrderDetailID" />
+                <ScalarProperty Name="TransferOrderReference" ColumnName="TransferOrderReference" />
+                <ScalarProperty Name="TransferOrderEntryDate" ColumnName="TransferOrderEntryDate" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -6377,8 +6445,6 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
               <ComplexTypeMapping TypeName="TotalSmartCodingModel.PendingDeliveryAdviceDetail">
                 <ScalarProperty Name="DeliveryAdviceID" ColumnName="DeliveryAdviceID" />
                 <ScalarProperty Name="DeliveryAdviceDetailID" ColumnName="DeliveryAdviceDetailID" />
-                <ScalarProperty Name="DeliveryAdviceReference" ColumnName="DeliveryAdviceReference" />
-                <ScalarProperty Name="DeliveryAdviceEntryDate" ColumnName="DeliveryAdviceEntryDate" />
                 <ScalarProperty Name="CommodityID" ColumnName="CommodityID" />
                 <ScalarProperty Name="CommodityCode" ColumnName="CommodityCode" />
                 <ScalarProperty Name="CommodityName" ColumnName="CommodityName" />
@@ -6394,6 +6460,8 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
                 <ScalarProperty Name="PackageVolume" ColumnName="PackageVolume" />
                 <ScalarProperty Name="BatchID" ColumnName="BatchID" />
                 <ScalarProperty Name="BatchCode" ColumnName="BatchCode" />
+                <ScalarProperty Name="PrimaryReference" ColumnName="PrimaryReference" />
+                <ScalarProperty Name="PrimaryEntryDate" ColumnName="PrimaryEntryDate" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -7052,29 +7120,6 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="GoodsIssueDetails">
-            <EntityTypeMapping TypeName="TotalSmartCodingModel.GoodsIssueDetail">
-              <MappingFragment StoreEntitySet="GoodsIssueDetails">
-                <ScalarProperty Name="Approved" ColumnName="Approved" />
-                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
-                <ScalarProperty Name="LineVolume" ColumnName="LineVolume" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="CommodityID" ColumnName="CommodityID" />
-                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
-                <ScalarProperty Name="Reference" ColumnName="Reference" />
-                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
-                <ScalarProperty Name="GoodsReceiptID" ColumnName="GoodsReceiptID" />
-                <ScalarProperty Name="GoodsReceiptDetailID" ColumnName="GoodsReceiptDetailID" />
-                <ScalarProperty Name="TransferOrderID" ColumnName="TransferOrderID" />
-                <ScalarProperty Name="TransferOrderDetailID" ColumnName="TransferOrderDetailID" />
-                <ScalarProperty Name="DeliveryAdviceID" ColumnName="DeliveryAdviceID" />
-                <ScalarProperty Name="DeliveryAdviceDetailID" ColumnName="DeliveryAdviceDetailID" />
-                <ScalarProperty Name="GoodsIssueID" ColumnName="GoodsIssueID" />
-                <ScalarProperty Name="GoodsIssueDetailID" ColumnName="GoodsIssueDetailID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="GoodsIssues">
             <EntityTypeMapping TypeName="TotalSmartCodingModel.GoodsIssue">
               <MappingFragment StoreEntitySet="GoodsIssues">
@@ -7257,11 +7302,46 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
                 <ScalarProperty Name="LineVolume" ColumnName="LineVolume" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
                 <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
-                <ScalarProperty Name="TransferOrderReference" ColumnName="TransferOrderReference" />
-                <ScalarProperty Name="TransferOrderEntryDate" ColumnName="TransferOrderEntryDate" />
-              </ComplexTypeMapping>
+                <ScalarProperty Name="PrimaryReference" ColumnName="PrimaryReference" />
+                <ScalarProperty Name="PrimaryEntryDate" ColumnName="PrimaryEntryDate" />
+                </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="GoodsIssueTypes">
+            <EntityTypeMapping TypeName="TotalSmartCodingModel.GoodsIssueType">
+              <MappingFragment StoreEntitySet="GoodsIssueTypes">
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="GoodsIssueTypeID" ColumnName="GoodsIssueTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GoodsIssueDetails">
+            <EntityTypeMapping TypeName="TotalSmartCodingModel.GoodsIssueDetail">
+              <MappingFragment StoreEntitySet="GoodsIssueDetails">
+                <ScalarProperty Name="Approved" ColumnName="Approved" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="LineVolume" ColumnName="LineVolume" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="CommodityID" ColumnName="CommodityID" />
+                <ScalarProperty Name="WarehouseReceiptID" ColumnName="WarehouseReceiptID" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+                <ScalarProperty Name="Reference" ColumnName="Reference" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="GoodsReceiptID" ColumnName="GoodsReceiptID" />
+                <ScalarProperty Name="GoodsReceiptDetailID" ColumnName="GoodsReceiptDetailID" />
+                <ScalarProperty Name="TransferOrderID" ColumnName="TransferOrderID" />
+                <ScalarProperty Name="TransferOrderDetailID" ColumnName="TransferOrderDetailID" />
+                <ScalarProperty Name="DeliveryAdviceID" ColumnName="DeliveryAdviceID" />
+                <ScalarProperty Name="DeliveryAdviceDetailID" ColumnName="DeliveryAdviceDetailID" />
+                <ScalarProperty Name="GoodsIssueID" ColumnName="GoodsIssueID" />
+                <ScalarProperty Name="GoodsIssueDetailID" ColumnName="GoodsIssueDetailID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

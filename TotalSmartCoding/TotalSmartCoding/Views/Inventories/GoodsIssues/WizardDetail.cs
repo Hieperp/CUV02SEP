@@ -141,13 +141,13 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
 
                                 DeliveryAdviceID = this.pendingDeliveryAdviceDetail != null ? this.pendingDeliveryAdviceDetail.DeliveryAdviceID : (int?)null,
                                 DeliveryAdviceDetailID = this.pendingDeliveryAdviceDetail != null ? this.pendingDeliveryAdviceDetail.DeliveryAdviceDetailID : (int?)null,
-                                DeliveryAdviceReference = this.pendingDeliveryAdviceDetail != null ? this.pendingDeliveryAdviceDetail.DeliveryAdviceReference : null,
-                                DeliveryAdviceEntryDate = this.pendingDeliveryAdviceDetail != null ? this.pendingDeliveryAdviceDetail.DeliveryAdviceEntryDate : (DateTime?)null,
+                                DeliveryAdviceReference = this.pendingDeliveryAdviceDetail != null ? this.pendingDeliveryAdviceDetail.PrimaryReference : null,
+                                DeliveryAdviceEntryDate = this.pendingDeliveryAdviceDetail != null ? this.pendingDeliveryAdviceDetail.PrimaryEntryDate : (DateTime?)null,
 
                                 TransferOrderID = this.pendingTransferOrderDetail != null ? this.pendingTransferOrderDetail.TransferOrderID : (int?)null,
                                 TransferOrderDetailID = this.pendingTransferOrderDetail != null ? this.pendingTransferOrderDetail.TransferOrderDetailID : (int?)null,
-                                TransferOrderReference = this.pendingTransferOrderDetail != null ? this.pendingTransferOrderDetail.TransferOrderReference : null,
-                                TransferOrderEntryDate = this.pendingTransferOrderDetail != null ? this.pendingTransferOrderDetail.TransferOrderEntryDate : (DateTime?)null,
+                                TransferOrderReference = this.pendingTransferOrderDetail != null ? this.pendingTransferOrderDetail.PrimaryReference : null,
+                                TransferOrderEntryDate = this.pendingTransferOrderDetail != null ? this.pendingTransferOrderDetail.PrimaryEntryDate : (DateTime?)null,
 
                                 CommodityID = goodsReceiptDetailAvailable.CommodityID,
                                 CommodityCode = goodsReceiptDetailAvailable.CommodityCode,

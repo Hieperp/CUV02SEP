@@ -30,9 +30,9 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             this.GetPendingTransferOrderWarehouses();
 
 
-            GenerateSQLPendingDetails generatePendingDeliveryAdviceDetails = new GenerateSQLPendingDetails(totalSmartCodingEntities, "GetPendingDeliveryAdviceDetails", "DeliveryAdviceDetails", "DeliveryAdviceID", "@DeliveryAdviceID", "DeliveryAdviceDetailID", "@DeliveryAdviceDetailIDs", "CustomerID", "@CustomerID", false, "DeliveryAdviceReference", "DeliveryAdviceEntryDate");
+            GenerateSQLPendingDetails generatePendingDeliveryAdviceDetails = new GenerateSQLPendingDetails(totalSmartCodingEntities, "GetPendingDeliveryAdviceDetails", "DeliveryAdviceDetails", "DeliveryAdviceID", "@DeliveryAdviceID", "DeliveryAdviceDetailID", "@DeliveryAdviceDetailIDs", "CustomerID", "@CustomerID", false, "PrimaryReference", "PrimaryEntryDate");
             generatePendingDeliveryAdviceDetails.GetPendingDeliveryAdviceDetails();
-            GenerateSQLPendingDetails generatePendingTransferOrderDetails = new GenerateSQLPendingDetails(totalSmartCodingEntities, "GetPendingTransferOrderDetails", "TransferOrderDetails", "TransferOrderID", "@TransferOrderID", "TransferOrderDetailID", "@TransferOrderDetailIDs", "WarehouseReceiptID", "@WarehouseReceiptID", true, "TransferOrderReference", "TransferOrderEntryDate");
+            GenerateSQLPendingDetails generatePendingTransferOrderDetails = new GenerateSQLPendingDetails(totalSmartCodingEntities, "GetPendingTransferOrderDetails", "TransferOrderDetails", "TransferOrderID", "@TransferOrderID", "TransferOrderDetailID", "@TransferOrderDetailIDs", "WarehouseReceiptID", "@WarehouseReceiptID", true, "PrimaryReference", "PrimaryEntryDate");
             generatePendingTransferOrderDetails.GetPendingDeliveryAdviceDetails();
 
 
@@ -184,7 +184,6 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
 
-            //queryString = queryString + "   IF (SELECT HasDeliveryAdvice FROM GoodsIssues WHERE GoodsIssueID = @EntityID) = 1 " + "\r\n";
             queryString = queryString + "       BEGIN " + "\r\n";
 
             queryString = queryString + "           IF (@SaveRelativeOption = 1) ";
@@ -194,10 +193,24 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryString = queryString + "                   FROM            GoodsIssues INNER JOIN GoodsIssueDetails ON GoodsIssues.GoodsIssueID = @EntityID AND GoodsIssues.GoodsIssueID = GoodsIssueDetails.GoodsIssueID " + "\r\n";
             queryString = queryString + "               END ";
 
-            queryString = queryString + "           UPDATE          DeliveryAdviceDetails" + "\r\n";
-            queryString = queryString + "           SET             DeliveryAdviceDetails.QuantityIssue = ROUND(DeliveryAdviceDetails.QuantityIssue + GoodsIssueDetails.Quantity * @SaveRelativeOption, " + (int)GlobalEnums.rndQuantity + "), DeliveryAdviceDetails.LineVolumeIssue = ROUND(DeliveryAdviceDetails.LineVolumeIssue + GoodsIssueDetails.LineVolume * @SaveRelativeOption, " + (int)GlobalEnums.rndVolume + ") " + "\r\n";
-            queryString = queryString + "           FROM            (SELECT DeliveryAdviceDetailID, SUM(Quantity) AS Quantity, SUM(LineVolume) AS LineVolume FROM GoodsIssueDetails WHERE GoodsIssueID = @EntityID AND DeliveryAdviceDetailID IS NOT NULL GROUP BY DeliveryAdviceDetailID) GoodsIssueDetails " + "\r\n";
-            queryString = queryString + "                           INNER JOIN DeliveryAdviceDetails ON GoodsIssueDetails.DeliveryAdviceDetailID = DeliveryAdviceDetails.DeliveryAdviceDetailID" + "\r\n";
+            queryString = queryString + "           DECLARE @GoodsIssueTypeID int ";
+            queryString = queryString + "           SELECT @GoodsIssueTypeID = GoodsIssueTypeID FROM GoodsIssues WHERE GoodsIssueID = @EntityID ";
+            queryString = queryString + "           IF (@GoodsIssueTypeID = " + (int)GlobalEnums.GoodsIssueTypeID.DeliveryAdvice + ") " + "\r\n";
+            queryString = queryString + "               BEGIN  " + "\r\n";
+            queryString = queryString + "                   UPDATE          DeliveryAdviceDetails" + "\r\n";
+            queryString = queryString + "                   SET             DeliveryAdviceDetails.QuantityIssue = ROUND(DeliveryAdviceDetails.QuantityIssue + GoodsIssueDetails.Quantity * @SaveRelativeOption, " + (int)GlobalEnums.rndQuantity + "), DeliveryAdviceDetails.LineVolumeIssue = ROUND(DeliveryAdviceDetails.LineVolumeIssue + GoodsIssueDetails.LineVolume * @SaveRelativeOption, " + (int)GlobalEnums.rndVolume + ") " + "\r\n";
+            queryString = queryString + "                   FROM            (SELECT DeliveryAdviceDetailID, SUM(Quantity) AS Quantity, SUM(LineVolume) AS LineVolume FROM GoodsIssueDetails WHERE GoodsIssueID = @EntityID AND DeliveryAdviceDetailID IS NOT NULL GROUP BY DeliveryAdviceDetailID) GoodsIssueDetails " + "\r\n";
+            queryString = queryString + "                                   INNER JOIN DeliveryAdviceDetails ON GoodsIssueDetails.DeliveryAdviceDetailID = DeliveryAdviceDetails.DeliveryAdviceDetailID" + "\r\n";
+            queryString = queryString + "               END  " + "\r\n";
+
+            queryString = queryString + "           IF (@GoodsIssueTypeID = " + (int)GlobalEnums.GoodsIssueTypeID.TransferOrder + ") " + "\r\n";
+            queryString = queryString + "               BEGIN  " + "\r\n";
+            queryString = queryString + "                   UPDATE          TransferOrderDetails" + "\r\n";
+            queryString = queryString + "                   SET             TransferOrderDetails.QuantityIssue = ROUND(TransferOrderDetails.QuantityIssue + GoodsIssueDetails.Quantity * @SaveRelativeOption, " + (int)GlobalEnums.rndQuantity + "), TransferOrderDetails.LineVolumeIssue = ROUND(TransferOrderDetails.LineVolumeIssue + GoodsIssueDetails.LineVolume * @SaveRelativeOption, " + (int)GlobalEnums.rndVolume + ") " + "\r\n";
+            queryString = queryString + "                   FROM            (SELECT TransferOrderDetailID, SUM(Quantity) AS Quantity, SUM(LineVolume) AS LineVolume FROM GoodsIssueDetails WHERE GoodsIssueID = @EntityID AND TransferOrderDetailID IS NOT NULL GROUP BY TransferOrderDetailID) GoodsIssueDetails " + "\r\n";
+            queryString = queryString + "                                   INNER JOIN TransferOrderDetails ON GoodsIssueDetails.TransferOrderDetailID = TransferOrderDetails.TransferOrderDetailID" + "\r\n";
+            queryString = queryString + "               END  " + "\r\n";
+
 
             queryString = queryString + "           UPDATE          GoodsReceiptDetails" + "\r\n";
             queryString = queryString + "           SET             GoodsReceiptDetails.QuantityIssue = ROUND(GoodsReceiptDetails.QuantityIssue + GoodsIssueDetails.Quantity * @SaveRelativeOption, " + (int)GlobalEnums.rndQuantity + "), GoodsReceiptDetails.LineVolumeIssue = ROUND(GoodsReceiptDetails.LineVolumeIssue + GoodsIssueDetails.LineVolume * @SaveRelativeOption, " + (int)GlobalEnums.rndVolume + ") " + "\r\n";
@@ -206,9 +219,10 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
             queryString = queryString + "           IF @@ROWCOUNT > (SELECT COUNT(*) FROM GoodsIssueDetails WHERE GoodsIssueID = @EntityID) " + "\r\n";
             queryString = queryString + "               BEGIN " + "\r\n";
-            queryString = queryString + "                   DECLARE     @msg NVARCHAR(300) = N'Phiếu giao hàng đã hủy, hoặc chưa duyệt' ; " + "\r\n";
+            queryString = queryString + "                   DECLARE     @msg NVARCHAR(300) = N'Phiếu giao hàng đã hủy, hoặc chưa duyệt, hoặc 1 line xuất kho 2 lần' ; " + "\r\n";
             queryString = queryString + "                   THROW       61001,  @msg, 1; " + "\r\n";
             queryString = queryString + "               END " + "\r\n";
+
             queryString = queryString + "       END " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("GoodsIssueSaveRelative", queryString);
@@ -330,7 +344,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             }
 
 
-            private bool alwaysTrue = false;
+            private bool alwaysTrue = true;
             //HERE: WE ALWAYS AND ONLY CALL GetPendingDeliveryAdviceDetails AFTER SAVE SUCCESSFUL
             //AT GoodsIssues VIEWS: WE DON'T ALLOW TO USE CURRENT RESULT FROM GetPendingDeliveryAdviceDetails IF THE LAST SAVE IS NOT SUCCESSFULLY. WHEN SAVE SUCCESSFUL, THE GetPendingDeliveryAdviceDetails IS CALL IMMEDIATELY
             //SO => HERE: WE DON'T CARE BOTH: @DeliveryAdviceDetailIDs AND BuildSQLEdit
@@ -339,7 +353,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
                 string queryString;
 
                 queryString = " @LocationID Int, @GoodsIssueID Int, " + (this.isWarehouse ? "@WarehouseIssueID Int, " : "") + this.paraPrimaryKey + " Int, " + this.paraFilterKey + " Int, " + this.paraPrimaryKeyDetails + " varchar(3999), @IsReadonly bit " + "\r\n";
-                //queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+                queryString = queryString + " WITH ENCRYPTION " + "\r\n";
                 queryString = queryString + " AS " + "\r\n";
 
                 queryString = queryString + "   BEGIN " + "\r\n";

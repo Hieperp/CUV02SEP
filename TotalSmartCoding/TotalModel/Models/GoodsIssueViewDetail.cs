@@ -15,10 +15,10 @@ namespace TotalModel.Models
     {
         public int GoodsIssueDetailID { get; set; }
         public int GoodsIssueID { get; set; }
-        public int DeliveryAdviceID { get; set; }
-        public int DeliveryAdviceDetailID { get; set; }
+        public Nullable<int> DeliveryAdviceID { get; set; }
+        public Nullable<int> DeliveryAdviceDetailID { get; set; }
         public string DeliveryAdviceReference { get; set; }
-        public System.DateTime DeliveryAdviceEntryDate { get; set; }
+        public Nullable<System.DateTime> DeliveryAdviceEntryDate { get; set; }
         public int GoodsReceiptID { get; set; }
         public int GoodsReceiptDetailID { get; set; }
         public string GoodsReceiptReference { get; set; }
@@ -45,5 +45,9 @@ namespace TotalModel.Models
         public Nullable<decimal> LineVolumeAvailable { get; set; }
         public Nullable<decimal> QuantityRemains { get; set; }
         public Nullable<decimal> LineVolumeRemains { get; set; }
+        public Nullable<int> TransferOrderID { get; set; }
+        public Nullable<int> TransferOrderDetailID { get; set; }
+        public string TransferOrderReference { get; set; }
+        public Nullable<System.DateTime> TransferOrderEntryDate { get; set; }
     }
 }

@@ -15,8 +15,6 @@ namespace TotalModel.Models
     {
         public int DeliveryAdviceID { get; set; }
         public int DeliveryAdviceDetailID { get; set; }
-        public string DeliveryAdviceReference { get; set; }
-        public System.DateTime DeliveryAdviceEntryDate { get; set; }
         public int CommodityID { get; set; }
         public string CommodityCode { get; set; }
         public string CommodityName { get; set; }
@@ -32,5 +30,7 @@ namespace TotalModel.Models
         public decimal PackageVolume { get; set; }
         public Nullable<int> BatchID { get; set; }
         public string BatchCode { get; set; }
+        public string PrimaryReference { get; set; }
+        public System.DateTime PrimaryEntryDate { get; set; }
     }
 }

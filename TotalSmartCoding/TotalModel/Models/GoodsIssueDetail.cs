@@ -25,7 +25,9 @@ namespace TotalModel.Models
         public System.DateTime EntryDate { get; set; }
         public string Reference { get; set; }
         public int LocationID { get; set; }
-        public int CustomerID { get; set; }
+        public int WarehouseID { get; set; }
+        public Nullable<int> CustomerID { get; set; }
+        public Nullable<int> WarehouseReceiptID { get; set; }
         public int CommodityID { get; set; }
         public decimal Quantity { get; set; }
         public decimal LineVolume { get; set; }

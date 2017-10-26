@@ -245,15 +245,10 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
             try
             {
                 if (this.goodsIssueViewModel.GoodsIssueTypeID == (int)GlobalEnums.GoodsIssueTypeID.DeliveryAdvice)
-                {
-                    this.olvDeliveryAdviceReference.IsVisible = false;
-                    this.fastPendingDeliveryAdviceDetails.SetObjects(this.goodsIssueAPIs.GetPendingDeliveryAdviceDetails(this.goodsIssueViewModel.LocationID, this.goodsIssueViewModel.GoodsIssueID, this.goodsIssueViewModel.DeliveryAdviceID, this.goodsIssueViewModel.CustomerID, string.Join(",", this.goodsIssueViewModel.ViewDetails.Select(d => d.DeliveryAdviceDetailID)), false));
-                }
+                { this.fastPendingDeliveryAdviceDetails.SetObjects(this.goodsIssueAPIs.GetPendingDeliveryAdviceDetails(this.goodsIssueViewModel.LocationID, this.goodsIssueViewModel.GoodsIssueID, this.goodsIssueViewModel.DeliveryAdviceID, this.goodsIssueViewModel.CustomerID, string.Join(",", this.goodsIssueViewModel.ViewDetails.Select(d => d.DeliveryAdviceDetailID)), false)); this.olvPrimaryReference.Text = "D.A"; }
                 if (this.goodsIssueViewModel.GoodsIssueTypeID == (int)GlobalEnums.GoodsIssueTypeID.TransferOrder)
-                {
-                    this.olvTransferOrderReference.IsVisible = false;
-                    this.fastPendingDeliveryAdviceDetails.SetObjects(this.goodsIssueAPIs.GetPendingTransferOrderDetails(this.goodsIssueViewModel.LocationID, this.goodsIssueViewModel.GoodsIssueID, this.goodsIssueViewModel.WarehouseID, this.goodsIssueViewModel.TransferOrderID, this.goodsIssueViewModel.WarehouseReceiptID, string.Join(",", this.goodsIssueViewModel.ViewDetails.Select(d => d.TransferOrderDetailID)), false));
-                }
+                { this.fastPendingDeliveryAdviceDetails.SetObjects(this.goodsIssueAPIs.GetPendingTransferOrderDetails(this.goodsIssueViewModel.LocationID, this.goodsIssueViewModel.GoodsIssueID, this.goodsIssueViewModel.WarehouseID, this.goodsIssueViewModel.TransferOrderID, this.goodsIssueViewModel.WarehouseReceiptID, string.Join(",", this.goodsIssueViewModel.ViewDetails.Select(d => d.TransferOrderDetailID)), false)); this.olvPrimaryReference.Text = "Orders"; }
+                
                 //this.naviPendingItems.Text = "Pending " + this.fastPendingDeliveryAdviceDetails.GetItemCount().ToString("N0") + " row" + (this.fastPendingDeliveryAdviceDetails.GetItemCount() > 1 ? "s" : "");
             }
             catch (Exception exception)

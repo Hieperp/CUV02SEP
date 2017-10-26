@@ -30,7 +30,7 @@ namespace TotalModel.Models
         public Nullable<decimal> LineVolume { get; set; }
         public string Remarks { get; set; }
         public Nullable<bool> IsSelected { get; set; }
-        public string TransferOrderReference { get; set; }
-        public System.DateTime TransferOrderEntryDate { get; set; }
+        public string PrimaryReference { get; set; }
+        public System.DateTime PrimaryEntryDate { get; set; }
     }
 }

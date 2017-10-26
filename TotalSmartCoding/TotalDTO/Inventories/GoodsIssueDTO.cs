@@ -146,13 +146,13 @@ namespace TotalDTO.Inventories
         {
             get { return "D.A: " + (this.DeliveryAdviceID != null ? this.DeliveryAdviceReference + ", on " + this.DeliveryAdviceEntryDate.ToString() : this.DeliveryAdviceReferences) + ", " + (this.CustomerName != null ? "Customer: " + this.CustomerName.Substring(0, this.CustomerName.Length > 26 ? 25 : this.CustomerName.Length) + ", " : "") + "Issue: " + (this.Reference != null ? this.Reference : "...") + "             Total Quantity: " + this.TotalQuantity.ToString() + ",    Total Volume: " + this.TotalLineVolume.ToString("N2"); }
         }
-
+         
         public override void PerformPresaveRule()
         {
             base.PerformPresaveRule();
 
             string deliveryAdviceReferences = "";
-            this.DtoDetails().ToList().ForEach(e => { e.CustomerID = this.CustomerID; e.WarehouseReceiptID = this.WarehouseReceiptID; if (deliveryAdviceReferences.IndexOf(e.DeliveryAdviceReference) < 0) deliveryAdviceReferences = deliveryAdviceReferences + (deliveryAdviceReferences != "" ? ", " : "") + e.DeliveryAdviceReference; });
+            this.DtoDetails().ToList().ForEach(e => { e.CustomerID = this.CustomerID; e.WarehouseReceiptID = this.WarehouseReceiptID; if (this.GoodsIssueTypeID == (int)GlobalEnums.GoodsIssueTypeID.DeliveryAdvice && deliveryAdviceReferences.IndexOf(e.DeliveryAdviceReference) < 0) deliveryAdviceReferences = deliveryAdviceReferences + (deliveryAdviceReferences != "" ? ", " : "") + e.DeliveryAdviceReference; if (this.GoodsIssueTypeID == (int)GlobalEnums.GoodsIssueTypeID.TransferOrder && deliveryAdviceReferences.IndexOf(e.TransferOrderReference) < 0) deliveryAdviceReferences = deliveryAdviceReferences + (deliveryAdviceReferences != "" ? ", " : "") + e.TransferOrderReference; });
             this.DeliveryAdviceReferences = deliveryAdviceReferences;
         }
 

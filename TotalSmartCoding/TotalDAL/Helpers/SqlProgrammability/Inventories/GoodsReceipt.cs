@@ -384,12 +384,12 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryString = queryString + "                       FROM            GoodsReceiptDetails " + "\r\n";
             queryString = queryString + "                                       INNER JOIN PickupDetails ON PickupDetails.Approved = 1 AND GoodsReceiptDetails.GoodsReceiptID = @EntityID AND GoodsReceiptDetails.PickupDetailID = PickupDetails.PickupDetailID " + "\r\n";
 
-            queryString = queryString + "                   IF (NOT @WarehouseAdjustmentID IS NULL) " + "\r\n";
+            queryString = queryString + "                   IF (NOT @WarehouseAdjustmentID IS NULL) " + "\r\n"; //HERE: THIS WILL BE CORRECT: WHEN ONLY 1 GoodsReceipts FOR A WarehouseAdjustments
             queryString = queryString + "                       UPDATE          WarehouseAdjustmentDetails " + "\r\n";
             queryString = queryString + "                       SET             WarehouseAdjustmentDetails.QuantityReceipt = ROUND(WarehouseAdjustmentDetails.QuantityReceipt + GoodsReceiptDetails.Quantity * @SaveRelativeOption, " + (int)GlobalEnums.rndQuantity + "), WarehouseAdjustmentDetails.LineVolumeReceipt = ROUND(WarehouseAdjustmentDetails.LineVolumeReceipt + GoodsReceiptDetails.LineVolume * @SaveRelativeOption, " + (int)GlobalEnums.rndVolume + ") " + "\r\n";
             queryString = queryString + "                       FROM            GoodsReceiptDetails " + "\r\n";
             queryString = queryString + "                                       INNER JOIN WarehouseAdjustmentDetails ON WarehouseAdjustmentDetails.Quantity > 0 AND GoodsReceiptDetails.GoodsReceiptID = @EntityID AND GoodsReceiptDetails.WarehouseAdjustmentDetailID = WarehouseAdjustmentDetails.WarehouseAdjustmentDetailID " + "\r\n";
-            ///--------------------------------------------------update bacj
+            //--------------------------------------------------SHOULD UPDATE GoodsReceiptID, GoodsReceiptDetailID BACK TO WarehouseAdjustmentDetails FOR GoodsReceipts OF WarehouseAdjustmentDetails? THE ANSWER: WE CAN DO IT HERE, BUT IT BREAK THE RELATIONSHIP => SO: SHOULD NOT
             queryString = queryString + "                   IF @@ROWCOUNT <> (SELECT COUNT(*) FROM GoodsReceiptDetails WHERE GoodsReceiptID = @EntityID) " + "\r\n";
             queryString = queryString + "                       BEGIN " + "\r\n";
             queryString = queryString + "                           DECLARE     @msg NVARCHAR(300) = N'Phiếu giao hàng đã hủy, hoặc chưa duyệt' ; " + "\r\n";
