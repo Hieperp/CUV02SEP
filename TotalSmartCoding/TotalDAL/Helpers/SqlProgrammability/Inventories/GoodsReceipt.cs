@@ -373,24 +373,31 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryString = queryString + "                   FROM            GoodsReceipts INNER JOIN GoodsReceiptDetails ON GoodsReceipts.GoodsReceiptID = @EntityID AND GoodsReceipts.GoodsReceiptID = GoodsReceiptDetails.GoodsReceiptID " + "\r\n";
             queryString = queryString + "               END ";
 
-            queryString = queryString + "           DECLARE @HasPickup bit, @WarehouseAdjustmentID int ";
+            queryString = queryString + "           DECLARE @HasPickup bit, @WarehouseAdjustmentID int, @AffectedROWCOUNT int ";
             queryString = queryString + "           SELECT @HasPickup = HasPickup, @WarehouseAdjustmentID = WarehouseAdjustmentID FROM GoodsReceipts WHERE GoodsReceiptID = @EntityID ";
             queryString = queryString + "           IF (@HasPickup = 1 OR NOT @WarehouseAdjustmentID IS NULL) " + "\r\n";
             queryString = queryString + "               BEGIN  " + "\r\n";
 
             queryString = queryString + "                   IF (@HasPickup = 1) " + "\r\n";
-            queryString = queryString + "                       UPDATE          PickupDetails " + "\r\n";
-            queryString = queryString + "                       SET             PickupDetails.QuantityReceipt = ROUND(PickupDetails.QuantityReceipt + GoodsReceiptDetails.Quantity * @SaveRelativeOption, " + (int)GlobalEnums.rndQuantity + "), PickupDetails.LineVolumeReceipt = ROUND(PickupDetails.LineVolumeReceipt + GoodsReceiptDetails.LineVolume * @SaveRelativeOption, " + (int)GlobalEnums.rndVolume + ") " + "\r\n";
-            queryString = queryString + "                       FROM            GoodsReceiptDetails " + "\r\n";
-            queryString = queryString + "                                       INNER JOIN PickupDetails ON PickupDetails.Approved = 1 AND GoodsReceiptDetails.GoodsReceiptID = @EntityID AND GoodsReceiptDetails.PickupDetailID = PickupDetails.PickupDetailID " + "\r\n";
+            queryString = queryString + "                       BEGIN  " + "\r\n";
+            queryString = queryString + "                           UPDATE          PickupDetails " + "\r\n";
+            queryString = queryString + "                           SET             PickupDetails.QuantityReceipt = ROUND(PickupDetails.QuantityReceipt + GoodsReceiptDetails.Quantity * @SaveRelativeOption, " + (int)GlobalEnums.rndQuantity + "), PickupDetails.LineVolumeReceipt = ROUND(PickupDetails.LineVolumeReceipt + GoodsReceiptDetails.LineVolume * @SaveRelativeOption, " + (int)GlobalEnums.rndVolume + ") " + "\r\n";
+            queryString = queryString + "                           FROM            GoodsReceiptDetails " + "\r\n";
+            queryString = queryString + "                                           INNER JOIN PickupDetails ON PickupDetails.Approved = 1 AND GoodsReceiptDetails.GoodsReceiptID = @EntityID AND GoodsReceiptDetails.PickupDetailID = PickupDetails.PickupDetailID " + "\r\n";
+            queryString = queryString + "                           SET @AffectedROWCOUNT = @@ROWCOUNT " + "\r\n";
+            queryString = queryString + "                       END " + "\r\n";
 
             queryString = queryString + "                   IF (NOT @WarehouseAdjustmentID IS NULL) " + "\r\n"; //HERE: THIS WILL BE CORRECT: WHEN ONLY 1 GoodsReceipts FOR A WarehouseAdjustments
-            queryString = queryString + "                       UPDATE          WarehouseAdjustmentDetails " + "\r\n";
-            queryString = queryString + "                       SET             WarehouseAdjustmentDetails.QuantityReceipt = ROUND(WarehouseAdjustmentDetails.QuantityReceipt + GoodsReceiptDetails.Quantity * @SaveRelativeOption, " + (int)GlobalEnums.rndQuantity + "), WarehouseAdjustmentDetails.LineVolumeReceipt = ROUND(WarehouseAdjustmentDetails.LineVolumeReceipt + GoodsReceiptDetails.LineVolume * @SaveRelativeOption, " + (int)GlobalEnums.rndVolume + ") " + "\r\n";
-            queryString = queryString + "                       FROM            GoodsReceiptDetails " + "\r\n";
-            queryString = queryString + "                                       INNER JOIN WarehouseAdjustmentDetails ON WarehouseAdjustmentDetails.Quantity > 0 AND GoodsReceiptDetails.GoodsReceiptID = @EntityID AND GoodsReceiptDetails.WarehouseAdjustmentDetailID = WarehouseAdjustmentDetails.WarehouseAdjustmentDetailID " + "\r\n";
-            //--------------------------------------------------SHOULD UPDATE GoodsReceiptID, GoodsReceiptDetailID BACK TO WarehouseAdjustmentDetails FOR GoodsReceipts OF WarehouseAdjustmentDetails? THE ANSWER: WE CAN DO IT HERE, BUT IT BREAK THE RELATIONSHIP (cyclic redundancy relationship: GoodsReceiptDetails => WarehouseAdjustmentDetails => THUS: WE SHOULD NOT MAKE ANOTHER RELATIONSHIP FROM WarehouseAdjustmentDetails => GoodsReceiptDetails ) => SO: SHOULD NOT!!!
-            queryString = queryString + "                   IF @@ROWCOUNT <> (SELECT COUNT(*) FROM GoodsReceiptDetails WHERE GoodsReceiptID = @EntityID) " + "\r\n";
+            queryString = queryString + "                       BEGIN  " + "\r\n";
+            queryString = queryString + "                           UPDATE          WarehouseAdjustmentDetails " + "\r\n";
+            queryString = queryString + "                           SET             WarehouseAdjustmentDetails.QuantityReceipt = ROUND(WarehouseAdjustmentDetails.QuantityReceipt + GoodsReceiptDetails.Quantity * @SaveRelativeOption, " + (int)GlobalEnums.rndQuantity + "), WarehouseAdjustmentDetails.LineVolumeReceipt = ROUND(WarehouseAdjustmentDetails.LineVolumeReceipt + GoodsReceiptDetails.LineVolume * @SaveRelativeOption, " + (int)GlobalEnums.rndVolume + ") " + "\r\n";
+            queryString = queryString + "                           FROM            GoodsReceiptDetails " + "\r\n";
+            queryString = queryString + "                                           INNER JOIN WarehouseAdjustmentDetails ON WarehouseAdjustmentDetails.Quantity > 0 AND GoodsReceiptDetails.GoodsReceiptID = @EntityID AND GoodsReceiptDetails.WarehouseAdjustmentDetailID = WarehouseAdjustmentDetails.WarehouseAdjustmentDetailID " + "\r\n";
+            queryString = queryString + "                           SET @AffectedROWCOUNT = @@ROWCOUNT " + "\r\n";
+            //------------------------------------------------------SHOULD UPDATE GoodsReceiptID, GoodsReceiptDetailID BACK TO WarehouseAdjustmentDetails FOR GoodsReceipts OF WarehouseAdjustmentDetails? THE ANSWER: WE CAN DO IT HERE, BUT IT BREAK THE RELATIONSHIP (cyclic redundancy relationship: GoodsReceiptDetails => WarehouseAdjustmentDetails => THUS: WE SHOULD NOT MAKE ANOTHER RELATIONSHIP FROM WarehouseAdjustmentDetails => GoodsReceiptDetails ) => SO: SHOULD NOT!!!
+            queryString = queryString + "                       END " + "\r\n";
+
+            queryString = queryString + "                   IF @AffectedROWCOUNT <> (SELECT COUNT(*) FROM GoodsReceiptDetails WHERE GoodsReceiptID = @EntityID) " + "\r\n";
             queryString = queryString + "                       BEGIN " + "\r\n";
             queryString = queryString + "                           DECLARE     @msg NVARCHAR(300) = N'Phiếu giao hàng đã hủy, hoặc chưa duyệt' ; " + "\r\n";
             queryString = queryString + "                           THROW       61001,  @msg, 1; " + "\r\n";

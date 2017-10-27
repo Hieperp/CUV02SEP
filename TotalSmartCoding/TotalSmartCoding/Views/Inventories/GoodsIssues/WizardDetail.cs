@@ -132,67 +132,73 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
 
                     if (fastAvailableGoodsReceiptDetails != null)
                     {
-                        foreach (var checkedObjects in fastAvailableGoodsReceiptDetails.CheckedObjects)
+                        if (fastAvailableGoodsReceiptDetails.CheckedObjects.Count > 0)
                         {
-                            GoodsReceiptDetailAvailable goodsReceiptDetailAvailable = (GoodsReceiptDetailAvailable)checkedObjects;
-                            GoodsIssueDetailDTO goodsIssueDetailDTO = new GoodsIssueDetailDTO()
+                            this.goodsIssueViewModel.ViewDetails.RaiseListChangedEvents = false;
+                            foreach (var checkedObjects in fastAvailableGoodsReceiptDetails.CheckedObjects)
                             {
-                                GoodsIssueID = this.goodsIssueViewModel.GoodsIssueID,
+                                GoodsReceiptDetailAvailable goodsReceiptDetailAvailable = (GoodsReceiptDetailAvailable)checkedObjects;
+                                GoodsIssueDetailDTO goodsIssueDetailDTO = new GoodsIssueDetailDTO()
+                                {
+                                    GoodsIssueID = this.goodsIssueViewModel.GoodsIssueID,
 
-                                DeliveryAdviceID = this.pendingDeliveryAdviceDetail != null ? this.pendingDeliveryAdviceDetail.DeliveryAdviceID : (int?)null,
-                                DeliveryAdviceDetailID = this.pendingDeliveryAdviceDetail != null ? this.pendingDeliveryAdviceDetail.DeliveryAdviceDetailID : (int?)null,
-                                DeliveryAdviceReference = this.pendingDeliveryAdviceDetail != null ? this.pendingDeliveryAdviceDetail.PrimaryReference : null,
-                                DeliveryAdviceEntryDate = this.pendingDeliveryAdviceDetail != null ? this.pendingDeliveryAdviceDetail.PrimaryEntryDate : (DateTime?)null,
+                                    DeliveryAdviceID = this.pendingDeliveryAdviceDetail != null ? this.pendingDeliveryAdviceDetail.DeliveryAdviceID : (int?)null,
+                                    DeliveryAdviceDetailID = this.pendingDeliveryAdviceDetail != null ? this.pendingDeliveryAdviceDetail.DeliveryAdviceDetailID : (int?)null,
+                                    DeliveryAdviceReference = this.pendingDeliveryAdviceDetail != null ? this.pendingDeliveryAdviceDetail.PrimaryReference : null,
+                                    DeliveryAdviceEntryDate = this.pendingDeliveryAdviceDetail != null ? this.pendingDeliveryAdviceDetail.PrimaryEntryDate : (DateTime?)null,
 
-                                TransferOrderID = this.pendingTransferOrderDetail != null ? this.pendingTransferOrderDetail.TransferOrderID : (int?)null,
-                                TransferOrderDetailID = this.pendingTransferOrderDetail != null ? this.pendingTransferOrderDetail.TransferOrderDetailID : (int?)null,
-                                TransferOrderReference = this.pendingTransferOrderDetail != null ? this.pendingTransferOrderDetail.PrimaryReference : null,
-                                TransferOrderEntryDate = this.pendingTransferOrderDetail != null ? this.pendingTransferOrderDetail.PrimaryEntryDate : (DateTime?)null,
+                                    TransferOrderID = this.pendingTransferOrderDetail != null ? this.pendingTransferOrderDetail.TransferOrderID : (int?)null,
+                                    TransferOrderDetailID = this.pendingTransferOrderDetail != null ? this.pendingTransferOrderDetail.TransferOrderDetailID : (int?)null,
+                                    TransferOrderReference = this.pendingTransferOrderDetail != null ? this.pendingTransferOrderDetail.PrimaryReference : null,
+                                    TransferOrderEntryDate = this.pendingTransferOrderDetail != null ? this.pendingTransferOrderDetail.PrimaryEntryDate : (DateTime?)null,
 
-                                CommodityID = goodsReceiptDetailAvailable.CommodityID,
-                                CommodityCode = goodsReceiptDetailAvailable.CommodityCode,
-                                CommodityName = goodsReceiptDetailAvailable.CommodityName,
+                                    CommodityID = goodsReceiptDetailAvailable.CommodityID,
+                                    CommodityCode = goodsReceiptDetailAvailable.CommodityCode,
+                                    CommodityName = goodsReceiptDetailAvailable.CommodityName,
 
-                                PackageSize = goodsReceiptDetailAvailable.PackageSize,
+                                    PackageSize = goodsReceiptDetailAvailable.PackageSize,
 
-                                Volume = goodsReceiptDetailAvailable.Volume,
-                                PackageVolume = goodsReceiptDetailAvailable.PackageVolume,
+                                    Volume = goodsReceiptDetailAvailable.Volume,
+                                    PackageVolume = goodsReceiptDetailAvailable.PackageVolume,
 
-                                GoodsReceiptID = goodsReceiptDetailAvailable.GoodsReceiptID,
-                                GoodsReceiptDetailID = goodsReceiptDetailAvailable.GoodsReceiptDetailID,
+                                    GoodsReceiptID = goodsReceiptDetailAvailable.GoodsReceiptID,
+                                    GoodsReceiptDetailID = goodsReceiptDetailAvailable.GoodsReceiptDetailID,
 
-                                GoodsReceiptReference = goodsReceiptDetailAvailable.GoodsReceiptReference,
-                                GoodsReceiptEntryDate = goodsReceiptDetailAvailable.GoodsReceiptEntryDate,
+                                    GoodsReceiptReference = goodsReceiptDetailAvailable.GoodsReceiptReference,
+                                    GoodsReceiptEntryDate = goodsReceiptDetailAvailable.GoodsReceiptEntryDate,
 
-                                BatchEntryDate = goodsReceiptDetailAvailable.BatchEntryDate,
+                                    BatchEntryDate = goodsReceiptDetailAvailable.BatchEntryDate,
 
-                                BinLocationID = goodsReceiptDetailAvailable.BinLocationID,
-                                BinLocationCode = goodsReceiptDetailAvailable.BinLocationCode,
+                                    BinLocationID = goodsReceiptDetailAvailable.BinLocationID,
+                                    BinLocationCode = goodsReceiptDetailAvailable.BinLocationCode,
 
-                                WarehouseID = goodsReceiptDetailAvailable.WarehouseID,
-                                WarehouseCode = goodsReceiptDetailAvailable.WarehouseCode,
+                                    WarehouseID = goodsReceiptDetailAvailable.WarehouseID,
+                                    WarehouseCode = goodsReceiptDetailAvailable.WarehouseCode,
 
-                                PackID = goodsReceiptDetailAvailable.PackID,
-                                PackCode = goodsReceiptDetailAvailable.PackCode,
-                                CartonID = goodsReceiptDetailAvailable.CartonID,
-                                CartonCode = goodsReceiptDetailAvailable.CartonCode,
-                                PalletID = goodsReceiptDetailAvailable.PalletID,
-                                PalletCode = goodsReceiptDetailAvailable.PalletCode,
+                                    PackID = goodsReceiptDetailAvailable.PackID,
+                                    PackCode = goodsReceiptDetailAvailable.PackCode,
+                                    CartonID = goodsReceiptDetailAvailable.CartonID,
+                                    CartonCode = goodsReceiptDetailAvailable.CartonCode,
+                                    PalletID = goodsReceiptDetailAvailable.PalletID,
+                                    PalletCode = goodsReceiptDetailAvailable.PalletCode,
 
-                                PackCounts = goodsReceiptDetailAvailable.PackCounts,
-                                CartonCounts = goodsReceiptDetailAvailable.CartonCounts,
-                                PalletCounts = goodsReceiptDetailAvailable.PalletCounts,
+                                    PackCounts = goodsReceiptDetailAvailable.PackCounts,
+                                    CartonCounts = goodsReceiptDetailAvailable.CartonCounts,
+                                    PalletCounts = goodsReceiptDetailAvailable.PalletCounts,
 
-                                QuantityAvailable = (decimal)goodsReceiptDetailAvailable.QuantityAvailable,
-                                LineVolumeAvailable = (decimal)goodsReceiptDetailAvailable.LineVolumeAvailable,
+                                    QuantityAvailable = (decimal)goodsReceiptDetailAvailable.QuantityAvailable,
+                                    LineVolumeAvailable = (decimal)goodsReceiptDetailAvailable.LineVolumeAvailable,
 
-                                QuantityRemains = (decimal)(this.pendingDeliveryAdviceDetail != null ? this.pendingDeliveryAdviceDetail.QuantityRemains : this.pendingTransferOrderDetail.QuantityRemains),
-                                LineVolumeRemains = (decimal)(this.pendingDeliveryAdviceDetail != null ? this.pendingDeliveryAdviceDetail.LineVolumeRemains : this.pendingTransferOrderDetail.LineVolumeRemains),
+                                    QuantityRemains = (decimal)(this.pendingDeliveryAdviceDetail != null ? this.pendingDeliveryAdviceDetail.QuantityRemains : this.pendingTransferOrderDetail.QuantityRemains),
+                                    LineVolumeRemains = (decimal)(this.pendingDeliveryAdviceDetail != null ? this.pendingDeliveryAdviceDetail.LineVolumeRemains : this.pendingTransferOrderDetail.LineVolumeRemains),
 
-                                Quantity = (decimal)goodsReceiptDetailAvailable.QuantityAvailable, //SHOULD: Quantity = QuantityAvailable (ALSO: LineVolume = LineVolumeAvailable): BECAUSE: WE ISSUE BY WHOLE UNIT OF PALLET/ OR CARTON/ OR PACK
-                                LineVolume = (decimal)goodsReceiptDetailAvailable.LineVolumeAvailable //IF Quantity > QuantityRemains (OR LineVolume > LineVolumeRemains) => THE GoodsIssueDetailDTO WILL BREAK THE ValidationRule => CAN NOT SAVE => USER MUST SELECT OTHER APPROPRIATE UNIT OF PALLET/ OR CARTON/ OR PACK WHICH MATCH THE Quantity/ LineVolume                                
-                            };
-                            this.goodsIssueViewModel.ViewDetails.Insert(0, goodsIssueDetailDTO);
+                                    Quantity = (decimal)goodsReceiptDetailAvailable.QuantityAvailable, //SHOULD: Quantity = QuantityAvailable (ALSO: LineVolume = LineVolumeAvailable): BECAUSE: WE ISSUE BY WHOLE UNIT OF PALLET/ OR CARTON/ OR PACK
+                                    LineVolume = (decimal)goodsReceiptDetailAvailable.LineVolumeAvailable //IF Quantity > QuantityRemains (OR LineVolume > LineVolumeRemains) => THE GoodsIssueDetailDTO WILL BREAK THE ValidationRule => CAN NOT SAVE => USER MUST SELECT OTHER APPROPRIATE UNIT OF PALLET/ OR CARTON/ OR PACK WHICH MATCH THE Quantity/ LineVolume                                
+                                };
+                                this.goodsIssueViewModel.ViewDetails.Insert(0, goodsIssueDetailDTO);
+                            }
+                            this.goodsIssueViewModel.ViewDetails.RaiseListChangedEvents = true;
+                            this.goodsIssueViewModel.ViewDetails.ResetBindings();
                         }
                     }
 
