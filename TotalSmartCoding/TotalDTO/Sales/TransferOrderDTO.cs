@@ -104,7 +104,7 @@ namespace TotalDTO.Sales
 
         public override string Caption
         {
-            get { return (this.WarehouseName != null ? "From: " : "") + this.WarehouseName + (this.WarehouseName != null ? " to: " : "") + this.WarehouseReceiptName + (this.TransferJobs != null && this.TransferJobs != "" ? ", for jobs: " : "") + this.TransferJobs + (this.VoucherCode != null && this.VoucherCode != "" ? ", voucher: " : "") + this.VoucherCode + "             Total Quantity: " + this.TotalQuantity.ToString() + ",    Total Volume: " + this.TotalLineVolume.ToString("N2"); }
+            get { return (this.WarehouseName != null ? "From: " : "") + this.WarehouseName + (this.WarehouseName != null ? " to: " : "") + this.WarehouseReceiptName + (this.TransferJobs != null && this.TransferJobs != "" ? ", for jobs: " : "") + this.TransferJobs + (this.VoucherCode != null && this.VoucherCode != "" ? ", voucher: " : "") + this.VoucherCode + "             Total Quantity: " + this.TotalQuantity.ToString("N0") + ",    Total Volume: " + this.TotalLineVolume.ToString("N2"); }
         }
 
         public override void PerformPresaveRule()

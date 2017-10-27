@@ -98,7 +98,7 @@ namespace TotalDTO.Sales
 
         public override string Caption
         {
-            get { return "Customer: " + this.CustomerName + (this.ContactInfo != null && this.ContactInfo.Trim() != "" ? ", " : "") + this.ContactInfo + (this.CustomerName != "" ? ", " : "") + "SO Date: " + this.EntryDate.ToString() + "             Total Quantity: " + this.TotalQuantity.ToString() + ",    Total Volume: " + this.TotalLineVolume.ToString("N2"); }
+            get { return "Customer: " + this.CustomerName + (this.ContactInfo != null && this.ContactInfo.Trim() != "" ? ", " : "") + this.ContactInfo + (this.CustomerName != "" ? ", " : "") + "SO Date: " + this.EntryDate.ToString() + "             Total Quantity: " + this.TotalQuantity.ToString("N0") + ",    Total Volume: " + this.TotalLineVolume.ToString("N2"); }
         }
 
         public override void PerformPresaveRule()

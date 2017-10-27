@@ -60,6 +60,8 @@
             this.toolStripChildForm = new System.Windows.Forms.ToolStrip();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.naviDetails = new Guifreaks.Navisuite.NaviGroup(this.components);
+            this.toolStripNaviGroup = new System.Windows.Forms.ToolStrip();
+            this.buttonRemoveDetailItem = new System.Windows.Forms.ToolStripButton();
             this.labelCaption = new System.Windows.Forms.Label();
             this.gridexPalletDetails = new CustomControls.DataGridexView();
             this.PalletPrimaryReference = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -78,7 +80,7 @@
             this.imageList32 = new System.Windows.Forms.ImageList(this.components);
             this.naviPendingDeliveryAdviceDetails = new Guifreaks.Navisuite.NaviBar(this.components);
             this.naviPendingItems = new Guifreaks.Navisuite.NaviBand(this.components);
-            this.fastPendingDeliveryAdviceDetails = new BrightIdeasSoftware.FastObjectListView();
+            this.fastPendingPrimaryDetails = new BrightIdeasSoftware.FastObjectListView();
             this.olvPrimaryReference = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvCommodityCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvBatchCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -99,12 +101,13 @@
             this.toolStripChildForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.naviDetails)).BeginInit();
             this.naviDetails.SuspendLayout();
+            this.toolStripNaviGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridexPalletDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fastGoodsIssueIndex)).BeginInit();
             this.naviPendingDeliveryAdviceDetails.SuspendLayout();
             this.naviPendingItems.ClientArea.SuspendLayout();
             this.naviPendingItems.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.fastPendingDeliveryAdviceDetails)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fastPendingPrimaryDetails)).BeginInit();
             this.naviPickupIndex.ClientArea.SuspendLayout();
             this.naviPickupIndex.SuspendLayout();
             this.naviIndex.SuspendLayout();
@@ -380,7 +383,7 @@
             this.toolStripButton2});
             this.toolStripChildForm.Location = new System.Drawing.Point(0, 0);
             this.toolStripChildForm.Name = "toolStripChildForm";
-            this.toolStripChildForm.Size = new System.Drawing.Size(1850, 52);
+            this.toolStripChildForm.Size = new System.Drawing.Size(1274, 39);
             this.toolStripChildForm.TabIndex = 29;
             this.toolStripChildForm.Text = "toolStrip1";
             this.toolStripChildForm.Visible = false;
@@ -391,13 +394,14 @@
             this.toolStripButton2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(118, 49);
+            this.toolStripButton2.Size = new System.Drawing.Size(118, 36);
             this.toolStripButton2.Text = "Disconnect";
             this.toolStripButton2.Visible = false;
             // 
             // naviDetails
             // 
             this.naviDetails.Caption = "   Issue for";
+            this.naviDetails.Controls.Add(this.toolStripNaviGroup);
             this.naviDetails.Controls.Add(this.labelCaption);
             this.naviDetails.Controls.Add(this.tableLayoutMaster);
             this.naviDetails.Dock = System.Windows.Forms.DockStyle.Top;
@@ -410,6 +414,33 @@
             this.naviDetails.Padding = new System.Windows.Forms.Padding(0, 45, 0, 0);
             this.naviDetails.Size = new System.Drawing.Size(698, 242);
             this.naviDetails.TabIndex = 30;
+            // 
+            // toolStripNaviGroup
+            // 
+            this.toolStripNaviGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.toolStripNaviGroup.BackColor = System.Drawing.Color.Transparent;
+            this.toolStripNaviGroup.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStripNaviGroup.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStripNaviGroup.ImageScalingSize = new System.Drawing.Size(32, 32);
+            this.toolStripNaviGroup.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.buttonRemoveDetailItem});
+            this.toolStripNaviGroup.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
+            this.toolStripNaviGroup.Location = new System.Drawing.Point(639, 0);
+            this.toolStripNaviGroup.Name = "toolStripNaviGroup";
+            this.toolStripNaviGroup.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.toolStripNaviGroup.Size = new System.Drawing.Size(39, 39);
+            this.toolStripNaviGroup.TabIndex = 76;
+            this.toolStripNaviGroup.Visible = false;
+            // 
+            // buttonRemoveDetailItem
+            // 
+            this.buttonRemoveDetailItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.buttonRemoveDetailItem.Image = global::TotalSmartCoding.Properties.Resources.Red_cross;
+            this.buttonRemoveDetailItem.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonRemoveDetailItem.Name = "buttonRemoveDetailItem";
+            this.buttonRemoveDetailItem.Size = new System.Drawing.Size(36, 36);
+            this.buttonRemoveDetailItem.ToolTipText = "Xóa pallet";
+            this.buttonRemoveDetailItem.Click += new System.EventHandler(this.buttonRemoveDetailItem_Click);
             // 
             // labelCaption
             // 
@@ -634,7 +665,7 @@
             // 
             // naviPendingItems.ClientArea
             // 
-            this.naviPendingItems.ClientArea.Controls.Add(this.fastPendingDeliveryAdviceDetails);
+            this.naviPendingItems.ClientArea.Controls.Add(this.fastPendingPrimaryDetails);
             this.naviPendingItems.ClientArea.LayoutStyle = Guifreaks.Navisuite.NaviLayoutStyle.StyleFromOwner;
             this.naviPendingItems.ClientArea.Location = new System.Drawing.Point(0, 0);
             this.naviPendingItems.ClientArea.Margin = new System.Windows.Forms.Padding(4);
@@ -650,40 +681,40 @@
             this.naviPendingItems.SmallImageIndex = 0;
             this.naviPendingItems.TabIndex = 3;
             // 
-            // fastPendingDeliveryAdviceDetails
+            // fastPendingPrimaryDetails
             // 
-            this.fastPendingDeliveryAdviceDetails.AllColumns.Add(this.olvPrimaryReference);
-            this.fastPendingDeliveryAdviceDetails.AllColumns.Add(this.olvCommodityCode);
-            this.fastPendingDeliveryAdviceDetails.AllColumns.Add(this.olvBatchCode);
-            this.fastPendingDeliveryAdviceDetails.AllColumns.Add(this.olvQuantityRemains);
-            this.fastPendingDeliveryAdviceDetails.AllColumns.Add(this.olvLineVolumeRemains);
-            this.fastPendingDeliveryAdviceDetails.BackColor = System.Drawing.Color.Ivory;
-            this.fastPendingDeliveryAdviceDetails.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.fastPendingPrimaryDetails.AllColumns.Add(this.olvPrimaryReference);
+            this.fastPendingPrimaryDetails.AllColumns.Add(this.olvCommodityCode);
+            this.fastPendingPrimaryDetails.AllColumns.Add(this.olvBatchCode);
+            this.fastPendingPrimaryDetails.AllColumns.Add(this.olvQuantityRemains);
+            this.fastPendingPrimaryDetails.AllColumns.Add(this.olvLineVolumeRemains);
+            this.fastPendingPrimaryDetails.BackColor = System.Drawing.Color.Ivory;
+            this.fastPendingPrimaryDetails.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.olvPrimaryReference,
             this.olvCommodityCode,
             this.olvBatchCode,
             this.olvQuantityRemains,
             this.olvLineVolumeRemains});
-            this.fastPendingDeliveryAdviceDetails.Cursor = System.Windows.Forms.Cursors.Default;
-            this.fastPendingDeliveryAdviceDetails.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fastPendingDeliveryAdviceDetails.FullRowSelect = true;
-            this.fastPendingDeliveryAdviceDetails.HideSelection = false;
-            this.fastPendingDeliveryAdviceDetails.HighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
-            this.fastPendingDeliveryAdviceDetails.Location = new System.Drawing.Point(0, 0);
-            this.fastPendingDeliveryAdviceDetails.Margin = new System.Windows.Forms.Padding(4);
-            this.fastPendingDeliveryAdviceDetails.Name = "fastPendingDeliveryAdviceDetails";
-            this.fastPendingDeliveryAdviceDetails.OwnerDraw = true;
-            this.fastPendingDeliveryAdviceDetails.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.fastPendingDeliveryAdviceDetails.RowHeight = 39;
-            this.fastPendingDeliveryAdviceDetails.ShowGroups = false;
-            this.fastPendingDeliveryAdviceDetails.Size = new System.Drawing.Size(416, 725);
-            this.fastPendingDeliveryAdviceDetails.TabIndex = 69;
-            this.fastPendingDeliveryAdviceDetails.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
-            this.fastPendingDeliveryAdviceDetails.UseCompatibleStateImageBehavior = false;
-            this.fastPendingDeliveryAdviceDetails.UseFiltering = true;
-            this.fastPendingDeliveryAdviceDetails.View = System.Windows.Forms.View.Details;
-            this.fastPendingDeliveryAdviceDetails.VirtualMode = true;
-            this.fastPendingDeliveryAdviceDetails.MouseClick += new System.Windows.Forms.MouseEventHandler(this.fastPendingPallets_MouseClick);
+            this.fastPendingPrimaryDetails.Cursor = System.Windows.Forms.Cursors.Default;
+            this.fastPendingPrimaryDetails.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fastPendingPrimaryDetails.FullRowSelect = true;
+            this.fastPendingPrimaryDetails.HideSelection = false;
+            this.fastPendingPrimaryDetails.HighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
+            this.fastPendingPrimaryDetails.Location = new System.Drawing.Point(0, 0);
+            this.fastPendingPrimaryDetails.Margin = new System.Windows.Forms.Padding(4);
+            this.fastPendingPrimaryDetails.Name = "fastPendingPrimaryDetails";
+            this.fastPendingPrimaryDetails.OwnerDraw = true;
+            this.fastPendingPrimaryDetails.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.fastPendingPrimaryDetails.RowHeight = 39;
+            this.fastPendingPrimaryDetails.ShowGroups = false;
+            this.fastPendingPrimaryDetails.Size = new System.Drawing.Size(416, 725);
+            this.fastPendingPrimaryDetails.TabIndex = 69;
+            this.fastPendingPrimaryDetails.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
+            this.fastPendingPrimaryDetails.UseCompatibleStateImageBehavior = false;
+            this.fastPendingPrimaryDetails.UseFiltering = true;
+            this.fastPendingPrimaryDetails.View = System.Windows.Forms.View.Details;
+            this.fastPendingPrimaryDetails.VirtualMode = true;
+            this.fastPendingPrimaryDetails.MouseClick += new System.Windows.Forms.MouseEventHandler(this.fastPendingPallets_MouseClick);
             // 
             // olvPrimaryReference
             // 
@@ -911,12 +942,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.naviDetails)).EndInit();
             this.naviDetails.ResumeLayout(false);
             this.naviDetails.PerformLayout();
+            this.toolStripNaviGroup.ResumeLayout(false);
+            this.toolStripNaviGroup.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridexPalletDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fastGoodsIssueIndex)).EndInit();
             this.naviPendingDeliveryAdviceDetails.ResumeLayout(false);
             this.naviPendingItems.ClientArea.ResumeLayout(false);
             this.naviPendingItems.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.fastPendingDeliveryAdviceDetails)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fastPendingPrimaryDetails)).EndInit();
             this.naviPickupIndex.ClientArea.ResumeLayout(false);
             this.naviPickupIndex.ResumeLayout(false);
             this.naviIndex.ResumeLayout(false);
@@ -960,7 +993,7 @@
         private CustomControls.TextexBox textexRemarks;
         private Guifreaks.Navisuite.NaviBand naviPickupIndex;
         private Guifreaks.Navisuite.NaviBand naviPendingItems;
-        private BrightIdeasSoftware.FastObjectListView fastPendingDeliveryAdviceDetails;
+        private BrightIdeasSoftware.FastObjectListView fastPendingPrimaryDetails;
         private BrightIdeasSoftware.OLVColumn olvCommodityCode;
         private CustomControls.TextexBox textexTotalCartonCounts;
         private System.Windows.Forms.Label labelCaption;
@@ -987,6 +1020,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CartonBinLocationCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn CartonQuantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn CartonLineVolume;
+        private System.Windows.Forms.ToolStrip toolStripNaviGroup;
+        private System.Windows.Forms.ToolStripButton buttonRemoveDetailItem;
 
     }
 }

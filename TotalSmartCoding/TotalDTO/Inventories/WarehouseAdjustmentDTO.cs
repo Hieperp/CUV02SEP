@@ -88,7 +88,7 @@ namespace TotalDTO.Inventories
 
         public override string Caption
         {
-            get { return this.WarehouseAdjustmentTypeName + " at Warehouse: " + this.WarehouseName + "             Total Quantity: " + this.TotalQuantity.ToString() + ",    Total Volume: " + this.TotalLineVolume.ToString("N2"); }
+            get { return this.WarehouseAdjustmentTypeName + " at Warehouse: " + this.WarehouseName + "             Total Quantity: " + this.TotalQuantity.ToString("N0") + ",    Total Volume: " + this.TotalLineVolume.ToString("N2"); }
         }
 
         public override void PerformPresaveRule()

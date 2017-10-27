@@ -99,7 +99,7 @@ namespace TotalDTO.Sales
 
         public override string Caption
         {
-            get { return (this.HasSalesOrder ? "Sales Order " + (this.SalesOrderID != null ? this.SalesOrderReference + ", on " + this.SalesOrderEntryDate.ToString() : this.SalesOrderReferences) + ", " : "") + "Customer: " + this.CustomerName + (this.CustomerName != "" ? ", " : "") + "DA Date: " + this.EntryDate.ToString() + "             Total Quantity: " + this.TotalQuantity.ToString() + ",    Total Volume: " + this.TotalLineVolume.ToString("N2"); }
+            get { return (this.HasSalesOrder ? "Sales Order " + (this.SalesOrderID != null ? this.SalesOrderReference + ", on " + this.SalesOrderEntryDate.ToString() : this.SalesOrderReferences) + ", " : "") + "Customer: " + this.CustomerName + (this.CustomerName != "" ? ", " : "") + "DA Date: " + this.EntryDate.ToString() + "             Total Quantity: " + this.TotalQuantity.ToString("N0") + ",    Total Volume: " + this.TotalLineVolume.ToString("N2"); }
         }
 
         public override void PerformPresaveRule()

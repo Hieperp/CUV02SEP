@@ -403,10 +403,10 @@
             this.toolStripNaviGroup.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.buttonRemoveDetailItem});
             this.toolStripNaviGroup.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.toolStripNaviGroup.Location = new System.Drawing.Point(768, 0);
+            this.toolStripNaviGroup.Location = new System.Drawing.Point(729, 0);
             this.toolStripNaviGroup.Name = "toolStripNaviGroup";
             this.toolStripNaviGroup.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStripNaviGroup.Size = new System.Drawing.Size(39, 39);
+            this.toolStripNaviGroup.Size = new System.Drawing.Size(78, 39);
             this.toolStripNaviGroup.TabIndex = 75;
             this.toolStripNaviGroup.Visible = false;
             // 

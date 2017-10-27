@@ -217,6 +217,11 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
             }
         }
 
+        protected override void EditableModeChanged(bool editableMode)
+        {
+            base.EditableModeChanged(editableMode);
+            this.toolStripNaviGroup.Visible = editableMode;
+        }
 
         protected override Controllers.BaseController myController
         {
@@ -243,16 +248,28 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
             this.getPendingItems();
         }
 
+        private void callAutoSave()
+        {
+            try
+            {
+                if (this.goodsIssueViewModel.IsDirty && this.goodsIssueViewModel.IsValid) this.Save(false);
+            }
+            catch (Exception exception)
+            {
+                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+            }
+        }
+
         private void getPendingItems()
         {
             try
             {
                 if (this.goodsIssueViewModel.GoodsIssueTypeID == (int)GlobalEnums.GoodsIssueTypeID.DeliveryAdvice)
-                { this.fastPendingDeliveryAdviceDetails.SetObjects(this.goodsIssueAPIs.GetPendingDeliveryAdviceDetails(this.goodsIssueViewModel.LocationID, this.goodsIssueViewModel.GoodsIssueID, this.goodsIssueViewModel.DeliveryAdviceID, this.goodsIssueViewModel.CustomerID, string.Join(",", this.goodsIssueViewModel.ViewDetails.Select(d => d.DeliveryAdviceDetailID)), false)); this.olvPrimaryReference.Text = "D.A"; }
+                { this.fastPendingPrimaryDetails.SetObjects(this.goodsIssueAPIs.GetPendingDeliveryAdviceDetails(this.goodsIssueViewModel.LocationID, this.goodsIssueViewModel.GoodsIssueID, this.goodsIssueViewModel.DeliveryAdviceID, this.goodsIssueViewModel.CustomerID, string.Join(",", this.goodsIssueViewModel.ViewDetails.Select(d => d.DeliveryAdviceDetailID)), false)); this.olvPrimaryReference.Text = "D.A"; }
                 if (this.goodsIssueViewModel.GoodsIssueTypeID == (int)GlobalEnums.GoodsIssueTypeID.TransferOrder)
-                { this.fastPendingDeliveryAdviceDetails.SetObjects(this.goodsIssueAPIs.GetPendingTransferOrderDetails(this.goodsIssueViewModel.LocationID, this.goodsIssueViewModel.GoodsIssueID, this.goodsIssueViewModel.WarehouseID, this.goodsIssueViewModel.TransferOrderID, this.goodsIssueViewModel.WarehouseReceiptID, string.Join(",", this.goodsIssueViewModel.ViewDetails.Select(d => d.TransferOrderDetailID)), false)); this.olvPrimaryReference.Text = "Orders"; }
+                { this.fastPendingPrimaryDetails.SetObjects(this.goodsIssueAPIs.GetPendingTransferOrderDetails(this.goodsIssueViewModel.LocationID, this.goodsIssueViewModel.GoodsIssueID, this.goodsIssueViewModel.WarehouseID, this.goodsIssueViewModel.TransferOrderID, this.goodsIssueViewModel.WarehouseReceiptID, string.Join(",", this.goodsIssueViewModel.ViewDetails.Select(d => d.TransferOrderDetailID)), false)); this.olvPrimaryReference.Text = "Orders"; }
 
-                //this.naviPendingItems.Text = "Pending " + this.fastPendingDeliveryAdviceDetails.GetItemCount().ToString("N0") + " row" + (this.fastPendingDeliveryAdviceDetails.GetItemCount() > 1 ? "s" : "");
+                //this.naviPendingItems.Text = "Pending " + this.fastPendingPrimaryDetails.GetItemCount().ToString("N0") + " row" + (this.fastPendingPrimaryDetails.GetItemCount() > 1 ? "s" : "");
             }
             catch (Exception exception)
             {
@@ -264,7 +281,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
         {
             WizardMaster wizardMaster = new WizardMaster(this.goodsIssueAPIs, this.goodsIssueViewModel);
             DialogResult dialogResult = wizardMaster.ShowDialog();
-            if (dialogResult == System.Windows.Forms.DialogResult.OK) this.Save(false);
+            if (dialogResult == System.Windows.Forms.DialogResult.OK) this.callAutoSave();
 
             wizardMaster.Dispose();
             return dialogResult;
@@ -276,15 +293,14 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
             {
                 if (this.EditableMode && this.goodsIssueViewModel.Editable && this.goodsIssueViewModel.IsValid && !this.goodsIssueViewModel.IsDirty)
                 {
-                    PendingDeliveryAdviceDetail pendingDeliveryAdviceDetail = this.fastPendingDeliveryAdviceDetails.SelectedObject as PendingDeliveryAdviceDetail;
-                    PendingTransferOrderDetail pendingTransferOrderDetail = this.fastPendingDeliveryAdviceDetails.SelectedObject as PendingTransferOrderDetail;
+                    PendingDeliveryAdviceDetail pendingDeliveryAdviceDetail = this.fastPendingPrimaryDetails.SelectedObject as PendingDeliveryAdviceDetail;
+                    PendingTransferOrderDetail pendingTransferOrderDetail = this.fastPendingPrimaryDetails.SelectedObject as PendingTransferOrderDetail;
 
                     if (pendingDeliveryAdviceDetail != null || pendingTransferOrderDetail != null)
                     {
                         WizardDetail wizardDetail = new WizardDetail(this.goodsIssueViewModel, pendingDeliveryAdviceDetail, pendingTransferOrderDetail);
                         TabletMDI tabletMDI = new TabletMDI(wizardDetail);
-                        if (tabletMDI.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                            this.Save(false);
+                        if (tabletMDI.ShowDialog() == System.Windows.Forms.DialogResult.OK) this.callAutoSave();
 
                         wizardDetail.Dispose(); tabletMDI.Dispose();
                     }
@@ -296,16 +312,31 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
             }
         }
 
-        private void gridexViewDetails_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        private void buttonRemoveDetailItem_Click(object sender, EventArgs e)
         {
             try
             {
-                if (this.goodsIssueViewModel.IsDirty && this.goodsIssueViewModel.IsValid) this.Save(false);
+                if (this.EditableMode && this.goodsIssueViewModel.Editable)
+                {
+                    Equin.ApplicationFramework.ObjectView<TotalDTO.Inventories.GoodsIssueDetailDTO> objectViewGoodsIssueDetailDTO = (this.customTabCenter.SelectedIndex == 0 ? this.gridexPalletDetails : this.gridexCartonDetails).CurrentRow.DataBoundItem as Equin.ApplicationFramework.ObjectView<TotalDTO.Inventories.GoodsIssueDetailDTO>;
+                    GoodsIssueDetailDTO goodsIssueDetailDTO = (GoodsIssueDetailDTO)objectViewGoodsIssueDetailDTO;
+
+                    if (goodsIssueDetailDTO != null && CustomMsgBox.Show(this, "Xác nhận xóa " + (goodsIssueDetailDTO.PalletID != null ? "pallet" : "carton") + ":" + (char)13 + (char)13 + (goodsIssueDetailDTO.PalletID != null ? goodsIssueDetailDTO.PalletCode : goodsIssueDetailDTO.CartonCode) + (char)13 + (char)13 + "Tại vi trí: " + (char)13 + (char)13 + goodsIssueDetailDTO.BinLocationCode, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2) == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        this.goodsIssueViewModel.ViewDetails.Remove(goodsIssueDetailDTO);
+                        this.callAutoSave();
+                    }
+                }
             }
             catch (Exception exception)
             {
                 ExceptionHandlers.ShowExceptionMessageBox(this, exception);
             }
+        }
+
+        private void gridexViewDetails_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            this.callAutoSave();
         }
 
         private void timerLoadPending_Elapsed(object sender, System.Timers.ElapsedEventArgs e)

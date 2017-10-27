@@ -102,7 +102,7 @@ namespace TotalDTO.Inventories
 
         public override string Caption
         {
-            get { return this.GoodsReceiptTypeName + ": " + (this.PickupID != null ? this.PickupReference : this.PickupReferences) + "             " + this.WarehouseName + (this.WarehouseName != ""? ", ":"") + this.EntryDate.ToString() + "             Total Quantity: " + this.TotalQuantity.ToString() + ",    Total Volume: " + this.TotalLineVolume.ToString("N2"); }
+            get { return this.GoodsReceiptTypeName + ": " + (this.PickupID != null ? this.PickupReference : this.PickupReferences) + "             " + this.WarehouseName + (this.WarehouseName != ""? ", ":"") + this.EntryDate.ToString() + "             Total Quantity: " + this.TotalQuantity.ToString("N0") + ",    Total Volume: " + this.TotalLineVolume.ToString("N2"); }
         }
 
         public override void PerformPresaveRule()
