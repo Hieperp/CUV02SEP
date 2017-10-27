@@ -51,9 +51,9 @@ namespace TotalSmartCoding.Controllers.APIs.Inventories
             return this.goodsIssueAPIRepository.GetPendingDeliveryAdviceDetails(locationID, goodsIssueID, deliveryAdviceID, customerID, deliveryAdviceDetailIDs, isReadonly);
         }
 
-        public List<PendingTransferOrderDetail> GetPendingTransferOrderDetails(int? locationID, int? goodsIssueID, int? warehouseIssueID, int? transferOrderID, int? warehouseReceiptID, string transferOrderDetailIDs, bool isReadonly)
+        public List<PendingTransferOrderDetail> GetPendingTransferOrderDetails(int? locationID, int? goodsIssueID, int? warehouseID, int? transferOrderID, int? warehouseReceiptID, string transferOrderDetailIDs, bool isReadonly)
         {
-            return this.goodsIssueAPIRepository.GetPendingTransferOrderDetails(locationID, goodsIssueID, warehouseIssueID, transferOrderID, warehouseReceiptID, transferOrderDetailIDs, isReadonly);
+            return this.goodsIssueAPIRepository.GetPendingTransferOrderDetails(locationID, goodsIssueID, warehouseID, transferOrderID, warehouseReceiptID, transferOrderDetailIDs, isReadonly);
         }
     }
 }

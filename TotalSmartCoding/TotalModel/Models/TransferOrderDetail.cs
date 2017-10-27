@@ -24,7 +24,7 @@ namespace TotalModel.Models
         public int TransferOrderID { get; set; }
         public System.DateTime EntryDate { get; set; }
         public string Reference { get; set; }
-        public int WarehouseIssueID { get; set; }
+        public int WarehouseID { get; set; }
         public int WarehouseReceiptID { get; set; }
         public int LocationID { get; set; }
         public Nullable<int> BatchID { get; set; }
@@ -40,8 +40,8 @@ namespace TotalModel.Models
         public Nullable<System.DateTime> InActivePartialDate { get; set; }
     
         public virtual Commodity Commodity { get; set; }
-        public virtual TransferOrder TransferOrder { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GoodsIssueDetail> GoodsIssueDetails { get; set; }
+        public virtual TransferOrder TransferOrder { get; set; }
     }
 }

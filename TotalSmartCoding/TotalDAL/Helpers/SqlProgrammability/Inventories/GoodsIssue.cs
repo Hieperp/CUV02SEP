@@ -150,9 +150,9 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
 
-            queryString = queryString + "       SELECT          TransferOrders.TransferOrderID, TransferOrders.Reference AS TransferOrderReference, TransferOrders.EntryDate AS TransferOrderEntryDate, TransferOrders.VoucherCode, TransferOrders.TransferJobs, TransferOrders.WarehouseIssueID, WarehouseIssues.Code AS WarehouseIssueCode, WarehouseIssues.Name AS WarehouseIssueName, TransferOrders.WarehouseReceiptID, WarehouseReceipts.Code AS WarehouseReceiptCode, WarehouseReceipts.Name AS WarehouseReceiptName, TransferOrders.Description, TransferOrders.Remarks " + "\r\n";
+            queryString = queryString + "       SELECT          TransferOrders.TransferOrderID, TransferOrders.Reference AS TransferOrderReference, TransferOrders.EntryDate AS TransferOrderEntryDate, TransferOrders.VoucherCode, TransferOrders.TransferJobs, TransferOrders.WarehouseID, Warehouses.Code AS WarehouseCode, Warehouses.Name AS WarehouseName, TransferOrders.WarehouseReceiptID, WarehouseReceipts.Code AS WarehouseReceiptCode, WarehouseReceipts.Name AS WarehouseReceiptName, TransferOrders.Description, TransferOrders.Remarks " + "\r\n";
             queryString = queryString + "       FROM            TransferOrders " + "\r\n";
-            queryString = queryString + "                       INNER JOIN Warehouses WarehouseIssues ON TransferOrders.TransferOrderID IN (SELECT TransferOrderID FROM TransferOrderDetails WHERE LocationID = @LocationID AND Approved = 1 AND ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") > 0) AND TransferOrders.WarehouseIssueID = WarehouseIssues.WarehouseID " + "\r\n";
+            queryString = queryString + "                       INNER JOIN Warehouses ON TransferOrders.TransferOrderID IN (SELECT TransferOrderID FROM TransferOrderDetails WHERE LocationID = @LocationID AND Approved = 1 AND ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") > 0) AND TransferOrders.WarehouseID = Warehouses.WarehouseID " + "\r\n";
             queryString = queryString + "                       INNER JOIN Warehouses WarehouseReceipts ON TransferOrders.WarehouseReceiptID = WarehouseReceipts.WarehouseID " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("GetPendingTransferOrders", queryString);
@@ -164,9 +164,9 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
 
-            queryString = queryString + "       SELECT          WarehouseIssues.WarehouseID AS WarehouseIssueID, WarehouseIssues.Code AS WarehouseIssueCode, WarehouseIssues.Name AS WarehouseIssueName, WarehouseReceipts.WarehouseID AS WarehouseReceiptID, WarehouseReceipts.Code AS WarehouseReceiptCode, WarehouseReceipts.Name AS WarehouseReceiptName " + "\r\n";
-            queryString = queryString + "       FROM           (SELECT WarehouseIssueID, WarehouseReceiptID FROM TransferOrderDetails WHERE LocationID = @LocationID AND Approved = 1 AND ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") > 0 GROUP BY WarehouseIssueID, WarehouseReceiptID) WarehousePENDING " + "\r\n";
-            queryString = queryString + "                       INNER JOIN Warehouses WarehouseIssues ON WarehousePENDING.WarehouseIssueID = WarehouseIssues.WarehouseID " + "\r\n";
+            queryString = queryString + "       SELECT          Warehouses.WarehouseID, Warehouses.Code AS WarehouseCode, Warehouses.Name AS WarehouseName, WarehouseReceipts.WarehouseID AS WarehouseReceiptID, WarehouseReceipts.Code AS WarehouseReceiptCode, WarehouseReceipts.Name AS WarehouseReceiptName " + "\r\n";
+            queryString = queryString + "       FROM           (SELECT WarehouseID, WarehouseReceiptID FROM TransferOrderDetails WHERE LocationID = @LocationID AND Approved = 1 AND ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") > 0 GROUP BY WarehouseID, WarehouseReceiptID) WarehousePENDING " + "\r\n";
+            queryString = queryString + "                       INNER JOIN Warehouses ON WarehousePENDING.WarehouseID = Warehouses.WarehouseID " + "\r\n";
             queryString = queryString + "                       INNER JOIN Warehouses WarehouseReceipts ON WarehousePENDING.WarehouseReceiptID = WarehouseReceipts.WarehouseID " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("GetPendingTransferOrderWarehouses", queryString);
@@ -352,7 +352,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             {
                 string queryString;
 
-                queryString = " @LocationID Int, @GoodsIssueID Int, " + (this.isWarehouse ? "@WarehouseIssueID Int, " : "") + this.paraPrimaryKey + " Int, " + this.paraFilterKey + " Int, " + this.paraPrimaryKeyDetails + " varchar(3999), @IsReadonly bit " + "\r\n";
+                queryString = " @LocationID Int, @GoodsIssueID Int, " + (this.isWarehouse ? "@WarehouseID Int, " : "") + this.paraPrimaryKey + " Int, " + this.paraFilterKey + " Int, " + this.paraPrimaryKeyDetails + " varchar(3999), @IsReadonly bit " + "\r\n";
                 queryString = queryString + " WITH ENCRYPTION " + "\r\n";
                 queryString = queryString + " AS " + "\r\n";
 
@@ -436,7 +436,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
                 queryString = queryString + "                   ROUND(" + this.primaryTableDetails + ".Quantity - " + this.primaryTableDetails + ".QuantityIssue,  " + (int)GlobalEnums.rndQuantity + ") AS QuantityRemains, CAST(0 AS decimal(18, 2)) AS Quantity, ROUND(" + this.primaryTableDetails + ".LineVolume - " + this.primaryTableDetails + ".LineVolumeIssue,  " + (int)GlobalEnums.rndVolume + ") AS LineVolumeRemains, CAST(0 AS decimal(18, 2)) AS LineVolume, " + this.primaryTableDetails + ".Remarks, CAST(0 AS bit) AS IsSelected " + "\r\n";
 
                 queryString = queryString + "       FROM        " + this.primaryTableDetails + " " + "\r\n";
-                queryString = queryString + "                   INNER JOIN Commodities ON " + (isDeliveryAdviceID ? " " + this.primaryTableDetails + "." + this.primaryKey + " = " + this.paraPrimaryKey + " " : this.primaryTableDetails + ".LocationID = @LocationID " + (this.isWarehouse ? " AND " + this.primaryTableDetails + ".WarehouseIssueID = @WarehouseIssueID " : "") + " AND " + this.primaryTableDetails + "." + this.filterKey + " = " + this.paraFilterKey) + " AND " + this.primaryTableDetails + ".Approved = 1 AND ROUND(" + this.primaryTableDetails + ".Quantity - " + this.primaryTableDetails + ".QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") > 0 AND " + this.primaryTableDetails + ".CommodityID = Commodities.CommodityID" + (isDeliveryAdviceDetailIDs ? " AND " + this.primaryTableDetails + "." + this.primaryKeyDetail + " NOT IN (SELECT Id FROM dbo.SplitToIntList (" + this.paraPrimaryKeyDetails + "))" : "") + "\r\n";
+                queryString = queryString + "                   INNER JOIN Commodities ON " + (isDeliveryAdviceID ? " " + this.primaryTableDetails + "." + this.primaryKey + " = " + this.paraPrimaryKey + " " : this.primaryTableDetails + ".LocationID = @LocationID " + (this.isWarehouse ? " AND " + this.primaryTableDetails + ".WarehouseID = @WarehouseID " : "") + " AND " + this.primaryTableDetails + "." + this.filterKey + " = " + this.paraFilterKey) + " AND " + this.primaryTableDetails + ".Approved = 1 AND ROUND(" + this.primaryTableDetails + ".Quantity - " + this.primaryTableDetails + ".QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") > 0 AND " + this.primaryTableDetails + ".CommodityID = Commodities.CommodityID" + (isDeliveryAdviceDetailIDs ? " AND " + this.primaryTableDetails + "." + this.primaryKeyDetail + " NOT IN (SELECT Id FROM dbo.SplitToIntList (" + this.paraPrimaryKeyDetails + "))" : "") + "\r\n";
                 queryString = queryString + "                   LEFT JOIN Batches ON " + this.primaryTableDetails + ".BatchID = Batches.BatchID " + "\r\n";
                 return queryString;
             }

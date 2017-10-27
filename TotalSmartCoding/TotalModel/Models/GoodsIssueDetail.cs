@@ -37,8 +37,8 @@ namespace TotalModel.Models
         public virtual Commodity Commodity { get; set; }
         public virtual Customer Customer { get; set; }
         public virtual DeliveryAdviceDetail DeliveryAdviceDetail { get; set; }
+        public virtual GoodsIssue GoodsIssue { get; set; }
         public virtual GoodsReceiptDetail GoodsReceiptDetail { get; set; }
         public virtual TransferOrderDetail TransferOrderDetail { get; set; }
-        public virtual GoodsIssue GoodsIssue { get; set; }
     }
 }

@@ -59,9 +59,9 @@ namespace TotalDAL.Repositories.Inventories
             return base.TotalSmartCodingEntities.GetPendingDeliveryAdviceDetails(locationID, goodsIssueID, deliveryAdviceID, customerID, deliveryAdviceDetailIDs, isReadonly).ToList();
         }
 
-        public List<PendingTransferOrderDetail> GetPendingTransferOrderDetails(int? locationID, int? goodsIssueID, int? warehouseIssueID, int? transferOrderID, int? warehouseReceiptID, string transferOrderDetailIDs, bool isReadonly)
+        public List<PendingTransferOrderDetail> GetPendingTransferOrderDetails(int? locationID, int? goodsIssueID, int? warehouseID, int? transferOrderID, int? warehouseReceiptID, string transferOrderDetailIDs, bool isReadonly)
         {
-            return base.TotalSmartCodingEntities.GetPendingTransferOrderDetails(locationID, goodsIssueID, warehouseIssueID, transferOrderID, warehouseReceiptID, transferOrderDetailIDs, isReadonly).ToList();
+            return base.TotalSmartCodingEntities.GetPendingTransferOrderDetails(locationID, goodsIssueID, warehouseID, transferOrderID, warehouseReceiptID, transferOrderDetailIDs, isReadonly).ToList();
         }
     }
 

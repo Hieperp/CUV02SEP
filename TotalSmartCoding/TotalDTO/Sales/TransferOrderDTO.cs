@@ -39,19 +39,19 @@ namespace TotalDTO.Sales
             set { ApplyPropertyChange<TransferOrderPrimitiveDTO, int>(ref this.salesOrderID, o => o.TransferOrderID, value); }
         }
 
-        private Nullable<int> warehouseIssueID;
+        private Nullable<int> warehouseID;
         [DefaultValue(null)]
-        public Nullable<int> WarehouseIssueID
+        public Nullable<int> WarehouseID
         {
-            get { return this.warehouseIssueID; }
-            set { ApplyPropertyChange<TransferOrderPrimitiveDTO, Nullable<int>>(ref this.warehouseIssueID, o => o.WarehouseIssueID, value); }
+            get { return this.warehouseID; }
+            set { ApplyPropertyChange<TransferOrderPrimitiveDTO, Nullable<int>>(ref this.warehouseID, o => o.WarehouseID, value); }
         }
-        private string warehouseIssueName;
+        private string warehouseName;
         [DefaultValue(null)]
-        public string WarehouseIssueName
+        public string WarehouseName
         {
-            get { return this.warehouseIssueName; }
-            set { ApplyPropertyChange<TransferOrderDTO, string>(ref this.warehouseIssueName, o => o.WarehouseIssueName, value, false); }
+            get { return this.warehouseName; }
+            set { ApplyPropertyChange<TransferOrderDTO, string>(ref this.warehouseName, o => o.WarehouseName, value, false); }
         }
 
         private Nullable<int> warehouseReceiptID;
@@ -104,14 +104,14 @@ namespace TotalDTO.Sales
 
         public override string Caption
         {
-            get { return (this.WarehouseIssueName != null ? "From: " : "") + this.WarehouseIssueName + (this.WarehouseIssueName != null ? " to: " : "") + this.WarehouseReceiptName + (this.TransferJobs != null && this.TransferJobs != "" ? ", for jobs: " : "") + this.TransferJobs + (this.VoucherCode != null && this.VoucherCode != "" ? ", voucher: " : "") + this.VoucherCode + "             Total Quantity: " + this.TotalQuantity.ToString() + ",    Total Volume: " + this.TotalLineVolume.ToString("N2"); }
+            get { return (this.WarehouseName != null ? "From: " : "") + this.WarehouseName + (this.WarehouseName != null ? " to: " : "") + this.WarehouseReceiptName + (this.TransferJobs != null && this.TransferJobs != "" ? ", for jobs: " : "") + this.TransferJobs + (this.VoucherCode != null && this.VoucherCode != "" ? ", voucher: " : "") + this.VoucherCode + "             Total Quantity: " + this.TotalQuantity.ToString() + ",    Total Volume: " + this.TotalLineVolume.ToString("N2"); }
         }
 
         public override void PerformPresaveRule()
         {
             base.PerformPresaveRule();
 
-            this.DtoDetails().ToList().ForEach(e => { e.WarehouseIssueID = this.WarehouseIssueID; e.WarehouseReceiptID = this.WarehouseReceiptID; });
+            this.DtoDetails().ToList().ForEach(e => { e.WarehouseID = this.WarehouseID; e.WarehouseReceiptID = this.WarehouseReceiptID; });
         }
     }
 
@@ -142,7 +142,7 @@ namespace TotalDTO.Sales
         protected override List<ValidationRule> CreateRules()
         {
             List<ValidationRule> validationRules = base.CreateRules();
-            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<TransferOrderDTO>(p => p.WarehouseIssueID), "Vui lòng chọn kho xuất.", delegate { return (this.WarehouseIssueID != null && this.WarehouseIssueID > 0); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<TransferOrderDTO>(p => p.WarehouseID), "Vui lòng chọn kho xuất.", delegate { return (this.WarehouseID != null && this.WarehouseID > 0); }));
             validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<TransferOrderDTO>(p => p.WarehouseReceiptID), "Vui lòng chọn kho nhập.", delegate { return (this.WarehouseReceiptID != null && this.WarehouseReceiptID > 0); }));
             validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<TransferOrderDTO>(p => p.SalespersonID), "Vui lòng chọn người yêu cầu chuyển kho.", delegate { return (this.SalespersonID != null && this.SalespersonID > 0); }));
 

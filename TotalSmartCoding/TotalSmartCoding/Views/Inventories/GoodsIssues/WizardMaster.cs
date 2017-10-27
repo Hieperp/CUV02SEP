@@ -113,8 +113,8 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                             {
                                 this.goodsIssueViewModel.TransferOrderID = pendingTransferOrder.TransferOrderID;
                                 this.goodsIssueViewModel.TransferOrderReference = pendingTransferOrder.TransferOrderReference;
-                                this.goodsIssueViewModel.WarehouseID = pendingTransferOrder.WarehouseIssueID;
-                                this.goodsIssueViewModel.WarehouseName = pendingTransferOrder.WarehouseIssueName;
+                                this.goodsIssueViewModel.WarehouseID = pendingTransferOrder.WarehouseID;
+                                this.goodsIssueViewModel.WarehouseName = pendingTransferOrder.WarehouseName;
                                 this.goodsIssueViewModel.WarehouseReceiptID = pendingTransferOrder.WarehouseReceiptID;
                                 this.goodsIssueViewModel.WarehouseReceiptName = pendingTransferOrder.WarehouseReceiptName;
                                 nextOK = true;
@@ -125,8 +125,8 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                             PendingTransferOrderWarehouse pendingTransferOrderWarehouse = (PendingTransferOrderWarehouse)this.fastPendingTransferOrderWarehouses.SelectedObject;
                             if (pendingTransferOrderWarehouse != null)
                             {
-                                this.goodsIssueViewModel.WarehouseID = pendingTransferOrderWarehouse.WarehouseIssueID;
-                                this.goodsIssueViewModel.WarehouseName = pendingTransferOrderWarehouse.WarehouseIssueName;
+                                this.goodsIssueViewModel.WarehouseID = pendingTransferOrderWarehouse.WarehouseID;
+                                this.goodsIssueViewModel.WarehouseName = pendingTransferOrderWarehouse.WarehouseName;
                                 this.goodsIssueViewModel.WarehouseReceiptID = pendingTransferOrderWarehouse.WarehouseReceiptID;
                                 this.goodsIssueViewModel.WarehouseReceiptName = pendingTransferOrderWarehouse.WarehouseReceiptName;
                                 nextOK = true;

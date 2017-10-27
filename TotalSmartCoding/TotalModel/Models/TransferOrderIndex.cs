@@ -19,13 +19,13 @@ namespace TotalModel.Models
         public string VoucherCode { get; set; }
         public Nullable<System.DateTime> DeliveryDate { get; set; }
         public string LocationCode { get; set; }
-        public string WarehouseIssueCode { get; set; }
-        public string WarehouseIssueName { get; set; }
         public string WarehouseReceiptCode { get; set; }
         public string WarehouseReceiptName { get; set; }
         public string Description { get; set; }
         public decimal TotalQuantity { get; set; }
         public decimal TotalLineVolume { get; set; }
         public bool Approved { get; set; }
+        public string WarehouseCode { get; set; }
+        public string WarehouseName { get; set; }
     }
 }

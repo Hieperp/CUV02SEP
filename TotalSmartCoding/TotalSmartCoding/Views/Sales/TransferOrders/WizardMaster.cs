@@ -21,7 +21,7 @@ namespace TotalSmartCoding.Views.Sales.TransferOrders
     {
         private TransferOrderViewModel transferOrderViewModel;
 
-        Binding bindingWarehouseIssueID;
+        Binding bindingWarehouseID;
         Binding bindingWarehouseReceiptID;
         Binding bindingStorekeeperID;
 
@@ -46,10 +46,10 @@ namespace TotalSmartCoding.Views.Sales.TransferOrders
 
                 WarehouseAPIs warehouseAPIs = new WarehouseAPIs(CommonNinject.Kernel.Get<IWarehouseAPIRepository>());
 
-                this.combexWarehouseIssueID.DataSource = warehouseAPIs.GetWarehouseBases();
-                this.combexWarehouseIssueID.DisplayMember = CommonExpressions.PropertyName<WarehouseBase>(p => p.Name);
-                this.combexWarehouseIssueID.ValueMember = CommonExpressions.PropertyName<WarehouseBase>(p => p.WarehouseID);
-                this.bindingWarehouseIssueID = this.combexWarehouseIssueID.DataBindings.Add("SelectedValue", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderViewModel>(p => p.WarehouseIssueID), true, DataSourceUpdateMode.OnPropertyChanged);
+                this.combexWarehouseID.DataSource = warehouseAPIs.GetWarehouseBases();
+                this.combexWarehouseID.DisplayMember = CommonExpressions.PropertyName<WarehouseBase>(p => p.Name);
+                this.combexWarehouseID.ValueMember = CommonExpressions.PropertyName<WarehouseBase>(p => p.WarehouseID);
+                this.bindingWarehouseID = this.combexWarehouseID.DataBindings.Add("SelectedValue", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderViewModel>(p => p.WarehouseID), true, DataSourceUpdateMode.OnPropertyChanged);
 
                 this.combexWarehouseReceiptID.DataSource = warehouseAPIs.GetWarehouseBases();
                 this.combexWarehouseReceiptID.DisplayMember = CommonExpressions.PropertyName<WarehouseBase>(p => p.Name);
@@ -69,7 +69,7 @@ namespace TotalSmartCoding.Views.Sales.TransferOrders
                 this.bindingTransferJobs = this.textexTransferJobs.DataBindings.Add("Text", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderViewModel>(p => p.TransferJobs), true, DataSourceUpdateMode.OnPropertyChanged);
                 this.bindingRemarks = this.textexRemarks.DataBindings.Add("Text", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderViewModel>(p => p.Remarks), true, DataSourceUpdateMode.OnPropertyChanged);
 
-                this.bindingWarehouseIssueID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+                this.bindingWarehouseID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
                 this.bindingWarehouseReceiptID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
                 this.bindingStorekeeperID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
 
@@ -95,12 +95,12 @@ namespace TotalSmartCoding.Views.Sales.TransferOrders
         private void CommonControl_BindingComplete(object sender, BindingCompleteEventArgs e)
         {
             if (e.BindingCompleteState == BindingCompleteState.Exception) { ExceptionHandlers.ShowExceptionMessageBox(this, e.ErrorText); e.Cancel = true; }
-            if (sender.Equals(this.bindingWarehouseIssueID))
+            if (sender.Equals(this.bindingWarehouseID))
             {
-                if (this.combexWarehouseIssueID.SelectedItem != null)
+                if (this.combexWarehouseID.SelectedItem != null)
                 {
-                    WarehouseBase warehouseBase = (WarehouseBase)this.combexWarehouseIssueID.SelectedItem;
-                    this.transferOrderViewModel.WarehouseIssueName = warehouseBase.Name;
+                    WarehouseBase warehouseBase = (WarehouseBase)this.combexWarehouseID.SelectedItem;
+                    this.transferOrderViewModel.WarehouseName = warehouseBase.Name;
                 }
             }
             if (sender.Equals(this.bindingWarehouseReceiptID))
@@ -119,7 +119,7 @@ namespace TotalSmartCoding.Views.Sales.TransferOrders
             {
                 if (sender.Equals(this.buttonOK))
                 {
-                    if (this.transferOrderViewModel.WarehouseIssueID != null && this.transferOrderViewModel.WarehouseReceiptID != null && this.transferOrderViewModel.SalespersonID != null)
+                    if (this.transferOrderViewModel.WarehouseID != null && this.transferOrderViewModel.WarehouseReceiptID != null && this.transferOrderViewModel.SalespersonID != null)
                     this.DialogResult = DialogResult.OK;
                     else
                         CustomMsgBox.Show(this, "Vui lòng chọn kho xuất, kho nhập, và nhân viên đề nghị chuyển kho.", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Stop);

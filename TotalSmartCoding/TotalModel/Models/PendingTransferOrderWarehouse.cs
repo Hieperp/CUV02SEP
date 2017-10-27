@@ -16,8 +16,8 @@ namespace TotalModel.Models
         public int WarehouseReceiptID { get; set; }
         public string WarehouseReceiptCode { get; set; }
         public string WarehouseReceiptName { get; set; }
-        public int WarehouseIssueID { get; set; }
-        public string WarehouseIssueCode { get; set; }
-        public string WarehouseIssueName { get; set; }
+        public int WarehouseID { get; set; }
+        public string WarehouseCode { get; set; }
+        public string WarehouseName { get; set; }
     }
 }

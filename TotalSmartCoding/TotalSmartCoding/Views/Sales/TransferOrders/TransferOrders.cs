@@ -114,7 +114,7 @@ namespace TotalSmartCoding.Views.Sales.TransferOrders
 
         Binding bindingEntryDate;
         Binding bindingReference;
-        Binding bindingWarehouseIssueName;
+        Binding bindingWarehouseName;
         Binding bindingWarehouseReceiptName;
         Binding bindingVoucherCode;
         Binding bindingDeliveryDate;
@@ -131,7 +131,7 @@ namespace TotalSmartCoding.Views.Sales.TransferOrders
 
             this.bindingEntryDate = this.dateTimexEntryDate.DataBindings.Add("Value", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderDTO>(p => p.EntryDate), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingReference = this.textexReference.DataBindings.Add("Text", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderDTO>(p => p.Reference), true, DataSourceUpdateMode.OnPropertyChanged);
-            this.bindingWarehouseIssueName = this.textexWarehouseIssueName.DataBindings.Add("Text", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderDTO>(p => p.WarehouseIssueName), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingWarehouseName = this.textexWarehouseName.DataBindings.Add("Text", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderDTO>(p => p.WarehouseName), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingWarehouseReceiptName = this.textexWarehouseReceiptName.DataBindings.Add("Text", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderDTO>(p => p.WarehouseReceiptName), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingVoucherCode = this.textexVoucherCode.DataBindings.Add("Text", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderDTO>(p => p.VoucherCode), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingDeliveryDate = this.dateTimexDeliveryDate.DataBindings.Add("Value", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderDTO>(p => p.DeliveryDate), true, DataSourceUpdateMode.OnPropertyChanged);
@@ -149,7 +149,7 @@ namespace TotalSmartCoding.Views.Sales.TransferOrders
 
             this.bindingEntryDate.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);            
             this.bindingReference.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
-            this.bindingWarehouseIssueName.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingWarehouseName.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingWarehouseReceiptName.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingVoucherCode.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingDeliveryDate.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);

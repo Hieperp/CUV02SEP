@@ -30,9 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.buttonESC = new System.Windows.Forms.ToolStripButton();
+            this.buttonOK = new System.Windows.Forms.ToolStripButton();
             this.errorProviderMaster = new System.Windows.Forms.ErrorProvider(this.components);
             this.layoutTop = new System.Windows.Forms.TableLayoutPanel();
-            this.combexWarehouseIssueID = new CustomControls.CombexBox();
+            this.combexWarehouseID = new CustomControls.CombexBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.textexTransferJobs = new CustomControls.TextexBox();
@@ -47,10 +49,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.dateTimexEntryDate = new CustomControls.DateTimexPicker();
-            this.combexWarehouseReceiptID = new CustomControls.CombexBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.buttonESC = new System.Windows.Forms.ToolStripButton();
-            this.buttonOK = new System.Windows.Forms.ToolStripButton();
+            this.combexWarehouseReceiptID = new CustomControls.CombexBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderMaster)).BeginInit();
             this.layoutTop.SuspendLayout();
@@ -72,6 +72,31 @@
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
             // 
+            // buttonESC
+            // 
+            this.buttonESC.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonESC.Image = global::TotalSmartCoding.Properties.Resources.signout_icon_24;
+            this.buttonESC.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonESC.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonESC.Name = "buttonESC";
+            this.buttonESC.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.buttonESC.Size = new System.Drawing.Size(83, 52);
+            this.buttonESC.Text = "Cancel";
+            this.buttonESC.Click += new System.EventHandler(this.buttonOKESC_Click);
+            // 
+            // buttonOK
+            // 
+            this.buttonOK.Enabled = false;
+            this.buttonOK.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonOK.Image = global::TotalSmartCoding.Properties.Resources.Oxygen_Icons_org_Oxygen_Actions_go_next_view;
+            this.buttonOK.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonOK.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonOK.Name = "buttonOK";
+            this.buttonOK.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.buttonOK.Size = new System.Drawing.Size(94, 52);
+            this.buttonOK.Text = "Next";
+            this.buttonOK.Click += new System.EventHandler(this.buttonOKESC_Click);
+            // 
             // errorProviderMaster
             // 
             this.errorProviderMaster.ContainerControl = this;
@@ -86,7 +111,7 @@
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.layoutTop.Controls.Add(this.combexWarehouseIssueID, 3, 2);
+            this.layoutTop.Controls.Add(this.combexWarehouseID, 3, 2);
             this.layoutTop.Controls.Add(this.label4, 2, 3);
             this.layoutTop.Controls.Add(this.label5, 2, 2);
             this.layoutTop.Controls.Add(this.textexTransferJobs, 3, 4);
@@ -122,20 +147,20 @@
             this.layoutTop.Size = new System.Drawing.Size(719, 302);
             this.layoutTop.TabIndex = 98;
             // 
-            // combexWarehouseIssueID
+            // combexWarehouseID
             // 
-            this.combexWarehouseIssueID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.combexWarehouseIssueID.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.combexWarehouseIssueID.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.combexWarehouseIssueID.Editable = true;
-            this.combexWarehouseIssueID.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.combexWarehouseIssueID.FormattingEnabled = true;
-            this.combexWarehouseIssueID.Location = new System.Drawing.Point(268, 58);
-            this.combexWarehouseIssueID.Margin = new System.Windows.Forms.Padding(1);
-            this.combexWarehouseIssueID.Name = "combexWarehouseIssueID";
-            this.combexWarehouseIssueID.ReadOnly = false;
-            this.combexWarehouseIssueID.Size = new System.Drawing.Size(425, 29);
-            this.combexWarehouseIssueID.TabIndex = 74;
+            this.combexWarehouseID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.combexWarehouseID.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.combexWarehouseID.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.combexWarehouseID.Editable = true;
+            this.combexWarehouseID.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.combexWarehouseID.FormattingEnabled = true;
+            this.combexWarehouseID.Location = new System.Drawing.Point(268, 58);
+            this.combexWarehouseID.Margin = new System.Windows.Forms.Padding(1);
+            this.combexWarehouseID.Name = "combexWarehouseID";
+            this.combexWarehouseID.ReadOnly = false;
+            this.combexWarehouseID.Size = new System.Drawing.Size(425, 29);
+            this.combexWarehouseID.TabIndex = 74;
             // 
             // label4
             // 
@@ -305,6 +330,17 @@
             this.dateTimexEntryDate.Size = new System.Drawing.Size(425, 28);
             this.dateTimexEntryDate.TabIndex = 90;
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::TotalSmartCoding.Properties.Resources.Sign_Order_48;
+            this.pictureBox2.Location = new System.Drawing.Point(33, 30);
+            this.pictureBox2.Name = "pictureBox2";
+            this.layoutTop.SetRowSpan(this.pictureBox2, 3);
+            this.pictureBox2.Size = new System.Drawing.Size(48, 48);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox2.TabIndex = 75;
+            this.pictureBox2.TabStop = false;
+            // 
             // combexWarehouseReceiptID
             // 
             this.combexWarehouseReceiptID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
@@ -319,42 +355,6 @@
             this.combexWarehouseReceiptID.ReadOnly = false;
             this.combexWarehouseReceiptID.Size = new System.Drawing.Size(425, 29);
             this.combexWarehouseReceiptID.TabIndex = 91;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::TotalSmartCoding.Properties.Resources.Sign_Order_48;
-            this.pictureBox2.Location = new System.Drawing.Point(33, 30);
-            this.pictureBox2.Name = "pictureBox2";
-            this.layoutTop.SetRowSpan(this.pictureBox2, 3);
-            this.pictureBox2.Size = new System.Drawing.Size(48, 48);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox2.TabIndex = 75;
-            this.pictureBox2.TabStop = false;
-            // 
-            // buttonESC
-            // 
-            this.buttonESC.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonESC.Image = global::TotalSmartCoding.Properties.Resources.signout_icon_24;
-            this.buttonESC.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.buttonESC.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonESC.Name = "buttonESC";
-            this.buttonESC.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.buttonESC.Size = new System.Drawing.Size(83, 52);
-            this.buttonESC.Text = "Cancel";
-            this.buttonESC.Click += new System.EventHandler(this.buttonOKESC_Click);
-            // 
-            // buttonOK
-            // 
-            this.buttonOK.Enabled = false;
-            this.buttonOK.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonOK.Image = global::TotalSmartCoding.Properties.Resources.Oxygen_Icons_org_Oxygen_Actions_go_next_view;
-            this.buttonOK.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.buttonOK.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonOK.Name = "buttonOK";
-            this.buttonOK.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.buttonOK.Size = new System.Drawing.Size(94, 52);
-            this.buttonOK.Text = "Next";
-            this.buttonOK.Click += new System.EventHandler(this.buttonOKESC_Click);
             // 
             // WizardMaster
             // 
@@ -388,7 +388,7 @@
         private System.Windows.Forms.ToolStripButton buttonOK;
         private System.Windows.Forms.ErrorProvider errorProviderMaster;
         private System.Windows.Forms.TableLayoutPanel layoutTop;
-        private CustomControls.CombexBox combexWarehouseIssueID;
+        private CustomControls.CombexBox combexWarehouseID;
         private CustomControls.TextexBox textexTransferJobs;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.PictureBox pictureBox2;

@@ -23,8 +23,8 @@ namespace TotalModel.Models
         public string Description { get; set; }
         public string Remarks { get; set; }
         public string TransferJobs { get; set; }
-        public int WarehouseIssueID { get; set; }
-        public string WarehouseIssueCode { get; set; }
-        public string WarehouseIssueName { get; set; }
+        public int WarehouseID { get; set; }
+        public string WarehouseCode { get; set; }
+        public string WarehouseName { get; set; }
     }
 }

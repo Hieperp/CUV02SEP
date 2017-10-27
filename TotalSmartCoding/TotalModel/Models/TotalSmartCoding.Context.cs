@@ -56,11 +56,11 @@ namespace TotalModel.Models
         public virtual DbSet<WarehouseAdjustmentDetail> WarehouseAdjustmentDetails { get; set; }
         public virtual DbSet<GoodsReceiptDetail> GoodsReceiptDetails { get; set; }
         public virtual DbSet<WarehouseAdjustment> WarehouseAdjustments { get; set; }
-        public virtual DbSet<TransferOrder> TransferOrders { get; set; }
-        public virtual DbSet<TransferOrderDetail> TransferOrderDetails { get; set; }
         public virtual DbSet<GoodsIssueType> GoodsIssueTypes { get; set; }
         public virtual DbSet<GoodsIssueDetail> GoodsIssueDetails { get; set; }
         public virtual DbSet<GoodsIssue> GoodsIssues { get; set; }
+        public virtual DbSet<TransferOrderDetail> TransferOrderDetails { get; set; }
+        public virtual DbSet<TransferOrder> TransferOrders { get; set; }
     
         public virtual ObjectResult<Nullable<int>> GetAccessLevel(Nullable<int> userID, Nullable<int> nMVNTaskID, Nullable<int> organizationalUnitID)
         {
@@ -1502,7 +1502,7 @@ namespace TotalModel.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PendingTransferOrderWarehouse>("GetPendingTransferOrderWarehouses", locationIDParameter);
         }
     
-        public virtual ObjectResult<PendingTransferOrderDetail> GetPendingTransferOrderDetails(Nullable<int> locationID, Nullable<int> goodsIssueID, Nullable<int> warehouseIssueID, Nullable<int> transferOrderID, Nullable<int> warehouseReceiptID, string transferOrderDetailIDs, Nullable<bool> isReadonly)
+        public virtual ObjectResult<PendingTransferOrderDetail> GetPendingTransferOrderDetails(Nullable<int> locationID, Nullable<int> goodsIssueID, Nullable<int> warehouseID, Nullable<int> transferOrderID, Nullable<int> warehouseReceiptID, string transferOrderDetailIDs, Nullable<bool> isReadonly)
         {
             var locationIDParameter = locationID.HasValue ?
                 new ObjectParameter("LocationID", locationID) :
@@ -1512,9 +1512,9 @@ namespace TotalModel.Models
                 new ObjectParameter("GoodsIssueID", goodsIssueID) :
                 new ObjectParameter("GoodsIssueID", typeof(int));
     
-            var warehouseIssueIDParameter = warehouseIssueID.HasValue ?
-                new ObjectParameter("WarehouseIssueID", warehouseIssueID) :
-                new ObjectParameter("WarehouseIssueID", typeof(int));
+            var warehouseIDParameter = warehouseID.HasValue ?
+                new ObjectParameter("WarehouseID", warehouseID) :
+                new ObjectParameter("WarehouseID", typeof(int));
     
             var transferOrderIDParameter = transferOrderID.HasValue ?
                 new ObjectParameter("TransferOrderID", transferOrderID) :
@@ -1532,7 +1532,7 @@ namespace TotalModel.Models
                 new ObjectParameter("IsReadonly", isReadonly) :
                 new ObjectParameter("IsReadonly", typeof(bool));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PendingTransferOrderDetail>("GetPendingTransferOrderDetails", locationIDParameter, goodsIssueIDParameter, warehouseIssueIDParameter, transferOrderIDParameter, warehouseReceiptIDParameter, transferOrderDetailIDsParameter, isReadonlyParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PendingTransferOrderDetail>("GetPendingTransferOrderDetails", locationIDParameter, goodsIssueIDParameter, warehouseIDParameter, transferOrderIDParameter, warehouseReceiptIDParameter, transferOrderDetailIDsParameter, isReadonlyParameter);
         }
     }
 }

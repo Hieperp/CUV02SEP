@@ -69,7 +69,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.textexTransferJobs = new CustomControls.TextexBox();
-            this.textexWarehouseIssueName = new CustomControls.TextexBox();
+            this.textexWarehouseName = new CustomControls.TextexBox();
             this.textexWarehouseReceiptName = new CustomControls.TextexBox();
             this.panelLeft = new System.Windows.Forms.Panel();
             this.fastTransferOrderIndex = new BrightIdeasSoftware.FastObjectListView();
@@ -78,7 +78,7 @@
             this.olvReference = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvVoucherCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvDeliveryDate = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvWarehouseIssueName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvWarehouseName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvWarehouseReceiptName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvLocationCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvDescription = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -522,7 +522,7 @@
             this.layoutTop.Controls.Add(this.label3, 0, 2);
             this.layoutTop.Controls.Add(this.pictureBox2, 3, 1);
             this.layoutTop.Controls.Add(this.textexTransferJobs, 1, 2);
-            this.layoutTop.Controls.Add(this.textexWarehouseIssueName, 1, 1);
+            this.layoutTop.Controls.Add(this.textexWarehouseName, 1, 1);
             this.layoutTop.Controls.Add(this.textexWarehouseReceiptName, 4, 1);
             this.layoutTop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutTop.Location = new System.Drawing.Point(1, 2);
@@ -578,15 +578,15 @@
             this.textexTransferJobs.Size = new System.Drawing.Size(944, 28);
             this.textexTransferJobs.TabIndex = 78;
             // 
-            // textexWarehouseIssueName
+            // textexWarehouseName
             // 
-            this.textexWarehouseIssueName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textexWarehouseIssueName.Editable = false;
-            this.textexWarehouseIssueName.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textexWarehouseIssueName.Location = new System.Drawing.Point(168, 15);
-            this.textexWarehouseIssueName.Name = "textexWarehouseIssueName";
-            this.textexWarehouseIssueName.Size = new System.Drawing.Size(489, 28);
-            this.textexWarehouseIssueName.TabIndex = 80;
+            this.textexWarehouseName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textexWarehouseName.Editable = false;
+            this.textexWarehouseName.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textexWarehouseName.Location = new System.Drawing.Point(168, 15);
+            this.textexWarehouseName.Name = "textexWarehouseName";
+            this.textexWarehouseName.Size = new System.Drawing.Size(489, 28);
+            this.textexWarehouseName.TabIndex = 80;
             // 
             // textexWarehouseReceiptName
             // 
@@ -616,7 +616,7 @@
             this.fastTransferOrderIndex.AllColumns.Add(this.olvReference);
             this.fastTransferOrderIndex.AllColumns.Add(this.olvVoucherCode);
             this.fastTransferOrderIndex.AllColumns.Add(this.olvDeliveryDate);
-            this.fastTransferOrderIndex.AllColumns.Add(this.olvWarehouseIssueName);
+            this.fastTransferOrderIndex.AllColumns.Add(this.olvWarehouseName);
             this.fastTransferOrderIndex.AllColumns.Add(this.olvWarehouseReceiptName);
             this.fastTransferOrderIndex.AllColumns.Add(this.olvLocationCode);
             this.fastTransferOrderIndex.AllColumns.Add(this.olvDescription);
@@ -630,7 +630,7 @@
             this.olvReference,
             this.olvVoucherCode,
             this.olvDeliveryDate,
-            this.olvWarehouseIssueName,
+            this.olvWarehouseName,
             this.olvWarehouseReceiptName,
             this.olvLocationCode,
             this.olvDescription,
@@ -693,11 +693,11 @@
             this.olvDeliveryDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvDeliveryDate.Width = 145;
             // 
-            // olvWarehouseIssueName
+            // olvWarehouseName
             // 
-            this.olvWarehouseIssueName.AspectName = "WarehouseIssueName";
-            this.olvWarehouseIssueName.Text = "Source Warehouse";
-            this.olvWarehouseIssueName.Width = 211;
+            this.olvWarehouseName.AspectName = "WarehouseName";
+            this.olvWarehouseName.Text = "Source Warehouse";
+            this.olvWarehouseName.Width = 211;
             // 
             // olvWarehouseReceiptName
             // 
@@ -828,7 +828,7 @@
         private CustomControls.TextexBox textexVoucherCode;
         private System.Windows.Forms.ImageList imageList32;
         private BrightIdeasSoftware.OLVColumn olvApproved;
-        private BrightIdeasSoftware.OLVColumn olvWarehouseIssueName;
+        private BrightIdeasSoftware.OLVColumn olvWarehouseName;
         private BrightIdeasSoftware.OLVColumn olvWarehouseReceiptName;
         private BrightIdeasSoftware.OLVColumn olvLocationCode;
         private BrightIdeasSoftware.OLVColumn olvVoucherCode;
@@ -849,7 +849,7 @@
         private BrightIdeasSoftware.OLVColumn olvDeliveryDate;
         private System.Windows.Forms.Label label4;
         private CustomControls.DateTimexPicker dateTimexDeliveryDate;
-        private CustomControls.TextexBox textexWarehouseIssueName;
+        private CustomControls.TextexBox textexWarehouseName;
         private CustomControls.TextexBox textexWarehouseReceiptName;
 
     }

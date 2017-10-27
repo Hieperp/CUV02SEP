@@ -19,7 +19,7 @@ namespace TotalDTO.Sales
         public int TransferOrderDetailID { get; set; }
         public int TransferOrderID { get; set; }
 
-        public Nullable<int> WarehouseIssueID { get; set; }
+        public Nullable<int> WarehouseID { get; set; }
         public Nullable<int> WarehouseReceiptID { get; set; }
 
 
