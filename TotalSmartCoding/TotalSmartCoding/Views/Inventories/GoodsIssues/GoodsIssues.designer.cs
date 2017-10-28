@@ -854,7 +854,6 @@
             this.CartonPrimaryReference.DataPropertyName = "PrimaryReference";
             this.CartonPrimaryReference.FillWeight = 9F;
             this.CartonPrimaryReference.HeaderText = "D.A.";
-            this.CartonPrimaryReference.MinimumWidth = 22;
             this.CartonPrimaryReference.Name = "CartonPrimaryReference";
             // 
             // CartonCommodityCode
@@ -863,7 +862,7 @@
             this.CartonCommodityCode.DataPropertyName = "CommodityCode";
             this.CartonCommodityCode.FillWeight = 9F;
             this.CartonCommodityCode.HeaderText = "Item";
-            this.CartonCommodityCode.MinimumWidth = 21;
+            this.CartonCommodityCode.MinimumWidth = 9;
             this.CartonCommodityCode.Name = "CartonCommodityCode";
             // 
             // CartonCode
