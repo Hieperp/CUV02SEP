@@ -368,11 +368,11 @@
             this.textexDescription.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexDescription.Editable = true;
             this.textexDescription.Font = new System.Drawing.Font("Niagara Engraved", 16.2F);
-            this.textexDescription.Location = new System.Drawing.Point(536, 4);
+            this.textexDescription.Location = new System.Drawing.Point(564, 4);
             this.textexDescription.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
             this.textexDescription.Multiline = true;
             this.textexDescription.Name = "textexDescription";
-            this.textexDescription.Size = new System.Drawing.Size(118, 561);
+            this.textexDescription.Size = new System.Drawing.Size(90, 561);
             this.textexDescription.TabIndex = 83;
             // 
             // toolStripChildForm
@@ -844,7 +844,7 @@
             this.gridexCartonDetails.Name = "gridexCartonDetails";
             this.gridexCartonDetails.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.gridexCartonDetails.RowTemplate.Height = 39;
-            this.gridexCartonDetails.Size = new System.Drawing.Size(254, 561);
+            this.gridexCartonDetails.Size = new System.Drawing.Size(282, 561);
             this.gridexCartonDetails.TabIndex = 85;
             this.gridexCartonDetails.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.gridexViewDetails_UserDeletedRow);
             // 
@@ -854,6 +854,7 @@
             this.CartonPrimaryReference.DataPropertyName = "PrimaryReference";
             this.CartonPrimaryReference.FillWeight = 9F;
             this.CartonPrimaryReference.HeaderText = "D.A.";
+            this.CartonPrimaryReference.MinimumWidth = 22;
             this.CartonPrimaryReference.Name = "CartonPrimaryReference";
             // 
             // CartonCommodityCode
@@ -862,7 +863,7 @@
             this.CartonCommodityCode.DataPropertyName = "CommodityCode";
             this.CartonCommodityCode.FillWeight = 9F;
             this.CartonCommodityCode.HeaderText = "Item";
-            this.CartonCommodityCode.MinimumWidth = 9;
+            this.CartonCommodityCode.MinimumWidth = 21;
             this.CartonCommodityCode.Name = "CartonCommodityCode";
             // 
             // CartonCode
@@ -1013,6 +1014,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn PalletBinLocationCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn PalletQuantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn PalletLineVolume;
+        private System.Windows.Forms.ToolStrip toolStripNaviGroup;
+        private System.Windows.Forms.ToolStripButton buttonRemoveDetailItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn CartonPrimaryReference;
         private System.Windows.Forms.DataGridViewTextBoxColumn CartonCommodityCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn CartonCode;
@@ -1020,8 +1023,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CartonBinLocationCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn CartonQuantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn CartonLineVolume;
-        private System.Windows.Forms.ToolStrip toolStripNaviGroup;
-        private System.Windows.Forms.ToolStripButton buttonRemoveDetailItem;
 
     }
 }
