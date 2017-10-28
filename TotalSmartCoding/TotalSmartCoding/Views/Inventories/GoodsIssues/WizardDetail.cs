@@ -28,9 +28,13 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
         private PendingDeliveryAdviceDetail pendingDeliveryAdviceDetail;
         private PendingTransferOrderDetail pendingTransferOrderDetail;
 
+        private bool UsingPack = false; //NOW AT CHEVRON: WE DON'T ALLOW ISSUE BY PACK 
+
         public WizardDetail(GoodsIssueViewModel goodsIssueViewModel, PendingDeliveryAdviceDetail pendingDeliveryAdviceDetail, PendingTransferOrderDetail pendingTransferOrderDetail)
         {
             InitializeComponent();
+
+            if (!this.UsingPack) { this.fastAvailablePacks.Dock = DockStyle.None; this.fastAvailablePacks.Visible = false; }
 
             this.toolstripChild = this.toolStrip1;
             this.customTabBatch = new CustomTabControl();
@@ -41,16 +45,16 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
 
             this.customTabBatch.TabPages.Add("tabPendingPallets", "Pending pallets");
             this.customTabBatch.TabPages.Add("tabPendingCartons", "Pending cartons");
-            this.customTabBatch.TabPages.Add("tabPendingPacks", "Pending packs");
+            if (this.UsingPack) this.customTabBatch.TabPages.Add("tabPendingPacks", "Pending packs");
             this.customTabBatch.TabPages[0].Controls.Add(this.fastAvailablePallets);
             this.customTabBatch.TabPages[1].Controls.Add(this.fastAvailableCartons);
-            this.customTabBatch.TabPages[2].Controls.Add(this.fastAvailablePacks);
+            if (this.UsingPack) this.customTabBatch.TabPages[2].Controls.Add(this.fastAvailablePacks);
 
 
             this.customTabBatch.Dock = DockStyle.Fill;
             this.fastAvailablePallets.Dock = DockStyle.Fill;
             this.fastAvailableCartons.Dock = DockStyle.Fill;
-            this.fastAvailablePacks.Dock = DockStyle.Fill;
+            if (this.UsingPack) this.fastAvailablePacks.Dock = DockStyle.Fill;
             this.panelMaster.Controls.Add(this.customTabBatch);
 
             if (GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.GoodsIssue) ViewHelpers.SetFont(this, new Font("Calibri", 11), new Font("Calibri", 11), new Font("Calibri", 11));
@@ -70,7 +74,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
 
                 this.fastAvailablePallets.SetObjects(goodsReceiptDetailAvailables.Where(w => w.PalletID != null));
                 this.fastAvailableCartons.SetObjects(goodsReceiptDetailAvailables.Where(w => w.CartonID != null));
-                this.fastAvailablePacks.SetObjects(goodsReceiptDetailAvailables.Where(w => w.PackID != null));
+                if (this.UsingPack) this.fastAvailablePacks.SetObjects(goodsReceiptDetailAvailables.Where(w => w.PackID != null));
 
                 this.ShowRowCount();
             }
@@ -84,15 +88,15 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
         {
             this.fastAvailablePallets.CheckedObjects = null;
             this.fastAvailableCartons.CheckedObjects = null;
-            this.fastAvailablePacks.CheckedObjects = null;
+            if (this.UsingPack) this.fastAvailablePacks.CheckedObjects = null;
 
             this.fastAvailablePallets.SelectedObject = null;
             this.fastAvailableCartons.SelectedObject = null;
-            this.fastAvailablePacks.SelectedObject = null;
+            if (this.UsingPack) this.fastAvailablePacks.SelectedObject = null;
 
             OLVHelpers.ApplyFilters(this.fastAvailablePallets, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
             OLVHelpers.ApplyFilters(this.fastAvailableCartons, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
-            OLVHelpers.ApplyFilters(this.fastAvailablePacks, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
+            if (this.UsingPack) OLVHelpers.ApplyFilters(this.fastAvailablePacks, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
 
             this.ShowRowCount();
         }
@@ -101,7 +105,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
         {
             this.customTabBatch.TabPages[0].Text = "Pending " + this.fastAvailablePallets.GetItemCount().ToString("N0") + " pallet" + (this.fastAvailablePallets.GetItemCount() > 1 ? "s      " : "      ");
             this.customTabBatch.TabPages[1].Text = "Pending " + this.fastAvailableCartons.GetItemCount().ToString("N0") + " carton" + (this.fastAvailableCartons.GetItemCount() > 1 ? "s      " : "      ");
-            this.customTabBatch.TabPages[2].Text = "Pending " + this.fastAvailablePacks.GetItemCount().ToString("N0") + " pack" + (this.fastAvailablePacks.GetItemCount() > 1 ? "s      " : "      ");
+            if (this.UsingPack) this.customTabBatch.TabPages[2].Text = "Pending " + this.fastAvailablePacks.GetItemCount().ToString("N0") + " pack" + (this.fastAvailablePacks.GetItemCount() > 1 ? "s      " : "      ");
         }
 
 
@@ -119,7 +123,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
         {
             if (this.fastAvailablePallets.CheckedObjects != null && this.fastAvailablePallets.CheckedObjects.Count > 0) this.buttonAddExit.Enabled = true; else this.buttonAddExit.Enabled = false;
             if (!this.buttonAddExit.Enabled && this.fastAvailableCartons.CheckedObjects != null && this.fastAvailableCartons.CheckedObjects.Count > 0) this.buttonAddExit.Enabled = true;
-            if (!this.buttonAddExit.Enabled && this.fastAvailablePacks.CheckedObjects != null && this.fastAvailablePacks.CheckedObjects.Count > 0) this.buttonAddExit.Enabled = true;
+            if (this.UsingPack) if (!this.buttonAddExit.Enabled && this.fastAvailablePacks.CheckedObjects != null && this.fastAvailablePacks.CheckedObjects.Count > 0) this.buttonAddExit.Enabled = true;
         }
 
         private void buttonAddESC_Click(object sender, EventArgs e)
