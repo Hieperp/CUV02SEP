@@ -27,16 +27,21 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
         private GoodsIssueViewModel goodsIssueViewModel;
         private PendingDeliveryAdviceDetail pendingDeliveryAdviceDetail;
         private PendingTransferOrderDetail pendingTransferOrderDetail;
+        private PendingPrimaryDetail pendingPrimaryDetail;
+
+        private string fileName;
+        private string commodityIDs;
+        private Dictionary<int, int> filterBatchPerCommodity;
 
         private bool UsingPack = false; //NOW AT CHEVRON: WE DON'T ALLOW ISSUE BY PACK 
 
-        public WizardDetail(GoodsIssueViewModel goodsIssueViewModel, PendingDeliveryAdviceDetail pendingDeliveryAdviceDetail, PendingTransferOrderDetail pendingTransferOrderDetail)
+        public WizardDetail(GoodsIssueViewModel goodsIssueViewModel, PendingDeliveryAdviceDetail pendingDeliveryAdviceDetail, PendingTransferOrderDetail pendingTransferOrderDetail, string fileName, string commodityIDs, Dictionary<int, int> filterBatchPerCommodity)
         {
             InitializeComponent();
 
             if (!this.UsingPack) { this.fastAvailablePacks.Dock = DockStyle.None; this.fastAvailablePacks.Visible = false; }
 
-            this.toolstripChild = this.toolStrip1;
+            this.toolstripChild = this.toolStripBottom;
             this.customTabBatch = new CustomTabControl();
 
             this.customTabBatch.Font = this.fastAvailablePallets.Font;
@@ -60,8 +65,16 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
             if (GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.GoodsIssue) ViewHelpers.SetFont(this, new Font("Calibri", 11), new Font("Calibri", 11), new Font("Calibri", 11));
 
             this.goodsIssueViewModel = goodsIssueViewModel;
+
             this.pendingDeliveryAdviceDetail = pendingDeliveryAdviceDetail;
             this.pendingTransferOrderDetail = pendingTransferOrderDetail;
+
+            if (this.pendingDeliveryAdviceDetail != null) this.pendingPrimaryDetail = this.pendingDeliveryAdviceDetail;
+            if (this.pendingTransferOrderDetail != null) this.pendingPrimaryDetail = this.pendingTransferOrderDetail;
+
+            this.fileName = fileName;
+            this.commodityIDs = commodityIDs;
+            this.filterBatchPerCommodity = filterBatchPerCommodity;
         }
 
         private void WizardDetail_Load(object sender, EventArgs e)
@@ -70,11 +83,44 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
             {
                 GoodsReceiptAPIs goodsReceiptAPIs = new GoodsReceiptAPIs(CommonNinject.Kernel.Get<IGoodsReceiptAPIRepository>());
 
-                List<GoodsReceiptDetailAvailable> goodsReceiptDetailAvailables = goodsReceiptAPIs.GetGoodsReceiptDetailAvailables(this.pendingDeliveryAdviceDetail != null ? this.pendingDeliveryAdviceDetail.LocationID : this.pendingTransferOrderDetail.LocationID, this.goodsIssueViewModel.WarehouseID, this.pendingDeliveryAdviceDetail != null ? this.pendingDeliveryAdviceDetail.CommodityID : this.pendingTransferOrderDetail.CommodityID, null, this.pendingDeliveryAdviceDetail != null ? this.pendingDeliveryAdviceDetail.BatchID : this.pendingTransferOrderDetail.BatchID, string.Join(",", this.goodsIssueViewModel.ViewDetails.Select(d => d.GoodsReceiptDetailID)));
+                List<GoodsReceiptDetailAvailable> goodsReceiptDetailAvailables = goodsReceiptAPIs.GetGoodsReceiptDetailAvailables(this.goodsIssueViewModel.LocationID, this.goodsIssueViewModel.WarehouseID, this.fileName == null ? this.pendingPrimaryDetail.CommodityID : (int?)null, this.fileName == null ? null : commodityIDs, this.fileName == null ? this.pendingPrimaryDetail.BatchID : (int?)null, string.Join(",", this.goodsIssueViewModel.ViewDetails.Select(d => d.GoodsReceiptDetailID)));
+                IEnumerable<GoodsReceiptDetailAvailable> goodsReceiptPalletAvailables = null;
+                IEnumerable<GoodsReceiptDetailAvailable> goodsReceiptCartonAvailables = null;
+                IEnumerable<GoodsReceiptDetailAvailable> goodsReceiptPackAvailables = null;
 
-                this.fastAvailablePallets.SetObjects(goodsReceiptDetailAvailables.Where(w => w.PalletID != null));
-                this.fastAvailableCartons.SetObjects(goodsReceiptDetailAvailables.Where(w => w.CartonID != null));
-                if (this.UsingPack) this.fastAvailablePacks.SetObjects(goodsReceiptDetailAvailables.Where(w => w.PackID != null));
+                if (this.fileName == null)
+                {
+                    goodsReceiptPalletAvailables = goodsReceiptDetailAvailables.Where(w => w.PalletID != null);
+                    goodsReceiptCartonAvailables = goodsReceiptDetailAvailables.Where(w => w.CartonID != null);
+                    if (this.UsingPack) goodsReceiptPackAvailables = goodsReceiptDetailAvailables.Where(w => w.PackID != null);
+                }
+                else
+                {
+                    string[] barcodes = System.IO.File.ReadAllLines(fileName);
+                    if (barcodes.Count() > 0)
+                    {
+                        if (this.filterBatchPerCommodity.Count > 0) //Remove row that does not match pair: [CommodityID, BatchID]
+                            foreach (KeyValuePair<int, int> change in this.filterBatchPerCommodity)
+                            { //LƯU Ý: CÂU LỆNH SAU ĐÂY SẼ REMOVE TẤT CẢ CommodityID NOT MATCH WITH BatchID => DO ĐÓ: NẾU 1 D.A/ T.O: VỪA CÓ CHỈ ĐỊNH BATCH, VỪA KHÔNG CHỈ ĐỊNH BATCH => THÌ PHẢI IMPORT BATCH TRƯỚC, SAU ĐÓ IMPORT NON-BATCH SAU (HOẶC ĐƠN GIẢN HƠN LÀ TÁCH THÀNH 2 GOODSISSUE)
+                                goodsReceiptDetailAvailables.RemoveAll(w => w.CommodityID == change.Key && w.BatchID != change.Value);
+                            }
+
+                        foreach (string barcode in barcodes)
+                        {
+                            GoodsReceiptDetailAvailable goodsReceiptDetailAvailable = goodsReceiptDetailAvailables.Find(w => (w.PalletCode == barcode || w.CartonCode == barcode || w.PackCode == barcode));
+                            if (goodsReceiptDetailAvailable != null) goodsReceiptDetailAvailable.IsSelected = true;
+                        }
+                    }
+
+                    goodsReceiptPalletAvailables = goodsReceiptDetailAvailables.Where(w => w.PalletID != null && w.IsSelected == true);
+                    goodsReceiptCartonAvailables = goodsReceiptDetailAvailables.Where(w => w.CartonID != null && w.IsSelected == true);
+                    if (this.UsingPack) goodsReceiptPackAvailables = goodsReceiptDetailAvailables.Where(w => w.PackID != null && w.IsSelected == true);
+                    this.toolStripBottom.Visible = true;
+                }
+
+                this.fastAvailablePallets.SetObjects(goodsReceiptPalletAvailables);
+                this.fastAvailableCartons.SetObjects(goodsReceiptCartonAvailables);
+                if (this.UsingPack) this.fastAvailablePacks.SetObjects(goodsReceiptPackAvailables);
 
                 this.ShowRowCount();
             }
@@ -111,11 +157,14 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
 
         private void fastAvailableGoodsReceiptDetails_SelectedIndexChanged(object sender, EventArgs e)
         {
-            FastObjectListView fastAvailableGoodsReceiptDetails = (FastObjectListView)sender;
-            if (fastAvailableGoodsReceiptDetails != null && fastAvailableGoodsReceiptDetails.SelectedObject != null)
-            {//CLEAR ALL CHECKED OBJECTS => THEN CHECK THE CURRENT SELECTED ROW
-                GoodsReceiptDetailAvailable goodsReceiptDetailAvailable = (GoodsReceiptDetailAvailable)fastAvailableGoodsReceiptDetails.SelectedObject;
-                if (goodsReceiptDetailAvailable != null) { fastAvailableGoodsReceiptDetails.CheckedObjects = null; fastAvailableGoodsReceiptDetails.CheckObject(goodsReceiptDetailAvailable); }
+            if (this.fileName == null)
+            {
+                FastObjectListView fastAvailableGoodsReceiptDetails = (FastObjectListView)sender;
+                if (fastAvailableGoodsReceiptDetails != null && fastAvailableGoodsReceiptDetails.SelectedObject != null)
+                {//CLEAR ALL CHECKED OBJECTS => THEN CHECK THE CURRENT SELECTED ROW
+                    GoodsReceiptDetailAvailable goodsReceiptDetailAvailable = (GoodsReceiptDetailAvailable)fastAvailableGoodsReceiptDetails.SelectedObject;
+                    if (goodsReceiptDetailAvailable != null) { fastAvailableGoodsReceiptDetails.CheckedObjects = null; fastAvailableGoodsReceiptDetails.CheckObject(goodsReceiptDetailAvailable); }
+                }
             }
         }
 
@@ -193,8 +242,8 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                                     QuantityAvailable = (decimal)goodsReceiptDetailAvailable.QuantityAvailable,
                                     LineVolumeAvailable = (decimal)goodsReceiptDetailAvailable.LineVolumeAvailable,
 
-                                    QuantityRemains = (decimal)(this.pendingDeliveryAdviceDetail != null ? this.pendingDeliveryAdviceDetail.QuantityRemains : this.pendingTransferOrderDetail.QuantityRemains),
-                                    LineVolumeRemains = (decimal)(this.pendingDeliveryAdviceDetail != null ? this.pendingDeliveryAdviceDetail.LineVolumeRemains : this.pendingTransferOrderDetail.LineVolumeRemains),
+                                    QuantityRemains = (decimal)this.pendingPrimaryDetail.QuantityRemains,
+                                    LineVolumeRemains = (decimal)this.pendingPrimaryDetail.LineVolumeRemains,
 
                                     Quantity = (decimal)goodsReceiptDetailAvailable.QuantityAvailable, //SHOULD: Quantity = QuantityAvailable (ALSO: LineVolume = LineVolumeAvailable): BECAUSE: WE ISSUE BY WHOLE UNIT OF PALLET/ OR CARTON/ OR PACK
                                     LineVolume = (decimal)goodsReceiptDetailAvailable.LineVolumeAvailable //IF Quantity > QuantityRemains (OR LineVolume > LineVolumeRemains) => THE GoodsIssueDetailDTO WILL BREAK THE ValidationRule => CAN NOT SAVE => USER MUST SELECT OTHER APPROPRIATE UNIT OF PALLET/ OR CARTON/ OR PACK WHICH MATCH THE Quantity/ LineVolume                                
@@ -206,11 +255,11 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                         }
                     }
 
-                    this.MdiParent.DialogResult = DialogResult.OK;
+                    if (this.MdiParent != null) this.MdiParent.DialogResult = DialogResult.OK; else this.DialogResult = DialogResult.OK;
                 }
 
                 if (sender.Equals(this.buttonESC))
-                    this.MdiParent.DialogResult = DialogResult.Cancel;
+                    if (this.MdiParent != null) this.MdiParent.DialogResult = DialogResult.Cancel; else this.DialogResult = DialogResult.Cancel;
 
             }
             catch (Exception exception)

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripBottom = new System.Windows.Forms.ToolStrip();
             this.buttonESC = new System.Windows.Forms.ToolStripButton();
             this.buttonAddExit = new System.Windows.Forms.ToolStripButton();
             this.fastAvailablePallets = new BrightIdeasSoftware.FastObjectListView();
@@ -50,28 +50,28 @@
             this.olvColumn8 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn9 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvPackCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.toolStrip1.SuspendLayout();
+            this.toolStripBottom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastAvailablePallets)).BeginInit();
             this.panelMaster.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastAvailableCartons)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fastAvailablePacks)).BeginInit();
             this.SuspendLayout();
             // 
-            // toolStrip1
+            // toolStripBottom
             // 
-            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.toolStripBottom.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStripBottom.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStripBottom.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.buttonESC,
             this.buttonAddExit});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 548);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStrip1.Size = new System.Drawing.Size(1147, 55);
-            this.toolStrip1.TabIndex = 0;
-            this.toolStrip1.Text = "toolStrip1";
-            this.toolStrip1.Visible = false;
+            this.toolStripBottom.Location = new System.Drawing.Point(0, 498);
+            this.toolStripBottom.Name = "toolStripBottom";
+            this.toolStripBottom.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.toolStripBottom.Size = new System.Drawing.Size(1082, 55);
+            this.toolStripBottom.TabIndex = 0;
+            this.toolStripBottom.Text = "toolStrip1";
+            this.toolStripBottom.Visible = false;
             // 
             // buttonESC
             // 
@@ -182,7 +182,7 @@
             this.panelMaster.Location = new System.Drawing.Point(0, 0);
             this.panelMaster.Name = "panelMaster";
             this.panelMaster.Padding = new System.Windows.Forms.Padding(0, 9, 0, 0);
-            this.panelMaster.Size = new System.Drawing.Size(1147, 603);
+            this.panelMaster.Size = new System.Drawing.Size(1082, 553);
             this.panelMaster.TabIndex = 71;
             // 
             // fastAvailableCartons
@@ -345,15 +345,16 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1147, 603);
+            this.ClientSize = new System.Drawing.Size(1082, 553);
             this.Controls.Add(this.panelMaster);
-            this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.toolStripBottom);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "WizardDetail";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Create Wizard";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.WizardDetail_Load);
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
+            this.toolStripBottom.ResumeLayout(false);
+            this.toolStripBottom.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastAvailablePallets)).EndInit();
             this.panelMaster.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.fastAvailableCartons)).EndInit();
@@ -365,7 +366,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStrip toolStripBottom;
         private System.Windows.Forms.ToolStripButton buttonESC;
         private System.Windows.Forms.ToolStripButton buttonAddExit;
         private BrightIdeasSoftware.FastObjectListView fastAvailablePallets;

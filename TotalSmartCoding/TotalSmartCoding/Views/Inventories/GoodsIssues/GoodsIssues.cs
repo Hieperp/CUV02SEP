@@ -297,20 +297,68 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
 
         private void fastPendingPallets_MouseClick(object sender, MouseEventArgs e)
         {
+            this.AddDetails(true);
+        }
+
+        private void buttonImportHandheld_Click(object sender, EventArgs e)
+        {
+            this.AddDetails(false);
+        }
+
+        private void AddDetails(bool usingTablet)
+        {
             try
             {
                 if (this.EditableMode && this.goodsIssueViewModel.Editable && this.goodsIssueViewModel.IsValid && !this.goodsIssueViewModel.IsDirty)
                 {
-                    PendingDeliveryAdviceDetail pendingDeliveryAdviceDetail = this.fastPendingPrimaryDetails.SelectedObject as PendingDeliveryAdviceDetail;
-                    PendingTransferOrderDetail pendingTransferOrderDetail = this.fastPendingPrimaryDetails.SelectedObject as PendingTransferOrderDetail;
+                    PendingDeliveryAdviceDetail pendingDeliveryAdviceDetail = null;
+                    PendingTransferOrderDetail pendingTransferOrderDetail = null;
+                    string fileName = null; string commodityIDs = "";
+                    Dictionary<int, int> filterBatchPerCommodity = new Dictionary<int, int>(); //Dictionary with pair: [CommodityID, BatchID]
 
-                    if (pendingDeliveryAdviceDetail != null || pendingTransferOrderDetail != null)
+                    if (usingTablet)
                     {
-                        WizardDetail wizardDetail = new WizardDetail(this.goodsIssueViewModel, pendingDeliveryAdviceDetail, pendingTransferOrderDetail);
-                        TabletMDI tabletMDI = new TabletMDI(wizardDetail);
-                        if (tabletMDI.ShowDialog() == System.Windows.Forms.DialogResult.OK) this.callAutoSave();
+                        pendingDeliveryAdviceDetail = this.fastPendingPrimaryDetails.SelectedObject as PendingDeliveryAdviceDetail;
+                        pendingTransferOrderDetail = this.fastPendingPrimaryDetails.SelectedObject as PendingTransferOrderDetail;
+                    }
+                    else
+                    {
+                        OpenFileDialog openFileDialog = new OpenFileDialog();
+                        openFileDialog.Filter = "Text Document (.txt)|*.txt";
+                        if (openFileDialog.ShowDialog() == DialogResult.OK && openFileDialog.FileName != "")
+                        {
+                            fileName = openFileDialog.FileName;
+                            foreach (var pendingPrimaryDetailObject in this.fastPendingPrimaryDetails.Objects)
+                            {
+                                PendingPrimaryDetail pendingPrimaryDetail = pendingPrimaryDetailObject as PendingDeliveryAdviceDetail;
+                                if (pendingPrimaryDetail == null) pendingPrimaryDetail = pendingPrimaryDetailObject as PendingTransferOrderDetail;
+                                if (pendingPrimaryDetail != null)
+                                {
+                                    if (commodityIDs.IndexOf(pendingPrimaryDetail.CommodityID.ToString()) < 0) commodityIDs = commodityIDs + (commodityIDs != "" ? "," : "") + pendingPrimaryDetail.CommodityID.ToString(); 
 
-                        wizardDetail.Dispose(); tabletMDI.Dispose();
+                                    if (pendingPrimaryDetail.BatchID != null) { filterBatchPerCommodity[pendingPrimaryDetail.CommodityID] = (int)pendingPrimaryDetail.BatchID; }
+                                }
+                            }
+                        }
+                    }
+
+                    if (pendingDeliveryAdviceDetail != null || pendingTransferOrderDetail != null || commodityIDs != "")
+                    {
+                        bool dialogResultOK;
+                        WizardDetail wizardDetail = new WizardDetail(this.goodsIssueViewModel, pendingDeliveryAdviceDetail, pendingTransferOrderDetail, fileName, commodityIDs, filterBatchPerCommodity);
+
+                        if (usingTablet)
+                        {
+                            TabletMDI tabletMDI = new TabletMDI(wizardDetail);
+                            dialogResultOK = tabletMDI.ShowDialog() == System.Windows.Forms.DialogResult.OK;
+                            wizardDetail.Dispose(); tabletMDI.Dispose();
+                        }
+                        else
+                        {
+                            dialogResultOK = wizardDetail.ShowDialog() == System.Windows.Forms.DialogResult.OK;
+                            wizardDetail.Dispose();
+                        }
+                        if (dialogResultOK) this.callAutoSave();
                     }
                 }
             }
@@ -356,6 +404,8 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
             }
             catch { }
         }
+
+
 
 
 

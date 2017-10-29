@@ -7,6 +7,20 @@ using TotalModel.Interfaces;
 namespace TotalModel.Models
 {
 
+    public interface PendingPrimaryDetail
+    {
+        int CommodityID { get; set; }
+        Nullable<int> BatchID { get; set; }
+        Nullable<decimal> QuantityRemains { get; set; }
+        Nullable<decimal> LineVolumeRemains { get; set; }
+    }
+    public partial class PendingDeliveryAdviceDetail : PendingPrimaryDetail
+    {
+    }
+    public partial class PendingTransferOrderDetail : PendingPrimaryDetail
+    {
+    }
+
     //public partial class SalesOrder : IPrimitiveEntity, IBaseEntity, IBaseDetailEntity<SalesOrderDetail>
     //{
     //    public int GetID() { return this.SalesOrderID; }

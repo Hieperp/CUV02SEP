@@ -66,6 +66,7 @@ namespace TotalSmartCoding.Views.Mains
             try
             {
                 this.childForm.MdiParent = this;
+                this.childForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
                 this.childForm.WindowState = FormWindowState.Maximized;
                 this.childForm.Show();
             }

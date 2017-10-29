@@ -453,6 +453,7 @@
             this.buttonImportHandheld.Name = "buttonImportHandheld";
             this.buttonImportHandheld.Size = new System.Drawing.Size(27, 36);
             this.buttonImportHandheld.ToolTipText = "Import mã vạch từ file đã được đọc bởi thiết bị quét cầm tay";
+            this.buttonImportHandheld.Click += new System.EventHandler(this.buttonImportHandheld_Click);
             // 
             // labelCaption
             // 
