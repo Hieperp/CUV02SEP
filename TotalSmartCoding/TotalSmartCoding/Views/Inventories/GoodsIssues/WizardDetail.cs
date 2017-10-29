@@ -70,7 +70,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
             {
                 GoodsReceiptAPIs goodsReceiptAPIs = new GoodsReceiptAPIs(CommonNinject.Kernel.Get<IGoodsReceiptAPIRepository>());
 
-                List<GoodsReceiptDetailAvailable> goodsReceiptDetailAvailables = goodsReceiptAPIs.GetGoodsReceiptDetailAvailables(this.pendingDeliveryAdviceDetail != null ? this.pendingDeliveryAdviceDetail.LocationID : this.pendingTransferOrderDetail.LocationID, this.pendingDeliveryAdviceDetail != null ? this.pendingDeliveryAdviceDetail.CommodityID : this.pendingTransferOrderDetail.CommodityID, this.pendingDeliveryAdviceDetail != null ? this.pendingDeliveryAdviceDetail.BatchID : this.pendingTransferOrderDetail.BatchID, string.Join(",", this.goodsIssueViewModel.ViewDetails.Select(d => d.GoodsReceiptDetailID)));
+                List<GoodsReceiptDetailAvailable> goodsReceiptDetailAvailables = goodsReceiptAPIs.GetGoodsReceiptDetailAvailables(this.pendingDeliveryAdviceDetail != null ? this.pendingDeliveryAdviceDetail.LocationID : this.pendingTransferOrderDetail.LocationID, this.goodsIssueViewModel.WarehouseID, this.pendingDeliveryAdviceDetail != null ? this.pendingDeliveryAdviceDetail.CommodityID : this.pendingTransferOrderDetail.CommodityID, null, this.pendingDeliveryAdviceDetail != null ? this.pendingDeliveryAdviceDetail.BatchID : this.pendingTransferOrderDetail.BatchID, string.Join(",", this.goodsIssueViewModel.ViewDetails.Select(d => d.GoodsReceiptDetailID)));
 
                 this.fastAvailablePallets.SetObjects(goodsReceiptDetailAvailables.Where(w => w.PalletID != null));
                 this.fastAvailableCartons.SetObjects(goodsReceiptDetailAvailables.Where(w => w.CartonID != null));

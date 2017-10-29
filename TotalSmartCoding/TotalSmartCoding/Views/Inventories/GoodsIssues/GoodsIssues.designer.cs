@@ -62,6 +62,7 @@
             this.naviDetails = new Guifreaks.Navisuite.NaviGroup(this.components);
             this.toolStripNaviGroup = new System.Windows.Forms.ToolStrip();
             this.buttonRemoveDetailItem = new System.Windows.Forms.ToolStripButton();
+            this.buttonImportHandheld = new System.Windows.Forms.ToolStripButton();
             this.labelCaption = new System.Windows.Forms.Label();
             this.gridexPalletDetails = new CustomControls.DataGridexView();
             this.PalletPrimaryReference = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -423,12 +424,13 @@
             this.toolStripNaviGroup.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStripNaviGroup.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.toolStripNaviGroup.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.buttonRemoveDetailItem});
+            this.buttonRemoveDetailItem,
+            this.buttonImportHandheld});
             this.toolStripNaviGroup.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.toolStripNaviGroup.Location = new System.Drawing.Point(639, 0);
+            this.toolStripNaviGroup.Location = new System.Drawing.Point(573, 0);
             this.toolStripNaviGroup.Name = "toolStripNaviGroup";
             this.toolStripNaviGroup.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStripNaviGroup.Size = new System.Drawing.Size(39, 39);
+            this.toolStripNaviGroup.Size = new System.Drawing.Size(105, 39);
             this.toolStripNaviGroup.TabIndex = 76;
             this.toolStripNaviGroup.Visible = false;
             // 
@@ -439,8 +441,18 @@
             this.buttonRemoveDetailItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonRemoveDetailItem.Name = "buttonRemoveDetailItem";
             this.buttonRemoveDetailItem.Size = new System.Drawing.Size(36, 36);
-            this.buttonRemoveDetailItem.ToolTipText = "Xóa pallet";
+            this.buttonRemoveDetailItem.ToolTipText = "Xóa pallet/ carton đang chọn";
             this.buttonRemoveDetailItem.Click += new System.EventHandler(this.buttonRemoveDetailItem_Click);
+            // 
+            // buttonImportHandheld
+            // 
+            this.buttonImportHandheld.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.buttonImportHandheld.Image = global::TotalSmartCoding.Properties.Resources.barcode_scan_mobile_hand_28;
+            this.buttonImportHandheld.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonImportHandheld.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonImportHandheld.Name = "buttonImportHandheld";
+            this.buttonImportHandheld.Size = new System.Drawing.Size(27, 36);
+            this.buttonImportHandheld.ToolTipText = "Import mã vạch từ file đã được đọc bởi thiết bị quét cầm tay";
             // 
             // labelCaption
             // 
@@ -1022,6 +1034,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CartonBinLocationCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn CartonQuantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn CartonLineVolume;
+        private System.Windows.Forms.ToolStripButton buttonImportHandheld;
 
     }
 }

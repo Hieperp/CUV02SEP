@@ -475,49 +475,68 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
         private void GetGoodsReceiptDetailAvailables()
         {
-            string queryString = " @LocationID Int, @CommodityID Int, @BatchID Int, @GoodsReceiptDetailIDs varchar(3999) " + "\r\n";
+            string queryString = " @LocationID Int, @WarehouseID Int, @CommodityID Int, @CommodityIDs varchar(3999), @BatchID Int, @GoodsReceiptDetailIDs varchar(3999) " + "\r\n";
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
 
             queryString = queryString + "   BEGIN " + "\r\n";
 
-            queryString = queryString + "       IF  (@CommodityID <> 0) " + "\r\n";
-            queryString = queryString + "           " + this.AvailableBuildSQLCommmodity(true) + "\r\n";
+            queryString = queryString + "       IF  (@WarehouseID <> 0) " + "\r\n";
+            queryString = queryString + "           " + this.AvailableBuildSQLWarehouse(true) + "\r\n";
             queryString = queryString + "       ELSE " + "\r\n";
-            queryString = queryString + "           " + this.AvailableBuildSQLCommmodity(false) + "\r\n";
+            queryString = queryString + "           " + this.AvailableBuildSQLWarehouse(false) + "\r\n";
 
             queryString = queryString + "   END " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("GetGoodsReceiptDetailAvailables", queryString);
         }
 
-        private string AvailableBuildSQLCommmodity(bool isCommodityID)
+        private string AvailableBuildSQLWarehouse(bool isWarehouseID)
+        {
+            string queryString = "";
+            queryString = queryString + "   BEGIN " + "\r\n";
+
+            queryString = queryString + "       IF  (@CommodityID <> 0) " + "\r\n";
+            queryString = queryString + "           " + this.AvailableBuildSQLCommmodity(isWarehouseID, true, false) + "\r\n";
+            queryString = queryString + "       ELSE " + "\r\n";
+            queryString = queryString + "           BEGIN " + "\r\n";
+            queryString = queryString + "               IF  (@CommodityIDs <> '') " + "\r\n";
+            queryString = queryString + "                   " + this.AvailableBuildSQLCommmodity(isWarehouseID, false, true) + "\r\n";
+            queryString = queryString + "               ELSE " + "\r\n";
+            queryString = queryString + "                   " + this.AvailableBuildSQLCommmodity(isWarehouseID, false, false) + "\r\n";
+            queryString = queryString + "           END " + "\r\n";
+            queryString = queryString + "   END " + "\r\n";
+
+            return queryString;
+        }
+
+        private string AvailableBuildSQLCommmodity(bool isWarehouseID, bool isCommodityID, bool isCommodityIDs)
         {
             string queryString = "";
             queryString = queryString + "   BEGIN " + "\r\n";
             queryString = queryString + "       IF  (NOT @BatchID IS NULL) " + "\r\n";
-            queryString = queryString + "           " + this.AvailableBuildSQLCommmodityBatch(isCommodityID, true) + "\r\n";
+            queryString = queryString + "           " + this.AvailableBuildSQLCommmodityBatch(isWarehouseID, isCommodityID, isCommodityIDs, true) + "\r\n";
             queryString = queryString + "       ELSE " + "\r\n";
-            queryString = queryString + "           " + this.AvailableBuildSQLCommmodityBatch(isCommodityID, false) + "\r\n";
+            queryString = queryString + "           " + this.AvailableBuildSQLCommmodityBatch(isWarehouseID, isCommodityID, isCommodityIDs, false) + "\r\n";
             queryString = queryString + "   END " + "\r\n";
 
             return queryString;
         }
 
-        private string AvailableBuildSQLCommmodityBatch(bool isCommodityID, bool isBatchID)
+        private string AvailableBuildSQLCommmodityBatch(bool isWarehouseID, bool isCommodityID, bool isCommodityIDs, bool isBatchID)
         {
             string queryString = "";
             queryString = queryString + "   BEGIN " + "\r\n";
             queryString = queryString + "       IF  (@GoodsReceiptDetailIDs <> '') " + "\r\n";
-            queryString = queryString + "           " + this.AvailableBuildSQLGoodsReceiptDetailIDs(isCommodityID, isBatchID, true) + "\r\n";
+            queryString = queryString + "           " + this.AvailableBuildSQLGoodsReceiptDetailIDs(isWarehouseID, isCommodityID, isCommodityIDs, isBatchID, true) + "\r\n";
             queryString = queryString + "       ELSE " + "\r\n";
-            queryString = queryString + "           " + this.AvailableBuildSQLGoodsReceiptDetailIDs(isCommodityID, isBatchID, false) + "\r\n";
+            queryString = queryString + "           " + this.AvailableBuildSQLGoodsReceiptDetailIDs(isWarehouseID, isCommodityID, isCommodityIDs, isBatchID, false) + "\r\n";
             queryString = queryString + "   END " + "\r\n";
 
             return queryString;
         }
 
-        private string AvailableBuildSQLGoodsReceiptDetailIDs(bool isCommodityID, bool isBatchID, bool isGoodsReceiptDetailIDs)
+        private string AvailableBuildSQLGoodsReceiptDetailIDs(bool isWarehouseID, bool isCommodityID, bool isCommodityIDs, bool isBatchID, bool isGoodsReceiptDetailIDs)
         {
             string queryString = "";
             queryString = queryString + "   BEGIN " + "\r\n";
@@ -526,7 +545,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryString = queryString + "                   GoodsReceiptDetails.PackCounts, GoodsReceiptDetails.CartonCounts, GoodsReceiptDetails.PalletCounts, ROUND(GoodsReceiptDetails.Quantity - GoodsReceiptDetails.QuantityIssue, " + GlobalEnums.rndQuantity + ") AS QuantityAvailable, ROUND(GoodsReceiptDetails.LineVolume - GoodsReceiptDetails.LineVolumeIssue, " + GlobalEnums.rndVolume + ") AS LineVolumeAvailable, CAST(0 AS bit) AS IsSelected " + "\r\n";
 
             queryString = queryString + "       FROM        GoodsReceiptDetails " + "\r\n";
-            queryString = queryString + "                   INNER JOIN Warehouses ON ROUND(GoodsReceiptDetails.Quantity - GoodsReceiptDetails.QuantityIssue, " + GlobalEnums.rndQuantity + ") > 0 AND GoodsReceiptDetails.LocationID = @LocationID " + (isCommodityID ? " AND GoodsReceiptDetails.CommodityID = @CommodityID" : "") + " AND GoodsReceiptDetails.Approved = 1 AND Warehouses.Issuable = 1 AND GoodsReceiptDetails.WarehouseID = Warehouses.WarehouseID " + (isBatchID ? " AND GoodsReceiptDetails.BatchID = @BatchID" : "") + (isGoodsReceiptDetailIDs ? " AND GoodsReceiptDetails.GoodsReceiptDetailID NOT IN (SELECT Id FROM dbo.SplitToIntList (@GoodsReceiptDetailIDs))" : "") + "\r\n";
+            queryString = queryString + "                   INNER JOIN Warehouses ON ROUND(GoodsReceiptDetails.Quantity - GoodsReceiptDetails.QuantityIssue, " + GlobalEnums.rndQuantity + ") > 0 AND GoodsReceiptDetails.LocationID = @LocationID " + (isWarehouseID ? " AND GoodsReceiptDetails.WarehouseID = @WarehouseID" : "") + (isCommodityID ? " AND GoodsReceiptDetails.CommodityID = @CommodityID" : "") + (isCommodityIDs ? " AND GoodsReceiptDetails.CommodityID NOT IN (SELECT Id FROM dbo.SplitToIntList (@CommodityIDs))" : "") + " AND GoodsReceiptDetails.Approved = 1 AND Warehouses.Issuable = 1 AND GoodsReceiptDetails.WarehouseID = Warehouses.WarehouseID " + (isBatchID ? " AND GoodsReceiptDetails.BatchID = @BatchID" : "") + (isGoodsReceiptDetailIDs ? " AND GoodsReceiptDetails.GoodsReceiptDetailID NOT IN (SELECT Id FROM dbo.SplitToIntList (@GoodsReceiptDetailIDs))" : "") + "\r\n";
             queryString = queryString + "                   INNER JOIN Commodities ON GoodsReceiptDetails.CommodityID = Commodities.CommodityID " + "\r\n";
             queryString = queryString + "                   INNER JOIN BinLocations ON GoodsReceiptDetails.BinLocationID = BinLocations.BinLocationID " + "\r\n";
             queryString = queryString + "                   LEFT JOIN Packs ON GoodsReceiptDetails.PackID = Packs.PackID " + "\r\n";

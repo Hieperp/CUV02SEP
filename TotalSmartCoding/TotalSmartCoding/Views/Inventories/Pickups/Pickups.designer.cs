@@ -417,7 +417,7 @@
             this.buttonRemoveDetailItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonRemoveDetailItem.Name = "buttonRemoveDetailItem";
             this.buttonRemoveDetailItem.Size = new System.Drawing.Size(36, 36);
-            this.buttonRemoveDetailItem.ToolTipText = "Xóa pallet";
+            this.buttonRemoveDetailItem.ToolTipText = "Xóa pallet đang chọn";
             this.buttonRemoveDetailItem.Click += new System.EventHandler(this.buttonRemoveDetailItem_Click);
             // 
             // labelFillingLineName

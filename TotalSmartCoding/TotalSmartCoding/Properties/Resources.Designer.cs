@@ -793,6 +793,46 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap barcode_scan_mobile_hand_24 {
+            get {
+                object obj = ResourceManager.GetObject("barcode_scan_mobile_hand-24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap barcode_scan_mobile_hand_28 {
+            get {
+                object obj = ResourceManager.GetObject("barcode_scan_mobile_hand-28", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap barcode_scan_mobile_hand_30 {
+            get {
+                object obj = ResourceManager.GetObject("barcode_scan_mobile_hand-30", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap barcode_scan_mobile_hand_32 {
+            get {
+                object obj = ResourceManager.GetObject("barcode_scan_mobile_hand-32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Barcode2D {
             get {
                 object obj = ResourceManager.GetObject("Barcode2D", resourceCulture);
@@ -1853,6 +1893,16 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap free_barcode_scanner_vector {
+            get {
+                object obj = ResourceManager.GetObject("free-barcode-scanner-vector", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Fuel_icon_24 {
             get {
                 object obj = ResourceManager.GetObject("Fuel-icon-24", resourceCulture);
@@ -2046,6 +2096,16 @@ namespace TotalSmartCoding.Properties {
         internal static System.Drawing.Bitmap Icons8_Exit {
             get {
                 object obj = ResourceManager.GetObject("Icons8-Exit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Icons8_Scanner {
+            get {
+                object obj = ResourceManager.GetObject("Icons8-Scanner", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -2933,6 +2993,36 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap omnii_xt_15 {
+            get {
+                object obj = ResourceManager.GetObject("omnii-xt-15", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap omnii_xt_15_2 {
+            get {
+                object obj = ResourceManager.GetObject("omnii-xt-15-2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap omnii_xt_15_product_series_182 {
+            get {
+                object obj = ResourceManager.GetObject("omnii-xt-15-product-series-182", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Open_Folder_Add {
             get {
                 object obj = ResourceManager.GetObject("Open-Folder-Add", resourceCulture);
@@ -3326,6 +3416,16 @@ namespace TotalSmartCoding.Properties {
         internal static System.Drawing.Bitmap Saki_NuoveXT_Actions_ok {
             get {
                 object obj = ResourceManager.GetObject("Saki-NuoveXT-Actions-ok", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap scan_barcode_32 {
+            get {
+                object obj = ResourceManager.GetObject("scan_barcode-32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

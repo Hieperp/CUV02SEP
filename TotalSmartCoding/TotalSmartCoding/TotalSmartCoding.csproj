@@ -945,6 +945,16 @@
     <None Include="Resources\Warehouse-Full-20.png" />
     <None Include="Resources\Warehouse-Transfer-24.png" />
     <None Include="Resources\Warehouse-Full-24.png" />
+    <None Include="Resources\Icons8-Scanner.ico" />
+    <None Include="Resources\omnii-xt-15-product-series-182.png" />
+    <None Include="Resources\omnii-xt-15.png" />
+    <None Include="Resources\omnii-xt-15-2.png" />
+    <None Include="Resources\scan_barcode-32.png" />
+    <None Include="Resources\free-barcode-scanner-vector.png" />
+    <None Include="Resources\barcode_scan_mobile_hand-32.png" />
+    <None Include="Resources\barcode_scan_mobile_hand-24.png" />
+    <None Include="Resources\barcode_scan_mobile_hand-30.png" />
+    <None Include="Resources\barcode_scan_mobile_hand-28.png" />
     <Content Include="SmartCodingSolution.ico" />
     <None Include="Resources\Yellow-cross.ico" />
     <None Include="Resources\White-Pallet.ico" />
