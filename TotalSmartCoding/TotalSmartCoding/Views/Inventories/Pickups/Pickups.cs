@@ -182,7 +182,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
                 {
                     olvGroup.TitleImage = "Forklift";
                     olvGroup.Subtitle = "Count: " + olvGroup.Contents.Count.ToString();
-                    if ((DateTime)olvGroup.Key != DateTime.Today) olvGroup.Collapsed = true;
+                    if ((DateTime)olvGroup.Key < DateTime.Today.AddDays(-1)) olvGroup.Collapsed = true;
                 }
             }
         }

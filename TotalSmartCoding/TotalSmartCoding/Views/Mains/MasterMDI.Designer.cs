@@ -41,10 +41,10 @@
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripSplitButton2 = new System.Windows.Forms.ToolStripSplitButton();
-            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripSplitButton3 = new System.Windows.Forms.ToolStripSplitButton();
             this.statusVersion = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripSplitButton2 = new System.Windows.Forms.ToolStripSplitButton();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripSplitButton4 = new System.Windows.Forms.ToolStripSplitButton();
             this.statusFillingLine = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripSplitButton5 = new System.Windows.Forms.ToolStripSplitButton();
@@ -271,23 +271,6 @@
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(427, 21);
             this.toolStripStatusLabel1.Text = " Cell phone: +84-0903-880-501     +84-0919-878-329                 ";
             // 
-            // toolStripSplitButton2
-            // 
-            this.toolStripSplitButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.None;
-            this.toolStripSplitButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton2.Image")));
-            this.toolStripSplitButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripSplitButton2.Name = "toolStripSplitButton2";
-            this.toolStripSplitButton2.Size = new System.Drawing.Size(19, 24);
-            this.toolStripSplitButton2.Text = "toolStripSplitButton2";
-            // 
-            // toolStripStatusLabel2
-            // 
-            this.toolStripStatusLabel2.AutoSize = false;
-            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(320, 21);
-            this.toolStripStatusLabel2.Text = "Email: hieple.erp@gmail.com;    hieperp@gmail.com;    ";
-            this.toolStripStatusLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // toolStripSplitButton3
             // 
             this.toolStripSplitButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.None;
@@ -305,6 +288,23 @@
             this.statusVersion.Text = "Version 1.91i Date: 19.Feb.2016 ";
             this.statusVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // toolStripSplitButton2
+            // 
+            this.toolStripSplitButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.None;
+            this.toolStripSplitButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton2.Image")));
+            this.toolStripSplitButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSplitButton2.Name = "toolStripSplitButton2";
+            this.toolStripSplitButton2.Size = new System.Drawing.Size(19, 24);
+            this.toolStripSplitButton2.Text = "toolStripSplitButton2";
+            // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.AutoSize = false;
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(390, 21);
+            this.toolStripStatusLabel2.Text = "Email: hieple.erp@gmail.com;    hieperp@gmail.com;    ";
+            this.toolStripStatusLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // toolStripSplitButton4
             // 
             this.toolStripSplitButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.None;
@@ -318,7 +318,7 @@
             // 
             this.statusFillingLine.AutoSize = false;
             this.statusFillingLine.Name = "statusFillingLine";
-            this.statusFillingLine.Size = new System.Drawing.Size(110, 21);
+            this.statusFillingLine.Size = new System.Drawing.Size(115, 21);
             this.statusFillingLine.Text = "NOF 1  ";
             this.statusFillingLine.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -335,7 +335,7 @@
             // 
             this.statusUserDescription.AutoSize = false;
             this.statusUserDescription.Name = "statusUserDescription";
-            this.statusUserDescription.Size = new System.Drawing.Size(200, 21);
+            this.statusUserDescription.Size = new System.Drawing.Size(190, 21);
             this.statusUserDescription.Text = "Le Minh Hiep";
             this.statusUserDescription.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 

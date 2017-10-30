@@ -447,7 +447,7 @@
             // buttonImportHandheld
             // 
             this.buttonImportHandheld.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.buttonImportHandheld.Image = global::TotalSmartCoding.Properties.Resources.barcode_scan_mobile_hand_28;
+            this.buttonImportHandheld.Image = global::TotalSmartCoding.Properties.Resources.barcode_scan_mobile_hand_28T1;
             this.buttonImportHandheld.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.buttonImportHandheld.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonImportHandheld.Name = "buttonImportHandheld";

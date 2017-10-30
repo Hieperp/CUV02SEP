@@ -38,8 +38,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
         private GoodsIssueAPIs goodsIssueAPIs;
         private GoodsIssueViewModel goodsIssueViewModel { get; set; }
 
-        private System.Timers.Timer timerLoadPending;
-        private delegate void timerLoadCallback();
+        private List<IPendingPrimaryDetail> pendingPrimaryDetails;
 
         public GoodsIssues()
             : base()
@@ -55,14 +54,10 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
             this.goodsIssueViewModel.PropertyChanged += new PropertyChangedEventHandler(ModelDTO_PropertyChanged);
             this.baseDTO = this.goodsIssueViewModel;
 
-            this.timerLoadPending = new System.Timers.Timer(10000);
-            this.timerLoadPending.Elapsed += new System.Timers.ElapsedEventHandler(timerLoadPending_Elapsed);
-            this.timerLoadPending.Enabled = true;
         }
 
         private void Pickups_FormClosing(object sender, FormClosingEventArgs e)
         {
-            this.timerLoadPending.Enabled = false;
         }
 
         protected override void InitializeTabControl()
@@ -192,7 +187,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                 {
                     olvGroup.TitleImage = "Forklift_Yellow-32";
                     olvGroup.Subtitle = "List count: " + olvGroup.Contents.Count.ToString();
-                    if ((DateTime)olvGroup.Key != DateTime.Today) olvGroup.Collapsed = true;
+                    if ((DateTime)olvGroup.Key < DateTime.Today.AddDays(-1)) olvGroup.Collapsed = true;
                 }
             }
         }
@@ -267,15 +262,23 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                 ExceptionHandlers.ShowExceptionMessageBox(this, exception);
             }
         }
-
+        
         private void getPendingItems()
         {
             try
             {
                 if (this.goodsIssueViewModel.GoodsIssueTypeID == (int)GlobalEnums.GoodsIssueTypeID.DeliveryAdvice)
-                { this.fastPendingPrimaryDetails.SetObjects(this.goodsIssueAPIs.GetPendingDeliveryAdviceDetails(this.goodsIssueViewModel.LocationID, this.goodsIssueViewModel.GoodsIssueID, this.goodsIssueViewModel.DeliveryAdviceID, this.goodsIssueViewModel.CustomerID, string.Join(",", this.goodsIssueViewModel.ViewDetails.Select(d => d.DeliveryAdviceDetailID)), false)); this.olvPrimaryReference.Text = "D.A"; }
+                {
+                    List<PendingDeliveryAdviceDetail> pendingDeliveryAdviceDetails = this.goodsIssueAPIs.GetPendingDeliveryAdviceDetails(this.goodsIssueViewModel.LocationID, this.goodsIssueViewModel.GoodsIssueID, this.goodsIssueViewModel.DeliveryAdviceID, this.goodsIssueViewModel.CustomerID, string.Join(",", this.goodsIssueViewModel.ViewDetails.Select(d => d.DeliveryAdviceDetailID)), false);
+                    this.pendingPrimaryDetails = pendingDeliveryAdviceDetails.ToList<IPendingPrimaryDetail>();
+                    this.fastPendingPrimaryDetails.SetObjects(pendingDeliveryAdviceDetails); this.olvPrimaryReference.Text = "D.A";
+                }
                 if (this.goodsIssueViewModel.GoodsIssueTypeID == (int)GlobalEnums.GoodsIssueTypeID.TransferOrder)
-                { this.fastPendingPrimaryDetails.SetObjects(this.goodsIssueAPIs.GetPendingTransferOrderDetails(this.goodsIssueViewModel.LocationID, this.goodsIssueViewModel.GoodsIssueID, this.goodsIssueViewModel.WarehouseID, this.goodsIssueViewModel.TransferOrderID, this.goodsIssueViewModel.WarehouseReceiptID, string.Join(",", this.goodsIssueViewModel.ViewDetails.Select(d => d.TransferOrderDetailID)), false)); this.olvPrimaryReference.Text = "Orders"; }
+                {
+                    List<PendingTransferOrderDetail> pendingTransferOrderDetails = this.goodsIssueAPIs.GetPendingTransferOrderDetails(this.goodsIssueViewModel.LocationID, this.goodsIssueViewModel.GoodsIssueID, this.goodsIssueViewModel.WarehouseID, this.goodsIssueViewModel.TransferOrderID, this.goodsIssueViewModel.WarehouseReceiptID, string.Join(",", this.goodsIssueViewModel.ViewDetails.Select(d => d.TransferOrderDetailID)), false);
+                    this.pendingPrimaryDetails = pendingTransferOrderDetails.ToList<IPendingPrimaryDetail>();
+                    this.fastPendingPrimaryDetails.SetObjects(pendingTransferOrderDetails); this.olvPrimaryReference.Text = "Orders";
+                }
 
                 //this.naviPendingItems.Text = "Pending " + this.fastPendingPrimaryDetails.GetItemCount().ToString("N0") + " row" + (this.fastPendingPrimaryDetails.GetItemCount() > 1 ? "s" : "");
             }
@@ -311,41 +314,21 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
             {
                 if (this.EditableMode && this.goodsIssueViewModel.Editable && this.goodsIssueViewModel.IsValid && !this.goodsIssueViewModel.IsDirty)
                 {
-                    PendingDeliveryAdviceDetail pendingDeliveryAdviceDetail = null;
-                    PendingTransferOrderDetail pendingTransferOrderDetail = null;
-                    string fileName = null; string commodityIDs = "";
-                    Dictionary<int, int> filterBatchPerCommodity = new Dictionary<int, int>(); //Dictionary with pair: [CommodityID, BatchID]
+                    IPendingPrimaryDetail pendingPrimaryDetail = null; string fileName = null;
 
                     if (usingTablet)
-                    {
-                        pendingDeliveryAdviceDetail = this.fastPendingPrimaryDetails.SelectedObject as PendingDeliveryAdviceDetail;
-                        pendingTransferOrderDetail = this.fastPendingPrimaryDetails.SelectedObject as PendingTransferOrderDetail;
-                    }
+                        pendingPrimaryDetail = this.fastPendingPrimaryDetails.SelectedObject as IPendingPrimaryDetail;
                     else
                     {
                         OpenFileDialog openFileDialog = new OpenFileDialog();
                         openFileDialog.Filter = "Text Document (.txt)|*.txt";
-                        if (openFileDialog.ShowDialog() == DialogResult.OK && openFileDialog.FileName != "")
-                        {
-                            fileName = openFileDialog.FileName;
-                            foreach (var pendingPrimaryDetailObject in this.fastPendingPrimaryDetails.Objects)
-                            {
-                                PendingPrimaryDetail pendingPrimaryDetail = pendingPrimaryDetailObject as PendingDeliveryAdviceDetail;
-                                if (pendingPrimaryDetail == null) pendingPrimaryDetail = pendingPrimaryDetailObject as PendingTransferOrderDetail;
-                                if (pendingPrimaryDetail != null)
-                                {
-                                    if (commodityIDs.IndexOf(pendingPrimaryDetail.CommodityID.ToString()) < 0) commodityIDs = commodityIDs + (commodityIDs != "" ? "," : "") + pendingPrimaryDetail.CommodityID.ToString(); 
-
-                                    if (pendingPrimaryDetail.BatchID != null) { filterBatchPerCommodity[pendingPrimaryDetail.CommodityID] = (int)pendingPrimaryDetail.BatchID; }
-                                }
-                            }
-                        }
+                        if (openFileDialog.ShowDialog() == DialogResult.OK && openFileDialog.FileName != "") fileName = openFileDialog.FileName;
                     }
 
-                    if (pendingDeliveryAdviceDetail != null || pendingTransferOrderDetail != null || commodityIDs != "")
+                    if (pendingPrimaryDetail != null || fileName != null)
                     {
                         bool dialogResultOK;
-                        WizardDetail wizardDetail = new WizardDetail(this.goodsIssueViewModel, pendingDeliveryAdviceDetail, pendingTransferOrderDetail, fileName, commodityIDs, filterBatchPerCommodity);
+                        WizardDetail wizardDetail = new WizardDetail(this.goodsIssueViewModel, this.pendingPrimaryDetails, pendingPrimaryDetail, fileName);
 
                         if (usingTablet)
                         {
@@ -394,22 +377,6 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
         {
             this.callAutoSave();
         }
-
-        private void timerLoadPending_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
-        {
-            try
-            {
-                timerLoadCallback loadPendingItemsCallback = new timerLoadCallback(getPendingItems);
-                this.Invoke(loadPendingItemsCallback);
-            }
-            catch { }
-        }
-
-
-
-
-
-
-
+        
     }
 }

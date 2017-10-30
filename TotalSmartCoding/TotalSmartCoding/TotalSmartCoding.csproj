@@ -192,12 +192,6 @@
     <Compile Include="Views\Inventories\GoodsIssues\GoodsIssues.designer.cs">
       <DependentUpon>GoodsIssues.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Inventories\GoodsIssues\GoodsIssueXYZs.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\Inventories\GoodsIssues\GoodsIssueXYZs.designer.cs">
-      <DependentUpon>GoodsIssueXYZs.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\Inventories\GoodsIssues\WizardDetail.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -394,9 +388,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Inventories\GoodsIssues\GoodsIssues.resx">
       <DependentUpon>GoodsIssues.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\Inventories\GoodsIssues\GoodsIssueXYZs.resx">
-      <DependentUpon>GoodsIssueXYZs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Inventories\GoodsIssues\WizardDetail.resx">
       <DependentUpon>WizardDetail.cs</DependentUpon>
@@ -955,6 +946,11 @@
     <None Include="Resources\barcode_scan_mobile_hand-24.png" />
     <None Include="Resources\barcode_scan_mobile_hand-30.png" />
     <None Include="Resources\barcode_scan_mobile_hand-28.png" />
+    <None Include="Resources\Portable_barcode_scanner_32.png" />
+    <None Include="Resources\portable_barcode_scanner_32_T.png" />
+    <None Include="Resources\portable_barcode_scanner_32T.png" />
+    <None Include="Resources\Barcode_scan_mobile_hand-28T.png" />
+    <None Include="Resources\barcode_scan_mobile_hand-28T1.png" />
     <Content Include="SmartCodingSolution.ico" />
     <None Include="Resources\Yellow-cross.ico" />
     <None Include="Resources\White-Pallet.ico" />

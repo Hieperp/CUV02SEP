@@ -813,6 +813,26 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Barcode_scan_mobile_hand_28T {
+            get {
+                object obj = ResourceManager.GetObject("Barcode_scan_mobile_hand-28T", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap barcode_scan_mobile_hand_28T1 {
+            get {
+                object obj = ResourceManager.GetObject("barcode_scan_mobile_hand-28T1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap barcode_scan_mobile_hand_30 {
             get {
                 object obj = ResourceManager.GetObject("barcode_scan_mobile_hand-30", resourceCulture);
@@ -3306,6 +3326,36 @@ namespace TotalSmartCoding.Properties {
         internal static System.Drawing.Bitmap Play_Normal_Red_16 {
             get {
                 object obj = ResourceManager.GetObject("Play_Normal_Red_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Portable_barcode_scanner_32 {
+            get {
+                object obj = ResourceManager.GetObject("Portable_barcode_scanner_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap portable_barcode_scanner_32_T {
+            get {
+                object obj = ResourceManager.GetObject("portable_barcode_scanner_32_T", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap portable_barcode_scanner_32T {
+            get {
+                object obj = ResourceManager.GetObject("portable_barcode_scanner_32T", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

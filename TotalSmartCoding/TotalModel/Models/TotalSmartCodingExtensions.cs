@@ -7,20 +7,56 @@ using TotalModel.Interfaces;
 namespace TotalModel.Models
 {
 
-    public interface PendingPrimaryDetail
+    public interface IPendingPrimaryDetail
     {
         int CommodityID { get; set; }
         Nullable<int> BatchID { get; set; }
         Nullable<decimal> QuantityRemains { get; set; }
         Nullable<decimal> LineVolumeRemains { get; set; }
+
+        decimal QuantityIssue { get; set; }
+        decimal LineVolumeIssue { get; set; }
+
+        int DeliveryAdviceID { get; set; }
+        int DeliveryAdviceDetailID { get; set; }
+
+        int TransferOrderID { get; set; }
+        int TransferOrderDetailID { get; set; }
+
+        string PrimaryReference { get; set; }
+        System.DateTime PrimaryEntryDate { get; set; }
     }
-    public partial class PendingDeliveryAdviceDetail : PendingPrimaryDetail
+    public partial class PendingDeliveryAdviceDetail : IPendingPrimaryDetail
     {
+        public int TransferOrderID { get; set; }
+        public int TransferOrderDetailID { get; set; }
+
+        public decimal QuantityIssue { get; set; }
+        public decimal LineVolumeIssue { get; set; }
     }
-    public partial class PendingTransferOrderDetail : PendingPrimaryDetail
+    public partial class PendingTransferOrderDetail : IPendingPrimaryDetail
     {
+        public int DeliveryAdviceID { get; set; }
+        public int DeliveryAdviceDetailID { get; set; }
+
+        public decimal QuantityIssue { get; set; }
+        public decimal LineVolumeIssue { get; set; }
     }
 
+    public partial class GoodsReceiptDetailAvailable
+    {
+        public int DeliveryAdviceID { get; set; }
+        public int DeliveryAdviceDetailID { get; set; }
+
+        public int TransferOrderID { get; set; }
+        public int TransferOrderDetailID { get; set; }
+
+        public string PrimaryReference { get; set; }
+        public Nullable<System.DateTime> PrimaryEntryDate { get; set; }
+
+        public decimal QuantityRemains { get; set; }
+        public decimal LineVolumeRemains { get; set; }
+    }
     //public partial class SalesOrder : IPrimitiveEntity, IBaseEntity, IBaseDetailEntity<SalesOrderDetail>
     //{
     //    public int GetID() { return this.SalesOrderID; }
