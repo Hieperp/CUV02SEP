@@ -158,7 +158,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
         private void fastAvailableGoodsReceiptDetails_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (this.fileName == null)
-            {
+            {//WHEN IMPORT: DEFUALT IS MULTIPLE SELECTED
                 FastObjectListView fastAvailableGoodsReceiptDetails = (FastObjectListView)sender;
                 if (fastAvailableGoodsReceiptDetails != null && fastAvailableGoodsReceiptDetails.SelectedObject != null)
                 {//CLEAR ALL CHECKED OBJECTS => THEN CHECK THE CURRENT SELECTED ROW
