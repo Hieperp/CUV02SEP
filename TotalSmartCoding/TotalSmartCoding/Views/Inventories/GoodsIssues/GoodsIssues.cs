@@ -215,8 +215,8 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                 this.gridexPalletDetails.Columns["Pallet"
                     + CommonExpressions.PropertyName<GoodsIssueDetailDTO>(p => p.PrimaryReference)].HeaderText = this.goodsIssueViewModel.GoodsIssueTypeID == (int)GlobalEnums.GoodsIssueTypeID.DeliveryAdvice ? "D.A" : "Orders";
                 this.gridexCartonDetails.Columns["Carton" + CommonExpressions.PropertyName<GoodsIssueDetailDTO>(p => p.PrimaryReference)].HeaderText = this.goodsIssueViewModel.GoodsIssueTypeID == (int)GlobalEnums.GoodsIssueTypeID.DeliveryAdvice ? "D.A" : "Orders";
-                this.gridexPalletDetails.Columns["Pallet" + CommonExpressions.PropertyName<GoodsIssueDetailDTO>(p => p.PrimaryReference)].Visible = this.goodsIssueViewModel.DeliveryAdviceID == null;
-                this.gridexCartonDetails.Columns["Carton" + CommonExpressions.PropertyName<GoodsIssueDetailDTO>(p => p.PrimaryReference)].Visible = this.goodsIssueViewModel.DeliveryAdviceID == null;
+                this.gridexPalletDetails.Columns["Pallet" + CommonExpressions.PropertyName<GoodsIssueDetailDTO>(p => p.PrimaryReference)].Visible = this.goodsIssueViewModel.DeliveryAdviceID == null && this.goodsIssueViewModel.TransferOrderID == null;
+                this.gridexCartonDetails.Columns["Carton" + CommonExpressions.PropertyName<GoodsIssueDetailDTO>(p => p.PrimaryReference)].Visible = this.goodsIssueViewModel.DeliveryAdviceID == null && this.goodsIssueViewModel.TransferOrderID == null;
             }
         }
 
