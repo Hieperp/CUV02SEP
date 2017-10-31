@@ -53,7 +53,7 @@ namespace TotalSmartCoding.Views.Mains
                 this.nmvnTaskID = nmvnTaskID;
                 this.childForm = childForm;
 
-                this.Size = new Size(880, 435); this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog; this.MinimizeBox = false; this.MaximizeBox = false; this.WindowState = FormWindowState.Normal; this.textBoxFilters.Width = this.panelRight.Width - this.SoftkeyClearFilters.Width - 8;
+                this.Size = new Size(960, 435); this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog; this.MinimizeBox = false; this.MaximizeBox = false; this.WindowState = FormWindowState.Normal; this.textBoxFilters.Width = this.panelRight.Width - this.SoftkeyClearFilters.Width - 8;
             }
             catch (Exception exception)
             {

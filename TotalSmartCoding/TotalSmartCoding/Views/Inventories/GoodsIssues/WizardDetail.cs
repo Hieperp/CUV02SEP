@@ -79,7 +79,16 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
             this.pendingPrimaryDetails = pendingPrimaryDetails;
             this.pendingPrimaryDetail = pendingPrimaryDetail;
 
-            this.fileName = fileName; if (this.fileName != null) this.toolStripBottom.Visible = true;
+            this.fileName = fileName;
+
+            if (this.fileName != null)
+            {
+                this.toolStripBottom.Visible = true;
+                this.fastMismatchedBarcodes.Visible = true;
+                this.customTabBatch.TabPages.Add("tabMismatchedBarcodes", "Mismatched Barcodes");
+                this.customTabBatch.TabPages[this.customTabBatch.TabPages.Count - 1].Controls.Add(this.fastMismatchedBarcodes);
+                this.fastMismatchedBarcodes.Dock = DockStyle.Fill;
+            }
         }
 
         private void WizardDetail_Load(object sender, EventArgs e)
@@ -105,6 +114,8 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                 IEnumerable<GoodsReceiptDetailAvailable> goodsReceiptPalletAvailables = null;
                 IEnumerable<GoodsReceiptDetailAvailable> goodsReceiptCartonAvailables = null;
                 IEnumerable<GoodsReceiptDetailAvailable> goodsReceiptPackAvailables = null;
+
+                List<MismatchedBarcode> mismatchedBarcodes = new List<MismatchedBarcode>();
 
                 if (this.fileName == null)
                 {
@@ -167,17 +178,18 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                                         goodsReceiptDetailAvailable.IsSelected = true;
                                     }
                                     else
-                                    { //add to ignore list; over remaining
+                                    {
+                                        mismatchedBarcodes.Add(new MismatchedBarcode() { Barcode = barcode, Description = "Số lượng xuất vượt quá yêu cầu. Vui lòng kiểm tra lại.", QuantityAvailable = goodsReceiptDetailAvailable.QuantityAvailable, LineVolumeAvailable = goodsReceiptDetailAvailable.LineVolumeAvailable });
                                     }
                                 }
                                 else
                                 {
-                                    //add to ignore list; Duplicate
+                                    mismatchedBarcodes.Add(new MismatchedBarcode() { Barcode = barcode, Description = "Trùng mã vạch. Bạn đã quét mã vạch này nhiều lần?", QuantityAvailable = goodsReceiptDetailAvailable.QuantityAvailable, LineVolumeAvailable = goodsReceiptDetailAvailable.LineVolumeAvailable });
                                 }
                             }
                             else
                             {
-                                //add to ignore list; not found
+                                mismatchedBarcodes.Add(new MismatchedBarcode() { Barcode = barcode, Description = "Không tìm thấy. Bạn đã xã pallet ra chưa?" });
                             }
                         }
                     }
@@ -190,6 +202,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                 this.fastAvailablePallets.SetObjects(goodsReceiptPalletAvailables);
                 this.fastAvailableCartons.SetObjects(goodsReceiptCartonAvailables);
                 if (this.UsingPack) this.fastAvailablePacks.SetObjects(goodsReceiptPackAvailables);
+                if (this.fileName != null) this.fastMismatchedBarcodes.SetObjects(mismatchedBarcodes);
 
                 this.ShowRowCount();
             }
@@ -270,7 +283,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                                     DeliveryAdviceEntryDate = goodsReceiptDetailAvailable.PrimaryEntryDate,
 
                                     TransferOrderID = goodsReceiptDetailAvailable.TransferOrderID > 0 ? goodsReceiptDetailAvailable.TransferOrderID : (int?)null,
-                                    TransferOrderDetailID =goodsReceiptDetailAvailable.TransferOrderDetailID > 0 ? goodsReceiptDetailAvailable.TransferOrderDetailID : (int?)null,
+                                    TransferOrderDetailID = goodsReceiptDetailAvailable.TransferOrderDetailID > 0 ? goodsReceiptDetailAvailable.TransferOrderDetailID : (int?)null,
                                     TransferOrderReference = goodsReceiptDetailAvailable.PrimaryReference,
                                     TransferOrderEntryDate = goodsReceiptDetailAvailable.PrimaryEntryDate,
 
@@ -337,5 +350,13 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
             }
         }
 
+    }
+
+    public class MismatchedBarcode
+    {
+        public string Barcode { get; set; }
+        public string Description { get; set; }
+        public Nullable<decimal> QuantityAvailable { get; set; }
+        public Nullable<decimal> LineVolumeAvailable { get; set; }
     }
 }
