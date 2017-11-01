@@ -14,6 +14,7 @@ using TotalDTO.Inventories;
 using TotalSmartCoding.ViewModels.Productions;
 using TotalSmartCoding.ViewModels.Sales;
 using TotalSmartCoding.ViewModels.Inventories;
+using TotalSmartCoding.ViewModels.Commons;
 
 namespace TotalSmartCoding.Libraries
 {
@@ -105,6 +106,11 @@ namespace TotalSmartCoding.Libraries
 
                 //cfg.CreateMap<Employee, EmployeeBaseDTO>();
                 cfg.CreateMap<Customer, CustomerBaseDTO>();
+                cfg.CreateMap<Customer, CustomerViewModel>();
+                cfg.CreateMap<Customer, CustomerDTO>();
+                cfg.CreateMap<CustomerPrimitiveDTO, Customer>();
+
+
                 cfg.CreateMap<Warehouse, WarehouseBaseDTO>();
                 cfg.CreateMap<WarehouseAdjustmentType, WarehouseAdjustmentTypeBaseDTO>();
             });

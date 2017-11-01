@@ -106,10 +106,17 @@ namespace TotalSmartCoding.Views.Commons.Customers
 
         Binding bindingCode;
         Binding bindingName;
-        Binding bindingShippingAddress;
-        Binding bindingContactInfo;
         Binding bindingOfficialName;
+        
+        Binding bindingContactInfo;
+        Binding bindingVATCode;
+        Binding bindingTelephone;
+        Binding bindingFacsimile;
+        Binding bindingEmail;
+        Binding bindingAttentionName;
+        
         Binding bindingBillingAddress;
+        Binding bindingShippingAddress;
         Binding bindingRemarks;
         Binding bindingCaption;
 
@@ -122,10 +129,17 @@ namespace TotalSmartCoding.Views.Commons.Customers
 
             this.bindingCode = this.textexCode.DataBindings.Add("Text", this.customerViewModel, CommonExpressions.PropertyName<CustomerDTO>(p => p.Code), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingName = this.textexName.DataBindings.Add("Text", this.customerViewModel, CommonExpressions.PropertyName<CustomerDTO>(p => p.Name), true, DataSourceUpdateMode.OnPropertyChanged);
-            this.bindingShippingAddress = this.textexShippingAddress.DataBindings.Add("Text", this.customerViewModel, CommonExpressions.PropertyName<CustomerDTO>(p => p.ShippingAddress), true, DataSourceUpdateMode.OnPropertyChanged);
-            this.bindingContactInfo = this.textexContactInfo.DataBindings.Add("Text", this.customerViewModel, CommonExpressions.PropertyName<CustomerDTO>(p => p.ContactInfo), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingOfficialName = this.textexOfficialName.DataBindings.Add("Text", this.customerViewModel, CommonExpressions.PropertyName<CustomerDTO>(p => p.ShippingAddress), true, DataSourceUpdateMode.OnPropertyChanged);
+            
+            this.bindingContactInfo = this.textexContactInfo.DataBindings.Add("Text", this.customerViewModel, CommonExpressions.PropertyName<CustomerDTO>(p => p.ContactInfo), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingVATCode = this.textexVATCode.DataBindings.Add("Text", this.customerViewModel, CommonExpressions.PropertyName<CustomerDTO>(p => p.VATCode), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingTelephone = this.textexTelephone.DataBindings.Add("Text", this.customerViewModel, CommonExpressions.PropertyName<CustomerDTO>(p => p.Telephone), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingFacsimile = this.textexFacsimile.DataBindings.Add("Text", this.customerViewModel, CommonExpressions.PropertyName<CustomerDTO>(p => p.Facsimile), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingEmail = this.textexEmail.DataBindings.Add("Text", this.customerViewModel, CommonExpressions.PropertyName<CustomerDTO>(p => p.Email), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingAttentionName = this.textexAttentionName.DataBindings.Add("Text", this.customerViewModel, CommonExpressions.PropertyName<CustomerDTO>(p => p.AttentionName), true, DataSourceUpdateMode.OnPropertyChanged);
+
             this.bindingBillingAddress = this.textexBillingAddress.DataBindings.Add("Text", this.customerViewModel, CommonExpressions.PropertyName<CustomerDTO>(p => p.Description), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingShippingAddress = this.textexShippingAddress.DataBindings.Add("Text", this.customerViewModel, CommonExpressions.PropertyName<CustomerDTO>(p => p.ShippingAddress), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingRemarks = this.textexRemarks.DataBindings.Add("Text", this.customerViewModel, CommonExpressions.PropertyName<CustomerDTO>(p => p.Remarks), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingCaption = this.labelCaption.DataBindings.Add("Text", this.customerViewModel, CommonExpressions.PropertyName<CustomerDTO>(p => p.Caption));
 
@@ -147,10 +161,15 @@ namespace TotalSmartCoding.Views.Commons.Customers
             this.bindingName.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingOfficialName.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
 
-            this.bindingShippingAddress.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingContactInfo.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
-            
+            this.bindingVATCode.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingTelephone.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingFacsimile.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingEmail.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingAttentionName.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+
             this.bindingBillingAddress.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingShippingAddress.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingRemarks.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingCaption.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
 

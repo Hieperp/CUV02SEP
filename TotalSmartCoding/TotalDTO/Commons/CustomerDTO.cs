@@ -19,16 +19,13 @@ namespace TotalDTO.Commons
         string Code { get; set; }
         string Name { get; set; }
         string OfficialName { get; set; }
-        Nullable<System.DateTime> Birthday { get; set; }
         string VATCode { get; set; }
         string ContactInfo { get; set; }
         string Telephone { get; set; }
         string BillingAddress { get; set; }
         string ShippingAddress { get; set; }
-        int TerritoryID { get; set; }
-        string EntireTerritoryEntireName { get; set; }
-        int SalespersonID { get; set; }
-        string SalespersonName { get; set; }
+        Nullable<int> TerritoryID { get; set; }
+        Nullable<int> SalespersonID { get; set; }
     }
 
     public class CustomerBaseDTO : BaseDTO, ICustomerBaseDTO
@@ -44,43 +41,95 @@ namespace TotalDTO.Commons
 
         public string CodeAndName { get { return this.Code + (this.Code != null && this.Code != "" && this.Name != null && this.Name != "" ? "  -  " : "") + this.Name; } }
 
-        [Display(Name = "Mã khách hàng")]
-        public string Code { get; set; }
+        private string code;
+        [DefaultValue(null)]
+        public string Code
+        {
+            get { return this.code; }
+            set { ApplyPropertyChange<CustomerBaseDTO, string>(ref this.code, o => o.Code, value); }
+        }
 
-        [Display(Name = "Khách hàng")]
-        public string Name { get; set; }
+        private string name;
+        [DefaultValue(null)]
+        public string Name
+        {
+            get { return this.name; }
+            set { ApplyPropertyChange<CustomerBaseDTO, string>(ref this.name, o => o.Name, value); }
+        }
 
-        [Display(Name = "Tên đầy đủ")]
-        public string OfficialName { get; set; }
+        private string officialName;
+        [DefaultValue(null)]
+        public string OfficialName
+        {
+            get { return this.officialName; }
+            set { ApplyPropertyChange<CustomerBaseDTO, string>(ref this.officialName, o => o.OfficialName, value); }
+        }
 
-        [Display(Name = "Ngày sinh")]
-        public Nullable<System.DateTime> Birthday { get; set; }
+        private string vatCode;
+        [DefaultValue(null)]
+        public string VATCode
+        {
+            get { return this.vatCode; }
+            set { ApplyPropertyChange<CustomerBaseDTO, string>(ref this.vatCode, o => o.VATCode, value); }
+        }
 
-        [Display(Name = "Mã số thuế")]
-        public string VATCode { get; set; }
+        private string contactInfo;
+        [DefaultValue(null)]
+        public string ContactInfo
+        {
+            get { return this.contactInfo; }
+            set { ApplyPropertyChange<CustomerBaseDTO, string>(ref this.contactInfo, o => o.ContactInfo, value); }
+        }
 
-        [Display(Name = "Mã số thuế")]
-        public string ContactInfo { get; set; }
+        private string telephone;
+        [DefaultValue(null)]
+        public string Telephone
+        {
+            get { return this.telephone; }
+            set { ApplyPropertyChange<CustomerBaseDTO, string>(ref this.telephone, o => o.Telephone, value); }
+        }
 
-        [Display(Name = "Điện thoại")]
-        public string Telephone { get; set; }
+        private string email;
+        [DefaultValue(null)]
+        public string Email
+        {
+            get { return this.email; }
+            set { ApplyPropertyChange<CustomerBaseDTO, string>(ref this.email, o => o.Email, value); }
+        }
 
-        [Display(Name = "Địa chỉ xuất hóa đơn")]
-        public virtual string BillingAddress { get; set; }
-        [Display(Name = "Địa chỉ giao hàng")]
-        public virtual string ShippingAddress { get; set; }
+        private string billingAddress;
+        [DefaultValue(null)]
+        public string BillingAddress
+        {
+            get { return this.billingAddress; }
+            set { ApplyPropertyChange<CustomerBaseDTO, string>(ref this.billingAddress, o => o.BillingAddress, value); }
+        }
+
+        private string shippingAddress;
+        [DefaultValue(null)]
+        public string ShippingAddress
+        {
+            get { return this.shippingAddress; }
+            set { ApplyPropertyChange<CustomerBaseDTO, string>(ref this.shippingAddress, o => o.ShippingAddress, value); }
+        }
 
 
-        [Required]
-        [Display(Name = "Khu vực")]
-        public int TerritoryID { get; set; }
-        [Display(Name = "Khu vực")]
-        public virtual string EntireTerritoryEntireName { get; set; }
 
-        [Required]
-        public int SalespersonID { get; set; }
-        [Display(Name = "Tên nhân viên")]
-        public virtual string SalespersonName { get; set; }
+        private Nullable<int> territoryID;
+        [DefaultValue(null)]
+        public Nullable<int> TerritoryID
+        {
+            get { return this.territoryID; }
+            set { ApplyPropertyChange<CustomerBaseDTO, Nullable<int>>(ref this.territoryID, o => o.TerritoryID, value); }
+        }
+
+        private Nullable<int> salespersonID;
+        [DefaultValue(null)]
+        public Nullable<int> SalespersonID
+        {
+            get { return this.salespersonID; }
+            set { ApplyPropertyChange<CustomerBaseDTO, Nullable<int>>(ref this.salespersonID, o => o.SalespersonID, value); }
+        }
     }
 
 
@@ -90,37 +139,43 @@ namespace TotalDTO.Commons
 
         public override int GetID() { return this.CustomerID; }
         public void SetID(int id) { this.CustomerID = id; }
-        
-        [Display(Name = "Phân khúc khách hàng")]
-        [DefaultValue(1)]
-        public int CustomerCategoryID { get; set; }
-        [Display(Name = "Phân loại khách hàng")]
-        [DefaultValue(1)]
-        public int CustomerTypeID { get; set; }
-        
-        public string Facsimile { get; set; }
-        [Display(Name = "Người liên hệ")]
-        public string AttentionName { get; set; }
-        [Display(Name = "Chức danh")]
-        public string AttentionTitle { get; set; }
-        
 
-        [Required(ErrorMessage = "Vui lòng nhập địa chỉ xuất hóa đơn")]
-        public override string BillingAddress { get; set; }
 
-        [Required(ErrorMessage = "Vui lòng nhập khu vực")]
-        public override string EntireTerritoryEntireName { get; set; }
+        private Nullable<int> customerCategoryID;
+        [DefaultValue(null)]
+        public Nullable<int> CustomerCategoryID
+        {
+            get { return this.customerCategoryID; }
+            set { ApplyPropertyChange<CustomerPrimitiveDTO, Nullable<int>>(ref this.customerCategoryID, o => o.CustomerCategoryID, value); }
+        }
 
-        [Required(ErrorMessage = "Vui lòng nhập tên nhân viên")]
-        public override string SalespersonName { get; set; }
+        private Nullable<int> customerTypeID;
+        [DefaultValue(null)]
+        public Nullable<int> CustomerTypeID
+        {
+            get { return this.customerTypeID; }
+            set { ApplyPropertyChange<CustomerPrimitiveDTO, Nullable<int>>(ref this.customerTypeID, o => o.CustomerTypeID, value); }
+        }
 
-        [Display(Name = "Hạn mức tín dụng")]
-        public Nullable<double> LimitAmount { get; set; }
+        private string facsimile;
+        [DefaultValue(null)]
+        public string Facsimile
+        {
+            get { return this.facsimile; }
+            set { ApplyPropertyChange<CustomerPrimitiveDTO, string>(ref this.facsimile, o => o.Facsimile, value); }
+        }
 
-        [Display(Name = "Khách hàng")]
-        public bool IsCustomer { get; set; }
-        [Display(Name = "Nhà cung cấp")]
-        public bool IsSupplier { get; set; }
+        private string attentionName;
+        [DefaultValue(null)]
+        public string AttentionName
+        {
+            get { return this.attentionName; }
+            set { ApplyPropertyChange<CustomerPrimitiveDTO, string>(ref this.attentionName, o => o.AttentionName, value); }
+        }
+
+
+        public bool IsCustomer { get { return true; } }
+        public bool IsSupplier { get { return false; } }
 
         public override int PreparedPersonID { get { return 1; } }
     }

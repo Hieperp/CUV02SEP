@@ -133,9 +133,6 @@
           <Property Name="Telephone" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Facsimile" Type="nvarchar" MaxLength="60" />
           <Property Name="AttentionName" Type="nvarchar" MaxLength="60" />
-          <Property Name="AttentionTitle" Type="nvarchar" MaxLength="60" />
-          <Property Name="Birthday" Type="datetime" />
-          <Property Name="LimitAmount" Type="float" />
           <Property Name="Remarks" Type="nvarchar" MaxLength="100" />
           <Property Name="InActive" Type="bit" Nullable="false" />
           <Property Name="IsCustomer" Type="bit" Nullable="false" />
@@ -3348,13 +3345,24 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
             <End Role="TransferOrder" EntitySet="TransferOrders" />
           </AssociationSet>
           <EntitySet Name="CustomerCategories" EntityType="TotalSmartCodingModel.CustomerCategory" />
-          <EntitySet Name="Customers" EntityType="TotalSmartCodingModel.Customer" />
           <EntitySet Name="CustomerTypes" EntityType="TotalSmartCodingModel.CustomerType" />
           <EntitySet Name="EntireTerritories" EntityType="TotalSmartCodingModel.EntireTerritory" />
           <AssociationSet Name="FK_CustomerCategories_CustomerCategories" Association="TotalSmartCodingModel.FK_CustomerCategories_CustomerCategories">
             <End Role="CustomerCategory" EntitySet="CustomerCategories" />
             <End Role="CustomerCategory1" EntitySet="CustomerCategories" />
           </AssociationSet>
+          <AssociationSet Name="FK_CustomerTypes_CustomerTypes" Association="TotalSmartCodingModel.FK_CustomerTypes_CustomerTypes">
+            <End Role="CustomerType" EntitySet="CustomerTypes" />
+            <End Role="CustomerType1" EntitySet="CustomerTypes" />
+          </AssociationSet>
+          <FunctionImport Name="CustomerEditable" ReturnType="Collection(String)">
+          <Parameter Name="EntityID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CustomerSaveRelative">
+            <Parameter Name="EntityID" Mode="In" Type="Int32" />
+            <Parameter Name="SaveRelativeOption" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="Customers" EntityType="TotalSmartCodingModel.Customer" />
           <AssociationSet Name="FK_Customers_CustomerCategories" Association="TotalSmartCodingModel.FK_Customers_CustomerCategories">
             <End Role="CustomerCategory" EntitySet="CustomerCategories" />
             <End Role="Customer" EntitySet="Customers" />
@@ -3391,17 +3399,6 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
             <End Role="Customer" EntitySet="Customers" />
             <End Role="SalesOrder" EntitySet="SalesOrders" />
           </AssociationSet>
-          <AssociationSet Name="FK_CustomerTypes_CustomerTypes" Association="TotalSmartCodingModel.FK_CustomerTypes_CustomerTypes">
-            <End Role="CustomerType" EntitySet="CustomerTypes" />
-            <End Role="CustomerType1" EntitySet="CustomerTypes" />
-          </AssociationSet>
-          <FunctionImport Name="CustomerEditable" ReturnType="Collection(String)">
-          <Parameter Name="EntityID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="CustomerSaveRelative">
-            <Parameter Name="EntityID" Mode="In" Type="Int32" />
-            <Parameter Name="SaveRelativeOption" Mode="In" Type="Int32" />
-          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
           <Property Type="Int32" Name="PickupID" Nullable="false" />
@@ -5781,42 +5778,6 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <NavigationProperty Name="CustomerCategory1" Relationship="TotalSmartCodingModel.FK_CustomerCategories_CustomerCategories" FromRole="CustomerCategory1" ToRole="CustomerCategory" />
           <NavigationProperty Name="Customers" Relationship="TotalSmartCodingModel.FK_Customers_CustomerCategories" FromRole="CustomerCategory" ToRole="Customer" />
         </EntityType>
-        <EntityType Name="Customer">
-          <Key>
-            <PropertyRef Name="CustomerID" />
-          </Key>
-          <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="OfficialName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="ContactInfo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="SalespersonID" Type="Int32" Nullable="false" />
-          <Property Name="CustomerCategoryID" Type="Int32" Nullable="false" />
-          <Property Name="CustomerTypeID" Type="Int32" Nullable="false" />
-          <Property Name="TerritoryID" Type="Int32" Nullable="false" />
-          <Property Name="BillingAddress" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="ShippingAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="VATCode" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
-          <Property Name="Telephone" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Facsimile" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
-          <Property Name="AttentionName" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
-          <Property Name="AttentionTitle" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
-          <Property Name="Birthday" Type="DateTime" Precision="3" />
-          <Property Name="LimitAmount" Type="Double" />
-          <Property Name="Remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="InActive" Type="Boolean" Nullable="false" />
-          <Property Name="IsCustomer" Type="Boolean" Nullable="false" />
-          <Property Name="IsSupplier" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="CustomerCategory" Relationship="TotalSmartCodingModel.FK_Customers_CustomerCategories" FromRole="Customer" ToRole="CustomerCategory" />
-          <NavigationProperty Name="CustomerType" Relationship="TotalSmartCodingModel.FK_Customers_CustomerTypes" FromRole="Customer" ToRole="CustomerType" />
-          <NavigationProperty Name="Employee" Relationship="TotalSmartCodingModel.FK_Customers_Employees" FromRole="Customer" ToRole="Employee" />
-          <NavigationProperty Name="EntireTerritory" Relationship="TotalSmartCodingModel.FK_Customers_EntireTerritories" FromRole="Customer" ToRole="EntireTerritory" />
-          <NavigationProperty Name="DeliveryAdviceDetails" Relationship="TotalSmartCodingModel.FK_DeliveryAdviceDetails_Customers" FromRole="Customer" ToRole="DeliveryAdviceDetail" />
-          <NavigationProperty Name="DeliveryAdvices" Relationship="TotalSmartCodingModel.FK_DeliveryAdvices_Customers" FromRole="Customer" ToRole="DeliveryAdvice" />
-          <NavigationProperty Name="GoodsIssueDetails" Relationship="TotalSmartCodingModel.FK_GoodsIssueDetails_Customers" FromRole="Customer" ToRole="GoodsIssueDetail" />
-          <NavigationProperty Name="GoodsIssues" Relationship="TotalSmartCodingModel.FK_GoodsIssues_Customers" FromRole="Customer" ToRole="GoodsIssue" />
-          <NavigationProperty Name="SalesOrders" Relationship="TotalSmartCodingModel.FK_SalesOrders_Customers" FromRole="Customer" ToRole="SalesOrder" />
-        </EntityType>
         <EntityType Name="CustomerType">
           <Key>
             <PropertyRef Name="CustomerTypeID" />
@@ -5825,9 +5786,9 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="AncestorID" Type="Int32" />
           <Property Name="Remarks" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Customers" Relationship="TotalSmartCodingModel.FK_Customers_CustomerTypes" FromRole="CustomerType" ToRole="Customer" />
           <NavigationProperty Name="CustomerTypes1" Relationship="TotalSmartCodingModel.FK_CustomerTypes_CustomerTypes" FromRole="CustomerType" ToRole="CustomerType1" />
           <NavigationProperty Name="CustomerType1" Relationship="TotalSmartCodingModel.FK_CustomerTypes_CustomerTypes" FromRole="CustomerType1" ToRole="CustomerType" />
+          <NavigationProperty Name="Customers" Relationship="TotalSmartCodingModel.FK_Customers_CustomerTypes" FromRole="CustomerType" ToRole="Customer" />
         </EntityType>
         <EntityType Name="EntireTerritory">
           <Key>
@@ -5856,6 +5817,51 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_CustomerTypes_CustomerTypes">
+          <End Type="TotalSmartCodingModel.CustomerType" Role="CustomerType" Multiplicity="0..1" />
+          <End Type="TotalSmartCodingModel.CustomerType" Role="CustomerType1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerType">
+              <PropertyRef Name="CustomerTypeID" />
+            </Principal>
+            <Dependent Role="CustomerType1">
+              <PropertyRef Name="AncestorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="OfficialName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ContactInfo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SalespersonID" Type="Int32" Nullable="false" />
+          <Property Name="CustomerCategoryID" Type="Int32" Nullable="false" />
+          <Property Name="CustomerTypeID" Type="Int32" Nullable="false" />
+          <Property Name="TerritoryID" Type="Int32" Nullable="false" />
+          <Property Name="BillingAddress" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ShippingAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="VATCode" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="Telephone" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Facsimile" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="AttentionName" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="Remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="InActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsCustomer" Type="Boolean" Nullable="false" />
+          <Property Name="IsSupplier" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="CustomerCategory" Relationship="TotalSmartCodingModel.FK_Customers_CustomerCategories" FromRole="Customer" ToRole="CustomerCategory" />
+          <NavigationProperty Name="CustomerType" Relationship="TotalSmartCodingModel.FK_Customers_CustomerTypes" FromRole="Customer" ToRole="CustomerType" />
+          <NavigationProperty Name="Employee" Relationship="TotalSmartCodingModel.FK_Customers_Employees" FromRole="Customer" ToRole="Employee" />
+          <NavigationProperty Name="EntireTerritory" Relationship="TotalSmartCodingModel.FK_Customers_EntireTerritories" FromRole="Customer" ToRole="EntireTerritory" />
+          <NavigationProperty Name="DeliveryAdviceDetails" Relationship="TotalSmartCodingModel.FK_DeliveryAdviceDetails_Customers" FromRole="Customer" ToRole="DeliveryAdviceDetail" />
+          <NavigationProperty Name="DeliveryAdvices" Relationship="TotalSmartCodingModel.FK_DeliveryAdvices_Customers" FromRole="Customer" ToRole="DeliveryAdvice" />
+          <NavigationProperty Name="GoodsIssueDetails" Relationship="TotalSmartCodingModel.FK_GoodsIssueDetails_Customers" FromRole="Customer" ToRole="GoodsIssueDetail" />
+          <NavigationProperty Name="GoodsIssues" Relationship="TotalSmartCodingModel.FK_GoodsIssues_Customers" FromRole="Customer" ToRole="GoodsIssue" />
+          <NavigationProperty Name="SalesOrders" Relationship="TotalSmartCodingModel.FK_SalesOrders_Customers" FromRole="Customer" ToRole="SalesOrder" />
+        </EntityType>
         <Association Name="FK_Customers_CustomerCategories">
           <End Type="TotalSmartCodingModel.CustomerCategory" Role="CustomerCategory" Multiplicity="1" />
           <End Type="TotalSmartCodingModel.Customer" Role="Customer" Multiplicity="*" />
@@ -5961,18 +5967,6 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
             </Principal>
             <Dependent Role="SalesOrder">
               <PropertyRef Name="CustomerID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CustomerTypes_CustomerTypes">
-          <End Type="TotalSmartCodingModel.CustomerType" Role="CustomerType" Multiplicity="0..1" />
-          <End Type="TotalSmartCodingModel.CustomerType" Role="CustomerType1" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CustomerType">
-              <PropertyRef Name="CustomerTypeID" />
-            </Principal>
-            <Dependent Role="CustomerType1">
-              <PropertyRef Name="AncestorID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -7589,34 +7583,6 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Customers">
-            <EntityTypeMapping TypeName="TotalSmartCodingModel.Customer">
-              <MappingFragment StoreEntitySet="Customers">
-                <ScalarProperty Name="IsSupplier" ColumnName="IsSupplier" />
-                <ScalarProperty Name="IsCustomer" ColumnName="IsCustomer" />
-                <ScalarProperty Name="InActive" ColumnName="InActive" />
-                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
-                <ScalarProperty Name="LimitAmount" ColumnName="LimitAmount" />
-                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
-                <ScalarProperty Name="AttentionTitle" ColumnName="AttentionTitle" />
-                <ScalarProperty Name="AttentionName" ColumnName="AttentionName" />
-                <ScalarProperty Name="Facsimile" ColumnName="Facsimile" />
-                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
-                <ScalarProperty Name="VATCode" ColumnName="VATCode" />
-                <ScalarProperty Name="ShippingAddress" ColumnName="ShippingAddress" />
-                <ScalarProperty Name="BillingAddress" ColumnName="BillingAddress" />
-                <ScalarProperty Name="TerritoryID" ColumnName="TerritoryID" />
-                <ScalarProperty Name="CustomerTypeID" ColumnName="CustomerTypeID" />
-                <ScalarProperty Name="CustomerCategoryID" ColumnName="CustomerCategoryID" />
-                <ScalarProperty Name="SalespersonID" ColumnName="SalespersonID" />
-                <ScalarProperty Name="ContactInfo" ColumnName="ContactInfo" />
-                <ScalarProperty Name="OfficialName" ColumnName="OfficialName" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="CustomerTypes">
             <EntityTypeMapping TypeName="TotalSmartCodingModel.CustomerType">
               <MappingFragment StoreEntitySet="CustomerTypes">
@@ -7644,6 +7610,31 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="CustomerEditable" FunctionName="TotalSmartCodingModel.Store.CustomerEditable" />
           <FunctionImportMapping FunctionImportName="CustomerSaveRelative" FunctionName="TotalSmartCodingModel.Store.CustomerSaveRelative" />
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="TotalSmartCodingModel.Customer">
+              <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="IsSupplier" ColumnName="IsSupplier" />
+                <ScalarProperty Name="IsCustomer" ColumnName="IsCustomer" />
+                <ScalarProperty Name="InActive" ColumnName="InActive" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="AttentionName" ColumnName="AttentionName" />
+                <ScalarProperty Name="Facsimile" ColumnName="Facsimile" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="VATCode" ColumnName="VATCode" />
+                <ScalarProperty Name="ShippingAddress" ColumnName="ShippingAddress" />
+                <ScalarProperty Name="BillingAddress" ColumnName="BillingAddress" />
+                <ScalarProperty Name="TerritoryID" ColumnName="TerritoryID" />
+                <ScalarProperty Name="CustomerTypeID" ColumnName="CustomerTypeID" />
+                <ScalarProperty Name="CustomerCategoryID" ColumnName="CustomerCategoryID" />
+                <ScalarProperty Name="SalespersonID" ColumnName="SalespersonID" />
+                <ScalarProperty Name="ContactInfo" ColumnName="ContactInfo" />
+                <ScalarProperty Name="OfficialName" ColumnName="OfficialName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

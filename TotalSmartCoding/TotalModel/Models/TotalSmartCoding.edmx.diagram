@@ -114,10 +114,11 @@
         <AssociationConnector Association="TotalSmartCodingModel.FK_TransferOrders_WarehouseReceipts" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_TransferOrders_Warehouses" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.CustomerCategory" Width="1.5" PointX="8.25" PointY="38.5" />
-        <EntityTypeShape EntityType="TotalSmartCodingModel.Customer" Width="1.5" PointX="10.5" PointY="2.125" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.CustomerType" Width="1.5" PointX="8.25" PointY="0.75" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.EntireTerritory" Width="1.5" PointX="8.25" PointY="34.875" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_CustomerCategories_CustomerCategories" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_CustomerTypes_CustomerTypes" />
+        <EntityTypeShape EntityType="TotalSmartCodingModel.Customer" Width="1.5" PointX="15.5" PointY="26.625" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_Customers_CustomerCategories" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_Customers_CustomerTypes" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_Customers_Employees" />
@@ -127,7 +128,6 @@
         <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssueDetails_Customers" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssues_Customers" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_SalesOrders_Customers" />
-        <AssociationConnector Association="TotalSmartCodingModel.FK_CustomerTypes_CustomerTypes" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

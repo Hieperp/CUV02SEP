@@ -39,9 +39,6 @@ namespace TotalModel.Models
         public string Telephone { get; set; }
         public string Facsimile { get; set; }
         public string AttentionName { get; set; }
-        public string AttentionTitle { get; set; }
-        public Nullable<System.DateTime> Birthday { get; set; }
-        public Nullable<double> LimitAmount { get; set; }
         public string Remarks { get; set; }
         public bool InActive { get; set; }
         public bool IsCustomer { get; set; }
