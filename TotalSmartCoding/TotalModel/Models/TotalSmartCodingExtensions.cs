@@ -382,6 +382,48 @@ namespace TotalModel.Models
         public System.DateTime EditedDate { get; set; }
     }
 
+    public partial class CustomerType : IPrimitiveEntity, IBaseEntity
+    {
+        public int GetID() { return this.CustomerTypeID; }
+
+        public int LocationID { get; set; }
+
+        public int UserID { get; set; }
+        public int PreparedPersonID { get; set; }
+        public int OrganizationalUnitID { get; set; }
+
+        public System.DateTime CreatedDate { get; set; }
+        public System.DateTime EditedDate { get; set; }
+    }
+
+    public partial class CustomerCategory : IPrimitiveEntity, IBaseEntity
+    {
+        public int GetID() { return this.CustomerCategoryID; }
+
+        public int LocationID { get; set; }
+
+        public int UserID { get; set; }
+        public int PreparedPersonID { get; set; }
+        public int OrganizationalUnitID { get; set; }
+
+        public System.DateTime CreatedDate { get; set; }
+        public System.DateTime EditedDate { get; set; }
+    }
+
+    public partial class Territory : IPrimitiveEntity, IBaseEntity
+    {
+        public int GetID() { return this.TerritoryID; }
+
+        public int LocationID { get; set; }
+
+        public int UserID { get; set; }
+        public int PreparedPersonID { get; set; }
+        public int OrganizationalUnitID { get; set; }
+
+        public System.DateTime CreatedDate { get; set; }
+        public System.DateTime EditedDate { get; set; }
+    }
+
     //public partial class Commodity : IPrimitiveEntity, IBaseEntity
     //{
     //    public int GetID() { return this.CommodityID; }

@@ -120,7 +120,9 @@ namespace TotalSmartCoding.Views.Commons.Customers
         Binding bindingRemarks;
         Binding bindingCaption;
 
+        Binding bindingCustomerTypeID;
         Binding bindingCustomerCategoryID;
+        Binding bindingTerritoryID;
         Binding bindingSalespersonID;
 
         protected override void InitializeCommonControlBinding()
@@ -143,15 +145,25 @@ namespace TotalSmartCoding.Views.Commons.Customers
             this.bindingRemarks = this.textexRemarks.DataBindings.Add("Text", this.customerViewModel, CommonExpressions.PropertyName<CustomerDTO>(p => p.Remarks), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingCaption = this.labelCaption.DataBindings.Add("Text", this.customerViewModel, CommonExpressions.PropertyName<CustomerDTO>(p => p.Caption));
 
-            CustomerAPIs customerAPIs = new CustomerAPIs(CommonNinject.Kernel.Get<ICustomerAPIRepository>());
+            CustomerTypeAPIs customerTypeAPIs = new CustomerTypeAPIs(CommonNinject.Kernel.Get<ICustomerTypeAPIRepository>());
+            this.combexCustomerTypeID.DataSource = customerTypeAPIs.GetCustomerTypeBases();
+            this.combexCustomerTypeID.DisplayMember = CommonExpressions.PropertyName<CustomerTypeBase>(p => p.Name);
+            this.combexCustomerTypeID.ValueMember = CommonExpressions.PropertyName<CustomerTypeBase>(p => p.CustomerTypeID);
+            this.bindingCustomerTypeID = this.combexCustomerTypeID.DataBindings.Add("SelectedValue", this.customerViewModel, CommonExpressions.PropertyName<CustomerViewModel>(p => p.CustomerTypeID), true, DataSourceUpdateMode.OnPropertyChanged);
 
-            //this.combexCustomerCategoryID.DataSource = customerAPIs.GetCustomerBases();
-            //this.combexCustomerCategoryID.DisplayMember = CommonExpressions.PropertyName<CustomerBase>(p => p.Name);
-            //this.combexCustomerCategoryID.ValueMember = CommonExpressions.PropertyName<CustomerBase>(p => p.CustomerCategoryID);
+            CustomerCategoryAPIs customerCategoryAPIs = new CustomerCategoryAPIs(CommonNinject.Kernel.Get<ICustomerCategoryAPIRepository>());
+            this.combexCustomerCategoryID.DataSource = customerCategoryAPIs.GetCustomerCategoryBases();
+            this.combexCustomerCategoryID.DisplayMember = CommonExpressions.PropertyName<CustomerCategoryBase>(p => p.Name);
+            this.combexCustomerCategoryID.ValueMember = CommonExpressions.PropertyName<CustomerCategoryBase>(p => p.CustomerCategoryID);
             this.bindingCustomerCategoryID = this.combexCustomerCategoryID.DataBindings.Add("SelectedValue", this.customerViewModel, CommonExpressions.PropertyName<CustomerViewModel>(p => p.CustomerCategoryID), true, DataSourceUpdateMode.OnPropertyChanged);
 
-            EmployeeAPIs employeeAPIs = new EmployeeAPIs(CommonNinject.Kernel.Get<IEmployeeAPIRepository>());
+            TerritoryAPIs territoryAPIs = new TerritoryAPIs(CommonNinject.Kernel.Get<ITerritoryAPIRepository>());
+            this.combexTerritoryID.DataSource = territoryAPIs.GetTerritoryBases();
+            this.combexTerritoryID.DisplayMember = CommonExpressions.PropertyName<TerritoryBase>(p => p.Name);
+            this.combexTerritoryID.ValueMember = CommonExpressions.PropertyName<TerritoryBase>(p => p.TerritoryID);
+            this.bindingTerritoryID = this.combexTerritoryID.DataBindings.Add("SelectedValue", this.customerViewModel, CommonExpressions.PropertyName<CustomerViewModel>(p => p.TerritoryID), true, DataSourceUpdateMode.OnPropertyChanged);
 
+            EmployeeAPIs employeeAPIs = new EmployeeAPIs(CommonNinject.Kernel.Get<IEmployeeAPIRepository>());
             this.combexSalespersonID.DataSource = employeeAPIs.GetEmployeeBases();
             this.combexSalespersonID.DisplayMember = CommonExpressions.PropertyName<EmployeeBase>(p => p.Name);
             this.combexSalespersonID.ValueMember = CommonExpressions.PropertyName<EmployeeBase>(p => p.EmployeeID);
@@ -173,7 +185,9 @@ namespace TotalSmartCoding.Views.Commons.Customers
             this.bindingRemarks.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingCaption.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
 
+            this.bindingCustomerTypeID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingCustomerCategoryID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingTerritoryID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingSalespersonID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.fastCustomerIndex.AboutToCreateGroups += fastCustomerIndex_AboutToCreateGroups;
 

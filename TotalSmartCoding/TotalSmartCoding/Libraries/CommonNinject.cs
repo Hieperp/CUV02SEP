@@ -132,6 +132,20 @@ namespace TotalSmartCoding.Libraries
                 Kernel.Bind<IEmployeeAPIRepository>().To<EmployeeAPIRepository>();
                 //Kernel.Bind<EmployeeViewModel>().ToSelf();
 
+                //Kernel.Bind<ITerritoryService>().To<TerritoryService>();
+                Kernel.Bind<ITerritoryRepository>().To<TerritoryRepository>();
+                Kernel.Bind<ITerritoryAPIRepository>().To<TerritoryAPIRepository>();
+                //Kernel.Bind<TerritoryViewModel>().ToSelf();
+
+                //Kernel.Bind<ICustomerCategoryService>().To<CustomerCategoryService>();
+                Kernel.Bind<ICustomerCategoryRepository>().To<CustomerCategoryRepository>();
+                Kernel.Bind<ICustomerCategoryAPIRepository>().To<CustomerCategoryAPIRepository>();
+                //Kernel.Bind<CustomerCategoryViewModel>().ToSelf();
+
+                //Kernel.Bind<ICustomerTypeService>().To<CustomerTypeService>();
+                Kernel.Bind<ICustomerTypeRepository>().To<CustomerTypeRepository>();
+                Kernel.Bind<ICustomerTypeAPIRepository>().To<CustomerTypeAPIRepository>();
+                //Kernel.Bind<CustomerTypeViewModel>().ToSelf();
 
                 //Kernel.Bind<IWarehouseService>().To<WarehouseService>();
                 Kernel.Bind<IWarehouseRepository>().To<WarehouseRepository>();

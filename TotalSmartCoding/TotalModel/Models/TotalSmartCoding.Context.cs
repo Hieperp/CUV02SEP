@@ -1567,5 +1567,71 @@ namespace TotalModel.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CustomerSaveRelative", entityIDParameter, saveRelativeOptionParameter);
         }
+    
+        public virtual ObjectResult<CustomerCategoryBase> GetCustomerCategoryBases()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CustomerCategoryBase>("GetCustomerCategoryBases");
+        }
+    
+        public virtual ObjectResult<CustomerCategoryIndex> GetCustomerCategoryIndexes(string aspUserID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
+        {
+            var aspUserIDParameter = aspUserID != null ?
+                new ObjectParameter("AspUserID", aspUserID) :
+                new ObjectParameter("AspUserID", typeof(string));
+    
+            var fromDateParameter = fromDate.HasValue ?
+                new ObjectParameter("FromDate", fromDate) :
+                new ObjectParameter("FromDate", typeof(System.DateTime));
+    
+            var toDateParameter = toDate.HasValue ?
+                new ObjectParameter("ToDate", toDate) :
+                new ObjectParameter("ToDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CustomerCategoryIndex>("GetCustomerCategoryIndexes", aspUserIDParameter, fromDateParameter, toDateParameter);
+        }
+    
+        public virtual ObjectResult<CustomerTypeBase> GetCustomerTypeBases()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CustomerTypeBase>("GetCustomerTypeBases");
+        }
+    
+        public virtual ObjectResult<CustomerTypeIndex> GetCustomerTypeIndexes(string aspUserID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
+        {
+            var aspUserIDParameter = aspUserID != null ?
+                new ObjectParameter("AspUserID", aspUserID) :
+                new ObjectParameter("AspUserID", typeof(string));
+    
+            var fromDateParameter = fromDate.HasValue ?
+                new ObjectParameter("FromDate", fromDate) :
+                new ObjectParameter("FromDate", typeof(System.DateTime));
+    
+            var toDateParameter = toDate.HasValue ?
+                new ObjectParameter("ToDate", toDate) :
+                new ObjectParameter("ToDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CustomerTypeIndex>("GetCustomerTypeIndexes", aspUserIDParameter, fromDateParameter, toDateParameter);
+        }
+    
+        public virtual ObjectResult<TerritoryBase> GetTerritoryBases()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<TerritoryBase>("GetTerritoryBases");
+        }
+    
+        public virtual ObjectResult<TerritoryIndex> GetTerritoryIndexes(string aspUserID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
+        {
+            var aspUserIDParameter = aspUserID != null ?
+                new ObjectParameter("AspUserID", aspUserID) :
+                new ObjectParameter("AspUserID", typeof(string));
+    
+            var fromDateParameter = fromDate.HasValue ?
+                new ObjectParameter("FromDate", fromDate) :
+                new ObjectParameter("FromDate", typeof(System.DateTime));
+    
+            var toDateParameter = toDate.HasValue ?
+                new ObjectParameter("ToDate", toDate) :
+                new ObjectParameter("ToDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<TerritoryIndex>("GetTerritoryIndexes", aspUserIDParameter, fromDateParameter, toDateParameter);
+        }
     }
 }

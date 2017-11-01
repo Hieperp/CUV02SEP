@@ -98,8 +98,11 @@
   <ItemGroup>
     <Compile Include="Controllers\APIs\Commons\BinLocationAPIs.cs" />
     <Compile Include="Controllers\APIs\Commons\CustomerAPIs.cs" />
+    <Compile Include="Controllers\APIs\Commons\CustomerCategoryAPIs.cs" />
+    <Compile Include="Controllers\APIs\Commons\CustomerTypeAPIs.cs" />
     <Compile Include="Controllers\APIs\Commons\EmployeeAPIs.cs" />
     <Compile Include="Controllers\APIs\Commons\FillingLineAPIs.cs" />
+    <Compile Include="Controllers\APIs\Commons\TerritoryAPIs.cs" />
     <Compile Include="Controllers\APIs\Commons\WarehouseAdjustmentTypeAPIs.cs" />
     <Compile Include="Controllers\APIs\Commons\WarehouseAPIs.cs" />
     <Compile Include="Controllers\APIs\Generals\ModuleAPIs.cs" />
