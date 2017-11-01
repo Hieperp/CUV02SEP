@@ -36,7 +36,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
-            queryString = queryString + "       SELECT      Customers.CustomerID, Customers.Code AS CustomerCode, Customers.Name AS CustomerName, Customers.OfficialName AS CustomerOfficialName, Customers.ContactInfo, Customers.BillingAddress, EntireTerritories.TerritoryID, EntireTerritories.EntireName AS EntireTerritoryEntireName, Employees.EmployeeID, Employees.Name AS EmployeeName, Customers.InActive " + "\r\n";
+            queryString = queryString + "       SELECT      Customers.CustomerID, Customers.Code AS CustomerCode, Customers.Name AS CustomerName, Customers.OfficialName AS CustomerOfficialName, Customers.ContactInfo, Customers.BillingAddress, EntireTerritories.TerritoryID, EntireTerritories.EntireName AS EntireTerritoryEntireName, Employees.EmployeeID, Employees.Name AS SalespersonName, Customers.InActive " + "\r\n";
             queryString = queryString + "       FROM        Customers " + "\r\n";
             queryString = queryString + "                   INNER JOIN EntireTerritories ON Customers.TerritoryID = EntireTerritories.TerritoryID " + "\r\n";
             queryString = queryString + "                   INNER JOIN Employees ON Customers.SalespersonID = Employees.EmployeeID " + "\r\n";

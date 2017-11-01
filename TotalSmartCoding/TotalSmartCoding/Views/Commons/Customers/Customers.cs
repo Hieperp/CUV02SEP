@@ -159,7 +159,7 @@ namespace TotalSmartCoding.Views.Commons.Customers
             this.fastCustomerIndex.AboutToCreateGroups += fastCustomerIndex_AboutToCreateGroups;
 
             this.fastCustomerIndex.ShowGroups = true;
-            this.olvApproved.Renderer = new MappedImageRenderer(new Object[] { false, Resources.Placeholder16 });
+            this.olvInActive.Renderer = new MappedImageRenderer(new Object[] { false, Resources.Placeholder16 });
             this.naviGroupDetails.ExpandedHeight = this.naviGroupDetails.Size.Height;
         }
 
@@ -190,7 +190,7 @@ namespace TotalSmartCoding.Views.Commons.Customers
         protected override void DoAfterLoad()
         {
             base.DoAfterLoad();
-            this.fastCustomerIndex.Sort(this.olvEntryDate, SortOrder.Descending);
+            this.fastCustomerIndex.Sort(this.olvSalespersonName, SortOrder.Descending);
         }
     }
 }

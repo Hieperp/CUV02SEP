@@ -3396,7 +3396,7 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
             <End Role="CustomerType1" EntitySet="CustomerTypes" />
           </AssociationSet>
           <FunctionImport Name="CustomerEditable" ReturnType="Collection(String)">
-            <Parameter Name="EntityID" Mode="In" Type="Int32" />
+          <Parameter Name="EntityID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="CustomerSaveRelative">
             <Parameter Name="EntityID" Mode="In" Type="Int32" />
@@ -3850,7 +3850,8 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Type="Int32" Name="TerritoryID" Nullable="false" />
           <Property Type="String" Name="EntireTerritoryEntireName" Nullable="false" MaxLength="508" />
           <Property Type="Int32" Name="EmployeeID" Nullable="false" />
-          <Property Type="String" Name="EmployeeName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="SalespersonName" Nullable="false" MaxLength="50" />
+          <Property Type="Boolean" Name="InActive" Nullable="false" />
           </ComplexType>
         <EntityType Name="DeliveryAdviceDetail">
           <Key>
@@ -6499,7 +6500,8 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
                 <ScalarProperty Name="TerritoryID" ColumnName="TerritoryID" />
                 <ScalarProperty Name="EntireTerritoryEntireName" ColumnName="EntireTerritoryEntireName" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="SalespersonName" ColumnName="SalespersonName" />
+                <ScalarProperty Name="InActive" ColumnName="InActive" />
                 </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

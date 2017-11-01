@@ -22,6 +22,7 @@ namespace TotalModel.Models
         public int TerritoryID { get; set; }
         public string EntireTerritoryEntireName { get; set; }
         public int EmployeeID { get; set; }
-        public string EmployeeName { get; set; }
+        public string SalespersonName { get; set; }
+        public bool InActive { get; set; }
     }
 }

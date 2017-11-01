@@ -73,17 +73,14 @@
             this.panelLeft = new System.Windows.Forms.Panel();
             this.fastCustomerIndex = new BrightIdeasSoftware.FastObjectListView();
             this.olvID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvEntryDate = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvReference = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvVoucherCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvDeliveryDate = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvBlank = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvCustomerCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvCustomerName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvLocationCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvDescription = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvTotalQuantity = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvTotalLineVolume = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvApproved = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvCustomerOfficialName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvContactInfo = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvEntireTerritoryEntireName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvSalespersonName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvInActive = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvBillingAddress = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.imageList32 = new System.Windows.Forms.ImageList(this.components);
             this.layoutLeft.SuspendLayout();
             this.toolStripChildForm.SuspendLayout();
@@ -627,31 +624,25 @@
             // fastCustomerIndex
             // 
             this.fastCustomerIndex.AllColumns.Add(this.olvID);
-            this.fastCustomerIndex.AllColumns.Add(this.olvEntryDate);
-            this.fastCustomerIndex.AllColumns.Add(this.olvReference);
-            this.fastCustomerIndex.AllColumns.Add(this.olvVoucherCode);
-            this.fastCustomerIndex.AllColumns.Add(this.olvDeliveryDate);
+            this.fastCustomerIndex.AllColumns.Add(this.olvBlank);
             this.fastCustomerIndex.AllColumns.Add(this.olvCustomerCode);
-            this.fastCustomerIndex.AllColumns.Add(this.olvCustomerName);
-            this.fastCustomerIndex.AllColumns.Add(this.olvLocationCode);
-            this.fastCustomerIndex.AllColumns.Add(this.olvDescription);
-            this.fastCustomerIndex.AllColumns.Add(this.olvTotalQuantity);
-            this.fastCustomerIndex.AllColumns.Add(this.olvTotalLineVolume);
-            this.fastCustomerIndex.AllColumns.Add(this.olvApproved);
+            this.fastCustomerIndex.AllColumns.Add(this.olvCustomerOfficialName);
+            this.fastCustomerIndex.AllColumns.Add(this.olvContactInfo);
+            this.fastCustomerIndex.AllColumns.Add(this.olvEntireTerritoryEntireName);
+            this.fastCustomerIndex.AllColumns.Add(this.olvSalespersonName);
+            this.fastCustomerIndex.AllColumns.Add(this.olvInActive);
+            this.fastCustomerIndex.AllColumns.Add(this.olvBillingAddress);
             this.fastCustomerIndex.BackColor = System.Drawing.Color.Ivory;
             this.fastCustomerIndex.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.olvID,
-            this.olvEntryDate,
-            this.olvReference,
-            this.olvVoucherCode,
-            this.olvDeliveryDate,
+            this.olvBlank,
             this.olvCustomerCode,
-            this.olvCustomerName,
-            this.olvLocationCode,
-            this.olvDescription,
-            this.olvTotalQuantity,
-            this.olvTotalLineVolume,
-            this.olvApproved});
+            this.olvCustomerOfficialName,
+            this.olvContactInfo,
+            this.olvEntireTerritoryEntireName,
+            this.olvSalespersonName,
+            this.olvInActive,
+            this.olvBillingAddress});
             this.fastCustomerIndex.Cursor = System.Windows.Forms.Cursors.Default;
             this.fastCustomerIndex.Dock = System.Windows.Forms.DockStyle.Fill;
             this.fastCustomerIndex.Font = new System.Drawing.Font("Calibri Light", 10.2F);
@@ -676,87 +667,58 @@
             this.olvID.Text = "";
             this.olvID.Width = 0;
             // 
-            // olvEntryDate
+            // olvBlank
             // 
-            this.olvEntryDate.AspectName = "EntryDate";
-            this.olvEntryDate.AspectToStringFormat = "{0:d}";
-            this.olvEntryDate.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvEntryDate.Text = "Date";
-            this.olvEntryDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvEntryDate.Width = 113;
-            // 
-            // olvReference
-            // 
-            this.olvReference.AspectName = "Reference";
-            this.olvReference.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvReference.Text = "Reference";
-            this.olvReference.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvReference.Width = 90;
-            // 
-            // olvVoucherCode
-            // 
-            this.olvVoucherCode.AspectName = "VoucherCode";
-            this.olvVoucherCode.Text = "Voucher #";
-            this.olvVoucherCode.Width = 120;
-            // 
-            // olvDeliveryDate
-            // 
-            this.olvDeliveryDate.AspectName = "DeliveryDate";
-            this.olvDeliveryDate.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvDeliveryDate.Text = "Delivery Date";
-            this.olvDeliveryDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvDeliveryDate.Width = 145;
+            this.olvBlank.Text = "";
+            this.olvBlank.Width = 15;
             // 
             // olvCustomerCode
             // 
-            this.olvCustomerCode.AspectName = "CustomerCode";
-            this.olvCustomerCode.Text = "Customer Code";
-            this.olvCustomerCode.Width = 113;
+            this.olvCustomerCode.AspectName = "CustomerCode ";
+            this.olvCustomerCode.AspectToStringFormat = "";
+            this.olvCustomerCode.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvCustomerCode.Text = "Code";
+            this.olvCustomerCode.Width = 96;
             // 
-            // olvCustomerName
+            // olvCustomerOfficialName
             // 
-            this.olvCustomerName.AspectName = "CustomerName";
-            this.olvCustomerName.Text = "Customer Name";
-            this.olvCustomerName.Width = 309;
+            this.olvCustomerOfficialName.AspectName = "CustomerOfficialName";
+            this.olvCustomerOfficialName.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvCustomerOfficialName.Text = "Official Name";
+            this.olvCustomerOfficialName.Width = 420;
             // 
-            // olvLocationCode
+            // olvContactInfo
             // 
-            this.olvLocationCode.AspectName = "LocationCode";
-            this.olvLocationCode.Text = "Location";
-            this.olvLocationCode.Width = 72;
+            this.olvContactInfo.AspectName = "ContactInfo";
+            this.olvContactInfo.Text = "Contact Info";
+            this.olvContactInfo.Width = 108;
             // 
-            // olvDescription
+            // olvEntireTerritoryEntireName
             // 
-            this.olvDescription.AspectName = "Description";
-            this.olvDescription.Text = "Description";
-            this.olvDescription.Width = 308;
+            this.olvEntireTerritoryEntireName.AspectName = "EntireTerritoryEntireName";
+            this.olvEntireTerritoryEntireName.Text = "Territory";
+            this.olvEntireTerritoryEntireName.Width = 120;
             // 
-            // olvTotalQuantity
+            // olvSalespersonName
             // 
-            this.olvTotalQuantity.AspectName = "TotalQuantity";
-            this.olvTotalQuantity.AspectToStringFormat = "{0:#,#}";
-            this.olvTotalQuantity.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.olvTotalQuantity.Text = "Quantity";
-            this.olvTotalQuantity.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.olvTotalQuantity.Width = 81;
+            this.olvSalespersonName.AspectName = "SalespersonName";
+            this.olvSalespersonName.Text = "Salesperson";
+            this.olvSalespersonName.Width = 180;
             // 
-            // olvTotalLineVolume
+            // olvInActive
             // 
-            this.olvTotalLineVolume.AspectName = "TotalLineVolume";
-            this.olvTotalLineVolume.AspectToStringFormat = "{0:#,##0.00}";
-            this.olvTotalLineVolume.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.olvTotalLineVolume.Text = "Volume";
-            this.olvTotalLineVolume.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.olvTotalLineVolume.Width = 90;
+            this.olvInActive.AspectName = "InActive";
+            this.olvInActive.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvInActive.Text = "";
+            this.olvInActive.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvInActive.Width = 30;
             // 
-            // olvApproved
+            // olvBillingAddress
             // 
-            this.olvApproved.AspectName = "Approved";
-            this.olvApproved.FillsFreeSpace = true;
-            this.olvApproved.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvApproved.Text = "";
-            this.olvApproved.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvApproved.Width = 54;
+            this.olvBillingAddress.AspectName = "BillingAddress";
+            this.olvBillingAddress.FillsFreeSpace = true;
+            this.olvBillingAddress.Text = "Billing Address";
+            this.olvBillingAddress.Width = 500;
             // 
             // imageList32
             // 
@@ -818,28 +780,24 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private BrightIdeasSoftware.FastObjectListView fastCustomerIndex;
         private BrightIdeasSoftware.OLVColumn olvID;
-        private BrightIdeasSoftware.OLVColumn olvEntryDate;
-        private BrightIdeasSoftware.OLVColumn olvReference;
+        private BrightIdeasSoftware.OLVColumn olvCustomerCode;
+        private BrightIdeasSoftware.OLVColumn olvCustomerOfficialName;
         private System.Windows.Forms.Panel panelLeft;
         private CustomControls.CombexBox combexSalespersonID;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label labelCaption;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ImageList imageList32;
-        private BrightIdeasSoftware.OLVColumn olvApproved;
-        private BrightIdeasSoftware.OLVColumn olvCustomerCode;
-        private BrightIdeasSoftware.OLVColumn olvCustomerName;
-        private BrightIdeasSoftware.OLVColumn olvLocationCode;
-        private BrightIdeasSoftware.OLVColumn olvVoucherCode;
-        private BrightIdeasSoftware.OLVColumn olvDescription;
-        private BrightIdeasSoftware.OLVColumn olvTotalQuantity;
-        private BrightIdeasSoftware.OLVColumn olvTotalLineVolume;
+        private BrightIdeasSoftware.OLVColumn olvInActive;
+        private BrightIdeasSoftware.OLVColumn olvEntireTerritoryEntireName;
+        private BrightIdeasSoftware.OLVColumn olvSalespersonName;
+        private BrightIdeasSoftware.OLVColumn olvContactInfo;
+        private BrightIdeasSoftware.OLVColumn olvBillingAddress;
         private System.Windows.Forms.PictureBox pictureBox1;
         private CustomControls.TextexBox textexOfficialName;
         private System.Windows.Forms.Label label3;
         private CustomControls.TextexBox textexContactInfo;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private BrightIdeasSoftware.OLVColumn olvDeliveryDate;
         private System.Windows.Forms.Label label4;
         private CustomControls.TextexBox textexVATCode;
         private CustomControls.TextexBox textexAttentionName;
@@ -863,6 +821,7 @@
         private CustomControls.CombexBox combexCustomerTypeID;
         private CustomControls.CombexBox combexTerritoryID;
         private System.Windows.Forms.Panel panelCenter;
+        private BrightIdeasSoftware.OLVColumn olvBlank;
 
     }
 }
