@@ -37,6 +37,7 @@ using TotalSmartCoding.Views.Inventories.GoodsReceipts;
 using TotalSmartCoding.Views.Sales.SalesOrders;
 using TotalSmartCoding.Views.Sales.DeliveryAdvices;
 using TotalSmartCoding.Views.Sales.TransferOrders;
+using TotalSmartCoding.Views.Commons.Customers;
 
 namespace TotalSmartCoding.Views.Mains
 {
@@ -317,6 +318,10 @@ namespace TotalSmartCoding.Views.Mains
                     Form openingView;
                     switch (taskID)
                     {
+                        case (int)GlobalEnums.NmvnTaskID.Customer:
+                            openingView = new Customers();
+                            break;
+
                         case (int)GlobalEnums.NmvnTaskID.Pickup:
                             openingView = new Pickups();
                             break;

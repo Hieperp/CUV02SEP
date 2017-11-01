@@ -31,6 +31,9 @@ using TotalCore.Repositories.Sales;
 using TotalSmartCoding.ViewModels.Sales;
 using TotalCore.Repositories.Generals;
 using TotalDAL.Repositories.Generals;
+using TotalCore.Services.Commons;
+using TotalSmartCoding.ViewModels.Commons;
+using TotalService.Commons;
 //using TotalDAL.Repositories.Inventories;
 
 //using TotalService.Inventories;
@@ -112,10 +115,10 @@ namespace TotalSmartCoding.Libraries
                 //Kernel.Bind<ModuleViewModel>().ToSelf();
 
 
-                //Kernel.Bind<ICustomerService>().To<CustomerService>();
+                Kernel.Bind<ICustomerService>().To<CustomerService>();
                 Kernel.Bind<ICustomerRepository>().To<CustomerRepository>();
                 Kernel.Bind<ICustomerAPIRepository>().To<CustomerAPIRepository>();
-                //Kernel.Bind<CustomerViewModel>().ToSelf();
+                Kernel.Bind<CustomerViewModel>().ToSelf();
 
 
                 //Kernel.Bind<ICommodityService>().To<CommodityService>();

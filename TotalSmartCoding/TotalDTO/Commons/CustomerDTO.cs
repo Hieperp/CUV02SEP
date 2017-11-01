@@ -21,6 +21,7 @@ namespace TotalDTO.Commons
         string OfficialName { get; set; }
         Nullable<System.DateTime> Birthday { get; set; }
         string VATCode { get; set; }
+        string ContactInfo { get; set; }
         string Telephone { get; set; }
         string BillingAddress { get; set; }
         string ShippingAddress { get; set; }
@@ -28,19 +29,18 @@ namespace TotalDTO.Commons
         string EntireTerritoryEntireName { get; set; }
         int SalespersonID { get; set; }
         string SalespersonName { get; set; }
-        int PaymentTermID { get; set; }
-        int PriceCategoryID { get; set; }
-        string PriceCategoryCode { get; set; }
-        bool ShowDiscount { get; set; }
-
-        int WarehouseID { get; set; }
-        string WarehouseCode { get; set; }
-        string WarehouseName { get; set; }
     }
 
     public class CustomerBaseDTO : BaseDTO, ICustomerBaseDTO
     {
-        public int CustomerID { get; set; }
+        private int customerID;
+        [DefaultValue(0)]
+        public int CustomerID
+        {
+            get { return this.customerID; }
+            set { ApplyPropertyChange<CustomerBaseDTO, int>(ref this.customerID, o => o.CustomerID, value); }
+        }
+
 
         public string CodeAndName { get { return this.Code + (this.Code != null && this.Code != "" && this.Name != null && this.Name != "" ? "  -  " : "") + this.Name; } }
 
@@ -58,6 +58,9 @@ namespace TotalDTO.Commons
 
         [Display(Name = "Mã số thuế")]
         public string VATCode { get; set; }
+
+        [Display(Name = "Mã số thuế")]
+        public string ContactInfo { get; set; }
 
         [Display(Name = "Điện thoại")]
         public string Telephone { get; set; }
@@ -78,63 +81,29 @@ namespace TotalDTO.Commons
         public int SalespersonID { get; set; }
         [Display(Name = "Tên nhân viên")]
         public virtual string SalespersonName { get; set; }
-
-        [Display(Name = "Phương thức thanh toán")]
-        public int PaymentTermID { get; set; }
-
-        [Required]
-        [Display(Name = "Bảng giá")]
-        public int PriceCategoryID { get; set; }
-        [Display(Name = "Bảng giá")]
-        public string PriceCategoryCode { get; set; }
-
-        [Display(Name = "Mã kho")]
-        public int WarehouseID { get; set; }
-        [Display(Name = "Mã kho")]
-        public string WarehouseCode { get; set; }
-        [Display(Name = "Kho hàng")]
-        public string WarehouseName { get; set; }
     }
 
 
     public class CustomerPrimitiveDTO : CustomerBaseDTO, IPrimitiveEntity, IPrimitiveDTO
     {
-        public GlobalEnums.NmvnTaskID NMVNTaskID { get { return GlobalEnums.NmvnTaskID.Customer; } }
+        public override GlobalEnums.NmvnTaskID NMVNTaskID { get { return GlobalEnums.NmvnTaskID.Customer; } }        
 
         public override int GetID() { return this.CustomerID; }
         public void SetID(int id) { this.CustomerID = id; }
-
-        //public int CustomerID { get; set; }
-        //[Required]
-        //[Display(Name = "Tên khách")]
-        //public string Name { get; set; }
-        //[Display(Name = "Tên đầy đủ")]
-        //public string OfficialName { get; set; }
+        
         [Display(Name = "Phân khúc khách hàng")]
         [DefaultValue(1)]
         public int CustomerCategoryID { get; set; }
         [Display(Name = "Phân loại khách hàng")]
         [DefaultValue(1)]
         public int CustomerTypeID { get; set; }
-        //[Display(Name = "Khu vực")]
-        //public int TerritoryID { get; set; }
-        //[Display(Name = "Khu vực")]
-        //[Required]
-        //public string EntireTerritoryEntireName { get; set; }
-
-        //[Display(Name = "Mã số thuế")]
-        //public string VATCode { get; set; }
-        //[Display(Name = "Điện thoại")]
-        //[Required]
-        //public string Telephone { get; set; }
+        
         public string Facsimile { get; set; }
         [Display(Name = "Người liên hệ")]
         public string AttentionName { get; set; }
         [Display(Name = "Chức danh")]
         public string AttentionTitle { get; set; }
-        //[Required]
-        //[Display(Name = "Ngày sinh")]
-        //public Nullable<System.DateTime> Birthday { get; set; }
+        
 
         [Required(ErrorMessage = "Vui lòng nhập địa chỉ xuất hóa đơn")]
         public override string BillingAddress { get; set; }
@@ -152,8 +121,6 @@ namespace TotalDTO.Commons
         public bool IsCustomer { get; set; }
         [Display(Name = "Nhà cung cấp")]
         public bool IsSupplier { get; set; }
-        [Display(Name = "Giới tính nữ")]
-        public bool IsFemale { get; set; }
 
         public override int PreparedPersonID { get { return 1; } }
     }

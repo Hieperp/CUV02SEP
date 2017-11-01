@@ -46,7 +46,6 @@ namespace TotalModel.Models
         public virtual DbSet<Pallet> Pallets { get; set; }
         public virtual DbSet<PickupDetail> PickupDetails { get; set; }
         public virtual DbSet<SalesOrder> SalesOrders { get; set; }
-        public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<DeliveryAdvice> DeliveryAdvices { get; set; }
         public virtual DbSet<Module> Modules { get; set; }
         public virtual DbSet<Commodity> Commodities { get; set; }
@@ -61,6 +60,10 @@ namespace TotalModel.Models
         public virtual DbSet<GoodsIssue> GoodsIssues { get; set; }
         public virtual DbSet<TransferOrderDetail> TransferOrderDetails { get; set; }
         public virtual DbSet<TransferOrder> TransferOrders { get; set; }
+        public virtual DbSet<CustomerCategory> CustomerCategories { get; set; }
+        public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<CustomerType> CustomerTypes { get; set; }
+        public virtual DbSet<EntireTerritory> EntireTerritories { get; set; }
     
         public virtual ObjectResult<Nullable<int>> GetAccessLevel(Nullable<int> userID, Nullable<int> nMVNTaskID, Nullable<int> organizationalUnitID)
         {
@@ -1541,6 +1544,28 @@ namespace TotalModel.Models
                 new ObjectParameter("IsReadonly", typeof(bool));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PendingTransferOrderDetail>("GetPendingTransferOrderDetails", locationIDParameter, goodsIssueIDParameter, warehouseIDParameter, transferOrderIDParameter, warehouseReceiptIDParameter, transferOrderDetailIDsParameter, isReadonlyParameter);
+        }
+    
+        public virtual ObjectResult<string> CustomerEditable(Nullable<int> entityID)
+        {
+            var entityIDParameter = entityID.HasValue ?
+                new ObjectParameter("EntityID", entityID) :
+                new ObjectParameter("EntityID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("CustomerEditable", entityIDParameter);
+        }
+    
+        public virtual int CustomerSaveRelative(Nullable<int> entityID, Nullable<int> saveRelativeOption)
+        {
+            var entityIDParameter = entityID.HasValue ?
+                new ObjectParameter("EntityID", entityID) :
+                new ObjectParameter("EntityID", typeof(int));
+    
+            var saveRelativeOptionParameter = saveRelativeOption.HasValue ?
+                new ObjectParameter("SaveRelativeOption", saveRelativeOption) :
+                new ObjectParameter("SaveRelativeOption", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CustomerSaveRelative", entityIDParameter, saveRelativeOptionParameter);
         }
     }
 }

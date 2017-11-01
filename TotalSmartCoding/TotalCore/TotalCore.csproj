@@ -75,6 +75,7 @@
     <Compile Include="Repositories\Sales\IDeliveryAdviceRepository.cs" />
     <Compile Include="Repositories\Sales\ISalesOrderRepository.cs" />
     <Compile Include="Repositories\Sales\ITransferOrderRepository.cs" />
+    <Compile Include="Services\Commons\ICustomerService.cs" />
     <Compile Include="Services\IBaseService.cs" />
     <Compile Include="Services\IGenericService.cs" />
     <Compile Include="Services\IGenericWithDetailService.cs" />

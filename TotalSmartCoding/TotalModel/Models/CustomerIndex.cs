@@ -14,7 +14,14 @@ namespace TotalModel.Models
     public partial class CustomerIndex
     {
         public int CustomerID { get; set; }
-        public string Code { get; set; }
-        public string Name { get; set; }
+        public string CustomerCode { get; set; }
+        public string CustomerName { get; set; }
+        public string CustomerOfficialName { get; set; }
+        public string ContactInfo { get; set; }
+        public string BillingAddress { get; set; }
+        public int TerritoryID { get; set; }
+        public string EntireTerritoryEntireName { get; set; }
+        public int EmployeeID { get; set; }
+        public string EmployeeName { get; set; }
     }
 }

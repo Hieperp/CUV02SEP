@@ -19,6 +19,9 @@ namespace TotalDAL.Repositories.Commons
 
 
 
+
+
+
     public class CustomerAPIRepository : GenericAPIRepository, ICustomerAPIRepository
     {
         public CustomerAPIRepository(TotalSmartCodingEntities totalSmartCodingEntities)
@@ -30,6 +33,6 @@ namespace TotalDAL.Repositories.Commons
         {
             return this.TotalSmartCodingEntities.GetCustomerBases().ToList();
         }
-        
     }
+
 }

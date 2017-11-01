@@ -4,9 +4,8 @@ using TotalModel.Models;
 
 namespace TotalCore.Repositories.Commons
 {
-    public interface ICustomerRepository
+    public interface ICustomerRepository : IGenericRepository<Customer>
     {
-
     }
 
     public interface ICustomerAPIRepository : IGenericAPIRepository
@@ -14,3 +13,4 @@ namespace TotalCore.Repositories.Commons
         IList<CustomerBase> GetCustomerBases();
     }
 }
+
