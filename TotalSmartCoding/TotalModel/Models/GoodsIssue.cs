@@ -36,6 +36,9 @@ namespace TotalModel.Models
         public int PreparedPersonID { get; set; }
         public int OrganizationalUnitID { get; set; }
         public int LocationID { get; set; }
+        public int TotalPackCounts { get; set; }
+        public int TotalCartonCounts { get; set; }
+        public int TotalPalletCounts { get; set; }
         public decimal TotalQuantity { get; set; }
         public decimal TotalLineVolume { get; set; }
         public string Vehicle { get; set; }
@@ -46,6 +49,7 @@ namespace TotalModel.Models
         public bool Approved { get; set; }
         public Nullable<System.DateTime> ApprovedDate { get; set; }
     
+        public virtual Customer Customer { get; set; }
         public virtual DeliveryAdvice DeliveryAdvice { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GoodsIssueDetail> GoodsIssueDetails { get; set; }
@@ -54,6 +58,5 @@ namespace TotalModel.Models
         public virtual TransferOrder TransferOrder { get; set; }
         public virtual Warehouse Warehouse { get; set; }
         public virtual Warehouse Warehouse1 { get; set; }
-        public virtual Customer Customer { get; set; }
     }
 }

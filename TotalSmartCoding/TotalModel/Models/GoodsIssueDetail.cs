@@ -29,16 +29,24 @@ namespace TotalModel.Models
         public Nullable<int> CustomerID { get; set; }
         public Nullable<int> WarehouseReceiptID { get; set; }
         public int CommodityID { get; set; }
+        public int BinLocationID { get; set; }
+        public Nullable<int> BatchID { get; set; }
+        public Nullable<int> PackID { get; set; }
+        public Nullable<int> CartonID { get; set; }
+        public Nullable<int> PalletID { get; set; }
+        public int PackCounts { get; set; }
+        public int CartonCounts { get; set; }
+        public int PalletCounts { get; set; }
         public decimal Quantity { get; set; }
         public decimal LineVolume { get; set; }
         public string Remarks { get; set; }
         public bool Approved { get; set; }
     
         public virtual Commodity Commodity { get; set; }
+        public virtual Customer Customer { get; set; }
         public virtual DeliveryAdviceDetail DeliveryAdviceDetail { get; set; }
         public virtual GoodsIssue GoodsIssue { get; set; }
         public virtual GoodsReceiptDetail GoodsReceiptDetail { get; set; }
         public virtual TransferOrderDetail TransferOrderDetail { get; set; }
-        public virtual Customer Customer { get; set; }
     }
 }

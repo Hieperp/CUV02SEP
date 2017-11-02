@@ -49,5 +49,7 @@ namespace TotalModel.Models
         public Nullable<int> TransferOrderDetailID { get; set; }
         public string TransferOrderReference { get; set; }
         public Nullable<System.DateTime> TransferOrderEntryDate { get; set; }
+        public Nullable<int> BatchID { get; set; }
+        public int WarehouseID { get; set; }
     }
 }

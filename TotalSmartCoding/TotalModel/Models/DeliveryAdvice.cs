@@ -51,8 +51,8 @@ namespace TotalModel.Models
         public virtual ICollection<DeliveryAdviceDetail> DeliveryAdviceDetails { get; set; }
         public virtual Location Location { get; set; }
         public virtual SalesOrder SalesOrder { get; set; }
+        public virtual Customer Customer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GoodsIssue> GoodsIssues { get; set; }
-        public virtual Customer Customer { get; set; }
     }
 }
