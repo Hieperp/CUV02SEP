@@ -273,6 +273,25 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryString = queryString + "       IF @@ROWCOUNT = 1 " + "\r\n";
             queryString = queryString + "           BEGIN " + "\r\n";
             queryString = queryString + "               UPDATE          GoodsIssueDetails  SET Approved = @Approved WHERE GoodsIssueID = @EntityID ; " + "\r\n";
+
+            queryString = queryString + "               IF (@Approved = 1) " + "\r\n";
+            queryString = queryString + "                   BEGIN " + "\r\n";
+            queryString = queryString + "                       IF (NOT (SELECT TOP 1 TransferOrderID FROM GoodsIssueDetails WHERE GoodsIssueID = @EntityID) IS NULL) " + "\r\n";
+            queryString = queryString + "                           BEGIN " + "\r\n";
+
+            queryString = queryString + "                               INSERT INTO     GoodsIssueTransferDetails (GoodsIssueDetailID, GoodsIssueID, TransferOrderDetailID, TransferOrderID, LocationID, WarehouseID, WarehouseReceiptID, CommodityID, BinLocationID, BatchID, PackID, CartonID, PalletID, PackCounts, CartonCounts, PalletCounts, Quantity, QuantityReceipt, LineVolume, LineVolumeReceipt, Remarks, Approved) " + "\r\n";
+            queryString = queryString + "                               SELECT          GoodsIssueDetailID, GoodsIssueID, TransferOrderDetailID, TransferOrderID, LocationID, WarehouseID, WarehouseReceiptID, CommodityID, BinLocationID, BatchID, PackID, CartonID, PalletID, PackCounts, CartonCounts, PalletCounts, Quantity, 0 AS QuantityReceipt, LineVolume, 0 AS LineVolumeReceipt, Remarks, Approved FROM GoodsIssueDetails WHERE GoodsIssueID = @EntityID AND PalletID IS NULL " + "\r\n";
+            queryString = queryString + "                               INSERT INTO     GoodsIssueTransferDetails (GoodsIssueDetailID, GoodsIssueID, TransferOrderDetailID, TransferOrderID, LocationID, WarehouseID, WarehouseReceiptID, CommodityID, BinLocationID, BatchID, PackID, CartonID, PalletID, PackCounts, CartonCounts, PalletCounts, Quantity, QuantityReceipt, LineVolume, LineVolumeReceipt, Remarks, Approved) " + "\r\n";
+            queryString = queryString + "                               SELECT          GoodsIssueDetails.GoodsIssueDetailID, GoodsIssueDetails.GoodsIssueID, GoodsIssueDetails.TransferOrderDetailID, GoodsIssueDetails.TransferOrderID, GoodsIssueDetails.LocationID, GoodsIssueDetails.WarehouseID, GoodsIssueDetails.WarehouseReceiptID, GoodsIssueDetails.CommodityID, GoodsIssueDetails.BinLocationID, GoodsIssueDetails.BatchID, GoodsIssueDetails.PackID, Cartons.CartonID, NULL AS PalletID, GoodsIssueDetails.PackCounts, GoodsIssueDetails.CartonCounts, GoodsIssueDetails.PalletCounts, GoodsIssueDetails.Quantity, 0 AS QuantityReceipt, GoodsIssueDetails.LineVolume, 0 AS LineVolumeReceipt, GoodsIssueDetails.Remarks, GoodsIssueDetails.Approved FROM GoodsIssueDetails INNER JOIN Cartons ON GoodsIssueDetails.PalletID = Cartons.PalletID WHERE GoodsIssueDetails.GoodsIssueID = @EntityID AND NOT GoodsIssueDetails.PalletID IS NULL " + "\r\n";
+
+            queryString = queryString + "                           END " + "\r\n";
+            queryString = queryString + "                   END " + "\r\n";
+
+            queryString = queryString + "               ELSE " + "\r\n";
+            queryString = queryString + "                   BEGIN " + "\r\n";
+            queryString = queryString + "                       DELETE FROM GoodsIssueTransferDetails WHERE GoodsIssueID = @EntityID ; " + "\r\n";
+            queryString = queryString + "                   END " + "\r\n";
+
             queryString = queryString + "           END " + "\r\n";
             queryString = queryString + "       ELSE " + "\r\n";
             queryString = queryString + "           BEGIN " + "\r\n";

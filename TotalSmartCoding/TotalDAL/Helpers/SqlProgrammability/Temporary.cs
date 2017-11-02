@@ -140,4 +140,7 @@ namespace TotalDAL.Helpers.SqlProgrammability
         #endregion Backup for GetPendingDeliveryAdviceDetails, GetPendingTransferOrderDetails
     }
 
+
+
+
 }
