@@ -121,7 +121,7 @@
           <Property Name="CustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="OfficialName" Type="nvarchar" MaxLength="150" />
+          <Property Name="OfficialName" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="ContactInfo" Type="nvarchar" MaxLength="100" />
           <Property Name="SalespersonID" Type="int" Nullable="false" />
           <Property Name="CustomerCategoryID" Type="int" Nullable="false" />
@@ -130,7 +130,7 @@
           <Property Name="BillingAddress" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="ShippingAddress" Type="nvarchar" MaxLength="200" />
           <Property Name="VATCode" Type="nvarchar" MaxLength="60" />
-          <Property Name="Telephone" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Telephone" Type="nvarchar" MaxLength="100" />
           <Property Name="Facsimile" Type="nvarchar" MaxLength="60" />
           <Property Name="AttentionName" Type="nvarchar" MaxLength="60" />
           <Property Name="Remarks" Type="nvarchar" MaxLength="100" />
@@ -5872,7 +5872,7 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="OfficialName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="OfficialName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ContactInfo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="SalespersonID" Type="Int32" Nullable="false" />
           <Property Name="CustomerCategoryID" Type="Int32" Nullable="false" />
@@ -5881,7 +5881,7 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Name="BillingAddress" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="ShippingAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="VATCode" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
-          <Property Name="Telephone" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Telephone" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Facsimile" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
           <Property Name="AttentionName" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
           <Property Name="Remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />

@@ -1623,6 +1623,16 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Designbolts_Free_Shaded_Social_Email {
+            get {
+                object obj = ResourceManager.GetObject("Designbolts-Free-Shaded-Social-Email", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Designcontest_Ecommerce_Business_Money {
             get {
                 object obj = ResourceManager.GetObject("Designcontest-Ecommerce-Business-Money", resourceCulture);
@@ -1766,6 +1776,16 @@ namespace TotalSmartCoding.Properties {
         internal static System.Drawing.Bitmap export_arrow_48 {
             get {
                 object obj = ResourceManager.GetObject("export-arrow-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Facsimile_Fax {
+            get {
+                object obj = ResourceManager.GetObject("Facsimile-Fax", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

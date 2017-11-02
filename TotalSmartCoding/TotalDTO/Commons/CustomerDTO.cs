@@ -6,6 +6,8 @@ using System.ComponentModel.DataAnnotations;
 
 using TotalModel;
 using TotalBase.Enums;
+using TotalModel.Helpers;
+using TotalBase;
 
 namespace TotalDTO.Commons
 {
@@ -178,6 +180,21 @@ namespace TotalDTO.Commons
         public bool IsSupplier { get { return false; } }
 
         public override int PreparedPersonID { get { return 1; } }
+
+        protected override List<ValidationRule> CreateRules()
+        {
+            List<ValidationRule> validationRules = base.CreateRules();
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<CustomerPrimitiveDTO>(p => p.Code), "Vui lòng nhập mã khách hàng.", delegate { return (this.Code != null && this.Code.Length > 0); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<CustomerPrimitiveDTO>(p => p.Name), "Vui lòng nhập tên rút gọn thường gọi.", delegate { return (this.Name != null && this.Name.Length > 0); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<CustomerPrimitiveDTO>(p => p.OfficialName), "Vui lòng nhập tên xuất hóa đơn.", delegate { return (this.OfficialName != null && this.OfficialName.Length > 0); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<CustomerPrimitiveDTO>(p => p.BillingAddress), "Vui lòng nhập địa chỉ xuất hóa đơn.", delegate { return (this.BillingAddress != null && this.BillingAddress.Length > 0); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<CustomerPrimitiveDTO>(p => p.CustomerTypeID), "Vui lòng chọn loại khách hàng.", delegate { return (this.CustomerTypeID != null && this.CustomerTypeID > 0); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<CustomerPrimitiveDTO>(p => p.CustomerCategoryID), "Vui lòng chọn kênh khách hàng.", delegate { return (this.CustomerCategoryID != null && this.CustomerCategoryID > 0); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<CustomerPrimitiveDTO>(p => p.TerritoryID), "Vui lòng chọn địa bàn.", delegate { return (this.TerritoryID != null && this.TerritoryID > 0); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<CustomerPrimitiveDTO>(p => p.SalespersonID), "Vui lòng chọn nhân viên phụ trách khách hàng.", delegate { return (this.SalespersonID != null && this.SalespersonID > 0); }));
+            return validationRules;
+
+        }
     }
 
     public class CustomerDTO : CustomerPrimitiveDTO

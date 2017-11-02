@@ -165,7 +165,6 @@
             this.combexSalespersonID.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.combexSalespersonID.Dock = System.Windows.Forms.DockStyle.Fill;
             this.combexSalespersonID.Editable = true;
-            this.combexSalespersonID.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combexSalespersonID.FormattingEnabled = true;
             this.combexSalespersonID.Location = new System.Drawing.Point(3, 298);
             this.combexSalespersonID.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
@@ -216,7 +215,7 @@
             // textexCode
             // 
             this.textexCode.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textexCode.Editable = false;
+            this.textexCode.Editable = true;
             this.textexCode.Location = new System.Drawing.Point(3, 35);
             this.textexCode.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.textexCode.Name = "textexCode";
@@ -404,6 +403,7 @@
             this.pictureBox2.Location = new System.Drawing.Point(749, 117);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(33, 28);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 79;
             this.pictureBox2.TabStop = false;
             // 
@@ -507,20 +507,22 @@
             // pictureBox1
             // 
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Image = global::TotalSmartCoding.Properties.Resources.Facsimile_Fax;
             this.pictureBox1.Location = new System.Drawing.Point(749, 151);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(33, 28);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 75;
             this.pictureBox1.TabStop = false;
             // 
             // pictureBox3
             // 
             this.pictureBox3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Image = global::TotalSmartCoding.Properties.Resources.Designbolts_Free_Shaded_Social_Email;
             this.pictureBox3.Location = new System.Drawing.Point(749, 185);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(33, 28);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox3.TabIndex = 95;
             this.pictureBox3.TabStop = false;
             // 
@@ -732,6 +734,7 @@
             this.imageList32.Images.SetKeyName(5, "Storage32");
             this.imageList32.Images.SetKeyName(6, "Sales-Order-32");
             this.imageList32.Images.SetKeyName(7, "Sign_Order_32");
+            this.imageList32.Images.SetKeyName(8, "CustomerRed");
             // 
             // Customers
             // 

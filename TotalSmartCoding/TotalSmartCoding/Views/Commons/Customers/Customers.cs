@@ -131,7 +131,7 @@ namespace TotalSmartCoding.Views.Commons.Customers
 
             this.bindingCode = this.textexCode.DataBindings.Add("Text", this.customerViewModel, CommonExpressions.PropertyName<CustomerDTO>(p => p.Code), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingName = this.textexName.DataBindings.Add("Text", this.customerViewModel, CommonExpressions.PropertyName<CustomerDTO>(p => p.Name), true, DataSourceUpdateMode.OnPropertyChanged);
-            this.bindingOfficialName = this.textexOfficialName.DataBindings.Add("Text", this.customerViewModel, CommonExpressions.PropertyName<CustomerDTO>(p => p.ShippingAddress), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingOfficialName = this.textexOfficialName.DataBindings.Add("Text", this.customerViewModel, CommonExpressions.PropertyName<CustomerDTO>(p => p.OfficialName), true, DataSourceUpdateMode.OnPropertyChanged);
             
             this.bindingContactInfo = this.textexContactInfo.DataBindings.Add("Text", this.customerViewModel, CommonExpressions.PropertyName<CustomerDTO>(p => p.ContactInfo), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingVATCode = this.textexVATCode.DataBindings.Add("Text", this.customerViewModel, CommonExpressions.PropertyName<CustomerDTO>(p => p.VATCode), true, DataSourceUpdateMode.OnPropertyChanged);
@@ -140,7 +140,7 @@ namespace TotalSmartCoding.Views.Commons.Customers
             this.bindingEmail = this.textexEmail.DataBindings.Add("Text", this.customerViewModel, CommonExpressions.PropertyName<CustomerDTO>(p => p.Email), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingAttentionName = this.textexAttentionName.DataBindings.Add("Text", this.customerViewModel, CommonExpressions.PropertyName<CustomerDTO>(p => p.AttentionName), true, DataSourceUpdateMode.OnPropertyChanged);
 
-            this.bindingBillingAddress = this.textexBillingAddress.DataBindings.Add("Text", this.customerViewModel, CommonExpressions.PropertyName<CustomerDTO>(p => p.Description), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingBillingAddress = this.textexBillingAddress.DataBindings.Add("Text", this.customerViewModel, CommonExpressions.PropertyName<CustomerDTO>(p => p.BillingAddress), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingShippingAddress = this.textexShippingAddress.DataBindings.Add("Text", this.customerViewModel, CommonExpressions.PropertyName<CustomerDTO>(p => p.ShippingAddress), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingRemarks = this.textexRemarks.DataBindings.Add("Text", this.customerViewModel, CommonExpressions.PropertyName<CustomerDTO>(p => p.Remarks), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingCaption = this.labelCaption.DataBindings.Add("Text", this.customerViewModel, CommonExpressions.PropertyName<CustomerDTO>(p => p.Caption));
@@ -202,7 +202,7 @@ namespace TotalSmartCoding.Views.Commons.Customers
             {
                 foreach (OLVGroup olvGroup in e.Groups)
                 {
-                    olvGroup.TitleImage = "Sign_Order_32";
+                    olvGroup.TitleImage = "CustomerRed";
                     olvGroup.Subtitle = "Count: " + olvGroup.Contents.Count.ToString() + " Order(s)";
                 }
             }

@@ -965,6 +965,8 @@
     <None Include="Resources\portable_barcode_scanner_32T.png" />
     <None Include="Resources\Barcode_scan_mobile_hand-28T.png" />
     <None Include="Resources\barcode_scan_mobile_hand-28T1.png" />
+    <None Include="Resources\Facsimile-Fax.ico" />
+    <None Include="Resources\Designbolts-Free-Shaded-Social-Email.ico" />
     <Content Include="SmartCodingSolution.ico" />
     <None Include="Resources\Yellow-cross.ico" />
     <None Include="Resources\White-Pallet.ico" />
