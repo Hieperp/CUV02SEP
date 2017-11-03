@@ -92,7 +92,7 @@
             this.olvEntryDate = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvReference = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvGoodsReceiptTypeCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvPickupReferences = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvPrimaryReferences = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvLocationCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvWarehouseName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvDescription = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -255,10 +255,10 @@
             this.label11.AutoSize = true;
             this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label11.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(170, 7);
+            this.label11.Location = new System.Drawing.Point(168, 7);
             this.label11.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(41, 99);
+            this.label11.Size = new System.Drawing.Size(40, 99);
             this.label11.TabIndex = 45;
             this.label11.Text = "Noted By";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -268,10 +268,10 @@
             this.label12.AutoSize = true;
             this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label12.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(337, 7);
+            this.label12.Location = new System.Drawing.Point(333, 7);
             this.label12.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(41, 99);
+            this.label12.Size = new System.Drawing.Size(40, 99);
             this.label12.TabIndex = 47;
             this.label12.Text = "Approved By";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -698,7 +698,7 @@
             this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 11F));
             this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.019F));
             this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.32099F));
-            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 740F));
+            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 746F));
             this.tableLayoutPanelExtend.Controls.Add(this.combexCommodityID, 0, 0);
             this.tableLayoutPanelExtend.Controls.Add(this.label11, 3, 0);
             this.tableLayoutPanelExtend.Controls.Add(this.label12, 6, 0);
@@ -721,11 +721,11 @@
             this.combexCommodityID.Editable = true;
             this.combexCommodityID.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combexCommodityID.FormattingEnabled = true;
-            this.combexCommodityID.Location = new System.Drawing.Point(50, 4);
+            this.combexCommodityID.Location = new System.Drawing.Point(49, 4);
             this.combexCommodityID.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.combexCommodityID.Name = "combexCommodityID";
             this.combexCommodityID.ReadOnly = false;
-            this.combexCommodityID.Size = new System.Drawing.Size(105, 29);
+            this.combexCommodityID.Size = new System.Drawing.Size(104, 29);
             this.combexCommodityID.TabIndex = 72;
             // 
             // label10
@@ -736,7 +736,7 @@
             this.label10.Location = new System.Drawing.Point(3, 7);
             this.label10.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(41, 99);
+            this.label10.Size = new System.Drawing.Size(40, 99);
             this.label10.TabIndex = 35;
             this.label10.Text = "Requested By";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -758,7 +758,7 @@
             this.fastGoodsReceiptIndex.AllColumns.Add(this.olvEntryDate);
             this.fastGoodsReceiptIndex.AllColumns.Add(this.olvReference);
             this.fastGoodsReceiptIndex.AllColumns.Add(this.olvGoodsReceiptTypeCode);
-            this.fastGoodsReceiptIndex.AllColumns.Add(this.olvPickupReferences);
+            this.fastGoodsReceiptIndex.AllColumns.Add(this.olvPrimaryReferences);
             this.fastGoodsReceiptIndex.AllColumns.Add(this.olvLocationCode);
             this.fastGoodsReceiptIndex.AllColumns.Add(this.olvWarehouseName);
             this.fastGoodsReceiptIndex.AllColumns.Add(this.olvDescription);
@@ -771,7 +771,7 @@
             this.olvEntryDate,
             this.olvReference,
             this.olvGoodsReceiptTypeCode,
-            this.olvPickupReferences,
+            this.olvPrimaryReferences,
             this.olvLocationCode,
             this.olvWarehouseName,
             this.olvDescription,
@@ -823,13 +823,13 @@
             // 
             this.olvGoodsReceiptTypeCode.AspectName = "GoodsReceiptTypeCode";
             this.olvGoodsReceiptTypeCode.Text = "Receipt Type";
-            this.olvGoodsReceiptTypeCode.Width = 113;
+            this.olvGoodsReceiptTypeCode.Width = 163;
             // 
-            // olvPickupReferences
+            // olvPrimaryReferences
             // 
-            this.olvPickupReferences.AspectName = "PickupReferences";
-            this.olvPickupReferences.Text = "Vouchers";
-            this.olvPickupReferences.Width = 209;
+            this.olvPrimaryReferences.AspectName = "PrimaryReferences";
+            this.olvPrimaryReferences.Text = "Vouchers";
+            this.olvPrimaryReferences.Width = 219;
             // 
             // olvLocationCode
             // 
@@ -847,7 +847,7 @@
             // 
             this.olvDescription.AspectName = "Description";
             this.olvDescription.Text = "Description";
-            this.olvDescription.Width = 599;
+            this.olvDescription.Width = 519;
             // 
             // olvTotalQuantity
             // 
@@ -969,7 +969,7 @@
         private System.Windows.Forms.ImageList imageList32;
         private BrightIdeasSoftware.OLVColumn olvApproved;
         private BrightIdeasSoftware.OLVColumn olvGoodsReceiptTypeCode;
-        private BrightIdeasSoftware.OLVColumn olvPickupReferences;
+        private BrightIdeasSoftware.OLVColumn olvPrimaryReferences;
         private BrightIdeasSoftware.OLVColumn olvLocationCode;
         private BrightIdeasSoftware.OLVColumn olvWarehouseName;
         private BrightIdeasSoftware.OLVColumn olvDescription;

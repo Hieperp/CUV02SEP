@@ -107,10 +107,15 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
                                 {
                                     GoodsReceiptID = this.goodsReceiptViewModel.GoodsReceiptID,
 
-                                    PickupID = pendingforGoodsReceiptDetail.PickupID,
-                                    PickupDetailID = pendingforGoodsReceiptDetail.PickupDetailID,
+                                    PickupID = pendingforGoodsReceiptDetail.PickupID > 0 ? pendingforGoodsReceiptDetail.PickupID : (int?)null,
+                                    PickupDetailID = pendingforGoodsReceiptDetail.PickupDetailID > 0 ? pendingforGoodsReceiptDetail.PickupDetailID : (int?)null,
                                     PickupReference = pendingforGoodsReceiptDetail.PrimaryReference,
-                                    PickupEntryDate = pendingforGoodsReceiptDetail.PrimaryEntryDate,
+                                    PickupEntryDate = pendingforGoodsReceiptDetail.PickupID > 0 ? pendingforGoodsReceiptDetail.PrimaryEntryDate : (DateTime?)null,
+
+                                    GoodsIssueID = pendingforGoodsReceiptDetail.GoodsIssueID > 0 ? pendingforGoodsReceiptDetail.GoodsIssueID : (int?)null,
+                                    GoodsIssueTransferDetailID = pendingforGoodsReceiptDetail.GoodsIssueTransferDetailID > 0 ? pendingforGoodsReceiptDetail.GoodsIssueTransferDetailID : (int?)null,
+                                    GoodsIssueReference = pendingforGoodsReceiptDetail.PrimaryReference,
+                                    GoodsIssueEntryDate = pendingforGoodsReceiptDetail.GoodsIssueID > 0 ? pendingforGoodsReceiptDetail.PrimaryEntryDate : (DateTime?)null,
 
                                     BatchID = pendingforGoodsReceiptDetail.BatchID,
                                     BatchEntryDate = pendingforGoodsReceiptDetail.BatchEntryDate,

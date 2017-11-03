@@ -117,6 +117,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
                 this.buttonExpandTop.Visible = this.naviGroupTop.Tag.ToString() == "Expandable";
                 this.buttonExpandTop_Click(this.buttonExpandTop, new EventArgs());
 
+                this.labelCaption.Top = 7;
             }
             catch (Exception exception)
             {

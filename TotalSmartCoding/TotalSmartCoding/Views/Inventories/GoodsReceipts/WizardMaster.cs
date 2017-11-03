@@ -23,10 +23,10 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
             this.customTabMain.DisplayStyle = TabStyle.VisualStudio;
             this.customTabMain.DisplayStyleProvider.ImageAlign = ContentAlignment.MiddleLeft;
 
-            this.customTabMain.TabPages.Add("tabPendingPickups", "Receipt by pickup       ");
-            this.customTabMain.TabPages.Add("tabPendingPickupWarehouses", "Pick Receipt by warehouse");
+            this.customTabMain.TabPages.Add("tabPendingPickups", "Receipt by Pickup       ");
+            this.customTabMain.TabPages.Add("tabPendingPickupWarehouses", "Pick Receipt by Warehouse");
             this.customTabMain.TabPages.Add("tabPendingGoodsIssueTransfers", "Transfer Receipt     ");
-            this.customTabMain.TabPages.Add("tabPendingGoodsIssueTransferWarehouses", "Transfer Receipt by warehouse");
+            this.customTabMain.TabPages.Add("tabPendingGoodsIssueTransferWarehouses", "Transfer Receipt by Warehouse");
             //this.customTabMain.TabPages.Add("tabPendingPurchases", "Purchase Invoice     ");
             //this.customTabMain.TabPages.Add("tabPendingPurchases", "Sales Return     ");
 
@@ -80,8 +80,8 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
                         IPendingforGoodsReceipt pendingforGoodsReceipt = (IPendingforGoodsReceipt)selectedObject;
                         if (pendingforGoodsReceipt != null)
                         {
-                            this.goodsReceiptViewModel.PickupID =  pendingforGoodsReceipt.PickupID;
-                            this.goodsReceiptViewModel.GoodsIssueID = pendingforGoodsReceipt.GoodsIssueID;
+                            this.goodsReceiptViewModel.PickupID = pendingforGoodsReceipt.PickupID > 0 ? pendingforGoodsReceipt.PickupID : (int?)null;
+                            this.goodsReceiptViewModel.GoodsIssueID = pendingforGoodsReceipt.GoodsIssueID > 0 ? pendingforGoodsReceipt.GoodsIssueID : (int?)null;
                             this.goodsReceiptViewModel.PickupReference = pendingforGoodsReceipt.PrimaryReference;
                             this.goodsReceiptViewModel.GoodsIssueReference = pendingforGoodsReceipt.PrimaryReference;
 
