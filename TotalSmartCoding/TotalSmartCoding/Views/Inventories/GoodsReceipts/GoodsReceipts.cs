@@ -201,11 +201,11 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
                 this.customTabCenter.TabPages[0].Text = "Pallets [" + this.goodsReceiptViewModel.PalletDetails.Count.ToString("N0") + " item(s)]             ";
                 this.customTabCenter.TabPages[1].Text = "Cartons [" + this.goodsReceiptViewModel.CartonDetails.Count.ToString("N0") + " item(s)]             ";
 
-                this.gridexPalletDetails.Columns["Pallet" + CommonExpressions.PropertyName<GoodsReceiptDetailDTO>(p => p.PrimaryReference)].Visible = this.goodsReceiptViewModel.PickupID == null;
-                this.gridexPalletDetails.Columns["Pallet" + CommonExpressions.PropertyName<GoodsReceiptDetailDTO>(p => p.PrimaryEntryDate)].Visible = this.goodsReceiptViewModel.PickupID == null;
+                this.gridexPalletDetails.Columns["Pallet" + CommonExpressions.PropertyName<GoodsReceiptDetailDTO>(p => p.PrimaryReference)].Visible = this.goodsReceiptViewModel.PickupID == null && this.goodsReceiptViewModel.GoodsIssueID == null && this.goodsReceiptViewModel.WarehouseAdjustmentID == null;
+                this.gridexPalletDetails.Columns["Pallet" + CommonExpressions.PropertyName<GoodsReceiptDetailDTO>(p => p.PrimaryEntryDate)].Visible = this.goodsReceiptViewModel.PickupID == null && this.goodsReceiptViewModel.GoodsIssueID == null && this.goodsReceiptViewModel.WarehouseAdjustmentID == null;
 
-                this.gridexCartonDetails.Columns["Carton" + CommonExpressions.PropertyName<GoodsReceiptDetailDTO>(p => p.PrimaryReference)].Visible = this.goodsReceiptViewModel.PickupID == null;
-                this.gridexCartonDetails.Columns["Carton" + CommonExpressions.PropertyName<GoodsReceiptDetailDTO>(p => p.PrimaryEntryDate)].Visible = this.goodsReceiptViewModel.PickupID == null;
+                this.gridexCartonDetails.Columns["Carton" + CommonExpressions.PropertyName<GoodsReceiptDetailDTO>(p => p.PrimaryReference)].Visible = this.goodsReceiptViewModel.PickupID == null && this.goodsReceiptViewModel.GoodsIssueID == null && this.goodsReceiptViewModel.WarehouseAdjustmentID == null;
+                this.gridexCartonDetails.Columns["Carton" + CommonExpressions.PropertyName<GoodsReceiptDetailDTO>(p => p.PrimaryEntryDate)].Visible = this.goodsReceiptViewModel.PickupID == null && this.goodsReceiptViewModel.GoodsIssueID == null && this.goodsReceiptViewModel.WarehouseAdjustmentID == null;
             }
         }
 
@@ -217,7 +217,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
         public override void Loading()
         {
             this.fastGoodsReceiptIndex.SetObjects(this.goodsReceiptAPIs.GetGoodsReceiptIndexes());
-            
+
             base.Loading();
         }
 
@@ -264,7 +264,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
         }
 
         private void buttonExpandTop_Click(object sender, EventArgs e)
-        {            
+        {
             if (this.naviGroupTop.Tag.ToString() == "Expandable" || this.naviGroupTop.Expanded)
             {
                 this.naviGroupTop.Expanded = !this.naviGroupTop.Expanded;
