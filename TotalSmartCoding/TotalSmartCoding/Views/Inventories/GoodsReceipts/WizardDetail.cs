@@ -92,8 +92,8 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
 
                                     PickupID = pendingPickupDetail.PickupID,
                                     PickupDetailID = pendingPickupDetail.PickupDetailID,
-                                    PickupReference = pendingPickupDetail.PickupReference,
-                                    PickupEntryDate = pendingPickupDetail.PickupEntryDate,
+                                    PickupReference = pendingPickupDetail.PrimaryReference,
+                                    PickupEntryDate = pendingPickupDetail.PrimaryEntryDate,
 
                                     BatchID = pendingPickupDetail.BatchID,
                                     BatchEntryDate = pendingPickupDetail.BatchEntryDate,

@@ -3505,10 +3505,10 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
             <End Role="WarehouseAdjustmentDetail" EntitySet="WarehouseAdjustmentDetails" />
           </AssociationSet>
           <FunctionImport Name="GetPendingGoodsIssueTransfers" ReturnType="Collection(TotalSmartCodingModel.PendingGoodsIssueTransfer)">
-            <Parameter Name="LocationID" Mode="In" Type="Int32" />
+          <Parameter Name="LocationID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetPendingGoodsIssueTransferWarehouses" ReturnType="Collection(TotalSmartCodingModel.PendingGoodsIssueTransferWarehouse)">
-            <Parameter Name="LocationID" Mode="In" Type="Int32" />
+          <Parameter Name="LocationID" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
@@ -3584,12 +3584,12 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Type="Int32" Name="WarehouseID" Nullable="false" />
           <Property Type="String" Name="WarehouseCode" Nullable="false" MaxLength="10" />
           <Property Type="String" Name="Description" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="PickupReference" Nullable="true" MaxLength="10" />
-          <Property Type="DateTime" Name="PickupEntryDate" Nullable="false" Precision="23" />
           <Property Type="String" Name="WarehouseName" Nullable="false" MaxLength="60" />
           <Property Type="String" Name="Remarks" Nullable="true" MaxLength="100" />
           <Property Type="Int32" Name="GoodsReceiptTypeID" Nullable="false" />
           <Property Type="String" Name="GoodsReceiptTypeName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PrimaryReference" Nullable="true" MaxLength="10" />
+          <Property Type="DateTime" Name="PrimaryEntryDate" Nullable="false" Precision="23" />
         </ComplexType>
         <ComplexType Name="PendingPickupWarehouse">
           <Property Type="Int32" Name="WarehouseID" Nullable="false" />
@@ -6183,8 +6183,6 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
         </Association>
         <ComplexType Name="PendingGoodsIssueTransfer">
           <Property Type="Int32" Name="GoodsIssueID" Nullable="false" />
-          <Property Type="String" Name="PickupReference" Nullable="true" MaxLength="10" />
-          <Property Type="DateTime" Name="PickupEntryDate" Nullable="false" Precision="23" />
           <Property Type="Int32" Name="WarehouseID" Nullable="false" />
           <Property Type="String" Name="WarehouseCode" Nullable="false" MaxLength="10" />
           <Property Type="String" Name="WarehouseName" Nullable="false" MaxLength="60" />
@@ -6192,6 +6190,8 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Type="String" Name="GoodsReceiptTypeName" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="Description" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="Remarks" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="PrimaryReference" Nullable="true" MaxLength="10" />
+          <Property Type="DateTime" Name="PrimaryEntryDate" Nullable="false" Precision="23" />
         </ComplexType>
         <ComplexType Name="PendingGoodsIssueTransferWarehouse">
           <Property Type="Int32" Name="WarehouseID" Nullable="false" />
@@ -6304,12 +6304,12 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
                 <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
                 <ScalarProperty Name="WarehouseCode" ColumnName="WarehouseCode" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="PickupReference" ColumnName="PickupReference" />
-                <ScalarProperty Name="PickupEntryDate" ColumnName="PickupEntryDate" />
                 <ScalarProperty Name="WarehouseName" ColumnName="WarehouseName" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
                 <ScalarProperty Name="GoodsReceiptTypeID" ColumnName="GoodsReceiptTypeID" />
                 <ScalarProperty Name="GoodsReceiptTypeName" ColumnName="GoodsReceiptTypeName" />
+                <ScalarProperty Name="PrimaryReference" ColumnName="PrimaryReference" />
+                <ScalarProperty Name="PrimaryEntryDate" ColumnName="PrimaryEntryDate" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -7998,8 +7998,6 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
             <ResultMapping>
               <ComplexTypeMapping TypeName="TotalSmartCodingModel.PendingGoodsIssueTransfer">
                 <ScalarProperty Name="GoodsIssueID" ColumnName="GoodsIssueID" />
-                <ScalarProperty Name="PickupReference" ColumnName="PickupReference" />
-                <ScalarProperty Name="PickupEntryDate" ColumnName="PickupEntryDate" />
                 <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
                 <ScalarProperty Name="WarehouseCode" ColumnName="WarehouseCode" />
                 <ScalarProperty Name="WarehouseName" ColumnName="WarehouseName" />
@@ -8007,6 +8005,8 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
                 <ScalarProperty Name="GoodsReceiptTypeName" ColumnName="GoodsReceiptTypeName" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="PrimaryReference" ColumnName="PrimaryReference" />
+                <ScalarProperty Name="PrimaryEntryDate" ColumnName="PrimaryEntryDate" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

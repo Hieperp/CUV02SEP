@@ -14,8 +14,6 @@ namespace TotalModel.Models
     public partial class PendingGoodsIssueTransfer
     {
         public int GoodsIssueID { get; set; }
-        public string PickupReference { get; set; }
-        public System.DateTime PickupEntryDate { get; set; }
         public int WarehouseID { get; set; }
         public string WarehouseCode { get; set; }
         public string WarehouseName { get; set; }
@@ -23,5 +21,7 @@ namespace TotalModel.Models
         public string GoodsReceiptTypeName { get; set; }
         public string Description { get; set; }
         public string Remarks { get; set; }
+        public string PrimaryReference { get; set; }
+        public System.DateTime PrimaryEntryDate { get; set; }
     }
 }

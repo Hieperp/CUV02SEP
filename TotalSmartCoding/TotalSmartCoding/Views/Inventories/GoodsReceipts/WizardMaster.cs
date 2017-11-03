@@ -24,17 +24,22 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
             this.customTabMain.DisplayStyleProvider.ImageAlign = ContentAlignment.MiddleLeft;
 
             this.customTabMain.TabPages.Add("tabPendingPickups", "Receipt by pickup       ");
-            this.customTabMain.TabPages.Add("tabPendingPickupWarehouses", "Receipt by warehouse   ");
-            this.customTabMain.TabPages.Add("tabPendingTransfers", "Transfer Receipt     ");
-            this.customTabMain.TabPages.Add("tabPendingPurchases", "Purchase Invoice     ");
-            this.customTabMain.TabPages.Add("tabPendingPurchases", "Sales Return     ");
+            this.customTabMain.TabPages.Add("tabPendingPickupWarehouses", "Pick Receipt by warehouse");
+            this.customTabMain.TabPages.Add("tabPendingGoodsIssueTransfers", "Transfer Receipt     ");
+            this.customTabMain.TabPages.Add("tabPendingGoodsIssueTransferWarehouses", "Transfer Receipt by warehouse");
+            //this.customTabMain.TabPages.Add("tabPendingPurchases", "Purchase Invoice     ");
+            //this.customTabMain.TabPages.Add("tabPendingPurchases", "Sales Return     ");
+
             this.customTabMain.TabPages[0].Controls.Add(this.fastPendingPickups);
             this.customTabMain.TabPages[1].Controls.Add(this.fastPendingPickupWarehouses);
-
+            this.customTabMain.TabPages[2].Controls.Add(this.fastPendingGoodsIssueTransfers);
+            this.customTabMain.TabPages[3].Controls.Add(this.fastPendingGoodsIssueTransferWarehouses);
 
             this.customTabMain.Dock = DockStyle.Fill;
             this.fastPendingPickups.Dock = DockStyle.Fill;
             this.fastPendingPickupWarehouses.Dock = DockStyle.Fill;
+            this.fastPendingGoodsIssueTransfers.Dock = DockStyle.Fill;
+            this.fastPendingGoodsIssueTransferWarehouses.Dock = DockStyle.Fill;
             this.panelMaster.Controls.Add(this.customTabMain);
 
 
@@ -49,7 +54,8 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
             {
                 this.fastPendingPickups.SetObjects(this.goodsReceiptAPIs.GetPendingPickups(this.goodsReceiptViewModel.LocationID));
                 this.fastPendingPickupWarehouses.SetObjects(this.goodsReceiptAPIs.GetPendingPickupWarehouses(this.goodsReceiptViewModel.LocationID));
-
+                this.fastPendingGoodsIssueTransfers.SetObjects(this.goodsReceiptAPIs.GetPendingGoodsIssueTransfers(this.goodsReceiptViewModel.LocationID));
+                this.fastPendingGoodsIssueTransferWarehouses.SetObjects(this.goodsReceiptAPIs.GetPendingGoodsIssueTransferWarehouses(this.goodsReceiptViewModel.LocationID));
             }
             catch (Exception exception)
             {
@@ -72,7 +78,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
                         PendingPickup pendingPickup = (PendingPickup)this.fastPendingPickups.SelectedObject;
                         if (pendingPickup != null) {                            
                             this.goodsReceiptViewModel.PickupID = pendingPickup.PickupID;
-                            this.goodsReceiptViewModel.PickupReference = pendingPickup.PickupReference;
+                            this.goodsReceiptViewModel.PickupReference = pendingPickup.PrimaryReference;
                             
                             this.goodsReceiptViewModel.GoodsReceiptTypeID = pendingPickup.GoodsReceiptTypeID;
                             this.goodsReceiptViewModel.GoodsReceiptTypeName = pendingPickup.GoodsReceiptTypeName;

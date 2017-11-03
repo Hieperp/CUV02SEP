@@ -63,8 +63,8 @@ namespace TotalService.Inventories
 
                             WarehouseAdjustmentID = pendingWarehouseAdjustmentDetail.WarehouseAdjustmentID,
                             WarehouseAdjustmentDetailID = pendingWarehouseAdjustmentDetail.WarehouseAdjustmentDetailID,
-                            WarehouseAdjustmentReference = pendingWarehouseAdjustmentDetail.WarehouseAdjustmentReference,
-                            WarehouseAdjustmentEntryDate = pendingWarehouseAdjustmentDetail.WarehouseAdjustmentEntryDate,
+                            WarehouseAdjustmentReference = pendingWarehouseAdjustmentDetail.PrimaryReference,
+                            WarehouseAdjustmentEntryDate = pendingWarehouseAdjustmentDetail.PrimaryEntryDate,
 
                             BatchID = pendingWarehouseAdjustmentDetail.BatchID,
                             BatchEntryDate = pendingWarehouseAdjustmentDetail.BatchEntryDate,

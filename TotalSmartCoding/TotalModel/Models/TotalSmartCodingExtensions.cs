@@ -7,6 +7,8 @@ using TotalModel.Interfaces;
 namespace TotalModel.Models
 {
 
+    #region Interface for goods issue
+
     public interface IPendingPrimaryDetail
     {
         int CommodityID { get; set; }
@@ -57,6 +59,9 @@ namespace TotalModel.Models
         public decimal QuantityRemains { get; set; }
         public decimal LineVolumeRemains { get; set; }
     }
+    
+    #endregion Interface for goods issue
+
     //public partial class SalesOrder : IPrimitiveEntity, IBaseEntity, IBaseDetailEntity<SalesOrderDetail>
     //{
     //    public int GetID() { return this.SalesOrderID; }
