@@ -37,7 +37,7 @@ namespace TotalModel.Models
         public decimal Quantity { get; set; }
         public decimal LineVolume { get; set; }
         public string Remarks { get; set; }
-        public Nullable<System.DateTime> BatchEntryDate { get; set; }
+        public System.DateTime BatchEntryDate { get; set; }
         public int PackCounts { get; set; }
         public int CartonCounts { get; set; }
         public int PalletCounts { get; set; }
@@ -49,7 +49,7 @@ namespace TotalModel.Models
         public Nullable<int> TransferOrderDetailID { get; set; }
         public string TransferOrderReference { get; set; }
         public Nullable<System.DateTime> TransferOrderEntryDate { get; set; }
-        public Nullable<int> BatchID { get; set; }
+        public int BatchID { get; set; }
         public int WarehouseID { get; set; }
     }
 }

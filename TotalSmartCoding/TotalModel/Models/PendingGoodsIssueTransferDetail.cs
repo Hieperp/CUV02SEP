@@ -20,8 +20,8 @@ namespace TotalModel.Models
         public int CommodityID { get; set; }
         public string CommodityCode { get; set; }
         public string CommodityName { get; set; }
-        public Nullable<int> BatchID { get; set; }
-        public Nullable<System.DateTime> BatchEntryDate { get; set; }
+        public int BatchID { get; set; }
+        public System.DateTime BatchEntryDate { get; set; }
         public int BinLocationID { get; set; }
         public string BinLocationCode { get; set; }
         public Nullable<int> PackID { get; set; }

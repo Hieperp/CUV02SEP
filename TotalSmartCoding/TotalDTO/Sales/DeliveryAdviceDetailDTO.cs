@@ -30,7 +30,7 @@ namespace TotalDTO.Sales
         public Nullable<System.DateTime> SalesOrderEntryDate { get; set; }
 
 
-        public Nullable<int> BatchID { get; set; }
+        public int BatchID { get; set; }
         private DateTime? batchEntryDate;
         [UIHint("DateTimeReadonly")]
         [Display(Name = "Ngày lập")]

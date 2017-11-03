@@ -3577,8 +3577,8 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Type="Int32" Name="CartonCounts" Nullable="false" />
           <Property Type="Int32" Name="PalletCounts" Nullable="false" />
           <Property Type="Decimal" Name="LineVolume" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Int32" Name="BatchID" Nullable="true" />
-          <Property Type="DateTime" Name="BatchEntryDate" Nullable="true" />
+          <Property Type="Int32" Name="BatchID" Nullable="false" />
+          <Property Type="DateTime" Name="BatchEntryDate" Nullable="false" />
           <Property Type="Int32" Name="GoodsIssueID" Nullable="true" />
           <Property Type="Int32" Name="GoodsIssueTransferDetailID" Nullable="true" />
           <Property Type="String" Name="GoodsIssueReference" Nullable="true" MaxLength="10" />
@@ -3731,6 +3731,7 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Type="Int32" Name="FillingLineID" Nullable="false" />
           <Property Type="String" Name="Code" Nullable="false" MaxLength="10" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="60" />
+          <Property Type="String" Name="NickName" Nullable="true" MaxLength="60" />
         </ComplexType>
         <ComplexType Name="BinLocationBase">
           <Property Type="Int32" Name="BinLocationID" Nullable="false" />
@@ -3961,7 +3962,7 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Type="Int32" Name="CustomerID" Nullable="false" />
           <Property Type="String" Name="CustomerCode" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="CustomerName" Nullable="false" MaxLength="100" />
-          <Property Type="String" Name="CustomerOfficialName" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="CustomerOfficialName" Nullable="false" MaxLength="150" />
           <Property Type="String" Name="ContactInfo" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="BillingAddress" Nullable="false" MaxLength="200" />
           <Property Type="Int32" Name="TerritoryID" Nullable="false" />
@@ -4123,7 +4124,7 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Type="Decimal" Name="Quantity" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="LineVolume" Nullable="false" Precision="18" Scale="2" />
           <Property Type="String" Name="Remarks" Nullable="true" MaxLength="100" />
-          <Property Type="DateTime" Name="BatchEntryDate" Nullable="true" />
+          <Property Type="DateTime" Name="BatchEntryDate" Nullable="false" />
           <Property Type="Int32" Name="PackCounts" Nullable="false" />
           <Property Type="Int32" Name="CartonCounts" Nullable="false" />
           <Property Type="Int32" Name="PalletCounts" Nullable="false" />
@@ -4135,7 +4136,7 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Type="Int32" Name="TransferOrderDetailID" Nullable="true" />
           <Property Type="String" Name="TransferOrderReference" Nullable="true" MaxLength="10" />
           <Property Type="DateTime" Name="TransferOrderEntryDate" Nullable="true" Precision="23" />
-          <Property Type="Int32" Name="BatchID" Nullable="true" />
+          <Property Type="Int32" Name="BatchID" Nullable="false" />
           <Property Type="Int32" Name="WarehouseID" Nullable="false" />
         </ComplexType>
         <ComplexType Name="PendingDeliveryAdviceCustomer">
@@ -4336,13 +4337,13 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Type="Int32" Name="CommodityID" Nullable="false" />
           <Property Type="String" Name="CommodityCode" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="CommodityName" Nullable="false" MaxLength="200" />
-          <Property Type="DateTime" Name="BatchEntryDate" Nullable="true" />
+          <Property Type="DateTime" Name="BatchEntryDate" Nullable="false" />
           <Property Type="String" Name="GoodsReceiptReference" Nullable="true" MaxLength="10" />
           <Property Type="DateTime" Name="GoodsReceiptEntryDate" Nullable="false" Precision="23" />
           <Property Type="Int32" Name="PackCounts" Nullable="false" />
           <Property Type="Int32" Name="CartonCounts" Nullable="false" />
           <Property Type="Int32" Name="PalletCounts" Nullable="false" />
-          <Property Type="Int32" Name="BatchID" Nullable="true" />
+          <Property Type="Int32" Name="BatchID" Nullable="false" />
           <Property Type="String" Name="PackageSize" Nullable="true" MaxLength="60" />
           <Property Type="Decimal" Name="Volume" Nullable="false" Precision="18" Scale="3" />
           <Property Type="Decimal" Name="PackageVolume" Nullable="false" Precision="18" Scale="3" />
@@ -4398,7 +4399,7 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
         </ComplexType>
         <ComplexType Name="WarehouseAdjustmentTypeIndex">
           <Property Type="Int32" Name="WarehouseAdjustmentTypeID" Nullable="false" />
-          <Property Type="String" Name="Code" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="Code" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
         </ComplexType>
         <EntityType Name="Carton">
@@ -5646,8 +5647,8 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Type="Int32" Name="CommodityID" Nullable="false" />
           <Property Type="String" Name="CommodityCode" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="CommodityName" Nullable="false" MaxLength="200" />
-          <Property Type="Int32" Name="BatchID" Nullable="true" />
-          <Property Type="DateTime" Name="BatchEntryDate" Nullable="true" />
+          <Property Type="Int32" Name="BatchID" Nullable="false" />
+          <Property Type="DateTime" Name="BatchEntryDate" Nullable="false" />
           <Property Type="Int32" Name="BinLocationID" Nullable="false" />
           <Property Type="String" Name="BinLocationCode" Nullable="false" MaxLength="50" />
           <Property Type="Int32" Name="PackID" Nullable="true" />
@@ -6522,6 +6523,7 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
                 <ScalarProperty Name="FillingLineID" ColumnName="FillingLineID" />
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="NickName" ColumnName="NickName" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

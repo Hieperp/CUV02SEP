@@ -39,7 +39,7 @@ namespace TotalDTO.Inventories
         public string PrimaryReference { get { return this.PickupReference != null ? this.PickupReference : (this.GoodsIssueReference != null ? this.GoodsIssueReference : (this.WarehouseAdjustmentReference != null ? this.WarehouseAdjustmentReference : null)); } }
         public Nullable<System.DateTime> PrimaryEntryDate { get { return this.PickupEntryDate != null ? this.PickupEntryDate : (this.GoodsIssueEntryDate != null ? this.GoodsIssueEntryDate : (this.WarehouseAdjustmentEntryDate != null ? this.WarehouseAdjustmentEntryDate : null)); } }
 
-        public Nullable<int> BatchID { get; set; }
+        public int BatchID { get; set; }
         public Nullable<System.DateTime> BatchEntryDate { get; set; }
 
         public int WarehouseID { get; set; }

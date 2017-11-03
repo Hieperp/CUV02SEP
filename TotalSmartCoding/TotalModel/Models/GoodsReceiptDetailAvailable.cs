@@ -32,13 +32,13 @@ namespace TotalModel.Models
         public int CommodityID { get; set; }
         public string CommodityCode { get; set; }
         public string CommodityName { get; set; }
-        public Nullable<System.DateTime> BatchEntryDate { get; set; }
+        public System.DateTime BatchEntryDate { get; set; }
         public string GoodsReceiptReference { get; set; }
         public System.DateTime GoodsReceiptEntryDate { get; set; }
         public int PackCounts { get; set; }
         public int CartonCounts { get; set; }
         public int PalletCounts { get; set; }
-        public Nullable<int> BatchID { get; set; }
+        public int BatchID { get; set; }
         public string PackageSize { get; set; }
         public decimal Volume { get; set; }
         public decimal PackageVolume { get; set; }
