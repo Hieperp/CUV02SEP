@@ -40,7 +40,7 @@ namespace TotalDTO.Inventories
         public Nullable<System.DateTime> PrimaryEntryDate { get { return this.PickupEntryDate != null ? this.PickupEntryDate : (this.GoodsIssueEntryDate != null ? this.GoodsIssueEntryDate : (this.WarehouseAdjustmentEntryDate != null ? this.WarehouseAdjustmentEntryDate : null)); } }
 
         public int BatchID { get; set; }
-        public Nullable<System.DateTime> BatchEntryDate { get; set; }
+        public System.DateTime BatchEntryDate { get; set; }
 
         public int WarehouseID { get; set; }
         

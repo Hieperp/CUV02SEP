@@ -44,7 +44,7 @@ namespace TotalDTO.Inventories
         public Nullable<System.DateTime> GoodsReceiptEntryDate { get; set; }
         
         public int BatchID { get; set; }
-        public Nullable<System.DateTime> BatchEntryDate { get; set; }
+        public System.DateTime BatchEntryDate { get; set; }
 
         public int WarehouseID { get; set; }
         public string WarehouseCode { get; set; }
