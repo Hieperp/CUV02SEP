@@ -313,7 +313,7 @@
             AllGoodsReceipt = 999,
             Pickup = 1,
             PurchaseInvoice = 2,
-            StockTransfer = 3,
+            GoodsIssueTransfer = 3,
             SalesReturn = 5,
             InventoryAdjustment = 6
         };

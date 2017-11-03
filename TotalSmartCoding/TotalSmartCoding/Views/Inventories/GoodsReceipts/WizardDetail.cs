@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using BrightIdeasSoftware;
 
+using TotalBase.Enums;
 using TotalModel.Models;
 using TotalDTO.Inventories;
 using TotalSmartCoding.Controllers.APIs.Inventories;
@@ -53,11 +54,27 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
         {
             try
             {
-                List<PendingPickupDetail> pendingPickupDetails = this.goodsReceiptAPIs.GetPendingPickupDetails(this.goodsReceiptViewModel.LocationID, this.goodsReceiptViewModel.GoodsReceiptID, this.goodsReceiptViewModel.PickupID, this.goodsReceiptViewModel.WarehouseID, string.Join(",", this.goodsReceiptViewModel.ViewDetails.Select(d => d.PickupDetailID)), false);
+                List<PendingPickupDetail> pendingPickupDetails = null;
+                List<PendingGoodsIssueTransferDetail> pendingGoodsIssueTransferDetails = null;
 
-                this.fastPendingPallets.SetObjects(pendingPickupDetails.Where(w => w.PalletID != null));
-                this.fastPendingCartons.SetObjects(pendingPickupDetails.Where(w => w.CartonID != null));
-                this.fastPendingPacks.SetObjects(pendingPickupDetails.Where(w => w.PackID != null));
+                if (this.goodsReceiptViewModel.GoodsReceiptTypeID == (int)GlobalEnums.GoodsReceiptTypeID.Pickup)
+                    pendingPickupDetails = this.goodsReceiptAPIs.GetPendingPickupDetails(this.goodsReceiptViewModel.LocationID, this.goodsReceiptViewModel.GoodsReceiptID, this.goodsReceiptViewModel.PickupID, this.goodsReceiptViewModel.WarehouseID, string.Join(",", this.goodsReceiptViewModel.ViewDetails.Select(d => d.PickupDetailID)), false);
+                if (this.goodsReceiptViewModel.GoodsReceiptTypeID == (int)GlobalEnums.GoodsReceiptTypeID.GoodsIssueTransfer)
+                    pendingGoodsIssueTransferDetails = this.goodsReceiptAPIs.GetPendingGoodsIssueTransferDetails(this.goodsReceiptViewModel.LocationID, this.goodsReceiptViewModel.GoodsReceiptID, this.goodsReceiptViewModel.GoodsIssueID, this.goodsReceiptViewModel.WarehouseID, string.Join(",", this.goodsReceiptViewModel.ViewDetails.Select(d => d.GoodsIssueTransferDetailID)), false);
+
+                if (pendingPickupDetails != null)
+                {
+                    this.fastPendingPallets.SetObjects(pendingPickupDetails.Where(w => w.PalletID != null));
+                    this.fastPendingCartons.SetObjects(pendingPickupDetails.Where(w => w.CartonID != null));
+                    this.fastPendingPacks.SetObjects(pendingPickupDetails.Where(w => w.PackID != null));
+                }
+
+                if (pendingGoodsIssueTransferDetails != null)
+                {
+                    this.fastPendingPallets.SetObjects(pendingGoodsIssueTransferDetails.Where(w => w.PalletID != null));
+                    this.fastPendingCartons.SetObjects(pendingGoodsIssueTransferDetails.Where(w => w.CartonID != null));
+                    this.fastPendingPacks.SetObjects(pendingGoodsIssueTransferDetails.Where(w => w.PackID != null));
+                }
 
                 this.customTabBatch.TabPages[0].Text = "Pending " + this.fastPendingPallets.GetItemCount().ToString("N0") + " pallet" + (this.fastPendingPallets.GetItemCount() > 1 ? "s      " : "      ");
                 this.customTabBatch.TabPages[1].Text = "Pending " + this.fastPendingCartons.GetItemCount().ToString("N0") + " carton" + (this.fastPendingCartons.GetItemCount() > 1 ? "s      " : "      ");
@@ -85,40 +102,40 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
                             this.goodsReceiptViewModel.ViewDetails.RaiseListChangedEvents = false;
                             foreach (var checkedObjects in fastPendingList.CheckedObjects)
                             {
-                                PendingPickupDetail pendingPickupDetail = (PendingPickupDetail)checkedObjects;
+                                IPendingforGoodsReceiptDetail pendingforGoodsReceiptDetail = (IPendingforGoodsReceiptDetail)checkedObjects;
                                 GoodsReceiptDetailDTO goodsReceiptDetailDTO = new GoodsReceiptDetailDTO()
                                 {
                                     GoodsReceiptID = this.goodsReceiptViewModel.GoodsReceiptID,
 
-                                    PickupID = pendingPickupDetail.PickupID,
-                                    PickupDetailID = pendingPickupDetail.PickupDetailID,
-                                    PickupReference = pendingPickupDetail.PrimaryReference,
-                                    PickupEntryDate = pendingPickupDetail.PrimaryEntryDate,
+                                    PickupID = pendingforGoodsReceiptDetail.PickupID,
+                                    PickupDetailID = pendingforGoodsReceiptDetail.PickupDetailID,
+                                    PickupReference = pendingforGoodsReceiptDetail.PrimaryReference,
+                                    PickupEntryDate = pendingforGoodsReceiptDetail.PrimaryEntryDate,
 
-                                    BatchID = pendingPickupDetail.BatchID,
-                                    BatchEntryDate = pendingPickupDetail.BatchEntryDate,
+                                    BatchID = pendingforGoodsReceiptDetail.BatchID,
+                                    BatchEntryDate = pendingforGoodsReceiptDetail.BatchEntryDate,
 
-                                    BinLocationID = pendingPickupDetail.BinLocationID,
-                                    BinLocationCode = pendingPickupDetail.BinLocationCode,
+                                    BinLocationID = pendingforGoodsReceiptDetail.BinLocationID,
+                                    BinLocationCode = pendingforGoodsReceiptDetail.BinLocationCode,
 
-                                    CommodityID = pendingPickupDetail.CommodityID,
-                                    CommodityCode = pendingPickupDetail.CommodityCode,
-                                    CommodityName = pendingPickupDetail.CommodityName,
+                                    CommodityID = pendingforGoodsReceiptDetail.CommodityID,
+                                    CommodityCode = pendingforGoodsReceiptDetail.CommodityCode,
+                                    CommodityName = pendingforGoodsReceiptDetail.CommodityName,
 
-                                    Quantity = (decimal)pendingPickupDetail.QuantityRemains,
-                                    LineVolume = (decimal)pendingPickupDetail.LineVolumeRemains,
+                                    Quantity = (decimal)pendingforGoodsReceiptDetail.QuantityRemains,
+                                    LineVolume = (decimal)pendingforGoodsReceiptDetail.LineVolumeRemains,
 
 
-                                    PackID = pendingPickupDetail.PackID,
-                                    PackCode = pendingPickupDetail.PackCode,
-                                    CartonID = pendingPickupDetail.CartonID,
-                                    CartonCode = pendingPickupDetail.CartonCode,
-                                    PalletID = pendingPickupDetail.PalletID,
-                                    PalletCode = pendingPickupDetail.PalletCode,
+                                    PackID = pendingforGoodsReceiptDetail.PackID,
+                                    PackCode = pendingforGoodsReceiptDetail.PackCode,
+                                    CartonID = pendingforGoodsReceiptDetail.CartonID,
+                                    CartonCode = pendingforGoodsReceiptDetail.CartonCode,
+                                    PalletID = pendingforGoodsReceiptDetail.PalletID,
+                                    PalletCode = pendingforGoodsReceiptDetail.PalletCode,
 
-                                    PackCounts = pendingPickupDetail.PackCounts,
-                                    CartonCounts = pendingPickupDetail.CartonCounts,
-                                    PalletCounts = pendingPickupDetail.PalletCounts
+                                    PackCounts = pendingforGoodsReceiptDetail.PackCounts,
+                                    CartonCounts = pendingforGoodsReceiptDetail.CartonCounts,
+                                    PalletCounts = pendingforGoodsReceiptDetail.PalletCounts
                                 };
                                 this.goodsReceiptViewModel.ViewDetails.Add(goodsReceiptDetailDTO);
                             }

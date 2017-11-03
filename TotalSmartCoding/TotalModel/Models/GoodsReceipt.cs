@@ -23,7 +23,6 @@ namespace TotalModel.Models
         public int GoodsReceiptID { get; set; }
         public System.DateTime EntryDate { get; set; }
         public string Reference { get; set; }
-        public bool HasPickup { get; set; }
         public int GoodsReceiptTypeID { get; set; }
         public Nullable<int> PickupID { get; set; }
         public Nullable<int> GoodsIssueID { get; set; }
