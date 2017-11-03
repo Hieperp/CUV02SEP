@@ -48,12 +48,12 @@ namespace TotalModel.Models
         public virtual BinLocation BinLocation { get; set; }
         public virtual Carton Carton { get; set; }
         public virtual Commodity Commodity { get; set; }
-        public virtual Pack Pack { get; set; }
-        public virtual Pallet Pallet { get; set; }
-        public virtual Warehouse Warehouse { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GoodsReceiptDetail> GoodsReceiptDetails { get; set; }
         public virtual GoodsReceiptDetail GoodsReceiptDetail { get; set; }
+        public virtual Pack Pack { get; set; }
+        public virtual Pallet Pallet { get; set; }
         public virtual WarehouseAdjustment WarehouseAdjustment { get; set; }
+        public virtual Warehouse Warehouse { get; set; }
     }
 }

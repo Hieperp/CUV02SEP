@@ -15,8 +15,6 @@ namespace TotalModel.Models
     {
         public int WarehouseAdjustmentID { get; set; }
         public int WarehouseAdjustmentDetailID { get; set; }
-        public string WarehouseAdjustmentReference { get; set; }
-        public System.DateTime WarehouseAdjustmentEntryDate { get; set; }
         public int CommodityID { get; set; }
         public string CommodityCode { get; set; }
         public string CommodityName { get; set; }
@@ -39,5 +37,7 @@ namespace TotalModel.Models
         public int PalletCounts { get; set; }
         public string Remarks { get; set; }
         public Nullable<bool> IsSelected { get; set; }
+        public string PrimaryReference { get; set; }
+        public System.DateTime PrimaryEntryDate { get; set; }
     }
 }

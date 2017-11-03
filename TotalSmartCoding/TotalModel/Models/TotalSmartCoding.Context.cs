@@ -52,8 +52,6 @@ namespace TotalModel.Models
         public virtual DbSet<BinLocation> BinLocations { get; set; }
         public virtual DbSet<Batch> Batches { get; set; }
         public virtual DbSet<ModuleDetail> ModuleDetails { get; set; }
-        public virtual DbSet<WarehouseAdjustmentDetail> WarehouseAdjustmentDetails { get; set; }
-        public virtual DbSet<GoodsReceiptDetail> GoodsReceiptDetails { get; set; }
         public virtual DbSet<WarehouseAdjustment> WarehouseAdjustments { get; set; }
         public virtual DbSet<GoodsIssueType> GoodsIssueTypes { get; set; }
         public virtual DbSet<TransferOrderDetail> TransferOrderDetails { get; set; }
@@ -62,8 +60,11 @@ namespace TotalModel.Models
         public virtual DbSet<CustomerType> CustomerTypes { get; set; }
         public virtual DbSet<EntireTerritory> EntireTerritories { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
-        public virtual DbSet<GoodsIssueDetail> GoodsIssueDetails { get; set; }
         public virtual DbSet<GoodsIssue> GoodsIssues { get; set; }
+        public virtual DbSet<GoodsIssueDetail> GoodsIssueDetails { get; set; }
+        public virtual DbSet<GoodsIssueTransferDetail> GoodsIssueTransferDetails { get; set; }
+        public virtual DbSet<GoodsReceiptDetail> GoodsReceiptDetails { get; set; }
+        public virtual DbSet<WarehouseAdjustmentDetail> WarehouseAdjustmentDetails { get; set; }
     
         public virtual ObjectResult<Nullable<int>> GetAccessLevel(Nullable<int> userID, Nullable<int> nMVNTaskID, Nullable<int> organizationalUnitID)
         {
@@ -1632,6 +1633,53 @@ namespace TotalModel.Models
                 new ObjectParameter("ToDate", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<TerritoryIndex>("GetTerritoryIndexes", aspUserIDParameter, fromDateParameter, toDateParameter);
+        }
+    
+        public virtual ObjectResult<PendingGoodsIssueTransferDetail> GetPendingGoodsIssueTransferDetails(Nullable<int> locationID, Nullable<int> goodsReceiptID, Nullable<int> goodsIssueID, Nullable<int> warehouseID, string goodsIssueTransferDetailIDs, Nullable<bool> isReadonly)
+        {
+            var locationIDParameter = locationID.HasValue ?
+                new ObjectParameter("LocationID", locationID) :
+                new ObjectParameter("LocationID", typeof(int));
+    
+            var goodsReceiptIDParameter = goodsReceiptID.HasValue ?
+                new ObjectParameter("GoodsReceiptID", goodsReceiptID) :
+                new ObjectParameter("GoodsReceiptID", typeof(int));
+    
+            var goodsIssueIDParameter = goodsIssueID.HasValue ?
+                new ObjectParameter("GoodsIssueID", goodsIssueID) :
+                new ObjectParameter("GoodsIssueID", typeof(int));
+    
+            var warehouseIDParameter = warehouseID.HasValue ?
+                new ObjectParameter("WarehouseID", warehouseID) :
+                new ObjectParameter("WarehouseID", typeof(int));
+    
+            var goodsIssueTransferDetailIDsParameter = goodsIssueTransferDetailIDs != null ?
+                new ObjectParameter("GoodsIssueTransferDetailIDs", goodsIssueTransferDetailIDs) :
+                new ObjectParameter("GoodsIssueTransferDetailIDs", typeof(string));
+    
+            var isReadonlyParameter = isReadonly.HasValue ?
+                new ObjectParameter("IsReadonly", isReadonly) :
+                new ObjectParameter("IsReadonly", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PendingGoodsIssueTransferDetail>("GetPendingGoodsIssueTransferDetails", locationIDParameter, goodsReceiptIDParameter, goodsIssueIDParameter, warehouseIDParameter, goodsIssueTransferDetailIDsParameter, isReadonlyParameter);
+        }
+    
+        public virtual ObjectResult<PendingGoodsIssueTransfer> GetPendingGoodsIssueTransfers(Nullable<int> locationID)
+        {
+            var locationIDParameter = locationID.HasValue ?
+                new ObjectParameter("LocationID", locationID) :
+                new ObjectParameter("LocationID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PendingGoodsIssueTransfer>("GetPendingGoodsIssueTransfers", locationIDParameter);
+        }
+    
+        public virtual ObjectResult<PendingGoodsIssueTransferWarehouse> GetPendingGoodsIssueTransferWarehouses(Nullable<int> locationID)
+        {
+            var locationIDParameter = locationID.HasValue ?
+                new ObjectParameter("LocationID", locationID) :
+                new ObjectParameter("LocationID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PendingGoodsIssueTransferWarehouse>("GetPendingGoodsIssueTransferWarehouses", locationIDParameter);
         }
     }
 }
