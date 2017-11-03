@@ -271,8 +271,8 @@
           <Property Name="WarehouseReceiptID" Type="int" />
           <Property Name="CommodityID" Type="int" Nullable="false" />
           <Property Name="BinLocationID" Type="int" Nullable="false" />
-          <Property Name="BatchID" Type="int" />
-          <Property Name="BatchEntryDate" Type="date" />
+          <Property Name="BatchID" Type="int" Nullable="false" />
+          <Property Name="BatchEntryDate" Type="date" Nullable="false" />
           <Property Name="PackID" Type="int" />
           <Property Name="CartonID" Type="int" />
           <Property Name="PalletID" Type="int" />
@@ -333,8 +333,8 @@
           <Property Name="WarehouseReceiptID" Type="int" Nullable="false" />
           <Property Name="CommodityID" Type="int" Nullable="false" />
           <Property Name="BinLocationID" Type="int" Nullable="false" />
-          <Property Name="BatchID" Type="int" />
-          <Property Name="BatchEntryDate" Type="date" />
+          <Property Name="BatchID" Type="int" Nullable="false" />
+          <Property Name="BatchEntryDate" Type="date" Nullable="false" />
           <Property Name="PackID" Type="int" />
           <Property Name="CartonID" Type="int" />
           <Property Name="PalletID" Type="int" />
@@ -375,8 +375,8 @@
           <Property Name="WarehouseID" Type="int" Nullable="false" />
           <Property Name="BinLocationID" Type="int" Nullable="false" />
           <Property Name="CommodityID" Type="int" Nullable="false" />
-          <Property Name="BatchID" Type="int" />
-          <Property Name="BatchEntryDate" Type="date" />
+          <Property Name="BatchID" Type="int" Nullable="false" />
+          <Property Name="BatchEntryDate" Type="date" Nullable="false" />
           <Property Name="PackID" Type="int" />
           <Property Name="CartonID" Type="int" />
           <Property Name="PalletID" Type="int" />
@@ -5686,8 +5686,8 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Name="WarehouseReceiptID" Type="Int32" />
           <Property Name="CommodityID" Type="Int32" Nullable="false" />
           <Property Name="BinLocationID" Type="Int32" Nullable="false" />
-          <Property Name="BatchID" Type="Int32" />
-          <Property Name="BatchEntryDate" Type="DateTime" Precision="0" />
+          <Property Name="BatchID" Type="Int32" Nullable="false" />
+          <Property Name="BatchEntryDate" Type="DateTime" Precision="0" Nullable="false" />
           <Property Name="PackID" Type="Int32" />
           <Property Name="CartonID" Type="Int32" />
           <Property Name="PalletID" Type="Int32" />
@@ -5721,8 +5721,8 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Name="WarehouseReceiptID" Type="Int32" Nullable="false" />
           <Property Name="CommodityID" Type="Int32" Nullable="false" />
           <Property Name="BinLocationID" Type="Int32" Nullable="false" />
-          <Property Name="BatchID" Type="Int32" />
-          <Property Name="BatchEntryDate" Type="DateTime" Precision="0" />
+          <Property Name="BatchID" Type="Int32" Nullable="false" />
+          <Property Name="BatchEntryDate" Type="DateTime" Precision="0" Nullable="false" />
           <Property Name="PackID" Type="Int32" />
           <Property Name="CartonID" Type="Int32" />
           <Property Name="PalletID" Type="Int32" />
@@ -5754,8 +5754,8 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Name="WarehouseID" Type="Int32" Nullable="false" />
           <Property Name="BinLocationID" Type="Int32" Nullable="false" />
           <Property Name="CommodityID" Type="Int32" Nullable="false" />
-          <Property Name="BatchID" Type="Int32" />
-          <Property Name="BatchEntryDate" Type="DateTime" Precision="0" />
+          <Property Name="BatchID" Type="Int32" Nullable="false" />
+          <Property Name="BatchEntryDate" Type="DateTime" Precision="0" Nullable="false" />
           <Property Name="PackID" Type="Int32" />
           <Property Name="CartonID" Type="Int32" />
           <Property Name="PalletID" Type="Int32" />

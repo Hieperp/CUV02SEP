@@ -26,8 +26,8 @@ namespace TotalModel.Models
         public int WarehouseReceiptID { get; set; }
         public int CommodityID { get; set; }
         public int BinLocationID { get; set; }
-        public Nullable<int> BatchID { get; set; }
-        public Nullable<System.DateTime> BatchEntryDate { get; set; }
+        public int BatchID { get; set; }
+        public System.DateTime BatchEntryDate { get; set; }
         public Nullable<int> PackID { get; set; }
         public Nullable<int> CartonID { get; set; }
         public Nullable<int> PalletID { get; set; }
