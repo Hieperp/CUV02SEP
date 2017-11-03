@@ -31,6 +31,9 @@ namespace TotalDAL.Repositories.Inventories
         {
         }
 
+
+
+
         public List<PendingPickup> GetPendingPickups(int? locationID)
         {
             return base.TotalSmartCodingEntities.GetPendingPickups(locationID).ToList();
@@ -46,6 +49,28 @@ namespace TotalDAL.Repositories.Inventories
             return base.TotalSmartCodingEntities.GetPendingPickupDetails(locationID, goodsReceiptID, pickupID, warehouseID, pickupDetailIDs, isReadonly).ToList();
         }
 
+
+
+
+
+        public List<PendingGoodsIssueTransfer> GetPendingGoodsIssueTransfers(int? locationID)
+        {
+            return base.TotalSmartCodingEntities.GetPendingGoodsIssueTransfers(locationID).ToList();
+        }
+
+        public List<PendingGoodsIssueTransferWarehouse> GetPendingGoodsIssueTransferWarehouses(int? locationID)
+        {
+            return base.TotalSmartCodingEntities.GetPendingGoodsIssueTransferWarehouses(locationID).ToList();
+        }
+
+        public List<PendingGoodsIssueTransferDetail> GetPendingGoodsIssueTransferDetails(int? locationID, int? goodsReceiptID, int? pickupID, int? warehouseID, string pickupDetailIDs, bool isReadonly)
+        {
+            return base.TotalSmartCodingEntities.GetPendingGoodsIssueTransferDetails(locationID, goodsReceiptID, pickupID, warehouseID, pickupDetailIDs, isReadonly).ToList();
+        }
+
+
+
+
         public List<PendingWarehouseAdjustmentDetail> GetPendingWarehouseAdjustmentDetails(int? locationID, int? goodsReceiptID, int? warehouseAdjustmentID, int? warehouseID, string warehouseAdjustmentDetailIDs, bool isReadonly)
         {
             return base.TotalSmartCodingEntities.GetPendingWarehouseAdjustmentDetails(locationID, goodsReceiptID, warehouseAdjustmentID, warehouseID, warehouseAdjustmentDetailIDs, isReadonly).ToList();
@@ -55,6 +80,9 @@ namespace TotalDAL.Repositories.Inventories
         {
             return base.TotalSmartCodingEntities.GetGoodsReceiptIDofWarehouseAdjustment(warehouseAdjustmentID).FirstOrDefault();
         }
+
+
+
 
         public List<GoodsReceiptDetailAvailable> GetGoodsReceiptDetailAvailables(int? locationID, int? warehouseID, int? commodityID, string commodityIDs, int? batchID, string goodsReceiptDetailIDs)
         {
