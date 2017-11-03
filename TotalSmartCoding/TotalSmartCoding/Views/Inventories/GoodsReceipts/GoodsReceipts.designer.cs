@@ -30,15 +30,15 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GoodsReceipts));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.layoutLeft = new System.Windows.Forms.TableLayoutPanel();
             this.dateTimexEntryDate = new CustomControls.DateTimexPicker();
             this.textexReference = new CustomControls.TextexBox();
@@ -63,19 +63,11 @@
             this.toolStripPallet = new System.Windows.Forms.ToolStrip();
             this.buttonAddPallets = new System.Windows.Forms.ToolStripButton();
             this.gridexCartonDetails = new CustomControls.DataGridexView();
-            this.CartonPickupReference = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CartonPickupEntryDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CartonCommodityCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CartonCommodityName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CartonBinLocationCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CartonCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CartonQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CartonLineVolume = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.textexDescription = new CustomControls.TextexBox();
             this.textexRemarks = new CustomControls.TextexBox();
             this.gridexPalletDetails = new CustomControls.DataGridexView();
-            this.PalletPickupReference = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PalletPickupEntryDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PalletPrimaryReference = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PalletPrimaryEntryDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PalletCommodityCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PalletCommodityName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PalletBinLocationCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -100,6 +92,14 @@
             this.olvTotalLineVolume = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvApproved = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.imageList32 = new System.Windows.Forms.ImageList(this.components);
+            this.CartonPrimaryReference = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CartonPrimaryEntryDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CartonCommodityCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CartonCommodityName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CartonBinLocationCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CartonCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CartonQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CartonLineVolume = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.layoutLeft.SuspendLayout();
             this.toolStripChildForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.naviGroupDetails)).BeginInit();
@@ -255,10 +255,10 @@
             this.label11.AutoSize = true;
             this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label11.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(174, 7);
+            this.label11.Location = new System.Drawing.Point(171, 7);
             this.label11.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(42, 99);
+            this.label11.Size = new System.Drawing.Size(41, 99);
             this.label11.TabIndex = 45;
             this.label11.Text = "Noted By";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -268,10 +268,10 @@
             this.label12.AutoSize = true;
             this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label12.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(345, 7);
+            this.label12.Location = new System.Drawing.Point(339, 7);
             this.label12.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(42, 99);
+            this.label12.Size = new System.Drawing.Size(41, 99);
             this.label12.TabIndex = 47;
             this.label12.Text = "Approved By";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -441,8 +441,8 @@
             this.gridexCartonDetails.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.gridexCartonDetails.ColumnHeadersHeight = 24;
             this.gridexCartonDetails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.CartonPickupReference,
-            this.CartonPickupEntryDate,
+            this.CartonPrimaryReference,
+            this.CartonPrimaryEntryDate,
             this.CartonCommodityCode,
             this.CartonCommodityName,
             this.CartonBinLocationCode,
@@ -456,84 +456,11 @@
             this.gridexCartonDetails.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gridexCartonDetails.Name = "gridexCartonDetails";
             this.gridexCartonDetails.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridexCartonDetails.RowsDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridexCartonDetails.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.gridexCartonDetails.RowTemplate.Height = 24;
             this.gridexCartonDetails.Size = new System.Drawing.Size(403, 212);
             this.gridexCartonDetails.TabIndex = 77;
-            // 
-            // CartonPickupReference
-            // 
-            this.CartonPickupReference.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CartonPickupReference.DataPropertyName = "PickupReference";
-            this.CartonPickupReference.FillWeight = 6F;
-            this.CartonPickupReference.HeaderText = "Pickups.Reference";
-            this.CartonPickupReference.Name = "CartonPickupReference";
-            // 
-            // CartonPickupEntryDate
-            // 
-            this.CartonPickupEntryDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CartonPickupEntryDate.DataPropertyName = "PickupEntryDate";
-            this.CartonPickupEntryDate.FillWeight = 12F;
-            this.CartonPickupEntryDate.HeaderText = "Pickups.Date";
-            this.CartonPickupEntryDate.Name = "CartonPickupEntryDate";
-            // 
-            // CartonCommodityCode
-            // 
-            this.CartonCommodityCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CartonCommodityCode.DataPropertyName = "CommodityCode";
-            this.CartonCommodityCode.FillWeight = 7F;
-            this.CartonCommodityCode.HeaderText = "Items.Code";
-            this.CartonCommodityCode.Name = "CartonCommodityCode";
-            // 
-            // CartonCommodityName
-            // 
-            this.CartonCommodityName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CartonCommodityName.DataPropertyName = "CommodityName";
-            this.CartonCommodityName.FillWeight = 27F;
-            this.CartonCommodityName.HeaderText = "Items.Description";
-            this.CartonCommodityName.Name = "CartonCommodityName";
-            // 
-            // CartonBinLocationCode
-            // 
-            this.CartonBinLocationCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CartonBinLocationCode.DataPropertyName = "BinLocationCode";
-            this.CartonBinLocationCode.FillWeight = 10F;
-            this.CartonBinLocationCode.HeaderText = "Bin Location";
-            this.CartonBinLocationCode.Name = "CartonBinLocationCode";
-            // 
-            // CartonCode
-            // 
-            this.CartonCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CartonCode.DataPropertyName = "CartonCode";
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.CartonCode.DefaultCellStyle = dataGridViewCellStyle10;
-            this.CartonCode.FillWeight = 24F;
-            this.CartonCode.HeaderText = "Carton Code";
-            this.CartonCode.Name = "CartonCode";
-            // 
-            // CartonQuantity
-            // 
-            this.CartonQuantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CartonQuantity.DataPropertyName = "Quantity";
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle11.Format = "N0";
-            this.CartonQuantity.DefaultCellStyle = dataGridViewCellStyle11;
-            this.CartonQuantity.FillWeight = 7F;
-            this.CartonQuantity.HeaderText = "Quantity";
-            this.CartonQuantity.Name = "CartonQuantity";
-            // 
-            // CartonLineVolume
-            // 
-            this.CartonLineVolume.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CartonLineVolume.DataPropertyName = "LineVolume";
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle12.Format = "N2";
-            dataGridViewCellStyle12.NullValue = null;
-            this.CartonLineVolume.DefaultCellStyle = dataGridViewCellStyle12;
-            this.CartonLineVolume.FillWeight = 7F;
-            this.CartonLineVolume.HeaderText = "Volume";
-            this.CartonLineVolume.Name = "CartonLineVolume";
             // 
             // textexDescription
             // 
@@ -572,8 +499,8 @@
             this.gridexPalletDetails.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.gridexPalletDetails.ColumnHeadersHeight = 24;
             this.gridexPalletDetails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.PalletPickupReference,
-            this.PalletPickupEntryDate,
+            this.PalletPrimaryReference,
+            this.PalletPrimaryEntryDate,
             this.PalletCommodityCode,
             this.PalletCommodityName,
             this.PalletBinLocationCode,
@@ -587,29 +514,29 @@
             this.gridexPalletDetails.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gridexPalletDetails.Name = "gridexPalletDetails";
             this.gridexPalletDetails.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridexPalletDetails.RowsDefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridexPalletDetails.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.gridexPalletDetails.RowTemplate.Height = 24;
             this.gridexPalletDetails.Size = new System.Drawing.Size(376, 212);
             this.gridexPalletDetails.TabIndex = 65;
             // 
-            // PalletPickupReference
+            // PalletPrimaryReference
             // 
-            this.PalletPickupReference.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.PalletPickupReference.DataPropertyName = "PickupReference";
-            this.PalletPickupReference.FillWeight = 6F;
-            this.PalletPickupReference.HeaderText = "Pickups.Reference";
-            this.PalletPickupReference.Name = "PalletPickupReference";
+            this.PalletPrimaryReference.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.PalletPrimaryReference.DataPropertyName = "PrimaryReference";
+            this.PalletPrimaryReference.FillWeight = 6F;
+            this.PalletPrimaryReference.HeaderText = "Pickups.Reference";
+            this.PalletPrimaryReference.Name = "PalletPrimaryReference";
             // 
-            // PalletPickupEntryDate
+            // PalletPrimaryEntryDate
             // 
-            this.PalletPickupEntryDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.PalletPickupEntryDate.DataPropertyName = "PickupEntryDate";
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.PalletPickupEntryDate.DefaultCellStyle = dataGridViewCellStyle14;
-            this.PalletPickupEntryDate.FillWeight = 12F;
-            this.PalletPickupEntryDate.HeaderText = "Pickups.Date";
-            this.PalletPickupEntryDate.Name = "PalletPickupEntryDate";
+            this.PalletPrimaryEntryDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.PalletPrimaryEntryDate.DataPropertyName = "PrimaryEntryDate";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.PalletPrimaryEntryDate.DefaultCellStyle = dataGridViewCellStyle5;
+            this.PalletPrimaryEntryDate.FillWeight = 12F;
+            this.PalletPrimaryEntryDate.HeaderText = "Pickups.Date";
+            this.PalletPrimaryEntryDate.Name = "PalletPrimaryEntryDate";
             // 
             // PalletCommodityCode
             // 
@@ -639,8 +566,8 @@
             // 
             this.PalletCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.PalletCode.DataPropertyName = "PalletCode";
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.PalletCode.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.PalletCode.DefaultCellStyle = dataGridViewCellStyle6;
             this.PalletCode.FillWeight = 24F;
             this.PalletCode.HeaderText = "Pallet Code";
             this.PalletCode.Name = "PalletCode";
@@ -649,10 +576,10 @@
             // 
             this.PalletQuantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.PalletQuantity.DataPropertyName = "Quantity";
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle16.Format = "N0";
-            dataGridViewCellStyle16.NullValue = null;
-            this.PalletQuantity.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle7.Format = "N0";
+            dataGridViewCellStyle7.NullValue = null;
+            this.PalletQuantity.DefaultCellStyle = dataGridViewCellStyle7;
             this.PalletQuantity.FillWeight = 7F;
             this.PalletQuantity.HeaderText = "Quantity";
             this.PalletQuantity.Name = "PalletQuantity";
@@ -661,9 +588,9 @@
             // 
             this.PalletVolume.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.PalletVolume.DataPropertyName = "LineVolume";
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle17.Format = "N2";
-            this.PalletVolume.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle8.Format = "N2";
+            this.PalletVolume.DefaultCellStyle = dataGridViewCellStyle8;
             this.PalletVolume.FillWeight = 7F;
             this.PalletVolume.HeaderText = "Volume";
             this.PalletVolume.Name = "PalletVolume";
@@ -698,7 +625,7 @@
             this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 11F));
             this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.019F));
             this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.32099F));
-            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 728F));
+            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 737F));
             this.tableLayoutPanelExtend.Controls.Add(this.combexCommodityID, 0, 0);
             this.tableLayoutPanelExtend.Controls.Add(this.label11, 3, 0);
             this.tableLayoutPanelExtend.Controls.Add(this.label12, 6, 0);
@@ -721,11 +648,11 @@
             this.combexCommodityID.Editable = true;
             this.combexCommodityID.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combexCommodityID.FormattingEnabled = true;
-            this.combexCommodityID.Location = new System.Drawing.Point(51, 4);
+            this.combexCommodityID.Location = new System.Drawing.Point(50, 4);
             this.combexCommodityID.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.combexCommodityID.Name = "combexCommodityID";
             this.combexCommodityID.ReadOnly = false;
-            this.combexCommodityID.Size = new System.Drawing.Size(108, 29);
+            this.combexCommodityID.Size = new System.Drawing.Size(106, 29);
             this.combexCommodityID.TabIndex = 72;
             // 
             // label10
@@ -736,7 +663,7 @@
             this.label10.Location = new System.Drawing.Point(3, 7);
             this.label10.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(42, 99);
+            this.label10.Size = new System.Drawing.Size(41, 99);
             this.label10.TabIndex = 35;
             this.label10.Text = "Requested By";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -887,6 +814,79 @@
             this.imageList32.Images.SetKeyName(4, "Placeholder32");
             this.imageList32.Images.SetKeyName(5, "Storage32");
             // 
+            // CartonPrimaryReference
+            // 
+            this.CartonPrimaryReference.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CartonPrimaryReference.DataPropertyName = "PrimaryReference";
+            this.CartonPrimaryReference.FillWeight = 6F;
+            this.CartonPrimaryReference.HeaderText = "Pickups.Reference";
+            this.CartonPrimaryReference.Name = "CartonPrimaryReference";
+            // 
+            // CartonPrimaryEntryDate
+            // 
+            this.CartonPrimaryEntryDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CartonPrimaryEntryDate.DataPropertyName = "PrimaryEntryDate";
+            this.CartonPrimaryEntryDate.FillWeight = 12F;
+            this.CartonPrimaryEntryDate.HeaderText = "Pickups.Date";
+            this.CartonPrimaryEntryDate.Name = "CartonPrimaryEntryDate";
+            // 
+            // CartonCommodityCode
+            // 
+            this.CartonCommodityCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CartonCommodityCode.DataPropertyName = "CommodityCode";
+            this.CartonCommodityCode.FillWeight = 7F;
+            this.CartonCommodityCode.HeaderText = "Items.Code";
+            this.CartonCommodityCode.Name = "CartonCommodityCode";
+            // 
+            // CartonCommodityName
+            // 
+            this.CartonCommodityName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CartonCommodityName.DataPropertyName = "CommodityName";
+            this.CartonCommodityName.FillWeight = 27F;
+            this.CartonCommodityName.HeaderText = "Items.Description";
+            this.CartonCommodityName.Name = "CartonCommodityName";
+            // 
+            // CartonBinLocationCode
+            // 
+            this.CartonBinLocationCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CartonBinLocationCode.DataPropertyName = "BinLocationCode";
+            this.CartonBinLocationCode.FillWeight = 10F;
+            this.CartonBinLocationCode.HeaderText = "Bin Location";
+            this.CartonBinLocationCode.Name = "CartonBinLocationCode";
+            // 
+            // CartonCode
+            // 
+            this.CartonCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CartonCode.DataPropertyName = "CartonCode";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.CartonCode.DefaultCellStyle = dataGridViewCellStyle1;
+            this.CartonCode.FillWeight = 24F;
+            this.CartonCode.HeaderText = "Carton Code";
+            this.CartonCode.Name = "CartonCode";
+            // 
+            // CartonQuantity
+            // 
+            this.CartonQuantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CartonQuantity.DataPropertyName = "Quantity";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Format = "N0";
+            this.CartonQuantity.DefaultCellStyle = dataGridViewCellStyle2;
+            this.CartonQuantity.FillWeight = 7F;
+            this.CartonQuantity.HeaderText = "Quantity";
+            this.CartonQuantity.Name = "CartonQuantity";
+            // 
+            // CartonLineVolume
+            // 
+            this.CartonLineVolume.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CartonLineVolume.DataPropertyName = "LineVolume";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.Format = "N2";
+            dataGridViewCellStyle3.NullValue = null;
+            this.CartonLineVolume.DefaultCellStyle = dataGridViewCellStyle3;
+            this.CartonLineVolume.FillWeight = 7F;
+            this.CartonLineVolume.HeaderText = "Volume";
+            this.CartonLineVolume.Name = "CartonLineVolume";
+            // 
             // GoodsReceipts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
@@ -979,22 +979,22 @@
         private System.Windows.Forms.ToolStripButton buttonAddPallets;
         private System.Windows.Forms.ToolStrip toolStripCarton;
         private System.Windows.Forms.ToolStripButton buttonAddCartons;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CartonPickupReference;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CartonPickupEntryDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CartonCommodityCode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CartonCommodityName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CartonBinLocationCode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CartonCode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CartonQuantity;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CartonLineVolume;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PalletPickupReference;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PalletPickupEntryDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PalletPrimaryReference;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PalletPrimaryEntryDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn PalletCommodityCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn PalletCommodityName;
         private System.Windows.Forms.DataGridViewTextBoxColumn PalletBinLocationCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn PalletCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn PalletQuantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn PalletVolume;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CartonPrimaryReference;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CartonPrimaryEntryDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CartonCommodityCode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CartonCommodityName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CartonBinLocationCode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CartonCode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CartonQuantity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CartonLineVolume;
 
     }
 }

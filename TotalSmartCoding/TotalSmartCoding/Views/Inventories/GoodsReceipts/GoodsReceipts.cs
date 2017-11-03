@@ -200,11 +200,11 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
                 this.customTabCenter.TabPages[0].Text = "Pallets [" + this.goodsReceiptViewModel.PalletDetails.Count.ToString("N0") + " item(s)]             ";
                 this.customTabCenter.TabPages[1].Text = "Cartons [" + this.goodsReceiptViewModel.CartonDetails.Count.ToString("N0") + " item(s)]             ";
 
-                this.gridexPalletDetails.Columns["Pallet" + CommonExpressions.PropertyName<GoodsReceiptDetailDTO>(p => p.PickupReference)].Visible = this.goodsReceiptViewModel.PickupID == null;
-                this.gridexPalletDetails.Columns["Pallet" + CommonExpressions.PropertyName<GoodsReceiptDetailDTO>(p => p.PickupEntryDate)].Visible = this.goodsReceiptViewModel.PickupID == null;
+                this.gridexPalletDetails.Columns["Pallet" + CommonExpressions.PropertyName<GoodsReceiptDetailDTO>(p => p.PrimaryReference)].Visible = this.goodsReceiptViewModel.PickupID == null;
+                this.gridexPalletDetails.Columns["Pallet" + CommonExpressions.PropertyName<GoodsReceiptDetailDTO>(p => p.PrimaryEntryDate)].Visible = this.goodsReceiptViewModel.PickupID == null;
 
-                this.gridexCartonDetails.Columns["Carton" + CommonExpressions.PropertyName<GoodsReceiptDetailDTO>(p => p.PickupReference)].Visible = this.goodsReceiptViewModel.PickupID == null;
-                this.gridexCartonDetails.Columns["Carton" + CommonExpressions.PropertyName<GoodsReceiptDetailDTO>(p => p.PickupEntryDate)].Visible = this.goodsReceiptViewModel.PickupID == null;
+                this.gridexCartonDetails.Columns["Carton" + CommonExpressions.PropertyName<GoodsReceiptDetailDTO>(p => p.PrimaryReference)].Visible = this.goodsReceiptViewModel.PickupID == null;
+                this.gridexCartonDetails.Columns["Carton" + CommonExpressions.PropertyName<GoodsReceiptDetailDTO>(p => p.PrimaryEntryDate)].Visible = this.goodsReceiptViewModel.PickupID == null;
             }
         }
 

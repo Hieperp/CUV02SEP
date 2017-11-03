@@ -18,11 +18,11 @@ namespace TotalModel.Models
         public string Reference { get; set; }
         public string LocationCode { get; set; }
         public string GoodsReceiptTypeCode { get; set; }
-        public string PickupReferences { get; set; }
         public string Description { get; set; }
         public decimal TotalQuantity { get; set; }
         public bool Approved { get; set; }
         public string WarehouseName { get; set; }
         public decimal TotalLineVolume { get; set; }
+        public string PrimaryReferences { get; set; }
     }
 }

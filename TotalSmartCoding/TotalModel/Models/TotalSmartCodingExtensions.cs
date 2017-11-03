@@ -6,6 +6,122 @@ using TotalModel.Interfaces;
 
 namespace TotalModel.Models
 {
+    #region Interface for goods receipt
+
+    #region master
+    public interface IPendingforGoodsReceipt
+    {
+        int PickupID { get; set; }
+        int GoodsIssueID { get; set; }
+
+        string PrimaryReference { get; set; }
+        System.DateTime PrimaryEntryDate { get; set; }
+
+        int GoodsReceiptTypeID { get; set; }
+        string GoodsReceiptTypeName { get; set; }
+
+        int WarehouseID { get; set; }
+        string WarehouseCode { get; set; }
+
+        string WarehouseName { get; set; }
+    }
+    public partial class PendingPickup : IPendingforGoodsReceipt
+    {
+        public int GoodsIssueID { get; set; }
+    }
+
+    public partial class PendingGoodsIssueTransfer : IPendingforGoodsReceipt
+    {
+        public int PickupID { get; set; }
+    }
+
+    public partial class PendingPickupWarehouse : IPendingforGoodsReceipt
+    {
+        public int PickupID { get; set; }
+        public int GoodsIssueID { get; set; }
+
+        public string PrimaryReference { get; set; }
+        public System.DateTime PrimaryEntryDate { get; set; }
+    }
+
+    public partial class PendingGoodsIssueTransferWarehouse : IPendingforGoodsReceipt
+    {
+        public int PickupID { get; set; }
+        public int GoodsIssueID { get; set; }
+
+        public string PrimaryReference { get; set; }
+        public System.DateTime PrimaryEntryDate { get; set; }
+    }
+
+    #endregion master
+
+    #region Detail
+    public interface IPendingforGoodsReceiptDetail //THIS INTERFACE IS NOW USED FOR: PendingPickupDetail, PendingGoodsIssueTransferDetail AND PendingWarehouseAdjustmentDetail. BUT: WITH PendingWarehouseAdjustmentDetail: WE DON'T LOAD AND ADD TO DETAILS BY WizardDetail VIEW -> SO: WE DON'T NEED TO IMPLEMENT THIS INTERFACE. LATER, WE CAN IMPLEMENT THIS IF NEEDED
+    {
+        int PickupID { get; set; }
+        int PickupDetailID { get; set; }
+        
+        int GoodsIssueID { get; set; }
+        int GoodsIssueTransferDetailID { get; set; }
+        
+        //int WarehouseAdjustmentID { get; set; }
+        //int WarehouseAdjustmentDetailID { get; set; }
+
+        string PrimaryReference { get; set; }
+        System.DateTime PrimaryEntryDate { get; set; }
+
+        int CommodityID { get; set; }
+        string CommodityCode { get; set; }
+        string CommodityName { get; set; }
+
+        int BatchID { get; set; }
+        System.DateTime BatchEntryDate { get; set; }
+
+        int BinLocationID { get; set; }
+        string BinLocationCode { get; set; }
+
+        Nullable<int> PackID { get; set; }
+        string PackCode { get; set; }
+        Nullable<int> CartonID { get; set; }
+        string CartonCode { get; set; }
+        Nullable<int> PalletID { get; set; }
+        string PalletCode { get; set; }
+        
+        int PackCounts { get; set; }
+        int CartonCounts { get; set; }
+        int PalletCounts { get; set; }
+
+        Nullable<decimal> QuantityRemains { get; set; }
+        Nullable<decimal> LineVolumeRemains { get; set; }
+
+        Nullable<decimal> Quantity { get; set; }
+        decimal LineVolume { get; set; }
+        
+        string Remarks { get; set; }
+        Nullable<bool> IsSelected { get; set; }
+    }
+
+    public partial class PendingPickupDetail : IPendingforGoodsReceiptDetail
+    {
+        public int GoodsIssueID { get; set; }
+        public int GoodsIssueTransferDetailID { get; set; }
+
+        //public int WarehouseAdjustmentID { get; set; }
+        //public int WarehouseAdjustmentDetailID { get; set; }
+    }
+    public partial class PendingGoodsIssueTransferDetail : IPendingforGoodsReceiptDetail
+    {
+        public int PickupID { get; set; }
+        public int PickupDetailID { get; set; }
+
+        //public int WarehouseAdjustmentID { get; set; }
+        //public int WarehouseAdjustmentDetailID { get; set; }
+    }
+
+    #endregion Detail
+
+    #endregion Interface for goods receipt
+
 
     #region Interface for goods issue
 
@@ -59,7 +175,7 @@ namespace TotalModel.Models
         public decimal QuantityRemains { get; set; }
         public decimal LineVolumeRemains { get; set; }
     }
-    
+
     #endregion Interface for goods issue
 
     //public partial class SalesOrder : IPrimitiveEntity, IBaseEntity, IBaseDetailEntity<SalesOrderDetail>

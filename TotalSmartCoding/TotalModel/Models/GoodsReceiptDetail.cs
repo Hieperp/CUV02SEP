@@ -55,7 +55,6 @@ namespace TotalModel.Models
         public virtual Commodity Commodity { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GoodsIssueDetail> GoodsIssueDetails { get; set; }
-        public virtual GoodsReceipt GoodsReceipt { get; set; }
         public virtual Pack Pack { get; set; }
         public virtual Pallet Pallet { get; set; }
         public virtual PickupDetail PickupDetail { get; set; }
@@ -63,5 +62,6 @@ namespace TotalModel.Models
         public virtual Warehouse Warehouse { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WarehouseAdjustmentDetail> WarehouseAdjustmentDetails { get; set; }
+        public virtual GoodsReceipt GoodsReceipt { get; set; }
     }
 }

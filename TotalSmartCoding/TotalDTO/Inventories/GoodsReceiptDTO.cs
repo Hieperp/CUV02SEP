@@ -57,8 +57,20 @@ namespace TotalDTO.Inventories
         }
         [DefaultValue(null)]
         public string PickupReference { get; set; }
+
+        private Nullable<int> goodsIssueID;
         [DefaultValue(null)]
-        public string PickupReferences { get; set; }
+        public Nullable<int> GoodsIssueID
+        {
+            get { return this.goodsIssueID; }
+            set { ApplyPropertyChange<GoodsReceiptPrimitiveDTO, Nullable<int>>(ref this.goodsIssueID, o => o.GoodsIssueID, value); }
+        }
+        [DefaultValue(null)]
+        public string GoodsIssueReference { get; set; }
+
+
+        [DefaultValue(null)]
+        public string PrimaryReferences { get; set; }
 
 
         private Nullable<int> warehouseAdjustmentID;
@@ -102,16 +114,16 @@ namespace TotalDTO.Inventories
 
         public override string Caption
         {
-            get { return this.GoodsReceiptTypeName + ": " + (this.PickupID != null ? this.PickupReference : this.PickupReferences) + "             " + this.WarehouseName + (this.WarehouseName != ""? ", ":"") + this.EntryDate.ToString() + "             Total Quantity: " + this.TotalQuantity.ToString("N0") + ",    Total Volume: " + this.TotalLineVolume.ToString("N2"); }
+            get { return this.GoodsReceiptTypeName + ": " + (this.PickupID != null ? this.PickupReference : this.PrimaryReferences) + "             " + this.WarehouseName + (this.WarehouseName != ""? ", ":"") + this.EntryDate.ToString() + "             Total Quantity: " + this.TotalQuantity.ToString("N0") + ",    Total Volume: " + this.TotalLineVolume.ToString("N2"); }
         }
 
         public override void PerformPresaveRule()
         {
             base.PerformPresaveRule();
 
-            string pickupReferences = "";
-            this.DtoDetails().ToList().ForEach(e => { e.WarehouseID = this.WarehouseID; if (this.HasPickup && pickupReferences.IndexOf(e.PickupReference) < 0) pickupReferences = pickupReferences + (pickupReferences != "" ? ", " : "") + e.PickupReference; });
-            this.PickupReferences = pickupReferences;
+            string primaryReferences = "";
+            this.DtoDetails().ToList().ForEach(e => { e.WarehouseID = this.WarehouseID; if (this.HasPickup && primaryReferences.IndexOf(e.PrimaryReference) < 0) primaryReferences = primaryReferences + (primaryReferences != "" ? ", " : "") + e.PrimaryReference; });
+            this.PrimaryReferences = primaryReferences;
         }
 
         protected override List<ValidationRule> CreateRules()

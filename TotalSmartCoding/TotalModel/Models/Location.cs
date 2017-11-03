@@ -21,12 +21,12 @@ namespace TotalModel.Models
             this.OrganizationalUnits = new HashSet<OrganizationalUnit>();
             this.Warehouses = new HashSet<Warehouse>();
             this.Pickups = new HashSet<Pickup>();
-            this.GoodsReceipts = new HashSet<GoodsReceipt>();
             this.SalesOrders = new HashSet<SalesOrder>();
             this.DeliveryAdvices = new HashSet<DeliveryAdvice>();
             this.WarehouseAdjustments = new HashSet<WarehouseAdjustment>();
             this.TransferOrders = new HashSet<TransferOrder>();
             this.GoodsIssues = new HashSet<GoodsIssue>();
+            this.GoodsReceipts = new HashSet<GoodsReceipt>();
         }
     
         public int LocationID { get; set; }
@@ -50,8 +50,6 @@ namespace TotalModel.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pickup> Pickups { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GoodsReceipt> GoodsReceipts { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SalesOrder> SalesOrders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DeliveryAdvice> DeliveryAdvices { get; set; }
@@ -61,5 +59,7 @@ namespace TotalModel.Models
         public virtual ICollection<TransferOrder> TransferOrders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GoodsIssue> GoodsIssues { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GoodsReceipt> GoodsReceipts { get; set; }
     }
 }

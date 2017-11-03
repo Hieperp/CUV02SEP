@@ -24,11 +24,20 @@ namespace TotalDTO.Inventories
         public string PickupReference { get; set; }
         public Nullable<System.DateTime> PickupEntryDate { get; set; }
 
+        public Nullable<int> GoodsIssueID { get; set; }
+        public Nullable<int> GoodsIssueTransferDetailID { get; set; }
+
+        public string GoodsIssueReference { get; set; }
+        public Nullable<System.DateTime> GoodsIssueEntryDate { get; set; }
+
         public Nullable<int> WarehouseAdjustmentID { get; set; }
         public Nullable<int> WarehouseAdjustmentDetailID { get; set; }
 
         public string WarehouseAdjustmentReference { get; set; }
         public Nullable<System.DateTime> WarehouseAdjustmentEntryDate { get; set; }
+
+        public string PrimaryReference { get { return this.PickupReference != null ? this.PickupReference : (this.GoodsIssueReference != null ? this.GoodsIssueReference : (this.WarehouseAdjustmentReference != null ? this.WarehouseAdjustmentReference : null)); } }
+        public Nullable<System.DateTime> PrimaryEntryDate { get { return this.PickupEntryDate != null ? this.PickupEntryDate : (this.GoodsIssueEntryDate != null ? this.GoodsIssueEntryDate : (this.WarehouseAdjustmentEntryDate != null ? this.WarehouseAdjustmentEntryDate : null)); } }
 
         public Nullable<int> BatchID { get; set; }
         public Nullable<System.DateTime> BatchEntryDate { get; set; }

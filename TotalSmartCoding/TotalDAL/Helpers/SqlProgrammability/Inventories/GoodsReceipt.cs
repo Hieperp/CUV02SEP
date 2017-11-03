@@ -63,7 +63,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
-            queryString = queryString + "       SELECT      GoodsReceipts.GoodsReceiptID, CAST(GoodsReceipts.EntryDate AS DATE) AS EntryDate, GoodsReceipts.Reference, GoodsReceiptTypes.Code AS GoodsReceiptTypeCode, GoodsReceipts.PickupReferences, Locations.Code AS LocationCode, Warehouses.Name AS WarehouseName, GoodsReceipts.Description, GoodsReceipts.TotalQuantity, GoodsReceipts.TotalLineVolume, GoodsReceipts.Approved " + "\r\n";
+            queryString = queryString + "       SELECT      GoodsReceipts.GoodsReceiptID, CAST(GoodsReceipts.EntryDate AS DATE) AS EntryDate, GoodsReceipts.Reference, GoodsReceiptTypes.Code AS GoodsReceiptTypeCode, GoodsReceipts.PrimaryReferences, Locations.Code AS LocationCode, Warehouses.Name AS WarehouseName, GoodsReceipts.Description, GoodsReceipts.TotalQuantity, GoodsReceipts.TotalLineVolume, GoodsReceipts.Approved " + "\r\n";
             queryString = queryString + "       FROM        GoodsReceipts " + "\r\n";
             queryString = queryString + "                   INNER JOIN Locations ON GoodsReceipts.EntryDate >= @FromDate AND GoodsReceipts.EntryDate <= @ToDate AND GoodsReceipts.OrganizationalUnitID IN (SELECT AccessControls.OrganizationalUnitID FROM AccessControls INNER JOIN AspNetUsers ON AccessControls.UserID = AspNetUsers.UserID WHERE AspNetUsers.Id = @AspUserID AND AccessControls.NMVNTaskID = " + (int)TotalBase.Enums.GlobalEnums.NmvnTaskID.GoodsReceipt + " AND AccessControls.AccessLevel > 0) AND Locations.LocationID = GoodsReceipts.LocationID " + "\r\n";
             queryString = queryString + "                   INNER JOIN Warehouses ON GoodsReceipts.WarehouseID = Warehouses.WarehouseID " + "\r\n";
@@ -89,13 +89,19 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryString = queryString + "    BEGIN " + "\r\n";
 
             queryString = queryString + "       SELECT      GoodsReceiptDetails.GoodsReceiptDetailID, GoodsReceiptDetails.GoodsReceiptID, GoodsReceiptDetails.PickupID, GoodsReceiptDetails.PickupDetailID, PickupDetails.Reference AS PickupReference, PickupDetails.EntryDate AS PickupEntryDate, " + "\r\n";
+            queryString = queryString + "                   GoodsReceiptDetails.GoodsIssueID, GoodsReceiptDetails.GoodsIssueTransferDetailID, GoodsIssueTransferDetails.Reference AS GoodsIssueReference, GoodsIssueTransferDetails.EntryDate AS GoodsIssueEntryDate, GoodsReceiptDetails.WarehouseAdjustmentID, GoodsReceiptDetails.WarehouseAdjustmentDetailID, WarehouseAdjustmentDetails.Reference AS WarehouseAdjustmentReference, WarehouseAdjustmentDetails.EntryDate AS WarehouseAdjustmentEntryDate, " + "\r\n";
             queryString = queryString + "                   Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, GoodsReceiptDetails.BatchID, GoodsReceiptDetails.BatchEntryDate, GoodsReceiptDetails.BinLocationID, BinLocations.Code AS BinLocationCode, " + "\r\n";
             queryString = queryString + "                   GoodsReceiptDetails.PackID, Packs.Code AS PackCode, GoodsReceiptDetails.CartonID, Cartons.Code AS CartonCode, GoodsReceiptDetails.PalletID, Pallets.Code AS PalletCode, " + "\r\n";
             queryString = queryString + "                   GoodsReceiptDetails.Quantity, GoodsReceiptDetails.PackCounts, GoodsReceiptDetails.CartonCounts, GoodsReceiptDetails.PalletCounts, GoodsReceiptDetails.LineVolume, GoodsReceiptDetails.Remarks " + "\r\n";
+            
             queryString = queryString + "       FROM        GoodsReceiptDetails " + "\r\n";
             queryString = queryString + "                   INNER JOIN Commodities ON GoodsReceiptDetails.GoodsReceiptID = @GoodsReceiptID AND GoodsReceiptDetails.CommodityID = Commodities.CommodityID " + "\r\n";
             queryString = queryString + "                   INNER JOIN BinLocations ON GoodsReceiptDetails.BinLocationID = BinLocations.BinLocationID " + "\r\n";
+            
             queryString = queryString + "                   LEFT JOIN PickupDetails ON GoodsReceiptDetails.PickupDetailID = PickupDetails.PickupDetailID " + "\r\n";
+            queryString = queryString + "                   LEFT JOIN GoodsIssueTransferDetails ON GoodsReceiptDetails.GoodsIssueTransferDetailID = GoodsIssueTransferDetails.GoodsIssueTransferDetailID " + "\r\n";
+            queryString = queryString + "                   LEFT JOIN WarehouseAdjustmentDetails ON GoodsReceiptDetails.WarehouseAdjustmentDetailID = WarehouseAdjustmentDetails.WarehouseAdjustmentDetailID " + "\r\n";
+
             queryString = queryString + "                   LEFT JOIN Packs ON GoodsReceiptDetails.PackID = Packs.PackID " + "\r\n";
             queryString = queryString + "                   LEFT JOIN Cartons ON GoodsReceiptDetails.CartonID = Cartons.CartonID " + "\r\n";
             queryString = queryString + "                   LEFT JOIN Pallets ON GoodsReceiptDetails.PalletID = Pallets.PalletID " + "\r\n";

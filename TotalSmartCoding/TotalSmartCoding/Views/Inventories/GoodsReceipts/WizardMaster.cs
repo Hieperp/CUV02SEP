@@ -73,29 +73,23 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
                     this.goodsReceiptViewModel.HasPickup = true;
 
                     bool nextOK = false;
-                    if (this.customTabMain.SelectedIndex == 0)
+
+                    Object selectedObject = this.customTabMain.SelectedIndex == 0 ? this.fastPendingPickups.SelectedObject : (this.customTabMain.SelectedIndex == 1 ? this.fastPendingPickupWarehouses.SelectedObject : (this.customTabMain.SelectedIndex == 2 ? this.fastPendingGoodsIssueTransfers.SelectedObject : this.customTabMain.SelectedIndex == 3 ? this.fastPendingGoodsIssueTransferWarehouses.SelectedObject : null));
+                    if (selectedObject != null)
                     {
-                        PendingPickup pendingPickup = (PendingPickup)this.fastPendingPickups.SelectedObject;
-                        if (pendingPickup != null) {                            
-                            this.goodsReceiptViewModel.PickupID = pendingPickup.PickupID;
-                            this.goodsReceiptViewModel.PickupReference = pendingPickup.PrimaryReference;
-                            
-                            this.goodsReceiptViewModel.GoodsReceiptTypeID = pendingPickup.GoodsReceiptTypeID;
-                            this.goodsReceiptViewModel.GoodsReceiptTypeName = pendingPickup.GoodsReceiptTypeName;
-                            this.goodsReceiptViewModel.WarehouseID = pendingPickup.WarehouseID;
-                            this.goodsReceiptViewModel.WarehouseName = pendingPickup.WarehouseName;
-                            nextOK = true;
-                        }
-                    }
-                    if (this.customTabMain.SelectedIndex == 1)
-                    {
-                        PendingPickupWarehouse pendingPickupWarehouse = (PendingPickupWarehouse)this.fastPendingPickupWarehouses.SelectedObject;
-                        if (pendingPickupWarehouse != null)
+                        IPendingforGoodsReceipt pendingforGoodsReceipt = (IPendingforGoodsReceipt)selectedObject;
+                        if (pendingforGoodsReceipt != null)
                         {
-                            this.goodsReceiptViewModel.GoodsReceiptTypeID = pendingPickupWarehouse.GoodsReceiptTypeID;
-                            this.goodsReceiptViewModel.GoodsReceiptTypeName = pendingPickupWarehouse.GoodsReceiptTypeName;
-                            this.goodsReceiptViewModel.WarehouseID = pendingPickupWarehouse.WarehouseID;
-                            this.goodsReceiptViewModel.WarehouseName = pendingPickupWarehouse.WarehouseName;
+                            this.goodsReceiptViewModel.PickupID =  pendingforGoodsReceipt.PickupID;
+                            this.goodsReceiptViewModel.GoodsIssueID = pendingforGoodsReceipt.GoodsIssueID;
+                            this.goodsReceiptViewModel.PickupReference = pendingforGoodsReceipt.PrimaryReference;
+                            this.goodsReceiptViewModel.GoodsIssueReference = pendingforGoodsReceipt.PrimaryReference;
+
+                            this.goodsReceiptViewModel.GoodsReceiptTypeID = pendingforGoodsReceipt.GoodsReceiptTypeID;
+                            this.goodsReceiptViewModel.GoodsReceiptTypeName = pendingforGoodsReceipt.GoodsReceiptTypeName;
+                            this.goodsReceiptViewModel.WarehouseID = pendingforGoodsReceipt.WarehouseID;
+                            this.goodsReceiptViewModel.WarehouseName = pendingforGoodsReceipt.WarehouseName;
+
                             nextOK = true;
                         }
                     }
@@ -103,13 +97,11 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
                     if (nextOK)
                         this.DialogResult = DialogResult.OK;
                     else
-                        CustomMsgBox.Show(this, "Vui lòng chọn phiếu giao thành phẩm sau đóng gói, hoặc kho nhận.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Stop);                    
+                        CustomMsgBox.Show(this, "Vui lòng chọn phiếu giao thành phẩm sau đóng gói, hoặc kho nhận.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 }
 
                 if (sender.Equals(this.buttonESC))
                     this.DialogResult = DialogResult.Cancel;
-
-
             }
             catch (Exception exception)
             {
