@@ -132,6 +132,7 @@ namespace TotalSmartCoding.Views.Mains
                 DateTime buildDate = new FileInfo(Assembly.GetExecutingAssembly().Location).LastWriteTime;
                 this.statusVersion.Text = "Version 1.0." + GlobalVariables.ConfigVersionID(GlobalVariables.ConfigID).ToString() + ", Date: " + buildDate.ToString("dd/MM/yyyy hh:mm:ss");
 
+                this.toolUserReferences.Visible = ContextAttributes.User.IsDatabaseAdmin;
                 this.statusFillingLine.Text = GlobalVariables.FillingLineName;
                 this.statusUserDescription.Text = ContextAttributes.User.UserName;
             }
@@ -639,6 +640,14 @@ namespace TotalSmartCoding.Views.Mains
         }
 
         #endregion <Call Tool Strip>
+
+        private void toolUserReferences_Click(object sender, EventArgs e)
+        {
+            UserReferences userReferences = new UserReferences();
+            DialogResult dialogResult = userReferences.ShowDialog();
+
+            userReferences.Dispose();
+        }
 
 
 

@@ -227,7 +227,7 @@ namespace TotalDAL.Repositories
         {
             var userOrganizationalUnit = this.totalSmartCodingEntities.GetUserOrganizationalUnit(userName).FirstOrDefault();
             if (userOrganizationalUnit != null)
-                ContextAttributes.User = new UserInformation(userOrganizationalUnit.UserID, userOrganizationalUnit.OrganizationalUnitID, userOrganizationalUnit.UserName, new DateTime());
+                ContextAttributes.User = new UserInformation(userOrganizationalUnit.UserID, userOrganizationalUnit.OrganizationalUnitID, userOrganizationalUnit.UserName, userOrganizationalUnit.IsDatabaseAdmin, new DateTime());
 
             return ContextAttributes.User != null;
         }
