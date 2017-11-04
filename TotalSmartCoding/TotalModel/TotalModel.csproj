@@ -63,9 +63,6 @@
     <Compile Include="IBaseEntity.cs" />
     <Compile Include="Interfaces\IBaseIndex.cs" />
     <Compile Include="IPrimitiveEntity.cs" />
-    <Compile Include="Models\AspNetUser.cs">
-      <DependentUpon>TotalSmartCoding.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Batch.cs">
       <DependentUpon>TotalSmartCoding.tt</DependentUpon>
     </Compile>
@@ -330,6 +327,12 @@
       <DependentUpon>TotalSmartCoding.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TransferOrderViewDetail.cs">
+      <DependentUpon>TotalSmartCoding.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\User.cs">
+      <DependentUpon>TotalSmartCoding.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserOrganizationalUnit.cs">
       <DependentUpon>TotalSmartCoding.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Warehouse.cs">

@@ -16,6 +16,7 @@ namespace TotalCore.Repositories
 
         int? GetVersionID(int configID);
         bool VersionValidate(int configID, int configVersionID);
+        bool GetUser(string userName);
 
         int GetModuleID(GlobalEnums.NmvnTaskID nmvnTaskID);
 

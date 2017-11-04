@@ -10,16 +10,14 @@
 namespace TotalModel.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class OrganizationalUnitUser
+    public partial class UserOrganizationalUnit
     {
-        public int OrganizationalUnitUserID { get; set; }
-        public int OrganizationalUnitID { get; set; }
         public int UserID { get; set; }
-        public bool InActive { get; set; }
-    
-        public virtual OrganizationalUnit OrganizationalUnit { get; set; }
-        public virtual User User { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string UserName { get; set; }
+        public int OrganizationalUnitID { get; set; }
+        public bool IsDatabaseAdmin { get; set; }
     }
 }

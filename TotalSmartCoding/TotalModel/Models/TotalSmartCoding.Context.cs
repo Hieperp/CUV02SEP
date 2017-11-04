@@ -27,7 +27,6 @@ namespace TotalModel.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<FillingLine> FillingLines { get; set; }
         public virtual DbSet<GoodsReceiptType> GoodsReceiptTypes { get; set; }
@@ -65,6 +64,7 @@ namespace TotalModel.Models
         public virtual DbSet<GoodsReceiptDetail> GoodsReceiptDetails { get; set; }
         public virtual DbSet<GoodsReceipt> GoodsReceipts { get; set; }
         public virtual DbSet<Location> Locations { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     
         public virtual ObjectResult<Nullable<int>> GetAccessLevel(Nullable<int> userID, Nullable<int> nMVNTaskID, Nullable<int> organizationalUnitID)
         {
@@ -1680,6 +1680,15 @@ namespace TotalModel.Models
                 new ObjectParameter("LocationID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PendingGoodsIssueTransferWarehouse>("GetPendingGoodsIssueTransferWarehouses", locationIDParameter);
+        }
+    
+        public virtual ObjectResult<UserOrganizationalUnit> GetUserOrganizationalUnit(string userName)
+        {
+            var userNameParameter = userName != null ?
+                new ObjectParameter("UserName", userName) :
+                new ObjectParameter("UserName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UserOrganizationalUnit>("GetUserOrganizationalUnit", userNameParameter);
         }
     }
 }

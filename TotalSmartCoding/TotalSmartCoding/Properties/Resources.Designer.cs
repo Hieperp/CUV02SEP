@@ -493,6 +493,16 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Addressbook {
+            get {
+                object obj = ResourceManager.GetObject("Addressbook", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap addressbook_edit {
             get {
                 object obj = ResourceManager.GetObject("addressbook-edit", resourceCulture);
@@ -2343,6 +2353,26 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap JD_17_32 {
+            get {
+                object obj = ResourceManager.GetObject("JD-17-32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap JD_17_48 {
+            get {
+                object obj = ResourceManager.GetObject("JD-17-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Key {
             get {
                 object obj = ResourceManager.GetObject("Key", resourceCulture);
@@ -2366,6 +2396,16 @@ namespace TotalSmartCoding.Properties {
         internal static System.Drawing.Bitmap Key__2_ {
             get {
                 object obj = ResourceManager.GetObject("Key (2)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap key_32 {
+            get {
+                object obj = ResourceManager.GetObject("key-32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -3516,6 +3556,16 @@ namespace TotalSmartCoding.Properties {
         internal static System.Drawing.Bitmap Search_vista {
             get {
                 object obj = ResourceManager.GetObject("Search-vista", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap selected_user_32 {
+            get {
+                object obj = ResourceManager.GetObject("selected_user-32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

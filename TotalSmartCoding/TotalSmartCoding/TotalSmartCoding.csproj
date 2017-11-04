@@ -85,6 +85,9 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.DirectoryServices.AccountManagement" />
+    <Reference Include="System.DirectoryServices.Protocols" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -967,6 +970,11 @@
     <None Include="Resources\barcode_scan_mobile_hand-28T1.png" />
     <None Include="Resources\Facsimile-Fax.ico" />
     <None Include="Resources\Designbolts-Free-Shaded-Social-Email.ico" />
+    <None Include="Resources\key-32.png" />
+    <None Include="Resources\JD-17-32.png" />
+    <None Include="Resources\JD-17-48.png" />
+    <None Include="Resources\selected_user-32.png" />
+    <None Include="Resources\Addressbook.ico" />
     <Content Include="SmartCodingSolution.ico" />
     <None Include="Resources\Yellow-cross.ico" />
     <None Include="Resources\White-Pallet.ico" />

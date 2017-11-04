@@ -21,7 +21,7 @@ namespace TotalDAL.Repositories
         public BaseRepository(TotalSmartCodingEntities totalSmartCodingEntities)
         {
             this.RepositoryBag = new Dictionary<string, object>();
-            this.totalSmartCodingEntities = totalSmartCodingEntities;            
+            this.totalSmartCodingEntities = totalSmartCodingEntities;
 
 
 
@@ -30,6 +30,11 @@ namespace TotalDAL.Repositories
             //if (!GlobalVariables.shouldRestoreProcedure) return;
 
             return;
+            return;
+
+            Helpers.SqlProgrammability.Commons.AccessControl accessControl = new Helpers.SqlProgrammability.Commons.AccessControl(totalSmartCodingEntities);
+            accessControl.RestoreProcedure();
+
             return;
 
             Helpers.SqlProgrammability.Inventories.GoodsReceipt goodsReceipt = new Helpers.SqlProgrammability.Inventories.GoodsReceipt(totalSmartCodingEntities);
@@ -57,8 +62,8 @@ namespace TotalDAL.Repositories
             Helpers.SqlProgrammability.Commons.Customer customer = new Helpers.SqlProgrammability.Commons.Customer(totalSmartCodingEntities);
             customer.RestoreProcedure();
 
-            
-            
+
+
 
             return;
 
@@ -70,14 +75,14 @@ namespace TotalDAL.Repositories
             Helpers.SqlProgrammability.Inventories.WarehouseAdjustment warehouseAdjustment = new Helpers.SqlProgrammability.Inventories.WarehouseAdjustment(totalSmartCodingEntities);
             warehouseAdjustment.RestoreProcedure();
 
-            
+
 
             return;
 
             Helpers.SqlProgrammability.Inventories.Pickup pickup = new Helpers.SqlProgrammability.Inventories.Pickup(totalSmartCodingEntities);
             pickup.RestoreProcedure();
 
-            
+
 
             return;
 
@@ -89,14 +94,11 @@ namespace TotalDAL.Repositories
             Helpers.SqlProgrammability.Productions.Batch batch = new Helpers.SqlProgrammability.Productions.Batch(totalSmartCodingEntities);
             batch.RestoreProcedure();
 
-            
 
-            return;
 
-            Helpers.SqlProgrammability.Commons.AccessControl accessControl = new Helpers.SqlProgrammability.Commons.AccessControl(totalSmartCodingEntities);
-            accessControl.RestoreProcedure();
 
-            
+
+
 
             return;
 
@@ -108,75 +110,75 @@ namespace TotalDAL.Repositories
             Helpers.SqlProgrammability.Commons.Commodity commodity = new Helpers.SqlProgrammability.Commons.Commodity(totalSmartCodingEntities);
             commodity.RestoreProcedure();
 
-            
+
 
             return;
 
             Helpers.SqlProgrammability.Generals.Module Module = new Helpers.SqlProgrammability.Generals.Module(totalSmartCodingEntities);
             Module.RestoreProcedure();
 
-            
 
-            
-            
+
+
+
             return;
 
             Helpers.SqlProgrammability.Sales.SalesOrder salesOrder = new Helpers.SqlProgrammability.Sales.SalesOrder(totalSmartCodingEntities);
             salesOrder.RestoreProcedure();
 
-            
+
 
             return;
 
             Helpers.SqlProgrammability.Commons.FillingLine fillingLine = new Helpers.SqlProgrammability.Commons.FillingLine(totalSmartCodingEntities);
             fillingLine.RestoreProcedure();
 
-            
+
 
             return;
 
             Helpers.SqlProgrammability.Productions.Carton carton = new Helpers.SqlProgrammability.Productions.Carton(totalSmartCodingEntities);
             carton.RestoreProcedure();
 
-            
+
 
             return;
 
             Helpers.SqlProgrammability.Commons.WarehouseAdjustmentType warehouseAdjustmentType = new Helpers.SqlProgrammability.Commons.WarehouseAdjustmentType(totalSmartCodingEntities);
             warehouseAdjustmentType.RestoreProcedure();
 
-            
-
-            
-            
-            
 
 
-            
 
-            
 
-            
+
+
+
+
+
+
+
+
 
             return;
 
             Helpers.SqlProgrammability.Productions.Pack pack = new Helpers.SqlProgrammability.Productions.Pack(totalSmartCodingEntities);
             pack.RestoreProcedure();
 
-            
+
             return;
 
             Helpers.SqlProgrammability.Productions.Pallet pallet = new Helpers.SqlProgrammability.Productions.Pallet(totalSmartCodingEntities);
             pallet.RestoreProcedure();
 
 
-            
-
-            
 
 
-            
-            
+
+
+
+
+
 
             return;
 
@@ -188,15 +190,15 @@ namespace TotalDAL.Repositories
             Helpers.SqlProgrammability.Commons.Employee employee = new Helpers.SqlProgrammability.Commons.Employee(totalSmartCodingEntities);
             employee.RestoreProcedure();
 
-            
-
-            
 
 
-            
 
 
-            
+
+
+
+
+
 
         }
 
@@ -219,6 +221,15 @@ namespace TotalDAL.Repositories
             int? versionID = this.GetVersionID(configID);
             if (versionID == null || (int)versionID != configVersionID) throw new Exception("This program on your computer is not the latest version." + "\r\n" + "\r\n" + "Please exit and re-open your program again in order to update new version." + "\r\n" + "Contact your admin for more information. Thank you!" + "\r\n" + "\r\n" + "Phần mềm vừa được cập nhật phiên bản mới." + "\r\n" + "Vui lòng đóng và sau đó mở lại phần mềm để cập nhật phiên bản mới nhất. Cám ơn.");
             return true;
+        }
+
+        public bool GetUser(string userName)
+        {
+            var userOrganizationalUnit = this.totalSmartCodingEntities.GetUserOrganizationalUnit(userName).FirstOrDefault();
+            if (userOrganizationalUnit != null)
+                ContextAttributes.User = new UserInformation(userOrganizationalUnit.UserID, userOrganizationalUnit.OrganizationalUnitID, userOrganizationalUnit.UserName, new DateTime());
+
+            return ContextAttributes.User != null;
         }
 
         public int GetModuleID(GlobalEnums.NmvnTaskID nmvnTaskID)

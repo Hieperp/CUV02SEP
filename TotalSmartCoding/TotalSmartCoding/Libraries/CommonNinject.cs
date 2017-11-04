@@ -105,7 +105,6 @@ namespace TotalSmartCoding.Libraries
 
 
 
-                Kernel.Bind<IAspNetUserRepository>().To<AspNetUserRepository>();
 
 
 

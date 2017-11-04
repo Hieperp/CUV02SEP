@@ -5,7 +5,6 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="ab048d88ef8447d09896e176a9d6d497" Name="Diagram1" ZoomLevel="62">
-        <EntityTypeShape EntityType="TotalSmartCodingModel.AspNetUser" Width="1.5" PointX="2.75" PointY="0.75" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.Employee" Width="1.5" PointX="8.25" PointY="2.25" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.FillingLine" Width="1.5" PointX="0.75" PointY="5.125" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.GoodsReceiptType" Width="1.25" PointX="5.25" PointY="24.5" />
@@ -129,6 +128,8 @@
         <AssociationConnector Association="TotalSmartCodingModel.FK_TransferOrders_Locations" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_WarehouseAdjustments_Locations" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_Warehouses_Locations" />
+        <EntityTypeShape EntityType="TotalSmartCodingModel.User" Width="1.5" PointX="10.375" PointY="7.875" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_OrganizationalUnitUsers_Users" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -57,7 +57,7 @@
             this.groupBoxMainButton.Controls.Add(this.buttonListEmployee);
             this.groupBoxMainButton.Controls.Add(this.buttonCancel);
             this.groupBoxMainButton.Controls.Add(this.buttonOK);
-            this.groupBoxMainButton.Location = new System.Drawing.Point(-390, 193);
+            this.groupBoxMainButton.Location = new System.Drawing.Point(-347, 193);
             this.groupBoxMainButton.Margin = new System.Windows.Forms.Padding(4);
             this.groupBoxMainButton.Name = "groupBoxMainButton";
             this.groupBoxMainButton.Padding = new System.Windows.Forms.Padding(4);
@@ -92,10 +92,10 @@
             // 
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonCancel.Image = global::TotalSmartCoding.Properties.Resources.signout_icon_24;
-            this.buttonCancel.Location = new System.Drawing.Point(807, 16);
+            this.buttonCancel.Location = new System.Drawing.Point(826, 15);
             this.buttonCancel.Margin = new System.Windows.Forms.Padding(4);
             this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(105, 50);
+            this.buttonCancel.Size = new System.Drawing.Size(105, 51);
             this.buttonCancel.TabIndex = 1;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -105,10 +105,10 @@
             // 
             this.buttonOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.buttonOK.Image = global::TotalSmartCoding.Properties.Resources.Saki_NuoveXT_Actions_ok;
-            this.buttonOK.Location = new System.Drawing.Point(693, 16);
+            this.buttonOK.Location = new System.Drawing.Point(712, 15);
             this.buttonOK.Margin = new System.Windows.Forms.Padding(4);
             this.buttonOK.Name = "buttonOK";
-            this.buttonOK.Size = new System.Drawing.Size(105, 50);
+            this.buttonOK.Size = new System.Drawing.Size(105, 51);
             this.buttonOK.TabIndex = 0;
             this.buttonOK.Text = "OK";
             this.buttonOK.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -134,7 +134,7 @@
             this.comboBoxEmployeeID.Location = new System.Drawing.Point(138, 101);
             this.comboBoxEmployeeID.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxEmployeeID.Name = "comboBoxEmployeeID";
-            this.comboBoxEmployeeID.Size = new System.Drawing.Size(388, 28);
+            this.comboBoxEmployeeID.Size = new System.Drawing.Size(446, 28);
             this.comboBoxEmployeeID.TabIndex = 14;
             // 
             // comboBoxAutonicsPortName
@@ -144,7 +144,7 @@
             this.comboBoxAutonicsPortName.Location = new System.Drawing.Point(138, 162);
             this.comboBoxAutonicsPortName.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxAutonicsPortName.Name = "comboBoxAutonicsPortName";
-            this.comboBoxAutonicsPortName.Size = new System.Drawing.Size(389, 28);
+            this.comboBoxAutonicsPortName.Size = new System.Drawing.Size(447, 28);
             this.comboBoxAutonicsPortName.TabIndex = 15;
             this.comboBoxAutonicsPortName.Visible = false;
             // 
@@ -189,7 +189,7 @@
             this.comboFillingLineID.Location = new System.Drawing.Point(138, 40);
             this.comboFillingLineID.Margin = new System.Windows.Forms.Padding(4);
             this.comboFillingLineID.Name = "comboFillingLineID";
-            this.comboFillingLineID.Size = new System.Drawing.Size(388, 28);
+            this.comboFillingLineID.Size = new System.Drawing.Size(446, 28);
             this.comboFillingLineID.TabIndex = 21;
             this.comboFillingLineID.Validated += new System.EventHandler(this.comboFillingLineID_Validated);
             // 
@@ -236,7 +236,7 @@
             this.panel1.Controls.Add(this.labelNoDomino);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.labelChangePassword);
-            this.panel1.Location = new System.Drawing.Point(502, 13);
+            this.panel1.Location = new System.Drawing.Point(553, 16);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(331, 150);
             this.panel1.TabIndex = 27;
@@ -260,7 +260,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.buttonCancel;
-            this.ClientSize = new System.Drawing.Size(540, 271);
+            this.ClientSize = new System.Drawing.Size(609, 271);
             this.ControlBox = false;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.labelPortAutonis);

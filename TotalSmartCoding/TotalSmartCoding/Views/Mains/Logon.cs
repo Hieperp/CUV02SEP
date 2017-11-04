@@ -7,8 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-//using System.DirectoryServices.AccountManagement;
-//using System.DirectoryServices.Protocol;
 
 using Ninject;
 
@@ -27,6 +25,8 @@ namespace TotalSmartCoding.Views.Mains
 {
     public partial class Logon : Form
     {
+        IBaseRepository baseRepository;
+
         public Logon()
         {
             InitializeComponent();
@@ -40,8 +40,7 @@ namespace TotalSmartCoding.Views.Mains
 
         private void PublicApplicationLogon_Load(object sender, EventArgs e)
         {
-
-
+            #region TEST
             //// List of strings for your names
             //List<string> allUsers = new List<string>();
 
@@ -88,93 +87,69 @@ namespace TotalSmartCoding.Views.Mains
 
 
 
-            string plainText = "Lê Minh Hiệp";
-            // Convert the plain string pwd into bytes
-            //byte[] plainTextBytes = UnicodeEncoding.Unicode.GetBytes(plainText);
-            //System.Security.Cryptography.HashAlgorithm hashAlgo = new System.Security.Cryptography.SHA256Managed();
-            //byte[] hash = hashAlgo.ComputeHash(plainTextBytes);
+            ////////string plainText = "Lê Minh Hiệp";
+            ////////// Convert the plain string pwd into bytes
+            //////////byte[] plainTextBytes = UnicodeEncoding.Unicode.GetBytes(plainText);
+            //////////System.Security.Cryptography.HashAlgorithm hashAlgo = new System.Security.Cryptography.SHA256Managed();
+            //////////byte[] hash = hashAlgo.ComputeHash(plainTextBytes);
 
-            byte[] data = UnicodeEncoding.Unicode.GetBytes(plainText);
-            data = new System.Security.Cryptography.SHA256Managed().ComputeHash(data);
-            String hash = UnicodeEncoding.Unicode.GetString(data);
-            //CustomMsgBox.Show(hash);
+            ////////byte[] data = UnicodeEncoding.Unicode.GetBytes(plainText);
+            ////////data = new System.Security.Cryptography.SHA256Managed().ComputeHash(data);
+            ////////String hash = UnicodeEncoding.Unicode.GetString(data);
+            //////////CustomMsgBox.Show(hash);
 
-
+            #endregion TEST
 
             try
             {
-                FillingLineAPIs fillingLineAPIs = new FillingLineAPIs(CommonNinject.Kernel.Get<IFillingLineAPIRepository>());
+                this.baseRepository = CommonNinject.Kernel.Get<IBaseRepository>();
 
-                this.comboFillingLineID.DataSource = fillingLineAPIs.GetFillingLineBases();
-                this.comboFillingLineID.DisplayMember = CommonExpressions.PropertyName<FillingLineBase>(p => p.Name);
-                this.comboFillingLineID.ValueMember = CommonExpressions.PropertyName<FillingLineBase>(p => p.FillingLineID);
-
-                if (int.TryParse(CommonConfigs.ReadSetting("ConfigID"), out GlobalVariables.ConfigID))
-                    if (GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Smallpack || GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Pail || GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Drum)
-                        this.comboFillingLineID.SelectedValue = GlobalVariables.ConfigID;
-
-                if (!(GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Smallpack || GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Pail || GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Drum))
+                if (this.baseRepository.GetUser(System.Security.Principal.WindowsIdentity.GetCurrent().Name))
                 {
-                    this.lbProductionLineID.Visible = false;
+                    FillingLineAPIs fillingLineAPIs = new FillingLineAPIs(CommonNinject.Kernel.Get<IFillingLineAPIRepository>());
+
+                    this.comboFillingLineID.DataSource = fillingLineAPIs.GetFillingLineBases();
+                    this.comboFillingLineID.DisplayMember = CommonExpressions.PropertyName<FillingLineBase>(p => p.Name);
+                    this.comboFillingLineID.ValueMember = CommonExpressions.PropertyName<FillingLineBase>(p => p.FillingLineID);
+
+                    if (int.TryParse(CommonConfigs.ReadSetting("ConfigID"), out GlobalVariables.ConfigID))
+                        if (GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Smallpack || GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Pail || GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Drum)
+                            this.comboFillingLineID.SelectedValue = GlobalVariables.ConfigID;
+
+                    if (!(GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Smallpack || GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Pail || GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Drum))
+                    {
+                        this.lbProductionLineID.Visible = false;
+                        this.comboFillingLineID.Visible = false;
+
+                        this.lbEmployeeID.Top = this.lbProductionLineID.Top;
+                        this.comboBoxEmployeeID.Top = this.comboFillingLineID.Top;
+                    }
+
+
+                    this.comboBoxAutonicsPortName.DataSource = System.IO.Ports.SerialPort.GetPortNames();
+                    if (this.comboBoxAutonicsPortName.Items.Count == 0)
+                    {
+                        this.comboBoxAutonicsPortName.DataSource = null;
+                        this.comboBoxAutonicsPortName.Items.Add("COM0");
+                    }
+
+                    string comportName = CommonConfigs.ReadSetting("ComportName");
+                    if (this.comboBoxAutonicsPortName.Items.IndexOf(comportName) >= 0)
+                        this.comboBoxAutonicsPortName.SelectedIndex = this.comboBoxAutonicsPortName.Items.IndexOf(comportName);
+
+
+                    this.comboBoxEmployeeID.Text = ContextAttributes.User.UserName;
+                }
+                else
+                {
                     this.comboFillingLineID.Visible = false;
+                    this.comboBoxEmployeeID.Visible = false;
+                    this.lbEmployeeID.Visible = false;
+                    this.lbProductionLineID.Text = "\r\n" + "Sorry, you don't have permission to run this program." + "\r\n" + "\r\n" + "Contact your admin for more information. Thank you!" + "\r\n" + "\r\n" + "\r\n" + "Xin lỗi, bạn chưa được cấp quyền sử dụng phần mềm này.";
 
-                    this.lbEmployeeID.Top = this.lbProductionLineID.Top;
-                    this.comboBoxEmployeeID.Top = this.comboFillingLineID.Top;
+                    this.buttonOK.Visible = false;
+                    this.buttonCancel.Text = "Close";
                 }
-                //this.comboFillingLineID.SelectedValue = 2;
-
-                //this.bindingFillingLineID = this.comboFillingLineID.DataBindings.Add("SelectedValue", GlobalVariables., CommonExpressions.PropertyName<PickupViewModel>(p => p.FillingLineID), true, DataSourceUpdateMode.OnPropertyChanged);
-
-                //string a = CommonConfigs.ReadSetting("ConfigID");
-                //CommonConfigs.AddUpdateAppSettings("ConfigID", "2");
-                //a = CommonConfigs.ReadSetting("ConfigID");
-
-                //DataTable dataTable = ADODatabase.GetDataTable("SELECT * FROM ListProductionLine WHERE (ProductionLineID > 0 AND ProductionLineID <= 6) OR ProductionLineID = 99");
-                //this.comboFillingLineID.DataSource = dataTable;
-                //this.comboFillingLineID.ValueMember = "ProductionLineID";
-                //this.comboFillingLineID.DisplayMember = "ProductionLineName";
-                //if (dataTable.Rows.Count > 0) this.comboFillingLineID.SelectedValue = dataTable.Rows[0]["LastLogonProductionLineID"];
-
-
-                this.comboBoxAutonicsPortName.DataSource = System.IO.Ports.SerialPort.GetPortNames();
-                if (this.comboBoxAutonicsPortName.Items.Count == 0)
-                {
-                    this.comboBoxAutonicsPortName.DataSource = null;
-                    this.comboBoxAutonicsPortName.Items.Add("COM0");
-                }
-
-                string comportName = CommonConfigs.ReadSetting("ComportName");
-                if (this.comboBoxAutonicsPortName.Items.IndexOf(comportName) >= 0)
-                    this.comboBoxAutonicsPortName.SelectedIndex = this.comboBoxAutonicsPortName.Items.IndexOf(comportName);
-
-
-
-                //DataTable dataTablePublicPrinterProperties = SQLDatabase.GetDataTable("SELECT TOP 1 * FROM PublicPrinterProperties");
-                //if (dataTablePublicPrinterProperties.Rows.Count > 0)
-                //{
-                //    this.comboBoxImageS8PortName.Text = (string)dataTablePublicPrinterProperties.Rows[0]["ImageS8PortName"];
-                //    this.comboBoxAutonicsPortName.Text = (string)dataTablePublicPrinterProperties.Rows[0]["AutonicsPortName"];
-                //}
-
-
-                //string stringEmployeeID = Registries.Read("EmployeeID"); int employeeID = -1;
-
-                //if (stringEmployeeID == null || stringEmployeeID.Length <= "string".Length || !int.TryParse(stringEmployeeID.Substring("string".Length), out employeeID)) employeeID = 1;
-                //this.EmployeeID = employeeID; this.buttonListEmployee.Visible = this.EmployeeID == 1;
-
-                //this.commonMetaList = new CommonMetaList();
-
-                //ListMaintenance.ListEmployeeDataTable listEmployeeDataTable = this.commonMetaList.GetListEmployee();
-                //this.comboBoxEmployeeID.DataSource = listEmployeeDataTable;
-                //this.comboBoxEmployeeID.DisplayMember = listEmployeeDataTable.DescriptionColumn.ColumnName;
-                //this.comboBoxEmployeeID.ValueMember = listEmployeeDataTable.EmployeeIDColumn.ColumnName;
-                //this.employeeIDBinding = this.comboBoxEmployeeID.DataBindings.Add("SelectedValue", this, "EmployeeID", true, DataSourceUpdateMode.OnPropertyChanged);
-
-                //this.employeeIDBinding.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
-
-                //this.dateTimePickerUserDate.Value = DateTime.Now - DateTime.Today <= new TimeSpan(7, 0, 0) ? DateTime.Today.AddDays(-1) : DateTime.Today;
-                this.comboBoxEmployeeID.Text = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
-
             }
             catch (Exception exception)
             {
@@ -200,8 +175,6 @@ namespace TotalSmartCoding.Views.Mains
         {
             try
             {
-                ContextAttributes.User = new UserInformation(1, 1, this.comboBoxEmployeeID.Text, new DateTime());
-
                 if (this.comboFillingLineID.Visible && (this.comboFillingLineID.SelectedIndex < 0 || this.comboBoxAutonicsPortName.SelectedIndex < 0)) throw new System.ArgumentException("Vui lòng chọn chuyền sản xuất (NOF1, NOF2, NOF...), và chọn đúng cổng COM để chạy phần mềm"); // || (this.comboFillingLineID.Enabled && (GlobalVariables.ProductionLine)this.comboFillingLineID.SelectedValue == GlobalVariables.ProductionLine.SERVER)
 
                 if (this.comboFillingLineID.Visible)
@@ -221,117 +194,69 @@ namespace TotalSmartCoding.Views.Mains
                 CommonConfigs.AddUpdateAppSetting("ReportServerUrl", GlobalVariables.ReportServerUrl); //WILL BE REMOVE THIS LINE
                 GlobalVariables.ReportServerUrl = CommonConfigs.ReadSetting("ReportServerUrl");
 
-                //if (this.comboBoxEmployeeID.SelectedIndex < 0 || this.EmployeeID < 0) throw new System.ArgumentException("Vui lòng chọn tên người sử dụng!");
-
-                //if (!this.commonMetaList.CheckPasswordSuccessful(this.EmployeeID, this.textBoxPassword.Text)) throw new System.ArgumentException("Sai mật khẩu! Vui lòng kiểm tra lại trước khi tiếp tục.");
-
-                //GlobalVariables.GlobalUserInformation = new UserInformation(this.EmployeeID, 1, this.comboBoxEmployeeID.Text, this.dateTimePickerUserDate.Value);
-
-
-                //if (sender.Equals(this.buttonListEmployee))
-                //{
-                //    CommonMDI commonMDI = new CommonMDI(GlobalEnum.TaskID.ListEmployee);
-                //    if (commonMDI.ShowDialog() == System.Windows.Forms.DialogResult.OK || true)
-                //    {
-                //        this.comboBoxEmployeeID.DataSource = this.commonMetaList.GetListEmployee();
-                //    }
-                //    commonMDI.Dispose();
-                //}
-
-
-                //if (sender.Equals(this.buttonOK))
-                //{
-                //    GlobalRegistry.Write("EmployeeID", "string" + this.EmployeeID);
-
-                //    if (this.comboBoxImageS8PortName.SelectedIndex < 0 || this.comboBoxAutonicsPortName.SelectedIndex < 0) throw new System.ArgumentException("Vui lòng chọn cổng COM!");
-
-                //    if (this.comboBoxImageS8PortName.DataSource == null || this.comboBoxAutonicsPortName.DataSource == null)
-                //    {
-                //        GlobalVariables.DiminoPortName = "COM 0";
-                //        GlobalVariables.AutonicsPortName = "COM 0";
-                //    }
-                //    else
-                //    {
-                //        SQLDatabase.ExecuteNonQuery("UPDATE PublicPrinterProperties SET ImageS8PortName = N'" + (string)this.comboBoxImageS8PortName.SelectedValue + "', AutonicsPortName = N'" + (string)this.comboBoxAutonicsPortName.SelectedValue + "' ");
-
-                //        GlobalVariables.DiminoPortName = (string)this.comboBoxImageS8PortName.SelectedValue;
-                //        GlobalVariables.AutonicsPortName = (string)this.comboBoxAutonicsPortName.SelectedValue;
-                //    }
-
-                //    GlobalVariables.IsNoDomino = this.checkBoxNoDomino.Checked;
-                //}
-
-                //if (sender.Equals(this.labelChangePassword))
-                //{
-                //    PublicAuthenticationPassword publicAuthenticationPassword = new PublicAuthenticationPassword();
-                //    publicAuthenticationPassword.ShowDialog();
-                //    publicAuthenticationPassword.Dispose();
-                //}
-
-                IBaseRepository baseRepository = CommonNinject.Kernel.Get<IBaseRepository>();
-                this.VersionValidate(baseRepository);
+                this.VersionValidate();
 
                 if (this.checkEmptyData.Checked)
                 {
-                    baseRepository.ExecuteStoreCommand("DELETE FROM     WarehouseAdjustmentDetails", new ObjectParameter[] { });
-                    baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('WarehouseAdjustmentDetails', RESEED, 0)", new ObjectParameter[] { });
+                    this.baseRepository.ExecuteStoreCommand("DELETE FROM     WarehouseAdjustmentDetails", new ObjectParameter[] { });
+                    this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('WarehouseAdjustmentDetails', RESEED, 0)", new ObjectParameter[] { });
 
-                    baseRepository.ExecuteStoreCommand("DELETE FROM     WarehouseAdjustments", new ObjectParameter[] { });
-                    baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('WarehouseAdjustments', RESEED, 0)", new ObjectParameter[] { });
+                    this.baseRepository.ExecuteStoreCommand("DELETE FROM     WarehouseAdjustments", new ObjectParameter[] { });
+                    this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('WarehouseAdjustments', RESEED, 0)", new ObjectParameter[] { });
 
-                    baseRepository.ExecuteStoreCommand("DELETE FROM     GoodsIssueDetails", new ObjectParameter[] { });
-                    baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('GoodsIssueDetails', RESEED, 0)", new ObjectParameter[] { });
+                    this.baseRepository.ExecuteStoreCommand("DELETE FROM     GoodsIssueDetails", new ObjectParameter[] { });
+                    this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('GoodsIssueDetails', RESEED, 0)", new ObjectParameter[] { });
 
-                    baseRepository.ExecuteStoreCommand("DELETE FROM     GoodsIssues", new ObjectParameter[] { });
-                    baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('GoodsIssues', RESEED, 0)", new ObjectParameter[] { });
+                    this.baseRepository.ExecuteStoreCommand("DELETE FROM     GoodsIssues", new ObjectParameter[] { });
+                    this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('GoodsIssues', RESEED, 0)", new ObjectParameter[] { });
 
-                    baseRepository.ExecuteStoreCommand("DELETE FROM     TransferOrderDetails", new ObjectParameter[] { });
-                    baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('TransferOrderDetails', RESEED, 0)", new ObjectParameter[] { });
+                    this.baseRepository.ExecuteStoreCommand("DELETE FROM     TransferOrderDetails", new ObjectParameter[] { });
+                    this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('TransferOrderDetails', RESEED, 0)", new ObjectParameter[] { });
 
-                    baseRepository.ExecuteStoreCommand("DELETE FROM     TransferOrders", new ObjectParameter[] { });
-                    baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('TransferOrders', RESEED, 0)", new ObjectParameter[] { });
+                    this.baseRepository.ExecuteStoreCommand("DELETE FROM     TransferOrders", new ObjectParameter[] { });
+                    this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('TransferOrders', RESEED, 0)", new ObjectParameter[] { });
 
-                    baseRepository.ExecuteStoreCommand("DELETE FROM     DeliveryAdviceDetails", new ObjectParameter[] { });
-                    baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('DeliveryAdviceDetails', RESEED, 0)", new ObjectParameter[] { });
+                    this.baseRepository.ExecuteStoreCommand("DELETE FROM     DeliveryAdviceDetails", new ObjectParameter[] { });
+                    this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('DeliveryAdviceDetails', RESEED, 0)", new ObjectParameter[] { });
 
-                    baseRepository.ExecuteStoreCommand("DELETE FROM     DeliveryAdvices", new ObjectParameter[] { });
-                    baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('DeliveryAdvices', RESEED, 0)", new ObjectParameter[] { });
-
-
-                    baseRepository.ExecuteStoreCommand("DELETE FROM     SalesOrderDetails", new ObjectParameter[] { });
-                    baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('SalesOrderDetails', RESEED, 0)", new ObjectParameter[] { });
-
-                    baseRepository.ExecuteStoreCommand("DELETE FROM     SalesOrders", new ObjectParameter[] { });
-                    baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('SalesOrders', RESEED, 0)", new ObjectParameter[] { });
+                    this.baseRepository.ExecuteStoreCommand("DELETE FROM     DeliveryAdvices", new ObjectParameter[] { });
+                    this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('DeliveryAdvices', RESEED, 0)", new ObjectParameter[] { });
 
 
+                    this.baseRepository.ExecuteStoreCommand("DELETE FROM     SalesOrderDetails", new ObjectParameter[] { });
+                    this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('SalesOrderDetails', RESEED, 0)", new ObjectParameter[] { });
 
-                    baseRepository.ExecuteStoreCommand("DELETE FROM     GoodsReceiptDetails", new ObjectParameter[] { });
-                    baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('GoodsReceiptDetails', RESEED, 0)", new ObjectParameter[] { });
+                    this.baseRepository.ExecuteStoreCommand("DELETE FROM     SalesOrders", new ObjectParameter[] { });
+                    this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('SalesOrders', RESEED, 0)", new ObjectParameter[] { });
 
-                    baseRepository.ExecuteStoreCommand("DELETE FROM     GoodsReceipts", new ObjectParameter[] { });
-                    baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('GoodsReceipts', RESEED, 0)", new ObjectParameter[] { });
 
-                    baseRepository.ExecuteStoreCommand("DELETE FROM     PickupDetails", new ObjectParameter[] { });
-                    baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('PickupDetails', RESEED, 0)", new ObjectParameter[] { });
 
-                    baseRepository.ExecuteStoreCommand("DELETE FROM     Pickups", new ObjectParameter[] { });
-                    baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('Pickups', RESEED, 0)", new ObjectParameter[] { });
+                    this.baseRepository.ExecuteStoreCommand("DELETE FROM     GoodsReceiptDetails", new ObjectParameter[] { });
+                    this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('GoodsReceiptDetails', RESEED, 0)", new ObjectParameter[] { });
 
-                    baseRepository.ExecuteStoreCommand("DELETE FROM     Packs", new ObjectParameter[] { });
-                    baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('Packs', RESEED, 0)", new ObjectParameter[] { });
+                    this.baseRepository.ExecuteStoreCommand("DELETE FROM     GoodsReceipts", new ObjectParameter[] { });
+                    this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('GoodsReceipts', RESEED, 0)", new ObjectParameter[] { });
 
-                    baseRepository.ExecuteStoreCommand("DELETE FROM     Cartons", new ObjectParameter[] { });
-                    baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('Cartons', RESEED, 0)", new ObjectParameter[] { });
+                    this.baseRepository.ExecuteStoreCommand("DELETE FROM     PickupDetails", new ObjectParameter[] { });
+                    this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('PickupDetails', RESEED, 0)", new ObjectParameter[] { });
 
-                    baseRepository.ExecuteStoreCommand("DELETE FROM     Pallets", new ObjectParameter[] { });
-                    baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('Pallets', RESEED, 0)", new ObjectParameter[] { });
+                    this.baseRepository.ExecuteStoreCommand("DELETE FROM     Pickups", new ObjectParameter[] { });
+                    this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('Pickups', RESEED, 0)", new ObjectParameter[] { });
 
-                    //baseRepository.ExecuteStoreCommand("DELETE FROM     Batches", new ObjectParameter[] { });
-                    //baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('Batches', RESEED, 0)", new ObjectParameter[] { });
+                    this.baseRepository.ExecuteStoreCommand("DELETE FROM     Packs", new ObjectParameter[] { });
+                    this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('Packs', RESEED, 0)", new ObjectParameter[] { });
 
-                    //baseRepository.ExecuteStoreCommand("DELETE FROM     Commodities", new ObjectParameter[] { });
-                    //baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('Commodities', RESEED, 0)", new ObjectParameter[] { });
+                    this.baseRepository.ExecuteStoreCommand("DELETE FROM     Cartons", new ObjectParameter[] { });
+                    this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('Cartons', RESEED, 0)", new ObjectParameter[] { });
+
+                    this.baseRepository.ExecuteStoreCommand("DELETE FROM     Pallets", new ObjectParameter[] { });
+                    this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('Pallets', RESEED, 0)", new ObjectParameter[] { });
+
+                    //this.baseRepository.ExecuteStoreCommand("DELETE FROM     Batches", new ObjectParameter[] { });
+                    //this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('Batches', RESEED, 0)", new ObjectParameter[] { });
+
+                    //this.baseRepository.ExecuteStoreCommand("DELETE FROM     Commodities", new ObjectParameter[] { });
+                    //this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('Commodities', RESEED, 0)", new ObjectParameter[] { });
                 }
 
             }
@@ -343,17 +268,17 @@ namespace TotalSmartCoding.Views.Mains
             }
         }
 
-        private bool VersionValidate(IBaseRepository baseRepository)
+        private bool VersionValidate()
         {
             try
             {
                 foreach (GlobalVariables.FillingLine fillingLine in Enum.GetValues(typeof(GlobalVariables.FillingLine)))
                 {
-                    baseRepository.ExecuteStoreCommand("UPDATE Configs SET VersionID = " + GlobalVariables.ConfigVersionID((int)fillingLine) + " WHERE ConfigID = " + (int)fillingLine + " AND VersionID < " + GlobalVariables.ConfigVersionID((int)fillingLine), new ObjectParameter[] { });
+                    this.baseRepository.ExecuteStoreCommand("UPDATE Configs SET VersionID = " + GlobalVariables.ConfigVersionID((int)fillingLine) + " WHERE ConfigID = " + (int)fillingLine + " AND VersionID < " + GlobalVariables.ConfigVersionID((int)fillingLine), new ObjectParameter[] { });
                 }
 
 
-                if (baseRepository.VersionValidate(GlobalVariables.ConfigID, GlobalVariables.ConfigVersionID(GlobalVariables.ConfigID)))
+                if (this.baseRepository.VersionValidate(GlobalVariables.ConfigID, GlobalVariables.ConfigVersionID(GlobalVariables.ConfigID)))
                     CommonConfigs.AddUpdateAppSetting("VersionID", GlobalVariables.ConfigVersionID(GlobalVariables.ConfigID).ToString());
 
                 return true;

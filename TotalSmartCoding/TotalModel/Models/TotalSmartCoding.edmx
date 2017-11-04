@@ -5,26 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="TotalSmartCodingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="AspNetUsers">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FirstName" Type="nvarchar" MaxLength="60" Nullable="false" />
-          <Property Name="LastName" Type="nvarchar" MaxLength="60" Nullable="false" />
-          <Property Name="Email" Type="nvarchar" MaxLength="256" />
-          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
-          <Property Name="PasswordHash" Type="nvarchar(max)" />
-          <Property Name="SecurityStamp" Type="nvarchar(max)" />
-          <Property Name="PhoneNumber" Type="nvarchar(max)" />
-          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
-          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
-          <Property Name="LockoutEndDateUtc" Type="datetime" />
-          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
-          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
-          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
-        </EntityType>
         <EntityType Name="Batches">
           <Key>
             <PropertyRef Name="BatchID" />
@@ -685,6 +665,16 @@
           <Property Name="InActivePartial" Type="bit" Nullable="false" />
           <Property Name="InActiveDate" Type="datetime" />
         </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="IsDatabaseAdmin" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="WarehouseAdjustmentDetails">
           <Key>
             <PropertyRef Name="WarehouseAdjustmentDetailID" />
@@ -1341,9 +1331,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errors Found During Generation:
-warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
-        <Association Name="FK_OrganizationalUnitIUsers_AspNetUsers" />-->
         <Association Name="FK_OrganizationalUnitIUsers_OrganizationalUnits">
           <End Role="OrganizationalUnits" Type="Self.OrganizationalUnits" Multiplicity="1" />
           <End Role="OrganizationalUnitUsers" Type="Self.OrganizationalUnitUsers" Multiplicity="*" />
@@ -1365,6 +1352,18 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
             </Principal>
             <Dependent Role="OrganizationalUnits">
               <PropertyRef Name="LocationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrganizationalUnitUsers_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="OrganizationalUnitUsers" Type="Self.OrganizationalUnitUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="OrganizationalUnitUsers">
+              <PropertyRef Name="UserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2113,6 +2112,9 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Parameter Name="NMVNTaskID" Type="int" Mode="In" />
           <Parameter Name="OrganizationalUnitID" Type="int" Mode="In" />
         </Function>
+        <Function Name="GetUserOrganizationalUnit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="GetVersionID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ConfigID" Type="int" Mode="In" />
         </Function>
@@ -2270,7 +2272,6 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Parameter Name="Approved" Type="bit" Mode="In" />
         </Function>
         <EntityContainer Name="TotalSmartCodingModelStoreContainer">
-          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Batches" EntityType="Self.Batches" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BinLocations" EntityType="Self.BinLocations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cartons" EntityType="Self.Cartons" Schema="dbo" store:Type="Tables" />
@@ -2304,6 +2305,7 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <EntitySet Name="Territories" EntityType="Self.Territories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TransferOrderDetails" EntityType="Self.TransferOrderDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TransferOrders" EntityType="Self.TransferOrders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WarehouseAdjustmentDetails" EntityType="Self.WarehouseAdjustmentDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WarehouseAdjustments" EntityType="Self.WarehouseAdjustments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WarehouseAdjustmentTypes" EntityType="Self.WarehouseAdjustmentTypes" Schema="dbo" store:Type="Tables" />
@@ -2507,6 +2509,10 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <AssociationSet Name="FK_OrganizationalUnits_Locations" Association="Self.FK_OrganizationalUnits_Locations">
             <End Role="Locations" EntitySet="Locations" />
             <End Role="OrganizationalUnits" EntitySet="OrganizationalUnits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrganizationalUnitUsers_Users" Association="Self.FK_OrganizationalUnitUsers_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="OrganizationalUnitUsers" EntitySet="OrganizationalUnitUsers" />
           </AssociationSet>
           <AssociationSet Name="FK_Packs_Cartons" Association="Self.FK_Packs_Cartons">
             <End Role="Cartons" EntitySet="Cartons" />
@@ -2817,7 +2823,6 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
             <Parameter Name="FromDate" Mode="In" Type="DateTime" />
             <Parameter Name="ToDate" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <EntitySet Name="AspNetUsers" EntityType="TotalSmartCodingModel.AspNetUser" />
           <EntitySet Name="Employees" EntityType="TotalSmartCodingModel.Employee" />
           <EntitySet Name="FillingLines" EntityType="TotalSmartCodingModel.FillingLine" />
           <EntitySet Name="GoodsReceiptTypes" EntityType="TotalSmartCodingModel.GoodsReceiptType" />
@@ -3510,6 +3515,14 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
             <End Role="Location" EntitySet="Locations" />
             <End Role="Warehouse" EntitySet="Warehouses" />
           </AssociationSet>
+          <FunctionImport Name="GetUserOrganizationalUnit" ReturnType="Collection(TotalSmartCodingModel.UserOrganizationalUnit)">
+          <Parameter Name="UserName" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="Users" EntityType="TotalSmartCodingModel.User" />
+          <AssociationSet Name="FK_OrganizationalUnitUsers_Users" Association="TotalSmartCodingModel.FK_OrganizationalUnitUsers_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="OrganizationalUnitUser" EntitySet="OrganizationalUnitUsers" />
+          </AssociationSet>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
           <Property Type="Int32" Name="PickupID" Nullable="false" />
@@ -3742,26 +3755,6 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Type="String" Name="Code" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
           </ComplexType>
-        <EntityType Name="AspNetUser">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
-          <Property Name="LastName" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
-          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
-          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
-          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
-          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
-          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
-          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="Employee">
           <Key>
             <PropertyRef Name="EmployeeID" />
@@ -3833,6 +3826,7 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
           <Property Name="UserID" Type="Int32" Nullable="false" />
           <Property Name="InActive" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="OrganizationalUnit" Relationship="TotalSmartCodingModel.FK_OrganizationalUnitIUsers_OrganizationalUnits" FromRole="OrganizationalUnitUser" ToRole="OrganizationalUnit" />
+          <NavigationProperty Name="User" Relationship="TotalSmartCodingModel.FK_OrganizationalUnitUsers_Users" FromRole="OrganizationalUnitUser" ToRole="User" />
         </EntityType>
         <EntityType Name="Territory">
           <Key>
@@ -6209,6 +6203,37 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="UserOrganizationalUnit">
+          <Property Type="Int32" Name="UserID" Nullable="false" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="60" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="60" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="256" />
+          <Property Type="Int32" Name="OrganizationalUnitID" Nullable="false" />
+          <Property Type="Boolean" Name="IsDatabaseAdmin" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="IsDatabaseAdmin" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="OrganizationalUnitUsers" Relationship="TotalSmartCodingModel.FK_OrganizationalUnitUsers_Users" FromRole="User" ToRole="OrganizationalUnitUser" />
+        </EntityType>
+        <Association Name="FK_OrganizationalUnitUsers_Users">
+          <End Type="TotalSmartCodingModel.User" Role="User" Multiplicity="1" />
+          <End Type="TotalSmartCodingModel.OrganizationalUnitUser" Role="OrganizationalUnitUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="OrganizationalUnitUser">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -6543,27 +6568,6 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
                 </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <EntitySetMapping Name="AspNetUsers">
-            <EntityTypeMapping TypeName="TotalSmartCodingModel.AspNetUser">
-              <MappingFragment StoreEntitySet="AspNetUsers">
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
-                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
-                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
-                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
-                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
-                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
-                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="TotalSmartCodingModel.Employee">
               <MappingFragment StoreEntitySet="Employees">
@@ -8036,6 +8040,29 @@ warning 6035: The relationship 'FK_OrganizationalUnitIUsers_AspNetUsers' has col
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetUserOrganizationalUnit" FunctionName="TotalSmartCodingModel.Store.GetUserOrganizationalUnit">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TotalSmartCodingModel.UserOrganizationalUnit">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="OrganizationalUnitID" ColumnName="OrganizationalUnitID" />
+                <ScalarProperty Name="IsDatabaseAdmin" ColumnName="IsDatabaseAdmin" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="TotalSmartCodingModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="IsDatabaseAdmin" ColumnName="IsDatabaseAdmin" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
