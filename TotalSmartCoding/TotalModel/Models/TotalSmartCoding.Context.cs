@@ -31,7 +31,6 @@ namespace TotalModel.Models
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<FillingLine> FillingLines { get; set; }
         public virtual DbSet<GoodsReceiptType> GoodsReceiptTypes { get; set; }
-        public virtual DbSet<Location> Locations { get; set; }
         public virtual DbSet<OrganizationalUnit> OrganizationalUnits { get; set; }
         public virtual DbSet<OrganizationalUnitUser> OrganizationalUnitUsers { get; set; }
         public virtual DbSet<Territory> Territories { get; set; }
@@ -65,6 +64,7 @@ namespace TotalModel.Models
         public virtual DbSet<WarehouseAdjustmentDetail> WarehouseAdjustmentDetails { get; set; }
         public virtual DbSet<GoodsReceiptDetail> GoodsReceiptDetails { get; set; }
         public virtual DbSet<GoodsReceipt> GoodsReceipts { get; set; }
+        public virtual DbSet<Location> Locations { get; set; }
     
         public virtual ObjectResult<Nullable<int>> GetAccessLevel(Nullable<int> userID, Nullable<int> nMVNTaskID, Nullable<int> organizationalUnitID)
         {
@@ -246,11 +246,11 @@ namespace TotalModel.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GoodsReceiptToggleApproved", entityIDParameter, approvedParameter);
         }
     
-        public virtual ObjectResult<GoodsReceiptIndex> GetGoodsReceiptIndexes(string aspUserID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
+        public virtual ObjectResult<GoodsReceiptIndex> GetGoodsReceiptIndexes(Nullable<int> userID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
         {
-            var aspUserIDParameter = aspUserID != null ?
-                new ObjectParameter("AspUserID", aspUserID) :
-                new ObjectParameter("AspUserID", typeof(string));
+            var userIDParameter = userID.HasValue ?
+                new ObjectParameter("UserID", userID) :
+                new ObjectParameter("UserID", typeof(int));
     
             var fromDateParameter = fromDate.HasValue ?
                 new ObjectParameter("FromDate", fromDate) :
@@ -260,7 +260,7 @@ namespace TotalModel.Models
                 new ObjectParameter("ToDate", toDate) :
                 new ObjectParameter("ToDate", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GoodsReceiptIndex>("GetGoodsReceiptIndexes", aspUserIDParameter, fromDateParameter, toDateParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GoodsReceiptIndex>("GetGoodsReceiptIndexes", userIDParameter, fromDateParameter, toDateParameter);
         }
     
         public virtual ObjectResult<GoodsReceiptViewDetail> GetGoodsReceiptViewDetails(Nullable<int> goodsReceiptID)
@@ -299,11 +299,11 @@ namespace TotalModel.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("BatchEditable", entityIDParameter);
         }
     
-        public virtual ObjectResult<BatchIndex> GetBatchIndexes(string aspUserID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate, Nullable<int> fillingLineID, Nullable<int> activeOption)
+        public virtual ObjectResult<BatchIndex> GetBatchIndexes(Nullable<int> userID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate, Nullable<int> fillingLineID, Nullable<int> activeOption)
         {
-            var aspUserIDParameter = aspUserID != null ?
-                new ObjectParameter("AspUserID", aspUserID) :
-                new ObjectParameter("AspUserID", typeof(string));
+            var userIDParameter = userID.HasValue ?
+                new ObjectParameter("UserID", userID) :
+                new ObjectParameter("UserID", typeof(int));
     
             var fromDateParameter = fromDate.HasValue ?
                 new ObjectParameter("FromDate", fromDate) :
@@ -321,7 +321,7 @@ namespace TotalModel.Models
                 new ObjectParameter("ActiveOption", activeOption) :
                 new ObjectParameter("ActiveOption", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BatchIndex>("GetBatchIndexes", aspUserIDParameter, fromDateParameter, toDateParameter, fillingLineIDParameter, activeOptionParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BatchIndex>("GetBatchIndexes", userIDParameter, fromDateParameter, toDateParameter, fillingLineIDParameter, activeOptionParameter);
         }
     
         public virtual int BatchCommonUpdate(Nullable<int> batchID, string nextPackNo, string nextCartonNo, string nextPalletNo)
@@ -354,11 +354,11 @@ namespace TotalModel.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("BatchPostSaveValidate", entityIDParameter);
         }
     
-        public virtual ObjectResult<CommodityIndex> GetCommodityIndexes(string aspUserID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
+        public virtual ObjectResult<CommodityIndex> GetCommodityIndexes(Nullable<int> userID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
         {
-            var aspUserIDParameter = aspUserID != null ?
-                new ObjectParameter("AspUserID", aspUserID) :
-                new ObjectParameter("AspUserID", typeof(string));
+            var userIDParameter = userID.HasValue ?
+                new ObjectParameter("UserID", userID) :
+                new ObjectParameter("UserID", typeof(int));
     
             var fromDateParameter = fromDate.HasValue ?
                 new ObjectParameter("FromDate", fromDate) :
@@ -368,7 +368,7 @@ namespace TotalModel.Models
                 new ObjectParameter("ToDate", toDate) :
                 new ObjectParameter("ToDate", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CommodityIndex>("GetCommodityIndexes", aspUserIDParameter, fromDateParameter, toDateParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CommodityIndex>("GetCommodityIndexes", userIDParameter, fromDateParameter, toDateParameter);
         }
     
         public virtual ObjectResult<CommodityBase> GetCommodityBases()
@@ -406,11 +406,11 @@ namespace TotalModel.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("BatchToggleVoid", entityIDParameter, inActiveParameter, voidTypeIDParameter);
         }
     
-        public virtual ObjectResult<PickupIndex> GetPickupIndexes(string aspUserID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
+        public virtual ObjectResult<PickupIndex> GetPickupIndexes(Nullable<int> userID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
         {
-            var aspUserIDParameter = aspUserID != null ?
-                new ObjectParameter("AspUserID", aspUserID) :
-                new ObjectParameter("AspUserID", typeof(string));
+            var userIDParameter = userID.HasValue ?
+                new ObjectParameter("UserID", userID) :
+                new ObjectParameter("UserID", typeof(int));
     
             var fromDateParameter = fromDate.HasValue ?
                 new ObjectParameter("FromDate", fromDate) :
@@ -420,7 +420,7 @@ namespace TotalModel.Models
                 new ObjectParameter("ToDate", toDate) :
                 new ObjectParameter("ToDate", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PickupIndex>("GetPickupIndexes", aspUserIDParameter, fromDateParameter, toDateParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PickupIndex>("GetPickupIndexes", userIDParameter, fromDateParameter, toDateParameter);
         }
     
         public virtual ObjectResult<PickupViewDetail> GetPickupViewDetails(Nullable<int> pickupID)
@@ -520,11 +520,11 @@ namespace TotalModel.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<WarehouseBase>("GetWarehouseBases");
         }
     
-        public virtual ObjectResult<EmployeeIndex> GetEmployeeIndexes(string aspUserID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
+        public virtual ObjectResult<EmployeeIndex> GetEmployeeIndexes(Nullable<int> userID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
         {
-            var aspUserIDParameter = aspUserID != null ?
-                new ObjectParameter("AspUserID", aspUserID) :
-                new ObjectParameter("AspUserID", typeof(string));
+            var userIDParameter = userID.HasValue ?
+                new ObjectParameter("UserID", userID) :
+                new ObjectParameter("UserID", typeof(int));
     
             var fromDateParameter = fromDate.HasValue ?
                 new ObjectParameter("FromDate", fromDate) :
@@ -534,14 +534,14 @@ namespace TotalModel.Models
                 new ObjectParameter("ToDate", toDate) :
                 new ObjectParameter("ToDate", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<EmployeeIndex>("GetEmployeeIndexes", aspUserIDParameter, fromDateParameter, toDateParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<EmployeeIndex>("GetEmployeeIndexes", userIDParameter, fromDateParameter, toDateParameter);
         }
     
-        public virtual ObjectResult<WarehouseIndex> GetWarehouseIndexes(string aspUserID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
+        public virtual ObjectResult<WarehouseIndex> GetWarehouseIndexes(Nullable<int> userID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
         {
-            var aspUserIDParameter = aspUserID != null ?
-                new ObjectParameter("AspUserID", aspUserID) :
-                new ObjectParameter("AspUserID", typeof(string));
+            var userIDParameter = userID.HasValue ?
+                new ObjectParameter("UserID", userID) :
+                new ObjectParameter("UserID", typeof(int));
     
             var fromDateParameter = fromDate.HasValue ?
                 new ObjectParameter("FromDate", fromDate) :
@@ -551,7 +551,7 @@ namespace TotalModel.Models
                 new ObjectParameter("ToDate", toDate) :
                 new ObjectParameter("ToDate", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<WarehouseIndex>("GetWarehouseIndexes", aspUserIDParameter, fromDateParameter, toDateParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<WarehouseIndex>("GetWarehouseIndexes", userIDParameter, fromDateParameter, toDateParameter);
         }
     
         public virtual ObjectResult<FillingLineBase> GetFillingLineBases()
@@ -559,11 +559,11 @@ namespace TotalModel.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<FillingLineBase>("GetFillingLineBases");
         }
     
-        public virtual ObjectResult<FillingLineIndex> GetFillingLineIndexes(string aspUserID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
+        public virtual ObjectResult<FillingLineIndex> GetFillingLineIndexes(Nullable<int> userID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
         {
-            var aspUserIDParameter = aspUserID != null ?
-                new ObjectParameter("AspUserID", aspUserID) :
-                new ObjectParameter("AspUserID", typeof(string));
+            var userIDParameter = userID.HasValue ?
+                new ObjectParameter("UserID", userID) :
+                new ObjectParameter("UserID", typeof(int));
     
             var fromDateParameter = fromDate.HasValue ?
                 new ObjectParameter("FromDate", fromDate) :
@@ -573,7 +573,7 @@ namespace TotalModel.Models
                 new ObjectParameter("ToDate", toDate) :
                 new ObjectParameter("ToDate", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<FillingLineIndex>("GetFillingLineIndexes", aspUserIDParameter, fromDateParameter, toDateParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<FillingLineIndex>("GetFillingLineIndexes", userIDParameter, fromDateParameter, toDateParameter);
         }
     
         public virtual ObjectResult<BinLocationBase> GetBinLocationBases()
@@ -581,11 +581,11 @@ namespace TotalModel.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BinLocationBase>("GetBinLocationBases");
         }
     
-        public virtual ObjectResult<BinLocationIndex> GetBinLocationIndexes(string aspUserID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
+        public virtual ObjectResult<BinLocationIndex> GetBinLocationIndexes(Nullable<int> userID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
         {
-            var aspUserIDParameter = aspUserID != null ?
-                new ObjectParameter("AspUserID", aspUserID) :
-                new ObjectParameter("AspUserID", typeof(string));
+            var userIDParameter = userID.HasValue ?
+                new ObjectParameter("UserID", userID) :
+                new ObjectParameter("UserID", typeof(int));
     
             var fromDateParameter = fromDate.HasValue ?
                 new ObjectParameter("FromDate", fromDate) :
@@ -595,7 +595,7 @@ namespace TotalModel.Models
                 new ObjectParameter("ToDate", toDate) :
                 new ObjectParameter("ToDate", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BinLocationIndex>("GetBinLocationIndexes", aspUserIDParameter, fromDateParameter, toDateParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BinLocationIndex>("GetBinLocationIndexes", userIDParameter, fromDateParameter, toDateParameter);
         }
     
         public virtual ObjectResult<string> CartonEditable(Nullable<int> entityID)
@@ -817,11 +817,11 @@ namespace TotalModel.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PalletUpdateEntryStatus", palletIDsParameter, entryStatusIDParameter);
         }
     
-        public virtual ObjectResult<SalesOrderIndex> GetSalesOrderIndexes(string aspUserID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
+        public virtual ObjectResult<SalesOrderIndex> GetSalesOrderIndexes(Nullable<int> userID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
         {
-            var aspUserIDParameter = aspUserID != null ?
-                new ObjectParameter("AspUserID", aspUserID) :
-                new ObjectParameter("AspUserID", typeof(string));
+            var userIDParameter = userID.HasValue ?
+                new ObjectParameter("UserID", userID) :
+                new ObjectParameter("UserID", typeof(int));
     
             var fromDateParameter = fromDate.HasValue ?
                 new ObjectParameter("FromDate", fromDate) :
@@ -831,7 +831,7 @@ namespace TotalModel.Models
                 new ObjectParameter("ToDate", toDate) :
                 new ObjectParameter("ToDate", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SalesOrderIndex>("GetSalesOrderIndexes", aspUserIDParameter, fromDateParameter, toDateParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SalesOrderIndex>("GetSalesOrderIndexes", userIDParameter, fromDateParameter, toDateParameter);
         }
     
         public virtual ObjectResult<SalesOrderViewDetail> GetSalesOrderViewDetails(Nullable<int> salesOrderID)
@@ -919,11 +919,11 @@ namespace TotalModel.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CustomerBase>("GetCustomerBases");
         }
     
-        public virtual ObjectResult<CustomerIndex> GetCustomerIndexes(string aspUserID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
+        public virtual ObjectResult<CustomerIndex> GetCustomerIndexes(Nullable<int> userID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
         {
-            var aspUserIDParameter = aspUserID != null ?
-                new ObjectParameter("AspUserID", aspUserID) :
-                new ObjectParameter("AspUserID", typeof(string));
+            var userIDParameter = userID.HasValue ?
+                new ObjectParameter("UserID", userID) :
+                new ObjectParameter("UserID", typeof(int));
     
             var fromDateParameter = fromDate.HasValue ?
                 new ObjectParameter("FromDate", fromDate) :
@@ -933,7 +933,7 @@ namespace TotalModel.Models
                 new ObjectParameter("ToDate", toDate) :
                 new ObjectParameter("ToDate", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CustomerIndex>("GetCustomerIndexes", aspUserIDParameter, fromDateParameter, toDateParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CustomerIndex>("GetCustomerIndexes", userIDParameter, fromDateParameter, toDateParameter);
         }
     
         public virtual ObjectResult<string> DeliveryAdviceApproved(Nullable<int> entityID)
@@ -989,11 +989,11 @@ namespace TotalModel.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeliveryAdviceToggleApproved", entityIDParameter, approvedParameter);
         }
     
-        public virtual ObjectResult<DeliveryAdviceIndex> GetDeliveryAdviceIndexes(string aspUserID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
+        public virtual ObjectResult<DeliveryAdviceIndex> GetDeliveryAdviceIndexes(Nullable<int> userID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
         {
-            var aspUserIDParameter = aspUserID != null ?
-                new ObjectParameter("AspUserID", aspUserID) :
-                new ObjectParameter("AspUserID", typeof(string));
+            var userIDParameter = userID.HasValue ?
+                new ObjectParameter("UserID", userID) :
+                new ObjectParameter("UserID", typeof(int));
     
             var fromDateParameter = fromDate.HasValue ?
                 new ObjectParameter("FromDate", fromDate) :
@@ -1003,7 +1003,7 @@ namespace TotalModel.Models
                 new ObjectParameter("ToDate", toDate) :
                 new ObjectParameter("ToDate", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DeliveryAdviceIndex>("GetDeliveryAdviceIndexes", aspUserIDParameter, fromDateParameter, toDateParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DeliveryAdviceIndex>("GetDeliveryAdviceIndexes", userIDParameter, fromDateParameter, toDateParameter);
         }
     
         public virtual ObjectResult<DeliveryAdviceViewDetail> GetDeliveryAdviceViewDetails(Nullable<int> deliveryAdviceID)
@@ -1062,11 +1062,11 @@ namespace TotalModel.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PendingSalesOrder>("GetPendingSalesOrders", locationIDParameter);
         }
     
-        public virtual ObjectResult<GoodsIssueIndex> GetGoodsIssueIndexes(string aspUserID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
+        public virtual ObjectResult<GoodsIssueIndex> GetGoodsIssueIndexes(Nullable<int> userID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
         {
-            var aspUserIDParameter = aspUserID != null ?
-                new ObjectParameter("AspUserID", aspUserID) :
-                new ObjectParameter("AspUserID", typeof(string));
+            var userIDParameter = userID.HasValue ?
+                new ObjectParameter("UserID", userID) :
+                new ObjectParameter("UserID", typeof(int));
     
             var fromDateParameter = fromDate.HasValue ?
                 new ObjectParameter("FromDate", fromDate) :
@@ -1076,7 +1076,7 @@ namespace TotalModel.Models
                 new ObjectParameter("ToDate", toDate) :
                 new ObjectParameter("ToDate", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GoodsIssueIndex>("GetGoodsIssueIndexes", aspUserIDParameter, fromDateParameter, toDateParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GoodsIssueIndex>("GetGoodsIssueIndexes", userIDParameter, fromDateParameter, toDateParameter);
         }
     
         public virtual ObjectResult<GoodsIssueViewDetail> GetGoodsIssueViewDetails(Nullable<int> goodsIssueID)
@@ -1217,11 +1217,11 @@ namespace TotalModel.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GoodsReceiptDetailAvailable>("GetGoodsReceiptDetailAvailables", locationIDParameter, warehouseIDParameter, commodityIDParameter, commodityIDsParameter, batchIDParameter, goodsReceiptDetailIDsParameter);
         }
     
-        public virtual ObjectResult<WarehouseAdjustmentIndex> GetWarehouseAdjustmentIndexes(string aspUserID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
+        public virtual ObjectResult<WarehouseAdjustmentIndex> GetWarehouseAdjustmentIndexes(Nullable<int> userID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
         {
-            var aspUserIDParameter = aspUserID != null ?
-                new ObjectParameter("AspUserID", aspUserID) :
-                new ObjectParameter("AspUserID", typeof(string));
+            var userIDParameter = userID.HasValue ?
+                new ObjectParameter("UserID", userID) :
+                new ObjectParameter("UserID", typeof(int));
     
             var fromDateParameter = fromDate.HasValue ?
                 new ObjectParameter("FromDate", fromDate) :
@@ -1231,7 +1231,7 @@ namespace TotalModel.Models
                 new ObjectParameter("ToDate", toDate) :
                 new ObjectParameter("ToDate", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<WarehouseAdjustmentIndex>("GetWarehouseAdjustmentIndexes", aspUserIDParameter, fromDateParameter, toDateParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<WarehouseAdjustmentIndex>("GetWarehouseAdjustmentIndexes", userIDParameter, fromDateParameter, toDateParameter);
         }
     
         public virtual ObjectResult<WarehouseAdjustmentViewDetail> GetWarehouseAdjustmentViewDetails(Nullable<int> warehouseAdjustmentID)
@@ -1301,11 +1301,11 @@ namespace TotalModel.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<WarehouseAdjustmentTypeBase>("GetWarehouseAdjustmentTypeBases");
         }
     
-        public virtual ObjectResult<WarehouseAdjustmentTypeIndex> GetWarehouseAdjustmentTypeIndexes(string aspUserID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
+        public virtual ObjectResult<WarehouseAdjustmentTypeIndex> GetWarehouseAdjustmentTypeIndexes(Nullable<int> userID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
         {
-            var aspUserIDParameter = aspUserID != null ?
-                new ObjectParameter("AspUserID", aspUserID) :
-                new ObjectParameter("AspUserID", typeof(string));
+            var userIDParameter = userID.HasValue ?
+                new ObjectParameter("UserID", userID) :
+                new ObjectParameter("UserID", typeof(int));
     
             var fromDateParameter = fromDate.HasValue ?
                 new ObjectParameter("FromDate", fromDate) :
@@ -1315,7 +1315,7 @@ namespace TotalModel.Models
                 new ObjectParameter("ToDate", toDate) :
                 new ObjectParameter("ToDate", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<WarehouseAdjustmentTypeIndex>("GetWarehouseAdjustmentTypeIndexes", aspUserIDParameter, fromDateParameter, toDateParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<WarehouseAdjustmentTypeIndex>("GetWarehouseAdjustmentTypeIndexes", userIDParameter, fromDateParameter, toDateParameter);
         }
     
         public virtual ObjectResult<Nullable<bool>> GetPalletChanged(Nullable<int> fillingLineID)
@@ -1327,11 +1327,11 @@ namespace TotalModel.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<bool>>("GetPalletChanged", fillingLineIDParameter);
         }
     
-        public virtual ObjectResult<ModuleIndex> GetModuleIndexes(string aspUserID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
+        public virtual ObjectResult<ModuleIndex> GetModuleIndexes(Nullable<int> userID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
         {
-            var aspUserIDParameter = aspUserID != null ?
-                new ObjectParameter("AspUserID", aspUserID) :
-                new ObjectParameter("AspUserID", typeof(string));
+            var userIDParameter = userID.HasValue ?
+                new ObjectParameter("UserID", userID) :
+                new ObjectParameter("UserID", typeof(int));
     
             var fromDateParameter = fromDate.HasValue ?
                 new ObjectParameter("FromDate", fromDate) :
@@ -1341,7 +1341,7 @@ namespace TotalModel.Models
                 new ObjectParameter("ToDate", toDate) :
                 new ObjectParameter("ToDate", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ModuleIndex>("GetModuleIndexes", aspUserIDParameter, fromDateParameter, toDateParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ModuleIndex>("GetModuleIndexes", userIDParameter, fromDateParameter, toDateParameter);
         }
     
         public virtual ObjectResult<ModuleViewDetail> GetModuleViewDetails(Nullable<int> moduleID)
@@ -1417,11 +1417,11 @@ namespace TotalModel.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("GetGoodsReceiptIDofWarehouseAdjustment", warehouseAdjustmentIDParameter);
         }
     
-        public virtual ObjectResult<TransferOrderIndex> GetTransferOrderIndexes(string aspUserID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
+        public virtual ObjectResult<TransferOrderIndex> GetTransferOrderIndexes(Nullable<int> userID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
         {
-            var aspUserIDParameter = aspUserID != null ?
-                new ObjectParameter("AspUserID", aspUserID) :
-                new ObjectParameter("AspUserID", typeof(string));
+            var userIDParameter = userID.HasValue ?
+                new ObjectParameter("UserID", userID) :
+                new ObjectParameter("UserID", typeof(int));
     
             var fromDateParameter = fromDate.HasValue ?
                 new ObjectParameter("FromDate", fromDate) :
@@ -1431,7 +1431,7 @@ namespace TotalModel.Models
                 new ObjectParameter("ToDate", toDate) :
                 new ObjectParameter("ToDate", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<TransferOrderIndex>("GetTransferOrderIndexes", aspUserIDParameter, fromDateParameter, toDateParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<TransferOrderIndex>("GetTransferOrderIndexes", userIDParameter, fromDateParameter, toDateParameter);
         }
     
         public virtual ObjectResult<TransferOrderViewDetail> GetTransferOrderViewDetails(Nullable<int> transferOrderID)
@@ -1574,11 +1574,11 @@ namespace TotalModel.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CustomerCategoryBase>("GetCustomerCategoryBases");
         }
     
-        public virtual ObjectResult<CustomerCategoryIndex> GetCustomerCategoryIndexes(string aspUserID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
+        public virtual ObjectResult<CustomerCategoryIndex> GetCustomerCategoryIndexes(Nullable<int> userID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
         {
-            var aspUserIDParameter = aspUserID != null ?
-                new ObjectParameter("AspUserID", aspUserID) :
-                new ObjectParameter("AspUserID", typeof(string));
+            var userIDParameter = userID.HasValue ?
+                new ObjectParameter("UserID", userID) :
+                new ObjectParameter("UserID", typeof(int));
     
             var fromDateParameter = fromDate.HasValue ?
                 new ObjectParameter("FromDate", fromDate) :
@@ -1588,7 +1588,7 @@ namespace TotalModel.Models
                 new ObjectParameter("ToDate", toDate) :
                 new ObjectParameter("ToDate", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CustomerCategoryIndex>("GetCustomerCategoryIndexes", aspUserIDParameter, fromDateParameter, toDateParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CustomerCategoryIndex>("GetCustomerCategoryIndexes", userIDParameter, fromDateParameter, toDateParameter);
         }
     
         public virtual ObjectResult<CustomerTypeBase> GetCustomerTypeBases()
@@ -1596,11 +1596,11 @@ namespace TotalModel.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CustomerTypeBase>("GetCustomerTypeBases");
         }
     
-        public virtual ObjectResult<CustomerTypeIndex> GetCustomerTypeIndexes(string aspUserID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
+        public virtual ObjectResult<CustomerTypeIndex> GetCustomerTypeIndexes(Nullable<int> userID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
         {
-            var aspUserIDParameter = aspUserID != null ?
-                new ObjectParameter("AspUserID", aspUserID) :
-                new ObjectParameter("AspUserID", typeof(string));
+            var userIDParameter = userID.HasValue ?
+                new ObjectParameter("UserID", userID) :
+                new ObjectParameter("UserID", typeof(int));
     
             var fromDateParameter = fromDate.HasValue ?
                 new ObjectParameter("FromDate", fromDate) :
@@ -1610,7 +1610,7 @@ namespace TotalModel.Models
                 new ObjectParameter("ToDate", toDate) :
                 new ObjectParameter("ToDate", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CustomerTypeIndex>("GetCustomerTypeIndexes", aspUserIDParameter, fromDateParameter, toDateParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CustomerTypeIndex>("GetCustomerTypeIndexes", userIDParameter, fromDateParameter, toDateParameter);
         }
     
         public virtual ObjectResult<TerritoryBase> GetTerritoryBases()
@@ -1618,11 +1618,11 @@ namespace TotalModel.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<TerritoryBase>("GetTerritoryBases");
         }
     
-        public virtual ObjectResult<TerritoryIndex> GetTerritoryIndexes(string aspUserID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
+        public virtual ObjectResult<TerritoryIndex> GetTerritoryIndexes(Nullable<int> userID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
         {
-            var aspUserIDParameter = aspUserID != null ?
-                new ObjectParameter("AspUserID", aspUserID) :
-                new ObjectParameter("AspUserID", typeof(string));
+            var userIDParameter = userID.HasValue ?
+                new ObjectParameter("UserID", userID) :
+                new ObjectParameter("UserID", typeof(int));
     
             var fromDateParameter = fromDate.HasValue ?
                 new ObjectParameter("FromDate", fromDate) :
@@ -1632,7 +1632,7 @@ namespace TotalModel.Models
                 new ObjectParameter("ToDate", toDate) :
                 new ObjectParameter("ToDate", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<TerritoryIndex>("GetTerritoryIndexes", aspUserIDParameter, fromDateParameter, toDateParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<TerritoryIndex>("GetTerritoryIndexes", userIDParameter, fromDateParameter, toDateParameter);
         }
     
         public virtual ObjectResult<PendingGoodsIssueTransferDetail> GetPendingGoodsIssueTransferDetails(Nullable<int> locationID, Nullable<int> goodsReceiptID, Nullable<int> goodsIssueID, Nullable<int> warehouseID, string goodsIssueTransferDetailIDs, Nullable<bool> isReadonly)

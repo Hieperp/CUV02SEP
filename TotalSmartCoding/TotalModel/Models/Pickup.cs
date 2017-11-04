@@ -45,11 +45,11 @@ namespace TotalModel.Models
         public Nullable<System.DateTime> ApprovedDate { get; set; }
     
         public virtual FillingLine FillingLine { get; set; }
-        public virtual Location Location { get; set; }
         public virtual Warehouse Warehouse { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PickupDetail> PickupDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GoodsReceipt> GoodsReceipts { get; set; }
+        public virtual Location Location { get; set; }
     }
 }

@@ -26,7 +26,7 @@ namespace TotalSmartCoding.Controllers.APIs.Commons
 
         public ICollection<CommodityIndex> GetCommodityIndexes()
         {
-            return this.commodityAPIRepository.GetEntityIndexes<CommodityIndex>(ContextAttributes.AspUserID, ContextAttributes.FromDate, ContextAttributes.ToDate).ToList();
+            return this.commodityAPIRepository.GetEntityIndexes<CommodityIndex>(ContextAttributes.User.UserID, ContextAttributes.FromDate, ContextAttributes.ToDate).ToList();
         }
 
         public IList<CommodityBase> GetCommodityBases()

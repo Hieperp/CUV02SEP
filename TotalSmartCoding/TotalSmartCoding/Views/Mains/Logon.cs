@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
+//using System.DirectoryServices.AccountManagement;
+//using System.DirectoryServices.Protocol;
+
 using Ninject;
 
 using TotalDAL;
@@ -37,6 +40,52 @@ namespace TotalSmartCoding.Views.Mains
 
         private void PublicApplicationLogon_Load(object sender, EventArgs e)
         {
+
+
+            //// List of strings for your names
+            //List<string> allUsers = new List<string>();
+
+            //// create your domain context and define the OU container to search in
+            //PrincipalContext ctx = new PrincipalContext(ContextType.Domain, "DOMAINNAME",
+            //                                            "OU=SomeOU,dc=YourCompany,dc=com");
+
+            //// define a "query-by-example" principal - here, we search for a UserPrincipal (user)
+            //UserPrincipal qbeUser = new UserPrincipal(ctx);
+
+            //// create your principal searcher passing in the QBE principal    
+            //PrincipalSearcher srch = new PrincipalSearcher(qbeUser);
+
+            //// find all matches
+            //foreach (var found in srch.FindAll())
+            //{
+            //    // do whatever here - "found" is of type "Principal" - it could be user, group, computer.....          
+            //    allUsers.Add(found.DisplayName);
+            //}
+
+
+
+
+
+
+
+            //using (var context = new PrincipalContext(ContextType.Domain, "yourdomain.com"))
+            //{
+            //    using (var searcher = new PrincipalSearcher(new UserPrincipal(context)))
+            //    {
+            //        foreach (var result in searcher.FindAll())
+            //        {
+            //            DirectoryEntry de = result.GetUnderlyingObject() as DirectoryEntry;
+            //            Console.WriteLine("First Name: " + de.Properties["givenName"].Value);
+            //            Console.WriteLine("Last Name : " + de.Properties["sn"].Value);
+            //            Console.WriteLine("SAM account name   : " + de.Properties["samAccountName"].Value);
+            //            Console.WriteLine("User principal name: " + de.Properties["userPrincipalName"].Value);
+            //            Console.WriteLine();
+            //        }
+            //    }
+            //}
+            //Console.ReadLine();
+
+
 
 
             string plainText = "Lê Minh Hiệp";

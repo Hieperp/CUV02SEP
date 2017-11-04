@@ -18,7 +18,7 @@ namespace TotalSmartCoding.Controllers.APIs.Sales
 
         public ICollection<SalesOrderIndex> GetSalesOrderIndexes()
         {
-            return this.salesOrderAPIRepository.GetEntityIndexes<SalesOrderIndex>(ContextAttributes.AspUserID, ContextAttributes.FromDate, ContextAttributes.ToDate);
+            return this.salesOrderAPIRepository.GetEntityIndexes<SalesOrderIndex>(ContextAttributes.User.UserID, ContextAttributes.FromDate, ContextAttributes.ToDate);
         }
     }
 }

@@ -18,7 +18,7 @@ namespace TotalSmartCoding.Controllers.APIs.Inventories
 
         public ICollection<WarehouseAdjustmentIndex> GetWarehouseAdjustmentIndexes()
         {
-            return this.warehouseAdjustmentAPIRepository.GetEntityIndexes<WarehouseAdjustmentIndex>(ContextAttributes.AspUserID, ContextAttributes.FromDate, ContextAttributes.ToDate);
+            return this.warehouseAdjustmentAPIRepository.GetEntityIndexes<WarehouseAdjustmentIndex>(ContextAttributes.User.UserID, ContextAttributes.FromDate, ContextAttributes.ToDate);
         }
     }
 }

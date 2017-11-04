@@ -26,7 +26,7 @@ namespace TotalSmartCoding.Controllers.APIs.Commons
 
         public ICollection<WarehouseAdjustmentTypeIndex> GetWarehouseAdjustmentTypeIndexes()
         {
-            return this.warehouseAdjustmentTypeAPIRepository.GetEntityIndexes<WarehouseAdjustmentTypeIndex>(ContextAttributes.AspUserID, ContextAttributes.FromDate, ContextAttributes.ToDate).ToList();
+            return this.warehouseAdjustmentTypeAPIRepository.GetEntityIndexes<WarehouseAdjustmentTypeIndex>(ContextAttributes.User.UserID, ContextAttributes.FromDate, ContextAttributes.ToDate).ToList();
         }
 
         public IList<WarehouseAdjustmentTypeBase> GetWarehouseAdjustmentTypeBases()

@@ -40,7 +40,6 @@ namespace TotalModel.Models
         public bool IsDefault { get; set; }
         public string Remarks { get; set; }
     
-        public virtual Location Location { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pickup> Pickups { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -63,5 +62,6 @@ namespace TotalModel.Models
         public virtual ICollection<GoodsReceiptDetail> GoodsReceiptDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GoodsReceipt> GoodsReceipts { get; set; }
+        public virtual Location Location { get; set; }
     }
 }

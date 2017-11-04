@@ -7,6 +7,6 @@ namespace TotalCore.Repositories
 {
     public interface IGenericAPIRepository : IBaseRepository
     {
-        ICollection<TEntityIndex> GetEntityIndexes<TEntityIndex>(string aspUserID, DateTime fromDate, DateTime toDate);
+        ICollection<TEntityIndex> GetEntityIndexes<TEntityIndex>(int userID, DateTime fromDate, DateTime toDate);
     }
 }

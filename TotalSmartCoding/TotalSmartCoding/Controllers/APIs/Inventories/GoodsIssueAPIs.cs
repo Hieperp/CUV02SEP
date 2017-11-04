@@ -18,7 +18,7 @@ namespace TotalSmartCoding.Controllers.APIs.Inventories
 
         public ICollection<GoodsIssueIndex> GetGoodsIssueIndexes()
         {
-            return this.goodsIssueAPIRepository.GetEntityIndexes<GoodsIssueIndex>(ContextAttributes.AspUserID, ContextAttributes.FromDate, ContextAttributes.ToDate);
+            return this.goodsIssueAPIRepository.GetEntityIndexes<GoodsIssueIndex>(ContextAttributes.User.UserID, ContextAttributes.FromDate, ContextAttributes.ToDate);
         }
 
 

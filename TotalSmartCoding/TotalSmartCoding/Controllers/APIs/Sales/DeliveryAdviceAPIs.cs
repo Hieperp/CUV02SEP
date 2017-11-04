@@ -18,7 +18,7 @@ namespace TotalSmartCoding.Controllers.APIs.Sales
 
         public ICollection<DeliveryAdviceIndex> GetDeliveryAdviceIndexes()
         {
-            return this.deliveryAdviceAPIRepository.GetEntityIndexes<DeliveryAdviceIndex>(ContextAttributes.AspUserID, ContextAttributes.FromDate, ContextAttributes.ToDate);
+            return this.deliveryAdviceAPIRepository.GetEntityIndexes<DeliveryAdviceIndex>(ContextAttributes.User.UserID, ContextAttributes.FromDate, ContextAttributes.ToDate);
         }
 
         public List<PendingSalesOrder> GetPendingSalesOrders(int? locationID)

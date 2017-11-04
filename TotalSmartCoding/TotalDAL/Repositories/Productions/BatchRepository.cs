@@ -38,9 +38,9 @@ namespace TotalDAL.Repositories.Productions
         {
         }
 
-        protected override ObjectParameter[] GetEntityIndexParameters(string aspUserID, DateTime fromDate, DateTime toDate)
+        protected override ObjectParameter[] GetEntityIndexParameters(int userID, DateTime fromDate, DateTime toDate)
         {
-            ObjectParameter[] baseParameters = base.GetEntityIndexParameters(aspUserID, fromDate, toDate);
+            ObjectParameter[] baseParameters = base.GetEntityIndexParameters(userID, fromDate, toDate);
 
             return new ObjectParameter[] { baseParameters[0], baseParameters[1], baseParameters[2], new ObjectParameter("FillingLineID", (int)GlobalVariables.FillingLineID), new ObjectParameter("ActiveOption", (int)(this.RepositoryBag["ActiveOption"] != null ? this.RepositoryBag["ActiveOption"] : GlobalEnums.ActiveOption.Both)) };
         }

@@ -9,20 +9,15 @@
         <EntityTypeShape EntityType="TotalSmartCodingModel.Employee" Width="1.5" PointX="8.25" PointY="2.25" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.FillingLine" Width="1.5" PointX="0.75" PointY="5.125" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.GoodsReceiptType" Width="1.25" PointX="5.25" PointY="24.5" />
-        <EntityTypeShape EntityType="TotalSmartCodingModel.Location" Width="1.5" PointX="6" PointY="8.25" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.OrganizationalUnit" Width="1.5" PointX="8.25" PointY="29.5" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.OrganizationalUnitUser" Width="1.5" PointX="10.5" PointY="29.5" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.Territory" Width="1.5" PointX="0.75" PointY="0.75" />
-        <AssociationConnector Association="TotalSmartCodingModel.FK_Employees_Locations" />
-        <AssociationConnector Association="TotalSmartCodingModel.FK_OrganizationalUnits_Locations" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_OrganizationalUnitIUsers_OrganizationalUnits" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_Territories_Territories" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.DeliveryAdviceDetail" Width="1.5" PointX="16.75" PointY="13" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.Warehouse" Width="1.5" PointX="8.25" PointY="8.625" />
-        <AssociationConnector Association="TotalSmartCodingModel.FK_Warehouses_Locations" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.Pickup" Width="1.5" PointX="10.5" PointY="12.875" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_Pickups_FillingLines" />
-        <AssociationConnector Association="TotalSmartCodingModel.FK_Pickups_Locations" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_Pickups_Warehouses" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.SalesOrderDetail" Width="1.5" PointX="6.25" PointY="19.25" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_DeliveryAdviceDetails_SalesOrderDetails" />
@@ -41,11 +36,9 @@
         <AssociationConnector Association="TotalSmartCodingModel.FK_PickupDetails_Pickups" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_PickupDetails_Warehouses" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.SalesOrder" Width="1.5" PointX="9.875" PointY="19.375" />
-        <AssociationConnector Association="TotalSmartCodingModel.FK_SalesOrders_Locations" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_SalesOrderDetails_SalesOrders" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.DeliveryAdvice" Width="1.5" PointX="15.75" PointY="19" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_DeliveryAdviceDetails_DeliveryAdvices" />
-        <AssociationConnector Association="TotalSmartCodingModel.FK_DeliveryAdvices_Locations" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_DeliveryAdvices_SalesOrders" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.Module" Width="1.5" PointX="5.375" PointY="4.75" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.Commodity" Width="1.5" PointX="0.75" PointY="13.25" />
@@ -64,14 +57,12 @@
         <EntityTypeShape EntityType="TotalSmartCodingModel.ModuleDetail" Width="1.5" PointX="5.375" PointY="0.75" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_DeliveryAdviceDetails_Batches" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.WarehouseAdjustment" Width="1.5" PointX="18.25" PointY="21" />
-        <AssociationConnector Association="TotalSmartCodingModel.FK_WarehouseAdjustments_Locations" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_WarehouseAdjustments_WarehouseAdjustmentTypes" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_WarehouseAdjustments_Warehouses" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.GoodsIssueType" Width="1.5" PointX="16.75" PointY="1.25" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.TransferOrderDetail" Width="1.5" PointX="19.75" PointY="1.5" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.TransferOrder" Width="1.5" PointX="13.5" PointY="3.625" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_TransferOrderDetails_Commodities" />
-        <AssociationConnector Association="TotalSmartCodingModel.FK_TransferOrders_Locations" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_TransferOrderDetails_TransferOrders" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_TransferOrders_WarehouseReceipts" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_TransferOrders_Warehouses" />
@@ -92,7 +83,6 @@
         <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssues_Customers" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssues_DeliveryAdvices" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssues_GoodsIssueTypes" />
-        <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssues_Locations" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssues_TransferOrders" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssues_WarehouseReceipts" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssues_Warehouses" />
@@ -125,10 +115,20 @@
         <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsReceiptDetails_Warehouses" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_WarehouseAdjustmentDetails_GoodsReceiptDetails" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsReceipts_GoodsReceiptTypes" />
-        <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsReceipts_Locations" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsReceipts_Pickups" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsReceipts_WarehouseAdjustments" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsReceipts_Warehouses" />
+        <EntityTypeShape EntityType="TotalSmartCodingModel.Location" Width="1.5" PointX="1" PointY="21.625" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_DeliveryAdvices_Locations" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_Employees_Locations" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssues_Locations" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsReceipts_Locations" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_OrganizationalUnits_Locations" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_Pickups_Locations" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_SalesOrders_Locations" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_TransferOrders_Locations" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_WarehouseAdjustments_Locations" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_Warehouses_Locations" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

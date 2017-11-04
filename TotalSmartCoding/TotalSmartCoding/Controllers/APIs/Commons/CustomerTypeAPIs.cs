@@ -26,7 +26,7 @@ namespace TotalSmartCoding.Controllers.APIs.Commons
 
         public ICollection<CustomerTypeIndex> GetCustomerTypeIndexes()
         {
-            return this.customerTypeAPIRepository.GetEntityIndexes<CustomerTypeIndex>(ContextAttributes.AspUserID, ContextAttributes.FromDate, ContextAttributes.ToDate).ToList();
+            return this.customerTypeAPIRepository.GetEntityIndexes<CustomerTypeIndex>(ContextAttributes.User.UserID, ContextAttributes.FromDate, ContextAttributes.ToDate).ToList();
         }
 
         public IList<CustomerTypeBase> GetCustomerTypeBases()

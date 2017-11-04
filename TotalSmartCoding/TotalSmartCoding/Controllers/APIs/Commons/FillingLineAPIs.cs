@@ -26,7 +26,7 @@ namespace TotalSmartCoding.Controllers.APIs.Commons
 
         public ICollection<FillingLineIndex> GetFillingLineIndexes()
         {
-            return this.fillingLineAPIRepository.GetEntityIndexes<FillingLineIndex>(ContextAttributes.AspUserID, ContextAttributes.FromDate, ContextAttributes.ToDate).ToList();
+            return this.fillingLineAPIRepository.GetEntityIndexes<FillingLineIndex>(ContextAttributes.User.UserID, ContextAttributes.FromDate, ContextAttributes.ToDate).ToList();
         }
 
         public IList<FillingLineBase> GetFillingLineBases()
