@@ -68,12 +68,6 @@ namespace TotalDAL.Repositories
 
 
 
-        //public virtual IQueryable<TEntity> Loading(string aspUserID, GlobalEnums.NmvnTaskID nmvnTaskID)//for Loading (09/07/2015) - let review and optimize Loading laster
-        //{
-        //    int userID = this.TotalSmartCodingEntities.AspNetUsers.Where(w => w.Id == aspUserID).FirstOrDefault().UserID;
-        //    return this.modelDbSet.Where(w => this.TotalSmartCodingEntities.AccessControls.Where(acl => acl.UserID == userID && acl.NMVNTaskID == (int)nmvnTaskID && acl.AccessLevel > 0).Select(s => s.OrganizationalUnitID).Contains(w.OrganizationalUnitID));
-        //}
-
 
 
 

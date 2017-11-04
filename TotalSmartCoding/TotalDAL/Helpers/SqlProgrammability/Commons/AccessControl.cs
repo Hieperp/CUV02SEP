@@ -130,12 +130,12 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
 
         private void UpdateLockedDate()
         {
-            string queryString = " @AspUserID nvarchar(128), @LocationID Int, @LockedDate DateTime " + "\r\n";
+            string queryString = " @UserID Int, @LocationID Int, @LockedDate DateTime " + "\r\n";
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
 
             queryString = queryString + "       UPDATE      Locations " + "\r\n";
-            queryString = queryString + "       SET         LockedDate = @LockedDate, AspUserID = @AspUserID, EditedDate = GetDate() " + "\r\n";
+            queryString = queryString + "       SET         LockedDate = @LockedDate, UserID = @UserID, EditedDate = GetDate() " + "\r\n";
             queryString = queryString + "       WHERE       LocationID = @LocationID " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("UpdateLockedDate", queryString);
