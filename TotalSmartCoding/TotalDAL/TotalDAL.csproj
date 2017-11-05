@@ -61,6 +61,7 @@
     <Compile Include="Helpers\SqlProgrammability\Commons\Warehouse.cs" />
     <Compile Include="Helpers\SqlProgrammability\Commons\WarehouseAdjustmentType.cs" />
     <Compile Include="Helpers\SqlProgrammability\Generals\Module.cs" />
+    <Compile Include="Helpers\SqlProgrammability\Generals\UserReferences.cs" />
     <Compile Include="Helpers\SqlProgrammability\InitReference.cs" />
     <Compile Include="Helpers\SqlProgrammability\Inventories\GoodsIssue.cs" />
     <Compile Include="Helpers\SqlProgrammability\Inventories\GoodsReceipt.cs" />

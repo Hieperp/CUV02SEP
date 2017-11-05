@@ -1690,5 +1690,10 @@ namespace TotalModel.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UserOrganizationalUnit>("GetUserOrganizationalUnit", userNameParameter);
         }
+    
+        public virtual ObjectResult<ModuleDetailIndex> GetModuleDetailIndexes()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ModuleDetailIndex>("GetModuleDetailIndexes");
+        }
     }
 }

@@ -29,6 +29,11 @@ namespace TotalSmartCoding.Controllers.APIs.Generals
             return this.moduleAPIRepository.GetEntityIndexes<ModuleIndex>(ContextAttributes.User.UserID, ContextAttributes.FromDate, ContextAttributes.ToDate).ToList();
         }
 
+        public IList<ModuleDetailIndex> GetModuleDetailIndexes()
+        {
+            return this.moduleAPIRepository.GetModuleDetailIndexes();
+        }
+
         public IList<ModuleViewDetail> GetModuleViewDetails(int? moduleID)
         {
             return this.moduleAPIRepository.GetModuleViewDetails(moduleID);

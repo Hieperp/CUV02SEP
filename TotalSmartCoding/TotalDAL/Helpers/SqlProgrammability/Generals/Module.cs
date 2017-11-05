@@ -19,6 +19,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
         public void RestoreProcedure()
         {
             this.GetModuleIndexes();
+            this.GetModuleDetailIndexes();
 
             this.GetModuleViewDetails();
 
@@ -46,6 +47,24 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             this.totalSmartCodingEntities.CreateStoredProcedure("GetModuleIndexes", queryString);
         }
 
+        private void GetModuleDetailIndexes()
+        {
+            string queryString;
+
+            queryString = " " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+            queryString = queryString + "    BEGIN " + "\r\n";
+
+            queryString = queryString + "       SELECT      Modules.ModuleID, Modules.Name AS ModuleName, ModuleDetails.ModuleDetailID, ModuleDetails.Name AS ModuleDetailName " + "\r\n";
+            queryString = queryString + "       FROM        Modules INNER JOIN ModuleDetails ON Modules.ModuleID = ModuleDetails.ModuleID " + "\r\n";
+            queryString = queryString + "       WHERE      (Modules.InActive = 0) AND (ModuleDetails.InActive = 0) " + "\r\n";
+            queryString = queryString + "       ORDER BY    Modules.SerialID, ModuleDetails.SerialID " + "\r\n";
+
+            queryString = queryString + "    END " + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("GetModuleDetailIndexes", queryString);
+        }
 
         private void ModuleSaveRelative()
         {

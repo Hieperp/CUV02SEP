@@ -32,6 +32,11 @@ namespace TotalDAL.Repositories
             return;
             return;
 
+            Helpers.SqlProgrammability.Generals.Module Module = new Helpers.SqlProgrammability.Generals.Module(totalSmartCodingEntities);
+            Module.RestoreProcedure();
+
+            return;
+
             Helpers.SqlProgrammability.Commons.AccessControl accessControl = new Helpers.SqlProgrammability.Commons.AccessControl(totalSmartCodingEntities);
             accessControl.RestoreProcedure();
 
@@ -112,10 +117,6 @@ namespace TotalDAL.Repositories
 
 
 
-            return;
-
-            Helpers.SqlProgrammability.Generals.Module Module = new Helpers.SqlProgrammability.Generals.Module(totalSmartCodingEntities);
-            Module.RestoreProcedure();
 
 
 

@@ -1961,6 +1961,7 @@
         <Function Name="GetGoodsReceiptViewDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="GoodsReceiptID" Type="int" Mode="In" />
         </Function>
+        <Function Name="GetModuleDetailIndexes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetModuleIndexes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserID" Type="int" Mode="In" />
           <Parameter Name="FromDate" Type="datetime" Mode="In" />
@@ -3523,6 +3524,8 @@
             <End Role="User" EntitySet="Users" />
             <End Role="OrganizationalUnitUser" EntitySet="OrganizationalUnitUsers" />
           </AssociationSet>
+          <FunctionImport Name="GetModuleDetailIndexes" ReturnType="Collection(TotalSmartCodingModel.ModuleDetailIndex)">
+            </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
           <Property Type="Int32" Name="PickupID" Nullable="false" />
@@ -6234,6 +6237,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="ModuleDetailIndex">
+          <Property Type="Int32" Name="ModuleID" Nullable="false" />
+          <Property Type="String" Name="ModuleName" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="ModuleDetailID" Nullable="false" />
+          <Property Type="String" Name="ModuleDetailName" Nullable="false" MaxLength="100" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -8066,6 +8075,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetModuleDetailIndexes" FunctionName="TotalSmartCodingModel.Store.GetModuleDetailIndexes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TotalSmartCodingModel.ModuleDetailIndex">
+                <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
+                <ScalarProperty Name="ModuleName" ColumnName="ModuleName" />
+                <ScalarProperty Name="ModuleDetailID" ColumnName="ModuleDetailID" />
+                <ScalarProperty Name="ModuleDetailName" ColumnName="ModuleDetailName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -28,11 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserReferences));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.comboUserID = new System.Windows.Forms.ToolStripComboBox();
             this.buttonUserAdd = new System.Windows.Forms.ToolStripButton();
@@ -40,7 +41,7 @@
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.fastNMVNTasks = new BrightIdeasSoftware.FastObjectListView();
             this.olvID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvNMVNTaskName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvModuleDetailName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.gridexAccessControls = new CustomControls.DataGridexView();
             this.CommodityID = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.CommodityName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -50,6 +51,8 @@
             this.LineVolume = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Remarks = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelCaption = new System.Windows.Forms.Panel();
+            this.imageList32 = new System.Windows.Forms.ImageList(this.components);
+            this.olvModuleName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastNMVNTasks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridexAccessControls)).BeginInit();
@@ -106,15 +109,17 @@
             // fastNMVNTasks
             // 
             this.fastNMVNTasks.AllColumns.Add(this.olvID);
-            this.fastNMVNTasks.AllColumns.Add(this.olvNMVNTaskName);
+            this.fastNMVNTasks.AllColumns.Add(this.olvModuleName);
+            this.fastNMVNTasks.AllColumns.Add(this.olvModuleDetailName);
             this.fastNMVNTasks.BackColor = System.Drawing.Color.Ivory;
             this.fastNMVNTasks.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.olvID,
-            this.olvNMVNTaskName});
+            this.olvModuleDetailName});
             this.fastNMVNTasks.Cursor = System.Windows.Forms.Cursors.Default;
             this.fastNMVNTasks.Dock = System.Windows.Forms.DockStyle.Left;
             this.fastNMVNTasks.Font = new System.Drawing.Font("Calibri Light", 10.2F);
             this.fastNMVNTasks.FullRowSelect = true;
+            this.fastNMVNTasks.GroupImageList = this.imageList32;
             this.fastNMVNTasks.HideSelection = false;
             this.fastNMVNTasks.HighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastNMVNTasks.Location = new System.Drawing.Point(0, 92);
@@ -132,15 +137,15 @@
             // olvID
             // 
             this.olvID.Text = "";
-            this.olvID.Width = 0;
+            this.olvID.Width = 20;
             // 
-            // olvNMVNTaskName
+            // olvModuleDetailName
             // 
-            this.olvNMVNTaskName.AspectName = "Name";
-            this.olvNMVNTaskName.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvNMVNTaskName.Text = "";
-            this.olvNMVNTaskName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvNMVNTaskName.Width = 90;
+            this.olvModuleDetailName.AspectName = "ModuleDetailName";
+            this.olvModuleDetailName.FillsFreeSpace = true;
+            this.olvModuleDetailName.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvModuleDetailName.Text = "";
+            this.olvModuleDetailName.Width = 90;
             // 
             // gridexAccessControls
             // 
@@ -164,8 +169,8 @@
             this.gridexAccessControls.Location = new System.Drawing.Point(304, 92);
             this.gridexAccessControls.Name = "gridexAccessControls";
             this.gridexAccessControls.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridexAccessControls.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridexAccessControls.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.gridexAccessControls.RowTemplate.Height = 24;
             this.gridexAccessControls.Size = new System.Drawing.Size(823, 584);
             this.gridexAccessControls.TabIndex = 70;
@@ -201,8 +206,8 @@
             // 
             this.PackageVolume.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.PackageVolume.DataPropertyName = "PackageVolume";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.PackageVolume.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.PackageVolume.DefaultCellStyle = dataGridViewCellStyle5;
             this.PackageVolume.FillWeight = 9F;
             this.PackageVolume.HeaderText = "Package.Volume";
             this.PackageVolume.Name = "PackageVolume";
@@ -211,10 +216,10 @@
             // 
             this.Quantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Quantity.DataPropertyName = "Quantity";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.Format = "N0";
-            dataGridViewCellStyle2.NullValue = null;
-            this.Quantity.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle6.Format = "N0";
+            dataGridViewCellStyle6.NullValue = null;
+            this.Quantity.DefaultCellStyle = dataGridViewCellStyle6;
             this.Quantity.FillWeight = 5F;
             this.Quantity.HeaderText = "Quantity";
             this.Quantity.Name = "Quantity";
@@ -223,9 +228,9 @@
             // 
             this.LineVolume.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.LineVolume.DataPropertyName = "LineVolume";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.Format = "N2";
-            this.LineVolume.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle7.Format = "N2";
+            this.LineVolume.DefaultCellStyle = dataGridViewCellStyle7;
             this.LineVolume.FillWeight = 7F;
             this.LineVolume.HeaderText = "Volume";
             this.LineVolume.Name = "LineVolume";
@@ -245,6 +250,24 @@
             this.panelCaption.Name = "panelCaption";
             this.panelCaption.Size = new System.Drawing.Size(1127, 37);
             this.panelCaption.TabIndex = 71;
+            // 
+            // imageList32
+            // 
+            this.imageList32.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList32.ImageStream")));
+            this.imageList32.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList32.Images.SetKeyName(0, "Forklift");
+            this.imageList32.Images.SetKeyName(1, "ForkliftYellow");
+            this.imageList32.Images.SetKeyName(2, "ForkliftOrange");
+            this.imageList32.Images.SetKeyName(3, "ForkliftJapan");
+            this.imageList32.Images.SetKeyName(4, "Placeholder32");
+            this.imageList32.Images.SetKeyName(5, "Storage32");
+            this.imageList32.Images.SetKeyName(6, "Sales-Order-32");
+            this.imageList32.Images.SetKeyName(7, "Sign_Order_32");
+            // 
+            // olvModuleName
+            // 
+            this.olvModuleName.AspectName = "ModuleName";
+            this.olvModuleName.IsVisible = false;
             // 
             // UserReferences
             // 
@@ -279,7 +302,7 @@
         private System.Windows.Forms.ToolStripButton toolStripButton3;
         private BrightIdeasSoftware.FastObjectListView fastNMVNTasks;
         private BrightIdeasSoftware.OLVColumn olvID;
-        private BrightIdeasSoftware.OLVColumn olvNMVNTaskName;
+        private BrightIdeasSoftware.OLVColumn olvModuleDetailName;
         private CustomControls.DataGridexView gridexAccessControls;
         private System.Windows.Forms.DataGridViewComboBoxColumn CommodityID;
         private System.Windows.Forms.DataGridViewTextBoxColumn CommodityName;
@@ -289,5 +312,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn LineVolume;
         private System.Windows.Forms.DataGridViewTextBoxColumn Remarks;
         private System.Windows.Forms.Panel panelCaption;
+        private System.Windows.Forms.ImageList imageList32;
+        private BrightIdeasSoftware.OLVColumn olvModuleName;
     }
 }

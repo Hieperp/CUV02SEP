@@ -25,6 +25,11 @@ namespace TotalDAL.Repositories.Generals
         {
         }
 
+        public IList<ModuleDetailIndex> GetModuleDetailIndexes()
+        {
+            return this.TotalSmartCodingEntities.GetModuleDetailIndexes().ToList();
+        }
+
         public IList<ModuleViewDetail> GetModuleViewDetails(int? moduleID)
         {
             return this.TotalSmartCodingEntities.GetModuleViewDetails(moduleID).ToList();

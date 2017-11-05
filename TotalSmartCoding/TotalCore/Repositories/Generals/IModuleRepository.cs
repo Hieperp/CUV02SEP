@@ -11,6 +11,7 @@ namespace TotalCore.Repositories.Generals
 
     public interface IModuleAPIRepository : IGenericAPIRepository
     {
+        IList<ModuleDetailIndex> GetModuleDetailIndexes();
         IList<ModuleViewDetail> GetModuleViewDetails(int? moduleID);
     }
 }
