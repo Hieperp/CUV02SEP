@@ -3,10 +3,10 @@
     public static class GlobalEnums
     {
 
-        public static bool OnTestScanner = false; //1
-        public static bool OnTestPalletScanner = false; //3 //WHEN REAL TEST WITHOUT PalletScanner
+        public static bool OnTestScanner = true; //1
+        public static bool OnTestPalletScanner = true; //3 //WHEN REAL TEST WITHOUT PalletScanner
 
-        public static bool OnTestPrinter = false; //2
+        public static bool OnTestPrinter = true; //2
         public static bool OnTestDigit = false; //WHEN REAL TEST WITHOUT DIGIT PRINTER
         public static bool OnTestZebra = false; //false: WILL SEND TEST PRINT WHEN CONNECTED
 
@@ -61,13 +61,11 @@
         {
             UnKnown = 0,
 
-
-            Pack = 28001,
-            Carton = 28003,
-            Pallet = 28005,
-
-
             Batch = 28106,
+
+            Pack = 686868,
+            Carton = 686868,
+            Pallet = 686868,
             SmartCoding = 888888,
 
             Customer = 8001,
@@ -80,22 +78,10 @@
 
 
 
-            Quotation = 8031,
             SalesOrder = 8032,
             DeliveryAdvice = 8035,
             GoodsIssue = 8037,
 
-            SalesInvoice = 8051,
-
-            VehiclesInvoice = 8052,
-            PartsInvoice = 8053,
-            ServicesInvoice = 8055,
-
-
-            ServiceContract = 8056,
-
-            AccountInvoice = 8057,
-            Receipt = 8059,
 
 
             SalesReturn = 8038,
@@ -104,21 +90,8 @@
 
             GoodsReceipt = 8077,
             WarehouseAdjustment = 8078,
-            VehicleAdjustment = 8078008,
-            PartAdjustment = 8078009,
-
-            HandlingUnit = 9010,
-            GoodsDelivery = 9012,
-
+            
             TransferOrder = 8071,
-            VehicleTransferOrder = 8071008,
-            PartTransferOrder = 8071009,
-
-            StockTransfer = 8073,
-            VehicleTransfer = 8075,
-            PartTransfer = 8076,
-
-
 
             Pickup = 8068
 
@@ -391,20 +364,6 @@
             Readable = 1,
             Editable = 2
         };
-    }
-
-
-    public static class GlobalReceiptTypeID
-    {
-        public static int ApplyCredit { get { return (int)GlobalEnums.ReceiptTypeID.ApplyCredit; } }
-        public static int ReceiveMoney { get { return (int)GlobalEnums.ReceiptTypeID.ReceiveMoney; } }
-    }
-
-    public static class GlobalCreditTypeID
-    {
-        public static int AdvanceReceipt { get { return (int)GlobalEnums.NmvnTaskID.Receipt; } }
-        public static int SalesReturn { get { return (int)GlobalEnums.NmvnTaskID.SalesReturn; } }
-        public static int CreditNote { get { return (int)GlobalEnums.NmvnTaskID.CreditNote; } }
     }
 
 }

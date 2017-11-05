@@ -26,14 +26,14 @@ namespace TotalSmartCoding.Views.Mains
             try
             {
                 List<string> allUsers = new List<string>();
-                PrincipalContext ctx = new PrincipalContext(ContextType.Domain, "DOMAINNAME", "OU=SomeOU,dc=YourCompany,dc=com");// create your domain context and define the OU container to search in
-                UserPrincipal qbeUser = new UserPrincipal(ctx);// define a "query-by-example" principal - here, we search for a UserPrincipal (user)
-                PrincipalSearcher srch = new PrincipalSearcher(qbeUser); // create your principal searcher passing in the QBE principal    
+                //PrincipalContext ctx = new PrincipalContext(ContextType.Domain, "DOMAINNAME", "OU=SomeOU,dc=YourCompany,dc=com");// create your domain context and define the OU container to search in
+                //UserPrincipal qbeUser = new UserPrincipal(ctx);// define a "query-by-example" principal - here, we search for a UserPrincipal (user)
+                //PrincipalSearcher srch = new PrincipalSearcher(qbeUser); // create your principal searcher passing in the QBE principal    
 
-                foreach (var found in srch.FindAll())// find all matches
-                {// do whatever here - "found" is of type "Principal" - it could be user, group, computer.....          
-                    allUsers.Add(found.DisplayName);
-                }
+                //foreach (var found in srch.FindAll())// find all matches
+                //{// do whatever here - "found" is of type "Principal" - it could be user, group, computer.....          
+                //    allUsers.Add(found.DisplayName);
+                //}
                 this.combexUserID.DataSource = allUsers;
 
                 this.userAPIs = userAPIs;
@@ -55,8 +55,9 @@ namespace TotalSmartCoding.Views.Mains
             {
                 if (sender.Equals(this.buttonOK))
                 {
-                    //this.userAPIs.UserAdd(this.OrganizationalUnitID, "DELL-E7240T\\Hiep", "DELL-E7240T\\Hiep", "DELL-E7240T\\Hiep");
-                    //this.DialogResult = DialogResult.OK;
+                    this.userAPIs.UserAdd(this.OrganizationalUnitID, "DELL-E7240T\\Hiep", "DELL-E7240T\\Hiep", "DELL-E7240T\\Hiep");
+                    this.DialogResult = DialogResult.OK;
+
                     if (this.combexUserID.SelectedIndex >= 0 && this.OrganizationalUnitID != null)
                     {
                         this.userAPIs.UserAdd(this.OrganizationalUnitID, this.combexUserID.Text, this.combexUserID.Text, this.combexUserID.Text);

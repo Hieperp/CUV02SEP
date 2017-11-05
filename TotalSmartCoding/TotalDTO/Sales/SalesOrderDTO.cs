@@ -94,7 +94,7 @@ namespace TotalDTO.Sales
             set { ApplyPropertyChange<SalesOrderPrimitiveDTO, Nullable<int>>(ref this.salespersonID, o => o.SalespersonID, value); }
         }
 
-        public override int PreparedPersonID { get { return 1; } }
+        
 
         public override string Caption
         {

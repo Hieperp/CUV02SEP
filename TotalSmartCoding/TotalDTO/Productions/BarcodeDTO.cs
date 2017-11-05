@@ -32,6 +32,6 @@ namespace TotalDTO.Productions
 
         public int QueueID { get; set; } //JUST FOR PackDTO ONLY
 
-        public override int PreparedPersonID { get { return 1; } }
+        
     }
 }

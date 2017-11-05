@@ -49,8 +49,6 @@ namespace TotalService.Inventories
 
                     goodsReceiptDTO.StorekeeperID = warehouseAdjustment.StorekeeperID;
 
-                    goodsReceiptDTO.PreparedPersonID = warehouseAdjustment.PreparedPersonID;
-
                     goodsReceiptDTO.Description = warehouseAdjustment.Description;
                     goodsReceiptDTO.Remarks = warehouseAdjustment.Remarks;
 

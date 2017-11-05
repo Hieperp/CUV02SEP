@@ -21,7 +21,7 @@ namespace TotalSmartCoding.Controllers
             if (baseService != null)
             {
                 this.baseService = baseService;
-                this.baseService.UserID = ContextAttributes.User.UserID; //(Tamthoi)
+                this.baseService.UserID = ContextAttributes.User.UserID;
             }
         }
 

@@ -19,25 +19,10 @@ namespace TotalBase
                 case GlobalEnums.NmvnTaskID.PurchaseInvoice:
                     return "H";
 
-
-
-
-
-
-
-
                 case GlobalEnums.NmvnTaskID.Pickup:
                     return "P";
                 case GlobalEnums.NmvnTaskID.GoodsReceipt:
                     return "R";
-
-
-
-
-
-
-
-
                 case GlobalEnums.NmvnTaskID.SalesOrder:
                     return "O";
                 case GlobalEnums.NmvnTaskID.DeliveryAdvice:
@@ -47,44 +32,8 @@ namespace TotalBase
 
                 case GlobalEnums.NmvnTaskID.GoodsIssue:
                     return "K";
-                case GlobalEnums.NmvnTaskID.HandlingUnit:
-                    return "C";
-                case GlobalEnums.NmvnTaskID.GoodsDelivery:
-                    return "X";
-
-                case GlobalEnums.NmvnTaskID.Quotation:
-                    return "B";
-
-                case GlobalEnums.NmvnTaskID.SalesInvoice:
-                    return @"CASE WHEN @SalesInvoiceTypeID = 
-                                    " + (int)GlobalEnums.SalesInvoiceTypeID.VehiclesInvoice + @" THEN 'X' ELSE 
-                             CASE WHEN @SalesInvoiceTypeID = 
-                                    " + (int)GlobalEnums.SalesInvoiceTypeID.PartsInvoice + @" THEN 'P' ELSE 
-                             CASE WHEN @SalesInvoiceTypeID = 
-                                    " + (int)GlobalEnums.SalesInvoiceTypeID.ServicesInvoice + @" THEN 'S' ELSE '#' END
-                             END END";
-
-                case GlobalEnums.NmvnTaskID.AccountInvoice:
-                    return "I";
-                case GlobalEnums.NmvnTaskID.Receipt:
-                    return "R";
-                case GlobalEnums.NmvnTaskID.CreditNote:
-                    return "CR";
-
-
-
-                case GlobalEnums.NmvnTaskID.ServiceContract:
-                    return "H";
-
                 case GlobalEnums.NmvnTaskID.TransferOrder:
                     return "TO";
-
-                case GlobalEnums.NmvnTaskID.StockTransfer:
-                    return @"CASE WHEN @StockTransferTypeID = 
-                                    " + (int)GlobalEnums.StockTransferTypeID.VehicleTransfer + @" THEN 'DX' ELSE 
-                             CASE WHEN @StockTransferTypeID = 
-                                    " + (int)GlobalEnums.StockTransferTypeID.PartTransfer + @" THEN 'DP' ELSE '#' END 
-                             END";
                 case GlobalEnums.NmvnTaskID.WarehouseAdjustment:
                     return "WA";
                 default:

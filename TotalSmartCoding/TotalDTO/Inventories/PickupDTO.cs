@@ -91,7 +91,7 @@ namespace TotalDTO.Inventories
             set { ApplyPropertyChange<PickupPrimitiveDTO, Nullable<int>>(ref this.storekeeperID, o => o.StorekeeperID, value); }
         }
 
-        public override int PreparedPersonID { get { return 1; } }
+        
 
 
         public override string Caption

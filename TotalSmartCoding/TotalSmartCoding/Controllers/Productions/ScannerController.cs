@@ -1184,22 +1184,16 @@ namespace TotalSmartCoding.Controllers.Productions
                     lock (this.cartonController)
                     {
                         IList<Pack> packs = this.packController.packService.GetPacks(this.FillingData.FillingLineID, (int)GlobalVariables.BarcodeStatus.Wrapped + "", cartonID);
-                        if (packs.Count == this.FillingData.PackPerCarton)
-                        {
-                            this.cartonController.cartonService.ServiceBag["EntryStatusIDs"] = (int)GlobalVariables.BarcodeStatus.Noread + "," + (int)GlobalVariables.BarcodeStatus.Pending; //THIS CARTON MUST BE Noread || Pending IN ORDER TO UNWRAP TO PACK
-                            this.cartonController.cartonService.ServiceBag["PackIDs"] = string.Join(",", packs.Select(d => d.PackID));
-                            this.cartonController.cartonService.ServiceBag["DeletePack"] = true;
-                            if (!this.cartonController.cartonService.Delete(cartonID)) throw new System.ArgumentException("Lỗi", "Không thể xóa carton trên CSDL");
 
-                            this.cartonPendingQueue.Dequeue(cartonID);
+                        this.cartonController.cartonService.ServiceBag["EntryStatusIDs"] = (int)GlobalVariables.BarcodeStatus.Noread + "," + (int)GlobalVariables.BarcodeStatus.Pending; //THIS CARTON MUST BE Noread || Pending IN ORDER TO UNWRAP TO PACK
+                        this.cartonController.cartonService.ServiceBag["PackIDs"] = string.Join(",", packs.Select(d => d.PackID));
+                        this.cartonController.cartonService.ServiceBag["DeletePack"] = true;
+                        if (!this.cartonController.cartonService.Delete(cartonID)) throw new System.ArgumentException("Lỗi", "Không thể xóa carton trên CSDL");
 
-                            this.NotifyPropertyChanged("CartonPendingQueue");
-                        }
-                        else
-                        {
-                            this.MainStatus = "Không thể xóa và đóng lại carton, do số lượng chai của carton và trên chuyền không phù hợp.";
-                            return false;
-                        }
+                        this.cartonPendingQueue.Dequeue(cartonID);
+
+                        this.NotifyPropertyChanged("CartonPendingQueue");
+
                     }
                 }
                 return true;

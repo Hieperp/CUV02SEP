@@ -11,7 +11,7 @@ namespace TotalDTO.Commons
 {
     public class CommodityPrimitiveDTO : BaseDTO, IPrimitiveEntity, IPrimitiveDTO
     {
-        public GlobalEnums.NmvnTaskID NMVNTaskID { get { return GlobalEnums.NmvnTaskID.Commodity; } }
+        public override GlobalEnums.NmvnTaskID NMVNTaskID { get { return GlobalEnums.NmvnTaskID.Commodity; } }
 
         public override int GetID() { return this.CommodityID; }
         public void SetID(int id) { this.CommodityID = id; }
@@ -53,7 +53,7 @@ namespace TotalDTO.Commons
         public string HSCode { get; set; }
         public string Specifycation { get; set; }
 
-        public override int PreparedPersonID { get { return 1; } }
+        
     }
 
     public class CommodityDTO : CommodityPrimitiveDTO

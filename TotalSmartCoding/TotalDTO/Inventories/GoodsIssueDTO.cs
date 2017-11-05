@@ -143,7 +143,7 @@ namespace TotalDTO.Inventories
             set { ApplyPropertyChange<GoodsIssuePrimitiveDTO, string>(ref this.vehicle, o => o.Vehicle, value); }
         }
 
-        public override int PreparedPersonID { get { return 1; } }
+        
 
         public override string Caption
         {

@@ -179,7 +179,7 @@ namespace TotalDTO.Commons
         public bool IsCustomer { get { return true; } }
         public bool IsSupplier { get { return false; } }
 
-        public override int PreparedPersonID { get { return 1; } }
+        
 
         protected override List<ValidationRule> CreateRules()
         {

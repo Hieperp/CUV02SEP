@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 using TotalModel;
 using TotalBase.Enums;
+using TotalBase;
 
 namespace TotalDTO
 {
@@ -41,10 +42,27 @@ namespace TotalDTO
 
 
 
+
+        /// <summary>
+        /// AT NOW: INTERFACE IAccessControlAttribute PROPERTY: PreparedPersonID: CHỈ CÒN Get, WE COMMENT OUT (REMOVE) Set
+        /// HERE: WE USE IMPLEMENT: public virtual int PreparedPersonID { get { return ContextAttributes.User.UserID; } }
+        /// IT MEANS THAT: THE PreparedPersonID IS THE LOGON UserID
+        /// LET SEE: AT THE CONTRUCTOR OF BaseController, WE SET: this.baseService.UserID = ContextAttributes.User.UserID;
+        /// ===> SO, NOW, WE IMPLEMENT: PreparedPersonID = this.baseService.UserID = ContextAttributes.User.UserID: THE LOGON USER
+        /// ------------WHY WE NEED PreparedPersonID WHILE WE ALSO HAVE UserID?
+        /// ------------AT THE VERY SOON, FAR AWAY IN THE PAST: WE THINK THAT: UserID IS THE LOGON USER, THE PreparedPersonID: IS THE PERSON WHO SAVE DATA
+        /// ------------THE UserID CREATE AND SAVE DATE FOR PreparedPersonID
+        /// ------------NHƯNG MÀ: THIS CASE RẤT ÍT XẢY RA TRONG THỰC TẾ, VÌ ÍT KHI UseID SAVE DATA DÙM PreparedPersonID
+        /// ------------ĐẶT BIỆT: HIỆN TẠI, PHẦN MỀM KHÔNG CHO CHỌN PreparedPersonID
+        /// ------------NGOÀI RA, TRONG QUÁ TRÌNH XỬ LÝ DỮ LIỆU, PHẦN MỀM LẠI CĂN CỨ UserID ĐỂ XỬ LÝ DATA, CŨNG NHƯ PERMISSION, VÍ DỤ NHƯ: CĂN CỨ UserID ĐỂ XÁC ĐỊNH LocationID => TỪ ĐÓ XÁC ĐỊNH WarehouseID, ...
+        /// ------------VÌ NHỮNG LÝ LẼ ĐÓ, TẠM THỜI, CHÚNG TÔI: HỢP NHẤT PreparedPersonID VÀ UserID CHÍNH LÀ ContextAttributes.User.UserID: USER ĐANG LOGON VÀO PHẦN MỀM
+        /// ------------CÓ NGHĨA LÀ: CHÚNG TA BỎ Ý TƯỞNG: UserID MAKE & SAVE DATA FOR PreparedPersonID (LÀM DÙM, THAY THẾ)---Ý TƯỞNG NÀY CÓ RẤT LÂU RỒI, TỪ THỜI VB6. CŨNG HAY, NHƯNG CÓ VẺ KHÔNG CÓ CŨNG KHÔNG SAO!!!! PHẢI BẮT USER LOGOUT -> LOGIN FOR APPROPRIATE USER IF NEEDED
+        /// ------------THỰC TẾ: HIỆN GIƠ VẪN CHƯA ĐƯA PreparedPersonID VÀO VIEW ĐỂ CHỌN
+        /// </summary>
         public int UserID { get; set; }
         [Required]
-        [Display(Name = "Người lập")]
-        public virtual int PreparedPersonID { get; set; }
+        [Display(Name = "Người lập")]        
+        public virtual int PreparedPersonID { get { return ContextAttributes.User.UserID; } }
         public int OrganizationalUnitID { get; set; }
 
 

@@ -82,7 +82,7 @@ namespace TotalDTO.Inventories
         }
 
 
-        public override int PreparedPersonID { get { return 1; } }
+        
 
         public bool HasPositiveLine { get { return this.DtoDetails().Where(w => w.Quantity > 0).Count() > 0; } }
 

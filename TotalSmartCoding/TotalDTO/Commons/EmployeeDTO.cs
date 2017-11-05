@@ -26,7 +26,7 @@ namespace TotalDTO.Commons
 
     public class EmployeePrimitiveDTO : EmployeeBaseDTO, IPrimitiveEntity, IPrimitiveDTO
     {
-        public GlobalEnums.NmvnTaskID NMVNTaskID { get { return GlobalEnums.NmvnTaskID.Employee; } }
+        public override GlobalEnums.NmvnTaskID NMVNTaskID { get { return GlobalEnums.NmvnTaskID.Employee; } }
 
         public override int GetID() { return this.EmployeeID; }
         public void SetID(int id) { this.EmployeeID = id; }
@@ -41,7 +41,7 @@ namespace TotalDTO.Commons
         public string Telephone { get; set; }
         public string Address { get; set; }
 
-        public override int PreparedPersonID { get { return 1; } }
+        
     }
 
 

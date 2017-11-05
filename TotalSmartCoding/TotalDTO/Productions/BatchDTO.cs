@@ -69,7 +69,7 @@ namespace TotalDTO.Productions
             set { ApplyPropertyChange<BatchPrimitiveDTO, string>(ref this.nextPalletNo, o => o.NextPalletNo, value); }
         }
 
-        public override int PreparedPersonID { get { return 1; } }
+        
 
         [DefaultValue(false)]
         public bool IsDefault { get; set; }
