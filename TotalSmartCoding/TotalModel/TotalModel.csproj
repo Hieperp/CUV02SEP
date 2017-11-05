@@ -335,6 +335,9 @@
     <Compile Include="Models\User.cs">
       <DependentUpon>TotalSmartCoding.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UserIndex.cs">
+      <DependentUpon>TotalSmartCoding.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UserOrganizationalUnit.cs">
       <DependentUpon>TotalSmartCoding.tt</DependentUpon>
     </Compile>

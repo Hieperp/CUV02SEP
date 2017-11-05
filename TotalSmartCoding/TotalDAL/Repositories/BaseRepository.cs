@@ -30,10 +30,16 @@ namespace TotalDAL.Repositories
             //if (!GlobalVariables.shouldRestoreProcedure) return;
 
             return;
+            
             return;
 
-            Helpers.SqlProgrammability.Generals.Module Module = new Helpers.SqlProgrammability.Generals.Module(totalSmartCodingEntities);
-            Module.RestoreProcedure();
+            Helpers.SqlProgrammability.Generals.UserReference userReference = new Helpers.SqlProgrammability.Generals.UserReference(totalSmartCodingEntities);
+            userReference.RestoreProcedure();
+
+            return;
+
+            Helpers.SqlProgrammability.Generals.Module module = new Helpers.SqlProgrammability.Generals.Module(totalSmartCodingEntities);
+            module.RestoreProcedure();
 
             return;
 

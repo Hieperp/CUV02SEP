@@ -7,22 +7,22 @@ using TotalModel.Models;
 
 namespace TotalDAL.Helpers.SqlProgrammability.Generals
 {
-    public class UserReferences
+    public class UserReference
     {
         private readonly TotalSmartCodingEntities totalSmartCodingEntities;
 
-        public UserReferences(TotalSmartCodingEntities totalSmartCodingEntities)
+        public UserReference(TotalSmartCodingEntities totalSmartCodingEntities)
         {
             this.totalSmartCodingEntities = totalSmartCodingEntities;
         }
 
         public void RestoreProcedure()
         {
-            this.GetModuleIndexes();
+            this.GetUserIndexes();
         }
 
 
-        private void GetModuleIndexes()
+        private void GetUserIndexes()
         {
             string queryString;
 
@@ -31,13 +31,14 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
-            queryString = queryString + "       SELECT      Modules.ModuleID, Modules.Code, Modules.Name " + "\r\n";
-            queryString = queryString + "       FROM        Modules " + "\r\n";
+            queryString = queryString + "       SELECT      UserID, FirstName, LastName, UserName, IsDatabaseAdmin " + "\r\n";
+            queryString = queryString + "       FROM        Users " + "\r\n";
 
             queryString = queryString + "    END " + "\r\n";
 
-            this.totalSmartCodingEntities.CreateStoredProcedure("GetModuleIndexes", queryString);
+            this.totalSmartCodingEntities.CreateStoredProcedure("GetUserIndexes", queryString);
         }
+
 
     }
 }
