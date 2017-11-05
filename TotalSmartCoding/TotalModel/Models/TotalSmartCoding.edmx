@@ -1971,6 +1971,7 @@
         <Function Name="GetModuleViewDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ModuleID" Type="int" Mode="In" />
         </Function>
+        <Function Name="GetOrganizationalUnitIndexes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetPacks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="FillingLineID" Type="int" Mode="In" />
           <Parameter Name="EntryStatusIDs" Type="varchar" Mode="In" />
@@ -2273,6 +2274,15 @@
         <Function Name="TransferOrderToggleApproved" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="EntityID" Type="int" Mode="In" />
           <Parameter Name="Approved" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="UserAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="OrganizationalUnitID" Type="int" Mode="In" />
+          <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
+          <Parameter Name="LastName" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UserRemove" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserID" Type="int" Mode="In" />
         </Function>
         <Function Name="WarehouseAdjustmentApproved" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="EntityID" Type="int" Mode="In" />
@@ -3562,6 +3572,16 @@
             <Parameter Name="VoidablePermitted" Mode="In" Type="Boolean" />
             <Parameter Name="UnVoidablePermitted" Mode="In" Type="Boolean" />
             <Parameter Name="ShowDiscount" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="GetOrganizationalUnitIndexes" ReturnType="Collection(TotalSmartCodingModel.OrganizationalUnitIndex)" />
+          <FunctionImport Name="UserAdd">
+            <Parameter Name="OrganizationalUnitID" Mode="In" Type="Int32" />
+            <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="LastName" Mode="In" Type="String" />
+            <Parameter Name="UserName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UserRemove">
+            <Parameter Name="UserID" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
@@ -6302,6 +6322,12 @@
           <Property Type="Boolean" Name="UnVoidablePermitted" Nullable="false" />
           <Property Type="Boolean" Name="ShowDiscount" Nullable="false" />
         </ComplexType>
+        <ComplexType Name="OrganizationalUnitIndex">
+          <Property Type="Int32" Name="OrganizationalUnitID" Nullable="false" />
+          <Property Type="String" Name="OrganizationalUnitName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="LocationName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="LocationOrganizationalUnitName" Nullable="false" MaxLength="151" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -8175,6 +8201,18 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SaveUserAccessControls" FunctionName="TotalSmartCodingModel.Store.SaveUserAccessControls" />
+          <FunctionImportMapping FunctionImportName="GetOrganizationalUnitIndexes" FunctionName="TotalSmartCodingModel.Store.GetOrganizationalUnitIndexes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TotalSmartCodingModel.OrganizationalUnitIndex">
+                <ScalarProperty Name="OrganizationalUnitID" ColumnName="OrganizationalUnitID" />
+                <ScalarProperty Name="OrganizationalUnitName" ColumnName="OrganizationalUnitName" />
+                <ScalarProperty Name="LocationName" ColumnName="LocationName" />
+                <ScalarProperty Name="LocationOrganizationalUnitName" ColumnName="LocationOrganizationalUnitName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UserAdd" FunctionName="TotalSmartCodingModel.Store.UserAdd" />
+          <FunctionImportMapping FunctionImportName="UserRemove" FunctionName="TotalSmartCodingModel.Store.UserRemove" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

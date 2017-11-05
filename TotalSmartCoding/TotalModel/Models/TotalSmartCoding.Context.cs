@@ -1758,5 +1758,40 @@ namespace TotalModel.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SaveUserAccessControls", accessControlIDParameter, accessLevelParameter, approvalPermittedParameter, unApprovalPermittedParameter, voidablePermittedParameter, unVoidablePermittedParameter, showDiscountParameter);
         }
+    
+        public virtual ObjectResult<OrganizationalUnitIndex> GetOrganizationalUnitIndexes()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<OrganizationalUnitIndex>("GetOrganizationalUnitIndexes");
+        }
+    
+        public virtual int UserAdd(Nullable<int> organizationalUnitID, string firstName, string lastName, string userName)
+        {
+            var organizationalUnitIDParameter = organizationalUnitID.HasValue ?
+                new ObjectParameter("OrganizationalUnitID", organizationalUnitID) :
+                new ObjectParameter("OrganizationalUnitID", typeof(int));
+    
+            var firstNameParameter = firstName != null ?
+                new ObjectParameter("FirstName", firstName) :
+                new ObjectParameter("FirstName", typeof(string));
+    
+            var lastNameParameter = lastName != null ?
+                new ObjectParameter("LastName", lastName) :
+                new ObjectParameter("LastName", typeof(string));
+    
+            var userNameParameter = userName != null ?
+                new ObjectParameter("UserName", userName) :
+                new ObjectParameter("UserName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UserAdd", organizationalUnitIDParameter, firstNameParameter, lastNameParameter, userNameParameter);
+        }
+    
+        public virtual int UserRemove(Nullable<int> userID)
+        {
+            var userIDParameter = userID.HasValue ?
+                new ObjectParameter("UserID", userID) :
+                new ObjectParameter("UserID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UserRemove", userIDParameter);
+        }
     }
 }

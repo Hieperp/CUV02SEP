@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Collections.Generic;
+using System.Windows.Forms;
 
 using Ninject;
 using BrightIdeasSoftware;
@@ -46,7 +47,6 @@ namespace TotalSmartCoding.Views.Mains
                 this.comboUserID.ComboBox.DisplayMember = CommonExpressions.PropertyName<UserIndex>(p => p.UserName);
                 this.comboUserID.ComboBox.ValueMember = CommonExpressions.PropertyName<UserIndex>(p => p.UserID);
                 this.bindingUserID = this.comboUserID.ComboBox.DataBindings.Add("SelectedValue", this, CommonExpressions.PropertyName<UserIndex>(p => p.UserID), true, DataSourceUpdateMode.OnPropertyChanged);
-
 
 
                 this.gridexUserAccessControl.AutoGenerateColumns = false;
@@ -143,6 +143,34 @@ namespace TotalSmartCoding.Views.Mains
                     UserAccessControlDTO userAccessControlDTO = this.bindingListUserAccessControls[e.NewIndex];
                     if (userAccessControlDTO != null)
                         this.userAPIs.SaveUserAccessControls(userAccessControlDTO.AccessControlID, userAccessControlDTO.AccessLevel, userAccessControlDTO.ApprovalPermitted, userAccessControlDTO.UnApprovalPermitted, userAccessControlDTO.VoidablePermitted, userAccessControlDTO.UnVoidablePermitted, userAccessControlDTO.ShowDiscount);
+                }
+            }
+            catch (Exception exception)
+            {
+                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+            }
+        }
+
+        private void buttonUserAdd_Click(object sender, EventArgs e)
+        {
+            UserAdd wizardUserAdd = new UserAdd(this.userAPIs);
+            DialogResult dialogResult = wizardUserAdd.ShowDialog();
+
+            wizardUserAdd.Dispose();
+            if (dialogResult == DialogResult.OK) this.comboUserID.ComboBox.DataSource = this.userAPIs.GetUserIndexes();
+        }
+
+        private void buttonUserRemove_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (this.UserID > 0)
+                {
+                    if (CustomMsgBox.Show(this, "Are you sure you want to delete " + this.comboUserID.Text + "?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Stop) == DialogResult.Yes)
+                    {
+                        this.userAPIs.UserRemove(this.UserID);
+                        this.comboUserID.ComboBox.DataSource = this.userAPIs.GetUserIndexes();
+                    }
                 }
             }
             catch (Exception exception)

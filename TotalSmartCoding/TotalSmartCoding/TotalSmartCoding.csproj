@@ -312,6 +312,12 @@
     <Compile Include="Views\Mains\TabletMDI.Designer.cs">
       <DependentUpon>TabletMDI.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Mains\UserAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Mains\UserAdd.Designer.cs">
+      <DependentUpon>UserAdd.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Mains\UserReferences.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -466,6 +472,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Mains\TabletMDI.resx">
       <DependentUpon>TabletMDI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Mains\UserAdd.resx">
+      <DependentUpon>UserAdd.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Mains\UserReferences.resx">
       <DependentUpon>UserReferences.cs</DependentUpon>
@@ -988,6 +997,7 @@
     <None Include="Resources\Man-2.ico" />
     <None Include="Resources\add-user.ico" />
     <None Include="Resources\remove-user.ico" />
+    <None Include="Resources\add-user1.ico" />
     <Content Include="SmartCodingSolution.ico" />
     <None Include="Resources\Yellow-cross.ico" />
     <None Include="Resources\White-Pallet.ico" />
