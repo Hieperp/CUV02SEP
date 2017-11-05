@@ -88,9 +88,9 @@
             this.layoutTop.ColumnCount = 5;
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75F));
-            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 22F));
+            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.layoutTop.Controls.Add(this.combexUserID, 3, 1);
             this.layoutTop.Controls.Add(this.label5, 2, 1);
             this.layoutTop.Controls.Add(this.combexOrganizationalUnitID, 3, 2);
@@ -117,11 +117,11 @@
             this.combexUserID.Editable = true;
             this.combexUserID.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combexUserID.FormattingEnabled = true;
-            this.combexUserID.Location = new System.Drawing.Point(245, 28);
+            this.combexUserID.Location = new System.Drawing.Point(277, 28);
             this.combexUserID.Margin = new System.Windows.Forms.Padding(1);
             this.combexUserID.Name = "combexUserID";
             this.combexUserID.ReadOnly = false;
-            this.combexUserID.Size = new System.Drawing.Size(478, 29);
+            this.combexUserID.Size = new System.Drawing.Size(446, 29);
             this.combexUserID.TabIndex = 74;
             // 
             // label5
@@ -131,7 +131,7 @@
             this.label5.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(87, 27);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(154, 31);
+            this.label5.Size = new System.Drawing.Size(186, 31);
             this.label5.TabIndex = 78;
             this.label5.Text = "New User";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -144,11 +144,11 @@
             this.combexOrganizationalUnitID.Editable = true;
             this.combexOrganizationalUnitID.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combexOrganizationalUnitID.FormattingEnabled = true;
-            this.combexOrganizationalUnitID.Location = new System.Drawing.Point(245, 59);
+            this.combexOrganizationalUnitID.Location = new System.Drawing.Point(277, 59);
             this.combexOrganizationalUnitID.Margin = new System.Windows.Forms.Padding(1);
             this.combexOrganizationalUnitID.Name = "combexOrganizationalUnitID";
             this.combexOrganizationalUnitID.ReadOnly = false;
-            this.combexOrganizationalUnitID.Size = new System.Drawing.Size(478, 29);
+            this.combexOrganizationalUnitID.Size = new System.Drawing.Size(446, 29);
             this.combexOrganizationalUnitID.TabIndex = 80;
             // 
             // label2
@@ -158,7 +158,7 @@
             this.label2.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(87, 58);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(154, 31);
+            this.label2.Size = new System.Drawing.Size(186, 31);
             this.label2.TabIndex = 83;
             this.label2.Text = "Organizational Unit";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
