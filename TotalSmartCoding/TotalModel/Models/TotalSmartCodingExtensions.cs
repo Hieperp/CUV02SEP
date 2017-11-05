@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using TotalModel.Helpers;
 using TotalModel.Interfaces;
@@ -60,10 +61,10 @@ namespace TotalModel.Models
     {
         int PickupID { get; set; }
         int PickupDetailID { get; set; }
-        
+
         int GoodsIssueID { get; set; }
         int GoodsIssueTransferDetailID { get; set; }
-        
+
         //int WarehouseAdjustmentID { get; set; }
         //int WarehouseAdjustmentDetailID { get; set; }
 
@@ -86,7 +87,7 @@ namespace TotalModel.Models
         string CartonCode { get; set; }
         Nullable<int> PalletID { get; set; }
         string PalletCode { get; set; }
-        
+
         int PackCounts { get; set; }
         int CartonCounts { get; set; }
         int PalletCounts { get; set; }
@@ -96,7 +97,7 @@ namespace TotalModel.Models
 
         Nullable<decimal> Quantity { get; set; }
         decimal LineVolume { get; set; }
-        
+
         string Remarks { get; set; }
         Nullable<bool> IsSelected { get; set; }
     }

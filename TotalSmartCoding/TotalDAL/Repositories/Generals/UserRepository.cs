@@ -24,5 +24,15 @@ namespace TotalDAL.Repositories.Generals
             : base(totalSmartCodingEntities, "GetUserIndexes")
         {
         }
+
+        public IList<UserAccessControl> GetUserAccessControls(int? userID, int? nmvnTaskID)
+        {
+            return this.TotalSmartCodingEntities.GetUserAccessControls(userID, nmvnTaskID).ToList();
+        }
+
+        public int SaveUserAccessControls(int? accessControlID, int? accessLevel, bool? approvalPermitted, bool? unApprovalPermitted, bool? voidablePermitted, bool? unVoidablePermitted, bool? showDiscount)
+        {
+            return this.TotalSmartCodingEntities.SaveUserAccessControls(accessControlID, accessLevel, approvalPermitted, unApprovalPermitted, voidablePermitted, unVoidablePermitted, showDiscount);
+        }
     }
 }

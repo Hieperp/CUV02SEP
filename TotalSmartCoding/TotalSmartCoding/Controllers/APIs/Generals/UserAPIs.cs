@@ -28,5 +28,15 @@ namespace TotalSmartCoding.Controllers.APIs.Generals
         {
             return this.userAPIRepository.GetEntityIndexes<UserIndex>(ContextAttributes.User.UserID, ContextAttributes.FromDate, ContextAttributes.ToDate).ToList();
         }
+
+        public IList<UserAccessControl> GetUserAccessControls(int? userID, int? nmvnTaskID)
+        {
+            return this.userAPIRepository.GetUserAccessControls(userID, nmvnTaskID).ToList();
+        }
+
+        public int SaveUserAccessControls(int? accessControlID, int? accessLevel, bool? approvalPermitted, bool? unApprovalPermitted, bool? voidablePermitted, bool? unVoidablePermitted, bool? showDiscount)
+        {
+            return this.userAPIRepository.SaveUserAccessControls(accessControlID, accessLevel, approvalPermitted, unApprovalPermitted, voidablePermitted, unVoidablePermitted, showDiscount);
+        }
     }
 }

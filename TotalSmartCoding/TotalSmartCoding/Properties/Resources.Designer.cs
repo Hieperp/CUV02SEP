@@ -2873,6 +2873,16 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Man_2 {
+            get {
+                object obj = ResourceManager.GetObject("Man-2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Map_pin_20 {
             get {
                 object obj = ResourceManager.GetObject("Map-pin-20", resourceCulture);

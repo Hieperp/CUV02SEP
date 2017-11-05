@@ -30,29 +30,29 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserReferences));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.comboUserID = new System.Windows.Forms.ToolStripComboBox();
             this.buttonUserAdd = new System.Windows.Forms.ToolStripButton();
             this.buttonUserRemove = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.fastNMVNTasks = new BrightIdeasSoftware.FastObjectListView();
             this.olvID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvModuleDetailName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.gridexAccessControls = new CustomControls.DataGridexView();
-            this.CommodityID = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.CommodityName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PackageSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PackageVolume = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LineVolume = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Remarks = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panelCaption = new System.Windows.Forms.Panel();
-            this.imageList32 = new System.Windows.Forms.ImageList(this.components);
             this.olvModuleName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvModuleDetailName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.imageList32 = new System.Windows.Forms.ImageList(this.components);
+            this.gridexAccessControls = new CustomControls.DataGridexView();
+            this.LocationName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OrganizationalUnitName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NoAccess = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.ReadOnly = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Editable = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.ApprovalPermitted = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.UnApprovalPermitted = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.VoidablePermitted = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.UnVoidablePermitted = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.panelCaption = new System.Windows.Forms.Panel();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastNMVNTasks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridexAccessControls)).BeginInit();
@@ -63,20 +63,32 @@
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton1,
             this.comboUserID,
             this.buttonUserAdd,
             this.buttonUserRemove,
             this.toolStripButton3});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1127, 55);
+            this.toolStrip1.Size = new System.Drawing.Size(1422, 55);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = global::TotalSmartCoding.Properties.Resources.Man_2;
+            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(52, 52);
+            // 
             // comboUserID
             // 
+            this.comboUserID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboUserID.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             this.comboUserID.Name = "comboUserID";
-            this.comboUserID.Size = new System.Drawing.Size(450, 55);
+            this.comboUserID.Size = new System.Drawing.Size(680, 55);
             // 
             // buttonUserAdd
             // 
@@ -122,134 +134,37 @@
             this.fastNMVNTasks.GroupImageList = this.imageList32;
             this.fastNMVNTasks.HideSelection = false;
             this.fastNMVNTasks.HighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
-            this.fastNMVNTasks.Location = new System.Drawing.Point(0, 92);
+            this.fastNMVNTasks.Location = new System.Drawing.Point(0, 86);
             this.fastNMVNTasks.Name = "fastNMVNTasks";
             this.fastNMVNTasks.OwnerDraw = true;
             this.fastNMVNTasks.ShowGroups = false;
-            this.fastNMVNTasks.Size = new System.Drawing.Size(304, 584);
+            this.fastNMVNTasks.Size = new System.Drawing.Size(304, 677);
             this.fastNMVNTasks.TabIndex = 69;
             this.fastNMVNTasks.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastNMVNTasks.UseCompatibleStateImageBehavior = false;
             this.fastNMVNTasks.UseFiltering = true;
             this.fastNMVNTasks.View = System.Windows.Forms.View.Details;
             this.fastNMVNTasks.VirtualMode = true;
+            this.fastNMVNTasks.SelectedIndexChanged += new System.EventHandler(this.fastNMVNTasks_SelectedIndexChanged);
             // 
             // olvID
             // 
             this.olvID.Text = "";
             this.olvID.Width = 20;
             // 
+            // olvModuleName
+            // 
+            this.olvModuleName.AspectName = "ModuleName";
+            this.olvModuleName.IsVisible = false;
+            // 
             // olvModuleDetailName
             // 
             this.olvModuleDetailName.AspectName = "ModuleDetailName";
             this.olvModuleDetailName.FillsFreeSpace = true;
             this.olvModuleDetailName.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvModuleDetailName.Sortable = false;
             this.olvModuleDetailName.Text = "";
             this.olvModuleDetailName.Width = 90;
-            // 
-            // gridexAccessControls
-            // 
-            this.gridexAccessControls.AllowAddRow = true;
-            this.gridexAccessControls.AllowDeleteRow = true;
-            this.gridexAccessControls.BackgroundColor = System.Drawing.Color.Ivory;
-            this.gridexAccessControls.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.gridexAccessControls.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.gridexAccessControls.ColumnHeadersHeight = 24;
-            this.gridexAccessControls.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.CommodityID,
-            this.CommodityName,
-            this.PackageSize,
-            this.PackageVolume,
-            this.Quantity,
-            this.LineVolume,
-            this.Remarks});
-            this.gridexAccessControls.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridexAccessControls.Editable = true;
-            this.gridexAccessControls.GridColor = System.Drawing.SystemColors.ButtonFace;
-            this.gridexAccessControls.Location = new System.Drawing.Point(304, 92);
-            this.gridexAccessControls.Name = "gridexAccessControls";
-            this.gridexAccessControls.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridexAccessControls.RowsDefaultCellStyle = dataGridViewCellStyle8;
-            this.gridexAccessControls.RowTemplate.Height = 24;
-            this.gridexAccessControls.Size = new System.Drawing.Size(823, 584);
-            this.gridexAccessControls.TabIndex = 70;
-            // 
-            // CommodityID
-            // 
-            this.CommodityID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CommodityID.DataPropertyName = "CommodityID";
-            this.CommodityID.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
-            this.CommodityID.FillWeight = 9F;
-            this.CommodityID.HeaderText = "Items.Code";
-            this.CommodityID.Name = "CommodityID";
-            this.CommodityID.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.CommodityID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // CommodityName
-            // 
-            this.CommodityName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CommodityName.DataPropertyName = "CommodityName";
-            this.CommodityName.FillWeight = 30F;
-            this.CommodityName.HeaderText = "Items.Description";
-            this.CommodityName.Name = "CommodityName";
-            // 
-            // PackageSize
-            // 
-            this.PackageSize.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.PackageSize.DataPropertyName = "PackageSize";
-            this.PackageSize.FillWeight = 10F;
-            this.PackageSize.HeaderText = "Package.Size";
-            this.PackageSize.Name = "PackageSize";
-            // 
-            // PackageVolume
-            // 
-            this.PackageVolume.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.PackageVolume.DataPropertyName = "PackageVolume";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.PackageVolume.DefaultCellStyle = dataGridViewCellStyle5;
-            this.PackageVolume.FillWeight = 9F;
-            this.PackageVolume.HeaderText = "Package.Volume";
-            this.PackageVolume.Name = "PackageVolume";
-            // 
-            // Quantity
-            // 
-            this.Quantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Quantity.DataPropertyName = "Quantity";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle6.Format = "N0";
-            dataGridViewCellStyle6.NullValue = null;
-            this.Quantity.DefaultCellStyle = dataGridViewCellStyle6;
-            this.Quantity.FillWeight = 5F;
-            this.Quantity.HeaderText = "Quantity";
-            this.Quantity.Name = "Quantity";
-            // 
-            // LineVolume
-            // 
-            this.LineVolume.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.LineVolume.DataPropertyName = "LineVolume";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle7.Format = "N2";
-            this.LineVolume.DefaultCellStyle = dataGridViewCellStyle7;
-            this.LineVolume.FillWeight = 7F;
-            this.LineVolume.HeaderText = "Volume";
-            this.LineVolume.Name = "LineVolume";
-            // 
-            // Remarks
-            // 
-            this.Remarks.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Remarks.DataPropertyName = "Remarks";
-            this.Remarks.FillWeight = 18F;
-            this.Remarks.HeaderText = "Remarks";
-            this.Remarks.Name = "Remarks";
-            // 
-            // panelCaption
-            // 
-            this.panelCaption.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelCaption.Location = new System.Drawing.Point(0, 55);
-            this.panelCaption.Name = "panelCaption";
-            this.panelCaption.Size = new System.Drawing.Size(1127, 37);
-            this.panelCaption.TabIndex = 71;
             // 
             // imageList32
             // 
@@ -264,16 +179,126 @@
             this.imageList32.Images.SetKeyName(6, "Sales-Order-32");
             this.imageList32.Images.SetKeyName(7, "Sign_Order_32");
             // 
-            // olvModuleName
+            // gridexAccessControls
             // 
-            this.olvModuleName.AspectName = "ModuleName";
-            this.olvModuleName.IsVisible = false;
+            this.gridexAccessControls.AllowAddRow = false;
+            this.gridexAccessControls.AllowDeleteRow = false;
+            this.gridexAccessControls.AllowUserToAddRows = false;
+            this.gridexAccessControls.AllowUserToDeleteRows = false;
+            this.gridexAccessControls.BackgroundColor = System.Drawing.Color.Ivory;
+            this.gridexAccessControls.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.gridexAccessControls.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.gridexAccessControls.ColumnHeadersHeight = 24;
+            this.gridexAccessControls.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.LocationName,
+            this.OrganizationalUnitName,
+            this.NoAccess,
+            this.ReadOnly,
+            this.Editable,
+            this.ApprovalPermitted,
+            this.UnApprovalPermitted,
+            this.VoidablePermitted,
+            this.UnVoidablePermitted});
+            this.gridexAccessControls.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridexAccessControls.Editable = true;
+            this.gridexAccessControls.GridColor = System.Drawing.SystemColors.ButtonFace;
+            this.gridexAccessControls.Location = new System.Drawing.Point(304, 86);
+            this.gridexAccessControls.Name = "gridexAccessControls";
+            this.gridexAccessControls.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridexAccessControls.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.gridexAccessControls.RowTemplate.Height = 24;
+            this.gridexAccessControls.Size = new System.Drawing.Size(1118, 677);
+            this.gridexAccessControls.TabIndex = 70;
+            this.gridexAccessControls.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridexAccessControls_CellContentClick);
+            // 
+            // LocationName
+            // 
+            this.LocationName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.LocationName.DataPropertyName = "LocationName";
+            this.LocationName.FillWeight = 15F;
+            this.LocationName.HeaderText = "Organizational Units.Location";
+            this.LocationName.Name = "LocationName";
+            this.LocationName.ReadOnly = true;
+            // 
+            // OrganizationalUnitName
+            // 
+            this.OrganizationalUnitName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.OrganizationalUnitName.DataPropertyName = "OrganizationalUnitName";
+            this.OrganizationalUnitName.FillWeight = 22F;
+            this.OrganizationalUnitName.HeaderText = "Organizational Units.Division";
+            this.OrganizationalUnitName.Name = "OrganizationalUnitName";
+            this.OrganizationalUnitName.ReadOnly = true;
+            // 
+            // NoAccess
+            // 
+            this.NoAccess.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.NoAccess.DataPropertyName = "NoAccess";
+            this.NoAccess.FillWeight = 9F;
+            this.NoAccess.HeaderText = "Access Controls.No Access";
+            this.NoAccess.Name = "NoAccess";
+            // 
+            // ReadOnly
+            // 
+            this.ReadOnly.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ReadOnly.DataPropertyName = "ReadOnly";
+            this.ReadOnly.FillWeight = 9F;
+            this.ReadOnly.HeaderText = "Access Controls.Read Only";
+            this.ReadOnly.Name = "ReadOnly";
+            // 
+            // Editable
+            // 
+            this.Editable.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Editable.DataPropertyName = "Editable";
+            this.Editable.FillWeight = 9F;
+            this.Editable.HeaderText = "Access Controls.Editable";
+            this.Editable.Name = "Editable";
+            // 
+            // ApprovalPermitted
+            // 
+            this.ApprovalPermitted.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ApprovalPermitted.DataPropertyName = "ApprovalPermitted";
+            this.ApprovalPermitted.FillWeight = 9F;
+            this.ApprovalPermitted.HeaderText = "Verify Permissions.Verify";
+            this.ApprovalPermitted.Name = "ApprovalPermitted";
+            // 
+            // UnApprovalPermitted
+            // 
+            this.UnApprovalPermitted.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.UnApprovalPermitted.DataPropertyName = "UnApprovalPermitted";
+            this.UnApprovalPermitted.FillWeight = 9F;
+            this.UnApprovalPermitted.HeaderText = "Verify Permissions.Unverify";
+            this.UnApprovalPermitted.Name = "UnApprovalPermitted";
+            // 
+            // VoidablePermitted
+            // 
+            this.VoidablePermitted.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.VoidablePermitted.DataPropertyName = "VoidablePermitted";
+            this.VoidablePermitted.FillWeight = 9F;
+            this.VoidablePermitted.HeaderText = "Void Permissions.Void";
+            this.VoidablePermitted.Name = "VoidablePermitted";
+            // 
+            // UnVoidablePermitted
+            // 
+            this.UnVoidablePermitted.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.UnVoidablePermitted.DataPropertyName = "UnVoidablePermitted";
+            this.UnVoidablePermitted.FillWeight = 9F;
+            this.UnVoidablePermitted.HeaderText = "Void Permissions.Unvoid";
+            this.UnVoidablePermitted.Name = "UnVoidablePermitted";
+            // 
+            // panelCaption
+            // 
+            this.panelCaption.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelCaption.Location = new System.Drawing.Point(0, 55);
+            this.panelCaption.Name = "panelCaption";
+            this.panelCaption.Size = new System.Drawing.Size(1422, 31);
+            this.panelCaption.TabIndex = 71;
             // 
             // UserReferences
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1127, 676);
+            this.ClientSize = new System.Drawing.Size(1422, 763);
             this.Controls.Add(this.gridexAccessControls);
             this.Controls.Add(this.fastNMVNTasks);
             this.Controls.Add(this.panelCaption);
@@ -304,15 +329,18 @@
         private BrightIdeasSoftware.OLVColumn olvID;
         private BrightIdeasSoftware.OLVColumn olvModuleDetailName;
         private CustomControls.DataGridexView gridexAccessControls;
-        private System.Windows.Forms.DataGridViewComboBoxColumn CommodityID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CommodityName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PackageSize;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PackageVolume;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LineVolume;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Remarks;
         private System.Windows.Forms.Panel panelCaption;
         private System.Windows.Forms.ImageList imageList32;
         private BrightIdeasSoftware.OLVColumn olvModuleName;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LocationName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OrganizationalUnitName;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn NoAccess;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn ReadOnly;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Editable;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn ApprovalPermitted;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn UnApprovalPermitted;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn VoidablePermitted;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn UnVoidablePermitted;
     }
 }

@@ -551,7 +551,7 @@
             this.buttonLockedDate.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonLockedDate.Name = "buttonLockedDate";
             this.buttonLockedDate.Size = new System.Drawing.Size(36, 52);
-            this.buttonLockedDate.Text = "toolStripButton1";
+            this.buttonLockedDate.ToolTipText = "Lock data readonly";
             // 
             // txtLockedDate
             // 
@@ -628,7 +628,7 @@
             this.buttonClearFilters.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonClearFilters.Name = "buttonClearFilters";
             this.buttonClearFilters.Size = new System.Drawing.Size(52, 52);
-            this.buttonClearFilters.Text = "Find";
+            this.buttonClearFilters.ToolTipText = "Clear current filters";
             this.buttonClearFilters.Click += new System.EventHandler(this.buttonClearFilters_Click);
             // 
             // MasterMDI
