@@ -986,6 +986,8 @@
     <None Include="Resources\selected_user-32.png" />
     <None Include="Resources\Addressbook.ico" />
     <None Include="Resources\Man-2.ico" />
+    <None Include="Resources\add-user.ico" />
+    <None Include="Resources\remove-user.ico" />
     <Content Include="SmartCodingSolution.ico" />
     <None Include="Resources\Yellow-cross.ico" />
     <None Include="Resources\White-Pallet.ico" />

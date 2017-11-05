@@ -49,14 +49,14 @@ namespace TotalSmartCoding.Views.Mains
 
 
 
-                this.gridexAccessControls.AutoGenerateColumns = false;
-                this.gridexAccessControls.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                this.gridexUserAccessControl.AutoGenerateColumns = false;
+                this.gridexUserAccessControl.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
                 this.bindingListUserAccessControls = new BindingList<UserAccessControlDTO>();
-                this.gridexAccessControls.DataSource = this.bindingListUserAccessControls;
+                this.gridexUserAccessControl.DataSource = this.bindingListUserAccessControls;
                 this.bindingListUserAccessControls.ListChanged += bindingListUserAccessControls_ListChanged;
 
-                StackedHeaderDecorator stackedHeaderDecorator = new StackedHeaderDecorator(this.gridexAccessControls);
+                StackedHeaderDecorator stackedHeaderDecorator = new StackedHeaderDecorator(this.gridexUserAccessControl);
             }
             catch (Exception exception)
             {
@@ -64,7 +64,15 @@ namespace TotalSmartCoding.Views.Mains
             }
         }
 
-
+        private void comboUserID_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.comboUserID.SelectedItem != null)
+            {
+                UserIndex userIndex = this.comboUserID.SelectedItem as UserIndex;
+                if (userIndex != null)
+                    this.labelCaption.Text = "            " + userIndex.LocationName + "\\" + userIndex.OrganizationalUnitName;
+            }
+        }
 
         private void fastNMVNTasks_AboutToCreateGroups(object sender, BrightIdeasSoftware.CreateGroupsEventArgs e)
         {
@@ -72,7 +80,7 @@ namespace TotalSmartCoding.Views.Mains
             {
                 foreach (OLVGroup olvGroup in e.Groups)
                 {
-                    olvGroup.TitleImage = "Sign_Order_32";
+                    olvGroup.TitleImage = "Assembly-32";
                     olvGroup.Subtitle = "Count: " + olvGroup.Contents.Count.ToString() + " Task" + (olvGroup.Contents.Count > 1 ? "s" : "");
                 }
             }
@@ -123,7 +131,7 @@ namespace TotalSmartCoding.Views.Mains
 
         private void gridexAccessControls_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            this.gridexAccessControls.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            this.gridexUserAccessControl.CommitEdit(DataGridViewDataErrorContexts.Commit);
         }
 
         private void bindingListUserAccessControls_ListChanged(object sender, ListChangedEventArgs e)

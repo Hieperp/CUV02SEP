@@ -6287,6 +6287,8 @@
           <Property Type="String" Name="LastName" Nullable="false" MaxLength="60" />
           <Property Type="String" Name="UserName" Nullable="false" MaxLength="256" />
           <Property Type="Boolean" Name="IsDatabaseAdmin" Nullable="false" />
+          <Property Type="String" Name="OrganizationalUnitName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="LocationName" Nullable="false" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="UserAccessControl">
           <Property Type="Int32" Name="AccessControlID" Nullable="false" />
@@ -8151,6 +8153,8 @@
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="IsDatabaseAdmin" ColumnName="IsDatabaseAdmin" />
+                <ScalarProperty Name="OrganizationalUnitName" ColumnName="OrganizationalUnitName" />
+                <ScalarProperty Name="LocationName" ColumnName="LocationName" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

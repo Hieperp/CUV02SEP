@@ -30,19 +30,15 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserReferences));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.comboUserID = new System.Windows.Forms.ToolStripComboBox();
-            this.buttonUserAdd = new System.Windows.Forms.ToolStripButton();
-            this.buttonUserRemove = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.fastNMVNTasks = new BrightIdeasSoftware.FastObjectListView();
             this.olvID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvModuleName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvModuleDetailName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.imageList32 = new System.Windows.Forms.ImageList(this.components);
-            this.gridexAccessControls = new CustomControls.DataGridexView();
+            this.gridexUserAccessControl = new CustomControls.DataGridexView();
             this.LocationName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OrganizationalUnitName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NoAccess = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -52,10 +48,16 @@
             this.UnApprovalPermitted = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.VoidablePermitted = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.UnVoidablePermitted = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.panelCaption = new System.Windows.Forms.Panel();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.buttonUserAdd = new System.Windows.Forms.ToolStripButton();
+            this.buttonUserRemove = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.labelCaption = new System.Windows.Forms.ToolStripLabel();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastNMVNTasks)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridexAccessControls)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridexUserAccessControl)).BeginInit();
+            this.toolStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -66,22 +68,13 @@
             this.toolStripButton1,
             this.comboUserID,
             this.buttonUserAdd,
-            this.buttonUserRemove,
-            this.toolStripButton3});
+            this.toolStripSeparator1,
+            this.buttonUserRemove});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1422, 55);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = global::TotalSmartCoding.Properties.Resources.Man_2;
-            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(52, 52);
             // 
             // comboUserID
             // 
@@ -89,34 +82,7 @@
             this.comboUserID.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             this.comboUserID.Name = "comboUserID";
             this.comboUserID.Size = new System.Drawing.Size(680, 55);
-            // 
-            // buttonUserAdd
-            // 
-            this.buttonUserAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.buttonUserAdd.Image = global::TotalSmartCoding.Properties.Resources.Green_cross;
-            this.buttonUserAdd.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.buttonUserAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonUserAdd.Name = "buttonUserAdd";
-            this.buttonUserAdd.Size = new System.Drawing.Size(52, 52);
-            this.buttonUserAdd.Text = "toolStripButton1";
-            // 
-            // buttonUserRemove
-            // 
-            this.buttonUserRemove.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.buttonUserRemove.Image = ((System.Drawing.Image)(resources.GetObject("buttonUserRemove.Image")));
-            this.buttonUserRemove.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonUserRemove.Name = "buttonUserRemove";
-            this.buttonUserRemove.Size = new System.Drawing.Size(24, 52);
-            this.buttonUserRemove.Text = "toolStripButton2";
-            // 
-            // toolStripButton3
-            // 
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(24, 52);
-            this.toolStripButton3.Text = "toolStripButton3";
+            this.comboUserID.SelectedIndexChanged += new System.EventHandler(this.comboUserID_SelectedIndexChanged);
             // 
             // fastNMVNTasks
             // 
@@ -134,11 +100,11 @@
             this.fastNMVNTasks.GroupImageList = this.imageList32;
             this.fastNMVNTasks.HideSelection = false;
             this.fastNMVNTasks.HighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
-            this.fastNMVNTasks.Location = new System.Drawing.Point(0, 86);
+            this.fastNMVNTasks.Location = new System.Drawing.Point(0, 80);
             this.fastNMVNTasks.Name = "fastNMVNTasks";
             this.fastNMVNTasks.OwnerDraw = true;
             this.fastNMVNTasks.ShowGroups = false;
-            this.fastNMVNTasks.Size = new System.Drawing.Size(304, 677);
+            this.fastNMVNTasks.Size = new System.Drawing.Size(304, 683);
             this.fastNMVNTasks.TabIndex = 69;
             this.fastNMVNTasks.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastNMVNTasks.UseCompatibleStateImageBehavior = false;
@@ -178,18 +144,19 @@
             this.imageList32.Images.SetKeyName(5, "Storage32");
             this.imageList32.Images.SetKeyName(6, "Sales-Order-32");
             this.imageList32.Images.SetKeyName(7, "Sign_Order_32");
+            this.imageList32.Images.SetKeyName(8, "Assembly-32");
             // 
-            // gridexAccessControls
+            // gridexUserAccessControl
             // 
-            this.gridexAccessControls.AllowAddRow = false;
-            this.gridexAccessControls.AllowDeleteRow = false;
-            this.gridexAccessControls.AllowUserToAddRows = false;
-            this.gridexAccessControls.AllowUserToDeleteRows = false;
-            this.gridexAccessControls.BackgroundColor = System.Drawing.Color.Ivory;
-            this.gridexAccessControls.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.gridexAccessControls.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.gridexAccessControls.ColumnHeadersHeight = 24;
-            this.gridexAccessControls.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.gridexUserAccessControl.AllowAddRow = false;
+            this.gridexUserAccessControl.AllowDeleteRow = false;
+            this.gridexUserAccessControl.AllowUserToAddRows = false;
+            this.gridexUserAccessControl.AllowUserToDeleteRows = false;
+            this.gridexUserAccessControl.BackgroundColor = System.Drawing.Color.Ivory;
+            this.gridexUserAccessControl.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.gridexUserAccessControl.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.gridexUserAccessControl.ColumnHeadersHeight = 24;
+            this.gridexUserAccessControl.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.LocationName,
             this.OrganizationalUnitName,
             this.NoAccess,
@@ -199,18 +166,18 @@
             this.UnApprovalPermitted,
             this.VoidablePermitted,
             this.UnVoidablePermitted});
-            this.gridexAccessControls.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridexAccessControls.Editable = true;
-            this.gridexAccessControls.GridColor = System.Drawing.SystemColors.ButtonFace;
-            this.gridexAccessControls.Location = new System.Drawing.Point(304, 86);
-            this.gridexAccessControls.Name = "gridexAccessControls";
-            this.gridexAccessControls.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridexAccessControls.RowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.gridexAccessControls.RowTemplate.Height = 24;
-            this.gridexAccessControls.Size = new System.Drawing.Size(1118, 677);
-            this.gridexAccessControls.TabIndex = 70;
-            this.gridexAccessControls.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridexAccessControls_CellContentClick);
+            this.gridexUserAccessControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridexUserAccessControl.Editable = true;
+            this.gridexUserAccessControl.GridColor = System.Drawing.SystemColors.ButtonFace;
+            this.gridexUserAccessControl.Location = new System.Drawing.Point(304, 80);
+            this.gridexUserAccessControl.Name = "gridexUserAccessControl";
+            this.gridexUserAccessControl.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridexUserAccessControl.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.gridexUserAccessControl.RowTemplate.Height = 24;
+            this.gridexUserAccessControl.Size = new System.Drawing.Size(1118, 683);
+            this.gridexUserAccessControl.TabIndex = 70;
+            this.gridexUserAccessControl.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridexAccessControls_CellContentClick);
             // 
             // LocationName
             // 
@@ -286,22 +253,67 @@
             this.UnVoidablePermitted.HeaderText = "Void Permissions.Unvoid";
             this.UnVoidablePermitted.Name = "UnVoidablePermitted";
             // 
-            // panelCaption
+            // toolStripButton1
             // 
-            this.panelCaption.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelCaption.Location = new System.Drawing.Point(0, 55);
-            this.panelCaption.Name = "panelCaption";
-            this.panelCaption.Size = new System.Drawing.Size(1422, 31);
-            this.panelCaption.TabIndex = 71;
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = global::TotalSmartCoding.Properties.Resources.Man_2;
+            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(52, 52);
+            // 
+            // buttonUserAdd
+            // 
+            this.buttonUserAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.buttonUserAdd.Image = global::TotalSmartCoding.Properties.Resources.add_user;
+            this.buttonUserAdd.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonUserAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonUserAdd.Name = "buttonUserAdd";
+            this.buttonUserAdd.Size = new System.Drawing.Size(52, 52);
+            this.buttonUserAdd.ToolTipText = "Add user from domain directory";
+            // 
+            // buttonUserRemove
+            // 
+            this.buttonUserRemove.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.buttonUserRemove.Image = global::TotalSmartCoding.Properties.Resources.remove_user;
+            this.buttonUserRemove.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonUserRemove.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonUserRemove.Name = "buttonUserRemove";
+            this.buttonUserRemove.Size = new System.Drawing.Size(52, 52);
+            this.buttonUserRemove.ToolTipText = "Remove selected user";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 55);
+            // 
+            // toolStrip2
+            // 
+            this.toolStrip2.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.labelCaption});
+            this.toolStrip2.Location = new System.Drawing.Point(0, 55);
+            this.toolStrip2.Name = "toolStrip2";
+            this.toolStrip2.Size = new System.Drawing.Size(1422, 25);
+            this.toolStrip2.TabIndex = 0;
+            this.toolStrip2.Text = "toolStrip2";
+            // 
+            // labelCaption
+            // 
+            this.labelCaption.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.labelCaption.Name = "labelCaption";
+            this.labelCaption.Size = new System.Drawing.Size(225, 22);
+            this.labelCaption.Text = "            HAI PHONG\\ LOGISTICCS";
             // 
             // UserReferences
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1422, 763);
-            this.Controls.Add(this.gridexAccessControls);
+            this.Controls.Add(this.gridexUserAccessControl);
             this.Controls.Add(this.fastNMVNTasks);
-            this.Controls.Add(this.panelCaption);
+            this.Controls.Add(this.toolStrip2);
             this.Controls.Add(this.toolStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -312,7 +324,9 @@
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastNMVNTasks)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridexAccessControls)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridexUserAccessControl)).EndInit();
+            this.toolStrip2.ResumeLayout(false);
+            this.toolStrip2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -324,12 +338,10 @@
         private System.Windows.Forms.ToolStripComboBox comboUserID;
         private System.Windows.Forms.ToolStripButton buttonUserAdd;
         private System.Windows.Forms.ToolStripButton buttonUserRemove;
-        private System.Windows.Forms.ToolStripButton toolStripButton3;
         private BrightIdeasSoftware.FastObjectListView fastNMVNTasks;
         private BrightIdeasSoftware.OLVColumn olvID;
         private BrightIdeasSoftware.OLVColumn olvModuleDetailName;
-        private CustomControls.DataGridexView gridexAccessControls;
-        private System.Windows.Forms.Panel panelCaption;
+        private CustomControls.DataGridexView gridexUserAccessControl;
         private System.Windows.Forms.ImageList imageList32;
         private BrightIdeasSoftware.OLVColumn olvModuleName;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
@@ -342,5 +354,8 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn UnApprovalPermitted;
         private System.Windows.Forms.DataGridViewCheckBoxColumn VoidablePermitted;
         private System.Windows.Forms.DataGridViewCheckBoxColumn UnVoidablePermitted;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStrip toolStrip2;
+        private System.Windows.Forms.ToolStripLabel labelCaption;
     }
 }
