@@ -288,6 +288,12 @@
     <Compile Include="Views\Mains\BasicView.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Views\Mains\BlankView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Mains\BlankView.Designer.cs">
+      <DependentUpon>BlankView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Mains\SsrsViewer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -460,6 +466,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Mains\BasicView.resx">
       <DependentUpon>BasicView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Mains\BlankView.resx">
+      <DependentUpon>BlankView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Mains\SsrsViewer.resx">
       <DependentUpon>SsrsViewer.cs</DependentUpon>

@@ -95,6 +95,7 @@
             this.imageListModuleMasterSmall.Images.SetKeyName(6, "Fatcow-Farm-Fresh-Advertising.ico");
             this.imageListModuleMasterSmall.Images.SetKeyName(7, "Graphicrating-Quartz-Chart-1.ico");
             this.imageListModuleMasterSmall.Images.SetKeyName(8, "Simon-Cook-Xtra-Orange-Documents.ico");
+            this.imageListModuleMasterSmall.Images.SetKeyName(9, "Graphicloads-Folded-Barcode-folded.ico");
             // 
             // imageListModuleMasterLarge
             // 
@@ -109,6 +110,7 @@
             this.imageListModuleMasterLarge.Images.SetKeyName(6, "Fatcow-Farm-Fresh-Advertising.ico");
             this.imageListModuleMasterLarge.Images.SetKeyName(7, "Graphicrating-Quartz-Chart-1.ico");
             this.imageListModuleMasterLarge.Images.SetKeyName(8, "Simon-Cook-Xtra-Orange-Documents.ico");
+            this.imageListModuleMasterLarge.Images.SetKeyName(9, "Graphicloads-Folded-Barcode-folded.ico");
             // 
             // imageListTaskMaster
             // 
@@ -223,7 +225,7 @@
             this.InvisibleMainMenuStripOfMDI.Location = new System.Drawing.Point(0, 0);
             this.InvisibleMainMenuStripOfMDI.Name = "InvisibleMainMenuStripOfMDI";
             this.InvisibleMainMenuStripOfMDI.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.InvisibleMainMenuStripOfMDI.Size = new System.Drawing.Size(1841, 28);
+            this.InvisibleMainMenuStripOfMDI.Size = new System.Drawing.Size(1745, 28);
             this.InvisibleMainMenuStripOfMDI.TabIndex = 16;
             this.InvisibleMainMenuStripOfMDI.Text = "MenuStrip";
             this.InvisibleMainMenuStripOfMDI.Visible = false;

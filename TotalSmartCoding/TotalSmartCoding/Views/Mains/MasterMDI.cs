@@ -52,6 +52,7 @@ namespace TotalSmartCoding.Views.Mains
 
         private GlobalEnums.NmvnTaskID nmvnTaskID;
 
+        private ModuleAPIs moduleAPIs;
 
         [DllImport("uxtheme.dll", CharSet = CharSet.Unicode)]
         public static extern int SetWindowTheme(IntPtr hWnd, String pszSubAppName, String pszSubIdList);
@@ -75,6 +76,7 @@ namespace TotalSmartCoding.Views.Mains
             try
             {
                 this.nmvnTaskID = nmvnTaskID;
+                this.moduleAPIs = new ModuleAPIs(CommonNinject.Kernel.Get<IModuleAPIRepository>());
 
                 switch (this.nmvnTaskID)
                 {
@@ -191,7 +193,7 @@ namespace TotalSmartCoding.Views.Mains
         {
             if (e.BindingCompleteState == BindingCompleteState.Exception) { ExceptionHandlers.ShowExceptionMessageBox(this, e.ErrorText); e.Cancel = true; }
         }
-        
+
         #endregion Contractor
 
 
@@ -222,40 +224,23 @@ namespace TotalSmartCoding.Views.Mains
         {
             try
             {
-                //PublicModuleMasterTableAdapter publicModuleMasterTableAdapter = new PublicModuleMasterTableAdapter();
-                //GlobalControlingDTS.PublicModuleMasterDataTable publicModuleMasterDataTable = publicModuleMasterTableAdapter.GetData();
+                ICollection<ModuleIndex> moduleIndexs = this.moduleAPIs.GetModuleIndexes();
 
-                //foreach (GlobalControlingDTS.PublicModuleMasterRow publicModuleMasterRow in publicModuleMasterDataTable.Rows)
-                //{
-                //    NaviBand naviBand = new NaviBand();
-
-                //    naviBand.Text = publicModuleMasterRow.Description;
-                //    naviBand.Tag = publicModuleMasterRow.ModuleID.ToString();
-
-                //    naviBand.SmallImage = this.imageListModuleMasterSmall.Images[publicModuleMasterRow.ImageIndex];
-                //    naviBand.LargeImage = this.imageListModuleMasterLarge.Images[publicModuleMasterRow.ImageIndex];
-
-                //    this.naviBarModuleMaster.Bands.Add(naviBand);
-                //}
-
-
-                for (int i = 1; i <= 6; i++)
+                foreach (ModuleIndex moduleIndex in moduleIndexs)
                 {
-                    if (i != 4 && i != 5)
+                    if (moduleIndex.ModuleID != 8)
                     {
                         NaviBand naviBand = new NaviBand();
 
-                        naviBand.Text = (i == 1 ? "Commons" : (i == 2 ? "Productions" : (i == 3 ? "Sales Admins" : (i == 6 ? "Inventories" : "Reports"))));
-                        naviBand.Tag = i.ToString();
+                        naviBand.Text = moduleIndex.Code;
+                        naviBand.Tag = moduleIndex.ModuleID.ToString();
 
-                        naviBand.SmallImage = this.imageListModuleMasterSmall.Images[i];
-                        naviBand.LargeImage = this.imageListModuleMasterLarge.Images[i];
+                        naviBand.SmallImage = this.imageListModuleMasterSmall.Images[moduleIndex.ModuleID <= 9 ? moduleIndex.ModuleID : 8];
+                        naviBand.LargeImage = this.imageListModuleMasterLarge.Images[moduleIndex.ModuleID <= 9 ? moduleIndex.ModuleID : 8];
 
                         this.naviBarModuleMaster.Bands.Add(naviBand);
                     }
                 }
-
-
 
                 this.naviBarModuleMaster.VisibleLargeButtons = this.naviBarModuleMaster.Bands.Count;
                 this.naviBarModuleMaster.PopupHeight = this.naviBarModuleMaster.Height + this.naviBarModuleMaster.HeaderHeight - (this.naviBarModuleMaster.ButtonHeight) * this.naviBarModuleMaster.Bands.Count - 15;
@@ -272,9 +257,7 @@ namespace TotalSmartCoding.Views.Mains
             {
                 this.listViewTaskMaster.Items.Clear();
 
-                ModuleAPIs moduleAPIs = new ModuleAPIs(CommonNinject.Kernel.Get<IModuleAPIRepository>());
-
-                IList<ModuleViewDetail> moduleViewDetails = moduleAPIs.GetModuleViewDetails(moduleID);
+                IList<ModuleViewDetail> moduleViewDetails = this.moduleAPIs.GetModuleViewDetails(moduleID);
 
                 foreach (ModuleViewDetail moduleViewDetail in moduleViewDetails)
                 {
@@ -352,7 +335,7 @@ namespace TotalSmartCoding.Views.Mains
                             break;
 
                         default:
-                            openingView = new BaseView();
+                            openingView = new BlankView();
                             break;
                     }
 
@@ -425,13 +408,13 @@ namespace TotalSmartCoding.Views.Mains
                     bool exportable = toolstripChild.Exportable;
                     bool approvable = toolstripChild.Approvable;
                     bool unapprovable = toolstripChild.Unapprovable;
-                    
+
                     bool printable = toolstripChild.Printable;
                     bool printVisible = toolstripChild.PrintVisible;
 
                     bool readonlyMode = toolstripChild.ReadonlyMode;
                     bool editableMode = toolstripChild.EditableMode;
-                    
+
                     bool isValid = toolstripChild.IsValid;
 
 
