@@ -58,7 +58,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
-            queryString = queryString + "       SELECT      OrganizationalUnits.OrganizationalUnitID, OrganizationalUnits.Name AS OrganizationalUnitName, Locations.Name AS LocationName, Locations.Name + '\' + OrganizationalUnits.Name AS LocationOrganizationalUnitName " + "\r\n";
+            queryString = queryString + "       SELECT      OrganizationalUnits.OrganizationalUnitID, OrganizationalUnits.Name AS OrganizationalUnitName, Locations.Name AS LocationName, Locations.Name + '\\' + OrganizationalUnits.Name AS LocationOrganizationalUnitName " + "\r\n";
             queryString = queryString + "       FROM        Locations INNER JOIN OrganizationalUnits ON Locations.LocationID = OrganizationalUnits.LocationID " + "\r\n";
             queryString = queryString + "       ORDER BY    Locations.Name, OrganizationalUnits.Name " + "\r\n";
 

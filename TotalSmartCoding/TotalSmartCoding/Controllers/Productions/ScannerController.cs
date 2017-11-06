@@ -49,7 +49,14 @@ namespace TotalSmartCoding.Controllers.Productions
         private BarcodeQueue<CartonDTO> cartonsetQueue
         {
             get { return this.localcartonsetQueue; }
-            set { this.localcartonsetQueue = value; this.FillingData.CartonsetQueueCount = this.localcartonsetQueue.Count; this.FillingData.CartonsetQueueZebraStatus = GlobalVariables.ZebraStatus.Freshnew; }
+            set
+            {
+                this.localcartonsetQueue = value;
+                this.FillingData.CartonsetQueueCount = this.localcartonsetQueue.Count;
+
+                if (this.FillingData.CartonsetQueueCount > 0 || !this.FillingData.HasCarton)
+                    this.FillingData.CartonsetQueueZebraStatus = GlobalVariables.ZebraStatus.Freshnew;
+            }
         }
 
         private BarcodeQueue<PalletDTO> palletQueue;

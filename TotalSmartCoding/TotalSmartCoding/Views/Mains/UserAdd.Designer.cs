@@ -53,7 +53,7 @@
             this.toolStrip1.Location = new System.Drawing.Point(0, 116);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStrip1.Size = new System.Drawing.Size(747, 55);
+            this.toolStrip1.Size = new System.Drawing.Size(673, 55);
             this.toolStrip1.TabIndex = 100;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -88,8 +88,8 @@
             this.layoutTop.ColumnCount = 5;
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.layoutTop.Controls.Add(this.combexUserID, 3, 1);
             this.layoutTop.Controls.Add(this.label5, 2, 1);
@@ -106,7 +106,7 @@
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.layoutTop.Size = new System.Drawing.Size(747, 116);
+            this.layoutTop.Size = new System.Drawing.Size(673, 116);
             this.layoutTop.TabIndex = 101;
             // 
             // combexUserID
@@ -114,14 +114,15 @@
             this.combexUserID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.combexUserID.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.combexUserID.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.combexUserID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.combexUserID.Editable = true;
             this.combexUserID.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combexUserID.FormattingEnabled = true;
-            this.combexUserID.Location = new System.Drawing.Point(277, 28);
+            this.combexUserID.Location = new System.Drawing.Point(198, 28);
             this.combexUserID.Margin = new System.Windows.Forms.Padding(1);
             this.combexUserID.Name = "combexUserID";
             this.combexUserID.ReadOnly = false;
-            this.combexUserID.Size = new System.Drawing.Size(446, 29);
+            this.combexUserID.Size = new System.Drawing.Size(450, 29);
             this.combexUserID.TabIndex = 74;
             // 
             // label5
@@ -131,7 +132,7 @@
             this.label5.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(87, 27);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(186, 31);
+            this.label5.Size = new System.Drawing.Size(107, 31);
             this.label5.TabIndex = 78;
             this.label5.Text = "New User";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -141,14 +142,15 @@
             this.combexOrganizationalUnitID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.combexOrganizationalUnitID.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.combexOrganizationalUnitID.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.combexOrganizationalUnitID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.combexOrganizationalUnitID.Editable = true;
             this.combexOrganizationalUnitID.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combexOrganizationalUnitID.FormattingEnabled = true;
-            this.combexOrganizationalUnitID.Location = new System.Drawing.Point(277, 59);
+            this.combexOrganizationalUnitID.Location = new System.Drawing.Point(198, 59);
             this.combexOrganizationalUnitID.Margin = new System.Windows.Forms.Padding(1);
             this.combexOrganizationalUnitID.Name = "combexOrganizationalUnitID";
             this.combexOrganizationalUnitID.ReadOnly = false;
-            this.combexOrganizationalUnitID.Size = new System.Drawing.Size(446, 29);
+            this.combexOrganizationalUnitID.Size = new System.Drawing.Size(450, 29);
             this.combexOrganizationalUnitID.TabIndex = 80;
             // 
             // label2
@@ -158,9 +160,9 @@
             this.label2.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(87, 58);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(186, 31);
+            this.label2.Size = new System.Drawing.Size(107, 31);
             this.label2.TabIndex = 83;
-            this.label2.Text = "Organizational Unit";
+            this.label2.Text = "Division";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // pictureBox2
@@ -178,7 +180,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(747, 171);
+            this.ClientSize = new System.Drawing.Size(673, 171);
             this.Controls.Add(this.layoutTop);
             this.Controls.Add(this.toolStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
