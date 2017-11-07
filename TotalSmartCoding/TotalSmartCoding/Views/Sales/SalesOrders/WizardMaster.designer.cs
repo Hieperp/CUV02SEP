@@ -116,7 +116,7 @@
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75F));
-            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 22F));
+            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.layoutTop.Controls.Add(this.combexCustomerID, 3, 2);
             this.layoutTop.Controls.Add(this.label4, 2, 6);
             this.layoutTop.Controls.Add(this.label5, 2, 2);
@@ -402,6 +402,7 @@
             this.textexCustomerName.Location = new System.Drawing.Point(297, 89);
             this.textexCustomerName.Margin = new System.Windows.Forms.Padding(1);
             this.textexCustomerName.Name = "textexCustomerName";
+            this.textexCustomerName.ReadOnly = true;
             this.textexCustomerName.Size = new System.Drawing.Size(634, 28);
             this.textexCustomerName.TabIndex = 93;
             // 
@@ -413,6 +414,7 @@
             this.textexReceiverName.Location = new System.Drawing.Point(297, 150);
             this.textexReceiverName.Margin = new System.Windows.Forms.Padding(1);
             this.textexReceiverName.Name = "textexReceiverName";
+            this.textexReceiverName.ReadOnly = true;
             this.textexReceiverName.Size = new System.Drawing.Size(634, 28);
             this.textexReceiverName.TabIndex = 94;
             // 

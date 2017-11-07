@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SalesOrders));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SalesOrders));
             this.layoutLeft = new System.Windows.Forms.TableLayoutPanel();
             this.dateTimexEntryDate = new CustomControls.DateTimexPicker();
             this.textexReference = new CustomControls.TextexBox();
@@ -46,10 +46,12 @@
             this.label4 = new System.Windows.Forms.Label();
             this.dateTimexDeliveryDate = new CustomControls.DateTimexPicker();
             this.toolStripChildForm = new System.Windows.Forms.ToolStrip();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.naviGroupDetails = new Guifreaks.Navisuite.NaviGroup(this.components);
             this.labelCaption = new System.Windows.Forms.Label();
             this.toolStripNaviGroup = new System.Windows.Forms.ToolStrip();
+            this.buttonExpandTop = new System.Windows.Forms.ToolStripButton();
             this.panelCenter = new System.Windows.Forms.Panel();
             this.textexDescription = new CustomControls.TextexBox();
             this.textexRemarks = new CustomControls.TextexBox();
@@ -64,9 +66,15 @@
             this.naviGroupTop = new Guifreaks.Navisuite.NaviGroup(this.components);
             this.layoutTop = new System.Windows.Forms.TableLayoutPanel();
             this.combexCustomerID = new CustomControls.CombexBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.textexDeliveryAddress = new CustomControls.TextexBox();
             this.label3 = new System.Windows.Forms.Label();
             this.textexContactInfo = new CustomControls.TextexBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.combexReceiverID = new CustomControls.CombexBox();
+            this.textexTelephone = new CustomControls.TextexBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.panelLeft = new System.Windows.Forms.Panel();
             this.fastSalesOrderIndex = new BrightIdeasSoftware.FastObjectListView();
             this.olvID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -82,14 +90,6 @@
             this.olvTotalLineVolume = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvApproved = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.imageList32 = new System.Windows.Forms.ImageList(this.components);
-            this.combexReceiverID = new CustomControls.CombexBox();
-            this.textexTelephone = new CustomControls.TextexBox();
-            this.buttonExpandTop = new System.Windows.Forms.ToolStripButton();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.layoutLeft.SuspendLayout();
             this.toolStripChildForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.naviGroupDetails)).BeginInit();
@@ -100,12 +100,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.naviGroupTop)).BeginInit();
             this.naviGroupTop.SuspendLayout();
             this.layoutTop.SuspendLayout();
-            this.panelLeft.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.fastSalesOrderIndex)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            this.panelLeft.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fastSalesOrderIndex)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutLeft
@@ -285,6 +285,16 @@
             this.toolStripChildForm.Text = "toolStrip1";
             this.toolStripChildForm.Visible = false;
             // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(118, 36);
+            this.toolStripButton2.Text = "Disconnect";
+            this.toolStripButton2.Visible = false;
+            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
@@ -339,6 +349,16 @@
             this.toolStripNaviGroup.Size = new System.Drawing.Size(27, 27);
             this.toolStripNaviGroup.TabIndex = 74;
             // 
+            // buttonExpandTop
+            // 
+            this.buttonExpandTop.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.buttonExpandTop.Image = ((System.Drawing.Image)(resources.GetObject("buttonExpandTop.Image")));
+            this.buttonExpandTop.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonExpandTop.Name = "buttonExpandTop";
+            this.buttonExpandTop.Size = new System.Drawing.Size(24, 24);
+            this.buttonExpandTop.ToolTipText = "Click here to expand the detail pane";
+            this.buttonExpandTop.Click += new System.EventHandler(this.buttonExpandTop_Click);
+            // 
             // panelCenter
             // 
             this.panelCenter.BackColor = System.Drawing.Color.Ivory;
@@ -346,9 +366,9 @@
             this.panelCenter.Controls.Add(this.textexRemarks);
             this.panelCenter.Controls.Add(this.gridexViewDetails);
             this.panelCenter.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelCenter.Location = new System.Drawing.Point(394, 150);
+            this.panelCenter.Location = new System.Drawing.Point(394, 136);
             this.panelCenter.Name = "panelCenter";
-            this.panelCenter.Size = new System.Drawing.Size(1137, 295);
+            this.panelCenter.Size = new System.Drawing.Size(1137, 309);
             this.panelCenter.TabIndex = 72;
             // 
             // textexDescription
@@ -362,7 +382,7 @@
             this.textexDescription.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.textexDescription.Multiline = true;
             this.textexDescription.Name = "textexDescription";
-            this.textexDescription.Size = new System.Drawing.Size(80, 295);
+            this.textexDescription.Size = new System.Drawing.Size(80, 309);
             this.textexDescription.TabIndex = 73;
             // 
             // textexRemarks
@@ -376,7 +396,7 @@
             this.textexRemarks.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.textexRemarks.Multiline = true;
             this.textexRemarks.Name = "textexRemarks";
-            this.textexRemarks.Size = new System.Drawing.Size(80, 295);
+            this.textexRemarks.Size = new System.Drawing.Size(80, 309);
             this.textexRemarks.TabIndex = 72;
             // 
             // gridexViewDetails
@@ -404,7 +424,7 @@
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridexViewDetails.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.gridexViewDetails.RowTemplate.Height = 24;
-            this.gridexViewDetails.Size = new System.Drawing.Size(789, 295);
+            this.gridexViewDetails.Size = new System.Drawing.Size(789, 309);
             this.gridexViewDetails.TabIndex = 65;
             this.gridexViewDetails.ReadOnlyChanged += new System.EventHandler(this.gridexViewDetails_ReadOnlyChanged);
             // 
@@ -482,13 +502,13 @@
             this.naviGroupTop.Caption = null;
             this.naviGroupTop.Controls.Add(this.layoutTop);
             this.naviGroupTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.naviGroupTop.ExpandedHeight = 116;
+            this.naviGroupTop.ExpandedHeight = 102;
             this.naviGroupTop.HeaderContextMenuStrip = null;
             this.naviGroupTop.HeaderHeight = 0;
             this.naviGroupTop.Location = new System.Drawing.Point(394, 34);
             this.naviGroupTop.Name = "naviGroupTop";
             this.naviGroupTop.Padding = new System.Windows.Forms.Padding(1, 2, 1, 1);
-            this.naviGroupTop.Size = new System.Drawing.Size(1137, 116);
+            this.naviGroupTop.Size = new System.Drawing.Size(1137, 102);
             this.naviGroupTop.TabIndex = 67;
             this.naviGroupTop.Tag = "Expandable";
             // 
@@ -525,7 +545,7 @@
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1F));
-            this.layoutTop.Size = new System.Drawing.Size(1135, 113);
+            this.layoutTop.Size = new System.Drawing.Size(1135, 99);
             this.layoutTop.TabIndex = 8;
             // 
             // combexCustomerID
@@ -533,13 +553,23 @@
             this.combexCustomerID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.combexCustomerID.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.combexCustomerID.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.combexCustomerID.Editable = true;
+            this.combexCustomerID.Editable = false;
             this.combexCustomerID.FormattingEnabled = true;
             this.combexCustomerID.Location = new System.Drawing.Point(168, 15);
             this.combexCustomerID.Name = "combexCustomerID";
             this.combexCustomerID.ReadOnly = false;
             this.combexCustomerID.Size = new System.Drawing.Size(489, 29);
             this.combexCustomerID.TabIndex = 74;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(129, 15);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(33, 29);
+            this.pictureBox1.TabIndex = 75;
+            this.pictureBox1.TabStop = false;
             // 
             // textexDeliveryAddress
             // 
@@ -570,6 +600,58 @@
             this.textexContactInfo.Name = "textexContactInfo";
             this.textexContactInfo.Size = new System.Drawing.Size(324, 28);
             this.textexContactInfo.TabIndex = 78;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pictureBox2.Image = global::TotalSmartCoding.Properties.Resources.Phone_icon_24;
+            this.pictureBox2.Location = new System.Drawing.Point(749, 15);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(33, 29);
+            this.pictureBox2.TabIndex = 79;
+            this.pictureBox2.TabStop = false;
+            // 
+            // combexReceiverID
+            // 
+            this.combexReceiverID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.combexReceiverID.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.combexReceiverID.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.combexReceiverID.Editable = false;
+            this.combexReceiverID.FormattingEnabled = true;
+            this.combexReceiverID.Location = new System.Drawing.Point(168, 50);
+            this.combexReceiverID.Name = "combexReceiverID";
+            this.combexReceiverID.ReadOnly = false;
+            this.combexReceiverID.Size = new System.Drawing.Size(489, 29);
+            this.combexReceiverID.TabIndex = 80;
+            // 
+            // textexTelephone
+            // 
+            this.textexTelephone.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textexTelephone.Editable = true;
+            this.textexTelephone.Location = new System.Drawing.Point(788, 50);
+            this.textexTelephone.Name = "textexTelephone";
+            this.textexTelephone.Size = new System.Drawing.Size(324, 28);
+            this.textexTelephone.TabIndex = 81;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pictureBox3.Image = global::TotalSmartCoding.Properties.Resources.Phone_icon_24;
+            this.pictureBox3.Location = new System.Drawing.Point(749, 50);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(33, 29);
+            this.pictureBox3.TabIndex = 82;
+            this.pictureBox3.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pictureBox4.Image = global::TotalSmartCoding.Properties.Resources.user_group_icon_red;
+            this.pictureBox4.Location = new System.Drawing.Point(129, 50);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(33, 29);
+            this.pictureBox4.TabIndex = 83;
+            this.pictureBox4.TabStop = false;
             // 
             // panelLeft
             // 
@@ -729,88 +811,6 @@
             this.imageList32.Images.SetKeyName(6, "Sales-Order-32");
             this.imageList32.Images.SetKeyName(7, "Sign_Order_32");
             // 
-            // combexReceiverID
-            // 
-            this.combexReceiverID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.combexReceiverID.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.combexReceiverID.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.combexReceiverID.Editable = true;
-            this.combexReceiverID.FormattingEnabled = true;
-            this.combexReceiverID.Location = new System.Drawing.Point(168, 50);
-            this.combexReceiverID.Name = "combexReceiverID";
-            this.combexReceiverID.ReadOnly = false;
-            this.combexReceiverID.Size = new System.Drawing.Size(489, 29);
-            this.combexReceiverID.TabIndex = 80;
-            // 
-            // textexTelephone
-            // 
-            this.textexTelephone.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textexTelephone.Editable = true;
-            this.textexTelephone.Location = new System.Drawing.Point(788, 50);
-            this.textexTelephone.Name = "textexTelephone";
-            this.textexTelephone.Size = new System.Drawing.Size(324, 28);
-            this.textexTelephone.TabIndex = 81;
-            // 
-            // buttonExpandTop
-            // 
-            this.buttonExpandTop.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.buttonExpandTop.Image = ((System.Drawing.Image)(resources.GetObject("buttonExpandTop.Image")));
-            this.buttonExpandTop.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonExpandTop.Name = "buttonExpandTop";
-            this.buttonExpandTop.Size = new System.Drawing.Size(24, 24);
-            this.buttonExpandTop.ToolTipText = "Click here to expand the detail pane";
-            this.buttonExpandTop.Click += new System.EventHandler(this.buttonExpandTop_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(129, 15);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(33, 29);
-            this.pictureBox1.TabIndex = 75;
-            this.pictureBox1.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox2.Image = global::TotalSmartCoding.Properties.Resources.Phone_icon_24;
-            this.pictureBox2.Location = new System.Drawing.Point(749, 15);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(33, 29);
-            this.pictureBox2.TabIndex = 79;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox3.Image = global::TotalSmartCoding.Properties.Resources.Phone_icon_24;
-            this.pictureBox3.Location = new System.Drawing.Point(749, 50);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(33, 29);
-            this.pictureBox3.TabIndex = 82;
-            this.pictureBox3.TabStop = false;
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox4.Image = global::TotalSmartCoding.Properties.Resources.user_group_icon_red;
-            this.pictureBox4.Location = new System.Drawing.Point(129, 50);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(33, 29);
-            this.pictureBox4.TabIndex = 83;
-            this.pictureBox4.TabStop = false;
-            // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(118, 36);
-            this.toolStripButton2.Text = "Disconnect";
-            this.toolStripButton2.Visible = false;
-            // 
             // SalesOrders
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -841,13 +841,13 @@
             this.naviGroupTop.PerformLayout();
             this.layoutTop.ResumeLayout(false);
             this.layoutTop.PerformLayout();
-            this.panelLeft.ResumeLayout(false);
-            this.panelLeft.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.fastSalesOrderIndex)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            this.panelLeft.ResumeLayout(false);
+            this.panelLeft.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fastSalesOrderIndex)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

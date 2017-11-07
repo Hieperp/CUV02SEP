@@ -113,7 +113,7 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
                     this.salesOrderViewModel.CustomerName = customerBase.Name;
                     this.salesOrderViewModel.ContactInfo = customerBase.ContactInfo;
                     this.salesOrderViewModel.SalespersonID = customerBase.SalespersonID;
-                    this.salesOrderViewModel.ReceiverID = customerBase.CustomerID;
+                    //this.salesOrderViewModel.ReceiverID = customerBase.CustomerID;
                 }
             }
             if (sender.Equals(this.bindingReceiverID))
