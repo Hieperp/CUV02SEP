@@ -127,6 +127,7 @@ namespace TotalSmartCoding.Views.Sales.DeliveryAdvices
         Binding bindingCaption;
 
         Binding bindingCustomerID;
+        Binding bindingReceiverID;
         Binding bindingSalespersonID;
 
         protected override void InitializeCommonControlBinding()
@@ -143,11 +144,16 @@ namespace TotalSmartCoding.Views.Sales.DeliveryAdvices
             this.bindingCaption = this.labelCaption.DataBindings.Add("Text", this.deliveryAdviceViewModel, CommonExpressions.PropertyName<DeliveryAdviceDTO>(p => p.Caption));
 
             CustomerAPIs customerAPIs = new CustomerAPIs(CommonNinject.Kernel.Get<ICustomerAPIRepository>());
-
             this.combexCustomerID.DataSource = customerAPIs.GetCustomerBases();
             this.combexCustomerID.DisplayMember = CommonExpressions.PropertyName<CustomerBase>(p => p.Name);
             this.combexCustomerID.ValueMember = CommonExpressions.PropertyName<CustomerBase>(p => p.CustomerID);
             this.bindingCustomerID = this.combexCustomerID.DataBindings.Add("SelectedValue", this.deliveryAdviceViewModel, CommonExpressions.PropertyName<DeliveryAdviceViewModel>(p => p.CustomerID), true, DataSourceUpdateMode.OnPropertyChanged);
+
+            CustomerAPIs receiverAPIs = new CustomerAPIs(CommonNinject.Kernel.Get<ICustomerAPIRepository>());
+            this.combexReceiverID.DataSource = receiverAPIs.GetCustomerBases();
+            this.combexReceiverID.DisplayMember = CommonExpressions.PropertyName<CustomerBase>(p => p.Name);
+            this.combexReceiverID.ValueMember = CommonExpressions.PropertyName<CustomerBase>(p => p.CustomerID);
+            this.bindingReceiverID = this.combexReceiverID.DataBindings.Add("SelectedValue", this.deliveryAdviceViewModel, CommonExpressions.PropertyName<SalesOrderViewModel>(p => p.ReceiverID), true, DataSourceUpdateMode.OnPropertyChanged);
 
             EmployeeAPIs employeeAPIs = new EmployeeAPIs(CommonNinject.Kernel.Get<IEmployeeAPIRepository>());
 
@@ -166,6 +172,7 @@ namespace TotalSmartCoding.Views.Sales.DeliveryAdvices
             this.bindingCaption.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
 
             this.bindingCustomerID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingReceiverID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingSalespersonID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.fastDeliveryAdviceIndex.AboutToCreateGroups += fastDeliveryAdviceIndex_AboutToCreateGroups;
 
@@ -177,15 +184,23 @@ namespace TotalSmartCoding.Views.Sales.DeliveryAdvices
         protected override void CommonControl_BindingComplete(object sender, BindingCompleteEventArgs e)
         {
             base.CommonControl_BindingComplete(sender, e);
-            if (this.EditableMode && sender.Equals(this.bindingCustomerID))
+            if (this.EditableMode)
             {
-                if (this.combexCustomerID.SelectedItem != null)
+                if ( sender.Equals(this.bindingCustomerID) && this.combexCustomerID.SelectedItem != null)
                 {
                     CustomerBase customerBase = (CustomerBase)this.combexCustomerID.SelectedItem;
                     this.deliveryAdviceViewModel.CustomerName = customerBase.Name; //HERE: CHANGE => DONT SET setDirty: SEE ApplyPropertyChange FOR MORE INFO
                     //THIS CommonControl_BindingComplete WILL BE RAISED FOR EVERY BINDING => SO WE CAN NOT UPDATE RELATIVE PROPERTY BY THIS WAY. SHOULD THINK OF NEW WAY FOR UPDATE SUCH RELATIVE PROPERTY (SUCH AS: ContactInfo, ShippingAddress OF Customer)
                     //this.deliveryAdviceViewModel.ContactInfo = customerBase.ContactInfo;
                     //this.deliveryAdviceViewModel.ShippingAddress = customerBase.ShippingAddress;
+                }
+                if (sender.Equals(this.bindingReceiverID) && this.combexReceiverID.SelectedItem != null)
+                {
+                    CustomerBase receiverBase = (CustomerBase)this.combexReceiverID.SelectedItem;
+                    this.deliveryAdviceViewModel.ReceiverName = receiverBase.Name;
+                    //THIS CommonControl_BindingComplete WILL BE RAISED FOR EVERY BINDING => SO WE CAN NOT UPDATE RELATIVE PROPERTY BY THIS WAY. SHOULD THINK OF NEW WAY FOR UPDATE SUCH RELATIVE PROPERTY (SUCH AS: ContactInfo, ShippingAddress OF Receiver)
+                    //this.deliveryAdviceViewModel.ContactInfo = receiverBase.ContactInfo;
+                    //this.deliveryAdviceViewModel.ShippingAddress = receiverBase.ShippingAddress;
                 }
             }
         }

@@ -78,6 +78,8 @@ namespace TotalSmartCoding.Views.Sales.DeliveryAdvices
 
                             this.deliveryAdviceViewModel.CustomerID = pendingSalesOrder.CustomerID;
                             this.deliveryAdviceViewModel.CustomerName = pendingSalesOrder.CustomerName;
+                            this.deliveryAdviceViewModel.ReceiverID = pendingSalesOrder.ReceiverID;
+                            this.deliveryAdviceViewModel.ReceiverName = pendingSalesOrder.ReceiverName;
                             this.deliveryAdviceViewModel.ContactInfo = pendingSalesOrder.ContactInfo;
                             this.deliveryAdviceViewModel.ShippingAddress = pendingSalesOrder.ShippingAddress;
                             
@@ -92,6 +94,8 @@ namespace TotalSmartCoding.Views.Sales.DeliveryAdvices
                         {
                             this.deliveryAdviceViewModel.CustomerID = pendingSalesOrderCustomer.CustomerID;
                             this.deliveryAdviceViewModel.CustomerName = pendingSalesOrderCustomer.CustomerName;
+                            this.deliveryAdviceViewModel.ReceiverID = pendingSalesOrderCustomer.ReceiverID;
+                            this.deliveryAdviceViewModel.ReceiverName = pendingSalesOrderCustomer.ReceiverName;
                             this.deliveryAdviceViewModel.ContactInfo = pendingSalesOrderCustomer.ContactInfo;
                             this.deliveryAdviceViewModel.ShippingAddress = pendingSalesOrderCustomer.ShippingAddress;
 

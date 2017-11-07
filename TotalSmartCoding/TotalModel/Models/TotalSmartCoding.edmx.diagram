@@ -133,6 +133,8 @@
         <AssociationConnector Association="TotalSmartCodingModel.FK_DeliveryAdviceDetails_Receivers" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_DeliveryAdvices_Receivers" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_SalesOrders_Receivers" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssueDetails_Receivers" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssues_Receivers" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

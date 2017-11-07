@@ -52,7 +52,7 @@ namespace TotalDTO.Sales
         public string VoucherCode
         {
             get { return this.voucherCode; }
-            set { ApplyPropertyChange<SalesOrderDTO, string>(ref this.voucherCode, o => o.VoucherCode, value); }
+            set { ApplyPropertyChange<DeliveryAdvicePrimitiveDTO, string>(ref this.voucherCode, o => o.VoucherCode, value); }
         }
 
         private int customerID;
@@ -67,7 +67,22 @@ namespace TotalDTO.Sales
         public string CustomerName
         {
             get { return this.customerName; }
-            set { ApplyPropertyChange<DeliveryAdviceDTO, string>(ref this.customerName, o => o.CustomerName, value, false); }
+            set { ApplyPropertyChange<DeliveryAdvicePrimitiveDTO, string>(ref this.customerName, o => o.CustomerName, value, false); }
+        }
+
+        private int receiverID;
+        [DefaultValue(null)]
+        public int ReceiverID
+        {
+            get { return this.receiverID; }
+            set { ApplyPropertyChange<DeliveryAdvicePrimitiveDTO, int>(ref this.receiverID, o => o.ReceiverID, value); }
+        }
+        private string receiverName;
+        [DefaultValue(null)]
+        public string ReceiverName
+        {
+            get { return this.receiverName; }
+            set { ApplyPropertyChange<DeliveryAdvicePrimitiveDTO, string>(ref this.receiverName, o => o.ReceiverName, value, false); }
         }
 
         private string contactInfo;
@@ -75,7 +90,7 @@ namespace TotalDTO.Sales
         public string ContactInfo
         {
             get { return this.contactInfo; }
-            set { ApplyPropertyChange<SalesOrderDTO, string>(ref this.contactInfo, o => o.ContactInfo, value); }
+            set { ApplyPropertyChange<DeliveryAdvicePrimitiveDTO, string>(ref this.contactInfo, o => o.ContactInfo, value); }
         }
 
         private string shippingAddress;
@@ -83,7 +98,7 @@ namespace TotalDTO.Sales
         public string ShippingAddress
         {
             get { return this.shippingAddress; }
-            set { ApplyPropertyChange<SalesOrderDTO, string>(ref this.shippingAddress, o => o.ShippingAddress, value); }
+            set { ApplyPropertyChange<DeliveryAdvicePrimitiveDTO, string>(ref this.shippingAddress, o => o.ShippingAddress, value); }
         }
 
         private Nullable<int> salespersonID;
@@ -107,7 +122,7 @@ namespace TotalDTO.Sales
             base.PerformPresaveRule();
 
             string salesOrderReferences = ""; string voucherCode = "";
-            this.DtoDetails().ToList().ForEach(e => { e.CustomerID = this.CustomerID; if (this.HasSalesOrder && salesOrderReferences.IndexOf(e.SalesOrderReference) < 0) salesOrderReferences = salesOrderReferences + (salesOrderReferences != "" ? ", " : "") + e.SalesOrderReference; if (this.HasSalesOrder && e.VoucherCode != null && voucherCode.IndexOf(e.VoucherCode) < 0) voucherCode = voucherCode + (voucherCode != "" ? ", " : "") + e.VoucherCode; });
+            this.DtoDetails().ToList().ForEach(e => { e.CustomerID = this.CustomerID; e.ReceiverID = this.ReceiverID; if (this.HasSalesOrder && salesOrderReferences.IndexOf(e.SalesOrderReference) < 0) salesOrderReferences = salesOrderReferences + (salesOrderReferences != "" ? ", " : "") + e.SalesOrderReference; if (this.HasSalesOrder && e.VoucherCode != null && voucherCode.IndexOf(e.VoucherCode) < 0) voucherCode = voucherCode + (voucherCode != "" ? ", " : "") + e.VoucherCode; });
             this.SalesOrderReferences = salesOrderReferences;
             if (this.HasSalesOrder) this.VoucherCode = voucherCode;
         }

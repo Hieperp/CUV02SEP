@@ -106,9 +106,10 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
 
-            queryString = queryString + "       SELECT          SalesOrders.SalesOrderID, SalesOrders.Reference AS SalesOrderReference, SalesOrders.EntryDate AS SalesOrderEntryDate, SalesOrders.VoucherCode, SalesOrders.CustomerID, Customers.Code AS CustomerCode, Customers.Name AS CustomerName, SalesOrders.ContactInfo, SalesOrders.ShippingAddress, SalesOrders.SalespersonID, SalesOrders.Description, SalesOrders.Remarks " + "\r\n";
+            queryString = queryString + "       SELECT          SalesOrders.SalesOrderID, SalesOrders.Reference AS SalesOrderReference, SalesOrders.EntryDate AS SalesOrderEntryDate, SalesOrders.VoucherCode, SalesOrders.CustomerID, Customers.Code AS CustomerCode, Customers.Name AS CustomerName, SalesOrders.ReceiverID, Receivers.Code AS ReceiverCode, Receivers.Name AS ReceiverName, SalesOrders.ContactInfo, SalesOrders.ShippingAddress, SalesOrders.SalespersonID, SalesOrders.Description, SalesOrders.Remarks " + "\r\n";
             queryString = queryString + "       FROM            SalesOrders " + "\r\n";
             queryString = queryString + "                       INNER JOIN Customers ON SalesOrders.SalesOrderID IN (SELECT SalesOrderID FROM SalesOrderDetails WHERE LocationID = @LocationID AND Approved = 1 AND ROUND(Quantity - QuantityAdvice, " + (int)GlobalEnums.rndQuantity + ") > 0) AND SalesOrders.CustomerID = Customers.CustomerID " + "\r\n";
+            queryString = queryString + "                       INNER JOIN Customers Receivers ON SalesOrders.ReceiverID = Receivers.CustomerID " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("GetPendingSalesOrders", queryString);
         }
@@ -119,9 +120,10 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
 
-            queryString = queryString + "       SELECT          Customers.CustomerID, Customers.Code AS CustomerCode, Customers.Name AS CustomerName, CustomerPENDING.ContactInfo, CustomerPENDING.ShippingAddress, CustomerPENDING.SalespersonID " + "\r\n";
-            queryString = queryString + "       FROM           (SELECT CustomerID, MIN(ContactInfo) AS ContactInfo, MIN(ShippingAddress) AS ShippingAddress, MIN(SalespersonID) AS SalespersonID FROM SalesOrders WHERE SalesOrderID IN (SELECT DISTINCT SalesOrderID FROM SalesOrderDetails WHERE LocationID = @LocationID AND Approved = 1 AND ROUND(Quantity - QuantityAdvice, " + (int)GlobalEnums.rndQuantity + ") > 0) GROUP BY CustomerID) CustomerPENDING " + "\r\n";
+            queryString = queryString + "       SELECT          Customers.CustomerID, Customers.Code AS CustomerCode, Customers.Name AS CustomerName, CustomerPENDING.ReceiverID, Receivers.Code AS ReceiverCode, Receivers.Name AS ReceiverName, CustomerPENDING.ContactInfo, CustomerPENDING.ShippingAddress, CustomerPENDING.SalespersonID " + "\r\n";
+            queryString = queryString + "       FROM           (SELECT CustomerID, ReceiverID, MIN(ContactInfo) AS ContactInfo, MIN(ShippingAddress) AS ShippingAddress, MIN(SalespersonID) AS SalespersonID FROM SalesOrders WHERE SalesOrderID IN (SELECT DISTINCT SalesOrderID FROM SalesOrderDetails WHERE LocationID = @LocationID AND Approved = 1 AND ROUND(Quantity - QuantityAdvice, " + (int)GlobalEnums.rndQuantity + ") > 0) GROUP BY CustomerID, ReceiverID) CustomerPENDING " + "\r\n";
             queryString = queryString + "                       INNER JOIN Customers ON CustomerPENDING.CustomerID = Customers.CustomerID " + "\r\n";
+            queryString = queryString + "                       INNER JOIN Customers Receivers ON CustomerPENDING.ReceiverID = Receivers.CustomerID " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("GetPendingSalesOrderCustomers", queryString);
         }
@@ -132,7 +134,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
         {
             string queryString;
 
-            queryString = " @LocationID Int, @DeliveryAdviceID Int, @SalesOrderID Int, @CustomerID Int, @SalesOrderDetailIDs varchar(3999), @IsReadonly bit " + "\r\n";
+            queryString = " @LocationID Int, @DeliveryAdviceID Int, @SalesOrderID Int, @CustomerID Int, @ReceiverID Int, @SalesOrderDetailIDs varchar(3999), @IsReadonly bit " + "\r\n";
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
 
@@ -208,7 +210,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
                 queryString = queryString + "       INSERT INTO @SalesOrderDetails (IsNewOrEdit, SalesOrderID, SalesOrderDetailID, EntryDate, Reference, VoucherCode, LocationID, CommodityID, QuantityRemains, LineVolumeRemains, Remarks) " + "\r\n";
                 queryString = queryString + "       SELECT      1 AS IsNewOrEdit, SalesOrderID, SalesOrderDetailID, EntryDate, Reference, VoucherCode, LocationID, CommodityID, ROUND(Quantity - QuantityAdvice,  " + (int)GlobalEnums.rndQuantity + ") AS QuantityRemains, ROUND(LineVolume - LineVolumeAdvice, " + (int)GlobalEnums.rndVolume + ") AS LineVolumeRemains, Remarks " + "\r\n";
                 queryString = queryString + "       FROM        SalesOrderDetails " + "\r\n";
-                queryString = queryString + "       WHERE       " + (isSalesOrderID ? " SalesOrderID = @SalesOrderID " : "LocationID = @LocationID AND CustomerID = @CustomerID ") + " AND Approved = 1 AND ROUND(Quantity - QuantityAdvice, " + (int)GlobalEnums.rndQuantity + ") > 0 " + (isSalesOrderDetailIDs ? " AND SalesOrderDetailID NOT IN (SELECT Id FROM dbo.SplitToIntList (@SalesOrderDetailIDs))" : "") + (sqlNew && sqlEdit ? " AND SalesOrderDetailID NOT IN (SELECT SalesOrderDetailID FROM DeliveryAdviceDetails WHERE DeliveryAdviceID = @DeliveryAdviceID) " : "") + "\r\n";
+                queryString = queryString + "       WHERE       " + (isSalesOrderID ? " SalesOrderID = @SalesOrderID " : "LocationID = @LocationID AND CustomerID = @CustomerID AND ReceiverID = @ReceiverID ") + " AND Approved = 1 AND ROUND(Quantity - QuantityAdvice, " + (int)GlobalEnums.rndQuantity + ") > 0 " + (isSalesOrderDetailIDs ? " AND SalesOrderDetailID NOT IN (SELECT Id FROM dbo.SplitToIntList (@SalesOrderDetailIDs))" : "") + (sqlNew && sqlEdit ? " AND SalesOrderDetailID NOT IN (SELECT SalesOrderDetailID FROM DeliveryAdviceDetails WHERE DeliveryAdviceID = @DeliveryAdviceID) " : "") + "\r\n";
             }
 
             if (sqlEdit)

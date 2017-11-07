@@ -25,5 +25,8 @@ namespace TotalModel.Models
         public string ContactInfo { get; set; }
         public string ShippingAddress { get; set; }
         public int SalespersonID { get; set; }
+        public int ReceiverID { get; set; }
+        public string ReceiverCode { get; set; }
+        public string ReceiverName { get; set; }
     }
 }

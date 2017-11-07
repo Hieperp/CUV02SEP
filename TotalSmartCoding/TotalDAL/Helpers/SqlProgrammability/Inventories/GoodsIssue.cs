@@ -30,9 +30,9 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             this.GetPendingTransferOrderWarehouses();
 
 
-            GenerateSQLPendingDetails generatePendingDeliveryAdviceDetails = new GenerateSQLPendingDetails(totalSmartCodingEntities, "GetPendingDeliveryAdviceDetails", "DeliveryAdviceDetails", "DeliveryAdviceID", "@DeliveryAdviceID", "DeliveryAdviceDetailID", "@DeliveryAdviceDetailIDs", "CustomerID", "@CustomerID", false, "PrimaryReference", "PrimaryEntryDate");
+            GenerateSQLPendingDetails generatePendingDeliveryAdviceDetails = new GenerateSQLPendingDetails(totalSmartCodingEntities, "GetPendingDeliveryAdviceDetails", "DeliveryAdviceDetails", "DeliveryAdviceID", "@DeliveryAdviceID", "DeliveryAdviceDetailID", "@DeliveryAdviceDetailIDs", "CustomerID", "@CustomerID", true, false, "PrimaryReference", "PrimaryEntryDate");
             generatePendingDeliveryAdviceDetails.GetPendingDeliveryAdviceDetails();
-            GenerateSQLPendingDetails generatePendingTransferOrderDetails = new GenerateSQLPendingDetails(totalSmartCodingEntities, "GetPendingTransferOrderDetails", "TransferOrderDetails", "TransferOrderID", "@TransferOrderID", "TransferOrderDetailID", "@TransferOrderDetailIDs", "WarehouseReceiptID", "@WarehouseReceiptID", true, "PrimaryReference", "PrimaryEntryDate");
+            GenerateSQLPendingDetails generatePendingTransferOrderDetails = new GenerateSQLPendingDetails(totalSmartCodingEntities, "GetPendingTransferOrderDetails", "TransferOrderDetails", "TransferOrderID", "@TransferOrderID", "TransferOrderDetailID", "@TransferOrderDetailIDs", "WarehouseReceiptID", "@WarehouseReceiptID", false, true, "PrimaryReference", "PrimaryEntryDate");
             generatePendingTransferOrderDetails.GetPendingDeliveryAdviceDetails();
 
 
@@ -120,9 +120,10 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
 
-            queryString = queryString + "       SELECT          DeliveryAdvices.DeliveryAdviceID, DeliveryAdvices.Reference AS DeliveryAdviceReference, DeliveryAdvices.EntryDate AS DeliveryAdviceEntryDate, DeliveryAdvices.SalesOrderReferences, DeliveryAdvices.VoucherCode, DeliveryAdvices.CustomerID, Customers.Code AS CustomerCode, Customers.Name AS CustomerName, DeliveryAdvices.Description, DeliveryAdvices.Remarks " + "\r\n";
+            queryString = queryString + "       SELECT          DeliveryAdvices.DeliveryAdviceID, DeliveryAdvices.Reference AS DeliveryAdviceReference, DeliveryAdvices.EntryDate AS DeliveryAdviceEntryDate, DeliveryAdvices.SalesOrderReferences, DeliveryAdvices.VoucherCode, DeliveryAdvices.CustomerID, Customers.Code AS CustomerCode, Customers.Name AS CustomerName, DeliveryAdvices.ReceiverID, Receivers.Code AS ReceiverCode, Receivers.Name AS ReceiverName, DeliveryAdvices.Description, DeliveryAdvices.Remarks " + "\r\n";
             queryString = queryString + "       FROM            DeliveryAdvices " + "\r\n";
             queryString = queryString + "                       INNER JOIN Customers ON DeliveryAdvices.DeliveryAdviceID IN (SELECT DeliveryAdviceID FROM DeliveryAdviceDetails WHERE LocationID = @LocationID AND Approved = 1 AND ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") > 0) AND DeliveryAdvices.CustomerID = Customers.CustomerID " + "\r\n";
+            queryString = queryString + "                       INNER JOIN Customers Receivers ON DeliveryAdvices.ReceiverID = Receivers.CustomerID " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("GetPendingDeliveryAdvices", queryString);
         }
@@ -133,9 +134,10 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
 
-            queryString = queryString + "       SELECT          Customers.CustomerID, Customers.Code AS CustomerCode, Customers.Name AS CustomerName " + "\r\n";
-            queryString = queryString + "       FROM           (SELECT DISTINCT CustomerID FROM DeliveryAdviceDetails WHERE LocationID = @LocationID AND Approved = 1 AND ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") > 0) CustomerPENDING " + "\r\n";
+            queryString = queryString + "       SELECT          Customers.CustomerID, Customers.Code AS CustomerCode, Customers.Name AS CustomerName, CustomerPENDING.ReceiverID, Receivers.Code AS ReceiverCode, Receivers.Name AS ReceiverName " + "\r\n";
+            queryString = queryString + "       FROM           (SELECT CustomerID, ReceiverID FROM DeliveryAdviceDetails WHERE LocationID = @LocationID AND Approved = 1 AND ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") > 0 GROUP BY CustomerID, ReceiverID) CustomerPENDING " + "\r\n";
             queryString = queryString + "                       INNER JOIN Customers ON CustomerPENDING.CustomerID = Customers.CustomerID " + "\r\n";
+            queryString = queryString + "                       INNER JOIN Customers Receivers ON CustomerPENDING.ReceiverID = Receivers.CustomerID " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("GetPendingDeliveryAdviceCustomers", queryString);
         }
@@ -333,6 +335,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             private readonly string filterKey;
             private readonly string paraFilterKey;
 
+            private readonly bool isReceiverID;
             private readonly bool isWarehouse;
 
             private readonly string primaryReference;
@@ -340,7 +343,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
             private readonly TotalSmartCodingEntities totalSmartCodingEntities;
 
-            public GenerateSQLPendingDetails(TotalSmartCodingEntities totalSmartCodingEntities, string functionName, string primaryTableDetails, string primaryKey, string paraPrimaryKey, string primaryKeyDetails, string paraPrimaryKeyDetails, string filterKey, string paraFilterKey, bool isWarehouse, string primaryReference, string primaryEntryDate)
+            public GenerateSQLPendingDetails(TotalSmartCodingEntities totalSmartCodingEntities, string functionName, string primaryTableDetails, string primaryKey, string paraPrimaryKey, string primaryKeyDetails, string paraPrimaryKeyDetails, string filterKey, string paraFilterKey, bool isReceiverID, bool isWarehouse, string primaryReference, string primaryEntryDate)
             {
                 this.totalSmartCodingEntities = totalSmartCodingEntities;
 
@@ -356,6 +359,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
                 this.primaryKeyDetail = primaryKeyDetails;
                 this.paraPrimaryKeyDetails = paraPrimaryKeyDetails;
 
+                this.isReceiverID = isReceiverID;
                 this.isWarehouse = isWarehouse;
 
                 this.primaryReference = primaryReference;
@@ -363,15 +367,15 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             }
 
 
-            private bool alwaysTrue = true;
+            private bool alwaysTrue = false;
             //HERE: WE ALWAYS AND ONLY CALL GetPendingDeliveryAdviceDetails AFTER SAVE SUCCESSFUL
             //AT GoodsIssues VIEWS: WE DON'T ALLOW TO USE CURRENT RESULT FROM GetPendingDeliveryAdviceDetails IF THE LAST SAVE IS NOT SUCCESSFULLY. WHEN SAVE SUCCESSFUL, THE GetPendingDeliveryAdviceDetails IS CALL IMMEDIATELY
-            //SO => HERE: WE DON'T CARE BOTH: @DeliveryAdviceDetailIDs AND BuildSQLEdit
+            //SO => HERE: WE DON'T CARE BOTH: @DeliveryAdviceDetailIDs AND BuildSQLEdit. THIS IS THE REASON WHY WE USE: alwaysTrue = true WHEN BULD SQL QUERY
             public void GetPendingDeliveryAdviceDetails()
             {
                 string queryString;
 
-                queryString = " @LocationID Int, @GoodsIssueID Int, " + (this.isWarehouse ? "@WarehouseID Int, " : "") + this.paraPrimaryKey + " Int, " + this.paraFilterKey + " Int, " + this.paraPrimaryKeyDetails + " varchar(3999), @IsReadonly bit " + "\r\n";
+                queryString = " @LocationID Int, @GoodsIssueID Int, " + (this.isWarehouse ? "@WarehouseID Int, " : "") + this.paraPrimaryKey + " Int, " + this.paraFilterKey + " Int, " + (this.isReceiverID ? "@ReceiverID Int, " : "") + this.paraPrimaryKeyDetails + " varchar(3999), @IsReadonly bit " + "\r\n";
                 queryString = queryString + " WITH ENCRYPTION " + "\r\n";
                 queryString = queryString + " AS " + "\r\n";
 
@@ -455,7 +459,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
                 queryString = queryString + "                   ROUND(" + this.primaryTableDetails + ".Quantity - " + this.primaryTableDetails + ".QuantityIssue,  " + (int)GlobalEnums.rndQuantity + ") AS QuantityRemains, CAST(0 AS decimal(18, 2)) AS Quantity, ROUND(" + this.primaryTableDetails + ".LineVolume - " + this.primaryTableDetails + ".LineVolumeIssue,  " + (int)GlobalEnums.rndVolume + ") AS LineVolumeRemains, CAST(0 AS decimal(18, 2)) AS LineVolume, " + this.primaryTableDetails + ".Remarks, CAST(0 AS bit) AS IsSelected " + "\r\n";
 
                 queryString = queryString + "       FROM        " + this.primaryTableDetails + " " + "\r\n";
-                queryString = queryString + "                   INNER JOIN Commodities ON " + (isDeliveryAdviceID ? " " + this.primaryTableDetails + "." + this.primaryKey + " = " + this.paraPrimaryKey + " " : this.primaryTableDetails + ".LocationID = @LocationID " + (this.isWarehouse ? " AND " + this.primaryTableDetails + ".WarehouseID = @WarehouseID " : "") + " AND " + this.primaryTableDetails + "." + this.filterKey + " = " + this.paraFilterKey) + " AND " + this.primaryTableDetails + ".Approved = 1 AND ROUND(" + this.primaryTableDetails + ".Quantity - " + this.primaryTableDetails + ".QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") > 0 AND " + this.primaryTableDetails + ".CommodityID = Commodities.CommodityID" + (isDeliveryAdviceDetailIDs ? " AND " + this.primaryTableDetails + "." + this.primaryKeyDetail + " NOT IN (SELECT Id FROM dbo.SplitToIntList (" + this.paraPrimaryKeyDetails + "))" : "") + "\r\n";
+                queryString = queryString + "                   INNER JOIN Commodities ON " + (isDeliveryAdviceID ? " " + this.primaryTableDetails + "." + this.primaryKey + " = " + this.paraPrimaryKey + " " : this.primaryTableDetails + ".LocationID = @LocationID " + (this.isWarehouse ? " AND " + this.primaryTableDetails + ".WarehouseID = @WarehouseID " : "") + " AND " + this.primaryTableDetails + "." + this.filterKey + " = " + this.paraFilterKey + (this.isReceiverID ? " AND " + this.primaryTableDetails + ".ReceiverID = @ReceiverID " : "")) + " AND " + this.primaryTableDetails + ".Approved = 1 AND ROUND(" + this.primaryTableDetails + ".Quantity - " + this.primaryTableDetails + ".QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") > 0 AND " + this.primaryTableDetails + ".CommodityID = Commodities.CommodityID" + (isDeliveryAdviceDetailIDs ? " AND " + this.primaryTableDetails + "." + this.primaryKeyDetail + " NOT IN (SELECT Id FROM dbo.SplitToIntList (" + this.paraPrimaryKeyDetails + "))" : "") + "\r\n";
                 queryString = queryString + "                   LEFT JOIN Batches ON " + this.primaryTableDetails + ".BatchID = Batches.BatchID " + "\r\n";
                 return queryString;
             }

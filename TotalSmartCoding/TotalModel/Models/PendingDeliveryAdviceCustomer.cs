@@ -16,5 +16,8 @@ namespace TotalModel.Models
         public int CustomerID { get; set; }
         public string CustomerCode { get; set; }
         public string CustomerName { get; set; }
+        public int ReceiverID { get; set; }
+        public string ReceiverCode { get; set; }
+        public string ReceiverName { get; set; }
     }
 }

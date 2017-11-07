@@ -42,6 +42,7 @@ namespace TotalModel.Models
         public decimal LineVolume { get; set; }
         public string Remarks { get; set; }
         public bool Approved { get; set; }
+        public Nullable<int> ReceiverID { get; set; }
     
         public virtual Commodity Commodity { get; set; }
         public virtual Customer Customer { get; set; }
@@ -49,5 +50,6 @@ namespace TotalModel.Models
         public virtual GoodsIssue GoodsIssue { get; set; }
         public virtual TransferOrderDetail TransferOrderDetail { get; set; }
         public virtual GoodsReceiptDetail GoodsReceiptDetail { get; set; }
+        public virtual Customer Customer1 { get; set; }
     }
 }

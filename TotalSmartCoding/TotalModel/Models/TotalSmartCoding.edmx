@@ -250,6 +250,7 @@
           <Property Name="LocationID" Type="int" Nullable="false" />
           <Property Name="WarehouseID" Type="int" Nullable="false" />
           <Property Name="CustomerID" Type="int" />
+          <Property Name="ReceiverID" Type="int" />
           <Property Name="WarehouseReceiptID" Type="int" />
           <Property Name="CommodityID" Type="int" Nullable="false" />
           <Property Name="BinLocationID" Type="int" Nullable="false" />
@@ -278,6 +279,7 @@
           <Property Name="TransferOrderID" Type="int" />
           <Property Name="PrimaryReferences" Type="nvarchar" MaxLength="100" />
           <Property Name="CustomerID" Type="int" />
+          <Property Name="ReceiverID" Type="int" />
           <Property Name="WarehouseID" Type="int" />
           <Property Name="WarehouseReceiptID" Type="int" />
           <Property Name="ForkliftDriverID" Type="int" Nullable="false" />
@@ -1096,6 +1098,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_GoodsIssueDetails_Receivers">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
+          <End Role="GoodsIssueDetails" Type="Self.GoodsIssueDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="GoodsIssueDetails">
+              <PropertyRef Name="ReceiverID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_GoodsIssueDetails_TransferOrderDetails">
           <End Role="TransferOrderDetails" Type="Self.TransferOrderDetails" Multiplicity="0..1" />
           <End Role="GoodsIssueDetails" Type="Self.GoodsIssueDetails" Multiplicity="*" />
@@ -1153,6 +1167,18 @@
             </Principal>
             <Dependent Role="GoodsIssues">
               <PropertyRef Name="LocationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GoodsIssues_Receivers">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
+          <End Role="GoodsIssues" Type="Self.GoodsIssues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="GoodsIssues">
+              <PropertyRef Name="ReceiverID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2033,6 +2059,7 @@
           <Parameter Name="GoodsIssueID" Type="int" Mode="In" />
           <Parameter Name="DeliveryAdviceID" Type="int" Mode="In" />
           <Parameter Name="CustomerID" Type="int" Mode="In" />
+          <Parameter Name="ReceiverID" Type="int" Mode="In" />
           <Parameter Name="DeliveryAdviceDetailIDs" Type="varchar" Mode="In" />
           <Parameter Name="IsReadonly" Type="bit" Mode="In" />
         </Function>
@@ -2082,6 +2109,7 @@
           <Parameter Name="DeliveryAdviceID" Type="int" Mode="In" />
           <Parameter Name="SalesOrderID" Type="int" Mode="In" />
           <Parameter Name="CustomerID" Type="int" Mode="In" />
+          <Parameter Name="ReceiverID" Type="int" Mode="In" />
           <Parameter Name="SalesOrderDetailIDs" Type="varchar" Mode="In" />
           <Parameter Name="IsReadonly" Type="bit" Mode="In" />
         </Function>
@@ -2492,6 +2520,10 @@
             <End Role="GoodsReceiptDetails" EntitySet="GoodsReceiptDetails" />
             <End Role="GoodsIssueDetails" EntitySet="GoodsIssueDetails" />
           </AssociationSet>
+          <AssociationSet Name="FK_GoodsIssueDetails_Receivers" Association="Self.FK_GoodsIssueDetails_Receivers">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="GoodsIssueDetails" EntitySet="GoodsIssueDetails" />
+          </AssociationSet>
           <AssociationSet Name="FK_GoodsIssueDetails_TransferOrderDetails" Association="Self.FK_GoodsIssueDetails_TransferOrderDetails">
             <End Role="TransferOrderDetails" EntitySet="TransferOrderDetails" />
             <End Role="GoodsIssueDetails" EntitySet="GoodsIssueDetails" />
@@ -2510,6 +2542,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_GoodsIssues_Locations" Association="Self.FK_GoodsIssues_Locations">
             <End Role="Locations" EntitySet="Locations" />
+            <End Role="GoodsIssues" EntitySet="GoodsIssues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GoodsIssues_Receivers" Association="Self.FK_GoodsIssues_Receivers">
+            <End Role="Customers" EntitySet="Customers" />
             <End Role="GoodsIssues" EntitySet="GoodsIssues" />
           </AssociationSet>
           <AssociationSet Name="FK_GoodsIssues_TransferOrders" Association="Self.FK_GoodsIssues_TransferOrders">
@@ -3038,6 +3074,7 @@
             <Parameter Name="DeliveryAdviceID" Mode="In" Type="Int32" />
             <Parameter Name="SalesOrderID" Mode="In" Type="Int32" />
             <Parameter Name="CustomerID" Mode="In" Type="Int32" />
+            <Parameter Name="ReceiverID" Mode="In" Type="Int32" />
             <Parameter Name="SalesOrderDetailIDs" Mode="In" Type="String" />
             <Parameter Name="IsReadonly" Mode="In" Type="Boolean" />
           </FunctionImport>
@@ -3060,6 +3097,7 @@
             <Parameter Name="GoodsIssueID" Mode="In" Type="Int32" />
             <Parameter Name="DeliveryAdviceID" Mode="In" Type="Int32" />
             <Parameter Name="CustomerID" Mode="In" Type="Int32" />
+            <Parameter Name="ReceiverID" Mode="In" Type="Int32" />
             <Parameter Name="DeliveryAdviceDetailIDs" Mode="In" Type="String" />
             <Parameter Name="IsReadonly" Mode="In" Type="Boolean" />
           </FunctionImport>
@@ -3647,6 +3685,14 @@
             <End Role="Customer" EntitySet="Customers" />
             <End Role="SalesOrder" EntitySet="SalesOrders" />
           </AssociationSet>
+          <AssociationSet Name="FK_GoodsIssueDetails_Receivers" Association="TotalSmartCodingModel.FK_GoodsIssueDetails_Receivers">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="GoodsIssueDetail" EntitySet="GoodsIssueDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GoodsIssues_Receivers" Association="TotalSmartCodingModel.FK_GoodsIssues_Receivers">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="GoodsIssue" EntitySet="GoodsIssues" />
+          </AssociationSet>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
           <Property Type="Int32" Name="PickupID" Nullable="false" />
@@ -4120,6 +4166,9 @@
           <Property Type="String" Name="ContactInfo" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="ShippingAddress" Nullable="true" MaxLength="200" />
           <Property Type="Int32" Name="SalespersonID" Nullable="true" />
+          <Property Type="Int32" Name="ReceiverID" Nullable="false" />
+          <Property Type="String" Name="ReceiverCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ReceiverName" Nullable="false" MaxLength="100" />
         </ComplexType>
         <ComplexType Name="PendingSalesOrderDetail">
           <Property Type="Int32" Name="SalesOrderID" Nullable="false" />
@@ -4155,6 +4204,9 @@
           <Property Type="String" Name="ContactInfo" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="ShippingAddress" Nullable="true" MaxLength="200" />
           <Property Type="Int32" Name="SalespersonID" Nullable="false" />
+          <Property Type="Int32" Name="ReceiverID" Nullable="false" />
+          <Property Type="String" Name="ReceiverCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ReceiverName" Nullable="false" MaxLength="100" />
         </ComplexType>
         <ComplexType Name="GoodsIssueIndex">
           <Property Type="Int32" Name="GoodsIssueID" Nullable="false" />
@@ -4213,6 +4265,9 @@
           <Property Type="Int32" Name="CustomerID" Nullable="false" />
           <Property Type="String" Name="CustomerCode" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="CustomerName" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="ReceiverID" Nullable="false" />
+          <Property Type="String" Name="ReceiverCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ReceiverName" Nullable="false" MaxLength="100" />
         </ComplexType>
         <ComplexType Name="PendingDeliveryAdviceDetail">
           <Property Type="Int32" Name="DeliveryAdviceID" Nullable="false" />
@@ -4246,6 +4301,9 @@
           <Property Type="String" Name="Remarks" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="SalesOrderReferences" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="VoucherCode" Nullable="true" MaxLength="120" />
+          <Property Type="Int32" Name="ReceiverID" Nullable="false" />
+          <Property Type="String" Name="ReceiverCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ReceiverName" Nullable="false" MaxLength="100" />
         </ComplexType>
         <EntityType Name="Warehouse">
           <Key>
@@ -5410,6 +5468,8 @@
           <NavigationProperty Name="DeliveryAdviceDetails1" Relationship="TotalSmartCodingModel.FK_DeliveryAdviceDetails_Receivers" FromRole="Customer" ToRole="DeliveryAdviceDetail" />
           <NavigationProperty Name="DeliveryAdvices1" Relationship="TotalSmartCodingModel.FK_DeliveryAdvices_Receivers" FromRole="Customer" ToRole="DeliveryAdvice" />
           <NavigationProperty Name="SalesOrders1" Relationship="TotalSmartCodingModel.FK_SalesOrders_Receivers" FromRole="Customer" ToRole="SalesOrder" />
+          <NavigationProperty Name="GoodsIssueDetails1" Relationship="TotalSmartCodingModel.FK_GoodsIssueDetails_Receivers" FromRole="Customer" ToRole="GoodsIssueDetail" />
+          <NavigationProperty Name="GoodsIssues1" Relationship="TotalSmartCodingModel.FK_GoodsIssues_Receivers" FromRole="Customer" ToRole="GoodsIssue" />
         </EntityType>
         <Association Name="FK_Customers_CustomerCategories">
           <End Type="TotalSmartCodingModel.CustomerCategory" Role="CustomerCategory" Multiplicity="1" />
@@ -5560,6 +5620,8 @@
           <NavigationProperty Name="Warehouse1" Relationship="TotalSmartCodingModel.FK_GoodsIssues_Warehouses" FromRole="GoodsIssue" ToRole="Warehouse" />
           <NavigationProperty Name="GoodsIssueDetails" Relationship="TotalSmartCodingModel.FK_GoodsIssueDetails_GoodsIssues" FromRole="GoodsIssue" ToRole="GoodsIssueDetail" />
           <NavigationProperty Name="Location" Relationship="TotalSmartCodingModel.FK_GoodsIssues_Locations" FromRole="GoodsIssue" ToRole="Location" />
+          <Property Name="ReceiverID" Type="Int32" />
+          <NavigationProperty Name="Customer1" Relationship="TotalSmartCodingModel.FK_GoodsIssues_Receivers" FromRole="GoodsIssue" ToRole="Customer" />
         </EntityType>
         <Association Name="FK_GoodsIssues_Customers">
           <End Type="TotalSmartCodingModel.Customer" Role="Customer" Multiplicity="0..1" />
@@ -5699,6 +5761,8 @@
           <NavigationProperty Name="GoodsIssue" Relationship="TotalSmartCodingModel.FK_GoodsIssueDetails_GoodsIssues" FromRole="GoodsIssueDetail" ToRole="GoodsIssue" />
           <NavigationProperty Name="TransferOrderDetail" Relationship="TotalSmartCodingModel.FK_GoodsIssueDetails_TransferOrderDetails" FromRole="GoodsIssueDetail" ToRole="TransferOrderDetail" />
           <NavigationProperty Name="GoodsReceiptDetail" Relationship="TotalSmartCodingModel.FK_GoodsIssueDetails_GoodsReceiptDetails" FromRole="GoodsIssueDetail" ToRole="GoodsReceiptDetail" />
+          <Property Name="ReceiverID" Type="Int32" />
+          <NavigationProperty Name="Customer1" Relationship="TotalSmartCodingModel.FK_GoodsIssueDetails_Receivers" FromRole="GoodsIssueDetail" ToRole="Customer" />
         </EntityType>
         <EntityType Name="GoodsIssueTransferDetail">
           <Key>
@@ -6438,6 +6502,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_GoodsIssueDetails_Receivers">
+          <End Type="TotalSmartCodingModel.Customer" Role="Customer" Multiplicity="0..1" />
+          <End Type="TotalSmartCodingModel.GoodsIssueDetail" Role="GoodsIssueDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="GoodsIssueDetail">
+              <PropertyRef Name="ReceiverID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GoodsIssues_Receivers">
+          <End Type="TotalSmartCodingModel.Customer" Role="Customer" Multiplicity="0..1" />
+          <End Type="TotalSmartCodingModel.GoodsIssue" Role="GoodsIssue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="GoodsIssue">
+              <PropertyRef Name="ReceiverID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -7029,6 +7117,9 @@
                 <ScalarProperty Name="ContactInfo" ColumnName="ContactInfo" />
                 <ScalarProperty Name="ShippingAddress" ColumnName="ShippingAddress" />
                 <ScalarProperty Name="SalespersonID" ColumnName="SalespersonID" />
+                <ScalarProperty Name="ReceiverID" ColumnName="ReceiverID" />
+                <ScalarProperty Name="ReceiverCode" ColumnName="ReceiverCode" />
+                <ScalarProperty Name="ReceiverName" ColumnName="ReceiverName" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -7072,6 +7163,9 @@
                 <ScalarProperty Name="ContactInfo" ColumnName="ContactInfo" />
                 <ScalarProperty Name="ShippingAddress" ColumnName="ShippingAddress" />
                 <ScalarProperty Name="SalespersonID" ColumnName="SalespersonID" />
+                <ScalarProperty Name="ReceiverID" ColumnName="ReceiverID" />
+                <ScalarProperty Name="ReceiverCode" ColumnName="ReceiverCode" />
+                <ScalarProperty Name="ReceiverName" ColumnName="ReceiverName" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -7142,6 +7236,9 @@
                 <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
                 <ScalarProperty Name="CustomerCode" ColumnName="CustomerCode" />
                 <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="ReceiverID" ColumnName="ReceiverID" />
+                <ScalarProperty Name="ReceiverCode" ColumnName="ReceiverCode" />
+                <ScalarProperty Name="ReceiverName" ColumnName="ReceiverName" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -7183,6 +7280,9 @@
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
                 <ScalarProperty Name="SalesOrderReferences" ColumnName="SalesOrderReferences" />
                 <ScalarProperty Name="VoucherCode" ColumnName="VoucherCode" />
+                <ScalarProperty Name="ReceiverID" ColumnName="ReceiverID" />
+                <ScalarProperty Name="ReceiverCode" ColumnName="ReceiverCode" />
+                <ScalarProperty Name="ReceiverName" ColumnName="ReceiverName" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -7984,6 +8084,7 @@
           <EntitySetMapping Name="GoodsIssues">
             <EntityTypeMapping TypeName="TotalSmartCodingModel.GoodsIssue">
               <MappingFragment StoreEntitySet="GoodsIssues">
+                <ScalarProperty Name="ReceiverID" ColumnName="ReceiverID" />
                 <ScalarProperty Name="ApprovedDate" ColumnName="ApprovedDate" />
                 <ScalarProperty Name="Approved" ColumnName="Approved" />
                 <ScalarProperty Name="EditedDate" ColumnName="EditedDate" />
@@ -8050,6 +8151,7 @@
           <EntitySetMapping Name="GoodsIssueDetails">
             <EntityTypeMapping TypeName="TotalSmartCodingModel.GoodsIssueDetail">
               <MappingFragment StoreEntitySet="GoodsIssueDetails">
+                <ScalarProperty Name="ReceiverID" ColumnName="ReceiverID" />
                 <ScalarProperty Name="Approved" ColumnName="Approved" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
                 <ScalarProperty Name="LineVolume" ColumnName="LineVolume" />

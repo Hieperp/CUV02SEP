@@ -87,6 +87,8 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                                 this.goodsIssueViewModel.PrimaryReferences = pendingDeliveryAdvice.DeliveryAdviceReference;
                                 this.goodsIssueViewModel.CustomerID = pendingDeliveryAdvice.CustomerID;
                                 this.goodsIssueViewModel.CustomerName = pendingDeliveryAdvice.CustomerName;
+                                this.goodsIssueViewModel.ReceiverID = pendingDeliveryAdvice.ReceiverID;
+                                this.goodsIssueViewModel.ReceiverName = pendingDeliveryAdvice.ReceiverName;
                                 nextOK = true;
                             }
                         }
@@ -97,6 +99,8 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                             {
                                 this.goodsIssueViewModel.CustomerID = pendingDeliveryAdviceCustomer.CustomerID;
                                 this.goodsIssueViewModel.CustomerName = pendingDeliveryAdviceCustomer.CustomerName;
+                                this.goodsIssueViewModel.ReceiverID = pendingDeliveryAdviceCustomer.ReceiverID;
+                                this.goodsIssueViewModel.ReceiverName = pendingDeliveryAdviceCustomer.ReceiverName;
                                 nextOK = true;
                             }
                         }

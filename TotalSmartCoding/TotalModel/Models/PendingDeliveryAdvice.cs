@@ -23,5 +23,8 @@ namespace TotalModel.Models
         public string Remarks { get; set; }
         public string SalesOrderReferences { get; set; }
         public string VoucherCode { get; set; }
+        public int ReceiverID { get; set; }
+        public string ReceiverCode { get; set; }
+        public string ReceiverName { get; set; }
     }
 }

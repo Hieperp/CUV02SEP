@@ -41,9 +41,9 @@ namespace TotalDAL.Repositories.Sales
             return base.TotalSmartCodingEntities.GetPendingSalesOrderCustomers(locationID).ToList();
         }
 
-        public List<PendingSalesOrderDetail> GetPendingSalesOrderDetails(int? locationID, int? deliveryAdviceID, int? salesOrderID, int? customerID, string salesOrderDetailIDs, bool isReadonly)
+        public List<PendingSalesOrderDetail> GetPendingSalesOrderDetails(int? locationID, int? deliveryAdviceID, int? salesOrderID, int? customerID, int? receiverID, string salesOrderDetailIDs, bool isReadonly)
         {
-            return base.TotalSmartCodingEntities.GetPendingSalesOrderDetails(locationID, deliveryAdviceID, salesOrderID, customerID, salesOrderDetailIDs, isReadonly).ToList();
+            return base.TotalSmartCodingEntities.GetPendingSalesOrderDetails(locationID, deliveryAdviceID, salesOrderID, customerID, receiverID, salesOrderDetailIDs, isReadonly).ToList();
         }
 
         public List<BatchAvailable> GetBatchAvailables(int? locationID, int? deliveryAdviceID, int? commodityID, bool withNullRow)
