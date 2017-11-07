@@ -715,6 +715,8 @@ namespace TotalModel.Models
     {
         public int GetID() { return this.SalesOrderID; }
 
+        public virtual Customer Receiver { get { return this.Customer1; } }
+
         public ICollection<SalesOrderDetail> GetDetails() { return this.SalesOrderDetails; }
     }
 
@@ -732,6 +734,8 @@ namespace TotalModel.Models
     public partial class DeliveryAdvice : IPrimitiveEntity, IBaseEntity, IBaseDetailEntity<DeliveryAdviceDetail>
     {
         public int GetID() { return this.DeliveryAdviceID; }
+
+        public virtual Customer Receiver { get { return this.Customer1; } }
 
         public ICollection<DeliveryAdviceDetail> GetDetails() { return this.DeliveryAdviceDetails; }
     }

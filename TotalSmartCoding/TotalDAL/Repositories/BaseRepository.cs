@@ -29,7 +29,12 @@ namespace TotalDAL.Repositories
 
             //if (!GlobalVariables.shouldRestoreProcedure) return;
 
-            return;
+            //return;
+            //return;
+
+            Helpers.SqlProgrammability.Commons.Customer customer = new Helpers.SqlProgrammability.Commons.Customer(totalSmartCodingEntities);
+            customer.RestoreProcedure();
+
             return;
 
             Helpers.SqlProgrammability.Generals.UserReference userReference = new Helpers.SqlProgrammability.Generals.UserReference(totalSmartCodingEntities);
@@ -71,10 +76,7 @@ namespace TotalDAL.Repositories
 
             Helpers.SqlProgrammability.Commons.Territory territory = new Helpers.SqlProgrammability.Commons.Territory(totalSmartCodingEntities);
             territory.RestoreProcedure();
-            return;
-
-            Helpers.SqlProgrammability.Commons.Customer customer = new Helpers.SqlProgrammability.Commons.Customer(totalSmartCodingEntities);
-            customer.RestoreProcedure();
+            
 
 
 

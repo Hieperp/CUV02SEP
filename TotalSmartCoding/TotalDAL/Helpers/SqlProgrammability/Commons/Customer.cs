@@ -78,7 +78,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
-            queryString = queryString + "       SELECT      CustomerID, Code, Name, ContactInfo, SalespersonID, ShippingAddress " + "\r\n";
+            queryString = queryString + "       SELECT      CustomerID, Code, Name, ContactInfo, SalespersonID, CASE WHEN ShippingAddress <> '' THEN ShippingAddress ELSE BillingAddress END AS ShippingAddress " + "\r\n";
             queryString = queryString + "       FROM        Customers " + "\r\n";
 
             queryString = queryString + "    END " + "\r\n";

@@ -22,12 +22,15 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
         private SalesOrderViewModel salesOrderViewModel;
 
         Binding bindingCustomerID;
+        Binding bindingReceiverID;
         Binding bindingStorekeeperID;
 
         Binding bindingVoucherCode;
         Binding bindingEntryDate;
         Binding bindingDeliveryDate;
+        Binding bindingCustomerName;
         Binding bindingContactInfo;
+        Binding bindingReceiverName;
         Binding bindingShippingAddress;
         Binding bindingRemarks;
 
@@ -47,9 +50,15 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
                 CustomerAPIs customerAPIs = new CustomerAPIs(CommonNinject.Kernel.Get<ICustomerAPIRepository>());
 
                 this.combexCustomerID.DataSource = customerAPIs.GetCustomerBases();
-                this.combexCustomerID.DisplayMember = CommonExpressions.PropertyName<CustomerBase>(p => p.Name);
+                this.combexCustomerID.DisplayMember = CommonExpressions.PropertyName<CustomerBase>(p => p.Code);
                 this.combexCustomerID.ValueMember = CommonExpressions.PropertyName<CustomerBase>(p => p.CustomerID);
                 this.bindingCustomerID = this.combexCustomerID.DataBindings.Add("SelectedValue", this.salesOrderViewModel, CommonExpressions.PropertyName<SalesOrderViewModel>(p => p.CustomerID), true, DataSourceUpdateMode.OnPropertyChanged);
+
+                CustomerAPIs receiverAPIs = new CustomerAPIs(CommonNinject.Kernel.Get<ICustomerAPIRepository>());
+                this.combexReceiverID.DataSource = receiverAPIs.GetCustomerBases();
+                this.combexReceiverID.DisplayMember = CommonExpressions.PropertyName<CustomerBase>(p => p.Code);
+                this.combexReceiverID.ValueMember = CommonExpressions.PropertyName<CustomerBase>(p => p.CustomerID);
+                this.bindingReceiverID = this.combexReceiverID.DataBindings.Add("SelectedValue", this.salesOrderViewModel, CommonExpressions.PropertyName<SalesOrderViewModel>(p => p.ReceiverID), true, DataSourceUpdateMode.OnPropertyChanged);
 
                 EmployeeAPIs employeeAPIs = new EmployeeAPIs(CommonNinject.Kernel.Get<IEmployeeAPIRepository>());
 
@@ -61,17 +70,22 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
                 this.bindingVoucherCode = this.textexVoucherCode.DataBindings.Add("Text", this.salesOrderViewModel, CommonExpressions.PropertyName<SalesOrderViewModel>(p => p.VoucherCode), true, DataSourceUpdateMode.OnPropertyChanged);
                 this.bindingEntryDate = this.dateTimexEntryDate.DataBindings.Add("Value", this.salesOrderViewModel, CommonExpressions.PropertyName<SalesOrderViewModel>(p => p.EntryDate), true, DataSourceUpdateMode.OnPropertyChanged);
                 this.bindingDeliveryDate = this.dateTimexDeliveryDate.DataBindings.Add("Value", this.salesOrderViewModel, CommonExpressions.PropertyName<SalesOrderViewModel>(p => p.DeliveryDate), true, DataSourceUpdateMode.OnPropertyChanged);
+                this.bindingCustomerName = this.textexCustomerName.DataBindings.Add("Text", this.salesOrderViewModel, CommonExpressions.PropertyName<SalesOrderViewModel>(p => p.CustomerName), true, DataSourceUpdateMode.OnPropertyChanged);
                 this.bindingContactInfo = this.textexContactInfo.DataBindings.Add("Text", this.salesOrderViewModel, CommonExpressions.PropertyName<SalesOrderViewModel>(p => p.ContactInfo), true, DataSourceUpdateMode.OnPropertyChanged);
+                this.bindingReceiverName = this.textexReceiverName.DataBindings.Add("Text", this.salesOrderViewModel, CommonExpressions.PropertyName<SalesOrderViewModel>(p => p.ReceiverName), true, DataSourceUpdateMode.OnPropertyChanged);
                 this.bindingShippingAddress = this.textexShippingAddress.DataBindings.Add("Text", this.salesOrderViewModel, CommonExpressions.PropertyName<SalesOrderViewModel>(p => p.ShippingAddress), true, DataSourceUpdateMode.OnPropertyChanged);
                 this.bindingRemarks = this.textexRemarks.DataBindings.Add("Text", this.salesOrderViewModel, CommonExpressions.PropertyName<SalesOrderViewModel>(p => p.Remarks), true, DataSourceUpdateMode.OnPropertyChanged);
 
                 this.bindingCustomerID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+                this.bindingReceiverID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
                 this.bindingStorekeeperID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
 
                 this.bindingVoucherCode.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
                 this.bindingEntryDate.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
                 this.bindingDeliveryDate.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+                this.bindingCustomerName.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
                 this.bindingContactInfo.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+                this.bindingReceiverName.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
                 this.bindingShippingAddress.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
                 this.bindingRemarks.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
 
@@ -98,8 +112,17 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
                     CustomerBase customerBase = (CustomerBase)this.combexCustomerID.SelectedItem;
                     this.salesOrderViewModel.CustomerName = customerBase.Name;
                     this.salesOrderViewModel.ContactInfo = customerBase.ContactInfo;
-                    this.salesOrderViewModel.ShippingAddress = customerBase.ShippingAddress;
                     this.salesOrderViewModel.SalespersonID = customerBase.SalespersonID;
+                    this.salesOrderViewModel.ReceiverID = customerBase.CustomerID;
+                }
+            }
+            if (sender.Equals(this.bindingReceiverID))
+            {
+                if (this.combexReceiverID.SelectedItem != null)
+                {
+                    CustomerBase customerBase = (CustomerBase)this.combexReceiverID.SelectedItem;
+                    this.salesOrderViewModel.ReceiverName = customerBase.Name;
+                    this.salesOrderViewModel.ShippingAddress = customerBase.ShippingAddress;
                 }
             }
         }
@@ -110,8 +133,8 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
             {
                 if (sender.Equals(this.buttonOK))
                 {
-                    if (this.salesOrderViewModel.CustomerID != null && this.salesOrderViewModel.SalespersonID != null)
-                    this.DialogResult = DialogResult.OK;
+                    if (this.salesOrderViewModel.CustomerID != null && this.salesOrderViewModel.ReceiverID != null && this.salesOrderViewModel.SalespersonID != null)
+                        this.DialogResult = DialogResult.OK;
                     else
                         CustomMsgBox.Show(this, "Vui lòng chọn khách hàng, nhân viên kinh doanh.", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Stop);
                 }

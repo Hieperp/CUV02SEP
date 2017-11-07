@@ -130,6 +130,9 @@
         <AssociationConnector Association="TotalSmartCodingModel.FK_Warehouses_Locations" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.User" Width="1.5" PointX="10.375" PointY="7.875" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_OrganizationalUnitUsers_Users" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_DeliveryAdviceDetails_Receivers" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_DeliveryAdvices_Receivers" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_SalesOrders_Receivers" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

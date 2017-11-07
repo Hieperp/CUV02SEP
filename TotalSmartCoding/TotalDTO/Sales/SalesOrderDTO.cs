@@ -70,6 +70,21 @@ namespace TotalDTO.Sales
             set { ApplyPropertyChange<SalesOrderDTO, string>(ref this.customerName, o => o.CustomerName, value, false); }
         }
 
+        private Nullable<int> receiverID;
+        [DefaultValue(null)]
+        public Nullable<int> ReceiverID
+        {
+            get { return this.receiverID; }
+            set { ApplyPropertyChange<SalesOrderPrimitiveDTO, Nullable<int>>(ref this.receiverID, o => o.ReceiverID, value); }
+        }
+        private string receiverName;
+        [DefaultValue(null)]
+        public string ReceiverName
+        {
+            get { return this.receiverName; }
+            set { ApplyPropertyChange<SalesOrderDTO, string>(ref this.receiverName, o => o.ReceiverName, value, false); }
+        }
+
         private string contactInfo;
         [DefaultValue(null)]
         public string ContactInfo
@@ -105,7 +120,7 @@ namespace TotalDTO.Sales
         {
             base.PerformPresaveRule();
 
-            this.DtoDetails().ToList().ForEach(e => { e.CustomerID = this.CustomerID; e.VoucherCode = this.VoucherCode; });
+            this.DtoDetails().ToList().ForEach(e => { e.CustomerID = this.CustomerID; e.ReceiverID = this.ReceiverID; e.VoucherCode = this.VoucherCode; });
         }
     }
 
@@ -133,6 +148,7 @@ namespace TotalDTO.Sales
         {
             List<ValidationRule> validationRules = base.CreateRules();
             validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<SalesOrderDTO>(p => p.CustomerID), "Vui lòng chọn khách hàng.", delegate { return (this.CustomerID != null && this.CustomerID > 0); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<SalesOrderDTO>(p => p.ReceiverID), "Vui lòng chọn đơn vị nhận hàng.", delegate { return (this.ReceiverID != null && this.ReceiverID > 0); }));
             validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<SalesOrderDTO>(p => p.SalespersonID), "Vui lòng chọn nhân viên phụ trách khách hàng.", delegate { return (this.SalespersonID != null && this.SalespersonID > 0); }));
 
             return validationRules;

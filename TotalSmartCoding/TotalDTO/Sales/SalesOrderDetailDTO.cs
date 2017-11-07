@@ -20,5 +20,6 @@ namespace TotalDTO.Sales
         public string VoucherCode { get; set; }
 
         public Nullable<int> CustomerID { get; set; }
+        public Nullable<int> ReceiverID { get; set; }
     }
 }

@@ -126,6 +126,7 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
         Binding bindingCaption;
 
         Binding bindingCustomerID;
+        Binding bindingReceiverID;
         Binding bindingSalespersonID;
 
         protected override void InitializeCommonControlBinding()
@@ -143,11 +144,17 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
             this.bindingCaption = this.labelCaption.DataBindings.Add("Text", this.salesOrderViewModel, CommonExpressions.PropertyName<SalesOrderDTO>(p => p.Caption));
 
             CustomerAPIs customerAPIs = new CustomerAPIs(CommonNinject.Kernel.Get<ICustomerAPIRepository>());
+            IList<CustomerBase> customerBases = customerAPIs.GetCustomerBases();
 
-            this.combexCustomerID.DataSource = customerAPIs.GetCustomerBases();
+            this.combexCustomerID.DataSource = customerBases;
             this.combexCustomerID.DisplayMember = CommonExpressions.PropertyName<CustomerBase>(p => p.Name);
             this.combexCustomerID.ValueMember = CommonExpressions.PropertyName<CustomerBase>(p => p.CustomerID);
             this.bindingCustomerID = this.combexCustomerID.DataBindings.Add("SelectedValue", this.salesOrderViewModel, CommonExpressions.PropertyName<SalesOrderViewModel>(p => p.CustomerID), true, DataSourceUpdateMode.OnPropertyChanged);
+
+            this.combexReceiverID.DataSource = customerBases;
+            this.combexReceiverID.DisplayMember = CommonExpressions.PropertyName<CustomerBase>(p => p.Name);
+            this.combexReceiverID.ValueMember = CommonExpressions.PropertyName<CustomerBase>(p => p.CustomerID);
+            this.bindingReceiverID = this.combexReceiverID.DataBindings.Add("SelectedValue", this.salesOrderViewModel, CommonExpressions.PropertyName<SalesOrderViewModel>(p => p.ReceiverID), true, DataSourceUpdateMode.OnPropertyChanged);
 
             EmployeeAPIs employeeAPIs = new EmployeeAPIs(CommonNinject.Kernel.Get<IEmployeeAPIRepository>());
 
@@ -156,7 +163,7 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
             this.combexSalespersonID.ValueMember = CommonExpressions.PropertyName<EmployeeBase>(p => p.EmployeeID);
             this.bindingSalespersonID = this.combexSalespersonID.DataBindings.Add("SelectedValue", this.salesOrderViewModel, CommonExpressions.PropertyName<SalesOrderViewModel>(p => p.SalespersonID), true, DataSourceUpdateMode.OnPropertyChanged);
 
-            this.bindingEntryDate.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);            
+            this.bindingEntryDate.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingReference.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingVoucherCode.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingDeliveryDate.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
@@ -167,6 +174,7 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
             this.bindingCaption.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
 
             this.bindingCustomerID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingReceiverID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingSalespersonID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.fastSalesOrderIndex.AboutToCreateGroups += fastSalesOrderIndex_AboutToCreateGroups;
 
@@ -178,15 +186,23 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
         protected override void CommonControl_BindingComplete(object sender, BindingCompleteEventArgs e)
         {
             base.CommonControl_BindingComplete(sender, e);
-            if (this.EditableMode && sender.Equals(this.bindingCustomerID))
+            if (this.EditableMode)
             {
-                if (this.combexCustomerID.SelectedItem != null)
+                if (sender.Equals(this.bindingCustomerID) && this.combexCustomerID.SelectedItem != null)
                 {
                     CustomerBase customerBase = (CustomerBase)this.combexCustomerID.SelectedItem;
                     this.salesOrderViewModel.CustomerName = customerBase.Name;
                     //THIS CommonControl_BindingComplete WILL BE RAISED FOR EVERY BINDING => SO WE CAN NOT UPDATE RELATIVE PROPERTY BY THIS WAY. SHOULD THINK OF NEW WAY FOR UPDATE SUCH RELATIVE PROPERTY (SUCH AS: ContactInfo, ShippingAddress OF Customer)
                     //this.salesOrderViewModel.ContactInfo = customerBase.ContactInfo;
                     //this.salesOrderViewModel.ShippingAddress = customerBase.ShippingAddress;
+                }
+                if (sender.Equals(this.bindingReceiverID) && this.combexReceiverID.SelectedItem != null)
+                {
+                    CustomerBase receiverBase = (CustomerBase)this.combexReceiverID.SelectedItem;
+                    this.salesOrderViewModel.ReceiverName = receiverBase.Name;
+                    //THIS CommonControl_BindingComplete WILL BE RAISED FOR EVERY BINDING => SO WE CAN NOT UPDATE RELATIVE PROPERTY BY THIS WAY. SHOULD THINK OF NEW WAY FOR UPDATE SUCH RELATIVE PROPERTY (SUCH AS: ContactInfo, ShippingAddress OF Receiver)
+                    //this.salesOrderViewModel.ContactInfo = receiverBase.ContactInfo;
+                    //this.salesOrderViewModel.ShippingAddress = receiverBase.ShippingAddress;
                 }
             }
         }
@@ -206,7 +222,7 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
         private BindingSource bindingSourceViewDetails = new BindingSource();
 
         protected override void InitializeDataGridBinding()
-        {            
+        {
             this.gridexViewDetails.AutoGenerateColumns = false;
             this.gridexViewDetails.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
@@ -262,7 +278,7 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
         public override void Loading()
         {
             this.fastSalesOrderIndex.SetObjects(this.salesOrderAPIs.GetSalesOrderIndexes());
-            
+
             base.Loading();
         }
 

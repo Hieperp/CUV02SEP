@@ -3963,6 +3963,16 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Treetog_Junior_User_group {
+            get {
+                object obj = ResourceManager.GetObject("Treetog-Junior-User-group", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Truck_24 {
             get {
                 object obj = ResourceManager.GetObject("Truck-24", resourceCulture);
@@ -4026,6 +4036,16 @@ namespace TotalSmartCoding.Properties {
         internal static System.Drawing.Bitmap UpgradeReport_Plus {
             get {
                 object obj = ResourceManager.GetObject("UpgradeReport_Plus", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap user_group_icon_red {
+            get {
+                object obj = ResourceManager.GetObject("user-group-icon-red", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

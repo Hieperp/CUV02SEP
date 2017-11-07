@@ -354,12 +354,6 @@
     <Compile Include="Views\Sales\DeliveryAdvices\DeliveryAdvices.designer.cs">
       <DependentUpon>DeliveryAdvices.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Sales\DeliveryAdvices\DeliveryAdviceXYZs.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\Sales\DeliveryAdvices\DeliveryAdviceXYZs.designer.cs">
-      <DependentUpon>DeliveryAdviceXYZs.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\Sales\DeliveryAdvices\OptionBatches.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -383,12 +377,6 @@
     </Compile>
     <Compile Include="Views\Sales\SalesOrders\SalesOrders.designer.cs">
       <DependentUpon>SalesOrders.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Sales\SalesOrders\SalesOrdersXYZ.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\Sales\SalesOrders\SalesOrdersXYZ.designer.cs">
-      <DependentUpon>SalesOrdersXYZ.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Sales\SalesOrders\WizardMaster.cs">
       <SubType>Form</SubType>
@@ -500,9 +488,6 @@
     <EmbeddedResource Include="Views\Sales\DeliveryAdvices\DeliveryAdvices.resx">
       <DependentUpon>DeliveryAdvices.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Sales\DeliveryAdvices\DeliveryAdviceXYZs.resx">
-      <DependentUpon>DeliveryAdviceXYZs.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Views\Sales\DeliveryAdvices\OptionBatches.resx">
       <DependentUpon>OptionBatches.cs</DependentUpon>
     </EmbeddedResource>
@@ -514,9 +499,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Sales\SalesOrders\SalesOrders.resx">
       <DependentUpon>SalesOrders.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\Sales\SalesOrders\SalesOrdersXYZ.resx">
-      <DependentUpon>SalesOrdersXYZ.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Sales\SalesOrders\WizardMaster.resx">
       <DependentUpon>WizardMaster.cs</DependentUpon>
@@ -1007,6 +989,8 @@
     <None Include="Resources\add-user.ico" />
     <None Include="Resources\remove-user.ico" />
     <None Include="Resources\add-user1.ico" />
+    <None Include="Resources\Treetog-Junior-User-group.ico" />
+    <None Include="Resources\user-group-icon-red.png" />
     <Content Include="SmartCodingSolution.ico" />
     <None Include="Resources\Yellow-cross.ico" />
     <None Include="Resources\White-Pallet.ico" />

@@ -46,6 +46,7 @@ namespace TotalModel.Models
         public bool InActive { get; set; }
         public bool InActivePartial { get; set; }
         public Nullable<System.DateTime> InActiveDate { get; set; }
+        public int ReceiverID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DeliveryAdviceDetail> DeliveryAdviceDetails { get; set; }
@@ -54,5 +55,6 @@ namespace TotalModel.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GoodsIssue> GoodsIssues { get; set; }
         public virtual Location Location { get; set; }
+        public virtual Customer Customer1 { get; set; }
     }
 }
