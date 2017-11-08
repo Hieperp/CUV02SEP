@@ -55,7 +55,7 @@
             this.toolStrip1.Location = new System.Drawing.Point(0, 143);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStrip1.Size = new System.Drawing.Size(673, 55);
+            this.toolStrip1.Size = new System.Drawing.Size(740, 55);
             this.toolStrip1.TabIndex = 100;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -111,7 +111,7 @@
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.layoutTop.Size = new System.Drawing.Size(673, 143);
+            this.layoutTop.Size = new System.Drawing.Size(740, 143);
             this.layoutTop.TabIndex = 101;
             // 
             // label1
@@ -121,9 +121,9 @@
             this.label1.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(87, 58);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(107, 30);
+            this.label1.Size = new System.Drawing.Size(120, 30);
             this.label1.TabIndex = 85;
-            this.label1.Text = "Skype Name";
+            this.label1.Text = "Skype Account";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // combexUserID
@@ -135,11 +135,11 @@
             this.combexUserID.Editable = true;
             this.combexUserID.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combexUserID.FormattingEnabled = true;
-            this.combexUserID.Location = new System.Drawing.Point(198, 28);
+            this.combexUserID.Location = new System.Drawing.Point(211, 28);
             this.combexUserID.Margin = new System.Windows.Forms.Padding(1);
             this.combexUserID.Name = "combexUserID";
             this.combexUserID.ReadOnly = false;
-            this.combexUserID.Size = new System.Drawing.Size(450, 29);
+            this.combexUserID.Size = new System.Drawing.Size(503, 29);
             this.combexUserID.TabIndex = 74;
             // 
             // label5
@@ -149,7 +149,7 @@
             this.label5.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(87, 27);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(107, 31);
+            this.label5.Size = new System.Drawing.Size(120, 31);
             this.label5.TabIndex = 78;
             this.label5.Text = "New User";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -163,11 +163,11 @@
             this.combexOrganizationalUnitID.Editable = true;
             this.combexOrganizationalUnitID.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combexOrganizationalUnitID.FormattingEnabled = true;
-            this.combexOrganizationalUnitID.Location = new System.Drawing.Point(198, 89);
+            this.combexOrganizationalUnitID.Location = new System.Drawing.Point(211, 89);
             this.combexOrganizationalUnitID.Margin = new System.Windows.Forms.Padding(1);
             this.combexOrganizationalUnitID.Name = "combexOrganizationalUnitID";
             this.combexOrganizationalUnitID.ReadOnly = false;
-            this.combexOrganizationalUnitID.Size = new System.Drawing.Size(450, 29);
+            this.combexOrganizationalUnitID.Size = new System.Drawing.Size(503, 29);
             this.combexOrganizationalUnitID.TabIndex = 80;
             // 
             // label2
@@ -177,7 +177,7 @@
             this.label2.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(87, 88);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(107, 31);
+            this.label2.Size = new System.Drawing.Size(120, 31);
             this.label2.TabIndex = 83;
             this.label2.Text = "Division";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -198,17 +198,17 @@
             this.textexSkypeName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexSkypeName.Editable = false;
             this.textexSkypeName.Font = new System.Drawing.Font("Calibri Light", 10.2F);
-            this.textexSkypeName.Location = new System.Drawing.Point(198, 59);
+            this.textexSkypeName.Location = new System.Drawing.Point(211, 59);
             this.textexSkypeName.Margin = new System.Windows.Forms.Padding(1);
             this.textexSkypeName.Name = "textexSkypeName";
-            this.textexSkypeName.Size = new System.Drawing.Size(450, 28);
+            this.textexSkypeName.Size = new System.Drawing.Size(503, 28);
             this.textexSkypeName.TabIndex = 84;
             // 
             // UserAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(673, 198);
+            this.ClientSize = new System.Drawing.Size(740, 198);
             this.Controls.Add(this.layoutTop);
             this.Controls.Add(this.toolStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

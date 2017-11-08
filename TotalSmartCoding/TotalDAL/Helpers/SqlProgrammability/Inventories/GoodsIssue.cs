@@ -45,6 +45,8 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             this.GoodsIssueToggleApproved();
 
             this.GoodsIssueInitReference();
+
+            this.GetGoodsIssueSheet();
         }
 
 
@@ -308,6 +310,41 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
         {
             SimpleInitReference simpleInitReference = new SimpleInitReference("GoodsIssues", "GoodsIssueID", "Reference", ModelSettingManager.ReferenceLength, ModelSettingManager.ReferencePrefix(GlobalEnums.NmvnTaskID.GoodsIssue));
             this.totalSmartCodingEntities.CreateTrigger("GoodsIssueInitReference", simpleInitReference.CreateQuery());
+        }
+
+        private void GetGoodsIssueSheet()
+        {
+            string queryString;
+
+            queryString = " @GoodsIssueID Int " + "\r\n";
+            //queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+            queryString = queryString + "    BEGIN " + "\r\n";
+
+            queryString = queryString + "       SELECT      GoodsIssues.GoodsIssueID, GoodsIssues.EntryDate, GoodsIssues.Reference, GoodsIssues.GoodsIssueTypeID, GoodsIssueTypes.Name AS GoodsIssueTypeName, GoodsIssues.PrimaryReferences, GoodsIssues.WarehouseID, Warehouses.Name AS WarehouseName, GoodsIssues.ForkliftDriverID, Storekeepers.Name AS StorekeeperName, GoodsIssues.StorekeeperID, ForkliftDrivers.Name AS ForkliftDriverName, " + "\r\n";
+            queryString = queryString + "                   GoodsIssues.CustomerID, Customers.Code AS CustomerCode, Customers.OfficialName AS CustomerOfficialName, GoodsIssues.ReceiverID, Receivers.Code AS ReceiverCode, GoodsIssues.WarehouseReceiptID, WarehouseReceipts.Name AS WarehouseReceiptName, GoodsIssues.Vehicle, GoodsIssues.Description, GoodsIssues.Remarks, " + "\r\n";
+            queryString = queryString + "                   GoodsIssueDetails.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, Commodities.PackageSize, GoodsIssueDetails.BatchID, Batches.Code AS BatchCode, GoodsIssueDetails.BinLocationID, BinLocations.Code AS BinLocationCode, GoodsIssueDetails.PalletID, Pallets.Code AS PalletCode, GoodsIssueDetails.CartonID, Cartons.Code AS CartonCode, GoodsIssueDetails.Quantity, GoodsIssueDetails.LineVolume " + "\r\n";
+            queryString = queryString + "                   " + "\r\n";
+            queryString = queryString + "       FROM        GoodsIssues " + "\r\n";
+            queryString = queryString + "                   INNER JOIN GoodsIssueTypes ON GoodsIssues.GoodsIssueID = @GoodsIssueID AND GoodsIssues.GoodsIssueTypeID = GoodsIssueTypes.GoodsIssueTypeID " + "\r\n";
+            queryString = queryString + "                   INNER JOIN Warehouses ON GoodsIssues.WarehouseID = Warehouses.WarehouseID " + "\r\n";
+            queryString = queryString + "                   INNER JOIN Employees AS ForkliftDrivers ON ForkliftDrivers.EmployeeID = GoodsIssues.ForkliftDriverID " + "\r\n";
+            queryString = queryString + "                   INNER JOIN Employees AS Storekeepers ON GoodsIssues.StorekeeperID = Storekeepers.EmployeeID " + "\r\n";
+            queryString = queryString + "                   INNER JOIN GoodsIssueDetails ON GoodsIssues.GoodsIssueID = GoodsIssueDetails.GoodsIssueID " + "\r\n";
+            queryString = queryString + "                   INNER JOIN Batches ON GoodsIssueDetails.BatchID = Batches.BatchID " + "\r\n";
+            queryString = queryString + "                   INNER JOIN Commodities ON GoodsIssueDetails.CommodityID = Commodities.CommodityID " + "\r\n";
+            queryString = queryString + "                   INNER JOIN BinLocations ON GoodsIssueDetails.BinLocationID = BinLocations.BinLocationID " + "\r\n";
+            queryString = queryString + "                   INNER JOIN Pallets ON GoodsIssueDetails.PalletID = Pallets.PalletID " + "\r\n";
+            queryString = queryString + "                   INNER JOIN Cartons ON GoodsIssueDetails.CartonID = Cartons.CartonID " + "\r\n";
+            queryString = queryString + "                   LEFT JOIN Customers ON GoodsIssues.CustomerID = Customers.CustomerID " + "\r\n";
+            queryString = queryString + "                   LEFT JOIN Customers AS Receivers ON GoodsIssues.ReceiverID = Receivers.CustomerID " + "\r\n";
+            queryString = queryString + "                   LEFT JOIN Warehouses WarehouseReceipts ON GoodsIssues.WarehouseReceiptID = WarehouseReceipts.WarehouseID " + "\r\n";
+
+            //queryString = queryString + "       ORDER BY    GoodsIssueDetails.GoodsIssueDetailID " + "\r\n";
+
+            queryString = queryString + "    END " + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("GetGoodsIssueSheet", queryString);
         }
 
 
