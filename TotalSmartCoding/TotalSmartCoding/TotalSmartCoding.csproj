@@ -261,12 +261,6 @@
     <Compile Include="Views\Inventories\WarehouseAdjustments\WarehouseAdjustments.designer.cs">
       <DependentUpon>WarehouseAdjustments.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Inventories\WarehouseAdjustments\WarehouseAdjustmentsXYZ.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\Inventories\WarehouseAdjustments\WarehouseAdjustmentsXYZ.designer.cs">
-      <DependentUpon>WarehouseAdjustmentsXYZ.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\Inventories\WarehouseAdjustments\WizardUnpack.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -439,9 +433,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Inventories\WarehouseAdjustments\WarehouseAdjustments.resx">
       <DependentUpon>WarehouseAdjustments.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\Inventories\WarehouseAdjustments\WarehouseAdjustmentsXYZ.resx">
-      <DependentUpon>WarehouseAdjustmentsXYZ.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Inventories\WarehouseAdjustments\WizardUnpack.resx">
       <DependentUpon>WizardUnpack.cs</DependentUpon>

@@ -322,7 +322,7 @@
             this.label11.AutoSize = true;
             this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label11.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(151, 5);
+            this.label11.Location = new System.Drawing.Point(150, 5);
             this.label11.Margin = new System.Windows.Forms.Padding(3);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(35, 105);
@@ -335,7 +335,7 @@
             this.label12.AutoSize = true;
             this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label12.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(299, 5);
+            this.label12.Location = new System.Drawing.Point(297, 5);
             this.label12.Margin = new System.Windows.Forms.Padding(3);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(35, 105);
@@ -504,7 +504,7 @@
             // gridexNegativeCartonDetails
             // 
             this.gridexNegativeCartonDetails.AllowAddRow = false;
-            this.gridexNegativeCartonDetails.AllowDeleteRow = true;
+            this.gridexNegativeCartonDetails.AllowDeleteRow = false;
             this.gridexNegativeCartonDetails.BackgroundColor = System.Drawing.Color.Ivory;
             this.gridexNegativeCartonDetails.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridexNegativeCartonDetails.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
@@ -606,7 +606,7 @@
             // gridexNegativePalletDetails
             // 
             this.gridexNegativePalletDetails.AllowAddRow = false;
-            this.gridexNegativePalletDetails.AllowDeleteRow = true;
+            this.gridexNegativePalletDetails.AllowDeleteRow = false;
             this.gridexNegativePalletDetails.BackgroundColor = System.Drawing.Color.Ivory;
             this.gridexNegativePalletDetails.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridexNegativePalletDetails.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
@@ -762,7 +762,7 @@
             // gridexPositiveCartonDetails
             // 
             this.gridexPositiveCartonDetails.AllowAddRow = false;
-            this.gridexPositiveCartonDetails.AllowDeleteRow = true;
+            this.gridexPositiveCartonDetails.AllowDeleteRow = false;
             this.gridexPositiveCartonDetails.BackgroundColor = System.Drawing.Color.Ivory;
             this.gridexPositiveCartonDetails.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridexPositiveCartonDetails.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
@@ -892,7 +892,7 @@
             // gridexPositivePalletDetails
             // 
             this.gridexPositivePalletDetails.AllowAddRow = false;
-            this.gridexPositivePalletDetails.AllowDeleteRow = true;
+            this.gridexPositivePalletDetails.AllowDeleteRow = false;
             this.gridexPositivePalletDetails.BackgroundColor = System.Drawing.Color.Ivory;
             this.gridexPositivePalletDetails.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridexPositivePalletDetails.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
@@ -1022,7 +1022,7 @@
             this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.019F));
             this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.32099F));
-            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 698F));
+            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 701F));
             this.tableLayoutPanelExtend.Controls.Add(this.combexCommodityID, 0, 0);
             this.tableLayoutPanelExtend.Controls.Add(this.label11, 3, 0);
             this.tableLayoutPanelExtend.Controls.Add(this.label12, 6, 0);
@@ -1049,7 +1049,7 @@
             this.combexCommodityID.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.combexCommodityID.Name = "combexCommodityID";
             this.combexCommodityID.ReadOnly = false;
-            this.combexCommodityID.Size = new System.Drawing.Size(93, 29);
+            this.combexCommodityID.Size = new System.Drawing.Size(92, 29);
             this.combexCommodityID.TabIndex = 72;
             // 
             // label10
