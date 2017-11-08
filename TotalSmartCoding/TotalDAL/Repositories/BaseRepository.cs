@@ -30,7 +30,7 @@ namespace TotalDAL.Repositories
             //if (!GlobalVariables.shouldRestoreProcedure) return;
 
             return;
-            //return;
+            return;
 
             Helpers.SqlProgrammability.Commons.Customer customer = new Helpers.SqlProgrammability.Commons.Customer(totalSmartCodingEntities);
             customer.RestoreProcedure();
@@ -50,26 +50,26 @@ namespace TotalDAL.Repositories
             Helpers.SqlProgrammability.Inventories.GoodsIssue goodsIssue = new Helpers.SqlProgrammability.Inventories.GoodsIssue(totalSmartCodingEntities);
             goodsIssue.RestoreProcedure();
 
-            return;
+            //return;
 
             Helpers.SqlProgrammability.Generals.UserReference userReference = new Helpers.SqlProgrammability.Generals.UserReference(totalSmartCodingEntities);
             userReference.RestoreProcedure();
 
 
-            return;
+            //return;
 
             Helpers.SqlProgrammability.Commons.AccessControl accessControl = new Helpers.SqlProgrammability.Commons.AccessControl(totalSmartCodingEntities);
             accessControl.RestoreProcedure();
 
            
-            return;
+            //return;
 
             Helpers.SqlProgrammability.Generals.Module module = new Helpers.SqlProgrammability.Generals.Module(totalSmartCodingEntities);
             module.RestoreProcedure();
 
             
 
-            return;
+            //return;
 
             Helpers.SqlProgrammability.Inventories.GoodsReceipt goodsReceipt = new Helpers.SqlProgrammability.Inventories.GoodsReceipt(totalSmartCodingEntities);
             goodsReceipt.RestoreProcedure();
@@ -242,7 +242,7 @@ namespace TotalDAL.Repositories
         {
             var userOrganizationalUnit = this.totalSmartCodingEntities.GetUserOrganizationalUnit(userName).FirstOrDefault();
             if (userOrganizationalUnit != null)
-                ContextAttributes.User = new UserInformation(userOrganizationalUnit.UserID, userOrganizationalUnit.OrganizationalUnitID, userOrganizationalUnit.UserName, userOrganizationalUnit.IsDatabaseAdmin, new DateTime());
+                ContextAttributes.User = new UserInformation(userOrganizationalUnit.UserID, userOrganizationalUnit.OrganizationalUnitID, userOrganizationalUnit.UserName, userOrganizationalUnit.SkypeName, userOrganizationalUnit.IsDatabaseAdmin, new DateTime());
 
             return ContextAttributes.User != null;
         }

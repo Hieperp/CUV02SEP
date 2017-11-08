@@ -153,7 +153,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
 
-            queryString = queryString + "       SELECT TOP 1 Users.UserID, Users.FirstName, Users.LastName, Users.UserName, Users.IsDatabaseAdmin, OrganizationalUnitUsers.OrganizationalUnitID FROM Users INNER JOIN OrganizationalUnitUsers ON Users.UserID = OrganizationalUnitUsers.UserID WHERE ({ fn UCASE(Users.UserName) } = { fn UCASE(@UserName) }) AND OrganizationalUnitUsers.InActive = 0 " + "\r\n";
+            queryString = queryString + "       SELECT TOP 1 Users.UserID, Users.FirstName, Users.LastName, Users.UserName, Users.SkypeName, Users.IsDatabaseAdmin, OrganizationalUnitUsers.OrganizationalUnitID FROM Users INNER JOIN OrganizationalUnitUsers ON Users.UserID = OrganizationalUnitUsers.UserID WHERE (({ fn UCASE(Users.UserName) } = { fn UCASE(@UserName) }) OR ({ fn UCASE(Users.SkypeName) } = { fn UCASE(@UserName) })) AND OrganizationalUnitUsers.InActive = 0 " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("GetUserOrganizationalUnit", queryString);
         }

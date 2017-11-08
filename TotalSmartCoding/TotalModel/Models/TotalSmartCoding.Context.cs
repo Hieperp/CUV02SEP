@@ -1772,7 +1772,7 @@ namespace TotalModel.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<OrganizationalUnitIndex>("GetOrganizationalUnitIndexes");
         }
     
-        public virtual int UserAdd(Nullable<int> organizationalUnitID, string firstName, string lastName, string userName)
+        public virtual int UserAdd(Nullable<int> organizationalUnitID, string firstName, string lastName, string userName, string skypeName)
         {
             var organizationalUnitIDParameter = organizationalUnitID.HasValue ?
                 new ObjectParameter("OrganizationalUnitID", organizationalUnitID) :
@@ -1790,7 +1790,11 @@ namespace TotalModel.Models
                 new ObjectParameter("UserName", userName) :
                 new ObjectParameter("UserName", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UserAdd", organizationalUnitIDParameter, firstNameParameter, lastNameParameter, userNameParameter);
+            var skypeNameParameter = skypeName != null ?
+                new ObjectParameter("SkypeName", skypeName) :
+                new ObjectParameter("SkypeName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UserAdd", organizationalUnitIDParameter, firstNameParameter, lastNameParameter, userNameParameter, skypeNameParameter);
         }
     
         public virtual int UserRemove(Nullable<int> userID)

@@ -138,14 +138,14 @@ namespace TotalSmartCoding.Views.Mains
                         this.comboBoxAutonicsPortName.SelectedIndex = this.comboBoxAutonicsPortName.Items.IndexOf(comportName);
 
 
-                    this.comboBoxEmployeeID.Text = ContextAttributes.User.UserName;
+                    this.comboBoxEmployeeID.Text = ContextAttributes.User.UserName + "   [" + ContextAttributes.User.SkypeName + "]";
                 }
                 else
                 {
                     this.comboFillingLineID.Visible = false;
                     this.comboBoxEmployeeID.Visible = false;
                     this.lbEmployeeID.Visible = false;
-                    this.lbProductionLineID.Text = "\r\n" + "Sorry, user " + System.Security.Principal.WindowsIdentity.GetCurrent().Name + " don't have permission to run this program." + "\r\n" + "\r\n" + "Contact your admin for more information. Thank you!" + "\r\n" + "\r\n" + "\r\n" + "Xin lỗi, bạn chưa được cấp quyền sử dụng phần mềm này.";
+                    this.lbProductionLineID.Text = "\r\n" + "Sorry, user " + System.Security.Principal.WindowsIdentity.GetCurrent().Name + "\r\n" + "Don't have permission to run this program." + "\r\n" + "\r\n" + "Contact your admin for more information. Thank you!" + "\r\n" + "\r\n" + "\r\n" + "Xin lỗi, bạn chưa được cấp quyền sử dụng phần mềm này.";
 
                     this.buttonOK.Visible = false;
                     this.buttonCancel.Text = "Close";
@@ -206,7 +206,7 @@ namespace TotalSmartCoding.Views.Mains
 
                     this.baseRepository.ExecuteStoreCommand("DELETE FROM     GoodsIssueTransferDetails", new ObjectParameter[] { });
                     this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('GoodsIssueTransferDetails', RESEED, 0)", new ObjectParameter[] { });
-                    
+
                     this.baseRepository.ExecuteStoreCommand("DELETE FROM     GoodsIssueDetails", new ObjectParameter[] { });
                     this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('GoodsIssueDetails', RESEED, 0)", new ObjectParameter[] { });
 

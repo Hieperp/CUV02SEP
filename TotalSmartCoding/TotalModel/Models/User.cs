@@ -25,6 +25,7 @@ namespace TotalModel.Models
         public string LastName { get; set; }
         public string UserName { get; set; }
         public bool IsDatabaseAdmin { get; set; }
+        public string SkypeName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrganizationalUnitUser> OrganizationalUnitUsers { get; set; }

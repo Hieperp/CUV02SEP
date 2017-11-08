@@ -680,6 +680,7 @@
           <Property Name="FirstName" Type="nvarchar" MaxLength="60" Nullable="false" />
           <Property Name="LastName" Type="nvarchar" MaxLength="60" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="SkypeName" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="IsDatabaseAdmin" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="WarehouseAdjustmentDetails">
@@ -2348,6 +2349,7 @@
           <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
           <Parameter Name="LastName" Type="nvarchar" Mode="In" />
           <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="SkypeName" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="UserRemove" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserID" Type="int" Mode="In" />
@@ -3669,6 +3671,7 @@
             <Parameter Name="FirstName" Mode="In" Type="String" />
             <Parameter Name="LastName" Mode="In" Type="String" />
             <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="SkypeName" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="UserRemove">
           <Parameter Name="UserID" Mode="In" Type="Int32" />
@@ -6409,6 +6412,7 @@
           <Property Type="String" Name="UserName" Nullable="false" MaxLength="256" />
           <Property Type="Int32" Name="OrganizationalUnitID" Nullable="false" />
           <Property Type="Boolean" Name="IsDatabaseAdmin" Nullable="false" />
+          <Property Type="String" Name="SkypeName" Nullable="false" MaxLength="256" />
         </ComplexType>
         <EntityType Name="User">
           <Key>
@@ -6420,6 +6424,7 @@
           <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="IsDatabaseAdmin" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="OrganizationalUnitUsers" Relationship="TotalSmartCodingModel.FK_OrganizationalUnitUsers_Users" FromRole="User" ToRole="OrganizationalUnitUser" />
+          <Property Name="SkypeName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_OrganizationalUnitUsers_Users">
           <End Type="TotalSmartCodingModel.User" Role="User" Multiplicity="1" />
@@ -6447,6 +6452,7 @@
           <Property Type="Boolean" Name="IsDatabaseAdmin" Nullable="false" />
           <Property Type="String" Name="OrganizationalUnitName" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="LocationName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="SkypeName" Nullable="false" MaxLength="256" />
         </ComplexType>
         <ComplexType Name="UserAccessControl">
           <Property Type="Int32" Name="AccessControlID" Nullable="false" />
@@ -8363,12 +8369,14 @@
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="OrganizationalUnitID" ColumnName="OrganizationalUnitID" />
                 <ScalarProperty Name="IsDatabaseAdmin" ColumnName="IsDatabaseAdmin" />
+                <ScalarProperty Name="SkypeName" ColumnName="SkypeName" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="TotalSmartCodingModel.User">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="SkypeName" ColumnName="SkypeName" />
                 <ScalarProperty Name="IsDatabaseAdmin" ColumnName="IsDatabaseAdmin" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
@@ -8397,6 +8405,7 @@
                 <ScalarProperty Name="IsDatabaseAdmin" ColumnName="IsDatabaseAdmin" />
                 <ScalarProperty Name="OrganizationalUnitName" ColumnName="OrganizationalUnitName" />
                 <ScalarProperty Name="LocationName" ColumnName="LocationName" />
+                <ScalarProperty Name="SkypeName" ColumnName="SkypeName" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

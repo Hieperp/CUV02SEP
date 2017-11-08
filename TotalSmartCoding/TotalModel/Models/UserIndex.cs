@@ -20,5 +20,6 @@ namespace TotalModel.Models
         public bool IsDatabaseAdmin { get; set; }
         public string OrganizationalUnitName { get; set; }
         public string LocationName { get; set; }
+        public string SkypeName { get; set; }
     }
 }

@@ -39,9 +39,9 @@ namespace TotalSmartCoding.Controllers.APIs.Generals
             return this.userAPIRepository.GetUserAccessControls(userID, nmvnTaskID).ToList();
         }
 
-        public int UserAdd(int? organizationalUnitID, string firstName, string lastName, string userName)
+        public int UserAdd(int? organizationalUnitID, string firstName, string lastName, string userName, string skypeName)
         {
-            return this.userAPIRepository.UserAdd(organizationalUnitID, firstName, lastName, userName);
+            return this.userAPIRepository.UserAdd(organizationalUnitID, firstName, lastName, userName, skypeName);
         }
 
         public int UserRemove(int? userID)

@@ -36,22 +36,20 @@
             this.olvPickupReference = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvWarehouseName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.fastPendingPickupWarehouses = new BrightIdeasSoftware.FastObjectListView();
-            this.olvWarehouseID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvWarehouseName1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.panelMaster = new System.Windows.Forms.Panel();
-            this.fastPendingGoodsIssueTransferWarehouses = new BrightIdeasSoftware.FastObjectListView();
-            this.olvColumn1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvColumn2 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.fastPendingGoodsIssueTransfers = new BrightIdeasSoftware.FastObjectListView();
             this.olvColumn3 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn4 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn5 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.fastPendingGoodsIssueTransferWarehouses = new BrightIdeasSoftware.FastObjectListView();
+            this.olvColumn2 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastPendingPickups)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fastPendingPickupWarehouses)).BeginInit();
             this.panelMaster.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.fastPendingGoodsIssueTransferWarehouses)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fastPendingGoodsIssueTransfers)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fastPendingGoodsIssueTransferWarehouses)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -123,24 +121,28 @@
             // olvPickupEntryDate
             // 
             this.olvPickupEntryDate.AspectName = "PickupEntryDate";
+            this.olvPickupEntryDate.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvPickupEntryDate.Text = "Entry Date";
+            this.olvPickupEntryDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvPickupEntryDate.Width = 170;
             // 
             // olvPickupReference
             // 
             this.olvPickupReference.AspectName = "PickupReference";
+            this.olvPickupReference.Text = "Reference";
             this.olvPickupReference.Width = 137;
             // 
             // olvWarehouseName
             // 
             this.olvWarehouseName.AspectName = "WarehouseName";
+            this.olvWarehouseName.FillsFreeSpace = true;
+            this.olvWarehouseName.Text = "Warehouse";
             this.olvWarehouseName.Width = 192;
             // 
             // fastPendingPickupWarehouses
             // 
-            this.fastPendingPickupWarehouses.AllColumns.Add(this.olvWarehouseID);
             this.fastPendingPickupWarehouses.AllColumns.Add(this.olvWarehouseName1);
             this.fastPendingPickupWarehouses.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.olvWarehouseID,
             this.olvWarehouseName1});
             this.fastPendingPickupWarehouses.Cursor = System.Windows.Forms.Cursors.Default;
             this.fastPendingPickupWarehouses.Dock = System.Windows.Forms.DockStyle.Top;
@@ -160,14 +162,11 @@
             this.fastPendingPickupWarehouses.View = System.Windows.Forms.View.Details;
             this.fastPendingPickupWarehouses.VirtualMode = true;
             // 
-            // olvWarehouseID
-            // 
-            this.olvWarehouseID.AspectName = "WarehouseID";
-            this.olvWarehouseID.Width = 161;
-            // 
             // olvWarehouseName1
             // 
             this.olvWarehouseName1.AspectName = "WarehouseName";
+            this.olvWarehouseName1.FillsFreeSpace = true;
+            this.olvWarehouseName1.Text = "Warehouse";
             this.olvWarehouseName1.Width = 263;
             // 
             // panelMaster
@@ -183,41 +182,6 @@
             this.panelMaster.Padding = new System.Windows.Forms.Padding(0, 9, 0, 0);
             this.panelMaster.Size = new System.Drawing.Size(1147, 548);
             this.panelMaster.TabIndex = 71;
-            // 
-            // fastPendingGoodsIssueTransferWarehouses
-            // 
-            this.fastPendingGoodsIssueTransferWarehouses.AllColumns.Add(this.olvColumn1);
-            this.fastPendingGoodsIssueTransferWarehouses.AllColumns.Add(this.olvColumn2);
-            this.fastPendingGoodsIssueTransferWarehouses.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.olvColumn1,
-            this.olvColumn2});
-            this.fastPendingGoodsIssueTransferWarehouses.Cursor = System.Windows.Forms.Cursors.Default;
-            this.fastPendingGoodsIssueTransferWarehouses.Dock = System.Windows.Forms.DockStyle.Top;
-            this.fastPendingGoodsIssueTransferWarehouses.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fastPendingGoodsIssueTransferWarehouses.FullRowSelect = true;
-            this.fastPendingGoodsIssueTransferWarehouses.HideSelection = false;
-            this.fastPendingGoodsIssueTransferWarehouses.HighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
-            this.fastPendingGoodsIssueTransferWarehouses.Location = new System.Drawing.Point(0, 211);
-            this.fastPendingGoodsIssueTransferWarehouses.Name = "fastPendingGoodsIssueTransferWarehouses";
-            this.fastPendingGoodsIssueTransferWarehouses.OwnerDraw = true;
-            this.fastPendingGoodsIssueTransferWarehouses.ShowGroups = false;
-            this.fastPendingGoodsIssueTransferWarehouses.Size = new System.Drawing.Size(1147, 117);
-            this.fastPendingGoodsIssueTransferWarehouses.TabIndex = 71;
-            this.fastPendingGoodsIssueTransferWarehouses.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
-            this.fastPendingGoodsIssueTransferWarehouses.UseCompatibleStateImageBehavior = false;
-            this.fastPendingGoodsIssueTransferWarehouses.UseFiltering = true;
-            this.fastPendingGoodsIssueTransferWarehouses.View = System.Windows.Forms.View.Details;
-            this.fastPendingGoodsIssueTransferWarehouses.VirtualMode = true;
-            // 
-            // olvColumn1
-            // 
-            this.olvColumn1.AspectName = "WarehouseID";
-            this.olvColumn1.Width = 161;
-            // 
-            // olvColumn2
-            // 
-            this.olvColumn2.AspectName = "WarehouseName";
-            this.olvColumn2.Width = 263;
             // 
             // fastPendingGoodsIssueTransfers
             // 
@@ -249,17 +213,53 @@
             // olvColumn3
             // 
             this.olvColumn3.AspectName = "PrimaryEntryDate";
-            this.olvColumn3.Width = 170;
+            this.olvColumn3.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvColumn3.Text = "Entry Date";
+            this.olvColumn3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvColumn3.Width = 139;
             // 
             // olvColumn4
             // 
             this.olvColumn4.AspectName = "PrimaryReference";
+            this.olvColumn4.Text = "Reference";
             this.olvColumn4.Width = 137;
             // 
             // olvColumn5
             // 
             this.olvColumn5.AspectName = "WarehouseName";
+            this.olvColumn5.FillsFreeSpace = true;
+            this.olvColumn5.Text = "Warehouse";
             this.olvColumn5.Width = 192;
+            // 
+            // fastPendingGoodsIssueTransferWarehouses
+            // 
+            this.fastPendingGoodsIssueTransferWarehouses.AllColumns.Add(this.olvColumn2);
+            this.fastPendingGoodsIssueTransferWarehouses.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.olvColumn2});
+            this.fastPendingGoodsIssueTransferWarehouses.Cursor = System.Windows.Forms.Cursors.Default;
+            this.fastPendingGoodsIssueTransferWarehouses.Dock = System.Windows.Forms.DockStyle.Top;
+            this.fastPendingGoodsIssueTransferWarehouses.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fastPendingGoodsIssueTransferWarehouses.FullRowSelect = true;
+            this.fastPendingGoodsIssueTransferWarehouses.HideSelection = false;
+            this.fastPendingGoodsIssueTransferWarehouses.HighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
+            this.fastPendingGoodsIssueTransferWarehouses.Location = new System.Drawing.Point(0, 211);
+            this.fastPendingGoodsIssueTransferWarehouses.Name = "fastPendingGoodsIssueTransferWarehouses";
+            this.fastPendingGoodsIssueTransferWarehouses.OwnerDraw = true;
+            this.fastPendingGoodsIssueTransferWarehouses.ShowGroups = false;
+            this.fastPendingGoodsIssueTransferWarehouses.Size = new System.Drawing.Size(1147, 117);
+            this.fastPendingGoodsIssueTransferWarehouses.TabIndex = 71;
+            this.fastPendingGoodsIssueTransferWarehouses.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
+            this.fastPendingGoodsIssueTransferWarehouses.UseCompatibleStateImageBehavior = false;
+            this.fastPendingGoodsIssueTransferWarehouses.UseFiltering = true;
+            this.fastPendingGoodsIssueTransferWarehouses.View = System.Windows.Forms.View.Details;
+            this.fastPendingGoodsIssueTransferWarehouses.VirtualMode = true;
+            // 
+            // olvColumn2
+            // 
+            this.olvColumn2.AspectName = "WarehouseName";
+            this.olvColumn2.FillsFreeSpace = true;
+            this.olvColumn2.Text = "Warehouse";
+            this.olvColumn2.Width = 263;
             // 
             // WizardMaster
             // 
@@ -280,8 +280,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.fastPendingPickups)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fastPendingPickupWarehouses)).EndInit();
             this.panelMaster.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.fastPendingGoodsIssueTransferWarehouses)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fastPendingGoodsIssueTransfers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fastPendingGoodsIssueTransferWarehouses)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -297,7 +297,6 @@
         private System.Windows.Forms.Panel panelMaster;
         private BrightIdeasSoftware.OLVColumn olvPickupEntryDate;
         private BrightIdeasSoftware.OLVColumn olvWarehouseName;
-        private BrightIdeasSoftware.OLVColumn olvWarehouseID;
         private BrightIdeasSoftware.OLVColumn olvWarehouseName1;
         private BrightIdeasSoftware.OLVColumn olvPickupReference;
         private BrightIdeasSoftware.FastObjectListView fastPendingGoodsIssueTransfers;
@@ -305,7 +304,6 @@
         private BrightIdeasSoftware.OLVColumn olvColumn4;
         private BrightIdeasSoftware.OLVColumn olvColumn5;
         private BrightIdeasSoftware.FastObjectListView fastPendingGoodsIssueTransferWarehouses;
-        private BrightIdeasSoftware.OLVColumn olvColumn1;
         private BrightIdeasSoftware.OLVColumn olvColumn2;
     }
 }
