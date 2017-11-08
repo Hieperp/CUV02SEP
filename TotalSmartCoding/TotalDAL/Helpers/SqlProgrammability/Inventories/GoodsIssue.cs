@@ -367,7 +367,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             }
 
 
-            private bool alwaysTrue = false;
+            private bool alwaysTrue = true;
             //HERE: WE ALWAYS AND ONLY CALL GetPendingDeliveryAdviceDetails AFTER SAVE SUCCESSFUL
             //AT GoodsIssues VIEWS: WE DON'T ALLOW TO USE CURRENT RESULT FROM GetPendingDeliveryAdviceDetails IF THE LAST SAVE IS NOT SUCCESSFULLY. WHEN SAVE SUCCESSFUL, THE GetPendingDeliveryAdviceDetails IS CALL IMMEDIATELY
             //SO => HERE: WE DON'T CARE BOTH: @DeliveryAdviceDetailIDs AND BuildSQLEdit. THIS IS THE REASON WHY WE USE: alwaysTrue = true WHEN BULD SQL QUERY

@@ -32,13 +32,13 @@
             this.buttonESC = new System.Windows.Forms.ToolStripButton();
             this.buttonOK = new System.Windows.Forms.ToolStripButton();
             this.layoutTop = new System.Windows.Forms.TableLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
             this.combexUserID = new CustomControls.CombexBox();
             this.label5 = new System.Windows.Forms.Label();
             this.combexOrganizationalUnitID = new CustomControls.CombexBox();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.textexSkypeName = new CustomControls.TextexBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             this.layoutTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -52,7 +52,7 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.buttonESC,
             this.buttonOK});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 116);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 143);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.toolStrip1.Size = new System.Drawing.Size(673, 55);
@@ -111,8 +111,20 @@
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.layoutTop.Size = new System.Drawing.Size(673, 116);
+            this.layoutTop.Size = new System.Drawing.Size(673, 143);
             this.layoutTop.TabIndex = 101;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(87, 58);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(107, 30);
+            this.label1.TabIndex = 85;
+            this.label1.Text = "Skype Name";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // combexUserID
             // 
@@ -192,23 +204,11 @@
             this.textexSkypeName.Size = new System.Drawing.Size(450, 28);
             this.textexSkypeName.TabIndex = 84;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(87, 58);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(107, 30);
-            this.label1.TabIndex = 85;
-            this.label1.Text = "Skype Name";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // UserAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(673, 171);
+            this.ClientSize = new System.Drawing.Size(673, 198);
             this.Controls.Add(this.layoutTop);
             this.Controls.Add(this.toolStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

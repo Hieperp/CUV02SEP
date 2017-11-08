@@ -120,7 +120,7 @@
             // 
             // olvPickupEntryDate
             // 
-            this.olvPickupEntryDate.AspectName = "PickupEntryDate";
+            this.olvPickupEntryDate.AspectName = "PrimaryEntryDate";
             this.olvPickupEntryDate.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvPickupEntryDate.Text = "Entry Date";
             this.olvPickupEntryDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -128,7 +128,7 @@
             // 
             // olvPickupReference
             // 
-            this.olvPickupReference.AspectName = "PickupReference";
+            this.olvPickupReference.AspectName = "PrimaryReference";
             this.olvPickupReference.Text = "Reference";
             this.olvPickupReference.Width = 137;
             // 
