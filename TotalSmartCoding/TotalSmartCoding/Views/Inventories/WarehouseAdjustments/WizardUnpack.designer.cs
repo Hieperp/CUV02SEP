@@ -34,15 +34,16 @@
             this.buttonAdd = new System.Windows.Forms.ToolStripButton();
             this.fastPendingPallets = new BrightIdeasSoftware.FastObjectListView();
             this.olvIsSelected = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvBatchEntryDate = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvBinLocationCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvCommodityCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvPalletCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvCommodityName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvBatchEntryDate = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvQuantityAvailable = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvPalletCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.panelMaster = new System.Windows.Forms.Panel();
             this.fastPendingCartons = new BrightIdeasSoftware.FastObjectListView();
             this.olvCartonCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvQuantityAvailable = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastPendingPallets)).BeginInit();
             this.panelMaster.SuspendLayout();
@@ -61,7 +62,7 @@
             this.toolStrip1.Location = new System.Drawing.Point(0, 548);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStrip1.Size = new System.Drawing.Size(1147, 55);
+            this.toolStrip1.Size = new System.Drawing.Size(1386, 55);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -101,22 +102,22 @@
             // fastPendingPallets
             // 
             this.fastPendingPallets.AllColumns.Add(this.olvIsSelected);
+            this.fastPendingPallets.AllColumns.Add(this.olvBinLocationCode);
             this.fastPendingPallets.AllColumns.Add(this.olvCommodityCode);
             this.fastPendingPallets.AllColumns.Add(this.olvCommodityName);
             this.fastPendingPallets.AllColumns.Add(this.olvBatchEntryDate);
-            this.fastPendingPallets.AllColumns.Add(this.olvBinLocationCode);
-            this.fastPendingPallets.AllColumns.Add(this.olvPalletCode);
             this.fastPendingPallets.AllColumns.Add(this.olvQuantityAvailable);
+            this.fastPendingPallets.AllColumns.Add(this.olvPalletCode);
             this.fastPendingPallets.CheckBoxes = true;
             this.fastPendingPallets.CheckedAspectName = "IsSelected";
             this.fastPendingPallets.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.olvIsSelected,
+            this.olvBinLocationCode,
             this.olvCommodityCode,
             this.olvCommodityName,
             this.olvBatchEntryDate,
-            this.olvBinLocationCode,
-            this.olvPalletCode,
-            this.olvQuantityAvailable});
+            this.olvQuantityAvailable,
+            this.olvPalletCode});
             this.fastPendingPallets.Cursor = System.Windows.Forms.Cursors.Default;
             this.fastPendingPallets.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fastPendingPallets.FullRowSelect = true;
@@ -127,7 +128,7 @@
             this.fastPendingPallets.OwnerDraw = true;
             this.fastPendingPallets.ShowGroups = false;
             this.fastPendingPallets.ShowImagesOnSubItems = true;
-            this.fastPendingPallets.Size = new System.Drawing.Size(1147, 245);
+            this.fastPendingPallets.Size = new System.Drawing.Size(1386, 245);
             this.fastPendingPallets.TabIndex = 69;
             this.fastPendingPallets.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastPendingPallets.UseCompatibleStateImageBehavior = false;
@@ -143,47 +144,54 @@
             this.olvIsSelected.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvIsSelected.Width = 20;
             // 
-            // olvBatchEntryDate
-            // 
-            this.olvBatchEntryDate.AspectName = "BatchEntryDate";
-            this.olvBatchEntryDate.DisplayIndex = 1;
-            this.olvBatchEntryDate.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvBatchEntryDate.Text = "Batch Date";
-            this.olvBatchEntryDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvBatchEntryDate.Width = 170;
-            // 
             // olvBinLocationCode
             // 
             this.olvBinLocationCode.AspectName = "BinLocationCode";
-            this.olvBinLocationCode.DisplayIndex = 2;
             this.olvBinLocationCode.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvBinLocationCode.Text = "Reference";
+            this.olvBinLocationCode.Text = "Bin Location";
             this.olvBinLocationCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvBinLocationCode.Width = 137;
+            this.olvBinLocationCode.Width = 110;
             // 
             // olvCommodityCode
             // 
             this.olvCommodityCode.AspectName = "CommodityCode";
-            this.olvCommodityCode.DisplayIndex = 3;
+            this.olvCommodityCode.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvCommodityCode.Text = "Item";
-            this.olvCommodityCode.Width = 192;
+            this.olvCommodityCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvCommodityCode.Width = 100;
+            // 
+            // olvCommodityName
+            // 
+            this.olvCommodityName.AspectName = "CommodityName";
+            this.olvCommodityName.Text = "Item Name";
+            this.olvCommodityName.Width = 310;
+            // 
+            // olvBatchEntryDate
+            // 
+            this.olvBatchEntryDate.AspectName = "BatchEntryDate";
+            this.olvBatchEntryDate.AspectToStringFormat = "{0:d}";
+            this.olvBatchEntryDate.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvBatchEntryDate.Text = "Batch Date";
+            this.olvBatchEntryDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvBatchEntryDate.Width = 100;
+            // 
+            // olvQuantityAvailable
+            // 
+            this.olvQuantityAvailable.AspectName = "QuantityAvailable";
+            this.olvQuantityAvailable.AspectToStringFormat = "{0:#,#}";
+            this.olvQuantityAvailable.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvQuantityAvailable.Text = "Quantity";
+            this.olvQuantityAvailable.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvQuantityAvailable.Width = 79;
             // 
             // olvPalletCode
             // 
             this.olvPalletCode.AspectName = "PalletCode";
-            this.olvPalletCode.DisplayIndex = 4;
             this.olvPalletCode.FillsFreeSpace = true;
             this.olvPalletCode.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvPalletCode.Text = "Pallet Code";
             this.olvPalletCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvPalletCode.Width = 200;
-            // 
-            // olvCommodityName
-            // 
-            this.olvCommodityName.AspectName = "CommodityName";
-            this.olvCommodityName.DisplayIndex = 5;
-            this.olvCommodityName.FillsFreeSpace = true;
-            this.olvCommodityName.Text = "Item Name";
             // 
             // panelMaster
             // 
@@ -193,14 +201,16 @@
             this.panelMaster.Location = new System.Drawing.Point(0, 0);
             this.panelMaster.Name = "panelMaster";
             this.panelMaster.Padding = new System.Windows.Forms.Padding(0, 9, 0, 0);
-            this.panelMaster.Size = new System.Drawing.Size(1147, 548);
+            this.panelMaster.Size = new System.Drawing.Size(1386, 548);
             this.panelMaster.TabIndex = 71;
             // 
             // fastPendingCartons
             // 
+            this.fastPendingCartons.AllColumns.Add(this.olvColumn1);
             this.fastPendingCartons.AllColumns.Add(this.olvCartonCode);
             this.fastPendingCartons.CheckedAspectName = "";
             this.fastPendingCartons.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.olvColumn1,
             this.olvCartonCode});
             this.fastPendingCartons.Cursor = System.Windows.Forms.Cursors.Default;
             this.fastPendingCartons.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -212,7 +222,7 @@
             this.fastPendingCartons.OwnerDraw = true;
             this.fastPendingCartons.ShowGroups = false;
             this.fastPendingCartons.ShowImagesOnSubItems = true;
-            this.fastPendingCartons.Size = new System.Drawing.Size(1147, 245);
+            this.fastPendingCartons.Size = new System.Drawing.Size(1386, 245);
             this.fastPendingCartons.TabIndex = 70;
             this.fastPendingCartons.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastPendingCartons.UseCompatibleStateImageBehavior = false;
@@ -230,18 +240,16 @@
             this.olvCartonCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvCartonCode.Width = 200;
             // 
-            // olvQuantityAvailable
+            // olvColumn1
             // 
-            this.olvQuantityAvailable.AspectName = "QuantityAvailable";
-            this.olvQuantityAvailable.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvQuantityAvailable.Text = "Quantity";
-            this.olvQuantityAvailable.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvColumn1.Text = "";
+            this.olvColumn1.Width = 20;
             // 
             // WizardUnpack
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1147, 603);
+            this.ClientSize = new System.Drawing.Size(1386, 603);
             this.Controls.Add(this.panelMaster);
             this.Controls.Add(this.toolStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -278,5 +286,6 @@
         private BrightIdeasSoftware.OLVColumn olvCartonCode;
         private System.Windows.Forms.ToolStripButton buttonAdd;
         private BrightIdeasSoftware.OLVColumn olvQuantityAvailable;
+        private BrightIdeasSoftware.OLVColumn olvColumn1;
     }
 }
