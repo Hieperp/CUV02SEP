@@ -32,6 +32,11 @@ namespace TotalDAL.Repositories
             return;
             return;
 
+            Helpers.SqlProgrammability.Commons.AccessControl accessControl = new Helpers.SqlProgrammability.Commons.AccessControl(totalSmartCodingEntities);
+            accessControl.RestoreProcedure();
+
+            return;
+
             Helpers.SqlProgrammability.Inventories.GoodsIssue goodsIssue = new Helpers.SqlProgrammability.Inventories.GoodsIssue(totalSmartCodingEntities);
             goodsIssue.RestoreProcedure();
 
@@ -57,11 +62,7 @@ namespace TotalDAL.Repositories
             userReference.RestoreProcedure();
 
 
-            //return;
-
-            Helpers.SqlProgrammability.Commons.AccessControl accessControl = new Helpers.SqlProgrammability.Commons.AccessControl(totalSmartCodingEntities);
-            accessControl.RestoreProcedure();
-
+            
            
             //return;
 

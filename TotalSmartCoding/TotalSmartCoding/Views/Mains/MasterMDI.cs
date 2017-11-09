@@ -136,7 +136,7 @@ namespace TotalSmartCoding.Views.Mains
 
                 this.toolUserReferences.Visible = ContextAttributes.User.IsDatabaseAdmin;
                 this.statusFillingLine.Text = GlobalVariables.FillingLineName;
-                this.statusUserDescription.Text = ContextAttributes.User.UserName + "   [" + ContextAttributes.User.SkypeName + "]";
+                this.statusUserDescription.Text = ContextAttributes.User.UserName;
             }
             catch (Exception exception)
             {

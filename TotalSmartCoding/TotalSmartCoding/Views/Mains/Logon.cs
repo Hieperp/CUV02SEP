@@ -20,6 +20,7 @@ using TotalModel.Models;
 using TotalDAL.Repositories;
 using TotalCore.Repositories;
 using System.Data.Entity.Core.Objects;
+using System.DirectoryServices.AccountManagement;
 
 namespace TotalSmartCoding.Views.Mains
 {
@@ -103,8 +104,9 @@ namespace TotalSmartCoding.Views.Mains
             try
             {
                 this.baseRepository = CommonNinject.Kernel.Get<IBaseRepository>();
+                UserPrincipal qbeUser = UserPrincipal.Current;
 
-                if (this.baseRepository.GetUser(System.Security.Principal.WindowsIdentity.GetCurrent().Name))
+                if (qbeUser != null && qbeUser.Sid != null && this.baseRepository.GetUser(qbeUser.Sid.Value))
                 {
                     FillingLineAPIs fillingLineAPIs = new FillingLineAPIs(CommonNinject.Kernel.Get<IFillingLineAPIRepository>());
 
@@ -138,14 +140,14 @@ namespace TotalSmartCoding.Views.Mains
                         this.comboBoxAutonicsPortName.SelectedIndex = this.comboBoxAutonicsPortName.Items.IndexOf(comportName);
 
 
-                    this.comboBoxEmployeeID.Text = ContextAttributes.User.UserName + "   [" + ContextAttributes.User.SkypeName + "]";
+                    this.comboBoxEmployeeID.Text = ContextAttributes.User.UserName;
                 }
                 else
                 {
                     this.comboFillingLineID.Visible = false;
                     this.comboBoxEmployeeID.Visible = false;
                     this.lbEmployeeID.Visible = false;
-                    this.lbProductionLineID.Text = "\r\n" + "Sorry, user " + System.Security.Principal.WindowsIdentity.GetCurrent().Name + "\r\n" + "Don't have permission to run this program." + "\r\n" + "\r\n" + "Contact your admin for more information. Thank you!" + "\r\n" + "\r\n" + "\r\n" + "Xin lỗi, bạn chưa được cấp quyền sử dụng phần mềm này.";
+                    this.lbProductionLineID.Text = "\r\n" + "Sorry, user: " + qbeUser.Name + "\r\n" + "Don't have permission to run this program." + "\r\n" + "\r\n" + "Contact your admin for more information. Thank you!" + "\r\n" + "\r\n" + "\r\n" + "Xin lỗi, bạn chưa được cấp quyền sử dụng phần mềm này.";
 
                     this.buttonOK.Visible = false;
                     this.buttonCancel.Text = "Close";

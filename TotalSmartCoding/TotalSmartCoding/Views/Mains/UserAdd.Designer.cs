@@ -32,13 +32,11 @@
             this.buttonESC = new System.Windows.Forms.ToolStripButton();
             this.buttonOK = new System.Windows.Forms.ToolStripButton();
             this.layoutTop = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
             this.combexUserID = new CustomControls.CombexBox();
             this.label5 = new System.Windows.Forms.Label();
             this.combexOrganizationalUnitID = new CustomControls.CombexBox();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.textexSkypeName = new CustomControls.TextexBox();
             this.toolStrip1.SuspendLayout();
             this.layoutTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -52,7 +50,7 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.buttonESC,
             this.buttonOK});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 143);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 116);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.toolStrip1.Size = new System.Drawing.Size(740, 55);
@@ -92,39 +90,25 @@
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
-            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 24F));
-            this.layoutTop.Controls.Add(this.label1, 2, 2);
+            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.layoutTop.Controls.Add(this.combexUserID, 3, 1);
             this.layoutTop.Controls.Add(this.label5, 2, 1);
-            this.layoutTop.Controls.Add(this.combexOrganizationalUnitID, 3, 3);
-            this.layoutTop.Controls.Add(this.label2, 2, 3);
+            this.layoutTop.Controls.Add(this.combexOrganizationalUnitID, 3, 2);
+            this.layoutTop.Controls.Add(this.label2, 2, 2);
             this.layoutTop.Controls.Add(this.pictureBox2, 1, 1);
-            this.layoutTop.Controls.Add(this.textexSkypeName, 3, 2);
             this.layoutTop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutTop.Location = new System.Drawing.Point(0, 0);
             this.layoutTop.Margin = new System.Windows.Forms.Padding(0);
             this.layoutTop.Name = "layoutTop";
             this.layoutTop.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.layoutTop.RowCount = 5;
+            this.layoutTop.RowCount = 4;
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.layoutTop.Size = new System.Drawing.Size(740, 143);
+            this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.layoutTop.Size = new System.Drawing.Size(740, 116);
             this.layoutTop.TabIndex = 101;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(87, 58);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(120, 30);
-            this.label1.TabIndex = 85;
-            this.label1.Text = "Skype Account";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // combexUserID
             // 
@@ -139,7 +123,7 @@
             this.combexUserID.Margin = new System.Windows.Forms.Padding(1);
             this.combexUserID.Name = "combexUserID";
             this.combexUserID.ReadOnly = false;
-            this.combexUserID.Size = new System.Drawing.Size(503, 29);
+            this.combexUserID.Size = new System.Drawing.Size(502, 29);
             this.combexUserID.TabIndex = 74;
             // 
             // label5
@@ -163,11 +147,11 @@
             this.combexOrganizationalUnitID.Editable = true;
             this.combexOrganizationalUnitID.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combexOrganizationalUnitID.FormattingEnabled = true;
-            this.combexOrganizationalUnitID.Location = new System.Drawing.Point(211, 89);
+            this.combexOrganizationalUnitID.Location = new System.Drawing.Point(211, 59);
             this.combexOrganizationalUnitID.Margin = new System.Windows.Forms.Padding(1);
             this.combexOrganizationalUnitID.Name = "combexOrganizationalUnitID";
             this.combexOrganizationalUnitID.ReadOnly = false;
-            this.combexOrganizationalUnitID.Size = new System.Drawing.Size(503, 29);
+            this.combexOrganizationalUnitID.Size = new System.Drawing.Size(502, 29);
             this.combexOrganizationalUnitID.TabIndex = 80;
             // 
             // label2
@@ -175,7 +159,7 @@
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label2.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(87, 88);
+            this.label2.Location = new System.Drawing.Point(87, 58);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(120, 31);
             this.label2.TabIndex = 83;
@@ -187,28 +171,17 @@
             this.pictureBox2.Image = global::TotalSmartCoding.Properties.Resources.add_user;
             this.pictureBox2.Location = new System.Drawing.Point(33, 30);
             this.pictureBox2.Name = "pictureBox2";
-            this.layoutTop.SetRowSpan(this.pictureBox2, 4);
+            this.layoutTop.SetRowSpan(this.pictureBox2, 3);
             this.pictureBox2.Size = new System.Drawing.Size(48, 48);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox2.TabIndex = 75;
             this.pictureBox2.TabStop = false;
             // 
-            // textexSkypeName
-            // 
-            this.textexSkypeName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textexSkypeName.Editable = false;
-            this.textexSkypeName.Font = new System.Drawing.Font("Calibri Light", 10.2F);
-            this.textexSkypeName.Location = new System.Drawing.Point(211, 59);
-            this.textexSkypeName.Margin = new System.Windows.Forms.Padding(1);
-            this.textexSkypeName.Name = "textexSkypeName";
-            this.textexSkypeName.Size = new System.Drawing.Size(503, 28);
-            this.textexSkypeName.TabIndex = 84;
-            // 
             // UserAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(740, 198);
+            this.ClientSize = new System.Drawing.Size(740, 171);
             this.Controls.Add(this.layoutTop);
             this.Controls.Add(this.toolStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -238,7 +211,5 @@
         private CustomControls.CombexBox combexOrganizationalUnitID;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Label label1;
-        private CustomControls.TextexBox textexSkypeName;
     }
 }

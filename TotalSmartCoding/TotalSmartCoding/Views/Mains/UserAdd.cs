@@ -18,12 +18,10 @@ namespace TotalSmartCoding.Views.Mains
         private UserAPIs userAPIs { get; set; }
 
         public string UserName { get; set; }
-        public string SkypeName { get; set; }
         public int? OrganizationalUnitID { get; set; }
 
         private Binding bindingUserName;
         private Binding bindingOrganizationalUnitID;
-        private Binding bindingSkypeName;
 
         public UserAdd(UserAPIs userAPIs)
         {
@@ -38,7 +36,7 @@ namespace TotalSmartCoding.Views.Mains
 
                 foreach (var found in srch.FindAll())// find all matches
                 {// do whatever here - "found" is of type "Principal" - it could be user, group, computer.....          
-                    allUsers.Add(new DomainUser() { FirstName = found.DisplayName, LastName = found.Name, UserName = this.GetWindowsIdentityName(found.DistinguishedName) });
+                    allUsers.Add(new DomainUser() { FirstName = found.DisplayName, LastName = found.Name, UserName = this.GetWindowsIdentityName(found.DistinguishedName), SkypeName = found.Sid.Value });
                 }
 
                 this.combexUserID.DataSource = allUsers;
@@ -51,8 +49,6 @@ namespace TotalSmartCoding.Views.Mains
                 this.combexOrganizationalUnitID.DisplayMember = CommonExpressions.PropertyName<OrganizationalUnitIndex>(p => p.LocationOrganizationalUnitName);
                 this.combexOrganizationalUnitID.ValueMember = CommonExpressions.PropertyName<OrganizationalUnitIndex>(p => p.OrganizationalUnitID);
                 this.bindingOrganizationalUnitID = this.combexOrganizationalUnitID.DataBindings.Add("SelectedValue", this, CommonExpressions.PropertyName<OrganizationalUnitIndex>(p => p.OrganizationalUnitID), true, DataSourceUpdateMode.OnPropertyChanged);
-
-                this.bindingSkypeName = this.textexSkypeName.DataBindings.Add("Text", this, CommonExpressions.PropertyName<UserInformation>(p => p.SkypeName), true, DataSourceUpdateMode.OnPropertyChanged);
             }
             catch (Exception exception)
             {
@@ -82,12 +78,12 @@ namespace TotalSmartCoding.Views.Mains
             {
                 if (sender.Equals(this.buttonOK))
                 {
-                    if (this.combexUserID.SelectedIndex >= 0 && this.UserName != null && this.SkypeName != null && this.OrganizationalUnitID != null)
+                    if (this.combexUserID.SelectedIndex >= 0 && this.UserName != null && this.OrganizationalUnitID != null)
                     {
                         DomainUser domainUser = this.combexUserID.SelectedItem as DomainUser;
                         if (domainUser != null)
                         {
-                            this.userAPIs.UserAdd(this.OrganizationalUnitID, domainUser.FirstName, domainUser.LastName, domainUser.UserName, this.SkypeName);
+                            this.userAPIs.UserAdd(this.OrganizationalUnitID, domainUser.FirstName, domainUser.LastName, domainUser.UserName, domainUser.SkypeName);
                             this.DialogResult = DialogResult.OK;
                         }
                     }
@@ -109,6 +105,7 @@ namespace TotalSmartCoding.Views.Mains
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string UserName { get; set; }
+        public string SkypeName { get; set; }
     }
 
 }
