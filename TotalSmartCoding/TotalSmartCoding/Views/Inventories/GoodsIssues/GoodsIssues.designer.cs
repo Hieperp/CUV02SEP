@@ -218,9 +218,11 @@
             // 
             // dateTimexEntryDate
             // 
+            this.dateTimexEntryDate.CustomFormat = "dd/MMM/yyyy HH:mm:ss";
             this.dateTimexEntryDate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dateTimexEntryDate.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
             this.dateTimexEntryDate.Editable = false;
+            this.dateTimexEntryDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimexEntryDate.Location = new System.Drawing.Point(122, 11);
             this.dateTimexEntryDate.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
             this.dateTimexEntryDate.Name = "dateTimexEntryDate";
@@ -427,10 +429,10 @@
             this.buttonRemoveDetailItem,
             this.buttonImportHandheld});
             this.toolStripNaviGroup.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.toolStripNaviGroup.Location = new System.Drawing.Point(573, 0);
+            this.toolStripNaviGroup.Location = new System.Drawing.Point(612, 0);
             this.toolStripNaviGroup.Name = "toolStripNaviGroup";
             this.toolStripNaviGroup.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStripNaviGroup.Size = new System.Drawing.Size(105, 39);
+            this.toolStripNaviGroup.Size = new System.Drawing.Size(66, 39);
             this.toolStripNaviGroup.TabIndex = 76;
             this.toolStripNaviGroup.Visible = false;
             // 

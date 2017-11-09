@@ -235,8 +235,10 @@
             // 
             // dateTimexEntryDate
             // 
+            this.dateTimexEntryDate.CustomFormat = "dd/MMM/yyyy HH:mm:ss";
             this.dateTimexEntryDate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dateTimexEntryDate.Editable = true;
+            this.dateTimexEntryDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimexEntryDate.Location = new System.Drawing.Point(33, 38);
             this.dateTimexEntryDate.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.dateTimexEntryDate.Name = "dateTimexEntryDate";

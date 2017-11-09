@@ -244,18 +244,6 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
 
                 this.customTabCenterNegative.TabPages[0].Text = "Pallets [ -" + this.warehouseAdjustmentViewModel.NegativePalletDetails.Count.ToString("N0") + " item(s)]             ";
                 this.customTabCenterNegative.TabPages[1].Text = "Cartons [ -" + this.warehouseAdjustmentViewModel.NegativeCartonDetails.Count.ToString("N0") + " item(s)]             ";
-
-                //this.gridexPositivePalletDetails.Columns["Pallet" + CommonExpressions.PropertyName<WarehouseAdjustmentDetailDTO>(p => p.PickupReference)].Visible = this.warehouseAdjustmentViewModel.PickupID == null;
-                //this.gridexPositivePalletDetails.Columns["Pallet" + CommonExpressions.PropertyName<WarehouseAdjustmentDetailDTO>(p => p.PickupEntryDate)].Visible = this.warehouseAdjustmentViewModel.PickupID == null;
-
-                //this.gridexPositiveCartonDetails.Columns["Carton" + CommonExpressions.PropertyName<WarehouseAdjustmentDetailDTO>(p => p.PickupReference)].Visible = this.warehouseAdjustmentViewModel.PickupID == null;
-                //this.gridexPositiveCartonDetails.Columns["Carton" + CommonExpressions.PropertyName<WarehouseAdjustmentDetailDTO>(p => p.PickupEntryDate)].Visible = this.warehouseAdjustmentViewModel.PickupID == null;
-
-                //this.gridexNegativePalletDetails.Columns["Pallet" + CommonExpressions.PropertyName<WarehouseAdjustmentDetailDTO>(p => p.PickupReference)].Visible = this.warehouseAdjustmentViewModel.PickupID == null;
-                //this.gridexNegativePalletDetails.Columns["Pallet" + CommonExpressions.PropertyName<WarehouseAdjustmentDetailDTO>(p => p.PickupEntryDate)].Visible = this.warehouseAdjustmentViewModel.PickupID == null;
-
-                //this.gridexNegativeCartonDetails.Columns["Carton" + CommonExpressions.PropertyName<WarehouseAdjustmentDetailDTO>(p => p.PickupReference)].Visible = this.warehouseAdjustmentViewModel.PickupID == null;
-                //this.gridexNegativeCartonDetails.Columns["Carton" + CommonExpressions.PropertyName<WarehouseAdjustmentDetailDTO>(p => p.PickupEntryDate)].Visible = this.warehouseAdjustmentViewModel.PickupID == null;
             }
         }
 

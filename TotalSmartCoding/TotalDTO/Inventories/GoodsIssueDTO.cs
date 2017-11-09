@@ -20,6 +20,9 @@ namespace TotalDTO.Inventories
     {
         public override GlobalEnums.NmvnTaskID NMVNTaskID { get { return GlobalEnums.NmvnTaskID.GoodsIssue; } }
 
+        public override bool Printable { get { return true; } }
+        public override bool PrintVisible { get { return true; } }
+
         public override int GetID() { return this.GoodsIssueID; }
         public void SetID(int id) { this.GoodsIssueID = id; }
 
@@ -134,7 +137,7 @@ namespace TotalDTO.Inventories
 
 
         private int forkliftDriverID;
-        //[DefaultValue(null)]
+        [DefaultValue(null)]
         public int ForkliftDriverID
         {
             get { return this.forkliftDriverID; }
@@ -142,7 +145,7 @@ namespace TotalDTO.Inventories
         }
 
         private int storekeeperID;
-        //[DefaultValue(null)]
+        [DefaultValue(null)]
         public int StorekeeperID
         {
             get { return this.storekeeperID; }

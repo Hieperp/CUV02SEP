@@ -287,9 +287,11 @@
             // 
             // dateTimexDeliveryDate
             // 
+            this.dateTimexDeliveryDate.CustomFormat = "dd/MMM/yyyy HH:mm:ss";
             this.dateTimexDeliveryDate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dateTimexDeliveryDate.Editable = true;
             this.dateTimexDeliveryDate.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimexDeliveryDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimexDeliveryDate.Location = new System.Drawing.Point(297, 270);
             this.dateTimexDeliveryDate.Margin = new System.Windows.Forms.Padding(1);
             this.dateTimexDeliveryDate.Name = "dateTimexDeliveryDate";
@@ -346,9 +348,11 @@
             // 
             // dateTimexEntryDate
             // 
+            this.dateTimexEntryDate.CustomFormat = "dd/MMM/yyyy HH:mm:ss";
             this.dateTimexEntryDate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dateTimexEntryDate.Editable = true;
             this.dateTimexEntryDate.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimexEntryDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimexEntryDate.Location = new System.Drawing.Point(297, 28);
             this.dateTimexEntryDate.Margin = new System.Windows.Forms.Padding(1);
             this.dateTimexEntryDate.Name = "dateTimexEntryDate";

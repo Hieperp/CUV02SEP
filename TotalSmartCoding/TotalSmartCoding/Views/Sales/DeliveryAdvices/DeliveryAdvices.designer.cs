@@ -84,6 +84,7 @@
             this.menuOptionBatches = new System.Windows.Forms.ToolStripMenuItem();
             this.naviGroupTop = new Guifreaks.Navisuite.NaviGroup(this.components);
             this.layoutTop = new System.Windows.Forms.TableLayoutPanel();
+            this.textexBox1 = new CustomControls.TextexBox();
             this.combexCustomerID = new CustomControls.CombexBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.textexDeliveryAddress = new CustomControls.TextexBox();
@@ -107,7 +108,6 @@
             this.olvTotalLineVolume = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvApproved = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.imageList32 = new System.Windows.Forms.ImageList(this.components);
-            this.textexBox1 = new CustomControls.TextexBox();
             this.layoutLeft.SuspendLayout();
             this.toolStripChildForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.naviGroupDetails)).BeginInit();
@@ -163,9 +163,11 @@
             // 
             // dateTimexEntryDate
             // 
+            this.dateTimexEntryDate.CustomFormat = "dd/MMM/yyyy HH:mm:ss";
             this.dateTimexEntryDate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dateTimexEntryDate.Editable = true;
             this.dateTimexEntryDate.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimexEntryDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimexEntryDate.Location = new System.Drawing.Point(3, 35);
             this.dateTimexEntryDate.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.dateTimexEntryDate.Name = "dateTimexEntryDate";
@@ -689,6 +691,15 @@
             this.layoutTop.Size = new System.Drawing.Size(1135, 99);
             this.layoutTop.TabIndex = 8;
             // 
+            // textexBox1
+            // 
+            this.textexBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textexBox1.Editable = true;
+            this.textexBox1.Location = new System.Drawing.Point(788, 50);
+            this.textexBox1.Name = "textexBox1";
+            this.textexBox1.Size = new System.Drawing.Size(324, 28);
+            this.textexBox1.TabIndex = 86;
+            // 
             // combexCustomerID
             // 
             this.combexCustomerID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
@@ -936,15 +947,6 @@
             this.imageList32.Images.SetKeyName(9, "Checklist32");
             this.imageList32.Images.SetKeyName(10, "Schedule-32");
             this.imageList32.Images.SetKeyName(11, "item_List-32");
-            // 
-            // textexBox1
-            // 
-            this.textexBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textexBox1.Editable = true;
-            this.textexBox1.Location = new System.Drawing.Point(788, 50);
-            this.textexBox1.Name = "textexBox1";
-            this.textexBox1.Size = new System.Drawing.Size(324, 28);
-            this.textexBox1.TabIndex = 86;
             // 
             // DeliveryAdvices
             // 

@@ -28,6 +28,7 @@ using TotalBase;
 using TotalModel.Models;
 using TotalSmartCoding.Properties;
 using TotalDTO.Inventories;
+using TotalSmartCoding.ViewModels.Helpers;
 
 namespace TotalSmartCoding.Views.Inventories.GoodsIssues
 {
@@ -377,6 +378,14 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
         {
             this.callAutoSave();
         }
-        
+
+        protected override PrintViewModel InitPrintViewModel()
+        {
+            PrintViewModel printViewModel = base.InitPrintViewModel();
+            printViewModel.ReportPath = "GoodsIssueSheet";
+            printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("GoodsIssueID", this.goodsIssueViewModel.GoodsIssueID.ToString()));
+            return printViewModel;
+        }
+
     }
 }

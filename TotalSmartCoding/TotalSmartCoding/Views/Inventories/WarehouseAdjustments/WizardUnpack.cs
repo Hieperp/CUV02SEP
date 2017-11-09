@@ -34,7 +34,6 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
             InitializeComponent();
 
             this.customTabBatch = new CustomTabControl();
-            //this.customTabBatch.ImageList = this.imageListTabControl;
 
             this.customTabBatch.Font = this.fastPendingPallets.Font;
             this.customTabBatch.DisplayStyle = TabStyle.VisualStudio;
@@ -53,8 +52,7 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
 
 
             this.warehouseAdjustmentViewModel = warehouseAdjustmentViewModel;
-            this.cartonAPIs = new CartonAPIs(CommonNinject.Kernel.Get<ICartonRepository>());
-            this.availableCartons = new List<Carton>();
+            this.cartonAPIs = new CartonAPIs(CommonNinject.Kernel.Get<ICartonRepository>());            
         }
 
 
@@ -62,15 +60,15 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
         {
             try
             {
-                GoodsReceiptAPIs goodsReceiptAPIs = new GoodsReceiptAPIs(CommonNinject.Kernel.Get<IGoodsReceiptAPIRepository>());
+                this.availableCartons = new List<Carton>();
 
+                GoodsReceiptAPIs goodsReceiptAPIs = new GoodsReceiptAPIs(CommonNinject.Kernel.Get<IGoodsReceiptAPIRepository>());
                 List<GoodsReceiptDetailAvailable> goodsReceiptDetailAvailables = goodsReceiptAPIs.GetGoodsReceiptDetailAvailables(this.warehouseAdjustmentViewModel.LocationID, this.warehouseAdjustmentViewModel.WarehouseID, null, null, null, string.Join(",", this.warehouseAdjustmentViewModel.ViewDetails.Select(d => d.GoodsReceiptDetailID)));
 
                 this.fastPendingPallets.SetObjects(goodsReceiptDetailAvailables.Where(w => w.PalletID != null));
                 this.fastPendingCartons.SetObjects(this.availableCartons);
 
-                this.customTabBatch.TabPages[0].Text = "Pending " + this.fastPendingPallets.GetItemCount().ToString("N0") + " pallet" + (this.fastPendingPallets.GetItemCount() > 1 ? "s      " : "      ");
-                this.customTabBatch.TabPages[1].Text = "Pending " + this.fastPendingCartons.GetItemCount().ToString("N0") + " carton" + (this.fastPendingCartons.GetItemCount() > 1 ? "s      " : "      ");
+                this.ShowRowCount(true, true);
             }
             catch (Exception exception)
             {
@@ -193,8 +191,28 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
 
         private void fastObjectListView_ItemsChanged(object sender, ItemsChangedEventArgs e)
         {
-            if (sender.Equals(this.fastPendingCartons))
-                this.customTabBatch.TabPages[1].Text = "Pending " + this.fastPendingCartons.GetItemCount().ToString("N0") + " carton" + (this.fastPendingCartons.GetItemCount() > 1 ? "s      " : "      ");
+            if (sender.Equals(this.fastPendingCartons)) this.ShowRowCount(false, true);
+        }
+
+        private void textexFilters_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                this.fastPendingPallets.CheckedObjects = null;
+                OLVHelpers.ApplyFilters(this.fastPendingPallets, this.textexFilters.Text.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
+
+                this.ShowRowCount(true, true);
+            }
+            catch (Exception exception)
+            {
+                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+            }
+        }
+
+        private void ShowRowCount(bool showPalletCount, bool showCartonCount)
+        {
+            if (showPalletCount) this.customTabBatch.TabPages[0].Text = "Available " + this.fastPendingPallets.GetItemCount().ToString("N0") + " pallet" + (this.fastPendingPallets.GetItemCount() > 1 ? "s      " : "      ");
+            if (showCartonCount) this.customTabBatch.TabPages[1].Text = "Carton: " + this.fastPendingCartons.GetItemCount().ToString("N0") + " item" + (this.fastPendingCartons.GetItemCount() > 1 ? "s      " : "      ");
         }
     }
 }

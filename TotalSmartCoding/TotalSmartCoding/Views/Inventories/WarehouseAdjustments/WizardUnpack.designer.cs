@@ -42,8 +42,9 @@
             this.olvPalletCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.panelMaster = new System.Windows.Forms.Panel();
             this.fastPendingCartons = new BrightIdeasSoftware.FastObjectListView();
-            this.olvCartonCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvCartonCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.textexFilters = new CustomControls.TextexBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastPendingPallets)).BeginInit();
             this.panelMaster.SuspendLayout();
@@ -198,10 +199,10 @@
             this.panelMaster.Controls.Add(this.fastPendingPallets);
             this.panelMaster.Controls.Add(this.fastPendingCartons);
             this.panelMaster.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelMaster.Location = new System.Drawing.Point(0, 0);
+            this.panelMaster.Location = new System.Drawing.Point(0, 28);
             this.panelMaster.Name = "panelMaster";
             this.panelMaster.Padding = new System.Windows.Forms.Padding(0, 9, 0, 0);
-            this.panelMaster.Size = new System.Drawing.Size(1386, 548);
+            this.panelMaster.Size = new System.Drawing.Size(1386, 520);
             this.panelMaster.TabIndex = 71;
             // 
             // fastPendingCartons
@@ -231,6 +232,11 @@
             this.fastPendingCartons.VirtualMode = true;
             this.fastPendingCartons.ItemsChanged += new System.EventHandler<BrightIdeasSoftware.ItemsChangedEventArgs>(this.fastObjectListView_ItemsChanged);
             // 
+            // olvColumn1
+            // 
+            this.olvColumn1.Text = "";
+            this.olvColumn1.Width = 20;
+            // 
             // olvCartonCode
             // 
             this.olvCartonCode.AspectName = "Code";
@@ -240,10 +246,18 @@
             this.olvCartonCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvCartonCode.Width = 200;
             // 
-            // olvColumn1
+            // textexFilters
             // 
-            this.olvColumn1.Text = "";
-            this.olvColumn1.Width = 20;
+            this.textexFilters.Dock = System.Windows.Forms.DockStyle.Top;
+            this.textexFilters.Editable = false;
+            this.textexFilters.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textexFilters.Location = new System.Drawing.Point(0, 0);
+            this.textexFilters.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
+            this.textexFilters.Name = "textexFilters";
+            this.textexFilters.Size = new System.Drawing.Size(1386, 28);
+            this.textexFilters.TabIndex = 79;
+            this.textexFilters.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textexFilters.TextChanged += new System.EventHandler(this.textexFilters_TextChanged);
             // 
             // WizardUnpack
             // 
@@ -251,6 +265,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1386, 603);
             this.Controls.Add(this.panelMaster);
+            this.Controls.Add(this.textexFilters);
             this.Controls.Add(this.toolStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -287,5 +302,6 @@
         private System.Windows.Forms.ToolStripButton buttonAdd;
         private BrightIdeasSoftware.OLVColumn olvQuantityAvailable;
         private BrightIdeasSoftware.OLVColumn olvColumn1;
+        private CustomControls.TextexBox textexFilters;
     }
 }
