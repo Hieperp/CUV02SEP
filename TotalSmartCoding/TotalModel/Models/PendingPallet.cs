@@ -26,5 +26,6 @@ namespace TotalModel.Models
         public Nullable<decimal> LineVolumeRemains { get; set; }
         public int BatchID { get; set; }
         public System.DateTime BatchEntryDate { get; set; }
+        public Nullable<bool> IsSelected { get; set; }
     }
 }

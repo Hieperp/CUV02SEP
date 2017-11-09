@@ -75,6 +75,7 @@
             this.naviPendingItems = new Guifreaks.Navisuite.NaviBar(this.components);
             this.naviPendingPallets = new Guifreaks.Navisuite.NaviBand(this.components);
             this.fastPendingPallets = new BrightIdeasSoftware.FastObjectListView();
+            this.olvColumn1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvPendingPalletCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.naviPickupIndex = new Guifreaks.Navisuite.NaviBand(this.components);
             this.naviIndex = new Guifreaks.Navisuite.NaviBar(this.components);
@@ -640,9 +641,13 @@
             // 
             // fastPendingPallets
             // 
+            this.fastPendingPallets.AllColumns.Add(this.olvColumn1);
             this.fastPendingPallets.AllColumns.Add(this.olvPendingPalletCode);
             this.fastPendingPallets.BackColor = System.Drawing.Color.Ivory;
+            this.fastPendingPallets.CheckBoxes = true;
+            this.fastPendingPallets.CheckedAspectName = "IsSelected";
             this.fastPendingPallets.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.olvColumn1,
             this.olvPendingPalletCode});
             this.fastPendingPallets.Cursor = System.Windows.Forms.Cursors.Default;
             this.fastPendingPallets.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -655,6 +660,7 @@
             this.fastPendingPallets.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.fastPendingPallets.RowHeight = 45;
             this.fastPendingPallets.ShowGroups = false;
+            this.fastPendingPallets.ShowImagesOnSubItems = true;
             this.fastPendingPallets.Size = new System.Drawing.Size(286, 776);
             this.fastPendingPallets.TabIndex = 70;
             this.fastPendingPallets.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
@@ -664,12 +670,23 @@
             this.fastPendingPallets.VirtualMode = true;
             this.fastPendingPallets.MouseClick += new System.Windows.Forms.MouseEventHandler(this.fastPendingPallets_MouseClick);
             // 
+            // olvColumn1
+            // 
+            this.olvColumn1.AspectName = "";
+            this.olvColumn1.HeaderCheckBox = true;
+            this.olvColumn1.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvColumn1.Sortable = false;
+            this.olvColumn1.Text = "";
+            this.olvColumn1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvColumn1.Width = 20;
+            // 
             // olvPendingPalletCode
             // 
             this.olvPendingPalletCode.AspectName = "Code";
             this.olvPendingPalletCode.FillsFreeSpace = true;
             this.olvPendingPalletCode.HeaderForeColor = System.Drawing.Color.Firebrick;
             this.olvPendingPalletCode.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvPendingPalletCode.Sortable = false;
             this.olvPendingPalletCode.Text = "                         Pending Pallet";
             this.olvPendingPalletCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvPendingPalletCode.Width = 400;
@@ -814,6 +831,7 @@
         private BrightIdeasSoftware.OLVColumn olvPendingPalletCode;
         private System.Windows.Forms.ToolStrip toolStripNaviGroup;
         private System.Windows.Forms.ToolStripButton buttonRemoveDetailItem;
+        private BrightIdeasSoftware.OLVColumn olvColumn1;
 
     }
 }

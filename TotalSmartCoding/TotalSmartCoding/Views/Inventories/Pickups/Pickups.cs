@@ -238,7 +238,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
                 ExceptionHandlers.ShowExceptionMessageBox(this, exception);
             }
         }
-
+        
         private void getPendingItems() //THIS MAY ALSO LOAD PENDING PALLET/ CARTON/ PACK
         {
             try
@@ -261,8 +261,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
             wizardMaster.Dispose();
             return dialogResult;
         }
-
-        private bool readyToSetBin { get { return this.EditableMode && this.pickupViewModel.Editable && this.pickupViewModel.IsValid && !this.pickupViewModel.IsDirty; } }
+        
         private PickupDetailDTO InitPickupDetailDTO(PendingPallet pendingPallet)
         {
             return new PickupDetailDTO()
@@ -288,61 +287,38 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
                 LineVolume = (decimal)pendingPallet.LineVolumeRemains
             };
         }
-
+        
         private void fastPendingPallets_MouseClick(object sender, MouseEventArgs e)
         {
             try
             {
-                if (this.readyToSetBin)
+                if (this.EditableMode && this.pickupViewModel.Editable && this.pickupViewModel.IsValid && !this.pickupViewModel.IsDirty)
                 {
+                    this.timerLoadPending.Enabled = false;
                     PendingPallet pendingPallet = (PendingPallet)this.fastPendingPallets.SelectedObject;
                     if (pendingPallet != null)
                     {
                         PickupDetailDTO pickupDetailDTO = this.InitPickupDetailDTO(pendingPallet);
-                        WizardDetail wizardDetail = new WizardDetail(this.pickupViewModel, pendingPallet);
+                        WizardDetail wizardDetail = new WizardDetail(this.pickupViewModel.FillingLineID, pickupDetailDTO);
                         TabletMDI tabletMDI = new TabletMDI(wizardDetail);
                         DialogResult dialogResult = tabletMDI.ShowDialog();
 
                         if (dialogResult == System.Windows.Forms.DialogResult.OK || dialogResult == System.Windows.Forms.DialogResult.Yes)
-                        {
-                            this.callAutoSave();
-
-                            if (dialogResult == System.Windows.Forms.DialogResult.Yes && this.readyToSetBin)
+                        {                            
+                            if (dialogResult == System.Windows.Forms.DialogResult.OK)
+                                this.pickupViewModel.ViewDetails.Add(pickupDetailDTO);
+                            else
                             {
-                                //List<PendingPallet> pendingPallets = this.pickupAPIs.GetPendingPallets(this.pickupViewModel.LocationID, this.pickupViewModel.FillingLineID, this.pickupViewModel.PickupID, string.Join(",", this.pickupViewModel.ViewDetails.Where(w => w.PalletID != null).Select(d => d.PalletID)), false);
-
                                 List<PendingPallet> pendingPallets = this.fastPendingPallets.Objects.Cast<PendingPallet>().ToList();
                                 foreach (PendingPallet p in pendingPallets)
                                 {
-                                    this.pickupViewModel.ViewDetails.Add(new PickupDetailDTO()
-                                    {
-                                        PickupID = this.pickupViewModel.PickupID,
-
-                                        BatchID = p.BatchID,
-                                        BatchEntryDate = p.BatchEntryDate,
-
-                                        PalletID = p.PalletID,
-                                        PalletCode = p.Code,
-                                        PalletEntryDate = p.EntryDate,
-
-                                        CommodityID = p.CommodityID,
-                                        CommodityCode = p.CommodityCode,
-                                        CommodityName = p.CommodityName,
-
-                                        PackCounts = p.PackCounts,
-                                        CartonCounts = p.CartonCounts,
-                                        PalletCounts = p.PalletCounts,
-
-                                        Quantity = (decimal)p.QuantityRemains,
-                                        LineVolume = (decimal)p.LineVolumeRemains,
-
-                                        BinLocationID = pendingPallet.Bi
-                                    });
-
+                                    PickupDetailDTO pDTO = this.InitPickupDetailDTO(p);
+                                    pDTO.BinLocationID = pickupDetailDTO.BinLocationID;
+                                    pDTO.BinLocationCode = pickupDetailDTO.BinLocationCode;
+                                    this.pickupViewModel.ViewDetails.Add(pDTO);
                                 }
                             }
-
-
+                            this.callAutoSave();
                         }
 
                         wizardDetail.Dispose(); tabletMDI.Dispose();
@@ -352,6 +328,9 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
             catch (Exception exception)
             {
                 ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+            }
+            finally { 
+                this.timerLoadPending.Enabled = true; 
             }
         }
 

@@ -3885,6 +3885,7 @@
           <Property Type="Decimal" Name="LineVolumeRemains" Nullable="true" Precision="19" Scale="2" />
           <Property Type="Int32" Name="BatchID" Nullable="false" />
           <Property Type="DateTime" Name="BatchEntryDate" Nullable="false" />
+          <Property Type="Boolean" Name="IsSelected" Nullable="true" />
         </ComplexType>
         <ComplexType Name="EmployeeBase">
           <Property Type="Int32" Name="EmployeeID" Nullable="false" />
@@ -6789,6 +6790,7 @@
                 <ScalarProperty Name="LineVolumeRemains" ColumnName="LineVolumeRemains" />
                 <ScalarProperty Name="BatchID" ColumnName="BatchID" />
                 <ScalarProperty Name="BatchEntryDate" ColumnName="BatchEntryDate" />
+                <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

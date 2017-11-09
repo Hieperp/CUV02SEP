@@ -149,7 +149,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             string queryString = "";
 
             queryString = queryString + "       SELECT      Pallets.PalletID, Pallets.EntryDate, Pallets.Code, Pallets.BatchID, Batches.EntryDate AS BatchEntryDate, Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, " + "\r\n";
-            queryString = queryString + "                   ROUND(Pallets.Quantity - Pallets.QuantityPickup,  " + (int)GlobalEnums.rndQuantity + ") AS QuantityRemains, ROUND(Pallets.LineVolume - Pallets.LineVolumePickup,  " + (int)GlobalEnums.rndVolume + ") AS LineVolumeRemains, Pallets.PackCounts, Pallets.CartonCounts, 1 AS PalletCounts " + "\r\n";
+            queryString = queryString + "                   ROUND(Pallets.Quantity - Pallets.QuantityPickup,  " + (int)GlobalEnums.rndQuantity + ") AS QuantityRemains, ROUND(Pallets.LineVolume - Pallets.LineVolumePickup,  " + (int)GlobalEnums.rndVolume + ") AS LineVolumeRemains, Pallets.PackCounts, Pallets.CartonCounts, 1 AS PalletCounts, CAST(0 AS bit) AS IsSelected " + "\r\n";
 
             queryString = queryString + "       FROM        Pallets " + "\r\n";
             queryString = queryString + "                   INNER JOIN Commodities ON Pallets.LocationID = @LocationID AND Pallets.FillingLineID = @FillingLineID AND ROUND(Pallets.Quantity - Pallets.QuantityPickup, " + (int)GlobalEnums.rndQuantity + ") > 0 AND Pallets.CommodityID = Commodities.CommodityID " + (isPalletIDs ? " AND Pallets.PalletID NOT IN (SELECT Id FROM dbo.SplitToIntList (@PalletIDs))" : "") + "\r\n";
@@ -162,7 +162,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
         {
             string queryString = "";
             queryString = queryString + "       SELECT      Pallets.PalletID, Pallets.EntryDate, Pallets.Code, Pallets.BatchID, PickupDetails.BatchEntryDate, Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, " + "\r\n";
-            queryString = queryString + "                   ROUND(Pallets.Quantity - Pallets.QuantityPickup + Pallets.Quantity,  " + (int)GlobalEnums.rndQuantity + ") AS QuantityRemains, ROUND(Pallets.LineVolume - Pallets.LineVolumePickup + Pallets.LineVolume,  " + (int)GlobalEnums.rndVolume + ") AS LineVolumeRemains, Pallets.PackCounts, Pallets.CartonCounts, 1 AS PalletCounts " + "\r\n";
+            queryString = queryString + "                   ROUND(Pallets.Quantity - Pallets.QuantityPickup + Pallets.Quantity,  " + (int)GlobalEnums.rndQuantity + ") AS QuantityRemains, ROUND(Pallets.LineVolume - Pallets.LineVolumePickup + Pallets.LineVolume,  " + (int)GlobalEnums.rndVolume + ") AS LineVolumeRemains, Pallets.PackCounts, Pallets.CartonCounts, 1 AS PalletCounts, CAST(0 AS bit) AS IsSelected " + "\r\n";
 
             queryString = queryString + "       FROM        PickupDetails" + "\r\n";
             queryString = queryString + "                   INNER JOIN Pallets ON PickupDetails.PickupID = @PickupID AND PickupDetails.PalletID = Pallets.PalletID " + (isPalletIDs ? " AND Pallets.PalletID NOT IN (SELECT Id FROM dbo.SplitToIntList (@PalletIDs))" : "") + "\r\n";

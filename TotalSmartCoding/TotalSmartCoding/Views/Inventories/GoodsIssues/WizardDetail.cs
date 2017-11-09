@@ -156,7 +156,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                             {
                                 if (goodsReceiptDetailAvailable.IsSelected == false)
                                 {
-                                    IPendingPrimaryDetail pendingPrimaryDetail = this.pendingPrimaryDetails.ToList().Find(w => w.CommodityID == goodsReceiptDetailAvailable.CommodityID && (w.BatchID == null || w.BatchID == goodsReceiptDetailAvailable.BatchID) && (w.QuantityRemains - w.QuantityIssue) > goodsReceiptDetailAvailable.QuantityAvailable && (w.LineVolumeRemains - w.LineVolumeIssue) > goodsReceiptDetailAvailable.LineVolumeAvailable);
+                                    IPendingPrimaryDetail pendingPrimaryDetail = this.pendingPrimaryDetails.ToList().Find(w => w.CommodityID == goodsReceiptDetailAvailable.CommodityID && (w.BatchID == null || w.BatchID == goodsReceiptDetailAvailable.BatchID) && (w.QuantityRemains - w.QuantityIssue) >= goodsReceiptDetailAvailable.QuantityAvailable && (w.LineVolumeRemains - w.LineVolumeIssue) >= goodsReceiptDetailAvailable.LineVolumeAvailable);
                                     if (pendingPrimaryDetail != null)
                                     {
                                         //WHEN THIS FORM IS LOADED, pendingPrimaryDetail.QuantityIssue AND pendingPrimaryDetail.LineVolumeIssue IS ALWAYS = 0. THESE PROPERTIES (QuantityIssue, LineVolumeIssue) ARE USED TO CHECK (w.QuantityRemains - w.QuantityIssue) > goodsReceiptDetailAvailable.QuantityAvailable && (w.LineVolumeRemains - w.LineVolumeIssue) > goodsReceiptDetailAvailable.LineVolumeAvailable

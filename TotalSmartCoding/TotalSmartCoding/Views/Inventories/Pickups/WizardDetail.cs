@@ -27,8 +27,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
         private CustomTabControl tabBinLocation;
         public virtual ToolStrip toolstripChild { get; protected set; }
 
-        private PickupViewModel pickupViewModel;
-        
+        private int? fillingLineID;
         private PickupDetailDTO pickupDetailDTO;
 
         Binding bindingCodeID;
@@ -37,7 +36,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
         Binding bindingQuantity;
         Binding bindingLineVolume;
 
-        public WizardDetail(PickupViewModel pickupViewModel, PickupDetailDTO pickupDetailDTO)
+        public WizardDetail(int? fillingLineID, PickupDetailDTO pickupDetailDTO)
         {
             InitializeComponent();
 
@@ -56,14 +55,14 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
 
             this.splitContainerCenter.SplitterDistance = this.textexCode.Height + this.textexCommodityCodeAndName.Height + this.textexQuantity.Height + this.textexLineVolume.Height + this.textexBinLocationCode.Height + 5 * 5 + 15;
 
-            this.pickupViewModel = pickupViewModel;
+            this.fillingLineID = fillingLineID;
             this.pickupDetailDTO = pickupDetailDTO;
         }
 
         private void WizardDetail_Load(object sender, EventArgs e)
         {
             try
-            {                
+            {
                 this.pickupDetailDTO.PropertyChanged += pickupDetailDTO_PropertyChanged;
 
                 this.bindingCodeID = this.textexCode.DataBindings.Add("Text", this.pickupDetailDTO, CommonExpressions.PropertyName<PickupDetailDTO>(p => p.PalletCode));
@@ -81,7 +80,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
                 this.bindingQuantity.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
                 this.bindingLineVolume.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
 
-                this.comboApplyBinToRemains.Visible = this.pickupViewModel.FillingLineID == (int)GlobalVariables.FillingLine.Drum;
+                this.comboApplyBinToRemains.Visible = this.fillingLineID == (int)GlobalVariables.FillingLine.Drum;
                 this.comboApplyBinToRemains.ComboBox.DataSource = new List<string> { "", "Apply this bin to other pending pallets" };
 
                 this.errorProviderMaster.DataSource = this.pickupDetailDTO;
@@ -130,10 +129,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
             try
             {
                 if (sender.Equals(this.buttonAdd) && this.pickupDetailDTO.IsValid)
-                {
-                    this.pickupViewModel.ViewDetails.Add(pickupDetailDTO);
                     this.MdiParent.DialogResult = this.comboApplyBinToRemains.ComboBox.SelectedIndex == 1 ? DialogResult.Yes : DialogResult.OK;
-                }
 
                 if (sender.Equals(this.buttonESC))
                     this.MdiParent.DialogResult = DialogResult.Cancel;
