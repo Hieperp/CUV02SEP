@@ -28,8 +28,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
         public virtual ToolStrip toolstripChild { get; protected set; }
 
         private PickupViewModel pickupViewModel;
-
-        private PendingPallet pendingPallet;
+        
         private PickupDetailDTO pickupDetailDTO;
 
         Binding bindingCodeID;
@@ -38,7 +37,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
         Binding bindingQuantity;
         Binding bindingLineVolume;
 
-        public WizardDetail(PickupViewModel pickupViewModel, PendingPallet pendingPallet)
+        public WizardDetail(PickupViewModel pickupViewModel, PickupDetailDTO pickupDetailDTO)
         {
             InitializeComponent();
 
@@ -58,36 +57,13 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
             this.splitContainerCenter.SplitterDistance = this.textexCode.Height + this.textexCommodityCodeAndName.Height + this.textexQuantity.Height + this.textexLineVolume.Height + this.textexBinLocationCode.Height + 5 * 5 + 15;
 
             this.pickupViewModel = pickupViewModel;
-            this.pendingPallet = pendingPallet;
-        }        
+            this.pickupDetailDTO = pickupDetailDTO;
+        }
 
         private void WizardDetail_Load(object sender, EventArgs e)
         {
             try
-            {
-                this.pickupDetailDTO = new PickupDetailDTO()
-                {
-                    PickupID = this.pickupViewModel.PickupID,
-
-                    BatchID = this.pendingPallet.BatchID,
-                    BatchEntryDate = this.pendingPallet.BatchEntryDate,
-
-                    PalletID = this.pendingPallet.PalletID,
-                    PalletCode = this.pendingPallet.Code,
-                    PalletEntryDate = this.pendingPallet.EntryDate,
-
-                    CommodityID = this.pendingPallet.CommodityID,
-                    CommodityCode = this.pendingPallet.CommodityCode,
-                    CommodityName = this.pendingPallet.CommodityName,
-
-                    PackCounts = this.pendingPallet.PackCounts,
-                    CartonCounts = this.pendingPallet.CartonCounts,
-                    PalletCounts = this.pendingPallet.PalletCounts,
-
-                    Quantity = (decimal)this.pendingPallet.QuantityRemains,
-                    LineVolume = (decimal)this.pendingPallet.LineVolumeRemains
-                };
-
+            {                
                 this.pickupDetailDTO.PropertyChanged += pickupDetailDTO_PropertyChanged;
 
                 this.bindingCodeID = this.textexCode.DataBindings.Add("Text", this.pickupDetailDTO, CommonExpressions.PropertyName<PickupDetailDTO>(p => p.PalletCode));
@@ -104,6 +80,9 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
                 this.bindingBinLocationCode.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
                 this.bindingQuantity.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
                 this.bindingLineVolume.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+
+                this.comboApplyBinToRemains.Visible = this.pickupViewModel.FillingLineID == (int)GlobalVariables.FillingLine.Drum;
+                this.comboApplyBinToRemains.ComboBox.DataSource = new List<string> { "", "Apply this bin to other pending pallets" };
 
                 this.errorProviderMaster.DataSource = this.pickupDetailDTO;
             }
@@ -153,7 +132,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
                 if (sender.Equals(this.buttonAdd) && this.pickupDetailDTO.IsValid)
                 {
                     this.pickupViewModel.ViewDetails.Add(pickupDetailDTO);
-                    this.MdiParent.DialogResult = DialogResult.OK;
+                    this.MdiParent.DialogResult = this.comboApplyBinToRemains.ComboBox.SelectedIndex == 1 ? DialogResult.Yes : DialogResult.OK;
                 }
 
                 if (sender.Equals(this.buttonESC))
