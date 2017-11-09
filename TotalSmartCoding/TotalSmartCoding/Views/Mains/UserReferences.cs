@@ -70,7 +70,7 @@ namespace TotalSmartCoding.Views.Mains
             {
                 UserIndex userIndex = this.comboUserID.SelectedItem as UserIndex;
                 if (userIndex != null)
-                    this.labelCaption.Text = "            " + userIndex.SkypeName + ": " + userIndex.LocationName + "\\" + userIndex.OrganizationalUnitName;
+                    this.labelCaption.Text = "            " + userIndex.LocationName + "\\" + userIndex.OrganizationalUnitName;
             }
         }
 

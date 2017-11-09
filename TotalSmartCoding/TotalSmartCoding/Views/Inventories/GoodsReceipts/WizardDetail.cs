@@ -32,16 +32,13 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
 
             this.customTabBatch.TabPages.Add("tabPendingPallets", "Pending pallets");
             this.customTabBatch.TabPages.Add("tabPendingCartons", "Pending cartons");
-            this.customTabBatch.TabPages.Add("tabPendingPacks", "Pending packs");
             this.customTabBatch.TabPages[0].Controls.Add(this.fastPendingPallets);
             this.customTabBatch.TabPages[1].Controls.Add(this.fastPendingCartons);
-            this.customTabBatch.TabPages[2].Controls.Add(this.fastPendingPacks);
 
 
             this.customTabBatch.Dock = DockStyle.Fill;
             this.fastPendingPallets.Dock = DockStyle.Fill;
             this.fastPendingCartons.Dock = DockStyle.Fill;
-            this.fastPendingPacks.Dock = DockStyle.Fill;
             this.panelMaster.Controls.Add(this.customTabBatch);
 
 
@@ -66,19 +63,16 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
                 {
                     this.fastPendingPallets.SetObjects(pendingPickupDetails.Where(w => w.PalletID != null));
                     this.fastPendingCartons.SetObjects(pendingPickupDetails.Where(w => w.CartonID != null));
-                    this.fastPendingPacks.SetObjects(pendingPickupDetails.Where(w => w.PackID != null));
                 }
 
                 if (pendingGoodsIssueTransferDetails != null)
                 {
                     this.fastPendingPallets.SetObjects(pendingGoodsIssueTransferDetails.Where(w => w.PalletID != null));
                     this.fastPendingCartons.SetObjects(pendingGoodsIssueTransferDetails.Where(w => w.CartonID != null));
-                    this.fastPendingPacks.SetObjects(pendingGoodsIssueTransferDetails.Where(w => w.PackID != null));
                 }
 
                 this.customTabBatch.TabPages[0].Text = "Pending " + this.fastPendingPallets.GetItemCount().ToString("N0") + " pallet" + (this.fastPendingPallets.GetItemCount() > 1 ? "s      " : "      ");
                 this.customTabBatch.TabPages[1].Text = "Pending " + this.fastPendingCartons.GetItemCount().ToString("N0") + " carton" + (this.fastPendingCartons.GetItemCount() > 1 ? "s      " : "      ");
-                this.customTabBatch.TabPages[2].Text = "Pending " + this.fastPendingPacks.GetItemCount().ToString("N0") + " pack" + (this.fastPendingPacks.GetItemCount() > 1 ? "s      " : "      ");
             }
             catch (Exception exception)
             {
@@ -93,7 +87,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
             {
                 if (sender.Equals(this.buttonAdd) || sender.Equals(this.buttonAddExit))
                 {
-                    FastObjectListView fastPendingList = this.customTabBatch.SelectedIndex == 0 ? this.fastPendingPallets : (this.customTabBatch.SelectedIndex == 1 ? this.fastPendingCartons : this.customTabBatch.SelectedIndex == 2 ? this.fastPendingPacks : null);
+                    FastObjectListView fastPendingList = this.customTabBatch.SelectedIndex == 0 ? this.fastPendingPallets : (this.customTabBatch.SelectedIndex == 1 ? this.fastPendingCartons : null);
 
                     if (fastPendingList != null)
                     {

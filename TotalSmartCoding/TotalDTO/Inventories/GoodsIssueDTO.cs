@@ -90,19 +90,20 @@ namespace TotalDTO.Inventories
             set { ApplyPropertyChange<GoodsIssuePrimitiveDTO, string>(ref this.customerName, o => o.CustomerName, value); }
         }
 
-        private int receiverID;
+
+        private Nullable<int> receiverID;
         [DefaultValue(null)]
-        public int ReceiverID
+        public Nullable<int> ReceiverID
         {
             get { return this.receiverID; }
-            set { ApplyPropertyChange<GoodsIssuePrimitiveDTO, int>(ref this.receiverID, o => o.ReceiverID, value); }
+            set { ApplyPropertyChange<GoodsIssuePrimitiveDTO, Nullable<int>>(ref this.receiverID, o => o.ReceiverID, value); }
         }
         private string receiverName;
         [DefaultValue(null)]
         public string ReceiverName
         {
             get { return this.receiverName; }
-            set { ApplyPropertyChange<GoodsIssuePrimitiveDTO, string>(ref this.receiverName, o => o.ReceiverName, value, false); }
+            set { ApplyPropertyChange<GoodsIssuePrimitiveDTO, string>(ref this.receiverName, o => o.ReceiverName, value); }
         }
 
         private Nullable<int> warehouseID;
