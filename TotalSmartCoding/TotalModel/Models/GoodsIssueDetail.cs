@@ -27,6 +27,7 @@ namespace TotalModel.Models
         public int LocationID { get; set; }
         public int WarehouseID { get; set; }
         public Nullable<int> CustomerID { get; set; }
+        public Nullable<int> ReceiverID { get; set; }
         public Nullable<int> WarehouseReceiptID { get; set; }
         public int CommodityID { get; set; }
         public int BinLocationID { get; set; }
@@ -42,14 +43,13 @@ namespace TotalModel.Models
         public decimal LineVolume { get; set; }
         public string Remarks { get; set; }
         public bool Approved { get; set; }
-        public Nullable<int> ReceiverID { get; set; }
     
         public virtual Commodity Commodity { get; set; }
         public virtual Customer Customer { get; set; }
+        public virtual Customer Customer1 { get; set; }
         public virtual DeliveryAdviceDetail DeliveryAdviceDetail { get; set; }
         public virtual GoodsIssue GoodsIssue { get; set; }
-        public virtual TransferOrderDetail TransferOrderDetail { get; set; }
         public virtual GoodsReceiptDetail GoodsReceiptDetail { get; set; }
-        public virtual Customer Customer1 { get; set; }
+        public virtual TransferOrderDetail TransferOrderDetail { get; set; }
     }
 }

@@ -20,12 +20,12 @@ namespace TotalModel.Models
             this.DeliveryAdviceDetails = new HashSet<DeliveryAdviceDetail>();
             this.DeliveryAdvices = new HashSet<DeliveryAdvice>();
             this.SalesOrders = new HashSet<SalesOrder>();
-            this.GoodsIssues = new HashSet<GoodsIssue>();
-            this.GoodsIssueDetails = new HashSet<GoodsIssueDetail>();
             this.DeliveryAdviceDetails1 = new HashSet<DeliveryAdviceDetail>();
             this.DeliveryAdvices1 = new HashSet<DeliveryAdvice>();
             this.SalesOrders1 = new HashSet<SalesOrder>();
+            this.GoodsIssueDetails = new HashSet<GoodsIssueDetail>();
             this.GoodsIssueDetails1 = new HashSet<GoodsIssueDetail>();
+            this.GoodsIssues = new HashSet<GoodsIssue>();
             this.GoodsIssues1 = new HashSet<GoodsIssue>();
         }
     
@@ -60,17 +60,17 @@ namespace TotalModel.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SalesOrder> SalesOrders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GoodsIssue> GoodsIssues { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GoodsIssueDetail> GoodsIssueDetails { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DeliveryAdviceDetail> DeliveryAdviceDetails1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DeliveryAdvice> DeliveryAdvices1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SalesOrder> SalesOrders1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GoodsIssueDetail> GoodsIssueDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GoodsIssueDetail> GoodsIssueDetails1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GoodsIssue> GoodsIssues { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GoodsIssue> GoodsIssues1 { get; set; }
     }

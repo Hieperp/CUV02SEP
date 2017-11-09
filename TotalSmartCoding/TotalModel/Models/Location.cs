@@ -19,7 +19,6 @@ namespace TotalModel.Models
         {
             this.DeliveryAdvices = new HashSet<DeliveryAdvice>();
             this.Employees = new HashSet<Employee>();
-            this.GoodsIssues = new HashSet<GoodsIssue>();
             this.GoodsReceipts = new HashSet<GoodsReceipt>();
             this.OrganizationalUnits = new HashSet<OrganizationalUnit>();
             this.Pickups = new HashSet<Pickup>();
@@ -27,6 +26,7 @@ namespace TotalModel.Models
             this.TransferOrders = new HashSet<TransferOrder>();
             this.WarehouseAdjustments = new HashSet<WarehouseAdjustment>();
             this.Warehouses = new HashSet<Warehouse>();
+            this.GoodsIssues = new HashSet<GoodsIssue>();
         }
     
         public int LocationID { get; set; }
@@ -46,8 +46,6 @@ namespace TotalModel.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Employee> Employees { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GoodsIssue> GoodsIssues { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GoodsReceipt> GoodsReceipts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrganizationalUnit> OrganizationalUnits { get; set; }
@@ -61,5 +59,7 @@ namespace TotalModel.Models
         public virtual ICollection<WarehouseAdjustment> WarehouseAdjustments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Warehouse> Warehouses { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GoodsIssue> GoodsIssues { get; set; }
     }
 }
