@@ -27,7 +27,6 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
         private CustomTabControl tabBinLocation;
         public virtual ToolStrip toolstripChild { get; protected set; }
 
-        private int? fillingLineID;
         private PickupDetailDTO pickupDetailDTO;
 
         Binding bindingCodeID;
@@ -36,7 +35,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
         Binding bindingQuantity;
         Binding bindingLineVolume;
 
-        public WizardDetail(int? fillingLineID, PickupDetailDTO pickupDetailDTO)
+        public WizardDetail(PickupDetailDTO pickupDetailDTO)
         {
             InitializeComponent();
 
@@ -55,7 +54,6 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
 
             this.splitContainerCenter.SplitterDistance = this.textexCode.Height + this.textexCommodityCodeAndName.Height + this.textexQuantity.Height + this.textexLineVolume.Height + this.textexBinLocationCode.Height + 5 * 5 + 15;
 
-            this.fillingLineID = fillingLineID;
             this.pickupDetailDTO = pickupDetailDTO;
         }
 
@@ -79,9 +77,6 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
                 this.bindingBinLocationCode.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
                 this.bindingQuantity.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
                 this.bindingLineVolume.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
-
-                this.comboApplyBinToRemains.Visible = this.fillingLineID == (int)GlobalVariables.FillingLine.Drum;
-                this.comboApplyBinToRemains.ComboBox.DataSource = new List<string> { "", "Apply this bin to other pending pallets" };
 
                 this.errorProviderMaster.DataSource = this.pickupDetailDTO;
             }
@@ -129,7 +124,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
             try
             {
                 if (sender.Equals(this.buttonAdd) && this.pickupDetailDTO.IsValid)
-                    this.MdiParent.DialogResult = this.comboApplyBinToRemains.ComboBox.SelectedIndex == 1 ? DialogResult.Yes : DialogResult.OK;
+                    this.MdiParent.DialogResult = DialogResult.OK;
 
                 if (sender.Equals(this.buttonESC))
                     this.MdiParent.DialogResult = DialogResult.Cancel;

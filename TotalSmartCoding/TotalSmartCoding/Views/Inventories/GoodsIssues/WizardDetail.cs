@@ -332,9 +332,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                                     LineVolume = (decimal)goodsReceiptDetailAvailable.LineVolumeAvailable //IF Quantity > QuantityRemains (OR LineVolume > LineVolumeRemains) => THE GoodsIssueDetailDTO WILL BREAK THE ValidationRule => CAN NOT SAVE => USER MUST SELECT OTHER APPROPRIATE UNIT OF PALLET/ OR CARTON/ OR PACK WHICH MATCH THE Quantity/ LineVolume                                
                                 };
                                 this.goodsIssueViewModel.ViewDetails.Insert(0, goodsIssueDetailDTO);
-                            }
-                            this.goodsIssueViewModel.ViewDetails.RaiseListChangedEvents = true;
-                            this.goodsIssueViewModel.ViewDetails.ResetBindings();
+                            }                            
                         }
                     }
 
@@ -348,6 +346,14 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
             catch (Exception exception)
             {
                 ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+            }
+            finally
+            {
+                if (!this.goodsIssueViewModel.ViewDetails.RaiseListChangedEvents)
+                {
+                    this.goodsIssueViewModel.ViewDetails.RaiseListChangedEvents = true;
+                    this.goodsIssueViewModel.ViewDetails.ResetBindings();
+                }
             }
         }
 

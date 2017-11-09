@@ -32,8 +32,6 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.buttonESC = new System.Windows.Forms.ToolStripButton();
             this.buttonAdd = new System.Windows.Forms.ToolStripButton();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.comboApplyBinToRemains = new System.Windows.Forms.ToolStripComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -69,9 +67,7 @@
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(48, 48);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.buttonESC,
-            this.buttonAdd,
-            this.toolStripLabel1,
-            this.comboApplyBinToRemains});
+            this.buttonAdd});
             this.toolStrip1.Location = new System.Drawing.Point(0, 320);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -102,21 +98,6 @@
             this.buttonAdd.Size = new System.Drawing.Size(247, 52);
             this.buttonAdd.Text = "Add this pallet to pickup list";
             this.buttonAdd.Click += new System.EventHandler(this.buttonAddESC_Click);
-            // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(433, 49);
-            this.toolStripLabel1.Text = "                                                                                 " +
-    "                         ";
-            // 
-            // comboApplyBinToRemains
-            // 
-            this.comboApplyBinToRemains.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboApplyBinToRemains.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
-            this.comboApplyBinToRemains.Name = "comboApplyBinToRemains";
-            this.comboApplyBinToRemains.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.comboApplyBinToRemains.Size = new System.Drawing.Size(290, 28);
             // 
             // label2
             // 
@@ -162,7 +143,7 @@
             this.textexCode.Margin = new System.Windows.Forms.Padding(2, 1, 1, 1);
             this.textexCode.Name = "textexCode";
             this.textexCode.ReadOnly = true;
-            this.textexCode.Size = new System.Drawing.Size(591, 28);
+            this.textexCode.Size = new System.Drawing.Size(590, 28);
             this.textexCode.TabIndex = 104;
             // 
             // textexCommodityCodeAndName
@@ -173,7 +154,7 @@
             this.textexCommodityCodeAndName.Margin = new System.Windows.Forms.Padding(2, 1, 1, 1);
             this.textexCommodityCodeAndName.Name = "textexCommodityCodeAndName";
             this.textexCommodityCodeAndName.ReadOnly = true;
-            this.textexCommodityCodeAndName.Size = new System.Drawing.Size(591, 28);
+            this.textexCommodityCodeAndName.Size = new System.Drawing.Size(590, 28);
             this.textexCommodityCodeAndName.TabIndex = 105;
             // 
             // textexQuantity
@@ -184,7 +165,7 @@
             this.textexQuantity.Margin = new System.Windows.Forms.Padding(2, 1, 1, 1);
             this.textexQuantity.Name = "textexQuantity";
             this.textexQuantity.ReadOnly = true;
-            this.textexQuantity.Size = new System.Drawing.Size(591, 28);
+            this.textexQuantity.Size = new System.Drawing.Size(590, 28);
             this.textexQuantity.TabIndex = 108;
             // 
             // label4
@@ -290,7 +271,7 @@
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.84455F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 69.15545F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 21F));
             this.tableLayoutPanel1.Controls.Add(this.label9, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.textexQuantity, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.label4, 0, 3);
@@ -325,7 +306,7 @@
             this.textexBinLocationCode.Margin = new System.Windows.Forms.Padding(2, 1, 1, 1);
             this.textexBinLocationCode.Name = "textexBinLocationCode";
             this.textexBinLocationCode.ReadOnly = true;
-            this.textexBinLocationCode.Size = new System.Drawing.Size(591, 28);
+            this.textexBinLocationCode.Size = new System.Drawing.Size(590, 28);
             this.textexBinLocationCode.TabIndex = 109;
             // 
             // textexLineVolume
@@ -336,7 +317,7 @@
             this.textexLineVolume.Margin = new System.Windows.Forms.Padding(2, 1, 1, 1);
             this.textexLineVolume.Name = "textexLineVolume";
             this.textexLineVolume.ReadOnly = true;
-            this.textexLineVolume.Size = new System.Drawing.Size(591, 28);
+            this.textexLineVolume.Size = new System.Drawing.Size(590, 28);
             this.textexLineVolume.TabIndex = 111;
             // 
             // label3
@@ -405,7 +386,5 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private CustomControls.TextexBox textexLineVolume;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
-        private System.Windows.Forms.ToolStripComboBox comboApplyBinToRemains;
     }
 }

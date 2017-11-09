@@ -42,6 +42,8 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
         private System.Timers.Timer timerLoadPending;
         private delegate void timerLoadCallback();
 
+        Binding checkTimerEnableVisibleBinding;
+
         public Pickups()
             : base()
         {
@@ -59,6 +61,11 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
             this.timerLoadPending = new System.Timers.Timer(10000);
             this.timerLoadPending.Elapsed += new System.Timers.ElapsedEventHandler(timerLoadPending_Elapsed);
             this.timerLoadPending.Enabled = true;
+
+            this.checkTimerEnable.DataBindings.Add("Checked", this.timerLoadPending, "Enabled", true, DataSourceUpdateMode.OnPropertyChanged);
+            this.checkTimerEnableVisibleBinding = this.checkTimerEnable.DataBindings.Add("Visible", this.naviPendingItems, "Collapsed", true, DataSourceUpdateMode.OnPropertyChanged);
+            this.checkTimerEnableVisibleBinding.Parse += new ConvertEventHandler(checkTimerEnableVisibleBinding_Parse);
+            this.checkTimerEnableVisibleBinding.Format += new ConvertEventHandler(checkTimerEnableVisibleBinding_Format);
         }
 
         private void Pickups_FormClosing(object sender, FormClosingEventArgs e)
@@ -238,11 +245,12 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
                 ExceptionHandlers.ShowExceptionMessageBox(this, exception);
             }
         }
-        
+
         private void getPendingItems() //THIS MAY ALSO LOAD PENDING PALLET/ CARTON/ PACK
         {
             try
             {
+                this.olvIsSelected.Width = this.pickupViewModel.FillingLineID == (int)GlobalVariables.FillingLine.Drum? 20: 0; 
                 this.fastPendingPallets.SetObjects(this.pickupAPIs.GetPendingPallets(this.pickupViewModel.LocationID, this.pickupViewModel.FillingLineID, this.pickupViewModel.PickupID, string.Join(",", this.pickupViewModel.ViewDetails.Where(w => w.PalletID != null).Select(d => d.PalletID)), false));
                 this.olvPendingPalletCode.Text = "Line " + this.pickupViewModel.FillingLineNickName + "   -   Pending " + this.fastPendingPallets.GetItemCount().ToString("N0") + " pallet" + (this.fastPendingPallets.GetItemCount() > 1 ? "s" : "");
             }
@@ -261,7 +269,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
             wizardMaster.Dispose();
             return dialogResult;
         }
-        
+
         private PickupDetailDTO InitPickupDetailDTO(PendingPallet pendingPallet)
         {
             return new PickupDetailDTO()
@@ -287,7 +295,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
                 LineVolume = (decimal)pendingPallet.LineVolumeRemains
             };
         }
-        
+
         private void fastPendingPallets_MouseClick(object sender, MouseEventArgs e)
         {
             try
@@ -299,25 +307,27 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
                     if (pendingPallet != null)
                     {
                         PickupDetailDTO pickupDetailDTO = this.InitPickupDetailDTO(pendingPallet);
-                        WizardDetail wizardDetail = new WizardDetail(this.pickupViewModel.FillingLineID, pickupDetailDTO);
+                        WizardDetail wizardDetail = new WizardDetail(pickupDetailDTO);
                         TabletMDI tabletMDI = new TabletMDI(wizardDetail);
-                        DialogResult dialogResult = tabletMDI.ShowDialog();
 
-                        if (dialogResult == System.Windows.Forms.DialogResult.OK || dialogResult == System.Windows.Forms.DialogResult.Yes)
-                        {                            
-                            if (dialogResult == System.Windows.Forms.DialogResult.OK)
-                                this.pickupViewModel.ViewDetails.Add(pickupDetailDTO);
-                            else
+                        if (tabletMDI.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                        {
+                            if (this.pickupViewModel.FillingLineID == (int)GlobalVariables.FillingLine.Drum && this.fastPendingPallets.CheckedObjects.Count > 0)
                             {
-                                List<PendingPallet> pendingPallets = this.fastPendingPallets.Objects.Cast<PendingPallet>().ToList();
-                                foreach (PendingPallet p in pendingPallets)
+                                this.pickupViewModel.ViewDetails.RaiseListChangedEvents = false;
+                                foreach (var checkedObjects in this.fastPendingPallets.CheckedObjects)
                                 {
-                                    PickupDetailDTO pDTO = this.InitPickupDetailDTO(p);
+                                    PickupDetailDTO pDTO = this.InitPickupDetailDTO((PendingPallet)checkedObjects);
                                     pDTO.BinLocationID = pickupDetailDTO.BinLocationID;
                                     pDTO.BinLocationCode = pickupDetailDTO.BinLocationCode;
                                     this.pickupViewModel.ViewDetails.Add(pDTO);
                                 }
+                                this.pickupViewModel.ViewDetails.RaiseListChangedEvents = true;
+                                this.pickupViewModel.ViewDetails.ResetBindings();
                             }
+                            else
+                                this.pickupViewModel.ViewDetails.Add(pickupDetailDTO);
+
                             this.callAutoSave();
                         }
 
@@ -329,8 +339,14 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
             {
                 ExceptionHandlers.ShowExceptionMessageBox(this, exception);
             }
-            finally { 
-                this.timerLoadPending.Enabled = true; 
+            finally
+            {
+                if (!this.pickupViewModel.ViewDetails.RaiseListChangedEvents)
+                {
+                    this.pickupViewModel.ViewDetails.RaiseListChangedEvents = true;
+                    this.pickupViewModel.ViewDetails.ResetBindings();
+                }
+                this.timerLoadPending.Enabled = true;
             }
         }
 
@@ -369,6 +385,15 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
             catch { }
         }
 
+        private void checkTimerEnableVisibleBinding_Parse(object sender, ConvertEventArgs e)
+        {
+            e.Value = !(bool)e.Value;
+        }
+
+        private void checkTimerEnableVisibleBinding_Format(object sender, ConvertEventArgs e)
+        {
+            e.Value = !(bool)e.Value;
+        }
 
         protected override PrintViewModel InitPrintViewModel()
         {
