@@ -35,9 +35,9 @@ namespace TotalDAL.Repositories.Generals
             return this.TotalSmartCodingEntities.GetUserAccessControls(userID, nmvnTaskID).ToList();
         }
 
-        public int UserAdd(int? organizationalUnitID, string firstName, string lastName, string userName, string skypeName)
+        public int UserAdd(int? organizationalUnitID, string firstName, string lastName, string userName, string securityIdentifier)
         {
-            return this.TotalSmartCodingEntities.UserAdd(organizationalUnitID, firstName, lastName, userName, skypeName);
+            return this.TotalSmartCodingEntities.UserAdd(organizationalUnitID, firstName, lastName, userName, securityIdentifier);
         }
 
         public int UserRemove(int? userID)

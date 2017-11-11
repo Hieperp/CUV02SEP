@@ -36,7 +36,7 @@ namespace TotalSmartCoding.Views.Mains
 
                 foreach (var found in srch.FindAll())// find all matches
                 {// do whatever here - "found" is of type "Principal" - it could be user, group, computer.....          
-                    allUsers.Add(new DomainUser() { FirstName = found.DisplayName, LastName = found.Name, UserName = this.GetWindowsIdentityName(found.DistinguishedName), SkypeName = found.Sid.Value });
+                    allUsers.Add(new DomainUser() { FirstName = found.DisplayName, LastName = found.Name, UserName = this.GetWindowsIdentityName(found.DistinguishedName), SecurityIdentifier = found.Sid.Value });
                 }
 
                 this.combexUserID.DataSource = allUsers;
@@ -83,7 +83,7 @@ namespace TotalSmartCoding.Views.Mains
                         DomainUser domainUser = this.combexUserID.SelectedItem as DomainUser;
                         if (domainUser != null)
                         {
-                            this.userAPIs.UserAdd(this.OrganizationalUnitID, domainUser.FirstName, domainUser.LastName, domainUser.UserName, domainUser.SkypeName);
+                            this.userAPIs.UserAdd(this.OrganizationalUnitID, domainUser.FirstName, domainUser.LastName, domainUser.UserName, domainUser.SecurityIdentifier);
                             this.DialogResult = DialogResult.OK;
                         }
                     }
@@ -105,7 +105,7 @@ namespace TotalSmartCoding.Views.Mains
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string UserName { get; set; }
-        public string SkypeName { get; set; }
+        public string SecurityIdentifier { get; set; }
     }
 
 }

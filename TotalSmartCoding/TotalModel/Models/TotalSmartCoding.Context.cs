@@ -62,9 +62,9 @@ namespace TotalModel.Models
         public virtual DbSet<GoodsReceiptDetail> GoodsReceiptDetails { get; set; }
         public virtual DbSet<GoodsReceipt> GoodsReceipts { get; set; }
         public virtual DbSet<Location> Locations { get; set; }
-        public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<GoodsIssueDetail> GoodsIssueDetails { get; set; }
         public virtual DbSet<GoodsIssue> GoodsIssues { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     
         public virtual ObjectResult<Nullable<int>> GetAccessLevel(Nullable<int> userID, Nullable<int> nMVNTaskID, Nullable<int> organizationalUnitID)
         {
@@ -1772,7 +1772,7 @@ namespace TotalModel.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<OrganizationalUnitIndex>("GetOrganizationalUnitIndexes");
         }
     
-        public virtual int UserAdd(Nullable<int> organizationalUnitID, string firstName, string lastName, string userName, string skypeName)
+        public virtual int UserAdd(Nullable<int> organizationalUnitID, string firstName, string lastName, string userName, string securityIdentifier)
         {
             var organizationalUnitIDParameter = organizationalUnitID.HasValue ?
                 new ObjectParameter("OrganizationalUnitID", organizationalUnitID) :
@@ -1790,11 +1790,11 @@ namespace TotalModel.Models
                 new ObjectParameter("UserName", userName) :
                 new ObjectParameter("UserName", typeof(string));
     
-            var skypeNameParameter = skypeName != null ?
-                new ObjectParameter("SkypeName", skypeName) :
-                new ObjectParameter("SkypeName", typeof(string));
+            var securityIdentifierParameter = securityIdentifier != null ?
+                new ObjectParameter("SecurityIdentifier", securityIdentifier) :
+                new ObjectParameter("SecurityIdentifier", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UserAdd", organizationalUnitIDParameter, firstNameParameter, lastNameParameter, userNameParameter, skypeNameParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UserAdd", organizationalUnitIDParameter, firstNameParameter, lastNameParameter, userNameParameter, securityIdentifierParameter);
         }
     
         public virtual int UserRemove(Nullable<int> userID)

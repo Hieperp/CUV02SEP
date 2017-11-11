@@ -413,14 +413,14 @@ namespace TotalSmartCoding.Views.Productions
                 //this.textBoxSettingDate.TextBox.Text = DateTime.Now.ToString("dd/MM/yy");
                 //if (this.fillingData != null)
                 //{
-                    //if (this.fillingData.SettingMonthID != 1) //GlobalStaticFunction.DateToContinuosMonth()
-                    //{
-                    //    this.toolStripButtonWarningNewMonth.Visible = !this.toolStripButtonWarningNewMonth.Visible; this.toolStripLabelWarningNewMonth.Visible = !this.toolStripLabelWarningNewMonth.Visible;
-                    //}
-                    //else
-                    //{
-                    //    this.toolStripButtonWarningNewMonth.Visible = false; this.toolStripLabelWarningNewMonth.Visible = false;
-                    //}
+                //if (this.fillingData.SettingMonthID != 1) //GlobalStaticFunction.DateToContinuosMonth()
+                //{
+                //    this.toolStripButtonWarningNewMonth.Visible = !this.toolStripButtonWarningNewMonth.Visible; this.toolStripLabelWarningNewMonth.Visible = !this.toolStripLabelWarningNewMonth.Visible;
+                //}
+                //else
+                //{
+                //    this.toolStripButtonWarningNewMonth.Visible = false; this.toolStripLabelWarningNewMonth.Visible = false;
+                //}
                 //}
             }
             catch (Exception exception)
@@ -506,7 +506,8 @@ namespace TotalSmartCoding.Views.Productions
 
                     if (e.PropertyName == "PacksetQueue") { this.dgvPacksetQueue.DataSource = this.scannerController.GetPacksetQueue(); this.buttonPacksetQueueCount.Text = "[" + this.scannerController.PacksetQueueCount.ToString("N0") + "]"; }
 
-                    if (e.PropertyName == "CartonIgnoreCount") { this.labelLEDCartonIgnore.Text = this.scannerController.CartonIgnoreCount != 0 ? this.scannerController.CartonIgnoreCount.ToString("N0") : "    "; }
+                    if (e.PropertyName == "PackIgnoreCount") { this.labelLEDPackIgnore.Text = this.scannerController.PackIgnoreCount != 0 ? this.scannerController.PackIgnoreCount.ToString("N0") : "   "; }
+                    if (e.PropertyName == "CartonIgnoreCount") { this.labelLEDCartonIgnore.Text = this.scannerController.CartonIgnoreCount != 0 ? this.scannerController.CartonIgnoreCount.ToString("N0") : "   "; }
 
                     if (e.PropertyName == "CartonPendingQueue")
                     {

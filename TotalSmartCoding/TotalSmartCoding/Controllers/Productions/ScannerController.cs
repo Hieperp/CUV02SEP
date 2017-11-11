@@ -231,6 +231,20 @@ namespace TotalSmartCoding.Controllers.Productions
         public int PalletPickupQueueCount { get { return this.palletPickupQueue.Count; } }
 
 
+        private int packIgnoreCount;
+        public int PackIgnoreCount
+        {
+            get { return this.packIgnoreCount; }
+            set
+            {
+                if (this.packIgnoreCount != value)
+                {
+                    this.packIgnoreCount = value;
+                    this.NotifyPropertyChanged("PackIgnoreCount");
+                }
+            }
+        }
+
         private int cartonIgnoreCount;
         public int CartonIgnoreCount
         {
@@ -384,6 +398,7 @@ namespace TotalSmartCoding.Controllers.Productions
         {
             try
             {
+                this.PackIgnoreCount = 0;
                 this.CartonIgnoreCount = 0;
                 if (GlobalEnums.OnTestScanner)
                 {
@@ -589,9 +604,8 @@ namespace TotalSmartCoding.Controllers.Productions
 
             foreach (string stringBarcode in arrayBarcode)
             {
-                string receivedBarcode = stringBarcode.Replace("NoRead", "").Trim();
-
-                if (receivedBarcode != "")
+                string receivedBarcode = stringBarcode.Trim();                 
+                if (receivedBarcode != "NoRead")
                 {
                     lock (this.packQueue)
                     {
@@ -603,6 +617,8 @@ namespace TotalSmartCoding.Controllers.Productions
                         }
                     }
                 }
+                else
+                    this.PackIgnoreCount++;
             }
 
             return barcodeReceived;

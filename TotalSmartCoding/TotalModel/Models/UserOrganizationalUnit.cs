@@ -19,6 +19,6 @@ namespace TotalModel.Models
         public string UserName { get; set; }
         public int OrganizationalUnitID { get; set; }
         public bool IsDatabaseAdmin { get; set; }
-        public string SkypeName { get; set; }
+        public string SecurityIdentifier { get; set; }
     }
 }

@@ -225,13 +225,17 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
         protected override void invokeEdit(int? id)
         {
             base.invokeEdit(id);
-            this.getPendingItems();
+
+            if (this.pickupViewModel.FillingLineID != (int)GlobalVariables.FillingLine.Drum) this.checkTimerEnable.Checked = true;
+            this.olvIsSelected.Width = this.pickupViewModel.FillingLineID == (int)GlobalVariables.FillingLine.Drum ? 20 : 0;
+
+            this.getPendingItems(true);
         }
 
         public override void Save(bool escapeAfterSave)
         {
             base.Save(escapeAfterSave);
-            this.getPendingItems();
+            this.getPendingItems(true);
         }
 
         private void callAutoSave()
@@ -246,13 +250,16 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
             }
         }
 
-        private void getPendingItems() //THIS MAY ALSO LOAD PENDING PALLET/ CARTON/ PACK
+        private void getPendingItems() { this.getPendingItems(false); }
+        private void getPendingItems(bool forcetoLoad) //THIS MAY ALSO LOAD PENDING PALLET/ CARTON/ PACK
         {
             try
-            {
-                this.olvIsSelected.Width = this.pickupViewModel.FillingLineID == (int)GlobalVariables.FillingLine.Drum? 20: 0; 
-                this.fastPendingPallets.SetObjects(this.pickupAPIs.GetPendingPallets(this.pickupViewModel.LocationID, this.pickupViewModel.FillingLineID, this.pickupViewModel.PickupID, string.Join(",", this.pickupViewModel.ViewDetails.Where(w => w.PalletID != null).Select(d => d.PalletID)), false));
-                this.olvPendingPalletCode.Text = "Line " + this.pickupViewModel.FillingLineNickName + "   -   Pending " + this.fastPendingPallets.GetItemCount().ToString("N0") + " pallet" + (this.fastPendingPallets.GetItemCount() > 1 ? "s" : "");
+            {                
+                if (forcetoLoad || this.pickupViewModel.FillingLineID != (int)GlobalVariables.FillingLine.Drum || this.checkTimerEnable.Checked)
+                {
+                    this.fastPendingPallets.SetObjects(this.pickupAPIs.GetPendingPallets(this.pickupViewModel.LocationID, this.pickupViewModel.FillingLineID, this.pickupViewModel.PickupID, string.Join(",", this.pickupViewModel.ViewDetails.Where(w => w.PalletID != null).Select(d => d.PalletID)), false));
+                    this.olvPendingPalletCode.Text = "Line " + this.pickupViewModel.FillingLineNickName + "   -   Pending " + this.fastPendingPallets.GetItemCount().ToString("N0") + " pallet" + (this.fastPendingPallets.GetItemCount() > 1 ? "s" : "");
+                }
             }
             catch (Exception exception)
             {

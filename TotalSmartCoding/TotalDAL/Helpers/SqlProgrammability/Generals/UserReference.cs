@@ -38,7 +38,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
-            queryString = queryString + "       SELECT      Users.UserID, Users.FirstName, Users.LastName, Users.UserName, Users.SkypeName, Users.IsDatabaseAdmin, OrganizationalUnits.Name AS OrganizationalUnitName, Locations.Name AS LocationName " + "\r\n";
+            queryString = queryString + "       SELECT      Users.UserID, Users.FirstName, Users.LastName, Users.UserName, Users.SecurityIdentifier, Users.IsDatabaseAdmin, OrganizationalUnits.Name AS OrganizationalUnitName, Locations.Name AS LocationName " + "\r\n";
             queryString = queryString + "       FROM        Users " + "\r\n";
             queryString = queryString + "                   INNER JOIN OrganizationalUnitUsers ON Users.UserID = OrganizationalUnitUsers.UserID AND OrganizationalUnitUsers.InActive = 0 " + "\r\n";
             queryString = queryString + "                   INNER JOIN OrganizationalUnits ON OrganizationalUnitUsers.OrganizationalUnitID = OrganizationalUnits.OrganizationalUnitID " + "\r\n";
@@ -69,14 +69,14 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
 
         private void UserAdd()
         {
-            string queryString = " @OrganizationalUnitID int, @FirstName nvarchar(60), @LastName nvarchar(60), @UserName nvarchar(256), @SkypeName nvarchar(256) " + "\r\n";
+            string queryString = " @OrganizationalUnitID int, @FirstName nvarchar(60), @LastName nvarchar(60), @UserName nvarchar(256), @SecurityIdentifier nvarchar(256) " + "\r\n";
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
 
             queryString = queryString + "       BEGIN " + "\r\n";
 
             queryString = queryString + "           DECLARE         @UserID Int" + "\r\n";
-            queryString = queryString + "           INSERT INTO     Users (FirstName, LastName, UserName, SkypeName, IsDatabaseAdmin) VALUES (@FirstName, @LastName, @UserName, @SkypeName, 0) " + "\r\n";
+            queryString = queryString + "           INSERT INTO     Users (FirstName, LastName, UserName, SecurityIdentifier, IsDatabaseAdmin) VALUES (@FirstName, @LastName, @UserName, @SecurityIdentifier, 0) " + "\r\n";
             queryString = queryString + "           SELECT          @UserID = SCOPE_IDENTITY() " + "\r\n";
             queryString = queryString + "           INSERT INTO     OrganizationalUnitUsers (OrganizationalUnitID, UserID, InActive) VALUES (@OrganizationalUnitID, @UserID, 0) " + "\r\n";
 

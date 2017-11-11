@@ -87,7 +87,34 @@ namespace TotalSmartCoding.Views.Mains
             this.errorProviderMaster.DataSource = this.baseDTO; //JUST SET this.errorProviderMaster.DataSource HERE, IT WILL PROVIDE ERROR BINDING TO EVERY VIEW
         }
 
-        protected virtual void InitializeDataGridBinding() { }
+        private List<DataGridColumnNames> readOnlyDataGridColumnNames { get; set; }
+        protected virtual void InitializeDataGridBinding() { this.readOnlyDataGridColumnNames = new List<DataGridColumnNames>(); }
+
+        protected virtual void InitializeDataGridReadonlyColumns(DataGridexView dataGridView)
+        {
+            DataGridColumnNames dataGridColumnNames = new DataGridColumnNames() { DataGridView = dataGridView };
+            foreach (DataGridViewColumn dataGridViewColumn in dataGridView.Columns)
+            {
+                if (dataGridViewColumn.ReadOnly) dataGridColumnNames.ColumnNames.Add(dataGridViewColumn.Name);
+            }
+            this.readOnlyDataGridColumnNames.Add(dataGridColumnNames);
+        }
+
+        protected virtual void dataGrid_ReadOnlyChanged(object sender, EventArgs e)
+        {
+            foreach (DataGridColumnNames dataGridColumnNames in this.readOnlyDataGridColumnNames)
+            {
+                if (sender.Equals(dataGridColumnNames.DataGridView))
+                {
+                    DataGridexView dataGridexView = sender as DataGridexView;
+                    foreach (string columnName in dataGridColumnNames.ColumnNames)
+                    {
+                        if (dataGridexView.Columns[columnName] != null )
+                            dataGridexView.Columns[columnName].ReadOnly = true;
+                    }
+                }
+            }
+        }
 
         protected virtual void CommonControl_BindingComplete(object sender, BindingCompleteEventArgs e)
         {
@@ -206,7 +233,7 @@ namespace TotalSmartCoding.Views.Mains
 
 
 
-        public void gridexViewDetails_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        public void dataGridViewDetails_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             var comboBox = e.Control as DataGridViewComboBoxEditingControl;
             if (comboBox != null)
@@ -555,5 +582,13 @@ namespace TotalSmartCoding.Views.Mains
 
         }
         #endregion Helper Method
+    }
+
+    public class DataGridColumnNames
+    {
+        public Control DataGridView { get; set; }
+        public List<string> ColumnNames { get; set; }
+
+        public DataGridColumnNames() { this.ColumnNames = new List<string>(); }
     }
 }

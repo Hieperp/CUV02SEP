@@ -680,7 +680,7 @@
           <Property Name="FirstName" Type="nvarchar" MaxLength="60" Nullable="false" />
           <Property Name="LastName" Type="nvarchar" MaxLength="60" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
-          <Property Name="SkypeName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="SecurityIdentifier" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="IsDatabaseAdmin" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="WarehouseAdjustmentDetails">
@@ -2349,7 +2349,7 @@
           <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
           <Parameter Name="LastName" Type="nvarchar" Mode="In" />
           <Parameter Name="UserName" Type="nvarchar" Mode="In" />
-          <Parameter Name="SkypeName" Type="nvarchar" Mode="In" />
+          <Parameter Name="SecurityIdentifier" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="UserRemove" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserID" Type="int" Mode="In" />
@@ -3586,11 +3586,6 @@
           <FunctionImport Name="GetUserOrganizationalUnit" ReturnType="Collection(TotalSmartCodingModel.UserOrganizationalUnit)">
           <Parameter Name="UserName" Mode="In" Type="String" />
           </FunctionImport>
-          <EntitySet Name="Users" EntityType="TotalSmartCodingModel.User" />
-          <AssociationSet Name="FK_OrganizationalUnitUsers_Users" Association="TotalSmartCodingModel.FK_OrganizationalUnitUsers_Users">
-            <End Role="User" EntitySet="Users" />
-            <End Role="OrganizationalUnitUser" EntitySet="OrganizationalUnitUsers" />
-          </AssociationSet>
           <FunctionImport Name="GetModuleDetailIndexes" ReturnType="Collection(TotalSmartCodingModel.ModuleDetailIndex)">
             </FunctionImport>
           <FunctionImport Name="GetUserIndexes" ReturnType="Collection(TotalSmartCodingModel.UserIndex)">
@@ -3617,7 +3612,7 @@
             <Parameter Name="FirstName" Mode="In" Type="String" />
             <Parameter Name="LastName" Mode="In" Type="String" />
             <Parameter Name="UserName" Mode="In" Type="String" />
-            <Parameter Name="SkypeName" Mode="In" Type="String" />
+            <Parameter Name="SecurityIdentifier" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="UserRemove">
           <Parameter Name="UserID" Mode="In" Type="Int32" />
@@ -3695,6 +3690,11 @@
           <AssociationSet Name="FK_GoodsIssues_Warehouses" Association="TotalSmartCodingModel.FK_GoodsIssues_Warehouses">
             <End Role="Warehouse" EntitySet="Warehouses" />
             <End Role="GoodsIssue" EntitySet="GoodsIssues" />
+          </AssociationSet>
+          <EntitySet Name="Users" EntityType="TotalSmartCodingModel.User" />
+          <AssociationSet Name="FK_OrganizationalUnitUsers_Users" Association="TotalSmartCodingModel.FK_OrganizationalUnitUsers_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="OrganizationalUnitUser" EntitySet="OrganizationalUnitUsers" />
           </AssociationSet>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
@@ -6173,32 +6173,8 @@
           <Property Type="String" Name="UserName" Nullable="false" MaxLength="256" />
           <Property Type="Int32" Name="OrganizationalUnitID" Nullable="false" />
           <Property Type="Boolean" Name="IsDatabaseAdmin" Nullable="false" />
-          <Property Type="String" Name="SkypeName" Nullable="false" MaxLength="256" />
+          <Property Type="String" Name="SecurityIdentifier" Nullable="false" MaxLength="256" />
         </ComplexType>
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="UserID" />
-          </Key>
-          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
-          <Property Name="LastName" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
-          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="IsDatabaseAdmin" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="OrganizationalUnitUsers" Relationship="TotalSmartCodingModel.FK_OrganizationalUnitUsers_Users" FromRole="User" ToRole="OrganizationalUnitUser" />
-          <Property Name="SkypeName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <Association Name="FK_OrganizationalUnitUsers_Users">
-          <End Type="TotalSmartCodingModel.User" Role="User" Multiplicity="1" />
-          <End Type="TotalSmartCodingModel.OrganizationalUnitUser" Role="OrganizationalUnitUser" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="UserID" />
-            </Principal>
-            <Dependent Role="OrganizationalUnitUser">
-              <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <ComplexType Name="ModuleDetailIndex">
           <Property Type="Int32" Name="ModuleID" Nullable="false" />
           <Property Type="String" Name="ModuleName" Nullable="false" MaxLength="50" />
@@ -6213,7 +6189,7 @@
           <Property Type="Boolean" Name="IsDatabaseAdmin" Nullable="false" />
           <Property Type="String" Name="OrganizationalUnitName" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="LocationName" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="SkypeName" Nullable="false" MaxLength="256" />
+          <Property Type="String" Name="SecurityIdentifier" Nullable="false" MaxLength="256" />
         </ComplexType>
         <ComplexType Name="UserAccessControl">
           <Property Type="Int32" Name="AccessControlID" Nullable="false" />
@@ -6530,6 +6506,30 @@
             </Principal>
             <Dependent Role="GoodsIssue">
               <PropertyRef Name="WarehouseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityIdentifier" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="IsDatabaseAdmin" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="OrganizationalUnitUsers" Relationship="TotalSmartCodingModel.FK_OrganizationalUnitUsers_Users" FromRole="User" ToRole="OrganizationalUnitUser" />
+        </EntityType>
+        <Association Name="FK_OrganizationalUnitUsers_Users">
+          <End Type="TotalSmartCodingModel.User" Role="User" Multiplicity="1" />
+          <End Type="TotalSmartCodingModel.OrganizationalUnitUser" Role="OrganizationalUnitUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="OrganizationalUnitUser">
+              <PropertyRef Name="UserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -8301,22 +8301,10 @@
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="OrganizationalUnitID" ColumnName="OrganizationalUnitID" />
                 <ScalarProperty Name="IsDatabaseAdmin" ColumnName="IsDatabaseAdmin" />
-                <ScalarProperty Name="SkypeName" ColumnName="SkypeName" />
+                <ScalarProperty Name="SecurityIdentifier" ColumnName="SecurityIdentifier" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="TotalSmartCodingModel.User">
-              <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="SkypeName" ColumnName="SkypeName" />
-                <ScalarProperty Name="IsDatabaseAdmin" ColumnName="IsDatabaseAdmin" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="GetModuleDetailIndexes" FunctionName="TotalSmartCodingModel.Store.GetModuleDetailIndexes">
             <ResultMapping>
               <ComplexTypeMapping TypeName="TotalSmartCodingModel.ModuleDetailIndex">
@@ -8337,7 +8325,7 @@
                 <ScalarProperty Name="IsDatabaseAdmin" ColumnName="IsDatabaseAdmin" />
                 <ScalarProperty Name="OrganizationalUnitName" ColumnName="OrganizationalUnitName" />
                 <ScalarProperty Name="LocationName" ColumnName="LocationName" />
-                <ScalarProperty Name="SkypeName" ColumnName="SkypeName" />
+                <ScalarProperty Name="SecurityIdentifier" ColumnName="SecurityIdentifier" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -8437,6 +8425,18 @@
                 <ScalarProperty Name="Reference" ColumnName="Reference" />
                 <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
                 <ScalarProperty Name="GoodsIssueID" ColumnName="GoodsIssueID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="TotalSmartCodingModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="IsDatabaseAdmin" ColumnName="IsDatabaseAdmin" />
+                <ScalarProperty Name="SecurityIdentifier" ColumnName="SecurityIdentifier" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

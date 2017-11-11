@@ -230,7 +230,7 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
 
             this.bindingSourceViewDetails.AddingNew += bindingSourceViewDetails_AddingNew;
             this.salesOrderViewModel.ViewDetails.ListChanged += ViewDetails_ListChanged;
-            this.gridexViewDetails.EditingControlShowing += new DataGridViewEditingControlShowingEventHandler(this.gridexViewDetails_EditingControlShowing);
+            this.gridexViewDetails.EditingControlShowing += new DataGridViewEditingControlShowingEventHandler(this.dataGridViewDetails_EditingControlShowing);
 
             DataGridViewComboBoxColumn comboBoxColumn;
             CommodityAPIs commodityAPIs = new CommodityAPIs(CommonNinject.Kernel.Get<ICommodityAPIRepository>());

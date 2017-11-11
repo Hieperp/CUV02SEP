@@ -154,6 +154,7 @@
             this.splitContainerMaster = new System.Windows.Forms.SplitContainer();
             this.toolStripLED = new System.Windows.Forms.ToolStrip();
             this.labelLEDPack = new System.Windows.Forms.ToolStripLabel();
+            this.labelLEDPackIgnore = new System.Windows.Forms.ToolStripLabel();
             this.labelLEDCarton = new System.Windows.Forms.ToolStripLabel();
             this.labelLEDCartonPending = new System.Windows.Forms.ToolStripLabel();
             this.labelLEDCartonIgnore = new System.Windows.Forms.ToolStripLabel();
@@ -273,7 +274,7 @@
             this.digitStatusbox.Name = "digitStatusbox";
             this.digitStatusbox.ReadOnly = true;
             this.digitStatusbox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.digitStatusbox.Size = new System.Drawing.Size(273, 170);
+            this.digitStatusbox.Size = new System.Drawing.Size(276, 300);
             this.digitStatusbox.TabIndex = 3;
             // 
             // dgvPackQueue
@@ -320,7 +321,7 @@
             this.dgvPackQueue.RowTemplate.Height = 47;
             this.dgvPackQueue.RowTemplate.ReadOnly = true;
             this.dgvPackQueue.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.dgvPackQueue.Size = new System.Drawing.Size(965, 122);
+            this.dgvPackQueue.Size = new System.Drawing.Size(977, 221);
             this.dgvPackQueue.TabIndex = 8;
             this.dgvPackQueue.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView_CellFormatting);
             this.dgvPackQueue.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dataGridView_CellPainting);
@@ -374,7 +375,7 @@
             this.dgvPacksetQueue.RowTemplate.Height = 47;
             this.dgvPacksetQueue.RowTemplate.ReadOnly = true;
             this.dgvPacksetQueue.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.dgvPacksetQueue.Size = new System.Drawing.Size(554, 122);
+            this.dgvPacksetQueue.Size = new System.Drawing.Size(561, 221);
             this.dgvPacksetQueue.TabIndex = 9;
             this.dgvPacksetQueue.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView_CellFormatting);
             this.dgvPacksetQueue.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dataGridView_CellPainting);
@@ -424,7 +425,7 @@
             this.dgvCartonQueue.RowTemplate.Height = 47;
             this.dgvCartonQueue.RowTemplate.ReadOnly = true;
             this.dgvCartonQueue.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.dgvCartonQueue.Size = new System.Drawing.Size(366, 66);
+            this.dgvCartonQueue.Size = new System.Drawing.Size(371, 134);
             this.dgvCartonQueue.TabIndex = 10;
             this.dgvCartonQueue.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView_CellFormatting);
             this.dgvCartonQueue.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dataGridView_CellPainting);
@@ -440,7 +441,7 @@
             this.cartonStatusbox.Name = "cartonStatusbox";
             this.cartonStatusbox.ReadOnly = true;
             this.cartonStatusbox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.cartonStatusbox.Size = new System.Drawing.Size(249, 170);
+            this.cartonStatusbox.Size = new System.Drawing.Size(252, 300);
             this.cartonStatusbox.TabIndex = 11;
             // 
             // timerEverySecond
@@ -466,8 +467,8 @@
             // 
             this.splitContainerPack.Panel2.Controls.Add(this.splitContainerCarton);
             this.splitContainerPack.Panel2MinSize = 0;
-            this.splitContainerPack.Size = new System.Drawing.Size(1520, 666);
-            this.splitContainerPack.SplitterDistance = 177;
+            this.splitContainerPack.Size = new System.Drawing.Size(1539, 1045);
+            this.splitContainerPack.SplitterDistance = 276;
             this.splitContainerPack.SplitterWidth = 1;
             this.splitContainerPack.TabIndex = 24;
             // 
@@ -489,8 +490,8 @@
             this.splitPackQueue.Panel2.Controls.Add(this.dgvPacksetQueue);
             this.splitPackQueue.Panel2.Controls.Add(this.toolStrip12);
             this.splitPackQueue.Panel2MinSize = 39;
-            this.splitPackQueue.Size = new System.Drawing.Size(1520, 177);
-            this.splitPackQueue.SplitterDistance = 965;
+            this.splitPackQueue.Size = new System.Drawing.Size(1539, 276);
+            this.splitPackQueue.SplitterDistance = 977;
             this.splitPackQueue.SplitterWidth = 1;
             this.splitPackQueue.TabIndex = 0;
             // 
@@ -508,7 +509,7 @@
             this.toolStrip11.Location = new System.Drawing.Point(0, 0);
             this.toolStrip11.Name = "toolStrip11";
             this.toolStrip11.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStrip11.Size = new System.Drawing.Size(965, 55);
+            this.toolStrip11.Size = new System.Drawing.Size(977, 55);
             this.toolStrip11.TabIndex = 16;
             this.toolStrip11.Text = "toolStrip11";
             // 
@@ -570,7 +571,7 @@
             this.toolStrip12.Location = new System.Drawing.Point(0, 0);
             this.toolStrip12.Name = "toolStrip12";
             this.toolStrip12.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStrip12.Size = new System.Drawing.Size(554, 55);
+            this.toolStrip12.Size = new System.Drawing.Size(561, 55);
             this.toolStrip12.TabIndex = 16;
             this.toolStrip12.Text = "toolStrip12";
             // 
@@ -626,8 +627,8 @@
             // 
             this.splitContainerCarton.Panel2.Controls.Add(this.splitDigit);
             this.splitContainerCarton.Panel2MinSize = 0;
-            this.splitContainerCarton.Size = new System.Drawing.Size(1520, 488);
-            this.splitContainerCarton.SplitterDistance = 262;
+            this.splitContainerCarton.Size = new System.Drawing.Size(1539, 768);
+            this.splitContainerCarton.SplitterDistance = 412;
             this.splitContainerCarton.SplitterWidth = 1;
             this.splitContainerCarton.TabIndex = 0;
             // 
@@ -646,8 +647,8 @@
             // splitContainerPallet.Panel2
             // 
             this.splitContainerPallet.Panel2.Controls.Add(this.splitPalletQueue);
-            this.splitContainerPallet.Size = new System.Drawing.Size(1520, 262);
-            this.splitContainerPallet.SplitterDistance = 121;
+            this.splitContainerPallet.Size = new System.Drawing.Size(1539, 412);
+            this.splitContainerPallet.SplitterDistance = 189;
             this.splitContainerPallet.TabIndex = 19;
             // 
             // splitPendingQueue
@@ -664,8 +665,8 @@
             // 
             this.splitPendingQueue.Panel2.Controls.Add(this.dgvCartonsetQueue);
             this.splitPendingQueue.Panel2.Controls.Add(this.toolStrip10);
-            this.splitPendingQueue.Size = new System.Drawing.Size(1520, 121);
-            this.splitPendingQueue.SplitterDistance = 455;
+            this.splitPendingQueue.Size = new System.Drawing.Size(1539, 189);
+            this.splitPendingQueue.SplitterDistance = 460;
             this.splitPendingQueue.SplitterWidth = 1;
             this.splitPendingQueue.TabIndex = 20;
             // 
@@ -684,7 +685,7 @@
             // 
             this.splitCartonQueue.Panel2.Controls.Add(this.dgvCartonQueue);
             this.splitCartonQueue.Panel2.Controls.Add(this.toolStrip9);
-            this.splitCartonQueue.Size = new System.Drawing.Size(455, 121);
+            this.splitCartonQueue.Size = new System.Drawing.Size(460, 189);
             this.splitCartonQueue.SplitterDistance = 88;
             this.splitCartonQueue.SplitterWidth = 1;
             this.splitCartonQueue.TabIndex = 19;
@@ -734,7 +735,7 @@
             this.dgvCartonPendingQueue.RowTemplate.Height = 47;
             this.dgvCartonPendingQueue.RowTemplate.ReadOnly = true;
             this.dgvCartonPendingQueue.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.dgvCartonPendingQueue.Size = new System.Drawing.Size(88, 66);
+            this.dgvCartonPendingQueue.Size = new System.Drawing.Size(88, 134);
             this.dgvCartonPendingQueue.TabIndex = 11;
             this.dgvCartonPendingQueue.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView_CellFormatting);
             this.dgvCartonPendingQueue.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dataGridView_CellPainting);
@@ -844,7 +845,7 @@
             this.toolStrip9.Location = new System.Drawing.Point(0, 0);
             this.toolStrip9.Name = "toolStrip9";
             this.toolStrip9.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStrip9.Size = new System.Drawing.Size(366, 55);
+            this.toolStrip9.Size = new System.Drawing.Size(371, 55);
             this.toolStrip9.TabIndex = 15;
             this.toolStrip9.Text = "toolStrip9";
             // 
@@ -927,7 +928,7 @@
             this.dgvCartonsetQueue.RowTemplate.Height = 47;
             this.dgvCartonsetQueue.RowTemplate.ReadOnly = true;
             this.dgvCartonsetQueue.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.dgvCartonsetQueue.Size = new System.Drawing.Size(1064, 66);
+            this.dgvCartonsetQueue.Size = new System.Drawing.Size(1078, 134);
             this.dgvCartonsetQueue.TabIndex = 11;
             this.dgvCartonsetQueue.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView_CellFormatting);
             this.dgvCartonsetQueue.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dataGridView_CellPainting);
@@ -947,7 +948,7 @@
             this.toolStrip10.Location = new System.Drawing.Point(0, 0);
             this.toolStrip10.Name = "toolStrip10";
             this.toolStrip10.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStrip10.Size = new System.Drawing.Size(1064, 55);
+            this.toolStrip10.Size = new System.Drawing.Size(1078, 55);
             this.toolStrip10.TabIndex = 15;
             this.toolStrip10.Text = "toolStrip10";
             // 
@@ -999,8 +1000,8 @@
             // 
             this.splitPalletQueue.Panel2.Controls.Add(this.dgvPalletPickupQueue);
             this.splitPalletQueue.Panel2.Controls.Add(this.toolStrip6);
-            this.splitPalletQueue.Size = new System.Drawing.Size(1520, 137);
-            this.splitPalletQueue.SplitterDistance = 82;
+            this.splitPalletQueue.Size = new System.Drawing.Size(1539, 219);
+            this.splitPalletQueue.SplitterDistance = 83;
             this.splitPalletQueue.SplitterWidth = 1;
             this.splitPalletQueue.TabIndex = 20;
             // 
@@ -1048,7 +1049,7 @@
             this.dgvPalletQueue.RowTemplate.Height = 47;
             this.dgvPalletQueue.RowTemplate.ReadOnly = true;
             this.dgvPalletQueue.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.dgvPalletQueue.Size = new System.Drawing.Size(82, 98);
+            this.dgvPalletQueue.Size = new System.Drawing.Size(83, 180);
             this.dgvPalletQueue.TabIndex = 12;
             this.dgvPalletQueue.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView_CellFormatting);
             this.dgvPalletQueue.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dataGridView_CellPainting);
@@ -1068,7 +1069,7 @@
             this.toolStrip8.Location = new System.Drawing.Point(0, 0);
             this.toolStrip8.Name = "toolStrip8";
             this.toolStrip8.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStrip8.Size = new System.Drawing.Size(82, 39);
+            this.toolStrip8.Size = new System.Drawing.Size(83, 39);
             this.toolStrip8.TabIndex = 15;
             this.toolStrip8.Text = "toolStrip8";
             // 
@@ -1147,7 +1148,7 @@
             this.dgvPalletPickupQueue.RowTemplate.Height = 47;
             this.dgvPalletPickupQueue.RowTemplate.ReadOnly = true;
             this.dgvPalletPickupQueue.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.dgvPalletPickupQueue.Size = new System.Drawing.Size(1437, 82);
+            this.dgvPalletPickupQueue.Size = new System.Drawing.Size(1455, 164);
             this.dgvPalletPickupQueue.TabIndex = 13;
             this.dgvPalletPickupQueue.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView_CellFormatting);
             this.dgvPalletPickupQueue.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dataGridView_CellPainting);
@@ -1167,7 +1168,7 @@
             this.toolStrip6.Location = new System.Drawing.Point(0, 0);
             this.toolStrip6.Name = "toolStrip6";
             this.toolStrip6.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStrip6.Size = new System.Drawing.Size(1437, 55);
+            this.toolStrip6.Size = new System.Drawing.Size(1455, 55);
             this.toolStrip6.TabIndex = 19;
             this.toolStrip6.Text = "toolStrip6";
             // 
@@ -1218,8 +1219,8 @@
             // 
             this.splitDigit.Panel2.Controls.Add(this.splitPack);
             this.splitDigit.Panel2MinSize = 39;
-            this.splitDigit.Size = new System.Drawing.Size(1520, 225);
-            this.splitDigit.SplitterDistance = 273;
+            this.splitDigit.Size = new System.Drawing.Size(1539, 355);
+            this.splitDigit.SplitterDistance = 276;
             this.splitDigit.SplitterWidth = 1;
             this.splitDigit.TabIndex = 25;
             // 
@@ -1237,7 +1238,7 @@
             this.digitLEDAmber});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(273, 55);
+            this.toolStrip1.Size = new System.Drawing.Size(276, 55);
             this.toolStrip1.TabIndex = 14;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -1315,8 +1316,8 @@
             // 
             this.splitPack.Panel2.Controls.Add(this.splitCarton);
             this.splitPack.Panel2MinSize = 39;
-            this.splitPack.Size = new System.Drawing.Size(1246, 225);
-            this.splitPack.SplitterDistance = 274;
+            this.splitPack.Size = new System.Drawing.Size(1262, 355);
+            this.splitPack.SplitterDistance = 277;
             this.splitPack.SplitterWidth = 1;
             this.splitPack.TabIndex = 0;
             // 
@@ -1329,7 +1330,7 @@
             this.packStatusbox.Name = "packStatusbox";
             this.packStatusbox.ReadOnly = true;
             this.packStatusbox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.packStatusbox.Size = new System.Drawing.Size(274, 170);
+            this.packStatusbox.Size = new System.Drawing.Size(277, 300);
             this.packStatusbox.TabIndex = 20;
             // 
             // toolStrip2
@@ -1346,7 +1347,7 @@
             this.packLEDAmber});
             this.toolStrip2.Location = new System.Drawing.Point(0, 0);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(274, 55);
+            this.toolStrip2.Size = new System.Drawing.Size(277, 55);
             this.toolStrip2.TabIndex = 19;
             this.toolStrip2.Text = "toolStrip2";
             // 
@@ -1424,8 +1425,8 @@
             // 
             this.splitCarton.Panel2.Controls.Add(this.splitPallet);
             this.splitCarton.Panel2MinSize = 39;
-            this.splitCarton.Size = new System.Drawing.Size(971, 225);
-            this.splitCarton.SplitterDistance = 249;
+            this.splitCarton.Size = new System.Drawing.Size(984, 355);
+            this.splitCarton.SplitterDistance = 252;
             this.splitCarton.SplitterWidth = 1;
             this.splitCarton.TabIndex = 0;
             // 
@@ -1444,7 +1445,7 @@
             this.cartonLEDAmber});
             this.toolStrip3.Location = new System.Drawing.Point(0, 0);
             this.toolStrip3.Name = "toolStrip3";
-            this.toolStrip3.Size = new System.Drawing.Size(249, 55);
+            this.toolStrip3.Size = new System.Drawing.Size(252, 55);
             this.toolStrip3.TabIndex = 20;
             this.toolStrip3.Text = "toolStrip3";
             // 
@@ -1532,8 +1533,8 @@
             this.splitPallet.Panel2.Controls.Add(this.scannerStatusbox);
             this.splitPallet.Panel2.Controls.Add(this.toolStrip4);
             this.splitPallet.Panel2MinSize = 39;
-            this.splitPallet.Size = new System.Drawing.Size(721, 225);
-            this.splitPallet.SplitterDistance = 309;
+            this.splitPallet.Size = new System.Drawing.Size(731, 355);
+            this.splitPallet.SplitterDistance = 313;
             this.splitPallet.TabIndex = 23;
             // 
             // palletStatusbox
@@ -1545,7 +1546,7 @@
             this.palletStatusbox.Name = "palletStatusbox";
             this.palletStatusbox.ReadOnly = true;
             this.palletStatusbox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.palletStatusbox.Size = new System.Drawing.Size(309, 170);
+            this.palletStatusbox.Size = new System.Drawing.Size(313, 300);
             this.palletStatusbox.TabIndex = 23;
             // 
             // toolStrip7
@@ -1567,7 +1568,7 @@
             this.toolStripButton13});
             this.toolStrip7.Location = new System.Drawing.Point(0, 0);
             this.toolStrip7.Name = "toolStrip7";
-            this.toolStrip7.Size = new System.Drawing.Size(309, 55);
+            this.toolStrip7.Size = new System.Drawing.Size(313, 55);
             this.toolStrip7.TabIndex = 22;
             this.toolStrip7.Text = "toolStrip7";
             // 
@@ -1690,7 +1691,7 @@
             this.scannerStatusbox.Name = "scannerStatusbox";
             this.scannerStatusbox.ReadOnly = true;
             this.scannerStatusbox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.scannerStatusbox.Size = new System.Drawing.Size(408, 170);
+            this.scannerStatusbox.Size = new System.Drawing.Size(414, 300);
             this.scannerStatusbox.TabIndex = 22;
             // 
             // toolStrip4
@@ -1712,7 +1713,7 @@
             this.toolStripMCUCarton});
             this.toolStrip4.Location = new System.Drawing.Point(0, 0);
             this.toolStrip4.Name = "toolStrip4";
-            this.toolStrip4.Size = new System.Drawing.Size(408, 55);
+            this.toolStrip4.Size = new System.Drawing.Size(414, 55);
             this.toolStrip4.TabIndex = 21;
             this.toolStrip4.Text = "toolStrip4";
             // 
@@ -1840,7 +1841,7 @@
             // splitContainerMaster
             // 
             this.splitContainerMaster.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerMaster.Location = new System.Drawing.Point(0, 75);
+            this.splitContainerMaster.Location = new System.Drawing.Point(0, 0);
             this.splitContainerMaster.Name = "splitContainerMaster";
             // 
             // splitContainerMaster.Panel1
@@ -1853,8 +1854,8 @@
             this.splitContainerMaster.Panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.splitContainerMaster.Panel2.Controls.Add(this.toolStripLED);
             this.splitContainerMaster.Panel2.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.splitContainerMaster.Size = new System.Drawing.Size(1782, 666);
-            this.splitContainerMaster.SplitterDistance = 1520;
+            this.splitContainerMaster.Size = new System.Drawing.Size(1782, 1045);
+            this.splitContainerMaster.SplitterDistance = 1539;
             this.splitContainerMaster.TabIndex = 25;
             this.splitContainerMaster.SizeChanged += new System.EventHandler(this.splitContainerMaster_SizeChanged);
             // 
@@ -1863,12 +1864,13 @@
             this.toolStripLED.BackColor = System.Drawing.Color.Transparent;
             this.toolStripLED.BackgroundImage = global::TotalSmartCoding.Properties.Resources.ToolbarImageStretch;
             this.toolStripLED.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.toolStripLED.Font = new System.Drawing.Font("Arial Narrow", 118.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripLED.Font = new System.Drawing.Font("Arial Narrow", 99F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripLED.GripMargin = new System.Windows.Forms.Padding(0);
             this.toolStripLED.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStripLED.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStripLED.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.labelLEDPack,
+            this.labelLEDPackIgnore,
             this.labelLEDCarton,
             this.labelLEDCartonPending,
             this.labelLEDCartonIgnore,
@@ -1882,70 +1884,77 @@
             this.toolStripLED.Location = new System.Drawing.Point(0, 0);
             this.toolStripLED.Name = "toolStripLED";
             this.toolStripLED.Padding = new System.Windows.Forms.Padding(0);
-            this.toolStripLED.Size = new System.Drawing.Size(258, 2272);
+            this.toolStripLED.Size = new System.Drawing.Size(239, 2127);
             this.toolStripLED.TabIndex = 0;
             this.toolStripLED.Text = "toolStrip13";
             // 
             // labelLEDPack
             // 
             this.labelLEDPack.Name = "labelLEDPack";
-            this.labelLEDPack.Size = new System.Drawing.Size(257, 224);
+            this.labelLEDPack.Size = new System.Drawing.Size(238, 188);
             this.labelLEDPack.Text = "0";
+            // 
+            // labelLEDPackIgnore
+            // 
+            this.labelLEDPackIgnore.ForeColor = System.Drawing.Color.Firebrick;
+            this.labelLEDPackIgnore.Name = "labelLEDPackIgnore";
+            this.labelLEDPackIgnore.Size = new System.Drawing.Size(238, 188);
+            this.labelLEDPackIgnore.Text = "   ";
             // 
             // labelLEDCarton
             // 
             this.labelLEDCarton.Name = "labelLEDCarton";
-            this.labelLEDCarton.Size = new System.Drawing.Size(257, 224);
+            this.labelLEDCarton.Size = new System.Drawing.Size(238, 188);
             this.labelLEDCarton.Text = "0";
             // 
             // labelLEDCartonPending
             // 
             this.labelLEDCartonPending.ForeColor = System.Drawing.Color.Firebrick;
             this.labelLEDCartonPending.Name = "labelLEDCartonPending";
-            this.labelLEDCartonPending.Size = new System.Drawing.Size(257, 224);
+            this.labelLEDCartonPending.Size = new System.Drawing.Size(238, 188);
             this.labelLEDCartonPending.Text = "   ";
             // 
             // labelLEDCartonIgnore
             // 
             this.labelLEDCartonIgnore.ForeColor = System.Drawing.Color.Red;
             this.labelLEDCartonIgnore.Name = "labelLEDCartonIgnore";
-            this.labelLEDCartonIgnore.Size = new System.Drawing.Size(257, 224);
+            this.labelLEDCartonIgnore.Size = new System.Drawing.Size(238, 188);
             this.labelLEDCartonIgnore.Text = "   ";
             // 
             // labelLEDPallet
             // 
             this.labelLEDPallet.Name = "labelLEDPallet";
-            this.labelLEDPallet.Size = new System.Drawing.Size(257, 224);
+            this.labelLEDPallet.Size = new System.Drawing.Size(238, 188);
             this.labelLEDPallet.Text = "0";
             // 
             // toolStripLabel4
             // 
             this.toolStripLabel4.Name = "toolStripLabel4";
-            this.toolStripLabel4.Size = new System.Drawing.Size(257, 224);
+            this.toolStripLabel4.Size = new System.Drawing.Size(238, 188);
             this.toolStripLabel4.Text = "    ";
             // 
             // toolStripLabel5
             // 
             this.toolStripLabel5.Name = "toolStripLabel5";
-            this.toolStripLabel5.Size = new System.Drawing.Size(257, 224);
+            this.toolStripLabel5.Size = new System.Drawing.Size(238, 188);
             this.toolStripLabel5.Text = "    ";
             // 
             // toolStripLabel7
             // 
             this.toolStripLabel7.Name = "toolStripLabel7";
-            this.toolStripLabel7.Size = new System.Drawing.Size(257, 224);
+            this.toolStripLabel7.Size = new System.Drawing.Size(238, 188);
             this.toolStripLabel7.Text = "    ";
             // 
             // toolStripLabel8
             // 
             this.toolStripLabel8.Name = "toolStripLabel8";
-            this.toolStripLabel8.Size = new System.Drawing.Size(257, 224);
+            this.toolStripLabel8.Size = new System.Drawing.Size(238, 188);
             this.toolStripLabel8.Text = "    ";
             // 
             // toolStripLabel10
             // 
             this.toolStripLabel10.Name = "toolStripLabel10";
-            this.toolStripLabel10.Size = new System.Drawing.Size(257, 224);
+            this.toolStripLabel10.Size = new System.Drawing.Size(238, 188);
             this.toolStripLabel10.Text = "    ";
             // 
             // toolStripChildForm
@@ -2076,7 +2085,7 @@
             this.textBoxCommodityOfficialCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxCommodityOfficialCode.Name = "textBoxCommodityOfficialCode";
             this.textBoxCommodityOfficialCode.ReadOnly = true;
-            this.textBoxCommodityOfficialCode.Size = new System.Drawing.Size(99, 75);
+            this.textBoxCommodityOfficialCode.Size = new System.Drawing.Size(99, 27);
             this.textBoxCommodityOfficialCode.Text = "8984568";
             this.textBoxCommodityOfficialCode.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBoxCommodityOfficialCode.Visible = false;
@@ -2195,7 +2204,7 @@
             this.comboBoxEmptyCarton.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxEmptyCarton.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             this.comboBoxEmptyCarton.Name = "comboBoxEmptyCarton";
-            this.comboBoxEmptyCarton.Size = new System.Drawing.Size(75, 75);
+            this.comboBoxEmptyCarton.Size = new System.Drawing.Size(75, 28);
             this.comboBoxEmptyCarton.Visible = false;
             // 
             // buttonSendToZebra
@@ -2213,14 +2222,14 @@
             this.comboBoxSendToZebra.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             this.comboBoxSendToZebra.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.comboBoxSendToZebra.Name = "comboBoxSendToZebra";
-            this.comboBoxSendToZebra.Size = new System.Drawing.Size(118, 28);
+            this.comboBoxSendToZebra.Size = new System.Drawing.Size(118, 75);
             this.comboBoxSendToZebra.SelectedIndexChanged += new System.EventHandler(this.comboBoxSendToZebra_SelectedIndexChanged);
             // 
             // SmartCoding
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1782, 741);
+            this.ClientSize = new System.Drawing.Size(1782, 1045);
             this.Controls.Add(this.splitContainerMaster);
             this.Controls.Add(this.toolStripChildForm);
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -2473,5 +2482,6 @@
         private System.Windows.Forms.ToolStripLabel toolStripLabel7;
         private System.Windows.Forms.ToolStripLabel toolStripLabel8;
         private System.Windows.Forms.ToolStripLabel toolStripLabel10;
+        private System.Windows.Forms.ToolStripLabel labelLEDPackIgnore;
     }
 }

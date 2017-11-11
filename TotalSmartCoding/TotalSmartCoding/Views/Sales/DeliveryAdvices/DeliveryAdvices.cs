@@ -225,13 +225,17 @@ namespace TotalSmartCoding.Views.Sales.DeliveryAdvices
 
         protected override void InitializeDataGridBinding()
         {
+            base.InitializeDataGridBinding();
+            this.InitializeDataGridReadonlyColumns(this.gridexViewDetails);
+
             this.gridexViewDetails.AutoGenerateColumns = false;
             this.gridexViewDetails.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             this.gridexViewDetails.DataSource = this.deliveryAdviceViewModel.ViewDetails;
 
             this.deliveryAdviceViewModel.ViewDetails.ListChanged += ViewDetails_ListChanged;
-            this.gridexViewDetails.EditingControlShowing += new DataGridViewEditingControlShowingEventHandler(this.gridexViewDetails_EditingControlShowing);
+            this.gridexViewDetails.EditingControlShowing += new DataGridViewEditingControlShowingEventHandler(this.dataGridViewDetails_EditingControlShowing);
+            this.gridexViewDetails.ReadOnlyChanged += new System.EventHandler(this.dataGrid_ReadOnlyChanged);
 
             DataGridViewComboBoxColumn comboBoxColumn;
             CommodityAPIs commodityAPIs = new CommodityAPIs(CommonNinject.Kernel.Get<ICommodityAPIRepository>());
@@ -359,18 +363,6 @@ namespace TotalSmartCoding.Views.Sales.DeliveryAdvices
             {
                 ExceptionHandlers.ShowExceptionMessageBox(this, exception);
             }
-        }
-
-        private void gridexViewDetails_ReadOnlyChanged(object sender, EventArgs e)
-        {
-            string columnName = CommonExpressions.PropertyName<DeliveryAdviceDetailDTO>(p => p.CommodityID);
-            this.gridexViewDetails.Columns[CommonExpressions.PropertyName<DeliveryAdviceDetailDTO>(p => p.CommodityID)].ReadOnly = true;
-            columnName = CommonExpressions.PropertyName<DeliveryAdviceDetailDTO>(p => p.CommodityName);
-            this.gridexViewDetails.Columns[columnName].ReadOnly = true;
-            columnName = CommonExpressions.PropertyName<DeliveryAdviceDetailDTO>(p => p.PackageSize);
-            this.gridexViewDetails.Columns[columnName].ReadOnly = true;
-            columnName = CommonExpressions.PropertyName<DeliveryAdviceDetailDTO>(p => p.PackageVolume);
-            this.gridexViewDetails.Columns[columnName].ReadOnly = true;
         }        
     }
 }
