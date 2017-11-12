@@ -1703,6 +1703,16 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Edit_clear_ltr {
+            get {
+                object obj = ResourceManager.GetObject("Edit-clear-ltr", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap edit_tasks_32 {
             get {
                 object obj = ResourceManager.GetObject("edit_tasks-32", resourceCulture);
@@ -2356,6 +2366,16 @@ namespace TotalSmartCoding.Properties {
         internal static System.Drawing.Bitmap Inventory_maintenance_48 {
             get {
                 object obj = ResourceManager.GetObject("Inventory-maintenance-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Ios7_Search {
+            get {
+                object obj = ResourceManager.GetObject("Ios7-Search", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -4146,6 +4166,16 @@ namespace TotalSmartCoding.Properties {
         internal static System.Drawing.Bitmap Yellow_cross {
             get {
                 object obj = ResourceManager.GetObject("Yellow-cross", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Zoom_seach {
+            get {
+                object obj = ResourceManager.GetObject("Zoom-seach", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -48,6 +48,8 @@ namespace TotalSmartCoding.Views.Sales.DeliveryAdvices
         {
             try
             {
+                if (this.deliveryAdviceViewModel.SalesOrderID != null) { this.olvSalesOrderEntryDate.Width = 0; this.olvSalesOrderReference.Width = 0; }
+
                 List<PendingSalesOrderDetail> pendingSalesOrderDetails = this.deliveryAdviceAPIs.GetPendingSalesOrderDetails(this.deliveryAdviceViewModel.LocationID, this.deliveryAdviceViewModel.DeliveryAdviceID, this.deliveryAdviceViewModel.SalesOrderID, this.deliveryAdviceViewModel.CustomerID, this.deliveryAdviceViewModel.ReceiverID, string.Join(",", this.deliveryAdviceViewModel.ViewDetails.Select(d => d.SalesOrderDetailID)), false);
                 this.fastPendingSalesOrderDetails.SetObjects(pendingSalesOrderDetails);
                 this.customTabBatch.TabPages[0].Text = "Pending " + this.fastPendingSalesOrderDetails.GetItemCount().ToString("N0") + " item" + (this.fastPendingSalesOrderDetails.GetItemCount() > 1 ? "s      " : "      ");

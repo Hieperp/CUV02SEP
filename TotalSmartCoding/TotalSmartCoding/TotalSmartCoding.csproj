@@ -982,6 +982,9 @@
     <None Include="Resources\add-user1.ico" />
     <None Include="Resources\Treetog-Junior-User-group.ico" />
     <None Include="Resources\user-group-icon-red.png" />
+    <None Include="Resources\Edit-clear-ltr.ico" />
+    <None Include="Resources\Ios7-Search.ico" />
+    <None Include="Resources\Zoom-seach.ico" />
     <Content Include="SmartCodingSolution.ico" />
     <None Include="Resources\Yellow-cross.ico" />
     <None Include="Resources\White-Pallet.ico" />

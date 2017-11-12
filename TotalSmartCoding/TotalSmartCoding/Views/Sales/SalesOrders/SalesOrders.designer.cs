@@ -430,7 +430,6 @@
             this.gridexViewDetails.RowTemplate.Height = 24;
             this.gridexViewDetails.Size = new System.Drawing.Size(789, 309);
             this.gridexViewDetails.TabIndex = 65;
-            this.gridexViewDetails.ReadOnlyChanged += new System.EventHandler(this.gridexViewDetails_ReadOnlyChanged);
             // 
             // CommodityID
             // 
@@ -450,6 +449,7 @@
             this.CommodityName.FillWeight = 30F;
             this.CommodityName.HeaderText = "Items.Description";
             this.CommodityName.Name = "CommodityName";
+            this.CommodityName.ReadOnly = true;
             // 
             // PackageSize
             // 
@@ -458,6 +458,7 @@
             this.PackageSize.FillWeight = 10F;
             this.PackageSize.HeaderText = "Package.Size";
             this.PackageSize.Name = "PackageSize";
+            this.PackageSize.ReadOnly = true;
             // 
             // PackageVolume
             // 
@@ -468,6 +469,7 @@
             this.PackageVolume.FillWeight = 9F;
             this.PackageVolume.HeaderText = "Package.Volume";
             this.PackageVolume.Name = "PackageVolume";
+            this.PackageVolume.ReadOnly = true;
             // 
             // Quantity
             // 
@@ -491,6 +493,7 @@
             this.LineVolume.FillWeight = 7F;
             this.LineVolume.HeaderText = "Volume";
             this.LineVolume.Name = "LineVolume";
+            this.LineVolume.ReadOnly = true;
             // 
             // Remarks
             // 
@@ -901,13 +904,6 @@
         private System.Windows.Forms.Label label3;
         private CustomControls.TextexBox textexContactInfo;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.DataGridViewComboBoxColumn CommodityID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CommodityName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PackageSize;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PackageVolume;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LineVolume;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Remarks;
         private BrightIdeasSoftware.OLVColumn olvDeliveryDate;
         private System.Windows.Forms.Label label4;
         private CustomControls.DateTimexPicker dateTimexDeliveryDate;
@@ -915,6 +911,13 @@
         private CustomControls.TextexBox textexTelephone;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.DataGridViewComboBoxColumn CommodityID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CommodityName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PackageSize;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PackageVolume;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LineVolume;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Remarks;
 
     }
 }

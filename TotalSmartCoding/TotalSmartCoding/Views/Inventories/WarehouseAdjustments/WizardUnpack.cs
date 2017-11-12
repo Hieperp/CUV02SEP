@@ -209,10 +209,16 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
             }
         }
 
+        private void buttonClearFilters_Click(object sender, EventArgs e)
+        {
+            this.textexFilters.Text = "";
+        }
+
         private void ShowRowCount(bool showPalletCount, bool showCartonCount)
         {
             if (showPalletCount) this.customTabBatch.TabPages[0].Text = "Available " + this.fastPendingPallets.GetItemCount().ToString("N0") + " pallet" + (this.fastPendingPallets.GetItemCount() > 1 ? "s      " : "      ");
             if (showCartonCount) this.customTabBatch.TabPages[1].Text = "Carton: " + this.fastPendingCartons.GetItemCount().ToString("N0") + " item" + (this.fastPendingCartons.GetItemCount() > 1 ? "s      " : "      ");
         }
+        
     }
 }

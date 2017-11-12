@@ -181,7 +181,10 @@ namespace TotalSmartCoding.Views.Sales.TransferOrders
         private BindingSource bindingSourceViewDetails = new BindingSource();
 
         protected override void InitializeDataGridBinding()
-        {            
+        {
+            base.InitializeDataGridBinding();
+            this.InitializeDataGridReadonlyColumns(this.gridexViewDetails);
+
             this.gridexViewDetails.AutoGenerateColumns = false;
             this.gridexViewDetails.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
@@ -191,6 +194,7 @@ namespace TotalSmartCoding.Views.Sales.TransferOrders
             this.bindingSourceViewDetails.AddingNew += bindingSourceViewDetails_AddingNew;
             this.transferOrderViewModel.ViewDetails.ListChanged += ViewDetails_ListChanged;
             this.gridexViewDetails.EditingControlShowing += new DataGridViewEditingControlShowingEventHandler(this.dataGridViewDetails_EditingControlShowing);
+            this.gridexViewDetails.ReadOnlyChanged += new System.EventHandler(this.dataGrid_ReadOnlyChanged);
 
             DataGridViewComboBoxColumn comboBoxColumn;
             CommodityAPIs commodityAPIs = new CommodityAPIs(CommonNinject.Kernel.Get<ICommodityAPIRepository>());
@@ -269,16 +273,6 @@ namespace TotalSmartCoding.Views.Sales.TransferOrders
                 this.naviGroupTop.Padding = new Padding(0, 0, 0, 0);
                 this.buttonExpandTop.Image = this.naviGroupTop.Expanded ? Resources.chevron : Resources.chevron_expand;
             }
-        }
-
-        private void gridexViewDetails_ReadOnlyChanged(object sender, EventArgs e)
-        {
-            string columnName = CommonExpressions.PropertyName<TransferOrderDetailDTO>(p => p.CommodityName);
-            this.gridexViewDetails.Columns[columnName].ReadOnly = true;
-            columnName = CommonExpressions.PropertyName<TransferOrderDetailDTO>(p => p.PackageSize);
-            this.gridexViewDetails.Columns[columnName].ReadOnly = true;
-            columnName = CommonExpressions.PropertyName<TransferOrderDetailDTO>(p => p.PackageVolume);
-            this.gridexViewDetails.Columns[columnName].ReadOnly = true;
         }
     }
 }

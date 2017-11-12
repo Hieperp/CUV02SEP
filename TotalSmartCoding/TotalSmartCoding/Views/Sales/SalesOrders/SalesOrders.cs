@@ -222,6 +222,9 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
 
         protected override void InitializeDataGridBinding()
         {
+            base.InitializeDataGridBinding();
+            this.InitializeDataGridReadonlyColumns(this.gridexViewDetails);
+
             this.gridexViewDetails.AutoGenerateColumns = false;
             this.gridexViewDetails.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
@@ -231,6 +234,7 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
             this.bindingSourceViewDetails.AddingNew += bindingSourceViewDetails_AddingNew;
             this.salesOrderViewModel.ViewDetails.ListChanged += ViewDetails_ListChanged;
             this.gridexViewDetails.EditingControlShowing += new DataGridViewEditingControlShowingEventHandler(this.dataGridViewDetails_EditingControlShowing);
+            this.gridexViewDetails.ReadOnlyChanged += new System.EventHandler(this.dataGrid_ReadOnlyChanged);
 
             DataGridViewComboBoxColumn comboBoxColumn;
             CommodityAPIs commodityAPIs = new CommodityAPIs(CommonNinject.Kernel.Get<ICommodityAPIRepository>());
@@ -309,16 +313,6 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
                 this.naviGroupTop.Padding = new Padding(0, 0, 0, 0);
                 this.buttonExpandTop.Image = this.naviGroupTop.Expanded ? Resources.chevron : Resources.chevron_expand;
             }
-        }
-
-        private void gridexViewDetails_ReadOnlyChanged(object sender, EventArgs e)
-        {
-            string columnName = CommonExpressions.PropertyName<SalesOrderDetailDTO>(p => p.CommodityName);
-            this.gridexViewDetails.Columns[columnName].ReadOnly = true;
-            columnName = CommonExpressions.PropertyName<SalesOrderDetailDTO>(p => p.PackageSize);
-            this.gridexViewDetails.Columns[columnName].ReadOnly = true;
-            columnName = CommonExpressions.PropertyName<SalesOrderDetailDTO>(p => p.PackageVolume);
-            this.gridexViewDetails.Columns[columnName].ReadOnly = true;
         }
     }
 }
