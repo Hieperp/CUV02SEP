@@ -45,25 +45,35 @@
             this.olvColumn6 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn2 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvCartonCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.splitContainerBottom = new System.Windows.Forms.SplitContainer();
+            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.textexFilters = new System.Windows.Forms.ToolStripTextBox();
+            this.buttonClearFilters = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastPendingPallets)).BeginInit();
             this.panelMaster.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastPendingCartons)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerBottom)).BeginInit();
+            this.splitContainerBottom.Panel1.SuspendLayout();
+            this.splitContainerBottom.Panel2.SuspendLayout();
+            this.splitContainerBottom.SuspendLayout();
+            this.toolStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
             // 
-            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.buttonESC,
             this.buttonAddExit,
             this.buttonAdd});
-            this.toolStrip1.Location = new System.Drawing.Point(614, 551);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStrip1.Size = new System.Drawing.Size(362, 55);
+            this.toolStrip1.Size = new System.Drawing.Size(727, 55);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -125,7 +135,7 @@
             this.fastPendingPallets.OwnerDraw = true;
             this.fastPendingPallets.ShowGroups = false;
             this.fastPendingPallets.ShowImagesOnSubItems = true;
-            this.fastPendingPallets.Size = new System.Drawing.Size(1147, 245);
+            this.fastPendingPallets.Size = new System.Drawing.Size(1386, 245);
             this.fastPendingPallets.TabIndex = 69;
             this.fastPendingPallets.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastPendingPallets.UseCompatibleStateImageBehavior = false;
@@ -177,10 +187,11 @@
             this.panelMaster.BackColor = System.Drawing.Color.Ivory;
             this.panelMaster.Controls.Add(this.fastPendingPallets);
             this.panelMaster.Controls.Add(this.fastPendingCartons);
+            this.panelMaster.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelMaster.Location = new System.Drawing.Point(0, 0);
             this.panelMaster.Name = "panelMaster";
             this.panelMaster.Padding = new System.Windows.Forms.Padding(0, 9, 0, 0);
-            this.panelMaster.Size = new System.Drawing.Size(1147, 548);
+            this.panelMaster.Size = new System.Drawing.Size(1386, 548);
             this.panelMaster.TabIndex = 71;
             // 
             // fastPendingCartons
@@ -208,7 +219,7 @@
             this.fastPendingCartons.OwnerDraw = true;
             this.fastPendingCartons.ShowGroups = false;
             this.fastPendingCartons.ShowImagesOnSubItems = true;
-            this.fastPendingCartons.Size = new System.Drawing.Size(1147, 245);
+            this.fastPendingCartons.Size = new System.Drawing.Size(1386, 245);
             this.fastPendingCartons.TabIndex = 70;
             this.fastPendingCartons.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastPendingCartons.UseCompatibleStateImageBehavior = false;
@@ -255,13 +266,79 @@
             this.olvCartonCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvCartonCode.Width = 200;
             // 
+            // splitContainerBottom
+            // 
+            this.splitContainerBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.splitContainerBottom.Location = new System.Drawing.Point(0, 548);
+            this.splitContainerBottom.Name = "splitContainerBottom";
+            // 
+            // splitContainerBottom.Panel1
+            // 
+            this.splitContainerBottom.Panel1.Controls.Add(this.toolStrip2);
+            // 
+            // splitContainerBottom.Panel2
+            // 
+            this.splitContainerBottom.Panel2.Controls.Add(this.toolStrip1);
+            this.splitContainerBottom.Size = new System.Drawing.Size(1386, 55);
+            this.splitContainerBottom.SplitterDistance = 658;
+            this.splitContainerBottom.SplitterWidth = 1;
+            this.splitContainerBottom.TabIndex = 73;
+            // 
+            // toolStrip2
+            // 
+            this.toolStrip2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.toolStrip2.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton1,
+            this.textexFilters,
+            this.buttonClearFilters});
+            this.toolStrip2.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip2.Name = "toolStrip2";
+            this.toolStrip2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.toolStrip2.Size = new System.Drawing.Size(658, 55);
+            this.toolStrip2.TabIndex = 1;
+            this.toolStrip2.Text = "toolStrip2";
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = global::TotalSmartCoding.Properties.Resources.Zoom_seach;
+            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(52, 52);
+            this.toolStripButton1.Text = "Filters";
+            // 
+            // textexFilters
+            // 
+            this.textexFilters.AutoSize = false;
+            this.textexFilters.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textexFilters.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textexFilters.Name = "textexFilters";
+            this.textexFilters.Size = new System.Drawing.Size(360, 28);
+            this.textexFilters.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textexFilters.TextChanged += new System.EventHandler(this.textexFilters_TextChanged);
+            // 
+            // buttonClearFilters
+            // 
+            this.buttonClearFilters.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.buttonClearFilters.Image = global::TotalSmartCoding.Properties.Resources.Edit_clear;
+            this.buttonClearFilters.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonClearFilters.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonClearFilters.Name = "buttonClearFilters";
+            this.buttonClearFilters.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.buttonClearFilters.Size = new System.Drawing.Size(52, 52);
+            this.buttonClearFilters.Text = "Clear current filters";
+            this.buttonClearFilters.Click += new System.EventHandler(this.buttonClearFilters_Click);
+            // 
             // WizardDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1147, 603);
+            this.ClientSize = new System.Drawing.Size(1386, 603);
             this.Controls.Add(this.panelMaster);
-            this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.splitContainerBottom);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -274,8 +351,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.fastPendingPallets)).EndInit();
             this.panelMaster.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.fastPendingCartons)).EndInit();
+            this.splitContainerBottom.Panel1.ResumeLayout(false);
+            this.splitContainerBottom.Panel1.PerformLayout();
+            this.splitContainerBottom.Panel2.ResumeLayout(false);
+            this.splitContainerBottom.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerBottom)).EndInit();
+            this.splitContainerBottom.ResumeLayout(false);
+            this.toolStrip2.ResumeLayout(false);
+            this.toolStrip2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -298,5 +382,10 @@
         private System.Windows.Forms.ToolStripButton buttonAdd;
         private BrightIdeasSoftware.OLVColumn olvColumn3;
         private BrightIdeasSoftware.OLVColumn olvColumn2;
+        private System.Windows.Forms.SplitContainer splitContainerBottom;
+        private System.Windows.Forms.ToolStrip toolStrip2;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripTextBox textexFilters;
+        private System.Windows.Forms.ToolStripButton buttonClearFilters;
     }
 }

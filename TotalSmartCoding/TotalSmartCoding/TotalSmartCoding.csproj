@@ -985,6 +985,9 @@
     <None Include="Resources\Edit-clear-ltr.ico" />
     <None Include="Resources\Ios7-Search.ico" />
     <None Include="Resources\Zoom-seach.ico" />
+    <None Include="Resources\Next-1.ico" />
+    <None Include="Resources\Identity.ico" />
+    <None Include="Resources\Identity-icon-64.png" />
     <Content Include="SmartCodingSolution.ico" />
     <None Include="Resources\Yellow-cross.ico" />
     <None Include="Resources\White-Pallet.ico" />

@@ -32,6 +32,11 @@ namespace TotalDAL.Repositories
             return;
             return;
 
+            Helpers.SqlProgrammability.Inventories.GoodsReceipt goodsReceipt = new Helpers.SqlProgrammability.Inventories.GoodsReceipt(totalSmartCodingEntities);
+            goodsReceipt.RestoreProcedure();
+
+            return;
+
             Helpers.SqlProgrammability.Inventories.Pickup pickup = new Helpers.SqlProgrammability.Inventories.Pickup(totalSmartCodingEntities);
             pickup.RestoreProcedure();
 
@@ -77,10 +82,7 @@ namespace TotalDAL.Repositories
 
             
 
-            //return;
-
-            Helpers.SqlProgrammability.Inventories.GoodsReceipt goodsReceipt = new Helpers.SqlProgrammability.Inventories.GoodsReceipt(totalSmartCodingEntities);
-            goodsReceipt.RestoreProcedure();
+            
 
 
 

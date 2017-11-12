@@ -71,8 +71,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
                     this.fastPendingCartons.SetObjects(pendingGoodsIssueTransferDetails.Where(w => w.CartonID != null));
                 }
 
-                this.customTabBatch.TabPages[0].Text = "Pending " + this.fastPendingPallets.GetItemCount().ToString("N0") + " pallet" + (this.fastPendingPallets.GetItemCount() > 1 ? "s      " : "      ");
-                this.customTabBatch.TabPages[1].Text = "Pending " + this.fastPendingCartons.GetItemCount().ToString("N0") + " carton" + (this.fastPendingCartons.GetItemCount() > 1 ? "s      " : "      ");
+                this.ShowRowCount(true, true);
             }
             catch (Exception exception)
             {
@@ -93,10 +92,12 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
                     {
                         if (fastPendingList.CheckedObjects.Count > 0)
                         {
+                            IEnumerable<IPendingforGoodsReceiptDetail> pendingforGoodsReceiptDetails = fastPendingList.CheckedObjects.Cast<IPendingforGoodsReceiptDetail>();
+                            if (pendingforGoodsReceiptDetails.Where(w => w.BinLocationID <= 0).FirstOrDefault() != null) throw new Exception("Vui lòng chọn Bin Location.");
+
                             this.goodsReceiptViewModel.ViewDetails.RaiseListChangedEvents = false;
-                            foreach (var checkedObjects in fastPendingList.CheckedObjects)
+                            foreach (IPendingforGoodsReceiptDetail pendingforGoodsReceiptDetail in pendingforGoodsReceiptDetails)
                             {
-                                IPendingforGoodsReceiptDetail pendingforGoodsReceiptDetail = (IPendingforGoodsReceiptDetail)checkedObjects;
                                 GoodsReceiptDetailDTO goodsReceiptDetailDTO = new GoodsReceiptDetailDTO()
                                 {
                                     GoodsReceiptID = this.goodsReceiptViewModel.GoodsReceiptID,
@@ -159,6 +160,32 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
             {
                 ExceptionHandlers.ShowExceptionMessageBox(this, exception);
             }
+        }
+
+        private void textexFilters_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                OLVHelpers.ApplyFilters(this.fastPendingPallets, this.textexFilters.Text.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
+                OLVHelpers.ApplyFilters(this.fastPendingCartons, this.textexFilters.Text.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
+
+                this.ShowRowCount(true, true);
+            }
+            catch (Exception exception)
+            {
+                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+            }
+        }
+
+        private void buttonClearFilters_Click(object sender, EventArgs e)
+        {
+            this.textexFilters.Text = "";
+        }
+
+        private void ShowRowCount(bool showPalletCount, bool showCartonCount)
+        {
+            if (showPalletCount) this.customTabBatch.TabPages[0].Text = "Pending " + this.fastPendingPallets.GetItemCount().ToString("N0") + " pallet" + (this.fastPendingPallets.GetItemCount() > 1 ? "s      " : "      ");
+            if (showCartonCount) this.customTabBatch.TabPages[1].Text = "Pending " + this.fastPendingCartons.GetItemCount().ToString("N0") + " carton" + (this.fastPendingCartons.GetItemCount() > 1 ? "s      " : "      ");
         }
     }
 }

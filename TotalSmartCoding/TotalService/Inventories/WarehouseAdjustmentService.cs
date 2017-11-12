@@ -45,7 +45,7 @@ namespace TotalService.Inventories
 
                     goodsReceiptDTO.WarehouseAdjustmentID = warehouseAdjustment.WarehouseAdjustmentID;
 
-                    goodsReceiptDTO.GoodsReceiptTypeID = (int)GlobalEnums.GoodsReceiptTypeID.InventoryAdjustment;
+                    goodsReceiptDTO.GoodsReceiptTypeID = (int)GlobalEnums.GoodsReceiptTypeID.WarehouseAdjustments;
 
                     goodsReceiptDTO.StorekeeperID = warehouseAdjustment.StorekeeperID;
 

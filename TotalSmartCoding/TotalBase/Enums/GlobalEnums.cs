@@ -288,7 +288,7 @@
             PurchaseInvoice = 2,
             GoodsIssueTransfer = 3,
             SalesReturn = 5,
-            InventoryAdjustment = 6
+            WarehouseAdjustments = 6
         };
 
         public enum GoodsIssueTypeID

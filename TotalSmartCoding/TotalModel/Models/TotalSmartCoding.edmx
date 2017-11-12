@@ -5595,7 +5595,7 @@
           <Property Type="Int32" Name="BatchID" Nullable="false" />
           <Property Type="DateTime" Name="BatchEntryDate" Nullable="false" />
           <Property Type="Int32" Name="BinLocationID" Nullable="false" />
-          <Property Type="String" Name="BinLocationCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="BinLocationCode" Nullable="false" MaxLength="1" />
           <Property Type="Int32" Name="PackID" Nullable="true" />
           <Property Type="String" Name="PackCode" Nullable="true" MaxLength="50" />
           <Property Type="Int32" Name="CartonID" Nullable="true" />

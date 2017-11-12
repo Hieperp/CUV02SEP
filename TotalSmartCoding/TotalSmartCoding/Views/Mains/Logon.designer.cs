@@ -31,9 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Logon));
             this.groupBoxMainButton = new System.Windows.Forms.GroupBox();
             this.checkEmptyData = new System.Windows.Forms.CheckBox();
-            this.buttonListEmployee = new System.Windows.Forms.Button();
-            this.buttonCancel = new System.Windows.Forms.Button();
-            this.buttonOK = new System.Windows.Forms.Button();
             this.lbEmployeeID = new System.Windows.Forms.Label();
             this.comboBoxEmployeeID = new System.Windows.Forms.ComboBox();
             this.comboBoxAutonicsPortName = new System.Windows.Forms.ComboBox();
@@ -45,7 +42,10 @@
             this.labelPortAutonis = new System.Windows.Forms.Label();
             this.labelNoDomino = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.buttonOK = new System.Windows.Forms.Button();
+            this.buttonCancel = new System.Windows.Forms.Button();
             this.pictureBoxIcon = new System.Windows.Forms.PictureBox();
+            this.buttonListEmployee = new System.Windows.Forms.Button();
             this.groupBoxMainButton.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxIcon)).BeginInit();
@@ -76,45 +76,6 @@
             this.checkEmptyData.UseVisualStyleBackColor = true;
             this.checkEmptyData.Visible = false;
             // 
-            // buttonListEmployee
-            // 
-            this.buttonListEmployee.Image = ((System.Drawing.Image)(resources.GetObject("buttonListEmployee.Image")));
-            this.buttonListEmployee.Location = new System.Drawing.Point(570, 14);
-            this.buttonListEmployee.Margin = new System.Windows.Forms.Padding(4);
-            this.buttonListEmployee.Name = "buttonListEmployee";
-            this.buttonListEmployee.Size = new System.Drawing.Size(33, 28);
-            this.buttonListEmployee.TabIndex = 2;
-            this.buttonListEmployee.UseVisualStyleBackColor = true;
-            this.buttonListEmployee.Visible = false;
-            this.buttonListEmployee.Click += new System.EventHandler(this.buttonOK_Click);
-            // 
-            // buttonCancel
-            // 
-            this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonCancel.Image = global::TotalSmartCoding.Properties.Resources.signout_icon_24;
-            this.buttonCancel.Location = new System.Drawing.Point(860, 14);
-            this.buttonCancel.Margin = new System.Windows.Forms.Padding(4);
-            this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(105, 51);
-            this.buttonCancel.TabIndex = 1;
-            this.buttonCancel.Text = "Cancel";
-            this.buttonCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.buttonCancel.UseVisualStyleBackColor = true;
-            // 
-            // buttonOK
-            // 
-            this.buttonOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonOK.Image = global::TotalSmartCoding.Properties.Resources.Saki_NuoveXT_Actions_ok;
-            this.buttonOK.Location = new System.Drawing.Point(746, 14);
-            this.buttonOK.Margin = new System.Windows.Forms.Padding(4);
-            this.buttonOK.Name = "buttonOK";
-            this.buttonOK.Size = new System.Drawing.Size(105, 51);
-            this.buttonOK.TabIndex = 0;
-            this.buttonOK.Text = "OK";
-            this.buttonOK.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.buttonOK.UseVisualStyleBackColor = true;
-            this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
-            // 
             // lbEmployeeID
             // 
             this.lbEmployeeID.AutoSize = true;
@@ -122,9 +83,9 @@
             this.lbEmployeeID.Location = new System.Drawing.Point(136, 77);
             this.lbEmployeeID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbEmployeeID.Name = "lbEmployeeID";
-            this.lbEmployeeID.Size = new System.Drawing.Size(38, 20);
+            this.lbEmployeeID.Size = new System.Drawing.Size(84, 20);
             this.lbEmployeeID.TabIndex = 5;
-            this.lbEmployeeID.Text = "User";
+            this.lbEmployeeID.Text = "Logon User";
             // 
             // comboBoxEmployeeID
             // 
@@ -242,17 +203,55 @@
             this.panel1.TabIndex = 27;
             this.panel1.Visible = false;
             // 
+            // buttonOK
+            // 
+            this.buttonOK.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.buttonOK.Image = global::TotalSmartCoding.Properties.Resources.Saki_NuoveXT_Actions_ok;
+            this.buttonOK.Location = new System.Drawing.Point(746, 14);
+            this.buttonOK.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonOK.Name = "buttonOK";
+            this.buttonOK.Size = new System.Drawing.Size(105, 51);
+            this.buttonOK.TabIndex = 0;
+            this.buttonOK.Text = "OK";
+            this.buttonOK.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.buttonOK.UseVisualStyleBackColor = true;
+            this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
+            // 
+            // buttonCancel
+            // 
+            this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.buttonCancel.Image = global::TotalSmartCoding.Properties.Resources.signout_icon_24;
+            this.buttonCancel.Location = new System.Drawing.Point(860, 14);
+            this.buttonCancel.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.Size = new System.Drawing.Size(105, 51);
+            this.buttonCancel.TabIndex = 1;
+            this.buttonCancel.Text = "Cancel";
+            this.buttonCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.buttonCancel.UseVisualStyleBackColor = true;
+            // 
             // pictureBoxIcon
             // 
-            this.pictureBoxIcon.Image = global::TotalSmartCoding.Properties.Resources.Graphicloads_100_Flat_2_Inside_logout;
+            this.pictureBoxIcon.Image = global::TotalSmartCoding.Properties.Resources.Identity_icon_64;
             this.pictureBoxIcon.Location = new System.Drawing.Point(27, 16);
             this.pictureBoxIcon.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBoxIcon.Name = "pictureBoxIcon";
             this.pictureBoxIcon.Size = new System.Drawing.Size(66, 67);
-            this.pictureBoxIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxIcon.TabIndex = 11;
             this.pictureBoxIcon.TabStop = false;
             this.pictureBoxIcon.DoubleClick += new System.EventHandler(this.pictureBoxIcon_DoubleClick);
+            // 
+            // buttonListEmployee
+            // 
+            this.buttonListEmployee.Image = ((System.Drawing.Image)(resources.GetObject("buttonListEmployee.Image")));
+            this.buttonListEmployee.Location = new System.Drawing.Point(570, 14);
+            this.buttonListEmployee.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonListEmployee.Name = "buttonListEmployee";
+            this.buttonListEmployee.Size = new System.Drawing.Size(33, 28);
+            this.buttonListEmployee.TabIndex = 2;
+            this.buttonListEmployee.UseVisualStyleBackColor = true;
+            this.buttonListEmployee.Visible = false;
+            this.buttonListEmployee.Click += new System.EventHandler(this.buttonOK_Click);
             // 
             // Logon
             // 

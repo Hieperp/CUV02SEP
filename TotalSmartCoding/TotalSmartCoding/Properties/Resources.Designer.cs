@@ -2283,6 +2283,26 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Identity {
+            get {
+                object obj = ResourceManager.GetObject("Identity", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Identity_icon_64 {
+            get {
+                object obj = ResourceManager.GetObject("Identity-icon-64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap if_gas_1055052 {
             get {
                 object obj = ResourceManager.GetObject("if_gas_1055052", resourceCulture);
@@ -2936,6 +2956,16 @@ namespace TotalSmartCoding.Properties {
         internal static System.Drawing.Bitmap money_dollar_icon {
             get {
                 object obj = ResourceManager.GetObject("money-dollar-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Next_1 {
+            get {
+                object obj = ResourceManager.GetObject("Next-1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
