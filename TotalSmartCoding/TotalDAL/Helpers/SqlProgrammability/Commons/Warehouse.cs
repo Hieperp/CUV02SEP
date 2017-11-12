@@ -24,6 +24,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             //this.WarehouseSaveRelative();
 
             this.GetWarehouseBases();
+            this.GetWarehouseLocationID();
         }
 
 
@@ -101,6 +102,22 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             queryString = queryString + "    END " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("GetWarehouseBases", queryString);
+        }
+
+        private void GetWarehouseLocationID()
+        {
+            string queryString;
+
+            queryString = " @WarehouseID Int " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+            queryString = queryString + "    BEGIN " + "\r\n";
+
+            queryString = queryString + "       SELECT      TOP 1 LocationID FROM Warehouses WHERE WarehouseID = @WarehouseID " + "\r\n";
+
+            queryString = queryString + "    END " + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("GetWarehouseLocationID", queryString);
         }
 
     }

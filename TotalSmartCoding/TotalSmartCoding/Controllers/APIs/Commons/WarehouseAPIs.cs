@@ -34,5 +34,10 @@ namespace TotalSmartCoding.Controllers.APIs.Commons
             return this.warehouseAPIRepository.GetWarehouseBases();
         }
 
+        public int? GetWarehouseLocationID(int? warehouseID)
+        {
+            return this.warehouseAPIRepository.GetWarehouseLocationID(warehouseID);
+        }
+
     }
 }

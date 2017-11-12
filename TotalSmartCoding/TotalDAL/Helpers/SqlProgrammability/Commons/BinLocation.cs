@@ -90,13 +90,14 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
         {
             string queryString;
 
-            queryString = " " + "\r\n";
+            queryString = " @WarehouseID int " + "\r\n";
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
             queryString = queryString + "       SELECT      BinLocationID, Code, Name " + "\r\n";
             queryString = queryString + "       FROM        BinLocations " + "\r\n";
+            queryString = queryString + "       WHERE       LocationID = (SELECT TOP 1 LocationID FROM Warehouses WHERE WarehouseID = @WarehouseID) " + "\r\n";
 
             queryString = queryString + "    END " + "\r\n";
 

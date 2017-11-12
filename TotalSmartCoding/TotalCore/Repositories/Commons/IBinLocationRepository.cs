@@ -11,6 +11,6 @@ namespace TotalCore.Repositories.Commons
 
     public interface IBinLocationAPIRepository : IGenericAPIRepository
     {
-        IList<BinLocationBase> GetBinLocationBases();
+        IList<BinLocationBase> GetBinLocationBases(int? warehouseID);
     }
 }

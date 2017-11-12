@@ -226,8 +226,9 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
         {
             base.invokeEdit(id);
 
-            if (this.pickupViewModel.FillingLineID != (int)GlobalVariables.FillingLine.Drum) this.checkTimerEnable.Checked = true;
-            this.olvIsSelected.Width = this.pickupViewModel.FillingLineID == (int)GlobalVariables.FillingLine.Drum ? 20 : 0;
+            this.checkTimerEnable.Checked = true;
+            //if (this.pickupViewModel.FillingLineID != (int)GlobalVariables.FillingLine.Drum) this.checkTimerEnable.Checked = true;
+            //this.olvIsSelected.Width = this.pickupViewModel.FillingLineID == (int)GlobalVariables.FillingLine.Drum ? 20 : 0;
 
             this.getPendingItems(true);
         }
@@ -254,8 +255,8 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
         private void getPendingItems(bool forcetoLoad) //THIS MAY ALSO LOAD PENDING PALLET/ CARTON/ PACK
         {
             try
-            {                
-                if (forcetoLoad || this.pickupViewModel.FillingLineID != (int)GlobalVariables.FillingLine.Drum || this.checkTimerEnable.Checked)
+            {
+                if (forcetoLoad || this.checkTimerEnable.Checked) //this.pickupViewModel.FillingLineID != (int)GlobalVariables.FillingLine.Drum || 
                 {
                     this.fastPendingPallets.SetObjects(this.pickupAPIs.GetPendingPallets(this.pickupViewModel.LocationID, this.pickupViewModel.FillingLineID, this.pickupViewModel.PickupID, string.Join(",", this.pickupViewModel.ViewDetails.Where(w => w.PalletID != null).Select(d => d.PalletID)), false));
                     this.olvPendingPalletCode.Text = "Line " + this.pickupViewModel.FillingLineNickName + "   -   Pending " + this.fastPendingPallets.GetItemCount().ToString("N0") + " pallet" + (this.fastPendingPallets.GetItemCount() > 1 ? "s" : "");
@@ -282,6 +283,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
             return new PickupDetailDTO()
             {
                 PickupID = this.pickupViewModel.PickupID,
+                WarehouseID = this.pickupViewModel.WarehouseID,
 
                 BatchID = pendingPallet.BatchID,
                 BatchEntryDate = pendingPallet.BatchEntryDate,
@@ -319,7 +321,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
 
                         if (tabletMDI.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                         {
-                            if (this.pickupViewModel.FillingLineID == (int)GlobalVariables.FillingLine.Drum && this.fastPendingPallets.CheckedObjects.Count > 0)
+                            if (this.fastPendingPallets.CheckedObjects.Count > 0) //this.pickupViewModel.FillingLineID == (int)GlobalVariables.FillingLine.Drum && 
                             {
                                 this.pickupViewModel.ViewDetails.RaiseListChangedEvents = false;
                                 foreach (var checkedObjects in this.fastPendingPallets.CheckedObjects)

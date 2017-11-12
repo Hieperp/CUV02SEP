@@ -576,9 +576,13 @@ namespace TotalModel.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<FillingLineIndex>("GetFillingLineIndexes", userIDParameter, fromDateParameter, toDateParameter);
         }
     
-        public virtual ObjectResult<BinLocationBase> GetBinLocationBases()
+        public virtual ObjectResult<BinLocationBase> GetBinLocationBases(Nullable<int> warehouseID)
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BinLocationBase>("GetBinLocationBases");
+            var warehouseIDParameter = warehouseID.HasValue ?
+                new ObjectParameter("WarehouseID", warehouseID) :
+                new ObjectParameter("WarehouseID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BinLocationBase>("GetBinLocationBases", warehouseIDParameter);
         }
     
         public virtual ObjectResult<BinLocationIndex> GetBinLocationIndexes(Nullable<int> userID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
@@ -1804,6 +1808,15 @@ namespace TotalModel.Models
                 new ObjectParameter("UserID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UserRemove", userIDParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> GetWarehouseLocationID(Nullable<int> warehouseID)
+        {
+            var warehouseIDParameter = warehouseID.HasValue ?
+                new ObjectParameter("WarehouseID", warehouseID) :
+                new ObjectParameter("WarehouseID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("GetWarehouseLocationID", warehouseIDParameter);
         }
     }
 }

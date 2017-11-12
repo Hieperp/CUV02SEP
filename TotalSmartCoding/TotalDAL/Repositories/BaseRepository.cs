@@ -32,6 +32,21 @@ namespace TotalDAL.Repositories
             return;
             return;
 
+            Helpers.SqlProgrammability.Commons.Warehouse warehouse = new Helpers.SqlProgrammability.Commons.Warehouse(totalSmartCodingEntities);
+            warehouse.RestoreProcedure();
+
+            //return;
+
+            Helpers.SqlProgrammability.Inventories.WarehouseAdjustment warehouseAdjustment = new Helpers.SqlProgrammability.Inventories.WarehouseAdjustment(totalSmartCodingEntities);
+            warehouseAdjustment.RestoreProcedure();
+
+            //return;
+
+            Helpers.SqlProgrammability.Commons.BinLocation binLocation = new Helpers.SqlProgrammability.Commons.BinLocation(totalSmartCodingEntities);
+            binLocation.RestoreProcedure();
+
+            return;
+
             Helpers.SqlProgrammability.Inventories.GoodsReceipt goodsReceipt = new Helpers.SqlProgrammability.Inventories.GoodsReceipt(totalSmartCodingEntities);
             goodsReceipt.RestoreProcedure();
 
@@ -108,10 +123,7 @@ namespace TotalDAL.Repositories
             Helpers.SqlProgrammability.Sales.TransferOrder transferOrder = new Helpers.SqlProgrammability.Sales.TransferOrder(totalSmartCodingEntities);
             transferOrder.RestoreProcedure();
 
-            return;
-
-            Helpers.SqlProgrammability.Inventories.WarehouseAdjustment warehouseAdjustment = new Helpers.SqlProgrammability.Inventories.WarehouseAdjustment(totalSmartCodingEntities);
-            warehouseAdjustment.RestoreProcedure();
+            
 
 
 
@@ -130,10 +142,7 @@ namespace TotalDAL.Repositories
 
 
 
-            return;
 
-            Helpers.SqlProgrammability.Commons.BinLocation binLocation = new Helpers.SqlProgrammability.Commons.BinLocation(totalSmartCodingEntities);
-            binLocation.RestoreProcedure();
 
             return;
 
@@ -201,10 +210,7 @@ namespace TotalDAL.Repositories
 
 
 
-            return;
-
-            Helpers.SqlProgrammability.Commons.Warehouse warehouse = new Helpers.SqlProgrammability.Commons.Warehouse(totalSmartCodingEntities);
-            warehouse.RestoreProcedure();
+           
 
             return;
 

@@ -1947,7 +1947,9 @@
           <Parameter Name="FillingLineID" Type="int" Mode="In" />
           <Parameter Name="ActiveOption" Type="int" Mode="In" />
         </Function>
-        <Function Name="GetBinLocationBases" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetBinLocationBases" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="WarehouseID" Type="int" Mode="In" />
+        </Function>
         <Function Name="GetBinLocationIndexes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserID" Type="int" Mode="In" />
           <Parameter Name="FromDate" Type="datetime" Mode="In" />
@@ -2223,6 +2225,9 @@
           <Parameter Name="UserID" Type="int" Mode="In" />
           <Parameter Name="FromDate" Type="datetime" Mode="In" />
           <Parameter Name="ToDate" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="GetWarehouseLocationID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="WarehouseID" Type="int" Mode="In" />
         </Function>
         <Function Name="GoodsIssueApproved" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="EntityID" Type="int" Mode="In" />
@@ -2937,7 +2942,9 @@
             <Parameter Name="FromDate" Mode="In" Type="DateTime" />
             <Parameter Name="ToDate" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="GetBinLocationBases" ReturnType="Collection(TotalSmartCodingModel.BinLocationBase)" />
+          <FunctionImport Name="GetBinLocationBases" ReturnType="Collection(TotalSmartCodingModel.BinLocationBase)" >
+          <Parameter Name="WarehouseID" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="GetBinLocationIndexes" ReturnType="Collection(TotalSmartCodingModel.BinLocationIndex)">
             <Parameter Name="UserID" Mode="In" Type="Int32" />
             <Parameter Name="FromDate" Mode="In" Type="DateTime" />
@@ -3696,6 +3703,9 @@
             <End Role="User" EntitySet="Users" />
             <End Role="OrganizationalUnitUser" EntitySet="OrganizationalUnitUsers" />
           </AssociationSet>
+          <FunctionImport Name="GetWarehouseLocationID" ReturnType="Collection(Int32)">
+          <Parameter Name="WarehouseID" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
           <Property Type="Int32" Name="PickupID" Nullable="false" />
@@ -8440,6 +8450,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetWarehouseLocationID" FunctionName="TotalSmartCodingModel.Store.GetWarehouseLocationID" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -29,9 +29,9 @@ namespace TotalSmartCoding.Controllers.APIs.Commons
             return this.binLocationAPIRepository.GetEntityIndexes<BinLocationIndex>(ContextAttributes.User.UserID, ContextAttributes.FromDate, ContextAttributes.ToDate).ToList();
         }
 
-        public IList<BinLocationBase> GetBinLocationBases()
+        public IList<BinLocationBase> GetBinLocationBases(int? warehouseID)
         {
-            return this.binLocationAPIRepository.GetBinLocationBases();
+            return this.binLocationAPIRepository.GetBinLocationBases(warehouseID);
         }
 
     }

@@ -26,9 +26,9 @@ namespace TotalDAL.Repositories.Commons
         {
         }
 
-        public IList<BinLocationBase> GetBinLocationBases()
+        public IList<BinLocationBase> GetBinLocationBases(int? warehouseID)
         {
-            return this.TotalSmartCodingEntities.GetBinLocationBases().ToList();
+            return this.TotalSmartCodingEntities.GetBinLocationBases(warehouseID).ToList();
         }
     }
 }

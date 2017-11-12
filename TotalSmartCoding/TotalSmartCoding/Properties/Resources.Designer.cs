@@ -2293,6 +2293,16 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Identity_icon_48 {
+            get {
+                object obj = ResourceManager.GetObject("Identity-icon-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Identity_icon_64 {
             get {
                 object obj = ResourceManager.GetObject("Identity-icon-64", resourceCulture);
