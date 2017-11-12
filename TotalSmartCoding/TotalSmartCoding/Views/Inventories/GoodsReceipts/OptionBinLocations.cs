@@ -33,10 +33,10 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
         {
             try
             {
-                this.combexBatchID.DataSource = this.deliveryAdviceAPIs.GetBatchAvailables(this.deliveryAdviceDetailDTO.LocationID, this.deliveryAdviceDetailDTO.DeliveryAdviceID, this.deliveryAdviceDetailDTO.CommodityID, true);
-                this.combexBatchID.DisplayMember = CommonExpressions.PropertyName<BatchAvailable>(p => p.Code);
-                this.combexBatchID.ValueMember = CommonExpressions.PropertyName<BatchAvailable>(p => p.BatchID);
-                this.bindingBatchID = this.combexBatchID.DataBindings.Add("SelectedValue", this.deliveryAdviceDetailDTO, CommonExpressions.PropertyName<DeliveryAdviceDetailDTO>(p => p.BatchID), true, DataSourceUpdateMode.OnPropertyChanged);
+                this.combexBinLocationID.DataSource = this.deliveryAdviceAPIs.GetBatchAvailables(this.deliveryAdviceDetailDTO.LocationID, this.deliveryAdviceDetailDTO.DeliveryAdviceID, this.deliveryAdviceDetailDTO.CommodityID, true);
+                this.combexBinLocationID.DisplayMember = CommonExpressions.PropertyName<BatchAvailable>(p => p.Code);
+                this.combexBinLocationID.ValueMember = CommonExpressions.PropertyName<BatchAvailable>(p => p.BatchID);
+                this.bindingBatchID = this.combexBinLocationID.DataBindings.Add("SelectedValue", this.deliveryAdviceDetailDTO, CommonExpressions.PropertyName<DeliveryAdviceDetailDTO>(p => p.BatchID), true, DataSourceUpdateMode.OnPropertyChanged);
 
                 this.bindingBatchEntryDate = this.textexBatchEntryDate.DataBindings.Add("Text", this.deliveryAdviceDetailDTO, CommonExpressions.PropertyName<DeliveryAdviceDetailDTO>(p => p.BatchEntryDate), true, DataSourceUpdateMode.OnPropertyChanged);
                 this.bindingQuantityBatchAvailable = this.textexQuantityBatchAvailable.DataBindings.Add("Text", this.deliveryAdviceDetailDTO, CommonExpressions.PropertyName<DeliveryAdviceDetailDTO>(p => p.QuantityBatchAvailable), true, DataSourceUpdateMode.OnPropertyChanged);
@@ -59,9 +59,9 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
             if (e.BindingCompleteState == BindingCompleteState.Exception) { ExceptionHandlers.ShowExceptionMessageBox(this, e.ErrorText); e.Cancel = true; }
             if (sender.Equals(this.bindingBatchID))
             {
-                if (this.combexBatchID.SelectedItem != null)
+                if (this.combexBinLocationID.SelectedItem != null)
                 {
-                    BatchAvailable batchAvailable = (BatchAvailable)this.combexBatchID.SelectedItem;
+                    BatchAvailable batchAvailable = (BatchAvailable)this.combexBinLocationID.SelectedItem;
                     this.deliveryAdviceDetailDTO.BatchCode = batchAvailable.Code;
                     this.deliveryAdviceDetailDTO.BatchEntryDate = batchAvailable.EntryDate;
                     this.deliveryAdviceDetailDTO.QuantityBatchAvailable = (decimal) batchAvailable.QuantityAvailable;

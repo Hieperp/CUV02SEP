@@ -44,20 +44,21 @@
             this.fastPendingCartons = new BrightIdeasSoftware.FastObjectListView();
             this.olvColumn1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvCartonCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.splitContainerBottom = new System.Windows.Forms.SplitContainer();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.textexFilters = new System.Windows.Forms.ToolStripTextBox();
             this.buttonClearFilters = new System.Windows.Forms.ToolStripButton();
+            this.panelBottom = new System.Windows.Forms.Panel();
+            this.panelBottomRight = new System.Windows.Forms.Panel();
+            this.panelBottomLeft = new System.Windows.Forms.Panel();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastPendingPallets)).BeginInit();
             this.panelMaster.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastPendingCartons)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainerBottom)).BeginInit();
-            this.splitContainerBottom.Panel1.SuspendLayout();
-            this.splitContainerBottom.Panel2.SuspendLayout();
-            this.splitContainerBottom.SuspendLayout();
             this.toolStrip2.SuspendLayout();
+            this.panelBottom.SuspendLayout();
+            this.panelBottomRight.SuspendLayout();
+            this.panelBottomLeft.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -72,7 +73,7 @@
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStrip1.Size = new System.Drawing.Size(726, 55);
+            this.toolStrip1.Size = new System.Drawing.Size(770, 55);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -256,24 +257,6 @@
             this.olvCartonCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvCartonCode.Width = 200;
             // 
-            // splitContainerBottom
-            // 
-            this.splitContainerBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.splitContainerBottom.Location = new System.Drawing.Point(0, 548);
-            this.splitContainerBottom.Name = "splitContainerBottom";
-            // 
-            // splitContainerBottom.Panel1
-            // 
-            this.splitContainerBottom.Panel1.Controls.Add(this.toolStrip2);
-            // 
-            // splitContainerBottom.Panel2
-            // 
-            this.splitContainerBottom.Panel2.Controls.Add(this.toolStrip1);
-            this.splitContainerBottom.Size = new System.Drawing.Size(1386, 55);
-            this.splitContainerBottom.SplitterDistance = 659;
-            this.splitContainerBottom.SplitterWidth = 1;
-            this.splitContainerBottom.TabIndex = 72;
-            // 
             // toolStrip2
             // 
             this.toolStrip2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -286,7 +269,7 @@
             this.toolStrip2.Location = new System.Drawing.Point(0, 0);
             this.toolStrip2.Name = "toolStrip2";
             this.toolStrip2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStrip2.Size = new System.Drawing.Size(659, 55);
+            this.toolStrip2.Size = new System.Drawing.Size(616, 55);
             this.toolStrip2.TabIndex = 1;
             this.toolStrip2.Text = "toolStrip2";
             // 
@@ -322,13 +305,41 @@
             this.buttonClearFilters.Text = "Clear current filters";
             this.buttonClearFilters.Click += new System.EventHandler(this.buttonClearFilters_Click);
             // 
+            // panelBottom
+            // 
+            this.panelBottom.Controls.Add(this.panelBottomRight);
+            this.panelBottom.Controls.Add(this.panelBottomLeft);
+            this.panelBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelBottom.Location = new System.Drawing.Point(0, 548);
+            this.panelBottom.Name = "panelBottom";
+            this.panelBottom.Size = new System.Drawing.Size(1386, 55);
+            this.panelBottom.TabIndex = 73;
+            // 
+            // panelBottomRight
+            // 
+            this.panelBottomRight.Controls.Add(this.toolStrip1);
+            this.panelBottomRight.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelBottomRight.Location = new System.Drawing.Point(616, 0);
+            this.panelBottomRight.Name = "panelBottomRight";
+            this.panelBottomRight.Size = new System.Drawing.Size(770, 55);
+            this.panelBottomRight.TabIndex = 0;
+            // 
+            // panelBottomLeft
+            // 
+            this.panelBottomLeft.Controls.Add(this.toolStrip2);
+            this.panelBottomLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelBottomLeft.Location = new System.Drawing.Point(0, 0);
+            this.panelBottomLeft.Name = "panelBottomLeft";
+            this.panelBottomLeft.Size = new System.Drawing.Size(616, 55);
+            this.panelBottomLeft.TabIndex = 1;
+            // 
             // WizardUnpack
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1386, 603);
             this.Controls.Add(this.panelMaster);
-            this.Controls.Add(this.splitContainerBottom);
+            this.Controls.Add(this.panelBottom);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -341,14 +352,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.fastPendingPallets)).EndInit();
             this.panelMaster.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.fastPendingCartons)).EndInit();
-            this.splitContainerBottom.Panel1.ResumeLayout(false);
-            this.splitContainerBottom.Panel1.PerformLayout();
-            this.splitContainerBottom.Panel2.ResumeLayout(false);
-            this.splitContainerBottom.Panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainerBottom)).EndInit();
-            this.splitContainerBottom.ResumeLayout(false);
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
+            this.panelBottom.ResumeLayout(false);
+            this.panelBottomRight.ResumeLayout(false);
+            this.panelBottomRight.PerformLayout();
+            this.panelBottomLeft.ResumeLayout(false);
+            this.panelBottomLeft.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -371,10 +381,12 @@
         private System.Windows.Forms.ToolStripButton buttonAdd;
         private BrightIdeasSoftware.OLVColumn olvQuantityAvailable;
         private BrightIdeasSoftware.OLVColumn olvColumn1;
-        private System.Windows.Forms.SplitContainer splitContainerBottom;
         private System.Windows.Forms.ToolStrip toolStrip2;
         private System.Windows.Forms.ToolStripButton buttonClearFilters;
         private System.Windows.Forms.ToolStripTextBox textexFilters;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.Panel panelBottom;
+        private System.Windows.Forms.Panel panelBottomRight;
+        private System.Windows.Forms.Panel panelBottomLeft;
     }
 }
