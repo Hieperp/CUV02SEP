@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripAction = new System.Windows.Forms.ToolStrip();
             this.buttonESC = new System.Windows.Forms.ToolStripButton();
             this.buttonAdd = new System.Windows.Forms.ToolStripButton();
             this.label2 = new System.Windows.Forms.Label();
@@ -50,7 +50,7 @@
             this.textexBinLocationCode = new CustomControls.TextexBox();
             this.textexLineVolume = new CustomControls.TextexBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.toolStrip1.SuspendLayout();
+            this.toolStripAction.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fastBinLocations)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerCenter)).BeginInit();
@@ -60,21 +60,21 @@
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // toolStrip1
+            // toolStripAction
             // 
-            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(48, 48);
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripAction.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.toolStripAction.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStripAction.ImageScalingSize = new System.Drawing.Size(48, 48);
+            this.toolStripAction.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.buttonESC,
             this.buttonAdd});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 320);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStrip1.Size = new System.Drawing.Size(879, 52);
-            this.toolStrip1.TabIndex = 0;
-            this.toolStrip1.Text = "toolStrip1";
-            this.toolStrip1.Visible = false;
+            this.toolStripAction.Location = new System.Drawing.Point(0, 320);
+            this.toolStripAction.Name = "toolStripAction";
+            this.toolStripAction.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.toolStripAction.Size = new System.Drawing.Size(879, 52);
+            this.toolStripAction.TabIndex = 0;
+            this.toolStripAction.Text = "toolStrip1";
+            this.toolStripAction.Visible = false;
             // 
             // buttonESC
             // 
@@ -143,7 +143,7 @@
             this.textexCode.Margin = new System.Windows.Forms.Padding(2, 1, 1, 1);
             this.textexCode.Name = "textexCode";
             this.textexCode.ReadOnly = true;
-            this.textexCode.Size = new System.Drawing.Size(590, 28);
+            this.textexCode.Size = new System.Drawing.Size(589, 28);
             this.textexCode.TabIndex = 104;
             // 
             // textexCommodityCodeAndName
@@ -154,7 +154,7 @@
             this.textexCommodityCodeAndName.Margin = new System.Windows.Forms.Padding(2, 1, 1, 1);
             this.textexCommodityCodeAndName.Name = "textexCommodityCodeAndName";
             this.textexCommodityCodeAndName.ReadOnly = true;
-            this.textexCommodityCodeAndName.Size = new System.Drawing.Size(590, 28);
+            this.textexCommodityCodeAndName.Size = new System.Drawing.Size(589, 28);
             this.textexCommodityCodeAndName.TabIndex = 105;
             // 
             // textexQuantity
@@ -165,7 +165,7 @@
             this.textexQuantity.Margin = new System.Windows.Forms.Padding(2, 1, 1, 1);
             this.textexQuantity.Name = "textexQuantity";
             this.textexQuantity.ReadOnly = true;
-            this.textexQuantity.Size = new System.Drawing.Size(590, 28);
+            this.textexQuantity.Size = new System.Drawing.Size(589, 28);
             this.textexQuantity.TabIndex = 108;
             // 
             // label4
@@ -271,7 +271,7 @@
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.84455F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 69.15545F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 21F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 22F));
             this.tableLayoutPanel1.Controls.Add(this.label9, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.textexQuantity, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.label4, 0, 3);
@@ -306,7 +306,7 @@
             this.textexBinLocationCode.Margin = new System.Windows.Forms.Padding(2, 1, 1, 1);
             this.textexBinLocationCode.Name = "textexBinLocationCode";
             this.textexBinLocationCode.ReadOnly = true;
-            this.textexBinLocationCode.Size = new System.Drawing.Size(590, 28);
+            this.textexBinLocationCode.Size = new System.Drawing.Size(589, 28);
             this.textexBinLocationCode.TabIndex = 109;
             // 
             // textexLineVolume
@@ -317,7 +317,7 @@
             this.textexLineVolume.Margin = new System.Windows.Forms.Padding(2, 1, 1, 1);
             this.textexLineVolume.Name = "textexLineVolume";
             this.textexLineVolume.ReadOnly = true;
-            this.textexLineVolume.Size = new System.Drawing.Size(590, 28);
+            this.textexLineVolume.Size = new System.Drawing.Size(589, 28);
             this.textexLineVolume.TabIndex = 111;
             // 
             // label3
@@ -338,7 +338,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(879, 372);
             this.Controls.Add(this.splitContainerCenter);
-            this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.toolStripAction);
             this.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -348,8 +348,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Please find a bin location for this pallet";
             this.Load += new System.EventHandler(this.WizardDetail_Load);
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
+            this.toolStripAction.ResumeLayout(false);
+            this.toolStripAction.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderMaster)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fastBinLocations)).EndInit();
             this.splitContainerCenter.Panel1.ResumeLayout(false);
@@ -365,7 +365,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStrip toolStripAction;
         private System.Windows.Forms.ToolStripButton buttonESC;
         private System.Windows.Forms.ToolStripButton buttonAdd;
         private System.Windows.Forms.Label label2;

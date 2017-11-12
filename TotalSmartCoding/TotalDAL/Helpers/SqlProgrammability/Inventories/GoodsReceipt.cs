@@ -527,8 +527,8 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
                 queryString = queryString + "       FROM        " + this.primaryTableDetails + " " + "\r\n";
                 queryString = queryString + "                   INNER JOIN GoodsReceiptDetails ON GoodsReceiptDetails.GoodsReceiptID = @GoodsReceiptID AND " + this.primaryTableDetails + "." + this.primaryKeyDetail + " = GoodsReceiptDetails." + this.primaryKeyDetail + "" + (isPickupDetailIDs ? " AND " + this.primaryTableDetails + "." + this.primaryKeyDetail + " NOT IN (SELECT Id FROM dbo.SplitToIntList (" + this.paraPrimaryKeyDetails + "))" : "") + "\r\n";
-                queryString = queryString + "                   INNER JOIN Commodities ON " + this.primaryTableDetails + ".CommodityID = Commodities.CommodityID " + "\r\n";
-                queryString = queryString + "                   INNER JOIN BinLocations ON " + this.primaryTableDetails + ".BinLocationID = BinLocations.BinLocationID " + "\r\n";
+                queryString = queryString + "                   INNER JOIN Commodities ON GoodsReceiptDetails.CommodityID = Commodities.CommodityID " + "\r\n";
+                queryString = queryString + "                   INNER JOIN BinLocations ON GoodsReceiptDetails.BinLocationID = BinLocations.BinLocationID " + "\r\n";
                 queryString = queryString + "                   LEFT JOIN Packs ON " + this.primaryTableDetails + ".PackID = Packs.PackID " + "\r\n";
                 queryString = queryString + "                   LEFT JOIN Cartons ON " + this.primaryTableDetails + ".CartonID = Cartons.CartonID " + "\r\n";
                 queryString = queryString + "                   LEFT JOIN Pallets ON " + this.primaryTableDetails + ".PalletID = Pallets.PalletID " + "\r\n";

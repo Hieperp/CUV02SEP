@@ -7,10 +7,11 @@ using System.Collections.Generic;
 using TotalModel.Helpers;
 using TotalBase;
 using System.ComponentModel;
+using TotalDTO.Helpers.Interfaces;
 
 namespace TotalDTO.Inventories
 {
-    public class PickupDetailDTO : QuantityDetailDTO, IPrimitiveEntity
+    public class PickupDetailDTO : QuantityDetailDTO, IPrimitiveEntity, ILineDetailBinlLocation
     {
         public int GetID() { return this.PickupDetailID; }
 
@@ -25,7 +26,7 @@ namespace TotalDTO.Inventories
         public int BatchID { get; set; }
         public System.DateTime BatchEntryDate { get; set; }
 
-        public Nullable<int> WarehouseID { get; set; }
+        public int WarehouseID { get; set; }
 
         private Nullable<int> binLocationID;
         [DefaultValue(null)]
@@ -56,6 +57,8 @@ namespace TotalDTO.Inventories
         public Nullable<int> PalletID { get; set; }
         public string PalletCode { get; set; }
         public Nullable<System.DateTime> PalletEntryDate { get; set; }
+
+        public string BarcodeCode { get { return this.PalletID != null ? this.PalletCode : (this.CartonID != null ? this.CartonCode : PackCode); } }
 
         protected override List<ValidationRule> CreateRules()
         {

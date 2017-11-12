@@ -28,12 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.fastPendingPallets = new BrightIdeasSoftware.FastObjectListView();
             this.olvIsSelected = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvCommodityCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvCommodityName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn3 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvPalletCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.contextMenuDetails = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.menuOptionBinLocations = new System.Windows.Forms.ToolStripMenuItem();
             this.panelMaster = new System.Windows.Forms.Panel();
             this.fastPendingCartons = new BrightIdeasSoftware.FastObjectListView();
             this.olvColumn1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -43,22 +46,23 @@
             this.olvCartonCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.panelBottom = new System.Windows.Forms.Panel();
             this.panelBottomRight = new System.Windows.Forms.Panel();
-            this.panelBottomLeft = new System.Windows.Forms.Panel();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.buttonESC = new System.Windows.Forms.ToolStripButton();
             this.buttonAddExit = new System.Windows.Forms.ToolStripButton();
             this.buttonAdd = new System.Windows.Forms.ToolStripButton();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.panelBottomLeft = new System.Windows.Forms.Panel();
+            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.textexFilters = new System.Windows.Forms.ToolStripTextBox();
             this.buttonClearFilters = new System.Windows.Forms.ToolStripButton();
-            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             ((System.ComponentModel.ISupportInitialize)(this.fastPendingPallets)).BeginInit();
+            this.contextMenuDetails.SuspendLayout();
             this.panelMaster.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastPendingCartons)).BeginInit();
             this.panelBottom.SuspendLayout();
             this.panelBottomRight.SuspendLayout();
-            this.panelBottomLeft.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            this.panelBottomLeft.SuspendLayout();
             this.toolStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -77,6 +81,7 @@
             this.olvCommodityName,
             this.olvColumn3,
             this.olvPalletCode});
+            this.fastPendingPallets.ContextMenuStrip = this.contextMenuDetails;
             this.fastPendingPallets.Cursor = System.Windows.Forms.Cursors.Default;
             this.fastPendingPallets.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fastPendingPallets.FullRowSelect = true;
@@ -134,6 +139,22 @@
             this.olvPalletCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvPalletCode.Width = 200;
             // 
+            // contextMenuDetails
+            // 
+            this.contextMenuDetails.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuDetails.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuOptionBinLocations});
+            this.contextMenuDetails.Name = "contextMenuDetails";
+            this.contextMenuDetails.Size = new System.Drawing.Size(267, 58);
+            this.contextMenuDetails.Text = "Context MenuDetails";
+            // 
+            // menuOptionBinLocations
+            // 
+            this.menuOptionBinLocations.Name = "menuOptionBinLocations";
+            this.menuOptionBinLocations.Size = new System.Drawing.Size(266, 26);
+            this.menuOptionBinLocations.Text = "Set bin location for this line";
+            this.menuOptionBinLocations.Click += new System.EventHandler(this.menuOptionBinLocations_Click);
+            // 
             // panelMaster
             // 
             this.panelMaster.BackColor = System.Drawing.Color.Ivory;
@@ -161,6 +182,7 @@
             this.olvColumn6,
             this.olvColumn2,
             this.olvCartonCode});
+            this.fastPendingCartons.ContextMenuStrip = this.contextMenuDetails;
             this.fastPendingCartons.Cursor = System.Windows.Forms.Cursors.Default;
             this.fastPendingCartons.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fastPendingCartons.FullRowSelect = true;
@@ -237,14 +259,21 @@
             this.panelBottomRight.Size = new System.Drawing.Size(770, 55);
             this.panelBottomRight.TabIndex = 0;
             // 
-            // panelBottomLeft
+            // toolStrip1
             // 
-            this.panelBottomLeft.Controls.Add(this.toolStrip2);
-            this.panelBottomLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelBottomLeft.Location = new System.Drawing.Point(0, 0);
-            this.panelBottomLeft.Name = "panelBottomLeft";
-            this.panelBottomLeft.Size = new System.Drawing.Size(616, 55);
-            this.panelBottomLeft.TabIndex = 1;
+            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.buttonESC,
+            this.buttonAddExit,
+            this.buttonAdd});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.toolStrip1.Size = new System.Drawing.Size(770, 55);
+            this.toolStrip1.TabIndex = 0;
+            this.toolStrip1.Text = "toolStrip1";
             // 
             // buttonESC
             // 
@@ -279,21 +308,30 @@
             this.buttonAdd.Text = "Add";
             this.buttonAdd.Click += new System.EventHandler(this.buttonAddESC_Click);
             // 
-            // toolStrip1
+            // panelBottomLeft
             // 
-            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.buttonESC,
-            this.buttonAddExit,
-            this.buttonAdd});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStrip1.Size = new System.Drawing.Size(770, 55);
-            this.toolStrip1.TabIndex = 0;
-            this.toolStrip1.Text = "toolStrip1";
+            this.panelBottomLeft.Controls.Add(this.toolStrip2);
+            this.panelBottomLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelBottomLeft.Location = new System.Drawing.Point(0, 0);
+            this.panelBottomLeft.Name = "panelBottomLeft";
+            this.panelBottomLeft.Size = new System.Drawing.Size(616, 55);
+            this.panelBottomLeft.TabIndex = 1;
+            // 
+            // toolStrip2
+            // 
+            this.toolStrip2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.toolStrip2.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton1,
+            this.textexFilters,
+            this.buttonClearFilters});
+            this.toolStrip2.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip2.Name = "toolStrip2";
+            this.toolStrip2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.toolStrip2.Size = new System.Drawing.Size(616, 55);
+            this.toolStrip2.TabIndex = 1;
+            this.toolStrip2.Text = "toolStrip2";
             // 
             // toolStripButton1
             // 
@@ -327,22 +365,6 @@
             this.buttonClearFilters.Text = "Clear current filters";
             this.buttonClearFilters.Click += new System.EventHandler(this.buttonClearFilters_Click);
             // 
-            // toolStrip2
-            // 
-            this.toolStrip2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.toolStrip2.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1,
-            this.textexFilters,
-            this.buttonClearFilters});
-            this.toolStrip2.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStrip2.Size = new System.Drawing.Size(616, 55);
-            this.toolStrip2.TabIndex = 1;
-            this.toolStrip2.Text = "toolStrip2";
-            // 
             // WizardDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -358,15 +380,16 @@
             this.Text = "Select and add items";
             this.Load += new System.EventHandler(this.WizardDetail_Load);
             ((System.ComponentModel.ISupportInitialize)(this.fastPendingPallets)).EndInit();
+            this.contextMenuDetails.ResumeLayout(false);
             this.panelMaster.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.fastPendingCartons)).EndInit();
             this.panelBottom.ResumeLayout(false);
             this.panelBottomRight.ResumeLayout(false);
             this.panelBottomRight.PerformLayout();
-            this.panelBottomLeft.ResumeLayout(false);
-            this.panelBottomLeft.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.panelBottomLeft.ResumeLayout(false);
+            this.panelBottomLeft.PerformLayout();
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
             this.ResumeLayout(false);
@@ -399,5 +422,7 @@
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripTextBox textexFilters;
         private System.Windows.Forms.ToolStripButton buttonClearFilters;
+        private System.Windows.Forms.ContextMenuStrip contextMenuDetails;
+        private System.Windows.Forms.ToolStripMenuItem menuOptionBinLocations;
     }
 }

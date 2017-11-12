@@ -283,7 +283,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
             return new PickupDetailDTO()
             {
                 PickupID = this.pickupViewModel.PickupID,
-                WarehouseID = this.pickupViewModel.WarehouseID,
+                WarehouseID = (int)this.pickupViewModel.WarehouseID,
 
                 BatchID = pendingPallet.BatchID,
                 BatchEntryDate = pendingPallet.BatchEntryDate,

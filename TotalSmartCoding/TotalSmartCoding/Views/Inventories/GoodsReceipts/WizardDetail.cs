@@ -11,6 +11,8 @@ using TotalDTO.Inventories;
 using TotalSmartCoding.Controllers.APIs.Inventories;
 using TotalSmartCoding.Libraries.Helpers;
 using TotalSmartCoding.ViewModels.Inventories;
+using TotalSmartCoding.Views.Mains;
+using TotalDTO.Helpers.Interfaces;
 
 
 namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
@@ -44,6 +46,8 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
 
             this.goodsReceiptAPIs = goodsReceiptAPIs;
             this.goodsReceiptViewModel = goodsReceiptViewModel;
+
+            this.menuOptionBinLocations.Visible = this.goodsReceiptViewModel.GoodsReceiptTypeID == (int)GlobalEnums.GoodsReceiptTypeID.GoodsIssueTransfer;
         }
 
 
@@ -186,6 +190,74 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
         {
             if (showPalletCount) this.customTabBatch.TabPages[0].Text = "Pending " + this.fastPendingPallets.GetItemCount().ToString("N0") + " pallet" + (this.fastPendingPallets.GetItemCount() > 1 ? "s      " : "      ");
             if (showCartonCount) this.customTabBatch.TabPages[1].Text = "Pending " + this.fastPendingCartons.GetItemCount().ToString("N0") + " carton" + (this.fastPendingCartons.GetItemCount() > 1 ? "s      " : "      ");
+        }
+
+        private void menuOptionBinLocations_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FastObjectListView fastPendingList = this.customTabBatch.SelectedIndex == 0 ? this.fastPendingPallets : (this.customTabBatch.SelectedIndex == 1 ? this.fastPendingCartons : null);
+
+                if (fastPendingList != null && fastPendingList.SelectedObject != null)
+                {
+                    IPendingforGoodsReceiptDetail pendingforGoodsReceiptDetail = (IPendingforGoodsReceiptDetail)fastPendingList.SelectedObject;
+                    if (pendingforGoodsReceiptDetail != null)
+                    {
+                        LineDetailBinlLocation lineDetailBinlLocation = new LineDetailBinlLocation()
+                        {
+                            CommodityID = pendingforGoodsReceiptDetail.CommodityID,
+                            CommodityCode = pendingforGoodsReceiptDetail.CommodityCode,
+                            CommodityName = pendingforGoodsReceiptDetail.CommodityName,
+                            PackID = pendingforGoodsReceiptDetail.PackID,
+                            PackCode = pendingforGoodsReceiptDetail.PalletCode,
+                            CartonID = pendingforGoodsReceiptDetail.CartonID,
+                            CartonCode = pendingforGoodsReceiptDetail.CartonCode,
+                            PalletID = pendingforGoodsReceiptDetail.PalletID,
+                            WarehouseID = this.goodsReceiptViewModel.WarehouseID,
+                            BinLocationID = pendingforGoodsReceiptDetail.BinLocationID,
+                            BinLocationCode = pendingforGoodsReceiptDetail.BinLocationCode,
+                            Quantity = (decimal)pendingforGoodsReceiptDetail.Quantity,
+                            LineVolume = pendingforGoodsReceiptDetail.LineVolume
+                        };
+
+                        Pickups.WizardDetail wizardDetail = new Pickups.WizardDetail(lineDetailBinlLocation);
+                        TabletMDI tabletMDI = new TabletMDI(wizardDetail);
+
+                        if (tabletMDI.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                        {
+                            //if (this.fastPendingPallets.CheckedObjects.Count > 0) //this.pickupViewModel.FillingLineID == (int)GlobalVariables.FillingLine.Drum && 
+                            //{
+                            //    this.pickupViewModel.ViewDetails.RaiseListChangedEvents = false;
+                            //    foreach (var checkedObjects in this.fastPendingPallets.CheckedObjects)
+                            //    {
+                            //        LineDetailBinlLocation pDTO = this.InitLineDetailBinlLocation((PendingPallet)checkedObjects);
+                            //        pDTO.BinLocationID = lineDetailBinlLocation.BinLocationID;
+                            //        pDTO.BinLocationCode = lineDetailBinlLocation.BinLocationCode;
+                            //        this.pickupViewModel.ViewDetails.Add(pDTO);
+                            //    }
+                            //    this.pickupViewModel.ViewDetails.RaiseListChangedEvents = true;
+                            //    this.pickupViewModel.ViewDetails.ResetBindings();
+                            //}
+                            //else
+                            //    this.pickupViewModel.ViewDetails.Add(lineDetailBinlLocation);
+
+                            //this.callAutoSave();
+
+                            pendingforGoodsReceiptDetail.BinLocationID = (int)lineDetailBinlLocation.BinLocationID;
+                            pendingforGoodsReceiptDetail.BinLocationCode = lineDetailBinlLocation.BinLocationCode;
+                        }
+
+                        wizardDetail.Dispose(); tabletMDI.Dispose();
+
+
+                    }
+
+                }
+            }
+            catch (Exception exception)
+            {
+                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+            }
         }
     }
 }

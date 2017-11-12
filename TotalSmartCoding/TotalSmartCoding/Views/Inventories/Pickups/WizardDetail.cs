@@ -17,6 +17,7 @@ using TotalSmartCoding.ViewModels.Inventories;
 using TotalBase;
 using TotalCore.Repositories.Commons;
 using System.ComponentModel;
+using TotalDTO.Helpers.Interfaces;
 
 
 
@@ -27,7 +28,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
         private CustomTabControl tabBinLocation;
         public virtual ToolStrip toolstripChild { get; protected set; }
 
-        private PickupDetailDTO pickupDetailDTO;
+        private ILineDetailBinlLocation pickupDetailDTO;
 
         Binding bindingCodeID;
         Binding bindingCommodityCodeAndName;
@@ -35,11 +36,11 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
         Binding bindingQuantity;
         Binding bindingLineVolume;
 
-        public WizardDetail(PickupDetailDTO pickupDetailDTO)
+        public WizardDetail(ILineDetailBinlLocation pickupDetailDTO)
         {
             InitializeComponent();
 
-            this.toolstripChild = this.toolStrip1;
+            this.toolstripChild = this.toolStripAction;
             this.tabBinLocation = new CustomTabControl();
             this.tabBinLocation.DisplayStyle = TabStyle.VisualStudio;
 
@@ -63,11 +64,11 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
             {
                 this.pickupDetailDTO.PropertyChanged += pickupDetailDTO_PropertyChanged;
 
-                this.bindingCodeID = this.textexCode.DataBindings.Add("Text", this.pickupDetailDTO, CommonExpressions.PropertyName<PickupDetailDTO>(p => p.PalletCode));
-                this.bindingCommodityCodeAndName = this.textexCommodityCodeAndName.DataBindings.Add("Text", this.pickupDetailDTO, CommonExpressions.PropertyName<PickupDetailDTO>(p => p.CommodityCodeAndName));
-                this.bindingBinLocationCode = this.textexBinLocationCode.DataBindings.Add("Text", this.pickupDetailDTO, CommonExpressions.PropertyName<PickupDetailDTO>(p => p.BinLocationCode));
-                this.bindingQuantity = this.textexQuantity.DataBindings.Add("Text", this.pickupDetailDTO, CommonExpressions.PropertyName<PickupDetailDTO>(p => p.Quantity));
-                this.bindingLineVolume = this.textexLineVolume.DataBindings.Add("Text", this.pickupDetailDTO, CommonExpressions.PropertyName<PickupDetailDTO>(p => p.LineVolume));
+                this.bindingCodeID = this.textexCode.DataBindings.Add("Text", this.pickupDetailDTO, CommonExpressions.PropertyName<ILineDetailBinlLocation>(p => p.BarcodeCode));
+                this.bindingCommodityCodeAndName = this.textexCommodityCodeAndName.DataBindings.Add("Text", this.pickupDetailDTO, CommonExpressions.PropertyName<ILineDetailBinlLocation>(p => p.CommodityCodeAndName));
+                this.bindingBinLocationCode = this.textexBinLocationCode.DataBindings.Add("Text", this.pickupDetailDTO, CommonExpressions.PropertyName<ILineDetailBinlLocation>(p => p.BinLocationCode));
+                this.bindingQuantity = this.textexQuantity.DataBindings.Add("Text", this.pickupDetailDTO, CommonExpressions.PropertyName<ILineDetailBinlLocation>(p => p.Quantity));
+                this.bindingLineVolume = this.textexLineVolume.DataBindings.Add("Text", this.pickupDetailDTO, CommonExpressions.PropertyName<ILineDetailBinlLocation>(p => p.LineVolume));
 
                 this.fastBinLocations.SetObjects((new BinLocationAPIs(CommonNinject.Kernel.Get<IBinLocationAPIRepository>())).GetBinLocationBases(this.pickupDetailDTO.WarehouseID));
                 this.ShowRowCount();

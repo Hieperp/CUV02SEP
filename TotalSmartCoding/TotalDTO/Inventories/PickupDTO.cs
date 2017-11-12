@@ -19,7 +19,7 @@ namespace TotalDTO.Inventories
     public class PickupPrimitiveDTO : QuantityDTO<PickupDetailDTO>, IPrimitiveEntity, IPrimitiveDTO
     {
         public override GlobalEnums.NmvnTaskID NMVNTaskID { get { return GlobalEnums.NmvnTaskID.Pickup; } }
-        
+
         public override bool Printable { get { return true; } }
         public override bool PrintVisible { get { return true; } }
 
@@ -91,7 +91,7 @@ namespace TotalDTO.Inventories
             set { ApplyPropertyChange<PickupPrimitiveDTO, Nullable<int>>(ref this.storekeeperID, o => o.StorekeeperID, value); }
         }
 
-        
+
 
 
         public override string Caption
@@ -103,7 +103,7 @@ namespace TotalDTO.Inventories
         {
             base.PerformPresaveRule();
 
-            this.DtoDetails().ToList().ForEach(e => { e.WarehouseID = this.WarehouseID; });
+            this.DtoDetails().ToList().ForEach(e => { e.WarehouseID = (int)this.WarehouseID; });
         }
 
         protected override List<ValidationRule> CreateRules()
