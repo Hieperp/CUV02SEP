@@ -11,6 +11,8 @@ using TotalModel;
 using TotalBase.Enums;
 using TotalDTO.Helpers;
 using TotalDTO.Commons;
+using TotalModel.Helpers;
+using TotalBase;
 
 namespace TotalDTO.Sales
 {
@@ -109,8 +111,38 @@ namespace TotalDTO.Sales
             set { ApplyPropertyChange<DeliveryAdvicePrimitiveDTO, Nullable<int>>(ref this.salespersonID, o => o.SalespersonID, value); }
         }
 
+        private int forkliftDriverID;
+        [DefaultValue(null)]
+        public int ForkliftDriverID
+        {
+            get { return this.forkliftDriverID; }
+            set { ApplyPropertyChange<DeliveryAdvicePrimitiveDTO, int>(ref this.forkliftDriverID, o => o.ForkliftDriverID, value); }
+        }
 
-        
+        private int storekeeperID;
+        //[DefaultValue(null)]
+        public int StorekeeperID
+        {
+            get { return this.storekeeperID; }
+            set { ApplyPropertyChange<DeliveryAdvicePrimitiveDTO, int>(ref this.storekeeperID, o => o.StorekeeperID, value); }
+        }
+
+        private string vehicle;
+        [DefaultValue(null)]
+        public string Vehicle
+        {
+            get { return this.vehicle; }
+            set { ApplyPropertyChange<DeliveryAdvicePrimitiveDTO, string>(ref this.vehicle, o => o.Vehicle, value); }
+        }
+
+        private string vehicleDriver;
+        [DefaultValue(null)]
+        public string VehicleDriver
+        {
+            get { return this.vehicleDriver; }
+            set { ApplyPropertyChange<DeliveryAdvicePrimitiveDTO, string>(ref this.vehicleDriver, o => o.VehicleDriver, value); }
+        }
+
 
         public override string Caption
         {
@@ -125,6 +157,18 @@ namespace TotalDTO.Sales
             this.DtoDetails().ToList().ForEach(e => { e.CustomerID = this.CustomerID; e.ReceiverID = this.ReceiverID; if (this.HasSalesOrder && salesOrderReferences.IndexOf(e.SalesOrderReference) < 0) salesOrderReferences = salesOrderReferences + (salesOrderReferences != "" ? ", " : "") + e.SalesOrderReference; if (this.HasSalesOrder && e.VoucherCode != null && voucherCode.IndexOf(e.VoucherCode) < 0) voucherCode = voucherCode + (voucherCode != "" ? ", " : "") + e.VoucherCode; });
             this.SalesOrderReferences = salesOrderReferences;
             if (this.HasSalesOrder) this.VoucherCode = voucherCode;
+        }
+
+        protected override List<ValidationRule> CreateRules()
+        {
+            List<ValidationRule> validationRules = base.CreateRules();
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<DeliveryAdvicePrimitiveDTO>(p => p.CustomerID), "Vui lòng chọn khách hàng.", delegate { return (this.CustomerID != null && this.CustomerID > 0); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<DeliveryAdvicePrimitiveDTO>(p => p.ReceiverID), "Vui lòng chọn đơn vị nhận hàng.", delegate { return (this.ReceiverID != null && this.ReceiverID > 0); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<DeliveryAdvicePrimitiveDTO>(p => p.SalespersonID), "Vui lòng chọn nhân viên bán hàng.", delegate { return (this.SalespersonID != null && this.SalespersonID > 0); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<DeliveryAdvicePrimitiveDTO>(p => p.ForkliftDriverID), "Vui lòng chọn thủ kho.", delegate { return (this.ForkliftDriverID != null && this.ForkliftDriverID > 0); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<DeliveryAdvicePrimitiveDTO>(p => p.StorekeeperID), "Vui lòng chọn người lập.", delegate { return (this.StorekeeperID != null && this.StorekeeperID > 0); }));
+
+            return validationRules;
         }
     }
 

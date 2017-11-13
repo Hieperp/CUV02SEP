@@ -543,6 +543,46 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Admin_icon {
+            get {
+                object obj = ResourceManager.GetObject("Admin-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Admin_icon_32 {
+            get {
+                object obj = ResourceManager.GetObject("Admin-icon-32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap administrator_icon {
+            get {
+                object obj = ResourceManager.GetObject("administrator-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap administrator_icon_32 {
+            get {
+                object obj = ResourceManager.GetObject("administrator-icon-32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Ahmadhania_Spherical_Back {
             get {
                 object obj = ResourceManager.GetObject("Ahmadhania-Spherical-Back", resourceCulture);
@@ -4096,6 +4136,16 @@ namespace TotalSmartCoding.Properties {
         internal static System.Drawing.Bitmap UpgradeReport_Plus {
             get {
                 object obj = ResourceManager.GetObject("UpgradeReport_Plus", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap user_group_icon_24 {
+            get {
+                object obj = ResourceManager.GetObject("user-group-icon-24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -998,6 +998,11 @@
     <None Include="Resources\Identity.ico" />
     <None Include="Resources\Identity-icon-64.png" />
     <None Include="Resources\Identity-icon-48.png" />
+    <None Include="Resources\Admin-icon.png" />
+    <None Include="Resources\administrator-icon.png" />
+    <None Include="Resources\administrator-icon-32.png" />
+    <None Include="Resources\Admin-icon-32.png" />
+    <None Include="Resources\user-group-icon-24.png" />
     <Content Include="SmartCodingSolution.ico" />
     <None Include="Resources\Yellow-cross.ico" />
     <None Include="Resources\White-Pallet.ico" />

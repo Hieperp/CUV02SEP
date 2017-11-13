@@ -26,5 +26,9 @@ namespace TotalModel.Models
         public int WarehouseID { get; set; }
         public string WarehouseCode { get; set; }
         public string WarehouseName { get; set; }
+        public int ForkliftDriverID { get; set; }
+        public int StorekeeperID { get; set; }
+        public string Vehicle { get; set; }
+        public string VehicleDriver { get; set; }
     }
 }

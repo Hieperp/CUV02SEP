@@ -122,7 +122,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
 
-            queryString = queryString + "       SELECT          DeliveryAdvices.DeliveryAdviceID, DeliveryAdvices.Reference AS DeliveryAdviceReference, DeliveryAdvices.EntryDate AS DeliveryAdviceEntryDate, DeliveryAdvices.SalesOrderReferences, DeliveryAdvices.VoucherCode, DeliveryAdvices.CustomerID, Customers.Code AS CustomerCode, Customers.Name AS CustomerName, DeliveryAdvices.ReceiverID, Receivers.Code AS ReceiverCode, Receivers.Name AS ReceiverName, DeliveryAdvices.Description, DeliveryAdvices.Remarks " + "\r\n";
+            queryString = queryString + "       SELECT          DeliveryAdvices.DeliveryAdviceID, DeliveryAdvices.Reference AS DeliveryAdviceReference, DeliveryAdvices.EntryDate AS DeliveryAdviceEntryDate, DeliveryAdvices.SalesOrderReferences, DeliveryAdvices.VoucherCode, DeliveryAdvices.CustomerID, Customers.Code AS CustomerCode, Customers.Name AS CustomerName, DeliveryAdvices.ReceiverID, Receivers.Code AS ReceiverCode, Receivers.Name AS ReceiverName, DeliveryAdvices.ForkliftDriverID, DeliveryAdvices.StorekeeperID, DeliveryAdvices.Vehicle, DeliveryAdvices.VehicleDriver, DeliveryAdvices.Description, DeliveryAdvices.Remarks " + "\r\n";
             queryString = queryString + "       FROM            DeliveryAdvices " + "\r\n";
             queryString = queryString + "                       INNER JOIN Customers ON DeliveryAdvices.DeliveryAdviceID IN (SELECT DeliveryAdviceID FROM DeliveryAdviceDetails WHERE LocationID = @LocationID AND Approved = 1 AND ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") > 0) AND DeliveryAdvices.CustomerID = Customers.CustomerID " + "\r\n";
             queryString = queryString + "                       INNER JOIN Customers Receivers ON DeliveryAdvices.ReceiverID = Receivers.CustomerID " + "\r\n";
@@ -154,7 +154,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
 
-            queryString = queryString + "       SELECT          TransferOrders.TransferOrderID, TransferOrders.Reference AS TransferOrderReference, TransferOrders.EntryDate AS TransferOrderEntryDate, TransferOrders.VoucherCode, TransferOrders.TransferJobs, TransferOrders.WarehouseID, Warehouses.Code AS WarehouseCode, Warehouses.Name AS WarehouseName, TransferOrders.WarehouseReceiptID, WarehouseReceipts.Code AS WarehouseReceiptCode, WarehouseReceipts.Name AS WarehouseReceiptName, TransferOrders.Description, TransferOrders.Remarks " + "\r\n";
+            queryString = queryString + "       SELECT          TransferOrders.TransferOrderID, TransferOrders.Reference AS TransferOrderReference, TransferOrders.EntryDate AS TransferOrderEntryDate, TransferOrders.VoucherCode, TransferOrders.TransferJobs, TransferOrders.WarehouseID, Warehouses.Code AS WarehouseCode, Warehouses.Name AS WarehouseName, TransferOrders.WarehouseReceiptID, WarehouseReceipts.Code AS WarehouseReceiptCode, WarehouseReceipts.Name AS WarehouseReceiptName, TransferOrders.ForkliftDriverID, TransferOrders.StorekeeperID, TransferOrders.Vehicle, TransferOrders.VehicleDriver, TransferOrders.Description, TransferOrders.Remarks " + "\r\n";
             queryString = queryString + "       FROM            TransferOrders " + "\r\n";
             queryString = queryString + "                       INNER JOIN Warehouses ON TransferOrders.TransferOrderID IN (SELECT TransferOrderID FROM TransferOrderDetails WHERE LocationID = @LocationID AND Approved = 1 AND ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") > 0) AND TransferOrders.WarehouseID = Warehouses.WarehouseID " + "\r\n";
             queryString = queryString + "                       INNER JOIN Warehouses WarehouseReceipts ON TransferOrders.WarehouseReceiptID = WarehouseReceipts.WarehouseID " + "\r\n";
@@ -321,27 +321,25 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
-            queryString = queryString + "       SELECT      GoodsIssues.GoodsIssueID, GoodsIssues.EntryDate, GoodsIssues.Reference, GoodsIssues.GoodsIssueTypeID, GoodsIssueTypes.Name AS GoodsIssueTypeName, GoodsIssues.PrimaryReferences, GoodsIssues.WarehouseID, Warehouses.Name AS WarehouseName, GoodsIssues.ForkliftDriverID, Storekeepers.Name AS StorekeeperName, GoodsIssues.StorekeeperID, ForkliftDrivers.Name AS ForkliftDriverName, " + "\r\n";
+            queryString = queryString + "       SELECT      GoodsIssues.GoodsIssueID, GoodsIssues.EntryDate, GoodsIssues.Reference, GoodsIssues.GoodsIssueTypeID, GoodsIssueTypes.Name AS GoodsIssueTypeName, GoodsIssues.PrimaryReferences, GoodsIssues.LocationID, Locations.Name AS LocationName, GoodsIssues.ForkliftDriverID, Storekeepers.Name AS StorekeeperName, GoodsIssues.StorekeeperID, ForkliftDrivers.Name AS ForkliftDriverName, " + "\r\n";
             queryString = queryString + "                   GoodsIssues.CustomerID, Customers.Code AS CustomerCode, Customers.OfficialName AS CustomerOfficialName, GoodsIssues.ReceiverID, Receivers.Code AS ReceiverCode, GoodsIssues.WarehouseReceiptID, WarehouseReceipts.Name AS WarehouseReceiptName, GoodsIssues.Vehicle, GoodsIssues.Description, GoodsIssues.Remarks, " + "\r\n";
-            queryString = queryString + "                   GoodsIssueDetails.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, Commodities.PackageSize, GoodsIssueDetails.BatchID, Batches.Code AS BatchCode, GoodsIssueDetails.BinLocationID, BinLocations.Code AS BinLocationCode, GoodsIssueDetails.PalletID, Pallets.Code AS PalletCode, GoodsIssueDetails.CartonID, Cartons.Code AS CartonCode, GoodsIssueDetails.Quantity, GoodsIssueDetails.LineVolume " + "\r\n";
-            queryString = queryString + "                   " + "\r\n";
+            queryString = queryString + "                   GoodsIssueDetails.WarehouseID, GoodsIssueDetails.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, Commodities.PackageSize, 1 AS PackageQuantity, Commodities.PackageVolume, GoodsIssueDetails.BatchID, Batches.Code AS BatchCode, Batches.EntryDate AS BatchEntryDate, GoodsIssueDetails.BinLocationID, BinLocations.Code AS BinLocationCode, GoodsIssueDetails.PalletID, Pallets.Code AS PalletCode, GoodsIssueDetails.CartonID, Cartons.Code AS CartonCode, PalletCartons.Code AS PalletCartonCode, " + "\r\n";
+            queryString = queryString + "                   CASE WHEN NOT GoodsIssueDetails.CartonID IS NULL THEN Cartons.Code ELSE Pallets.Code END AS LineBarcode, CASE WHEN NOT GoodsIssueDetails.CartonID IS NULL THEN Cartons.Code ELSE PalletCartons.Code END AS AllCartonCode, GoodsIssueDetails.Quantity, GoodsIssueDetails.LineVolume " + "\r\n";
             queryString = queryString + "       FROM        GoodsIssues " + "\r\n";
             queryString = queryString + "                   INNER JOIN GoodsIssueTypes ON GoodsIssues.GoodsIssueID = @GoodsIssueID AND GoodsIssues.GoodsIssueTypeID = GoodsIssueTypes.GoodsIssueTypeID " + "\r\n";
-            queryString = queryString + "                   INNER JOIN Warehouses ON GoodsIssues.WarehouseID = Warehouses.WarehouseID " + "\r\n";
+            queryString = queryString + "                   INNER JOIN Locations ON GoodsIssues.LocationID = Locations.LocationID " + "\r\n";
             queryString = queryString + "                   INNER JOIN Employees AS ForkliftDrivers ON ForkliftDrivers.EmployeeID = GoodsIssues.ForkliftDriverID " + "\r\n";
             queryString = queryString + "                   INNER JOIN Employees AS Storekeepers ON GoodsIssues.StorekeeperID = Storekeepers.EmployeeID " + "\r\n";
             queryString = queryString + "                   INNER JOIN GoodsIssueDetails ON GoodsIssues.GoodsIssueID = GoodsIssueDetails.GoodsIssueID " + "\r\n";
             queryString = queryString + "                   INNER JOIN Batches ON GoodsIssueDetails.BatchID = Batches.BatchID " + "\r\n";
             queryString = queryString + "                   INNER JOIN Commodities ON GoodsIssueDetails.CommodityID = Commodities.CommodityID " + "\r\n";
             queryString = queryString + "                   INNER JOIN BinLocations ON GoodsIssueDetails.BinLocationID = BinLocations.BinLocationID " + "\r\n";
-            queryString = queryString + "                   INNER JOIN Pallets ON GoodsIssueDetails.PalletID = Pallets.PalletID " + "\r\n";
-            queryString = queryString + "                   INNER JOIN Cartons ON GoodsIssueDetails.CartonID = Cartons.CartonID " + "\r\n";
+            queryString = queryString + "                   LEFT JOIN Pallets ON GoodsIssueDetails.PalletID = Pallets.PalletID " + "\r\n";
+            queryString = queryString + "                   LEFT JOIN Cartons PalletCartons ON Pallets.PalletID = PalletCartons.PalletID " + "\r\n";
+            queryString = queryString + "                   LEFT JOIN Cartons ON GoodsIssueDetails.CartonID = Cartons.CartonID " + "\r\n";
             queryString = queryString + "                   LEFT JOIN Customers ON GoodsIssues.CustomerID = Customers.CustomerID " + "\r\n";
             queryString = queryString + "                   LEFT JOIN Customers AS Receivers ON GoodsIssues.ReceiverID = Receivers.CustomerID " + "\r\n";
             queryString = queryString + "                   LEFT JOIN Warehouses WarehouseReceipts ON GoodsIssues.WarehouseReceiptID = WarehouseReceipts.WarehouseID " + "\r\n";
-
-            //queryString = queryString + "       ORDER BY    GoodsIssueDetails.GoodsIssueDetailID " + "\r\n";
-
             queryString = queryString + "    END " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("GetGoodsIssueSheet", queryString);

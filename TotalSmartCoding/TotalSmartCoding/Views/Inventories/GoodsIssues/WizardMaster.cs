@@ -85,10 +85,15 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                             {
                                 this.goodsIssueViewModel.DeliveryAdviceID = pendingDeliveryAdvice.DeliveryAdviceID;
                                 this.goodsIssueViewModel.PrimaryReferences = pendingDeliveryAdvice.DeliveryAdviceReference;
+                                this.goodsIssueViewModel.VoucherCodes = pendingDeliveryAdvice.VoucherCode;
                                 this.goodsIssueViewModel.CustomerID = pendingDeliveryAdvice.CustomerID;
                                 this.goodsIssueViewModel.CustomerName = pendingDeliveryAdvice.CustomerName;
                                 this.goodsIssueViewModel.ReceiverID = pendingDeliveryAdvice.ReceiverID;
                                 this.goodsIssueViewModel.ReceiverName = pendingDeliveryAdvice.ReceiverName;
+                                this.goodsIssueViewModel.ForkliftDriverID = pendingDeliveryAdvice.ForkliftDriverID;
+                                this.goodsIssueViewModel.StorekeeperID = pendingDeliveryAdvice.StorekeeperID;
+                                this.goodsIssueViewModel.Vehicle = pendingDeliveryAdvice.Vehicle;
+                                this.goodsIssueViewModel.VehicleDriver = pendingDeliveryAdvice.VehicleDriver;
                                 nextOK = true;
                             }
                         }
@@ -117,10 +122,15 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                             {
                                 this.goodsIssueViewModel.TransferOrderID = pendingTransferOrder.TransferOrderID;
                                 this.goodsIssueViewModel.TransferOrderReference = pendingTransferOrder.TransferOrderReference;
+                                this.goodsIssueViewModel.VoucherCodes = pendingTransferOrder.VoucherCode;
                                 this.goodsIssueViewModel.WarehouseID = pendingTransferOrder.WarehouseID;
                                 this.goodsIssueViewModel.WarehouseName = pendingTransferOrder.WarehouseName;
                                 this.goodsIssueViewModel.WarehouseReceiptID = pendingTransferOrder.WarehouseReceiptID;
                                 this.goodsIssueViewModel.WarehouseReceiptName = pendingTransferOrder.WarehouseReceiptName;
+                                this.goodsIssueViewModel.ForkliftDriverID = pendingTransferOrder.ForkliftDriverID;
+                                this.goodsIssueViewModel.StorekeeperID = pendingTransferOrder.StorekeeperID;
+                                this.goodsIssueViewModel.Vehicle = pendingTransferOrder.Vehicle;
+                                this.goodsIssueViewModel.VehicleDriver = pendingTransferOrder.VehicleDriver;
                                 nextOK = true;
                             }
                         }

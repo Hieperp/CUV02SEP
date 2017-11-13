@@ -572,9 +572,10 @@
             // 
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Right;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(129, 15);
+            this.pictureBox1.Location = new System.Drawing.Point(138, 15);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(33, 29);
+            this.pictureBox1.Size = new System.Drawing.Size(24, 28);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox1.TabIndex = 75;
             this.pictureBox1.TabStop = false;
             // 
@@ -583,7 +584,7 @@
             this.layoutTop.SetColumnSpan(this.textexDeliveryAddress, 4);
             this.textexDeliveryAddress.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexDeliveryAddress.Editable = true;
-            this.textexDeliveryAddress.Location = new System.Drawing.Point(168, 85);
+            this.textexDeliveryAddress.Location = new System.Drawing.Point(168, 83);
             this.textexDeliveryAddress.Name = "textexDeliveryAddress";
             this.textexDeliveryAddress.Size = new System.Drawing.Size(944, 28);
             this.textexDeliveryAddress.TabIndex = 76;
@@ -592,7 +593,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Location = new System.Drawing.Point(3, 82);
+            this.label3.Location = new System.Drawing.Point(3, 80);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(159, 34);
             this.label3.TabIndex = 77;
@@ -612,9 +613,10 @@
             // 
             this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Right;
             this.pictureBox2.Image = global::TotalSmartCoding.Properties.Resources.Phone_icon_24;
-            this.pictureBox2.Location = new System.Drawing.Point(749, 15);
+            this.pictureBox2.Location = new System.Drawing.Point(758, 15);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(33, 29);
+            this.pictureBox2.Size = new System.Drawing.Size(24, 28);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox2.TabIndex = 79;
             this.pictureBox2.TabStop = false;
             // 
@@ -625,7 +627,7 @@
             this.combexReceiverID.Dock = System.Windows.Forms.DockStyle.Fill;
             this.combexReceiverID.Editable = false;
             this.combexReceiverID.FormattingEnabled = true;
-            this.combexReceiverID.Location = new System.Drawing.Point(168, 50);
+            this.combexReceiverID.Location = new System.Drawing.Point(168, 49);
             this.combexReceiverID.Name = "combexReceiverID";
             this.combexReceiverID.ReadOnly = false;
             this.combexReceiverID.Size = new System.Drawing.Size(489, 29);
@@ -635,7 +637,7 @@
             // 
             this.textexTelephone.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexTelephone.Editable = true;
-            this.textexTelephone.Location = new System.Drawing.Point(788, 50);
+            this.textexTelephone.Location = new System.Drawing.Point(788, 49);
             this.textexTelephone.Name = "textexTelephone";
             this.textexTelephone.Size = new System.Drawing.Size(324, 28);
             this.textexTelephone.TabIndex = 81;
@@ -644,19 +646,21 @@
             // 
             this.pictureBox3.Dock = System.Windows.Forms.DockStyle.Right;
             this.pictureBox3.Image = global::TotalSmartCoding.Properties.Resources.Phone_icon_24;
-            this.pictureBox3.Location = new System.Drawing.Point(749, 50);
+            this.pictureBox3.Location = new System.Drawing.Point(758, 49);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(33, 29);
+            this.pictureBox3.Size = new System.Drawing.Size(24, 28);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox3.TabIndex = 82;
             this.pictureBox3.TabStop = false;
             // 
             // pictureBox4
             // 
             this.pictureBox4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox4.Image = global::TotalSmartCoding.Properties.Resources.user_group_icon_red;
-            this.pictureBox4.Location = new System.Drawing.Point(129, 50);
+            this.pictureBox4.Image = global::TotalSmartCoding.Properties.Resources.user_group_icon_24;
+            this.pictureBox4.Location = new System.Drawing.Point(138, 49);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(33, 29);
+            this.pictureBox4.Size = new System.Drawing.Size(24, 28);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox4.TabIndex = 83;
             this.pictureBox4.TabStop = false;
             // 

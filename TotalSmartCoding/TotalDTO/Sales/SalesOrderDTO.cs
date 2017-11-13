@@ -20,11 +20,15 @@ namespace TotalDTO.Sales
     {
         public override GlobalEnums.NmvnTaskID NMVNTaskID { get { return GlobalEnums.NmvnTaskID.SalesOrder; } }
 
+        public SalesOrderPrimitiveDTO() { this.Initialize(); }
+
         public override void Init()
         {
             base.Init();
-            this.DeliveryDate = DateTime.Now;
+            this.Initialize();
         }
+
+        private void Initialize() { this.DeliveryDate = DateTime.Now; }
 
         public override int GetID() { return this.SalesOrderID; }
         public void SetID(int id) { this.SalesOrderID = id; }
@@ -120,6 +124,16 @@ namespace TotalDTO.Sales
 
             this.DtoDetails().ToList().ForEach(e => { e.CustomerID = this.CustomerID; e.ReceiverID = this.ReceiverID; e.VoucherCode = this.VoucherCode; });
         }
+
+        protected override List<ValidationRule> CreateRules()
+        {
+            List<ValidationRule> validationRules = base.CreateRules();
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<SalesOrderPrimitiveDTO>(p => p.CustomerID), "Vui lòng chọn khách hàng.", delegate { return (this.CustomerID != null && this.CustomerID > 0); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<SalesOrderPrimitiveDTO>(p => p.ReceiverID), "Vui lòng chọn đơn vị nhận hàng.", delegate { return (this.ReceiverID != null && this.ReceiverID > 0); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<SalesOrderPrimitiveDTO>(p => p.SalespersonID), "Vui lòng chọn nhân viên phụ trách khách hàng.", delegate { return (this.SalespersonID != null && this.SalespersonID > 0); }));
+
+            return validationRules;
+        }
     }
 
     public class SalesOrderDTO : SalesOrderPrimitiveDTO, IBaseDetailEntity<SalesOrderDetailDTO>
@@ -135,23 +149,7 @@ namespace TotalDTO.Sales
 
         public ICollection<SalesOrderDetailDTO> GetDetails() { return this.SalesOrderViewDetails; }
 
-        protected override IEnumerable<SalesOrderDetailDTO> DtoDetails() { return this.SalesOrderViewDetails; }
-
-
-
-
-
-
-        protected override List<ValidationRule> CreateRules()
-        {
-            List<ValidationRule> validationRules = base.CreateRules();
-            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<SalesOrderDTO>(p => p.CustomerID), "Vui lòng chọn khách hàng.", delegate { return (this.CustomerID != null && this.CustomerID > 0); }));
-            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<SalesOrderDTO>(p => p.ReceiverID), "Vui lòng chọn đơn vị nhận hàng.", delegate { return (this.ReceiverID != null && this.ReceiverID > 0); }));
-            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<SalesOrderDTO>(p => p.SalespersonID), "Vui lòng chọn nhân viên phụ trách khách hàng.", delegate { return (this.SalespersonID != null && this.SalespersonID > 0); }));
-
-            return validationRules;
-
-        }
+        protected override IEnumerable<SalesOrderDetailDTO> DtoDetails() { return this.SalesOrderViewDetails; }        
     }
 
 }

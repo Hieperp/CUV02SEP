@@ -20,12 +20,15 @@ namespace TotalDTO.Inventories
     {
         public override GlobalEnums.NmvnTaskID NMVNTaskID { get { return GlobalEnums.NmvnTaskID.GoodsIssue; } }
 
+        public GoodsIssuePrimitiveDTO() { this.Initialize(); }
+
         public override void Init()
         {
             base.Init();
-            this.LoadingStart = DateTime.Now;
-            this.LoadingCompletion = DateTime.Now;
+            this.Initialize();
         }
+
+        private void Initialize() { this.LoadingStart = DateTime.Now; this.LoadingCompletion = DateTime.Now; }
 
         public override bool Printable { get { return true; } }
         public override bool PrintVisible { get { return true; } }
@@ -80,7 +83,13 @@ namespace TotalDTO.Inventories
         [DefaultValue(null)]
         public string PrimaryReferences { get; set; }
 
-
+        private string voucherCodes;
+        [DefaultValue(null)]
+        public string VoucherCodes
+        {
+            get { return this.voucherCodes; }
+            set { ApplyPropertyChange<GoodsIssuePrimitiveDTO, string>(ref this.voucherCodes, o => o.VoucherCodes, value); }
+        }
 
         private Nullable<int> customerID;
         [DefaultValue(null)]
@@ -199,9 +208,9 @@ namespace TotalDTO.Inventories
         {
             base.PerformPresaveRule();
 
-            string primaryReferences = "";
-            this.DtoDetails().ToList().ForEach(e => { e.CustomerID = this.CustomerID; e.ReceiverID = this.ReceiverID; e.WarehouseReceiptID = this.WarehouseReceiptID; if (primaryReferences.IndexOf(e.PrimaryReference) < 0) primaryReferences = primaryReferences + (primaryReferences != "" ? ", " : "") + e.PrimaryReference; });
-            this.PrimaryReferences = primaryReferences;
+            string primaryReferences = ""; //string voucherCodes = "";
+            this.DtoDetails().ToList().ForEach(e => { e.CustomerID = this.CustomerID; e.ReceiverID = this.ReceiverID; e.WarehouseReceiptID = this.WarehouseReceiptID; if (primaryReferences.IndexOf(e.PrimaryReference) < 0) primaryReferences = primaryReferences + (primaryReferences != "" ? ", " : "") + e.PrimaryReference; }); //if (voucherCodes.IndexOf(e.VoucherCode) < 0) voucherCodes = voucherCodes + (voucherCodes != "" ? ", " : "") + e.VoucherCode; 
+            this.PrimaryReferences = primaryReferences; //this.VoucherCodes = voucherCodes;
         }
 
         protected override List<ValidationRule> CreateRules()
@@ -211,8 +220,8 @@ namespace TotalDTO.Inventories
             validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<GoodsIssuePrimitiveDTO>(p => p.ReceiverID), "Vui lòng chọn đơn vị nhận hàng.", delegate { return (this.GoodsIssueTypeID == (int)GlobalEnums.GoodsIssueTypeID.TransferOrder || (this.ReceiverID != null && this.ReceiverID > 0)); }));
             validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<GoodsIssuePrimitiveDTO>(p => p.WarehouseID), "Vui lòng chọn kho xuất.", delegate { return (this.GoodsIssueTypeID == (int)GlobalEnums.GoodsIssueTypeID.DeliveryAdvice || (this.WarehouseID != null && this.WarehouseID > 0)); }));
             validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<GoodsIssuePrimitiveDTO>(p => p.WarehouseReceiptID), "Vui lòng chọn kho nhận.", delegate { return (this.GoodsIssueTypeID == (int)GlobalEnums.GoodsIssueTypeID.DeliveryAdvice || (this.WarehouseReceiptID != null && this.WarehouseReceiptID > 0)); }));
-            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<GoodsIssuePrimitiveDTO>(p => p.ForkliftDriverID), "Vui lòng chọn tài xế.", delegate { return (this.ForkliftDriverID != null && this.ForkliftDriverID > 0); }));
-            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<GoodsIssuePrimitiveDTO>(p => p.StorekeeperID), "Vui lòng chọn nhân viên kho.", delegate { return (this.StorekeeperID != null && this.StorekeeperID > 0); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<GoodsIssuePrimitiveDTO>(p => p.ForkliftDriverID), "Vui lòng chọn thủ kho.", delegate { return (this.ForkliftDriverID != null && this.ForkliftDriverID > 0); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<GoodsIssuePrimitiveDTO>(p => p.StorekeeperID), "Vui lòng chọn người lập.", delegate { return (this.StorekeeperID != null && this.StorekeeperID > 0); }));
 
             return validationRules;
         }

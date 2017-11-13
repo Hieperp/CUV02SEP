@@ -118,9 +118,9 @@ namespace TotalSmartCoding.Views.Sales.DeliveryAdvices
         }
 
         Binding bindingEntryDate;
-        Binding bindingReference;
         Binding bindingVoucherCode;
-        Binding bindingContactInfo;
+        Binding bindingVehicle;
+        Binding bindingVehicleDriver;
         Binding bindingDeliveryAddress;
         Binding bindingDescription;
         Binding bindingRemarks;
@@ -129,15 +129,17 @@ namespace TotalSmartCoding.Views.Sales.DeliveryAdvices
         Binding bindingCustomerID;
         Binding bindingReceiverID;
         Binding bindingSalespersonID;
+        Binding bindingForkliftDriverID;
+        Binding bindingStorekeeperID;
 
         protected override void InitializeCommonControlBinding()
         {
             base.InitializeCommonControlBinding();
 
             this.bindingEntryDate = this.dateTimexEntryDate.DataBindings.Add("Value", this.deliveryAdviceViewModel, CommonExpressions.PropertyName<DeliveryAdviceDTO>(p => p.EntryDate), true, DataSourceUpdateMode.OnPropertyChanged);
-            this.bindingReference = this.textexReference.DataBindings.Add("Text", this.deliveryAdviceViewModel, CommonExpressions.PropertyName<DeliveryAdviceDTO>(p => p.Reference), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingVoucherCode = this.textexVoucherCode.DataBindings.Add("Text", this.deliveryAdviceViewModel, CommonExpressions.PropertyName<DeliveryAdviceDTO>(p => p.VoucherCode), true, DataSourceUpdateMode.OnPropertyChanged);
-            this.bindingContactInfo = this.textexContactInfo.DataBindings.Add("Text", this.deliveryAdviceViewModel, CommonExpressions.PropertyName<DeliveryAdviceDTO>(p => p.ContactInfo), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingVehicle = this.textexVehicle.DataBindings.Add("Text", this.deliveryAdviceViewModel, CommonExpressions.PropertyName<DeliveryAdviceDTO>(p => p.Vehicle), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingVehicleDriver = this.textexVehicleDriver.DataBindings.Add("Text", this.deliveryAdviceViewModel, CommonExpressions.PropertyName<DeliveryAdviceDTO>(p => p.VehicleDriver), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingDeliveryAddress = this.textexDeliveryAddress.DataBindings.Add("Text", this.deliveryAdviceViewModel, CommonExpressions.PropertyName<DeliveryAdviceDTO>(p => p.ShippingAddress), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingDescription = this.textexDescription.DataBindings.Add("Text", this.deliveryAdviceViewModel, CommonExpressions.PropertyName<DeliveryAdviceDTO>(p => p.Description), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingRemarks = this.textexRemarks.DataBindings.Add("Text", this.deliveryAdviceViewModel, CommonExpressions.PropertyName<DeliveryAdviceDTO>(p => p.Remarks), true, DataSourceUpdateMode.OnPropertyChanged);
@@ -162,10 +164,20 @@ namespace TotalSmartCoding.Views.Sales.DeliveryAdvices
             this.combexSalespersonID.ValueMember = CommonExpressions.PropertyName<EmployeeBase>(p => p.EmployeeID);
             this.bindingSalespersonID = this.combexSalespersonID.DataBindings.Add("SelectedValue", this.deliveryAdviceViewModel, CommonExpressions.PropertyName<DeliveryAdviceViewModel>(p => p.SalespersonID), true, DataSourceUpdateMode.OnPropertyChanged);
 
+            this.combexForkliftDriverID.DataSource = employeeAPIs.GetEmployeeBases();
+            this.combexForkliftDriverID.DisplayMember = CommonExpressions.PropertyName<EmployeeBase>(p => p.Name);
+            this.combexForkliftDriverID.ValueMember = CommonExpressions.PropertyName<EmployeeBase>(p => p.EmployeeID);
+            this.bindingForkliftDriverID = this.combexForkliftDriverID.DataBindings.Add("SelectedValue", this.deliveryAdviceViewModel, CommonExpressions.PropertyName<DeliveryAdviceViewModel>(p => p.ForkliftDriverID), true, DataSourceUpdateMode.OnPropertyChanged);
+
+            this.combexStorekeeperID.DataSource = employeeAPIs.GetEmployeeBases();
+            this.combexStorekeeperID.DisplayMember = CommonExpressions.PropertyName<EmployeeBase>(p => p.Name);
+            this.combexStorekeeperID.ValueMember = CommonExpressions.PropertyName<EmployeeBase>(p => p.EmployeeID);
+            this.bindingStorekeeperID = this.combexStorekeeperID.DataBindings.Add("SelectedValue", this.deliveryAdviceViewModel, CommonExpressions.PropertyName<DeliveryAdviceViewModel>(p => p.StorekeeperID), true, DataSourceUpdateMode.OnPropertyChanged);
+
             this.bindingEntryDate.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
-            this.bindingReference.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingVoucherCode.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
-            this.bindingContactInfo.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingVehicle.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingVehicleDriver.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingDeliveryAddress.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingDescription.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingRemarks.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
@@ -174,6 +186,8 @@ namespace TotalSmartCoding.Views.Sales.DeliveryAdvices
             this.bindingCustomerID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingReceiverID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingSalespersonID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingForkliftDriverID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingStorekeeperID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.fastDeliveryAdviceIndex.AboutToCreateGroups += fastDeliveryAdviceIndex_AboutToCreateGroups;
 
             this.fastDeliveryAdviceIndex.ShowGroups = true;

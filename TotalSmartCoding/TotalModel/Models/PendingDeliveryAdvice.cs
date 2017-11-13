@@ -26,5 +26,9 @@ namespace TotalModel.Models
         public int ReceiverID { get; set; }
         public string ReceiverCode { get; set; }
         public string ReceiverName { get; set; }
+        public int ForkliftDriverID { get; set; }
+        public int StorekeeperID { get; set; }
+        public string Vehicle { get; set; }
+        public string VehicleDriver { get; set; }
     }
 }

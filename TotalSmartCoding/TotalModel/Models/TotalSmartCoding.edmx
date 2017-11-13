@@ -663,12 +663,16 @@
           <Property Name="TransferJobs" Type="nvarchar" MaxLength="100" />
           <Property Name="DeliveryDate" Type="datetime" />
           <Property Name="SalespersonID" Type="int" Nullable="false" />
+          <Property Name="ForkliftDriverID" Type="int" Nullable="false" />
+          <Property Name="StorekeeperID" Type="int" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
           <Property Name="PreparedPersonID" Type="int" Nullable="false" />
           <Property Name="OrganizationalUnitID" Type="int" Nullable="false" />
           <Property Name="LocationID" Type="int" Nullable="false" />
           <Property Name="TotalQuantity" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="TotalLineVolume" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Vehicle" Type="nvarchar" MaxLength="100" />
+          <Property Name="VehicleDriver" Type="nvarchar" MaxLength="100" />
           <Property Name="Description" Type="nvarchar" MaxLength="100" />
           <Property Name="Remarks" Type="nvarchar" MaxLength="100" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
@@ -4326,6 +4330,10 @@
           <Property Type="Int32" Name="ReceiverID" Nullable="false" />
           <Property Type="String" Name="ReceiverCode" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="ReceiverName" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="ForkliftDriverID" Nullable="false" />
+          <Property Type="Int32" Name="StorekeeperID" Nullable="false" />
+          <Property Type="String" Name="Vehicle" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="VehicleDriver" Nullable="true" MaxLength="100" />
         </ComplexType>
         <EntityType Name="Warehouse">
           <Key>
@@ -5247,6 +5255,10 @@
           <Property Type="Int32" Name="WarehouseID" Nullable="false" />
           <Property Type="String" Name="WarehouseCode" Nullable="false" MaxLength="10" />
           <Property Type="String" Name="WarehouseName" Nullable="false" MaxLength="60" />
+          <Property Type="Int32" Name="ForkliftDriverID" Nullable="false" />
+          <Property Type="Int32" Name="StorekeeperID" Nullable="false" />
+          <Property Type="String" Name="Vehicle" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="VehicleDriver" Nullable="true" MaxLength="100" />
           </ComplexType>
         <ComplexType Name="PendingTransferOrderWarehouse">
           <Property Type="Int32" Name="WarehouseReceiptID" Nullable="false" />
@@ -5347,6 +5359,10 @@
           <NavigationProperty Name="Warehouse1" Relationship="TotalSmartCodingModel.FK_TransferOrders_Warehouses" FromRole="TransferOrder" ToRole="Warehouse" />
           <NavigationProperty Name="Location" Relationship="TotalSmartCodingModel.FK_TransferOrders_Locations" FromRole="TransferOrder" ToRole="Location" />
           <NavigationProperty Name="GoodsIssues" Relationship="TotalSmartCodingModel.FK_GoodsIssues_TransferOrders" FromRole="TransferOrder" ToRole="GoodsIssue" />
+          <Property Name="ForkliftDriverID" Type="Int32" Nullable="false" />
+          <Property Name="StorekeeperID" Type="Int32" Nullable="false" />
+          <Property Name="Vehicle" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="VehicleDriver" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_TransferOrderDetails_Commodities">
           <End Type="TotalSmartCodingModel.Commodity" Role="Commodity" Multiplicity="1" />
@@ -7317,6 +7333,10 @@
                 <ScalarProperty Name="ReceiverID" ColumnName="ReceiverID" />
                 <ScalarProperty Name="ReceiverCode" ColumnName="ReceiverCode" />
                 <ScalarProperty Name="ReceiverName" ColumnName="ReceiverName" />
+                <ScalarProperty Name="ForkliftDriverID" ColumnName="ForkliftDriverID" />
+                <ScalarProperty Name="StorekeeperID" ColumnName="StorekeeperID" />
+                <ScalarProperty Name="Vehicle" ColumnName="Vehicle" />
+                <ScalarProperty Name="VehicleDriver" ColumnName="VehicleDriver" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -7903,6 +7923,10 @@
                 <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
                 <ScalarProperty Name="WarehouseCode" ColumnName="WarehouseCode" />
                 <ScalarProperty Name="WarehouseName" ColumnName="WarehouseName" />
+                <ScalarProperty Name="ForkliftDriverID" ColumnName="ForkliftDriverID" />
+                <ScalarProperty Name="StorekeeperID" ColumnName="StorekeeperID" />
+                <ScalarProperty Name="Vehicle" ColumnName="Vehicle" />
+                <ScalarProperty Name="VehicleDriver" ColumnName="VehicleDriver" />
                 </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -7980,6 +8004,10 @@
           <EntitySetMapping Name="TransferOrders">
             <EntityTypeMapping TypeName="TotalSmartCodingModel.TransferOrder">
               <MappingFragment StoreEntitySet="TransferOrders">
+                <ScalarProperty Name="VehicleDriver" ColumnName="VehicleDriver" />
+                <ScalarProperty Name="Vehicle" ColumnName="Vehicle" />
+                <ScalarProperty Name="StorekeeperID" ColumnName="StorekeeperID" />
+                <ScalarProperty Name="ForkliftDriverID" ColumnName="ForkliftDriverID" />
                 <ScalarProperty Name="InActiveDate" ColumnName="InActiveDate" />
                 <ScalarProperty Name="InActivePartial" ColumnName="InActivePartial" />
                 <ScalarProperty Name="InActive" ColumnName="InActive" />
