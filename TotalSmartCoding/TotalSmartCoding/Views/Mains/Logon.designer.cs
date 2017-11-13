@@ -245,7 +245,7 @@
             // pictureBoxIcon
             // 
             this.pictureBoxIcon.Image = global::TotalSmartCoding.Properties.Resources.Identity_icon_48;
-            this.pictureBoxIcon.Location = new System.Drawing.Point(35, 20);
+            this.pictureBoxIcon.Location = new System.Drawing.Point(35, 16);
             this.pictureBoxIcon.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBoxIcon.Name = "pictureBoxIcon";
             this.pictureBoxIcon.Size = new System.Drawing.Size(48, 48);
