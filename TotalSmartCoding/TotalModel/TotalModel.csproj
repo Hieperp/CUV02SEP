@@ -387,7 +387,9 @@
     <Compile Include="Validations\ValidationErrors.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <EntityDeploy Include="Models\TotalSmartCoding.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>TotalSmartCoding.Designer.cs</LastGenOutput>
