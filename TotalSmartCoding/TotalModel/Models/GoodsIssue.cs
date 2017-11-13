@@ -27,6 +27,7 @@ namespace TotalModel.Models
         public Nullable<int> DeliveryAdviceID { get; set; }
         public Nullable<int> TransferOrderID { get; set; }
         public string PrimaryReferences { get; set; }
+        public string VoucherCodes { get; set; }
         public Nullable<int> CustomerID { get; set; }
         public Nullable<int> ReceiverID { get; set; }
         public Nullable<int> WarehouseID { get; set; }
@@ -43,6 +44,9 @@ namespace TotalModel.Models
         public decimal TotalQuantity { get; set; }
         public decimal TotalLineVolume { get; set; }
         public string Vehicle { get; set; }
+        public string VehicleDriver { get; set; }
+        public Nullable<System.DateTime> LoadingStart { get; set; }
+        public Nullable<System.DateTime> LoadingCompletion { get; set; }
         public string Description { get; set; }
         public string Remarks { get; set; }
         public System.DateTime CreatedDate { get; set; }

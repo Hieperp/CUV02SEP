@@ -20,8 +20,6 @@ namespace TotalDTO.Sales
     {
         public override GlobalEnums.NmvnTaskID NMVNTaskID { get { return GlobalEnums.NmvnTaskID.SalesOrder; } }
 
-        public SalesOrderPrimitiveDTO() { this.DeliveryDate = DateTime.Now; }
-
         public override void Init()
         {
             base.Init();

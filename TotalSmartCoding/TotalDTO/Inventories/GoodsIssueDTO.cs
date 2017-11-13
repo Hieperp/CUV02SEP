@@ -20,6 +20,13 @@ namespace TotalDTO.Inventories
     {
         public override GlobalEnums.NmvnTaskID NMVNTaskID { get { return GlobalEnums.NmvnTaskID.GoodsIssue; } }
 
+        public override void Init()
+        {
+            base.Init();
+            this.LoadingStart = DateTime.Now;
+            this.LoadingCompletion = DateTime.Now;
+        }
+
         public override bool Printable { get { return true; } }
         public override bool PrintVisible { get { return true; } }
 
@@ -161,7 +168,27 @@ namespace TotalDTO.Inventories
             set { ApplyPropertyChange<GoodsIssuePrimitiveDTO, string>(ref this.vehicle, o => o.Vehicle, value); }
         }
 
-        
+        private string vehicleDriver;
+        [DefaultValue(null)]
+        public string VehicleDriver
+        {
+            get { return this.vehicleDriver; }
+            set { ApplyPropertyChange<GoodsIssuePrimitiveDTO, string>(ref this.vehicleDriver, o => o.VehicleDriver, value); }
+        }
+
+        private Nullable<DateTime> loadingStart;
+        public Nullable<DateTime> LoadingStart
+        {
+            get { return this.loadingStart; }
+            set { ApplyPropertyChange<GoodsIssuePrimitiveDTO, Nullable<DateTime>>(ref this.loadingStart, o => o.LoadingStart, value); }
+        }
+
+        private Nullable<DateTime> loadingCompletion;
+        public Nullable<DateTime> LoadingCompletion
+        {
+            get { return this.loadingCompletion; }
+            set { ApplyPropertyChange<GoodsIssuePrimitiveDTO, Nullable<DateTime>>(ref this.loadingCompletion, o => o.LoadingCompletion, value); }
+        }
 
         public override string Caption
         {

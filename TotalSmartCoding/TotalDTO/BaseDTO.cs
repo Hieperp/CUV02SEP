@@ -51,7 +51,7 @@ namespace TotalDTO
         /// ===> SO, NOW, WE IMPLEMENT: PreparedPersonID = this.baseService.UserID = ContextAttributes.User.UserID: THE LOGON USER
         /// ------------WHY WE NEED PreparedPersonID WHILE WE ALSO HAVE UserID?
         /// ------------AT THE VERY SOON, FAR AWAY IN THE PAST: WE THINK THAT: UserID IS THE LOGON USER, THE PreparedPersonID: IS THE PERSON WHO SAVE DATA
-        /// ------------THE UserID CREATE AND SAVE DATE FOR PreparedPersonID
+        /// ------------THE UserID CREATE AND SAVE DATA FOR PreparedPersonID
         /// ------------NHƯNG MÀ: THIS CASE RẤT ÍT XẢY RA TRONG THỰC TẾ, VÌ ÍT KHI UseID SAVE DATA DÙM PreparedPersonID
         /// ------------ĐẶT BIỆT: HIỆN TẠI, PHẦN MỀM KHÔNG CHO CHỌN PreparedPersonID
         /// ------------NGOÀI RA, TRONG QUÁ TRÌNH XỬ LÝ DỮ LIỆU, PHẦN MỀM LẠI CĂN CỨ UserID ĐỂ XỬ LÝ DATA, CŨNG NHƯ PERMISSION, VÍ DỤ NHƯ: CĂN CỨ UserID ĐỂ XÁC ĐỊNH LocationID => TỪ ĐÓ XÁC ĐỊNH WarehouseID, ...

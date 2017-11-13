@@ -47,6 +47,10 @@ namespace TotalModel.Models
         public bool InActivePartial { get; set; }
         public Nullable<System.DateTime> InActiveDate { get; set; }
         public int ReceiverID { get; set; }
+        public int ForkliftDriverID { get; set; }
+        public int StorekeeperID { get; set; }
+        public string Vehicle { get; set; }
+        public string VehicleDriver { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DeliveryAdviceDetail> DeliveryAdviceDetails { get; set; }

@@ -101,8 +101,8 @@
             this.combexWarehouseID.Editable = true;
             this.combexWarehouseID.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combexWarehouseID.FormattingEnabled = true;
-            this.combexWarehouseID.Location = new System.Drawing.Point(261, 28);
-            this.combexWarehouseID.Margin = new System.Windows.Forms.Padding(2, 1, 1, 1);
+            this.combexWarehouseID.Location = new System.Drawing.Point(260, 28);
+            this.combexWarehouseID.Margin = new System.Windows.Forms.Padding(1);
             this.combexWarehouseID.Name = "combexWarehouseID";
             this.combexWarehouseID.ReadOnly = false;
             this.combexWarehouseID.Size = new System.Drawing.Size(407, 28);
@@ -121,7 +121,7 @@
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
-            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 24F));
+            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.layoutTop.Controls.Add(this.combexWarehouseAdjustmentTypeID, 3, 2);
             this.layoutTop.Controls.Add(this.label4, 2, 4);
             this.layoutTop.Controls.Add(this.label5, 2, 2);
@@ -165,7 +165,7 @@
             this.combexWarehouseAdjustmentTypeID.Margin = new System.Windows.Forms.Padding(1);
             this.combexWarehouseAdjustmentTypeID.Name = "combexWarehouseAdjustmentTypeID";
             this.combexWarehouseAdjustmentTypeID.ReadOnly = false;
-            this.combexWarehouseAdjustmentTypeID.Size = new System.Drawing.Size(408, 29);
+            this.combexWarehouseAdjustmentTypeID.Size = new System.Drawing.Size(407, 29);
             this.combexWarehouseAdjustmentTypeID.TabIndex = 74;
             // 
             // label4
@@ -251,7 +251,7 @@
             this.combexStorekeeperID.Margin = new System.Windows.Forms.Padding(1);
             this.combexStorekeeperID.Name = "combexStorekeeperID";
             this.combexStorekeeperID.ReadOnly = false;
-            this.combexStorekeeperID.Size = new System.Drawing.Size(408, 29);
+            this.combexStorekeeperID.Size = new System.Drawing.Size(407, 29);
             this.combexStorekeeperID.TabIndex = 80;
             // 
             // textexDescription
@@ -262,7 +262,7 @@
             this.textexDescription.Location = new System.Drawing.Point(260, 150);
             this.textexDescription.Margin = new System.Windows.Forms.Padding(1);
             this.textexDescription.Name = "textexDescription";
-            this.textexDescription.Size = new System.Drawing.Size(408, 28);
+            this.textexDescription.Size = new System.Drawing.Size(407, 28);
             this.textexDescription.TabIndex = 87;
             // 
             // textexRemarks
@@ -273,7 +273,7 @@
             this.textexRemarks.Location = new System.Drawing.Point(260, 180);
             this.textexRemarks.Margin = new System.Windows.Forms.Padding(1);
             this.textexRemarks.Name = "textexRemarks";
-            this.textexRemarks.Size = new System.Drawing.Size(408, 28);
+            this.textexRemarks.Size = new System.Drawing.Size(407, 28);
             this.textexRemarks.TabIndex = 81;
             // 
             // textexAdjustmentJobs
@@ -284,7 +284,7 @@
             this.textexAdjustmentJobs.Location = new System.Drawing.Point(260, 89);
             this.textexAdjustmentJobs.Margin = new System.Windows.Forms.Padding(1);
             this.textexAdjustmentJobs.Name = "textexAdjustmentJobs";
-            this.textexAdjustmentJobs.Size = new System.Drawing.Size(408, 28);
+            this.textexAdjustmentJobs.Size = new System.Drawing.Size(407, 28);
             this.textexAdjustmentJobs.TabIndex = 90;
             // 
             // label2

@@ -49,10 +49,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.textexTotalLineVolume = new CustomControls.TextexBox();
-            this.textexTotalQuantity = new CustomControls.TextexBox();
-            this.textexTotalPalletCounts = new CustomControls.TextexBox();
-            this.textexTotalCartonCounts = new CustomControls.TextexBox();
             this.combexForkliftDriverID = new CustomControls.CombexBox();
             this.combexStorekeeperID = new CustomControls.CombexBox();
             this.textexRemarks = new CustomControls.TextexBox();
@@ -98,6 +94,10 @@
             this.CartonBinLocationCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CartonQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CartonLineVolume = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateTimexLoadingCompletion = new CustomControls.DateTimexPicker();
+            this.dateTimexLoadingStart = new CustomControls.DateTimexPicker();
+            this.textexVehicleDriver = new CustomControls.TextexBox();
+            this.textexVoucherCodes = new CustomControls.TextexBox();
             this.tableLayoutMaster.SuspendLayout();
             this.toolStripChildForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.naviDetails)).BeginInit();
@@ -131,18 +131,18 @@
             this.tableLayoutMaster.Controls.Add(this.label5, 3, 3);
             this.tableLayoutMaster.Controls.Add(this.label2, 3, 2);
             this.tableLayoutMaster.Controls.Add(this.label4, 3, 1);
-            this.tableLayoutMaster.Controls.Add(this.textexVehicle, 1, 2);
             this.tableLayoutMaster.Controls.Add(this.dateTimexEntryDate, 1, 1);
             this.tableLayoutMaster.Controls.Add(this.label3, 0, 4);
             this.tableLayoutMaster.Controls.Add(this.label10, 0, 3);
             this.tableLayoutMaster.Controls.Add(this.label7, 0, 2);
             this.tableLayoutMaster.Controls.Add(this.label6, 0, 1);
-            this.tableLayoutMaster.Controls.Add(this.textexTotalLineVolume, 4, 4);
-            this.tableLayoutMaster.Controls.Add(this.textexTotalQuantity, 4, 3);
-            this.tableLayoutMaster.Controls.Add(this.textexTotalPalletCounts, 4, 2);
-            this.tableLayoutMaster.Controls.Add(this.textexTotalCartonCounts, 4, 1);
             this.tableLayoutMaster.Controls.Add(this.combexForkliftDriverID, 1, 3);
             this.tableLayoutMaster.Controls.Add(this.combexStorekeeperID, 1, 4);
+            this.tableLayoutMaster.Controls.Add(this.dateTimexLoadingCompletion, 4, 4);
+            this.tableLayoutMaster.Controls.Add(this.dateTimexLoadingStart, 4, 3);
+            this.tableLayoutMaster.Controls.Add(this.textexVehicle, 4, 1);
+            this.tableLayoutMaster.Controls.Add(this.textexVehicleDriver, 4, 2);
+            this.tableLayoutMaster.Controls.Add(this.textexVoucherCodes, 1, 2);
             this.tableLayoutMaster.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutMaster.Location = new System.Drawing.Point(0, 45);
             this.tableLayoutMaster.Margin = new System.Windows.Forms.Padding(0);
@@ -210,7 +210,7 @@
             // 
             this.textexVehicle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexVehicle.Editable = true;
-            this.textexVehicle.Location = new System.Drawing.Point(122, 41);
+            this.textexVehicle.Location = new System.Drawing.Point(428, 11);
             this.textexVehicle.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
             this.textexVehicle.Name = "textexVehicle";
             this.textexVehicle.Size = new System.Drawing.Size(172, 28);
@@ -263,7 +263,7 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(110, 22);
             this.label7.TabIndex = 31;
-            this.label7.Text = "Vehicle";
+            this.label7.Text = "Invoice #";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label6
@@ -277,50 +277,6 @@
             this.label6.TabIndex = 30;
             this.label6.Text = "Date";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // textexTotalLineVolume
-            // 
-            this.textexTotalLineVolume.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textexTotalLineVolume.Editable = false;
-            this.textexTotalLineVolume.Location = new System.Drawing.Point(428, 101);
-            this.textexTotalLineVolume.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
-            this.textexTotalLineVolume.Name = "textexTotalLineVolume";
-            this.textexTotalLineVolume.Size = new System.Drawing.Size(172, 28);
-            this.textexTotalLineVolume.TabIndex = 82;
-            this.textexTotalLineVolume.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // textexTotalQuantity
-            // 
-            this.textexTotalQuantity.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textexTotalQuantity.Editable = false;
-            this.textexTotalQuantity.Location = new System.Drawing.Point(428, 71);
-            this.textexTotalQuantity.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
-            this.textexTotalQuantity.Name = "textexTotalQuantity";
-            this.textexTotalQuantity.Size = new System.Drawing.Size(172, 28);
-            this.textexTotalQuantity.TabIndex = 81;
-            this.textexTotalQuantity.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // textexTotalPalletCounts
-            // 
-            this.textexTotalPalletCounts.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textexTotalPalletCounts.Editable = false;
-            this.textexTotalPalletCounts.Location = new System.Drawing.Point(428, 41);
-            this.textexTotalPalletCounts.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
-            this.textexTotalPalletCounts.Name = "textexTotalPalletCounts";
-            this.textexTotalPalletCounts.Size = new System.Drawing.Size(172, 28);
-            this.textexTotalPalletCounts.TabIndex = 80;
-            this.textexTotalPalletCounts.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // textexTotalCartonCounts
-            // 
-            this.textexTotalCartonCounts.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textexTotalCartonCounts.Editable = false;
-            this.textexTotalCartonCounts.Location = new System.Drawing.Point(428, 11);
-            this.textexTotalCartonCounts.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
-            this.textexTotalCartonCounts.Name = "textexTotalCartonCounts";
-            this.textexTotalCartonCounts.Size = new System.Drawing.Size(172, 28);
-            this.textexTotalCartonCounts.TabIndex = 85;
-            this.textexTotalCartonCounts.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // combexForkliftDriverID
             // 
@@ -930,6 +886,54 @@
             this.CartonLineVolume.MinimumWidth = 9;
             this.CartonLineVolume.Name = "CartonLineVolume";
             // 
+            // dateTimexLoadingCompletion
+            // 
+            this.dateTimexLoadingCompletion.CustomFormat = "dd/MMM/yyyy HH:mm:ss";
+            this.dateTimexLoadingCompletion.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dateTimexLoadingCompletion.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
+            this.dateTimexLoadingCompletion.Editable = false;
+            this.dateTimexLoadingCompletion.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimexLoadingCompletion.Location = new System.Drawing.Point(428, 101);
+            this.dateTimexLoadingCompletion.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
+            this.dateTimexLoadingCompletion.Name = "dateTimexLoadingCompletion";
+            this.dateTimexLoadingCompletion.ReadOnly = false;
+            this.dateTimexLoadingCompletion.Size = new System.Drawing.Size(172, 28);
+            this.dateTimexLoadingCompletion.TabIndex = 79;
+            // 
+            // dateTimexLoadingStart
+            // 
+            this.dateTimexLoadingStart.CustomFormat = "dd/MMM/yyyy HH:mm:ss";
+            this.dateTimexLoadingStart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dateTimexLoadingStart.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
+            this.dateTimexLoadingStart.Editable = false;
+            this.dateTimexLoadingStart.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimexLoadingStart.Location = new System.Drawing.Point(428, 71);
+            this.dateTimexLoadingStart.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
+            this.dateTimexLoadingStart.Name = "dateTimexLoadingStart";
+            this.dateTimexLoadingStart.ReadOnly = false;
+            this.dateTimexLoadingStart.Size = new System.Drawing.Size(172, 28);
+            this.dateTimexLoadingStart.TabIndex = 80;
+            // 
+            // textexVehicleDriver
+            // 
+            this.textexVehicleDriver.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textexVehicleDriver.Editable = true;
+            this.textexVehicleDriver.Location = new System.Drawing.Point(428, 41);
+            this.textexVehicleDriver.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
+            this.textexVehicleDriver.Name = "textexVehicleDriver";
+            this.textexVehicleDriver.Size = new System.Drawing.Size(172, 28);
+            this.textexVehicleDriver.TabIndex = 81;
+            // 
+            // textexVoucherCodes
+            // 
+            this.textexVoucherCodes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textexVoucherCodes.Editable = true;
+            this.textexVoucherCodes.Location = new System.Drawing.Point(122, 41);
+            this.textexVoucherCodes.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
+            this.textexVoucherCodes.Name = "textexVoucherCodes";
+            this.textexVoucherCodes.Size = new System.Drawing.Size(172, 28);
+            this.textexVoucherCodes.TabIndex = 82;
+            // 
             // GoodsIssues
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
@@ -1001,16 +1005,12 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label8;
-        private CustomControls.TextexBox textexTotalPalletCounts;
-        private CustomControls.TextexBox textexTotalQuantity;
-        private CustomControls.TextexBox textexTotalLineVolume;
         private CustomControls.TextexBox textexDescription;
         private CustomControls.TextexBox textexRemarks;
         private Guifreaks.Navisuite.NaviBand naviPickupIndex;
         private Guifreaks.Navisuite.NaviBand naviPendingItems;
         private BrightIdeasSoftware.FastObjectListView fastPendingPrimaryDetails;
         private BrightIdeasSoftware.OLVColumn olvCommodityCode;
-        private CustomControls.TextexBox textexTotalCartonCounts;
         private System.Windows.Forms.Label labelCaption;
         private BrightIdeasSoftware.OLVColumn olvGoodsIssueIndexReference;
         private System.Windows.Forms.ImageList imageList32;
@@ -1038,6 +1038,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CartonQuantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn CartonLineVolume;
         private System.Windows.Forms.ToolStripButton buttonImportHandheld;
+        private CustomControls.DateTimexPicker dateTimexLoadingCompletion;
+        private CustomControls.DateTimexPicker dateTimexLoadingStart;
+        private CustomControls.TextexBox textexVehicleDriver;
+        private CustomControls.TextexBox textexVoucherCodes;
 
     }
 }

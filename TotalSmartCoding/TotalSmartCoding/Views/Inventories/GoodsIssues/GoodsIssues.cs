@@ -91,7 +91,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                 this.textexRemarks.Dock = DockStyle.Fill;
                 this.panelMaster.Controls.Add(this.customTabCenter);
 
-                this.naviDetails.ExpandedHeight = this.naviDetails.HeaderHeight + this.textexTotalPalletCounts.Size.Height + this.textexTotalQuantity.Size.Height + this.textexTotalLineVolume.Size.Height + 5 + 4 * 10 + 6;
+                this.naviDetails.ExpandedHeight = this.naviDetails.HeaderHeight + this.textexVehicle.Size.Height + this.textexVehicleDriver.Size.Height + this.dateTimexLoadingStart.Size.Height + this.dateTimexLoadingCompletion.Size.Height + 5 + 4 * 10 + 6;
                 this.naviDetails.Expanded = false;
 
                 this.labelCaption.Left = 68; this.labelCaption.Top = 12;
@@ -139,10 +139,10 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
             this.bindingDescription = this.textexDescription.DataBindings.Add("Text", this.goodsIssueViewModel, CommonExpressions.PropertyName<GoodsIssueViewModel>(p => p.Description), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingRemarks = this.textexRemarks.DataBindings.Add("Text", this.goodsIssueViewModel, CommonExpressions.PropertyName<GoodsIssueViewModel>(p => p.Remarks), true, DataSourceUpdateMode.OnPropertyChanged);
 
-            this.bindingTotalCartonCounts = this.textexTotalCartonCounts.DataBindings.Add("Text", this.goodsIssueViewModel, CommonExpressions.PropertyName<GoodsIssueViewModel>(p => p.TotalCartonCounts), true, DataSourceUpdateMode.OnPropertyChanged);
-            this.bindingTotalPalletCounts = this.textexTotalPalletCounts.DataBindings.Add("Text", this.goodsIssueViewModel, CommonExpressions.PropertyName<GoodsIssueViewModel>(p => p.TotalPalletCounts), true, DataSourceUpdateMode.OnValidation, 0, GlobalEnums.formatQuantity);
-            this.bindingTotalQuantity = this.textexTotalQuantity.DataBindings.Add("Text", this.goodsIssueViewModel, CommonExpressions.PropertyName<GoodsIssueViewModel>(p => p.TotalQuantity), true, DataSourceUpdateMode.OnValidation, 0, GlobalEnums.formatQuantity);
-            this.bindingTotalLineVolume = this.textexTotalLineVolume.DataBindings.Add("Text", this.goodsIssueViewModel, CommonExpressions.PropertyName<GoodsIssueViewModel>(p => p.TotalLineVolume), true, DataSourceUpdateMode.OnValidation, 0, GlobalEnums.formatVolume);
+            //this.bindingTotalCartonCounts = this.textexTotalCartonCounts.DataBindings.Add("Text", this.goodsIssueViewModel, CommonExpressions.PropertyName<GoodsIssueViewModel>(p => p.TotalCartonCounts), true, DataSourceUpdateMode.OnPropertyChanged);
+            //this.bindingTotalPalletCounts = this.textexTotalPalletCounts.DataBindings.Add("Text", this.goodsIssueViewModel, CommonExpressions.PropertyName<GoodsIssueViewModel>(p => p.TotalPalletCounts), true, DataSourceUpdateMode.OnValidation, 0, GlobalEnums.formatQuantity);
+            //this.bindingTotalQuantity = this.textexTotalQuantity.DataBindings.Add("Text", this.goodsIssueViewModel, CommonExpressions.PropertyName<GoodsIssueViewModel>(p => p.TotalQuantity), true, DataSourceUpdateMode.OnValidation, 0, GlobalEnums.formatQuantity);
+            //this.bindingTotalLineVolume = this.textexTotalLineVolume.DataBindings.Add("Text", this.goodsIssueViewModel, CommonExpressions.PropertyName<GoodsIssueViewModel>(p => p.TotalLineVolume), true, DataSourceUpdateMode.OnValidation, 0, GlobalEnums.formatVolume);
 
 
             EmployeeAPIs employeeAPIs = new EmployeeAPIs(CommonNinject.Kernel.Get<IEmployeeAPIRepository>());

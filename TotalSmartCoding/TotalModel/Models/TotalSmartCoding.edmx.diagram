@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ab048d88ef8447d09896e176a9d6d497" Name="Diagram1" ZoomLevel="62">
+      <Diagram DiagramId="ab048d88ef8447d09896e176a9d6d497" Name="Diagram1" ZoomLevel="59">
         <EntityTypeShape EntityType="TotalSmartCodingModel.Employee" Width="1.5" PointX="8.25" PointY="2.25" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.FillingLine" Width="1.5" PointX="0.75" PointY="5.125" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.GoodsReceiptType" Width="1.25" PointX="5.25" PointY="24.5" />
@@ -117,24 +117,24 @@
         <AssociationConnector Association="TotalSmartCodingModel.FK_DeliveryAdvices_Receivers" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_SalesOrders_Receivers" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.GoodsIssueDetail" Width="1.5" PointX="27.75" PointY="13.75" />
-        <EntityTypeShape EntityType="TotalSmartCodingModel.GoodsIssue" Width="1.5" PointX="19" PointY="11.5" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssueDetails_Commodities" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssueDetails_Customers" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssueDetails_Receivers" />
-        <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssues_Customers" />
-        <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssues_Receivers" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssueDetails_DeliveryAdviceDetails" />
-        <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssues_DeliveryAdvices" />
-        <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssueDetails_GoodsIssues" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssueDetails_GoodsReceiptDetails" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssueDetails_TransferOrderDetails" />
+        <EntityTypeShape EntityType="TotalSmartCodingModel.User" Width="1.5" PointX="10.375" PointY="8" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_OrganizationalUnitUsers_Users" />
+        <EntityTypeShape EntityType="TotalSmartCodingModel.GoodsIssue" Width="1.5" PointX="19" PointY="11.125" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssues_Customers" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssues_Receivers" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssues_DeliveryAdvices" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssueDetails_GoodsIssues" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssues_GoodsIssueTypes" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssues_Locations" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssues_TransferOrders" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssues_WarehouseReceipts" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssues_Warehouses" />
-        <EntityTypeShape EntityType="TotalSmartCodingModel.User" Width="1.5" PointX="10.375" PointY="8" />
-        <AssociationConnector Association="TotalSmartCodingModel.FK_OrganizationalUnitUsers_Users" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
