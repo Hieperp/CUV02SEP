@@ -244,7 +244,7 @@
             this.textexVoucherCode.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.textexVoucherCode.Name = "textexVoucherCode";
             this.textexVoucherCode.Size = new System.Drawing.Size(350, 28);
-            this.textexVoucherCode.TabIndex = 78;
+            this.textexVoucherCode.TabIndex = 71;
             // 
             // textexVehicle
             // 
@@ -255,7 +255,7 @@
             this.textexVehicle.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.textexVehicle.Name = "textexVehicle";
             this.textexVehicle.Size = new System.Drawing.Size(350, 28);
-            this.textexVehicle.TabIndex = 79;
+            this.textexVehicle.TabIndex = 72;
             // 
             // combexForkliftDriverID
             // 
@@ -270,7 +270,7 @@
             this.combexForkliftDriverID.Name = "combexForkliftDriverID";
             this.combexForkliftDriverID.ReadOnly = false;
             this.combexForkliftDriverID.Size = new System.Drawing.Size(350, 29);
-            this.combexForkliftDriverID.TabIndex = 80;
+            this.combexForkliftDriverID.TabIndex = 74;
             // 
             // textexVehicleDriver
             // 
@@ -281,7 +281,7 @@
             this.textexVehicleDriver.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.textexVehicleDriver.Name = "textexVehicleDriver";
             this.textexVehicleDriver.Size = new System.Drawing.Size(350, 28);
-            this.textexVehicleDriver.TabIndex = 81;
+            this.textexVehicleDriver.TabIndex = 73;
             // 
             // label4
             // 
@@ -309,7 +309,7 @@
             this.combexStorekeeperID.Name = "combexStorekeeperID";
             this.combexStorekeeperID.ReadOnly = false;
             this.combexStorekeeperID.Size = new System.Drawing.Size(326, 29);
-            this.combexStorekeeperID.TabIndex = 82;
+            this.combexStorekeeperID.TabIndex = 78;
             // 
             // combexSalespersonID
             // 
@@ -323,7 +323,7 @@
             this.combexSalespersonID.Name = "combexSalespersonID";
             this.combexSalespersonID.ReadOnly = false;
             this.combexSalespersonID.Size = new System.Drawing.Size(324, 29);
-            this.combexSalespersonID.TabIndex = 75;
+            this.combexSalespersonID.TabIndex = 77;
             // 
             // toolStripChildForm
             // 
@@ -834,7 +834,7 @@
             this.combexReceiverID.Name = "combexReceiverID";
             this.combexReceiverID.ReadOnly = false;
             this.combexReceiverID.Size = new System.Drawing.Size(489, 29);
-            this.combexReceiverID.TabIndex = 81;
+            this.combexReceiverID.TabIndex = 75;
             // 
             // pictureBox4
             // 
