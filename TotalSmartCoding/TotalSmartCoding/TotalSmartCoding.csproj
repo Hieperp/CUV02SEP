@@ -106,6 +106,7 @@
     <Compile Include="Controllers\APIs\Commons\EmployeeAPIs.cs" />
     <Compile Include="Controllers\APIs\Commons\FillingLineAPIs.cs" />
     <Compile Include="Controllers\APIs\Commons\TerritoryAPIs.cs" />
+    <Compile Include="Controllers\APIs\Commons\TransferOrderTypeAPIs.cs" />
     <Compile Include="Controllers\APIs\Commons\WarehouseAdjustmentTypeAPIs.cs" />
     <Compile Include="Controllers\APIs\Commons\WarehouseAPIs.cs" />
     <Compile Include="Controllers\APIs\Generals\ModuleAPIs.cs" />
@@ -1003,6 +1004,9 @@
     <None Include="Resources\administrator-icon-32.png" />
     <None Include="Resources\Admin-icon-32.png" />
     <None Include="Resources\user-group-icon-24.png" />
+    <None Include="Resources\warehouse-full-24-x.png" />
+    <None Include="Resources\warehouse-full-24-x24.png" />
+    <None Include="Resources\warehouse-full-24-1-24.png" />
     <Content Include="SmartCodingSolution.ico" />
     <None Include="Resources\Yellow-cross.ico" />
     <None Include="Resources\White-Pallet.ico" />

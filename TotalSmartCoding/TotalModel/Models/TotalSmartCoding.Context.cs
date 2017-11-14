@@ -52,7 +52,6 @@ namespace TotalModel.Models
         public virtual DbSet<WarehouseAdjustment> WarehouseAdjustments { get; set; }
         public virtual DbSet<GoodsIssueType> GoodsIssueTypes { get; set; }
         public virtual DbSet<TransferOrderDetail> TransferOrderDetails { get; set; }
-        public virtual DbSet<TransferOrder> TransferOrders { get; set; }
         public virtual DbSet<CustomerCategory> CustomerCategories { get; set; }
         public virtual DbSet<CustomerType> CustomerTypes { get; set; }
         public virtual DbSet<EntireTerritory> EntireTerritories { get; set; }
@@ -65,6 +64,8 @@ namespace TotalModel.Models
         public virtual DbSet<GoodsIssueDetail> GoodsIssueDetails { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<GoodsIssue> GoodsIssues { get; set; }
+        public virtual DbSet<TransferOrder> TransferOrders { get; set; }
+        public virtual DbSet<TransferOrderType> TransferOrderTypes { get; set; }
     
         public virtual ObjectResult<Nullable<int>> GetAccessLevel(Nullable<int> userID, Nullable<int> nMVNTaskID, Nullable<int> organizationalUnitID)
         {
@@ -1817,6 +1818,28 @@ namespace TotalModel.Models
                 new ObjectParameter("WarehouseID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("GetWarehouseLocationID", warehouseIDParameter);
+        }
+    
+        public virtual ObjectResult<TransferOrderTypeBase> GetTransferOrderTypeBases()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<TransferOrderTypeBase>("GetTransferOrderTypeBases");
+        }
+    
+        public virtual ObjectResult<TransferOrderTypeIndex> GetTransferOrderTypeIndexes(Nullable<int> userID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
+        {
+            var userIDParameter = userID.HasValue ?
+                new ObjectParameter("UserID", userID) :
+                new ObjectParameter("UserID", typeof(int));
+    
+            var fromDateParameter = fromDate.HasValue ?
+                new ObjectParameter("FromDate", fromDate) :
+                new ObjectParameter("FromDate", typeof(System.DateTime));
+    
+            var toDateParameter = toDate.HasValue ?
+                new ObjectParameter("ToDate", toDate) :
+                new ObjectParameter("ToDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<TransferOrderTypeIndex>("GetTransferOrderTypeIndexes", userIDParameter, fromDateParameter, toDateParameter);
         }
     }
 }

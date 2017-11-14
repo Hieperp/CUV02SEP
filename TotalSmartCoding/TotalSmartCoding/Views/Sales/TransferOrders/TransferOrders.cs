@@ -112,53 +112,78 @@ namespace TotalSmartCoding.Views.Sales.TransferOrders
             }
         }
 
-        Binding bindingEntryDate;
-        Binding bindingReference;
+        Binding bindingEntryDate;        
         Binding bindingWarehouseName;
         Binding bindingWarehouseReceiptName;
         Binding bindingVoucherCode;
-        Binding bindingDeliveryDate;
+        Binding bindingVehicle;
+        Binding bindingVehicleDriver;
         Binding bindingTransferJobs;
         Binding bindingDescription;
         Binding bindingRemarks;
         Binding bindingCaption;
-        
-        Binding bindingSalespersonID;
+
+        Binding bindingTransferOrderTypeID;
+        Binding bindingTransferPackageTypeID;
+
+        Binding bindingForkliftDriverID;
+        Binding bindingStorekeeperID;
 
         protected override void InitializeCommonControlBinding()
         {
             base.InitializeCommonControlBinding();
 
-            this.bindingEntryDate = this.dateTimexEntryDate.DataBindings.Add("Value", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderDTO>(p => p.EntryDate), true, DataSourceUpdateMode.OnPropertyChanged);
-            this.bindingReference = this.textexReference.DataBindings.Add("Text", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderDTO>(p => p.Reference), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingEntryDate = this.dateTimexEntryDate.DataBindings.Add("Value", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderDTO>(p => p.EntryDate), true, DataSourceUpdateMode.OnPropertyChanged);            
             this.bindingWarehouseName = this.textexWarehouseName.DataBindings.Add("Text", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderDTO>(p => p.WarehouseName), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingWarehouseReceiptName = this.textexWarehouseReceiptName.DataBindings.Add("Text", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderDTO>(p => p.WarehouseReceiptName), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingVoucherCode = this.textexVoucherCode.DataBindings.Add("Text", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderDTO>(p => p.VoucherCode), true, DataSourceUpdateMode.OnPropertyChanged);
-            this.bindingDeliveryDate = this.dateTimexDeliveryDate.DataBindings.Add("Value", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderDTO>(p => p.DeliveryDate), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingVehicle = this.textexVehicle.DataBindings.Add("Text", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderDTO>(p => p.Vehicle), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingVehicleDriver = this.textexVehicleDriver.DataBindings.Add("Text", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderDTO>(p => p.VehicleDriver), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingTransferJobs = this.textexTransferJobs.DataBindings.Add("Text", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderDTO>(p => p.TransferJobs), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingDescription = this.textexDescription.DataBindings.Add("Text", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderDTO>(p => p.Description), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingRemarks = this.textexRemarks.DataBindings.Add("Text", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderDTO>(p => p.Remarks), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingCaption = this.labelCaption.DataBindings.Add("Text", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderDTO>(p => p.Caption));
 
+            TransferOrderTypeAPIs transferOrderTypeAPIs = new TransferOrderTypeAPIs(CommonNinject.Kernel.Get<ITransferOrderTypeAPIRepository>());
+
+            this.combexTransferOrderTypeID.DataSource = transferOrderTypeAPIs.GetTransferOrderTypeBases();
+            this.combexTransferOrderTypeID.DisplayMember = CommonExpressions.PropertyName<TransferOrderTypeBase>(p => p.Name);
+            this.combexTransferOrderTypeID.ValueMember = CommonExpressions.PropertyName<TransferOrderTypeBase>(p => p.TransferOrderTypeID);
+            this.bindingTransferOrderTypeID = this.combexTransferOrderTypeID.DataBindings.Add("SelectedValue", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderViewModel>(p => p.TransferOrderTypeID), true, DataSourceUpdateMode.OnPropertyChanged);
+
+            this.combexTransferPackageTypeID.DataSource = transferOrderTypeAPIs.GetTransferPackageTypeBases();
+            this.combexTransferPackageTypeID.DisplayMember = CommonExpressions.PropertyName<TransferPackageTypeBase>(p => p.Name);
+            this.combexTransferPackageTypeID.ValueMember = CommonExpressions.PropertyName<TransferPackageTypeBase>(p => p.TransferPackageTypeID);
+            this.bindingTransferPackageTypeID = this.combexTransferPackageTypeID.DataBindings.Add("SelectedValue", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderViewModel>(p => p.TransferPackageTypeID), true, DataSourceUpdateMode.OnPropertyChanged);
+
             EmployeeAPIs employeeAPIs = new EmployeeAPIs(CommonNinject.Kernel.Get<IEmployeeAPIRepository>());
 
-            this.combexSalespersonID.DataSource = employeeAPIs.GetEmployeeBases();
-            this.combexSalespersonID.DisplayMember = CommonExpressions.PropertyName<EmployeeBase>(p => p.Name);
-            this.combexSalespersonID.ValueMember = CommonExpressions.PropertyName<EmployeeBase>(p => p.EmployeeID);
-            this.bindingSalespersonID = this.combexSalespersonID.DataBindings.Add("SelectedValue", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderViewModel>(p => p.SalespersonID), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.combexForkliftDriverID.DataSource = employeeAPIs.GetEmployeeBases();
+            this.combexForkliftDriverID.DisplayMember = CommonExpressions.PropertyName<EmployeeBase>(p => p.Name);
+            this.combexForkliftDriverID.ValueMember = CommonExpressions.PropertyName<EmployeeBase>(p => p.EmployeeID);
+            this.bindingForkliftDriverID = this.combexForkliftDriverID.DataBindings.Add("SelectedValue", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderViewModel>(p => p.ForkliftDriverID), true, DataSourceUpdateMode.OnPropertyChanged);
 
-            this.bindingEntryDate.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);            
-            this.bindingReference.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.combexStorekeeperID.DataSource = employeeAPIs.GetEmployeeBases();
+            this.combexStorekeeperID.DisplayMember = CommonExpressions.PropertyName<EmployeeBase>(p => p.Name);
+            this.combexStorekeeperID.ValueMember = CommonExpressions.PropertyName<EmployeeBase>(p => p.EmployeeID);
+            this.bindingStorekeeperID = this.combexStorekeeperID.DataBindings.Add("SelectedValue", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderViewModel>(p => p.StorekeeperID), true, DataSourceUpdateMode.OnPropertyChanged);
+
+            this.bindingEntryDate.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);                        
             this.bindingWarehouseName.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingWarehouseReceiptName.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingVoucherCode.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
-            this.bindingDeliveryDate.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingVehicle.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingVehicleDriver.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingTransferJobs.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingDescription.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingRemarks.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingCaption.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+
+            this.bindingTransferOrderTypeID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingTransferPackageTypeID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             
-            this.bindingSalespersonID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingForkliftDriverID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingStorekeeperID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.fastTransferOrderIndex.AboutToCreateGroups += fastTransferOrderIndex_AboutToCreateGroups;
 
             this.fastTransferOrderIndex.ShowGroups = true;

@@ -662,7 +662,8 @@
           <Property Name="VoucherCode" Type="nvarchar" MaxLength="60" />
           <Property Name="TransferJobs" Type="nvarchar" MaxLength="100" />
           <Property Name="DeliveryDate" Type="datetime" />
-          <Property Name="SalespersonID" Type="int" Nullable="false" />
+          <Property Name="TransferOrderTypeID" Type="int" Nullable="false" />
+          <Property Name="TransferPackageTypeID" Type="int" Nullable="false" />
           <Property Name="ForkliftDriverID" Type="int" Nullable="false" />
           <Property Name="StorekeeperID" Type="int" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
@@ -683,6 +684,15 @@
           <Property Name="InActive" Type="bit" Nullable="false" />
           <Property Name="InActivePartial" Type="bit" Nullable="false" />
           <Property Name="InActiveDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TransferOrderTypes">
+          <Key>
+            <PropertyRef Name="TransferOrderTypeID" />
+          </Key>
+          <Property Name="TransferOrderTypeID" Type="int" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Remarks" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -1711,6 +1721,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TransferOrders_TransferOrderTypes">
+          <End Role="TransferOrderTypes" Type="Self.TransferOrderTypes" Multiplicity="1" />
+          <End Role="TransferOrders" Type="Self.TransferOrders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransferOrderTypes">
+              <PropertyRef Name="TransferOrderTypeID" />
+            </Principal>
+            <Dependent Role="TransferOrders">
+              <PropertyRef Name="TransferOrderTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TransferOrders_WarehouseReceipts">
           <End Role="Warehouses" Type="Self.Warehouses" Multiplicity="1" />
           <End Role="TransferOrders" Type="Self.TransferOrders" Multiplicity="*" />
@@ -2185,6 +2207,12 @@
           <Parameter Name="FromDate" Type="datetime" Mode="In" />
           <Parameter Name="ToDate" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="GetTransferOrderTypeBases" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetTransferOrderTypeIndexes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserID" Type="int" Mode="In" />
+          <Parameter Name="FromDate" Type="datetime" Mode="In" />
+          <Parameter Name="ToDate" Type="datetime" Mode="In" />
+        </Function>
         <Function Name="GetTransferOrderViewDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="TransferOrderID" Type="int" Mode="In" />
         </Function>
@@ -2422,6 +2450,7 @@
           <EntitySet Name="Territories" EntityType="Self.Territories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TransferOrderDetails" EntityType="Self.TransferOrderDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TransferOrders" EntityType="Self.TransferOrders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransferOrderTypes" EntityType="Self.TransferOrderTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WarehouseAdjustmentDetails" EntityType="Self.WarehouseAdjustmentDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WarehouseAdjustments" EntityType="Self.WarehouseAdjustments" Schema="dbo" store:Type="Tables" />
@@ -2737,6 +2766,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_TransferOrders_Locations" Association="Self.FK_TransferOrders_Locations">
             <End Role="Locations" EntitySet="Locations" />
+            <End Role="TransferOrders" EntitySet="TransferOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransferOrders_TransferOrderTypes" Association="Self.FK_TransferOrders_TransferOrderTypes">
+            <End Role="TransferOrderTypes" EntitySet="TransferOrderTypes" />
             <End Role="TransferOrders" EntitySet="TransferOrders" />
           </AssociationSet>
           <AssociationSet Name="FK_TransferOrders_WarehouseReceipts" Association="Self.FK_TransferOrders_WarehouseReceipts">
@@ -3381,22 +3414,9 @@
           </FunctionImport>
           <EntitySet Name="GoodsIssueTypes" EntityType="TotalSmartCodingModel.GoodsIssueType" />
           <EntitySet Name="TransferOrderDetails" EntityType="TotalSmartCodingModel.TransferOrderDetail" />
-          <EntitySet Name="TransferOrders" EntityType="TotalSmartCodingModel.TransferOrder" />
           <AssociationSet Name="FK_TransferOrderDetails_Commodities" Association="TotalSmartCodingModel.FK_TransferOrderDetails_Commodities">
             <End Role="Commodity" EntitySet="Commodities" />
             <End Role="TransferOrderDetail" EntitySet="TransferOrderDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TransferOrderDetails_TransferOrders" Association="TotalSmartCodingModel.FK_TransferOrderDetails_TransferOrders">
-            <End Role="TransferOrder" EntitySet="TransferOrders" />
-            <End Role="TransferOrderDetail" EntitySet="TransferOrderDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TransferOrders_WarehouseReceipts" Association="TotalSmartCodingModel.FK_TransferOrders_WarehouseReceipts">
-            <End Role="Warehouse" EntitySet="Warehouses" />
-            <End Role="TransferOrder" EntitySet="TransferOrders" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TransferOrders_Warehouses" Association="TotalSmartCodingModel.FK_TransferOrders_Warehouses">
-            <End Role="Warehouse" EntitySet="Warehouses" />
-            <End Role="TransferOrder" EntitySet="TransferOrders" />
           </AssociationSet>
           <EntitySet Name="CustomerCategories" EntityType="TotalSmartCodingModel.CustomerCategory" />
           <EntitySet Name="CustomerTypes" EntityType="TotalSmartCodingModel.CustomerType" />
@@ -3590,10 +3610,6 @@
             <End Role="Location" EntitySet="Locations" />
             <End Role="SalesOrder" EntitySet="SalesOrders" />
           </AssociationSet>
-          <AssociationSet Name="FK_TransferOrders_Locations" Association="TotalSmartCodingModel.FK_TransferOrders_Locations">
-            <End Role="Location" EntitySet="Locations" />
-            <End Role="TransferOrder" EntitySet="TransferOrders" />
-          </AssociationSet>
           <AssociationSet Name="FK_WarehouseAdjustments_Locations" Association="TotalSmartCodingModel.FK_WarehouseAdjustments_Locations">
             <End Role="Location" EntitySet="Locations" />
             <End Role="WarehouseAdjustment" EntitySet="WarehouseAdjustments" />
@@ -3706,10 +3722,6 @@
             <End Role="Location" EntitySet="Locations" />
             <End Role="GoodsIssue" EntitySet="GoodsIssues" />
           </AssociationSet>
-          <AssociationSet Name="FK_GoodsIssues_TransferOrders" Association="TotalSmartCodingModel.FK_GoodsIssues_TransferOrders">
-            <End Role="TransferOrder" EntitySet="TransferOrders" />
-            <End Role="GoodsIssue" EntitySet="GoodsIssues" />
-          </AssociationSet>
           <AssociationSet Name="FK_GoodsIssues_WarehouseReceipts" Association="TotalSmartCodingModel.FK_GoodsIssues_WarehouseReceipts">
             <End Role="Warehouse" EntitySet="Warehouses" />
             <End Role="GoodsIssue" EntitySet="GoodsIssues" />
@@ -3718,6 +3730,38 @@
             <End Role="Warehouse" EntitySet="Warehouses" />
             <End Role="GoodsIssue" EntitySet="GoodsIssues" />
           </AssociationSet>
+          <EntitySet Name="TransferOrders" EntityType="TotalSmartCodingModel.TransferOrder" />
+          <EntitySet Name="TransferOrderTypes" EntityType="TotalSmartCodingModel.TransferOrderType" />
+          <AssociationSet Name="FK_GoodsIssues_TransferOrders" Association="TotalSmartCodingModel.FK_GoodsIssues_TransferOrders">
+            <End Role="TransferOrder" EntitySet="TransferOrders" />
+            <End Role="GoodsIssue" EntitySet="GoodsIssues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransferOrders_Locations" Association="TotalSmartCodingModel.FK_TransferOrders_Locations">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="TransferOrder" EntitySet="TransferOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransferOrderDetails_TransferOrders" Association="TotalSmartCodingModel.FK_TransferOrderDetails_TransferOrders">
+            <End Role="TransferOrder" EntitySet="TransferOrders" />
+            <End Role="TransferOrderDetail" EntitySet="TransferOrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransferOrders_TransferOrderTypes" Association="TotalSmartCodingModel.FK_TransferOrders_TransferOrderTypes">
+            <End Role="TransferOrderType" EntitySet="TransferOrderTypes" />
+            <End Role="TransferOrder" EntitySet="TransferOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransferOrders_WarehouseReceipts" Association="TotalSmartCodingModel.FK_TransferOrders_WarehouseReceipts">
+            <End Role="Warehouse" EntitySet="Warehouses" />
+            <End Role="TransferOrder" EntitySet="TransferOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransferOrders_Warehouses" Association="TotalSmartCodingModel.FK_TransferOrders_Warehouses">
+            <End Role="Warehouse" EntitySet="Warehouses" />
+            <End Role="TransferOrder" EntitySet="TransferOrders" />
+          </AssociationSet>
+          <FunctionImport Name="GetTransferOrderTypeBases" ReturnType="Collection(TotalSmartCodingModel.TransferOrderTypeBase)" />
+          <FunctionImport Name="GetTransferOrderTypeIndexes" ReturnType="Collection(TotalSmartCodingModel.TransferOrderTypeIndex)">
+            <Parameter Name="UserID" Mode="In" Type="Int32" />
+            <Parameter Name="FromDate" Mode="In" Type="DateTime" />
+            <Parameter Name="ToDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
           <Property Type="Int32" Name="PickupID" Nullable="false" />
@@ -4352,14 +4396,14 @@
           <NavigationProperty Name="PickupDetails" Relationship="TotalSmartCodingModel.FK_PickupDetails_Warehouses" FromRole="Warehouse" ToRole="PickupDetail" />
           <NavigationProperty Name="BinLocations" Relationship="TotalSmartCodingModel.FK_BinLocations_Warehouses" FromRole="Warehouse" ToRole="BinLocation" />
           <NavigationProperty Name="WarehouseAdjustments" Relationship="TotalSmartCodingModel.FK_WarehouseAdjustments_Warehouses" FromRole="Warehouse" ToRole="WarehouseAdjustment" />
-          <NavigationProperty Name="TransferOrders" Relationship="TotalSmartCodingModel.FK_TransferOrders_WarehouseReceipts" FromRole="Warehouse" ToRole="TransferOrder" />
-          <NavigationProperty Name="TransferOrders1" Relationship="TotalSmartCodingModel.FK_TransferOrders_Warehouses" FromRole="Warehouse" ToRole="TransferOrder" />
           <NavigationProperty Name="WarehouseAdjustmentDetails" Relationship="TotalSmartCodingModel.FK_WarehouseAdjustmentDetails_Warehouses" FromRole="Warehouse" ToRole="WarehouseAdjustmentDetail" />
           <NavigationProperty Name="GoodsReceiptDetails" Relationship="TotalSmartCodingModel.FK_GoodsReceiptDetails_Warehouses" FromRole="Warehouse" ToRole="GoodsReceiptDetail" />
           <NavigationProperty Name="GoodsReceipts" Relationship="TotalSmartCodingModel.FK_GoodsReceipts_Warehouses" FromRole="Warehouse" ToRole="GoodsReceipt" />
           <NavigationProperty Name="Location" Relationship="TotalSmartCodingModel.FK_Warehouses_Locations" FromRole="Warehouse" ToRole="Location" />
           <NavigationProperty Name="GoodsIssues" Relationship="TotalSmartCodingModel.FK_GoodsIssues_WarehouseReceipts" FromRole="Warehouse" ToRole="GoodsIssue" />
           <NavigationProperty Name="GoodsIssues1" Relationship="TotalSmartCodingModel.FK_GoodsIssues_Warehouses" FromRole="Warehouse" ToRole="GoodsIssue" />
+          <NavigationProperty Name="TransferOrders" Relationship="TotalSmartCodingModel.FK_TransferOrders_WarehouseReceipts" FromRole="Warehouse" ToRole="TransferOrder" />
+          <NavigationProperty Name="TransferOrders1" Relationship="TotalSmartCodingModel.FK_TransferOrders_Warehouses" FromRole="Warehouse" ToRole="TransferOrder" />
           </EntityType>
         <EntityType Name="Pickup">
           <Key>
@@ -5322,47 +5366,8 @@
           <Property Name="InActivePartial" Type="Boolean" Nullable="false" />
           <Property Name="InActivePartialDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Commodity" Relationship="TotalSmartCodingModel.FK_TransferOrderDetails_Commodities" FromRole="TransferOrderDetail" ToRole="Commodity" />
-          <NavigationProperty Name="TransferOrder" Relationship="TotalSmartCodingModel.FK_TransferOrderDetails_TransferOrders" FromRole="TransferOrderDetail" ToRole="TransferOrder" />
           <NavigationProperty Name="GoodsIssueDetails" Relationship="TotalSmartCodingModel.FK_GoodsIssueDetails_TransferOrderDetails" FromRole="TransferOrderDetail" ToRole="GoodsIssueDetail" />
-        </EntityType>
-        <EntityType Name="TransferOrder">
-          <Key>
-            <PropertyRef Name="TransferOrderID" />
-          </Key>
-          <Property Name="TransferOrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Reference" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="WarehouseID" Type="Int32" Nullable="false" />
-          <Property Name="WarehouseReceiptID" Type="Int32" Nullable="false" />
-          <Property Name="VoucherCode" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
-          <Property Name="TransferJobs" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="DeliveryDate" Type="DateTime" Precision="3" />
-          <Property Name="SalespersonID" Type="Int32" Nullable="false" />
-          <Property Name="UserID" Type="Int32" Nullable="false" />
-          <Property Name="PreparedPersonID" Type="Int32" Nullable="false" />
-          <Property Name="OrganizationalUnitID" Type="Int32" Nullable="false" />
-          <Property Name="LocationID" Type="Int32" Nullable="false" />
-          <Property Name="TotalQuantity" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="TotalLineVolume" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="EditedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Approved" Type="Boolean" Nullable="false" />
-          <Property Name="ApprovedDate" Type="DateTime" Precision="3" />
-          <Property Name="VoidTypeID" Type="Int32" />
-          <Property Name="InActive" Type="Boolean" Nullable="false" />
-          <Property Name="InActivePartial" Type="Boolean" Nullable="false" />
-          <Property Name="InActiveDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="TransferOrderDetails" Relationship="TotalSmartCodingModel.FK_TransferOrderDetails_TransferOrders" FromRole="TransferOrder" ToRole="TransferOrderDetail" />
-          <NavigationProperty Name="Warehouse" Relationship="TotalSmartCodingModel.FK_TransferOrders_WarehouseReceipts" FromRole="TransferOrder" ToRole="Warehouse" />
-          <NavigationProperty Name="Warehouse1" Relationship="TotalSmartCodingModel.FK_TransferOrders_Warehouses" FromRole="TransferOrder" ToRole="Warehouse" />
-          <NavigationProperty Name="Location" Relationship="TotalSmartCodingModel.FK_TransferOrders_Locations" FromRole="TransferOrder" ToRole="Location" />
-          <NavigationProperty Name="GoodsIssues" Relationship="TotalSmartCodingModel.FK_GoodsIssues_TransferOrders" FromRole="TransferOrder" ToRole="GoodsIssue" />
-          <Property Name="ForkliftDriverID" Type="Int32" Nullable="false" />
-          <Property Name="StorekeeperID" Type="Int32" Nullable="false" />
-          <Property Name="Vehicle" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="VehicleDriver" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TransferOrder" Relationship="TotalSmartCodingModel.FK_TransferOrderDetails_TransferOrders" FromRole="TransferOrderDetail" ToRole="TransferOrder" />
         </EntityType>
         <Association Name="FK_TransferOrderDetails_Commodities">
           <End Type="TotalSmartCodingModel.Commodity" Role="Commodity" Multiplicity="1" />
@@ -5373,42 +5378,6 @@
             </Principal>
             <Dependent Role="TransferOrderDetail">
               <PropertyRef Name="CommodityID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TransferOrderDetails_TransferOrders">
-          <End Type="TotalSmartCodingModel.TransferOrder" Role="TransferOrder" Multiplicity="1" />
-          <End Type="TotalSmartCodingModel.TransferOrderDetail" Role="TransferOrderDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TransferOrder">
-              <PropertyRef Name="TransferOrderID" />
-            </Principal>
-            <Dependent Role="TransferOrderDetail">
-              <PropertyRef Name="TransferOrderID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TransferOrders_WarehouseReceipts">
-          <End Type="TotalSmartCodingModel.Warehouse" Role="Warehouse" Multiplicity="1" />
-          <End Type="TotalSmartCodingModel.TransferOrder" Role="TransferOrder" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Warehouse">
-              <PropertyRef Name="WarehouseID" />
-            </Principal>
-            <Dependent Role="TransferOrder">
-              <PropertyRef Name="WarehouseReceiptID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TransferOrders_Warehouses">
-          <End Type="TotalSmartCodingModel.Warehouse" Role="Warehouse" Multiplicity="1" />
-          <End Type="TotalSmartCodingModel.TransferOrder" Role="TransferOrder" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Warehouse">
-              <PropertyRef Name="WarehouseID" />
-            </Principal>
-            <Dependent Role="TransferOrder">
-              <PropertyRef Name="WarehouseID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -6091,10 +6060,10 @@
           <NavigationProperty Name="OrganizationalUnits" Relationship="TotalSmartCodingModel.FK_OrganizationalUnits_Locations" FromRole="Location" ToRole="OrganizationalUnit" />
           <NavigationProperty Name="Pickups" Relationship="TotalSmartCodingModel.FK_Pickups_Locations" FromRole="Location" ToRole="Pickup" />
           <NavigationProperty Name="SalesOrders" Relationship="TotalSmartCodingModel.FK_SalesOrders_Locations" FromRole="Location" ToRole="SalesOrder" />
-          <NavigationProperty Name="TransferOrders" Relationship="TotalSmartCodingModel.FK_TransferOrders_Locations" FromRole="Location" ToRole="TransferOrder" />
           <NavigationProperty Name="WarehouseAdjustments" Relationship="TotalSmartCodingModel.FK_WarehouseAdjustments_Locations" FromRole="Location" ToRole="WarehouseAdjustment" />
           <NavigationProperty Name="Warehouses" Relationship="TotalSmartCodingModel.FK_Warehouses_Locations" FromRole="Location" ToRole="Warehouse" />
           <NavigationProperty Name="GoodsIssues" Relationship="TotalSmartCodingModel.FK_GoodsIssues_Locations" FromRole="Location" ToRole="GoodsIssue" />
+          <NavigationProperty Name="TransferOrders" Relationship="TotalSmartCodingModel.FK_TransferOrders_Locations" FromRole="Location" ToRole="TransferOrder" />
         </EntityType>
         <Association Name="FK_DeliveryAdvices_Locations">
           <End Type="TotalSmartCodingModel.Location" Role="Location" Multiplicity="1" />
@@ -6164,18 +6133,6 @@
               <PropertyRef Name="LocationID" />
             </Principal>
             <Dependent Role="SalesOrder">
-              <PropertyRef Name="LocationID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TransferOrders_Locations">
-          <End Type="TotalSmartCodingModel.Location" Role="Location" Multiplicity="1" />
-          <End Type="TotalSmartCodingModel.TransferOrder" Role="TransferOrder" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Location">
-              <PropertyRef Name="LocationID" />
-            </Principal>
-            <Dependent Role="TransferOrder">
               <PropertyRef Name="LocationID" />
             </Dependent>
           </ReferentialConstraint>
@@ -6463,9 +6420,9 @@
           <NavigationProperty Name="GoodsIssueDetails" Relationship="TotalSmartCodingModel.FK_GoodsIssueDetails_GoodsIssues" FromRole="GoodsIssue" ToRole="GoodsIssueDetail" />
           <NavigationProperty Name="GoodsIssueType" Relationship="TotalSmartCodingModel.FK_GoodsIssues_GoodsIssueTypes" FromRole="GoodsIssue" ToRole="GoodsIssueType" />
           <NavigationProperty Name="Location" Relationship="TotalSmartCodingModel.FK_GoodsIssues_Locations" FromRole="GoodsIssue" ToRole="Location" />
-          <NavigationProperty Name="TransferOrder" Relationship="TotalSmartCodingModel.FK_GoodsIssues_TransferOrders" FromRole="GoodsIssue" ToRole="TransferOrder" />
           <NavigationProperty Name="Warehouse" Relationship="TotalSmartCodingModel.FK_GoodsIssues_WarehouseReceipts" FromRole="GoodsIssue" ToRole="Warehouse" />
           <NavigationProperty Name="Warehouse1" Relationship="TotalSmartCodingModel.FK_GoodsIssues_Warehouses" FromRole="GoodsIssue" ToRole="Warehouse" />
+          <NavigationProperty Name="TransferOrder" Relationship="TotalSmartCodingModel.FK_GoodsIssues_TransferOrders" FromRole="GoodsIssue" ToRole="TransferOrder" />
         </EntityType>
         <Association Name="FK_GoodsIssues_Customers">
           <End Type="TotalSmartCodingModel.Customer" Role="Customer" Multiplicity="0..1" />
@@ -6539,18 +6496,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_GoodsIssues_TransferOrders">
-          <End Type="TotalSmartCodingModel.TransferOrder" Role="TransferOrder" Multiplicity="0..1" />
-          <End Type="TotalSmartCodingModel.GoodsIssue" Role="GoodsIssue" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TransferOrder">
-              <PropertyRef Name="TransferOrderID" />
-            </Principal>
-            <Dependent Role="GoodsIssue">
-              <PropertyRef Name="TransferOrderID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_GoodsIssues_WarehouseReceipts">
           <End Type="TotalSmartCodingModel.Warehouse" Role="Warehouse" Multiplicity="0..1" />
           <End Type="TotalSmartCodingModel.GoodsIssue" Role="GoodsIssue" Multiplicity="*" />
@@ -6575,6 +6520,139 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="TransferOrder">
+          <Key>
+            <PropertyRef Name="TransferOrderID" />
+          </Key>
+          <Property Name="TransferOrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Reference" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="WarehouseID" Type="Int32" Nullable="false" />
+          <Property Name="WarehouseReceiptID" Type="Int32" Nullable="false" />
+          <Property Name="VoucherCode" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="TransferJobs" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DeliveryDate" Type="DateTime" Precision="3" />
+          <Property Name="TransferOrderTypeID" Type="Int32" Nullable="false" />
+          <Property Name="TransferPackageTypeID" Type="Int32" Nullable="false" />
+          <Property Name="ForkliftDriverID" Type="Int32" Nullable="false" />
+          <Property Name="StorekeeperID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="PreparedPersonID" Type="Int32" Nullable="false" />
+          <Property Name="OrganizationalUnitID" Type="Int32" Nullable="false" />
+          <Property Name="LocationID" Type="Int32" Nullable="false" />
+          <Property Name="TotalQuantity" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="TotalLineVolume" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Vehicle" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="VehicleDriver" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EditedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Approved" Type="Boolean" Nullable="false" />
+          <Property Name="ApprovedDate" Type="DateTime" Precision="3" />
+          <Property Name="VoidTypeID" Type="Int32" />
+          <Property Name="InActive" Type="Boolean" Nullable="false" />
+          <Property Name="InActivePartial" Type="Boolean" Nullable="false" />
+          <Property Name="InActiveDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="GoodsIssues" Relationship="TotalSmartCodingModel.FK_GoodsIssues_TransferOrders" FromRole="TransferOrder" ToRole="GoodsIssue" />
+          <NavigationProperty Name="Location" Relationship="TotalSmartCodingModel.FK_TransferOrders_Locations" FromRole="TransferOrder" ToRole="Location" />
+          <NavigationProperty Name="TransferOrderDetails" Relationship="TotalSmartCodingModel.FK_TransferOrderDetails_TransferOrders" FromRole="TransferOrder" ToRole="TransferOrderDetail" />
+          <NavigationProperty Name="TransferOrderType" Relationship="TotalSmartCodingModel.FK_TransferOrders_TransferOrderTypes" FromRole="TransferOrder" ToRole="TransferOrderType" />
+          <NavigationProperty Name="Warehouse" Relationship="TotalSmartCodingModel.FK_TransferOrders_WarehouseReceipts" FromRole="TransferOrder" ToRole="Warehouse" />
+          <NavigationProperty Name="Warehouse1" Relationship="TotalSmartCodingModel.FK_TransferOrders_Warehouses" FromRole="TransferOrder" ToRole="Warehouse" />
+        </EntityType>
+        <EntityType Name="TransferOrderType">
+          <Key>
+            <PropertyRef Name="TransferOrderTypeID" />
+          </Key>
+          <Property Name="TransferOrderTypeID" Type="Int32" Nullable="false" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TransferOrders" Relationship="TotalSmartCodingModel.FK_TransferOrders_TransferOrderTypes" FromRole="TransferOrderType" ToRole="TransferOrder" />
+        </EntityType>
+        <Association Name="FK_GoodsIssues_TransferOrders">
+          <End Type="TotalSmartCodingModel.TransferOrder" Role="TransferOrder" Multiplicity="0..1" />
+          <End Type="TotalSmartCodingModel.GoodsIssue" Role="GoodsIssue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransferOrder">
+              <PropertyRef Name="TransferOrderID" />
+            </Principal>
+            <Dependent Role="GoodsIssue">
+              <PropertyRef Name="TransferOrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransferOrders_Locations">
+          <End Type="TotalSmartCodingModel.Location" Role="Location" Multiplicity="1" />
+          <End Type="TotalSmartCodingModel.TransferOrder" Role="TransferOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="LocationID" />
+            </Principal>
+            <Dependent Role="TransferOrder">
+              <PropertyRef Name="LocationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransferOrderDetails_TransferOrders">
+          <End Type="TotalSmartCodingModel.TransferOrder" Role="TransferOrder" Multiplicity="1" />
+          <End Type="TotalSmartCodingModel.TransferOrderDetail" Role="TransferOrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransferOrder">
+              <PropertyRef Name="TransferOrderID" />
+            </Principal>
+            <Dependent Role="TransferOrderDetail">
+              <PropertyRef Name="TransferOrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransferOrders_TransferOrderTypes">
+          <End Type="TotalSmartCodingModel.TransferOrderType" Role="TransferOrderType" Multiplicity="1" />
+          <End Type="TotalSmartCodingModel.TransferOrder" Role="TransferOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransferOrderType">
+              <PropertyRef Name="TransferOrderTypeID" />
+            </Principal>
+            <Dependent Role="TransferOrder">
+              <PropertyRef Name="TransferOrderTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransferOrders_WarehouseReceipts">
+          <End Type="TotalSmartCodingModel.Warehouse" Role="Warehouse" Multiplicity="1" />
+          <End Type="TotalSmartCodingModel.TransferOrder" Role="TransferOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouse">
+              <PropertyRef Name="WarehouseID" />
+            </Principal>
+            <Dependent Role="TransferOrder">
+              <PropertyRef Name="WarehouseReceiptID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransferOrders_Warehouses">
+          <End Type="TotalSmartCodingModel.Warehouse" Role="Warehouse" Multiplicity="1" />
+          <End Type="TotalSmartCodingModel.TransferOrder" Role="TransferOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouse">
+              <PropertyRef Name="WarehouseID" />
+            </Principal>
+            <Dependent Role="TransferOrder">
+              <PropertyRef Name="WarehouseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="TransferOrderTypeBase">
+          <Property Type="Int32" Name="TransferOrderTypeID" Nullable="false" />
+          <Property Type="String" Name="Code" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="TransferOrderTypeIndex">
+          <Property Type="Int32" Name="TransferOrderTypeID" Nullable="false" />
+          <Property Type="String" Name="Code" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -8001,41 +8079,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TransferOrders">
-            <EntityTypeMapping TypeName="TotalSmartCodingModel.TransferOrder">
-              <MappingFragment StoreEntitySet="TransferOrders">
-                <ScalarProperty Name="VehicleDriver" ColumnName="VehicleDriver" />
-                <ScalarProperty Name="Vehicle" ColumnName="Vehicle" />
-                <ScalarProperty Name="StorekeeperID" ColumnName="StorekeeperID" />
-                <ScalarProperty Name="ForkliftDriverID" ColumnName="ForkliftDriverID" />
-                <ScalarProperty Name="InActiveDate" ColumnName="InActiveDate" />
-                <ScalarProperty Name="InActivePartial" ColumnName="InActivePartial" />
-                <ScalarProperty Name="InActive" ColumnName="InActive" />
-                <ScalarProperty Name="VoidTypeID" ColumnName="VoidTypeID" />
-                <ScalarProperty Name="ApprovedDate" ColumnName="ApprovedDate" />
-                <ScalarProperty Name="Approved" ColumnName="Approved" />
-                <ScalarProperty Name="EditedDate" ColumnName="EditedDate" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="TotalLineVolume" ColumnName="TotalLineVolume" />
-                <ScalarProperty Name="TotalQuantity" ColumnName="TotalQuantity" />
-                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
-                <ScalarProperty Name="OrganizationalUnitID" ColumnName="OrganizationalUnitID" />
-                <ScalarProperty Name="PreparedPersonID" ColumnName="PreparedPersonID" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="SalespersonID" ColumnName="SalespersonID" />
-                <ScalarProperty Name="DeliveryDate" ColumnName="DeliveryDate" />
-                <ScalarProperty Name="TransferJobs" ColumnName="TransferJobs" />
-                <ScalarProperty Name="VoucherCode" ColumnName="VoucherCode" />
-                <ScalarProperty Name="WarehouseReceiptID" ColumnName="WarehouseReceiptID" />
-                <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
-                <ScalarProperty Name="Reference" ColumnName="Reference" />
-                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
-                <ScalarProperty Name="TransferOrderID" ColumnName="TransferOrderID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="CustomerCategories">
             <EntityTypeMapping TypeName="TotalSmartCodingModel.CustomerCategory">
               <MappingFragment StoreEntitySet="CustomerCategories">
@@ -8503,6 +8546,70 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="TransferOrders">
+            <EntityTypeMapping TypeName="TotalSmartCodingModel.TransferOrder">
+              <MappingFragment StoreEntitySet="TransferOrders">
+                <ScalarProperty Name="InActiveDate" ColumnName="InActiveDate" />
+                <ScalarProperty Name="InActivePartial" ColumnName="InActivePartial" />
+                <ScalarProperty Name="InActive" ColumnName="InActive" />
+                <ScalarProperty Name="VoidTypeID" ColumnName="VoidTypeID" />
+                <ScalarProperty Name="ApprovedDate" ColumnName="ApprovedDate" />
+                <ScalarProperty Name="Approved" ColumnName="Approved" />
+                <ScalarProperty Name="EditedDate" ColumnName="EditedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="VehicleDriver" ColumnName="VehicleDriver" />
+                <ScalarProperty Name="Vehicle" ColumnName="Vehicle" />
+                <ScalarProperty Name="TotalLineVolume" ColumnName="TotalLineVolume" />
+                <ScalarProperty Name="TotalQuantity" ColumnName="TotalQuantity" />
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+                <ScalarProperty Name="OrganizationalUnitID" ColumnName="OrganizationalUnitID" />
+                <ScalarProperty Name="PreparedPersonID" ColumnName="PreparedPersonID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="StorekeeperID" ColumnName="StorekeeperID" />
+                <ScalarProperty Name="ForkliftDriverID" ColumnName="ForkliftDriverID" />
+                <ScalarProperty Name="TransferPackageTypeID" ColumnName="TransferPackageTypeID" />
+                <ScalarProperty Name="TransferOrderTypeID" ColumnName="TransferOrderTypeID" />
+                <ScalarProperty Name="DeliveryDate" ColumnName="DeliveryDate" />
+                <ScalarProperty Name="TransferJobs" ColumnName="TransferJobs" />
+                <ScalarProperty Name="VoucherCode" ColumnName="VoucherCode" />
+                <ScalarProperty Name="WarehouseReceiptID" ColumnName="WarehouseReceiptID" />
+                <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
+                <ScalarProperty Name="Reference" ColumnName="Reference" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="TransferOrderID" ColumnName="TransferOrderID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransferOrderTypes">
+            <EntityTypeMapping TypeName="TotalSmartCodingModel.TransferOrderType">
+              <MappingFragment StoreEntitySet="TransferOrderTypes">
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="TransferOrderTypeID" ColumnName="TransferOrderTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetTransferOrderTypeBases" FunctionName="TotalSmartCodingModel.Store.GetTransferOrderTypeBases">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TotalSmartCodingModel.TransferOrderTypeBase">
+                <ScalarProperty Name="TransferOrderTypeID" ColumnName="TransferOrderTypeID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetTransferOrderTypeIndexes" FunctionName="TotalSmartCodingModel.Store.GetTransferOrderTypeIndexes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TotalSmartCodingModel.TransferOrderTypeIndex">
+                <ScalarProperty Name="TransferOrderTypeID" ColumnName="TransferOrderTypeID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

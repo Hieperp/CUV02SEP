@@ -92,15 +92,54 @@ namespace TotalDTO.Sales
             set { ApplyPropertyChange<TransferOrderPrimitiveDTO, Nullable<DateTime>>(ref this.deliveryDate, o => o.DeliveryDate, value); }
         }
 
-        private Nullable<int> salespersonID;
+        private Nullable<int> transferOrderTypeID;
         [DefaultValue(null)]
-        public Nullable<int> SalespersonID
+        public Nullable<int> TransferOrderTypeID
         {
-            get { return this.salespersonID; }
-            set { ApplyPropertyChange<TransferOrderPrimitiveDTO, Nullable<int>>(ref this.salespersonID, o => o.SalespersonID, value); }
+            get { return this.transferOrderTypeID; }
+            set { ApplyPropertyChange<TransferOrderPrimitiveDTO, Nullable<int>>(ref this.transferOrderTypeID, o => o.TransferOrderTypeID, value); }
         }
 
-        
+        private Nullable<int> transferPackageTypeID;
+        [DefaultValue(null)]
+        public Nullable<int> TransferPackageTypeID
+        {
+            get { return this.transferPackageTypeID; }
+            set { ApplyPropertyChange<TransferOrderPrimitiveDTO, Nullable<int>>(ref this.transferPackageTypeID, o => o.TransferPackageTypeID, value); }
+        }
+
+        private Nullable<int> forkliftDriverID;
+        [DefaultValue(null)]
+        public Nullable<int> ForkliftDriverID
+        {
+            get { return this.forkliftDriverID; }
+            set { ApplyPropertyChange<TransferOrderPrimitiveDTO, Nullable<int>>(ref this.forkliftDriverID, o => o.ForkliftDriverID, value); }
+        }
+
+        private int storekeeperID;
+        //[DefaultValue(null)]
+        public int StorekeeperID
+        {
+            get { return this.storekeeperID; }
+            set { ApplyPropertyChange<DeliveryAdvicePrimitiveDTO, int>(ref this.storekeeperID, o => o.StorekeeperID, value); }
+        }
+
+        private string vehicle;
+        [DefaultValue(null)]
+        public string Vehicle
+        {
+            get { return this.vehicle; }
+            set { ApplyPropertyChange<DeliveryAdvicePrimitiveDTO, string>(ref this.vehicle, o => o.Vehicle, value); }
+        }
+
+        private string vehicleDriver;
+        [DefaultValue(null)]
+        public string VehicleDriver
+        {
+            get { return this.vehicleDriver; }
+            set { ApplyPropertyChange<DeliveryAdvicePrimitiveDTO, string>(ref this.vehicleDriver, o => o.VehicleDriver, value); }
+        }
+
 
         public override string Caption
         {
@@ -112,6 +151,19 @@ namespace TotalDTO.Sales
             base.PerformPresaveRule();
 
             this.DtoDetails().ToList().ForEach(e => { e.WarehouseID = this.WarehouseID; e.WarehouseReceiptID = this.WarehouseReceiptID; });
+        }
+
+        protected override List<ValidationRule> CreateRules()
+        {
+            List<ValidationRule> validationRules = base.CreateRules();
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<TransferOrderPrimitiveDTO>(p => p.WarehouseID), "Vui lòng chọn kho xuất.", delegate { return (this.WarehouseID != null && this.WarehouseID > 0); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<TransferOrderPrimitiveDTO>(p => p.WarehouseReceiptID), "Vui lòng chọn kho nhập.", delegate { return (this.WarehouseReceiptID != null && this.WarehouseReceiptID > 0); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<TransferOrderPrimitiveDTO>(p => p.TransferOrderTypeID), "Vui lòng chọn loại chuyển kho.", delegate { return (this.TransferOrderTypeID != null && this.TransferOrderTypeID > 0); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<TransferOrderPrimitiveDTO>(p => p.TransferPackageTypeID), "Vui lòng chọn hình thức đóng gói khi vận chuyển.", delegate { return (this.TransferPackageTypeID != null && this.TransferPackageTypeID > 0); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<TransferOrderPrimitiveDTO>(p => p.ForkliftDriverID), "Vui lòng chọn thủ kho.", delegate { return (this.ForkliftDriverID != null && this.ForkliftDriverID > 0); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<TransferOrderPrimitiveDTO>(p => p.StorekeeperID), "Vui lòng chọn người lập.", delegate { return (this.StorekeeperID != null && this.StorekeeperID > 0); }));
+
+            return validationRules;
         }
     }
 
@@ -138,16 +190,7 @@ namespace TotalDTO.Sales
         {
             get { return this.DtoDetails().Where(w => w.BatchID != null).Count() > 0; }
         }
-
-        protected override List<ValidationRule> CreateRules()
-        {
-            List<ValidationRule> validationRules = base.CreateRules();
-            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<TransferOrderDTO>(p => p.WarehouseID), "Vui lòng chọn kho xuất.", delegate { return (this.WarehouseID != null && this.WarehouseID > 0); }));
-            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<TransferOrderDTO>(p => p.WarehouseReceiptID), "Vui lòng chọn kho nhập.", delegate { return (this.WarehouseReceiptID != null && this.WarehouseReceiptID > 0); }));
-            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<TransferOrderDTO>(p => p.SalespersonID), "Vui lòng chọn người yêu cầu chuyển kho.", delegate { return (this.SalespersonID != null && this.SalespersonID > 0); }));
-
-            return validationRules;
-        }
+        
     }
 
 }

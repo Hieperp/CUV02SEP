@@ -61,7 +61,7 @@ namespace TotalSmartCoding.Views.Sales.TransferOrders
                 this.combexSalespersonID.DataSource = employeeAPIs.GetEmployeeBases();
                 this.combexSalespersonID.DisplayMember = CommonExpressions.PropertyName<EmployeeBase>(p => p.Name);
                 this.combexSalespersonID.ValueMember = CommonExpressions.PropertyName<EmployeeBase>(p => p.EmployeeID);
-                this.bindingStorekeeperID = this.combexSalespersonID.DataBindings.Add("SelectedValue", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderViewModel>(p => p.SalespersonID), true, DataSourceUpdateMode.OnPropertyChanged);
+                this.bindingStorekeeperID = this.combexSalespersonID.DataBindings.Add("SelectedValue", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderViewModel>(p => p.ForkliftDriverID), true, DataSourceUpdateMode.OnPropertyChanged);
 
                 this.bindingVoucherCode = this.textexVoucherCode.DataBindings.Add("Text", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderViewModel>(p => p.VoucherCode), true, DataSourceUpdateMode.OnPropertyChanged);
                 this.bindingEntryDate = this.dateTimexEntryDate.DataBindings.Add("Value", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderViewModel>(p => p.EntryDate), true, DataSourceUpdateMode.OnPropertyChanged);
@@ -119,7 +119,7 @@ namespace TotalSmartCoding.Views.Sales.TransferOrders
             {
                 if (sender.Equals(this.buttonOK))
                 {
-                    if (this.transferOrderViewModel.WarehouseID != null && this.transferOrderViewModel.WarehouseReceiptID != null && this.transferOrderViewModel.SalespersonID != null)
+                    if (this.transferOrderViewModel.WarehouseID != null && this.transferOrderViewModel.WarehouseReceiptID != null && this.transferOrderViewModel.ForkliftDriverID != null)
                     this.DialogResult = DialogResult.OK;
                     else
                         CustomMsgBox.Show(this, "Vui lòng chọn kho xuất, kho nhập, và nhân viên đề nghị chuyển kho.", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Stop);

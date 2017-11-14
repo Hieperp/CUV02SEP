@@ -493,6 +493,27 @@ namespace TotalModel.Models
         public System.DateTime EditedDate { get; set; }
     }
 
+    public partial class TransferOrderType : IPrimitiveEntity, IBaseEntity
+    {
+        public int GetID() { return this.TransferOrderTypeID; }
+
+        public int LocationID { get; set; }
+
+        public int UserID { get; set; }
+        public int PreparedPersonID { get; set; }
+        public int OrganizationalUnitID { get; set; }
+
+        public System.DateTime CreatedDate { get; set; }
+        public System.DateTime EditedDate { get; set; }
+    }
+
+    public class TransferPackageTypeBase
+    {
+        public int TransferPackageTypeID { get; set; }
+        public string Code { get; set; }
+        public string Name { get; set; }
+    }
+
     public partial class BinLocation : IPrimitiveEntity, IBaseEntity
     {
         public int GetID() { return this.BinLocationID; }

@@ -61,8 +61,8 @@ namespace TotalModel.Models
         public virtual ICollection<GoodsIssueDetail> GoodsIssueDetails { get; set; }
         public virtual GoodsIssueType GoodsIssueType { get; set; }
         public virtual Location Location { get; set; }
-        public virtual TransferOrder TransferOrder { get; set; }
         public virtual Warehouse Warehouse { get; set; }
         public virtual Warehouse Warehouse1 { get; set; }
+        public virtual TransferOrder TransferOrder { get; set; }
     }
 }

@@ -30,21 +30,21 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TransferOrders));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.layoutLeft = new System.Windows.Forms.TableLayoutPanel();
             this.dateTimexEntryDate = new CustomControls.DateTimexPicker();
-            this.textexReference = new CustomControls.TextexBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.combexSalespersonID = new CustomControls.CombexBox();
+            this.combexForkliftDriverID = new CustomControls.CombexBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textexVoucherCode = new CustomControls.TextexBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.dateTimexDeliveryDate = new CustomControls.DateTimexPicker();
+            this.textexVoucherCode = new CustomControls.TextexBox();
+            this.textexVehicle = new CustomControls.TextexBox();
+            this.textexVehicleDriver = new CustomControls.TextexBox();
             this.toolStripChildForm = new System.Windows.Forms.ToolStrip();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -67,10 +67,15 @@
             this.layoutTop = new System.Windows.Forms.TableLayoutPanel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.textexTransferJobs = new CustomControls.TextexBox();
             this.textexWarehouseName = new CustomControls.TextexBox();
             this.textexWarehouseReceiptName = new CustomControls.TextexBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.combexStorekeeperID = new CustomControls.CombexBox();
+            this.combexTransferOrderTypeID = new CustomControls.CombexBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.panelLeft = new System.Windows.Forms.Panel();
             this.fastTransferOrderIndex = new BrightIdeasSoftware.FastObjectListView();
             this.olvID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -86,6 +91,7 @@
             this.olvTotalLineVolume = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvApproved = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.imageList32 = new System.Windows.Forms.ImageList(this.components);
+            this.combexTransferPackageTypeID = new CustomControls.CombexBox();
             this.layoutLeft.SuspendLayout();
             this.toolStripChildForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.naviGroupDetails)).BeginInit();
@@ -98,6 +104,8 @@
             this.layoutTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.panelLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastTransferOrderIndex)).BeginInit();
             this.SuspendLayout();
@@ -110,15 +118,15 @@
             this.layoutLeft.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.layoutLeft.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.layoutLeft.Controls.Add(this.dateTimexEntryDate, 0, 1);
-            this.layoutLeft.Controls.Add(this.textexReference, 0, 3);
             this.layoutLeft.Controls.Add(this.label6, 0, 0);
             this.layoutLeft.Controls.Add(this.label7, 0, 2);
-            this.layoutLeft.Controls.Add(this.combexSalespersonID, 0, 9);
+            this.layoutLeft.Controls.Add(this.combexForkliftDriverID, 0, 9);
             this.layoutLeft.Controls.Add(this.label1, 0, 8);
             this.layoutLeft.Controls.Add(this.label2, 0, 4);
-            this.layoutLeft.Controls.Add(this.textexVoucherCode, 0, 5);
             this.layoutLeft.Controls.Add(this.label4, 0, 6);
-            this.layoutLeft.Controls.Add(this.dateTimexDeliveryDate, 0, 7);
+            this.layoutLeft.Controls.Add(this.textexVoucherCode, 0, 3);
+            this.layoutLeft.Controls.Add(this.textexVehicle, 0, 5);
+            this.layoutLeft.Controls.Add(this.textexVehicleDriver, 0, 7);
             this.layoutLeft.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutLeft.Location = new System.Drawing.Point(0, 0);
             this.layoutLeft.Margin = new System.Windows.Forms.Padding(0);
@@ -153,17 +161,6 @@
             this.dateTimexEntryDate.Size = new System.Drawing.Size(350, 28);
             this.dateTimexEntryDate.TabIndex = 70;
             // 
-            // textexReference
-            // 
-            this.textexReference.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textexReference.Editable = false;
-            this.textexReference.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textexReference.Location = new System.Drawing.Point(3, 97);
-            this.textexReference.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
-            this.textexReference.Name = "textexReference";
-            this.textexReference.Size = new System.Drawing.Size(350, 28);
-            this.textexReference.TabIndex = 71;
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -187,23 +184,23 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(351, 21);
             this.label7.TabIndex = 31;
-            this.label7.Text = "Reference";
+            this.label7.Text = "Voucher #";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // combexSalespersonID
+            // combexForkliftDriverID
             // 
-            this.combexSalespersonID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.combexSalespersonID.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.combexSalespersonID.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.combexSalespersonID.Editable = true;
-            this.combexSalespersonID.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.combexSalespersonID.FormattingEnabled = true;
-            this.combexSalespersonID.Location = new System.Drawing.Point(3, 283);
-            this.combexSalespersonID.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
-            this.combexSalespersonID.Name = "combexSalespersonID";
-            this.combexSalespersonID.ReadOnly = false;
-            this.combexSalespersonID.Size = new System.Drawing.Size(350, 29);
-            this.combexSalespersonID.TabIndex = 75;
+            this.combexForkliftDriverID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.combexForkliftDriverID.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.combexForkliftDriverID.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.combexForkliftDriverID.Editable = true;
+            this.combexForkliftDriverID.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.combexForkliftDriverID.FormattingEnabled = true;
+            this.combexForkliftDriverID.Location = new System.Drawing.Point(3, 283);
+            this.combexForkliftDriverID.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
+            this.combexForkliftDriverID.Name = "combexForkliftDriverID";
+            this.combexForkliftDriverID.ReadOnly = false;
+            this.combexForkliftDriverID.Size = new System.Drawing.Size(350, 29);
+            this.combexForkliftDriverID.TabIndex = 75;
             // 
             // label1
             // 
@@ -215,7 +212,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(351, 21);
             this.label1.TabIndex = 76;
-            this.label1.Text = "Supervisor";
+            this.label1.Text = "Storekeeper";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label2
@@ -228,19 +225,8 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(351, 21);
             this.label2.TabIndex = 77;
-            this.label2.Text = "Voucher #";
+            this.label2.Text = "Truck #";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // textexVoucherCode
-            // 
-            this.textexVoucherCode.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textexVoucherCode.Editable = true;
-            this.textexVoucherCode.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textexVoucherCode.Location = new System.Drawing.Point(3, 159);
-            this.textexVoucherCode.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
-            this.textexVoucherCode.Name = "textexVoucherCode";
-            this.textexVoucherCode.Size = new System.Drawing.Size(350, 28);
-            this.textexVoucherCode.TabIndex = 78;
             // 
             // label4
             // 
@@ -252,22 +238,41 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(351, 21);
             this.label4.TabIndex = 79;
-            this.label4.Text = "Delivery Lead Time";
+            this.label4.Text = "Customer Attention";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // dateTimexDeliveryDate
+            // textexVoucherCode
             // 
-            this.dateTimexDeliveryDate.CustomFormat = "dd/MMM/yyyy HH:mm:ss";
-            this.dateTimexDeliveryDate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dateTimexDeliveryDate.Editable = true;
-            this.dateTimexDeliveryDate.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimexDeliveryDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimexDeliveryDate.Location = new System.Drawing.Point(3, 221);
-            this.dateTimexDeliveryDate.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
-            this.dateTimexDeliveryDate.Name = "dateTimexDeliveryDate";
-            this.dateTimexDeliveryDate.ReadOnly = false;
-            this.dateTimexDeliveryDate.Size = new System.Drawing.Size(350, 28);
-            this.dateTimexDeliveryDate.TabIndex = 80;
+            this.textexVoucherCode.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textexVoucherCode.Editable = true;
+            this.textexVoucherCode.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textexVoucherCode.Location = new System.Drawing.Point(3, 97);
+            this.textexVoucherCode.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
+            this.textexVoucherCode.Name = "textexVoucherCode";
+            this.textexVoucherCode.Size = new System.Drawing.Size(350, 28);
+            this.textexVoucherCode.TabIndex = 78;
+            // 
+            // textexVehicle
+            // 
+            this.textexVehicle.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textexVehicle.Editable = true;
+            this.textexVehicle.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textexVehicle.Location = new System.Drawing.Point(3, 159);
+            this.textexVehicle.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
+            this.textexVehicle.Name = "textexVehicle";
+            this.textexVehicle.Size = new System.Drawing.Size(350, 28);
+            this.textexVehicle.TabIndex = 80;
+            // 
+            // textexVehicleDriver
+            // 
+            this.textexVehicleDriver.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textexVehicleDriver.Editable = true;
+            this.textexVehicleDriver.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textexVehicleDriver.Location = new System.Drawing.Point(3, 221);
+            this.textexVehicleDriver.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
+            this.textexVehicleDriver.Name = "textexVehicleDriver";
+            this.textexVehicleDriver.Size = new System.Drawing.Size(350, 28);
+            this.textexVehicleDriver.TabIndex = 81;
             // 
             // toolStripChildForm
             // 
@@ -312,7 +317,7 @@
             this.naviGroupDetails.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.naviGroupDetails.HeaderContextMenuStrip = null;
             this.naviGroupDetails.HeaderHeight = 32;
-            this.naviGroupDetails.Location = new System.Drawing.Point(0, 209);
+            this.naviGroupDetails.Location = new System.Drawing.Point(0, 302);
             this.naviGroupDetails.Name = "naviGroupDetails";
             this.naviGroupDetails.Padding = new System.Windows.Forms.Padding(0, 34, 0, 0);
             this.naviGroupDetails.Size = new System.Drawing.Size(1531, 445);
@@ -364,9 +369,9 @@
             this.panelCenter.Controls.Add(this.textexRemarks);
             this.panelCenter.Controls.Add(this.gridexViewDetails);
             this.panelCenter.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelCenter.Location = new System.Drawing.Point(394, 109);
+            this.panelCenter.Location = new System.Drawing.Point(394, 136);
             this.panelCenter.Name = "panelCenter";
-            this.panelCenter.Size = new System.Drawing.Size(1137, 336);
+            this.panelCenter.Size = new System.Drawing.Size(1137, 309);
             this.panelCenter.TabIndex = 72;
             // 
             // textexDescription
@@ -380,7 +385,7 @@
             this.textexDescription.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.textexDescription.Multiline = true;
             this.textexDescription.Name = "textexDescription";
-            this.textexDescription.Size = new System.Drawing.Size(80, 336);
+            this.textexDescription.Size = new System.Drawing.Size(80, 309);
             this.textexDescription.TabIndex = 73;
             // 
             // textexRemarks
@@ -394,7 +399,7 @@
             this.textexRemarks.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.textexRemarks.Multiline = true;
             this.textexRemarks.Name = "textexRemarks";
-            this.textexRemarks.Size = new System.Drawing.Size(80, 336);
+            this.textexRemarks.Size = new System.Drawing.Size(80, 309);
             this.textexRemarks.TabIndex = 72;
             // 
             // gridexViewDetails
@@ -419,10 +424,10 @@
             this.gridexViewDetails.Location = new System.Drawing.Point(0, 0);
             this.gridexViewDetails.Name = "gridexViewDetails";
             this.gridexViewDetails.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridexViewDetails.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridexViewDetails.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.gridexViewDetails.RowTemplate.Height = 24;
-            this.gridexViewDetails.Size = new System.Drawing.Size(789, 336);
+            this.gridexViewDetails.Size = new System.Drawing.Size(789, 309);
             this.gridexViewDetails.TabIndex = 65;
             // 
             // CommodityID
@@ -458,8 +463,8 @@
             // 
             this.PackageVolume.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.PackageVolume.DataPropertyName = "PackageVolume";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.PackageVolume.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.PackageVolume.DefaultCellStyle = dataGridViewCellStyle5;
             this.PackageVolume.FillWeight = 9F;
             this.PackageVolume.HeaderText = "Package.Volume";
             this.PackageVolume.Name = "PackageVolume";
@@ -469,10 +474,10 @@
             // 
             this.Quantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Quantity.DataPropertyName = "Quantity";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.Format = "N0";
-            dataGridViewCellStyle2.NullValue = null;
-            this.Quantity.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle6.Format = "N0";
+            dataGridViewCellStyle6.NullValue = null;
+            this.Quantity.DefaultCellStyle = dataGridViewCellStyle6;
             this.Quantity.FillWeight = 5F;
             this.Quantity.HeaderText = "Quantity";
             this.Quantity.Name = "Quantity";
@@ -481,9 +486,9 @@
             // 
             this.LineVolume.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.LineVolume.DataPropertyName = "LineVolume";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.Format = "N2";
-            this.LineVolume.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle7.Format = "N2";
+            this.LineVolume.DefaultCellStyle = dataGridViewCellStyle7;
             this.LineVolume.FillWeight = 7F;
             this.LineVolume.HeaderText = "Volume";
             this.LineVolume.Name = "LineVolume";
@@ -503,13 +508,13 @@
             this.naviGroupTop.Caption = null;
             this.naviGroupTop.Controls.Add(this.layoutTop);
             this.naviGroupTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.naviGroupTop.ExpandedHeight = 75;
+            this.naviGroupTop.ExpandedHeight = 102;
             this.naviGroupTop.HeaderContextMenuStrip = null;
             this.naviGroupTop.HeaderHeight = 0;
             this.naviGroupTop.Location = new System.Drawing.Point(394, 34);
             this.naviGroupTop.Name = "naviGroupTop";
             this.naviGroupTop.Padding = new System.Windows.Forms.Padding(1, 2, 1, 1);
-            this.naviGroupTop.Size = new System.Drawing.Size(1137, 75);
+            this.naviGroupTop.Size = new System.Drawing.Size(1137, 102);
             this.naviGroupTop.TabIndex = 67;
             this.naviGroupTop.Tag = "Expandable";
             // 
@@ -525,32 +530,40 @@
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.layoutTop.Controls.Add(this.combexTransferPackageTypeID, 4, 3);
             this.layoutTop.Controls.Add(this.pictureBox1, 0, 1);
-            this.layoutTop.Controls.Add(this.label3, 0, 2);
-            this.layoutTop.Controls.Add(this.pictureBox2, 3, 1);
-            this.layoutTop.Controls.Add(this.textexTransferJobs, 1, 2);
+            this.layoutTop.Controls.Add(this.label3, 0, 3);
+            this.layoutTop.Controls.Add(this.textexTransferJobs, 1, 3);
             this.layoutTop.Controls.Add(this.textexWarehouseName, 1, 1);
-            this.layoutTop.Controls.Add(this.textexWarehouseReceiptName, 4, 1);
+            this.layoutTop.Controls.Add(this.textexWarehouseReceiptName, 1, 2);
+            this.layoutTop.Controls.Add(this.pictureBox2, 0, 2);
+            this.layoutTop.Controls.Add(this.pictureBox3, 3, 2);
+            this.layoutTop.Controls.Add(this.combexStorekeeperID, 4, 2);
+            this.layoutTop.Controls.Add(this.combexTransferOrderTypeID, 4, 1);
+            this.layoutTop.Controls.Add(this.pictureBox4, 3, 1);
+            this.layoutTop.Controls.Add(this.label5, 3, 3);
             this.layoutTop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutTop.Location = new System.Drawing.Point(1, 2);
             this.layoutTop.Margin = new System.Windows.Forms.Padding(0);
             this.layoutTop.Name = "layoutTop";
             this.layoutTop.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.layoutTop.RowCount = 4;
+            this.layoutTop.RowCount = 5;
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1F));
-            this.layoutTop.Size = new System.Drawing.Size(1135, 72);
+            this.layoutTop.Size = new System.Drawing.Size(1135, 99);
             this.layoutTop.TabIndex = 8;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Right;
             this.pictureBox1.Image = global::TotalSmartCoding.Properties.Resources.Warehouse_Transfer_24;
-            this.pictureBox1.Location = new System.Drawing.Point(129, 15);
+            this.pictureBox1.Location = new System.Drawing.Point(138, 15);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(33, 28);
+            this.pictureBox1.Size = new System.Drawing.Size(24, 29);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox1.TabIndex = 75;
             this.pictureBox1.TabStop = false;
             // 
@@ -558,31 +571,20 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Location = new System.Drawing.Point(3, 46);
+            this.label3.Location = new System.Drawing.Point(3, 82);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(159, 34);
+            this.label3.Size = new System.Drawing.Size(159, 53);
             this.label3.TabIndex = 77;
             this.label3.Text = "Jobs Description";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox2.Image = global::TotalSmartCoding.Properties.Resources.Warehouse_Full_24;
-            this.pictureBox2.Location = new System.Drawing.Point(749, 15);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(33, 28);
-            this.pictureBox2.TabIndex = 79;
-            this.pictureBox2.TabStop = false;
-            // 
             // textexTransferJobs
             // 
-            this.layoutTop.SetColumnSpan(this.textexTransferJobs, 4);
             this.textexTransferJobs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexTransferJobs.Editable = true;
-            this.textexTransferJobs.Location = new System.Drawing.Point(168, 49);
+            this.textexTransferJobs.Location = new System.Drawing.Point(168, 85);
             this.textexTransferJobs.Name = "textexTransferJobs";
-            this.textexTransferJobs.Size = new System.Drawing.Size(944, 28);
+            this.textexTransferJobs.Size = new System.Drawing.Size(489, 28);
             this.textexTransferJobs.TabIndex = 78;
             // 
             // textexWarehouseName
@@ -600,10 +602,83 @@
             this.textexWarehouseReceiptName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexWarehouseReceiptName.Editable = false;
             this.textexWarehouseReceiptName.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textexWarehouseReceiptName.Location = new System.Drawing.Point(788, 15);
+            this.textexWarehouseReceiptName.Location = new System.Drawing.Point(168, 50);
             this.textexWarehouseReceiptName.Name = "textexWarehouseReceiptName";
-            this.textexWarehouseReceiptName.Size = new System.Drawing.Size(324, 28);
+            this.textexWarehouseReceiptName.Size = new System.Drawing.Size(489, 28);
             this.textexWarehouseReceiptName.TabIndex = 81;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pictureBox2.Image = global::TotalSmartCoding.Properties.Resources.warehouse_full_24_1_24;
+            this.pictureBox2.Location = new System.Drawing.Point(138, 50);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(24, 29);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox2.TabIndex = 79;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pictureBox3.Image = global::TotalSmartCoding.Properties.Resources.Admin_icon;
+            this.pictureBox3.Location = new System.Drawing.Point(758, 50);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(24, 29);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox3.TabIndex = 86;
+            this.pictureBox3.TabStop = false;
+            // 
+            // combexStorekeeperID
+            // 
+            this.combexStorekeeperID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.combexStorekeeperID.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.combexStorekeeperID.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.combexStorekeeperID.Editable = true;
+            this.combexStorekeeperID.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.combexStorekeeperID.FormattingEnabled = true;
+            this.combexStorekeeperID.Location = new System.Drawing.Point(788, 50);
+            this.combexStorekeeperID.Name = "combexStorekeeperID";
+            this.combexStorekeeperID.ReadOnly = false;
+            this.combexStorekeeperID.Size = new System.Drawing.Size(324, 29);
+            this.combexStorekeeperID.TabIndex = 87;
+            // 
+            // combexTransferOrderTypeID
+            // 
+            this.combexTransferOrderTypeID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.combexTransferOrderTypeID.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.combexTransferOrderTypeID.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.combexTransferOrderTypeID.Editable = true;
+            this.combexTransferOrderTypeID.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.combexTransferOrderTypeID.FormattingEnabled = true;
+            this.combexTransferOrderTypeID.Location = new System.Drawing.Point(788, 15);
+            this.combexTransferOrderTypeID.Name = "combexTransferOrderTypeID";
+            this.combexTransferOrderTypeID.ReadOnly = false;
+            this.combexTransferOrderTypeID.Size = new System.Drawing.Size(324, 29);
+            this.combexTransferOrderTypeID.TabIndex = 88;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pictureBox4.Image = global::TotalSmartCoding.Properties.Resources.Admin_icon;
+            this.pictureBox4.Location = new System.Drawing.Point(758, 15);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(24, 29);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox4.TabIndex = 89;
+            this.pictureBox4.TabStop = false;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(675, 92);
+            this.label5.Margin = new System.Windows.Forms.Padding(0, 10, 3, 1);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(105, 42);
+            this.label5.TabIndex = 90;
+            this.label5.Text = "Delivery Lead Time";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panelLeft
             // 
@@ -655,7 +730,7 @@
             this.fastTransferOrderIndex.Name = "fastTransferOrderIndex";
             this.fastTransferOrderIndex.OwnerDraw = true;
             this.fastTransferOrderIndex.ShowGroups = false;
-            this.fastTransferOrderIndex.Size = new System.Drawing.Size(1531, 209);
+            this.fastTransferOrderIndex.Size = new System.Drawing.Size(1531, 302);
             this.fastTransferOrderIndex.TabIndex = 68;
             this.fastTransferOrderIndex.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastTransferOrderIndex.UseCompatibleStateImageBehavior = false;
@@ -764,11 +839,25 @@
             this.imageList32.Images.SetKeyName(6, "Sales-Order-32");
             this.imageList32.Images.SetKeyName(7, "Sign_Order_32");
             // 
+            // combexTransferPackageTypeID
+            // 
+            this.combexTransferPackageTypeID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.combexTransferPackageTypeID.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.combexTransferPackageTypeID.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.combexTransferPackageTypeID.Editable = true;
+            this.combexTransferPackageTypeID.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.combexTransferPackageTypeID.FormattingEnabled = true;
+            this.combexTransferPackageTypeID.Location = new System.Drawing.Point(788, 85);
+            this.combexTransferPackageTypeID.Name = "combexTransferPackageTypeID";
+            this.combexTransferPackageTypeID.ReadOnly = false;
+            this.combexTransferPackageTypeID.Size = new System.Drawing.Size(324, 29);
+            this.combexTransferPackageTypeID.TabIndex = 91;
+            // 
             // TransferOrders
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1531, 654);
+            this.ClientSize = new System.Drawing.Size(1531, 747);
             this.Controls.Add(this.fastTransferOrderIndex);
             this.Controls.Add(this.naviGroupDetails);
             this.Controls.Add(this.toolStripChildForm);
@@ -796,6 +885,8 @@
             this.layoutTop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.panelLeft.ResumeLayout(false);
             this.panelLeft.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastTransferOrderIndex)).EndInit();
@@ -815,7 +906,6 @@
         private System.Windows.Forms.ToolStripButton toolStripButton2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private CustomControls.DateTimexPicker dateTimexEntryDate;
-        private CustomControls.TextexBox textexReference;
         private BrightIdeasSoftware.FastObjectListView fastTransferOrderIndex;
         private BrightIdeasSoftware.OLVColumn olvID;
         private BrightIdeasSoftware.OLVColumn olvEntryDate;
@@ -828,7 +918,7 @@
         private System.Windows.Forms.ToolStripButton buttonExpandTop;
         private CustomControls.TextexBox textexRemarks;
         private CustomControls.TextexBox textexDescription;
-        private CustomControls.CombexBox combexSalespersonID;
+        private CustomControls.CombexBox combexForkliftDriverID;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label labelCaption;
         private System.Windows.Forms.Label label2;
@@ -848,7 +938,6 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private BrightIdeasSoftware.OLVColumn olvDeliveryDate;
         private System.Windows.Forms.Label label4;
-        private CustomControls.DateTimexPicker dateTimexDeliveryDate;
         private CustomControls.TextexBox textexWarehouseName;
         private CustomControls.TextexBox textexWarehouseReceiptName;
         private System.Windows.Forms.DataGridViewComboBoxColumn CommodityID;
@@ -858,6 +947,14 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn LineVolume;
         private System.Windows.Forms.DataGridViewTextBoxColumn Remarks;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private CustomControls.CombexBox combexStorekeeperID;
+        private CustomControls.CombexBox combexTransferOrderTypeID;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.Label label5;
+        private CustomControls.TextexBox textexVehicle;
+        private CustomControls.TextexBox textexVehicleDriver;
+        private CustomControls.CombexBox combexTransferPackageTypeID;
 
     }
 }

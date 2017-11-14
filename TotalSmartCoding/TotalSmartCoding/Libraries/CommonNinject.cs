@@ -161,6 +161,11 @@ namespace TotalSmartCoding.Libraries
                 Kernel.Bind<IWarehouseAdjustmentTypeAPIRepository>().To<WarehouseAdjustmentTypeAPIRepository>();
                 //Kernel.Bind<WarehouseAdjustmentTypeViewModel>().ToSelf();
 
+                //Kernel.Bind<ITransferOrderTypeService>().To<TransferOrderTypeService>();
+                Kernel.Bind<ITransferOrderTypeRepository>().To<TransferOrderTypeRepository>();
+                Kernel.Bind<ITransferOrderTypeAPIRepository>().To<TransferOrderTypeAPIRepository>();
+                //Kernel.Bind<TransferOrderTypeViewModel>().ToSelf();
+
 
                 //Kernel.Bind<IBinLocationService>().To<BinLocationService>();
                 Kernel.Bind<IBinLocationRepository>().To<BinLocationRepository>();

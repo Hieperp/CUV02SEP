@@ -4193,6 +4193,36 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap warehouse_full_24_1_24 {
+            get {
+                object obj = ResourceManager.GetObject("warehouse-full-24-1-24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap warehouse_full_24_x {
+            get {
+                object obj = ResourceManager.GetObject("warehouse-full-24-x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap warehouse_full_24_x24 {
+            get {
+                object obj = ResourceManager.GetObject("warehouse-full-24-x24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Warehouse_Full_32 {
             get {
                 object obj = ResourceManager.GetObject("Warehouse-Full-32", resourceCulture);
