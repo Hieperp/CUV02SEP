@@ -280,6 +280,12 @@
 
 
 
+        public enum TransferPackageTypeID
+        {
+            All = 999,
+            Pallets = 1,
+            Cartons = 2
+        };
 
         public enum GoodsReceiptTypeID
         {

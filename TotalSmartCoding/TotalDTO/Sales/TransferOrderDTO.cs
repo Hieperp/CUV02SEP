@@ -93,7 +93,7 @@ namespace TotalDTO.Sales
         }
 
         private Nullable<int> transferOrderTypeID;
-        [DefaultValue(null)]
+        //[DefaultValue(null)]
         public Nullable<int> TransferOrderTypeID
         {
             get { return this.transferOrderTypeID; }
@@ -101,7 +101,7 @@ namespace TotalDTO.Sales
         }
 
         private Nullable<int> transferPackageTypeID;
-        [DefaultValue(null)]
+        //[DefaultValue(null)]
         public Nullable<int> TransferPackageTypeID
         {
             get { return this.transferPackageTypeID; }

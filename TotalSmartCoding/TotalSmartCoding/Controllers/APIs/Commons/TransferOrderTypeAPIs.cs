@@ -37,8 +37,8 @@ namespace TotalSmartCoding.Controllers.APIs.Commons
         public IList<TransferPackageTypeBase> GetTransferPackageTypeBases()
         {
             List<TransferPackageTypeBase> transferPackageTypes = new List<TransferPackageTypeBase>();
-            transferPackageTypes.Add(new TransferPackageTypeBase() { TransferPackageTypeID = 1, Code = "Whole pallet", Name = "Giữ nguyên pallet khi chuyển kho" });
-            transferPackageTypes.Add(new TransferPackageTypeBase() { TransferPackageTypeID = 2, Code = "Unpacking pallet", Name = "Xã pallet khi chuyển kho" });
+            transferPackageTypes.Add(new TransferPackageTypeBase() { TransferPackageTypeID = (int)GlobalEnums.TransferPackageTypeID.Pallets, Code = GlobalEnums.TransferPackageTypeID.Pallets.ToString(), Name = "Giữ nguyên pallet khi chuyển kho" });
+            transferPackageTypes.Add(new TransferPackageTypeBase() { TransferPackageTypeID = (int)GlobalEnums.TransferPackageTypeID.Cartons, Code = GlobalEnums.TransferPackageTypeID.Cartons.ToString(), Name = "Xã pallet khi chuyển kho" });
             return transferPackageTypes;
         }
     }
