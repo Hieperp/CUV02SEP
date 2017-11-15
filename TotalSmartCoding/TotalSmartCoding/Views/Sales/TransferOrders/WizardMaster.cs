@@ -58,7 +58,8 @@ namespace TotalSmartCoding.Views.Sales.TransferOrders
                 this.combexWarehouseID.ValueMember = CommonExpressions.PropertyName<WarehouseBase>(p => p.WarehouseID);
                 this.bindingWarehouseID = this.combexWarehouseID.DataBindings.Add("SelectedValue", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderViewModel>(p => p.WarehouseID), true, DataSourceUpdateMode.OnPropertyChanged);
 
-                this.combexWarehouseReceiptID.DataSource = warehouseAPIs.GetWarehouseBases();
+                WarehouseAPIs warehouseReceiptAPIs = new WarehouseAPIs(CommonNinject.Kernel.Get<IWarehouseAPIRepository>());
+                this.combexWarehouseReceiptID.DataSource = warehouseReceiptAPIs.GetWarehouseBases();
                 this.combexWarehouseReceiptID.DisplayMember = CommonExpressions.PropertyName<WarehouseBase>(p => p.Name);
                 this.combexWarehouseReceiptID.ValueMember = CommonExpressions.PropertyName<WarehouseBase>(p => p.WarehouseID);
                 this.bindingWarehouseReceiptID = this.combexWarehouseReceiptID.DataBindings.Add("SelectedValue", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderViewModel>(p => p.WarehouseReceiptID), true, DataSourceUpdateMode.OnPropertyChanged);

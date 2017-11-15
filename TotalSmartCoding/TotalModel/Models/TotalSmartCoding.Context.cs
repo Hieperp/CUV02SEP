@@ -64,8 +64,8 @@ namespace TotalModel.Models
         public virtual DbSet<GoodsIssueDetail> GoodsIssueDetails { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<GoodsIssue> GoodsIssues { get; set; }
-        public virtual DbSet<TransferOrder> TransferOrders { get; set; }
         public virtual DbSet<TransferOrderType> TransferOrderTypes { get; set; }
+        public virtual DbSet<TransferOrder> TransferOrders { get; set; }
     
         public virtual ObjectResult<Nullable<int>> GetAccessLevel(Nullable<int> userID, Nullable<int> nMVNTaskID, Nullable<int> organizationalUnitID)
         {

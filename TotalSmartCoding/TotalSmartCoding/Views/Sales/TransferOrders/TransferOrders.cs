@@ -114,7 +114,6 @@ namespace TotalSmartCoding.Views.Sales.TransferOrders
 
         Binding bindingEntryDate;        
         Binding bindingWarehouseName;
-        Binding bindingWarehouseReceiptName;
         Binding bindingVoucherCode;
         Binding bindingVehicle;
         Binding bindingVehicleDriver;
@@ -123,6 +122,7 @@ namespace TotalSmartCoding.Views.Sales.TransferOrders
         Binding bindingRemarks;
         Binding bindingCaption;
 
+        Binding bindingWarehouseReceiptID;
         Binding bindingTransferOrderTypeID;
         Binding bindingTransferPackageTypeID;
 
@@ -135,7 +135,6 @@ namespace TotalSmartCoding.Views.Sales.TransferOrders
 
             this.bindingEntryDate = this.dateTimexEntryDate.DataBindings.Add("Value", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderDTO>(p => p.EntryDate), true, DataSourceUpdateMode.OnPropertyChanged);            
             this.bindingWarehouseName = this.textexWarehouseName.DataBindings.Add("Text", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderDTO>(p => p.WarehouseName), true, DataSourceUpdateMode.OnPropertyChanged);
-            this.bindingWarehouseReceiptName = this.textexWarehouseReceiptName.DataBindings.Add("Text", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderDTO>(p => p.WarehouseReceiptName), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingVoucherCode = this.textexVoucherCode.DataBindings.Add("Text", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderDTO>(p => p.VoucherCode), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingVehicle = this.textexVehicle.DataBindings.Add("Text", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderDTO>(p => p.Vehicle), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingVehicleDriver = this.textexVehicleDriver.DataBindings.Add("Text", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderDTO>(p => p.VehicleDriver), true, DataSourceUpdateMode.OnPropertyChanged);
@@ -143,6 +142,13 @@ namespace TotalSmartCoding.Views.Sales.TransferOrders
             this.bindingDescription = this.textexDescription.DataBindings.Add("Text", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderDTO>(p => p.Description), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingRemarks = this.textexRemarks.DataBindings.Add("Text", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderDTO>(p => p.Remarks), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingCaption = this.labelCaption.DataBindings.Add("Text", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderDTO>(p => p.Caption));
+
+            WarehouseAPIs warehouseReceiptAPIs = new WarehouseAPIs(CommonNinject.Kernel.Get<IWarehouseAPIRepository>());
+
+            this.combexWarehouseReceiptID.DataSource = warehouseReceiptAPIs.GetWarehouseBases();
+            this.combexWarehouseReceiptID.DisplayMember = CommonExpressions.PropertyName<WarehouseBase>(p => p.Name);
+            this.combexWarehouseReceiptID.ValueMember = CommonExpressions.PropertyName<WarehouseBase>(p => p.WarehouseID);
+            this.bindingWarehouseReceiptID = this.combexWarehouseReceiptID.DataBindings.Add("SelectedValue", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderViewModel>(p => p.WarehouseReceiptID), true, DataSourceUpdateMode.OnPropertyChanged);
 
             TransferOrderTypeAPIs transferOrderTypeAPIs = new TransferOrderTypeAPIs(CommonNinject.Kernel.Get<ITransferOrderTypeAPIRepository>());
 
@@ -170,7 +176,6 @@ namespace TotalSmartCoding.Views.Sales.TransferOrders
 
             this.bindingEntryDate.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);                        
             this.bindingWarehouseName.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
-            this.bindingWarehouseReceiptName.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingVoucherCode.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingVehicle.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingVehicleDriver.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
@@ -178,6 +183,8 @@ namespace TotalSmartCoding.Views.Sales.TransferOrders
             this.bindingDescription.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingRemarks.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingCaption.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+
+            this.bindingWarehouseReceiptID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
 
             this.bindingTransferOrderTypeID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingTransferPackageTypeID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
@@ -189,6 +196,22 @@ namespace TotalSmartCoding.Views.Sales.TransferOrders
             this.fastTransferOrderIndex.ShowGroups = true;
             this.olvApproved.Renderer = new MappedImageRenderer(new Object[] { false, Resources.Placeholder16 });
             this.naviGroupDetails.ExpandedHeight = this.naviGroupDetails.Size.Height;
+        }
+
+        protected override void CommonControl_BindingComplete(object sender, BindingCompleteEventArgs e)
+        {
+            base.CommonControl_BindingComplete(sender, e);
+            if (this.EditableMode)
+            {
+                if (sender.Equals(this.bindingWarehouseReceiptID))
+                {
+                    if (this.combexWarehouseReceiptID.SelectedItem != null)
+                    {
+                        WarehouseBase warehouseBase = (WarehouseBase)this.combexWarehouseReceiptID.SelectedItem;
+                        this.transferOrderViewModel.WarehouseReceiptName = warehouseBase.Name;
+                    }
+                }
+            }
         }
 
         private void fastTransferOrderIndex_AboutToCreateGroups(object sender, CreateGroupsEventArgs e)

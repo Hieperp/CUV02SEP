@@ -86,7 +86,6 @@
             this.olvCommodityCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvBatchCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvQuantityRemains = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvLineVolumeRemains = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.naviPickupIndex = new Guifreaks.Navisuite.NaviBand(this.components);
             this.naviIndex = new Guifreaks.Navisuite.NaviBar(this.components);
             this.panelMaster = new System.Windows.Forms.Panel();
@@ -627,10 +626,10 @@
             // 
             // olvCustomer
             // 
-            this.olvCustomer.AspectName = "CustomerName";
+            this.olvCustomer.AspectName = "GoodsIssueName";
             this.olvCustomer.HeaderForeColor = System.Drawing.Color.Firebrick;
             this.olvCustomer.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvCustomer.Text = "Customers";
+            this.olvCustomer.Text = "Customers/ WHs";
             this.olvCustomer.Width = 170;
             // 
             // olvGoodsIssueIndexReference
@@ -706,14 +705,12 @@
             this.fastPendingPrimaryDetails.AllColumns.Add(this.olvCommodityCode);
             this.fastPendingPrimaryDetails.AllColumns.Add(this.olvBatchCode);
             this.fastPendingPrimaryDetails.AllColumns.Add(this.olvQuantityRemains);
-            this.fastPendingPrimaryDetails.AllColumns.Add(this.olvLineVolumeRemains);
             this.fastPendingPrimaryDetails.BackColor = System.Drawing.Color.Ivory;
             this.fastPendingPrimaryDetails.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.olvPrimaryReference,
             this.olvCommodityCode,
             this.olvBatchCode,
-            this.olvQuantityRemains,
-            this.olvLineVolumeRemains});
+            this.olvQuantityRemains});
             this.fastPendingPrimaryDetails.Cursor = System.Windows.Forms.Cursors.Default;
             this.fastPendingPrimaryDetails.Dock = System.Windows.Forms.DockStyle.Fill;
             this.fastPendingPrimaryDetails.FullRowSelect = true;
@@ -751,7 +748,7 @@
             this.olvCommodityCode.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvCommodityCode.Text = "Items";
             this.olvCommodityCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvCommodityCode.Width = 85;
+            this.olvCommodityCode.Width = 180;
             // 
             // olvBatchCode
             // 
@@ -765,22 +762,12 @@
             // 
             this.olvQuantityRemains.AspectName = "QuantityRemains";
             this.olvQuantityRemains.AspectToStringFormat = "{0:#,#}";
+            this.olvQuantityRemains.FillsFreeSpace = true;
             this.olvQuantityRemains.HeaderForeColor = System.Drawing.Color.Firebrick;
             this.olvQuantityRemains.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.olvQuantityRemains.Text = "Quantity";
             this.olvQuantityRemains.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.olvQuantityRemains.Width = 70;
-            // 
-            // olvLineVolumeRemains
-            // 
-            this.olvLineVolumeRemains.AspectName = "LineVolumeRemains";
-            this.olvLineVolumeRemains.AspectToStringFormat = "{0:#,##0.00}";
-            this.olvLineVolumeRemains.FillsFreeSpace = true;
-            this.olvLineVolumeRemains.HeaderForeColor = System.Drawing.Color.Firebrick;
-            this.olvLineVolumeRemains.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.olvLineVolumeRemains.Text = "Volume";
-            this.olvLineVolumeRemains.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.olvLineVolumeRemains.Width = 75;
             // 
             // naviPickupIndex
             // 
@@ -1017,7 +1004,6 @@
         private BrightIdeasSoftware.OLVColumn olvApproved;
         private BrightIdeasSoftware.OLVColumn olvCustomer;
         private BrightIdeasSoftware.OLVColumn olvQuantityRemains;
-        private BrightIdeasSoftware.OLVColumn olvLineVolumeRemains;
         private BrightIdeasSoftware.OLVColumn olvPrimaryReference;
         private CustomControls.DataGridexView gridexCartonDetails;
         private BrightIdeasSoftware.OLVColumn olvBatchCode;

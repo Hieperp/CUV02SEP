@@ -30,19 +30,23 @@
         {
             this.components = new System.ComponentModel.Container();
             this.fastPendingPallets = new BrightIdeasSoftware.FastObjectListView();
-            this.olvIsSelected = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvPalletSelected = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvCommodityCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvCommodityName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvColumn3 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvPalletBinLocationCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvPalletQuantityRemains = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvPalletLineVolumeRemains = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvPalletCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.contextMenuDetails = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuOptionBinLocations = new System.Windows.Forms.ToolStripMenuItem();
             this.panelMaster = new System.Windows.Forms.Panel();
             this.fastPendingCartons = new BrightIdeasSoftware.FastObjectListView();
-            this.olvColumn1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvCartonSelected = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn4 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn6 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn2 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvCartonQuantityRemains = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvCartonLineVolumeRemains = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvCartonCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.panelBottom = new System.Windows.Forms.Panel();
             this.panelBottomRight = new System.Windows.Forms.Panel();
@@ -68,18 +72,22 @@
             // 
             // fastPendingPallets
             // 
-            this.fastPendingPallets.AllColumns.Add(this.olvIsSelected);
+            this.fastPendingPallets.AllColumns.Add(this.olvPalletSelected);
             this.fastPendingPallets.AllColumns.Add(this.olvCommodityCode);
             this.fastPendingPallets.AllColumns.Add(this.olvCommodityName);
-            this.fastPendingPallets.AllColumns.Add(this.olvColumn3);
+            this.fastPendingPallets.AllColumns.Add(this.olvPalletBinLocationCode);
+            this.fastPendingPallets.AllColumns.Add(this.olvPalletQuantityRemains);
+            this.fastPendingPallets.AllColumns.Add(this.olvPalletLineVolumeRemains);
             this.fastPendingPallets.AllColumns.Add(this.olvPalletCode);
             this.fastPendingPallets.CheckBoxes = true;
             this.fastPendingPallets.CheckedAspectName = "IsSelected";
             this.fastPendingPallets.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.olvIsSelected,
+            this.olvPalletSelected,
             this.olvCommodityCode,
             this.olvCommodityName,
-            this.olvColumn3,
+            this.olvPalletBinLocationCode,
+            this.olvPalletQuantityRemains,
+            this.olvPalletLineVolumeRemains,
             this.olvPalletCode});
             this.fastPendingPallets.ContextMenuStrip = this.contextMenuDetails;
             this.fastPendingPallets.Cursor = System.Windows.Forms.Cursors.Default;
@@ -100,15 +108,14 @@
             this.fastPendingPallets.View = System.Windows.Forms.View.Details;
             this.fastPendingPallets.VirtualMode = true;
             // 
-            // olvIsSelected
+            // olvPalletSelected
             // 
-            this.olvIsSelected.HeaderCheckBox = true;
-            this.olvIsSelected.HeaderCheckState = System.Windows.Forms.CheckState.Checked;
-            this.olvIsSelected.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvIsSelected.Sortable = false;
-            this.olvIsSelected.Text = "";
-            this.olvIsSelected.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvIsSelected.Width = 20;
+            this.olvPalletSelected.HeaderCheckBox = true;
+            this.olvPalletSelected.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvPalletSelected.Sortable = false;
+            this.olvPalletSelected.Text = "";
+            this.olvPalletSelected.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvPalletSelected.Width = 20;
             // 
             // olvCommodityCode
             // 
@@ -122,13 +129,31 @@
             this.olvCommodityName.Text = "Item Name";
             this.olvCommodityName.Width = 310;
             // 
-            // olvColumn3
+            // olvPalletBinLocationCode
             // 
-            this.olvColumn3.AspectName = "BinLocationCode";
-            this.olvColumn3.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvColumn3.Text = "Bin Location";
-            this.olvColumn3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvColumn3.Width = 110;
+            this.olvPalletBinLocationCode.AspectName = "BinLocationCode";
+            this.olvPalletBinLocationCode.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvPalletBinLocationCode.Text = "Bin Location";
+            this.olvPalletBinLocationCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvPalletBinLocationCode.Width = 110;
+            // 
+            // olvPalletQuantityRemains
+            // 
+            this.olvPalletQuantityRemains.AspectName = "QuantityRemains";
+            this.olvPalletQuantityRemains.AspectToStringFormat = "{0:#,#}";
+            this.olvPalletQuantityRemains.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.olvPalletQuantityRemains.Text = "Quantity";
+            this.olvPalletQuantityRemains.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.olvPalletQuantityRemains.Width = 80;
+            // 
+            // olvPalletLineVolumeRemains
+            // 
+            this.olvPalletLineVolumeRemains.AspectName = "LineVolumeRemains";
+            this.olvPalletLineVolumeRemains.AspectToStringFormat = "{0:#,##0.00}";
+            this.olvPalletLineVolumeRemains.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.olvPalletLineVolumeRemains.Text = "Volume";
+            this.olvPalletLineVolumeRemains.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.olvPalletLineVolumeRemains.Width = 90;
             // 
             // olvPalletCode
             // 
@@ -145,7 +170,7 @@
             this.contextMenuDetails.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuOptionBinLocations});
             this.contextMenuDetails.Name = "contextMenuDetails";
-            this.contextMenuDetails.Size = new System.Drawing.Size(267, 58);
+            this.contextMenuDetails.Size = new System.Drawing.Size(267, 30);
             this.contextMenuDetails.Text = "Context MenuDetails";
             // 
             // menuOptionBinLocations
@@ -169,18 +194,22 @@
             // 
             // fastPendingCartons
             // 
-            this.fastPendingCartons.AllColumns.Add(this.olvColumn1);
+            this.fastPendingCartons.AllColumns.Add(this.olvCartonSelected);
             this.fastPendingCartons.AllColumns.Add(this.olvColumn4);
             this.fastPendingCartons.AllColumns.Add(this.olvColumn6);
             this.fastPendingCartons.AllColumns.Add(this.olvColumn2);
+            this.fastPendingCartons.AllColumns.Add(this.olvCartonQuantityRemains);
+            this.fastPendingCartons.AllColumns.Add(this.olvCartonLineVolumeRemains);
             this.fastPendingCartons.AllColumns.Add(this.olvCartonCode);
             this.fastPendingCartons.CheckBoxes = true;
             this.fastPendingCartons.CheckedAspectName = "IsSelected";
             this.fastPendingCartons.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.olvColumn1,
+            this.olvCartonSelected,
             this.olvColumn4,
             this.olvColumn6,
             this.olvColumn2,
+            this.olvCartonQuantityRemains,
+            this.olvCartonLineVolumeRemains,
             this.olvCartonCode});
             this.fastPendingCartons.ContextMenuStrip = this.contextMenuDetails;
             this.fastPendingCartons.Cursor = System.Windows.Forms.Cursors.Default;
@@ -201,15 +230,14 @@
             this.fastPendingCartons.View = System.Windows.Forms.View.Details;
             this.fastPendingCartons.VirtualMode = true;
             // 
-            // olvColumn1
+            // olvCartonSelected
             // 
-            this.olvColumn1.HeaderCheckBox = true;
-            this.olvColumn1.HeaderCheckState = System.Windows.Forms.CheckState.Checked;
-            this.olvColumn1.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvColumn1.Sortable = false;
-            this.olvColumn1.Text = "";
-            this.olvColumn1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvColumn1.Width = 20;
+            this.olvCartonSelected.HeaderCheckBox = true;
+            this.olvCartonSelected.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvCartonSelected.Sortable = false;
+            this.olvCartonSelected.Text = "";
+            this.olvCartonSelected.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvCartonSelected.Width = 20;
             // 
             // olvColumn4
             // 
@@ -230,6 +258,24 @@
             this.olvColumn2.Text = "Bin Location";
             this.olvColumn2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvColumn2.Width = 110;
+            // 
+            // olvCartonQuantityRemains
+            // 
+            this.olvCartonQuantityRemains.AspectName = "QuantityRemains";
+            this.olvCartonQuantityRemains.AspectToStringFormat = "{0:#,#}";
+            this.olvCartonQuantityRemains.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.olvCartonQuantityRemains.Text = "Quantity";
+            this.olvCartonQuantityRemains.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.olvCartonQuantityRemains.Width = 80;
+            // 
+            // olvCartonLineVolumeRemains
+            // 
+            this.olvCartonLineVolumeRemains.AspectName = "LineVolumeRemains";
+            this.olvCartonLineVolumeRemains.AspectToStringFormat = "{0:#,##0.00}";
+            this.olvCartonLineVolumeRemains.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.olvCartonLineVolumeRemains.Text = "Volume";
+            this.olvCartonLineVolumeRemains.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.olvCartonLineVolumeRemains.Width = 90;
             // 
             // olvCartonCode
             // 
@@ -402,14 +448,14 @@
         private System.Windows.Forms.Panel panelMaster;
         private BrightIdeasSoftware.OLVColumn olvCommodityCode;
         private BrightIdeasSoftware.OLVColumn olvPalletCode;
-        private BrightIdeasSoftware.OLVColumn olvIsSelected;
+        private BrightIdeasSoftware.OLVColumn olvPalletSelected;
         private BrightIdeasSoftware.OLVColumn olvCommodityName;
         private BrightIdeasSoftware.FastObjectListView fastPendingCartons;
-        private BrightIdeasSoftware.OLVColumn olvColumn1;
+        private BrightIdeasSoftware.OLVColumn olvCartonSelected;
         private BrightIdeasSoftware.OLVColumn olvColumn4;
         private BrightIdeasSoftware.OLVColumn olvCartonCode;
         private BrightIdeasSoftware.OLVColumn olvColumn6;
-        private BrightIdeasSoftware.OLVColumn olvColumn3;
+        private BrightIdeasSoftware.OLVColumn olvPalletBinLocationCode;
         private BrightIdeasSoftware.OLVColumn olvColumn2;
         private System.Windows.Forms.Panel panelBottom;
         private System.Windows.Forms.Panel panelBottomRight;
@@ -424,5 +470,9 @@
         private System.Windows.Forms.ToolStripButton buttonClearFilters;
         private System.Windows.Forms.ContextMenuStrip contextMenuDetails;
         private System.Windows.Forms.ToolStripMenuItem menuOptionBinLocations;
+        private BrightIdeasSoftware.OLVColumn olvPalletQuantityRemains;
+        private BrightIdeasSoftware.OLVColumn olvPalletLineVolumeRemains;
+        private BrightIdeasSoftware.OLVColumn olvCartonQuantityRemains;
+        private BrightIdeasSoftware.OLVColumn olvCartonLineVolumeRemains;
     }
 }

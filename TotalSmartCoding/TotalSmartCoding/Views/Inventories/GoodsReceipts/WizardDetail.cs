@@ -47,6 +47,8 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
             this.goodsReceiptAPIs = goodsReceiptAPIs;
             this.goodsReceiptViewModel = goodsReceiptViewModel;
 
+            this.olvCartonSelected.HeaderCheckState = this.goodsReceiptViewModel.GoodsReceiptTypeID == (int)GlobalEnums.GoodsReceiptTypeID.Pickup ? CheckState.Checked : CheckState.Unchecked;
+            this.olvPalletSelected.HeaderCheckState = this.goodsReceiptViewModel.GoodsReceiptTypeID == (int)GlobalEnums.GoodsReceiptTypeID.Pickup ? CheckState.Checked : CheckState.Unchecked;
             this.menuOptionBinLocations.Visible = this.goodsReceiptViewModel.GoodsReceiptTypeID == (int)GlobalEnums.GoodsReceiptTypeID.GoodsIssueTransfer;
         }
 
@@ -188,8 +190,16 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
 
         private void ShowRowCount(bool showPalletCount, bool showCartonCount)
         {
-            if (showPalletCount) this.customTabBatch.TabPages[0].Text = "Pending " + this.fastPendingPallets.GetItemCount().ToString("N0") + " pallet" + (this.fastPendingPallets.GetItemCount() > 1 ? "s      " : "      ");
-            if (showCartonCount) this.customTabBatch.TabPages[1].Text = "Pending " + this.fastPendingCartons.GetItemCount().ToString("N0") + " carton" + (this.fastPendingCartons.GetItemCount() > 1 ? "s      " : "      ");
+            if (showPalletCount)
+            {
+                decimal? totalQuantityRemains = this.fastPendingPallets.FilteredObjects.Cast<IPendingforGoodsReceiptDetail>().Select(o => o.QuantityRemains).Sum();
+                this.customTabBatch.TabPages[0].Text = "Pending " + this.fastPendingPallets.GetItemCount().ToString("N0") + " pallet" + (this.fastPendingPallets.GetItemCount() > 1 ? "s" : "") + ", Quantity: " + (totalQuantityRemains != null ? ((decimal)totalQuantityRemains).ToString("N0") : "0") + "       ";
+            }
+            if (showCartonCount)
+            {
+                decimal? totalQuantityRemains = this.fastPendingCartons.FilteredObjects.Cast<IPendingforGoodsReceiptDetail>().Select(o => o.QuantityRemains).Sum();
+                this.customTabBatch.TabPages[1].Text = "Pending " + this.fastPendingCartons.GetItemCount().ToString("N0") + " carton" + (this.fastPendingCartons.GetItemCount() > 1 ? "s" : "") + ", Quantity: " + (totalQuantityRemains != null ? ((decimal)totalQuantityRemains).ToString("N0") : "0") + "       ";
+            }
         }
 
         private void menuOptionBinLocations_Click(object sender, EventArgs e)
@@ -225,33 +235,26 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
 
                         if (tabletMDI.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                         {
-                            //if (this.fastPendingPallets.CheckedObjects.Count > 0) //this.pickupViewModel.FillingLineID == (int)GlobalVariables.FillingLine.Drum && 
-                            //{
-                            //    this.pickupViewModel.ViewDetails.RaiseListChangedEvents = false;
-                            //    foreach (var checkedObjects in this.fastPendingPallets.CheckedObjects)
-                            //    {
-                            //        LineDetailBinlLocation pDTO = this.InitLineDetailBinlLocation((PendingPallet)checkedObjects);
-                            //        pDTO.BinLocationID = lineDetailBinlLocation.BinLocationID;
-                            //        pDTO.BinLocationCode = lineDetailBinlLocation.BinLocationCode;
-                            //        this.pickupViewModel.ViewDetails.Add(pDTO);
-                            //    }
-                            //    this.pickupViewModel.ViewDetails.RaiseListChangedEvents = true;
-                            //    this.pickupViewModel.ViewDetails.ResetBindings();
-                            //}
-                            //else
-                            //    this.pickupViewModel.ViewDetails.Add(lineDetailBinlLocation);
+                            if (fastPendingList.Equals(this.fastPendingCartons))
+                            {
+                                foreach (var checkedObject in this.fastPendingCartons.CheckedObjects)
+                                {
+                                    IPendingforGoodsReceiptDetail p = (IPendingforGoodsReceiptDetail)checkedObject;
+                                    p.BinLocationID = (int)lineDetailBinlLocation.BinLocationID;
+                                    p.BinLocationCode = lineDetailBinlLocation.BinLocationCode;
+                                }
+                            }
+                            else
+                            {
+                                pendingforGoodsReceiptDetail.BinLocationID = (int)lineDetailBinlLocation.BinLocationID;
+                                pendingforGoodsReceiptDetail.BinLocationCode = lineDetailBinlLocation.BinLocationCode;
+                            }
 
-                            //this.callAutoSave();
-
-                            pendingforGoodsReceiptDetail.BinLocationID = (int)lineDetailBinlLocation.BinLocationID;
-                            pendingforGoodsReceiptDetail.BinLocationCode = lineDetailBinlLocation.BinLocationCode;
+                            fastPendingList.RefreshObject(pendingforGoodsReceiptDetail);
                         }
 
                         wizardDetail.Dispose(); tabletMDI.Dispose();
-
-
                     }
-
                 }
             }
             catch (Exception exception)

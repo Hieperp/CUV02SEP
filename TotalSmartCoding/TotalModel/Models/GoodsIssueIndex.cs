@@ -24,5 +24,6 @@ namespace TotalModel.Models
         public string CustomerName { get; set; }
         public string WarehouseReceiptName { get; set; }
         public string PrimaryReferences { get; set; }
+        public string GoodsIssueName { get; set; }
     }
 }

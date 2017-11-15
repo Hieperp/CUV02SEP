@@ -129,14 +129,15 @@
         <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssues_Locations" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssues_WarehouseReceipts" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssues_Warehouses" />
-        <EntityTypeShape EntityType="TotalSmartCodingModel.TransferOrder" Width="1.5" PointX="20.75" PointY="21.625" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.TransferOrderType" Width="1.5" PointX="18.5" PointY="28.625" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsReceiptDetails_GoodsIssueTransferDetails" />
+        <EntityTypeShape EntityType="TotalSmartCodingModel.TransferOrder" Width="1.5" PointX="20.75" PointY="21.625" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssues_TransferOrders" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_TransferOrders_Locations" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_TransferOrderDetails_TransferOrders" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_TransferOrders_TransferOrderTypes" />
-        <AssociationConnector Association="TotalSmartCodingModel.FK_TransferOrders_WarehouseReceipts" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_TransferOrders_Warehouses" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_TransferOrders_Warehouses1" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

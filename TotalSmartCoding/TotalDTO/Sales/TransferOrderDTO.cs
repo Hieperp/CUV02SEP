@@ -101,7 +101,7 @@ namespace TotalDTO.Sales
         }
 
         private Nullable<int> transferPackageTypeID;
-        //[DefaultValue(null)]
+        [DefaultValue((int)GlobalEnums.TransferPackageTypeID.Pallets)]
         public Nullable<int> TransferPackageTypeID
         {
             get { return this.transferPackageTypeID; }
@@ -190,7 +190,7 @@ namespace TotalDTO.Sales
         {
             get { return this.DtoDetails().Where(w => w.BatchID != null).Count() > 0; }
         }
-        
+
     }
 
 }

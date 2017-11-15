@@ -226,12 +226,6 @@
     <Compile Include="Views\Inventories\GoodsReceipts\GoodsReceipts.designer.cs">
       <DependentUpon>GoodsReceipts.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Inventories\GoodsReceipts\OptionBinLocations.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\Inventories\GoodsReceipts\OptionBinLocations.Designer.cs">
-      <DependentUpon>OptionBinLocations.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\Inventories\GoodsReceipts\WizardDetail.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -422,9 +416,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Inventories\GoodsReceipts\GoodsReceipts.resx">
       <DependentUpon>GoodsReceipts.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\Inventories\GoodsReceipts\OptionBinLocations.resx">
-      <DependentUpon>OptionBinLocations.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Inventories\GoodsReceipts\WizardDetail.resx">
       <DependentUpon>WizardDetail.cs</DependentUpon>
@@ -1007,6 +998,8 @@
     <None Include="Resources\warehouse-full-24-x.png" />
     <None Include="Resources\warehouse-full-24-x24.png" />
     <None Include="Resources\warehouse-full-24-1-24.png" />
+    <None Include="Resources\Type-icon-24.png" />
+    <None Include="Resources\pallet-24.png" />
     <Content Include="SmartCodingSolution.ico" />
     <None Include="Resources\Yellow-cross.ico" />
     <None Include="Resources\White-Pallet.ico" />

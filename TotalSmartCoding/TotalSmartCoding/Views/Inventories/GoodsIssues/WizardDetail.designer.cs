@@ -36,32 +36,32 @@
             this.olvCommodityCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvBinLocationCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvBatchEntryDate = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvPallet = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvPalletLineVolumeAvailable = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvPalletCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.panelMaster = new System.Windows.Forms.Panel();
             this.fastMismatchedBarcodes = new BrightIdeasSoftware.FastObjectListView();
             this.olvColumn5 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvScannedBarcode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvBarcodeQuantityAvailable = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvBarcodeLineVolumeAvailable = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvDescription = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.fastAvailableCartons = new BrightIdeasSoftware.FastObjectListView();
             this.olvColumn1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn2 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn3 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn4 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvCartonQuantityAvailable = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvCartonLineVolumeAvailable = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvCartonCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.fastAvailablePacks = new BrightIdeasSoftware.FastObjectListView();
             this.olvColumn6 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn7 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn8 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn9 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvPackCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvBarcodeQuantityAvailable = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvBarcodeLineVolumeAvailable = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvPackQuantityAvailable = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvPallet = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvPalletLineVolumeAvailable = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvCartonQuantityAvailable = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvCartonLineVolumeAvailable = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvPackLineVolumeAvailable = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvPackCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.toolStripBottom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastAvailablePallets)).BeginInit();
             this.panelMaster.SuspendLayout();
@@ -180,6 +180,24 @@
             this.olvBatchEntryDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvBatchEntryDate.Width = 80;
             // 
+            // olvPallet
+            // 
+            this.olvPallet.AspectName = "QuantityAvailable";
+            this.olvPallet.AspectToStringFormat = "{0:#,#}";
+            this.olvPallet.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.olvPallet.Text = "Quantity";
+            this.olvPallet.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.olvPallet.Width = 68;
+            // 
+            // olvPalletLineVolumeAvailable
+            // 
+            this.olvPalletLineVolumeAvailable.AspectName = "LineVolumeAvailable";
+            this.olvPalletLineVolumeAvailable.AspectToStringFormat = "{0:#,##0.00}";
+            this.olvPalletLineVolumeAvailable.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.olvPalletLineVolumeAvailable.Text = "Volume";
+            this.olvPalletLineVolumeAvailable.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.olvPalletLineVolumeAvailable.Width = 68;
+            // 
             // olvPalletCode
             // 
             this.olvPalletCode.AspectName = "PalletCode";
@@ -188,7 +206,7 @@
             this.olvPalletCode.Sortable = false;
             this.olvPalletCode.Text = "Pallet Code";
             this.olvPalletCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvPalletCode.Width = 200;
+            this.olvPalletCode.Width = 120;
             // 
             // panelMaster
             // 
@@ -253,6 +271,24 @@
             this.olvScannedBarcode.Text = "Barcode";
             this.olvScannedBarcode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvScannedBarcode.Width = 168;
+            // 
+            // olvBarcodeQuantityAvailable
+            // 
+            this.olvBarcodeQuantityAvailable.AspectName = "QuantityAvailable";
+            this.olvBarcodeQuantityAvailable.AspectToStringFormat = "{0:#,#}";
+            this.olvBarcodeQuantityAvailable.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.olvBarcodeQuantityAvailable.Text = "Quantity";
+            this.olvBarcodeQuantityAvailable.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.olvBarcodeQuantityAvailable.Width = 68;
+            // 
+            // olvBarcodeLineVolumeAvailable
+            // 
+            this.olvBarcodeLineVolumeAvailable.AspectName = "LineVolumeAvailable";
+            this.olvBarcodeLineVolumeAvailable.AspectToStringFormat = "{0:#,##0.00}";
+            this.olvBarcodeLineVolumeAvailable.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.olvBarcodeLineVolumeAvailable.Text = "Volume";
+            this.olvBarcodeLineVolumeAvailable.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.olvBarcodeLineVolumeAvailable.Width = 68;
             // 
             // olvDescription
             // 
@@ -332,6 +368,24 @@
             this.olvColumn4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvColumn4.Width = 80;
             // 
+            // olvCartonQuantityAvailable
+            // 
+            this.olvCartonQuantityAvailable.AspectName = "QuantityAvailable";
+            this.olvCartonQuantityAvailable.AspectToStringFormat = "{0:#,#}";
+            this.olvCartonQuantityAvailable.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.olvCartonQuantityAvailable.Text = "Quantity";
+            this.olvCartonQuantityAvailable.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.olvCartonQuantityAvailable.Width = 68;
+            // 
+            // olvCartonLineVolumeAvailable
+            // 
+            this.olvCartonLineVolumeAvailable.AspectName = "LineVolumeAvailable";
+            this.olvCartonLineVolumeAvailable.AspectToStringFormat = "{0:#,##0.00}";
+            this.olvCartonLineVolumeAvailable.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.olvCartonLineVolumeAvailable.Text = "Volume";
+            this.olvCartonLineVolumeAvailable.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.olvCartonLineVolumeAvailable.Width = 68;
+            // 
             // olvCartonCode
             // 
             this.olvCartonCode.AspectName = "CartonCode";
@@ -340,7 +394,7 @@
             this.olvCartonCode.Sortable = false;
             this.olvCartonCode.Text = "Carton Code";
             this.olvCartonCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvCartonCode.Width = 200;
+            this.olvCartonCode.Width = 120;
             // 
             // fastAvailablePacks
             // 
@@ -414,34 +468,6 @@
             this.olvColumn9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvColumn9.Width = 80;
             // 
-            // olvPackCode
-            // 
-            this.olvPackCode.AspectName = "PackCode";
-            this.olvPackCode.FillsFreeSpace = true;
-            this.olvPackCode.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvPackCode.Sortable = false;
-            this.olvPackCode.Text = "Pack Code";
-            this.olvPackCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvPackCode.Width = 200;
-            // 
-            // olvBarcodeQuantityAvailable
-            // 
-            this.olvBarcodeQuantityAvailable.AspectName = "QuantityAvailable";
-            this.olvBarcodeQuantityAvailable.AspectToStringFormat = "{0:#,#}";
-            this.olvBarcodeQuantityAvailable.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.olvBarcodeQuantityAvailable.Text = "Quantity";
-            this.olvBarcodeQuantityAvailable.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.olvBarcodeQuantityAvailable.Width = 68;
-            // 
-            // olvBarcodeLineVolumeAvailable
-            // 
-            this.olvBarcodeLineVolumeAvailable.AspectName = "LineVolumeAvailable";
-            this.olvBarcodeLineVolumeAvailable.AspectToStringFormat = "{0:#,##0.00}";
-            this.olvBarcodeLineVolumeAvailable.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.olvBarcodeLineVolumeAvailable.Text = "Volume";
-            this.olvBarcodeLineVolumeAvailable.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.olvBarcodeLineVolumeAvailable.Width = 68;
-            // 
             // olvPackQuantityAvailable
             // 
             this.olvPackQuantityAvailable.AspectName = "QuantityAvailable";
@@ -451,42 +477,6 @@
             this.olvPackQuantityAvailable.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.olvPackQuantityAvailable.Width = 68;
             // 
-            // olvPallet
-            // 
-            this.olvPallet.AspectName = "QuantityAvailable";
-            this.olvPallet.AspectToStringFormat = "{0:#,#}";
-            this.olvPallet.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.olvPallet.Text = "Quantity";
-            this.olvPallet.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.olvPallet.Width = 68;
-            // 
-            // olvPalletLineVolumeAvailable
-            // 
-            this.olvPalletLineVolumeAvailable.AspectName = "LineVolumeAvailable";
-            this.olvPalletLineVolumeAvailable.AspectToStringFormat = "{0:#,##0.00}";
-            this.olvPalletLineVolumeAvailable.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.olvPalletLineVolumeAvailable.Text = "Volume";
-            this.olvPalletLineVolumeAvailable.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.olvPalletLineVolumeAvailable.Width = 68;
-            // 
-            // olvCartonQuantityAvailable
-            // 
-            this.olvCartonQuantityAvailable.AspectName = "QuantityAvailable";
-            this.olvCartonQuantityAvailable.AspectToStringFormat = "{0:#,#}";
-            this.olvCartonQuantityAvailable.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.olvCartonQuantityAvailable.Text = "Quantity";
-            this.olvCartonQuantityAvailable.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.olvCartonQuantityAvailable.Width = 68;
-            // 
-            // olvCartonLineVolumeAvailable
-            // 
-            this.olvCartonLineVolumeAvailable.AspectName = "LineVolumeAvailable";
-            this.olvCartonLineVolumeAvailable.AspectToStringFormat = "{0:#,##0.00}";
-            this.olvCartonLineVolumeAvailable.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.olvCartonLineVolumeAvailable.Text = "Volume";
-            this.olvCartonLineVolumeAvailable.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.olvCartonLineVolumeAvailable.Width = 68;
-            // 
             // olvPackLineVolumeAvailable
             // 
             this.olvPackLineVolumeAvailable.AspectName = "LineVolumeAvailable";
@@ -494,6 +484,16 @@
             this.olvPackLineVolumeAvailable.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.olvPackLineVolumeAvailable.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.olvPackLineVolumeAvailable.Width = 68;
+            // 
+            // olvPackCode
+            // 
+            this.olvPackCode.AspectName = "PackCode";
+            this.olvPackCode.FillsFreeSpace = true;
+            this.olvPackCode.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvPackCode.Sortable = false;
+            this.olvPackCode.Text = "Pack Code";
+            this.olvPackCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvPackCode.Width = 120;
             // 
             // WizardDetail
             // 
