@@ -25,8 +25,8 @@ namespace TotalSmartCoding.Views.Sales.DeliveryAdvices
             this.customTabBatch.DisplayStyle = TabStyle.VisualStudio;
             this.customTabBatch.DisplayStyleProvider.ImageAlign = ContentAlignment.MiddleLeft;
 
-            this.customTabBatch.TabPages.Add("tabPendingSalesOrders", "Advice by Sales Orders       ");
-            this.customTabBatch.TabPages.Add("tabPendingSalesOrderCustomers", "Advice by Customers          ");
+            this.customTabBatch.TabPages.Add("tabPendingSalesOrders", "Advice by every sales order    ");
+            this.customTabBatch.TabPages.Add("tabPendingSalesOrderCustomers", "Cumulate orders per customer  ");
             //this.customTabBatch.TabPages.Add("tabNewDeliveryAdvice", "Advice without Sales Order "); //WILL BE IMPLEMENTED LATER IF NEEDED
             this.customTabBatch.TabPages[0].Controls.Add(this.fastPendingSalesOrders);
             this.customTabBatch.TabPages[1].Controls.Add(this.fastPendingSalesOrderCustomers);

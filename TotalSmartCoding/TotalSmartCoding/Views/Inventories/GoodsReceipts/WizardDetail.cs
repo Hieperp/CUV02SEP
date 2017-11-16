@@ -262,5 +262,10 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
                 ExceptionHandlers.ShowExceptionMessageBox(this, exception);
             }
         }
+
+        private void fastPendingBarcodes_MouseDown(object sender, MouseEventArgs e)
+        {
+            this.menuOptionBinLocations_Click(sender, new EventArgs());
+        }
     }
 }

@@ -25,10 +25,10 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
             this.customTabBatch.DisplayStyle = TabStyle.VisualStudio;
             this.customTabBatch.DisplayStyleProvider.ImageAlign = ContentAlignment.MiddleLeft;
 
-            this.customTabBatch.TabPages.Add("tabPendingDeliveryAdvices", "Issue by Delivery Advices        ");
-            this.customTabBatch.TabPages.Add("tabPendingDeliveryAdviceCustomers", "Issue by Customers      ");
-            this.customTabBatch.TabPages.Add("tabPendingDeliveryAdvices", "Issue by Transfer Orders        ");
-            this.customTabBatch.TabPages.Add("tabPendingDeliveryAdvices", "Issue by Warehouses        ");
+            this.customTabBatch.TabPages.Add("tabPendingDeliveryAdvices", "Issue by every advice    ");
+            this.customTabBatch.TabPages.Add("tabPendingDeliveryAdviceCustomers", "Cumulate advices per customer  ");
+            this.customTabBatch.TabPages.Add("tabPendingDeliveryAdvices", "Issue by every transfer order ");
+            this.customTabBatch.TabPages.Add("tabPendingDeliveryAdvices", "Cumulate transfer orders per warehouse ");
             this.customTabBatch.TabPages[0].Controls.Add(this.fastPendingDeliveryAdvices);
             this.customTabBatch.TabPages[1].Controls.Add(this.fastPendingDeliveryAdviceCustomers);
             this.customTabBatch.TabPages[2].Controls.Add(this.fastPendingTransferOrders);

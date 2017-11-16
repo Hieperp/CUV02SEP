@@ -424,7 +424,7 @@
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(224, 31);
             this.label10.TabIndex = 99;
-            this.label10.Text = "Keep Pallet When Transfer";
+            this.label10.Text = "Pallet Shipping";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label11

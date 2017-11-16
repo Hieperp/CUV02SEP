@@ -88,8 +88,8 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
                 this.customTabCenter = new CustomTabControl();
                 this.customTabCenter.DisplayStyle = TabStyle.VisualStudio;
 
-                this.customTabCenter.TabPages.Add("tabCenterPositive", "Positive adjustment quantities      ");
                 this.customTabCenter.TabPages.Add("tabCenterNegative", "Negative adjustment quantities      ");
+                this.customTabCenter.TabPages.Add("tabCenterPositive", "Positive adjustment quantities      ");
                 this.customTabCenter.TabPages.Add("tabCenterDescription", "Description            ");
                 this.customTabCenter.TabPages.Add("tabCenterRemarks", "Remarks                    ");
 
@@ -111,14 +111,12 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
                 this.customTabCenterNegative.TabPages[1].Controls.Add(this.gridexNegativeCartonDetails);
                 this.customTabCenterNegative.TabPages[1].Controls.Add(this.toolStripNegativeCarton);
 
-                this.customTabCenter.TabPages[0].Controls.Add(this.customTabCenterPositive);
-                this.customTabCenter.TabPages[1].Controls.Add(this.customTabCenterNegative);
+                this.customTabCenter.TabPages[0].Controls.Add(this.customTabCenterNegative);
+                this.customTabCenter.TabPages[1].Controls.Add(this.customTabCenterPositive);                
                 this.customTabCenter.TabPages[2].Controls.Add(this.textexDescription);
                 this.customTabCenter.TabPages[3].Controls.Add(this.textexRemarks);
                 this.customTabCenter.TabPages[2].Padding = new Padding(30, 30, 30, 30);
                 this.customTabCenter.TabPages[3].Padding = new Padding(30, 30, 30, 30);
-                //this.customTabCenter.TabPages[0].BackColor = this.panelCenter.BackColor;
-                //this.customTabCenter.TabPages[1].BackColor = this.panelCenter.BackColor;
                 this.customTabCenterPositive.TabPages[0].BackColor = this.panelCenter.BackColor;
                 this.customTabCenterPositive.TabPages[1].BackColor = this.panelCenter.BackColor;
                 this.customTabCenterNegative.TabPages[0].BackColor = this.panelCenter.BackColor;
@@ -239,11 +237,13 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
         {
             if (e.ListChangedType == ListChangedType.ItemAdded || e.ListChangedType == ListChangedType.ItemDeleted || e.ListChangedType == ListChangedType.Reset)
             {
-                this.customTabCenterPositive.TabPages[0].Text = "Pallets [ +" + this.warehouseAdjustmentViewModel.PositivePalletDetails.Count.ToString("N0") + " item(s)]             ";
-                this.customTabCenterPositive.TabPages[1].Text = "Cartons [ +" + this.warehouseAdjustmentViewModel.PositiveCartonDetails.Count.ToString("N0") + " item(s)]             ";
+                this.customTabCenterNegative.TabPages[0].Text = "-" + this.warehouseAdjustmentViewModel.NegativePalletDetails.Count.ToString("N0") + " Pallet" + (this.warehouseAdjustmentViewModel.NegativePalletDetails.Count > 1 ? "s" : "") + "        ";
+                this.customTabCenterNegative.TabPages[1].Text = "-" + this.warehouseAdjustmentViewModel.NegativeCartonDetails.Count.ToString("N0") + " Carton" + (this.warehouseAdjustmentViewModel.NegativeCartonDetails.Count > 1 ? "s" : "") + "        ";
+                this.customTabCenter.TabPages[0].Text = "Issue:  " + this.customTabCenterNegative.TabPages[0].Text.Trim() + ",  " + this.customTabCenterNegative.TabPages[1].Text.Trim() + "        ";
 
-                this.customTabCenterNegative.TabPages[0].Text = "Pallets [ -" + this.warehouseAdjustmentViewModel.NegativePalletDetails.Count.ToString("N0") + " item(s)]             ";
-                this.customTabCenterNegative.TabPages[1].Text = "Cartons [ -" + this.warehouseAdjustmentViewModel.NegativeCartonDetails.Count.ToString("N0") + " item(s)]             ";
+                this.customTabCenterPositive.TabPages[0].Text = "+" + this.warehouseAdjustmentViewModel.PositivePalletDetails.Count.ToString("N0") + " Pallet" + (this.warehouseAdjustmentViewModel.PositivePalletDetails.Count > 1 ? "s" : "") + "        ";
+                this.customTabCenterPositive.TabPages[1].Text = "+" + this.warehouseAdjustmentViewModel.PositiveCartonDetails.Count.ToString("N0") + " Carton" + (this.warehouseAdjustmentViewModel.PositiveCartonDetails.Count > 1 ? "s" : "") + "        ";
+                this.customTabCenter.TabPages[1].Text = "Receipt: " + this.customTabCenterPositive.TabPages[0].Text.Trim() + ", " + this.customTabCenterPositive.TabPages[1].Text.Trim() + "        ";                
             }
         }
 

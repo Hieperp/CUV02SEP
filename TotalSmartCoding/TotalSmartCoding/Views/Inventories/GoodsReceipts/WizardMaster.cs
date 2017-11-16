@@ -23,10 +23,10 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
             this.customTabMain.DisplayStyle = TabStyle.VisualStudio;
             this.customTabMain.DisplayStyleProvider.ImageAlign = ContentAlignment.MiddleLeft;
 
-            this.customTabMain.TabPages.Add("tabPendingPickups", "Receipt by Pickup       ");
-            this.customTabMain.TabPages.Add("tabPendingPickupWarehouses", "Pick Receipt by Warehouse");
-            this.customTabMain.TabPages.Add("tabPendingGoodsIssueTransfers", "Transfer Receipt     ");
-            this.customTabMain.TabPages.Add("tabPendingGoodsIssueTransferWarehouses", "Transfer Receipt by Warehouse");
+            this.customTabMain.TabPages.Add("tabPendingPickups", "Receipt by every pickup ");
+            this.customTabMain.TabPages.Add("tabPendingPickupWarehouses", "Cumulate pickups per warehouse ");
+            this.customTabMain.TabPages.Add("tabPendingGoodsIssueTransfers", "Receipt by every transfer ");
+            this.customTabMain.TabPages.Add("tabPendingGoodsIssueTransferWarehouses", "Cumulate transfers per warehouse ");
             //this.customTabMain.TabPages.Add("tabPendingPurchases", "Purchase Invoice     ");
             //this.customTabMain.TabPages.Add("tabPendingPurchases", "Sales Return     ");
 
