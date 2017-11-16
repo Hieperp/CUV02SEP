@@ -4567,6 +4567,9 @@
           <Property Type="Decimal" Name="TotalQuantity" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="TotalLineVolume" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Boolean" Name="Approved" Nullable="false" />
+          <Property Type="String" Name="WarehouseAdjustmentTypeName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="AdjustmentJobs" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="WarehouseAdjustmentTypeID" Nullable="false" />
         </ComplexType>
         <ComplexType Name="WarehouseAdjustmentViewDetail">
           <Property Type="Int32" Name="WarehouseAdjustmentDetailID" Nullable="false" />
@@ -7579,6 +7582,9 @@
                 <ScalarProperty Name="TotalQuantity" ColumnName="TotalQuantity" />
                 <ScalarProperty Name="TotalLineVolume" ColumnName="TotalLineVolume" />
                 <ScalarProperty Name="Approved" ColumnName="Approved" />
+                <ScalarProperty Name="WarehouseAdjustmentTypeName" ColumnName="WarehouseAdjustmentTypeName" />
+                <ScalarProperty Name="AdjustmentJobs" ColumnName="AdjustmentJobs" />
+                <ScalarProperty Name="WarehouseAdjustmentTypeID" ColumnName="WarehouseAdjustmentTypeID" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

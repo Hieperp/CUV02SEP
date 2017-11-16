@@ -17,6 +17,8 @@ using TotalSmartCoding.Controllers.APIs.Productions;
 using TotalSmartCoding.Controllers.APIs.Inventories;
 using TotalSmartCoding.Libraries.Helpers;
 using TotalSmartCoding.ViewModels.Inventories;
+using TotalDTO.Helpers.Interfaces;
+using TotalSmartCoding.Views.Mains;
 
 
 namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
@@ -52,7 +54,7 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
 
 
             this.warehouseAdjustmentViewModel = warehouseAdjustmentViewModel;
-            this.cartonAPIs = new CartonAPIs(CommonNinject.Kernel.Get<ICartonRepository>());            
+            this.cartonAPIs = new CartonAPIs(CommonNinject.Kernel.Get<ICartonRepository>());
         }
 
 
@@ -83,12 +85,12 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
             {
                 if (sender.Equals(this.buttonAdd) || sender.Equals(this.buttonAddExit))
                 {
-                    FastObjectListView fastPendingList = this.customTabBatch.SelectedIndex == 0 ? this.fastPendingPallets : (this.customTabBatch.SelectedIndex == 1 ? this.fastPendingCartons : null);
-
-                    if (fastPendingList != null)
+                    if (this.fastPendingPallets.CheckedObjects.Count > 0 && this.availableCartons.Count > 0)
                     {
+                        if (this.availableCartons.Where(w => w.BinLocationID == null || w.BinLocationID <= 0).FirstOrDefault() != null) throw new Exception("Vui lòng chọn Bin Location cho carton.");
+
                         this.warehouseAdjustmentViewModel.ViewDetails.RaiseListChangedEvents = false;
-                        foreach (var checkedObjects in fastPendingList.CheckedObjects)
+                        foreach (var checkedObjects in this.fastPendingPallets.CheckedObjects)
                         {
                             GoodsReceiptDetailAvailable goodsReceiptDetailAvailable = (GoodsReceiptDetailAvailable)checkedObjects;
                             WarehouseAdjustmentDetailDTO warehouseAdjustmentDetailDTO = this.newWarehouseAdjustmentDetailDTO(goodsReceiptDetailAvailable.CommodityID, goodsReceiptDetailAvailable.CommodityCode, goodsReceiptDetailAvailable.CommodityName, goodsReceiptDetailAvailable.PackageSize, goodsReceiptDetailAvailable.Volume, goodsReceiptDetailAvailable.PackageVolume, goodsReceiptDetailAvailable.GoodsReceiptID, goodsReceiptDetailAvailable.GoodsReceiptDetailID, goodsReceiptDetailAvailable.GoodsReceiptReference, goodsReceiptDetailAvailable.GoodsReceiptEntryDate, goodsReceiptDetailAvailable.BatchID, goodsReceiptDetailAvailable.BatchEntryDate, goodsReceiptDetailAvailable.BinLocationID, goodsReceiptDetailAvailable.BinLocationCode, goodsReceiptDetailAvailable.WarehouseID, goodsReceiptDetailAvailable.WarehouseCode, goodsReceiptDetailAvailable.PackID, goodsReceiptDetailAvailable.PackCode, goodsReceiptDetailAvailable.CartonID, goodsReceiptDetailAvailable.CartonCode, goodsReceiptDetailAvailable.PalletID, goodsReceiptDetailAvailable.PalletCode, goodsReceiptDetailAvailable.PackCounts, goodsReceiptDetailAvailable.CartonCounts, goodsReceiptDetailAvailable.PalletCounts, (decimal)goodsReceiptDetailAvailable.QuantityAvailable, (decimal)goodsReceiptDetailAvailable.LineVolumeAvailable, -(decimal)goodsReceiptDetailAvailable.QuantityAvailable, -(decimal)goodsReceiptDetailAvailable.LineVolumeAvailable);
@@ -96,14 +98,13 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
 
                             foreach (Carton carton in this.availableCartons.Where(w => w.PalletID == goodsReceiptDetailAvailable.PalletID))
                             {
-                                warehouseAdjustmentDetailDTO = this.newWarehouseAdjustmentDetailDTO(goodsReceiptDetailAvailable.CommodityID, goodsReceiptDetailAvailable.CommodityCode, goodsReceiptDetailAvailable.CommodityName, goodsReceiptDetailAvailable.PackageSize, goodsReceiptDetailAvailable.Volume, goodsReceiptDetailAvailable.PackageVolume, null, null, null, null, goodsReceiptDetailAvailable.BatchID, goodsReceiptDetailAvailable.BatchEntryDate, goodsReceiptDetailAvailable.BinLocationID, goodsReceiptDetailAvailable.BinLocationCode, goodsReceiptDetailAvailable.WarehouseID, goodsReceiptDetailAvailable.WarehouseCode, null, null, carton.CartonID, carton.Code, null, null, carton.PackCounts, 1, 0, 0, 0, 1, carton.LineVolume);
+                                warehouseAdjustmentDetailDTO = this.newWarehouseAdjustmentDetailDTO(goodsReceiptDetailAvailable.CommodityID, goodsReceiptDetailAvailable.CommodityCode, goodsReceiptDetailAvailable.CommodityName, goodsReceiptDetailAvailable.PackageSize, goodsReceiptDetailAvailable.Volume, goodsReceiptDetailAvailable.PackageVolume, null, null, null, null, goodsReceiptDetailAvailable.BatchID, goodsReceiptDetailAvailable.BatchEntryDate, (int)carton.BinLocationID, carton.BinLocationCode, goodsReceiptDetailAvailable.WarehouseID, goodsReceiptDetailAvailable.WarehouseCode, null, null, carton.CartonID, carton.Code, null, null, carton.PackCounts, 1, 0, 0, 0, 1, carton.LineVolume);
                                 this.warehouseAdjustmentViewModel.ViewDetails.Add(warehouseAdjustmentDetailDTO);
                             }
                         }
                         this.warehouseAdjustmentViewModel.ViewDetails.RaiseListChangedEvents = true;
                         this.warehouseAdjustmentViewModel.ViewDetails.ResetBindings();
                     }
-
 
                     if (sender.Equals(this.buttonAddExit))
                         this.DialogResult = DialogResult.OK;
@@ -180,6 +181,7 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
             if (olvListItem.Checked)
             {
                 IList<Carton> cartons = this.cartonAPIs.GetCartons(GlobalVariables.FillingLine.None, null, goodsReceiptDetailAvailable.PalletID);
+                cartons.Each(c => { c.BinLocationID = goodsReceiptDetailAvailable.BinLocationID; c.BinLocationCode = goodsReceiptDetailAvailable.BinLocationCode; });
                 this.availableCartons.AddRange(cartons);
                 this.fastPendingCartons.SetObjects(this.availableCartons);
             }
@@ -219,6 +221,55 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
             if (showPalletCount) this.customTabBatch.TabPages[0].Text = "Available " + this.fastPendingPallets.GetItemCount().ToString("N0") + " pallet" + (this.fastPendingPallets.GetItemCount() > 1 ? "s      " : "      ");
             if (showCartonCount) this.customTabBatch.TabPages[1].Text = "Carton: " + this.fastPendingCartons.GetItemCount().ToString("N0") + " item" + (this.fastPendingCartons.GetItemCount() > 1 ? "s      " : "      ");
         }
-        
+
+        private void fastPendingCartons_MouseDown(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                if (e.Button == System.Windows.Forms.MouseButtons.Right && this.fastPendingCartons.SelectedObject != null)
+                {
+                    Carton carton = (Carton)this.fastPendingCartons.SelectedObject;
+                    if (carton != null)
+                    {
+                        LineDetailBinlLocation lineDetailBinlLocation = new LineDetailBinlLocation()
+                        {
+                            CommodityID = carton.CommodityID,
+                            CartonID = carton.CartonID,
+                            CartonCode = carton.Code,
+                            WarehouseID = this.warehouseAdjustmentViewModel.WarehouseID,
+                            BinLocationID = carton.BinLocationID,
+                            BinLocationCode = carton.BinLocationCode,
+                            Quantity = (decimal)carton.Quantity,
+                            LineVolume = carton.LineVolume
+                        };
+
+                        Pickups.WizardDetail wizardDetail = new Pickups.WizardDetail(lineDetailBinlLocation);
+                        TabletMDI tabletMDI = new TabletMDI(wizardDetail);
+
+                        if (tabletMDI.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                        {
+                            foreach (var checkedObject in this.fastPendingCartons.Objects)
+                            {
+                                Carton p = (Carton)checkedObject;
+                                //if (p.BinLocationID == null)
+                                //{
+                                p.BinLocationID = (int)lineDetailBinlLocation.BinLocationID;
+                                p.BinLocationCode = lineDetailBinlLocation.BinLocationCode;
+                                //}
+                            }
+
+                            this.fastPendingCartons.RefreshObject(carton);
+                        }
+
+                        wizardDetail.Dispose(); tabletMDI.Dispose();
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+            }
+        }
+
     }
 }

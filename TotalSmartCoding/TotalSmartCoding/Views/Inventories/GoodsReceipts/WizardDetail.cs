@@ -265,7 +265,8 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
 
         private void fastPendingBarcodes_MouseDown(object sender, MouseEventArgs e)
         {
-            this.menuOptionBinLocations_Click(sender, new EventArgs());
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+                this.menuOptionBinLocations_Click(sender, new EventArgs());
         }
     }
 }

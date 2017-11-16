@@ -89,7 +89,6 @@
             this.olvPalletQuantityRemains,
             this.olvPalletLineVolumeRemains,
             this.olvPalletCode});
-            this.fastPendingPallets.ContextMenuStrip = this.contextMenuDetails;
             this.fastPendingPallets.Cursor = System.Windows.Forms.Cursors.Default;
             this.fastPendingPallets.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fastPendingPallets.FullRowSelect = true;
@@ -212,7 +211,6 @@
             this.olvCartonQuantityRemains,
             this.olvCartonLineVolumeRemains,
             this.olvCartonCode});
-            this.fastPendingCartons.ContextMenuStrip = this.contextMenuDetails;
             this.fastPendingCartons.Cursor = System.Windows.Forms.Cursors.Default;
             this.fastPendingCartons.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fastPendingCartons.FullRowSelect = true;

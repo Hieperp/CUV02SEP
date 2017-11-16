@@ -691,6 +691,9 @@ namespace TotalModel.Models
     {
         public int GetID() { return this.CartonID; }
 
+        public Nullable<int> BinLocationID { get; set; }
+        public string BinLocationCode { get; set; }
+
         public int UserID { get; set; }
         public int PreparedPersonID { get; set; }
         public int OrganizationalUnitID { get; set; }

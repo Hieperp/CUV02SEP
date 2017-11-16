@@ -114,8 +114,8 @@
             this.olvID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvEntryDate = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvReference = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvWarehouseAdjustmentTypeCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvPickupReferences = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvWarehouseAdjustmentTypeName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvAdjustmentJobs = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvLocationCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvWarehouseName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvDescription = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -314,10 +314,10 @@
             this.label11.AutoSize = true;
             this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label11.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(146, 5);
+            this.label11.Location = new System.Drawing.Point(145, 5);
             this.label11.Margin = new System.Windows.Forms.Padding(3);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(34, 105);
+            this.label11.Size = new System.Drawing.Size(33, 105);
             this.label11.TabIndex = 45;
             this.label11.Text = "Noted By";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -327,10 +327,10 @@
             this.label12.AutoSize = true;
             this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label12.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(289, 5);
+            this.label12.Location = new System.Drawing.Point(287, 5);
             this.label12.Margin = new System.Windows.Forms.Padding(3);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(34, 105);
+            this.label12.Size = new System.Drawing.Size(33, 105);
             this.label12.TabIndex = 47;
             this.label12.Text = "Approved By";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -941,7 +941,7 @@
             this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.019F));
             this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.32099F));
-            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 713F));
+            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 716F));
             this.tableLayoutPanelExtend.Controls.Add(this.combexCommodityID, 0, 0);
             this.tableLayoutPanelExtend.Controls.Add(this.label11, 3, 0);
             this.tableLayoutPanelExtend.Controls.Add(this.label12, 6, 0);
@@ -964,7 +964,7 @@
             this.combexCommodityID.Editable = true;
             this.combexCommodityID.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combexCommodityID.FormattingEnabled = true;
-            this.combexCommodityID.Location = new System.Drawing.Point(43, 3);
+            this.combexCommodityID.Location = new System.Drawing.Point(42, 3);
             this.combexCommodityID.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.combexCommodityID.Name = "combexCommodityID";
             this.combexCommodityID.ReadOnly = false;
@@ -979,7 +979,7 @@
             this.label10.Location = new System.Drawing.Point(3, 5);
             this.label10.Margin = new System.Windows.Forms.Padding(3);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(34, 105);
+            this.label10.Size = new System.Drawing.Size(33, 105);
             this.label10.TabIndex = 35;
             this.label10.Text = "Requested By";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1000,8 +1000,8 @@
             this.fastWarehouseAdjustmentIndex.AllColumns.Add(this.olvID);
             this.fastWarehouseAdjustmentIndex.AllColumns.Add(this.olvEntryDate);
             this.fastWarehouseAdjustmentIndex.AllColumns.Add(this.olvReference);
-            this.fastWarehouseAdjustmentIndex.AllColumns.Add(this.olvWarehouseAdjustmentTypeCode);
-            this.fastWarehouseAdjustmentIndex.AllColumns.Add(this.olvPickupReferences);
+            this.fastWarehouseAdjustmentIndex.AllColumns.Add(this.olvWarehouseAdjustmentTypeName);
+            this.fastWarehouseAdjustmentIndex.AllColumns.Add(this.olvAdjustmentJobs);
             this.fastWarehouseAdjustmentIndex.AllColumns.Add(this.olvLocationCode);
             this.fastWarehouseAdjustmentIndex.AllColumns.Add(this.olvWarehouseName);
             this.fastWarehouseAdjustmentIndex.AllColumns.Add(this.olvDescription);
@@ -1013,8 +1013,8 @@
             this.olvID,
             this.olvEntryDate,
             this.olvReference,
-            this.olvWarehouseAdjustmentTypeCode,
-            this.olvPickupReferences,
+            this.olvWarehouseAdjustmentTypeName,
+            this.olvAdjustmentJobs,
             this.olvLocationCode,
             this.olvWarehouseName,
             this.olvDescription,
@@ -1063,17 +1063,17 @@
             this.olvReference.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvReference.Width = 90;
             // 
-            // olvWarehouseAdjustmentTypeCode
+            // olvWarehouseAdjustmentTypeName
             // 
-            this.olvWarehouseAdjustmentTypeCode.AspectName = "WarehouseAdjustmentTypeCode";
-            this.olvWarehouseAdjustmentTypeCode.Text = "Receipt Type";
-            this.olvWarehouseAdjustmentTypeCode.Width = 113;
+            this.olvWarehouseAdjustmentTypeName.AspectName = "WarehouseAdjustmentTypeName";
+            this.olvWarehouseAdjustmentTypeName.Text = "Receipt Type";
+            this.olvWarehouseAdjustmentTypeName.Width = 113;
             // 
-            // olvPickupReferences
+            // olvAdjustmentJobs
             // 
-            this.olvPickupReferences.AspectName = "PickupReferences";
-            this.olvPickupReferences.Text = "Vouchers";
-            this.olvPickupReferences.Width = 209;
+            this.olvAdjustmentJobs.AspectName = "AdjustmentJobs";
+            this.olvAdjustmentJobs.Text = "Adjustment Jobs";
+            this.olvAdjustmentJobs.Width = 209;
             // 
             // olvLocationCode
             // 
@@ -1219,8 +1219,8 @@
         private CustomControls.DataGridexView gridexPositiveCartonDetails;
         private System.Windows.Forms.ImageList imageList32;
         private BrightIdeasSoftware.OLVColumn olvApproved;
-        private BrightIdeasSoftware.OLVColumn olvWarehouseAdjustmentTypeCode;
-        private BrightIdeasSoftware.OLVColumn olvPickupReferences;
+        private BrightIdeasSoftware.OLVColumn olvWarehouseAdjustmentTypeName;
+        private BrightIdeasSoftware.OLVColumn olvAdjustmentJobs;
         private BrightIdeasSoftware.OLVColumn olvLocationCode;
         private BrightIdeasSoftware.OLVColumn olvWarehouseName;
         private BrightIdeasSoftware.OLVColumn olvDescription;

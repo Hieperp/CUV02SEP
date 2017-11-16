@@ -64,7 +64,7 @@
             this.toolStrip1.Location = new System.Drawing.Point(0, 229);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStrip1.Size = new System.Drawing.Size(694, 55);
+            this.toolStrip1.Size = new System.Drawing.Size(847, 55);
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -101,11 +101,11 @@
             this.combexWarehouseID.Editable = true;
             this.combexWarehouseID.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combexWarehouseID.FormattingEnabled = true;
-            this.combexWarehouseID.Location = new System.Drawing.Point(260, 28);
+            this.combexWarehouseID.Location = new System.Drawing.Point(306, 28);
             this.combexWarehouseID.Margin = new System.Windows.Forms.Padding(1);
             this.combexWarehouseID.Name = "combexWarehouseID";
             this.combexWarehouseID.ReadOnly = false;
-            this.combexWarehouseID.Size = new System.Drawing.Size(407, 28);
+            this.combexWarehouseID.Size = new System.Drawing.Size(513, 28);
             this.combexWarehouseID.TabIndex = 86;
             // 
             // errorProviderMaster
@@ -121,7 +121,7 @@
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
-            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.layoutTop.Controls.Add(this.combexWarehouseAdjustmentTypeID, 3, 2);
             this.layoutTop.Controls.Add(this.label4, 2, 4);
             this.layoutTop.Controls.Add(this.label5, 2, 2);
@@ -150,7 +150,7 @@
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.layoutTop.Size = new System.Drawing.Size(694, 229);
+            this.layoutTop.Size = new System.Drawing.Size(847, 229);
             this.layoutTop.TabIndex = 99;
             // 
             // combexWarehouseAdjustmentTypeID
@@ -161,11 +161,11 @@
             this.combexWarehouseAdjustmentTypeID.Editable = true;
             this.combexWarehouseAdjustmentTypeID.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combexWarehouseAdjustmentTypeID.FormattingEnabled = true;
-            this.combexWarehouseAdjustmentTypeID.Location = new System.Drawing.Point(260, 58);
+            this.combexWarehouseAdjustmentTypeID.Location = new System.Drawing.Point(306, 58);
             this.combexWarehouseAdjustmentTypeID.Margin = new System.Windows.Forms.Padding(1);
             this.combexWarehouseAdjustmentTypeID.Name = "combexWarehouseAdjustmentTypeID";
             this.combexWarehouseAdjustmentTypeID.ReadOnly = false;
-            this.combexWarehouseAdjustmentTypeID.Size = new System.Drawing.Size(407, 29);
+            this.combexWarehouseAdjustmentTypeID.Size = new System.Drawing.Size(513, 29);
             this.combexWarehouseAdjustmentTypeID.TabIndex = 74;
             // 
             // label4
@@ -175,7 +175,7 @@
             this.label4.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(87, 118);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(169, 31);
+            this.label4.Size = new System.Drawing.Size(215, 31);
             this.label4.TabIndex = 77;
             this.label4.Text = "Store Keeper";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -187,7 +187,7 @@
             this.label5.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(87, 57);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(169, 31);
+            this.label5.Size = new System.Drawing.Size(215, 31);
             this.label5.TabIndex = 78;
             this.label5.Text = "Adjustment Type";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -199,7 +199,7 @@
             this.label1.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(87, 149);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(169, 30);
+            this.label1.Size = new System.Drawing.Size(215, 30);
             this.label1.TabIndex = 82;
             this.label1.Text = "Description";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -211,7 +211,7 @@
             this.label8.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(87, 179);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(169, 30);
+            this.label8.Size = new System.Drawing.Size(215, 30);
             this.label8.TabIndex = 88;
             this.label8.Text = "Remarks";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -223,7 +223,7 @@
             this.label11.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.Location = new System.Drawing.Point(87, 27);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(169, 30);
+            this.label11.Size = new System.Drawing.Size(215, 30);
             this.label11.TabIndex = 89;
             this.label11.Text = "Warehouse";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -247,11 +247,11 @@
             this.combexStorekeeperID.Editable = true;
             this.combexStorekeeperID.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combexStorekeeperID.FormattingEnabled = true;
-            this.combexStorekeeperID.Location = new System.Drawing.Point(260, 119);
+            this.combexStorekeeperID.Location = new System.Drawing.Point(306, 119);
             this.combexStorekeeperID.Margin = new System.Windows.Forms.Padding(1);
             this.combexStorekeeperID.Name = "combexStorekeeperID";
             this.combexStorekeeperID.ReadOnly = false;
-            this.combexStorekeeperID.Size = new System.Drawing.Size(407, 29);
+            this.combexStorekeeperID.Size = new System.Drawing.Size(513, 29);
             this.combexStorekeeperID.TabIndex = 80;
             // 
             // textexDescription
@@ -259,10 +259,10 @@
             this.textexDescription.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexDescription.Editable = true;
             this.textexDescription.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textexDescription.Location = new System.Drawing.Point(260, 150);
+            this.textexDescription.Location = new System.Drawing.Point(306, 150);
             this.textexDescription.Margin = new System.Windows.Forms.Padding(1);
             this.textexDescription.Name = "textexDescription";
-            this.textexDescription.Size = new System.Drawing.Size(407, 28);
+            this.textexDescription.Size = new System.Drawing.Size(513, 28);
             this.textexDescription.TabIndex = 87;
             // 
             // textexRemarks
@@ -270,10 +270,10 @@
             this.textexRemarks.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexRemarks.Editable = true;
             this.textexRemarks.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textexRemarks.Location = new System.Drawing.Point(260, 180);
+            this.textexRemarks.Location = new System.Drawing.Point(306, 180);
             this.textexRemarks.Margin = new System.Windows.Forms.Padding(1);
             this.textexRemarks.Name = "textexRemarks";
-            this.textexRemarks.Size = new System.Drawing.Size(407, 28);
+            this.textexRemarks.Size = new System.Drawing.Size(513, 28);
             this.textexRemarks.TabIndex = 81;
             // 
             // textexAdjustmentJobs
@@ -281,10 +281,10 @@
             this.textexAdjustmentJobs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexAdjustmentJobs.Editable = true;
             this.textexAdjustmentJobs.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textexAdjustmentJobs.Location = new System.Drawing.Point(260, 89);
+            this.textexAdjustmentJobs.Location = new System.Drawing.Point(306, 89);
             this.textexAdjustmentJobs.Margin = new System.Windows.Forms.Padding(1);
             this.textexAdjustmentJobs.Name = "textexAdjustmentJobs";
-            this.textexAdjustmentJobs.Size = new System.Drawing.Size(407, 28);
+            this.textexAdjustmentJobs.Size = new System.Drawing.Size(513, 28);
             this.textexAdjustmentJobs.TabIndex = 90;
             // 
             // label2
@@ -294,7 +294,7 @@
             this.label2.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(87, 88);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(169, 30);
+            this.label2.Size = new System.Drawing.Size(215, 30);
             this.label2.TabIndex = 91;
             this.label2.Text = "Adjustment Jobs";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -303,7 +303,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(694, 284);
+            this.ClientSize = new System.Drawing.Size(847, 284);
             this.Controls.Add(this.layoutTop);
             this.Controls.Add(this.toolStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

@@ -260,7 +260,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                 ExceptionHandlers.ShowExceptionMessageBox(this, exception);
             }
         }
-        
+
         private void getPendingItems()
         {
             try
@@ -277,6 +277,9 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                     this.pendingPrimaryDetails = pendingTransferOrderDetails.ToList<IPendingPrimaryDetail>();
                     this.fastPendingPrimaryDetails.SetObjects(pendingTransferOrderDetails); this.olvPrimaryReference.Text = "Orders";
                 }
+
+                this.olvPrimaryReference.Width = this.goodsIssueViewModel.DeliveryAdviceID != null || this.goodsIssueViewModel.TransferOrderID != null ? 0 : 70;
+                this.olvCommodityName.Width = this.goodsIssueViewModel.DeliveryAdviceID != null || this.goodsIssueViewModel.TransferOrderID != null ? (180 + 70) : 180;
 
                 //this.naviPendingItems.Text = "Pending " + this.fastPendingPrimaryDetails.GetItemCount().ToString("N0") + " row" + (this.fastPendingPrimaryDetails.GetItemCount() > 1 ? "s" : "");
             }

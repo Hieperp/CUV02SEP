@@ -83,7 +83,7 @@
             this.naviPendingItems = new Guifreaks.Navisuite.NaviBand(this.components);
             this.fastPendingPrimaryDetails = new BrightIdeasSoftware.FastObjectListView();
             this.olvPrimaryReference = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvCommodityCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvCommodityName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvBatchCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvQuantityRemains = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.naviPickupIndex = new Guifreaks.Navisuite.NaviBand(this.components);
@@ -702,13 +702,13 @@
             // fastPendingPrimaryDetails
             // 
             this.fastPendingPrimaryDetails.AllColumns.Add(this.olvPrimaryReference);
-            this.fastPendingPrimaryDetails.AllColumns.Add(this.olvCommodityCode);
+            this.fastPendingPrimaryDetails.AllColumns.Add(this.olvCommodityName);
             this.fastPendingPrimaryDetails.AllColumns.Add(this.olvBatchCode);
             this.fastPendingPrimaryDetails.AllColumns.Add(this.olvQuantityRemains);
             this.fastPendingPrimaryDetails.BackColor = System.Drawing.Color.Ivory;
             this.fastPendingPrimaryDetails.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.olvPrimaryReference,
-            this.olvCommodityCode,
+            this.olvCommodityName,
             this.olvBatchCode,
             this.olvQuantityRemains});
             this.fastPendingPrimaryDetails.Cursor = System.Windows.Forms.Cursors.Default;
@@ -741,14 +741,13 @@
             this.olvPrimaryReference.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvPrimaryReference.Width = 70;
             // 
-            // olvCommodityCode
+            // olvCommodityName
             // 
-            this.olvCommodityCode.AspectName = "CommodityCode";
-            this.olvCommodityCode.HeaderForeColor = System.Drawing.Color.Firebrick;
-            this.olvCommodityCode.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvCommodityCode.Text = "Items";
-            this.olvCommodityCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvCommodityCode.Width = 180;
+            this.olvCommodityName.AspectName = "CommodityName";
+            this.olvCommodityName.HeaderForeColor = System.Drawing.Color.Firebrick;
+            this.olvCommodityName.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvCommodityName.Text = "Items";
+            this.olvCommodityName.Width = 180;
             // 
             // olvBatchCode
             // 
@@ -997,7 +996,7 @@
         private Guifreaks.Navisuite.NaviBand naviPickupIndex;
         private Guifreaks.Navisuite.NaviBand naviPendingItems;
         private BrightIdeasSoftware.FastObjectListView fastPendingPrimaryDetails;
-        private BrightIdeasSoftware.OLVColumn olvCommodityCode;
+        private BrightIdeasSoftware.OLVColumn olvCommodityName;
         private System.Windows.Forms.Label labelCaption;
         private BrightIdeasSoftware.OLVColumn olvGoodsIssueIndexReference;
         private System.Windows.Forms.ImageList imageList32;

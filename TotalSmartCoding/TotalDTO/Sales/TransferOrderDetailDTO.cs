@@ -66,7 +66,7 @@ namespace TotalDTO.Sales
         protected override List<ValidationRule> CreateRules()
         {
             List<ValidationRule> validationRules = base.CreateRules();
-            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<TransferOrderDetailDTO>(p => p.TransferOrderDetailID), "Số lượng xuất không được lớn hơn số lượng tồn.", delegate { return (this.Quantity <= this.QuantityAvailable && this.LineVolume <= this.LineVolumeAvailable); }));
+            //TẠM THỜI CHƯA KTRA: validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<TransferOrderDetailDTO>(p => p.TransferOrderDetailID), "Số lượng xuất không được lớn hơn số lượng tồn.", delegate { return (this.Quantity <= this.QuantityAvailable && this.LineVolume <= this.LineVolumeAvailable); }));
 
             return validationRules;
         }

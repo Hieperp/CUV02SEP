@@ -44,6 +44,7 @@
             this.fastPendingCartons = new BrightIdeasSoftware.FastObjectListView();
             this.olvColumn1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvCartonCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvCartonBinLocationCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.textexFilters = new System.Windows.Forms.ToolStripTextBox();
@@ -220,10 +221,12 @@
             // 
             this.fastPendingCartons.AllColumns.Add(this.olvColumn1);
             this.fastPendingCartons.AllColumns.Add(this.olvCartonCode);
+            this.fastPendingCartons.AllColumns.Add(this.olvCartonBinLocationCode);
             this.fastPendingCartons.CheckedAspectName = "";
             this.fastPendingCartons.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.olvColumn1,
-            this.olvCartonCode});
+            this.olvCartonCode,
+            this.olvCartonBinLocationCode});
             this.fastPendingCartons.Cursor = System.Windows.Forms.Cursors.Default;
             this.fastPendingCartons.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fastPendingCartons.FullRowSelect = true;
@@ -242,6 +245,7 @@
             this.fastPendingCartons.View = System.Windows.Forms.View.Details;
             this.fastPendingCartons.VirtualMode = true;
             this.fastPendingCartons.ItemsChanged += new System.EventHandler<BrightIdeasSoftware.ItemsChangedEventArgs>(this.fastObjectListView_ItemsChanged);
+            this.fastPendingCartons.MouseDown += new System.Windows.Forms.MouseEventHandler(this.fastPendingCartons_MouseDown);
             // 
             // olvColumn1
             // 
@@ -251,11 +255,19 @@
             // olvCartonCode
             // 
             this.olvCartonCode.AspectName = "Code";
-            this.olvCartonCode.FillsFreeSpace = true;
             this.olvCartonCode.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvCartonCode.Text = "Carton Code";
             this.olvCartonCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvCartonCode.Width = 200;
+            this.olvCartonCode.Width = 680;
+            // 
+            // olvCartonBinLocationCode
+            // 
+            this.olvCartonBinLocationCode.AspectName = "BinLocationCode";
+            this.olvCartonBinLocationCode.FillsFreeSpace = true;
+            this.olvCartonBinLocationCode.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvCartonBinLocationCode.Text = "Bin Location";
+            this.olvCartonBinLocationCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvCartonBinLocationCode.Width = 360;
             // 
             // toolStrip2
             // 
@@ -388,5 +400,6 @@
         private System.Windows.Forms.Panel panelBottom;
         private System.Windows.Forms.Panel panelBottomRight;
         private System.Windows.Forms.Panel panelBottomLeft;
+        private BrightIdeasSoftware.OLVColumn olvCartonBinLocationCode;
     }
 }
