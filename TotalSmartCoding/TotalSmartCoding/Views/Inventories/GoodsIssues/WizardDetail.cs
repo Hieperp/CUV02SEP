@@ -189,7 +189,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                             }
                             else
                             {
-                                mismatchedBarcodes.Add(new MismatchedBarcode() { Barcode = barcode, Description = "Không tìm thấy. Bạn đã xã pallet ra chưa?" });
+                                mismatchedBarcodes.Add(new MismatchedBarcode() { Barcode = barcode, Description = "Không tìm thấy. Bạn đã xả pallet ra chưa?" });
                             }
                         }
                     }
