@@ -128,7 +128,7 @@
             // 
             // comboBoxEmployeeID
             // 
-            this.comboBoxEmployeeID.Enabled = false;
+            this.comboBoxEmployeeID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxEmployeeID.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxEmployeeID.FormattingEnabled = true;
             this.comboBoxEmployeeID.Location = new System.Drawing.Point(138, 101);

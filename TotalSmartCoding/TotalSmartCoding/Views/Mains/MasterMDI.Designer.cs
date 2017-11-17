@@ -76,10 +76,21 @@
             this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.comboFilterTexts = new System.Windows.Forms.ToolStripComboBox();
             this.buttonClearFilters = new System.Windows.Forms.ToolStripButton();
+            this.panelBottom = new System.Windows.Forms.Panel();
+            this.panelBottomRight = new System.Windows.Forms.Panel();
+            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.textexFilters = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
+            this.panelBottomLeft = new System.Windows.Forms.Panel();
             this.naviBarModuleMaster.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.toolstripMain.SuspendLayout();
             this.toolStripTopHead.SuspendLayout();
+            this.panelBottom.SuspendLayout();
+            this.panelBottomRight.SuspendLayout();
+            this.toolStrip2.SuspendLayout();
+            this.panelBottomLeft.SuspendLayout();
             this.SuspendLayout();
             // 
             // imageListModuleMasterSmall
@@ -249,7 +260,7 @@
             this.statusStrip.Location = new System.Drawing.Point(0, 917);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-            this.statusStrip.Size = new System.Drawing.Size(1745, 26);
+            this.statusStrip.Size = new System.Drawing.Size(1914, 26);
             this.statusStrip.TabIndex = 28;
             this.statusStrip.Text = "StatusStrip";
             // 
@@ -365,7 +376,7 @@
             this.toolstripMain.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.toolstripMain.Location = new System.Drawing.Point(0, 55);
             this.toolstripMain.Name = "toolstripMain";
-            this.toolstripMain.Size = new System.Drawing.Size(1745, 55);
+            this.toolstripMain.Size = new System.Drawing.Size(1914, 55);
             this.toolstripMain.TabIndex = 10;
             this.toolstripMain.Text = "ToolStrip";
             // 
@@ -513,6 +524,7 @@
             // 
             this.toolStripTopHead.BackColor = System.Drawing.SystemColors.Control;
             this.toolStripTopHead.BackgroundImage = global::TotalSmartCoding.Properties.Resources.Toolbar_Image;
+            this.toolStripTopHead.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripTopHead.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStripTopHead.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolUserReferences,
@@ -529,7 +541,7 @@
             this.toolStripTopHead.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.toolStripTopHead.Location = new System.Drawing.Point(0, 0);
             this.toolStripTopHead.Name = "toolStripTopHead";
-            this.toolStripTopHead.Size = new System.Drawing.Size(1745, 55);
+            this.toolStripTopHead.Size = new System.Drawing.Size(1230, 55);
             this.toolStripTopHead.TabIndex = 5;
             this.toolStripTopHead.Text = "toolStrip1";
             // 
@@ -618,7 +630,7 @@
             this.comboFilterTexts.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             this.comboFilterTexts.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboFilterTexts.Name = "comboFilterTexts";
-            this.comboFilterTexts.Size = new System.Drawing.Size(500, 55);
+            this.comboFilterTexts.Size = new System.Drawing.Size(418, 55);
             this.comboFilterTexts.TextChanged += new System.EventHandler(this.comboFilterTexts_TextChanged);
             // 
             // buttonClearFilters
@@ -633,14 +645,83 @@
             this.buttonClearFilters.ToolTipText = "Clear current filters";
             this.buttonClearFilters.Click += new System.EventHandler(this.buttonClearFilters_Click);
             // 
+            // panelBottom
+            // 
+            this.panelBottom.Controls.Add(this.panelBottomRight);
+            this.panelBottom.Controls.Add(this.panelBottomLeft);
+            this.panelBottom.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelBottom.Location = new System.Drawing.Point(0, 0);
+            this.panelBottom.Name = "panelBottom";
+            this.panelBottom.Size = new System.Drawing.Size(1914, 55);
+            this.panelBottom.TabIndex = 73;
+            // 
+            // panelBottomRight
+            // 
+            this.panelBottomRight.Controls.Add(this.toolStrip2);
+            this.panelBottomRight.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelBottomRight.Location = new System.Drawing.Point(1230, 0);
+            this.panelBottomRight.Name = "panelBottomRight";
+            this.panelBottomRight.Size = new System.Drawing.Size(684, 55);
+            this.panelBottomRight.TabIndex = 0;
+            // 
+            // toolStrip2
+            // 
+            this.toolStrip2.BackgroundImage = global::TotalSmartCoding.Properties.Resources.Toolbar_Image;
+            this.toolStrip2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.toolStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton1,
+            this.textexFilters,
+            this.toolStripLabel2});
+            this.toolStrip2.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip2.Name = "toolStrip2";
+            this.toolStrip2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.toolStrip2.Size = new System.Drawing.Size(684, 55);
+            this.toolStrip2.TabIndex = 1;
+            this.toolStrip2.Text = "toolStrip2";
+            // 
+            // textexFilters
+            // 
+            this.textexFilters.AutoSize = false;
+            this.textexFilters.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textexFilters.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textexFilters.Name = "textexFilters";
+            this.textexFilters.Size = new System.Drawing.Size(360, 28);
+            this.textexFilters.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = global::TotalSmartCoding.Properties.Resources.Zoom_seach;
+            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(52, 52);
+            this.toolStripButton1.Text = "Filters";
+            // 
+            // toolStripLabel2
+            // 
+            this.toolStripLabel2.Name = "toolStripLabel2";
+            this.toolStripLabel2.Size = new System.Drawing.Size(112, 52);
+            this.toolStripLabel2.Text = "Search Barcode";
+            // 
+            // panelBottomLeft
+            // 
+            this.panelBottomLeft.Controls.Add(this.toolStripTopHead);
+            this.panelBottomLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelBottomLeft.Location = new System.Drawing.Point(0, 0);
+            this.panelBottomLeft.Name = "panelBottomLeft";
+            this.panelBottomLeft.Size = new System.Drawing.Size(1230, 55);
+            this.panelBottomLeft.TabIndex = 1;
+            // 
             // MasterMDI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1745, 943);
+            this.ClientSize = new System.Drawing.Size(1914, 943);
             this.Controls.Add(this.naviBarModuleMaster);
             this.Controls.Add(this.toolstripMain);
-            this.Controls.Add(this.toolStripTopHead);
+            this.Controls.Add(this.panelBottom);
             this.Controls.Add(this.InvisibleMainMenuStripOfMDI);
             this.Controls.Add(this.statusStrip);
             this.IsMdiContainer = true;
@@ -658,6 +739,13 @@
             this.toolstripMain.PerformLayout();
             this.toolStripTopHead.ResumeLayout(false);
             this.toolStripTopHead.PerformLayout();
+            this.panelBottom.ResumeLayout(false);
+            this.panelBottomRight.ResumeLayout(false);
+            this.panelBottomRight.PerformLayout();
+            this.toolStrip2.ResumeLayout(false);
+            this.toolStrip2.PerformLayout();
+            this.panelBottomLeft.ResumeLayout(false);
+            this.panelBottomLeft.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -711,6 +799,13 @@
         private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton5;
         private System.Windows.Forms.ToolStripStatusLabel statusUserDescription;
         private System.Windows.Forms.ToolStripButton toolUserReferences;
+        private System.Windows.Forms.Panel panelBottom;
+        private System.Windows.Forms.Panel panelBottomRight;
+        private System.Windows.Forms.ToolStrip toolStrip2;
+        private System.Windows.Forms.ToolStripTextBox textexFilters;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel2;
+        private System.Windows.Forms.Panel panelBottomLeft;
 
     }
 }

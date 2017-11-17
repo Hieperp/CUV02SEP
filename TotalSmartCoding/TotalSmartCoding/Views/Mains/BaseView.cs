@@ -24,6 +24,7 @@ using TotalSmartCoding.Libraries.Helpers;
 using TotalSmartCoding.Controllers;
 using TotalSmartCoding.Controllers.APIs.Commons;
 using TotalSmartCoding.ViewModels.Helpers;
+using TotalSmartCoding.ViewModels.Productions;
 
 
 
@@ -109,7 +110,7 @@ namespace TotalSmartCoding.Views.Mains
                     DataGridexView dataGridexView = sender as DataGridexView;
                     foreach (string columnName in dataGridColumnNames.ColumnNames)
                     {
-                        if (dataGridexView.Columns[columnName] != null )
+                        if (dataGridexView.Columns[columnName] != null)
                             dataGridexView.Columns[columnName].ReadOnly = true;
                     }
                 }
@@ -467,7 +468,7 @@ namespace TotalSmartCoding.Views.Mains
                 {
                     this.myController.Approve(this.baseDTO.GetID());
 
-                    if (this.ApproveCheck(this.baseDTO.GetID()) && CustomMsgBox.Show(this, "Cài đặt batch này cho sản xuất " + "?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Stop) == DialogResult.Yes)
+                    if (this.ApproveCheck(this.baseDTO.GetID()) && CustomMsgBox.Show(this, (this.baseDTO is BatchViewModel ? "Cài đặt batch này cho sản xuất " : "Are you sure you want to " + (this.baseDTO.Approvable ? "verify" : "un-verify") + " this entry data") + "?", "Warning", MessageBoxButtons.YesNo, (this.baseDTO.Approvable ? MessageBoxIcon.Information : MessageBoxIcon.Warning)) == DialogResult.Yes)
                         if (this.myController.ApproveConfirmed())
                         {
                             this.ApproveMore(this.baseDTO.GetID());

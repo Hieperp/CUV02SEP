@@ -3003,6 +3003,16 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Martz90_Circle_Addon2_Warning {
+            get {
+                object obj = ResourceManager.GetObject("Martz90-Circle-Addon2-Warning", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap money_dollar_icon {
             get {
                 object obj = ResourceManager.GetObject("money-dollar-icon", resourceCulture);

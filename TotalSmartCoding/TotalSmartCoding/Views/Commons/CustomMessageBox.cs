@@ -80,6 +80,8 @@ namespace TotalSmartCoding.Views.Commons
                     break;
             }
 
+            this.pictureIcon.Image = icon == MessageBoxIcon.Warning ? TotalSmartCoding.Properties.Resources.Martz90_Circle_Addon2_Warning : TotalSmartCoding.Properties.Resources.Kyo_Tux_Phuzion_Sign_Info;
+
             this.AcceptButton = defaultButton == MessageBoxDefaultButton.Button1 ? this.button1 : (defaultButton == MessageBoxDefaultButton.Button1 ? this.button2 : this.button3);
         }
     }

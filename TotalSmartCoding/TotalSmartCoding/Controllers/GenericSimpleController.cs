@@ -300,6 +300,8 @@ namespace TotalSmartCoding.Controllers
 
         public override bool ApproveConfirmed()
         {
+            if (!this.simpleViewModel.IsValid || this.simpleViewModel.IsDirty) throw new System.ArgumentException("Lỗi duyệt dữ liệu", "Dữ liệu không hợp lệ, vui lòng kiểm tra lại.");
+
             return this.GenericService.ToggleApproved(this.simpleViewModel);
 
 

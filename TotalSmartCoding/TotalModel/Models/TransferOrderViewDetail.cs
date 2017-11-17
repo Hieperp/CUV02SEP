@@ -27,5 +27,11 @@ namespace TotalModel.Models
         public decimal Quantity { get; set; }
         public decimal LineVolume { get; set; }
         public string Remarks { get; set; }
+        public Nullable<int> BatchID { get; set; }
+        public string BatchCode { get; set; }
+        public decimal QuantityBatchAvailable { get; set; }
+        public decimal LineVolumeBatchAvailable { get; set; }
+        public decimal QuantityIssue { get; set; }
+        public decimal LineVolumeIssue { get; set; }
     }
 }
