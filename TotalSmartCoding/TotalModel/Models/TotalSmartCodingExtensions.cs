@@ -473,10 +473,14 @@ namespace TotalModel.Models
         public int LocationID { get; set; }
 
         public int PreparedPersonID { get; set; }
-        public int OrganizationalUnitID { get; set; }
 
         public System.DateTime CreatedDate { get; set; }
         public System.DateTime EditedDate { get; set; }
+    }
+
+    public partial class ActiveUser
+    {
+        public string FullyQualifiedUserName { get { return this.UserName + "  [" + this.LocationName + "\\" + this.OrganizationalUnitName + "]"; } }
     }
 
     public partial class WarehouseAdjustmentType : IPrimitiveEntity, IBaseEntity

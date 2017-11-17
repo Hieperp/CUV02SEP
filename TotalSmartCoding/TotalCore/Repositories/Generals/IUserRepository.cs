@@ -13,6 +13,8 @@ namespace TotalCore.Repositories.Generals
     {
         IList<OrganizationalUnitIndex> GetOrganizationalUnitIndexes();
 
+        IList<ActiveUser> GetActiveUsers(string securityIdentifier);
+
         IList<UserAccessControl> GetUserAccessControls(int? userID, int? nmvnTaskID);
 
         int UserRemove(int? userID);

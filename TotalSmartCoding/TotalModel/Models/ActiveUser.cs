@@ -10,16 +10,9 @@
 namespace TotalModel.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class User
+    public partial class ActiveUser
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public User()
-        {
-            this.OrganizationalUnitUsers = new HashSet<OrganizationalUnitUser>();
-        }
-    
         public int UserID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -27,9 +20,8 @@ namespace TotalModel.Models
         public string SecurityIdentifier { get; set; }
         public bool IsDatabaseAdmin { get; set; }
         public int OrganizationalUnitID { get; set; }
-        public bool InActive { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrganizationalUnitUser> OrganizationalUnitUsers { get; set; }
+        public string OrganizationalUnitName { get; set; }
+        public int LocationID { get; set; }
+        public string LocationName { get; set; }
     }
 }

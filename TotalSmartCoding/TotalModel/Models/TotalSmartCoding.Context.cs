@@ -1841,5 +1841,14 @@ namespace TotalModel.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<TransferOrderTypeIndex>("GetTransferOrderTypeIndexes", userIDParameter, fromDateParameter, toDateParameter);
         }
+    
+        public virtual ObjectResult<ActiveUser> GetActiveUsers(string securityIdentifier)
+        {
+            var securityIdentifierParameter = securityIdentifier != null ?
+                new ObjectParameter("SecurityIdentifier", securityIdentifier) :
+                new ObjectParameter("SecurityIdentifier", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ActiveUser>("GetActiveUsers", securityIdentifierParameter);
+        }
     }
 }

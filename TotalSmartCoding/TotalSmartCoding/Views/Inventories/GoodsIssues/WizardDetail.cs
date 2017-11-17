@@ -161,7 +161,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                                     {
                                         //WHEN THIS FORM IS LOADED, pendingPrimaryDetail.QuantityIssue AND pendingPrimaryDetail.LineVolumeIssue IS ALWAYS = 0. THESE PROPERTIES (QuantityIssue, LineVolumeIssue) ARE USED TO CHECK (w.QuantityRemains - w.QuantityIssue) > goodsReceiptDetailAvailable.QuantityAvailable && (w.LineVolumeRemains - w.LineVolumeIssue) > goodsReceiptDetailAvailable.LineVolumeAvailable
                                         pendingPrimaryDetail.QuantityIssue = Math.Round(pendingPrimaryDetail.QuantityIssue + (decimal)goodsReceiptDetailAvailable.QuantityAvailable, GlobalEnums.rndQuantity, MidpointRounding.AwayFromZero);
-                                        pendingPrimaryDetail.LineVolumeIssue = Math.Round(pendingPrimaryDetail.QuantityIssue + pendingPrimaryDetail.LineVolumeIssue + (decimal)goodsReceiptDetailAvailable.LineVolumeAvailable, GlobalEnums.rndQuantity, MidpointRounding.AwayFromZero);
+                                        pendingPrimaryDetail.LineVolumeIssue = Math.Round(pendingPrimaryDetail.LineVolumeIssue + (decimal)goodsReceiptDetailAvailable.LineVolumeAvailable, GlobalEnums.rndVolume, MidpointRounding.AwayFromZero);
 
                                         goodsReceiptDetailAvailable.DeliveryAdviceID = pendingPrimaryDetail.DeliveryAdviceID;
                                         goodsReceiptDetailAvailable.DeliveryAdviceDetailID = pendingPrimaryDetail.DeliveryAdviceDetailID;

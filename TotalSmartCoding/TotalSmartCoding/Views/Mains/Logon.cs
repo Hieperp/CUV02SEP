@@ -21,6 +21,8 @@ using TotalDAL.Repositories;
 using TotalCore.Repositories;
 using System.Data.Entity.Core.Objects;
 using System.DirectoryServices.AccountManagement;
+using TotalSmartCoding.Controllers.APIs.Generals;
+using TotalCore.Repositories.Generals;
 
 namespace TotalSmartCoding.Views.Mains
 {
@@ -103,11 +105,20 @@ namespace TotalSmartCoding.Views.Mains
 
             try
             {
-                this.baseRepository = CommonNinject.Kernel.Get<IBaseRepository>();
-                UserPrincipal qbeUser = UserPrincipal.Current;
+                UserPrincipal currentUserPrincipal = UserPrincipal.Current;
+                if (currentUserPrincipal == null || currentUserPrincipal.Sid == null) throw new Exception("Sorry, can not get current user principal!");
 
-                if (qbeUser != null && qbeUser.Sid != null && this.baseRepository.GetUser(qbeUser.Sid.Value))
+                this.baseRepository = CommonNinject.Kernel.Get<IBaseRepository>();
+
+                UserAPIs userAPIs = new UserAPIs(CommonNinject.Kernel.Get<IUserAPIRepository>());
+                IList<ActiveUser> activeUsers = userAPIs.GetActiveUsers(currentUserPrincipal.Sid.Value);
+
+                if (activeUsers.Count > 0)
                 {
+                    this.comboBoxEmployeeID.DataSource = activeUsers;
+                    this.comboBoxEmployeeID.DisplayMember = CommonExpressions.PropertyName<ActiveUser>(p => p.FullyQualifiedUserName);
+                    this.comboBoxEmployeeID.ValueMember = CommonExpressions.PropertyName<ActiveUser>(p => p.UserID);
+
                     FillingLineAPIs fillingLineAPIs = new FillingLineAPIs(CommonNinject.Kernel.Get<IFillingLineAPIRepository>());
 
                     this.comboFillingLineID.DataSource = fillingLineAPIs.GetFillingLineBases();
@@ -139,15 +150,13 @@ namespace TotalSmartCoding.Views.Mains
                     if (this.comboBoxAutonicsPortName.Items.IndexOf(comportName) >= 0)
                         this.comboBoxAutonicsPortName.SelectedIndex = this.comboBoxAutonicsPortName.Items.IndexOf(comportName);
 
-
-                    this.comboBoxEmployeeID.Text = ContextAttributes.User.UserName;
                 }
                 else
                 {
                     this.comboFillingLineID.Visible = false;
                     this.comboBoxEmployeeID.Visible = false;
                     this.lbEmployeeID.Visible = false;
-                    this.lbProductionLineID.Text = "\r\n" + "Sorry, user: " + qbeUser.Name + "\r\n" + "Don't have permission to run this program." + "\r\n" + "\r\n" + "Contact your admin for more information. Thank you!" + "\r\n" + "\r\n" + "\r\n" + "Xin lỗi, bạn chưa được cấp quyền sử dụng phần mềm này.";
+                    this.lbProductionLineID.Text = "\r\n" + "Sorry, user: " + currentUserPrincipal.Name + "\r\n" + "Don't have permission to run this program." + "\r\n" + "\r\n" + "Contact your admin for more information. Thank you!" + "\r\n" + "\r\n" + "\r\n" + "Xin lỗi, bạn chưa được cấp quyền sử dụng phần mềm này.";
 
                     this.buttonOK.Visible = false;
                     this.buttonCancel.Text = "Close";
@@ -177,93 +186,101 @@ namespace TotalSmartCoding.Views.Mains
         {
             try
             {
-                if (this.comboFillingLineID.Visible && (this.comboFillingLineID.SelectedIndex < 0 || this.comboBoxAutonicsPortName.SelectedIndex < 0)) throw new System.ArgumentException("Vui lòng chọn chuyền sản xuất (NOF1, NOF2, NOF...), và chọn đúng cổng COM để chạy phần mềm"); // || (this.comboFillingLineID.Enabled && (GlobalVariables.ProductionLine)this.comboFillingLineID.SelectedValue == GlobalVariables.ProductionLine.SERVER)
-
-                if (this.comboFillingLineID.Visible)
+                if (this.comboBoxEmployeeID.SelectedIndex >= 0)
                 {
-                    GlobalVariables.FillingLineID = (GlobalVariables.FillingLine)this.comboFillingLineID.SelectedValue;
-                    GlobalVariables.FillingLineCode = ((FillingLineBase)this.comboFillingLineID.SelectedItem).Code;
-                    GlobalVariables.FillingLineName = ((FillingLineBase)this.comboFillingLineID.SelectedItem).Name;
+                    ActiveUser activeUser = this.comboBoxEmployeeID.SelectedItem as ActiveUser;
+                    if (activeUser != null)
+                    {
+                        ContextAttributes.User = new UserInformation(activeUser.UserID, activeUser.OrganizationalUnitID, activeUser.UserName, activeUser.SecurityIdentifier, activeUser.FullyQualifiedUserName, activeUser.IsDatabaseAdmin, new DateTime());                        
+
+                        if (this.comboFillingLineID.Visible && (this.comboFillingLineID.SelectedIndex < 0 || this.comboBoxAutonicsPortName.SelectedIndex < 0)) throw new System.ArgumentException("Vui lòng chọn chuyền sản xuất (NOF1, NOF2, NOF...), và chọn đúng cổng COM để chạy phần mềm"); // || (this.comboFillingLineID.Enabled && (GlobalVariables.ProductionLine)this.comboFillingLineID.SelectedValue == GlobalVariables.ProductionLine.SERVER)
+
+                        if (this.comboFillingLineID.Visible)
+                        {
+                            GlobalVariables.FillingLineID = (GlobalVariables.FillingLine)this.comboFillingLineID.SelectedValue;
+                            GlobalVariables.FillingLineCode = ((FillingLineBase)this.comboFillingLineID.SelectedItem).Code;
+                            GlobalVariables.FillingLineName = ((FillingLineBase)this.comboFillingLineID.SelectedItem).Name;
+                        }
+                        else
+                            GlobalVariables.FillingLineID = GlobalVariables.FillingLine.None;
+
+                        GlobalVariables.ComportName = (string)this.comboBoxAutonicsPortName.SelectedValue;
+
+                        CommonConfigs.AddUpdateAppSetting("ConfigID", (GlobalVariables.ConfigID).ToString());
+                        CommonConfigs.AddUpdateAppSetting("ComportName", GlobalVariables.ComportName);
+
+                        CommonConfigs.AddUpdateAppSetting("ReportServerUrl", GlobalVariables.ReportServerUrl); //WILL BE REMOVE THIS LINE
+                        GlobalVariables.ReportServerUrl = CommonConfigs.ReadSetting("ReportServerUrl");
+
+                        this.VersionValidate();
+
+                        if (this.checkEmptyData.Checked)
+                        {
+                            this.baseRepository.ExecuteStoreCommand("DELETE FROM     WarehouseAdjustmentDetails", new ObjectParameter[] { });
+                            this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('WarehouseAdjustmentDetails', RESEED, 0)", new ObjectParameter[] { });
+
+                            this.baseRepository.ExecuteStoreCommand("DELETE FROM     WarehouseAdjustments", new ObjectParameter[] { });
+                            this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('WarehouseAdjustments', RESEED, 0)", new ObjectParameter[] { });
+
+                            this.baseRepository.ExecuteStoreCommand("DELETE FROM     GoodsIssueTransferDetails", new ObjectParameter[] { });
+                            this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('GoodsIssueTransferDetails', RESEED, 0)", new ObjectParameter[] { });
+
+                            this.baseRepository.ExecuteStoreCommand("DELETE FROM     GoodsIssueDetails", new ObjectParameter[] { });
+                            this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('GoodsIssueDetails', RESEED, 0)", new ObjectParameter[] { });
+
+                            this.baseRepository.ExecuteStoreCommand("DELETE FROM     GoodsIssues", new ObjectParameter[] { });
+                            this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('GoodsIssues', RESEED, 0)", new ObjectParameter[] { });
+
+                            this.baseRepository.ExecuteStoreCommand("DELETE FROM     TransferOrderDetails", new ObjectParameter[] { });
+                            this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('TransferOrderDetails', RESEED, 0)", new ObjectParameter[] { });
+
+                            this.baseRepository.ExecuteStoreCommand("DELETE FROM     TransferOrders", new ObjectParameter[] { });
+                            this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('TransferOrders', RESEED, 0)", new ObjectParameter[] { });
+
+                            this.baseRepository.ExecuteStoreCommand("DELETE FROM     DeliveryAdviceDetails", new ObjectParameter[] { });
+                            this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('DeliveryAdviceDetails', RESEED, 0)", new ObjectParameter[] { });
+
+                            this.baseRepository.ExecuteStoreCommand("DELETE FROM     DeliveryAdvices", new ObjectParameter[] { });
+                            this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('DeliveryAdvices', RESEED, 0)", new ObjectParameter[] { });
+
+
+                            this.baseRepository.ExecuteStoreCommand("DELETE FROM     SalesOrderDetails", new ObjectParameter[] { });
+                            this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('SalesOrderDetails', RESEED, 0)", new ObjectParameter[] { });
+
+                            this.baseRepository.ExecuteStoreCommand("DELETE FROM     SalesOrders", new ObjectParameter[] { });
+                            this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('SalesOrders', RESEED, 0)", new ObjectParameter[] { });
+
+
+
+                            this.baseRepository.ExecuteStoreCommand("DELETE FROM     GoodsReceiptDetails", new ObjectParameter[] { });
+                            this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('GoodsReceiptDetails', RESEED, 0)", new ObjectParameter[] { });
+
+                            this.baseRepository.ExecuteStoreCommand("DELETE FROM     GoodsReceipts", new ObjectParameter[] { });
+                            this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('GoodsReceipts', RESEED, 0)", new ObjectParameter[] { });
+
+                            this.baseRepository.ExecuteStoreCommand("DELETE FROM     PickupDetails", new ObjectParameter[] { });
+                            this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('PickupDetails', RESEED, 0)", new ObjectParameter[] { });
+
+                            this.baseRepository.ExecuteStoreCommand("DELETE FROM     Pickups", new ObjectParameter[] { });
+                            this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('Pickups', RESEED, 0)", new ObjectParameter[] { });
+
+                            this.baseRepository.ExecuteStoreCommand("DELETE FROM     Packs", new ObjectParameter[] { });
+                            this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('Packs', RESEED, 0)", new ObjectParameter[] { });
+
+                            this.baseRepository.ExecuteStoreCommand("DELETE FROM     Cartons", new ObjectParameter[] { });
+                            this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('Cartons', RESEED, 0)", new ObjectParameter[] { });
+
+                            this.baseRepository.ExecuteStoreCommand("DELETE FROM     Pallets", new ObjectParameter[] { });
+                            this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('Pallets', RESEED, 0)", new ObjectParameter[] { });
+
+                            //this.baseRepository.ExecuteStoreCommand("DELETE FROM     Batches", new ObjectParameter[] { });
+                            //this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('Batches', RESEED, 0)", new ObjectParameter[] { });
+
+                            //this.baseRepository.ExecuteStoreCommand("DELETE FROM     Commodities", new ObjectParameter[] { });
+                            //this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('Commodities', RESEED, 0)", new ObjectParameter[] { });
+                        }
+                    }
                 }
-                else
-                    GlobalVariables.FillingLineID = GlobalVariables.FillingLine.None;
-
-                GlobalVariables.ComportName = (string)this.comboBoxAutonicsPortName.SelectedValue;
-
-                CommonConfigs.AddUpdateAppSetting("ConfigID", (GlobalVariables.ConfigID).ToString());
-                CommonConfigs.AddUpdateAppSetting("ComportName", GlobalVariables.ComportName);
-
-                CommonConfigs.AddUpdateAppSetting("ReportServerUrl", GlobalVariables.ReportServerUrl); //WILL BE REMOVE THIS LINE
-                GlobalVariables.ReportServerUrl = CommonConfigs.ReadSetting("ReportServerUrl");
-
-                this.VersionValidate();
-
-                if (this.checkEmptyData.Checked)
-                {
-                    this.baseRepository.ExecuteStoreCommand("DELETE FROM     WarehouseAdjustmentDetails", new ObjectParameter[] { });
-                    this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('WarehouseAdjustmentDetails', RESEED, 0)", new ObjectParameter[] { });
-
-                    this.baseRepository.ExecuteStoreCommand("DELETE FROM     WarehouseAdjustments", new ObjectParameter[] { });
-                    this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('WarehouseAdjustments', RESEED, 0)", new ObjectParameter[] { });
-
-                    this.baseRepository.ExecuteStoreCommand("DELETE FROM     GoodsIssueTransferDetails", new ObjectParameter[] { });
-                    this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('GoodsIssueTransferDetails', RESEED, 0)", new ObjectParameter[] { });
-
-                    this.baseRepository.ExecuteStoreCommand("DELETE FROM     GoodsIssueDetails", new ObjectParameter[] { });
-                    this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('GoodsIssueDetails', RESEED, 0)", new ObjectParameter[] { });
-
-                    this.baseRepository.ExecuteStoreCommand("DELETE FROM     GoodsIssues", new ObjectParameter[] { });
-                    this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('GoodsIssues', RESEED, 0)", new ObjectParameter[] { });
-
-                    this.baseRepository.ExecuteStoreCommand("DELETE FROM     TransferOrderDetails", new ObjectParameter[] { });
-                    this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('TransferOrderDetails', RESEED, 0)", new ObjectParameter[] { });
-
-                    this.baseRepository.ExecuteStoreCommand("DELETE FROM     TransferOrders", new ObjectParameter[] { });
-                    this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('TransferOrders', RESEED, 0)", new ObjectParameter[] { });
-
-                    this.baseRepository.ExecuteStoreCommand("DELETE FROM     DeliveryAdviceDetails", new ObjectParameter[] { });
-                    this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('DeliveryAdviceDetails', RESEED, 0)", new ObjectParameter[] { });
-
-                    this.baseRepository.ExecuteStoreCommand("DELETE FROM     DeliveryAdvices", new ObjectParameter[] { });
-                    this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('DeliveryAdvices', RESEED, 0)", new ObjectParameter[] { });
-
-
-                    this.baseRepository.ExecuteStoreCommand("DELETE FROM     SalesOrderDetails", new ObjectParameter[] { });
-                    this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('SalesOrderDetails', RESEED, 0)", new ObjectParameter[] { });
-
-                    this.baseRepository.ExecuteStoreCommand("DELETE FROM     SalesOrders", new ObjectParameter[] { });
-                    this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('SalesOrders', RESEED, 0)", new ObjectParameter[] { });
-
-
-
-                    this.baseRepository.ExecuteStoreCommand("DELETE FROM     GoodsReceiptDetails", new ObjectParameter[] { });
-                    this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('GoodsReceiptDetails', RESEED, 0)", new ObjectParameter[] { });
-
-                    this.baseRepository.ExecuteStoreCommand("DELETE FROM     GoodsReceipts", new ObjectParameter[] { });
-                    this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('GoodsReceipts', RESEED, 0)", new ObjectParameter[] { });
-
-                    this.baseRepository.ExecuteStoreCommand("DELETE FROM     PickupDetails", new ObjectParameter[] { });
-                    this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('PickupDetails', RESEED, 0)", new ObjectParameter[] { });
-
-                    this.baseRepository.ExecuteStoreCommand("DELETE FROM     Pickups", new ObjectParameter[] { });
-                    this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('Pickups', RESEED, 0)", new ObjectParameter[] { });
-
-                    this.baseRepository.ExecuteStoreCommand("DELETE FROM     Packs", new ObjectParameter[] { });
-                    this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('Packs', RESEED, 0)", new ObjectParameter[] { });
-
-                    this.baseRepository.ExecuteStoreCommand("DELETE FROM     Cartons", new ObjectParameter[] { });
-                    this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('Cartons', RESEED, 0)", new ObjectParameter[] { });
-
-                    this.baseRepository.ExecuteStoreCommand("DELETE FROM     Pallets", new ObjectParameter[] { });
-                    this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('Pallets', RESEED, 0)", new ObjectParameter[] { });
-
-                    //this.baseRepository.ExecuteStoreCommand("DELETE FROM     Batches", new ObjectParameter[] { });
-                    //this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('Batches', RESEED, 0)", new ObjectParameter[] { });
-
-                    //this.baseRepository.ExecuteStoreCommand("DELETE FROM     Commodities", new ObjectParameter[] { });
-                    //this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('Commodities', RESEED, 0)", new ObjectParameter[] { });
-                }
-
             }
             catch (Exception exception)
             {

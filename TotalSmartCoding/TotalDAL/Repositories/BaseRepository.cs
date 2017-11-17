@@ -29,7 +29,12 @@ namespace TotalDAL.Repositories
 
             //if (!GlobalVariables.shouldRestoreProcedure) return;
 
-            return;
+            //return;
+            //return;
+
+            Helpers.SqlProgrammability.Generals.UserReference userReference = new Helpers.SqlProgrammability.Generals.UserReference(totalSmartCodingEntities);
+            userReference.RestoreProcedure();
+
             return;
 
             Helpers.SqlProgrammability.Sales.DeliveryAdvice deliveryAdvice = new Helpers.SqlProgrammability.Sales.DeliveryAdvice(totalSmartCodingEntities);
@@ -99,10 +104,7 @@ namespace TotalDAL.Repositories
 
 
             
-            return;
-
-            Helpers.SqlProgrammability.Generals.UserReference userReference = new Helpers.SqlProgrammability.Generals.UserReference(totalSmartCodingEntities);
-            userReference.RestoreProcedure();
+            
 
 
             
@@ -262,15 +264,6 @@ namespace TotalDAL.Repositories
             int? versionID = this.GetVersionID(configID);
             if (versionID == null || (int)versionID != configVersionID) throw new Exception("This program on your computer is not the latest version." + "\r\n" + "\r\n" + "Please exit and re-open your program again in order to update new version." + "\r\n" + "Contact your admin for more information. Thank you!" + "\r\n" + "\r\n" + "Phần mềm vừa được cập nhật phiên bản mới." + "\r\n" + "Vui lòng đóng và sau đó mở lại phần mềm để cập nhật phiên bản mới nhất. Cám ơn.");
             return true;
-        }
-
-        public bool GetUser(string userName)
-        {
-            var userOrganizationalUnit = this.totalSmartCodingEntities.GetUserOrganizationalUnit(userName).FirstOrDefault();
-            if (userOrganizationalUnit != null)
-                ContextAttributes.User = new UserInformation(userOrganizationalUnit.UserID, userOrganizationalUnit.OrganizationalUnitID, userOrganizationalUnit.UserName, userOrganizationalUnit.SecurityIdentifier, userOrganizationalUnit.IsDatabaseAdmin, new DateTime());
-
-            return ContextAttributes.User != null;
         }
 
         public int GetModuleID(GlobalEnums.NmvnTaskID nmvnTaskID)

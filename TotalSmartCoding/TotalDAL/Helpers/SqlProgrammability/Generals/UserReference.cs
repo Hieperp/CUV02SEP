@@ -21,6 +21,8 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             this.GetUserIndexes();
             this.GetOrganizationalUnitIndexes();
 
+            this.GetActiveUsers();
+
             this.UserAdd();
             this.UserRemove();
 
@@ -67,16 +69,37 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             this.totalSmartCodingEntities.CreateStoredProcedure("GetOrganizationalUnitIndexes", queryString);
         }
 
+        private void GetActiveUsers()
+        {
+            string queryString;
+
+            queryString = " @SecurityIdentifier nvarchar(256) " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+            queryString = queryString + "    BEGIN " + "\r\n";
+
+            queryString = queryString + "       SELECT      Users.UserID, Users.FirstName, Users.LastName, Users.UserName, Users.SecurityIdentifier, Users.IsDatabaseAdmin, Users.OrganizationalUnitID, OrganizationalUnits.Name AS OrganizationalUnitName, OrganizationalUnits.LocationID, Locations.Name AS LocationName " + "\r\n";
+            queryString = queryString + "       FROM        Users " + "\r\n";
+            queryString = queryString + "                   INNER JOIN OrganizationalUnits ON Users.SecurityIdentifier = @SecurityIdentifier AND Users.InActive = 0 AND Users.OrganizationalUnitID = OrganizationalUnits.OrganizationalUnitID " + "\r\n";
+            queryString = queryString + "                   INNER JOIN Locations ON OrganizationalUnits.LocationID = Locations.LocationID " + "\r\n";
+
+            queryString = queryString + "    END " + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("GetActiveUsers", queryString);
+        }
+
         private void UserAdd()
         {
             string queryString = " @OrganizationalUnitID int, @FirstName nvarchar(60), @LastName nvarchar(60), @UserName nvarchar(256), @SecurityIdentifier nvarchar(256) " + "\r\n";
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
-
+            //AT NOW: OrganizationalUnitUsers KHONG CON PHU HOP NUA, TUY NHIEN, VAN PHAI DUY TRI VI KHONG CO THOI GIAN MODIFY
+            //YEU CAU LUC NAY LA: LAM SAO DAM BAO Users(UserID, OrganizationalUnitID) VA OrganizationalUnitUsers(OrganizationalUnitID, UserID) PHAI MATCH 1-1
+            //DO DO: KHI ADD, REMOVE, EDIT, INACTIVE, ... PHAI DAM BAO YEU CAU NAY THI MOI THU SE OK
             queryString = queryString + "       BEGIN " + "\r\n";
 
             queryString = queryString + "           DECLARE         @UserID Int" + "\r\n";
-            queryString = queryString + "           INSERT INTO     Users (FirstName, LastName, UserName, SecurityIdentifier, IsDatabaseAdmin) VALUES (@FirstName, @LastName, @UserName, @SecurityIdentifier, 0) " + "\r\n";
+            queryString = queryString + "           INSERT INTO     Users (OrganizationalUnitID, FirstName, LastName, UserName, SecurityIdentifier, IsDatabaseAdmin) VALUES (@OrganizationalUnitID, @FirstName, @LastName, @UserName, @SecurityIdentifier, 0) " + "\r\n";
             queryString = queryString + "           SELECT          @UserID = SCOPE_IDENTITY() " + "\r\n";
             queryString = queryString + "           INSERT INTO     OrganizationalUnitUsers (OrganizationalUnitID, UserID, InActive) VALUES (@OrganizationalUnitID, @UserID, 0) " + "\r\n";
 

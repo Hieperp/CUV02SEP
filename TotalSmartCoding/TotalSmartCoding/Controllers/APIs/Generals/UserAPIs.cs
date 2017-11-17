@@ -31,12 +31,17 @@ namespace TotalSmartCoding.Controllers.APIs.Generals
 
         public IList<OrganizationalUnitIndex> GetOrganizationalUnitIndexes()
         {
-            return this.userAPIRepository.GetOrganizationalUnitIndexes().ToList();
+            return this.userAPIRepository.GetOrganizationalUnitIndexes();
         }
 
+        public IList<ActiveUser> GetActiveUsers(string securityIdentifier)
+        {
+            return this.userAPIRepository.GetActiveUsers(securityIdentifier);
+        }
+        
         public IList<UserAccessControl> GetUserAccessControls(int? userID, int? nmvnTaskID)
         {
-            return this.userAPIRepository.GetUserAccessControls(userID, nmvnTaskID).ToList();
+            return this.userAPIRepository.GetUserAccessControls(userID, nmvnTaskID);
         }
 
         public int UserAdd(int? organizationalUnitID, string firstName, string lastName, string userName, string securityIdentifier)
