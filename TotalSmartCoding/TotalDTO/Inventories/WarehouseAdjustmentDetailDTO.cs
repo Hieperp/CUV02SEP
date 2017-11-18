@@ -35,6 +35,8 @@ namespace TotalDTO.Inventories
         public int WarehouseID { get; set; }
         public string WarehouseCode { get; set; }
 
+        public Nullable<int> WarehouseReceiptID { get; set; }
+
         public int BinLocationID { get; set; }
         public string BinLocationCode { get; set; }
 

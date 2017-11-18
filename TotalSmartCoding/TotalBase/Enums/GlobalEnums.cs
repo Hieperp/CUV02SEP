@@ -14,7 +14,7 @@
 
         public static bool OnTestCartonNoreadNow = false;
         public static bool OnTestPalletReceivedNow = false;
-        
+
 
         public static OptionSetting GlobalOptionSetting = new OptionSetting();
         public static string stringFieldRequired = "Input not correct. Please make sure all required fields are filled out correctly";
@@ -27,7 +27,7 @@
         public static int CalculatingTypeID = 0;
 
         public static bool VATbyRow = false;
-        public static decimal VATPercent = 10; 
+        public static decimal VATPercent = 10;
 
         public static int rndQuantity = 0;
         public static int rndVolume = 2;
@@ -37,7 +37,7 @@
         public const string formatQuantity = "#,##0";
         public const string formatVolume = "#,##0.00";
 
-        
+
         public static int rndWeight = 2;
 
         public enum ActiveOption
@@ -90,7 +90,7 @@
 
             GoodsReceipt = 8077,
             WarehouseAdjustment = 8078,
-            
+
             TransferOrder = 8071,
 
             Pickup = 8068
@@ -258,7 +258,7 @@
 
 
 
-        
+
 
 
 
@@ -303,6 +303,26 @@
             TransferOrder = 2
         };
 
+        public enum WarehouseAdjustmentTypeID
+        {
+            UnpackPallet = 1,
+            ChangeBinLocation = 10,
+            HoldUnHold = 20
+        };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         public enum SalesInvoiceTypeID
         {
             AllInvoice = 1,
@@ -324,13 +344,7 @@
             Maintenance = 3
         };
 
-        public enum InventoryAdjustmentTypeID
-        {
-            AllAdjustment = 1,
-            VehicleAdjustment = 10,
-            PartAdjustment = 20
-        };
-
+        
 
         public enum CommodityTypeID
         {

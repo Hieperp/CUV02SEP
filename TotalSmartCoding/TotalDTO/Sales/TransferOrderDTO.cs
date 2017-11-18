@@ -51,7 +51,7 @@ namespace TotalDTO.Sales
         public string WarehouseName
         {
             get { return this.warehouseName; }
-            set { ApplyPropertyChange<TransferOrderDTO, string>(ref this.warehouseName, o => o.WarehouseName, value, false); }
+            set { ApplyPropertyChange<TransferOrderPrimitiveDTO, string>(ref this.warehouseName, o => o.WarehouseName, value, false); }
         }
 
         private Nullable<int> warehouseReceiptID;
@@ -66,7 +66,7 @@ namespace TotalDTO.Sales
         public string WarehouseReceiptName
         {
             get { return this.warehouseReceiptName; }
-            set { ApplyPropertyChange<TransferOrderDTO, string>(ref this.warehouseReceiptName, o => o.WarehouseReceiptName, value, false); }
+            set { ApplyPropertyChange<TransferOrderPrimitiveDTO, string>(ref this.warehouseReceiptName, o => o.WarehouseReceiptName, value, false); }
         }
 
         private string transferJobs;
@@ -74,7 +74,7 @@ namespace TotalDTO.Sales
         public string TransferJobs
         {
             get { return this.transferJobs; }
-            set { ApplyPropertyChange<TransferOrderDTO, string>(ref this.transferJobs, o => o.TransferJobs, value); }
+            set { ApplyPropertyChange<TransferOrderPrimitiveDTO, string>(ref this.transferJobs, o => o.TransferJobs, value); }
         }
 
         private string voucherCode;
@@ -161,7 +161,7 @@ namespace TotalDTO.Sales
             validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<TransferOrderPrimitiveDTO>(p => p.TransferOrderTypeID), "Vui lòng chọn loại chuyển kho.", delegate { return (this.TransferOrderTypeID != null && this.TransferOrderTypeID > 0); }));
             validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<TransferOrderPrimitiveDTO>(p => p.TransferPackageTypeID), "Vui lòng chọn hình thức đóng gói khi vận chuyển.", delegate { return (this.TransferPackageTypeID != null && this.TransferPackageTypeID > 0); }));
             validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<TransferOrderPrimitiveDTO>(p => p.ForkliftDriverID), "Vui lòng chọn thủ kho.", delegate { return (this.ForkliftDriverID != null && this.ForkliftDriverID > 0); }));
-            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<TransferOrderPrimitiveDTO>(p => p.StorekeeperID), "Vui lòng chọn người lập.", delegate { return (this.StorekeeperID != null && this.StorekeeperID > 0); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<TransferOrderPrimitiveDTO>(p => p.StorekeeperID), "Vui lòng chọn người lập.", delegate { return (this.StorekeeperID > 0); }));
 
             return validationRules;
         }

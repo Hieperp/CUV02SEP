@@ -39,14 +39,33 @@ namespace TotalDTO.Inventories
         public int WarehouseID
         {
             get { return this.warehouseID; }
-            set { ApplyPropertyChange<GoodsReceiptPrimitiveDTO, int>(ref this.warehouseID, o => o.WarehouseID, value); }
+            set
+            {
+                ApplyPropertyChange<WarehouseAdjustmentPrimitiveDTO, int>(ref this.warehouseID, o => o.WarehouseID, value);
+                if (!this.WarehouseReceiptEnabled) this.WarehouseReceiptID = this.WarehouseID;
+            }
         }
         private string warehouseName;
         [DefaultValue(null)]
         public string WarehouseName
         {
             get { return this.warehouseName; }
-            set { ApplyPropertyChange<GoodsReceiptDTO, string>(ref this.warehouseName, o => o.WarehouseName, value); }
+            set { ApplyPropertyChange<WarehouseAdjustmentPrimitiveDTO, string>(ref this.warehouseName, o => o.WarehouseName, value); }
+        }
+
+        private Nullable<int> warehouseReceiptID;
+        [DefaultValue(null)]
+        public Nullable<int> WarehouseReceiptID
+        {
+            get { return this.warehouseReceiptID; }
+            set { ApplyPropertyChange<WarehouseAdjustmentPrimitiveDTO, Nullable<int>>(ref this.warehouseReceiptID, o => o.WarehouseReceiptID, value); }
+        }
+        private string warehouseReceiptName;
+        [DefaultValue(null)]
+        public string WarehouseReceiptName
+        {
+            get { return this.warehouseReceiptName; }
+            set { ApplyPropertyChange<WarehouseAdjustmentPrimitiveDTO, string>(ref this.warehouseReceiptName, o => o.WarehouseReceiptName, value, false); }
         }
 
 
@@ -55,7 +74,10 @@ namespace TotalDTO.Inventories
         public int WarehouseAdjustmentTypeID
         {
             get { return this.warehouseAdjustmentTypeID; }
-            set { ApplyPropertyChange<WarehouseAdjustmentPrimitiveDTO, int>(ref this.warehouseAdjustmentTypeID, o => o.WarehouseAdjustmentTypeID, value); }
+            set { 
+                ApplyPropertyChange<WarehouseAdjustmentPrimitiveDTO, int>(ref this.warehouseAdjustmentTypeID, o => o.WarehouseAdjustmentTypeID, value);
+                if (!this.WarehouseReceiptEnabled) this.WarehouseReceiptID = this.WarehouseID;
+            }
         }
         private string warehouseAdjustmentTypeName;
         [DefaultValue(null)]
@@ -64,6 +86,8 @@ namespace TotalDTO.Inventories
             get { return this.warehouseAdjustmentTypeName; }
             set { ApplyPropertyChange<WarehouseAdjustmentDTO, string>(ref this.warehouseAdjustmentTypeName, o => o.WarehouseAdjustmentTypeName, value); }
         }
+
+        public bool WarehouseReceiptEnabled { get { return this.WarehouseAdjustmentTypeID == (int)GlobalEnums.WarehouseAdjustmentTypeID.HoldUnHold; } }
 
         private string adjustmentJobs;
         [DefaultValue(null)]
@@ -82,7 +106,7 @@ namespace TotalDTO.Inventories
         }
 
 
-        
+
 
         public bool HasPositiveLine { get { return this.DtoDetails().Where(w => w.Quantity > 0).Count() > 0; } }
 
@@ -95,15 +119,16 @@ namespace TotalDTO.Inventories
         {
             base.PerformPresaveRule();
 
-            this.DtoDetails().ToList().ForEach(e => { e.WarehouseID = this.WarehouseID; e.WarehouseAdjustmentTypeID = this.WarehouseAdjustmentTypeID; });
+            this.DtoDetails().ToList().ForEach(e => { e.WarehouseID = this.WarehouseID; e.WarehouseReceiptID = this.WarehouseReceiptID; e.WarehouseAdjustmentTypeID = this.WarehouseAdjustmentTypeID; });
         }
 
         protected override List<ValidationRule> CreateRules()
         {
             List<ValidationRule> validationRules = base.CreateRules();
-            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<WarehouseAdjustmentPrimitiveDTO>(p => p.WarehouseID), "Vui lòng chọn kho.", delegate { return (this.WarehouseID != null && this.WarehouseID > 0); }));
-            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<WarehouseAdjustmentPrimitiveDTO>(p => p.WarehouseAdjustmentTypeID), "Vui lòng chọn tài xế.", delegate { return (this.WarehouseAdjustmentTypeID != null && this.WarehouseAdjustmentTypeID > 0); }));
-            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<WarehouseAdjustmentPrimitiveDTO>(p => p.StorekeeperID), "Vui lòng chọn nhân viên kho.", delegate { return (this.StorekeeperID != null && this.StorekeeperID > 0); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<WarehouseAdjustmentPrimitiveDTO>(p => p.WarehouseID), "Vui lòng chọn kho.", delegate { return (this.WarehouseID > 0); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<WarehouseAdjustmentPrimitiveDTO>(p => p.WarehouseReceiptID), "Vui lòng chọn kho nhập.", delegate { return (this.WarehouseReceiptID != null && this.WarehouseReceiptID > 0); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<WarehouseAdjustmentPrimitiveDTO>(p => p.WarehouseAdjustmentTypeID), "Vui lòng chọn tài xế.", delegate { return (this.WarehouseAdjustmentTypeID > 0); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<WarehouseAdjustmentPrimitiveDTO>(p => p.StorekeeperID), "Vui lòng chọn nhân viên kho.", delegate { return (this.StorekeeperID > 0); }));
 
             return validationRules;
 

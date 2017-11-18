@@ -28,6 +28,7 @@ namespace TotalModel.Models
         public string Reference { get; set; }
         public int LocationID { get; set; }
         public int WarehouseID { get; set; }
+        public int WarehouseReceiptID { get; set; }
         public int BinLocationID { get; set; }
         public int CommodityID { get; set; }
         public int BatchID { get; set; }
@@ -48,12 +49,13 @@ namespace TotalModel.Models
         public virtual BinLocation BinLocation { get; set; }
         public virtual Carton Carton { get; set; }
         public virtual Commodity Commodity { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GoodsReceiptDetail> GoodsReceiptDetails { get; set; }
+        public virtual GoodsReceiptDetail GoodsReceiptDetail { get; set; }
         public virtual Pack Pack { get; set; }
         public virtual Pallet Pallet { get; set; }
         public virtual WarehouseAdjustment WarehouseAdjustment { get; set; }
         public virtual Warehouse Warehouse { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GoodsReceiptDetail> GoodsReceiptDetails { get; set; }
-        public virtual GoodsReceiptDetail GoodsReceiptDetail { get; set; }
+        public virtual Warehouse Warehouse1 { get; set; }
     }
 }

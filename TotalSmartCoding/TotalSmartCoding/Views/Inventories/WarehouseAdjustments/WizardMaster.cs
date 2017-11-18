@@ -22,6 +22,7 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
         private WarehouseAdjustmentViewModel warehouseAdjustmentViewModel;
 
         Binding bindingWarehouseID;
+        Binding bindingWarehouseReceiptID;
         Binding bindingWarehouseAdjustmentTypeID;
         Binding bindingStorekeeperID;
 
@@ -43,11 +44,17 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
                 this.warehouseAdjustmentViewModel.PropertyChanged += warehouseAdjustmentDetailDTO_PropertyChanged;
 
                 WarehouseAPIs warehouseAPIs = new WarehouseAPIs(CommonNinject.Kernel.Get<IWarehouseAPIRepository>());
-
                 this.combexWarehouseID.DataSource = warehouseAPIs.GetWarehouseBases();
                 this.combexWarehouseID.DisplayMember = CommonExpressions.PropertyName<WarehouseBase>(p => p.Name);
                 this.combexWarehouseID.ValueMember = CommonExpressions.PropertyName<WarehouseBase>(p => p.WarehouseID);
                 this.bindingWarehouseID = this.combexWarehouseID.DataBindings.Add("SelectedValue", this.warehouseAdjustmentViewModel, CommonExpressions.PropertyName<WarehouseAdjustmentViewModel>(p => p.WarehouseID), true, DataSourceUpdateMode.OnPropertyChanged);
+
+                WarehouseAPIs warehouseReceiptAPIs = new WarehouseAPIs(CommonNinject.Kernel.Get<IWarehouseAPIRepository>());
+                this.combexWarehouseReceiptID.DataSource = warehouseReceiptAPIs.GetWarehouseBases();
+                this.combexWarehouseReceiptID.DisplayMember = CommonExpressions.PropertyName<WarehouseBase>(p => p.Name);
+                this.combexWarehouseReceiptID.ValueMember = CommonExpressions.PropertyName<WarehouseBase>(p => p.WarehouseID);
+                this.bindingWarehouseReceiptID = this.combexWarehouseReceiptID.DataBindings.Add("SelectedValue", this.warehouseAdjustmentViewModel, CommonExpressions.PropertyName<WarehouseAdjustmentViewModel>(p => p.WarehouseReceiptID), true, DataSourceUpdateMode.OnPropertyChanged);
+                this.combexWarehouseReceiptID.DataBindings.Add("Enabled", this.warehouseAdjustmentViewModel, CommonExpressions.PropertyName<WarehouseAdjustmentViewModel>(p => p.WarehouseReceiptEnabled), true, DataSourceUpdateMode.OnPropertyChanged);
 
                 WarehouseAdjustmentTypeAPIs warehouseAdjustmentTypeAPIs = new WarehouseAdjustmentTypeAPIs(CommonNinject.Kernel.Get<IWarehouseAdjustmentTypeAPIRepository>());
 
@@ -68,6 +75,7 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
                 this.bindingRemarks = this.textexRemarks.DataBindings.Add("Text", this.warehouseAdjustmentViewModel, CommonExpressions.PropertyName<WarehouseAdjustmentViewModel>(p => p.Remarks), true, DataSourceUpdateMode.OnPropertyChanged);
 
                 this.bindingWarehouseID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+                this.bindingWarehouseReceiptID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
                 this.bindingWarehouseAdjustmentTypeID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
                 this.bindingStorekeeperID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
 
@@ -99,7 +107,15 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
                     this.warehouseAdjustmentViewModel.WarehouseName = warehouseBase.Name;
                 }
             }
-            else if (sender.Equals(this.bindingWarehouseAdjustmentTypeID))
+            if (sender.Equals(this.bindingWarehouseReceiptID))
+            {
+                if (this.combexWarehouseReceiptID.SelectedItem != null)
+                {
+                    WarehouseBase warehouseBase = (WarehouseBase)this.combexWarehouseReceiptID.SelectedItem;
+                    this.warehouseAdjustmentViewModel.WarehouseReceiptName = warehouseBase.Name;
+                }
+            }
+            if (sender.Equals(this.bindingWarehouseAdjustmentTypeID))
             {
                 if (this.combexWarehouseAdjustmentTypeID.SelectedItem != null)
                 {

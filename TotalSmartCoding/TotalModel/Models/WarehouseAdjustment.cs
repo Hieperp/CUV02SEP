@@ -17,14 +17,15 @@ namespace TotalModel.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public WarehouseAdjustment()
         {
-            this.WarehouseAdjustmentDetails = new HashSet<WarehouseAdjustmentDetail>();
             this.GoodsReceipts = new HashSet<GoodsReceipt>();
+            this.WarehouseAdjustmentDetails = new HashSet<WarehouseAdjustmentDetail>();
         }
     
         public int WarehouseAdjustmentID { get; set; }
         public System.DateTime EntryDate { get; set; }
         public string Reference { get; set; }
         public int WarehouseID { get; set; }
+        public int WarehouseReceiptID { get; set; }
         public int WarehouseAdjustmentTypeID { get; set; }
         public int StorekeeperID { get; set; }
         public bool HasPositiveLine { get; set; }
@@ -45,12 +46,13 @@ namespace TotalModel.Models
         public bool Approved { get; set; }
         public Nullable<System.DateTime> ApprovedDate { get; set; }
     
-        public virtual WarehouseAdjustmentType WarehouseAdjustmentType { get; set; }
-        public virtual Warehouse Warehouse { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<WarehouseAdjustmentDetail> WarehouseAdjustmentDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GoodsReceipt> GoodsReceipts { get; set; }
         public virtual Location Location { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<WarehouseAdjustmentDetail> WarehouseAdjustmentDetails { get; set; }
+        public virtual WarehouseAdjustmentType WarehouseAdjustmentType { get; set; }
+        public virtual Warehouse Warehouse { get; set; }
+        public virtual Warehouse Warehouse1 { get; set; }
     }
 }

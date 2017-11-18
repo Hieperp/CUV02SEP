@@ -49,7 +49,6 @@ namespace TotalModel.Models
         public virtual DbSet<BinLocation> BinLocations { get; set; }
         public virtual DbSet<Batch> Batches { get; set; }
         public virtual DbSet<ModuleDetail> ModuleDetails { get; set; }
-        public virtual DbSet<WarehouseAdjustment> WarehouseAdjustments { get; set; }
         public virtual DbSet<GoodsIssueType> GoodsIssueTypes { get; set; }
         public virtual DbSet<TransferOrderDetail> TransferOrderDetails { get; set; }
         public virtual DbSet<CustomerCategory> CustomerCategories { get; set; }
@@ -57,7 +56,6 @@ namespace TotalModel.Models
         public virtual DbSet<EntireTerritory> EntireTerritories { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<GoodsIssueTransferDetail> GoodsIssueTransferDetails { get; set; }
-        public virtual DbSet<WarehouseAdjustmentDetail> WarehouseAdjustmentDetails { get; set; }
         public virtual DbSet<GoodsReceiptDetail> GoodsReceiptDetails { get; set; }
         public virtual DbSet<GoodsReceipt> GoodsReceipts { get; set; }
         public virtual DbSet<Location> Locations { get; set; }
@@ -66,6 +64,8 @@ namespace TotalModel.Models
         public virtual DbSet<GoodsIssue> GoodsIssues { get; set; }
         public virtual DbSet<TransferOrderType> TransferOrderTypes { get; set; }
         public virtual DbSet<TransferOrder> TransferOrders { get; set; }
+        public virtual DbSet<WarehouseAdjustmentDetail> WarehouseAdjustmentDetails { get; set; }
+        public virtual DbSet<WarehouseAdjustment> WarehouseAdjustments { get; set; }
     
         public virtual ObjectResult<Nullable<int>> GetAccessLevel(Nullable<int> userID, Nullable<int> nMVNTaskID, Nullable<int> organizationalUnitID)
         {
