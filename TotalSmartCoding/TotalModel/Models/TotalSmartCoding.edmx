@@ -4577,7 +4577,7 @@
           <Property Type="String" Name="Remarks" Nullable="true" MaxLength="100" />
           <Property Type="Decimal" Name="QuantityAvailable" Nullable="true" Precision="19" Scale="2" />
           <Property Type="Decimal" Name="LineVolumeAvailable" Nullable="true" Precision="19" Scale="2" />
-          <Property Type="Boolean" Name="IsSelected" Nullable="true" />
+          <Property Type="Boolean" Name="IsSelected" Nullable="false" />
           <Property Type="Int32" Name="PackID" Nullable="true" />
           <Property Type="String" Name="PackCode" Nullable="true" MaxLength="50" />
           <Property Type="Int32" Name="CartonID" Nullable="true" />

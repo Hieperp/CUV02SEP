@@ -277,10 +277,19 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
         protected override void wizardDetail()
         {
             base.wizardDetail();
-            WizardUnpack wizardDetail = new WizardUnpack(this.warehouseAdjustmentViewModel);
-            wizardDetail.ShowDialog();
+            Form wizardDetail = new Form();
 
-            wizardDetail.Dispose();
+            if (this.warehouseAdjustmentViewModel.WarehouseAdjustmentTypeID == (int)GlobalEnums.WarehouseAdjustmentTypeID.UnpackPallet)
+                wizardDetail = new WizardUnpack(this.warehouseAdjustmentViewModel);
+            
+            if (this.warehouseAdjustmentViewModel.WarehouseAdjustmentTypeID == (int)GlobalEnums.WarehouseAdjustmentTypeID.ChangeBinLocation || this.warehouseAdjustmentViewModel.WarehouseAdjustmentTypeID == (int)GlobalEnums.WarehouseAdjustmentTypeID.HoldUnHold)
+                wizardDetail = new WizardTransfer(this.warehouseAdjustmentViewModel);
+
+            if (wizardDetail is WizardUnpack || wizardDetail is WizardTransfer)
+            {
+                wizardDetail.ShowDialog();
+                wizardDetail.Dispose();
+            }
         }
 
         private void buttonAddDetails_Click(object sender, EventArgs e)

@@ -133,6 +133,8 @@ namespace TotalModel.Models
         Nullable<decimal> QuantityRemains { get; set; }
         Nullable<decimal> LineVolumeRemains { get; set; }
 
+        //THESE PROPERTIES (QuantityIssue, LineVolumeIssue) ARE USED TO CHECK WHEN IMPORT TXT BARCODE FILE: (w.QuantityRemains - w.QuantityIssue) > goodsReceiptDetailAvailable.QuantityAvailable && (w.LineVolumeRemains - w.LineVolumeIssue) > goodsReceiptDetailAvailable.LineVolumeAvailable. 
+        //THESE PROPERTIES ARE USED FOR THIS PURPOSE ONLY. SEE VIEW Views.Inventories.GoodsIssues.WizardDetail FOR MORE DETAIL.
         decimal QuantityIssue { get; set; }
         decimal LineVolumeIssue { get; set; }
 

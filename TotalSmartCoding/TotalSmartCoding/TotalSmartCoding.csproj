@@ -262,17 +262,23 @@
     <Compile Include="Views\Inventories\WarehouseAdjustments\WarehouseAdjustments.designer.cs">
       <DependentUpon>WarehouseAdjustments.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Inventories\WarehouseAdjustments\WizardUnpack.cs">
+    <Compile Include="Views\Inventories\WarehouseAdjustments\WizardTransfer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\Inventories\WarehouseAdjustments\WizardUnpack.designer.cs">
-      <DependentUpon>WizardUnpack.cs</DependentUpon>
+    <Compile Include="Views\Inventories\WarehouseAdjustments\WizardTransfer.designer.cs">
+      <DependentUpon>WizardTransfer.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Inventories\WarehouseAdjustments\WizardMaster.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\Inventories\WarehouseAdjustments\WizardMaster.designer.cs">
       <DependentUpon>WizardMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inventories\WarehouseAdjustments\WizardUnpack.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Inventories\WarehouseAdjustments\WizardUnpack.designer.cs">
+      <DependentUpon>WizardUnpack.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Mains\BaseView.cs">
       <SubType>Form</SubType>
@@ -435,11 +441,14 @@
     <EmbeddedResource Include="Views\Inventories\WarehouseAdjustments\WarehouseAdjustments.resx">
       <DependentUpon>WarehouseAdjustments.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Inventories\WarehouseAdjustments\WizardUnpack.resx">
-      <DependentUpon>WizardUnpack.cs</DependentUpon>
+    <EmbeddedResource Include="Views\Inventories\WarehouseAdjustments\WizardTransfer.resx">
+      <DependentUpon>WizardTransfer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Inventories\WarehouseAdjustments\WizardMaster.resx">
       <DependentUpon>WizardMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Inventories\WarehouseAdjustments\WizardUnpack.resx">
+      <DependentUpon>WizardUnpack.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Mains\BaseView.resx">
       <DependentUpon>BaseView.cs</DependentUpon>

@@ -41,7 +41,7 @@ namespace TotalService.Inventories
                     GoodsReceiptDTO goodsReceiptDTO = new GoodsReceiptDTO();
 
                     goodsReceiptDTO.EntryDate = warehouseAdjustment.EntryDate;
-                    goodsReceiptDTO.WarehouseID = warehouseAdjustment.WarehouseID;
+                    goodsReceiptDTO.WarehouseID = warehouseAdjustment.WarehouseReceiptID;
 
                     goodsReceiptDTO.WarehouseAdjustmentID = warehouseAdjustment.WarehouseAdjustmentID;
 

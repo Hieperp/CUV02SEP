@@ -405,20 +405,23 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
 
             if (declareTableAvailable)
             {
+                queryString = queryString + "           DECLARE     @SearchLocationID int " + "\r\n";
                 queryString = queryString + "           DECLARE     @CommoditiesAvailable TABLE (LocationID int NOT NULL, CommodityID int NOT NULL, QuantityAvailable decimal(18, 2) NOT NULL, LineVolumeAvailable decimal(18, 2) NOT NULL) " + "\r\n";
                 if (byBatchID)
                     queryString = queryString + "       DECLARE     @CommoditiesAvailableByBatches TABLE (LocationID int NOT NULL, CommodityID int NOT NULL, BatchID int NULL, QuantityAvailable decimal(18, 2) NOT NULL, LineVolumeAvailable decimal(18, 2) NOT NULL) " + "\r\n";
             }
             if (getAvailable)
             {
-                queryString = queryString + "           INSERT INTO @CommoditiesAvailable (LocationID, CommodityID, QuantityAvailable, LineVolumeAvailable) " + "\r\n";
-                queryString = queryString + "           SELECT      LocationID, CommodityID, SUM(Quantity - QuantityIssue) AS QuantityAvailable, SUM(LineVolume - LineVolumeIssue) AS LineVolumeAvailable FROM GoodsReceiptDetails WHERE Approved = 1 AND ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") > 0 AND LocationID = (SELECT TOP 1 LocationID FROM " + searchTable + ") AND CommodityID IN (SELECT DISTINCT CommodityID FROM " + searchTable + ") GROUP BY LocationID, CommodityID " + "\r\n";
+                queryString = queryString + "           SET         @SearchLocationID = (SELECT TOP 1 LocationID FROM " + searchTable + ") " + "\r\n";
 
                 queryString = queryString + "           INSERT INTO @CommoditiesAvailable (LocationID, CommodityID, QuantityAvailable, LineVolumeAvailable) " + "\r\n";
-                queryString = queryString + "           SELECT      LocationID, CommodityID, SUM(-Quantity + QuantityIssue) AS QuantityAvailable, SUM(-LineVolume + LineVolumeIssue) AS LineVolumeAvailable FROM DeliveryAdviceDetails WHERE ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") > 0 " + (isDeliveryAdvice && sqlEdit ? " AND DeliveryAdviceID <> @DeliveryAdviceID" : "") + " GROUP BY LocationID, CommodityID " + "\r\n";
+                queryString = queryString + "           SELECT      @SearchLocationID, CommodityID, SUM(Quantity - QuantityIssue) AS QuantityAvailable, SUM(LineVolume - LineVolumeIssue) AS LineVolumeAvailable FROM GoodsReceiptDetails WHERE Approved = 1 AND ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") > 0 AND LocationID = @SearchLocationID AND WarehouseID IN (SELECT WarehouseID FROM Warehouses WHERE Issuable = 1) AND CommodityID IN (SELECT DISTINCT CommodityID FROM " + searchTable + ") GROUP BY CommodityID " + "\r\n";
 
                 queryString = queryString + "           INSERT INTO @CommoditiesAvailable (LocationID, CommodityID, QuantityAvailable, LineVolumeAvailable) " + "\r\n";
-                queryString = queryString + "           SELECT      LocationID, CommodityID, SUM(-Quantity + QuantityIssue) AS QuantityAvailable, SUM(-LineVolume + LineVolumeIssue) AS LineVolumeAvailable FROM TransferOrderDetails WHERE ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") > 0 " + (isTransferOrder && sqlEdit ? " AND TransferOrderID <> @TransferOrderID" : "") + " GROUP BY LocationID, CommodityID " + "\r\n";
+                queryString = queryString + "           SELECT      @SearchLocationID, CommodityID, SUM(-Quantity + QuantityIssue) AS QuantityAvailable, SUM(-LineVolume + LineVolumeIssue) AS LineVolumeAvailable FROM DeliveryAdviceDetails WHERE ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") > 0 AND LocationID = @SearchLocationID AND CommodityID IN (SELECT DISTINCT CommodityID FROM " + searchTable + ") " + (isDeliveryAdvice && sqlEdit ? " AND DeliveryAdviceID <> @DeliveryAdviceID" : "") + " GROUP BY CommodityID " + "\r\n";
+
+                queryString = queryString + "           INSERT INTO @CommoditiesAvailable (LocationID, CommodityID, QuantityAvailable, LineVolumeAvailable) " + "\r\n";
+                queryString = queryString + "           SELECT      @SearchLocationID, CommodityID, SUM(-Quantity + QuantityIssue) AS QuantityAvailable, SUM(-LineVolume + LineVolumeIssue) AS LineVolumeAvailable FROM TransferOrderDetails WHERE ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") > 0 AND LocationID = @SearchLocationID AND CommodityID IN (SELECT DISTINCT CommodityID FROM " + searchTable + ") " + (isTransferOrder && sqlEdit ? " AND TransferOrderID <> @TransferOrderID" : "") + " GROUP BY CommodityID " + "\r\n";
 
                 if (byBatchID)
                 {
@@ -428,13 +431,13 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
                         queryString = queryString + "       BEGIN " + "\r\n";
                     }
                     queryString = queryString + "               INSERT INTO @CommoditiesAvailableByBatches (LocationID, CommodityID, BatchID, QuantityAvailable, LineVolumeAvailable) " + "\r\n";
-                    queryString = queryString + "               SELECT      LocationID, CommodityID, BatchID, SUM(Quantity - QuantityIssue) AS QuantityAvailable, SUM(LineVolume - LineVolumeIssue) AS LineVolumeAvailable FROM GoodsReceiptDetails WHERE Approved = 1 AND ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") > 0 AND LocationID = (SELECT TOP 1 LocationID FROM " + searchTable + ") AND CommodityID IN (SELECT DISTINCT CommodityID FROM " + searchTable + ") GROUP BY LocationID, CommodityID, BatchID " + "\r\n";
+                    queryString = queryString + "               SELECT      @SearchLocationID, CommodityID, BatchID, SUM(Quantity - QuantityIssue) AS QuantityAvailable, SUM(LineVolume - LineVolumeIssue) AS LineVolumeAvailable FROM GoodsReceiptDetails WHERE Approved = 1 AND ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") > 0 AND WarehouseID IN (SELECT WarehouseID FROM Warehouses WHERE Issuable = 1) AND LocationID = @SearchLocationID AND CommodityID IN (SELECT DISTINCT CommodityID FROM " + searchTable + ") GROUP BY CommodityID, BatchID " + "\r\n";
 
                     queryString = queryString + "               INSERT INTO @CommoditiesAvailableByBatches (LocationID, CommodityID, BatchID, QuantityAvailable, LineVolumeAvailable) " + "\r\n";
-                    queryString = queryString + "               SELECT      LocationID, CommodityID, BatchID, SUM(-Quantity + QuantityIssue) AS QuantityAvailable, SUM(-LineVolume + LineVolumeIssue) AS LineVolumeAvailable FROM DeliveryAdviceDetails WHERE ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") > 0 " + (isDeliveryAdvice && sqlEdit ? " AND DeliveryAdviceID <> @DeliveryAdviceID" : "") + " AND NOT BatchID IS NULL GROUP BY LocationID, CommodityID, BatchID " + "\r\n";
+                    queryString = queryString + "               SELECT      @SearchLocationID, CommodityID, BatchID, SUM(-Quantity + QuantityIssue) AS QuantityAvailable, SUM(-LineVolume + LineVolumeIssue) AS LineVolumeAvailable FROM DeliveryAdviceDetails WHERE ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") > 0 AND LocationID = @SearchLocationID AND CommodityID IN (SELECT DISTINCT CommodityID FROM " + searchTable + ") " + (isDeliveryAdvice && sqlEdit ? " AND DeliveryAdviceID <> @DeliveryAdviceID" : "") + " AND NOT BatchID IS NULL GROUP BY CommodityID, BatchID " + "\r\n";
 
                     queryString = queryString + "               INSERT INTO @CommoditiesAvailableByBatches (LocationID, CommodityID, BatchID, QuantityAvailable, LineVolumeAvailable) " + "\r\n";
-                    queryString = queryString + "               SELECT      LocationID, CommodityID, BatchID, SUM(-Quantity + QuantityIssue) AS QuantityAvailable, SUM(-LineVolume + LineVolumeIssue) AS LineVolumeAvailable FROM TransferOrderDetails WHERE ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") > 0 " + (isTransferOrder && sqlEdit ? " AND TransferOrderID <> @TransferOrderID" : "") + " AND NOT BatchID IS NULL GROUP BY LocationID, CommodityID, BatchID " + "\r\n";
+                    queryString = queryString + "               SELECT      @SearchLocationID, CommodityID, BatchID, SUM(-Quantity + QuantityIssue) AS QuantityAvailable, SUM(-LineVolume + LineVolumeIssue) AS LineVolumeAvailable FROM TransferOrderDetails WHERE ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") > 0 AND LocationID = @SearchLocationID AND CommodityID IN (SELECT DISTINCT CommodityID FROM " + searchTable + ") " + (isTransferOrder && sqlEdit ? " AND TransferOrderID <> @TransferOrderID" : "") + " AND NOT BatchID IS NULL GROUP BY CommodityID, BatchID " + "\r\n";
 
                     if (!getAllBatch)
                     {
@@ -447,12 +450,12 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
                     if (isDeliveryAdvice)
                     {
                         queryString = queryString + "       INSERT INTO @CommoditiesAvailable (LocationID, CommodityID, QuantityAvailable, LineVolumeAvailable) " + "\r\n";
-                        queryString = queryString + "       SELECT      LocationID, CommodityID, SUM(QuantityIssue) AS QuantityAvailable, SUM(LineVolumeIssue) AS LineVolumeAvailable FROM DeliveryAdviceDetails WHERE QuantityIssue > 0 AND DeliveryAdviceID = @DeliveryAdviceID GROUP BY LocationID, CommodityID " + "\r\n";
+                        queryString = queryString + "       SELECT      @SearchLocationID, CommodityID, SUM(QuantityIssue) AS QuantityAvailable, SUM(LineVolumeIssue) AS LineVolumeAvailable FROM DeliveryAdviceDetails WHERE QuantityIssue > 0 AND DeliveryAdviceID = @DeliveryAdviceID GROUP BY CommodityID " + "\r\n";
                     }
                     if (isTransferOrder)
                     {
                         queryString = queryString + "       INSERT INTO @CommoditiesAvailable (LocationID, CommodityID, QuantityAvailable, LineVolumeAvailable) " + "\r\n";
-                        queryString = queryString + "       SELECT      LocationID, CommodityID, SUM(QuantityIssue) AS QuantityAvailable, SUM(LineVolumeIssue) AS LineVolumeAvailable FROM TransferOrderDetails WHERE QuantityIssue > 0 AND TransferOrderID = @TransferOrderID GROUP BY LocationID, CommodityID " + "\r\n";
+                        queryString = queryString + "       SELECT      @SearchLocationID, CommodityID, SUM(QuantityIssue) AS QuantityAvailable, SUM(LineVolumeIssue) AS LineVolumeAvailable FROM TransferOrderDetails WHERE QuantityIssue > 0 AND TransferOrderID = @TransferOrderID GROUP BY CommodityID " + "\r\n";
                     }
 
                     if (byBatchID)
@@ -465,13 +468,13 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
                         if (isDeliveryAdvice)
                         {
                             queryString = queryString + "               INSERT INTO @CommoditiesAvailableByBatches (LocationID, CommodityID, BatchID, QuantityAvailable, LineVolumeAvailable) " + "\r\n";
-                            queryString = queryString + "               SELECT      LocationID, CommodityID, BatchID, SUM(QuantityIssue) AS QuantityAvailable, SUM(LineVolumeIssue) AS LineVolumeAvailable FROM DeliveryAdviceDetails WHERE QuantityIssue > 0 AND DeliveryAdviceID = @DeliveryAdviceID AND NOT BatchID IS NULL GROUP BY LocationID, CommodityID, BatchID " + "\r\n";
+                            queryString = queryString + "               SELECT      @SearchLocationID, CommodityID, BatchID, SUM(QuantityIssue) AS QuantityAvailable, SUM(LineVolumeIssue) AS LineVolumeAvailable FROM DeliveryAdviceDetails WHERE QuantityIssue > 0 AND DeliveryAdviceID = @DeliveryAdviceID AND NOT BatchID IS NULL GROUP BY CommodityID, BatchID " + "\r\n";
                         }
 
                         if (isTransferOrder)
                         {
                             queryString = queryString + "               INSERT INTO @CommoditiesAvailableByBatches (LocationID, CommodityID, BatchID, QuantityAvailable, LineVolumeAvailable) " + "\r\n";
-                            queryString = queryString + "               SELECT      LocationID, CommodityID, BatchID, SUM(QuantityIssue) AS QuantityAvailable, SUM(LineVolumeIssue) AS LineVolumeAvailable FROM TransferOrderDetails WHERE QuantityIssue > 0 AND TransferOrderID = @TransferOrderID AND NOT BatchID IS NULL GROUP BY LocationID, CommodityID, BatchID " + "\r\n";
+                            queryString = queryString + "               SELECT      @SearchLocationID, CommodityID, BatchID, SUM(QuantityIssue) AS QuantityAvailable, SUM(LineVolumeIssue) AS LineVolumeAvailable FROM TransferOrderDetails WHERE QuantityIssue > 0 AND TransferOrderID = @TransferOrderID AND NOT BatchID IS NULL GROUP BY CommodityID, BatchID " + "\r\n";
                         }
                         if (!getAllBatch)
                         {

@@ -159,7 +159,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                                     IPendingPrimaryDetail pendingPrimaryDetail = this.pendingPrimaryDetails.ToList().Find(w => w.CommodityID == goodsReceiptDetailAvailable.CommodityID && (w.BatchID == null || w.BatchID == goodsReceiptDetailAvailable.BatchID) && (w.QuantityRemains - w.QuantityIssue) >= goodsReceiptDetailAvailable.QuantityAvailable && (w.LineVolumeRemains - w.LineVolumeIssue) >= goodsReceiptDetailAvailable.LineVolumeAvailable);
                                     if (pendingPrimaryDetail != null)
                                     {
-                                        //WHEN THIS FORM IS LOADED, pendingPrimaryDetail.QuantityIssue AND pendingPrimaryDetail.LineVolumeIssue IS ALWAYS = 0. THESE PROPERTIES (QuantityIssue, LineVolumeIssue) ARE USED TO CHECK (w.QuantityRemains - w.QuantityIssue) > goodsReceiptDetailAvailable.QuantityAvailable && (w.LineVolumeRemains - w.LineVolumeIssue) > goodsReceiptDetailAvailable.LineVolumeAvailable
+                                        //WHEN THIS FORM IS LOADED, pendingPrimaryDetail.QuantityIssue AND pendingPrimaryDetail.LineVolumeIssue IS ALWAYS = 0. THESE PROPERTIES (QuantityIssue, LineVolumeIssue) ARE USED TO CHECK (w.QuantityRemains - w.QuantityIssue) > goodsReceiptDetailAvailable.QuantityAvailable && (w.LineVolumeRemains - w.LineVolumeIssue) > goodsReceiptDetailAvailable.LineVolumeAvailable. THESE PROPERTIES ARE USED FOR THIS PURPOSE ONLY
                                         pendingPrimaryDetail.QuantityIssue = Math.Round(pendingPrimaryDetail.QuantityIssue + (decimal)goodsReceiptDetailAvailable.QuantityAvailable, GlobalEnums.rndQuantity, MidpointRounding.AwayFromZero);
                                         pendingPrimaryDetail.LineVolumeIssue = Math.Round(pendingPrimaryDetail.LineVolumeIssue + (decimal)goodsReceiptDetailAvailable.LineVolumeAvailable, GlobalEnums.rndVolume, MidpointRounding.AwayFromZero);
 
@@ -209,6 +209,10 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
             catch (Exception exception)
             {
                 ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+            }
+            finally
+            {
+                this.pendingPrimaryDetails.Each(p => { p.QuantityIssue = 0; p.LineVolumeIssue = 0; });
             }
         }
 
@@ -332,7 +336,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                                     LineVolume = (decimal)goodsReceiptDetailAvailable.LineVolumeAvailable //IF Quantity > QuantityRemains (OR LineVolume > LineVolumeRemains) => THE GoodsIssueDetailDTO WILL BREAK THE ValidationRule => CAN NOT SAVE => USER MUST SELECT OTHER APPROPRIATE UNIT OF PALLET/ OR CARTON/ OR PACK WHICH MATCH THE Quantity/ LineVolume                                
                                 };
                                 this.goodsIssueViewModel.ViewDetails.Insert(0, goodsIssueDetailDTO);
-                            }                            
+                            }
                         }
                     }
 

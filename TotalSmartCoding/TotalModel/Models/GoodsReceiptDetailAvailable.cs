@@ -20,7 +20,7 @@ namespace TotalModel.Models
         public string Remarks { get; set; }
         public Nullable<decimal> QuantityAvailable { get; set; }
         public Nullable<decimal> LineVolumeAvailable { get; set; }
-        public Nullable<bool> IsSelected { get; set; }
+        public bool IsSelected { get; set; }
         public Nullable<int> PackID { get; set; }
         public string PackCode { get; set; }
         public Nullable<int> CartonID { get; set; }
