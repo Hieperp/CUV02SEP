@@ -2096,6 +2096,7 @@
           <Parameter Name="CommodityIDs" Type="varchar" Mode="In" />
           <Parameter Name="BatchID" Type="int" Mode="In" />
           <Parameter Name="GoodsReceiptDetailIDs" Type="varchar" Mode="In" />
+          <Parameter Name="OnlyIssuable" Type="bit" Mode="In" />
         </Function>
         <Function Name="GetGoodsReceiptIDofWarehouseAdjustment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="WarehouseAdjustmentID" Type="int" Mode="In" />
@@ -3252,6 +3253,7 @@
             <Parameter Name="CommodityIDs" Mode="In" Type="String" />
             <Parameter Name="BatchID" Mode="In" Type="Int32" />
             <Parameter Name="GoodsReceiptDetailIDs" Mode="In" Type="String" />
+            <Parameter Name="OnlyIssuable" Mode="In" Type="Boolean" />
           </FunctionImport>
           <EntitySet Name="WarehouseAdjustmentTypes" EntityType="TotalSmartCodingModel.WarehouseAdjustmentType" />
           <FunctionImport Name="GetWarehouseAdjustmentIndexes" ReturnType="Collection(TotalSmartCodingModel.WarehouseAdjustmentIndex)">

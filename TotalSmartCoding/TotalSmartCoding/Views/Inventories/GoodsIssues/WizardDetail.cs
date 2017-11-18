@@ -110,7 +110,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
 
                 GoodsReceiptAPIs goodsReceiptAPIs = new GoodsReceiptAPIs(CommonNinject.Kernel.Get<IGoodsReceiptAPIRepository>());
 
-                List<GoodsReceiptDetailAvailable> goodsReceiptDetailAvailables = goodsReceiptAPIs.GetGoodsReceiptDetailAvailables(this.goodsIssueViewModel.LocationID, this.goodsIssueViewModel.WarehouseID, this.fileName == null ? this.pendingPrimaryDetail.CommodityID : (int?)null, this.fileName == null ? null : commodityIDs, this.fileName == null ? this.pendingPrimaryDetail.BatchID : (int?)null, string.Join(",", this.goodsIssueViewModel.ViewDetails.Select(d => d.GoodsReceiptDetailID)));
+                List<GoodsReceiptDetailAvailable> goodsReceiptDetailAvailables = goodsReceiptAPIs.GetGoodsReceiptDetailAvailables(this.goodsIssueViewModel.LocationID, this.goodsIssueViewModel.WarehouseID, this.fileName == null ? this.pendingPrimaryDetail.CommodityID : (int?)null, this.fileName == null ? null : commodityIDs, this.fileName == null ? this.pendingPrimaryDetail.BatchID : (int?)null, string.Join(",", this.goodsIssueViewModel.ViewDetails.Select(d => d.GoodsReceiptDetailID)), true);
                 IEnumerable<GoodsReceiptDetailAvailable> goodsReceiptPalletAvailables = null;
                 IEnumerable<GoodsReceiptDetailAvailable> goodsReceiptCartonAvailables = null;
                 IEnumerable<GoodsReceiptDetailAvailable> goodsReceiptPackAvailables = null;
