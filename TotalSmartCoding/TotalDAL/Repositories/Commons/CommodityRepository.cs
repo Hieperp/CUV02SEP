@@ -33,9 +33,9 @@ namespace TotalDAL.Repositories.Commons
             return commodityBases;
         }
 
-        public IList<Commodity> SearchCommodities(int? commodityID)
+        public IList<SearchCommodity> SearchCommodities(int? commodityID, int? locationID, int? batchID, int? deliveryAdviceID, int? transferOrderID)
         {
-            return this.TotalSmartCodingEntities.SearchCommodities(commodityID).ToList();
+            return this.TotalSmartCodingEntities.SearchCommodities(commodityID, locationID, batchID, deliveryAdviceID, transferOrderID).ToList();
         }
     }
 }

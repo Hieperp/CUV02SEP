@@ -300,6 +300,9 @@
     <Compile Include="Models\SalesOrderViewDetail.cs">
       <DependentUpon>TotalSmartCoding.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SearchCommodity.cs">
+      <DependentUpon>TotalSmartCoding.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Territory.cs">
       <DependentUpon>TotalSmartCoding.tt</DependentUpon>
     </Compile>

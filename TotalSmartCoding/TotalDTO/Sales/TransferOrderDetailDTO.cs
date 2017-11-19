@@ -8,11 +8,12 @@ using TotalModel;
 using TotalDTO.Helpers;
 using TotalModel.Helpers;
 using TotalBase.Enums;
+using TotalDTO.Helpers.Interfaces;
 
 
 namespace TotalDTO.Sales
 {
-    public class TransferOrderDetailDTO : QuantityDetailDTO, IPrimitiveEntity
+    public class TransferOrderDetailDTO : QuantityDetailDTO, IPrimitiveEntity, IBatchQuantityDetailDTO
     {
         public int GetID() { return this.TransferOrderDetailID; }
 

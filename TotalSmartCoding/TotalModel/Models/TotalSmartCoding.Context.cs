@@ -901,22 +901,29 @@ namespace TotalModel.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SalesOrderToggleApproved", entityIDParameter, approvedParameter);
         }
     
-        public virtual ObjectResult<Commodity> SearchCommodities(Nullable<int> commodityID)
+        public virtual ObjectResult<SearchCommodity> SearchCommodities(Nullable<int> commodityID, Nullable<int> locationID, Nullable<int> batchID, Nullable<int> deliveryAdviceID, Nullable<int> transferOrderID)
         {
             var commodityIDParameter = commodityID.HasValue ?
                 new ObjectParameter("CommodityID", commodityID) :
                 new ObjectParameter("CommodityID", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Commodity>("SearchCommodities", commodityIDParameter);
-        }
+            var locationIDParameter = locationID.HasValue ?
+                new ObjectParameter("LocationID", locationID) :
+                new ObjectParameter("LocationID", typeof(int));
     
-        public virtual ObjectResult<Commodity> SearchCommodities(Nullable<int> commodityID, MergeOption mergeOption)
-        {
-            var commodityIDParameter = commodityID.HasValue ?
-                new ObjectParameter("CommodityID", commodityID) :
-                new ObjectParameter("CommodityID", typeof(int));
+            var batchIDParameter = batchID.HasValue ?
+                new ObjectParameter("BatchID", batchID) :
+                new ObjectParameter("BatchID", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Commodity>("SearchCommodities", mergeOption, commodityIDParameter);
+            var deliveryAdviceIDParameter = deliveryAdviceID.HasValue ?
+                new ObjectParameter("DeliveryAdviceID", deliveryAdviceID) :
+                new ObjectParameter("DeliveryAdviceID", typeof(int));
+    
+            var transferOrderIDParameter = transferOrderID.HasValue ?
+                new ObjectParameter("TransferOrderID", transferOrderID) :
+                new ObjectParameter("TransferOrderID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SearchCommodity>("SearchCommodities", commodityIDParameter, locationIDParameter, batchIDParameter, deliveryAdviceIDParameter, transferOrderIDParameter);
         }
     
         public virtual ObjectResult<CustomerBase> GetCustomerBases()

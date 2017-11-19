@@ -5,6 +5,8 @@ using TotalBase;
 using TotalBase.Enums;
 using TotalModel.Models;
 
+using TotalDAL.Helpers.SqlProgrammability.Sales;
+
 namespace TotalDAL.Helpers.SqlProgrammability.Commons
 {
     public class Commodity
@@ -109,18 +111,58 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
         {
             string queryString;
 
-            queryString = " @CommodityID int " + "\r\n";
+            //THIS SearchCommodities NOW IS USED BY Add new item in SALES ORDER, and new TRANSFER ORDER. 
+            //IT ALSO MAY BE USED BY Add new item in DELIVERY ADVICE. BUT, AT CURRENT: We only convert from SALES ORDER to DELIVERY ADVICE
+            queryString = " @CommodityID int, @LocationID int, @BatchID int, @DeliveryAdviceID int, @TransferOrderID int " + "\r\n";
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
-            queryString = queryString + "       SELECT      * " + "\r\n";
-            queryString = queryString + "       FROM        Commodities " + "\r\n";
-            queryString = queryString + "       WHERE       CommodityID = @CommodityID " + "\r\n";
+            queryString = queryString + "       DECLARE     @SearchCommodities TABLE (LocationID int NOT NULL, BatchID int NULL, CommodityID int NOT NULL, Code nvarchar(50) NOT NULL, Name nvarchar(200) NOT NULL, CommodityCategoryID int NOT NULL, CommodityTypeID int NOT NULL, Unit nvarchar(10) NULL, PackageSize nvarchar(60) NULL, Volume decimal(18, 3) NOT NULL, PackageVolume decimal(18, 3) NOT NULL) " + "\r\n";
+            queryString = queryString + "                   " + GenerateSQLCommoditiesAvailable.BuildSQL("@SalesOrderDetails", false, false, true, false, false, true, false) + "\r\n";
+
+            queryString = queryString + "       INSERT INTO @SearchCommodities SELECT @LocationID, @BatchID, CommodityID, Code, Name, CommodityCategoryID, CommodityTypeID, Unit, PackageSize, Volume, PackageVolume FROM Commodities WHERE CommodityID = @CommodityID " + "\r\n";
+            
+            queryString = queryString + "       IF (@BatchID > 0) " + "\r\n";
+            queryString = queryString + "           " + this.BuildSQLSearchCommodities(true) + "\r\n";
+            queryString = queryString + "       ELSE " + "\r\n";
+            queryString = queryString + "           " + this.BuildSQLSearchCommodities(false) + "\r\n";
+
+            queryString = queryString + "       SELECT      SearchCommodities.LocationID, SearchCommodities.BatchID, SearchCommodities.CommodityID, SearchCommodities.Code, SearchCommodities.Name, SearchCommodities.CommodityCategoryID, SearchCommodities.CommodityTypeID, SearchCommodities.Unit, SearchCommodities.PackageSize, SearchCommodities.Volume, SearchCommodities.PackageVolume, " + "\r\n";
+            queryString = queryString + "                   ISNULL(CommoditiesAvailable.QuantityAvailable, 0) AS QuantityAvailable, ISNULL(CommoditiesAvailable.LineVolumeAvailable, 0) AS LineVolumeAvailable, ISNULL(CommoditiesAvailableByBatches.QuantityAvailable, 0) AS QuantityBatchAvailable, ISNULL(CommoditiesAvailableByBatches.LineVolumeAvailable, 0) AS LineVolumeBatchAvailable " + "\r\n";
+
+            queryString = queryString + "       FROM        @SearchCommodities SearchCommodities " + "\r\n";
+            queryString = queryString + "                   LEFT JOIN (SELECT CommodityID, SUM(QuantityAvailable) AS QuantityAvailable, SUM(LineVolumeAvailable) AS LineVolumeAvailable FROM @CommoditiesAvailable GROUP BY CommodityID) CommoditiesAvailable ON SearchCommodities.CommodityID = CommoditiesAvailable.CommodityID " + "\r\n";
+            queryString = queryString + "                   LEFT JOIN (SELECT CommodityID, BatchID, SUM(QuantityAvailable) AS QuantityAvailable, SUM(LineVolumeAvailable) AS LineVolumeAvailable FROM @CommoditiesAvailableByBatches GROUP BY CommodityID, BatchID) CommoditiesAvailableByBatches ON SearchCommodities.BatchID = CommoditiesAvailableByBatches.BatchID AND SearchCommodities.CommodityID = CommoditiesAvailableByBatches.CommodityID " + "\r\n";
 
             queryString = queryString + "    END " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("SearchCommodities", queryString);
         }
+
+        private string BuildSQLSearchCommodities(bool byBatchID)
+        {
+            string queryString = "";
+            queryString = queryString + "   BEGIN " + "\r\n";
+
+            queryString = queryString + "       IF (@DeliveryAdviceID > 0) " + "\r\n";
+            queryString = queryString + "               BEGIN " + "\r\n";
+            queryString = queryString + "                   " + GenerateSQLCommoditiesAvailable.BuildSQL("@SearchCommodities", true, false, false, true, true, byBatchID, false) + "\r\n";
+            queryString = queryString + "               END " + "\r\n";
+            queryString = queryString + "       ELSE " + "\r\n";
+            queryString = queryString + "           IF (@TransferOrderID > 0) " + "\r\n";
+            queryString = queryString + "                   BEGIN " + "\r\n";
+            queryString = queryString + "                       " + GenerateSQLCommoditiesAvailable.BuildSQL("@SearchCommodities", false, true, false, true, true, byBatchID, false) + "\r\n";
+            queryString = queryString + "                   END " + "\r\n";
+            queryString = queryString + "           ELSE " + "\r\n";
+            queryString = queryString + "                   BEGIN " + "\r\n";
+            queryString = queryString + "                       " + GenerateSQLCommoditiesAvailable.BuildSQL("@SearchCommodities", false, false, false, true, false, byBatchID, false) + "\r\n";
+            queryString = queryString + "                   END " + "\r\n";
+
+            queryString = queryString + "   END " + "\r\n";
+
+            return queryString;
+        }
+
     }
 }

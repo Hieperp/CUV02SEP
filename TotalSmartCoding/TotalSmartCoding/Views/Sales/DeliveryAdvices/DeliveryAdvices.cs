@@ -275,7 +275,7 @@ namespace TotalSmartCoding.Views.Sales.DeliveryAdvices
             {
                 DeliveryAdviceDetailDTO deliveryAdviceDetailDTO = this.deliveryAdviceViewModel.ViewDetails[e.NewIndex];
                 if (deliveryAdviceDetailDTO != null)
-                    this.CalculateQuantityDetailDTO(deliveryAdviceDetailDTO, e.PropertyDescriptor.Name);
+                    this.CalculateQuantityDetailDTO(deliveryAdviceDetailDTO, e.PropertyDescriptor.Name, this.deliveryAdviceViewModel.DeliveryAdviceID, null);
             }
         }
 

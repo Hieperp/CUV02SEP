@@ -25,6 +25,7 @@ using TotalSmartCoding.Controllers;
 using TotalSmartCoding.Controllers.APIs.Commons;
 using TotalSmartCoding.ViewModels.Helpers;
 using TotalSmartCoding.ViewModels.Productions;
+using TotalDTO.Helpers.Interfaces;
 
 
 
@@ -562,20 +563,37 @@ namespace TotalSmartCoding.Views.Mains
         #endregion <Implement Interface>
 
         #region Helper Method
-        protected virtual void CalculateQuantityDetailDTO(IQuantityDetailDTO quantityDetailDTO, string propertyName)
+        protected virtual void CalculateQuantityDetailDTO(IQuantityDetailDTO quantityDetailDTO, string propertyName, int? deliveryAdviceID, int? transferOrderID)
         {
             if (propertyName == CommonExpressions.PropertyName<IQuantityDetailDTO>(p => p.CommodityID))
             {
-                CommodityAPIs commodityAPIs = new CommodityAPIs(CommonNinject.Kernel.Get<ICommodityAPIRepository>());
-                IList<Commodity> commodities = commodityAPIs.SearchCommodities(quantityDetailDTO.CommodityID);
-                if (commodities.Count > 0)
+                CommodityAPIs commodityAPIs = new CommodityAPIs(CommonNinject.Kernel.Get<ICommodityAPIRepository>()); //WE MUST USE ContextAttributes.User.LocationID, INSTEAD OF quantityDetailDTO.LocationID, BECAUSE AT FIRST quantityDetailDTO.LocationID = 0. WHEN SAVE: GenericService.PreSaveRoutines WILL UPDATE DTO.LocationID = ContextAttributes.User.LocationID. SEE GenericService.PreSaveRoutines FOR MORE INFORMATION!!!
+                IList<SearchCommodity> searchCommodities = commodityAPIs.SearchCommodities(quantityDetailDTO.CommodityID, ContextAttributes.User.LocationID, null, deliveryAdviceID, transferOrderID);
+                if (searchCommodities.Count > 0)
                 {
-                    quantityDetailDTO.CommodityCode = commodities[0].Code;
-                    quantityDetailDTO.CommodityName = commodities[0].Name;
-                    quantityDetailDTO.Unit = commodities[0].Unit;
-                    quantityDetailDTO.PackageSize = commodities[0].PackageSize;
-                    quantityDetailDTO.Volume = commodities[0].Volume;
-                    quantityDetailDTO.PackageVolume = commodities[0].PackageVolume;
+                    quantityDetailDTO.CommodityCode = searchCommodities[0].Code;
+                    quantityDetailDTO.CommodityName = searchCommodities[0].Name;
+                    quantityDetailDTO.Unit = searchCommodities[0].Unit;
+                    quantityDetailDTO.PackageSize = searchCommodities[0].PackageSize;
+                    quantityDetailDTO.Volume = searchCommodities[0].Volume;
+                    quantityDetailDTO.PackageVolume = searchCommodities[0].PackageVolume;
+
+                    IAvailableQuantityDetailDTO availableQuantityDetailDTO = quantityDetailDTO as IAvailableQuantityDetailDTO;
+                    if (availableQuantityDetailDTO != null)
+                    {
+                        availableQuantityDetailDTO.QuantityAvailable = searchCommodities[0].QuantityAvailable;
+                        availableQuantityDetailDTO.LineVolumeAvailable = searchCommodities[0].LineVolumeAvailable;
+                    }
+
+                    IBatchQuantityDetailDTO batchQuantityDetailDTO = quantityDetailDTO as IBatchQuantityDetailDTO;
+                    if (batchQuantityDetailDTO != null)
+                    {
+                        batchQuantityDetailDTO.BatchID = null;
+                        batchQuantityDetailDTO.BatchCode = null;
+                        batchQuantityDetailDTO.BatchEntryDate = null;
+                        batchQuantityDetailDTO.QuantityBatchAvailable = 0;
+                        batchQuantityDetailDTO.LineVolumeBatchAvailable = 0;
+                    }
                 }
             }
             if (propertyName == CommonExpressions.PropertyName<IQuantityDetailDTO>(p => p.PackageVolume) || propertyName == CommonExpressions.PropertyName<IQuantityDetailDTO>(p => p.Quantity))

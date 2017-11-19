@@ -112,7 +112,7 @@ namespace TotalSmartCoding.Views.Sales.TransferOrders
             }
         }
 
-        Binding bindingEntryDate;        
+        Binding bindingEntryDate;
         Binding bindingWarehouseName;
         Binding bindingVoucherCode;
         Binding bindingVehicle;
@@ -133,7 +133,7 @@ namespace TotalSmartCoding.Views.Sales.TransferOrders
         {
             base.InitializeCommonControlBinding();
 
-            this.bindingEntryDate = this.dateTimexEntryDate.DataBindings.Add("Value", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderDTO>(p => p.EntryDate), true, DataSourceUpdateMode.OnPropertyChanged);            
+            this.bindingEntryDate = this.dateTimexEntryDate.DataBindings.Add("Value", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderDTO>(p => p.EntryDate), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingWarehouseName = this.textexWarehouseName.DataBindings.Add("Text", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderDTO>(p => p.WarehouseName), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingVoucherCode = this.textexVoucherCode.DataBindings.Add("Text", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderDTO>(p => p.VoucherCode), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingVehicle = this.textexVehicle.DataBindings.Add("Text", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderDTO>(p => p.Vehicle), true, DataSourceUpdateMode.OnPropertyChanged);
@@ -174,7 +174,7 @@ namespace TotalSmartCoding.Views.Sales.TransferOrders
             this.combexStorekeeperID.ValueMember = CommonExpressions.PropertyName<EmployeeBase>(p => p.EmployeeID);
             this.bindingStorekeeperID = this.combexStorekeeperID.DataBindings.Add("SelectedValue", this.transferOrderViewModel, CommonExpressions.PropertyName<TransferOrderViewModel>(p => p.StorekeeperID), true, DataSourceUpdateMode.OnPropertyChanged);
 
-            this.bindingEntryDate.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);                        
+            this.bindingEntryDate.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingWarehouseName.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingVoucherCode.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingVehicle.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
@@ -188,7 +188,7 @@ namespace TotalSmartCoding.Views.Sales.TransferOrders
 
             this.bindingTransferOrderTypeID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingTransferPackageTypeID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
-            
+
             this.bindingForkliftDriverID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingStorekeeperID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.fastTransferOrderIndex.AboutToCreateGroups += fastTransferOrderIndex_AboutToCreateGroups;
@@ -277,7 +277,7 @@ namespace TotalSmartCoding.Views.Sales.TransferOrders
             {
                 TransferOrderDetailDTO transferOrderDetailDTO = this.transferOrderViewModel.ViewDetails[e.NewIndex];
                 if (transferOrderDetailDTO != null)
-                    this.CalculateQuantityDetailDTO(transferOrderDetailDTO, e.PropertyDescriptor.Name);
+                    this.CalculateQuantityDetailDTO(transferOrderDetailDTO, e.PropertyDescriptor.Name, null, this.transferOrderViewModel.TransferOrderID);
             }
         }
 
@@ -289,7 +289,7 @@ namespace TotalSmartCoding.Views.Sales.TransferOrders
         public override void Loading()
         {
             this.fastTransferOrderIndex.SetObjects(this.transferOrderAPIs.GetTransferOrderIndexes());
-            
+
             base.Loading();
         }
 

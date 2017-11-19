@@ -2415,6 +2415,10 @@
         </Function>
         <Function Name="SearchCommodities" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CommodityID" Type="int" Mode="In" />
+          <Parameter Name="LocationID" Type="int" Mode="In" />
+          <Parameter Name="BatchID" Type="int" Mode="In" />
+          <Parameter Name="DeliveryAdviceID" Type="int" Mode="In" />
+          <Parameter Name="TransferOrderID" Type="int" Mode="In" />
         </Function>
         <Function Name="TransferOrderApproved" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="EntityID" Type="int" Mode="In" />
@@ -3141,8 +3145,12 @@
             <Parameter Name="EntityID" Mode="In" Type="Int32" />
             <Parameter Name="Approved" Mode="In" Type="Boolean" />
           </FunctionImport>
-          <FunctionImport Name="SearchCommodities" EntitySet="Commodities" ReturnType="Collection(TotalSmartCodingModel.Commodity)">
+          <FunctionImport Name="SearchCommodities" ReturnType="Collection(TotalSmartCodingModel.SearchCommodity)">
           <Parameter Name="CommodityID" Mode="In" Type="Int32" />
+            <Parameter Name="LocationID" Mode="In" Type="Int32" />
+            <Parameter Name="BatchID" Mode="In" Type="Int32" />
+            <Parameter Name="DeliveryAdviceID" Mode="In" Type="Int32" />
+            <Parameter Name="TransferOrderID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetCustomerBases" ReturnType="Collection(TotalSmartCodingModel.CustomerBase)" />
           <FunctionImport Name="GetCustomerIndexes" ReturnType="Collection(TotalSmartCodingModel.CustomerIndex)">
@@ -6793,6 +6801,23 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="SearchCommodity">
+          <Property Type="Int32" Name="LocationID" Nullable="false" />
+          <Property Type="Int32" Name="BatchID" Nullable="true" />
+          <Property Type="Int32" Name="CommodityID" Nullable="false" />
+          <Property Type="String" Name="Code" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="200" />
+          <Property Type="Int32" Name="CommodityCategoryID" Nullable="false" />
+          <Property Type="Int32" Name="CommodityTypeID" Nullable="false" />
+          <Property Type="String" Name="Unit" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="PackageSize" Nullable="true" MaxLength="60" />
+          <Property Type="Decimal" Name="Volume" Nullable="false" Precision="18" Scale="3" />
+          <Property Type="Decimal" Name="PackageVolume" Nullable="false" Precision="18" Scale="3" />
+          <Property Type="Decimal" Name="QuantityAvailable" Nullable="false" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="LineVolumeAvailable" Nullable="false" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="QuantityBatchAvailable" Nullable="false" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="LineVolumeBatchAvailable" Nullable="false" Precision="38" Scale="2" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -7265,6 +7290,25 @@
           <FunctionImportMapping FunctionImportName="SalesOrderSaveRelative" FunctionName="TotalSmartCodingModel.Store.SalesOrderSaveRelative" />
           <FunctionImportMapping FunctionImportName="SalesOrderToggleApproved" FunctionName="TotalSmartCodingModel.Store.SalesOrderToggleApproved" />
           <FunctionImportMapping FunctionImportName="SearchCommodities" FunctionName="TotalSmartCodingModel.Store.SearchCommodities">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TotalSmartCodingModel.SearchCommodity">
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+                <ScalarProperty Name="BatchID" ColumnName="BatchID" />
+                <ScalarProperty Name="CommodityID" ColumnName="CommodityID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CommodityCategoryID" ColumnName="CommodityCategoryID" />
+                <ScalarProperty Name="CommodityTypeID" ColumnName="CommodityTypeID" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="PackageSize" ColumnName="PackageSize" />
+                <ScalarProperty Name="Volume" ColumnName="Volume" />
+                <ScalarProperty Name="PackageVolume" ColumnName="PackageVolume" />
+                <ScalarProperty Name="QuantityAvailable" ColumnName="QuantityAvailable" />
+                <ScalarProperty Name="LineVolumeAvailable" ColumnName="LineVolumeAvailable" />
+                <ScalarProperty Name="QuantityBatchAvailable" ColumnName="QuantityBatchAvailable" />
+                <ScalarProperty Name="LineVolumeBatchAvailable" ColumnName="LineVolumeBatchAvailable" />
+              </ComplexTypeMapping>
+            </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="GetCustomerBases" FunctionName="TotalSmartCodingModel.Store.GetCustomerBases">
             <ResultMapping>

@@ -269,7 +269,7 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
             {
                 SalesOrderDetailDTO salesOrderDetailDTO = this.salesOrderViewModel.ViewDetails[e.NewIndex];
                 if (salesOrderDetailDTO != null)
-                    this.CalculateQuantityDetailDTO(salesOrderDetailDTO, e.PropertyDescriptor.Name);
+                    this.CalculateQuantityDetailDTO(salesOrderDetailDTO, e.PropertyDescriptor.Name, null, null);
             }
         }
 
