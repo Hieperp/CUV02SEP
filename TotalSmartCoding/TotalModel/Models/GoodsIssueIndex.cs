@@ -25,5 +25,6 @@ namespace TotalModel.Models
         public string WarehouseReceiptName { get; set; }
         public string PrimaryReferences { get; set; }
         public string GoodsIssueName { get; set; }
+        public string VoucherCodes { get; set; }
     }
 }

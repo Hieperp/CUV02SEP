@@ -42,6 +42,7 @@ namespace TotalDTO.Inventories
         public int BatchID { get; set; }
         public System.DateTime BatchEntryDate { get; set; }
 
+        public Nullable<int> GoodsReceiptTypeID { get; set; }
         public int WarehouseID { get; set; }
         
         public int BinLocationID { get; set; }

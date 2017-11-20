@@ -1010,6 +1010,11 @@
     <None Include="Resources\Type-icon-24.png" />
     <None Include="Resources\pallet-24.png" />
     <None Include="Resources\Martz90-Circle-Addon2-Warning.ico" />
+    <None Include="Resources\Search-barcode.ico" />
+    <None Include="Resources\magnifying-glass.png" />
+    <None Include="Resources\magnifying-glass-48.png" />
+    <None Include="Resources\Search-barcode-512.png" />
+    <None Include="Resources\Search-barcode-32.png" />
     <Content Include="SmartCodingSolution.ico" />
     <None Include="Resources\Yellow-cross.ico" />
     <None Include="Resources\White-Pallet.ico" />

@@ -76,7 +76,7 @@
             this.olvID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvEntryDate = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvCustomer = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvGoodsIssueIndexReference = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvGoodsIssueIndexVoucherCodes = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvApproved = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.imageList32 = new System.Windows.Forms.ImageList(this.components);
             this.naviPendingDeliveryAdviceDetails = new Guifreaks.Navisuite.NaviBar(this.components);
@@ -414,7 +414,7 @@
             this.naviDetails.ExpandedHeight = 198;
             this.naviDetails.HeaderContextMenuStrip = null;
             this.naviDetails.HeaderHeight = 43;
-            this.naviDetails.Location = new System.Drawing.Point(158, 0);
+            this.naviDetails.Location = new System.Drawing.Point(226, 0);
             this.naviDetails.Margin = new System.Windows.Forms.Padding(4);
             this.naviDetails.Name = "naviDetails";
             this.naviDetails.Padding = new System.Windows.Forms.Padding(0, 45, 0, 0);
@@ -580,12 +580,13 @@
             this.fastGoodsIssueIndex.AllColumns.Add(this.olvID);
             this.fastGoodsIssueIndex.AllColumns.Add(this.olvEntryDate);
             this.fastGoodsIssueIndex.AllColumns.Add(this.olvCustomer);
-            this.fastGoodsIssueIndex.AllColumns.Add(this.olvGoodsIssueIndexReference);
+            this.fastGoodsIssueIndex.AllColumns.Add(this.olvGoodsIssueIndexVoucherCodes);
             this.fastGoodsIssueIndex.AllColumns.Add(this.olvApproved);
             this.fastGoodsIssueIndex.BackColor = System.Drawing.Color.Ivory;
             this.fastGoodsIssueIndex.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.olvID,
             this.olvCustomer,
+            this.olvGoodsIssueIndexVoucherCodes,
             this.olvApproved});
             this.fastGoodsIssueIndex.Cursor = System.Windows.Forms.Cursors.Default;
             this.fastGoodsIssueIndex.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -599,7 +600,7 @@
             this.fastGoodsIssueIndex.OwnerDraw = true;
             this.fastGoodsIssueIndex.RowHeight = 39;
             this.fastGoodsIssueIndex.ShowGroups = false;
-            this.fastGoodsIssueIndex.Size = new System.Drawing.Size(156, 725);
+            this.fastGoodsIssueIndex.Size = new System.Drawing.Size(224, 725);
             this.fastGoodsIssueIndex.TabIndex = 68;
             this.fastGoodsIssueIndex.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastGoodsIssueIndex.UseCompatibleStateImageBehavior = false;
@@ -630,17 +631,15 @@
             this.olvCustomer.HeaderForeColor = System.Drawing.Color.Firebrick;
             this.olvCustomer.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvCustomer.Text = "Customers/ WHs";
-            this.olvCustomer.Width = 170;
+            this.olvCustomer.Width = 110;
             // 
-            // olvGoodsIssueIndexReference
+            // olvGoodsIssueIndexVoucherCodes
             // 
-            this.olvGoodsIssueIndexReference.AspectName = "Reference";
-            this.olvGoodsIssueIndexReference.DisplayIndex = 2;
-            this.olvGoodsIssueIndexReference.Groupable = false;
-            this.olvGoodsIssueIndexReference.HeaderForeColor = System.Drawing.Color.Firebrick;
-            this.olvGoodsIssueIndexReference.IsVisible = false;
-            this.olvGoodsIssueIndexReference.Text = "Issues";
-            this.olvGoodsIssueIndexReference.Width = 85;
+            this.olvGoodsIssueIndexVoucherCodes.AspectName = "VoucherCodes";
+            this.olvGoodsIssueIndexVoucherCodes.Groupable = false;
+            this.olvGoodsIssueIndexVoucherCodes.HeaderForeColor = System.Drawing.Color.Firebrick;
+            this.olvGoodsIssueIndexVoucherCodes.Text = "Vouchers";
+            this.olvGoodsIssueIndexVoucherCodes.Width = 75;
             // 
             // olvApproved
             // 
@@ -670,11 +669,11 @@
             this.naviPendingDeliveryAdviceDetails.Controls.Add(this.naviPendingItems);
             this.naviPendingDeliveryAdviceDetails.Dock = System.Windows.Forms.DockStyle.Right;
             this.naviPendingDeliveryAdviceDetails.HeaderHeight = 42;
-            this.naviPendingDeliveryAdviceDetails.Location = new System.Drawing.Point(1241, 0);
+            this.naviPendingDeliveryAdviceDetails.Location = new System.Drawing.Point(1309, 0);
             this.naviPendingDeliveryAdviceDetails.Margin = new System.Windows.Forms.Padding(4);
             this.naviPendingDeliveryAdviceDetails.Name = "naviPendingDeliveryAdviceDetails";
             this.naviPendingDeliveryAdviceDetails.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.naviPendingDeliveryAdviceDetails.Size = new System.Drawing.Size(418, 807);
+            this.naviPendingDeliveryAdviceDetails.Size = new System.Drawing.Size(350, 807);
             this.naviPendingDeliveryAdviceDetails.TabIndex = 69;
             this.naviPendingDeliveryAdviceDetails.Text = "naviBar1";
             // 
@@ -688,14 +687,14 @@
             this.naviPendingItems.ClientArea.Location = new System.Drawing.Point(0, 0);
             this.naviPendingItems.ClientArea.Margin = new System.Windows.Forms.Padding(4);
             this.naviPendingItems.ClientArea.Name = "ClientArea";
-            this.naviPendingItems.ClientArea.Size = new System.Drawing.Size(416, 725);
+            this.naviPendingItems.ClientArea.Size = new System.Drawing.Size(348, 725);
             this.naviPendingItems.ClientArea.TabIndex = 0;
             this.naviPendingItems.LargeImageIndex = 0;
             this.naviPendingItems.LayoutStyle = Guifreaks.Navisuite.NaviLayoutStyle.StyleFromOwner;
             this.naviPendingItems.Location = new System.Drawing.Point(1, 42);
             this.naviPendingItems.Margin = new System.Windows.Forms.Padding(4);
             this.naviPendingItems.Name = "naviPendingItems";
-            this.naviPendingItems.Size = new System.Drawing.Size(416, 725);
+            this.naviPendingItems.Size = new System.Drawing.Size(348, 725);
             this.naviPendingItems.SmallImageIndex = 0;
             this.naviPendingItems.TabIndex = 3;
             // 
@@ -723,7 +722,7 @@
             this.fastPendingPrimaryDetails.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.fastPendingPrimaryDetails.RowHeight = 39;
             this.fastPendingPrimaryDetails.ShowGroups = false;
-            this.fastPendingPrimaryDetails.Size = new System.Drawing.Size(416, 725);
+            this.fastPendingPrimaryDetails.Size = new System.Drawing.Size(348, 725);
             this.fastPendingPrimaryDetails.TabIndex = 69;
             this.fastPendingPrimaryDetails.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastPendingPrimaryDetails.UseCompatibleStateImageBehavior = false;
@@ -747,7 +746,7 @@
             this.olvCommodityName.HeaderForeColor = System.Drawing.Color.Firebrick;
             this.olvCommodityName.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvCommodityName.Text = "Items";
-            this.olvCommodityName.Width = 180;
+            this.olvCommodityName.Width = 122;
             // 
             // olvBatchCode
             // 
@@ -778,14 +777,14 @@
             this.naviPickupIndex.ClientArea.Location = new System.Drawing.Point(0, 0);
             this.naviPickupIndex.ClientArea.Margin = new System.Windows.Forms.Padding(4);
             this.naviPickupIndex.ClientArea.Name = "ClientArea";
-            this.naviPickupIndex.ClientArea.Size = new System.Drawing.Size(156, 725);
+            this.naviPickupIndex.ClientArea.Size = new System.Drawing.Size(224, 725);
             this.naviPickupIndex.ClientArea.TabIndex = 0;
             this.naviPickupIndex.LargeImageIndex = 0;
             this.naviPickupIndex.LayoutStyle = Guifreaks.Navisuite.NaviLayoutStyle.StyleFromOwner;
             this.naviPickupIndex.Location = new System.Drawing.Point(1, 42);
             this.naviPickupIndex.Margin = new System.Windows.Forms.Padding(4);
             this.naviPickupIndex.Name = "naviPickupIndex";
-            this.naviPickupIndex.Size = new System.Drawing.Size(156, 725);
+            this.naviPickupIndex.Size = new System.Drawing.Size(224, 725);
             this.naviPickupIndex.SmallImageIndex = 0;
             this.naviPickupIndex.TabIndex = 72;
             // 
@@ -798,7 +797,7 @@
             this.naviIndex.Location = new System.Drawing.Point(0, 0);
             this.naviIndex.Margin = new System.Windows.Forms.Padding(4);
             this.naviIndex.Name = "naviIndex";
-            this.naviIndex.Size = new System.Drawing.Size(158, 807);
+            this.naviIndex.Size = new System.Drawing.Size(226, 807);
             this.naviIndex.TabIndex = 71;
             this.naviIndex.Text = "naviBar2";
             // 
@@ -810,7 +809,7 @@
             this.panelMaster.Controls.Add(this.textexRemarks);
             this.panelMaster.Controls.Add(this.gridexPalletDetails);
             this.panelMaster.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelMaster.Location = new System.Drawing.Point(158, 198);
+            this.panelMaster.Location = new System.Drawing.Point(226, 198);
             this.panelMaster.Margin = new System.Windows.Forms.Padding(4);
             this.panelMaster.Name = "panelMaster";
             this.panelMaster.Padding = new System.Windows.Forms.Padding(0, 4, 0, 0);
@@ -998,7 +997,7 @@
         private BrightIdeasSoftware.FastObjectListView fastPendingPrimaryDetails;
         private BrightIdeasSoftware.OLVColumn olvCommodityName;
         private System.Windows.Forms.Label labelCaption;
-        private BrightIdeasSoftware.OLVColumn olvGoodsIssueIndexReference;
+        private BrightIdeasSoftware.OLVColumn olvGoodsIssueIndexVoucherCodes;
         private System.Windows.Forms.ImageList imageList32;
         private BrightIdeasSoftware.OLVColumn olvApproved;
         private BrightIdeasSoftware.OLVColumn olvCustomer;

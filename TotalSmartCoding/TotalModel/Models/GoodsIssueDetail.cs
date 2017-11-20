@@ -43,6 +43,7 @@ namespace TotalModel.Models
         public decimal LineVolume { get; set; }
         public string Remarks { get; set; }
         public bool Approved { get; set; }
+        public int GoodsIssueTypeID { get; set; }
     
         public virtual Commodity Commodity { get; set; }
         public virtual Customer Customer { get; set; }

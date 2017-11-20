@@ -38,6 +38,7 @@ using TotalSmartCoding.Views.Sales.SalesOrders;
 using TotalSmartCoding.Views.Sales.DeliveryAdvices;
 using TotalSmartCoding.Views.Sales.TransferOrders;
 using TotalSmartCoding.Views.Commons.Customers;
+using TotalSmartCoding.ViewModels.Helpers;
 
 namespace TotalSmartCoding.Views.Mains
 {
@@ -97,6 +98,8 @@ namespace TotalSmartCoding.Views.Mains
                         this.toolStripSeparatorPrint.Visible = false;
                         this.separatorESC.Visible = false;
                         this.toolStripTopHead.Visible = false;
+                        this.toolStripTopRight.Visible = false;
+                        this.panelTop.Visible = false;
                         break;
                     case GlobalEnums.NmvnTaskID.Batch:
                         this.Size = new Size(1120, 680);
@@ -629,6 +632,29 @@ namespace TotalSmartCoding.Views.Mains
             DialogResult dialogResult = userReferences.ShowDialog();
 
             userReferences.Dispose();
+        }
+
+        private void buttonSearchBarcode_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.comboSearchBarcode.Text = this.comboSearchBarcode.Text.Trim();
+                if (this.comboSearchBarcode.Text.Length > 0)
+                {
+                    this.comboSearchBarcode.Items.Add(this.comboSearchBarcode.Text);
+
+                    PrintViewModel printViewModel = new PrintViewModel();
+                    printViewModel.ReportPath = "SearchBarcode";
+                    printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("Barcode", this.comboSearchBarcode.Text));
+
+                    SsrsViewer ssrsViewer = new SsrsViewer(printViewModel);
+                    ssrsViewer.Show();
+                }
+            }
+            catch (Exception exception)
+            {
+                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+            }
         }
 
 

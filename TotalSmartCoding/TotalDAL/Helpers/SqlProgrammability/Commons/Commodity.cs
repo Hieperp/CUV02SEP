@@ -27,6 +27,8 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
 
             this.GetCommodityBases();
             this.SearchCommodities();
+
+            this.SearchBarcodes();
         }
 
 
@@ -162,6 +164,74 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             queryString = queryString + "   END " + "\r\n";
 
             return queryString;
+        }
+
+
+        private void SearchBarcodes()
+        {
+            string queryString;
+
+            queryString = " @Barcode varchar(50) " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+            queryString = queryString + "    BEGIN " + "\r\n";
+
+            queryString = queryString + "       DECLARE     @PackID int, @CartonID int, @PalletID int, @PackCode varchar(50), @CartonCode varchar(50), @PalletCode varchar(50) " + "\r\n";
+            queryString = queryString + "       DECLARE     @BarcodeResults TABLE (LocationID int NOT NULL, CommodityID int NOT NULL, PackID int NULL, CartonID int NULL, PalletID int NULL, EntryDate datetime NOT NULL, Quantity decimal(18, 3) NOT NULL, LineVolume decimal(18, 3) NOT NULL, Description nvarchar(100) NULL) " + "\r\n";
+
+            queryString = queryString + "       IF LEN(@Barcode) > 10 " + "\r\n";
+            queryString = queryString + "           BEGIN " + "\r\n";
+            
+
+            //FIND ID
+            queryString = queryString + "               IF SUBSTRING (@Barcode, 7, 1 ) = 'B' " + "\r\n";
+            queryString = queryString + "                   BEGIN " + "\r\n";
+            queryString = queryString + "                       SELECT TOP 1 @PackID = PackID, @CartonID = CartonID, @PackCode = Code FROM Packs WHERE Code = @Barcode " + "\r\n";
+            queryString = queryString + "                       IF NOT @CartonID IS NULL " + "\r\n";
+            queryString = queryString + "                           SELECT TOP 1 @PalletID = PalletID, @CartonCode = Code FROM Cartons WHERE CartonID = @CartonID " + "\r\n";
+            queryString = queryString + "                       IF NOT @PalletID IS NULL " + "\r\n";
+            queryString = queryString + "                           SELECT TOP 1 @PalletCode = Code FROM Pallets WHERE PalletID = @PalletID " + "\r\n";
+            queryString = queryString + "                   END " + "\r\n";
+
+            queryString = queryString + "               IF SUBSTRING (@Barcode, 7, 1 ) = 'C' " + "\r\n";
+            queryString = queryString + "                   BEGIN " + "\r\n";
+            queryString = queryString + "                       SELECT TOP 1 @CartonID = CartonID, @PalletID = PalletID, @CartonCode = Code FROM Cartons WHERE Code = @Barcode " + "\r\n";
+            queryString = queryString + "                       IF NOT @PalletID IS NULL " + "\r\n";
+            queryString = queryString + "                           SELECT TOP 1 @PalletCode = Code FROM Pallets WHERE PalletID = @PalletID " + "\r\n";
+            queryString = queryString + "                   END " + "\r\n";
+
+            queryString = queryString + "               IF SUBSTRING (@Barcode, 7, 1 ) = 'P' " + "\r\n";
+            queryString = queryString + "                       SELECT TOP 1 @PalletID = PalletID, @PalletCode = Code FROM Pallets WHERE Code = @Barcode " + "\r\n";
+
+
+            //GET TRANSACTION
+            queryString = queryString + "               IF (NOT @PackID IS NULL) OR (NOT @CartonID IS NULL) OR (NOT @PalletID IS NULL) " + "\r\n";
+            queryString = queryString + "                   BEGIN " + "\r\n";
+            queryString = queryString + "                       IF (NOT @PackID IS NULL) " + "\r\n";
+            queryString = queryString + "                           INSERT INTO @BarcodeResults SELECT LocationID, CommodityID, PackID, NULL AS CartonID, NULL AS PalletID, EntryDate, 0 AS Quantity, 0 AS LineVolume, 'Production' FROM Packs WHERE PackID = @PackID " + "\r\n";
+            queryString = queryString + "                       IF (NOT @CartonID IS NULL) " + "\r\n";
+            queryString = queryString + "                           INSERT INTO @BarcodeResults SELECT LocationID, CommodityID, NULL AS PackID, CartonID, NULL AS PalletID, EntryDate, Quantity, LineVolume, 'Production' FROM Cartons WHERE CartonID = @CartonID " + "\r\n";
+            queryString = queryString + "                       IF (NOT @PalletID IS NULL) " + "\r\n";
+            queryString = queryString + "                           INSERT INTO @BarcodeResults SELECT LocationID, CommodityID, NULL AS PackID, NULL AS CartonID, PalletID, EntryDate, Quantity, LineVolume, 'Production' FROM Pallets WHERE PalletID = @PalletID " + "\r\n";
+
+            queryString = queryString + "                       INSERT INTO @BarcodeResults SELECT LocationID, CommodityID, PackID, CartonID, PalletID, EntryDate, Quantity, LineVolume, 'Pickup' FROM PickupDetails WHERE PackID = @PackID OR CartonID = @CartonID OR PalletID = @PalletID " + "\r\n";
+            queryString = queryString + "                       INSERT INTO @BarcodeResults SELECT LocationID, CommodityID, PackID, CartonID, PalletID, EntryDate, Quantity, LineVolume, 'Receipt from ' +  GoodsReceiptTypes.Name FROM GoodsReceiptDetails INNER JOIN GoodsReceiptTypes ON GoodsReceiptDetails.GoodsReceiptTypeID = GoodsReceiptTypes.GoodsReceiptTypeID WHERE PackID = @PackID OR CartonID = @CartonID OR PalletID = @PalletID " + "\r\n";
+            queryString = queryString + "                       INSERT INTO @BarcodeResults SELECT LocationID, CommodityID, PackID, CartonID, PalletID, EntryDate, Quantity, LineVolume, 'Issue for ' +  GoodsIssueTypes.Name FROM GoodsIssueDetails INNER JOIN GoodsIssueTypes ON GoodsIssueDetails.GoodsIssueTypeID = GoodsIssueTypes.GoodsIssueTypeID WHERE PackID = @PackID OR CartonID = @CartonID OR PalletID = @PalletID " + "\r\n";
+            queryString = queryString + "                       INSERT INTO @BarcodeResults SELECT LocationID, CommodityID, PackID, CartonID, PalletID, EntryDate, Quantity, LineVolume, WarehouseAdjustmentTypes.Name FROM WarehouseAdjustmentDetails INNER JOIN WarehouseAdjustmentTypes ON WarehouseAdjustmentDetails.WarehouseAdjustmentTypeID = WarehouseAdjustmentTypes.WarehouseAdjustmentTypeID WHERE PackID = @PackID OR CartonID = @CartonID OR PalletID = @PalletID " + "\r\n";
+            queryString = queryString + "                   END " + "\r\n";
+
+            queryString = queryString + "           END " + "\r\n";
+
+            //RETURN RESULT
+            queryString = queryString + "       SELECT      BarcodeResults.EntryDate, Locations.Name AS LocationName, Commodities.CommodityID, Commodities.Code, Commodities.Name, Commodities.PackageSize, Commodities.Volume, BarcodeResults.Quantity, BarcodeResults.LineVolume, " + "\r\n";
+            queryString = queryString + "                   PackID, CASE WHEN NOT PackID IS NULL THEN @PackCode ELSE NULL END AS PackCode, CartonID, CASE WHEN NOT CartonID IS NULL THEN @CartonCode ELSE NULL END AS CartonCode, PalletID, CASE WHEN NOT PalletID IS NULL THEN @PalletCode ELSE NULL END AS PalletCode, BarcodeResults.Description " + "\r\n";
+            queryString = queryString + "       FROM        @BarcodeResults BarcodeResults " + "\r\n";
+            queryString = queryString + "                   INNER JOIN Commodities ON BarcodeResults.CommodityID = Commodities.CommodityID " + "\r\n";
+            queryString = queryString + "                   INNER JOIN Locations ON BarcodeResults.LocationID = Locations.LocationID " + "\r\n";
+
+            queryString = queryString + "    END " + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("SearchBarcodes", queryString);
         }
 
     }

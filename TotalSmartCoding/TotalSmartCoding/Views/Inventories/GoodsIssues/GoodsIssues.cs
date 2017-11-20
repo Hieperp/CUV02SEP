@@ -279,7 +279,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                 }
 
                 this.olvPrimaryReference.Width = this.goodsIssueViewModel.DeliveryAdviceID != null || this.goodsIssueViewModel.TransferOrderID != null ? 0 : 70;
-                this.olvCommodityName.Width = this.goodsIssueViewModel.DeliveryAdviceID != null || this.goodsIssueViewModel.TransferOrderID != null ? (180 + 70) : 180;
+                this.olvCommodityName.Width = this.goodsIssueViewModel.DeliveryAdviceID != null || this.goodsIssueViewModel.TransferOrderID != null ? (122 + 70) : 122;
 
                 //this.naviPendingItems.Text = "Pending " + this.fastPendingPrimaryDetails.GetItemCount().ToString("N0") + " row" + (this.fastPendingPrimaryDetails.GetItemCount() > 1 ? "s" : "");
             }

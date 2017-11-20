@@ -209,7 +209,7 @@ namespace TotalDTO.Inventories
             base.PerformPresaveRule();
 
             string primaryReferences = ""; //string voucherCodes = "";
-            this.DtoDetails().ToList().ForEach(e => { e.CustomerID = this.CustomerID; e.ReceiverID = this.ReceiverID; e.WarehouseReceiptID = this.WarehouseReceiptID; if (primaryReferences.IndexOf(e.PrimaryReference) < 0) primaryReferences = primaryReferences + (primaryReferences != "" ? ", " : "") + e.PrimaryReference; }); //if (voucherCodes.IndexOf(e.VoucherCode) < 0) voucherCodes = voucherCodes + (voucherCodes != "" ? ", " : "") + e.VoucherCode; 
+            this.DtoDetails().ToList().ForEach(e => { e.GoodsIssueTypeID = this.GoodsIssueTypeID; e.CustomerID = this.CustomerID; e.ReceiverID = this.ReceiverID; e.WarehouseReceiptID = this.WarehouseReceiptID; if (primaryReferences.IndexOf(e.PrimaryReference) < 0) primaryReferences = primaryReferences + (primaryReferences != "" ? ", " : "") + e.PrimaryReference; }); //if (voucherCodes.IndexOf(e.VoucherCode) < 0) voucherCodes = voucherCodes + (voucherCodes != "" ? ", " : "") + e.VoucherCode; 
             this.PrimaryReferences = primaryReferences; //this.VoucherCodes = voucherCodes;
         }
 

@@ -122,7 +122,7 @@ namespace TotalDTO.Inventories
             base.PerformPresaveRule();
 
             string primaryReferences = "";
-            this.DtoDetails().ToList().ForEach(e => { e.WarehouseID = this.WarehouseID; if (this.HasPickup && primaryReferences.IndexOf(e.PrimaryReference) < 0) primaryReferences = primaryReferences + (primaryReferences != "" ? ", " : "") + e.PrimaryReference; });
+            this.DtoDetails().ToList().ForEach(e => { e.GoodsReceiptTypeID = this.GoodsReceiptTypeID; e.WarehouseID = this.WarehouseID; if (this.HasPickup && primaryReferences.IndexOf(e.PrimaryReference) < 0) primaryReferences = primaryReferences + (primaryReferences != "" ? ", " : "") + e.PrimaryReference; });
             this.PrimaryReferences = primaryReferences;
         }
 
