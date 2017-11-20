@@ -835,7 +835,7 @@
             // 
             this.CommodityName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.CommodityName.DataPropertyName = "CommodityName";
-            this.CommodityName.FillWeight = 17.9768F;
+            this.CommodityName.FillWeight = 14F;
             this.CommodityName.HeaderText = "Items.Description";
             this.CommodityName.Name = "CommodityName";
             this.CommodityName.ReadOnly = true;

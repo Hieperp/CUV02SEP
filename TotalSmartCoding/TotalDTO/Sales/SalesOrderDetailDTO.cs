@@ -7,11 +7,12 @@ using TotalBase;
 using TotalModel;
 using TotalDTO.Helpers;
 using TotalModel.Helpers;
+using TotalDTO.Helpers.Interfaces;
 
 
 namespace TotalDTO.Sales
 {
-    public class SalesOrderDetailDTO : QuantityDetailDTO, IPrimitiveEntity
+    public class SalesOrderDetailDTO : QuantityDetailDTO, IPrimitiveEntity, IAvailableQuantityDetailDTO
     {
         public int GetID() { return this.SalesOrderDetailID; }
 
