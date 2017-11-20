@@ -140,6 +140,7 @@
         <AssociationConnector Association="TotalSmartCodingModel.FK_WarehouseAdjustments_WarehouseAdjustmentTypes" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_WarehouseAdjustments_WarehouseReceipts" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_WarehouseAdjustments_Warehouses" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_Users_OrganizationalUnits" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -641,7 +641,8 @@ namespace TotalSmartCoding.Views.Mains
                 this.comboSearchBarcode.Text = this.comboSearchBarcode.Text.Trim();
                 if (this.comboSearchBarcode.Text.Length > 0)
                 {
-                    this.comboSearchBarcode.Items.Add(this.comboSearchBarcode.Text);
+                    if (this.comboSearchBarcode.Items.IndexOf(this.comboSearchBarcode.Text) == -1)
+                        this.comboSearchBarcode.Items.Add(this.comboSearchBarcode.Text);
 
                     PrintViewModel printViewModel = new PrintViewModel();
                     printViewModel.ReportPath = "SearchBarcode";

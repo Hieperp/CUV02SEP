@@ -18,6 +18,7 @@ namespace TotalModel.Models
         public OrganizationalUnit()
         {
             this.OrganizationalUnitUsers = new HashSet<OrganizationalUnitUser>();
+            this.Users = new HashSet<User>();
         }
     
         public int OrganizationalUnitID { get; set; }
@@ -28,5 +29,7 @@ namespace TotalModel.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrganizationalUnitUser> OrganizationalUnitUsers { get; set; }
         public virtual Location Location { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<User> Users { get; set; }
     }
 }

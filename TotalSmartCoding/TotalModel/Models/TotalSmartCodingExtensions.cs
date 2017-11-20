@@ -177,6 +177,9 @@ namespace TotalModel.Models
 
         public decimal QuantityRemains { get; set; }
         public decimal LineVolumeRemains { get; set; }
+
+        public Nullable<int> NewBinLocationID { get; set; }
+        public string NewBinLocationCode { get; set; }
     }
 
     #endregion Interface for goods issue
@@ -480,6 +483,10 @@ namespace TotalModel.Models
         public System.DateTime EditedDate { get; set; }
     }
 
+    public partial class UserIndex
+    {
+        public string FullyQualifiedUserName { get { return this.UserName + "  [" + this.LocationName + "\\" + this.OrganizationalUnitName + "]"; } }
+    }
     public partial class ActiveUser
     {
         public string FullyQualifiedUserName { get { return this.UserName + "  [" + this.LocationName + "\\" + this.OrganizationalUnitName + "]"; } }

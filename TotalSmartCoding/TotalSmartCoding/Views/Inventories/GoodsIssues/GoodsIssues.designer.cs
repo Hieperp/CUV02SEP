@@ -154,17 +154,17 @@
             this.tableLayoutMaster.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutMaster.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutMaster.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutMaster.Size = new System.Drawing.Size(1083, 153);
+            this.tableLayoutMaster.Size = new System.Drawing.Size(1069, 153);
             this.tableLayoutMaster.TabIndex = 62;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label8.Location = new System.Drawing.Point(497, 101);
+            this.label8.Location = new System.Drawing.Point(489, 101);
             this.label8.Margin = new System.Windows.Forms.Padding(1);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(192, 28);
+            this.label8.Size = new System.Drawing.Size(189, 28);
             this.label8.TabIndex = 78;
             this.label8.Text = "Loading Completion";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -173,10 +173,10 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Location = new System.Drawing.Point(497, 71);
+            this.label5.Location = new System.Drawing.Point(489, 71);
             this.label5.Margin = new System.Windows.Forms.Padding(1);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(192, 28);
+            this.label5.Size = new System.Drawing.Size(189, 28);
             this.label5.TabIndex = 77;
             this.label5.Text = "Loading Start";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -185,10 +185,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(500, 44);
+            this.label2.Location = new System.Drawing.Point(492, 44);
             this.label2.Margin = new System.Windows.Forms.Padding(4);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(186, 22);
+            this.label2.Size = new System.Drawing.Size(183, 22);
             this.label2.TabIndex = 56;
             this.label2.Text = "Customer Attn";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -197,10 +197,10 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Location = new System.Drawing.Point(497, 11);
+            this.label4.Location = new System.Drawing.Point(489, 11);
             this.label4.Margin = new System.Windows.Forms.Padding(1);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(192, 28);
+            this.label4.Size = new System.Drawing.Size(189, 28);
             this.label4.TabIndex = 28;
             this.label4.Text = "Truck #";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -212,11 +212,11 @@
             this.dateTimexEntryDate.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
             this.dateTimexEntryDate.Editable = false;
             this.dateTimexEntryDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimexEntryDate.Location = new System.Drawing.Point(198, 11);
+            this.dateTimexEntryDate.Location = new System.Drawing.Point(195, 11);
             this.dateTimexEntryDate.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
             this.dateTimexEntryDate.Name = "dateTimexEntryDate";
             this.dateTimexEntryDate.ReadOnly = false;
-            this.dateTimexEntryDate.Size = new System.Drawing.Size(286, 28);
+            this.dateTimexEntryDate.Size = new System.Drawing.Size(281, 28);
             this.dateTimexEntryDate.TabIndex = 70;
             // 
             // label3
@@ -226,7 +226,7 @@
             this.label3.Location = new System.Drawing.Point(4, 104);
             this.label3.Margin = new System.Windows.Forms.Padding(4);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(186, 22);
+            this.label3.Size = new System.Drawing.Size(183, 22);
             this.label3.TabIndex = 76;
             this.label3.Text = "Prepared by";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -238,7 +238,7 @@
             this.label10.Location = new System.Drawing.Point(4, 74);
             this.label10.Margin = new System.Windows.Forms.Padding(4);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(186, 22);
+            this.label10.Size = new System.Drawing.Size(183, 22);
             this.label10.TabIndex = 35;
             this.label10.Text = "Store Keeper";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -250,7 +250,7 @@
             this.label7.Location = new System.Drawing.Point(4, 44);
             this.label7.Margin = new System.Windows.Forms.Padding(4);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(186, 22);
+            this.label7.Size = new System.Drawing.Size(183, 22);
             this.label7.TabIndex = 31;
             this.label7.Text = "Invoice #";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -262,7 +262,7 @@
             this.label6.Location = new System.Drawing.Point(1, 11);
             this.label6.Margin = new System.Windows.Forms.Padding(1);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(192, 28);
+            this.label6.Size = new System.Drawing.Size(189, 28);
             this.label6.TabIndex = 30;
             this.label6.Text = "Date";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -274,11 +274,11 @@
             this.combexForkliftDriverID.Dock = System.Windows.Forms.DockStyle.Fill;
             this.combexForkliftDriverID.Editable = true;
             this.combexForkliftDriverID.FormattingEnabled = true;
-            this.combexForkliftDriverID.Location = new System.Drawing.Point(198, 71);
+            this.combexForkliftDriverID.Location = new System.Drawing.Point(195, 71);
             this.combexForkliftDriverID.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
             this.combexForkliftDriverID.Name = "combexForkliftDriverID";
             this.combexForkliftDriverID.ReadOnly = false;
-            this.combexForkliftDriverID.Size = new System.Drawing.Size(286, 29);
+            this.combexForkliftDriverID.Size = new System.Drawing.Size(281, 29);
             this.combexForkliftDriverID.TabIndex = 73;
             // 
             // combexStorekeeperID
@@ -288,11 +288,11 @@
             this.combexStorekeeperID.Dock = System.Windows.Forms.DockStyle.Fill;
             this.combexStorekeeperID.Editable = true;
             this.combexStorekeeperID.FormattingEnabled = true;
-            this.combexStorekeeperID.Location = new System.Drawing.Point(198, 101);
+            this.combexStorekeeperID.Location = new System.Drawing.Point(195, 101);
             this.combexStorekeeperID.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
             this.combexStorekeeperID.Name = "combexStorekeeperID";
             this.combexStorekeeperID.ReadOnly = false;
-            this.combexStorekeeperID.Size = new System.Drawing.Size(286, 29);
+            this.combexStorekeeperID.Size = new System.Drawing.Size(281, 29);
             this.combexStorekeeperID.TabIndex = 74;
             // 
             // dateTimexLoadingCompletion
@@ -302,11 +302,11 @@
             this.dateTimexLoadingCompletion.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
             this.dateTimexLoadingCompletion.Editable = true;
             this.dateTimexLoadingCompletion.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimexLoadingCompletion.Location = new System.Drawing.Point(694, 101);
+            this.dateTimexLoadingCompletion.Location = new System.Drawing.Point(683, 101);
             this.dateTimexLoadingCompletion.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
             this.dateTimexLoadingCompletion.Name = "dateTimexLoadingCompletion";
             this.dateTimexLoadingCompletion.ReadOnly = false;
-            this.dateTimexLoadingCompletion.Size = new System.Drawing.Size(286, 28);
+            this.dateTimexLoadingCompletion.Size = new System.Drawing.Size(281, 28);
             this.dateTimexLoadingCompletion.TabIndex = 79;
             // 
             // dateTimexLoadingStart
@@ -316,41 +316,41 @@
             this.dateTimexLoadingStart.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
             this.dateTimexLoadingStart.Editable = true;
             this.dateTimexLoadingStart.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimexLoadingStart.Location = new System.Drawing.Point(694, 71);
+            this.dateTimexLoadingStart.Location = new System.Drawing.Point(683, 71);
             this.dateTimexLoadingStart.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
             this.dateTimexLoadingStart.Name = "dateTimexLoadingStart";
             this.dateTimexLoadingStart.ReadOnly = false;
-            this.dateTimexLoadingStart.Size = new System.Drawing.Size(286, 28);
+            this.dateTimexLoadingStart.Size = new System.Drawing.Size(281, 28);
             this.dateTimexLoadingStart.TabIndex = 80;
             // 
             // textexVehicle
             // 
             this.textexVehicle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexVehicle.Editable = true;
-            this.textexVehicle.Location = new System.Drawing.Point(694, 11);
+            this.textexVehicle.Location = new System.Drawing.Point(683, 11);
             this.textexVehicle.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
             this.textexVehicle.Name = "textexVehicle";
-            this.textexVehicle.Size = new System.Drawing.Size(286, 28);
+            this.textexVehicle.Size = new System.Drawing.Size(281, 28);
             this.textexVehicle.TabIndex = 71;
             // 
             // textexVehicleDriver
             // 
             this.textexVehicleDriver.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexVehicleDriver.Editable = true;
-            this.textexVehicleDriver.Location = new System.Drawing.Point(694, 41);
+            this.textexVehicleDriver.Location = new System.Drawing.Point(683, 41);
             this.textexVehicleDriver.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
             this.textexVehicleDriver.Name = "textexVehicleDriver";
-            this.textexVehicleDriver.Size = new System.Drawing.Size(286, 28);
+            this.textexVehicleDriver.Size = new System.Drawing.Size(281, 28);
             this.textexVehicleDriver.TabIndex = 81;
             // 
             // textexVoucherCodes
             // 
             this.textexVoucherCodes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexVoucherCodes.Editable = true;
-            this.textexVoucherCodes.Location = new System.Drawing.Point(198, 41);
+            this.textexVoucherCodes.Location = new System.Drawing.Point(195, 41);
             this.textexVoucherCodes.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
             this.textexVoucherCodes.Name = "textexVoucherCodes";
-            this.textexVoucherCodes.Size = new System.Drawing.Size(286, 28);
+            this.textexVoucherCodes.Size = new System.Drawing.Size(281, 28);
             this.textexVoucherCodes.TabIndex = 82;
             // 
             // textexRemarks
@@ -360,7 +360,7 @@
             this.textexRemarks.Dock = System.Windows.Forms.DockStyle.Right;
             this.textexRemarks.Editable = true;
             this.textexRemarks.Font = new System.Drawing.Font("Niagara Engraved", 16.2F);
-            this.textexRemarks.Location = new System.Drawing.Point(1039, 4);
+            this.textexRemarks.Location = new System.Drawing.Point(1025, 4);
             this.textexRemarks.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
             this.textexRemarks.Multiline = true;
             this.textexRemarks.Name = "textexRemarks";
@@ -378,7 +378,7 @@
             this.textexDescription.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
             this.textexDescription.Multiline = true;
             this.textexDescription.Name = "textexDescription";
-            this.textexDescription.Size = new System.Drawing.Size(475, 605);
+            this.textexDescription.Size = new System.Drawing.Size(461, 605);
             this.textexDescription.TabIndex = 83;
             // 
             // toolStripChildForm
@@ -414,11 +414,11 @@
             this.naviDetails.ExpandedHeight = 198;
             this.naviDetails.HeaderContextMenuStrip = null;
             this.naviDetails.HeaderHeight = 43;
-            this.naviDetails.Location = new System.Drawing.Point(226, 0);
+            this.naviDetails.Location = new System.Drawing.Point(240, 0);
             this.naviDetails.Margin = new System.Windows.Forms.Padding(4);
             this.naviDetails.Name = "naviDetails";
             this.naviDetails.Padding = new System.Windows.Forms.Padding(0, 45, 0, 0);
-            this.naviDetails.Size = new System.Drawing.Size(1083, 198);
+            this.naviDetails.Size = new System.Drawing.Size(1069, 198);
             this.naviDetails.TabIndex = 30;
             // 
             // toolStripNaviGroup
@@ -432,7 +432,7 @@
             this.buttonRemoveDetailItem,
             this.buttonImportHandheld});
             this.toolStripNaviGroup.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.toolStripNaviGroup.Location = new System.Drawing.Point(997, 0);
+            this.toolStripNaviGroup.Location = new System.Drawing.Point(983, 0);
             this.toolStripNaviGroup.Name = "toolStripNaviGroup";
             this.toolStripNaviGroup.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.toolStripNaviGroup.Size = new System.Drawing.Size(66, 39);
@@ -600,7 +600,7 @@
             this.fastGoodsIssueIndex.OwnerDraw = true;
             this.fastGoodsIssueIndex.RowHeight = 39;
             this.fastGoodsIssueIndex.ShowGroups = false;
-            this.fastGoodsIssueIndex.Size = new System.Drawing.Size(224, 725);
+            this.fastGoodsIssueIndex.Size = new System.Drawing.Size(238, 725);
             this.fastGoodsIssueIndex.TabIndex = 68;
             this.fastGoodsIssueIndex.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastGoodsIssueIndex.UseCompatibleStateImageBehavior = false;
@@ -631,7 +631,7 @@
             this.olvCustomer.HeaderForeColor = System.Drawing.Color.Firebrick;
             this.olvCustomer.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvCustomer.Text = "Customers/ WHs";
-            this.olvCustomer.Width = 110;
+            this.olvCustomer.Width = 114;
             // 
             // olvGoodsIssueIndexVoucherCodes
             // 
@@ -639,7 +639,7 @@
             this.olvGoodsIssueIndexVoucherCodes.Groupable = false;
             this.olvGoodsIssueIndexVoucherCodes.HeaderForeColor = System.Drawing.Color.Firebrick;
             this.olvGoodsIssueIndexVoucherCodes.Text = "Vouchers";
-            this.olvGoodsIssueIndexVoucherCodes.Width = 75;
+            this.olvGoodsIssueIndexVoucherCodes.Width = 85;
             // 
             // olvApproved
             // 
@@ -777,14 +777,14 @@
             this.naviPickupIndex.ClientArea.Location = new System.Drawing.Point(0, 0);
             this.naviPickupIndex.ClientArea.Margin = new System.Windows.Forms.Padding(4);
             this.naviPickupIndex.ClientArea.Name = "ClientArea";
-            this.naviPickupIndex.ClientArea.Size = new System.Drawing.Size(224, 725);
+            this.naviPickupIndex.ClientArea.Size = new System.Drawing.Size(238, 725);
             this.naviPickupIndex.ClientArea.TabIndex = 0;
             this.naviPickupIndex.LargeImageIndex = 0;
             this.naviPickupIndex.LayoutStyle = Guifreaks.Navisuite.NaviLayoutStyle.StyleFromOwner;
             this.naviPickupIndex.Location = new System.Drawing.Point(1, 42);
             this.naviPickupIndex.Margin = new System.Windows.Forms.Padding(4);
             this.naviPickupIndex.Name = "naviPickupIndex";
-            this.naviPickupIndex.Size = new System.Drawing.Size(224, 725);
+            this.naviPickupIndex.Size = new System.Drawing.Size(238, 725);
             this.naviPickupIndex.SmallImageIndex = 0;
             this.naviPickupIndex.TabIndex = 72;
             // 
@@ -797,7 +797,7 @@
             this.naviIndex.Location = new System.Drawing.Point(0, 0);
             this.naviIndex.Margin = new System.Windows.Forms.Padding(4);
             this.naviIndex.Name = "naviIndex";
-            this.naviIndex.Size = new System.Drawing.Size(226, 807);
+            this.naviIndex.Size = new System.Drawing.Size(240, 807);
             this.naviIndex.TabIndex = 71;
             this.naviIndex.Text = "naviBar2";
             // 
@@ -809,11 +809,11 @@
             this.panelMaster.Controls.Add(this.textexRemarks);
             this.panelMaster.Controls.Add(this.gridexPalletDetails);
             this.panelMaster.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelMaster.Location = new System.Drawing.Point(226, 198);
+            this.panelMaster.Location = new System.Drawing.Point(240, 198);
             this.panelMaster.Margin = new System.Windows.Forms.Padding(4);
             this.panelMaster.Name = "panelMaster";
             this.panelMaster.Padding = new System.Windows.Forms.Padding(0, 4, 0, 0);
-            this.panelMaster.Size = new System.Drawing.Size(1083, 609);
+            this.panelMaster.Size = new System.Drawing.Size(1069, 609);
             this.panelMaster.TabIndex = 72;
             // 
             // gridexCartonDetails
