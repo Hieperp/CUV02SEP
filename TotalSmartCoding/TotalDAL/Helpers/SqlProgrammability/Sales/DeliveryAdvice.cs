@@ -262,16 +262,32 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
         {
             string queryString;
 
-            queryString = " @LocationID Int, @DeliveryAdviceID Int, @CommodityID Int " + "\r\n";
+            queryString = " @LocationID Int, @DeliveryAdviceID Int, @TransferOrderID Int, @CommodityID Int " + "\r\n";
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
             queryString = queryString + "       DECLARE     @SearchTable TABLE (LocationID int NOT NULL, CommodityID int NOT NULL) " + "\r\n";
+            queryString = queryString + "                   " + GenerateSQLCommoditiesAvailable.BuildSQL("@SearchTable", false, false, true, false, false, true, false) + "\r\n";
+
             queryString = queryString + "       INSERT INTO @SearchTable (LocationID, CommodityID) VALUES(@LocationID, @CommodityID) " + "\r\n";
 
-            queryString = queryString + "                   " + GenerateSQLCommoditiesAvailable.BuildSQL("@SearchTable", true, false, true, true, true, true, true) + "\r\n";
 
+            queryString = queryString + "       IF (@DeliveryAdviceID > 0) " + "\r\n";
+            queryString = queryString + "               BEGIN " + "\r\n";
+            queryString = queryString + "                   " + GenerateSQLCommoditiesAvailable.BuildSQL("@SearchTable", true, false, false, true, true, true, true) + "\r\n";
+            queryString = queryString + "               END " + "\r\n";
+            queryString = queryString + "       ELSE " + "\r\n";
+            queryString = queryString + "           IF (@TransferOrderID > 0) " + "\r\n";
+            queryString = queryString + "                   BEGIN " + "\r\n";
+            queryString = queryString + "                       " + GenerateSQLCommoditiesAvailable.BuildSQL("@SearchTable", false, true, false , true, true, true, true) + "\r\n";
+            queryString = queryString + "                   END " + "\r\n";
+            queryString = queryString + "           ELSE " + "\r\n";
+            queryString = queryString + "                   BEGIN " + "\r\n";
+            queryString = queryString + "                       " + GenerateSQLCommoditiesAvailable.BuildSQL("@SearchTable", false, false, false, true, false, true, true) + "\r\n";
+            queryString = queryString + "                   END " + "\r\n";
+
+            
             queryString = queryString + "       SELECT      CommoditiesAvailableByBatches.BatchID, Batches.EntryDate, Batches.Code, CommoditiesAvailableByBatches.QuantityAvailable, CommoditiesAvailableByBatches.LineVolumeAvailable " + "\r\n";
             queryString = queryString + "       FROM       (SELECT BatchID, SUM(QuantityAvailable) AS QuantityAvailable, SUM(LineVolumeAvailable) AS LineVolumeAvailable FROM @CommoditiesAvailableByBatches GROUP BY BatchID) CommoditiesAvailableByBatches " + "\r\n";
             queryString = queryString + "                   INNER JOIN Batches ON CommoditiesAvailableByBatches.BatchID = Batches.BatchID " + "\r\n";

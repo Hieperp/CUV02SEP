@@ -355,12 +355,6 @@
     <Compile Include="Views\Sales\DeliveryAdvices\DeliveryAdvices.designer.cs">
       <DependentUpon>DeliveryAdvices.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Sales\DeliveryAdvices\OptionBatches.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\Sales\DeliveryAdvices\OptionBatches.Designer.cs">
-      <DependentUpon>OptionBatches.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\Sales\DeliveryAdvices\WizardDetail.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -372,6 +366,12 @@
     </Compile>
     <Compile Include="Views\Sales\DeliveryAdvices\WizardMaster.designer.cs">
       <DependentUpon>WizardMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sales\OptionBatches.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Sales\OptionBatches.Designer.cs">
+      <DependentUpon>OptionBatches.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Sales\SalesOrders\SalesOrders.cs">
       <SubType>Form</SubType>
@@ -489,14 +489,14 @@
     <EmbeddedResource Include="Views\Sales\DeliveryAdvices\DeliveryAdvices.resx">
       <DependentUpon>DeliveryAdvices.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Sales\DeliveryAdvices\OptionBatches.resx">
-      <DependentUpon>OptionBatches.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Views\Sales\DeliveryAdvices\WizardDetail.resx">
       <DependentUpon>WizardDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Sales\DeliveryAdvices\WizardMaster.resx">
       <DependentUpon>WizardMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Sales\OptionBatches.resx">
+      <DependentUpon>OptionBatches.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Sales\SalesOrders\SalesOrders.resx">
       <DependentUpon>SalesOrders.cs</DependentUpon>

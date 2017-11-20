@@ -366,7 +366,7 @@ namespace TotalSmartCoding.Views.Sales.DeliveryAdvices
                     {
                         deliveryAdviceDetailDTO.DeliveryAdviceID = this.deliveryAdviceViewModel.DeliveryAdviceID;
                         deliveryAdviceDetailDTO.LocationID = this.deliveryAdviceViewModel.LocationID;
-                        OptionBatches optionBatches = new OptionBatches(this.deliveryAdviceAPIs, deliveryAdviceDetailDTO);
+                        OptionBatches optionBatches = new OptionBatches(deliveryAdviceDetailDTO);
                         optionBatches.ShowDialog(); this.customizeColumnWidth();
 
                         optionBatches.Dispose();

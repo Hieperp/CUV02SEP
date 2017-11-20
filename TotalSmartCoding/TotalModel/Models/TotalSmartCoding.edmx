@@ -2015,6 +2015,7 @@
         <Function Name="GetBatchAvailables" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="LocationID" Type="int" Mode="In" />
           <Parameter Name="DeliveryAdviceID" Type="int" Mode="In" />
+          <Parameter Name="TransferOrderID" Type="int" Mode="In" />
           <Parameter Name="CommodityID" Type="int" Mode="In" />
         </Function>
         <Function Name="GetBatchIndexes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -3146,7 +3147,7 @@
             <Parameter Name="Approved" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="SearchCommodities" ReturnType="Collection(TotalSmartCodingModel.SearchCommodity)">
-          <Parameter Name="CommodityID" Mode="In" Type="Int32" />
+            <Parameter Name="CommodityID" Mode="In" Type="Int32" />
             <Parameter Name="LocationID" Mode="In" Type="Int32" />
             <Parameter Name="BatchID" Mode="In" Type="Int32" />
             <Parameter Name="DeliveryAdviceID" Mode="In" Type="Int32" />
@@ -3415,6 +3416,7 @@
           <FunctionImport Name="GetBatchAvailables" ReturnType="Collection(TotalSmartCodingModel.BatchAvailable)">
             <Parameter Name="LocationID" Mode="In" Type="Int32" />
             <Parameter Name="DeliveryAdviceID" Mode="In" Type="Int32" />
+            <Parameter Name="TransferOrderID" Mode="In" Type="Int32" />
             <Parameter Name="CommodityID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetPendingWarehouseAdjustmentDetails" ReturnType="Collection(TotalSmartCodingModel.PendingWarehouseAdjustmentDetail)">

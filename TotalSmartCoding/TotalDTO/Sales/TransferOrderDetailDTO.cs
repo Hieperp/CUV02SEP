@@ -17,6 +17,8 @@ namespace TotalDTO.Sales
     {
         public int GetID() { return this.TransferOrderDetailID; }
 
+        public int DeliveryAdviceID { get { return 0; } }//this property is an implemented the interface IBatchQuantityDetailDTO to use in calling GetBatchAvailables
+
         public int TransferOrderDetailID { get; set; }
         public int TransferOrderID { get; set; }
 
@@ -67,7 +69,7 @@ namespace TotalDTO.Sales
         protected override List<ValidationRule> CreateRules()
         {
             List<ValidationRule> validationRules = base.CreateRules();
-            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<TransferOrderDetailDTO>(p => p.TransferOrderDetailID), "Số lượng xuất không được lớn hơn số lượng tồn.", delegate { return (this.TransferOrderDetailID == 0 || (this.Quantity <= this.QuantityAvailable && this.LineVolume <= this.LineVolumeAvailable)); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<TransferOrderDetailDTO>(p => p.TransferOrderDetailID), "Số lượng xuất không được lớn hơn số lượng tồn.", delegate { return (this.Quantity <= this.QuantityAvailable && this.LineVolume <= this.LineVolumeAvailable); }));
 
             return validationRules;
         }

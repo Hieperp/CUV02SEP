@@ -44,14 +44,7 @@ namespace TotalDAL.Repositories.Sales
         public List<PendingSalesOrderDetail> GetPendingSalesOrderDetails(int? locationID, int? deliveryAdviceID, int? salesOrderID, int? customerID, int? receiverID, string salesOrderDetailIDs, bool isReadonly)
         {
             return base.TotalSmartCodingEntities.GetPendingSalesOrderDetails(locationID, deliveryAdviceID, salesOrderID, customerID, receiverID, salesOrderDetailIDs, isReadonly).ToList();
-        }
-
-        public List<BatchAvailable> GetBatchAvailables(int? locationID, int? deliveryAdviceID, int? commodityID, bool withNullRow)
-        {
-            List<BatchAvailable> batchAvailables = base.TotalSmartCodingEntities.GetBatchAvailables(locationID, deliveryAdviceID, commodityID).ToList();
-            if (withNullRow) batchAvailables.Add(new BatchAvailable() { QuantityAvailable = 0, LineVolumeAvailable = 0 });
-            return batchAvailables;
-        }
+        }        
     }
 
 

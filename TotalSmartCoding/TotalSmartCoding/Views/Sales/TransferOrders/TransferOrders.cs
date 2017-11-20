@@ -281,6 +281,19 @@ namespace TotalSmartCoding.Views.Sales.TransferOrders
             }
         }
 
+        protected override void invokeEdit(int? id)
+        {
+            base.invokeEdit(id);
+            this.customizeColumnWidth();
+        }
+
+        private void customizeColumnWidth()
+        {
+            bool hasOptionBatches = this.transferOrderViewModel.HasOptionBatches;
+            this.gridexViewDetails.Columns[CommonExpressions.PropertyName<TransferOrderDetailDTO>(p => p.BatchCode)].Visible = hasOptionBatches;
+            this.gridexViewDetails.Columns[CommonExpressions.PropertyName<TransferOrderDetailDTO>(p => p.QuantityBatchAvailable)].Visible = hasOptionBatches;
+        }
+
         protected override Controllers.BaseController myController
         {
             get { return new TransferOrderController(CommonNinject.Kernel.Get<ITransferOrderService>(), this.transferOrderViewModel); }
@@ -320,6 +333,30 @@ namespace TotalSmartCoding.Views.Sales.TransferOrders
                 this.naviGroupTop.Expanded = !this.naviGroupTop.Expanded;
                 this.naviGroupTop.Padding = new Padding(0, 0, 0, 0);
                 this.buttonExpandTop.Image = this.naviGroupTop.Expanded ? Resources.chevron : Resources.chevron_expand;
+            }
+        }
+
+        private void menuOptionBatches_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (this.EditableMode)
+                {
+                    TransferOrderDetailDTO transferOrderDetailDTO = this.gridexViewDetails.CurrentRow.DataBoundItem as TransferOrderDetailDTO;
+                    if (transferOrderDetailDTO != null)
+                    {
+                        transferOrderDetailDTO.TransferOrderID = this.transferOrderViewModel.TransferOrderID;
+                        transferOrderDetailDTO.LocationID = this.transferOrderViewModel.LocationID;
+                        OptionBatches optionBatches = new OptionBatches(transferOrderDetailDTO);
+                        optionBatches.ShowDialog(); this.customizeColumnWidth();
+
+                        optionBatches.Dispose();
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
             }
         }
     }

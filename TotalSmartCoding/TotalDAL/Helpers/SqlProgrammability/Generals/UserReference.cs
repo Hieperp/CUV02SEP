@@ -99,7 +99,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             queryString = queryString + "       BEGIN " + "\r\n";
 
             queryString = queryString + "           DECLARE         @UserID Int" + "\r\n";
-            queryString = queryString + "           INSERT INTO     Users (OrganizationalUnitID, FirstName, LastName, UserName, SecurityIdentifier, IsDatabaseAdmin) VALUES (@OrganizationalUnitID, @FirstName, @LastName, @UserName, @SecurityIdentifier, 0) " + "\r\n";
+            queryString = queryString + "           INSERT INTO     Users (OrganizationalUnitID, FirstName, LastName, UserName, SecurityIdentifier, IsDatabaseAdmin, InActive) VALUES (@OrganizationalUnitID, @FirstName, @LastName, @UserName, @SecurityIdentifier, 0, 0) " + "\r\n";
             queryString = queryString + "           SELECT          @UserID = SCOPE_IDENTITY() " + "\r\n";
             queryString = queryString + "           INSERT INTO     OrganizationalUnitUsers (OrganizationalUnitID, UserID, InActive) VALUES (@OrganizationalUnitID, @UserID, 0) " + "\r\n";
 

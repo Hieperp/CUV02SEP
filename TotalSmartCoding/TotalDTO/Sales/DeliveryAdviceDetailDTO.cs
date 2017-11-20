@@ -20,6 +20,7 @@ namespace TotalDTO.Sales
         //NOW: AFTER ADD DeliveryAdviceDetailDTO TO COLLECTION, WE DON'T CHANGE THESE PROPERTIES FROM BINDING DataGridView ALSO FROM BACKEND DeliveryAdviceDetailDTO OBJECT. SO: WE DON'T IMPLEMENT PropertyChanged FOR THESE PROPERTIES
         //LATER: IF WE RECEIPT FORM OTHER SOURCE THAN FROM PICKUP ONLY, WE SHOULD CONSIDER THIS => AND IMPLEMENT PropertyChanged FOR THESE PROPERTIES WHEN NECCESSARY
 
+        public int TransferOrderID { get { return 0; } } //this property is an implemented the interface IBatchQuantityDetailDTO to use in calling GetBatchAvailables
 
         public int DeliveryAdviceDetailID { get; set; }
         public int DeliveryAdviceID { get; set; }

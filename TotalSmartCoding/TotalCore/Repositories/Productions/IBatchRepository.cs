@@ -1,4 +1,6 @@
-﻿using TotalBase;
+﻿using System.Collections.Generic;
+
+using TotalBase;
 using TotalModel.Models;
 
 namespace TotalCore.Repositories.Productions
@@ -10,5 +12,6 @@ namespace TotalCore.Repositories.Productions
 
     public interface IBatchAPIRepository : IGenericAPIRepository
     {
+        List<BatchAvailable> GetBatchAvailables(int? locationID, int? deliveryAdviceID, int? transferOrderID, int? commodityID, bool withNullRow);
     }
 }
