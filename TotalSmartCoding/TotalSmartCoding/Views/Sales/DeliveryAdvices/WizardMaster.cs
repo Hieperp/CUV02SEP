@@ -74,7 +74,7 @@ namespace TotalSmartCoding.Views.Sales.DeliveryAdvices
                             this.deliveryAdviceViewModel.SalesOrderID = pendingSalesOrder.SalesOrderID;
                             this.deliveryAdviceViewModel.SalesOrderReference = pendingSalesOrder.SalesOrderReference;
                             this.deliveryAdviceViewModel.SalesOrderEntryDate = pendingSalesOrder.SalesOrderEntryDate;
-                            this.deliveryAdviceViewModel.VoucherCode = pendingSalesOrder.VoucherCode;
+                            //this.deliveryAdviceViewModel.VoucherCode = pendingSalesOrder.VoucherCode;
 
                             this.deliveryAdviceViewModel.CustomerID = pendingSalesOrder.CustomerID;
                             this.deliveryAdviceViewModel.CustomerName = pendingSalesOrder.CustomerName;

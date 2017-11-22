@@ -156,7 +156,7 @@ namespace TotalDTO.Sales
             string salesOrderReferences = ""; string voucherCode = "";
             this.DtoDetails().ToList().ForEach(e => { e.CustomerID = this.CustomerID; e.ReceiverID = this.ReceiverID; if (this.HasSalesOrder && salesOrderReferences.IndexOf(e.SalesOrderReference) < 0) salesOrderReferences = salesOrderReferences + (salesOrderReferences != "" ? ", " : "") + e.SalesOrderReference; if (this.HasSalesOrder && e.VoucherCode != null && voucherCode.IndexOf(e.VoucherCode) < 0) voucherCode = voucherCode + (voucherCode != "" ? ", " : "") + e.VoucherCode; });
             this.SalesOrderReferences = salesOrderReferences;
-            if (this.HasSalesOrder) this.VoucherCode = voucherCode;
+            //if (this.HasSalesOrder) this.VoucherCode = voucherCode; REMOVE THIS, BECAUSE: SalesOrders.VoucherCode IS THE ORDER NUMBER, WHILE DeliveryAdvices.VoucherCode IS THE INVOICE NUMBER
         }
 
         protected override List<ValidationRule> CreateRules()

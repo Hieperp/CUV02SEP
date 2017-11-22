@@ -147,6 +147,7 @@
             this.fastAvailablePallets.VirtualMode = true;
             this.fastAvailablePallets.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.fastAvailableGoodsReceiptDetails_ItemChecked);
             this.fastAvailablePallets.SelectedIndexChanged += new System.EventHandler(this.fastAvailableGoodsReceiptDetails_SelectedIndexChanged);
+            this.fastAvailablePallets.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.fastAvailableBarcodes_MouseDoubleClick);
             // 
             // olvIsSelected
             // 
@@ -335,6 +336,7 @@
             this.fastAvailableCartons.VirtualMode = true;
             this.fastAvailableCartons.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.fastAvailableGoodsReceiptDetails_ItemChecked);
             this.fastAvailableCartons.SelectedIndexChanged += new System.EventHandler(this.fastAvailableGoodsReceiptDetails_SelectedIndexChanged);
+            this.fastAvailableCartons.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.fastAvailableBarcodes_MouseDoubleClick);
             // 
             // olvColumn1
             // 
@@ -435,6 +437,7 @@
             this.fastAvailablePacks.VirtualMode = true;
             this.fastAvailablePacks.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.fastAvailableGoodsReceiptDetails_ItemChecked);
             this.fastAvailablePacks.SelectedIndexChanged += new System.EventHandler(this.fastAvailableGoodsReceiptDetails_SelectedIndexChanged);
+            this.fastAvailablePacks.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.fastAvailableBarcodes_MouseDoubleClick);
             // 
             // olvColumn6
             // 

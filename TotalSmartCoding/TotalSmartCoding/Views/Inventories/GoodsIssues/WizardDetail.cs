@@ -361,6 +361,12 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
             }
         }
 
+        private void fastAvailableBarcodes_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (this.buttonAddExit.Enabled)
+                this.buttonAddESC_Click(this.buttonAddExit, new EventArgs());
+        }
+
     }
 
     public class MismatchedBarcode

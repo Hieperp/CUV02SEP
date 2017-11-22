@@ -201,7 +201,7 @@ namespace TotalDTO.Inventories
 
         public override string Caption
         {
-            get { return (this.GoodsIssueTypeID == (int)GlobalEnums.GoodsIssueTypeID.DeliveryAdvice ? "D.A: " : "Transfer Order: ") + (this.DeliveryAdviceID != null ? this.DeliveryAdviceReference: (this.TransferOrderID != null ? this.TransferOrderReference: this.PrimaryReferences)) + ", " + (this.CustomerName != null ? "Customer: " + this.CustomerName.Substring(0, this.CustomerName.Length > 16 ? 15 : this.CustomerName.Length) + ", " : "") + (this.WarehouseName != null && this.WarehouseReceiptName != null ? "From: " + this.WarehouseName + " To: " + this.WarehouseReceiptName + ", " : "") + "Issue: " + (this.Reference != null ? this.Reference : "...") + "             Total Quantity: " + this.TotalQuantity.ToString("N0") + ",    Total Volume: " + this.TotalLineVolume.ToString("N2"); }
+            get { return this.Reference + " " + (this.GoodsIssueTypeID == (int)GlobalEnums.GoodsIssueTypeID.DeliveryAdvice ? "D.A: " : "Transfer Order: ") + (this.DeliveryAdviceID != null ? this.DeliveryAdviceReference: (this.TransferOrderID != null ? this.TransferOrderReference: this.PrimaryReferences)) + ", " + (this.CustomerName != null ? "Customer: " + this.CustomerName.Substring(0, this.CustomerName.Length > 16 ? 15 : this.CustomerName.Length) + ", " : "") + (this.WarehouseName != null && this.WarehouseReceiptName != null ? "From: " + this.WarehouseName + " To: " + this.WarehouseReceiptName + ", " : "") + "Issue: " + (this.Reference != null ? this.Reference : "...") + "             Total Quantity: " + this.TotalQuantity.ToString("N0") + ",    Total Volume: " + this.TotalLineVolume.ToString("N2"); }
         }
 
         public override void PerformPresaveRule()

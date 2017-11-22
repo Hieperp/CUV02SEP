@@ -136,5 +136,11 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
             }
         }
 
+        private void fastBinLocations_DoubleClick(object sender, EventArgs e)
+        {
+            if (this.buttonAdd.Enabled)
+                this.buttonAddESC_Click(this.buttonAdd, new EventArgs());
+        }
+
     }
 }

@@ -106,7 +106,7 @@
             this.fastPendingPallets.UseFiltering = true;
             this.fastPendingPallets.View = System.Windows.Forms.View.Details;
             this.fastPendingPallets.VirtualMode = true;
-            this.fastPendingPallets.MouseDown += new System.Windows.Forms.MouseEventHandler(this.fastPendingBarcodes_MouseDown);
+            this.fastPendingPallets.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.fastPendingBarcodes_MouseDoubleClick);
             // 
             // olvPalletSelected
             // 
@@ -170,13 +170,13 @@
             this.contextMenuDetails.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuOptionBinLocations});
             this.contextMenuDetails.Name = "contextMenuDetails";
-            this.contextMenuDetails.Size = new System.Drawing.Size(261, 28);
+            this.contextMenuDetails.Size = new System.Drawing.Size(267, 30);
             this.contextMenuDetails.Text = "Context MenuDetails";
             // 
             // menuOptionBinLocations
             // 
             this.menuOptionBinLocations.Name = "menuOptionBinLocations";
-            this.menuOptionBinLocations.Size = new System.Drawing.Size(260, 24);
+            this.menuOptionBinLocations.Size = new System.Drawing.Size(266, 26);
             this.menuOptionBinLocations.Text = "Set bin location for this line";
             this.menuOptionBinLocations.Click += new System.EventHandler(this.menuOptionBinLocations_Click);
             // 
@@ -228,6 +228,7 @@
             this.fastPendingCartons.UseFiltering = true;
             this.fastPendingCartons.View = System.Windows.Forms.View.Details;
             this.fastPendingCartons.VirtualMode = true;
+            this.fastPendingCartons.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.fastPendingBarcodes_MouseDoubleClick);
             // 
             // olvCartonSelected
             // 

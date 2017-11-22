@@ -172,12 +172,12 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             string queryString;
 
             queryString = " @Barcode varchar(50) " + "\r\n";
-            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            //queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
             queryString = queryString + "       DECLARE     @PackID int, @CartonID int, @PalletID int, @PackCode varchar(50), @CartonCode varchar(50), @PalletCode varchar(50) " + "\r\n";
-            queryString = queryString + "       DECLARE     @BarcodeResults TABLE (LocationID int NOT NULL, CommodityID int NOT NULL, PackID int NULL, CartonID int NULL, PalletID int NULL, EntryDate datetime NOT NULL, Quantity decimal(18, 3) NOT NULL, LineVolume decimal(18, 3) NOT NULL, Description nvarchar(100) NULL) " + "\r\n";
+            queryString = queryString + "       DECLARE     @BarcodeResults TABLE (LocationID int NOT NULL, CommodityID int NOT NULL, PackID int NULL, CartonID int NULL, PalletID int NULL, EntryDate datetime NOT NULL, Quantity decimal(18, 3) NOT NULL, LineVolume decimal(18, 3) NOT NULL, Description nvarchar(1000) NULL) " + "\r\n";
 
             queryString = queryString + "       IF LEN(@Barcode) > 10 " + "\r\n";
             queryString = queryString + "           BEGIN " + "\r\n";
@@ -214,9 +214,9 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             queryString = queryString + "                       IF (NOT @PalletID IS NULL) " + "\r\n";
             queryString = queryString + "                           INSERT INTO @BarcodeResults SELECT LocationID, CommodityID, NULL AS PackID, NULL AS CartonID, PalletID, EntryDate, Quantity, LineVolume, 'Production' FROM Pallets WHERE PalletID = @PalletID " + "\r\n";
 
-            queryString = queryString + "                       INSERT INTO @BarcodeResults SELECT LocationID, CommodityID, PackID, CartonID, PalletID, EntryDate, Quantity, LineVolume, 'Pickup' FROM PickupDetails WHERE PackID = @PackID OR CartonID = @CartonID OR PalletID = @PalletID " + "\r\n";
+            queryString = queryString + "                       INSERT INTO @BarcodeResults SELECT LocationID, CommodityID, PackID, CartonID, PalletID, EntryDate, Quantity, LineVolume, 'Pickup ' + Reference FROM PickupDetails WHERE PackID = @PackID OR CartonID = @CartonID OR PalletID = @PalletID " + "\r\n";
             queryString = queryString + "                       INSERT INTO @BarcodeResults SELECT LocationID, CommodityID, PackID, CartonID, PalletID, EntryDate, Quantity, LineVolume, 'Receipt from ' +  GoodsReceiptTypes.Name FROM GoodsReceiptDetails INNER JOIN GoodsReceiptTypes ON GoodsReceiptDetails.GoodsReceiptTypeID = GoodsReceiptTypes.GoodsReceiptTypeID WHERE PackID = @PackID OR CartonID = @CartonID OR PalletID = @PalletID " + "\r\n";
-            queryString = queryString + "                       INSERT INTO @BarcodeResults SELECT LocationID, CommodityID, PackID, CartonID, PalletID, EntryDate, Quantity, LineVolume, 'Issue for ' +  GoodsIssueTypes.Name FROM GoodsIssueDetails INNER JOIN GoodsIssueTypes ON GoodsIssueDetails.GoodsIssueTypeID = GoodsIssueTypes.GoodsIssueTypeID WHERE PackID = @PackID OR CartonID = @CartonID OR PalletID = @PalletID " + "\r\n";
+            queryString = queryString + "                       INSERT INTO @BarcodeResults SELECT GoodsIssueDetails.LocationID, CommodityID, PackID, CartonID, PalletID, EntryDate, Quantity, LineVolume, 'Issue for ' +  GoodsIssueTypes.Name + ': ' + ISNULL(Customers.Name, '') + ISNULL(Warehouses.Name, '') FROM GoodsIssueDetails INNER JOIN GoodsIssueTypes ON GoodsIssueDetails.GoodsIssueTypeID = GoodsIssueTypes.GoodsIssueTypeID LEFT JOIN Customers ON GoodsIssueDetails.CustomerID = Customers.CustomerID LEFT JOIN Warehouses ON GoodsIssueDetails.WarehouseReceiptID = Warehouses.WarehouseID WHERE PackID = @PackID OR CartonID = @CartonID OR PalletID = @PalletID " + "\r\n";
             queryString = queryString + "                       INSERT INTO @BarcodeResults SELECT LocationID, CommodityID, PackID, CartonID, PalletID, EntryDate, Quantity, LineVolume, WarehouseAdjustmentTypes.Name FROM WarehouseAdjustmentDetails INNER JOIN WarehouseAdjustmentTypes ON WarehouseAdjustmentDetails.WarehouseAdjustmentTypeID = WarehouseAdjustmentTypes.WarehouseAdjustmentTypeID WHERE PackID = @PackID OR CartonID = @CartonID OR PalletID = @PalletID " + "\r\n";
             queryString = queryString + "                   END " + "\r\n";
 

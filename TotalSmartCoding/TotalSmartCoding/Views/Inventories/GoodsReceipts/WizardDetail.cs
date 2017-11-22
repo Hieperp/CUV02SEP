@@ -235,20 +235,20 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
 
                         if (tabletMDI.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                         {
-                            if (fastPendingList.Equals(this.fastPendingCartons))
+                            //if (fastPendingList.Equals(this.fastPendingCartons)) NEU AAP DUNG CACH NAY: CHI CARTON MOI CHO PHEP SET BIN LOCATION HANG LOAT
+                            //{
+                            foreach (var checkedObject in fastPendingList.CheckedObjects)
                             {
-                                foreach (var checkedObject in this.fastPendingCartons.CheckedObjects)
-                                {
-                                    IPendingforGoodsReceiptDetail p = (IPendingforGoodsReceiptDetail)checkedObject;
-                                    p.BinLocationID = (int)lineDetailBinlLocation.BinLocationID;
-                                    p.BinLocationCode = lineDetailBinlLocation.BinLocationCode;
-                                }
+                                IPendingforGoodsReceiptDetail p = (IPendingforGoodsReceiptDetail)checkedObject;
+                                p.BinLocationID = (int)lineDetailBinlLocation.BinLocationID;
+                                p.BinLocationCode = lineDetailBinlLocation.BinLocationCode;
                             }
-                            else
-                            {
-                                pendingforGoodsReceiptDetail.BinLocationID = (int)lineDetailBinlLocation.BinLocationID;
-                                pendingforGoodsReceiptDetail.BinLocationCode = lineDetailBinlLocation.BinLocationCode;
-                            }
+                            //}
+                            //else
+                            //{
+                            //    pendingforGoodsReceiptDetail.BinLocationID = (int)lineDetailBinlLocation.BinLocationID;
+                            //    pendingforGoodsReceiptDetail.BinLocationCode = lineDetailBinlLocation.BinLocationCode;
+                            //}
 
                             fastPendingList.RefreshObject(pendingforGoodsReceiptDetail);
                         }
@@ -263,10 +263,9 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
             }
         }
 
-        private void fastPendingBarcodes_MouseDown(object sender, MouseEventArgs e)
+        private void fastPendingBarcodes_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (e.Button == System.Windows.Forms.MouseButtons.Right)
-                this.menuOptionBinLocations_Click(sender, new EventArgs());
+            this.menuOptionBinLocations_Click(sender, new EventArgs());
         }
     }
 }
