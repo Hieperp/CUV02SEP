@@ -30,7 +30,7 @@ namespace TotalDAL.Repositories
             //if (!GlobalVariables.shouldRestoreProcedure) return;
 
             return;
-            return;
+            
 
             Helpers.SqlProgrammability.Inventories.GoodsIssue goodsIssue = new Helpers.SqlProgrammability.Inventories.GoodsIssue(totalSmartCodingEntities);
             goodsIssue.RestoreProcedure();
@@ -41,6 +41,7 @@ namespace TotalDAL.Repositories
             Helpers.SqlProgrammability.Inventories.Pickup pickup = new Helpers.SqlProgrammability.Inventories.Pickup(totalSmartCodingEntities);
             pickup.RestoreProcedure();
 
+            return;
             return;
 
             Helpers.SqlProgrammability.Commons.Commodity commodity = new Helpers.SqlProgrammability.Commons.Commodity(totalSmartCodingEntities);

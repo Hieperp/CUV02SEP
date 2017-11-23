@@ -168,29 +168,6 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
             return warehouseAdjustmentDetailDTO;
         }
 
-        private void fastPendingPallets_ItemChecked(object sender, ItemCheckedEventArgs e)
-        {
-            //OLVListItem olvListItem = this.fastPendingPallets.Items[e.Item.Index] as OLVListItem;
-            //GoodsReceiptDetailAvailable goodsReceiptDetailAvailable = olvListItem.RowObject as GoodsReceiptDetailAvailable;
-
-            //if (olvListItem.Checked)
-            //{
-            //    IList<Carton> cartons = this.cartonAPIs.GetCartons(GlobalVariables.FillingLine.None, null, goodsReceiptDetailAvailable.PalletID);
-            //    cartons.Each(c => { c.BinLocationID = goodsReceiptDetailAvailable.BinLocationID; c.BinLocationCode = goodsReceiptDetailAvailable.BinLocationCode; });
-            //    this.availableCartons.AddRange(cartons);
-            //    this.fastPendingCartons.SetObjects(this.availableCartons);
-            //}
-            //else
-            //    this.availableCartons.RemoveAll(x => x.PalletID == goodsReceiptDetailAvailable.PalletID);
-
-            //this.fastPendingCartons.SetObjects(this.availableCartons);
-        }
-
-        private void fastObjectListView_ItemsChanged(object sender, ItemsChangedEventArgs e)
-        {
-            //if (sender.Equals(this.fastPendingCartons)) this.ShowRowCount(false, true);
-        }
-
         private void textexFilters_TextChanged(object sender, EventArgs e)
         {
             try
@@ -217,13 +194,13 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
             if (showCartonCount) this.customTabBatch.TabPages[1].Text = "Carton: " + this.fastPendingCartons.GetItemCount().ToString("N0") + " item" + (this.fastPendingCartons.GetItemCount() > 1 ? "s      " : "      ");
         }
 
-        private void fastPendingCartons_MouseDown(object sender, MouseEventArgs e)
+        private void fastPendingList_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             try
             {
                 FastObjectListView fastPendingList = this.customTabBatch.SelectedIndex == 0 ? this.fastPendingPallets : (this.customTabBatch.SelectedIndex == 1 ? this.fastPendingCartons : null);
 
-                if (e.Button == System.Windows.Forms.MouseButtons.Right && this.warehouseAdjustmentViewModel.WarehouseAdjustmentTypeID == (int)GlobalEnums.WarehouseAdjustmentTypeID.ChangeBinLocation && fastPendingList.SelectedObject != null)
+                if (this.warehouseAdjustmentViewModel.WarehouseAdjustmentTypeID == (int)GlobalEnums.WarehouseAdjustmentTypeID.ChangeBinLocation && fastPendingList.SelectedObject != null)
                 {
                     if (fastPendingList != null && fastPendingList.SelectedObject != null)
                     {

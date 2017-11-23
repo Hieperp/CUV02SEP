@@ -74,7 +74,8 @@ namespace TotalDTO.Inventories
         public int WarehouseAdjustmentTypeID
         {
             get { return this.warehouseAdjustmentTypeID; }
-            set { 
+            set
+            {
                 ApplyPropertyChange<WarehouseAdjustmentPrimitiveDTO, int>(ref this.warehouseAdjustmentTypeID, o => o.WarehouseAdjustmentTypeID, value);
                 if (!this.WarehouseReceiptEnabled) this.WarehouseReceiptID = this.WarehouseID;
             }
@@ -112,7 +113,7 @@ namespace TotalDTO.Inventories
 
         public override string Caption
         {
-            get { return this.WarehouseAdjustmentTypeName + " at Warehouse: " + this.WarehouseName + "             Total Quantity: " + this.TotalQuantity.ToString("N0") + ",    Total Volume: " + this.TotalLineVolume.ToString("N2"); }
+            get { return this.WarehouseAdjustmentTypeName + "             Issue at: " + this.WarehouseName + (this.WarehouseReceiptEnabled ? ", Receipt at: " + this.WarehouseReceiptName : "") + "             Total Quantity: " + this.TotalQuantity.ToString("N0") + ",    Total Volume: " + this.TotalLineVolume.ToString("N2"); }
         }
 
         public override void PerformPresaveRule()

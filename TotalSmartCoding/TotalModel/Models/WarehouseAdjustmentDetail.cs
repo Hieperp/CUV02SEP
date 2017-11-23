@@ -22,6 +22,7 @@ namespace TotalModel.Models
     
         public int WarehouseAdjustmentDetailID { get; set; }
         public int WarehouseAdjustmentID { get; set; }
+        public int WarehouseAdjustmentTypeID { get; set; }
         public Nullable<int> GoodsReceiptDetailID { get; set; }
         public Nullable<int> GoodsReceiptID { get; set; }
         public System.DateTime EntryDate { get; set; }
@@ -45,7 +46,6 @@ namespace TotalModel.Models
         public decimal LineVolumeReceipt { get; set; }
         public string Remarks { get; set; }
         public bool Approved { get; set; }
-        public int WarehouseAdjustmentTypeID { get; set; }
     
         public virtual BinLocation BinLocation { get; set; }
         public virtual Carton Carton { get; set; }

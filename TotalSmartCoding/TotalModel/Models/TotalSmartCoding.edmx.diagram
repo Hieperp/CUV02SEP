@@ -123,7 +123,8 @@
         <AssociationConnector Association="TotalSmartCodingModel.FK_TransferOrders_TransferOrderTypes" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_TransferOrders_Warehouses" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_TransferOrders_Warehouses1" />
-        <EntityTypeShape EntityType="TotalSmartCodingModel.WarehouseAdjustmentDetail" Width="1.5" PointX="30.75" PointY="18.75" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_Users_OrganizationalUnits" />
+        <EntityTypeShape EntityType="TotalSmartCodingModel.WarehouseAdjustmentDetail" Width="1.5" PointX="30.75" PointY="18.625" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.WarehouseAdjustment" Width="1.5" PointX="21" PointY="31.25" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_WarehouseAdjustmentDetails_BinLocations" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_WarehouseAdjustmentDetails_Cartons" />
@@ -135,12 +136,11 @@
         <AssociationConnector Association="TotalSmartCodingModel.FK_WarehouseAdjustmentDetails_Packs" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_WarehouseAdjustmentDetails_Pallets" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_WarehouseAdjustmentDetails_WarehouseAdjustments" />
-        <AssociationConnector Association="TotalSmartCodingModel.FK_WarehouseAdjustmentDetails_WarehouseReceipts" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_WarehouseAdjustmentDetails_Warehouses" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_WarehouseAdjustmentDetails_Warehouses1" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_WarehouseAdjustments_WarehouseAdjustmentTypes" />
-        <AssociationConnector Association="TotalSmartCodingModel.FK_WarehouseAdjustments_WarehouseReceipts" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_WarehouseAdjustments_Warehouses" />
-        <AssociationConnector Association="TotalSmartCodingModel.FK_Users_OrganizationalUnits" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_WarehouseAdjustments_Warehouses1" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
