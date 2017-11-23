@@ -32,6 +32,12 @@ namespace TotalDAL.Repositories
             return;
             return;
 
+            Helpers.SqlProgrammability.Inventories.GoodsIssue goodsIssue = new Helpers.SqlProgrammability.Inventories.GoodsIssue(totalSmartCodingEntities);
+            goodsIssue.RestoreProcedure();
+
+
+            return;
+
             Helpers.SqlProgrammability.Inventories.Pickup pickup = new Helpers.SqlProgrammability.Inventories.Pickup(totalSmartCodingEntities);
             pickup.RestoreProcedure();
 
@@ -40,19 +46,13 @@ namespace TotalDAL.Repositories
             Helpers.SqlProgrammability.Commons.Commodity commodity = new Helpers.SqlProgrammability.Commons.Commodity(totalSmartCodingEntities);
             commodity.RestoreProcedure();
 
+            
             return;
-
-            Helpers.SqlProgrammability.Inventories.GoodsIssue goodsIssue = new Helpers.SqlProgrammability.Inventories.GoodsIssue(totalSmartCodingEntities);
-            goodsIssue.RestoreProcedure();
 
             Helpers.SqlProgrammability.Sales.SalesOrder salesOrder = new Helpers.SqlProgrammability.Sales.SalesOrder(totalSmartCodingEntities);
             salesOrder.RestoreProcedure();
 
-
-
-
-
-            return;
+            
             return;
 
             Helpers.SqlProgrammability.Generals.UserReference userReference = new Helpers.SqlProgrammability.Generals.UserReference(totalSmartCodingEntities);

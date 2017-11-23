@@ -101,7 +101,8 @@ namespace TotalDTO.Inventories
 
         public override void PerformPresaveRule()
         {
-            this.EntryDate = this.DtoDetails().Max(d => d.BarcodeEntryDate).Value;
+            if (this.DtoDetails().Count() > 0)
+                this.EntryDate = this.DtoDetails().Max(d => d.BarcodeEntryDate).Value;
 
             base.PerformPresaveRule();
 

@@ -91,7 +91,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                 this.textexRemarks.Dock = DockStyle.Fill;
                 this.panelMaster.Controls.Add(this.customTabCenter);
 
-                this.naviDetails.ExpandedHeight = this.naviDetails.HeaderHeight + this.textexVehicle.Size.Height + this.textexVehicleDriver.Size.Height + this.dateTimexLoadingStart.Size.Height + this.dateTimexLoadingCompletion.Size.Height + 4 * 5 + 5;
+                this.naviDetails.ExpandedHeight = this.naviDetails.HeaderHeight + this.textexVoucherCodes.Size.Height + this.textexVehicle.Size.Height + this.textexVehicleDriver.Size.Height + 4 * 5 + 5;
                 this.naviDetails.Expanded = false;
 
                 this.labelCaption.Left = 68; this.labelCaption.Top = 12;
@@ -114,8 +114,6 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
 
 
         Binding bindingEntryDate;
-        Binding bindingLoadingStart;
-        Binding bindingLoadingCompletion;
         Binding bindingVoucherCodes;
         Binding bindingVehicle;
         Binding bindingVehicleDriver;
@@ -133,8 +131,6 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
             this.bindingCaption = this.labelCaption.DataBindings.Add("Text", this.goodsIssueViewModel, CommonExpressions.PropertyName<GoodsIssueViewModel>(p => p.Caption));
 
             this.bindingEntryDate = this.dateTimexEntryDate.DataBindings.Add("Value", this.goodsIssueViewModel, CommonExpressions.PropertyName<GoodsIssueViewModel>(p => p.EntryDate), true, DataSourceUpdateMode.OnPropertyChanged);
-            this.bindingLoadingStart = this.dateTimexLoadingStart.DataBindings.Add("Value", this.goodsIssueViewModel, CommonExpressions.PropertyName<GoodsIssueViewModel>(p => p.LoadingStart), true, DataSourceUpdateMode.OnPropertyChanged);
-            this.bindingLoadingCompletion = this.dateTimexLoadingCompletion.DataBindings.Add("Value", this.goodsIssueViewModel, CommonExpressions.PropertyName<GoodsIssueViewModel>(p => p.LoadingCompletion), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingVoucherCodes = this.textexVoucherCodes.DataBindings.Add("Text", this.goodsIssueViewModel, CommonExpressions.PropertyName<GoodsIssueViewModel>(p => p.VoucherCodes), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingVehicle = this.textexVehicle.DataBindings.Add("Text", this.goodsIssueViewModel, CommonExpressions.PropertyName<GoodsIssueViewModel>(p => p.Vehicle), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingVehicleDriver = this.textexVehicleDriver.DataBindings.Add("Text", this.goodsIssueViewModel, CommonExpressions.PropertyName<GoodsIssueViewModel>(p => p.VehicleDriver), true, DataSourceUpdateMode.OnPropertyChanged);
@@ -158,8 +154,6 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
 
 
             this.bindingEntryDate.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
-            this.bindingLoadingStart.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
-            this.bindingLoadingCompletion.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingVoucherCodes.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingVehicle.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingVehicleDriver.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);

@@ -39,22 +39,18 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutMaster = new System.Windows.Forms.TableLayoutPanel();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.dateTimexEntryDate = new CustomControls.DateTimexPicker();
             this.label3 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.combexForkliftDriverID = new CustomControls.CombexBox();
             this.combexStorekeeperID = new CustomControls.CombexBox();
-            this.dateTimexLoadingCompletion = new CustomControls.DateTimexPicker();
-            this.dateTimexLoadingStart = new CustomControls.DateTimexPicker();
             this.textexVehicle = new CustomControls.TextexBox();
             this.textexVehicleDriver = new CustomControls.TextexBox();
             this.textexVoucherCodes = new CustomControls.TextexBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.textexRemarks = new CustomControls.TextexBox();
             this.textexDescription = new CustomControls.TextexBox();
             this.toolStripChildForm = new System.Windows.Forms.ToolStrip();
@@ -125,70 +121,42 @@
             this.tableLayoutMaster.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 11F));
             this.tableLayoutMaster.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutMaster.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutMaster.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 102F));
-            this.tableLayoutMaster.Controls.Add(this.label8, 3, 4);
-            this.tableLayoutMaster.Controls.Add(this.label5, 3, 3);
-            this.tableLayoutMaster.Controls.Add(this.label2, 3, 2);
-            this.tableLayoutMaster.Controls.Add(this.label4, 3, 1);
+            this.tableLayoutMaster.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 106F));
+            this.tableLayoutMaster.Controls.Add(this.label2, 3, 3);
+            this.tableLayoutMaster.Controls.Add(this.label4, 3, 2);
             this.tableLayoutMaster.Controls.Add(this.dateTimexEntryDate, 1, 1);
-            this.tableLayoutMaster.Controls.Add(this.label3, 0, 4);
-            this.tableLayoutMaster.Controls.Add(this.label10, 0, 3);
-            this.tableLayoutMaster.Controls.Add(this.label7, 0, 2);
+            this.tableLayoutMaster.Controls.Add(this.label3, 0, 3);
+            this.tableLayoutMaster.Controls.Add(this.label10, 0, 2);
             this.tableLayoutMaster.Controls.Add(this.label6, 0, 1);
-            this.tableLayoutMaster.Controls.Add(this.combexForkliftDriverID, 1, 3);
-            this.tableLayoutMaster.Controls.Add(this.combexStorekeeperID, 1, 4);
-            this.tableLayoutMaster.Controls.Add(this.dateTimexLoadingCompletion, 4, 4);
-            this.tableLayoutMaster.Controls.Add(this.dateTimexLoadingStart, 4, 3);
-            this.tableLayoutMaster.Controls.Add(this.textexVehicle, 4, 1);
-            this.tableLayoutMaster.Controls.Add(this.textexVehicleDriver, 4, 2);
-            this.tableLayoutMaster.Controls.Add(this.textexVoucherCodes, 1, 2);
+            this.tableLayoutMaster.Controls.Add(this.combexForkliftDriverID, 1, 2);
+            this.tableLayoutMaster.Controls.Add(this.combexStorekeeperID, 1, 3);
+            this.tableLayoutMaster.Controls.Add(this.textexVehicle, 4, 2);
+            this.tableLayoutMaster.Controls.Add(this.textexVehicleDriver, 4, 3);
+            this.tableLayoutMaster.Controls.Add(this.textexVoucherCodes, 4, 1);
+            this.tableLayoutMaster.Controls.Add(this.label7, 3, 1);
             this.tableLayoutMaster.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutMaster.Location = new System.Drawing.Point(0, 45);
             this.tableLayoutMaster.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutMaster.Name = "tableLayoutMaster";
             this.tableLayoutMaster.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
-            this.tableLayoutMaster.RowCount = 6;
+            this.tableLayoutMaster.RowCount = 5;
             this.tableLayoutMaster.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 7F));
             this.tableLayoutMaster.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutMaster.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutMaster.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutMaster.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutMaster.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutMaster.Size = new System.Drawing.Size(1069, 153);
+            this.tableLayoutMaster.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutMaster.Size = new System.Drawing.Size(1069, 129);
             this.tableLayoutMaster.TabIndex = 62;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label8.Location = new System.Drawing.Point(489, 101);
-            this.label8.Margin = new System.Windows.Forms.Padding(1);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(189, 28);
-            this.label8.TabIndex = 78;
-            this.label8.Text = "Loading Completion";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Location = new System.Drawing.Point(489, 71);
-            this.label5.Margin = new System.Windows.Forms.Padding(1);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(189, 28);
-            this.label5.TabIndex = 77;
-            this.label5.Text = "Loading Start";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(492, 44);
+            this.label2.Location = new System.Drawing.Point(490, 74);
             this.label2.Margin = new System.Windows.Forms.Padding(4);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(183, 22);
+            this.label2.Size = new System.Drawing.Size(182, 22);
             this.label2.TabIndex = 56;
             this.label2.Text = "Customer Attn";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -197,10 +165,10 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Location = new System.Drawing.Point(489, 11);
+            this.label4.Location = new System.Drawing.Point(487, 41);
             this.label4.Margin = new System.Windows.Forms.Padding(1);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(189, 28);
+            this.label4.Size = new System.Drawing.Size(188, 28);
             this.label4.TabIndex = 28;
             this.label4.Text = "Truck #";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -210,23 +178,23 @@
             this.dateTimexEntryDate.CustomFormat = "dd/MMM/yyyy HH:mm:ss";
             this.dateTimexEntryDate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dateTimexEntryDate.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
-            this.dateTimexEntryDate.Editable = false;
+            this.dateTimexEntryDate.Editable = true;
             this.dateTimexEntryDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimexEntryDate.Location = new System.Drawing.Point(195, 11);
+            this.dateTimexEntryDate.Location = new System.Drawing.Point(194, 11);
             this.dateTimexEntryDate.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
             this.dateTimexEntryDate.Name = "dateTimexEntryDate";
             this.dateTimexEntryDate.ReadOnly = false;
-            this.dateTimexEntryDate.Size = new System.Drawing.Size(281, 28);
+            this.dateTimexEntryDate.Size = new System.Drawing.Size(280, 28);
             this.dateTimexEntryDate.TabIndex = 70;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Location = new System.Drawing.Point(4, 104);
+            this.label3.Location = new System.Drawing.Point(4, 74);
             this.label3.Margin = new System.Windows.Forms.Padding(4);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(183, 22);
+            this.label3.Size = new System.Drawing.Size(182, 22);
             this.label3.TabIndex = 76;
             this.label3.Text = "Prepared by";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -235,25 +203,13 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label10.Location = new System.Drawing.Point(4, 74);
+            this.label10.Location = new System.Drawing.Point(4, 44);
             this.label10.Margin = new System.Windows.Forms.Padding(4);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(183, 22);
+            this.label10.Size = new System.Drawing.Size(182, 22);
             this.label10.TabIndex = 35;
             this.label10.Text = "Store Keeper";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label7.Location = new System.Drawing.Point(4, 44);
-            this.label7.Margin = new System.Windows.Forms.Padding(4);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(183, 22);
-            this.label7.TabIndex = 31;
-            this.label7.Text = "Invoice #";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label6
             // 
@@ -262,7 +218,7 @@
             this.label6.Location = new System.Drawing.Point(1, 11);
             this.label6.Margin = new System.Windows.Forms.Padding(1);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(189, 28);
+            this.label6.Size = new System.Drawing.Size(188, 28);
             this.label6.TabIndex = 30;
             this.label6.Text = "Date";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -274,11 +230,11 @@
             this.combexForkliftDriverID.Dock = System.Windows.Forms.DockStyle.Fill;
             this.combexForkliftDriverID.Editable = true;
             this.combexForkliftDriverID.FormattingEnabled = true;
-            this.combexForkliftDriverID.Location = new System.Drawing.Point(195, 71);
+            this.combexForkliftDriverID.Location = new System.Drawing.Point(194, 41);
             this.combexForkliftDriverID.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
             this.combexForkliftDriverID.Name = "combexForkliftDriverID";
             this.combexForkliftDriverID.ReadOnly = false;
-            this.combexForkliftDriverID.Size = new System.Drawing.Size(281, 29);
+            this.combexForkliftDriverID.Size = new System.Drawing.Size(280, 29);
             this.combexForkliftDriverID.TabIndex = 73;
             // 
             // combexStorekeeperID
@@ -288,70 +244,54 @@
             this.combexStorekeeperID.Dock = System.Windows.Forms.DockStyle.Fill;
             this.combexStorekeeperID.Editable = true;
             this.combexStorekeeperID.FormattingEnabled = true;
-            this.combexStorekeeperID.Location = new System.Drawing.Point(195, 101);
+            this.combexStorekeeperID.Location = new System.Drawing.Point(194, 71);
             this.combexStorekeeperID.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
             this.combexStorekeeperID.Name = "combexStorekeeperID";
             this.combexStorekeeperID.ReadOnly = false;
-            this.combexStorekeeperID.Size = new System.Drawing.Size(281, 29);
+            this.combexStorekeeperID.Size = new System.Drawing.Size(280, 29);
             this.combexStorekeeperID.TabIndex = 74;
-            // 
-            // dateTimexLoadingCompletion
-            // 
-            this.dateTimexLoadingCompletion.CustomFormat = "dd/MMM/yyyy HH:mm:ss";
-            this.dateTimexLoadingCompletion.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dateTimexLoadingCompletion.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
-            this.dateTimexLoadingCompletion.Editable = true;
-            this.dateTimexLoadingCompletion.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimexLoadingCompletion.Location = new System.Drawing.Point(683, 101);
-            this.dateTimexLoadingCompletion.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
-            this.dateTimexLoadingCompletion.Name = "dateTimexLoadingCompletion";
-            this.dateTimexLoadingCompletion.ReadOnly = false;
-            this.dateTimexLoadingCompletion.Size = new System.Drawing.Size(281, 28);
-            this.dateTimexLoadingCompletion.TabIndex = 79;
-            // 
-            // dateTimexLoadingStart
-            // 
-            this.dateTimexLoadingStart.CustomFormat = "dd/MMM/yyyy HH:mm:ss";
-            this.dateTimexLoadingStart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dateTimexLoadingStart.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
-            this.dateTimexLoadingStart.Editable = true;
-            this.dateTimexLoadingStart.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimexLoadingStart.Location = new System.Drawing.Point(683, 71);
-            this.dateTimexLoadingStart.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
-            this.dateTimexLoadingStart.Name = "dateTimexLoadingStart";
-            this.dateTimexLoadingStart.ReadOnly = false;
-            this.dateTimexLoadingStart.Size = new System.Drawing.Size(281, 28);
-            this.dateTimexLoadingStart.TabIndex = 80;
             // 
             // textexVehicle
             // 
             this.textexVehicle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexVehicle.Editable = true;
-            this.textexVehicle.Location = new System.Drawing.Point(683, 11);
+            this.textexVehicle.Location = new System.Drawing.Point(680, 41);
             this.textexVehicle.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
             this.textexVehicle.Name = "textexVehicle";
-            this.textexVehicle.Size = new System.Drawing.Size(281, 28);
+            this.textexVehicle.Size = new System.Drawing.Size(280, 28);
             this.textexVehicle.TabIndex = 71;
             // 
             // textexVehicleDriver
             // 
             this.textexVehicleDriver.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexVehicleDriver.Editable = true;
-            this.textexVehicleDriver.Location = new System.Drawing.Point(683, 41);
+            this.textexVehicleDriver.Location = new System.Drawing.Point(680, 71);
             this.textexVehicleDriver.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
             this.textexVehicleDriver.Name = "textexVehicleDriver";
-            this.textexVehicleDriver.Size = new System.Drawing.Size(281, 28);
+            this.textexVehicleDriver.Size = new System.Drawing.Size(280, 28);
             this.textexVehicleDriver.TabIndex = 81;
             // 
             // textexVoucherCodes
             // 
             this.textexVoucherCodes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexVoucherCodes.Editable = true;
-            this.textexVoucherCodes.Location = new System.Drawing.Point(195, 41);
+            this.textexVoucherCodes.Location = new System.Drawing.Point(680, 11);
             this.textexVoucherCodes.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
             this.textexVoucherCodes.Name = "textexVoucherCodes";
-            this.textexVoucherCodes.Size = new System.Drawing.Size(281, 28);
+            this.textexVoucherCodes.Size = new System.Drawing.Size(280, 28);
             this.textexVoucherCodes.TabIndex = 82;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label7.Location = new System.Drawing.Point(490, 14);
+            this.label7.Margin = new System.Windows.Forms.Padding(4);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(182, 22);
+            this.label7.TabIndex = 31;
+            this.label7.Text = "Invoice #";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // textexRemarks
             // 
@@ -364,7 +304,7 @@
             this.textexRemarks.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
             this.textexRemarks.Multiline = true;
             this.textexRemarks.Name = "textexRemarks";
-            this.textexRemarks.Size = new System.Drawing.Size(44, 605);
+            this.textexRemarks.Size = new System.Drawing.Size(44, 629);
             this.textexRemarks.TabIndex = 84;
             // 
             // textexDescription
@@ -378,7 +318,7 @@
             this.textexDescription.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
             this.textexDescription.Multiline = true;
             this.textexDescription.Name = "textexDescription";
-            this.textexDescription.Size = new System.Drawing.Size(461, 605);
+            this.textexDescription.Size = new System.Drawing.Size(461, 629);
             this.textexDescription.TabIndex = 83;
             // 
             // toolStripChildForm
@@ -411,14 +351,14 @@
             this.naviDetails.Controls.Add(this.labelCaption);
             this.naviDetails.Controls.Add(this.tableLayoutMaster);
             this.naviDetails.Dock = System.Windows.Forms.DockStyle.Top;
-            this.naviDetails.ExpandedHeight = 198;
+            this.naviDetails.ExpandedHeight = 174;
             this.naviDetails.HeaderContextMenuStrip = null;
             this.naviDetails.HeaderHeight = 43;
             this.naviDetails.Location = new System.Drawing.Point(240, 0);
             this.naviDetails.Margin = new System.Windows.Forms.Padding(4);
             this.naviDetails.Name = "naviDetails";
             this.naviDetails.Padding = new System.Windows.Forms.Padding(0, 45, 0, 0);
-            this.naviDetails.Size = new System.Drawing.Size(1069, 198);
+            this.naviDetails.Size = new System.Drawing.Size(1069, 174);
             this.naviDetails.TabIndex = 30;
             // 
             // toolStripNaviGroup
@@ -504,7 +444,7 @@
             this.gridexPalletDetails.Name = "gridexPalletDetails";
             this.gridexPalletDetails.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.gridexPalletDetails.RowTemplate.Height = 39;
-            this.gridexPalletDetails.Size = new System.Drawing.Size(282, 605);
+            this.gridexPalletDetails.Size = new System.Drawing.Size(282, 629);
             this.gridexPalletDetails.TabIndex = 65;
             this.gridexPalletDetails.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.gridexViewDetails_UserDeletedRow);
             // 
@@ -809,11 +749,11 @@
             this.panelMaster.Controls.Add(this.textexRemarks);
             this.panelMaster.Controls.Add(this.gridexPalletDetails);
             this.panelMaster.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelMaster.Location = new System.Drawing.Point(240, 198);
+            this.panelMaster.Location = new System.Drawing.Point(240, 174);
             this.panelMaster.Margin = new System.Windows.Forms.Padding(4);
             this.panelMaster.Name = "panelMaster";
             this.panelMaster.Padding = new System.Windows.Forms.Padding(0, 4, 0, 0);
-            this.panelMaster.Size = new System.Drawing.Size(1069, 609);
+            this.panelMaster.Size = new System.Drawing.Size(1069, 633);
             this.panelMaster.TabIndex = 72;
             // 
             // gridexCartonDetails
@@ -848,7 +788,7 @@
             this.gridexCartonDetails.Name = "gridexCartonDetails";
             this.gridexCartonDetails.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.gridexCartonDetails.RowTemplate.Height = 39;
-            this.gridexCartonDetails.Size = new System.Drawing.Size(282, 605);
+            this.gridexCartonDetails.Size = new System.Drawing.Size(282, 629);
             this.gridexCartonDetails.TabIndex = 85;
             this.gridexCartonDetails.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.gridexViewDetails_UserDeletedRow);
             // 
@@ -988,8 +928,6 @@
         private CustomControls.CombexBox combexForkliftDriverID;
         private CustomControls.CombexBox combexStorekeeperID;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label8;
         private CustomControls.TextexBox textexDescription;
         private CustomControls.TextexBox textexRemarks;
         private Guifreaks.Navisuite.NaviBand naviPickupIndex;
@@ -1022,8 +960,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CartonQuantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn CartonLineVolume;
         private System.Windows.Forms.ToolStripButton buttonImportHandheld;
-        private CustomControls.DateTimexPicker dateTimexLoadingCompletion;
-        private CustomControls.DateTimexPicker dateTimexLoadingStart;
         private CustomControls.TextexBox textexVehicleDriver;
         private CustomControls.TextexBox textexVoucherCodes;
 
