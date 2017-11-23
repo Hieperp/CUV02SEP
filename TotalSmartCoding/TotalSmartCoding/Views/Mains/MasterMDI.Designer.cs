@@ -51,6 +51,7 @@
             this.panelTopRight = new System.Windows.Forms.Panel();
             this.toolStripTopRight = new System.Windows.Forms.ToolStrip();
             this.buttonSearchBarcode = new System.Windows.Forms.ToolStripButton();
+            this.comboSearchBarcode = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.panelTopLeft = new System.Windows.Forms.Panel();
             this.toolStripTopHead = new System.Windows.Forms.ToolStrip();
@@ -80,7 +81,6 @@
             this.buttonPrint = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparatorApprove = new System.Windows.Forms.ToolStripSeparator();
             this.buttonApprove = new System.Windows.Forms.ToolStripButton();
-            this.comboSearchBarcode = new System.Windows.Forms.ToolStripComboBox();
             this.naviBarModuleMaster.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.panelTop.SuspendLayout();
@@ -379,11 +379,19 @@
             this.buttonSearchBarcode.Text = "Quick search ...";
             this.buttonSearchBarcode.Click += new System.EventHandler(this.buttonSearchBarcode_Click);
             // 
+            // comboSearchBarcode
+            // 
+            this.comboSearchBarcode.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
+            this.comboSearchBarcode.Font = new System.Drawing.Font("Calibri", 10.2F);
+            this.comboSearchBarcode.Name = "comboSearchBarcode";
+            this.comboSearchBarcode.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.comboSearchBarcode.Size = new System.Drawing.Size(418, 55);
+            // 
             // toolStripLabel2
             // 
             this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(112, 52);
-            this.toolStripLabel2.Text = "Search Barcode";
+            this.toolStripLabel2.Size = new System.Drawing.Size(94, 52);
+            this.toolStripLabel2.Text = "Quick Search";
             // 
             // panelTopLeft
             // 
@@ -685,14 +693,6 @@
             this.buttonApprove.Size = new System.Drawing.Size(83, 52);
             this.buttonApprove.Text = "Verify";
             this.buttonApprove.Click += new System.EventHandler(this.buttonApprove_Click);
-            // 
-            // comboSearchBarcode
-            // 
-            this.comboSearchBarcode.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
-            this.comboSearchBarcode.Font = new System.Drawing.Font("Calibri", 10.2F);
-            this.comboSearchBarcode.Name = "comboSearchBarcode";
-            this.comboSearchBarcode.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.comboSearchBarcode.Size = new System.Drawing.Size(418, 55);
             // 
             // MasterMDI
             // 

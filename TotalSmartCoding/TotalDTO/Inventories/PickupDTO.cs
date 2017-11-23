@@ -101,6 +101,8 @@ namespace TotalDTO.Inventories
 
         public override void PerformPresaveRule()
         {
+            this.EntryDate = this.DtoDetails().Max(d => d.BarcodeEntryDate).Value;
+
             base.PerformPresaveRule();
 
             this.DtoDetails().ToList().ForEach(e => { e.WarehouseID = (int)this.WarehouseID; });

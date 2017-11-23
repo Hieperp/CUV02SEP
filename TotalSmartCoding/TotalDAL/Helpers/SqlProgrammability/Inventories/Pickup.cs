@@ -210,10 +210,10 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
         private void PickupPostSaveValidate()
         {
-            string[] queryArray = new string[1];
+            string[] queryArray = new string[2];
 
-            //queryArray[0] = " SELECT TOP 1 @FoundEntity = N'Ngày giao hàng: ' + CAST(Pallets.EntryDate AS nvarchar) FROM PickupDetails INNER JOIN Pallets ON PickupDetails.PickupID = @EntityID AND PickupDetails.PalletID = Pallets.PalletID AND PickupDetails.EntryDate < Pallets.EntryDate "; >>>>PickupDetails.EntryDate < Pallets.EntryDate???
-            queryArray[0] = " SELECT TOP 1 @FoundEntity = N'Số lượng nhập kho vượt quá số lượng giao: ' + CAST(ROUND(Quantity - QuantityPickup, " + (int)GlobalEnums.rndQuantity + ") AS nvarchar) FROM Pallets WHERE (ROUND(Quantity - QuantityPickup, " + (int)GlobalEnums.rndQuantity + ") < 0) ";
+            queryArray[0] = " SELECT TOP 1 @FoundEntity = N'Ngày giờ xếp hàng vào kho: ' + CAST(Pallets.EntryDate AS nvarchar) FROM PickupDetails INNER JOIN Pallets ON PickupDetails.PickupID = @EntityID AND PickupDetails.PalletID = Pallets.PalletID AND PickupDetails.EntryDate < Pallets.EntryDate ";
+            queryArray[1] = " SELECT TOP 1 @FoundEntity = N'Số lượng nhập kho vượt quá số lượng giao: ' + CAST(ROUND(Quantity - QuantityPickup, " + (int)GlobalEnums.rndQuantity + ") AS nvarchar) FROM Pallets WHERE (ROUND(Quantity - QuantityPickup, " + (int)GlobalEnums.rndQuantity + ") < 0) ";
 
             this.totalSmartCodingEntities.CreateProcedureToCheckExisting("PickupPostSaveValidate", queryArray);
         }

@@ -30,6 +30,10 @@ namespace TotalDAL.Repositories
             //if (!GlobalVariables.shouldRestoreProcedure) return;
 
             return;
+            return;
+
+            Helpers.SqlProgrammability.Inventories.Pickup pickup = new Helpers.SqlProgrammability.Inventories.Pickup(totalSmartCodingEntities);
+            pickup.RestoreProcedure();
 
             return;
 
@@ -100,10 +104,7 @@ namespace TotalDAL.Repositories
 
             
 
-            return;
 
-            Helpers.SqlProgrammability.Inventories.Pickup pickup = new Helpers.SqlProgrammability.Inventories.Pickup(totalSmartCodingEntities);
-            pickup.RestoreProcedure();
 
 
             return;
