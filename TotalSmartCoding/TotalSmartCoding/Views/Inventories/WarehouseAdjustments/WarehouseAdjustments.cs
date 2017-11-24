@@ -281,8 +281,8 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
 
             if (this.warehouseAdjustmentViewModel.WarehouseAdjustmentTypeID == (int)GlobalEnums.WarehouseAdjustmentTypeID.UnpackPallet)
                 wizardDetail = new WizardUnpack(this.warehouseAdjustmentViewModel);
-            
-            if (this.warehouseAdjustmentViewModel.WarehouseAdjustmentTypeID == (int)GlobalEnums.WarehouseAdjustmentTypeID.ChangeBinLocation || this.warehouseAdjustmentViewModel.WarehouseAdjustmentTypeID == (int)GlobalEnums.WarehouseAdjustmentTypeID.HoldUnHold)
+
+            if (this.warehouseAdjustmentViewModel.WarehouseAdjustmentTypeID == (int)GlobalEnums.WarehouseAdjustmentTypeID.ChangeBinLocation || this.warehouseAdjustmentViewModel.WarehouseAdjustmentTypeID == (int)GlobalEnums.WarehouseAdjustmentTypeID.HoldUnHold || this.warehouseAdjustmentViewModel.WarehouseAdjustmentTypeID == (int)GlobalEnums.WarehouseAdjustmentTypeID.ReturnToProduction || this.warehouseAdjustmentViewModel.WarehouseAdjustmentTypeID == (int)GlobalEnums.WarehouseAdjustmentTypeID.OtherIssues)
                 wizardDetail = new WizardTransfer(this.warehouseAdjustmentViewModel);
 
             if (wizardDetail is WizardUnpack || wizardDetail is WizardTransfer)

@@ -103,6 +103,19 @@ namespace TotalSmartCoding.Controllers.Productions
             private set { this.onPrinting = value; this.resetMessage = true; }
         }
 
+        public string NextDigitNo
+        {
+            get { return this.privateFillingData.NextDigitNo; }
+            private set
+            {
+                if (this.privateFillingData.NextDigitNo != value)
+                {
+                    this.privateFillingData.NextDigitNo = value;
+                    this.NotifyPropertyChanged("NextDigitNo");
+                }
+            }
+        }
+
         public string NextPackNo
         {
             get { return this.privateFillingData.NextPackNo; }
@@ -183,14 +196,17 @@ namespace TotalSmartCoding.Controllers.Productions
 
             if (nextNo != "")
             {
-                if (this.printerName == GlobalVariables.PrinterName.PackInkjet)
-                    this.NextPackNo = nextNo;
+                if (this.printerName == GlobalVariables.PrinterName.DigitInkjet)
+                    this.NextDigitNo = nextNo;
                 else
-                    if (this.printerName == GlobalVariables.PrinterName.CartonInkjet)
-                        this.NextCartonNo = nextNo;
+                    if (this.printerName == GlobalVariables.PrinterName.PackInkjet)
+                        this.NextPackNo = nextNo;
                     else
-                        if (this.printerName == GlobalVariables.PrinterName.PalletLabel)
-                            this.NextPalletNo = nextNo;
+                        if (this.printerName == GlobalVariables.PrinterName.CartonInkjet)
+                            this.NextCartonNo = nextNo;
+                        else
+                            if (this.printerName == GlobalVariables.PrinterName.PalletLabel)
+                                this.NextPalletNo = nextNo;
 
                 lock (this.batchService) //ALL PrinterController MUST SHARE THE SAME IBatchService, BECAUSE WE NEED TO LOCK IBatchService IN ORDER TO CORRECTED UPDATE DATA BY IBatchService
                 {
@@ -198,6 +214,17 @@ namespace TotalSmartCoding.Controllers.Productions
                         this.MainStatus = this.batchService.ServiceTag;
                 }
             }
+
+            //////if (this.privateFillingData.FillingLineID == GlobalVariables.FillingLine.Smallpack || this.privateFillingData.FillingLineID == GlobalVariables.FillingLine.Pail)
+            //////{
+            //////    int nextDigitNo; int nextPackNo = 0;
+            //////    int.TryParse(this.NextPackNo, out nextPackNo);
+            //////    if (int.TryParse(this.NextDigitNo, out nextDigitNo) && int.TryParse(this.NextPackNo, out nextPackNo) && Math.Abs(nextDigitNo - nextPackNo) > 3)
+            //////    {
+            //////        throw new System.InvalidOperationException("Lỗi số đếm: Số in trên cổ chai: " + this.NextDigitNo + ". Số barcode: " + this.NextPackNo);
+            //////    }
+            //////    this.MainStatus = this.NextDigitNo + ": " +  (Math.Abs(nextDigitNo - nextPackNo)).ToString();
+            //////}
         }
 
 
@@ -347,7 +374,7 @@ namespace TotalSmartCoding.Controllers.Productions
         private string wholeMessageLine()
         {//THE FUNCTION laserDigitMessage totally base on this.wholeMessageLine. Later, if there is any thing change in this.wholeMessageLine, THE FUNCTION laserDigitMessage should be considered
             if (this.printerName == GlobalVariables.PrinterName.DigitInkjet)
-                return this.firstLineA2(true) + " " + this.thirdLine(true, 1); //GlobalVariables.charESC + "u/1/" + 
+                return ".              . " + this.firstLineA2(true) + " " + this.thirdLine(true, 1) + " .              ."; //GlobalVariables.charESC + "u/1/" + 
             else if (this.printerName == GlobalVariables.PrinterName.PackInkjet || this.printerName == GlobalVariables.PrinterName.CartonInkjet)
             {
                 return GlobalVariables.charESC + "u/3/" + GlobalVariables.charESC + "/z/1/0/26/20/20/1/0/0/0/" + this.firstLine(false) + this.secondLine(false) + this.thirdLine(false, 2) + "/" + GlobalVariables.charESC + "/z/0" + //2D DATA MATRIX Barcode

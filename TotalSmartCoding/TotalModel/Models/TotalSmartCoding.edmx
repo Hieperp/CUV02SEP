@@ -2429,12 +2429,21 @@
           <Parameter Name="UnVoidablePermitted" Type="bit" Mode="In" />
           <Parameter Name="ShowDiscount" Type="bit" Mode="In" />
         </Function>
+        <Function Name="SearchCartons" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Barcode" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="SearchCommodities" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CommodityID" Type="int" Mode="In" />
           <Parameter Name="LocationID" Type="int" Mode="In" />
           <Parameter Name="BatchID" Type="int" Mode="In" />
           <Parameter Name="DeliveryAdviceID" Type="int" Mode="In" />
           <Parameter Name="TransferOrderID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SearchPacks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Barcode" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SearchPallets" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Barcode" Type="varchar" Mode="In" />
         </Function>
         <Function Name="TransferOrderApproved" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="EntityID" Type="int" Mode="In" />
@@ -3867,6 +3876,15 @@
             <End Role="Warehouse" EntitySet="Warehouses" />
             <End Role="WarehouseAdjustment" EntitySet="WarehouseAdjustments" />
           </AssociationSet>
+          <FunctionImport Name="SearchCartons" EntitySet="Cartons" ReturnType="Collection(TotalSmartCodingModel.Carton)">
+            <Parameter Name="Barcode" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SearchPacks" EntitySet="Packs" ReturnType="Collection(TotalSmartCodingModel.Pack)">
+            <Parameter Name="Barcode" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SearchPallets" EntitySet="Pallets" ReturnType="Collection(TotalSmartCodingModel.Pallet)">
+            <Parameter Name="Barcode" Mode="In" Type="String" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
           <Property Type="Int32" Name="PickupID" Nullable="false" />
@@ -5656,7 +5674,7 @@
         <ComplexType Name="PendingGoodsIssueTransferDetail">
           <Property Type="Int32" Name="GoodsIssueID" Nullable="false" />
           <Property Type="Int32" Name="GoodsIssueTransferDetailID" Nullable="false" />
-          <Property Type="String" Name="PrimaryReference" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="PrimaryReference" Nullable="true" MaxLength="113" />
           <Property Type="DateTime" Name="PrimaryEntryDate" Nullable="false" Precision="23" />
           <Property Type="Int32" Name="CommodityID" Nullable="false" />
           <Property Type="String" Name="CommodityCode" Nullable="false" MaxLength="50" />
@@ -5724,6 +5742,8 @@
           <Property Type="String" Name="Remarks" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="PrimaryReference" Nullable="true" MaxLength="10" />
           <Property Type="DateTime" Name="PrimaryEntryDate" Nullable="false" Precision="23" />
+          <Property Type="String" Name="VoucherCodes" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="SourceWarehouseName" Nullable="false" MaxLength="60" />
         </ComplexType>
         <ComplexType Name="PendingGoodsIssueTransferWarehouse">
           <Property Type="Int32" Name="WarehouseID" Nullable="false" />
@@ -8476,6 +8496,8 @@
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
                 <ScalarProperty Name="PrimaryReference" ColumnName="PrimaryReference" />
                 <ScalarProperty Name="PrimaryEntryDate" ColumnName="PrimaryEntryDate" />
+                <ScalarProperty Name="VoucherCodes" ColumnName="VoucherCodes" />
+                <ScalarProperty Name="SourceWarehouseName" ColumnName="SourceWarehouseName" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -8871,6 +8893,12 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SearchCartons" FunctionName="TotalSmartCodingModel.Store.SearchCartons">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SearchPacks" FunctionName="TotalSmartCodingModel.Store.SearchPacks">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SearchPallets" FunctionName="TotalSmartCodingModel.Store.SearchPallets">
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

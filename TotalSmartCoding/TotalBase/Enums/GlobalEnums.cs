@@ -307,7 +307,9 @@
         {
             UnpackPallet = 1,
             ChangeBinLocation = 10,
-            HoldUnHold = 20
+            HoldUnHold = 20,
+            ReturnToProduction = 30,
+            OtherIssues = 90
         };
 
 

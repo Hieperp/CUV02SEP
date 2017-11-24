@@ -44,6 +44,8 @@
             this.olvColumn5 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.fastPendingGoodsIssueTransferWarehouses = new BrightIdeasSoftware.FastObjectListView();
             this.olvColumn2 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvVoucherCodes = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvDescription = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastPendingPickups)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fastPendingPickupWarehouses)).BeginInit();
@@ -187,11 +189,15 @@
             // 
             this.fastPendingGoodsIssueTransfers.AllColumns.Add(this.olvColumn3);
             this.fastPendingGoodsIssueTransfers.AllColumns.Add(this.olvColumn4);
+            this.fastPendingGoodsIssueTransfers.AllColumns.Add(this.olvVoucherCodes);
             this.fastPendingGoodsIssueTransfers.AllColumns.Add(this.olvColumn5);
+            this.fastPendingGoodsIssueTransfers.AllColumns.Add(this.olvDescription);
             this.fastPendingGoodsIssueTransfers.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.olvColumn3,
             this.olvColumn4,
-            this.olvColumn5});
+            this.olvVoucherCodes,
+            this.olvColumn5,
+            this.olvDescription});
             this.fastPendingGoodsIssueTransfers.Cursor = System.Windows.Forms.Cursors.Default;
             this.fastPendingGoodsIssueTransfers.Dock = System.Windows.Forms.DockStyle.Top;
             this.fastPendingGoodsIssueTransfers.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -222,14 +228,13 @@
             // 
             this.olvColumn4.AspectName = "PrimaryReference";
             this.olvColumn4.Text = "Reference";
-            this.olvColumn4.Width = 137;
+            this.olvColumn4.Width = 110;
             // 
             // olvColumn5
             // 
-            this.olvColumn5.AspectName = "WarehouseName";
-            this.olvColumn5.FillsFreeSpace = true;
-            this.olvColumn5.Text = "Warehouse";
-            this.olvColumn5.Width = 192;
+            this.olvColumn5.AspectName = "SourceWarehouseName";
+            this.olvColumn5.Text = "Source Warehouse";
+            this.olvColumn5.Width = 110;
             // 
             // fastPendingGoodsIssueTransferWarehouses
             // 
@@ -260,6 +265,18 @@
             this.olvColumn2.FillsFreeSpace = true;
             this.olvColumn2.Text = "Warehouse";
             this.olvColumn2.Width = 263;
+            // 
+            // olvVoucherCodes
+            // 
+            this.olvVoucherCodes.AspectName = "VoucherCodes";
+            this.olvVoucherCodes.Text = "Vouchers";
+            this.olvVoucherCodes.Width = 192;
+            // 
+            // olvDescription
+            // 
+            this.olvDescription.AspectName = "Description";
+            this.olvDescription.FillsFreeSpace = true;
+            this.olvDescription.Text = "Description";
             // 
             // WizardMaster
             // 
@@ -305,5 +322,7 @@
         private BrightIdeasSoftware.OLVColumn olvColumn5;
         private BrightIdeasSoftware.FastObjectListView fastPendingGoodsIssueTransferWarehouses;
         private BrightIdeasSoftware.OLVColumn olvColumn2;
+        private BrightIdeasSoftware.OLVColumn olvVoucherCodes;
+        private BrightIdeasSoftware.OLVColumn olvDescription;
     }
 }

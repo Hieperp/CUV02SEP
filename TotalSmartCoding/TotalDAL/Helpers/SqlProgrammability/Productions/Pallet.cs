@@ -18,15 +18,17 @@ namespace TotalDAL.Helpers.SqlProgrammability.Productions
 
         public void RestoreProcedure()
         {
-            this.PalletSaveRelative();
+            //////this.PalletSaveRelative();
 
-            this.PalletEditable();
+            //////this.PalletEditable();
 
 
-            this.GetPallets();
-            this.GetPalletChanged();
+            //////this.GetPallets();
+            //////this.GetPalletChanged();
 
-            this.PalletUpdateEntryStatus();
+            //////this.PalletUpdateEntryStatus();
+
+            this.SearchPallets();
         }
 
         private void PalletSaveRelative()
@@ -109,6 +111,22 @@ namespace TotalDAL.Helpers.SqlProgrammability.Productions
             queryString = queryString + "       WHERE       PalletID IN (SELECT Id FROM dbo.SplitToIntList (@PalletIDs)) " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("PalletUpdateEntryStatus", queryString);
+        }
+
+
+
+        private void SearchPallets()
+        {
+            string queryString;
+
+            queryString = " @Barcode varchar(50) " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+            queryString = queryString + "    BEGIN " + "\r\n";
+            queryString = queryString + "       SELECT TOP (200) * FROM Pallets WHERE Code LIKE '%' + @Barcode+ '%' ORDER BY EntryDate DESC " + "\r\n";
+            queryString = queryString + "    END " + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("SearchPallets", queryString);
         }
 
     }

@@ -35,7 +35,7 @@ namespace TotalDTO.Productions
         private string batchCode;
         private DateTime settingDate;
 
-
+        private string nextDigitNo;
         private string nextPackNo;
         private string nextCartonNo;
         private string nextPalletNo;
@@ -156,6 +156,27 @@ namespace TotalDTO.Productions
 
 
         //-------------------------
+
+        public string NextDigitNo
+        {
+            get { return this.nextDigitNo; }
+
+            set
+            {
+                if (value != this.nextDigitNo)
+                {
+                    int intValue = 0;
+                    if (int.TryParse(value, out intValue) && value.Length == 6)
+                    {
+                        ApplyPropertyChange<FillingData, string>(ref this.nextDigitNo, o => o.NextDigitNo, value);
+                    }
+                    else
+                    {
+                        throw new System.InvalidOperationException("Lỗi sai định dạng số đếm");
+                    }
+                }
+            }
+        }
 
         public string NextPackNo
         {

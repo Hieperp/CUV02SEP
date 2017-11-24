@@ -23,5 +23,7 @@ namespace TotalModel.Models
         public string Remarks { get; set; }
         public string PrimaryReference { get; set; }
         public System.DateTime PrimaryEntryDate { get; set; }
+        public string VoucherCodes { get; set; }
+        public string SourceWarehouseName { get; set; }
     }
 }

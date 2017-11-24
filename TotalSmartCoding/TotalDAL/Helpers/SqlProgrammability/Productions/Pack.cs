@@ -18,13 +18,15 @@ namespace TotalDAL.Helpers.SqlProgrammability.Productions
 
         public void RestoreProcedure()
         {
-            this.PackEditable();
+            //////this.PackEditable();
 
 
-            this.GetPacks();
+            //////this.GetPacks();
 
-            this.PackUpdateQueueID();
-            this.PackUpdateEntryStatus();
+            //////this.PackUpdateQueueID();
+            //////this.PackUpdateEntryStatus();
+
+            this.SearchPacks();
         }
 
         private void PackEditable()
@@ -90,6 +92,21 @@ namespace TotalDAL.Helpers.SqlProgrammability.Productions
             queryString = queryString + "           END " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("PackUpdateEntryStatus", queryString);
+        }
+
+
+        private void SearchPacks()
+        {
+            string queryString;
+
+            queryString = " @Barcode varchar(50) " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+            queryString = queryString + "    BEGIN " + "\r\n";
+            queryString = queryString + "       SELECT TOP (200) * FROM Packs WHERE Code LIKE '%' + @Barcode+ '%' ORDER BY EntryDate DESC " + "\r\n";
+            queryString = queryString + "    END " + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("SearchPacks", queryString);
         }
     }
 }

@@ -30,6 +30,35 @@ namespace TotalDAL.Repositories
             //if (!GlobalVariables.shouldRestoreProcedure) return;
 
             return;
+            return;
+
+            Helpers.SqlProgrammability.Productions.Pack pack = new Helpers.SqlProgrammability.Productions.Pack(totalSmartCodingEntities);
+            pack.RestoreProcedure();
+
+
+            //return;
+
+            Helpers.SqlProgrammability.Productions.Carton carton = new Helpers.SqlProgrammability.Productions.Carton(totalSmartCodingEntities);
+            carton.RestoreProcedure();
+
+            //return;
+
+            Helpers.SqlProgrammability.Productions.Pallet pallet = new Helpers.SqlProgrammability.Productions.Pallet(totalSmartCodingEntities);
+            pallet.RestoreProcedure();
+
+
+            return;
+
+            Helpers.SqlProgrammability.Inventories.GoodsReceipt goodsReceipt = new Helpers.SqlProgrammability.Inventories.GoodsReceipt(totalSmartCodingEntities);
+            goodsReceipt.RestoreProcedure();
+
+            return;
+
+            Helpers.SqlProgrammability.Commons.Commodity commodity = new Helpers.SqlProgrammability.Commons.Commodity(totalSmartCodingEntities);
+            commodity.RestoreProcedure();
+
+
+            return;
             
 
             Helpers.SqlProgrammability.Inventories.GoodsIssue goodsIssue = new Helpers.SqlProgrammability.Inventories.GoodsIssue(totalSmartCodingEntities);
@@ -42,14 +71,7 @@ namespace TotalDAL.Repositories
             pickup.RestoreProcedure();
 
             return;
-            return;
-
-            Helpers.SqlProgrammability.Commons.Commodity commodity = new Helpers.SqlProgrammability.Commons.Commodity(totalSmartCodingEntities);
-            commodity.RestoreProcedure();
-
             
-            return;
-
             Helpers.SqlProgrammability.Sales.SalesOrder salesOrder = new Helpers.SqlProgrammability.Sales.SalesOrder(totalSmartCodingEntities);
             salesOrder.RestoreProcedure();
 
@@ -59,10 +81,7 @@ namespace TotalDAL.Repositories
             Helpers.SqlProgrammability.Generals.UserReference userReference = new Helpers.SqlProgrammability.Generals.UserReference(totalSmartCodingEntities);
             userReference.RestoreProcedure();            
 
-            return;
 
-            Helpers.SqlProgrammability.Inventories.GoodsReceipt goodsReceipt = new Helpers.SqlProgrammability.Inventories.GoodsReceipt(totalSmartCodingEntities);
-            goodsReceipt.RestoreProcedure();
 
 
 
@@ -196,12 +215,7 @@ namespace TotalDAL.Repositories
 
 
 
-            return;
-
-            Helpers.SqlProgrammability.Productions.Carton carton = new Helpers.SqlProgrammability.Productions.Carton(totalSmartCodingEntities);
-            carton.RestoreProcedure();
-
-
+            
 
             return;
 
@@ -221,16 +235,8 @@ namespace TotalDAL.Repositories
 
 
 
-            return;
+            
 
-            Helpers.SqlProgrammability.Productions.Pack pack = new Helpers.SqlProgrammability.Productions.Pack(totalSmartCodingEntities);
-            pack.RestoreProcedure();
-
-
-            return;
-
-            Helpers.SqlProgrammability.Productions.Pallet pallet = new Helpers.SqlProgrammability.Productions.Pallet(totalSmartCodingEntities);
-            pallet.RestoreProcedure();
 
 
 

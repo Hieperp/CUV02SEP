@@ -1865,5 +1865,59 @@ namespace TotalModel.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ActiveUser>("GetActiveUsers", securityIdentifierParameter);
         }
+    
+        public virtual ObjectResult<Carton> SearchCartons(string barcode)
+        {
+            var barcodeParameter = barcode != null ?
+                new ObjectParameter("Barcode", barcode) :
+                new ObjectParameter("Barcode", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Carton>("SearchCartons", barcodeParameter);
+        }
+    
+        public virtual ObjectResult<Carton> SearchCartons(string barcode, MergeOption mergeOption)
+        {
+            var barcodeParameter = barcode != null ?
+                new ObjectParameter("Barcode", barcode) :
+                new ObjectParameter("Barcode", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Carton>("SearchCartons", mergeOption, barcodeParameter);
+        }
+    
+        public virtual ObjectResult<Pack> SearchPacks(string barcode)
+        {
+            var barcodeParameter = barcode != null ?
+                new ObjectParameter("Barcode", barcode) :
+                new ObjectParameter("Barcode", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Pack>("SearchPacks", barcodeParameter);
+        }
+    
+        public virtual ObjectResult<Pack> SearchPacks(string barcode, MergeOption mergeOption)
+        {
+            var barcodeParameter = barcode != null ?
+                new ObjectParameter("Barcode", barcode) :
+                new ObjectParameter("Barcode", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Pack>("SearchPacks", mergeOption, barcodeParameter);
+        }
+    
+        public virtual ObjectResult<Pallet> SearchPallets(string barcode)
+        {
+            var barcodeParameter = barcode != null ?
+                new ObjectParameter("Barcode", barcode) :
+                new ObjectParameter("Barcode", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Pallet>("SearchPallets", barcodeParameter);
+        }
+    
+        public virtual ObjectResult<Pallet> SearchPallets(string barcode, MergeOption mergeOption)
+        {
+            var barcodeParameter = barcode != null ?
+                new ObjectParameter("Barcode", barcode) :
+                new ObjectParameter("Barcode", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Pallet>("SearchPallets", mergeOption, barcodeParameter);
+        }
     }
 }

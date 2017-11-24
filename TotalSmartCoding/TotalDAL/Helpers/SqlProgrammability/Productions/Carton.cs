@@ -18,12 +18,14 @@ namespace TotalDAL.Helpers.SqlProgrammability.Productions
 
         public void RestoreProcedure()
         {
-            this.CartonSaveRelative();
+            //////this.CartonSaveRelative();
 
-            this.CartonEditable();
+            //////this.CartonEditable();
 
-            this.GetCartons();
-            this.CartonUpdateEntryStatus();
+            //////this.GetCartons();
+            //////this.CartonUpdateEntryStatus();
+
+            this.SearchCartons();
         }
 
         private void CartonSaveRelative()
@@ -121,6 +123,22 @@ namespace TotalDAL.Helpers.SqlProgrammability.Productions
 
 
             this.totalSmartCodingEntities.CreateStoredProcedure("CartonUpdateEntryStatus", queryString);
+        }
+
+
+
+        private void SearchCartons()
+        {
+            string queryString;
+
+            queryString = " @Barcode varchar(50) " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+            queryString = queryString + "    BEGIN " + "\r\n";
+            queryString = queryString + "       SELECT TOP (200) * FROM Cartons WHERE Code LIKE '%' + @Barcode+ '%' ORDER BY EntryDate DESC " + "\r\n";
+            queryString = queryString + "    END " + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("SearchCartons", queryString);
         }
 
     }
