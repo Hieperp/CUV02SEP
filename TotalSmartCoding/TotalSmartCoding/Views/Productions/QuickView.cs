@@ -21,7 +21,7 @@ namespace TotalSmartCoding.Views.Productions
         {
             InitializeComponent();
 
-            this.scannerAPIs = new ScannerAPIs(CommonNinject.Kernel.Get<IPackRepository>(), CommonNinject.Kernel.Get<ICartonRepository>());
+            this.scannerAPIs = new ScannerAPIs(CommonNinject.Kernel.Get<IPackRepository>(), CommonNinject.Kernel.Get<ICartonRepository>(), CommonNinject.Kernel.Get<IPalletRepository>());
 
             this.fastBarcodes.SetObjects(barcodeList);
 

@@ -18,15 +18,15 @@ namespace TotalDAL.Helpers.SqlProgrammability.Productions
 
         public void RestoreProcedure()
         {
-            //////this.PalletSaveRelative();
+            this.PalletSaveRelative();
 
-            //////this.PalletEditable();
+            this.PalletEditable();
 
 
-            //////this.GetPallets();
-            //////this.GetPalletChanged();
+            this.GetPallets();
+            this.GetPalletChanged();
 
-            //////this.PalletUpdateEntryStatus();
+            this.PalletUpdateEntryStatus();
 
             this.SearchPallets();
         }

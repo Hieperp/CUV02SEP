@@ -634,31 +634,68 @@ namespace TotalSmartCoding.Views.Mains
             userReferences.Dispose();
         }
 
+
+
+        #region Search barcode
+        private void comboSearchBarcode_Enter(object sender, EventArgs e)
+        {
+            if (this.comboSearchBarcode.Text == "Enter a whole or any section of barcode here ...")
+            {
+                this.comboSearchBarcode.Text = "";
+                this.comboSearchBarcode.ForeColor = SystemColors.ControlText;
+            }
+        }
+
+        private void comboSearchBarcode_Leave(object sender, EventArgs e)
+        {
+            if (this.comboSearchBarcode.Text.Trim() == "")
+            {
+                this.comboSearchBarcode.Text = "Enter a whole or any section of barcode here ...";
+                this.comboSearchBarcode.ForeColor = SystemColors.ControlDark;
+            }
+        }
+
+        private void comboSearchBarcode_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Enter) this.buttonSearchBarcode_Click(this.buttonSearchBarcode, new EventArgs());
+        }
+
         private void buttonSearchBarcode_Click(object sender, EventArgs e)
         {
             try
             {
                 this.comboSearchBarcode.Text = this.comboSearchBarcode.Text.Trim();
-                if (this.comboSearchBarcode.Text.Length > 0)
+                if (this.comboSearchBarcode.Text.Length > 0 && (this.comboSearchBarcode.Text != "Enter a whole or any section of barcode here ..."))
                 {
                     if (this.comboSearchBarcode.Items.IndexOf(this.comboSearchBarcode.Text) == -1)
                         this.comboSearchBarcode.Items.Add(this.comboSearchBarcode.Text);
 
-                    PrintViewModel printViewModel = new PrintViewModel();
-                    printViewModel.ReportPath = "SearchBarcode";
-                    printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("Barcode", this.comboSearchBarcode.Text));
-
-                    SsrsViewer ssrsViewer = new SsrsViewer(printViewModel);
-                    ssrsViewer.Show();
+                    SearchBarcode quickView = new SearchBarcode(this.comboSearchBarcode.Text);
+                    quickView.ShowDialog(); quickView.Dispose();
                 }
+
+                //this.comboSearchBarcode.Text = this.comboSearchBarcode.Text.Trim();
+                //if (this.comboSearchBarcode.Text.Length > 0)
+                //{
+
+
+                //    if (this.comboSearchBarcode.Items.IndexOf(this.comboSearchBarcode.Text) == -1)
+                //        this.comboSearchBarcode.Items.Add(this.comboSearchBarcode.Text);
+
+                //    PrintViewModel printViewModel = new PrintViewModel();
+                //    printViewModel.ReportPath = "SearchBarcode";
+                //    printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("Barcode", this.comboSearchBarcode.Text));
+
+                //    SsrsViewer ssrsViewer = new SsrsViewer(printViewModel);
+                //    ssrsViewer.Show();
+                //}
             }
             catch (Exception exception)
             {
                 ExceptionHandlers.ShowExceptionMessageBox(this, exception);
             }
         }
-
-
+        #endregion Search barcode
 
 
 

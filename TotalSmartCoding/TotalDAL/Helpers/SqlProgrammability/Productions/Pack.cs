@@ -18,13 +18,13 @@ namespace TotalDAL.Helpers.SqlProgrammability.Productions
 
         public void RestoreProcedure()
         {
-            //////this.PackEditable();
+            this.PackEditable();
 
 
-            //////this.GetPacks();
+            this.GetPacks();
 
-            //////this.PackUpdateQueueID();
-            //////this.PackUpdateEntryStatus();
+            this.PackUpdateQueueID();
+            this.PackUpdateEntryStatus();
 
             this.SearchPacks();
         }

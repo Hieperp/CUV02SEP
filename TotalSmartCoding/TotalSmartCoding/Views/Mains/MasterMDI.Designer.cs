@@ -383,9 +383,14 @@
             // 
             this.comboSearchBarcode.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             this.comboSearchBarcode.Font = new System.Drawing.Font("Calibri", 10.2F);
+            this.comboSearchBarcode.ForeColor = System.Drawing.SystemColors.ControlDark;
             this.comboSearchBarcode.Name = "comboSearchBarcode";
             this.comboSearchBarcode.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.comboSearchBarcode.Size = new System.Drawing.Size(418, 55);
+            this.comboSearchBarcode.Text = "Enter a whole or any section of barcode here ...";
+            this.comboSearchBarcode.Enter += new System.EventHandler(this.comboSearchBarcode_Enter);
+            this.comboSearchBarcode.Leave += new System.EventHandler(this.comboSearchBarcode_Leave);
+            this.comboSearchBarcode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboSearchBarcode_KeyDown);
             // 
             // toolStripLabel2
             // 

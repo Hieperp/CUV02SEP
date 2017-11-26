@@ -18,12 +18,12 @@ namespace TotalDAL.Helpers.SqlProgrammability.Productions
 
         public void RestoreProcedure()
         {
-            //////this.CartonSaveRelative();
+            this.CartonSaveRelative();
 
-            //////this.CartonEditable();
+            this.CartonEditable();
 
-            //////this.GetCartons();
-            //////this.CartonUpdateEntryStatus();
+            this.GetCartons();
+            this.CartonUpdateEntryStatus();
 
             this.SearchCartons();
         }

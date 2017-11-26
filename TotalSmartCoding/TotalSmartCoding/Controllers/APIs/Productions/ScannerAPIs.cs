@@ -14,11 +14,13 @@ namespace TotalSmartCoding.Controllers.APIs.Productions
     {
         private readonly IPackRepository packRepository;
         private readonly ICartonRepository cartonRepository;
+        private readonly IPalletRepository palletRepository;
 
-        public ScannerAPIs(IPackRepository packRepository, ICartonRepository cartonRepository)
+        public ScannerAPIs(IPackRepository packRepository, ICartonRepository cartonRepository, IPalletRepository palletRepository)
         {
             this.packRepository = packRepository;
             this.cartonRepository = cartonRepository;
+            this.palletRepository = palletRepository;
         }
 
         public IList<BarcodeDTO> GetBarcodeList(GlobalVariables.FillingLine fillingLineID, int cartonID, int palletID)
@@ -54,6 +56,67 @@ namespace TotalSmartCoding.Controllers.APIs.Productions
                     }
 
                 return barcodeList;
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+        public IList<PackDTO> SearchPacks(string barcode)
+        {
+            try
+            {
+                IList<PackDTO> packDTOs = new List<PackDTO>();
+
+                IList<Pack> packs = this.packRepository.SearchPacks(barcode);
+                Mapper.Map<IList<Pack>, IList<PackDTO>>(packs, packDTOs);
+
+                return packDTOs;
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
+        }
+
+        public IList<CartonDTO> SearchCartons(string barcode)
+        {
+            try
+            {
+                IList<CartonDTO> cartonDTOs = new List<CartonDTO>();
+
+                IList<Carton> cartons = this.cartonRepository.SearchCartons(barcode);
+                Mapper.Map<IList<Carton>, IList<CartonDTO>>(cartons, cartonDTOs);
+
+                return cartonDTOs;
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
+        }
+
+
+        public IList<PalletDTO> SearchPallets(string barcode)
+        {
+            try
+            {
+                IList<PalletDTO> palletDTOs = new List<PalletDTO>();
+
+                IList<Pallet> pallets = this.palletRepository.SearchPallets(barcode);
+                Mapper.Map<IList<Pallet>, IList<PalletDTO>>(pallets, palletDTOs);
+
+                return palletDTOs;
             }
             catch (Exception exception)
             {
