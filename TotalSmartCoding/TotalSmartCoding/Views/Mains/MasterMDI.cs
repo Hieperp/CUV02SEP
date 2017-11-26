@@ -673,22 +673,6 @@ namespace TotalSmartCoding.Views.Mains
                     SearchBarcode quickView = new SearchBarcode(this.comboSearchBarcode.Text);
                     quickView.ShowDialog(); quickView.Dispose();
                 }
-
-                //this.comboSearchBarcode.Text = this.comboSearchBarcode.Text.Trim();
-                //if (this.comboSearchBarcode.Text.Length > 0)
-                //{
-
-
-                //    if (this.comboSearchBarcode.Items.IndexOf(this.comboSearchBarcode.Text) == -1)
-                //        this.comboSearchBarcode.Items.Add(this.comboSearchBarcode.Text);
-
-                //    PrintViewModel printViewModel = new PrintViewModel();
-                //    printViewModel.ReportPath = "SearchBarcode";
-                //    printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("Barcode", this.comboSearchBarcode.Text));
-
-                //    SsrsViewer ssrsViewer = new SsrsViewer(printViewModel);
-                //    ssrsViewer.Show();
-                //}
             }
             catch (Exception exception)
             {

@@ -13,6 +13,7 @@ using TotalSmartCoding.Libraries;
 using System.Drawing;
 using BrightIdeasSoftware;
 using TotalSmartCoding.Views.Productions;
+using TotalSmartCoding.ViewModels.Helpers;
 
 namespace TotalSmartCoding.Views.Mains
 {
@@ -126,6 +127,31 @@ namespace TotalSmartCoding.Views.Mains
                 {
                     ExceptionHandlers.ShowExceptionMessageBox(this, exception);
                 }
+            }
+        }
+
+        private void fastBarcodes_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                FastObjectListView fastBarcodes = sender as FastObjectListView;
+                if (fastBarcodes.SelectedObject != null)
+                {
+                    BarcodeDTO barcodeDTO = fastBarcodes.SelectedObject as BarcodeDTO;
+                    if (barcodeDTO != null)
+                    {
+                        PrintViewModel printViewModel = new PrintViewModel();
+                        printViewModel.ReportPath = "SearchBarcode";
+                        printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("Barcode", barcodeDTO.Code));
+
+                        SsrsViewer ssrsViewer = new SsrsViewer(printViewModel);
+                        ssrsViewer.Show();
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
             }
         }
 

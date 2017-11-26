@@ -75,6 +75,7 @@
             this.fastPacks.View = System.Windows.Forms.View.Details;
             this.fastPacks.VirtualMode = true;
             this.fastPacks.FormatRow += new System.EventHandler<BrightIdeasSoftware.FormatRowEventArgs>(this.fastBarcodes_FormatRow);
+            this.fastPacks.DoubleClick += new System.EventHandler(this.fastBarcodes_DoubleClick);
             // 
             // olvColumn1
             // 
@@ -149,6 +150,7 @@
             this.fastCartons.View = System.Windows.Forms.View.Details;
             this.fastCartons.VirtualMode = true;
             this.fastCartons.FormatRow += new System.EventHandler<BrightIdeasSoftware.FormatRowEventArgs>(this.fastBarcodes_FormatRow);
+            this.fastCartons.DoubleClick += new System.EventHandler(this.fastBarcodes_DoubleClick);
             this.fastCartons.MouseDown += new System.Windows.Forms.MouseEventHandler(this.fastBarcodes_MouseDown);
             // 
             // olvColumn2
@@ -193,6 +195,7 @@
             this.fastPallets.View = System.Windows.Forms.View.Details;
             this.fastPallets.VirtualMode = true;
             this.fastPallets.FormatRow += new System.EventHandler<BrightIdeasSoftware.FormatRowEventArgs>(this.fastBarcodes_FormatRow);
+            this.fastPallets.DoubleClick += new System.EventHandler(this.fastBarcodes_DoubleClick);
             this.fastPallets.MouseDown += new System.Windows.Forms.MouseEventHandler(this.fastBarcodes_MouseDown);
             // 
             // olvColumn4
