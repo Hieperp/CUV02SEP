@@ -2256,6 +2256,9 @@
           <Parameter Name="UserID" Type="int" Mode="In" />
           <Parameter Name="NMVNTaskID" Type="int" Mode="In" />
         </Function>
+        <Function Name="GetStoredID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ConfigID" Type="int" Mode="In" />
+        </Function>
         <Function Name="GetTerritoryBases" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetTerritoryIndexes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserID" Type="int" Mode="In" />
@@ -3877,13 +3880,16 @@
             <End Role="WarehouseAdjustment" EntitySet="WarehouseAdjustments" />
           </AssociationSet>
           <FunctionImport Name="SearchCartons" EntitySet="Cartons" ReturnType="Collection(TotalSmartCodingModel.Carton)">
-            <Parameter Name="Barcode" Mode="In" Type="String" />
+          <Parameter Name="Barcode" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SearchPacks" EntitySet="Packs" ReturnType="Collection(TotalSmartCodingModel.Pack)">
-            <Parameter Name="Barcode" Mode="In" Type="String" />
+          <Parameter Name="Barcode" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SearchPallets" EntitySet="Pallets" ReturnType="Collection(TotalSmartCodingModel.Pallet)">
-            <Parameter Name="Barcode" Mode="In" Type="String" />
+          <Parameter Name="Barcode" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetStoredID" ReturnType="Collection(Int32)">
+            <Parameter Name="ConfigID" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
@@ -8899,6 +8905,7 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SearchPallets" FunctionName="TotalSmartCodingModel.Store.SearchPallets">
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetStoredID" FunctionName="TotalSmartCodingModel.Store.GetStoredID" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

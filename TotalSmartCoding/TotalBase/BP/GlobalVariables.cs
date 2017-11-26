@@ -128,7 +128,7 @@ namespace TotalBase
         public static int ConfigVersionID(int configID)
         {
             if (configID == (int)GlobalVariables.FillingLine.None)
-                return 53;
+                return 56;
             else if (configID == (int)GlobalVariables.FillingLine.Pickup)
                 return 53;
             else if (configID == (int)GlobalVariables.FillingLine.GoodsIssue)
@@ -142,6 +142,16 @@ namespace TotalBase
                 return -1;
         }
 
+        public static int MaxConfigVersionID()
+        {
+            int maxConfigVersionID = 0;
+            foreach (GlobalVariables.FillingLine fillingLine in Enum.GetValues(typeof(GlobalVariables.FillingLine)))
+            {
+                if (maxConfigVersionID < GlobalVariables.ConfigVersionID((int)fillingLine)) maxConfigVersionID = GlobalVariables.ConfigVersionID((int)fillingLine);
+            }
+
+            return maxConfigVersionID;
+        }
 
         public static FillingLine FillingLineID = FillingLine.Pail;
         public static string FillingLineCode = "P1";

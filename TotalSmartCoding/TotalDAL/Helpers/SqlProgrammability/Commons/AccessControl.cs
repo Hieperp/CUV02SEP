@@ -27,6 +27,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
 
             this.GetUserOrganizationalUnit();
             this.GetVersionID();
+            this.GetStoredID();
         }
 
         /// <summary>
@@ -169,5 +170,15 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             this.totalSmartCodingEntities.CreateStoredProcedure("GetVersionID", queryString);
         }
 
+        private void GetStoredID()
+        {
+            string queryString = " @ConfigID Int " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+
+            queryString = queryString + "       SELECT      MAX(StoredID) AS StoredID FROM Configs WHERE ConfigID = @ConfigID " + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("GetStoredID", queryString);
+        }
     }
 }

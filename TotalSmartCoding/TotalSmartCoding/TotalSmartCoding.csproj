@@ -1024,6 +1024,9 @@
     <None Include="Resources\magnifying-glass-48.png" />
     <None Include="Resources\Search-barcode-512.png" />
     <None Include="Resources\Search-barcode-32.png" />
+    <None Include="Resources\Login.ico" />
+    <None Include="Resources\Download.ico" />
+    <None Include="Resources\Settings.ico" />
     <Content Include="SmartCodingSolution.ico" />
     <None Include="Resources\Yellow-cross.ico" />
     <None Include="Resources\White-Pallet.ico" />

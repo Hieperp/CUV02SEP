@@ -13,8 +13,10 @@ namespace TotalCore.Repositories
         TotalSmartCodingEntities TotalSmartCodingEntities { get; }
 
         bool IsDirty();
+        bool AutoUpdates(bool restoreProcedures);
 
-        int? GetVersionID(int configID);
+        int? GetStoredID(int configID);
+        int? GetVersionID(int configID);        
         bool VersionValidate(int configID, int configVersionID);        
 
         int GetModuleID(GlobalEnums.NmvnTaskID nmvnTaskID);

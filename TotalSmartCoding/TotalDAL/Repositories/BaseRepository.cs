@@ -6,10 +6,11 @@ using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Core.Objects;
 using System.Collections.Generic;
 
+using TotalBase;
 using TotalBase.Enums;
+using TotalDAL.Helpers;
 using TotalModel.Models;
 using TotalCore.Repositories;
-using TotalBase;
 
 
 namespace TotalDAL.Repositories
@@ -22,26 +23,75 @@ namespace TotalDAL.Repositories
         {
             this.RepositoryBag = new Dictionary<string, object>();
             this.totalSmartCodingEntities = totalSmartCodingEntities;
+        }
+
+        private ObjectContext TotalBikePortalsObjectContext
+        {
+            get { return ((IObjectContextAdapter)this.totalSmartCodingEntities).ObjectContext; }
+        }
+
+        public TotalSmartCodingEntities TotalSmartCodingEntities { get { return this.totalSmartCodingEntities; } }
+
+
+        public bool AutoUpdates(bool restoreProcedures)
+        {
+            this.UpdateDatabases(restoreProcedures);
+
+            if (restoreProcedures || this.GetStoredID(GlobalVariables.ConfigID) < GlobalVariables.MaxConfigVersionID()) this.RestoreProcedures();
+
+            return this.GetStoredID(GlobalVariables.ConfigID) == GlobalVariables.MaxConfigVersionID();
+        }
+
+        public void UpdateDatabases(bool restoreProcedures)
+        {
+            if (restoreProcedures)
+            {
+                this.totalSmartCodingEntities.ColumnAdd("Configs", "StoredID", "int", "0", true);
+            }
+        }
+
+        public bool RestoreProcedures()
+        {
+            this.CreateStoredProcedure();
+
+            //SET LASTEST VERSION AFTER RESTORE SUCCESSFULL
+            this.ExecuteStoreCommand("UPDATE Configs SET StoredID = " + GlobalVariables.MaxConfigVersionID() + " WHERE StoredID < " + GlobalVariables.MaxConfigVersionID(), new ObjectParameter[] { });
+
+            return true;
+        }
+
+
+        public void CreateStoredProcedure()
+        {
+            //return;
+            var query = this.totalSmartCodingEntities.Database.SqlQuery(typeof(int), "SELECT COUNT(*) FROM WarehouseAdjustmentTypes WHERE WarehouseAdjustmentTypeID > 20 ;", new object[] { });
+            int exists = query.Cast<int>().Single();
+            if (exists <= 0)
+            {
+                this.ExecuteStoreCommand("INSERT INTO WarehouseAdjustmentTypes (WarehouseAdjustmentTypeID, Code, Name, Remarks) VALUES (30, N'Trả hàng sx', N'Trả hàng sx', '#')", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("INSERT INTO WarehouseAdjustmentTypes (WarehouseAdjustmentTypeID, Code, Name, Remarks) VALUES (90, N'Xuất hàng khác', N'Xuất hàng khác', '#')", new ObjectParameter[] { });
+            }
+
+
+            //return;
+
+            Helpers.SqlProgrammability.Commons.AccessControl accessControl = new Helpers.SqlProgrammability.Commons.AccessControl(totalSmartCodingEntities);
+            accessControl.RestoreProcedure();
 
 
 
-
-
-            //if (!GlobalVariables.shouldRestoreProcedure) return;
-
-            return;
             return;
 
             Helpers.SqlProgrammability.Productions.Pack pack = new Helpers.SqlProgrammability.Productions.Pack(totalSmartCodingEntities);
             pack.RestoreProcedure();
 
 
-            //return;
+            return;
 
             Helpers.SqlProgrammability.Productions.Carton carton = new Helpers.SqlProgrammability.Productions.Carton(totalSmartCodingEntities);
             carton.RestoreProcedure();
 
-            //return;
+            return;
 
             Helpers.SqlProgrammability.Productions.Pallet pallet = new Helpers.SqlProgrammability.Productions.Pallet(totalSmartCodingEntities);
             pallet.RestoreProcedure();
@@ -59,7 +109,7 @@ namespace TotalDAL.Repositories
 
 
             return;
-            
+
 
             Helpers.SqlProgrammability.Inventories.GoodsIssue goodsIssue = new Helpers.SqlProgrammability.Inventories.GoodsIssue(totalSmartCodingEntities);
             goodsIssue.RestoreProcedure();
@@ -71,17 +121,15 @@ namespace TotalDAL.Repositories
             pickup.RestoreProcedure();
 
             return;
-            
+
             Helpers.SqlProgrammability.Sales.SalesOrder salesOrder = new Helpers.SqlProgrammability.Sales.SalesOrder(totalSmartCodingEntities);
             salesOrder.RestoreProcedure();
 
-            
+
             return;
 
             Helpers.SqlProgrammability.Generals.UserReference userReference = new Helpers.SqlProgrammability.Generals.UserReference(totalSmartCodingEntities);
-            userReference.RestoreProcedure();            
-
-
+            userReference.RestoreProcedure();
 
 
 
@@ -100,15 +148,15 @@ namespace TotalDAL.Repositories
             Helpers.SqlProgrammability.Inventories.WarehouseAdjustment warehouseAdjustment = new Helpers.SqlProgrammability.Inventories.WarehouseAdjustment(totalSmartCodingEntities);
             warehouseAdjustment.RestoreProcedure();
 
-            
 
-            
+
+
 
             return;
 
             Helpers.SqlProgrammability.Commons.TransferOrderType transferOrderType = new Helpers.SqlProgrammability.Commons.TransferOrderType(totalSmartCodingEntities);
             transferOrderType.RestoreProcedure();
-            
+
 
             return;
 
@@ -122,17 +170,13 @@ namespace TotalDAL.Repositories
             Helpers.SqlProgrammability.Commons.BinLocation binLocation = new Helpers.SqlProgrammability.Commons.BinLocation(totalSmartCodingEntities);
             binLocation.RestoreProcedure();
 
-            
 
 
 
 
-            return;
 
-            Helpers.SqlProgrammability.Commons.AccessControl accessControl = new Helpers.SqlProgrammability.Commons.AccessControl(totalSmartCodingEntities);
-            accessControl.RestoreProcedure();
 
-            
+
             return;
 
             Helpers.SqlProgrammability.Commons.Customer customer = new Helpers.SqlProgrammability.Commons.Customer(totalSmartCodingEntities);
@@ -141,20 +185,20 @@ namespace TotalDAL.Repositories
 
 
 
-            
-            
 
 
-            
-           
+
+
+
+
             return;
 
             Helpers.SqlProgrammability.Generals.Module module = new Helpers.SqlProgrammability.Generals.Module(totalSmartCodingEntities);
             module.RestoreProcedure();
 
-            
 
-            
+
+
 
 
 
@@ -170,21 +214,21 @@ namespace TotalDAL.Repositories
 
             Helpers.SqlProgrammability.Commons.Territory territory = new Helpers.SqlProgrammability.Commons.Territory(totalSmartCodingEntities);
             territory.RestoreProcedure();
-            
-
-
-
-
-            
-
-            
 
 
 
 
 
 
-            
+
+
+
+
+
+
+
+
+
             return;
 
             Helpers.SqlProgrammability.Productions.Batch batch = new Helpers.SqlProgrammability.Productions.Batch(totalSmartCodingEntities);
@@ -196,18 +240,6 @@ namespace TotalDAL.Repositories
 
 
 
-
-
-            
-
-
-
-
-
-
-
-           
-
             return;
 
             Helpers.SqlProgrammability.Commons.FillingLine fillingLine = new Helpers.SqlProgrammability.Commons.FillingLine(totalSmartCodingEntities);
@@ -215,7 +247,6 @@ namespace TotalDAL.Repositories
 
 
 
-            
 
             return;
 
@@ -226,54 +257,18 @@ namespace TotalDAL.Repositories
 
 
 
-
-
-
-
-
-
-
-
-
-            
-
-
-
-
-
-
-
-
-
-
-
-           
-
             return;
 
             Helpers.SqlProgrammability.Commons.Employee employee = new Helpers.SqlProgrammability.Commons.Employee(totalSmartCodingEntities);
             employee.RestoreProcedure();
 
 
-
-
-
-
-
-
-
-
-
         }
 
-        private ObjectContext TotalBikePortalsObjectContext
+        public int? GetStoredID(int configID)
         {
-            get { return ((IObjectContextAdapter)this.totalSmartCodingEntities).ObjectContext; }
+            return this.TotalSmartCodingEntities.GetStoredID(configID).Single();
         }
-
-        public TotalSmartCodingEntities TotalSmartCodingEntities { get { return this.totalSmartCodingEntities; } }
-
-
 
         public int? GetVersionID(int configID)
         {

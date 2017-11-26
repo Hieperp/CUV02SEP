@@ -150,6 +150,9 @@ namespace TotalSmartCoding.Views.Mains
                     if (this.comboBoxAutonicsPortName.Items.IndexOf(comportName) >= 0)
                         this.comboBoxAutonicsPortName.SelectedIndex = this.comboBoxAutonicsPortName.Items.IndexOf(comportName);
 
+
+                    this.buttonDownload.Visible = true;
+                    this.buttonLoginRestore.Visible = activeUsers[0].IsDatabaseAdmin;
                 }
                 else
                 {
@@ -158,8 +161,7 @@ namespace TotalSmartCoding.Views.Mains
                     this.lbEmployeeID.Visible = false;
                     this.lbProductionLineID.Text = "\r\n" + "Sorry, user: " + currentUserPrincipal.Name + "\r\n" + "Don't have permission to run this program." + "\r\n" + "\r\n" + "Contact your admin for more information. Thank you!" + "\r\n" + "\r\n" + "\r\n" + "Xin lỗi, bạn chưa được cấp quyền sử dụng phần mềm này.";
 
-                    this.buttonOK.Visible = false;
-                    this.buttonCancel.Text = "Close";
+                    this.buttonLogin.Visible = false;
                 }
             }
             catch (Exception exception)
@@ -172,8 +174,6 @@ namespace TotalSmartCoding.Views.Mains
         {
             if (e.BindingCompleteState == BindingCompleteState.Exception)
             { ExceptionHandlers.ShowExceptionMessageBox(this, e.ErrorText); e.Cancel = true; }
-            else
-                this.buttonListEmployee.Visible = this.EmployeeID == 1;
         }
 
         private void pictureBoxIcon_DoubleClick(object sender, EventArgs e)
@@ -182,16 +182,18 @@ namespace TotalSmartCoding.Views.Mains
             this.comboBoxAutonicsPortName.Visible = true;
         }
 
-        private void buttonOK_Click(object sender, EventArgs e)
+        private void buttonLoginExit_Click(object sender, EventArgs e)
         {
             try
             {
+                if (sender.Equals(this.buttonExit)) { this.DialogResult = DialogResult.Cancel; return; }
+
                 if (this.comboBoxEmployeeID.SelectedIndex >= 0)
                 {
                     ActiveUser activeUser = this.comboBoxEmployeeID.SelectedItem as ActiveUser;
                     if (activeUser != null)
                     {
-                        ContextAttributes.User = new UserInformation(activeUser.UserID, activeUser.OrganizationalUnitID, activeUser.LocationID, activeUser.LocationName, activeUser.UserName, activeUser.SecurityIdentifier, activeUser.FullyQualifiedUserName, activeUser.IsDatabaseAdmin, new DateTime());                        
+                        ContextAttributes.User = new UserInformation(activeUser.UserID, activeUser.OrganizationalUnitID, activeUser.LocationID, activeUser.LocationName, activeUser.UserName, activeUser.SecurityIdentifier, activeUser.FullyQualifiedUserName, activeUser.IsDatabaseAdmin, new DateTime());
 
                         if (this.comboFillingLineID.Visible && (this.comboFillingLineID.SelectedIndex < 0 || this.comboBoxAutonicsPortName.SelectedIndex < 0)) throw new System.ArgumentException("Vui lòng chọn chuyền sản xuất (NOF1, NOF2, NOF...), và chọn đúng cổng COM để chạy phần mềm"); // || (this.comboFillingLineID.Enabled && (GlobalVariables.ProductionLine)this.comboFillingLineID.SelectedValue == GlobalVariables.ProductionLine.SERVER)
 
@@ -279,6 +281,13 @@ namespace TotalSmartCoding.Views.Mains
                             //this.baseRepository.ExecuteStoreCommand("DELETE FROM     Commodities", new ObjectParameter[] { });
                             //this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('Commodities', RESEED, 0)", new ObjectParameter[] { });
                         }
+
+
+                        if (!this.baseRepository.AutoUpdates(sender.Equals(this.buttonLoginRestore)))
+                            throw new Exception("Sorry, auto update fails. Please try again." + "\r\n" + "\r\n" + "Contact your administrator for more information.");
+
+
+                        this.DialogResult = DialogResult.OK;
                     }
                 }
             }
@@ -287,6 +296,20 @@ namespace TotalSmartCoding.Views.Mains
                 ExceptionHandlers.ShowExceptionMessageBox(this, exception);
 
                 this.DialogResult = DialogResult.None;
+            }
+        }
+
+        private void buttonDownload_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                throw new Exception("Please open your program again in order to update new version." + "\r\n" + "\r\n" + "Contact your admin for more information. Thank you!" + "\r\n" + "\r\n" + "\r\n" + "\r\n" + "Vui lòng mở lại phần mềm để cập nhật phiên bản mới nhất. Cám ơn.");
+            }
+            catch (Exception exception)
+            {
+                CommonConfigs.AddUpdateAppSetting("VersionID", "-9");
+                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+                this.DialogResult = DialogResult.Cancel;
             }
         }
 
@@ -339,6 +362,9 @@ namespace TotalSmartCoding.Views.Mains
             //    GlobalExceptionHandler.ShowExceptionMessageBox(this, exception);
             //}
         }
+
+
+
 
 
 
