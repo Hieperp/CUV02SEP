@@ -216,7 +216,7 @@ namespace TotalSmartCoding.Views.Mains
 
                         this.VersionValidate();
 
-                        if (this.checkEmptyData.Checked)
+                        if (false && this.checkEmptyData.Checked)
                         {
                             this.baseRepository.ExecuteStoreCommand("DELETE FROM     WarehouseAdjustmentDetails", new ObjectParameter[] { });
                             this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('WarehouseAdjustmentDetails', RESEED, 0)", new ObjectParameter[] { });

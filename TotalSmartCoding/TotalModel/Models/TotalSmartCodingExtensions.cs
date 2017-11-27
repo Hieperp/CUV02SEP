@@ -675,6 +675,8 @@ namespace TotalModel.Models
     public partial class BatchIndex : IBaseIndex
     {
         public int Id { get { return this.BatchID; } }
+
+        public string NextDigitNo { get { return this.NextPackNo; } }
     }
 
     public partial class Batch : IPrimitiveEntity, IBaseEntity

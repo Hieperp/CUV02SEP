@@ -105,6 +105,9 @@ namespace TotalSmartCoding.Views.Mains
                         this.Size = new Size(1120, 680);
                         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
                         this.MinimizeBox = false; this.MaximizeBox = false; this.WindowState = FormWindowState.Normal;
+
+                        this.panelTopRight.Visible = false;
+                        this.panelTopLeft.Dock = DockStyle.Fill;
                         break;
                     default:
                         break;
@@ -434,12 +437,12 @@ namespace TotalSmartCoding.Views.Mains
                     this.buttonExport.Enabled = exportable;//&& !isDirty && readonlyMode;
                     this.toolStripSeparatorImport.Visible = importable || exportable;
 
-                    this.buttonApprove.Visible = approvable || unapprovable;
+                    this.buttonApprove.Visible = sender is Batches ? false : (approvable || unapprovable);
                     this.buttonApprove.Enabled = (approvable || unapprovable) && readonlyMode;
                     this.buttonApprove.Text = approvable ? "Verify" : "Un-verify";
                     this.buttonApprove.Image = approvable ? Resources.Check_Saki_Ok : Resources.Cross_UnVerify;
 
-                    this.toolStripSeparatorApprove.Visible = approvable || unapprovable;
+                    this.toolStripSeparatorApprove.Visible = sender is Batches ? false : (approvable || unapprovable);
 
                     this.buttonPrint.Enabled = printable;
                     this.buttonPrint.Visible = printVisible;

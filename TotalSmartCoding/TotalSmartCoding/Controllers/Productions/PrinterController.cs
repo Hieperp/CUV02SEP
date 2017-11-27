@@ -215,16 +215,19 @@ namespace TotalSmartCoding.Controllers.Productions
                 }
             }
 
+            //////#region 27.NOV.2017 - BREAK WHEN NextDigitNo - NextPackNo > 3
             //////if (this.privateFillingData.FillingLineID == GlobalVariables.FillingLine.Smallpack || this.privateFillingData.FillingLineID == GlobalVariables.FillingLine.Pail)
             //////{
             //////    int nextDigitNo; int nextPackNo = 0;
-            //////    int.TryParse(this.NextPackNo, out nextPackNo);
-            //////    if (int.TryParse(this.NextDigitNo, out nextDigitNo) && int.TryParse(this.NextPackNo, out nextPackNo) && Math.Abs(nextDigitNo - nextPackNo) > 3)
+            //////    if (int.TryParse(this.FillingData.NextDigitNo, out nextDigitNo) && int.TryParse(this.FillingData.NextPackNo, out nextPackNo) && Math.Abs(nextDigitNo - nextPackNo) > 3)
             //////    {
-            //////        throw new System.InvalidOperationException("Lỗi số đếm: Số in trên cổ chai: " + this.NextDigitNo + ". Số barcode: " + this.NextPackNo);
+            //////        this.storeMessage("  "); Thread.Sleep(500); 
+            //////        throw new System.InvalidOperationException("Lỗi số đếm: Số in trên cổ chai: " + this.FillingData.NextDigitNo + ". Số barcode: " + this.FillingData.NextPackNo);
             //////    }
-            //////    this.MainStatus = this.NextDigitNo + ": " +  (Math.Abs(nextDigitNo - nextPackNo)).ToString();
+            //////    //this.MainStatus = this.NextDigitNo + " : "  + this.FillingData.NextPackNo + " <> " + (Math.Abs(nextDigitNo - nextPackNo)).ToString();
             //////}
+            //////#endregion
+
         }
 
 

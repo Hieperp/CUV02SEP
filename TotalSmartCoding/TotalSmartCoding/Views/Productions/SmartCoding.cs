@@ -96,6 +96,7 @@ namespace TotalSmartCoding.Views.Productions
                 this.textBoxCommodityAPICode.TextBox.DataBindings.Add("Text", this.fillingData, "CommodityAPICode");
                 this.textBoxCommodityOfficialCode.TextBox.DataBindings.Add("Text", this.fillingData, "CommodityOfficialCode");
                 this.textBoxBatchCode.TextBox.DataBindings.Add("Text", this.fillingData, "BatchCode");
+                this.textNextDigitNo.TextBox.DataBindings.Add("Text", this.fillingData, "NextDigitNo");
                 this.textNextPackNo.TextBox.DataBindings.Add("Text", this.fillingData, "NextPackNo");
                 this.textNextCartonNo.TextBox.DataBindings.Add("Text", this.fillingData, "NextCartonNo");
                 this.textNextPalletNo.TextBox.DataBindings.Add("Text", this.fillingData, "NextPalletNo");
@@ -113,8 +114,17 @@ namespace TotalSmartCoding.Views.Productions
                 this.buttonCartonNoreadNow.Visible = GlobalEnums.OnTestScanner;
                 this.buttonPalletReceivedNow.Visible = GlobalEnums.OnTestScanner;
 
-                if (!fillingData.HasPack) { this.labelNextPackNo.Visible = false; this.textNextPackNo.Visible = false; this.dgvCartonPendingQueue.RowTemplate.Height = 280; this.dgvCartonQueue.RowTemplate.Height = 280; this.dgvCartonsetQueue.RowTemplate.Height = 280; this.labelLEDPack.Visible = false; this.labelLEDCartonIgnore.Visible = false; }
+                if (!fillingData.HasPack) { this.labelNextDigitNo.Visible = false; this.textNextDigitNo.Visible = false; this.labelNextPackNo.Visible = false; this.textNextPackNo.Visible = false; this.dgvCartonPendingQueue.RowTemplate.Height = 280; this.dgvCartonQueue.RowTemplate.Height = 280; this.dgvCartonsetQueue.RowTemplate.Height = 280; this.labelLEDPack.Visible = false; this.labelLEDCartonIgnore.Visible = false; }
                 if (!fillingData.HasCarton) { this.labelNextCartonNo.Visible = false; this.textNextCartonNo.Visible = false; this.dgvPalletQueue.RowTemplate.Height = 280; this.dgvPalletPickupQueue.RowTemplate.Height = 280; this.labelLEDCarton.Visible = false; this.labelLEDCartonPending.Visible = false; }
+
+
+
+
+                this.labelNextDigitNo.Visible = false; this.textNextDigitNo.Visible = false; 
+
+
+
+
 
             }
             catch (Exception exception)
@@ -457,6 +467,8 @@ namespace TotalSmartCoding.Views.Productions
                 {
                     if (e.PropertyName == "MainStatus") { this.digitStatusbox.Text = "[" + DateTime.Now.ToString("hh:mm:ss") + "] " + this.digitController.MainStatus + "\r\n" + this.digitStatusbox.Text; this.cutStatusBox(false); return; }
                     if (e.PropertyName == "LedStatus") { this.digitLEDGreen.Enabled = this.digitController.LedGreenOn; this.digitLEDAmber.Enabled = this.digitController.LedAmberOn; this.digitLEDRed.Enabled = this.digitController.LedRedOn; if (this.digitController.LedRedOn) this.StopPrint(true, true, this.fillingData.FillingLineID == GlobalVariables.FillingLine.Pail, false); return; }
+
+                    if (e.PropertyName == "NextDigitNo") { this.fillingData.NextDigitNo = this.packController.NextDigitNo; return; }
                 }
                 else if (sender.Equals(this.packController))
                 {

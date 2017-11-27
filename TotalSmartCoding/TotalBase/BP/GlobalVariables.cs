@@ -130,14 +130,14 @@ namespace TotalBase
             if (configID == (int)GlobalVariables.FillingLine.None)
                 return 56;
             else if (configID == (int)GlobalVariables.FillingLine.Pickup)
-                return 53;
+                return 56;
             else if (configID == (int)GlobalVariables.FillingLine.GoodsIssue)
-                return 53;
+                return 56;
 
 
 
             else if (configID == (int)GlobalVariables.FillingLine.Smallpack || configID == (int)GlobalVariables.FillingLine.Pail || configID == (int)GlobalVariables.FillingLine.Drum)
-                return 53; //PAY ATTENTION WHEN CHANGE THIS VALUE BECAUSE: THIS IS USING ON THE FILLING LINES
+                return 56; //PAY ATTENTION WHEN CHANGE THIS VALUE BECAUSE: THIS IS USING ON THE FILLING LINES
             else
                 return -1;
         }
