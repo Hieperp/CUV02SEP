@@ -3889,7 +3889,7 @@
           <Parameter Name="Barcode" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetStoredID" ReturnType="Collection(Int32)">
-            <Parameter Name="ConfigID" Mode="In" Type="Int32" />
+          <Parameter Name="ConfigID" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
