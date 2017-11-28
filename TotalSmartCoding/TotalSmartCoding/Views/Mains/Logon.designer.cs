@@ -284,7 +284,7 @@
             this.buttonLoginRestore.Name = "buttonLoginRestore";
             this.buttonLoginRestore.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.buttonLoginRestore.Size = new System.Drawing.Size(24, 52);
-            this.buttonLoginRestore.Text = "Restore store procedures";
+            this.buttonLoginRestore.Text = "Manual restore stored procedures and update new version";
             this.buttonLoginRestore.Visible = false;
             this.buttonLoginRestore.Click += new System.EventHandler(this.buttonLoginExit_Click);
             // 

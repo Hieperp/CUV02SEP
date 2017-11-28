@@ -28,7 +28,7 @@ namespace TotalDAL.Repositories.Commons
 
         public IList<EmployeeBase> GetEmployeeBases()
         {
-            return this.TotalSmartCodingEntities.GetEmployeeBases().ToList();
+            return this.TotalSmartCodingEntities.GetEmployeeBases().OrderBy(o => o.Name).ToList();
         }
     }
 }
