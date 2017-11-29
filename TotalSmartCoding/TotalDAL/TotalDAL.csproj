@@ -64,6 +64,7 @@
     <Compile Include="Helpers\SqlProgrammability\Generals\Module.cs" />
     <Compile Include="Helpers\SqlProgrammability\Generals\UserReference.cs" />
     <Compile Include="Helpers\SqlProgrammability\InitReference.cs" />
+    <Compile Include="Helpers\SqlProgrammability\Inventories\Inventory.cs" />
     <Compile Include="Helpers\SqlProgrammability\Inventories\GoodsIssue.cs" />
     <Compile Include="Helpers\SqlProgrammability\Inventories\GoodsReceipt.cs" />
     <Compile Include="Helpers\SqlProgrammability\Inventories\Pickup.cs" />

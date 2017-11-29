@@ -64,23 +64,10 @@ namespace TotalDAL.Repositories
         public void CreateStoredProcedure()
         {
             //return;
-            var query = this.totalSmartCodingEntities.Database.SqlQuery(typeof(int), "SELECT TOP (200) COUNT(EmployeeID) AS Expr1 FROM Employees;", new object[] { });
-            int exists = query.Cast<int>().Single();
-            if (exists == 29)
-            {
-                this.ExecuteStoreCommand("INSERT INTO Employees (Code, Name, Title, EmployeeTypeID, LocationID) VALUES (N'EM0109', N'Ngô Thanh Hương', N'', 1, 2)", new ObjectParameter[] { });
-                this.ExecuteStoreCommand("INSERT INTO Employees (Code, Name, Title, EmployeeTypeID, LocationID) VALUES (N'EM0110', N'Nguyễn Ngọc Trinh', N'', 1, 2)", new ObjectParameter[] { });
-                this.ExecuteStoreCommand("INSERT INTO Employees (Code, Name, Title, EmployeeTypeID, LocationID) VALUES (N'EM0111', N'Khúc Văn Huế', N'', 1, 2)", new ObjectParameter[] { });
-                this.ExecuteStoreCommand("INSERT INTO Employees (Code, Name, Title, EmployeeTypeID, LocationID) VALUES (N'EM0112', N'Đàm Thị Thu Hiền', N'', 1, 2)", new ObjectParameter[] { });
+            //return;
 
-                this.ExecuteStoreCommand("INSERT INTO Employees (Code, Name, Title, EmployeeTypeID, LocationID) VALUES (N'EM0113', N'Le Thanh Nam', N'', 1, 3)", new ObjectParameter[] { });
-                this.ExecuteStoreCommand("INSERT INTO Employees (Code, Name, Title, EmployeeTypeID, LocationID) VALUES (N'EM0114', N'Ngo Xuan Tho', N'', 1, 3)", new ObjectParameter[] { });
-
-
-                this.ExecuteStoreCommand("UPDATE Locations SET OfficialName = N'260WH4' WHERE LocationID = 2", new ObjectParameter[] { });
-                this.ExecuteStoreCommand("UPDATE Locations SET OfficialName = N'700WH4' WHERE LocationID = 3", new ObjectParameter[] { });
-                this.ExecuteStoreCommand("UPDATE Locations SET OfficialName = N'500WH1' WHERE LocationID = 4", new ObjectParameter[] { });
-            }
+            Helpers.SqlProgrammability.Inventories.Inventory inventory = new Helpers.SqlProgrammability.Inventories.Inventory(totalSmartCodingEntities);
+            inventory.RestoreProcedure();
 
 
             return;
@@ -279,13 +266,33 @@ namespace TotalDAL.Repositories
         #region Backup for update log
         private void UpdateBackup()
         {
-            var query = this.totalSmartCodingEntities.Database.SqlQuery(typeof(int), "SELECT COUNT(*) FROM WarehouseAdjustmentTypes WHERE WarehouseAdjustmentTypeID > 20 ;", new object[] { });
-            int exists = query.Cast<int>().Single();
-            if (exists <= 0)
-            {
-                this.ExecuteStoreCommand("INSERT INTO WarehouseAdjustmentTypes (WarehouseAdjustmentTypeID, Code, Name, Remarks) VALUES (30, N'Trả hàng sx', N'Trả hàng sx', '#')", new ObjectParameter[] { });
-                this.ExecuteStoreCommand("INSERT INTO WarehouseAdjustmentTypes (WarehouseAdjustmentTypeID, Code, Name, Remarks) VALUES (90, N'Xuất hàng khác', N'Xuất hàng khác', '#')", new ObjectParameter[] { });
-            }
+            //var query = this.totalSmartCodingEntities.Database.SqlQuery(typeof(int), "SELECT TOP (200) COUNT(EmployeeID) AS Expr1 FROM Employees;", new object[] { });
+            //int exists = query.Cast<int>().Single();
+            //if (exists == 29)
+            //{
+            //    this.ExecuteStoreCommand("INSERT INTO Employees (Code, Name, Title, EmployeeTypeID, LocationID) VALUES (N'EM0109', N'Ngô Thanh Hương', N'', 1, 2)", new ObjectParameter[] { });
+            //    this.ExecuteStoreCommand("INSERT INTO Employees (Code, Name, Title, EmployeeTypeID, LocationID) VALUES (N'EM0110', N'Nguyễn Ngọc Trinh', N'', 1, 2)", new ObjectParameter[] { });
+            //    this.ExecuteStoreCommand("INSERT INTO Employees (Code, Name, Title, EmployeeTypeID, LocationID) VALUES (N'EM0111', N'Khúc Văn Huế', N'', 1, 2)", new ObjectParameter[] { });
+            //    this.ExecuteStoreCommand("INSERT INTO Employees (Code, Name, Title, EmployeeTypeID, LocationID) VALUES (N'EM0112', N'Đàm Thị Thu Hiền', N'', 1, 2)", new ObjectParameter[] { });
+
+            //    this.ExecuteStoreCommand("INSERT INTO Employees (Code, Name, Title, EmployeeTypeID, LocationID) VALUES (N'EM0113', N'Le Thanh Nam', N'', 1, 3)", new ObjectParameter[] { });
+            //    this.ExecuteStoreCommand("INSERT INTO Employees (Code, Name, Title, EmployeeTypeID, LocationID) VALUES (N'EM0114', N'Ngo Xuan Tho', N'', 1, 3)", new ObjectParameter[] { });
+
+
+            //    this.ExecuteStoreCommand("UPDATE Locations SET OfficialName = N'260WH4' WHERE LocationID = 2", new ObjectParameter[] { });
+            //    this.ExecuteStoreCommand("UPDATE Locations SET OfficialName = N'700WH4' WHERE LocationID = 3", new ObjectParameter[] { });
+            //    this.ExecuteStoreCommand("UPDATE Locations SET OfficialName = N'500WH1' WHERE LocationID = 4", new ObjectParameter[] { });
+            //}
+
+
+
+            //var query = this.totalSmartCodingEntities.Database.SqlQuery(typeof(int), "SELECT COUNT(*) FROM WarehouseAdjustmentTypes WHERE WarehouseAdjustmentTypeID > 20 ;", new object[] { });
+            //int exists = query.Cast<int>().Single();
+            //if (exists <= 0)
+            //{
+            //    this.ExecuteStoreCommand("INSERT INTO WarehouseAdjustmentTypes (WarehouseAdjustmentTypeID, Code, Name, Remarks) VALUES (30, N'Trả hàng sx', N'Trả hàng sx', '#')", new ObjectParameter[] { });
+            //    this.ExecuteStoreCommand("INSERT INTO WarehouseAdjustmentTypes (WarehouseAdjustmentTypeID, Code, Name, Remarks) VALUES (90, N'Xuất hàng khác', N'Xuất hàng khác', '#')", new ObjectParameter[] { });
+            //}
         }
         #endregion Backup for update log
 
@@ -495,7 +502,7 @@ namespace TotalDAL.Repositories
 
 
         #endregion Base Repository
-    
-    
+
+
     }
 }
