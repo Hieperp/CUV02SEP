@@ -339,8 +339,12 @@ namespace TotalSmartCoding.Views.Mains
                             openingView = new WarehouseAdjustments();
                             break;
 
+                        case (int)GlobalEnums.NmvnTaskID.GoodsReceiptDetailAvailable:
+                            openingView = new GoodsReceiptDetailAvailables();
+                            break;
+
                         default:
-                            openingView = new GoodsReceiptDetailAvailables();// new BlankView();
+                            openingView = new BlankView();
                             break;
                     }
 

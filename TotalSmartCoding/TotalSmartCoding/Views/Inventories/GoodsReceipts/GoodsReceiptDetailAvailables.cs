@@ -1,38 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using Ninject;
 
 
-
 using TotalSmartCoding.Views.Mains;
 
 
-
-using TotalBase.Enums;
-using TotalSmartCoding.Properties;
 using TotalSmartCoding.Libraries;
 using TotalSmartCoding.Libraries.Helpers;
 
-using TotalSmartCoding.Controllers.Inventories;
 using TotalCore.Repositories.Inventories;
 using TotalSmartCoding.Controllers.APIs.Inventories;
-using TotalCore.Services.Inventories;
-using TotalSmartCoding.ViewModels.Inventories;
-using TotalSmartCoding.Controllers.APIs.Commons;
-using TotalCore.Repositories.Commons;
 using TotalBase;
 using TotalModel.Models;
-using TotalDTO.Inventories;
-using BrightIdeasSoftware;
-using TotalSmartCoding.Libraries.StackedHeaders;
+using TotalSmartCoding.ViewModels.Helpers;
 
 
 namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
@@ -42,23 +27,16 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
         private CustomTabControl customTabBatch;
 
         private GoodsReceiptAPIs goodsReceiptAPIs;
-        private GoodsReceiptDetailAvailableDTO goodsReceiptDetailAvailableDTO { get; set; }
 
         public GoodsReceiptDetailAvailables()
             : base()
         {
             InitializeComponent();
 
-
             this.toolstripChild = this.toolStripChildForm;
 
             this.goodsReceiptAPIs = new GoodsReceiptAPIs(CommonNinject.Kernel.Get<IGoodsReceiptAPIRepository>());
-
-            this.goodsReceiptDetailAvailableDTO = CommonNinject.Kernel.Get<GoodsReceiptDetailAvailableDTO>();
-            this.goodsReceiptDetailAvailableDTO.PropertyChanged += new PropertyChangedEventHandler(ModelDTO_PropertyChanged);
-            this.baseDTO = this.goodsReceiptDetailAvailableDTO;
         }
-
 
         protected override void InitializeTabControl()
         {
@@ -81,38 +59,13 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
                 this.customTabBatch.Dock = DockStyle.Fill;
                 this.fastAvailablePallets.Dock = DockStyle.Fill;
                 this.fastAvailableCartons.Dock = DockStyle.Fill;
-                this.panelMaster.Controls.Add(this.customTabBatch);
-
+                this.Controls.Add(this.customTabBatch);
             }
             catch (Exception exception)
             {
                 ExceptionHandlers.ShowExceptionMessageBox(this, exception);
             }
         }
-
-
-        protected override void InitializeCommonControlBinding()
-        {
-            base.InitializeCommonControlBinding();
-
-            //this.fastGoodsReceiptIndex.AboutToCreateGroups += fastGoodsReceiptIndex_AboutToCreateGroups;
-
-            //this.fastGoodsReceiptIndex.ShowGroups = true;
-            //this.olvApproved.Renderer = new MappedImageRenderer(new Object[] { false, Resources.Placeholder16 });
-        }
-
-        private void fastGoodsReceiptIndex_AboutToCreateGroups(object sender, CreateGroupsEventArgs e)
-        {
-            if (e.Groups != null && e.Groups.Count > 0)
-            {
-                foreach (OLVGroup olvGroup in e.Groups)
-                {
-                    olvGroup.TitleImage = "Storage32";
-                    olvGroup.Subtitle = "List count: " + olvGroup.Contents.Count.ToString();
-                }
-            }
-        }
-
 
         public override void Loading()
         {
@@ -122,12 +75,6 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
             this.fastAvailableCartons.SetObjects(goodsReceiptDetailAvailables.Where(w => w.CartonID != null));
 
             this.ShowRowCount();
-        }
-
-        protected override void DoAfterLoad()
-        {
-            base.DoAfterLoad();
-            //this.fastGoodsReceiptIndex.Sort(this.olvEntryDate, SortOrder.Descending);
         }
 
         public override void ApplyFilter(string filterTexts)
@@ -140,8 +87,30 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
 
         private void ShowRowCount()
         {
-            this.customTabBatch.TabPages[0].Text = "Pending " + this.fastAvailablePallets.GetItemCount().ToString("N0") + " pallet" + (this.fastAvailablePallets.GetItemCount() > 1 ? "s      " : "      ");
-            this.customTabBatch.TabPages[1].Text = "Pending " + this.fastAvailableCartons.GetItemCount().ToString("N0") + " carton" + (this.fastAvailableCartons.GetItemCount() > 1 ? "s      " : "      ");
+            decimal? totalQuantityAvailables = this.fastAvailablePallets.FilteredObjects.Cast<GoodsReceiptDetailAvailable>().Select(o => o.QuantityAvailable).Sum();
+            decimal? totalLineVolumeAvailables = this.fastAvailablePallets.FilteredObjects.Cast<GoodsReceiptDetailAvailable>().Select(o => o.LineVolumeAvailable).Sum();
+            this.customTabBatch.TabPages[0].Text = "Available " + this.fastAvailablePallets.GetItemCount().ToString("N0") + " pallet" + (this.fastAvailablePallets.GetItemCount() > 1 ? "s" : "") + ", Total quantity: " + (totalQuantityAvailables != null ? ((decimal)totalQuantityAvailables).ToString("N0") : "0") + ", Total volume: " + (totalLineVolumeAvailables != null ? ((decimal)totalLineVolumeAvailables).ToString("N2") : "0") + "       ";
+
+            totalQuantityAvailables = this.fastAvailableCartons.FilteredObjects.Cast<GoodsReceiptDetailAvailable>().Select(o => o.QuantityAvailable).Sum();
+            totalLineVolumeAvailables = this.fastAvailableCartons.FilteredObjects.Cast<GoodsReceiptDetailAvailable>().Select(o => o.LineVolumeAvailable).Sum();
+            this.customTabBatch.TabPages[1].Text = "Available " + this.fastAvailableCartons.GetItemCount().ToString("N0") + " carton" + (this.fastAvailableCartons.GetItemCount() > 1 ? "s" : "") + ", Total quantity: " + (totalQuantityAvailables != null ? ((decimal)totalQuantityAvailables).ToString("N0") : "0") + ", Total volume: " + (totalLineVolumeAvailables != null ? ((decimal)totalLineVolumeAvailables).ToString("N2") : "0") + "       ";
+        }
+
+        private void buttonWarehouseJournals_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PrintViewModel printViewModel = new PrintViewModel();
+                printViewModel.ReportPath = "WarehouseJournals";
+                printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("LocationID", ContextAttributes.User.LocationID.ToString()));
+
+                SsrsViewer ssrsViewer = new SsrsViewer(printViewModel);
+                ssrsViewer.Show();
+            }
+            catch (Exception exception)
+            {
+                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+            }
         }
     }
 }

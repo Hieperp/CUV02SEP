@@ -90,6 +90,8 @@
 
             GoodsReceipt = 8077,
             WarehouseAdjustment = 8078,
+            GoodsReceiptDetailAvailable = 800001,
+
 
             TransferOrder = 8071,
 

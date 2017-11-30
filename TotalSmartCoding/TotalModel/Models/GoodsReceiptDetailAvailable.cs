@@ -43,6 +43,5 @@ namespace TotalModel.Models
         public decimal Volume { get; set; }
         public decimal PackageVolume { get; set; }
         public string LineReferences { get; set; }
-        public string BatchCode { get; set; }
     }
 }
