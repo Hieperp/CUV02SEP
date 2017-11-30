@@ -340,7 +340,7 @@ namespace TotalSmartCoding.Views.Mains
                             break;
 
                         default:
-                            openingView = new BlankView();
+                            openingView = new GoodsReceiptDetailAvailables();// new BlankView();
                             break;
                     }
 

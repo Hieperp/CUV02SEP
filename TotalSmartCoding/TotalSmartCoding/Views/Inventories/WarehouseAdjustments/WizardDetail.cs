@@ -24,14 +24,14 @@ using TotalBase.Enums;
 
 namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
 {
-    public partial class WizardTransfer : Form
+    public partial class WizardDetail : Form
     {
         private WarehouseAdjustmentViewModel warehouseAdjustmentViewModel;
         private CustomTabControl customTabBatch;
 
         List<GoodsReceiptDetailAvailable> goodsReceiptDetailAvailables;
 
-        public WizardTransfer(WarehouseAdjustmentViewModel warehouseAdjustmentViewModel)
+        public WizardDetail(WarehouseAdjustmentViewModel warehouseAdjustmentViewModel)
         {
             InitializeComponent();
 

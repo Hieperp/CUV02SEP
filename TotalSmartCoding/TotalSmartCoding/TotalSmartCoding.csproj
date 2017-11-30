@@ -220,6 +220,12 @@
     <Compile Include="Views\Inventories\GoodsIssues\WizardMaster.designer.cs">
       <DependentUpon>WizardMaster.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Inventories\GoodsReceipts\GoodsReceiptDetailAvailables.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Inventories\GoodsReceipts\GoodsReceiptDetailAvailables.designer.cs">
+      <DependentUpon>GoodsReceiptDetailAvailables.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Inventories\GoodsReceipts\GoodsReceipts.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -262,11 +268,11 @@
     <Compile Include="Views\Inventories\WarehouseAdjustments\WarehouseAdjustments.designer.cs">
       <DependentUpon>WarehouseAdjustments.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Inventories\WarehouseAdjustments\WizardTransfer.cs">
+    <Compile Include="Views\Inventories\WarehouseAdjustments\WizardDetail.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\Inventories\WarehouseAdjustments\WizardTransfer.designer.cs">
-      <DependentUpon>WizardTransfer.cs</DependentUpon>
+    <Compile Include="Views\Inventories\WarehouseAdjustments\WizardDetail.designer.cs">
+      <DependentUpon>WizardDetail.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Inventories\WarehouseAdjustments\WizardMaster.cs">
       <SubType>Form</SubType>
@@ -426,6 +432,9 @@
     <EmbeddedResource Include="Views\Inventories\GoodsIssues\WizardMaster.resx">
       <DependentUpon>WizardMaster.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Inventories\GoodsReceipts\GoodsReceiptDetailAvailables.resx">
+      <DependentUpon>GoodsReceiptDetailAvailables.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Inventories\GoodsReceipts\GoodsReceipts.resx">
       <DependentUpon>GoodsReceipts.cs</DependentUpon>
     </EmbeddedResource>
@@ -447,8 +456,8 @@
     <EmbeddedResource Include="Views\Inventories\WarehouseAdjustments\WarehouseAdjustments.resx">
       <DependentUpon>WarehouseAdjustments.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Inventories\WarehouseAdjustments\WizardTransfer.resx">
-      <DependentUpon>WizardTransfer.cs</DependentUpon>
+    <EmbeddedResource Include="Views\Inventories\WarehouseAdjustments\WizardDetail.resx">
+      <DependentUpon>WizardDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Inventories\WarehouseAdjustments\WizardMaster.resx">
       <DependentUpon>WizardMaster.cs</DependentUpon>

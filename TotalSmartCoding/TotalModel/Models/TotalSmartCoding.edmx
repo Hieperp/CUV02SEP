@@ -4660,6 +4660,8 @@
           <Property Type="String" Name="PackageSize" Nullable="true" MaxLength="60" />
           <Property Type="Decimal" Name="Volume" Nullable="false" Precision="18" Scale="3" />
           <Property Type="Decimal" Name="PackageVolume" Nullable="false" Precision="18" Scale="3" />
+          <Property Type="String" Name="LineReferences" Nullable="true" MaxLength="23" />
+          <Property Type="String" Name="BatchCode" Nullable="false" MaxLength="20" />
         </ComplexType>
         <EntityType Name="WarehouseAdjustmentType">
           <Key>
@@ -7774,6 +7776,8 @@
                 <ScalarProperty Name="PackageSize" ColumnName="PackageSize" />
                 <ScalarProperty Name="Volume" ColumnName="Volume" />
                 <ScalarProperty Name="PackageVolume" ColumnName="PackageVolume" />
+                <ScalarProperty Name="LineReferences" ColumnName="LineReferences" />
+                <ScalarProperty Name="BatchCode" ColumnName="BatchCode" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

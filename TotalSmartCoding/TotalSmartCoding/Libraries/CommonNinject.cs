@@ -34,6 +34,7 @@ using TotalDAL.Repositories.Generals;
 using TotalCore.Services.Commons;
 using TotalSmartCoding.ViewModels.Commons;
 using TotalService.Commons;
+using TotalDTO.Inventories;
 //using TotalDAL.Repositories.Inventories;
 
 //using TotalService.Inventories;
@@ -74,6 +75,7 @@ namespace TotalSmartCoding.Libraries
                 Kernel.Bind<IGoodsReceiptRepository>().To<GoodsReceiptRepository>();
                 Kernel.Bind<IGoodsReceiptAPIRepository>().To<GoodsReceiptAPIRepository>();
                 Kernel.Bind<GoodsReceiptViewModel>().ToSelf();
+                Kernel.Bind<GoodsReceiptDetailAvailableDTO>().ToSelf();
 
                 Kernel.Bind<ISalesOrderService>().To<SalesOrderService>();
                 Kernel.Bind<ISalesOrderRepository>().To<SalesOrderRepository>();

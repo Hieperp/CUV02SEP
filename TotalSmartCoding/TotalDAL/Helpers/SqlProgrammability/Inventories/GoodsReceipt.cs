@@ -18,36 +18,36 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
         public void RestoreProcedure()
         {
-            this.GetGoodsReceiptIndexes();
+            //////this.GetGoodsReceiptIndexes();
 
 
-            this.GetGoodsReceiptViewDetails();
+            //////this.GetGoodsReceiptViewDetails();
 
 
-            GenerateSQLPendingDetails generatePendingPickupDetails = new GenerateSQLPendingDetails(totalSmartCodingEntities, GlobalEnums.GoodsReceiptTypeID.Pickup, "Pickups", "PickupDetails", "PickupID", "@PickupID", "PickupDetailID", "@PickupDetailIDs", "WarehouseID", "PrimaryReference", "PrimaryEntryDate");
-            generatePendingPickupDetails.GetPendingPickups("GetPendingPickups");
-            generatePendingPickupDetails.GetPendingPickupWarehouses("GetPendingPickupWarehouses");
-            generatePendingPickupDetails.GetPendingPickupDetails("GetPendingPickupDetails");
+            //////GenerateSQLPendingDetails generatePendingPickupDetails = new GenerateSQLPendingDetails(totalSmartCodingEntities, GlobalEnums.GoodsReceiptTypeID.Pickup, "Pickups", "PickupDetails", "PickupID", "@PickupID", "PickupDetailID", "@PickupDetailIDs", "WarehouseID", "PrimaryReference", "PrimaryEntryDate");
+            //////generatePendingPickupDetails.GetPendingPickups("GetPendingPickups");
+            //////generatePendingPickupDetails.GetPendingPickupWarehouses("GetPendingPickupWarehouses");
+            //////generatePendingPickupDetails.GetPendingPickupDetails("GetPendingPickupDetails");
 
-            GenerateSQLPendingDetails generatePendingGoodsIssueTransferDetails = new GenerateSQLPendingDetails(totalSmartCodingEntities, GlobalEnums.GoodsReceiptTypeID.GoodsIssueTransfer, "GoodsIssues", "GoodsIssueTransferDetails", "GoodsIssueID", "@GoodsIssueID", "GoodsIssueTransferDetailID", "@GoodsIssueTransferDetailIDs", "WarehouseReceiptID", "PrimaryReference", "PrimaryEntryDate");
-            generatePendingGoodsIssueTransferDetails.GetPendingPickups("GetPendingGoodsIssueTransfers");
-            generatePendingGoodsIssueTransferDetails.GetPendingPickupWarehouses("GetPendingGoodsIssueTransferWarehouses");
-            generatePendingGoodsIssueTransferDetails.GetPendingPickupDetails("GetPendingGoodsIssueTransferDetails");
+            //////GenerateSQLPendingDetails generatePendingGoodsIssueTransferDetails = new GenerateSQLPendingDetails(totalSmartCodingEntities, GlobalEnums.GoodsReceiptTypeID.GoodsIssueTransfer, "GoodsIssues", "GoodsIssueTransferDetails", "GoodsIssueID", "@GoodsIssueID", "GoodsIssueTransferDetailID", "@GoodsIssueTransferDetailIDs", "WarehouseReceiptID", "PrimaryReference", "PrimaryEntryDate");
+            //////generatePendingGoodsIssueTransferDetails.GetPendingPickups("GetPendingGoodsIssueTransfers");
+            //////generatePendingGoodsIssueTransferDetails.GetPendingPickupWarehouses("GetPendingGoodsIssueTransferWarehouses");
+            //////generatePendingGoodsIssueTransferDetails.GetPendingPickupDetails("GetPendingGoodsIssueTransferDetails");
 
-            GenerateSQLPendingDetails generatePendingWarehouseAdjustmentDetails = new GenerateSQLPendingDetails(totalSmartCodingEntities, GlobalEnums.GoodsReceiptTypeID.WarehouseAdjustments, "WarehouseAdjustments", "WarehouseAdjustmentDetails", "WarehouseAdjustmentID", "@WarehouseAdjustmentID", "WarehouseAdjustmentDetailID", "@WarehouseAdjustmentDetailIDs", "WarehouseID", "PrimaryReference", "PrimaryEntryDate");
-            generatePendingWarehouseAdjustmentDetails.GetPendingPickupDetails("GetPendingWarehouseAdjustmentDetails");
+            //////GenerateSQLPendingDetails generatePendingWarehouseAdjustmentDetails = new GenerateSQLPendingDetails(totalSmartCodingEntities, GlobalEnums.GoodsReceiptTypeID.WarehouseAdjustments, "WarehouseAdjustments", "WarehouseAdjustmentDetails", "WarehouseAdjustmentID", "@WarehouseAdjustmentID", "WarehouseAdjustmentDetailID", "@WarehouseAdjustmentDetailIDs", "WarehouseID", "PrimaryReference", "PrimaryEntryDate");
+            //////generatePendingWarehouseAdjustmentDetails.GetPendingPickupDetails("GetPendingWarehouseAdjustmentDetails");
 
-            this.GetGoodsReceiptIDofWarehouseAdjustment();
+            //////this.GetGoodsReceiptIDofWarehouseAdjustment();
 
-            this.GoodsReceiptSaveRelative();
-            this.GoodsReceiptPostSaveValidate();
+            //////this.GoodsReceiptSaveRelative();
+            //////this.GoodsReceiptPostSaveValidate();
 
-            this.GoodsReceiptApproved();
-            this.GoodsReceiptEditable();
+            //////this.GoodsReceiptApproved();
+            //////this.GoodsReceiptEditable();
 
-            this.GoodsReceiptToggleApproved();
+            //////this.GoodsReceiptToggleApproved();
 
-            this.GoodsReceiptInitReference();
+            //////this.GoodsReceiptInitReference();
 
 
             this.GetGoodsReceiptDetailAvailables();
@@ -318,13 +318,22 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             string queryString = "";
             queryString = queryString + "   BEGIN " + "\r\n";
 
-            queryString = queryString + "       SELECT      GoodsReceiptDetails.GoodsReceiptID, GoodsReceiptDetails.GoodsReceiptDetailID, GoodsReceiptDetails.Reference AS GoodsReceiptReference, GoodsReceiptDetails.EntryDate AS GoodsReceiptEntryDate, GoodsReceiptDetails.BatchID, GoodsReceiptDetails.BatchEntryDate, GoodsReceiptDetails.WarehouseID, Warehouses.Code AS WarehouseCode, Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, Commodities.PackageSize, Commodities.Volume, Commodities.PackageVolume, GoodsReceiptDetails.BinLocationID, BinLocations.Code AS BinLocationCode, GoodsReceiptDetails.PackID, Packs.Code AS PackCode, GoodsReceiptDetails.CartonID, Cartons.Code AS CartonCode, GoodsReceiptDetails.PalletID, Pallets.Code AS PalletCode, GoodsReceiptDetails.Remarks, " + "\r\n";
+            queryString = queryString + "       SELECT      GoodsReceiptDetails.GoodsReceiptID, GoodsReceiptDetails.GoodsReceiptDetailID, GoodsReceiptDetails.Reference AS GoodsReceiptReference, GoodsReceiptDetails.EntryDate AS GoodsReceiptEntryDate, GoodsReceiptDetails.BatchID, Batches.Code AS BatchCode, GoodsReceiptDetails.BatchEntryDate, GoodsReceiptDetails.WarehouseID, Warehouses.Code AS WarehouseCode, Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, Commodities.PackageSize, Commodities.Volume, Commodities.PackageVolume, GoodsReceiptDetails.BinLocationID, BinLocations.Code AS BinLocationCode, GoodsReceiptDetails.PackID, Packs.Code AS PackCode, GoodsReceiptDetails.CartonID, Cartons.Code AS CartonCode, GoodsReceiptDetails.PalletID, Pallets.Code AS PalletCode, GoodsReceiptDetails.Remarks, " + "\r\n";
+            queryString = queryString + "                   ISNULL('Production: ' + ' ' + Pickups.Reference, ISNULL('From: ' + ' ' + SourceWarehouses.Name + ', ' + GoodsIssues.VoucherCodes, ISNULL(WarehouseAdjustmentTypes.Name  + ' ' + WarehouseAdjustments.AdjustmentJobs, ''))) AS LineReferences, " + "\r\n";
             queryString = queryString + "                   GoodsReceiptDetails.PackCounts, GoodsReceiptDetails.CartonCounts, GoodsReceiptDetails.PalletCounts, ROUND(GoodsReceiptDetails.Quantity - GoodsReceiptDetails.QuantityIssue, " + GlobalEnums.rndQuantity + ") AS QuantityAvailable, ROUND(GoodsReceiptDetails.LineVolume - GoodsReceiptDetails.LineVolumeIssue, " + GlobalEnums.rndVolume + ") AS LineVolumeAvailable, ISNULL(CAST(0 AS bit), CAST(0 AS bit)) AS IsSelected " + "\r\n";
 
             queryString = queryString + "       FROM        GoodsReceiptDetails " + "\r\n";
             queryString = queryString + "                   INNER JOIN Warehouses ON ROUND(GoodsReceiptDetails.Quantity - GoodsReceiptDetails.QuantityIssue, " + GlobalEnums.rndQuantity + ") > 0 AND GoodsReceiptDetails.LocationID = @LocationID " + (isWarehouseID ? " AND GoodsReceiptDetails.WarehouseID = @WarehouseID" : "") + (isCommodityID ? " AND GoodsReceiptDetails.CommodityID = @CommodityID" : "") + (isCommodityIDs ? " AND GoodsReceiptDetails.CommodityID IN (SELECT Id FROM dbo.SplitToIntList (@CommodityIDs))" : "") + " AND GoodsReceiptDetails.Approved = 1 AND (@OnlyIssuable = 0 OR Warehouses.Issuable = 1) AND GoodsReceiptDetails.WarehouseID = Warehouses.WarehouseID " + (isBatchID ? " AND GoodsReceiptDetails.BatchID = @BatchID" : "") + (isGoodsReceiptDetailIDs ? " AND GoodsReceiptDetails.GoodsReceiptDetailID NOT IN (SELECT Id FROM dbo.SplitToIntList (@GoodsReceiptDetailIDs))" : "") + "\r\n";
+            queryString = queryString + "                   INNER JOIN Batches ON GoodsReceiptDetails.BatchID = Batches.BatchID " + "\r\n";
             queryString = queryString + "                   INNER JOIN Commodities ON GoodsReceiptDetails.CommodityID = Commodities.CommodityID " + "\r\n";
             queryString = queryString + "                   INNER JOIN BinLocations ON GoodsReceiptDetails.BinLocationID = BinLocations.BinLocationID " + "\r\n";
+
+            queryString = queryString + "                   LEFT JOIN Pickups ON GoodsReceiptDetails.PickupID = Pickups.PickupID " + "\r\n";
+            queryString = queryString + "                   LEFT JOIN GoodsIssues ON GoodsReceiptDetails.GoodsIssueID = GoodsIssues.GoodsIssueID " + "\r\n";
+            queryString = queryString + "                   LEFT JOIN Warehouses SourceWarehouses ON GoodsIssues.WarehouseID = SourceWarehouses.WarehouseID " + "\r\n";
+            queryString = queryString + "                   LEFT JOIN WarehouseAdjustments ON GoodsReceiptDetails.WarehouseAdjustmentID = WarehouseAdjustments.WarehouseAdjustmentID " + "\r\n";
+            queryString = queryString + "                   LEFT JOIN WarehouseAdjustmentTypes ON WarehouseAdjustments.WarehouseAdjustmentTypeID = WarehouseAdjustmentTypes.WarehouseAdjustmentTypeID " + "\r\n";
+
             queryString = queryString + "                   LEFT JOIN Packs ON GoodsReceiptDetails.PackID = Packs.PackID " + "\r\n";
             queryString = queryString + "                   LEFT JOIN Cartons ON GoodsReceiptDetails.CartonID = Cartons.CartonID " + "\r\n";
             queryString = queryString + "                   LEFT JOIN Pallets ON GoodsReceiptDetails.PalletID = Pallets.PalletID " + "\r\n";

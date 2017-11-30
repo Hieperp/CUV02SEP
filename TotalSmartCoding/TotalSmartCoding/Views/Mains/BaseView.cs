@@ -336,7 +336,7 @@ namespace TotalSmartCoding.Views.Mains
             if (this.ReadonlyMode) this.invokeEdit(this.baseDTO.GetID()); //THIS LINE IS FOR REFRESH THE STATE OF THE CURRENT ENTITY (Editable/ Deletable/ ...)=> THIS MAY BE NOT NECCESSARY IN SOME CASE => LATER: WE SHOULD TRY TO REFRESH BY A BETTER WAY: TO REFRESH WHEN NECCESSARY ONLY
         }
 
-        public void ApplyFilter(string filterTexts)
+        public virtual void ApplyFilter(string filterTexts)
         {
             OLVHelpers.ApplyFilters(this.fastListIndex, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
         }

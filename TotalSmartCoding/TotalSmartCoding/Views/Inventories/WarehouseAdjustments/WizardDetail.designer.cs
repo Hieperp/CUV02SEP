@@ -1,6 +1,6 @@
 ﻿namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
 {
-    partial class WizardTransfer
+    partial class WizardDetail
     {
         /// <summary>
         /// Required designer variable.
