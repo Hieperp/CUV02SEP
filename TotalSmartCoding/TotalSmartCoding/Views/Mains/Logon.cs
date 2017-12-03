@@ -216,6 +216,7 @@ namespace TotalSmartCoding.Views.Mains
 
                         this.VersionValidate();
 
+                        #region EMPTY DATABASE
                         if (false && this.checkEmptyData.Checked)
                         {
                             this.baseRepository.ExecuteStoreCommand("DELETE FROM     WarehouseAdjustmentDetails", new ObjectParameter[] { });
@@ -281,13 +282,16 @@ namespace TotalSmartCoding.Views.Mains
                             //this.baseRepository.ExecuteStoreCommand("DELETE FROM     Commodities", new ObjectParameter[] { });
                             //this.baseRepository.ExecuteStoreCommand("DBCC CHECKIDENT ('Commodities', RESEED, 0)", new ObjectParameter[] { });
                         }
+                        #endregion
 
-
-                        if (!this.baseRepository.AutoUpdates(sender.Equals(this.buttonLoginRestore)))
-                            throw new Exception("Sorry, auto update fails. Please try again." + "\r\n" + "\r\n" + "Contact your administrator for more information.");
-
-
-                        this.DialogResult = DialogResult.OK;
+                        if (this.baseRepository.AutoUpdates(sender.Equals(this.buttonLoginRestore)))
+                            this.DialogResult = DialogResult.OK;
+                        else
+                        {
+                            CustomMsgBox.Show(this, "The program on this computer must be updated to the latest version." + "\r\n" + "\r\n" + "Contact your administrator for more information.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                            this.buttonDownload_Click(this.buttonDownload, new EventArgs());
+                        }
+                                                    
                     }
                 }
             }
