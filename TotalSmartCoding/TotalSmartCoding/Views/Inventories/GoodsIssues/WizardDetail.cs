@@ -58,9 +58,9 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
             this.customTabBatch.DisplayStyle = TabStyle.VisualStudio;
             this.customTabBatch.DisplayStyleProvider.ImageAlign = ContentAlignment.MiddleLeft;
 
-            this.customTabBatch.TabPages.Add("tabPendingPallets", "Pending pallets");
-            this.customTabBatch.TabPages.Add("tabPendingCartons", "Pending cartons");
-            if (this.UsingPack) this.customTabBatch.TabPages.Add("tabPendingPacks", "Pending packs");
+            this.customTabBatch.TabPages.Add("tabAvailablePallets", "Available pallets");
+            this.customTabBatch.TabPages.Add("tabAvailableCartons", "Available cartons");
+            if (this.UsingPack) this.customTabBatch.TabPages.Add("tabAvailablePacks", "Available packs");
             this.customTabBatch.TabPages[0].Controls.Add(this.fastAvailablePallets);
             this.customTabBatch.TabPages[1].Controls.Add(this.fastAvailableCartons);
             if (this.UsingPack) this.customTabBatch.TabPages[2].Controls.Add(this.fastAvailablePacks);
@@ -235,9 +235,10 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
 
         private void ShowRowCount()
         {
-            this.customTabBatch.TabPages[0].Text = "Pending " + this.fastAvailablePallets.GetItemCount().ToString("N0") + " pallet" + (this.fastAvailablePallets.GetItemCount() > 1 ? "s      " : "      ");
-            this.customTabBatch.TabPages[1].Text = "Pending " + this.fastAvailableCartons.GetItemCount().ToString("N0") + " carton" + (this.fastAvailableCartons.GetItemCount() > 1 ? "s      " : "      ");
-            if (this.UsingPack) this.customTabBatch.TabPages[2].Text = "Pending " + this.fastAvailablePacks.GetItemCount().ToString("N0") + " pack" + (this.fastAvailablePacks.GetItemCount() > 1 ? "s      " : "      ");
+            this.customTabBatch.TabPages[0].Text = "Available " + this.fastAvailablePallets.GetItemCount().ToString("N0") + " pallet" + (this.fastAvailablePallets.GetItemCount() > 1 ? "s      " : "      ");
+            this.customTabBatch.TabPages[1].Text = "Available " + this.fastAvailableCartons.GetItemCount().ToString("N0") + " carton" + (this.fastAvailableCartons.GetItemCount() > 1 ? "s      " : "      ");
+            if (this.UsingPack) this.customTabBatch.TabPages[2].Text = "Available " + this.fastAvailablePacks.GetItemCount().ToString("N0") + " pack" + (this.fastAvailablePacks.GetItemCount() > 1 ? "s      " : "      ");
+            if (this.fileName != null) this.customTabBatch.TabPages[this.customTabBatch.TabPages.Count - 1].Text = this.fastMismatchedBarcodes.GetItemCount().ToString("N0") + " Mismatched Barcode" + (this.fastMismatchedBarcodes.GetItemCount() > 1 ? "s      " : "      ");
         }
 
 

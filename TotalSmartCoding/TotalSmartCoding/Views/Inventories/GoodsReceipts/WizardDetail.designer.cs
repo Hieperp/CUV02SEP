@@ -127,7 +127,7 @@
             // 
             this.olvCommodityName.AspectName = "CommodityName";
             this.olvCommodityName.Text = "Item Name";
-            this.olvCommodityName.Width = 310;
+            this.olvCommodityName.Width = 290;
             // 
             // olvPalletBinLocationCode
             // 
@@ -249,7 +249,7 @@
             // 
             this.olvColumn6.AspectName = "CommodityName";
             this.olvColumn6.Text = "Item Name";
-            this.olvColumn6.Width = 310;
+            this.olvColumn6.Width = 290;
             // 
             // olvColumn2
             // 

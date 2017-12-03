@@ -61,6 +61,11 @@ namespace TotalDTO.Inventories
         public string BarcodeCode { get { return this.PalletID != null ? this.PalletCode : (this.CartonID != null ? this.CartonCode : PackCode); } }
         public Nullable<System.DateTime> BarcodeEntryDate { get { return this.PalletID != null ? this.PalletEntryDate : (this.CartonID != null ? this.CartonEntryDate : PackEntryDate); } }
 
+        public override string Caption
+        {
+            get { return this.CommodityCodeAndName + ",   Quantity: " + this.Quantity.ToString("N0") + ",   Volume: " + this.Volume.ToString("N2"); }
+        }
+
         protected override List<ValidationRule> CreateRules()
         {
             List<ValidationRule> validationRules = base.CreateRules();

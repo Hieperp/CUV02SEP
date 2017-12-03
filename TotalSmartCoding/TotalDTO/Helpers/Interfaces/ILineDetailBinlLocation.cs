@@ -17,6 +17,7 @@ namespace TotalDTO.Helpers.Interfaces
         int WarehouseID { get; set; }
         Nullable<int> BinLocationID { get; set; }
         string BinLocationCode { get; set; }
+        string Caption { get; }
 
         decimal Quantity { get; set; }
         decimal LineVolume { get; set; }
@@ -55,6 +56,11 @@ namespace TotalDTO.Helpers.Interfaces
         public string PalletCode { get; set; }
 
         public string BarcodeCode { get { return this.PalletID != null ? this.PalletCode : (this.CartonID != null ? this.CartonCode : PackCode); } }
+
+        public override string Caption
+        {
+            get { return this.CommodityCodeAndName + ",   Quantity: " + this.Quantity.ToString("N0") + ",   Volume: " + this.Volume.ToString("N2"); }
+        }
 
         protected override List<ValidationRule> CreateRules()
         {

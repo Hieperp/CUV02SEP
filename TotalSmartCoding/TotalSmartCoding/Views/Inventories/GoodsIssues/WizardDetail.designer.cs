@@ -135,7 +135,6 @@
             this.fastAvailablePallets.Location = new System.Drawing.Point(0, 303);
             this.fastAvailablePallets.Name = "fastAvailablePallets";
             this.fastAvailablePallets.OwnerDraw = true;
-            this.fastAvailablePallets.RowHeight = 32;
             this.fastAvailablePallets.ShowGroups = false;
             this.fastAvailablePallets.ShowImagesOnSubItems = true;
             this.fastAvailablePallets.Size = new System.Drawing.Size(1147, 122);
@@ -218,7 +217,7 @@
             this.panelMaster.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelMaster.Location = new System.Drawing.Point(0, 0);
             this.panelMaster.Name = "panelMaster";
-            this.panelMaster.Padding = new System.Windows.Forms.Padding(0, 9, 0, 0);
+            this.panelMaster.Padding = new System.Windows.Forms.Padding(0, 2, 0, 0);
             this.panelMaster.Size = new System.Drawing.Size(1082, 553);
             this.panelMaster.TabIndex = 71;
             // 
@@ -244,7 +243,6 @@
             this.fastMismatchedBarcodes.Location = new System.Drawing.Point(-3, 427);
             this.fastMismatchedBarcodes.Name = "fastMismatchedBarcodes";
             this.fastMismatchedBarcodes.OwnerDraw = true;
-            this.fastMismatchedBarcodes.RowHeight = 32;
             this.fastMismatchedBarcodes.ShowGroups = false;
             this.fastMismatchedBarcodes.ShowImagesOnSubItems = true;
             this.fastMismatchedBarcodes.Size = new System.Drawing.Size(1147, 126);
@@ -324,7 +322,6 @@
             this.fastAvailableCartons.Location = new System.Drawing.Point(0, 130);
             this.fastAvailableCartons.Name = "fastAvailableCartons";
             this.fastAvailableCartons.OwnerDraw = true;
-            this.fastAvailableCartons.RowHeight = 32;
             this.fastAvailableCartons.ShowGroups = false;
             this.fastAvailableCartons.ShowImagesOnSubItems = true;
             this.fastAvailableCartons.Size = new System.Drawing.Size(1147, 245);
@@ -425,7 +422,6 @@
             this.fastAvailablePacks.Location = new System.Drawing.Point(-3, 0);
             this.fastAvailablePacks.Name = "fastAvailablePacks";
             this.fastAvailablePacks.OwnerDraw = true;
-            this.fastAvailablePacks.RowHeight = 32;
             this.fastAvailablePacks.ShowGroups = false;
             this.fastAvailablePacks.ShowImagesOnSubItems = true;
             this.fastAvailablePacks.Size = new System.Drawing.Size(1147, 245);
@@ -508,7 +504,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "WizardDetail";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Create Wizard";
+            this.Text = "Select pallet or carton to issue";
             this.Load += new System.EventHandler(this.WizardDetail_Load);
             this.toolStripBottom.ResumeLayout(false);
             this.toolStripBottom.PerformLayout();

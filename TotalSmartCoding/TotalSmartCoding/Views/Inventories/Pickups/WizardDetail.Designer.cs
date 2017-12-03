@@ -36,9 +36,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.textexCode = new CustomControls.TextexBox();
-            this.textexCommodityCodeAndName = new CustomControls.TextexBox();
-            this.textexQuantity = new CustomControls.TextexBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.textexCaption = new CustomControls.TextexBox();
             this.errorProviderMaster = new System.Windows.Forms.ErrorProvider(this.components);
             this.fastBinLocations = new BrightIdeasSoftware.FastObjectListView();
             this.olvNo = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -48,8 +46,6 @@
             this.splitContainerCenter = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.textexBinLocationCode = new CustomControls.TextexBox();
-            this.textexLineVolume = new CustomControls.TextexBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.toolStripAction.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fastBinLocations)).BeginInit();
@@ -103,10 +99,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(2, 20);
+            this.label2.Location = new System.Drawing.Point(2, 23);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(259, 24);
+            this.label2.Size = new System.Drawing.Size(193, 24);
             this.label2.TabIndex = 103;
             this.label2.Text = "Barcode";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -115,10 +111,10 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label10.Location = new System.Drawing.Point(2, 50);
+            this.label10.Location = new System.Drawing.Point(2, 53);
             this.label10.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(259, 24);
+            this.label10.Size = new System.Drawing.Size(193, 24);
             this.label10.TabIndex = 95;
             this.label10.Text = "Item Description";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -127,10 +123,10 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label9.Location = new System.Drawing.Point(1, 138);
+            this.label9.Location = new System.Drawing.Point(1, 81);
             this.label9.Margin = new System.Windows.Forms.Padding(1);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(261, 28);
+            this.label9.Size = new System.Drawing.Size(195, 28);
             this.label9.TabIndex = 101;
             this.label9.Text = "Bin Location";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -139,46 +135,23 @@
             // 
             this.textexCode.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexCode.Editable = true;
-            this.textexCode.Location = new System.Drawing.Point(265, 18);
+            this.textexCode.Location = new System.Drawing.Point(199, 21);
             this.textexCode.Margin = new System.Windows.Forms.Padding(2, 1, 1, 1);
             this.textexCode.Name = "textexCode";
             this.textexCode.ReadOnly = true;
-            this.textexCode.Size = new System.Drawing.Size(588, 28);
+            this.textexCode.Size = new System.Drawing.Size(656, 28);
             this.textexCode.TabIndex = 104;
             // 
-            // textexCommodityCodeAndName
+            // textexCaption
             // 
-            this.textexCommodityCodeAndName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textexCommodityCodeAndName.Editable = true;
-            this.textexCommodityCodeAndName.Location = new System.Drawing.Point(265, 48);
-            this.textexCommodityCodeAndName.Margin = new System.Windows.Forms.Padding(2, 1, 1, 1);
-            this.textexCommodityCodeAndName.Name = "textexCommodityCodeAndName";
-            this.textexCommodityCodeAndName.ReadOnly = true;
-            this.textexCommodityCodeAndName.Size = new System.Drawing.Size(588, 28);
-            this.textexCommodityCodeAndName.TabIndex = 105;
-            // 
-            // textexQuantity
-            // 
-            this.textexQuantity.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textexQuantity.Editable = true;
-            this.textexQuantity.Location = new System.Drawing.Point(265, 78);
-            this.textexQuantity.Margin = new System.Windows.Forms.Padding(2, 1, 1, 1);
-            this.textexQuantity.Name = "textexQuantity";
-            this.textexQuantity.ReadOnly = true;
-            this.textexQuantity.Size = new System.Drawing.Size(588, 28);
-            this.textexQuantity.TabIndex = 108;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Location = new System.Drawing.Point(2, 80);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(259, 24);
-            this.label4.TabIndex = 107;
-            this.label4.Text = "Quantity";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.textexCaption.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textexCaption.Editable = true;
+            this.textexCaption.Location = new System.Drawing.Point(199, 51);
+            this.textexCaption.Margin = new System.Windows.Forms.Padding(2, 1, 1, 1);
+            this.textexCaption.Name = "textexCaption";
+            this.textexCaption.ReadOnly = true;
+            this.textexCaption.Size = new System.Drawing.Size(656, 28);
+            this.textexCaption.TabIndex = 105;
             // 
             // errorProviderMaster
             // 
@@ -209,7 +182,7 @@
             this.fastBinLocations.RowHeight = 32;
             this.fastBinLocations.ShowGroups = false;
             this.fastBinLocations.ShowImagesOnSubItems = true;
-            this.fastBinLocations.Size = new System.Drawing.Size(879, 155);
+            this.fastBinLocations.Size = new System.Drawing.Size(879, 237);
             this.fastBinLocations.TabIndex = 109;
             this.fastBinLocations.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastBinLocations.UseCompatibleStateImageBehavior = false;
@@ -262,40 +235,34 @@
             // splitContainerCenter.Panel2
             // 
             this.splitContainerCenter.Panel2.Controls.Add(this.fastBinLocations);
-            this.splitContainerCenter.Size = new System.Drawing.Size(879, 320);
-            this.splitContainerCenter.SplitterDistance = 160;
+            this.splitContainerCenter.Size = new System.Drawing.Size(879, 372);
+            this.splitContainerCenter.SplitterDistance = 130;
             this.splitContainerCenter.SplitterWidth = 5;
             this.splitContainerCenter.TabIndex = 0;
             // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.84455F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 69.15545F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 24F));
-            this.tableLayoutPanel1.Controls.Add(this.label9, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.textexQuantity, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.label4, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.textexBinLocationCode, 1, 5);
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 77F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 22F));
+            this.tableLayoutPanel1.Controls.Add(this.label9, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.textexBinLocationCode, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.textexCode, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.label10, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.textexCommodityCodeAndName, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.textexCaption, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.textexLineVolume, 1, 4);
-            this.tableLayoutPanel1.Controls.Add(this.label3, 0, 4);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 7;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 17F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowCount = 5;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(879, 160);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(879, 130);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // textexBinLocationCode
@@ -303,35 +270,12 @@
             this.textexBinLocationCode.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexBinLocationCode.Editable = true;
             this.textexBinLocationCode.ForeColor = System.Drawing.Color.Firebrick;
-            this.textexBinLocationCode.Location = new System.Drawing.Point(265, 138);
+            this.textexBinLocationCode.Location = new System.Drawing.Point(199, 81);
             this.textexBinLocationCode.Margin = new System.Windows.Forms.Padding(2, 1, 1, 1);
             this.textexBinLocationCode.Name = "textexBinLocationCode";
             this.textexBinLocationCode.ReadOnly = true;
-            this.textexBinLocationCode.Size = new System.Drawing.Size(588, 28);
+            this.textexBinLocationCode.Size = new System.Drawing.Size(656, 28);
             this.textexBinLocationCode.TabIndex = 109;
-            // 
-            // textexLineVolume
-            // 
-            this.textexLineVolume.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textexLineVolume.Editable = true;
-            this.textexLineVolume.Location = new System.Drawing.Point(265, 108);
-            this.textexLineVolume.Margin = new System.Windows.Forms.Padding(2, 1, 1, 1);
-            this.textexLineVolume.Name = "textexLineVolume";
-            this.textexLineVolume.ReadOnly = true;
-            this.textexLineVolume.Size = new System.Drawing.Size(588, 28);
-            this.textexLineVolume.TabIndex = 111;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Location = new System.Drawing.Point(2, 110);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(259, 24);
-            this.label3.TabIndex = 112;
-            this.label3.Text = "Volume";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // WizardDetail
             // 
@@ -373,9 +317,7 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private CustomControls.TextexBox textexCode;
-        private CustomControls.TextexBox textexCommodityCodeAndName;
-        private CustomControls.TextexBox textexQuantity;
-        private System.Windows.Forms.Label label4;
+        private CustomControls.TextexBox textexCaption;
         private System.Windows.Forms.ErrorProvider errorProviderMaster;
         private System.Windows.Forms.SplitContainer splitContainerCenter;
         private CustomControls.TextexBox textexBinLocationCode;
@@ -385,7 +327,5 @@
         private BrightIdeasSoftware.OLVColumn olvQuantity;
         private BrightIdeasSoftware.OLVColumn olvNo;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private CustomControls.TextexBox textexLineVolume;
-        private System.Windows.Forms.Label label3;
     }
 }

@@ -95,7 +95,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                 this.naviDetails.Expanded = false;
 
                 this.labelCaption.Left = 68; this.labelCaption.Top = 12;
-                if (GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.GoodsIssue) { ViewHelpers.SetFont(this, new Font("Calibri", 11), new Font("Calibri", 11), new Font("Calibri", 11)); ViewHelpers.SetFont(this.MdiParent, new Font("Calibri", 11), new Font("Calibri", 11), new Font("Calibri", 11)); }
+                if (GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.GoodsIssue) { ViewHelpers.SetFont(this, new Font("Calibri", 11), new Font("Calibri", 11), new Font("Calibri", 11)); ViewHelpers.SetFont(this.MdiParent, new Font("Calibri", 11), new Font("Calibri", 11), new Font("Calibri", 11)); } else { this.labelCaption.Top = this.labelCaption.Top + 1; }
 
                 this.customTabCenter.SelectedIndexChanged += customTabCenter_SelectedIndexChanged;
             }
@@ -204,8 +204,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                 this.customTabCenter.TabPages[0].Text = "Pallet Details [" + this.goodsIssueViewModel.PalletDetails.Count.ToString("N0") + " item(s)]             ";
                 this.customTabCenter.TabPages[1].Text = "Carton Details [" + this.goodsIssueViewModel.CartonDetails.Count.ToString("N0") + " item(s)]             ";
 
-                this.gridexPalletDetails.Columns["Pallet"
-                    + CommonExpressions.PropertyName<GoodsIssueDetailDTO>(p => p.PrimaryReference)].HeaderText = this.goodsIssueViewModel.GoodsIssueTypeID == (int)GlobalEnums.GoodsIssueTypeID.DeliveryAdvice ? "D.A" : "Orders";
+                this.gridexPalletDetails.Columns["Pallet" + CommonExpressions.PropertyName<GoodsIssueDetailDTO>(p => p.PrimaryReference)].HeaderText = this.goodsIssueViewModel.GoodsIssueTypeID == (int)GlobalEnums.GoodsIssueTypeID.DeliveryAdvice ? "D.A" : "Orders";
                 this.gridexCartonDetails.Columns["Carton" + CommonExpressions.PropertyName<GoodsIssueDetailDTO>(p => p.PrimaryReference)].HeaderText = this.goodsIssueViewModel.GoodsIssueTypeID == (int)GlobalEnums.GoodsIssueTypeID.DeliveryAdvice ? "D.A" : "Orders";
                 this.gridexPalletDetails.Columns["Pallet" + CommonExpressions.PropertyName<GoodsIssueDetailDTO>(p => p.PrimaryReference)].Visible = this.goodsIssueViewModel.DeliveryAdviceID == null && this.goodsIssueViewModel.TransferOrderID == null;
                 this.gridexCartonDetails.Columns["Carton" + CommonExpressions.PropertyName<GoodsIssueDetailDTO>(p => p.PrimaryReference)].Visible = this.goodsIssueViewModel.DeliveryAdviceID == null && this.goodsIssueViewModel.TransferOrderID == null;
@@ -272,8 +271,11 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                     this.fastPendingPrimaryDetails.SetObjects(pendingTransferOrderDetails); this.olvPrimaryReference.Text = "Orders";
                 }
 
+                decimal? existBatchID = this.fastPendingPrimaryDetails.Objects.Cast<IPendingPrimaryDetail>().Where(w => w.BatchID != null).Count();
+                this.olvBatchCode.Width = existBatchID != null && existBatchID > 0 ? 80 : 0; this.olvBatchCode.Text = this.olvBatchCode.Width == 0 ? "" : "Batches";
+
                 this.olvPrimaryReference.Width = this.goodsIssueViewModel.DeliveryAdviceID != null || this.goodsIssueViewModel.TransferOrderID != null ? 0 : 70;
-                this.olvCommodityName.Width = this.goodsIssueViewModel.DeliveryAdviceID != null || this.goodsIssueViewModel.TransferOrderID != null ? (122 + 70) : 122;
+                this.olvCommodityName.Width = (this.goodsIssueViewModel.DeliveryAdviceID != null || this.goodsIssueViewModel.TransferOrderID != null ? (122 + 70) : 122) + (this.olvBatchCode.Width == 0 ? 80 : 0);
 
                 //this.naviPendingItems.Text = "Pending " + this.fastPendingPrimaryDetails.GetItemCount().ToString("N0") + " row" + (this.fastPendingPrimaryDetails.GetItemCount() > 1 ? "s" : "");
             }

@@ -123,6 +123,16 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _1_one {
+            get {
+                object obj = ResourceManager.GetObject("1-one", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _1368113696_32538 {
             get {
                 object obj = ResourceManager.GetObject("1368113696_32538", resourceCulture);
@@ -786,6 +796,66 @@ namespace TotalSmartCoding.Properties {
         internal static System.Drawing.Bitmap Background21 {
             get {
                 object obj = ResourceManager.GetObject("Background21", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap backspace {
+            get {
+                object obj = ResourceManager.GetObject("backspace", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap backspace_1 {
+            get {
+                object obj = ResourceManager.GetObject("backspace_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap backspace_2 {
+            get {
+                object obj = ResourceManager.GetObject("backspace_2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap backspace_3_1 {
+            get {
+                object obj = ResourceManager.GetObject("backspace_3_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap backspace_5_2 {
+            get {
+                object obj = ResourceManager.GetObject("backspace_5_2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap backspace_6_2 {
+            get {
+                object obj = ResourceManager.GetObject("backspace_6_2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1793,6 +1863,16 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap eight {
+            get {
+                object obj = ResourceManager.GetObject("eight", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Emey87_Trainee_Box_double_tape {
             get {
                 object obj = ResourceManager.GetObject("Emey87-Trainee-Box-double-tape", resourceCulture);
@@ -1923,6 +2003,16 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap five {
+            get {
+                object obj = ResourceManager.GetObject("five", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Floppy_Drive {
             get {
                 object obj = ResourceManager.GetObject("Floppy-Drive", resourceCulture);
@@ -2016,6 +2106,16 @@ namespace TotalSmartCoding.Properties {
         internal static System.Drawing.Bitmap Forklift64 {
             get {
                 object obj = ResourceManager.GetObject("Forklift64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap four {
+            get {
+                object obj = ResourceManager.GetObject("four", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -2166,6 +2266,16 @@ namespace TotalSmartCoding.Properties {
         internal static System.Drawing.Bitmap Hopstarter_Warning {
             get {
                 object obj = ResourceManager.GetObject("Hopstarter-Warning", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap hyphen {
+            get {
+                object obj = ResourceManager.GetObject("hyphen", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -2533,6 +2643,16 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap keyboard_key_empty {
+            get {
+                object obj = ResourceManager.GetObject("keyboard-key-empty", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Keys {
             get {
                 object obj = ResourceManager.GetObject("Keys", resourceCulture);
@@ -2573,9 +2693,39 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap letter_a {
+            get {
+                object obj = ResourceManager.GetObject("letter-a", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap letter_a_icon {
             get {
                 object obj = ResourceManager.GetObject("letter-a-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap letter_a_inside_a_circle {
+            get {
+                object obj = ResourceManager.GetObject("letter-a-inside-a-circle", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap letter_b {
+            get {
+                object obj = ResourceManager.GetObject("letter-b", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -2593,9 +2743,29 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap letter_c {
+            get {
+                object obj = ResourceManager.GetObject("letter-c", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap letter_c_icon {
             get {
                 object obj = ResourceManager.GetObject("letter-c-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap letter_d {
+            get {
+                object obj = ResourceManager.GetObject("letter-d", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -2613,9 +2783,29 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap letter_e {
+            get {
+                object obj = ResourceManager.GetObject("letter-e", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap letter_e_icon {
             get {
                 object obj = ResourceManager.GetObject("letter-e-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap letter_f {
+            get {
+                object obj = ResourceManager.GetObject("letter-f", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -2633,9 +2823,29 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap letter_g {
+            get {
+                object obj = ResourceManager.GetObject("letter-g", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap letter_g_icon {
             get {
                 object obj = ResourceManager.GetObject("letter-g-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap letter_h {
+            get {
+                object obj = ResourceManager.GetObject("letter-h", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -2653,6 +2863,16 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap letter_i {
+            get {
+                object obj = ResourceManager.GetObject("letter-i", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap letter_i_icon {
             get {
                 object obj = ResourceManager.GetObject("letter-i-icon", resourceCulture);
@@ -2663,9 +2883,129 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap letter_j {
+            get {
+                object obj = ResourceManager.GetObject("letter-j", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap letter_j_icon {
             get {
                 object obj = ResourceManager.GetObject("letter-j-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap letter_k {
+            get {
+                object obj = ResourceManager.GetObject("letter-k", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap letter_l {
+            get {
+                object obj = ResourceManager.GetObject("letter-l", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap letter_m {
+            get {
+                object obj = ResourceManager.GetObject("letter-m", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap letter_n {
+            get {
+                object obj = ResourceManager.GetObject("letter-n", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap letter_o {
+            get {
+                object obj = ResourceManager.GetObject("letter-o", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap letter_p {
+            get {
+                object obj = ResourceManager.GetObject("letter-p", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap letter_q {
+            get {
+                object obj = ResourceManager.GetObject("letter-q", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap letter_r {
+            get {
+                object obj = ResourceManager.GetObject("letter-r", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap letter_s {
+            get {
+                object obj = ResourceManager.GetObject("letter-s", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap letter_t {
+            get {
+                object obj = ResourceManager.GetObject("letter-t", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap letter_u {
+            get {
+                object obj = ResourceManager.GetObject("letter-u", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -2973,6 +3313,56 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap letter_v {
+            get {
+                object obj = ResourceManager.GetObject("letter-v", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap letter_w {
+            get {
+                object obj = ResourceManager.GetObject("letter-w", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap letter_x {
+            get {
+                object obj = ResourceManager.GetObject("letter-x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap letter_y {
+            get {
+                object obj = ResourceManager.GetObject("letter-y", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap letter_z {
+            get {
+                object obj = ResourceManager.GetObject("letter-z", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Loader_48 {
             get {
                 object obj = ResourceManager.GetObject("Loader-48", resourceCulture);
@@ -3066,6 +3456,16 @@ namespace TotalSmartCoding.Properties {
         internal static System.Drawing.Bitmap Next_1 {
             get {
                 object obj = ResourceManager.GetObject("Next-1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap nine {
+            get {
+                object obj = ResourceManager.GetObject("nine", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -3183,6 +3583,16 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Numbers_1_icon {
+            get {
+                object obj = ResourceManager.GetObject("Numbers-1-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Numbers_2 {
             get {
                 object obj = ResourceManager.GetObject("Numbers-2", resourceCulture);
@@ -3216,6 +3626,26 @@ namespace TotalSmartCoding.Properties {
         internal static System.Drawing.Bitmap Numbers_5 {
             get {
                 object obj = ResourceManager.GetObject("Numbers-5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap o_zero {
+            get {
+                object obj = ResourceManager.GetObject("o-zero", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap o_zero_48 {
+            get {
+                object obj = ResourceManager.GetObject("o-zero-48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -3276,6 +3706,16 @@ namespace TotalSmartCoding.Properties {
         internal static System.Drawing.Bitmap omnii_xt_15_product_series_182 {
             get {
                 object obj = ResourceManager.GetObject("omnii-xt-15-product-series-182", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap one {
+            get {
+                object obj = ResourceManager.GetObject("one", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -3833,6 +4273,16 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap seven {
+            get {
+                object obj = ResourceManager.GetObject("seven", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Shipping_free_24 {
             get {
                 object obj = ResourceManager.GetObject("Shipping-free-24", resourceCulture);
@@ -4013,6 +4463,16 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap six {
+            get {
+                object obj = ResourceManager.GetObject("six", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap smallsuccess {
             get {
                 object obj = ResourceManager.GetObject("smallsuccess", resourceCulture);
@@ -4103,6 +4563,16 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap three {
+            get {
+                object obj = ResourceManager.GetObject("three", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Thvg_Wood_Folders_Matte_Utilities {
             get {
                 object obj = ResourceManager.GetObject("Thvg-Wood-Folders-Matte-Utilities", resourceCulture);
@@ -4176,6 +4646,16 @@ namespace TotalSmartCoding.Properties {
         internal static System.Drawing.Bitmap Truck_24 {
             get {
                 object obj = ResourceManager.GetObject("Truck-24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap two {
+            get {
+                object obj = ResourceManager.GetObject("two", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -4396,6 +4876,16 @@ namespace TotalSmartCoding.Properties {
         internal static System.Drawing.Bitmap Yellow_cross {
             get {
                 object obj = ResourceManager.GetObject("Yellow-cross", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap zero {
+            get {
+                object obj = ResourceManager.GetObject("zero", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

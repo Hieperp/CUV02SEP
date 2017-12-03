@@ -36,6 +36,7 @@ namespace TotalSmartCoding.Libraries.Helpers
                 {
                     control.Font = font;
                     FastObjectListView fastObjectListView = control as FastObjectListView;
+                    fastObjectListView.RowHeight = 36;
                     foreach (OLVColumn olvColumn in fastObjectListView.Columns)
                     {
                         olvColumn.HeaderFont = titleFont;
@@ -46,6 +47,7 @@ namespace TotalSmartCoding.Libraries.Helpers
                     DataGridView dataGridView = control as DataGridView;
                     dataGridView.ColumnHeadersDefaultCellStyle.Font = titleFont;
                     dataGridView.RowsDefaultCellStyle.Font = font;
+                    dataGridView.RowTemplate.Height = 36;
                 }
                 else if (control is ToolStrip)
                 {
