@@ -22,14 +22,15 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
 
             this.GetSalesOrderViewDetails();
 
-
             this.SalesOrderSaveRelative();
             this.SalesOrderPostSaveValidate();
 
             this.SalesOrderApproved();
             this.SalesOrderEditable();
+            this.SalesOrderVoidable();
 
             this.SalesOrderToggleApproved();
+            this.SalesOrderToggleVoid();
 
             this.SalesOrderInitReference();
         }
@@ -130,13 +131,27 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
 
         private void SalesOrderEditable()
         {
-            string[] queryArray = new string[2];
+            string[] queryArray = new string[3];
 
-            queryArray[0] = " SELECT TOP 1 @FoundEntity = SalesOrderID FROM DeliveryAdvices WHERE SalesOrderID = @EntityID ";
-            queryArray[1] = " SELECT TOP 1 @FoundEntity = SalesOrderID FROM DeliveryAdviceDetails WHERE SalesOrderID = @EntityID ";
+            queryArray[0] = " SELECT TOP 1 @FoundEntity = SalesOrderID FROM SalesOrders WHERE SalesOrderID = @EntityID AND (InActive = 1 OR InActivePartial = 1)"; //Don't allow approve after void
+
+            queryArray[1] = " SELECT TOP 1 @FoundEntity = SalesOrderID FROM DeliveryAdvices WHERE SalesOrderID = @EntityID ";
+            queryArray[2] = " SELECT TOP 1 @FoundEntity = SalesOrderID FROM DeliveryAdviceDetails WHERE SalesOrderID = @EntityID ";
 
             this.totalSmartCodingEntities.CreateProcedureToCheckExisting("SalesOrderEditable", queryArray);
         }
+
+
+        private void SalesOrderVoidable()
+        {
+            string[] queryArray = new string[2];
+
+            queryArray[0] = " SELECT TOP 1 @FoundEntity = SalesOrderID FROM SalesOrders WHERE SalesOrderID = @EntityID AND Approved = 0"; //Must approve in order to allow void
+            queryArray[1] = " SELECT TOP 1 @FoundEntity = SalesOrderID FROM DeliveryAdviceDetails WHERE SalesOrderID = @EntityID ";
+
+            this.totalSmartCodingEntities.CreateProcedureToCheckExisting("SalesOrderVoidable", queryArray);
+        }
+
 
         private void SalesOrderToggleApproved()
         {
@@ -158,6 +173,30 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
 
             this.totalSmartCodingEntities.CreateStoredProcedure("SalesOrderToggleApproved", queryString);
         }
+
+
+        private void SalesOrderToggleVoid()
+        {
+            string queryString = " @EntityID int, @InActive bit, @VoidTypeID int " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+
+            queryString = queryString + "       UPDATE      SalesOrders  SET InActive = @InActive, InActiveDate = GetDate(), VoidTypeID = IIF(@InActive = 1, @VoidTypeID, NULL) WHERE SalesOrderID = @EntityID AND InActive = ~@InActive" + "\r\n";
+
+            queryString = queryString + "       IF @@ROWCOUNT = 1 " + "\r\n";
+            queryString = queryString + "           BEGIN " + "\r\n";
+            queryString = queryString + "               UPDATE          SalesOrderDetails  SET InActive = @InActive WHERE SalesOrderID = @EntityID ; " + "\r\n";
+            queryString = queryString + "           END " + "\r\n";
+            queryString = queryString + "       ELSE " + "\r\n";
+            queryString = queryString + "           BEGIN " + "\r\n";
+            queryString = queryString + "               DECLARE     @msg NVARCHAR(300) = N'Dữ liệu không tồn tại hoặc đã ' + iif(@InActive = 0, 'phục hồi lệnh', '')  + ' hủy' ; " + "\r\n";
+            queryString = queryString + "               THROW       61001,  @msg, 1; " + "\r\n";
+            queryString = queryString + "           END " + "\r\n";
+
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("SalesOrderToggleVoid", queryString);
+        }
+
 
         private void SalesOrderInitReference()
         {

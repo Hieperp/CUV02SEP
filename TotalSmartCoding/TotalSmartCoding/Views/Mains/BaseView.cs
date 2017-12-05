@@ -494,7 +494,7 @@ namespace TotalSmartCoding.Views.Mains
                 {
                     this.myController.Void(this.baseDTO.GetID());
 
-                    if (this.VoidCheck(this.baseDTO.GetID()) && CustomMsgBox.Show(this, "Dừng sản xuất batch này" + "?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Stop) == DialogResult.Yes)
+                    if (this.VoidCheck(this.baseDTO.GetID()) && CustomMsgBox.Show(this, (this.baseDTO is BatchViewModel ? "Dừng sản xuất batch này " : "Are you sure you want to " + (this.baseDTO.Voidable ? "void" : "un-void") + " this entry data") + "?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Stop) == DialogResult.Yes)
                         if (this.myController.VoidConfirmed())
                         {
                             this.VoidMore(this.baseDTO.GetID());

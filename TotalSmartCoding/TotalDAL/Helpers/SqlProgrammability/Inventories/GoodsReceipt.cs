@@ -18,36 +18,36 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
         public void RestoreProcedure()
         {
-            //////this.GetGoodsReceiptIndexes();
+            this.GetGoodsReceiptIndexes();
 
 
-            //////this.GetGoodsReceiptViewDetails();
+            this.GetGoodsReceiptViewDetails();
 
 
-            //////GenerateSQLPendingDetails generatePendingPickupDetails = new GenerateSQLPendingDetails(totalSmartCodingEntities, GlobalEnums.GoodsReceiptTypeID.Pickup, "Pickups", "PickupDetails", "PickupID", "@PickupID", "PickupDetailID", "@PickupDetailIDs", "WarehouseID", "PrimaryReference", "PrimaryEntryDate");
-            //////generatePendingPickupDetails.GetPendingPickups("GetPendingPickups");
-            //////generatePendingPickupDetails.GetPendingPickupWarehouses("GetPendingPickupWarehouses");
-            //////generatePendingPickupDetails.GetPendingPickupDetails("GetPendingPickupDetails");
+            GenerateSQLPendingDetails generatePendingPickupDetails = new GenerateSQLPendingDetails(totalSmartCodingEntities, GlobalEnums.GoodsReceiptTypeID.Pickup, "Pickups", "PickupDetails", "PickupID", "@PickupID", "PickupDetailID", "@PickupDetailIDs", "WarehouseID", "PrimaryReference", "PrimaryEntryDate");
+            generatePendingPickupDetails.GetPendingPickups("GetPendingPickups");
+            generatePendingPickupDetails.GetPendingPickupWarehouses("GetPendingPickupWarehouses");
+            generatePendingPickupDetails.GetPendingPickupDetails("GetPendingPickupDetails");
 
-            //////GenerateSQLPendingDetails generatePendingGoodsIssueTransferDetails = new GenerateSQLPendingDetails(totalSmartCodingEntities, GlobalEnums.GoodsReceiptTypeID.GoodsIssueTransfer, "GoodsIssues", "GoodsIssueTransferDetails", "GoodsIssueID", "@GoodsIssueID", "GoodsIssueTransferDetailID", "@GoodsIssueTransferDetailIDs", "WarehouseReceiptID", "PrimaryReference", "PrimaryEntryDate");
-            //////generatePendingGoodsIssueTransferDetails.GetPendingPickups("GetPendingGoodsIssueTransfers");
-            //////generatePendingGoodsIssueTransferDetails.GetPendingPickupWarehouses("GetPendingGoodsIssueTransferWarehouses");
-            //////generatePendingGoodsIssueTransferDetails.GetPendingPickupDetails("GetPendingGoodsIssueTransferDetails");
+            GenerateSQLPendingDetails generatePendingGoodsIssueTransferDetails = new GenerateSQLPendingDetails(totalSmartCodingEntities, GlobalEnums.GoodsReceiptTypeID.GoodsIssueTransfer, "GoodsIssues", "GoodsIssueTransferDetails", "GoodsIssueID", "@GoodsIssueID", "GoodsIssueTransferDetailID", "@GoodsIssueTransferDetailIDs", "WarehouseReceiptID", "PrimaryReference", "PrimaryEntryDate");
+            generatePendingGoodsIssueTransferDetails.GetPendingPickups("GetPendingGoodsIssueTransfers");
+            generatePendingGoodsIssueTransferDetails.GetPendingPickupWarehouses("GetPendingGoodsIssueTransferWarehouses");
+            generatePendingGoodsIssueTransferDetails.GetPendingPickupDetails("GetPendingGoodsIssueTransferDetails");
 
-            //////GenerateSQLPendingDetails generatePendingWarehouseAdjustmentDetails = new GenerateSQLPendingDetails(totalSmartCodingEntities, GlobalEnums.GoodsReceiptTypeID.WarehouseAdjustments, "WarehouseAdjustments", "WarehouseAdjustmentDetails", "WarehouseAdjustmentID", "@WarehouseAdjustmentID", "WarehouseAdjustmentDetailID", "@WarehouseAdjustmentDetailIDs", "WarehouseID", "PrimaryReference", "PrimaryEntryDate");
-            //////generatePendingWarehouseAdjustmentDetails.GetPendingPickupDetails("GetPendingWarehouseAdjustmentDetails");
+            GenerateSQLPendingDetails generatePendingWarehouseAdjustmentDetails = new GenerateSQLPendingDetails(totalSmartCodingEntities, GlobalEnums.GoodsReceiptTypeID.WarehouseAdjustments, "WarehouseAdjustments", "WarehouseAdjustmentDetails", "WarehouseAdjustmentID", "@WarehouseAdjustmentID", "WarehouseAdjustmentDetailID", "@WarehouseAdjustmentDetailIDs", "WarehouseID", "PrimaryReference", "PrimaryEntryDate");
+            generatePendingWarehouseAdjustmentDetails.GetPendingPickupDetails("GetPendingWarehouseAdjustmentDetails");
 
-            //////this.GetGoodsReceiptIDofWarehouseAdjustment();
+            this.GetGoodsReceiptIDofWarehouseAdjustment();
 
-            //////this.GoodsReceiptSaveRelative();
-            //////this.GoodsReceiptPostSaveValidate();
+            this.GoodsReceiptSaveRelative();
+            this.GoodsReceiptPostSaveValidate();
 
-            //////this.GoodsReceiptApproved();
-            //////this.GoodsReceiptEditable();
+            this.GoodsReceiptApproved();
+            this.GoodsReceiptEditable();
 
-            //////this.GoodsReceiptToggleApproved();
+            this.GoodsReceiptToggleApproved();
 
-            //////this.GoodsReceiptInitReference();
+            this.GoodsReceiptInitReference();
 
 
             this.GetGoodsReceiptDetailAvailables();

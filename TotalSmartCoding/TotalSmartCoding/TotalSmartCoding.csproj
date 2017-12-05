@@ -1085,6 +1085,7 @@
     <None Include="Resources\backspace_3_1.png" />
     <None Include="Resources\backspace_5_2.png" />
     <None Include="Resources\backspace_6_2.png" />
+    <None Include="Resources\Void-32.png" />
     <Content Include="SmartCodingSolution.ico" />
     <None Include="Resources\Yellow-cross.ico" />
     <None Include="Resources\White-Pallet.ico" />
