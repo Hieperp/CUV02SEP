@@ -90,13 +90,13 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
         {
             string queryString;
 
-            queryString = " " + "\r\n";
+            queryString = " @UserID Int, @NMVNTaskID Int, @RoleID Int " + "\r\n";
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
             queryString = queryString + "       SELECT      EmployeeID, Code, Name " + "\r\n";
-            queryString = queryString + "       FROM        Employees " + "\r\n";
+            queryString = queryString + "       FROM        Employees WHERE EmployeeID IN (SELECT EmployeeID FROM EmployeeLocations WHERE LocationID IN (SELECT DISTINCT OrganizationalUnits.LocationID FROM AccessControls INNER JOIN OrganizationalUnits ON AccessControls.OrganizationalUnitID = OrganizationalUnits.OrganizationalUnitID WHERE AccessControls.UserID = @UserID AND AccessControls.NMVNTaskID = @NMVNTaskID AND AccessControls.AccessLevel > 0)) AND EmployeeID IN (SELECT EmployeeID FROM EmployeeRoles WHERE RoleID = @RoleID) " + "\r\n";
 
             queryString = queryString + "    END " + "\r\n";
 

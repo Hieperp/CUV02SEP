@@ -164,7 +164,7 @@ namespace TotalSmartCoding.Views.Commons.Customers
             this.bindingTerritoryID = this.combexTerritoryID.DataBindings.Add("SelectedValue", this.customerViewModel, CommonExpressions.PropertyName<CustomerViewModel>(p => p.TerritoryID), true, DataSourceUpdateMode.OnPropertyChanged);
 
             EmployeeAPIs employeeAPIs = new EmployeeAPIs(CommonNinject.Kernel.Get<IEmployeeAPIRepository>());
-            this.combexSalespersonID.DataSource = employeeAPIs.GetEmployeeBases();
+            this.combexSalespersonID.DataSource = employeeAPIs.GetEmployeeBases(ContextAttributes.User.UserID, (int)this.customerViewModel.NMVNTaskID, (int)GlobalEnums.RoleID.Saleperson);
             this.combexSalespersonID.DisplayMember = CommonExpressions.PropertyName<EmployeeBase>(p => p.Name);
             this.combexSalespersonID.ValueMember = CommonExpressions.PropertyName<EmployeeBase>(p => p.EmployeeID);
             this.bindingSalespersonID = this.combexSalespersonID.DataBindings.Add("SelectedValue", this.customerViewModel, CommonExpressions.PropertyName<CustomerViewModel>(p => p.SalespersonID), true, DataSourceUpdateMode.OnPropertyChanged);

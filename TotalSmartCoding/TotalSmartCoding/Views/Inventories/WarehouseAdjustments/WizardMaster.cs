@@ -13,6 +13,7 @@ using TotalSmartCoding.Controllers.APIs.Inventories;
 using TotalSmartCoding.Libraries;
 using TotalSmartCoding.Libraries.Helpers;
 using TotalSmartCoding.ViewModels.Inventories;
+using TotalBase.Enums;
 
 
 namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
@@ -65,7 +66,7 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
 
                 EmployeeAPIs employeeAPIs = new EmployeeAPIs(CommonNinject.Kernel.Get<IEmployeeAPIRepository>());
 
-                this.combexStorekeeperID.DataSource = employeeAPIs.GetEmployeeBases();
+                this.combexStorekeeperID.DataSource = employeeAPIs.GetEmployeeBases(ContextAttributes.User.UserID, (int)this.warehouseAdjustmentViewModel.NMVNTaskID, (int)GlobalEnums.RoleID.Logistic);
                 this.combexStorekeeperID.DisplayMember = CommonExpressions.PropertyName<EmployeeBase>(p => p.Name);
                 this.combexStorekeeperID.ValueMember = CommonExpressions.PropertyName<EmployeeBase>(p => p.EmployeeID);
                 this.bindingStorekeeperID = this.combexStorekeeperID.DataBindings.Add("SelectedValue", this.warehouseAdjustmentViewModel, CommonExpressions.PropertyName<WarehouseAdjustmentViewModel>(p => p.StorekeeperID), true, DataSourceUpdateMode.OnPropertyChanged);

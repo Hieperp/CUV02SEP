@@ -11,6 +11,6 @@ namespace TotalCore.Repositories.Commons
 
     public interface IEmployeeAPIRepository : IGenericAPIRepository
     {
-        IList<EmployeeBase> GetEmployeeBases();
+        IList<EmployeeBase> GetEmployeeBases(int? userID, int? nmvnTaskID, int? roleID);
     }
 }

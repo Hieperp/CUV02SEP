@@ -29,9 +29,9 @@ namespace TotalSmartCoding.Controllers.APIs.Commons
             return this.employeeAPIRepository.GetEntityIndexes<EmployeeIndex>(ContextAttributes.User.UserID, ContextAttributes.FromDate, ContextAttributes.ToDate).ToList();
         }
 
-        public IList<EmployeeBase> GetEmployeeBases()
+        public IList<EmployeeBase> GetEmployeeBases(int? userID, int? nmvnTaskID, int? roleID)
         {
-            return this.employeeAPIRepository.GetEmployeeBases();
+            return this.employeeAPIRepository.GetEmployeeBases(userID, nmvnTaskID, roleID);
         }
 
     }

@@ -13,6 +13,7 @@ using TotalSmartCoding.Controllers.APIs.Sales;
 using TotalSmartCoding.Libraries;
 using TotalSmartCoding.Libraries.Helpers;
 using TotalSmartCoding.ViewModels.Sales;
+using TotalBase.Enums;
 
 
 namespace TotalSmartCoding.Views.Sales.SalesOrders
@@ -62,7 +63,7 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
 
                 EmployeeAPIs employeeAPIs = new EmployeeAPIs(CommonNinject.Kernel.Get<IEmployeeAPIRepository>());
 
-                this.combexSalespersonID.DataSource = employeeAPIs.GetEmployeeBases();
+                this.combexSalespersonID.DataSource = employeeAPIs.GetEmployeeBases(ContextAttributes.User.UserID, (int)this.salesOrderViewModel.NMVNTaskID, (int)GlobalEnums.RoleID.Saleperson);
                 this.combexSalespersonID.DisplayMember = CommonExpressions.PropertyName<EmployeeBase>(p => p.Name);
                 this.combexSalespersonID.ValueMember = CommonExpressions.PropertyName<EmployeeBase>(p => p.EmployeeID);
                 this.bindingStorekeeperID = this.combexSalespersonID.DataBindings.Add("SelectedValue", this.salesOrderViewModel, CommonExpressions.PropertyName<SalesOrderViewModel>(p => p.SalespersonID), true, DataSourceUpdateMode.OnPropertyChanged);

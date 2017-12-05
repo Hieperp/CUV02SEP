@@ -141,13 +141,13 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
 
             EmployeeAPIs employeeAPIs = new EmployeeAPIs(CommonNinject.Kernel.Get<IEmployeeAPIRepository>());
 
-            this.combexForkliftDriverID.DataSource = employeeAPIs.GetEmployeeBases();
+            this.combexForkliftDriverID.DataSource = employeeAPIs.GetEmployeeBases(ContextAttributes.User.UserID, (int)this.goodsIssueViewModel.NMVNTaskID, (int)GlobalEnums.RoleID.Logistic);
             this.combexForkliftDriverID.DisplayMember = CommonExpressions.PropertyName<EmployeeBase>(p => p.Name);
             this.combexForkliftDriverID.ValueMember = CommonExpressions.PropertyName<EmployeeBase>(p => p.EmployeeID);
             this.bindingForkliftDriverID = this.combexForkliftDriverID.DataBindings.Add("SelectedValue", this.goodsIssueViewModel, CommonExpressions.PropertyName<GoodsIssueViewModel>(p => p.ForkliftDriverID), true, DataSourceUpdateMode.OnPropertyChanged);
 
 
-            this.combexStorekeeperID.DataSource = employeeAPIs.GetEmployeeBases();
+            this.combexStorekeeperID.DataSource = employeeAPIs.GetEmployeeBases(ContextAttributes.User.UserID, (int)this.goodsIssueViewModel.NMVNTaskID, (int)GlobalEnums.RoleID.Logistic);
             this.combexStorekeeperID.DisplayMember = CommonExpressions.PropertyName<EmployeeBase>(p => p.Name);
             this.combexStorekeeperID.ValueMember = CommonExpressions.PropertyName<EmployeeBase>(p => p.EmployeeID);
             this.bindingStorekeeperID = this.combexStorekeeperID.DataBindings.Add("SelectedValue", this.goodsIssueViewModel, CommonExpressions.PropertyName<GoodsIssueViewModel>(p => p.StorekeeperID), true, DataSourceUpdateMode.OnPropertyChanged);

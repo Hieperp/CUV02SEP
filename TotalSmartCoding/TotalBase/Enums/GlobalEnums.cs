@@ -315,6 +315,13 @@
         };
 
 
+        public enum RoleID
+        {
+            Production = 1,
+            Logistic = 2,
+            Saleperson = 3
+        };
+
 
 
 

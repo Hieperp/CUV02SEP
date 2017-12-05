@@ -511,9 +511,21 @@ namespace TotalModel.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PendingPallet>("GetPendingPallets", locationIDParameter, fillingLineIDParameter, pickupIDParameter, palletIDsParameter, isReadonlyParameter);
         }
     
-        public virtual ObjectResult<EmployeeBase> GetEmployeeBases()
+        public virtual ObjectResult<EmployeeBase> GetEmployeeBases(Nullable<int> userID, Nullable<int> nMVNTaskID, Nullable<int> roleID)
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<EmployeeBase>("GetEmployeeBases");
+            var userIDParameter = userID.HasValue ?
+                new ObjectParameter("UserID", userID) :
+                new ObjectParameter("UserID", typeof(int));
+    
+            var nMVNTaskIDParameter = nMVNTaskID.HasValue ?
+                new ObjectParameter("NMVNTaskID", nMVNTaskID) :
+                new ObjectParameter("NMVNTaskID", typeof(int));
+    
+            var roleIDParameter = roleID.HasValue ?
+                new ObjectParameter("RoleID", roleID) :
+                new ObjectParameter("RoleID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<EmployeeBase>("GetEmployeeBases", userIDParameter, nMVNTaskIDParameter, roleIDParameter);
         }
     
         public virtual ObjectResult<WarehouseBase> GetWarehouseBases()

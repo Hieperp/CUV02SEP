@@ -147,7 +147,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
 
             EmployeeAPIs employeeAPIs = new EmployeeAPIs(CommonNinject.Kernel.Get<IEmployeeAPIRepository>());
 
-            this.combexStorekeeperID.DataSource = employeeAPIs.GetEmployeeBases();
+            this.combexStorekeeperID.DataSource = employeeAPIs.GetEmployeeBases(ContextAttributes.User.UserID, (int)this.goodsReceiptViewModel.NMVNTaskID, (int)GlobalEnums.RoleID.Logistic);
             this.combexStorekeeperID.DisplayMember = CommonExpressions.PropertyName<EmployeeBase>(p => p.Name);
             this.combexStorekeeperID.ValueMember = CommonExpressions.PropertyName<EmployeeBase>(p => p.EmployeeID);
             this.bindingStorekeeperID = this.combexStorekeeperID.DataBindings.Add("SelectedValue", this.goodsReceiptViewModel, CommonExpressions.PropertyName<GoodsReceiptViewModel>(p => p.StorekeeperID), true, DataSourceUpdateMode.OnPropertyChanged);

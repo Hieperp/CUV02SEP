@@ -2085,7 +2085,11 @@
         <Function Name="GetDeliveryAdviceViewDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="DeliveryAdviceID" Type="int" Mode="In" />
         </Function>
-        <Function Name="GetEmployeeBases" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetEmployeeBases" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserID" Type="int" Mode="In" />
+          <Parameter Name="NMVNTaskID" Type="int" Mode="In" />
+          <Parameter Name="RoleID" Type="int" Mode="In" />
+        </Function>
         <Function Name="GetEmployeeIndexes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserID" Type="int" Mode="In" />
           <Parameter Name="FromDate" Type="datetime" Mode="In" />
@@ -3061,7 +3065,11 @@
             <Parameter Name="PalletIDs" Mode="In" Type="String" />
             <Parameter Name="IsReadonly" Mode="In" Type="Boolean" />
           </FunctionImport>
-          <FunctionImport Name="GetEmployeeBases" ReturnType="Collection(TotalSmartCodingModel.EmployeeBase)" />
+          <FunctionImport Name="GetEmployeeBases" ReturnType="Collection(TotalSmartCodingModel.EmployeeBase)" >
+            <Parameter Name="UserID" Mode="In" Type="Int32" />
+            <Parameter Name="NMVNTaskID" Mode="In" Type="Int32" />
+            <Parameter Name="RoleID" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="GetWarehouseBases" ReturnType="Collection(TotalSmartCodingModel.WarehouseBase)" />
           <FunctionImport Name="GetEmployeeIndexes" ReturnType="Collection(TotalSmartCodingModel.EmployeeIndex)">
             <Parameter Name="UserID" Mode="In" Type="Int32" />
