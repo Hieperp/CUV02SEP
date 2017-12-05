@@ -118,6 +118,7 @@
             this.buttonUserRemove.Name = "buttonUserRemove";
             this.buttonUserRemove.Size = new System.Drawing.Size(52, 52);
             this.buttonUserRemove.ToolTipText = "Remove selected user";
+            this.buttonUserRemove.Visible = false;
             this.buttonUserRemove.Click += new System.EventHandler(this.buttonUserRemove_Click);
             // 
             // fastNMVNTasks
@@ -141,7 +142,7 @@
             this.fastNMVNTasks.Name = "fastNMVNTasks";
             this.fastNMVNTasks.OwnerDraw = true;
             this.fastNMVNTasks.ShowGroups = false;
-            this.fastNMVNTasks.Size = new System.Drawing.Size(342, 561);
+            this.fastNMVNTasks.Size = new System.Drawing.Size(342, 591);
             this.fastNMVNTasks.TabIndex = 69;
             this.fastNMVNTasks.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastNMVNTasks.UseCompatibleStateImageBehavior = false;
@@ -213,7 +214,7 @@
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridexUserAccessControl.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.gridexUserAccessControl.RowTemplate.Height = 24;
-            this.gridexUserAccessControl.Size = new System.Drawing.Size(920, 561);
+            this.gridexUserAccessControl.Size = new System.Drawing.Size(920, 591);
             this.gridexUserAccessControl.TabIndex = 70;
             this.gridexUserAccessControl.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridexAccessControls_CellContentClick);
             // 
@@ -314,7 +315,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1262, 641);
+            this.ClientSize = new System.Drawing.Size(1262, 671);
             this.Controls.Add(this.gridexUserAccessControl);
             this.Controls.Add(this.fastNMVNTasks);
             this.Controls.Add(this.toolStrip2);
