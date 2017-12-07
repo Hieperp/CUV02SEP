@@ -12,7 +12,7 @@ namespace TotalDAL.Repositories.Sales
     public class SalesOrderRepository : GenericWithDetailRepository<SalesOrder, SalesOrderDetail>, ISalesOrderRepository
     {
         public SalesOrderRepository(TotalSmartCodingEntities totalSmartCodingEntities)
-            : base(totalSmartCodingEntities, "SalesOrderEditable", "SalesOrderApproved")
+            : base(totalSmartCodingEntities, "SalesOrderEditable", "SalesOrderApproved", null, "SalesOrderVoidable")            
         {
         }
     }

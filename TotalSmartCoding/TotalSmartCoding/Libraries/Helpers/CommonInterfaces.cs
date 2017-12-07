@@ -28,6 +28,7 @@ namespace TotalSmartCoding.Libraries.Helpers
         void Delete();
 
         void Approve();
+        void Void();
 
         void Import();
         void Export();
@@ -48,6 +49,9 @@ namespace TotalSmartCoding.Libraries.Helpers
 
         bool Approvable { get; }
         bool Unapprovable { get; }
+
+        bool Voidable { get; }
+        bool Unvoidable { get; }
 
         bool Printable { get; }
         bool PrintVisible { get; }

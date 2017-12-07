@@ -144,10 +144,9 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
 
         private void SalesOrderVoidable()
         {
-            string[] queryArray = new string[2];
+            string[] queryArray = new string[1];
 
             queryArray[0] = " SELECT TOP 1 @FoundEntity = SalesOrderID FROM SalesOrders WHERE SalesOrderID = @EntityID AND Approved = 0"; //Must approve in order to allow void
-            queryArray[1] = " SELECT TOP 1 @FoundEntity = SalesOrderID FROM DeliveryAdviceDetails WHERE SalesOrderID = @EntityID ";
 
             this.totalSmartCodingEntities.CreateProcedureToCheckExisting("SalesOrderVoidable", queryArray);
         }

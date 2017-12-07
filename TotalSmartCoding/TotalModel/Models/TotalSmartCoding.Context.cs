@@ -1940,5 +1940,31 @@ namespace TotalModel.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("GetStoredID", configIDParameter);
         }
+    
+        public virtual int SalesOrderToggleVoid(Nullable<int> entityID, Nullable<bool> inActive, Nullable<int> voidTypeID)
+        {
+            var entityIDParameter = entityID.HasValue ?
+                new ObjectParameter("EntityID", entityID) :
+                new ObjectParameter("EntityID", typeof(int));
+    
+            var inActiveParameter = inActive.HasValue ?
+                new ObjectParameter("InActive", inActive) :
+                new ObjectParameter("InActive", typeof(bool));
+    
+            var voidTypeIDParameter = voidTypeID.HasValue ?
+                new ObjectParameter("VoidTypeID", voidTypeID) :
+                new ObjectParameter("VoidTypeID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SalesOrderToggleVoid", entityIDParameter, inActiveParameter, voidTypeIDParameter);
+        }
+    
+        public virtual ObjectResult<string> SalesOrderVoidable(Nullable<int> entityID)
+        {
+            var entityIDParameter = entityID.HasValue ?
+                new ObjectParameter("EntityID", entityID) :
+                new ObjectParameter("EntityID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("SalesOrderVoidable", entityIDParameter);
+        }
     }
 }

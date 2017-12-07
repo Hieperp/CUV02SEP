@@ -453,6 +453,8 @@ namespace TotalSmartCoding.Controllers
 
         public override bool VoidConfirmed()
         {
+            this.simpleViewModel.VoidTypeID = 1;
+            
             if (this.simpleViewModel.VoidTypeID == null || this.simpleViewModel.VoidTypeID <= 0) throw new System.ArgumentException("Lỗi hủy dữ liệu", "Vui lòng nhập lý do hủy.");
             return this.GenericService.ToggleVoid(this.simpleViewModel);
 
@@ -642,6 +644,9 @@ namespace TotalSmartCoding.Controllers
 
                 simpleViewModel.Approvable = this.GenericService.Approvable(simpleViewModel);
                 simpleViewModel.UnApprovable = this.GenericService.UnApprovable(simpleViewModel);
+
+                simpleViewModel.Voidable = this.GenericService.Voidable(simpleViewModel);
+                simpleViewModel.UnVoidable = this.GenericService.UnVoidable(simpleViewModel);
             }
 
             simpleViewModel.ShowDiscount = this.GetShowDiscount(simpleViewModel);

@@ -43,6 +43,10 @@ namespace TotalModel.Models
         public Nullable<System.DateTime> ApprovedDate { get; set; }
         public Nullable<System.DateTime> DeliveryDate { get; set; }
         public int ReceiverID { get; set; }
+        public Nullable<int> VoidTypeID { get; set; }
+        public bool InActive { get; set; }
+        public bool InActivePartial { get; set; }
+        public Nullable<System.DateTime> InActiveDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SalesOrderDetail> SalesOrderDetails { get; set; }

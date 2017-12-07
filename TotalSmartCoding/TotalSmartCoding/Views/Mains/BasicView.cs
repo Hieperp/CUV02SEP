@@ -80,6 +80,9 @@ namespace TotalSmartCoding.Views.Mains
         public virtual bool Approvable { get { return false; } }
         public virtual bool Unapprovable { get { return false; } }
 
+        public virtual bool Voidable { get { return false; } }
+        public virtual bool Unvoidable { get { return false; } }
+
         public virtual bool Printable { get { return false; } }
         public virtual bool PrintVisible { get { return false; } }
         
@@ -254,6 +257,11 @@ namespace TotalSmartCoding.Views.Mains
         public void Approve()
         {
             CustomMsgBox.Show(Form.ActiveForm, "Verify");
+        }
+
+        public void Void()
+        {
+            CustomMsgBox.Show(Form.ActiveForm, "Void");
         }
 
         public void Print(GlobalEnums.PrintDestination printDestination)

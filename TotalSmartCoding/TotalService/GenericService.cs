@@ -137,15 +137,18 @@ namespace TotalService
         public virtual bool Voidable(TDto dto)
         {
             if (this.GlobalLocked(dto)) return false;
-            if (!this.GetVoidablePermitted(dto.OrganizationalUnitID)) return false;
+            if (dto.InActive || !this.GetVoidablePermitted(dto.OrganizationalUnitID)) return false;
 
             return this.genericRepository.GetVoidable(dto.GetID());
         }
 
         public virtual bool UnVoidable(TDto dto)
         {
+            return false; //AT NOW, WE DON'T ALLOW UnVoidable, BECAUSE: SALESORDERS UnVoidable: MUST CHECK STOCK AVAILABLE BEFORE UnVoid => FOR THIS REASON: WE DISABLE UnVoid. WE WILL ANABLE IF NEEDED, THEN WE MUST IMPLEMENT CODE TO CHECK STOCK AVAILABLE BEFORE UnVoid
+            //AND: WE SHOULD ADD NEW STORE PROCEDURE TO CHECK UnVoidable, INSTAED USING THE SAME STORED PROCEDURE WITH Voidable (return this.genericRepository.GetVoidable(dto.GetID()): SHOULD return this.genericRepository.GetUnVoidable(dto.GetID()))
+
             if (this.GlobalLocked(dto)) return false;
-            if (!this.GetUnVoidablePermitted(dto.OrganizationalUnitID)) return false;
+            if (!dto.InActive || !this.GetUnVoidablePermitted(dto.OrganizationalUnitID)) return false;
 
             return this.genericRepository.GetVoidable(dto.GetID());
         }

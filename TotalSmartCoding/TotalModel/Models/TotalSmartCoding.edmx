@@ -592,6 +592,9 @@
           <Property Name="LineVolumeAdvice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Remarks" Type="nvarchar" MaxLength="100" />
           <Property Name="Approved" Type="bit" Nullable="false" />
+          <Property Name="InActive" Type="bit" Nullable="false" />
+          <Property Name="InActivePartial" Type="bit" Nullable="false" />
+          <Property Name="InActiveDate" Type="datetime" />
         </EntityType>
         <EntityType Name="SalesOrders">
           <Key>
@@ -619,6 +622,10 @@
           <Property Name="EditedDate" Type="datetime" Nullable="false" />
           <Property Name="Approved" Type="bit" Nullable="false" />
           <Property Name="ApprovedDate" Type="datetime" />
+          <Property Name="VoidTypeID" Type="int" />
+          <Property Name="InActive" Type="bit" Nullable="false" />
+          <Property Name="InActivePartial" Type="bit" Nullable="false" />
+          <Property Name="InActiveDate" Type="datetime" />
         </EntityType>
         <EntityType Name="Territories">
           <Key>
@@ -2427,6 +2434,14 @@
           <Parameter Name="EntityID" Type="int" Mode="In" />
           <Parameter Name="Approved" Type="bit" Mode="In" />
         </Function>
+        <Function Name="SalesOrderToggleVoid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="int" Mode="In" />
+          <Parameter Name="InActive" Type="bit" Mode="In" />
+          <Parameter Name="VoidTypeID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SalesOrderVoidable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="int" Mode="In" />
+        </Function>
         <Function Name="SaveUserAccessControls" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="AccessControlID" Type="int" Mode="In" />
           <Parameter Name="AccessLevel" Type="int" Mode="In" />
@@ -3899,6 +3914,14 @@
           <FunctionImport Name="GetStoredID" ReturnType="Collection(Int32)">
           <Parameter Name="ConfigID" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="SalesOrderToggleVoid">
+            <Parameter Name="EntityID" Mode="In" Type="Int32" />
+            <Parameter Name="InActive" Mode="In" Type="Boolean" />
+            <Parameter Name="VoidTypeID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SalesOrderVoidable" ReturnType="Collection(String)">
+            <Parameter Name="EntityID" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
           <Property Type="Int32" Name="PickupID" Nullable="false" />
@@ -4625,6 +4648,9 @@
           <Property Name="VoucherCode" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Commodity" Relationship="TotalSmartCodingModel.FK_SalesOrderDetails_Commodities" FromRole="SalesOrderDetail" ToRole="Commodity" />
           <Property Name="ReceiverID" Type="Int32" Nullable="false" />
+          <Property Name="InActive" Type="Boolean" Nullable="false" />
+          <Property Name="InActivePartial" Type="Boolean" Nullable="false" />
+          <Property Name="InActiveDate" Type="DateTime" Precision="3" />
         </EntityType>
         <Association Name="FK_DeliveryAdviceDetails_SalesOrderDetails">
           <End Type="TotalSmartCodingModel.SalesOrderDetail" Role="SalesOrderDetail" Multiplicity="0..1" />
@@ -4971,6 +4997,10 @@
           <NavigationProperty Name="Location" Relationship="TotalSmartCodingModel.FK_SalesOrders_Locations" FromRole="SalesOrder" ToRole="Location" />
           <Property Name="ReceiverID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Customer1" Relationship="TotalSmartCodingModel.FK_SalesOrders_Receivers" FromRole="SalesOrder" ToRole="Customer" />
+          <Property Name="VoidTypeID" Type="Int32" />
+          <Property Name="InActive" Type="Boolean" Nullable="false" />
+          <Property Name="InActivePartial" Type="Boolean" Nullable="false" />
+          <Property Name="InActiveDate" Type="DateTime" Precision="3" />
         </EntityType>
         <Association Name="FK_SalesOrderDetails_SalesOrders">
           <End Type="TotalSmartCodingModel.SalesOrder" Role="SalesOrder" Multiplicity="1" />
@@ -7733,6 +7763,9 @@
           <EntitySetMapping Name="SalesOrderDetails">
             <EntityTypeMapping TypeName="TotalSmartCodingModel.SalesOrderDetail">
               <MappingFragment StoreEntitySet="SalesOrderDetails">
+                <ScalarProperty Name="InActiveDate" ColumnName="InActiveDate" />
+                <ScalarProperty Name="InActivePartial" ColumnName="InActivePartial" />
+                <ScalarProperty Name="InActive" ColumnName="InActive" />
                 <ScalarProperty Name="ReceiverID" ColumnName="ReceiverID" />
                 <ScalarProperty Name="VoucherCode" ColumnName="VoucherCode" />
                 <ScalarProperty Name="Approved" ColumnName="Approved" />
@@ -7952,6 +7985,10 @@
           <EntitySetMapping Name="SalesOrders">
             <EntityTypeMapping TypeName="TotalSmartCodingModel.SalesOrder">
               <MappingFragment StoreEntitySet="SalesOrders">
+                <ScalarProperty Name="InActiveDate" ColumnName="InActiveDate" />
+                <ScalarProperty Name="InActivePartial" ColumnName="InActivePartial" />
+                <ScalarProperty Name="InActive" ColumnName="InActive" />
+                <ScalarProperty Name="VoidTypeID" ColumnName="VoidTypeID" />
                 <ScalarProperty Name="ReceiverID" ColumnName="ReceiverID" />
                 <ScalarProperty Name="DeliveryDate" ColumnName="DeliveryDate" />
                 <ScalarProperty Name="ApprovedDate" ColumnName="ApprovedDate" />
@@ -8916,6 +8953,8 @@
           <FunctionImportMapping FunctionImportName="SearchPallets" FunctionName="TotalSmartCodingModel.Store.SearchPallets">
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="GetStoredID" FunctionName="TotalSmartCodingModel.Store.GetStoredID" />
+          <FunctionImportMapping FunctionImportName="SalesOrderToggleVoid" FunctionName="TotalSmartCodingModel.Store.SalesOrderToggleVoid" />
+          <FunctionImportMapping FunctionImportName="SalesOrderVoidable" FunctionName="TotalSmartCodingModel.Store.SalesOrderVoidable" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

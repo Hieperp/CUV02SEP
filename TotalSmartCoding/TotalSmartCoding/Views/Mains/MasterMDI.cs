@@ -92,7 +92,9 @@ namespace TotalSmartCoding.Views.Mains
                         this.buttonExport.Visible = false;
                         this.toolStripSeparatorImport.Visible = false;
                         this.buttonApprove.Visible = false;
+                        this.buttonVoid.Visible = false;
                         this.toolStripSeparatorApprove.Visible = false;
+                        this.toolStripSeparatorVoid.Visible = false;
                         this.buttonPrint.Visible = false;
                         this.buttonPrintPreview.Visible = false;
                         this.toolStripSeparatorPrint.Visible = false;
@@ -417,6 +419,8 @@ namespace TotalSmartCoding.Views.Mains
                     bool exportable = toolstripChild.Exportable;
                     bool approvable = toolstripChild.Approvable;
                     bool unapprovable = toolstripChild.Unapprovable;
+                    bool voidable = toolstripChild.Voidable;
+                    bool unvoidable = toolstripChild.Unvoidable;
 
                     bool printable = toolstripChild.Printable;
                     bool printVisible = toolstripChild.PrintVisible;
@@ -447,6 +451,13 @@ namespace TotalSmartCoding.Views.Mains
                     this.buttonApprove.Image = approvable ? Resources.Check_Saki_Ok : Resources.Cross_UnVerify;
 
                     this.toolStripSeparatorApprove.Visible = sender is Batches ? false : (approvable || unapprovable);
+
+                    this.buttonVoid.Visible = sender is Batches ? false : (voidable || unvoidable);
+                    this.buttonVoid.Enabled = (voidable || unvoidable) && readonlyMode;
+                    this.buttonVoid.Text = voidable ? "Void" : "Un-void";
+                    this.buttonVoid.Image = voidable ? Resources.Void_24 : Resources.Cross_UnVerify;
+
+                    this.toolStripSeparatorVoid.Visible = sender is Batches ? false : (voidable || unvoidable);
 
                     this.buttonPrint.Enabled = printable;
                     this.buttonPrint.Visible = printVisible;
@@ -605,6 +616,19 @@ namespace TotalSmartCoding.Views.Mains
         }
 
 
+        private void buttonVoid_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                IToolstripChild toolstripChild = ActiveMdiChild as IToolstripChild;
+                if (toolstripChild != null) toolstripChild.Void();
+            }
+            catch (Exception exception)
+            {
+                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+            }
+        }
+
         private void buttonPrint_Click(object sender, EventArgs e)
         {
             try
@@ -687,6 +711,7 @@ namespace TotalSmartCoding.Views.Mains
             }
         }
         #endregion Search barcode
+
 
 
 

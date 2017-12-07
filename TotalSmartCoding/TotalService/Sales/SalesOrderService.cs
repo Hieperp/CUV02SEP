@@ -11,7 +11,7 @@ namespace TotalService.Sales
     public class SalesOrderService : GenericWithViewDetailService<SalesOrder, SalesOrderDetail, SalesOrderViewDetail, SalesOrderDTO, SalesOrderPrimitiveDTO, SalesOrderDetailDTO>, ISalesOrderService
     {
         public SalesOrderService(ISalesOrderRepository salesOrderRepository)
-            : base(salesOrderRepository, "SalesOrderPostSaveValidate", "SalesOrderSaveRelative", "SalesOrderToggleApproved", null, null, "GetSalesOrderViewDetails")
+            : base(salesOrderRepository, "SalesOrderPostSaveValidate", "SalesOrderSaveRelative", "SalesOrderToggleApproved", "SalesOrderToggleVoid", null, "GetSalesOrderViewDetails")            
         {
         }
 
