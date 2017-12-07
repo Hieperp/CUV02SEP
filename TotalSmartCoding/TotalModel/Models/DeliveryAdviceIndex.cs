@@ -24,5 +24,6 @@ namespace TotalModel.Models
         public decimal TotalLineVolume { get; set; }
         public bool Approved { get; set; }
         public string CustomerCode { get; set; }
+        public bool InActive { get; set; }
     }
 }

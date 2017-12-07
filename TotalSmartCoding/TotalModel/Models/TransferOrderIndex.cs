@@ -27,5 +27,6 @@ namespace TotalModel.Models
         public bool Approved { get; set; }
         public string WarehouseCode { get; set; }
         public string WarehouseName { get; set; }
+        public bool InActive { get; set; }
     }
 }

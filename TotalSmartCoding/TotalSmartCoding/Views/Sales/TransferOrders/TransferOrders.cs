@@ -194,7 +194,7 @@ namespace TotalSmartCoding.Views.Sales.TransferOrders
             this.fastTransferOrderIndex.AboutToCreateGroups += fastTransferOrderIndex_AboutToCreateGroups;
 
             this.fastTransferOrderIndex.ShowGroups = true;
-            this.olvApproved.Renderer = new MappedImageRenderer(new Object[] { false, Resources.Placeholder16 });
+            this.olvApproved.Renderer = new MappedImageRenderer(new Object[] { 1, Resources.Placeholder16, 2, Resources.Void_16 });
             this.naviGroupDetails.ExpandedHeight = this.naviGroupDetails.Size.Height;
         }
 

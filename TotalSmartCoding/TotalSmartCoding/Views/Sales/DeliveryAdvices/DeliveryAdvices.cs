@@ -191,7 +191,7 @@ namespace TotalSmartCoding.Views.Sales.DeliveryAdvices
             this.fastDeliveryAdviceIndex.AboutToCreateGroups += fastDeliveryAdviceIndex_AboutToCreateGroups;
 
             this.fastDeliveryAdviceIndex.ShowGroups = true;
-            this.olvApproved.Renderer = new MappedImageRenderer(new Object[] { false, Resources.Placeholder16 });
+            this.olvApproved.Renderer = new MappedImageRenderer(new Object[] { 1, Resources.Placeholder16, 2, Resources.Void_16 });
             this.naviGroupDetails.ExpandedHeight = this.naviGroupDetails.Size.Height;
         }
 
@@ -200,7 +200,7 @@ namespace TotalSmartCoding.Views.Sales.DeliveryAdvices
             base.CommonControl_BindingComplete(sender, e);
             if (this.EditableMode)
             {
-                if ( sender.Equals(this.bindingCustomerID) && this.combexCustomerID.SelectedItem != null)
+                if (sender.Equals(this.bindingCustomerID) && this.combexCustomerID.SelectedItem != null)
                 {
                     CustomerBase customerBase = (CustomerBase)this.combexCustomerID.SelectedItem;
                     this.deliveryAdviceViewModel.CustomerName = customerBase.Name; //HERE: CHANGE => DONT SET setDirty: SEE ApplyPropertyChange FOR MORE INFO
@@ -313,7 +313,7 @@ namespace TotalSmartCoding.Views.Sales.DeliveryAdvices
         {
             WizardMaster wizardMaster = new WizardMaster(this.deliveryAdviceAPIs, this.deliveryAdviceViewModel);
             DialogResult dialogResult = wizardMaster.ShowDialog();
-            
+
             wizardMaster.Dispose();
             return dialogResult;
         }
@@ -377,6 +377,6 @@ namespace TotalSmartCoding.Views.Sales.DeliveryAdvices
             {
                 ExceptionHandlers.ShowExceptionMessageBox(this, exception);
             }
-        }        
+        }
     }
 }

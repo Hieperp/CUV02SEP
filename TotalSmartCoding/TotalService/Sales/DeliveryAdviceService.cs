@@ -12,7 +12,7 @@ namespace TotalService.Sales
     public class DeliveryAdviceService : GenericWithViewDetailService<DeliveryAdvice, DeliveryAdviceDetail, DeliveryAdviceViewDetail, DeliveryAdviceDTO, DeliveryAdvicePrimitiveDTO, DeliveryAdviceDetailDTO>, IDeliveryAdviceService
     {
         public DeliveryAdviceService(IDeliveryAdviceRepository deliveryAdviceRepository)
-            : base(deliveryAdviceRepository, "DeliveryAdvicePostSaveValidate", "DeliveryAdviceSaveRelative", "DeliveryAdviceToggleApproved", null, null, "GetDeliveryAdviceViewDetails")
+            : base(deliveryAdviceRepository, "DeliveryAdvicePostSaveValidate", "DeliveryAdviceSaveRelative", "DeliveryAdviceToggleApproved", "DeliveryAdviceToggleVoid", null, "GetDeliveryAdviceViewDetails")
         {
         }
 

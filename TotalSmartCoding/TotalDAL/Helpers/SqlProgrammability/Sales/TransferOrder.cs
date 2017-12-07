@@ -28,8 +28,10 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
 
             this.TransferOrderApproved();
             this.TransferOrderEditable();
+            this.TransferOrderVoidable();
 
             this.TransferOrderToggleApproved();
+            this.TransferOrderToggleVoid();
 
             this.TransferOrderInitReference();
         }
@@ -44,7 +46,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
-            queryString = queryString + "       SELECT      TransferOrders.TransferOrderID, CAST(TransferOrders.EntryDate AS DATE) AS EntryDate, TransferOrders.Reference, TransferOrders.VoucherCode, TransferOrders.DeliveryDate, Locations.Code AS LocationCode, Warehouses.Code AS WarehouseCode, Warehouses.Name AS WarehouseName, WarehouseReceipts.Code AS WarehouseReceiptCode, WarehouseReceipts.Name AS WarehouseReceiptName, TransferOrders.Description, TransferOrders.TotalQuantity, TransferOrders.TotalLineVolume, TransferOrders.Approved " + "\r\n";
+            queryString = queryString + "       SELECT      TransferOrders.TransferOrderID, CAST(TransferOrders.EntryDate AS DATE) AS EntryDate, TransferOrders.Reference, TransferOrders.VoucherCode, TransferOrders.DeliveryDate, Locations.Code AS LocationCode, Warehouses.Code AS WarehouseCode, Warehouses.Name AS WarehouseName, WarehouseReceipts.Code AS WarehouseReceiptCode, WarehouseReceipts.Name AS WarehouseReceiptName, TransferOrders.Description, TransferOrders.TotalQuantity, TransferOrders.TotalLineVolume, TransferOrders.Approved, TransferOrders.InActive " + "\r\n";
             queryString = queryString + "       FROM        TransferOrders " + "\r\n";
             queryString = queryString + "                   INNER JOIN Locations ON TransferOrders.EntryDate >= @FromDate AND TransferOrders.EntryDate <= @ToDate AND TransferOrders.OrganizationalUnitID IN (SELECT OrganizationalUnitID FROM AccessControls WHERE UserID = @UserID AND NMVNTaskID = " + (int)TotalBase.Enums.GlobalEnums.NmvnTaskID.TransferOrder + " AND AccessControls.AccessLevel > 0) AND Locations.LocationID = TransferOrders.LocationID " + "\r\n";
             queryString = queryString + "                   INNER JOIN Warehouses ON TransferOrders.WarehouseID = Warehouses.WarehouseID " + "\r\n";
@@ -143,6 +145,16 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
             this.totalSmartCodingEntities.CreateProcedureToCheckExisting("TransferOrderEditable", queryArray);
         }
 
+        private void TransferOrderVoidable()
+        {
+            string[] queryArray = new string[1];
+
+            queryArray[0] = " SELECT TOP 1 @FoundEntity = TransferOrderID FROM TransferOrders WHERE TransferOrderID = @EntityID AND Approved = 0"; //Must approve in order to allow void
+
+            this.totalSmartCodingEntities.CreateProcedureToCheckExisting("TransferOrderVoidable", queryArray);
+        }
+
+
         private void TransferOrderToggleApproved()
         {
             string queryString = " @EntityID int, @Approved bit " + "\r\n";
@@ -163,6 +175,30 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
 
             this.totalSmartCodingEntities.CreateStoredProcedure("TransferOrderToggleApproved", queryString);
         }
+
+
+        private void TransferOrderToggleVoid()
+        {
+            string queryString = " @EntityID int, @InActive bit, @VoidTypeID int " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+
+            queryString = queryString + "       UPDATE      TransferOrders  SET InActive = @InActive, InActiveDate = GetDate(), VoidTypeID = IIF(@InActive = 1, @VoidTypeID, NULL) WHERE TransferOrderID = @EntityID AND InActive = ~@InActive" + "\r\n";
+
+            queryString = queryString + "       IF @@ROWCOUNT = 1 " + "\r\n";
+            queryString = queryString + "           BEGIN " + "\r\n";
+            queryString = queryString + "               UPDATE          TransferOrderDetails  SET InActive = @InActive WHERE TransferOrderID = @EntityID ; " + "\r\n";
+            queryString = queryString + "           END " + "\r\n";
+            queryString = queryString + "       ELSE " + "\r\n";
+            queryString = queryString + "           BEGIN " + "\r\n";
+            queryString = queryString + "               DECLARE     @msg NVARCHAR(300) = N'Dữ liệu không tồn tại hoặc đã ' + iif(@InActive = 0, 'phục hồi lệnh', '')  + ' hủy' ; " + "\r\n";
+            queryString = queryString + "               THROW       61001,  @msg, 1; " + "\r\n";
+            queryString = queryString + "           END " + "\r\n";
+
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("TransferOrderToggleVoid", queryString);
+        }
+
 
         private void TransferOrderInitReference()
         {

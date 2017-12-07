@@ -32,8 +32,10 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
 
             this.DeliveryAdviceApproved();
             this.DeliveryAdviceEditable();
+            this.DeliveryAdviceVoidable();
 
             this.DeliveryAdviceToggleApproved();
+            this.DeliveryAdviceToggleVoid();
 
             this.DeliveryAdviceInitReference();
 
@@ -50,7 +52,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
-            queryString = queryString + "       SELECT      DeliveryAdvices.DeliveryAdviceID, CAST(DeliveryAdvices.EntryDate AS DATE) AS EntryDate, DeliveryAdvices.Reference, DeliveryAdvices.SalesOrderReferences, Locations.Code AS LocationCode, Customers.Code AS CustomerCode, Customers.Name AS CustomerName, DeliveryAdvices.Description, DeliveryAdvices.TotalQuantity, DeliveryAdvices.TotalLineVolume, DeliveryAdvices.Approved " + "\r\n";
+            queryString = queryString + "       SELECT      DeliveryAdvices.DeliveryAdviceID, CAST(DeliveryAdvices.EntryDate AS DATE) AS EntryDate, DeliveryAdvices.Reference, DeliveryAdvices.SalesOrderReferences, Locations.Code AS LocationCode, Customers.Code AS CustomerCode, Customers.Name AS CustomerName, DeliveryAdvices.Description, DeliveryAdvices.TotalQuantity, DeliveryAdvices.TotalLineVolume, DeliveryAdvices.Approved, DeliveryAdvices.InActive " + "\r\n";
             queryString = queryString + "       FROM        DeliveryAdvices " + "\r\n";
             queryString = queryString + "                   INNER JOIN Locations ON DeliveryAdvices.EntryDate >= @FromDate AND DeliveryAdvices.EntryDate <= @ToDate AND DeliveryAdvices.OrganizationalUnitID IN (SELECT OrganizationalUnitID FROM AccessControls WHERE UserID = @UserID AND NMVNTaskID = " + (int)TotalBase.Enums.GlobalEnums.NmvnTaskID.DeliveryAdvice + " AND AccessControls.AccessLevel > 0) AND Locations.LocationID = DeliveryAdvices.LocationID " + "\r\n";
             queryString = queryString + "                   INNER JOIN Customers ON DeliveryAdvices.CustomerID = Customers.CustomerID " + "\r\n";
@@ -108,7 +110,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
 
             queryString = queryString + "       SELECT          SalesOrders.SalesOrderID, SalesOrders.Reference AS SalesOrderReference, SalesOrders.EntryDate AS SalesOrderEntryDate, SalesOrders.VoucherCode, SalesOrders.CustomerID, Customers.Code AS CustomerCode, Customers.Name AS CustomerName, SalesOrders.ReceiverID, Receivers.Code AS ReceiverCode, Receivers.Name AS ReceiverName, SalesOrders.ContactInfo, SalesOrders.ShippingAddress, SalesOrders.SalespersonID, SalesOrders.Description, SalesOrders.Remarks " + "\r\n";
             queryString = queryString + "       FROM            SalesOrders " + "\r\n";
-            queryString = queryString + "                       INNER JOIN Customers ON SalesOrders.SalesOrderID IN (SELECT SalesOrderID FROM SalesOrderDetails WHERE LocationID = @LocationID AND Approved = 1 AND ROUND(Quantity - QuantityAdvice, " + (int)GlobalEnums.rndQuantity + ") > 0) AND SalesOrders.CustomerID = Customers.CustomerID " + "\r\n";
+            queryString = queryString + "                       INNER JOIN Customers ON SalesOrders.SalesOrderID IN (SELECT SalesOrderID FROM SalesOrderDetails WHERE LocationID = @LocationID AND Approved = 1 AND InActive = 0 AND ROUND(Quantity - QuantityAdvice, " + (int)GlobalEnums.rndQuantity + ") > 0) AND SalesOrders.CustomerID = Customers.CustomerID " + "\r\n";
             queryString = queryString + "                       INNER JOIN Customers Receivers ON SalesOrders.ReceiverID = Receivers.CustomerID " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("GetPendingSalesOrders", queryString);
@@ -121,7 +123,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
             queryString = queryString + " AS " + "\r\n";
 
             queryString = queryString + "       SELECT          Customers.CustomerID, Customers.Code AS CustomerCode, Customers.Name AS CustomerName, CustomerPENDING.ReceiverID, Receivers.Code AS ReceiverCode, Receivers.Name AS ReceiverName, CustomerPENDING.ContactInfo, CustomerPENDING.ShippingAddress, CustomerPENDING.SalespersonID " + "\r\n";
-            queryString = queryString + "       FROM           (SELECT CustomerID, ReceiverID, MIN(ContactInfo) AS ContactInfo, MIN(ShippingAddress) AS ShippingAddress, MIN(SalespersonID) AS SalespersonID FROM SalesOrders WHERE SalesOrderID IN (SELECT DISTINCT SalesOrderID FROM SalesOrderDetails WHERE LocationID = @LocationID AND Approved = 1 AND ROUND(Quantity - QuantityAdvice, " + (int)GlobalEnums.rndQuantity + ") > 0) GROUP BY CustomerID, ReceiverID) CustomerPENDING " + "\r\n";
+            queryString = queryString + "       FROM           (SELECT CustomerID, ReceiverID, MIN(ContactInfo) AS ContactInfo, MIN(ShippingAddress) AS ShippingAddress, MIN(SalespersonID) AS SalespersonID FROM SalesOrders WHERE SalesOrderID IN (SELECT DISTINCT SalesOrderID FROM SalesOrderDetails WHERE LocationID = @LocationID AND Approved = 1 AND InActive = 0 AND ROUND(Quantity - QuantityAdvice, " + (int)GlobalEnums.rndQuantity + ") > 0) GROUP BY CustomerID, ReceiverID) CustomerPENDING " + "\r\n";
             queryString = queryString + "                       INNER JOIN Customers ON CustomerPENDING.CustomerID = Customers.CustomerID " + "\r\n";
             queryString = queryString + "                       INNER JOIN Customers Receivers ON CustomerPENDING.ReceiverID = Receivers.CustomerID " + "\r\n";
 
@@ -367,6 +369,15 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
             this.totalSmartCodingEntities.CreateProcedureToCheckExisting("DeliveryAdviceEditable", queryArray);
         }
 
+        private void DeliveryAdviceVoidable()
+        {
+            string[] queryArray = new string[1];
+
+            queryArray[0] = " SELECT TOP 1 @FoundEntity = DeliveryAdviceID FROM DeliveryAdvices WHERE DeliveryAdviceID = @EntityID AND Approved = 0"; //Must approve in order to allow void
+
+            this.totalSmartCodingEntities.CreateProcedureToCheckExisting("DeliveryAdviceVoidable", queryArray);
+        }
+
         private void DeliveryAdviceToggleApproved()
         {
             string queryString = " @EntityID int, @Approved bit " + "\r\n";
@@ -387,6 +398,30 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
 
             this.totalSmartCodingEntities.CreateStoredProcedure("DeliveryAdviceToggleApproved", queryString);
         }
+
+
+        private void DeliveryAdviceToggleVoid()
+        {
+            string queryString = " @EntityID int, @InActive bit, @VoidTypeID int " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+
+            queryString = queryString + "       UPDATE      DeliveryAdvices  SET InActive = @InActive, InActiveDate = GetDate(), VoidTypeID = IIF(@InActive = 1, @VoidTypeID, NULL) WHERE DeliveryAdviceID = @EntityID AND InActive = ~@InActive" + "\r\n";
+
+            queryString = queryString + "       IF @@ROWCOUNT = 1 " + "\r\n";
+            queryString = queryString + "           BEGIN " + "\r\n";
+            queryString = queryString + "               UPDATE          DeliveryAdviceDetails  SET InActive = @InActive WHERE DeliveryAdviceID = @EntityID ; " + "\r\n";
+            queryString = queryString + "           END " + "\r\n";
+            queryString = queryString + "       ELSE " + "\r\n";
+            queryString = queryString + "           BEGIN " + "\r\n";
+            queryString = queryString + "               DECLARE     @msg NVARCHAR(300) = N'Dữ liệu không tồn tại hoặc đã ' + iif(@InActive = 0, 'phục hồi lệnh', '')  + ' hủy' ; " + "\r\n";
+            queryString = queryString + "               THROW       61001,  @msg, 1; " + "\r\n";
+            queryString = queryString + "           END " + "\r\n";
+
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("DeliveryAdviceToggleVoid", queryString);
+        }
+
 
         private void DeliveryAdviceInitReference()
         {
@@ -434,10 +469,10 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
                 queryString = queryString + "           SELECT      @SearchLocationID, CommodityID, SUM(Quantity - QuantityIssue) AS QuantityAvailable, SUM(LineVolume - LineVolumeIssue) AS LineVolumeAvailable FROM GoodsReceiptDetails WHERE Approved = 1 AND ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") > 0 AND LocationID = @SearchLocationID AND WarehouseID IN (SELECT WarehouseID FROM Warehouses WHERE Issuable = 1) AND CommodityID IN (SELECT DISTINCT CommodityID FROM " + searchTable + ") GROUP BY CommodityID " + "\r\n";
 
                 queryString = queryString + "           INSERT INTO @CommoditiesAvailable (LocationID, CommodityID, QuantityAvailable, LineVolumeAvailable) " + "\r\n";
-                queryString = queryString + "           SELECT      @SearchLocationID, CommodityID, SUM(-Quantity + QuantityIssue) AS QuantityAvailable, SUM(-LineVolume + LineVolumeIssue) AS LineVolumeAvailable FROM DeliveryAdviceDetails WHERE ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") > 0 AND LocationID = @SearchLocationID AND CommodityID IN (SELECT DISTINCT CommodityID FROM " + searchTable + ") " + (isDeliveryAdvice && sqlEdit ? " AND DeliveryAdviceID <> @DeliveryAdviceID" : "") + " GROUP BY CommodityID " + "\r\n";
+                queryString = queryString + "           SELECT      @SearchLocationID, CommodityID, SUM(-Quantity + QuantityIssue) AS QuantityAvailable, SUM(-LineVolume + LineVolumeIssue) AS LineVolumeAvailable FROM DeliveryAdviceDetails WHERE InActive = 0 AND ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") > 0 AND LocationID = @SearchLocationID AND CommodityID IN (SELECT DISTINCT CommodityID FROM " + searchTable + ") " + (isDeliveryAdvice && sqlEdit ? " AND DeliveryAdviceID <> @DeliveryAdviceID" : "") + " GROUP BY CommodityID " + "\r\n";
 
                 queryString = queryString + "           INSERT INTO @CommoditiesAvailable (LocationID, CommodityID, QuantityAvailable, LineVolumeAvailable) " + "\r\n";
-                queryString = queryString + "           SELECT      @SearchLocationID, CommodityID, SUM(-Quantity + QuantityIssue) AS QuantityAvailable, SUM(-LineVolume + LineVolumeIssue) AS LineVolumeAvailable FROM TransferOrderDetails WHERE ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") > 0 AND LocationID = @SearchLocationID AND CommodityID IN (SELECT DISTINCT CommodityID FROM " + searchTable + ") " + (isTransferOrder && sqlEdit ? " AND TransferOrderID <> @TransferOrderID" : "") + " GROUP BY CommodityID " + "\r\n";
+                queryString = queryString + "           SELECT      @SearchLocationID, CommodityID, SUM(-Quantity + QuantityIssue) AS QuantityAvailable, SUM(-LineVolume + LineVolumeIssue) AS LineVolumeAvailable FROM TransferOrderDetails WHERE InActive = 0 AND ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") > 0 AND LocationID = @SearchLocationID AND CommodityID IN (SELECT DISTINCT CommodityID FROM " + searchTable + ") " + (isTransferOrder && sqlEdit ? " AND TransferOrderID <> @TransferOrderID" : "") + " GROUP BY CommodityID " + "\r\n";
 
                 if (byBatchID)
                 {
@@ -450,10 +485,10 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
                     queryString = queryString + "               SELECT      @SearchLocationID, CommodityID, BatchID, SUM(Quantity - QuantityIssue) AS QuantityAvailable, SUM(LineVolume - LineVolumeIssue) AS LineVolumeAvailable FROM GoodsReceiptDetails WHERE Approved = 1 AND ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") > 0 AND WarehouseID IN (SELECT WarehouseID FROM Warehouses WHERE Issuable = 1) AND LocationID = @SearchLocationID AND CommodityID IN (SELECT DISTINCT CommodityID FROM " + searchTable + ") GROUP BY CommodityID, BatchID " + "\r\n";
 
                     queryString = queryString + "               INSERT INTO @CommoditiesAvailableByBatches (LocationID, CommodityID, BatchID, QuantityAvailable, LineVolumeAvailable) " + "\r\n";
-                    queryString = queryString + "               SELECT      @SearchLocationID, CommodityID, BatchID, SUM(-Quantity + QuantityIssue) AS QuantityAvailable, SUM(-LineVolume + LineVolumeIssue) AS LineVolumeAvailable FROM DeliveryAdviceDetails WHERE ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") > 0 AND LocationID = @SearchLocationID AND CommodityID IN (SELECT DISTINCT CommodityID FROM " + searchTable + ") " + (isDeliveryAdvice && sqlEdit ? " AND DeliveryAdviceID <> @DeliveryAdviceID" : "") + " AND NOT BatchID IS NULL GROUP BY CommodityID, BatchID " + "\r\n";
+                    queryString = queryString + "               SELECT      @SearchLocationID, CommodityID, BatchID, SUM(-Quantity + QuantityIssue) AS QuantityAvailable, SUM(-LineVolume + LineVolumeIssue) AS LineVolumeAvailable FROM DeliveryAdviceDetails WHERE InActive = 0 AND ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") > 0 AND LocationID = @SearchLocationID AND CommodityID IN (SELECT DISTINCT CommodityID FROM " + searchTable + ") " + (isDeliveryAdvice && sqlEdit ? " AND DeliveryAdviceID <> @DeliveryAdviceID" : "") + " AND NOT BatchID IS NULL GROUP BY CommodityID, BatchID " + "\r\n";
 
                     queryString = queryString + "               INSERT INTO @CommoditiesAvailableByBatches (LocationID, CommodityID, BatchID, QuantityAvailable, LineVolumeAvailable) " + "\r\n";
-                    queryString = queryString + "               SELECT      @SearchLocationID, CommodityID, BatchID, SUM(-Quantity + QuantityIssue) AS QuantityAvailable, SUM(-LineVolume + LineVolumeIssue) AS LineVolumeAvailable FROM TransferOrderDetails WHERE ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") > 0 AND LocationID = @SearchLocationID AND CommodityID IN (SELECT DISTINCT CommodityID FROM " + searchTable + ") " + (isTransferOrder && sqlEdit ? " AND TransferOrderID <> @TransferOrderID" : "") + " AND NOT BatchID IS NULL GROUP BY CommodityID, BatchID " + "\r\n";
+                    queryString = queryString + "               SELECT      @SearchLocationID, CommodityID, BatchID, SUM(-Quantity + QuantityIssue) AS QuantityAvailable, SUM(-LineVolume + LineVolumeIssue) AS LineVolumeAvailable FROM TransferOrderDetails WHERE InActive = 0 AND ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") > 0 AND LocationID = @SearchLocationID AND CommodityID IN (SELECT DISTINCT CommodityID FROM " + searchTable + ") " + (isTransferOrder && sqlEdit ? " AND TransferOrderID <> @TransferOrderID" : "") + " AND NOT BatchID IS NULL GROUP BY CommodityID, BatchID " + "\r\n";
 
                     if (!getAllBatch)
                     {

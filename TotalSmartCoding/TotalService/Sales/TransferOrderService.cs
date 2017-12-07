@@ -11,7 +11,7 @@ namespace TotalService.Sales
     public class TransferOrderService : GenericWithViewDetailService<TransferOrder, TransferOrderDetail, TransferOrderViewDetail, TransferOrderDTO, TransferOrderPrimitiveDTO, TransferOrderDetailDTO>, ITransferOrderService
     {
         public TransferOrderService(ITransferOrderRepository transferOrderRepository)
-            : base(transferOrderRepository, "TransferOrderPostSaveValidate", "TransferOrderSaveRelative", "TransferOrderToggleApproved", null, null, "GetTransferOrderViewDetails")
+            : base(transferOrderRepository, "TransferOrderPostSaveValidate", "TransferOrderSaveRelative", "TransferOrderToggleApproved", "TransferOrderToggleVoid", null, "GetTransferOrderViewDetails")
         {
         }
 

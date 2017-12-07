@@ -25,5 +25,6 @@ namespace TotalModel.Models
         public string CustomerCode { get; set; }
         public string VoucherCode { get; set; }
         public Nullable<System.DateTime> DeliveryDate { get; set; }
+        public bool InActive { get; set; }
     }
 }

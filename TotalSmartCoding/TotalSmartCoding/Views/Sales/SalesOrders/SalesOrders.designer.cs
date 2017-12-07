@@ -58,6 +58,15 @@
             this.textexDescription = new CustomControls.TextexBox();
             this.textexRemarks = new CustomControls.TextexBox();
             this.gridexViewDetails = new CustomControls.DataGridexView();
+            this.CommodityID = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.CommodityName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PackageSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PackageVolume = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QuantityAvailable = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LineVolumeAvailable = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LineVolume = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Remarks = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.naviGroupTop = new Guifreaks.Navisuite.NaviGroup(this.components);
             this.layoutTop = new System.Windows.Forms.TableLayoutPanel();
             this.combexCustomerID = new CustomControls.CombexBox();
@@ -85,15 +94,6 @@
             this.olvTotalLineVolume = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvApproved = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.imageList32 = new System.Windows.Forms.ImageList(this.components);
-            this.CommodityID = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.CommodityName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PackageSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PackageVolume = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.QuantityAvailable = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LineVolumeAvailable = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LineVolume = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Remarks = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.layoutLeft.SuspendLayout();
             this.toolStripChildForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.naviGroupDetails)).BeginInit();
@@ -437,6 +437,102 @@
             this.gridexViewDetails.Size = new System.Drawing.Size(789, 309);
             this.gridexViewDetails.TabIndex = 65;
             // 
+            // CommodityID
+            // 
+            this.CommodityID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CommodityID.DataPropertyName = "CommodityID";
+            this.CommodityID.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.CommodityID.FillWeight = 9F;
+            this.CommodityID.HeaderText = "Items.Code";
+            this.CommodityID.Name = "CommodityID";
+            this.CommodityID.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.CommodityID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // CommodityName
+            // 
+            this.CommodityName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CommodityName.DataPropertyName = "CommodityName";
+            this.CommodityName.FillWeight = 22F;
+            this.CommodityName.HeaderText = "Items.Description";
+            this.CommodityName.Name = "CommodityName";
+            this.CommodityName.ReadOnly = true;
+            // 
+            // PackageSize
+            // 
+            this.PackageSize.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.PackageSize.DataPropertyName = "PackageSize";
+            this.PackageSize.FillWeight = 8F;
+            this.PackageSize.HeaderText = "Package.Size";
+            this.PackageSize.Name = "PackageSize";
+            this.PackageSize.ReadOnly = true;
+            // 
+            // PackageVolume
+            // 
+            this.PackageVolume.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.PackageVolume.DataPropertyName = "PackageVolume";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.PackageVolume.DefaultCellStyle = dataGridViewCellStyle1;
+            this.PackageVolume.FillWeight = 7F;
+            this.PackageVolume.HeaderText = "Package.Volume";
+            this.PackageVolume.Name = "PackageVolume";
+            this.PackageVolume.ReadOnly = true;
+            // 
+            // QuantityAvailable
+            // 
+            this.QuantityAvailable.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.QuantityAvailable.DataPropertyName = "QuantityAvailable";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Format = "N0";
+            this.QuantityAvailable.DefaultCellStyle = dataGridViewCellStyle2;
+            this.QuantityAvailable.FillWeight = 7F;
+            this.QuantityAvailable.HeaderText = "Quantity.Available";
+            this.QuantityAvailable.Name = "QuantityAvailable";
+            this.QuantityAvailable.ReadOnly = true;
+            // 
+            // Quantity
+            // 
+            this.Quantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Quantity.DataPropertyName = "Quantity";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.Format = "N0";
+            dataGridViewCellStyle3.NullValue = null;
+            this.Quantity.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Quantity.FillWeight = 7F;
+            this.Quantity.HeaderText = "Quantity.Order";
+            this.Quantity.Name = "Quantity";
+            // 
+            // LineVolumeAvailable
+            // 
+            this.LineVolumeAvailable.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.LineVolumeAvailable.DataPropertyName = "LineVolumeAvailable";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.Format = "N2";
+            this.LineVolumeAvailable.DefaultCellStyle = dataGridViewCellStyle4;
+            this.LineVolumeAvailable.FillWeight = 7F;
+            this.LineVolumeAvailable.HeaderText = "Volume.Available";
+            this.LineVolumeAvailable.Name = "LineVolumeAvailable";
+            this.LineVolumeAvailable.ReadOnly = true;
+            // 
+            // LineVolume
+            // 
+            this.LineVolume.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.LineVolume.DataPropertyName = "LineVolume";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle5.Format = "N2";
+            this.LineVolume.DefaultCellStyle = dataGridViewCellStyle5;
+            this.LineVolume.FillWeight = 7F;
+            this.LineVolume.HeaderText = "Volume.Order";
+            this.LineVolume.Name = "LineVolume";
+            this.LineVolume.ReadOnly = true;
+            // 
+            // Remarks
+            // 
+            this.Remarks.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Remarks.DataPropertyName = "Remarks";
+            this.Remarks.FillWeight = 18F;
+            this.Remarks.HeaderText = "Remarks";
+            this.Remarks.Name = "Remarks";
+            // 
             // naviGroupTop
             // 
             this.naviGroupTop.BackColor = System.Drawing.Color.Ivory;
@@ -736,7 +832,7 @@
             // 
             // olvApproved
             // 
-            this.olvApproved.AspectName = "Approved";
+            this.olvApproved.AspectName = "ImageID";
             this.olvApproved.FillsFreeSpace = true;
             this.olvApproved.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvApproved.Text = "";
@@ -755,102 +851,6 @@
             this.imageList32.Images.SetKeyName(5, "Storage32");
             this.imageList32.Images.SetKeyName(6, "Sales-Order-32");
             this.imageList32.Images.SetKeyName(7, "Sign_Order_32");
-            // 
-            // CommodityID
-            // 
-            this.CommodityID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CommodityID.DataPropertyName = "CommodityID";
-            this.CommodityID.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
-            this.CommodityID.FillWeight = 9F;
-            this.CommodityID.HeaderText = "Items.Code";
-            this.CommodityID.Name = "CommodityID";
-            this.CommodityID.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.CommodityID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // CommodityName
-            // 
-            this.CommodityName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CommodityName.DataPropertyName = "CommodityName";
-            this.CommodityName.FillWeight = 22F;
-            this.CommodityName.HeaderText = "Items.Description";
-            this.CommodityName.Name = "CommodityName";
-            this.CommodityName.ReadOnly = true;
-            // 
-            // PackageSize
-            // 
-            this.PackageSize.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.PackageSize.DataPropertyName = "PackageSize";
-            this.PackageSize.FillWeight = 8F;
-            this.PackageSize.HeaderText = "Package.Size";
-            this.PackageSize.Name = "PackageSize";
-            this.PackageSize.ReadOnly = true;
-            // 
-            // PackageVolume
-            // 
-            this.PackageVolume.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.PackageVolume.DataPropertyName = "PackageVolume";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.PackageVolume.DefaultCellStyle = dataGridViewCellStyle1;
-            this.PackageVolume.FillWeight = 7F;
-            this.PackageVolume.HeaderText = "Package.Volume";
-            this.PackageVolume.Name = "PackageVolume";
-            this.PackageVolume.ReadOnly = true;
-            // 
-            // QuantityAvailable
-            // 
-            this.QuantityAvailable.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.QuantityAvailable.DataPropertyName = "QuantityAvailable";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.Format = "N0";
-            this.QuantityAvailable.DefaultCellStyle = dataGridViewCellStyle2;
-            this.QuantityAvailable.FillWeight = 7F;
-            this.QuantityAvailable.HeaderText = "Quantity.Available";
-            this.QuantityAvailable.Name = "QuantityAvailable";
-            this.QuantityAvailable.ReadOnly = true;
-            // 
-            // Quantity
-            // 
-            this.Quantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Quantity.DataPropertyName = "Quantity";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.Format = "N0";
-            dataGridViewCellStyle3.NullValue = null;
-            this.Quantity.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Quantity.FillWeight = 7F;
-            this.Quantity.HeaderText = "Quantity.Order";
-            this.Quantity.Name = "Quantity";
-            // 
-            // LineVolumeAvailable
-            // 
-            this.LineVolumeAvailable.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.LineVolumeAvailable.DataPropertyName = "LineVolumeAvailable";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle4.Format = "N2";
-            this.LineVolumeAvailable.DefaultCellStyle = dataGridViewCellStyle4;
-            this.LineVolumeAvailable.FillWeight = 7F;
-            this.LineVolumeAvailable.HeaderText = "Volume.Available";
-            this.LineVolumeAvailable.Name = "LineVolumeAvailable";
-            this.LineVolumeAvailable.ReadOnly = true;
-            // 
-            // LineVolume
-            // 
-            this.LineVolume.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.LineVolume.DataPropertyName = "LineVolume";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.Format = "N2";
-            this.LineVolume.DefaultCellStyle = dataGridViewCellStyle5;
-            this.LineVolume.FillWeight = 7F;
-            this.LineVolume.HeaderText = "Volume.Order";
-            this.LineVolume.Name = "LineVolume";
-            this.LineVolume.ReadOnly = true;
-            // 
-            // Remarks
-            // 
-            this.Remarks.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Remarks.DataPropertyName = "Remarks";
-            this.Remarks.FillWeight = 18F;
-            this.Remarks.HeaderText = "Remarks";
-            this.Remarks.Name = "Remarks";
             // 
             // SalesOrders
             // 

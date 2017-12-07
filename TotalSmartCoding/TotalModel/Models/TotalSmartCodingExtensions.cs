@@ -748,6 +748,7 @@ namespace TotalModel.Models
     public partial class SalesOrderIndex : IBaseIndex
     {
         public int Id { get { return this.SalesOrderID; } }
+        public int ImageID { get { return !this.Approved ? 1 : (this.InActive ? 2 : 0); } }
     }
 
     public partial class SalesOrder : IPrimitiveEntity, IBaseEntity, IBaseDetailEntity<SalesOrderDetail>
@@ -768,6 +769,7 @@ namespace TotalModel.Models
     public partial class DeliveryAdviceIndex : IBaseIndex
     {
         public int Id { get { return this.DeliveryAdviceID; } }
+        public int ImageID { get { return !this.Approved ? 1 : (this.InActive ? 2 : 0); } }
     }
 
     public partial class DeliveryAdvice : IPrimitiveEntity, IBaseEntity, IBaseDetailEntity<DeliveryAdviceDetail>
@@ -792,6 +794,7 @@ namespace TotalModel.Models
     public partial class TransferOrderIndex : IBaseIndex
     {
         public int Id { get { return this.TransferOrderID; } }
+        public int ImageID { get { return !this.Approved ? 1 : (this.InActive ? 2 : 0); } }
     }
 
     public partial class TransferOrder : IPrimitiveEntity, IBaseEntity, IBaseDetailEntity<TransferOrderDetail>

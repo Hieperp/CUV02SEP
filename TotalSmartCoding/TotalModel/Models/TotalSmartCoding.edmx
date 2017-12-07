@@ -2021,6 +2021,14 @@
           <Parameter Name="EntityID" Type="int" Mode="In" />
           <Parameter Name="Approved" Type="bit" Mode="In" />
         </Function>
+        <Function Name="DeliveryAdviceToggleVoid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="int" Mode="In" />
+          <Parameter Name="InActive" Type="bit" Mode="In" />
+          <Parameter Name="VoidTypeID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DeliveryAdviceVoidable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="int" Mode="In" />
+        </Function>
         <Function Name="GetAccessLevel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserID" Type="int" Mode="In" />
           <Parameter Name="NMVNTaskID" Type="int" Mode="In" />
@@ -2483,6 +2491,14 @@
         <Function Name="TransferOrderToggleApproved" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="EntityID" Type="int" Mode="In" />
           <Parameter Name="Approved" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="TransferOrderToggleVoid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="int" Mode="In" />
+          <Parameter Name="InActive" Type="bit" Mode="In" />
+          <Parameter Name="VoidTypeID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="TransferOrderVoidable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="int" Mode="In" />
         </Function>
         <Function Name="UserAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="OrganizationalUnitID" Type="int" Mode="In" />
@@ -3920,7 +3936,23 @@
             <Parameter Name="VoidTypeID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SalesOrderVoidable" ReturnType="Collection(String)">
+          <Parameter Name="EntityID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DeliveryAdviceToggleVoid">
             <Parameter Name="EntityID" Mode="In" Type="Int32" />
+            <Parameter Name="InActive" Mode="In" Type="Boolean" />
+            <Parameter Name="VoidTypeID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DeliveryAdviceVoidable" ReturnType="Collection(String)">
+          <Parameter Name="EntityID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="TransferOrderToggleVoid">
+            <Parameter Name="EntityID" Mode="In" Type="Int32" />
+            <Parameter Name="InActive" Mode="In" Type="Boolean" />
+            <Parameter Name="VoidTypeID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="TransferOrderVoidable" ReturnType="Collection(String)">
+          <Parameter Name="EntityID" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
@@ -4278,6 +4310,7 @@
           <Property Type="String" Name="CustomerCode" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="VoucherCode" Nullable="true" MaxLength="60" />
           <Property Type="DateTime" Name="DeliveryDate" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="InActive" Nullable="false" />
         </ComplexType>
         <ComplexType Name="SalesOrderViewDetail">
           <Property Type="Int32" Name="SalesOrderDetailID" Nullable="false" />
@@ -4360,6 +4393,7 @@
           <Property Type="Decimal" Name="TotalLineVolume" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Boolean" Name="Approved" Nullable="false" />
           <Property Type="String" Name="CustomerCode" Nullable="false" MaxLength="50" />
+          <Property Type="Boolean" Name="InActive" Nullable="false" />
         </ComplexType>
         <ComplexType Name="DeliveryAdviceViewDetail">
           <Property Type="Int32" Name="DeliveryAdviceDetailID" Nullable="false" />
@@ -5387,6 +5421,7 @@
           <Property Type="Boolean" Name="Approved" Nullable="false" />
           <Property Type="String" Name="WarehouseCode" Nullable="false" MaxLength="10" />
           <Property Type="String" Name="WarehouseName" Nullable="false" MaxLength="60" />
+          <Property Type="Boolean" Name="InActive" Nullable="false" />
         </ComplexType>
         <ComplexType Name="TransferOrderViewDetail">
           <Property Type="Int32" Name="TransferOrderDetailID" Nullable="false" />
@@ -7369,6 +7404,7 @@
                 <ScalarProperty Name="CustomerCode" ColumnName="CustomerCode" />
                 <ScalarProperty Name="VoucherCode" ColumnName="VoucherCode" />
                 <ScalarProperty Name="DeliveryDate" ColumnName="DeliveryDate" />
+                <ScalarProperty Name="InActive" ColumnName="InActive" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -7492,6 +7528,7 @@
                 <ScalarProperty Name="TotalLineVolume" ColumnName="TotalLineVolume" />
                 <ScalarProperty Name="Approved" ColumnName="Approved" />
                 <ScalarProperty Name="CustomerCode" ColumnName="CustomerCode" />
+                <ScalarProperty Name="InActive" ColumnName="InActive" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -8233,6 +8270,7 @@
                 <ScalarProperty Name="Approved" ColumnName="Approved" />
                 <ScalarProperty Name="WarehouseCode" ColumnName="WarehouseCode" />
                 <ScalarProperty Name="WarehouseName" ColumnName="WarehouseName" />
+                <ScalarProperty Name="InActive" ColumnName="InActive" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -8955,6 +8993,10 @@
           <FunctionImportMapping FunctionImportName="GetStoredID" FunctionName="TotalSmartCodingModel.Store.GetStoredID" />
           <FunctionImportMapping FunctionImportName="SalesOrderToggleVoid" FunctionName="TotalSmartCodingModel.Store.SalesOrderToggleVoid" />
           <FunctionImportMapping FunctionImportName="SalesOrderVoidable" FunctionName="TotalSmartCodingModel.Store.SalesOrderVoidable" />
+          <FunctionImportMapping FunctionImportName="DeliveryAdviceToggleVoid" FunctionName="TotalSmartCodingModel.Store.DeliveryAdviceToggleVoid" />
+          <FunctionImportMapping FunctionImportName="DeliveryAdviceVoidable" FunctionName="TotalSmartCodingModel.Store.DeliveryAdviceVoidable" />
+          <FunctionImportMapping FunctionImportName="TransferOrderToggleVoid" FunctionName="TotalSmartCodingModel.Store.TransferOrderToggleVoid" />
+          <FunctionImportMapping FunctionImportName="TransferOrderVoidable" FunctionName="TotalSmartCodingModel.Store.TransferOrderVoidable" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

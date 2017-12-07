@@ -120,7 +120,7 @@ namespace TotalService
 
         public virtual bool Approvable(TDto dto)
         {
-            if (this.GlobalLocked(dto)) return false;
+            if (dto.NoApprovable || this.GlobalLocked(dto)) return false;
             if (dto.Approved || !this.GetApprovalPermitted(dto.OrganizationalUnitID)) return false;
 
             return this.genericRepository.GetEditable(dto.GetID());
@@ -128,7 +128,7 @@ namespace TotalService
 
         public virtual bool UnApprovable(TDto dto)
         {
-            if (this.GlobalLocked(dto)) return false;
+            if (dto.NoApprovable || this.GlobalLocked(dto)) return false;
             if (!dto.Approved || !this.GetUnApprovalPermitted(dto.OrganizationalUnitID)) return false;
 
             return this.genericRepository.GetEditable(dto.GetID());
@@ -136,7 +136,7 @@ namespace TotalService
 
         public virtual bool Voidable(TDto dto)
         {
-            if (this.GlobalLocked(dto)) return false;
+            if (dto.NoVoidable || this.GlobalLocked(dto)) return false;
             if (dto.InActive || !this.GetVoidablePermitted(dto.OrganizationalUnitID)) return false;
 
             return this.genericRepository.GetVoidable(dto.GetID());
@@ -147,7 +147,7 @@ namespace TotalService
             return false; //AT NOW, WE DON'T ALLOW UnVoidable, BECAUSE: SALESORDERS UnVoidable: MUST CHECK STOCK AVAILABLE BEFORE UnVoid => FOR THIS REASON: WE DISABLE UnVoid. WE WILL ANABLE IF NEEDED, THEN WE MUST IMPLEMENT CODE TO CHECK STOCK AVAILABLE BEFORE UnVoid
             //AND: WE SHOULD ADD NEW STORE PROCEDURE TO CHECK UnVoidable, INSTAED USING THE SAME STORED PROCEDURE WITH Voidable (return this.genericRepository.GetVoidable(dto.GetID()): SHOULD return this.genericRepository.GetUnVoidable(dto.GetID()))
 
-            if (this.GlobalLocked(dto)) return false;
+            if (dto.NoVoidable || this.GlobalLocked(dto)) return false;
             if (!dto.InActive || !this.GetUnVoidablePermitted(dto.OrganizationalUnitID)) return false;
 
             return this.genericRepository.GetVoidable(dto.GetID());

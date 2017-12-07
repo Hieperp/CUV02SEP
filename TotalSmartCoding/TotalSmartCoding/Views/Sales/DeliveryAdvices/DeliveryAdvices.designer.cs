@@ -704,7 +704,7 @@
             this.contextMenuDetails.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuOptionBatches});
             this.contextMenuDetails.Name = "contextMenuDetails";
-            this.contextMenuDetails.Size = new System.Drawing.Size(225, 58);
+            this.contextMenuDetails.Size = new System.Drawing.Size(225, 30);
             this.contextMenuDetails.Text = "Context MenuDetails";
             // 
             // menuOptionBatches
@@ -985,7 +985,7 @@
             // 
             // olvApproved
             // 
-            this.olvApproved.AspectName = "Approved";
+            this.olvApproved.AspectName = "ImageID";
             this.olvApproved.FillsFreeSpace = true;
             this.olvApproved.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvApproved.Text = "";

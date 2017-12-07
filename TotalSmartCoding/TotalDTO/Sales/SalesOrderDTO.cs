@@ -19,6 +19,7 @@ namespace TotalDTO.Sales
     public class SalesOrderPrimitiveDTO : QuantityDTO<SalesOrderDetailDTO>, IPrimitiveEntity, IPrimitiveDTO
     {
         public override GlobalEnums.NmvnTaskID NMVNTaskID { get { return GlobalEnums.NmvnTaskID.SalesOrder; } }
+        public override bool NoVoidable { get { return false; } }
 
         public SalesOrderPrimitiveDTO() { this.Initialize(); }
 
@@ -111,7 +112,7 @@ namespace TotalDTO.Sales
             set { ApplyPropertyChange<SalesOrderPrimitiveDTO, Nullable<int>>(ref this.salespersonID, o => o.SalespersonID, value); }
         }
 
-        
+
 
         public override string Caption
         {
@@ -149,7 +150,7 @@ namespace TotalDTO.Sales
 
         public ICollection<SalesOrderDetailDTO> GetDetails() { return this.SalesOrderViewDetails; }
 
-        protected override IEnumerable<SalesOrderDetailDTO> DtoDetails() { return this.SalesOrderViewDetails; }        
+        protected override IEnumerable<SalesOrderDetailDTO> DtoDetails() { return this.SalesOrderViewDetails; }
     }
 
 }

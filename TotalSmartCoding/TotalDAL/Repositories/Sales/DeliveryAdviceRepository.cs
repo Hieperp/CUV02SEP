@@ -12,7 +12,7 @@ namespace TotalDAL.Repositories.Sales
     public class DeliveryAdviceRepository : GenericWithDetailRepository<DeliveryAdvice, DeliveryAdviceDetail>, IDeliveryAdviceRepository
     {
         public DeliveryAdviceRepository(TotalSmartCodingEntities totalSmartCodingEntities)
-            : base(totalSmartCodingEntities, "DeliveryAdviceEditable", "DeliveryAdviceApproved")
+            : base(totalSmartCodingEntities, "DeliveryAdviceEditable", "DeliveryAdviceApproved", null, "DeliveryAdviceVoidable")
         {
         }
     }
