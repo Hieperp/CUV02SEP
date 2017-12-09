@@ -105,6 +105,7 @@
     <Compile Include="Controllers\APIs\Commons\CustomerTypeAPIs.cs" />
     <Compile Include="Controllers\APIs\Commons\EmployeeAPIs.cs" />
     <Compile Include="Controllers\APIs\Commons\FillingLineAPIs.cs" />
+    <Compile Include="Controllers\APIs\Commons\LocationAPIs.cs" />
     <Compile Include="Controllers\APIs\Commons\TerritoryAPIs.cs" />
     <Compile Include="Controllers\APIs\Commons\TransferOrderTypeAPIs.cs" />
     <Compile Include="Controllers\APIs\Commons\WarehouseAdjustmentTypeAPIs.cs" />

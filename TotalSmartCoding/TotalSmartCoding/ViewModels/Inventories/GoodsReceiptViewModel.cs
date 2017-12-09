@@ -10,6 +10,9 @@ namespace TotalSmartCoding.ViewModels.Inventories
 
     public class GoodsReceiptDetailAvailableViewModel : BaseDTO
     {
-        public override bool DataInputable { get { return false; } }
+        public override bool AllowDataInput { get { return false; } }
+
+        public override bool Printable { get { return true; } }
+        public override bool PrintVisible { get { return true; } }
     }
 }

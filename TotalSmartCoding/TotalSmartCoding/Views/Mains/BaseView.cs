@@ -286,7 +286,7 @@ namespace TotalSmartCoding.Views.Mains
         public virtual bool Closable { get { return true; } }
         public virtual bool Loadable { get { return true; } }
 
-        public virtual bool DataInputable { get { return this.baseDTO.DataInputable; } }
+        public virtual bool AllowDataInput { get { return this.baseDTO.AllowDataInput; } }
         public virtual bool Newable { get { return this.baseDTO.Newable; } }
         public virtual bool Editable { get { return this.baseDTO.Editable; } }
         public virtual bool Deletable { get { return this.baseDTO.Deletable; } }

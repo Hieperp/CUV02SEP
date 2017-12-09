@@ -51,7 +51,7 @@
             this.panelTopLeft = new System.Windows.Forms.Panel();
             this.toolstripMain = new System.Windows.Forms.ToolStrip();
             this.buttonEscape = new System.Windows.Forms.ToolStripButton();
-            this.separatorESC = new System.Windows.Forms.ToolStripSeparator();
+            this.separatorInputData = new System.Windows.Forms.ToolStripSeparator();
             this.buttonNew = new System.Windows.Forms.ToolStripButton();
             this.buttonEdit = new System.Windows.Forms.ToolStripButton();
             this.buttonSave = new System.Windows.Forms.ToolStripButton();
@@ -364,7 +364,7 @@
             this.toolstripMain.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolstripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.buttonEscape,
-            this.separatorESC,
+            this.separatorInputData,
             this.buttonNew,
             this.buttonEdit,
             this.buttonSave,
@@ -398,10 +398,10 @@
             this.buttonEscape.Text = "ESC";
             this.buttonEscape.Click += new System.EventHandler(this.buttonEscape_Click);
             // 
-            // separatorESC
+            // separatorInputData
             // 
-            this.separatorESC.Name = "separatorESC";
-            this.separatorESC.Size = new System.Drawing.Size(6, 55);
+            this.separatorInputData.Name = "separatorInputData";
+            this.separatorInputData.Size = new System.Drawing.Size(6, 55);
             // 
             // buttonNew
             // 
@@ -806,7 +806,7 @@
         private System.Windows.Forms.ToolStripButton buttonClearFilters;
         private System.Windows.Forms.ToolStrip toolstripMain;
         private System.Windows.Forms.ToolStripButton buttonEscape;
-        private System.Windows.Forms.ToolStripSeparator separatorESC;
+        private System.Windows.Forms.ToolStripSeparator separatorInputData;
         private System.Windows.Forms.ToolStripButton buttonNew;
         private System.Windows.Forms.ToolStripButton buttonEdit;
         private System.Windows.Forms.ToolStripButton buttonSave;

@@ -57,6 +57,7 @@
     <Compile Include="Helpers\SqlProgrammability\Commons\CustomerType.cs" />
     <Compile Include="Helpers\SqlProgrammability\Commons\Employee.cs" />
     <Compile Include="Helpers\SqlProgrammability\Commons\FillingLine.cs" />
+    <Compile Include="Helpers\SqlProgrammability\Commons\Location.cs" />
     <Compile Include="Helpers\SqlProgrammability\Commons\Territory.cs" />
     <Compile Include="Helpers\SqlProgrammability\Commons\TransferOrderType.cs" />
     <Compile Include="Helpers\SqlProgrammability\Commons\Warehouse.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="Repositories\Commons\CustomerTypeRepository.cs" />
     <Compile Include="Repositories\Commons\EmployeeRepository.cs" />
     <Compile Include="Repositories\Commons\FillingLineRepository.cs" />
+    <Compile Include="Repositories\Commons\LocationRepository.cs" />
     <Compile Include="Repositories\Commons\TerritoryRepository.cs" />
     <Compile Include="Repositories\Commons\TransferOrderTypeRepository.cs" />
     <Compile Include="Repositories\Commons\WarehouseAdjustmentTypeRepository.cs" />

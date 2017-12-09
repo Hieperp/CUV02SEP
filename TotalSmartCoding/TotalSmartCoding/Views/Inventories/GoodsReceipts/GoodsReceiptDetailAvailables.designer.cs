@@ -33,6 +33,7 @@
             this.toolStripChildForm = new System.Windows.Forms.ToolStrip();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.comboLocationID = new System.Windows.Forms.ToolStripComboBox();
             this.buttonWarehouseJournals = new System.Windows.Forms.ToolStripButton();
             this.imageList32 = new System.Windows.Forms.ImageList(this.components);
             this.fastAvailableCartons = new BrightIdeasSoftware.FastObjectListView();
@@ -75,6 +76,7 @@
             this.toolStripChildForm.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton2,
             this.toolStripSeparator1,
+            this.comboLocationID,
             this.buttonWarehouseJournals});
             this.toolStripChildForm.Location = new System.Drawing.Point(0, 0);
             this.toolStripChildForm.Name = "toolStripChildForm";
@@ -98,6 +100,13 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 55);
             this.toolStripSeparator1.Visible = false;
+            // 
+            // comboLocationID
+            // 
+            this.comboLocationID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboLocationID.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
+            this.comboLocationID.Name = "comboLocationID";
+            this.comboLocationID.Size = new System.Drawing.Size(108, 55);
             // 
             // buttonWarehouseJournals
             // 
@@ -156,7 +165,7 @@
             this.fastAvailableCartons.FullRowSelect = true;
             this.fastAvailableCartons.HideSelection = false;
             this.fastAvailableCartons.HighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
-            this.fastAvailableCartons.Location = new System.Drawing.Point(0, 0);
+            this.fastAvailableCartons.Location = new System.Drawing.Point(0, 55);
             this.fastAvailableCartons.Name = "fastAvailableCartons";
             this.fastAvailableCartons.OwnerDraw = true;
             this.fastAvailableCartons.RowHeight = 32;
@@ -296,7 +305,7 @@
             this.fastAvailablePallets.FullRowSelect = true;
             this.fastAvailablePallets.HideSelection = false;
             this.fastAvailablePallets.HighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
-            this.fastAvailablePallets.Location = new System.Drawing.Point(0, 245);
+            this.fastAvailablePallets.Location = new System.Drawing.Point(0, 300);
             this.fastAvailablePallets.Name = "fastAvailablePallets";
             this.fastAvailablePallets.OwnerDraw = true;
             this.fastAvailablePallets.RowHeight = 32;
@@ -459,6 +468,7 @@
         private BrightIdeasSoftware.OLVColumn olvColumn21;
         private BrightIdeasSoftware.OLVColumn olvColumn22;
         private System.Windows.Forms.ToolStripButton buttonWarehouseJournals;
+        private System.Windows.Forms.ToolStripComboBox comboLocationID;
 
     }
 }

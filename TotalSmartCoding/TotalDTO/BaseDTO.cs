@@ -83,7 +83,7 @@ namespace TotalDTO
         public bool GlobalLocked { get; set; }
 
 
-        public virtual bool DataInputable { get { return true; } }
+        public virtual bool AllowDataInput { get { return true; } }
         public bool Newable { get; set; }
         public bool Editable { get; set; }
 

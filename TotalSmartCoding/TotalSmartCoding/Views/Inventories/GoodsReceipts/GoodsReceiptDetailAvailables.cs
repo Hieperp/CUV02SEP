@@ -19,6 +19,8 @@ using TotalBase;
 using TotalModel.Models;
 using TotalSmartCoding.ViewModels.Helpers;
 using TotalSmartCoding.ViewModels.Inventories;
+using TotalSmartCoding.Controllers.APIs.Commons;
+using TotalCore.Repositories.Commons;
 
 
 namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
@@ -69,15 +71,43 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
                 ExceptionHandlers.ShowExceptionMessageBox(this, exception);
             }
         }
+        
+        Binding bindingLocationID;
 
-        public override void Loading()
+        protected override void InitializeCommonControlBinding()
         {
-            List<GoodsReceiptDetailAvailable> goodsReceiptDetailAvailables = goodsReceiptAPIs.GetGoodsReceiptDetailAvailables(ContextAttributes.User.LocationID, null, null, null, null, null, false);
+            base.InitializeCommonControlBinding();
 
-            this.fastAvailablePallets.SetObjects(goodsReceiptDetailAvailables.Where(w => w.PalletID != null));
-            this.fastAvailableCartons.SetObjects(goodsReceiptDetailAvailables.Where(w => w.CartonID != null));
+            this.LocationID = ContextAttributes.User.LocationID;
+            LocationAPIs locationAPIs = new LocationAPIs(CommonNinject.Kernel.Get<ILocationAPIRepository>());
 
-            this.ShowRowCount();
+            this.comboLocationID.ComboBox.DataSource = locationAPIs.GetLocationBases();
+            this.comboLocationID.ComboBox.DisplayMember = CommonExpressions.PropertyName<LocationBase>(p => p.Name);
+            this.comboLocationID.ComboBox.ValueMember = CommonExpressions.PropertyName<LocationBase>(p => p.LocationID);
+            this.bindingLocationID = this.comboLocationID.ComboBox.DataBindings.Add("SelectedValue", this, "LocationID", true, DataSourceUpdateMode.OnPropertyChanged);
+
+            this.bindingLocationID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+        }
+
+        private int locationID;
+        public int LocationID
+        {
+            get { return this.locationID; }
+            set {
+                if (this.locationID != value)
+                {
+                    this.locationID = value;
+                    if (this.locationID > 0)
+                    {
+                        List<GoodsReceiptDetailAvailable> goodsReceiptDetailAvailables = goodsReceiptAPIs.GetGoodsReceiptDetailAvailables(this.LocationID, null, null, null, null, null, false);
+
+                        this.fastAvailablePallets.SetObjects(goodsReceiptDetailAvailables.Where(w => w.PalletID != null));
+                        this.fastAvailableCartons.SetObjects(goodsReceiptDetailAvailables.Where(w => w.CartonID != null));
+
+                        this.ShowRowCount();
+                    }
+                }
+            }
         }
 
         public override void ApplyFilter(string filterTexts)

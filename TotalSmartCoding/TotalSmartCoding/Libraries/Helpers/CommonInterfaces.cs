@@ -42,7 +42,7 @@ namespace TotalSmartCoding.Libraries.Helpers
         bool Closable { get; }
         bool Loadable { get; }
 
-        bool DataInputable { get; }
+        bool AllowDataInput { get; }
         bool Newable { get; }
         bool Editable { get; }
         bool IsDirty { get; }

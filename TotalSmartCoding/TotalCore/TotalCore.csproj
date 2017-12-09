@@ -58,6 +58,7 @@
     <Compile Include="Repositories\Commons\ICustomerTypeRepository.cs" />
     <Compile Include="Repositories\Commons\IEmployeeRepository.cs" />
     <Compile Include="Repositories\Commons\IFillingLineRepository.cs" />
+    <Compile Include="Repositories\Commons\ILocationRepository.cs" />
     <Compile Include="Repositories\Commons\ITerritoryRepository.cs" />
     <Compile Include="Repositories\Commons\IWarehouseAdjustmentTypeRepository.cs" />
     <Compile Include="Repositories\Commons\IWarehouseRepository.cs" />

@@ -69,6 +69,14 @@ namespace TotalDAL.Repositories
         public void CreateStoredProcedure()
         {
 
+
+            //return;
+
+            Helpers.SqlProgrammability.Commons.Location location = new Helpers.SqlProgrammability.Commons.Location(totalSmartCodingEntities);
+            location.RestoreProcedure();
+
+
+
             return;
 
             Helpers.SqlProgrammability.Commons.Employee employee = new Helpers.SqlProgrammability.Commons.Employee(totalSmartCodingEntities);

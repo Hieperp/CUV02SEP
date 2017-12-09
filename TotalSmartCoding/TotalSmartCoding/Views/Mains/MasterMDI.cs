@@ -102,7 +102,7 @@ namespace TotalSmartCoding.Views.Mains
                         this.buttonPrint.Visible = false;
                         this.buttonPrintPreview.Visible = false;
                         this.toolStripSeparatorPrint.Visible = false;
-                        this.separatorESC.Visible = false;
+                        this.separatorInputData.Visible = false;
                         this.labelSearchBarcode.Visible = false;
                         this.toolStripTopHead.Visible = false;
                         break;
@@ -449,10 +449,11 @@ namespace TotalSmartCoding.Views.Mains
                     this.buttonEscape.Enabled = closable;
                     this.buttonLoading.Enabled = loadable && readonlyMode;
 
-                    this.buttonNew.Visible = toolstripChild.DataInputable;
-                    this.buttonEdit.Visible = toolstripChild.DataInputable;
-                    this.buttonSave.Visible = toolstripChild.DataInputable;
-                    this.buttonDelete.Visible = toolstripChild.DataInputable;
+                    this.separatorInputData.Visible = toolstripChild.AllowDataInput;
+                    this.buttonNew.Visible = toolstripChild.AllowDataInput;
+                    this.buttonEdit.Visible = toolstripChild.AllowDataInput;
+                    this.buttonSave.Visible = toolstripChild.AllowDataInput;
+                    this.buttonDelete.Visible = toolstripChild.AllowDataInput;
 
                     this.buttonNew.Enabled = newable && readonlyMode;
                     this.buttonEdit.Enabled = editable && readonlyMode;
