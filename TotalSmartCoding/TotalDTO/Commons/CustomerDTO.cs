@@ -137,7 +137,8 @@ namespace TotalDTO.Commons
 
     public class CustomerPrimitiveDTO : CustomerBaseDTO, IPrimitiveEntity, IPrimitiveDTO
     {
-        public override GlobalEnums.NmvnTaskID NMVNTaskID { get { return GlobalEnums.NmvnTaskID.Customer; } }        
+        public override GlobalEnums.NmvnTaskID NMVNTaskID { get { return GlobalEnums.NmvnTaskID.Customer; } }
+        public override bool NoApprovable { get { return true; } }
 
         public override int GetID() { return this.CustomerID; }
         public void SetID(int id) { this.CustomerID = id; }

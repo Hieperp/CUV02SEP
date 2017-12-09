@@ -38,7 +38,9 @@ using TotalSmartCoding.Views.Sales.SalesOrders;
 using TotalSmartCoding.Views.Sales.DeliveryAdvices;
 using TotalSmartCoding.Views.Sales.TransferOrders;
 using TotalSmartCoding.Views.Commons.Customers;
+using TotalSmartCoding.Views.Commons.BinLocations;
 using TotalSmartCoding.ViewModels.Helpers;
+
 
 namespace TotalSmartCoding.Views.Mains
 {
@@ -311,6 +313,10 @@ namespace TotalSmartCoding.Views.Mains
                     {
                         case (int)GlobalEnums.NmvnTaskID.Customer:
                             openingView = new Customers();
+                            break;
+
+                        case (int)GlobalEnums.NmvnTaskID.BinLocation:
+                            openingView = new BinLocations();
                             break;
 
                         case (int)GlobalEnums.NmvnTaskID.Pickup:

@@ -119,6 +119,7 @@
     <Compile Include="Controllers\APIs\Sales\DeliveryAdviceAPIs.cs" />
     <Compile Include="Controllers\APIs\Sales\SalesOrderAPIs.cs" />
     <Compile Include="Controllers\APIs\Sales\TransferOrderAPIs.cs" />
+    <Compile Include="Controllers\Commons\BinLocationController.cs" />
     <Compile Include="Controllers\Commons\CustomerController.cs" />
     <Compile Include="Controllers\Inventories\GoodsIssueController.cs" />
     <Compile Include="Controllers\Inventories\PickupController.cs" />
@@ -169,6 +170,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\Commons\BinLocationViewModel.cs" />
     <Compile Include="ViewModels\Commons\CustomerViewModel.cs" />
     <Compile Include="ViewModels\Helpers\IBaseViewModel.cs" />
     <Compile Include="ViewModels\Helpers\PrintViewModel.cs" />
@@ -183,6 +185,12 @@
     <Compile Include="ViewModels\Sales\DeliveryAdviceViewModel.cs" />
     <Compile Include="ViewModels\Sales\SalesOrderViewModel.cs" />
     <Compile Include="ViewModels\Sales\TransferOrderViewModel.cs" />
+    <Compile Include="Views\Commons\BinLocations\BinLocations.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Commons\BinLocations\BinLocations.designer.cs">
+      <DependentUpon>BinLocations.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Commons\Customers\Customers.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -413,6 +421,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Commons\BinLocations\BinLocations.resx">
+      <DependentUpon>BinLocations.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Commons\Customers\Customers.resx">
       <DependentUpon>Customers.cs</DependentUpon>

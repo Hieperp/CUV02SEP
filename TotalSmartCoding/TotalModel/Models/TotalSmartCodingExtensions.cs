@@ -527,13 +527,14 @@ namespace TotalModel.Models
         public string Name { get; set; }
     }
 
+    public partial class BinLocationIndex : IBaseIndex
+    {
+        public int Id { get { return this.BinLocationID; } }
+    }
+
     public partial class BinLocation : IPrimitiveEntity, IBaseEntity
     {
         public int GetID() { return this.BinLocationID; }
-
-        public int UserID { get; set; }
-        public int PreparedPersonID { get; set; }
-        public int OrganizationalUnitID { get; set; }
 
         public System.DateTime CreatedDate { get; set; }
         public System.DateTime EditedDate { get; set; }

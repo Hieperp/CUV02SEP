@@ -9,7 +9,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
         private readonly TotalSmartCodingEntities totalSmartCodingEntities;
 
         public AccessControl(TotalSmartCodingEntities totalSmartCodingEntities)
-        {
+        {//A user's access level determines what tasks he or she can perform in the database
             this.totalSmartCodingEntities = totalSmartCodingEntities;
         }
 

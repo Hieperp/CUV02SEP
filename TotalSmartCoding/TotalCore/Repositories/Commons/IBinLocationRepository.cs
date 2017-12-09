@@ -4,13 +4,13 @@ using TotalModel.Models;
 
 namespace TotalCore.Repositories.Commons
 {
-    public interface IBinLocationRepository
+    public interface IBinLocationRepository : IGenericRepository<BinLocation>
     {
-
     }
 
     public interface IBinLocationAPIRepository : IGenericAPIRepository
     {
         IList<BinLocationBase> GetBinLocationBases(int? warehouseID);
     }
+    
 }

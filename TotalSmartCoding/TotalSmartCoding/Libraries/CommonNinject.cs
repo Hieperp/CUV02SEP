@@ -126,6 +126,10 @@ namespace TotalSmartCoding.Libraries
                 Kernel.Bind<ICustomerAPIRepository>().To<CustomerAPIRepository>();
                 Kernel.Bind<CustomerViewModel>().ToSelf();
 
+                Kernel.Bind<IBinLocationService>().To<BinLocationService>();
+                Kernel.Bind<IBinLocationRepository>().To<BinLocationRepository>();
+                Kernel.Bind<IBinLocationAPIRepository>().To<BinLocationAPIRepository>();
+                Kernel.Bind<BinLocationViewModel>().ToSelf();
 
                 //Kernel.Bind<ICommodityService>().To<CommodityService>();
                 Kernel.Bind<ICommodityRepository>().To<CommodityRepository>();
@@ -169,11 +173,7 @@ namespace TotalSmartCoding.Libraries
                 //Kernel.Bind<TransferOrderTypeViewModel>().ToSelf();
 
 
-                //Kernel.Bind<IBinLocationService>().To<BinLocationService>();
-                Kernel.Bind<IBinLocationRepository>().To<BinLocationRepository>();
-                Kernel.Bind<IBinLocationAPIRepository>().To<BinLocationAPIRepository>();
-                //Kernel.Bind<BinLocationViewModel>().ToSelf();
-
+                
 
                 //Kernel.Bind<IFillingLineService>().To<FillingLineService>();
                 Kernel.Bind<IFillingLineRepository>().To<FillingLineRepository>();

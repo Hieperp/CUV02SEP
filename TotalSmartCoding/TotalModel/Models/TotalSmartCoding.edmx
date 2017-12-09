@@ -41,6 +41,9 @@
           <Property Name="DeXuat" Type="int" Nullable="false" />
           <Property Name="Remarks" Type="nvarchar" MaxLength="100" />
           <Property Name="InActive" Type="bit" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="PreparedPersonID" Type="int" Nullable="false" />
+          <Property Name="OrganizationalUnitID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Cartons">
           <Key>
@@ -1983,6 +1986,16 @@
           <Parameter Name="EntityID" Type="int" Mode="In" />
           <Parameter Name="InActive" Type="bit" Mode="In" />
           <Parameter Name="VoidTypeID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="BinLocationEditable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="BinLocationPostSaveValidate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="BinLocationSaveRelative" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="int" Mode="In" />
+          <Parameter Name="SaveRelativeOption" Type="int" Mode="In" />
         </Function>
         <Function Name="CartonEditable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="EntityID" Type="int" Mode="In" />
@@ -3954,6 +3967,16 @@
           <FunctionImport Name="TransferOrderVoidable" ReturnType="Collection(String)">
           <Parameter Name="EntityID" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="BinLocationEditable" ReturnType="Collection(String)">
+          <Parameter Name="EntityID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="BinLocationSaveRelative">
+            <Parameter Name="EntityID" Mode="In" Type="Int32" />
+            <Parameter Name="SaveRelativeOption" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="BinLocationPostSaveValidate" ReturnType="Collection(String)">
+            <Parameter Name="EntityID" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
           <Property Type="Int32" Name="PickupID" Nullable="false" />
@@ -4184,8 +4207,11 @@
         </ComplexType>
         <ComplexType Name="BinLocationIndex">
           <Property Type="Int32" Name="BinLocationID" Nullable="false" />
-          <Property Type="String" Name="Code" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Remarks" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="BinLocationCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="BinLocationName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="LocationName" Nullable="false" MaxLength="50" />
+          <Property Type="Boolean" Name="InActive" Nullable="false" />
           </ComplexType>
         <EntityType Name="Employee">
           <Key>
@@ -5269,6 +5295,9 @@
           <NavigationProperty Name="PickupDetails" Relationship="TotalSmartCodingModel.FK_PickupDetails_BinLocations" FromRole="BinLocation" ToRole="PickupDetail" />
           <NavigationProperty Name="GoodsReceiptDetails" Relationship="TotalSmartCodingModel.FK_GoodsReceiptDetails_BinLocations" FromRole="BinLocation" ToRole="GoodsReceiptDetail" />
           <NavigationProperty Name="WarehouseAdjustmentDetails" Relationship="TotalSmartCodingModel.FK_WarehouseAdjustmentDetails_BinLocations" FromRole="BinLocation" ToRole="WarehouseAdjustmentDetail" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="PreparedPersonID" Type="Int32" Nullable="false" />
+          <Property Name="OrganizationalUnitID" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="FK_BinLocations_Warehouses">
           <End Type="TotalSmartCodingModel.Warehouse" Role="Warehouse" Multiplicity="1" />
@@ -7291,8 +7320,11 @@
             <ResultMapping>
               <ComplexTypeMapping TypeName="TotalSmartCodingModel.BinLocationIndex">
                 <ScalarProperty Name="BinLocationID" ColumnName="BinLocationID" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="BinLocationCode" ColumnName="BinLocationCode" />
+                <ScalarProperty Name="BinLocationName" ColumnName="BinLocationName" />
+                <ScalarProperty Name="LocationName" ColumnName="LocationName" />
+                <ScalarProperty Name="InActive" ColumnName="InActive" />
                 </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -8155,6 +8187,9 @@
           <EntitySetMapping Name="BinLocations">
             <EntityTypeMapping TypeName="TotalSmartCodingModel.BinLocation">
               <MappingFragment StoreEntitySet="BinLocations">
+                <ScalarProperty Name="OrganizationalUnitID" ColumnName="OrganizationalUnitID" />
+                <ScalarProperty Name="PreparedPersonID" ColumnName="PreparedPersonID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="InActive" ColumnName="InActive" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
                 <ScalarProperty Name="DeXuat" ColumnName="DeXuat" />
@@ -8997,6 +9032,9 @@
           <FunctionImportMapping FunctionImportName="DeliveryAdviceVoidable" FunctionName="TotalSmartCodingModel.Store.DeliveryAdviceVoidable" />
           <FunctionImportMapping FunctionImportName="TransferOrderToggleVoid" FunctionName="TotalSmartCodingModel.Store.TransferOrderToggleVoid" />
           <FunctionImportMapping FunctionImportName="TransferOrderVoidable" FunctionName="TotalSmartCodingModel.Store.TransferOrderVoidable" />
+          <FunctionImportMapping FunctionImportName="BinLocationEditable" FunctionName="TotalSmartCodingModel.Store.BinLocationEditable" />
+          <FunctionImportMapping FunctionImportName="BinLocationSaveRelative" FunctionName="TotalSmartCodingModel.Store.BinLocationSaveRelative" />
+          <FunctionImportMapping FunctionImportName="BinLocationPostSaveValidate" FunctionName="TotalSmartCodingModel.Store.BinLocationPostSaveValidate" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

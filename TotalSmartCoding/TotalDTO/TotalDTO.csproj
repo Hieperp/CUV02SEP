@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="BaseDTO.cs" />
     <Compile Include="BaseWithDetailDTO.cs" />
+    <Compile Include="Commons\BinLocationDTO.cs" />
     <Compile Include="Commons\CommodityDTO.cs" />
     <Compile Include="Commons\CustomerDTO.cs" />
     <Compile Include="Commons\EmployeeDTO.cs" />

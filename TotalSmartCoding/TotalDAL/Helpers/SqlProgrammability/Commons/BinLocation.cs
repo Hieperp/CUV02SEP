@@ -20,8 +20,9 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
         {
             this.GetBinLocationIndexes();
 
-            //this.BinLocationEditable(); 
-            //this.BinLocationSaveRelative();
+            this.BinLocationEditable();
+            this.BinLocationSaveRelative();
+            this.BinLocationPostSaveValidate();
 
             this.GetBinLocationBases();
         }
@@ -36,8 +37,9 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
-            queryString = queryString + "       SELECT      BinLocations.BinLocationID, BinLocations.Code, BinLocations.Name " + "\r\n";
+            queryString = queryString + "       SELECT      BinLocations.BinLocationID, BinLocations.Code AS BinLocationCode, BinLocations.Name AS BinLocationName, Locations.Name AS LocationName, BinLocations.InActive, BinLocations.Remarks " + "\r\n";
             queryString = queryString + "       FROM        BinLocations " + "\r\n";
+            queryString = queryString + "                   INNER JOIN Locations ON BinLocations.OrganizationalUnitID IN (SELECT OrganizationalUnitID FROM AccessControls WHERE UserID = @UserID AND NMVNTaskID = " + (int)TotalBase.Enums.GlobalEnums.NmvnTaskID.BinLocation + " AND AccessControls.AccessLevel > 0) AND BinLocations.LocationID = Locations.LocationID " + "\r\n";
 
             queryString = queryString + "    END " + "\r\n";
 
@@ -45,42 +47,37 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
         }
 
 
+
         private void BinLocationSaveRelative()
         {
             string queryString = " @EntityID int, @SaveRelativeOption int " + "\r\n"; //SaveRelativeOption: 1: Update, -1:Undo
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
-            queryString = queryString + "    BEGIN " + "\r\n";
-
-            queryString = queryString + "       IF (@SaveRelativeOption = 1) " + "\r\n";
-            queryString = queryString + "           BEGIN " + "\r\n";
-
-            queryString = queryString + "               INSERT INTO BinLocationBinLocations (BinLocationID, BinLocationID, BinLocationTaskID, EntryDate, Remarks, InActive) " + "\r\n";
-            queryString = queryString + "               SELECT      BinLocationID, 46 AS BinLocationID, " + (int)GlobalEnums.NmvnTaskID.SalesOrder + " AS BinLocationTaskID, GETDATE(), '', 0 FROM BinLocations WHERE BinLocationID = @EntityID " + "\r\n";
-
-            queryString = queryString + "               INSERT INTO BinLocationBinLocations (BinLocationID, BinLocationID, BinLocationTaskID, EntryDate, Remarks, InActive) " + "\r\n";
-            queryString = queryString + "               SELECT      BinLocations.BinLocationID, BinLocations.BinLocationID, " + (int)GlobalEnums.NmvnTaskID.DeliveryAdvice + " AS BinLocationTaskID, GETDATE(), '', 0 FROM BinLocations INNER JOIN BinLocations ON BinLocations.BinLocationID = @EntityID AND BinLocations.BinLocationCategoryID NOT IN (4, 5, 7, 9, 10, 11, 12) AND BinLocations.BinLocationCategoryID = BinLocations.BinLocationCategoryID " + "\r\n";
-
-            queryString = queryString + "               INSERT INTO BinLocationBinLocations (BinLocationID, BinLocationID, BinLocationTaskID, EntryDate, Remarks, InActive) " + "\r\n";
-            queryString = queryString + "               SELECT      BinLocationID, 82 AS BinLocationID, " + (int)GlobalEnums.NmvnTaskID.DeliveryAdvice + " AS BinLocationTaskID, GETDATE(), '', 0 FROM BinLocations WHERE BinLocationID = @EntityID AND BinLocationCategoryID IN (4, 5, 7, 9, 10, 11, 12) " + "\r\n";
-
-            queryString = queryString + "           END " + "\r\n";
-
-            queryString = queryString + "       ELSE " + "\r\n"; //(@SaveRelativeOption = -1) 
-            queryString = queryString + "           DELETE      BinLocationBinLocations WHERE BinLocationID = @EntityID " + "\r\n";
-
-            queryString = queryString + "    END " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("BinLocationSaveRelative", queryString);
         }
 
 
+        private void BinLocationPostSaveValidate()
+        {
+            string[] queryArray = new string[2];
+
+            queryArray[0] = " SELECT TOP 1 @FoundEntity = N'Vui lòng kiểm tra kho' FROM BinLocations WHERE BinLocationID = @EntityID AND LocationID <> WarehouseID ";
+            queryArray[1] = " SELECT TOP 1 @FoundEntity = N'Trùng bin: ' + Code FROM BinLocations GROUP BY LocationID, Code HAVING COUNT(*) > 1 ";
+            this.totalSmartCodingEntities.CreateProcedureToCheckExisting("BinLocationPostSaveValidate", queryArray);
+        }
+
+
         private void BinLocationEditable()
         {
-            string[] queryArray = new string[0];
+            string[] queryArray = new string[5];
 
-            //queryArray[0] = " SELECT TOP 1 @FoundEntity = BinLocationID FROM BinLocations WHERE BinLocationID = @EntityID AND (InActive = 1 OR InActivePartial = 1)"; //Don't allow approve after void
-            //queryArray[1] = " SELECT TOP 1 @FoundEntity = BinLocationID FROM GoodsIssueDetails WHERE BinLocationID = @EntityID ";
+            queryArray[0] = " SELECT TOP 1 @FoundEntity = BinLocationID FROM PickupDetails WHERE BinLocationID = @EntityID ";
+            queryArray[1] = " SELECT TOP 1 @FoundEntity = BinLocationID FROM GoodsReceiptDetails WHERE BinLocationID = @EntityID ";
+            queryArray[2] = " SELECT TOP 1 @FoundEntity = BinLocationID FROM GoodsIssueDetails WHERE BinLocationID = @EntityID ";
+            queryArray[3] = " SELECT TOP 1 @FoundEntity = BinLocationID FROM GoodsIssueTransferDetails WHERE BinLocationID = @EntityID ";            
+            queryArray[4] = " SELECT TOP 1 @FoundEntity = BinLocationID FROM WarehouseAdjustmentDetails WHERE BinLocationID = @EntityID ";
+
 
             this.totalSmartCodingEntities.CreateProcedureToCheckExisting("BinLocationEditable", queryArray);
         }

@@ -111,6 +111,9 @@ namespace TotalSmartCoding.Libraries
                 cfg.CreateMap<Customer, CustomerDTO>();
                 cfg.CreateMap<CustomerPrimitiveDTO, Customer>();
 
+                cfg.CreateMap<BinLocation, BinLocationViewModel>();
+                cfg.CreateMap<BinLocation, BinLocationDTO>();
+                cfg.CreateMap<BinLocationPrimitiveDTO, BinLocation>();
 
                 cfg.CreateMap<Warehouse, WarehouseBaseDTO>();
                 cfg.CreateMap<WarehouseAdjustmentType, WarehouseAdjustmentTypeBaseDTO>();

@@ -32,6 +32,9 @@ namespace TotalModel.Models
         public int DeXuat { get; set; }
         public string Remarks { get; set; }
         public bool InActive { get; set; }
+        public int UserID { get; set; }
+        public int PreparedPersonID { get; set; }
+        public int OrganizationalUnitID { get; set; }
     
         public virtual Warehouse Warehouse { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
