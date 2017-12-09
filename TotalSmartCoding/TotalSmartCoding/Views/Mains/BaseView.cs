@@ -286,6 +286,7 @@ namespace TotalSmartCoding.Views.Mains
         public virtual bool Closable { get { return true; } }
         public virtual bool Loadable { get { return true; } }
 
+        public virtual bool DataInputable { get { return this.baseDTO.DataInputable; } }
         public virtual bool Newable { get { return this.baseDTO.Newable; } }
         public virtual bool Editable { get { return this.baseDTO.Editable; } }
         public virtual bool Deletable { get { return this.baseDTO.Deletable; } }
@@ -340,6 +341,11 @@ namespace TotalSmartCoding.Views.Mains
         }
 
         public virtual void ApplyFilter(string filterTexts)
+        {
+            OLVHelpers.ApplyFilters(this.fastListIndex, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
+        }
+
+        public virtual void ApplyDetailFilter(string filterTexts)
         {
             OLVHelpers.ApplyFilters(this.fastListIndex, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
         }

@@ -18,6 +18,7 @@ using TotalSmartCoding.Controllers.APIs.Inventories;
 using TotalBase;
 using TotalModel.Models;
 using TotalSmartCoding.ViewModels.Helpers;
+using TotalSmartCoding.ViewModels.Inventories;
 
 
 namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
@@ -32,10 +33,12 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
             : base()
         {
             InitializeComponent();
-
+            
             this.toolstripChild = this.toolStripChildForm;
 
             this.goodsReceiptAPIs = new GoodsReceiptAPIs(CommonNinject.Kernel.Get<IGoodsReceiptAPIRepository>());
+
+            this.baseDTO = new GoodsReceiptDetailAvailableViewModel(); ;
         }
 
         protected override void InitializeTabControl()

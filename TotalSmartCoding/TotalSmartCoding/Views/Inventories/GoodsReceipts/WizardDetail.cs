@@ -193,12 +193,14 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
             if (showPalletCount)
             {
                 decimal? totalQuantityRemains = this.fastPendingPallets.FilteredObjects.Cast<IPendingforGoodsReceiptDetail>().Select(o => o.QuantityRemains).Sum();
-                this.customTabBatch.TabPages[0].Text = "Pending " + this.fastPendingPallets.GetItemCount().ToString("N0") + " pallet" + (this.fastPendingPallets.GetItemCount() > 1 ? "s" : "") + ", Quantity: " + (totalQuantityRemains != null ? ((decimal)totalQuantityRemains).ToString("N0") : "0") + "       ";
+                decimal? totalLineVolumeRemains = this.fastPendingPallets.FilteredObjects.Cast<IPendingforGoodsReceiptDetail>().Select(o => o.LineVolumeRemains).Sum();
+                this.customTabBatch.TabPages[0].Text = "Pending " + this.fastPendingPallets.GetItemCount().ToString("N0") + " pallet" + (this.fastPendingPallets.GetItemCount() > 1 ? "s" : "") + ", Quantity: " + (totalQuantityRemains != null ? ((decimal)totalQuantityRemains).ToString("N0") : "0") + ", Volume: " + (totalLineVolumeRemains != null ? ((decimal)totalLineVolumeRemains).ToString("N0") : "0") + "       ";
             }
             if (showCartonCount)
             {
                 decimal? totalQuantityRemains = this.fastPendingCartons.FilteredObjects.Cast<IPendingforGoodsReceiptDetail>().Select(o => o.QuantityRemains).Sum();
-                this.customTabBatch.TabPages[1].Text = "Pending " + this.fastPendingCartons.GetItemCount().ToString("N0") + " carton" + (this.fastPendingCartons.GetItemCount() > 1 ? "s" : "") + ", Quantity: " + (totalQuantityRemains != null ? ((decimal)totalQuantityRemains).ToString("N0") : "0") + "       ";
+                decimal? totalLineVolumeRemains = this.fastPendingCartons.FilteredObjects.Cast<IPendingforGoodsReceiptDetail>().Select(o => o.LineVolumeRemains).Sum();
+                this.customTabBatch.TabPages[1].Text = "Pending " + this.fastPendingCartons.GetItemCount().ToString("N0") + " carton" + (this.fastPendingCartons.GetItemCount() > 1 ? "s" : "") + ", Quantity: " + (totalQuantityRemains != null ? ((decimal)totalQuantityRemains).ToString("N0") : "0") + ", Volume: " + (totalLineVolumeRemains != null ? ((decimal)totalLineVolumeRemains).ToString("N0") : "0") + "       ";
             }
         }
 

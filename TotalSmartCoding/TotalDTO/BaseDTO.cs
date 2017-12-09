@@ -83,6 +83,7 @@ namespace TotalDTO
         public bool GlobalLocked { get; set; }
 
 
+        public virtual bool DataInputable { get { return true; } }
         public bool Newable { get; set; }
         public bool Editable { get; set; }
 
@@ -94,6 +95,8 @@ namespace TotalDTO
         //    set { ApplyPropertyChange<BaseDTO, bool>(ref this.editable, o => o.Editable, value); }
         //}
 
+        public bool Deletable { get; set; }
+
 
         public virtual bool Printable { get; set; }
         public virtual bool PrintVisible { get { return false; } }
@@ -102,7 +105,6 @@ namespace TotalDTO
         public bool UnApprovable { get; set; }
         public virtual bool NoApprovable { get { return false; } }
         
-        public bool Deletable { get; set; }
 
         
         public bool Voidable { get; set; }

@@ -162,7 +162,7 @@
             this.olvPalletCode.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvPalletCode.Text = "Pallet Code";
             this.olvPalletCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvPalletCode.Width = 200;
+            this.olvPalletCode.Width = 150;
             // 
             // contextMenuDetails
             // 
@@ -284,7 +284,7 @@
             this.olvCartonCode.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvCartonCode.Text = "Carton Code";
             this.olvCartonCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvCartonCode.Width = 200;
+            this.olvCartonCode.Width = 150;
             // 
             // panelBottom
             // 

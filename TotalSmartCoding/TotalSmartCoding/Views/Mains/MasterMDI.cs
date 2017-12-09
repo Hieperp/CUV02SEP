@@ -57,6 +57,8 @@ namespace TotalSmartCoding.Views.Mains
 
         private ModuleAPIs moduleAPIs;
 
+        private readonly string searchPlaceHolder = "Enter a whole or any section of barcode ...";
+
         [DllImport("uxtheme.dll", CharSet = CharSet.Unicode)]
         public static extern int SetWindowTheme(IntPtr hWnd, String pszSubAppName, String pszSubIdList);
 
@@ -101,9 +103,8 @@ namespace TotalSmartCoding.Views.Mains
                         this.buttonPrintPreview.Visible = false;
                         this.toolStripSeparatorPrint.Visible = false;
                         this.separatorESC.Visible = false;
+                        this.labelSearchBarcode.Visible = false;
                         this.toolStripTopHead.Visible = false;
-                        this.toolStripTopRight.Visible = false;
-                        this.panelTop.Visible = false;
                         break;
                     case GlobalEnums.NmvnTaskID.Batch:
                         this.Size = new Size(1120, 680);
@@ -144,8 +145,12 @@ namespace TotalSmartCoding.Views.Mains
                 DateTime buildDate = new FileInfo(Assembly.GetExecutingAssembly().Location).LastWriteTime;
                 this.statusVersion.Text = "Version 1.0." + GlobalVariables.ConfigVersionID(GlobalVariables.ConfigID).ToString() + ", Date: " + buildDate.ToString("dd/MM/yyyy hh:mm:ss");
 
+                this.comboSearchBarcode.Text = this.searchPlaceHolder;
                 this.toolUserReferences.Visible = ContextAttributes.User.IsDatabaseAdmin;
                 this.statusUserDescription.Text = ContextAttributes.User.FullyQualifiedUserName;
+
+                this.panelTopRight.Width = (this.nmvnTaskID == GlobalEnums.NmvnTaskID.SmartCoding ? 10 : this.labelSearchBarcode.Width) + this.comboSearchBarcode.Width + this.buttonSearchBarcode.Width;
+                this.panelTop.Height = this.nmvnTaskID == GlobalEnums.NmvnTaskID.SmartCoding ? 61 : 39;
             }
             catch (Exception exception)
             {
@@ -368,7 +373,8 @@ namespace TotalSmartCoding.Views.Mains
         private void OpenView(Form openingView)
         {
             openingView.MdiParent = this; //childForm.Owner = this;
-            openingView.WindowState = FormWindowState.Maximized;
+            if (!(openingView is SmartCoding))
+                openingView.WindowState = FormWindowState.Maximized;
             openingView.Show();
         }
 
@@ -400,6 +406,9 @@ namespace TotalSmartCoding.Views.Mains
 
                     toolstripChild_PropertyChanged(toolstripChild, new PropertyChangedEventArgs("IsDirty"));
                 }
+
+                if (ActiveMdiChild != null)
+                    ActiveMdiChild.WindowState = FormWindowState.Maximized;
             }
             catch (Exception exception)
             {
@@ -439,6 +448,11 @@ namespace TotalSmartCoding.Views.Mains
 
                     this.buttonEscape.Enabled = closable;
                     this.buttonLoading.Enabled = loadable && readonlyMode;
+
+                    this.buttonNew.Visible = toolstripChild.DataInputable;
+                    this.buttonEdit.Visible = toolstripChild.DataInputable;
+                    this.buttonSave.Visible = toolstripChild.DataInputable;
+                    this.buttonDelete.Visible = toolstripChild.DataInputable;
 
                     this.buttonNew.Enabled = newable && readonlyMode;
                     this.buttonEdit.Enabled = editable && readonlyMode;
@@ -514,7 +528,13 @@ namespace TotalSmartCoding.Views.Mains
             try
             {
                 IToolstripChild toolstripChild = ActiveMdiChild as IToolstripChild;
-                if (toolstripChild != null) toolstripChild.ApplyFilter(this.comboFilterTexts.Text);
+                if (toolstripChild != null)
+                {
+                    if (sender.Equals(this.comboFilterTexts))
+                        toolstripChild.ApplyFilter(this.comboFilterTexts.Text);
+                    if (sender.Equals(this.comboDetailFilterTexts))
+                        toolstripChild.ApplyDetailFilter(this.comboDetailFilterTexts.Text);
+                }
             }
             catch (Exception exception)
             {
@@ -524,7 +544,10 @@ namespace TotalSmartCoding.Views.Mains
 
         private void buttonClearFilters_Click(object sender, EventArgs e)
         {
-            this.comboFilterTexts.Text = "";
+            if (sender.Equals(this.buttonClearFilters))
+                this.comboFilterTexts.Text = "";
+            if (sender.Equals(this.buttonClearDetailFilters))
+                this.comboDetailFilterTexts.Text = "";
         }
 
 
@@ -676,7 +699,7 @@ namespace TotalSmartCoding.Views.Mains
         #region Search barcode
         private void comboSearchBarcode_Enter(object sender, EventArgs e)
         {
-            if (this.comboSearchBarcode.Text == "Enter a whole or any section of barcode here ...")
+            if (this.comboSearchBarcode.Text == this.searchPlaceHolder)
             {
                 this.comboSearchBarcode.Text = "";
                 this.comboSearchBarcode.ForeColor = SystemColors.ControlText;
@@ -687,7 +710,7 @@ namespace TotalSmartCoding.Views.Mains
         {
             if (this.comboSearchBarcode.Text.Trim() == "")
             {
-                this.comboSearchBarcode.Text = "Enter a whole or any section of barcode here ...";
+                this.comboSearchBarcode.Text = this.searchPlaceHolder;
                 this.comboSearchBarcode.ForeColor = SystemColors.ControlDark;
             }
         }
@@ -702,7 +725,7 @@ namespace TotalSmartCoding.Views.Mains
             try
             {
                 this.comboSearchBarcode.Text = this.comboSearchBarcode.Text.Trim();
-                if (this.comboSearchBarcode.Text.Length > 0 && (this.comboSearchBarcode.Text != "Enter a whole or any section of barcode here ..."))
+                if (this.comboSearchBarcode.Text.Length > 0 && (this.comboSearchBarcode.Text != this.searchPlaceHolder))
                 {
                     if (this.comboSearchBarcode.Items.IndexOf(this.comboSearchBarcode.Text) == -1)
                         this.comboSearchBarcode.Items.Add(this.comboSearchBarcode.Text);

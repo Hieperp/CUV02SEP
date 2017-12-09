@@ -34,18 +34,21 @@
             this.imageListModuleMasterLarge = new System.Windows.Forms.ImageList(this.components);
             this.imageListTaskMaster = new System.Windows.Forms.ImageList(this.components);
             this.naviBarModuleMaster = new Guifreaks.Navisuite.NaviBar(this.components);
+            this.listViewTaskMaster = new System.Windows.Forms.ListView();
+            this.buttonNaviBarHeader = new System.Windows.Forms.Button();
             this.InvisibleMainMenuStripOfMDI = new System.Windows.Forms.MenuStrip();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripSplitButton3 = new System.Windows.Forms.ToolStripSplitButton();
             this.statusVersion = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripSplitButton2 = new System.Windows.Forms.ToolStripSplitButton();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripSplitButton4 = new System.Windows.Forms.ToolStripSplitButton();
             this.statusUserDescription = new System.Windows.Forms.ToolStripStatusLabel();
             this.panelTop = new System.Windows.Forms.Panel();
-            this.panelTopRight = new System.Windows.Forms.Panel();
             this.panelTopLeft = new System.Windows.Forms.Panel();
-            this.listViewTaskMaster = new System.Windows.Forms.ListView();
-            this.buttonNaviBarHeader = new System.Windows.Forms.Button();
             this.toolstripMain = new System.Windows.Forms.ToolStrip();
             this.buttonEscape = new System.Windows.Forms.ToolStripButton();
             this.separatorESC = new System.Windows.Forms.ToolStripSeparator();
@@ -63,10 +66,11 @@
             this.buttonApprove = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparatorVoid = new System.Windows.Forms.ToolStripSeparator();
             this.buttonVoid = new System.Windows.Forms.ToolStripButton();
+            this.panelTopRight = new System.Windows.Forms.Panel();
             this.toolStripTopRight = new System.Windows.Forms.ToolStrip();
             this.buttonSearchBarcode = new System.Windows.Forms.ToolStripButton();
             this.comboSearchBarcode = new System.Windows.Forms.ToolStripComboBox();
-            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
+            this.labelSearchBarcode = new System.Windows.Forms.ToolStripLabel();
             this.toolStripTopHead = new System.Windows.Forms.ToolStrip();
             this.toolUserReferences = new System.Windows.Forms.ToolStripButton();
             this.buttonLockedDate = new System.Windows.Forms.ToolStripButton();
@@ -79,16 +83,15 @@
             this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.comboFilterTexts = new System.Windows.Forms.ToolStripComboBox();
             this.buttonClearFilters = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
-            this.toolStripSplitButton3 = new System.Windows.Forms.ToolStripSplitButton();
-            this.toolStripSplitButton2 = new System.Windows.Forms.ToolStripSplitButton();
-            this.toolStripSplitButton4 = new System.Windows.Forms.ToolStripSplitButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.comboDetailFilterTexts = new System.Windows.Forms.ToolStripComboBox();
+            this.buttonClearDetailFilters = new System.Windows.Forms.ToolStripButton();
             this.naviBarModuleMaster.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.panelTop.SuspendLayout();
-            this.panelTopRight.SuspendLayout();
             this.panelTopLeft.SuspendLayout();
             this.toolstripMain.SuspendLayout();
+            this.panelTopRight.SuspendLayout();
             this.toolStripTopRight.SuspendLayout();
             this.toolStripTopHead.SuspendLayout();
             this.SuspendLayout();
@@ -196,102 +199,6 @@
             this.naviBarModuleMaster.ActiveBandChanged += new System.EventHandler(this.naviBarModuleMaster_ActiveBandChanged);
             this.naviBarModuleMaster.CollapsedChanged += new System.EventHandler(this.naviBarModuleMaster_CollapsedChanged);
             // 
-            // InvisibleMainMenuStripOfMDI
-            // 
-            this.InvisibleMainMenuStripOfMDI.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.InvisibleMainMenuStripOfMDI.Location = new System.Drawing.Point(0, 0);
-            this.InvisibleMainMenuStripOfMDI.Name = "InvisibleMainMenuStripOfMDI";
-            this.InvisibleMainMenuStripOfMDI.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.InvisibleMainMenuStripOfMDI.Size = new System.Drawing.Size(1745, 28);
-            this.InvisibleMainMenuStripOfMDI.TabIndex = 16;
-            this.InvisibleMainMenuStripOfMDI.Text = "MenuStrip";
-            this.InvisibleMainMenuStripOfMDI.Visible = false;
-            // 
-            // statusStrip
-            // 
-            this.statusStrip.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.statusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel,
-            this.toolStripSplitButton1,
-            this.toolStripStatusLabel1,
-            this.toolStripSplitButton3,
-            this.statusVersion,
-            this.toolStripSplitButton2,
-            this.toolStripStatusLabel2,
-            this.toolStripSplitButton4,
-            this.statusUserDescription});
-            this.statusStrip.Location = new System.Drawing.Point(0, 917);
-            this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-            this.statusStrip.Size = new System.Drawing.Size(1906, 26);
-            this.statusStrip.TabIndex = 28;
-            this.statusStrip.Text = "StatusStrip";
-            // 
-            // toolStripStatusLabel
-            // 
-            this.toolStripStatusLabel.Name = "toolStripStatusLabel";
-            this.toolStripStatusLabel.Size = new System.Drawing.Size(212, 21);
-            this.toolStripStatusLabel.Text = "Designed by Le Minh Hiep       ";
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(407, 21);
-            this.toolStripStatusLabel1.Text = " Cell phone: +84-0903-880-501     +84-0919-878-329            ";
-            // 
-            // statusVersion
-            // 
-            this.statusVersion.AutoSize = false;
-            this.statusVersion.Name = "statusVersion";
-            this.statusVersion.Size = new System.Drawing.Size(260, 21);
-            this.statusVersion.Text = "Version 1.91i Date: 19.Feb.2016 ";
-            this.statusVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // toolStripStatusLabel2
-            // 
-            this.toolStripStatusLabel2.AutoSize = false;
-            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(360, 21);
-            this.toolStripStatusLabel2.Text = "Email: hieple.erp@gmail.com;    hieperp@gmail.com;  ";
-            this.toolStripStatusLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // statusUserDescription
-            // 
-            this.statusUserDescription.AutoSize = false;
-            this.statusUserDescription.Name = "statusUserDescription";
-            this.statusUserDescription.Size = new System.Drawing.Size(348, 21);
-            this.statusUserDescription.Text = "Le Minh Hiep";
-            this.statusUserDescription.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // panelTop
-            // 
-            this.panelTop.Controls.Add(this.panelTopRight);
-            this.panelTop.Controls.Add(this.panelTopLeft);
-            this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelTop.Location = new System.Drawing.Point(0, 0);
-            this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(1906, 55);
-            this.panelTop.TabIndex = 73;
-            // 
-            // panelTopRight
-            // 
-            this.panelTopRight.Controls.Add(this.toolStripTopRight);
-            this.panelTopRight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelTopRight.Location = new System.Drawing.Point(1230, 0);
-            this.panelTopRight.Name = "panelTopRight";
-            this.panelTopRight.Size = new System.Drawing.Size(676, 55);
-            this.panelTopRight.TabIndex = 0;
-            // 
-            // panelTopLeft
-            // 
-            this.panelTopLeft.Controls.Add(this.toolStripTopHead);
-            this.panelTopLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelTopLeft.Location = new System.Drawing.Point(0, 0);
-            this.panelTopLeft.Name = "panelTopLeft";
-            this.panelTopLeft.Size = new System.Drawing.Size(1230, 55);
-            this.panelTopLeft.TabIndex = 1;
-            // 
             // listViewTaskMaster
             // 
             this.listViewTaskMaster.BackgroundImage = global::TotalSmartCoding.Properties.Resources.Blue2010Large;
@@ -326,10 +233,134 @@
             this.buttonNaviBarHeader.UseVisualStyleBackColor = true;
             this.buttonNaviBarHeader.Click += new System.EventHandler(this.buttonNaviBarHeader_Click);
             // 
+            // InvisibleMainMenuStripOfMDI
+            // 
+            this.InvisibleMainMenuStripOfMDI.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.InvisibleMainMenuStripOfMDI.Location = new System.Drawing.Point(0, 0);
+            this.InvisibleMainMenuStripOfMDI.Name = "InvisibleMainMenuStripOfMDI";
+            this.InvisibleMainMenuStripOfMDI.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
+            this.InvisibleMainMenuStripOfMDI.Size = new System.Drawing.Size(1906, 28);
+            this.InvisibleMainMenuStripOfMDI.TabIndex = 16;
+            this.InvisibleMainMenuStripOfMDI.Text = "MenuStrip";
+            this.InvisibleMainMenuStripOfMDI.Visible = false;
+            // 
+            // statusStrip
+            // 
+            this.statusStrip.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.statusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel,
+            this.toolStripSplitButton1,
+            this.toolStripStatusLabel1,
+            this.toolStripSplitButton3,
+            this.statusVersion,
+            this.toolStripSplitButton2,
+            this.toolStripStatusLabel2,
+            this.toolStripSplitButton4,
+            this.statusUserDescription});
+            this.statusStrip.Location = new System.Drawing.Point(0, 917);
+            this.statusStrip.Name = "statusStrip";
+            this.statusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
+            this.statusStrip.Size = new System.Drawing.Size(1906, 26);
+            this.statusStrip.TabIndex = 28;
+            this.statusStrip.Text = "StatusStrip";
+            // 
+            // toolStripStatusLabel
+            // 
+            this.toolStripStatusLabel.Name = "toolStripStatusLabel";
+            this.toolStripStatusLabel.Size = new System.Drawing.Size(212, 21);
+            this.toolStripStatusLabel.Text = "Designed by Le Minh Hiep       ";
+            // 
+            // toolStripSplitButton1
+            // 
+            this.toolStripSplitButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.None;
+            this.toolStripSplitButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton1.Image")));
+            this.toolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSplitButton1.Name = "toolStripSplitButton1";
+            this.toolStripSplitButton1.Size = new System.Drawing.Size(19, 24);
+            this.toolStripSplitButton1.Text = "toolStripSplitButton1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(407, 21);
+            this.toolStripStatusLabel1.Text = " Cell phone: +84-0903-880-501     +84-0919-878-329            ";
+            // 
+            // toolStripSplitButton3
+            // 
+            this.toolStripSplitButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.None;
+            this.toolStripSplitButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton3.Image")));
+            this.toolStripSplitButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSplitButton3.Name = "toolStripSplitButton3";
+            this.toolStripSplitButton3.Size = new System.Drawing.Size(19, 24);
+            this.toolStripSplitButton3.Text = "toolStripSplitButton3";
+            // 
+            // statusVersion
+            // 
+            this.statusVersion.AutoSize = false;
+            this.statusVersion.Name = "statusVersion";
+            this.statusVersion.Size = new System.Drawing.Size(260, 21);
+            this.statusVersion.Text = "Version 1.91i Date: 19.Feb.2016 ";
+            this.statusVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // toolStripSplitButton2
+            // 
+            this.toolStripSplitButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.None;
+            this.toolStripSplitButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton2.Image")));
+            this.toolStripSplitButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSplitButton2.Name = "toolStripSplitButton2";
+            this.toolStripSplitButton2.Size = new System.Drawing.Size(19, 24);
+            this.toolStripSplitButton2.Text = "toolStripSplitButton2";
+            // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.AutoSize = false;
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(360, 21);
+            this.toolStripStatusLabel2.Text = "Email: hieple.erp@gmail.com;    hieperp@gmail.com;  ";
+            this.toolStripStatusLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // toolStripSplitButton4
+            // 
+            this.toolStripSplitButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.None;
+            this.toolStripSplitButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton4.Image")));
+            this.toolStripSplitButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSplitButton4.Name = "toolStripSplitButton4";
+            this.toolStripSplitButton4.Size = new System.Drawing.Size(19, 24);
+            this.toolStripSplitButton4.Text = "toolStripSplitButton4";
+            // 
+            // statusUserDescription
+            // 
+            this.statusUserDescription.AutoSize = false;
+            this.statusUserDescription.Name = "statusUserDescription";
+            this.statusUserDescription.Size = new System.Drawing.Size(348, 21);
+            this.statusUserDescription.Text = "Le Minh Hiep";
+            this.statusUserDescription.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // panelTop
+            // 
+            this.panelTop.Controls.Add(this.panelTopLeft);
+            this.panelTop.Controls.Add(this.panelTopRight);
+            this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelTop.Location = new System.Drawing.Point(0, 55);
+            this.panelTop.Name = "panelTop";
+            this.panelTop.Size = new System.Drawing.Size(1906, 55);
+            this.panelTop.TabIndex = 73;
+            // 
+            // panelTopLeft
+            // 
+            this.panelTopLeft.Controls.Add(this.toolstripMain);
+            this.panelTopLeft.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelTopLeft.Location = new System.Drawing.Point(0, 0);
+            this.panelTopLeft.Name = "panelTopLeft";
+            this.panelTopLeft.Size = new System.Drawing.Size(1359, 55);
+            this.panelTopLeft.TabIndex = 1;
+            // 
             // toolstripMain
             // 
             this.toolstripMain.BackColor = System.Drawing.SystemColors.Control;
             this.toolstripMain.BackgroundImage = global::TotalSmartCoding.Properties.Resources.Toolbar_Image;
+            this.toolstripMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolstripMain.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolstripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.buttonEscape,
@@ -349,9 +380,9 @@
             this.toolStripSeparatorVoid,
             this.buttonVoid});
             this.toolstripMain.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.toolstripMain.Location = new System.Drawing.Point(0, 55);
+            this.toolstripMain.Location = new System.Drawing.Point(0, 0);
             this.toolstripMain.Name = "toolstripMain";
-            this.toolstripMain.Size = new System.Drawing.Size(1906, 55);
+            this.toolstripMain.Size = new System.Drawing.Size(1359, 55);
             this.toolstripMain.TabIndex = 10;
             this.toolstripMain.Text = "ToolStrip";
             // 
@@ -514,6 +545,15 @@
             this.buttonVoid.Text = "Void";
             this.buttonVoid.Click += new System.EventHandler(this.buttonVoid_Click);
             // 
+            // panelTopRight
+            // 
+            this.panelTopRight.Controls.Add(this.toolStripTopRight);
+            this.panelTopRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panelTopRight.Location = new System.Drawing.Point(1359, 0);
+            this.panelTopRight.Name = "panelTopRight";
+            this.panelTopRight.Size = new System.Drawing.Size(547, 55);
+            this.panelTopRight.TabIndex = 0;
+            // 
             // toolStripTopRight
             // 
             this.toolStripTopRight.BackgroundImage = global::TotalSmartCoding.Properties.Resources.Toolbar_Image;
@@ -523,11 +563,11 @@
             this.toolStripTopRight.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.buttonSearchBarcode,
             this.comboSearchBarcode,
-            this.toolStripLabel2});
+            this.labelSearchBarcode});
             this.toolStripTopRight.Location = new System.Drawing.Point(0, 0);
             this.toolStripTopRight.Name = "toolStripTopRight";
             this.toolStripTopRight.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStripTopRight.Size = new System.Drawing.Size(676, 55);
+            this.toolStripTopRight.Size = new System.Drawing.Size(547, 55);
             this.toolStripTopRight.TabIndex = 1;
             this.toolStripTopRight.Text = "toolStrip2";
             // 
@@ -549,23 +589,22 @@
             this.comboSearchBarcode.ForeColor = System.Drawing.SystemColors.ControlDark;
             this.comboSearchBarcode.Name = "comboSearchBarcode";
             this.comboSearchBarcode.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.comboSearchBarcode.Size = new System.Drawing.Size(418, 55);
-            this.comboSearchBarcode.Text = "Enter a whole or any section of barcode here ...";
+            this.comboSearchBarcode.Size = new System.Drawing.Size(350, 55);
+            this.comboSearchBarcode.Text = "Enter a whole or any section of barcode ...";
             this.comboSearchBarcode.Enter += new System.EventHandler(this.comboSearchBarcode_Enter);
             this.comboSearchBarcode.Leave += new System.EventHandler(this.comboSearchBarcode_Leave);
             this.comboSearchBarcode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboSearchBarcode_KeyDown);
             // 
-            // toolStripLabel2
+            // labelSearchBarcode
             // 
-            this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(94, 52);
-            this.toolStripLabel2.Text = "Quick Search";
+            this.labelSearchBarcode.Name = "labelSearchBarcode";
+            this.labelSearchBarcode.Size = new System.Drawing.Size(94, 52);
+            this.labelSearchBarcode.Text = "Quick Search";
             // 
             // toolStripTopHead
             // 
             this.toolStripTopHead.BackColor = System.Drawing.SystemColors.Control;
             this.toolStripTopHead.BackgroundImage = global::TotalSmartCoding.Properties.Resources.Toolbar_Image;
-            this.toolStripTopHead.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripTopHead.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStripTopHead.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolUserReferences,
@@ -578,11 +617,14 @@
             this.buttonLoading,
             this.toolStripSeparator13,
             this.comboFilterTexts,
-            this.buttonClearFilters});
+            this.buttonClearFilters,
+            this.toolStripSeparator1,
+            this.comboDetailFilterTexts,
+            this.buttonClearDetailFilters});
             this.toolStripTopHead.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.toolStripTopHead.Location = new System.Drawing.Point(0, 0);
             this.toolStripTopHead.Name = "toolStripTopHead";
-            this.toolStripTopHead.Size = new System.Drawing.Size(1230, 55);
+            this.toolStripTopHead.Size = new System.Drawing.Size(1906, 55);
             this.toolStripTopHead.TabIndex = 5;
             this.toolStripTopHead.Text = "toolStrip1";
             // 
@@ -686,41 +728,29 @@
             this.buttonClearFilters.ToolTipText = "Clear current filters";
             this.buttonClearFilters.Click += new System.EventHandler(this.buttonClearFilters_Click);
             // 
-            // toolStripSplitButton1
+            // toolStripSeparator1
             // 
-            this.toolStripSplitButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.None;
-            this.toolStripSplitButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton1.Image")));
-            this.toolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripSplitButton1.Name = "toolStripSplitButton1";
-            this.toolStripSplitButton1.Size = new System.Drawing.Size(19, 4);
-            this.toolStripSplitButton1.Text = "toolStripSplitButton1";
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 55);
             // 
-            // toolStripSplitButton3
+            // comboDetailFilterTexts
             // 
-            this.toolStripSplitButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.None;
-            this.toolStripSplitButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton3.Image")));
-            this.toolStripSplitButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripSplitButton3.Name = "toolStripSplitButton3";
-            this.toolStripSplitButton3.Size = new System.Drawing.Size(19, 4);
-            this.toolStripSplitButton3.Text = "toolStripSplitButton3";
+            this.comboDetailFilterTexts.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
+            this.comboDetailFilterTexts.Font = new System.Drawing.Font("Calibri", 10.2F);
+            this.comboDetailFilterTexts.Name = "comboDetailFilterTexts";
+            this.comboDetailFilterTexts.Size = new System.Drawing.Size(318, 55);
+            this.comboDetailFilterTexts.TextChanged += new System.EventHandler(this.comboFilterTexts_TextChanged);
             // 
-            // toolStripSplitButton2
+            // buttonClearDetailFilters
             // 
-            this.toolStripSplitButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.None;
-            this.toolStripSplitButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton2.Image")));
-            this.toolStripSplitButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripSplitButton2.Name = "toolStripSplitButton2";
-            this.toolStripSplitButton2.Size = new System.Drawing.Size(19, 4);
-            this.toolStripSplitButton2.Text = "toolStripSplitButton2";
-            // 
-            // toolStripSplitButton4
-            // 
-            this.toolStripSplitButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.None;
-            this.toolStripSplitButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton4.Image")));
-            this.toolStripSplitButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripSplitButton4.Name = "toolStripSplitButton4";
-            this.toolStripSplitButton4.Size = new System.Drawing.Size(19, 4);
-            this.toolStripSplitButton4.Text = "toolStripSplitButton4";
+            this.buttonClearDetailFilters.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.buttonClearDetailFilters.Image = global::TotalSmartCoding.Properties.Resources.Edit_clear;
+            this.buttonClearDetailFilters.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonClearDetailFilters.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonClearDetailFilters.Name = "buttonClearDetailFilters";
+            this.buttonClearDetailFilters.Size = new System.Drawing.Size(52, 52);
+            this.buttonClearDetailFilters.Text = "toolStripButton1";
+            this.buttonClearDetailFilters.Click += new System.EventHandler(this.buttonClearFilters_Click);
             // 
             // MasterMDI
             // 
@@ -728,8 +758,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1906, 943);
             this.Controls.Add(this.naviBarModuleMaster);
-            this.Controls.Add(this.toolstripMain);
             this.Controls.Add(this.panelTop);
+            this.Controls.Add(this.toolStripTopHead);
             this.Controls.Add(this.InvisibleMainMenuStripOfMDI);
             this.Controls.Add(this.statusStrip);
             this.IsMdiContainer = true;
@@ -744,12 +774,12 @@
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
             this.panelTop.ResumeLayout(false);
-            this.panelTopRight.ResumeLayout(false);
-            this.panelTopRight.PerformLayout();
             this.panelTopLeft.ResumeLayout(false);
             this.panelTopLeft.PerformLayout();
             this.toolstripMain.ResumeLayout(false);
             this.toolstripMain.PerformLayout();
+            this.panelTopRight.ResumeLayout(false);
+            this.panelTopRight.PerformLayout();
             this.toolStripTopRight.ResumeLayout(false);
             this.toolStripTopRight.PerformLayout();
             this.toolStripTopHead.ResumeLayout(false);
@@ -809,11 +839,14 @@
         private System.Windows.Forms.Panel panelTopRight;
         private System.Windows.Forms.ToolStrip toolStripTopRight;
         private System.Windows.Forms.ToolStripButton buttonSearchBarcode;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel2;
+        private System.Windows.Forms.ToolStripLabel labelSearchBarcode;
         private System.Windows.Forms.Panel panelTopLeft;
         private System.Windows.Forms.ToolStripComboBox comboSearchBarcode;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparatorVoid;
         private System.Windows.Forms.ToolStripButton buttonVoid;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripComboBox comboDetailFilterTexts;
+        private System.Windows.Forms.ToolStripButton buttonClearDetailFilters;
 
     }
 }

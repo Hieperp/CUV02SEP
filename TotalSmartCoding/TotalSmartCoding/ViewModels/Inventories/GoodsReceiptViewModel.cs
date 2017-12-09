@@ -1,4 +1,5 @@
-﻿using TotalDTO.Inventories;
+﻿using TotalDTO;
+using TotalDTO.Inventories;
 using TotalSmartCoding.ViewModels.Helpers;
 
 namespace TotalSmartCoding.ViewModels.Inventories
@@ -7,4 +8,8 @@ namespace TotalSmartCoding.ViewModels.Inventories
     {
     }
 
+    public class GoodsReceiptDetailAvailableViewModel : BaseDTO
+    {
+        public override bool DataInputable { get { return false; } }
+    }
 }

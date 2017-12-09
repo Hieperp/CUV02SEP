@@ -70,6 +70,7 @@ namespace TotalSmartCoding.Views.Mains
         public virtual bool Closable { get { return true; } }
         public virtual bool Loadable { get { return true; } }
 
+        public virtual bool DataInputable { get { return true; } }
         public virtual bool Newable { get { return true; } }
         public virtual bool Editable { get { return false; } }
         public virtual bool Deletable { get { return false; } }
@@ -272,6 +273,10 @@ namespace TotalSmartCoding.Views.Mains
         public void ApplyFilter(string searchText)
         {
             //CommonFormAction.OLVFilter(this.FastObjectListView, searchText);
+        }
+
+        public virtual void ApplyDetailFilter(string filterTexts)
+        {
         }
 
         #endregion

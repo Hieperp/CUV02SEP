@@ -36,11 +36,13 @@ namespace TotalSmartCoding.Libraries.Helpers
         void Print(GlobalEnums.PrintDestination printDestination);
 
         void ApplyFilter(string filterTexts);
+        void ApplyDetailFilter(string filterTexts);
 
 
         bool Closable { get; }
         bool Loadable { get; }
 
+        bool DataInputable { get; }
         bool Newable { get; }
         bool Editable { get; }
         bool IsDirty { get; }
