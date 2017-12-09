@@ -82,6 +82,8 @@ namespace TotalSmartCoding.Views.Commons.BinLocations
 
                     this.layoutLeft.ColumnStyles[this.layoutLeft.ColumnCount - 1].SizeType = SizeType.Absolute; this.layoutLeft.ColumnStyles[this.layoutLeft.ColumnCount - 1].Width = 15;
                 }
+                else
+                    this.panelLeft.Visible = false;
                 #endregion TabLeft
 
                 #region TabCenter
