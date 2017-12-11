@@ -33,6 +33,7 @@ using TotalModel.Models;
 using TotalDTO.Inventories;
 using BrightIdeasSoftware;
 using TotalSmartCoding.Libraries.StackedHeaders;
+using TotalSmartCoding.ViewModels.Helpers;
 
 
 namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
@@ -125,22 +126,23 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
             }
         }
 
-        Binding bindingEntryDate;
-        Binding bindingReference;
+        Binding bindingEntryDate;        
         Binding bindingWarehouseName;
+        Binding bindingVehicleDriver;
         Binding bindingDescription;
         Binding bindingRemarks;
         Binding bindingCaption;
 
         Binding bindingStorekeeperID;
+        Binding bindingForkliftDriverID;
 
         protected override void InitializeCommonControlBinding()
         {
             base.InitializeCommonControlBinding();
 
-            this.bindingEntryDate = this.dateTimexEntryDate.DataBindings.Add("Value", this.goodsReceiptViewModel, CommonExpressions.PropertyName<GoodsReceiptDTO>(p => p.EntryDate), true, DataSourceUpdateMode.OnPropertyChanged);
-            this.bindingReference = this.textexReference.DataBindings.Add("Text", this.goodsReceiptViewModel, CommonExpressions.PropertyName<GoodsReceiptDTO>(p => p.Reference), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingEntryDate = this.dateTimexEntryDate.DataBindings.Add("Value", this.goodsReceiptViewModel, CommonExpressions.PropertyName<GoodsReceiptDTO>(p => p.EntryDate), true, DataSourceUpdateMode.OnPropertyChanged);            
             this.bindingWarehouseName = this.textexWarehouseName.DataBindings.Add("Text", this.goodsReceiptViewModel, CommonExpressions.PropertyName<GoodsReceiptDTO>(p => p.WarehouseName), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingVehicleDriver = this.textexVehicleDriver.DataBindings.Add("Text", this.goodsReceiptViewModel, CommonExpressions.PropertyName<GoodsReceiptDTO>(p => p.VehicleDriver), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingDescription = this.textexDescription.DataBindings.Add("Text", this.goodsReceiptViewModel, CommonExpressions.PropertyName<GoodsReceiptDTO>(p => p.Description), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingRemarks = this.textexRemarks.DataBindings.Add("Text", this.goodsReceiptViewModel, CommonExpressions.PropertyName<GoodsReceiptDTO>(p => p.Remarks), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingCaption = this.labelCaption.DataBindings.Add("Text", this.goodsReceiptViewModel, CommonExpressions.PropertyName<GoodsReceiptDTO>(p => p.Caption));
@@ -152,14 +154,20 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
             this.combexStorekeeperID.ValueMember = CommonExpressions.PropertyName<EmployeeBase>(p => p.EmployeeID);
             this.bindingStorekeeperID = this.combexStorekeeperID.DataBindings.Add("SelectedValue", this.goodsReceiptViewModel, CommonExpressions.PropertyName<GoodsReceiptViewModel>(p => p.StorekeeperID), true, DataSourceUpdateMode.OnPropertyChanged);
 
-            this.bindingEntryDate.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
-            this.bindingReference.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.combexForkliftDriverID.DataSource = employeeAPIs.GetEmployeeBases(ContextAttributes.User.UserID, (int)this.goodsReceiptViewModel.NMVNTaskID, (int)GlobalEnums.RoleID.Logistic);
+            this.combexForkliftDriverID.DisplayMember = CommonExpressions.PropertyName<EmployeeBase>(p => p.Name);
+            this.combexForkliftDriverID.ValueMember = CommonExpressions.PropertyName<EmployeeBase>(p => p.EmployeeID);
+            this.bindingForkliftDriverID = this.combexForkliftDriverID.DataBindings.Add("SelectedValue", this.goodsReceiptViewModel, CommonExpressions.PropertyName<GoodsReceiptViewModel>(p => p.ForkliftDriverID), true, DataSourceUpdateMode.OnPropertyChanged);
+
+            this.bindingEntryDate.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);            
             this.bindingWarehouseName.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingVehicleDriver.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingDescription.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingRemarks.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingCaption.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
 
             this.bindingStorekeeperID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingForkliftDriverID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.fastGoodsReceiptIndex.AboutToCreateGroups += fastGoodsReceiptIndex_AboutToCreateGroups;
 
             this.fastGoodsReceiptIndex.ShowGroups = true;
@@ -272,5 +280,14 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
                 this.buttonExpandTop.Image = this.naviGroupTop.Expanded ? Resources.chevron : Resources.chevron_expand;
             }
         }
+
+        protected override PrintViewModel InitPrintViewModel()
+        {
+            PrintViewModel printViewModel = base.InitPrintViewModel();
+            printViewModel.ReportPath = "GoodsReceiptSheet";
+            printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("GoodsReceiptID", this.goodsReceiptViewModel.GoodsReceiptID.ToString()));
+            return printViewModel;
+        }
+
     }
 }

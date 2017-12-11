@@ -20,6 +20,9 @@ namespace TotalDTO.Inventories
     {
         public override GlobalEnums.NmvnTaskID NMVNTaskID { get { return GlobalEnums.NmvnTaskID.GoodsIssue; } }
 
+        public override bool Printable { get { return true; } }
+        public override bool PrintVisible { get { return true; } }
+
         public GoodsIssuePrimitiveDTO() { this.Initialize(); }
 
         public override void Init()
@@ -29,9 +32,6 @@ namespace TotalDTO.Inventories
         }
 
         private void Initialize() { this.LoadingStart = DateTime.Now; this.LoadingCompletion = DateTime.Now; }
-
-        public override bool Printable { get { return true; } }
-        public override bool PrintVisible { get { return true; } }
 
         public override int GetID() { return this.GoodsIssueID; }
         public void SetID(int id) { this.GoodsIssueID = id; }

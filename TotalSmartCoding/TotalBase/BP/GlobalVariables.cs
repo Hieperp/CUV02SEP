@@ -128,16 +128,16 @@ namespace TotalBase
         public static int ConfigVersionID(int configID)
         {
             if (configID == (int)GlobalVariables.FillingLine.None)
-                return 61;
+                return 63;
             else if (configID == (int)GlobalVariables.FillingLine.Pickup)
-                return 61;
+                return 63;
             else if (configID == (int)GlobalVariables.FillingLine.GoodsIssue)
-                return 61;
+                return 63;
 
 
 
             else if (configID == (int)GlobalVariables.FillingLine.Smallpack || configID == (int)GlobalVariables.FillingLine.Pail || configID == (int)GlobalVariables.FillingLine.Drum)
-                return 60; //PAY ATTENTION WHEN CHANGE THIS VALUE BECAUSE: THIS IS USING ON THE FILLING LINES
+                return 62; //PAY ATTENTION WHEN CHANGE THIS VALUE BECAUSE: THIS IS USING ON THE FILLING LINES
             else
                 return -1;
         }

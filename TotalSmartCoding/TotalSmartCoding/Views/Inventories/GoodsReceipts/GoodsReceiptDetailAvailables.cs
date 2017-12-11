@@ -21,6 +21,7 @@ using TotalSmartCoding.ViewModels.Helpers;
 using TotalSmartCoding.ViewModels.Inventories;
 using TotalSmartCoding.Controllers.APIs.Commons;
 using TotalCore.Repositories.Commons;
+using BrightIdeasSoftware;
 
 
 namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
@@ -35,7 +36,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
             : base()
         {
             InitializeComponent();
-            
+
             this.toolstripChild = this.toolStripChildForm;
 
             this.goodsReceiptAPIs = new GoodsReceiptAPIs(CommonNinject.Kernel.Get<IGoodsReceiptAPIRepository>());
@@ -71,7 +72,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
                 ExceptionHandlers.ShowExceptionMessageBox(this, exception);
             }
         }
-        
+
         Binding bindingLocationID;
 
         protected override void InitializeCommonControlBinding()
@@ -87,13 +88,33 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
             this.bindingLocationID = this.comboLocationID.ComboBox.DataBindings.Add("SelectedValue", this, "LocationID", true, DataSourceUpdateMode.OnPropertyChanged);
 
             this.bindingLocationID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+
+            this.fastAvailablePallets.AboutToCreateGroups += fastAvailableItems_AboutToCreateGroups;
+            this.fastAvailableCartons.AboutToCreateGroups += fastAvailableItems_AboutToCreateGroups;
+            this.fastAvailablePallets.ShowGroups = true;
+            this.fastAvailableCartons.ShowGroups = true;
+            this.fastAvailablePallets.Sort(this.olvPalletCommodityCode);
+            this.fastAvailableCartons.Sort(this.olvCartonCommodityCode);
+        }
+
+        private void fastAvailableItems_AboutToCreateGroups(object sender, BrightIdeasSoftware.CreateGroupsEventArgs e)
+        {
+            if (e.Groups != null && e.Groups.Count > 0)
+            {
+                foreach (OLVGroup olvGroup in e.Groups)
+                {
+                    olvGroup.TitleImage = sender.Equals(this.fastAvailablePallets) ? "Pallet-32-O" : "Carton-32";
+                    olvGroup.Subtitle = "List count: " + olvGroup.Contents.Count.ToString();
+                }
+            }
         }
 
         private int locationID;
         public int LocationID
         {
             get { return this.locationID; }
-            set {
+            set
+            {
                 if (this.locationID != value)
                 {
                     this.locationID = value;
@@ -129,13 +150,22 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
             this.customTabBatch.TabPages[1].Text = "Available " + this.fastAvailableCartons.GetItemCount().ToString("N0") + " carton" + (this.fastAvailableCartons.GetItemCount() > 1 ? "s" : "") + ", Total quantity: " + (totalQuantityAvailables != null ? ((decimal)totalQuantityAvailables).ToString("N0") : "0") + ", Total volume: " + (totalLineVolumeAvailables != null ? ((decimal)totalLineVolumeAvailables).ToString("N2") : "0") + "       ";
         }
 
+        protected override PrintViewModel InitPrintViewModel()
+        {
+            PrintViewModel printViewModel = base.InitPrintViewModel();
+            printViewModel.ReportPath = "AvailableItems";
+            printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("LocationID", this.LocationID.ToString()));
+            printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("LocationCode", this.comboLocationID.Text));
+            return printViewModel;
+        }
+
         private void buttonWarehouseJournals_Click(object sender, EventArgs e)
         {
             try
             {
                 PrintViewModel printViewModel = new PrintViewModel();
                 printViewModel.ReportPath = "WarehouseJournals";
-                printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("LocationID", ContextAttributes.User.LocationID.ToString()));
+                printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("LocationID", this.LocationID.ToString()));
 
                 SsrsViewer ssrsViewer = new SsrsViewer(printViewModel);
                 ssrsViewer.Show();

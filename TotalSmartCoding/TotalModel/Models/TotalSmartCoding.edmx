@@ -416,6 +416,8 @@
           <Property Name="EditedDate" Type="datetime" Nullable="false" />
           <Property Name="Approved" Type="bit" Nullable="false" />
           <Property Name="ApprovedDate" Type="datetime" />
+          <Property Name="ForkliftDriverID" Type="int" Nullable="false" />
+          <Property Name="VehicleDriver" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="GoodsReceiptTypes">
           <Key>
@@ -5954,6 +5956,8 @@
           <NavigationProperty Name="Warehouse" Relationship="TotalSmartCodingModel.FK_GoodsReceipts_Warehouses" FromRole="GoodsReceipt" ToRole="Warehouse" />
           <NavigationProperty Name="Location" Relationship="TotalSmartCodingModel.FK_GoodsReceipts_Locations" FromRole="GoodsReceipt" ToRole="Location" />
           <NavigationProperty Name="WarehouseAdjustment" Relationship="TotalSmartCodingModel.FK_GoodsReceipts_WarehouseAdjustments" FromRole="GoodsReceipt" ToRole="WarehouseAdjustment" />
+          <Property Name="ForkliftDriverID" Type="Int32" Nullable="false" />
+          <Property Name="VehicleDriver" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_GoodsReceiptDetails_BinLocations">
           <End Type="TotalSmartCodingModel.BinLocation" Role="BinLocation" Multiplicity="1" />
@@ -8698,6 +8702,8 @@
           <EntitySetMapping Name="GoodsReceipts">
             <EntityTypeMapping TypeName="TotalSmartCodingModel.GoodsReceipt">
               <MappingFragment StoreEntitySet="GoodsReceipts">
+                <ScalarProperty Name="VehicleDriver" ColumnName="VehicleDriver" />
+                <ScalarProperty Name="ForkliftDriverID" ColumnName="ForkliftDriverID" />
                 <ScalarProperty Name="ApprovedDate" ColumnName="ApprovedDate" />
                 <ScalarProperty Name="Approved" ColumnName="Approved" />
                 <ScalarProperty Name="EditedDate" ColumnName="EditedDate" />

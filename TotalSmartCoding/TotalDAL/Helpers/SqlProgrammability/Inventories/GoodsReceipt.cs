@@ -48,7 +48,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             this.GoodsReceiptToggleApproved();
 
             this.GoodsReceiptInitReference();
-
+            this.GetGoodsReceiptSheet();
 
             this.GetGoodsReceiptDetailAvailables();
         }
@@ -345,6 +345,39 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
         }
 
         #endregion
+
+
+        private void GetGoodsReceiptSheet()
+        {
+            string queryString;
+
+            queryString = " @GoodsReceiptID Int " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+            queryString = queryString + "    BEGIN " + "\r\n";
+
+            queryString = queryString + "       SELECT      GoodsReceipts.GoodsReceiptID, GoodsReceipts.EntryDate, GoodsReceipts.Reference, GoodsReceipts.GoodsReceiptTypeID, GoodsReceiptTypes.Name AS GoodsReceiptTypeName, GoodsReceipts.PrimaryReferences, GoodsReceipts.LocationID, Locations.OfficialName AS LocationName, GoodsReceipts.StorekeeperID, Storekeepers.Name AS StorekeeperName, GoodsReceipts.ForkliftDriverID, ForkliftDrivers.Name AS ForkliftDriverName, " + "\r\n";
+            queryString = queryString + "                   GoodsReceipts.GoodsIssueID, GoodsIssues.Vehicle, GoodsReceipts.VehicleDriver, GoodsReceipts.CreatedDate AS LoadingStart, GoodsReceipts.ApprovedDate AS LoadingCompletion, GoodsReceipts.Description, GoodsReceipts.Remarks, " + "\r\n";
+            queryString = queryString + "                   GoodsReceiptDetails.WarehouseID, GoodsReceiptDetails.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, Commodities.OfficialName AS CommodityOfficialName, Commodities.PackageSize, 1 AS PackageQuantity, Commodities.PackageVolume, GoodsReceiptDetails.BatchID, Batches.Code AS BatchCode, Batches.EntryDate AS BatchEntryDate, GoodsReceiptDetails.BinLocationID, BinLocations.Code AS BinLocationCode, GoodsReceiptDetails.PalletID, Pallets.Code AS PalletCode, GoodsReceiptDetails.CartonID, Cartons.Code AS CartonCode, PalletCartons.Code AS PalletCartonCode, " + "\r\n";
+            queryString = queryString + "                   CASE WHEN NOT GoodsReceiptDetails.CartonID IS NULL THEN Cartons.Code ELSE Pallets.Code END AS LineBarcode, CASE WHEN NOT GoodsReceiptDetails.CartonID IS NULL THEN Cartons.Code ELSE PalletCartons.Code END AS AllCartonCode, GoodsReceiptDetails.Quantity, GoodsReceiptDetails.LineVolume, GoodsReceipts.TotalQuantity, GoodsReceipts.TotalLineVolume " + "\r\n";
+            queryString = queryString + "       FROM        GoodsReceipts " + "\r\n";
+            queryString = queryString + "                   INNER JOIN GoodsReceiptTypes ON GoodsReceipts.GoodsReceiptID = @GoodsReceiptID AND GoodsReceipts.GoodsReceiptTypeID = GoodsReceiptTypes.GoodsReceiptTypeID " + "\r\n";
+            queryString = queryString + "                   INNER JOIN Locations ON GoodsReceipts.LocationID = Locations.LocationID " + "\r\n";
+            queryString = queryString + "                   INNER JOIN Employees AS Storekeepers ON GoodsReceipts.StorekeeperID = Storekeepers.EmployeeID " + "\r\n";
+            queryString = queryString + "                   INNER JOIN Employees AS ForkliftDrivers ON GoodsReceipts.ForkliftDriverID = ForkliftDrivers.EmployeeID " + "\r\n";
+            queryString = queryString + "                   INNER JOIN GoodsReceiptDetails ON GoodsReceipts.GoodsReceiptID = GoodsReceiptDetails.GoodsReceiptID " + "\r\n";
+            queryString = queryString + "                   INNER JOIN Batches ON GoodsReceiptDetails.BatchID = Batches.BatchID " + "\r\n";
+            queryString = queryString + "                   INNER JOIN Commodities ON GoodsReceiptDetails.CommodityID = Commodities.CommodityID " + "\r\n";
+            queryString = queryString + "                   INNER JOIN BinLocations ON GoodsReceiptDetails.BinLocationID = BinLocations.BinLocationID " + "\r\n";
+            queryString = queryString + "                   LEFT JOIN Pallets ON GoodsReceiptDetails.PalletID = Pallets.PalletID " + "\r\n";
+            queryString = queryString + "                   LEFT JOIN Cartons PalletCartons ON Pallets.PalletID = PalletCartons.PalletID " + "\r\n";
+            queryString = queryString + "                   LEFT JOIN Cartons ON GoodsReceiptDetails.CartonID = Cartons.CartonID " + "\r\n";
+            queryString = queryString + "                   LEFT JOIN GoodsIssues ON GoodsReceipts.GoodsIssueID = GoodsIssues.GoodsIssueID " + "\r\n";
+            queryString = queryString + "    END " + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("GetGoodsReceiptSheet", queryString);
+        }
+
 
 
         #region Generate Pending

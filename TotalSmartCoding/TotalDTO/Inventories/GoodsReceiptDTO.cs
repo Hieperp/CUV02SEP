@@ -20,6 +20,9 @@ namespace TotalDTO.Inventories
     {
         public override GlobalEnums.NmvnTaskID NMVNTaskID { get { return GlobalEnums.NmvnTaskID.GoodsReceipt; } }
 
+        public override bool Printable { get { return true; } }
+        public override bool PrintVisible { get { return true; } }
+
         public override int GetID() { return this.GoodsReceiptID; }
         public void SetID(int id) { this.GoodsReceiptID = id; }
 
@@ -108,13 +111,25 @@ namespace TotalDTO.Inventories
             set { ApplyPropertyChange<GoodsReceiptPrimitiveDTO, int>(ref this.storekeeperID, o => o.StorekeeperID, value); }
         }
 
+        private int forkliftDriverID;
+        [DefaultValue(null)]
+        public int ForkliftDriverID
+        {
+            get { return this.forkliftDriverID; }
+            set { ApplyPropertyChange<GoodsIssuePrimitiveDTO, int>(ref this.forkliftDriverID, o => o.ForkliftDriverID, value); }
+        }
 
-        
-
+        private string vehicleDriver;
+        [DefaultValue(null)]
+        public string VehicleDriver
+        {
+            get { return this.vehicleDriver; }
+            set { ApplyPropertyChange<GoodsIssuePrimitiveDTO, string>(ref this.vehicleDriver, o => o.VehicleDriver, value); }
+        }
 
         public override string Caption
         {
-            get { return this.GoodsReceiptTypeName + ": " + (this.PickupID != null ? this.PickupReference : this.PrimaryReferences) + "             " + this.WarehouseName + (this.WarehouseName != ""? ", ":"") + this.EntryDate.ToString() + "             Total Quantity: " + this.TotalQuantity.ToString("N0") + ",    Total Volume: " + this.TotalLineVolume.ToString("N2"); }
+            get { return this.Reference + " for " + this.GoodsReceiptTypeName + ": " + (this.PickupID != null ? this.PickupReference : this.PrimaryReferences) + "             " + this.WarehouseName + (this.WarehouseName != ""? ", ":"") + this.EntryDate.ToString() + "             Total Quantity: " + this.TotalQuantity.ToString("N0") + ",    Total Volume: " + this.TotalLineVolume.ToString("N2"); }
         }
 
         public override void PerformPresaveRule()
@@ -130,7 +145,8 @@ namespace TotalDTO.Inventories
         {
             List<ValidationRule> validationRules = base.CreateRules();
             validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<GoodsReceiptPrimitiveDTO>(p => p.WarehouseID), "Vui lòng chọn kho.", delegate { return (this.WarehouseID != null && this.WarehouseID > 0); }));
-            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<GoodsReceiptPrimitiveDTO>(p => p.StorekeeperID), "Vui lòng chọn nhân viên kho.", delegate { return (this.StorekeeperID != null && this.StorekeeperID > 0); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<GoodsReceiptPrimitiveDTO>(p => p.StorekeeperID), "Vui lòng chọn người lập.", delegate { return (this.StorekeeperID != null && this.StorekeeperID > 0); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<GoodsIssuePrimitiveDTO>(p => p.ForkliftDriverID), "Vui lòng chọn thủ kho.", delegate { return (this.ForkliftDriverID != null && this.ForkliftDriverID > 0); }));
 
             return validationRules;
         }
