@@ -22,8 +22,8 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
         {
             this.GetCommodityIndexes();
 
-            //this.CommodityEditable(); 
-            //this.CommoditySaveRelative();
+            this.CommodityEditable();
+            this.CommoditySaveRelative();
 
             this.GetCommodityBases();
             this.SearchCommodities();
@@ -55,26 +55,6 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             string queryString = " @EntityID int, @SaveRelativeOption int " + "\r\n"; //SaveRelativeOption: 1: Update, -1:Undo
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
-            queryString = queryString + "    BEGIN " + "\r\n";
-
-            queryString = queryString + "       IF (@SaveRelativeOption = 1) " + "\r\n";
-            queryString = queryString + "           BEGIN " + "\r\n";
-
-            queryString = queryString + "               INSERT INTO CommodityWarehouses (CommodityID, WarehouseID, WarehouseTaskID, EntryDate, Remarks, InActive) " + "\r\n";
-            queryString = queryString + "               SELECT      CommodityID, 46 AS WarehouseID, " + (int)GlobalEnums.NmvnTaskID.SalesOrder + " AS WarehouseTaskID, GETDATE(), '', 0 FROM Commodities WHERE CommodityID = @EntityID " + "\r\n";
-
-            queryString = queryString + "               INSERT INTO CommodityWarehouses (CommodityID, WarehouseID, WarehouseTaskID, EntryDate, Remarks, InActive) " + "\r\n";
-            queryString = queryString + "               SELECT      Commodities.CommodityID, Warehouses.WarehouseID, " + (int)GlobalEnums.NmvnTaskID.DeliveryAdvice + " AS WarehouseTaskID, GETDATE(), '', 0 FROM Commodities INNER JOIN Warehouses ON Commodities.CommodityID = @EntityID AND Commodities.CommodityCategoryID NOT IN (4, 5, 7, 9, 10, 11, 12) AND Commodities.CommodityCategoryID = Warehouses.WarehouseCategoryID " + "\r\n";
-
-            queryString = queryString + "               INSERT INTO CommodityWarehouses (CommodityID, WarehouseID, WarehouseTaskID, EntryDate, Remarks, InActive) " + "\r\n";
-            queryString = queryString + "               SELECT      CommodityID, 82 AS WarehouseID, " + (int)GlobalEnums.NmvnTaskID.DeliveryAdvice + " AS WarehouseTaskID, GETDATE(), '', 0 FROM Commodities WHERE CommodityID = @EntityID AND CommodityCategoryID IN (4, 5, 7, 9, 10, 11, 12) " + "\r\n";
-
-            queryString = queryString + "           END " + "\r\n";
-
-            queryString = queryString + "       ELSE " + "\r\n"; //(@SaveRelativeOption = -1) 
-            queryString = queryString + "           DELETE      CommodityWarehouses WHERE CommodityID = @EntityID " + "\r\n";
-
-            queryString = queryString + "    END " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("CommoditySaveRelative", queryString);
         }
@@ -82,10 +62,21 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
 
         private void CommodityEditable()
         {
-            string[] queryArray = new string[0];
+            string[] queryArray = new string[13];
 
-            //queryArray[0] = " SELECT TOP 1 @FoundEntity = CommodityID FROM Commodities WHERE CommodityID = @EntityID AND (InActive = 1 OR InActivePartial = 1)"; //Don't allow approve after void
-            //queryArray[1] = " SELECT TOP 1 @FoundEntity = CommodityID FROM GoodsIssueDetails WHERE CommodityID = @EntityID ";
+            queryArray[0] = " SELECT TOP 1 @FoundEntity = CommodityID FROM Commodities WHERE CommodityID = @EntityID AND InActive = 1 ";
+            queryArray[1] = " SELECT TOP 1 @FoundEntity = CommodityID FROM Batches WHERE CommodityID = @EntityID ";
+            queryArray[2] = " SELECT TOP 1 @FoundEntity = CommodityID FROM TransferOrderDetails WHERE CommodityID = @EntityID ";
+            queryArray[3] = " SELECT TOP 1 @FoundEntity = CommodityID FROM SalesOrderDetails WHERE CommodityID = @EntityID ";
+            queryArray[4] = " SELECT TOP 1 @FoundEntity = CommodityID FROM DeliveryAdviceDetails WHERE CommodityID = @EntityID ";
+            queryArray[5] = " SELECT TOP 1 @FoundEntity = CommodityID FROM WarehouseAdjustmentDetails WHERE CommodityID = @EntityID ";
+            queryArray[6] = " SELECT TOP 1 @FoundEntity = CommodityID FROM PickupDetails WHERE CommodityID = @EntityID ";
+            queryArray[7] = " SELECT TOP 1 @FoundEntity = CommodityID FROM GoodsReceiptDetails WHERE CommodityID = @EntityID ";
+            queryArray[8] = " SELECT TOP 1 @FoundEntity = CommodityID FROM GoodsIssueDetails WHERE CommodityID = @EntityID ";
+            queryArray[9] = " SELECT TOP 1 @FoundEntity = CommodityID FROM GoodsIssueTransferDetails WHERE CommodityID = @EntityID ";
+            queryArray[10] = " SELECT TOP 1 @FoundEntity = CommodityID FROM Pallets WHERE CommodityID = @EntityID ";
+            queryArray[11] = " SELECT TOP 1 @FoundEntity = CommodityID FROM Cartons WHERE CommodityID = @EntityID ";
+            queryArray[12] = " SELECT TOP 1 @FoundEntity = CommodityID FROM Packs WHERE CommodityID = @EntityID ";
 
             this.totalSmartCodingEntities.CreateProcedureToCheckExisting("CommodityEditable", queryArray);
         }
