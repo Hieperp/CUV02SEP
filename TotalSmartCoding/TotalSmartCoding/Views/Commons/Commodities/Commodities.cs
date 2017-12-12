@@ -68,8 +68,8 @@ namespace TotalSmartCoding.Views.Commons.Commodities
                 this.customTabCenter.DisplayStyle = TabStyle.VisualStudio;
                 this.customTabCenter.Font = this.panelCenter.Font;
 
-                this.customTabCenter.TabPages.Add("tabCenterAA", "Bin Information      ");
-                this.customTabCenter.TabPages.Add("tabCenterBB", "API Code, Shelf Life   ");
+                this.customTabCenter.TabPages.Add("tabCenterAA", "Commodity Details          ");
+                this.customTabCenter.TabPages.Add("tabCenterBB", "API Code, Remarks        ");
 
                 this.customTabCenter.TabPages[0].Controls.Add(this.layoutTop);
                 this.customTabCenter.TabPages[1].Controls.Add(this.layoutRight);
@@ -96,6 +96,7 @@ namespace TotalSmartCoding.Views.Commons.Commodities
 
         Binding bindingPackageSize;
         Binding bindingAPICode;
+        Binding bindingFillingLineIDs;
         Binding bindingRemarks;
 
         Binding bindingVolume;
@@ -116,9 +117,10 @@ namespace TotalSmartCoding.Views.Commons.Commodities
 
             this.bindingPackageSize = this.textexPackageSize.DataBindings.Add("Text", this.commodityViewModel, CommonExpressions.PropertyName<CommodityDTO>(p => p.PackageSize), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingAPICode = this.textexAPICode.DataBindings.Add("Text", this.commodityViewModel, CommonExpressions.PropertyName<CommodityDTO>(p => p.APICode), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingFillingLineIDs = this.textexFillingLineIDs.DataBindings.Add("Text", this.commodityViewModel, CommonExpressions.PropertyName<CommodityDTO>(p => p.FillingLineIDs), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingRemarks = this.textexRemarks.DataBindings.Add("Text", this.commodityViewModel, CommonExpressions.PropertyName<CommodityDTO>(p => p.Remarks), true, DataSourceUpdateMode.OnPropertyChanged);
 
-            this.bindingVolume = this.numericVolume.DataBindings.Add("Value", this.commodityViewModel, CommonExpressions.PropertyName<CommodityDTO>(p => p.Volume), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingVolume = this.numericVolume.DataBindings.Add("Value", this.commodityViewModel, CommonExpressions.PropertyName<CommodityDTO>(p => p.Volume), false, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingPackageVolume = this.numericPackageVolume.DataBindings.Add("Value", this.commodityViewModel, CommonExpressions.PropertyName<CommodityDTO>(p => p.PackageVolume), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingPackPerCarton = this.numericPackPerCarton.DataBindings.Add("Value", this.commodityViewModel, CommonExpressions.PropertyName<CommodityDTO>(p => p.PackPerCarton), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingCartonPerPallet = this.numericCartonPerPallet.DataBindings.Add("Value", this.commodityViewModel, CommonExpressions.PropertyName<CommodityDTO>(p => p.CartonPerPallet), true, DataSourceUpdateMode.OnPropertyChanged);
@@ -136,6 +138,7 @@ namespace TotalSmartCoding.Views.Commons.Commodities
 
             this.bindingPackageSize.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingAPICode.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingFillingLineIDs.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingRemarks.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
 
             this.bindingVolume.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
