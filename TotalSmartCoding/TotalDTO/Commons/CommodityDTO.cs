@@ -192,6 +192,7 @@ namespace TotalDTO.Commons
         {
             List<ValidationRule> validationRules = base.CreateRules();
             validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<CommodityPrimitiveDTO>(p => p.Code), "Vui lòng nhập mã mặt hàng.", delegate { return (this.Code != null && this.Code.Trim().Length == 10); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<CommodityPrimitiveDTO>(p => p.APICode), "Vui lòng nhập tên mặt hàng.", delegate { return (this.APICode == null || this.APICode.Trim() == "" || this.APICode.Trim().Length == 6); }));
             validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<CommodityPrimitiveDTO>(p => p.Name), "Vui lòng nhập tên mặt hàng.", delegate { return (this.Name != null && this.Name.Trim() != ""); }));
             validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<CommodityPrimitiveDTO>(p => p.OfficialName), "Vui lòng nhập tên đầy đủ.", delegate { return (this.OfficialName != null && this.OfficialName.Trim() != ""); }));
             validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<CommodityPrimitiveDTO>(p => p.CommodityCategoryID), "Vui lòng chọn phân loại mặt hàng.", delegate { return (this.CommodityCategoryID > 0); }));
