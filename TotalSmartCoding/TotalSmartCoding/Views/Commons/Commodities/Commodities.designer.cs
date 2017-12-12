@@ -489,10 +489,10 @@
             // 
             this.textexAPICode.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexAPICode.Editable = true;
-            this.textexAPICode.Location = new System.Drawing.Point(38, 49);
-            this.textexAPICode.Margin = new System.Windows.Forms.Padding(8, 1, 1, 1);
+            this.textexAPICode.Location = new System.Drawing.Point(35, 49);
+            this.textexAPICode.Margin = new System.Windows.Forms.Padding(5, 1, 1, 1);
             this.textexAPICode.Name = "textexAPICode";
-            this.textexAPICode.Size = new System.Drawing.Size(488, 28);
+            this.textexAPICode.Size = new System.Drawing.Size(491, 28);
             this.textexAPICode.TabIndex = 82;
             // 
             // label1
