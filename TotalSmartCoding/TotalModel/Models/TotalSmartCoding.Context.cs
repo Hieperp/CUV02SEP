@@ -66,6 +66,8 @@ namespace TotalModel.Models
         public virtual DbSet<TransferOrder> TransferOrders { get; set; }
         public virtual DbSet<WarehouseAdjustmentDetail> WarehouseAdjustmentDetails { get; set; }
         public virtual DbSet<WarehouseAdjustment> WarehouseAdjustments { get; set; }
+        public virtual DbSet<CommodityCategory> CommodityCategories { get; set; }
+        public virtual DbSet<CommodityType> CommodityTypes { get; set; }
     
         public virtual ObjectResult<Nullable<int>> GetAccessLevel(Nullable<int> userID, Nullable<int> nMVNTaskID, Nullable<int> organizationalUnitID)
         {
@@ -2092,6 +2094,28 @@ namespace TotalModel.Models
                 new ObjectParameter("SaveRelativeOption", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CommoditySaveRelative", entityIDParameter, saveRelativeOptionParameter);
+        }
+    
+        public virtual ObjectResult<CommodityCategoryBase> GetCommodityCategoryBases()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CommodityCategoryBase>("GetCommodityCategoryBases");
+        }
+    
+        public virtual ObjectResult<CommodityCategoryIndex> GetCommodityCategoryIndexes(Nullable<int> userID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
+        {
+            var userIDParameter = userID.HasValue ?
+                new ObjectParameter("UserID", userID) :
+                new ObjectParameter("UserID", typeof(int));
+    
+            var fromDateParameter = fromDate.HasValue ?
+                new ObjectParameter("FromDate", fromDate) :
+                new ObjectParameter("FromDate", typeof(System.DateTime));
+    
+            var toDateParameter = toDate.HasValue ?
+                new ObjectParameter("ToDate", toDate) :
+                new ObjectParameter("ToDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CommodityCategoryIndex>("GetCommodityCategoryIndexes", userIDParameter, fromDateParameter, toDateParameter);
         }
     }
 }

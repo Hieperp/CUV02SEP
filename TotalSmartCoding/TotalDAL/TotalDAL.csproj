@@ -52,6 +52,7 @@
     <Compile Include="Helpers\SqlProgrammability\Commons\BinLocation.cs" />
     <Compile Include="Helpers\SqlProgrammability\Commons\AccessControl.cs" />
     <Compile Include="Helpers\SqlProgrammability\Commons\Commodity.cs" />
+    <Compile Include="Helpers\SqlProgrammability\Commons\CommodityCategory.cs" />
     <Compile Include="Helpers\SqlProgrammability\Commons\Customer.cs" />
     <Compile Include="Helpers\SqlProgrammability\Commons\CustomerCategory.cs" />
     <Compile Include="Helpers\SqlProgrammability\Commons\CustomerType.cs" />
@@ -83,6 +84,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Repositories\Commons\BinLocationRepository.cs" />
+    <Compile Include="Repositories\Commons\CommodityCategoryRepository.cs" />
     <Compile Include="Repositories\Commons\CommodityRepository.cs" />
     <Compile Include="Repositories\Commons\CustomerCategoryRepository.cs" />
     <Compile Include="Repositories\Commons\CustomerRepository.cs" />

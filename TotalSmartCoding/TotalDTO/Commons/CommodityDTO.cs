@@ -6,6 +6,8 @@ using System.ComponentModel.DataAnnotations;
 
 using TotalModel;
 using TotalBase.Enums;
+using TotalModel.Helpers;
+using TotalBase;
 
 namespace TotalDTO.Commons
 {
@@ -13,10 +15,27 @@ namespace TotalDTO.Commons
     {
         public override GlobalEnums.NmvnTaskID NMVNTaskID { get { return GlobalEnums.NmvnTaskID.Commodity; } }
 
+        public CommodityPrimitiveDTO() { this.Initialize(); }
+
+        public override void Init()
+        {
+            base.Init();
+            this.Initialize();
+        }
+
+        private void Initialize() { this.Volume = 0; this.PackPerCarton = 0; this.CartonPerPallet = 0; this.Shelflife = 0; }
+
+
         public override int GetID() { return this.CommodityID; }
         public void SetID(int id) { this.CommodityID = id; }
 
-        public int CommodityID { get; set; }
+        private int commodityID;
+        [DefaultValue(0)]
+        public int CommodityID
+        {
+            get { return this.commodityID; }
+            set { ApplyPropertyChange<CommodityPrimitiveDTO, int>(ref this.commodityID, o => o.CommodityID, value); }
+        }
 
         private string code;
         [DefaultValue(null)]
@@ -26,13 +45,15 @@ namespace TotalDTO.Commons
             set { ApplyPropertyChange<CommodityPrimitiveDTO, string>(ref this.code, o => o.Code, value); }
         }
 
-        private string officialCode;
-        [DefaultValue(null)]
-        public string OfficialCode
-        {
-            get { return this.officialCode; }
-            set { ApplyPropertyChange<CommodityPrimitiveDTO, string>(ref this.officialCode, o => o.OfficialCode, value); }
-        }
+        public string OfficialCode { get { return TotalBase.CommonExpressions.AlphaNumericString(this.Code); } }
+
+        //private string officialCode;
+        //[DefaultValue(null)]
+        //public string OfficialCode
+        //{
+        //    get { return this.officialCode; }
+        //    set { ApplyPropertyChange<CommodityPrimitiveDTO, string>(ref this.officialCode, o => o.OfficialCode, value); }
+        //}
 
         private string name;
         [DefaultValue(null)]
@@ -51,7 +72,7 @@ namespace TotalDTO.Commons
         }
 
         private Nullable<int> commodityTypeID;
-        [DefaultValue(null)]
+        [DefaultValue(1)] //DEFAULT 1, NOT IMPLEMET HERE
         public Nullable<int> CommodityTypeID
         {
             get { return this.commodityTypeID; }
@@ -108,7 +129,7 @@ namespace TotalDTO.Commons
         }
 
         private decimal volume;
-        [DefaultValue(0)]
+        //[DefaultValue(0.0)]
         [Range(1, 99999999999, ErrorMessage = "Volume không hợp lệ")]
         public virtual decimal Volume
         {
@@ -116,17 +137,19 @@ namespace TotalDTO.Commons
             set { ApplyPropertyChange<CommodityPrimitiveDTO, decimal>(ref this.volume, o => o.Volume, Math.Round(value, (int)GlobalEnums.rndVolume)); }
         }
 
-        private decimal packageVolume;
-        [DefaultValue(0)]
-        [Range(1, 99999999999, ErrorMessage = "PackageVolume không hợp lệ")]
-        public virtual decimal PackageVolume
-        {
-            get { return this.packageVolume; }
-            set { ApplyPropertyChange<CommodityPrimitiveDTO, decimal>(ref this.packageVolume, o => o.PackageVolume, Math.Round(value, (int)GlobalEnums.rndVolume)); }
-        }
+        public decimal PackageVolume { get { return Math.Round(this.Volume * this.PackPerCarton, (int)GlobalEnums.rndVolume); } }
+
+        //private decimal packageVolume;
+        ////[DefaultValue(0.0)]
+        //[Range(1, 99999999999, ErrorMessage = "PackageVolume không hợp lệ")]
+        //public virtual decimal PackageVolume
+        //{
+        //    get { return this.packageVolume; }
+        //    set { ApplyPropertyChange<CommodityPrimitiveDTO, decimal>(ref this.packageVolume, o => o.PackageVolume, Math.Round(value, (int)GlobalEnums.rndVolume)); }
+        //}
 
         private decimal weight;
-        [DefaultValue(0)]
+        //[DefaultValue(0.0)]
         [Range(1, 99999999999, ErrorMessage = "Weight không hợp lệ")]
         public virtual decimal Weight
         {
@@ -164,6 +187,23 @@ namespace TotalDTO.Commons
         }
 
         public Nullable<bool> Discontinue { get; set; }
+
+        protected override List<ValidationRule> CreateRules()
+        {
+            List<ValidationRule> validationRules = base.CreateRules();
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<CommodityPrimitiveDTO>(p => p.Code), "Vui lòng nhập mã mặt hàng.", delegate { return (this.Code != null && this.Code.Trim() != ""); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<CommodityPrimitiveDTO>(p => p.Name), "Vui lòng nhập tên mặt hàng.", delegate { return (this.Name != null && this.Name.Trim() != ""); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<CommodityPrimitiveDTO>(p => p.OfficialName), "Vui lòng nhập tên đầy đủ.", delegate { return (this.OfficialName != null && this.OfficialName.Trim() != ""); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<CommodityPrimitiveDTO>(p => p.CommodityCategoryID), "Vui lòng chọn phân loại mặt hàng.", delegate { return (this.CommodityCategoryID > 0); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<CommodityPrimitiveDTO>(p => p.PackageSize), "Vui lòng nhập quy cách đóng gói.", delegate { return (this.PackageSize != null && this.PackageSize.Trim() != ""); }));
+
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<CommodityPrimitiveDTO>(p => p.Volume), "Vui lòng nhập volume.", delegate { return (this.Volume > 0); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<CommodityPrimitiveDTO>(p => p.PackageVolume), "Vui lòng nhập volume.", delegate { return (this.PackageVolume > 0); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<CommodityPrimitiveDTO>(p => p.PackPerCarton), "Vui lòng nhập volume.", delegate { return (this.PackPerCarton > 0); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<CommodityPrimitiveDTO>(p => p.CartonPerPallet), "Vui lòng nhập volume.", delegate { return (this.CartonPerPallet > 0); }));
+
+            return validationRules;
+        }
     }
 
     public class CommodityDTO : CommodityPrimitiveDTO

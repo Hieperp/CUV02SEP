@@ -52,6 +52,7 @@
     <Compile Include="Helpers\ISqlRoutines.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Commons\IBinLocationRepository.cs" />
+    <Compile Include="Repositories\Commons\ICommodityCategoryRepository.cs" />
     <Compile Include="Repositories\Commons\ICommodityRepository.cs" />
     <Compile Include="Repositories\Commons\ICustomerCategoryRepository.cs" />
     <Compile Include="Repositories\Commons\ICustomerRepository.cs" />

@@ -653,6 +653,21 @@ namespace TotalModel.Models
 
     }
 
+    public partial class CommodityCategory : IPrimitiveEntity, IBaseEntity
+    {
+        public int GetID() { return this.CommodityCategoryID; }
+
+        public int LocationID { get; set; }
+
+        public int UserID { get; set; }
+        public int PreparedPersonID { get; set; }
+        public int OrganizationalUnitID { get; set; }
+
+        public System.DateTime CreatedDate { get; set; }
+        public System.DateTime EditedDate { get; set; }
+    }
+
+
     public partial class CommodityIndex : IBaseIndex
     {
         public int Id { get { return this.CommodityID; } }

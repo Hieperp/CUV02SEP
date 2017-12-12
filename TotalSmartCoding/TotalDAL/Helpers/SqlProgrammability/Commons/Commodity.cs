@@ -41,8 +41,9 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
-            queryString = queryString + "       SELECT      Commodities.CommodityID, Commodities.Code, Commodities.Name " + "\r\n";
-            queryString = queryString + "       FROM        Commodities " + "\r\n";
+            queryString = queryString + "       SELECT      Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, CommodityCategories.CommodityCategoryID, CommodityCategories.Name AS CommodityCategoryName, Commodities.PackageSize, Commodities.PackageVolume, Commodities.PackPerCarton, Commodities.CartonPerPallet, Commodities.Shelflife, Commodities.InActive, Commodities.Remarks " + "\r\n";
+            queryString = queryString + "       FROM        CommodityCategories " + "\r\n";
+            queryString = queryString + "                   INNER JOIN Commodities ON CommodityCategories.CommodityCategoryID = Commodities.CommodityCategoryID " + "\r\n";
 
             queryString = queryString + "    END " + "\r\n";
 

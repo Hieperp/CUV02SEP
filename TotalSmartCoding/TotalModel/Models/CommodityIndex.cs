@@ -14,7 +14,16 @@ namespace TotalModel.Models
     public partial class CommodityIndex
     {
         public int CommodityID { get; set; }
-        public string Code { get; set; }
-        public string Name { get; set; }
+        public string CommodityCode { get; set; }
+        public string CommodityName { get; set; }
+        public int CommodityCategoryID { get; set; }
+        public string CommodityCategoryName { get; set; }
+        public string PackageSize { get; set; }
+        public decimal PackageVolume { get; set; }
+        public int PackPerCarton { get; set; }
+        public int CartonPerPallet { get; set; }
+        public int Shelflife { get; set; }
+        public string Remarks { get; set; }
+        public Nullable<bool> InActive { get; set; }
     }
 }

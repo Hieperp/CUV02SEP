@@ -141,6 +141,12 @@
         <AssociationConnector Association="TotalSmartCodingModel.FK_WarehouseAdjustments_WarehouseAdjustmentTypes" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_WarehouseAdjustments_Warehouses" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_WarehouseAdjustments_Warehouses1" />
+        <EntityTypeShape EntityType="TotalSmartCodingModel.CommodityCategory" Width="1.5" PointX="0.75" PointY="31.5" />
+        <EntityTypeShape EntityType="TotalSmartCodingModel.CommodityType" Width="1.5" PointX="0.75" PointY="28.25" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_Commodities_CommodityCategories" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_Commodities_CommodityTypes" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_CommodityCategories_CommodityCategories" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_CommodityTypes_CommodityTypes" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

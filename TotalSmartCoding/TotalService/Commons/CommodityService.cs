@@ -8,7 +8,7 @@ namespace TotalService.Commons
     public class CommodityService : GenericService<Commodity, CommodityDTO, CommodityPrimitiveDTO>, ICommodityService
     {
         public CommodityService(ICommodityRepository commodityRepository)
-            : base(commodityRepository, "CommodityPostSaveValidate", "CommoditySaveRelative")
+            : base(commodityRepository, null, "CommoditySaveRelative")
         {
         }
     }
