@@ -7,8 +7,8 @@ namespace TotalService.Commons
 {
     public class BinLocationService : GenericService<BinLocation, BinLocationDTO, BinLocationPrimitiveDTO>, IBinLocationService
     {
-        public BinLocationService(IBinLocationRepository customerRepository)
-            : base(customerRepository, "BinLocationPostSaveValidate", "BinLocationSaveRelative")
+        public BinLocationService(IBinLocationRepository binLocationRepository)
+            : base(binLocationRepository, "BinLocationPostSaveValidate", "BinLocationSaveRelative")
         {
         }
     }

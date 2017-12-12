@@ -8,8 +8,8 @@ namespace TotalSmartCoding.Controllers.Commons
 {
     public class BinLocationController : GenericSimpleController<BinLocation, BinLocationDTO, BinLocationPrimitiveDTO, BinLocationViewModel>
     {
-        public BinLocationController(IBinLocationService customerService, BinLocationViewModel customerViewModel)
-            : base(customerService, customerViewModel)
+        public BinLocationController(IBinLocationService binLocationService, BinLocationViewModel binLocationViewModel)
+            : base(binLocationService, binLocationViewModel)
         {
         }
     }

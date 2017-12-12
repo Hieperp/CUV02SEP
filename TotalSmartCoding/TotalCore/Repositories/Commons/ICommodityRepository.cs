@@ -4,9 +4,8 @@ using TotalModel.Models;
 
 namespace TotalCore.Repositories.Commons
 {
-    public interface ICommodityRepository
+    public interface ICommodityRepository : IGenericRepository<Commodity>
     {
-        
     }
 
     public interface ICommodityAPIRepository : IGenericAPIRepository

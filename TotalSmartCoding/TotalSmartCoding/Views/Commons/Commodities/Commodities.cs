@@ -33,16 +33,16 @@ using BrightIdeasSoftware;
 using TotalSmartCoding.Libraries.StackedHeaders;
 
 
-namespace TotalSmartCoding.Views.Commons.BinLocations
+namespace TotalSmartCoding.Views.Commons.Commodities
 {
-    public partial class BinLocations : BaseView
+    public partial class Commodities : BaseView
     {
         private CustomTabControl customTabCenter;
 
         private BinLocationAPIs binLocationAPIs;
         private BinLocationViewModel binLocationViewModel { get; set; }
 
-        public BinLocations()
+        public Commodities()
             : base()
         {
             InitializeComponent();
@@ -104,17 +104,17 @@ namespace TotalSmartCoding.Views.Commons.BinLocations
             this.bindingCode = this.textexCode.DataBindings.Add("Text", this.binLocationViewModel, CommonExpressions.PropertyName<BinLocationDTO>(p => p.Code), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingName = this.textexName.DataBindings.Add("Text", this.binLocationViewModel, CommonExpressions.PropertyName<BinLocationDTO>(p => p.Name), true, DataSourceUpdateMode.OnPropertyChanged);
             
-            this.bindingContactInfo = this.textexContactInfo.DataBindings.Add("Text", this.binLocationViewModel, CommonExpressions.PropertyName<BinLocationDTO>(p => p.ContactInfo), true, DataSourceUpdateMode.OnPropertyChanged);
-            this.bindingVATCode = this.textexVATCode.DataBindings.Add("Text", this.binLocationViewModel, CommonExpressions.PropertyName<BinLocationDTO>(p => p.VATCode), true, DataSourceUpdateMode.OnPropertyChanged);
-            this.bindingAttentionName = this.textexAttentionName.DataBindings.Add("Text", this.binLocationViewModel, CommonExpressions.PropertyName<BinLocationDTO>(p => p.AttentionName), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingContactInfo = this.textexPackageSize.DataBindings.Add("Text", this.binLocationViewModel, CommonExpressions.PropertyName<BinLocationDTO>(p => p.ContactInfo), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingVATCode = this.textexOfficialName.DataBindings.Add("Text", this.binLocationViewModel, CommonExpressions.PropertyName<BinLocationDTO>(p => p.VATCode), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingAttentionName = this.textexAPICode.DataBindings.Add("Text", this.binLocationViewModel, CommonExpressions.PropertyName<BinLocationDTO>(p => p.AttentionName), true, DataSourceUpdateMode.OnPropertyChanged);
 
             this.bindingRemarks = this.textexRemarks.DataBindings.Add("Text", this.binLocationViewModel, CommonExpressions.PropertyName<BinLocationDTO>(p => p.Remarks), true, DataSourceUpdateMode.OnPropertyChanged);
 
             WarehouseAPIs warehouseAPIs = new WarehouseAPIs(CommonNinject.Kernel.Get<IWarehouseAPIRepository>());
-            this.combexWarehouseID.DataSource = warehouseAPIs.GetWarehouseBases();
-            this.combexWarehouseID.DisplayMember = CommonExpressions.PropertyName<WarehouseBase>(p => p.Name);
-            this.combexWarehouseID.ValueMember = CommonExpressions.PropertyName<WarehouseBase>(p => p.WarehouseID);
-            this.bindingWarehouseID = this.combexWarehouseID.DataBindings.Add("SelectedValue", this.binLocationViewModel, CommonExpressions.PropertyName<BinLocationViewModel>(p => p.WarehouseID), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.combexCommodityCategoryID.DataSource = warehouseAPIs.GetWarehouseBases();
+            this.combexCommodityCategoryID.DisplayMember = CommonExpressions.PropertyName<WarehouseBase>(p => p.Name);
+            this.combexCommodityCategoryID.ValueMember = CommonExpressions.PropertyName<WarehouseBase>(p => p.WarehouseID);
+            this.bindingWarehouseID = this.combexCommodityCategoryID.DataBindings.Add("SelectedValue", this.binLocationViewModel, CommonExpressions.PropertyName<BinLocationViewModel>(p => p.WarehouseID), true, DataSourceUpdateMode.OnPropertyChanged);
 
             this.bindingCode.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingName.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
