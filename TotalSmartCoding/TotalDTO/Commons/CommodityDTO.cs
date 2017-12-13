@@ -14,6 +14,7 @@ namespace TotalDTO.Commons
     public class CommodityPrimitiveDTO : BaseDTO, IPrimitiveEntity, IPrimitiveDTO
     {
         public override GlobalEnums.NmvnTaskID NMVNTaskID { get { return GlobalEnums.NmvnTaskID.Commodity; } }
+        public override bool NoApprovable { get { return true; } }
 
         public CommodityPrimitiveDTO() { this.Initialize(); }
 

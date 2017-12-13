@@ -222,6 +222,7 @@ namespace TotalSmartCoding.Views.Mains
             {
                 this.buttonNaviBarHeader.Text = this.naviBarModuleMaster.ActiveBand.Text;
 
+                this.listViewTaskMaster.SelectedItems.Clear();
                 this.listViewTaskMaster.Parent = null;
                 this.naviBarModuleMaster.ActiveBand.ClientArea.Controls.Add(this.listViewTaskMaster);
                 this.listViewTaskMaster.Visible = true;

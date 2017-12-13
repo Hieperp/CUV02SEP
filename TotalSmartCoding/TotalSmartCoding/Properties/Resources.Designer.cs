@@ -1893,6 +1893,36 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap esc_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("esc-1-1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Esc32 {
+            get {
+                object obj = ResourceManager.GetObject("Esc32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Esc32_X {
+            get {
+                object obj = ResourceManager.GetObject("Esc32-X", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Everaldo_Crystal_Clear_App_key_bindings {
             get {
                 object obj = ResourceManager.GetObject("Everaldo-Crystal-Clear-App-key-bindings", resourceCulture);
@@ -2326,6 +2356,56 @@ namespace TotalSmartCoding.Properties {
         internal static System.Drawing.Bitmap Icons {
             get {
                 object obj = ResourceManager.GetObject("Icons", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_esc_30 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-esc-30", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_esc_30_IOS {
+            get {
+                object obj = ResourceManager.GetObject("icons8-esc-30-IOS", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Icons8_esc_32 {
+            get {
+                object obj = ResourceManager.GetObject("Icons8-esc-32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_esc_32_Ios {
+            get {
+                object obj = ResourceManager.GetObject("icons8-esc-32-Ios", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_esc_32_IOS_R {
+            get {
+                object obj = ResourceManager.GetObject("icons8-esc-32-IOS-R", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

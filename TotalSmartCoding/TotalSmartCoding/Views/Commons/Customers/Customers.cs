@@ -69,6 +69,7 @@ namespace TotalSmartCoding.Views.Commons.Customers
                 #region TabLeft
                 this.customTabLeft = new CustomTabControl();
                 this.customTabLeft.DisplayStyle = TabStyle.VisualStudio;
+                this.customTabLeft.Font = this.panelLeft.Font;
 
                 this.customTabLeft.TabPages.Add("tabLeftAA", "General  ");
                 this.customTabLeft.TabPages[0].BackColor = this.panelLeft.BackColor;
@@ -84,6 +85,7 @@ namespace TotalSmartCoding.Views.Commons.Customers
                 #region TabCenter
                 this.customTabCenter = new CustomTabControl();
                 this.customTabCenter.DisplayStyle = TabStyle.VisualStudio;
+                this.customTabCenter.Font = this.panelCenter.Font;
 
                 this.customTabCenter.TabPages.Add("tabCenterAA", "Customer Information ");
 

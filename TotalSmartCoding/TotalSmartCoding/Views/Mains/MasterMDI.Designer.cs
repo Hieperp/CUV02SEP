@@ -390,12 +390,12 @@
             // 
             this.buttonEscape.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.buttonEscape.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonEscape.Image = global::TotalSmartCoding.Properties.Resources.DataEsc;
+            this.buttonEscape.Image = global::TotalSmartCoding.Properties.Resources.icons8_esc_30_IOS;
             this.buttonEscape.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.buttonEscape.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonEscape.Name = "buttonEscape";
-            this.buttonEscape.Size = new System.Drawing.Size(52, 52);
-            this.buttonEscape.Text = "ESC";
+            this.buttonEscape.Size = new System.Drawing.Size(34, 52);
+            this.buttonEscape.Text = "Escape";
             this.buttonEscape.Click += new System.EventHandler(this.buttonEscape_Click);
             // 
             // separatorInputData

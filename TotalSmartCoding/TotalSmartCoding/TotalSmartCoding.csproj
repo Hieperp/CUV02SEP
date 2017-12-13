@@ -1113,6 +1113,14 @@
     <None Include="Resources\Void-32.png" />
     <None Include="Resources\Void-24.png" />
     <None Include="Resources\Void-16.png" />
+    <None Include="Resources\icons8-esc-30.png" />
+    <None Include="Resources\esc-1-1.png" />
+    <None Include="Resources\Esc32.png" />
+    <None Include="Resources\Icons8-esc-32.png" />
+    <None Include="Resources\Esc32-X.png" />
+    <None Include="Resources\icons8-esc-30-IOS.png" />
+    <None Include="Resources\icons8-esc-32-Ios.png" />
+    <None Include="Resources\icons8-esc-32-IOS-R.png" />
     <Content Include="SmartCodingSolution.ico" />
     <None Include="Resources\Yellow-cross.ico" />
     <None Include="Resources\White-Pallet.ico" />
