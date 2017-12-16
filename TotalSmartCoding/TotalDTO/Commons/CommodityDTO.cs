@@ -122,7 +122,7 @@ namespace TotalDTO.Commons
         }
 
         private string fillingLineIDs;
-        [DefaultValue(null)]
+        [DefaultValue("0")]
         public string FillingLineIDs
         {
             get { return this.fillingLineIDs; }
@@ -198,6 +198,7 @@ namespace TotalDTO.Commons
             validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<CommodityPrimitiveDTO>(p => p.OfficialName), "Vui lòng nhập tên đầy đủ.", delegate { return (this.OfficialName != null && this.OfficialName.Trim() != ""); }));
             validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<CommodityPrimitiveDTO>(p => p.CommodityCategoryID), "Vui lòng chọn phân loại mặt hàng.", delegate { return (this.CommodityCategoryID > 0); }));
             validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<CommodityPrimitiveDTO>(p => p.PackageSize), "Vui lòng nhập quy cách đóng gói.", delegate { return (this.PackageSize != null && this.PackageSize.Trim() != ""); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<CommodityPrimitiveDTO>(p => p.FillingLineIDs), "Vui lòng nhập mã dây chuyền đóng gói.", delegate { return (this.FillingLineIDs != null && this.FillingLineIDs.Trim() != ""); }));
 
             validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<CommodityPrimitiveDTO>(p => p.Volume), "Vui lòng nhập volume.", delegate { return (this.Volume > 0); }));
             validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<CommodityPrimitiveDTO>(p => p.PackageVolume), "Vui lòng nhập volume.", delegate { return (this.PackageVolume > 0); }));
