@@ -697,7 +697,7 @@
             this.Controls.Add(this.panelCenter);
             this.Controls.Add(this.toolStripChildForm);
             this.Name = "Commodities";
-            this.Text = "Bin Locations";
+            this.Text = "Commodities";
             this.Controls.SetChildIndex(this.toolStripChildForm, 0);
             this.Controls.SetChildIndex(this.panelCenter, 0);
             this.Controls.SetChildIndex(this.fastCommodityIndex, 0);
