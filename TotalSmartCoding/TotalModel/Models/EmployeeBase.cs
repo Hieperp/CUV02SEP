@@ -16,5 +16,6 @@ namespace TotalModel.Models
         public int EmployeeID { get; set; }
         public string Code { get; set; }
         public string Name { get; set; }
+        public Nullable<int> TeamID { get; set; }
     }
 }

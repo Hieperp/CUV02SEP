@@ -112,6 +112,13 @@ namespace TotalDTO.Sales
             set { ApplyPropertyChange<SalesOrderPrimitiveDTO, Nullable<int>>(ref this.salespersonID, o => o.SalespersonID, value); }
         }
 
+        private Nullable<int> teamID;
+        [DefaultValue(null)]
+        public Nullable<int> TeamID
+        {
+            get { return this.teamID; }
+            set { ApplyPropertyChange<SalesOrderPrimitiveDTO, Nullable<int>>(ref this.teamID, o => o.TeamID, value); }
+        }
 
 
         public override string Caption
@@ -132,6 +139,7 @@ namespace TotalDTO.Sales
             validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<SalesOrderPrimitiveDTO>(p => p.CustomerID), "Vui lòng chọn khách hàng.", delegate { return (this.CustomerID != null && this.CustomerID > 0); }));
             validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<SalesOrderPrimitiveDTO>(p => p.ReceiverID), "Vui lòng chọn đơn vị nhận hàng.", delegate { return (this.ReceiverID != null && this.ReceiverID > 0); }));
             validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<SalesOrderPrimitiveDTO>(p => p.SalespersonID), "Vui lòng chọn nhân viên phụ trách khách hàng.", delegate { return (this.SalespersonID != null && this.SalespersonID > 0); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<SalesOrderPrimitiveDTO>(p => p.TeamID), "Vui lòng kiểm tra team của nhân viên tiếp thị.", delegate { return (this.TeamID != null && this.TeamID > 0); }));
 
             return validationRules;
         }

@@ -200,6 +200,11 @@ namespace TotalSmartCoding.Views.Sales.DeliveryAdvices
             base.CommonControl_BindingComplete(sender, e);
             if (this.EditableMode)
             {
+                if (sender.Equals(this.bindingSalespersonID) && this.combexSalespersonID.SelectedItem != null)
+                {
+                    EmployeeBase customerBase = (EmployeeBase)this.combexSalespersonID.SelectedItem;
+                    this.deliveryAdviceViewModel.TeamID = customerBase.TeamID;
+                }
                 if (sender.Equals(this.bindingCustomerID) && this.combexCustomerID.SelectedItem != null)
                 {
                     CustomerBase customerBase = (CustomerBase)this.combexCustomerID.SelectedItem;

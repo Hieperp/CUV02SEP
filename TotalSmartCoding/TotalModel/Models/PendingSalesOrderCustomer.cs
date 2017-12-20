@@ -22,5 +22,6 @@ namespace TotalModel.Models
         public int ReceiverID { get; set; }
         public string ReceiverCode { get; set; }
         public string ReceiverName { get; set; }
+        public Nullable<int> TeamID { get; set; }
     }
 }

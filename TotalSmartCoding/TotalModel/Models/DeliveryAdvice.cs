@@ -51,6 +51,7 @@ namespace TotalModel.Models
         public int StorekeeperID { get; set; }
         public string Vehicle { get; set; }
         public string VehicleDriver { get; set; }
+        public int TeamID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DeliveryAdviceDetail> DeliveryAdviceDetails { get; set; }
@@ -60,5 +61,6 @@ namespace TotalModel.Models
         public virtual Customer Customer1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GoodsIssue> GoodsIssues { get; set; }
+        public virtual Team Team { get; set; }
     }
 }

@@ -51,7 +51,6 @@ namespace TotalModel.Models
     
         public virtual CustomerCategory CustomerCategory { get; set; }
         public virtual CustomerType CustomerType { get; set; }
-        public virtual Employee Employee { get; set; }
         public virtual EntireTerritory EntireTerritory { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DeliveryAdviceDetail> DeliveryAdviceDetails { get; set; }
@@ -73,5 +72,6 @@ namespace TotalModel.Models
         public virtual ICollection<GoodsIssue> GoodsIssues { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GoodsIssue> GoodsIssues1 { get; set; }
+        public virtual Employee Employee { get; set; }
     }
 }

@@ -12,28 +12,26 @@ namespace TotalModel.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Employee
+    public partial class Team
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Employee()
+        public Team()
         {
-            this.Customers = new HashSet<Customer>();
+            this.DeliveryAdvices = new HashSet<DeliveryAdvice>();
+            this.Employees = new HashSet<Employee>();
+            this.SalesOrders = new HashSet<SalesOrder>();
         }
     
-        public int EmployeeID { get; set; }
+        public int TeamID { get; set; }
         public string Code { get; set; }
         public string Name { get; set; }
-        public string Title { get; set; }
-        public Nullable<int> TeamID { get; set; }
-        public int LocationID { get; set; }
-        public string Birthday { get; set; }
-        public string Telephone { get; set; }
-        public string Address { get; set; }
         public string Remarks { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Customer> Customers { get; set; }
-        public virtual Location Location { get; set; }
-        public virtual Team Team { get; set; }
+        public virtual ICollection<DeliveryAdvice> DeliveryAdvices { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Employee> Employees { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SalesOrder> SalesOrders { get; set; }
     }
 }

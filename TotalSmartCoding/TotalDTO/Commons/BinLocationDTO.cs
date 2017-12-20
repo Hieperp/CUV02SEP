@@ -46,7 +46,7 @@ namespace TotalDTO.Commons
         }
 
         private Nullable<int> warehouseID;
-        [DefaultValue(null)]
+        //[DefaultValue(null)]
         public Nullable<int> WarehouseID
         {
             get { return this.warehouseID; }

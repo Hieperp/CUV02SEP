@@ -24,7 +24,7 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
 
         Binding bindingCustomerID;
         Binding bindingReceiverID;
-        Binding bindingStorekeeperID;
+        Binding bindingSalespersonID;
 
         Binding bindingVoucherCode;
         Binding bindingEntryDate;
@@ -66,7 +66,7 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
                 this.combexSalespersonID.DataSource = employeeAPIs.GetEmployeeBases(ContextAttributes.User.UserID, (int)this.salesOrderViewModel.NMVNTaskID, (int)GlobalEnums.RoleID.Saleperson);
                 this.combexSalespersonID.DisplayMember = CommonExpressions.PropertyName<EmployeeBase>(p => p.Name);
                 this.combexSalespersonID.ValueMember = CommonExpressions.PropertyName<EmployeeBase>(p => p.EmployeeID);
-                this.bindingStorekeeperID = this.combexSalespersonID.DataBindings.Add("SelectedValue", this.salesOrderViewModel, CommonExpressions.PropertyName<SalesOrderViewModel>(p => p.SalespersonID), true, DataSourceUpdateMode.OnPropertyChanged);
+                this.bindingSalespersonID = this.combexSalespersonID.DataBindings.Add("SelectedValue", this.salesOrderViewModel, CommonExpressions.PropertyName<SalesOrderViewModel>(p => p.SalespersonID), true, DataSourceUpdateMode.OnPropertyChanged);
 
                 this.bindingVoucherCode = this.textexVoucherCode.DataBindings.Add("Text", this.salesOrderViewModel, CommonExpressions.PropertyName<SalesOrderViewModel>(p => p.VoucherCode), true, DataSourceUpdateMode.OnPropertyChanged);
                 this.bindingEntryDate = this.dateTimexEntryDate.DataBindings.Add("Value", this.salesOrderViewModel, CommonExpressions.PropertyName<SalesOrderViewModel>(p => p.EntryDate), true, DataSourceUpdateMode.OnPropertyChanged);
@@ -79,7 +79,7 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
 
                 this.bindingCustomerID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
                 this.bindingReceiverID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
-                this.bindingStorekeeperID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+                this.bindingSalespersonID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
 
                 this.bindingVoucherCode.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
                 this.bindingEntryDate.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
@@ -106,25 +106,24 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
         private void CommonControl_BindingComplete(object sender, BindingCompleteEventArgs e)
         {
             if (e.BindingCompleteState == BindingCompleteState.Exception) { ExceptionHandlers.ShowExceptionMessageBox(this, e.ErrorText); e.Cancel = true; }
-            if (sender.Equals(this.bindingCustomerID))
+            if (sender.Equals(this.bindingSalespersonID) && this.combexSalespersonID.SelectedItem != null)
             {
-                if (this.combexCustomerID.SelectedItem != null)
-                {
-                    CustomerBase customerBase = (CustomerBase)this.combexCustomerID.SelectedItem;
-                    this.salesOrderViewModel.CustomerName = customerBase.Name;
-                    this.salesOrderViewModel.ContactInfo = customerBase.ContactInfo;
-                    this.salesOrderViewModel.SalespersonID = customerBase.SalespersonID;
-                    //this.salesOrderViewModel.ReceiverID = customerBase.CustomerID;
-                }
+                EmployeeBase customerBase = (EmployeeBase)this.combexSalespersonID.SelectedItem;
+                this.salesOrderViewModel.TeamID = customerBase.TeamID;
             }
-            if (sender.Equals(this.bindingReceiverID))
+            if (sender.Equals(this.bindingCustomerID) && this.combexCustomerID.SelectedItem != null)
             {
-                if (this.combexReceiverID.SelectedItem != null)
-                {
-                    CustomerBase customerBase = (CustomerBase)this.combexReceiverID.SelectedItem;
-                    this.salesOrderViewModel.ReceiverName = customerBase.Name;
-                    this.salesOrderViewModel.ShippingAddress = customerBase.ShippingAddress;
-                }
+                CustomerBase customerBase = (CustomerBase)this.combexCustomerID.SelectedItem;
+                this.salesOrderViewModel.CustomerName = customerBase.Name;
+                this.salesOrderViewModel.ContactInfo = customerBase.ContactInfo;
+                this.salesOrderViewModel.SalespersonID = customerBase.SalespersonID;
+                //this.salesOrderViewModel.ReceiverID = customerBase.CustomerID;
+            }
+            if (sender.Equals(this.bindingReceiverID) && this.combexReceiverID.SelectedItem != null)
+            {
+                CustomerBase customerBase = (CustomerBase)this.combexReceiverID.SelectedItem;
+                this.salesOrderViewModel.ReceiverName = customerBase.Name;
+                this.salesOrderViewModel.ShippingAddress = customerBase.ShippingAddress;
             }
         }
 

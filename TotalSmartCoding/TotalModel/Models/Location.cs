@@ -18,7 +18,6 @@ namespace TotalModel.Models
         public Location()
         {
             this.DeliveryAdvices = new HashSet<DeliveryAdvice>();
-            this.Employees = new HashSet<Employee>();
             this.GoodsReceipts = new HashSet<GoodsReceipt>();
             this.OrganizationalUnits = new HashSet<OrganizationalUnit>();
             this.Pickups = new HashSet<Pickup>();
@@ -27,6 +26,7 @@ namespace TotalModel.Models
             this.GoodsIssues = new HashSet<GoodsIssue>();
             this.TransferOrders = new HashSet<TransferOrder>();
             this.WarehouseAdjustments = new HashSet<WarehouseAdjustment>();
+            this.Employees = new HashSet<Employee>();
         }
     
         public int LocationID { get; set; }
@@ -44,8 +44,6 @@ namespace TotalModel.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DeliveryAdvice> DeliveryAdvices { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Employee> Employees { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GoodsReceipt> GoodsReceipts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrganizationalUnit> OrganizationalUnits { get; set; }
@@ -61,5 +59,7 @@ namespace TotalModel.Models
         public virtual ICollection<TransferOrder> TransferOrders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WarehouseAdjustment> WarehouseAdjustments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Employee> Employees { get; set; }
     }
 }
