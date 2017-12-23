@@ -359,7 +359,7 @@ namespace TotalSmartCoding.Views.Mains
                             break;
 
                         case (int)GlobalEnums.NmvnTaskID.GoodsReceiptDetailAvailable:
-                            openingView = new GoodsReceiptDetailAvailables();
+                            openingView = new Reports();
                             break;
 
                         default:
