@@ -125,13 +125,27 @@ namespace TotalDAL.Repositories
             Helpers.SqlProgrammability.Inventories.Inventory inventory = new Helpers.SqlProgrammability.Inventories.Inventory(totalSmartCodingEntities);
             inventory.RestoreProcedure();
 
-            return;
+            //return;
 
             Helpers.SqlProgrammability.Commons.Commodity commodity = new Helpers.SqlProgrammability.Commons.Commodity(totalSmartCodingEntities);
             commodity.RestoreProcedure();
 
+            //return;
+
+            Helpers.SqlProgrammability.Commons.Warehouse warehouse = new Helpers.SqlProgrammability.Commons.Warehouse(totalSmartCodingEntities);
+            warehouse.RestoreProcedure();
 
             //return;
+
+            Helpers.SqlProgrammability.Commons.Customer customer = new Helpers.SqlProgrammability.Commons.Customer(totalSmartCodingEntities);
+            customer.RestoreProcedure();
+
+            //return;
+
+            Helpers.SqlProgrammability.Commons.WarehouseAdjustmentType warehouseAdjustmentType = new Helpers.SqlProgrammability.Commons.WarehouseAdjustmentType(totalSmartCodingEntities);
+            warehouseAdjustmentType.RestoreProcedure();
+
+            return;
 
             Helpers.SqlProgrammability.Commons.CommodityCategory commodityCategory = new Helpers.SqlProgrammability.Commons.CommodityCategory(totalSmartCodingEntities);
             commodityCategory.RestoreProcedure();
@@ -193,20 +207,12 @@ namespace TotalDAL.Repositories
             transferOrderType.RestoreProcedure();
 
 
-            //return;
-
-            Helpers.SqlProgrammability.Commons.Warehouse warehouse = new Helpers.SqlProgrammability.Commons.Warehouse(totalSmartCodingEntities);
-            warehouse.RestoreProcedure();
 
 
 
 
 
-            //return;
-
-            Helpers.SqlProgrammability.Commons.Customer customer = new Helpers.SqlProgrammability.Commons.Customer(totalSmartCodingEntities);
-            customer.RestoreProcedure();
-
+           
 
             //return;
 
@@ -236,11 +242,7 @@ namespace TotalDAL.Repositories
             batch.RestoreProcedure();
 
 
-            //return;
-
-            Helpers.SqlProgrammability.Commons.WarehouseAdjustmentType warehouseAdjustmentType = new Helpers.SqlProgrammability.Commons.WarehouseAdjustmentType(totalSmartCodingEntities);
-            warehouseAdjustmentType.RestoreProcedure();
-
+            
 
             //return;
 

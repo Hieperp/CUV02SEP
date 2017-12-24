@@ -2118,5 +2118,15 @@ namespace TotalModel.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CommodityCategoryIndex>("GetCommodityCategoryIndexes", userIDParameter, fromDateParameter, toDateParameter);
         }
+    
+        public virtual ObjectResult<CommodityTree> GetCommodityTrees()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CommodityTree>("GetCommodityTrees");
+        }
+    
+        public virtual ObjectResult<WarehouseTree> GetWarehouseTrees()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<WarehouseTree>("GetWarehouseTrees");
+        }
     }
 }

@@ -22,6 +22,9 @@
 
 
 
+        public static int RootNode = 999999900; //1 billion
+        public static int AncestorNode = 1000000000; //1 billion
+
         public static bool ERPConnected = false;
 
         public static int CalculatingTypeID = 0;

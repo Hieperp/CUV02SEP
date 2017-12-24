@@ -39,6 +39,11 @@ namespace TotalSmartCoding.Controllers.APIs.Commons
             return this.commodityAPIRepository.GetCommodityBases(withNullRow);
         }
 
+        public IList<CommodityTree> GetCommodityTrees()
+        {
+            return this.commodityAPIRepository.GetCommodityTrees();
+        }
+
         public IList<SearchCommodity> SearchCommodities(int? commodityID, int? locationID, int? batchID, int? deliveryAdviceID, int? transferOrderID)
         {
             return this.commodityAPIRepository.SearchCommodities(commodityID, locationID, batchID, deliveryAdviceID, transferOrderID);

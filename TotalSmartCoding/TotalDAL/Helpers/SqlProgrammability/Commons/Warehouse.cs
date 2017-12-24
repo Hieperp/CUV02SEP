@@ -24,6 +24,8 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             //this.WarehouseSaveRelative();
 
             this.GetWarehouseBases();
+            this.GetWarehouseTrees();
+
             this.GetWarehouseLocationID();
         }
 
@@ -102,6 +104,28 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             queryString = queryString + "    END " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("GetWarehouseBases", queryString);
+        }
+
+        private void GetWarehouseTrees()
+        {
+            string queryString;
+
+            queryString = " " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+            queryString = queryString + "    BEGIN " + "\r\n";
+
+            queryString = queryString + "       SELECT      " + GlobalEnums.RootNode + " AS NodeID, 0 AS ParentNodeID, NULL AS PrimaryID, NULL AS AncestorID, '[All]' AS Code, NULL AS Name, NULL AS ParameterName, CAST(1 AS bit) AS Selected " + "\r\n";
+            queryString = queryString + "       UNION ALL " + "\r\n";
+            queryString = queryString + "       SELECT      " + GlobalEnums.AncestorNode + " + LocationID AS NodeID, " + GlobalEnums.RootNode + " AS ParentNodeID, LocationID AS PrimaryID, NULL AS AncestorID, Name AS Code, NULL AS Name, 'LocationID' AS ParameterName, CAST(0 AS bit) AS Selected " + "\r\n";
+            queryString = queryString + "       FROM        Locations " + "\r\n";
+            queryString = queryString + "       UNION ALL " + "\r\n";
+            queryString = queryString + "       SELECT      WarehouseID AS NodeID, " + GlobalEnums.AncestorNode + " + LocationID AS ParentNodeID, WarehouseID AS PrimaryID, LocationID AS AncestorID, Code, Name, 'WarehouseID' AS ParameterName, CAST(0 AS bit) AS Selected " + "\r\n";
+            queryString = queryString + "       FROM        Warehouses " + "\r\n";
+
+            queryString = queryString + "    END " + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("GetWarehouseTrees", queryString);
         }
 
         private void GetWarehouseLocationID()

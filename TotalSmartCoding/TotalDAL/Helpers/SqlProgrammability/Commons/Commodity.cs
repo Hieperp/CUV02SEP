@@ -26,6 +26,8 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             this.CommoditySaveRelative();
 
             this.GetCommodityBases();
+            this.GetCommodityTrees();
+
             this.SearchCommodities();
 
             this.SearchBarcodes();
@@ -99,6 +101,44 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             queryString = queryString + "    END " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("GetCommodityBases", queryString);
+        }
+
+        private void GetCommodityTrees()
+        {
+            string queryString;
+
+            queryString = " " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+            queryString = queryString + "    BEGIN " + "\r\n";
+
+            queryString = queryString + "       SELECT      " + GlobalEnums.RootNode + " AS NodeID, 0 AS ParentNodeID, NULL AS PrimaryID, NULL AS AncestorID, '[All]' AS Code, NULL AS Name, NULL AS ParameterName, CAST(1 AS bit) AS Selected " + "\r\n";
+            queryString = queryString + "       UNION ALL " + "\r\n";
+            queryString = queryString + "       SELECT      " + GlobalEnums.AncestorNode + " + CommodityCategoryID AS NodeID, " + GlobalEnums.RootNode + " AS ParentNodeID, CommodityCategoryID AS PrimaryID, NULL AS AncestorID, Name AS Code, NULL AS Name, 'CommodityCategoryID' AS ParameterName, CAST(0 AS bit) AS Selected " + "\r\n";
+            queryString = queryString + "       FROM        CommodityCategories " + "\r\n";
+            queryString = queryString + "       UNION ALL " + "\r\n";
+            queryString = queryString + "       SELECT      CommodityID AS NodeID, " + GlobalEnums.AncestorNode + " + CommodityCategoryID AS ParentNodeID, CommodityID AS PrimaryID, CommodityCategoryID AS AncestorID, Code, Name, 'CommodityID' AS ParameterName, CAST(0 AS bit) AS Selected " + "\r\n";
+            queryString = queryString + "       FROM        Commodities " + "\r\n";
+
+            queryString = queryString + "    END " + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("GetCommodityTrees", queryString);
+
+
+            queryString = " " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+            queryString = queryString + "    BEGIN " + "\r\n";
+
+            queryString = queryString + "       SELECT      " + GlobalEnums.RootNode + " AS NodeID, 0 AS ParentNodeID, NULL AS PrimaryID, NULL AS AncestorID, '[All]' AS Code, NULL AS Name, NULL AS ParameterName, CAST(1 AS bit) AS Selected " + "\r\n";
+            queryString = queryString + "       UNION ALL " + "\r\n";
+            queryString = queryString + "       SELECT      " + GlobalEnums.AncestorNode + " + CommodityTypeID AS NodeID, " + GlobalEnums.RootNode + " AS ParentNodeID, CommodityTypeID AS PrimaryID, NULL AS AncestorID, Name AS Code, NULL AS Name, 'CommodityTypeID' AS ParameterName, CAST(0 AS bit) AS Selected " + "\r\n";
+            queryString = queryString + "       FROM        CommodityTypes " + "\r\n";
+
+            queryString = queryString + "    END " + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("GetCommodityTypeTrees", queryString);
+
         }
 
         private void SearchCommodities()

@@ -12,6 +12,8 @@ namespace TotalCore.Repositories.Commons
     public interface IWarehouseAPIRepository : IGenericAPIRepository
     {
         IList<WarehouseBase> GetWarehouseBases();
+        IList<WarehouseTree> GetWarehouseTrees();
+
         int? GetWarehouseLocationID(int? warehouseID);
     }
 }

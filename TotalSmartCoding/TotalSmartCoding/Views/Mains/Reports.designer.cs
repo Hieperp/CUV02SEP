@@ -32,14 +32,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Reports));
             this.toolStripChildForm = new System.Windows.Forms.ToolStrip();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.comboLocationID = new System.Windows.Forms.ToolStripComboBox();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.buttonWarehouseJournals = new System.Windows.Forms.ToolStripButton();
             this.imageList32 = new System.Windows.Forms.ImageList(this.components);
             this.treeWarehouseID = new BrightIdeasSoftware.DataTreeListView();
             this.treeCommodityID = new BrightIdeasSoftware.DataTreeListView();
+            this.olvCommodityCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvCommodityName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvCommodityNodeName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvCommoditySelected = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.toolStripChildForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeWarehouseID)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeCommodityID)).BeginInit();
@@ -50,15 +49,10 @@
             this.toolStripChildForm.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.toolStripChildForm.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStripChildForm.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton2,
-            this.toolStripSeparator1,
-            this.toolStripSeparator2,
-            this.comboLocationID,
-            this.toolStripSeparator3,
-            this.buttonWarehouseJournals});
+            this.toolStripButton2});
             this.toolStripChildForm.Location = new System.Drawing.Point(0, 0);
             this.toolStripChildForm.Name = "toolStripChildForm";
-            this.toolStripChildForm.Size = new System.Drawing.Size(1531, 55);
+            this.toolStripChildForm.Size = new System.Drawing.Size(1531, 39);
             this.toolStripChildForm.TabIndex = 29;
             this.toolStripChildForm.Text = "toolStrip1";
             this.toolStripChildForm.Visible = false;
@@ -69,43 +63,9 @@
             this.toolStripButton2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(118, 52);
+            this.toolStripButton2.Size = new System.Drawing.Size(118, 36);
             this.toolStripButton2.Text = "Disconnect";
-            this.toolStripButton2.Visible = false;
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 55);
-            this.toolStripSeparator1.Visible = false;
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 55);
-            // 
-            // comboLocationID
-            // 
-            this.comboLocationID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboLocationID.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
-            this.comboLocationID.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboLocationID.Name = "comboLocationID";
-            this.comboLocationID.Size = new System.Drawing.Size(118, 55);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 55);
-            // 
-            // buttonWarehouseJournals
-            // 
-            this.buttonWarehouseJournals.Image = global::TotalSmartCoding.Properties.Resources.Printer__1_;
-            this.buttonWarehouseJournals.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.buttonWarehouseJournals.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonWarehouseJournals.Name = "buttonWarehouseJournals";
-            this.buttonWarehouseJournals.Size = new System.Drawing.Size(237, 52);
-            this.buttonWarehouseJournals.Text = "Preview warehouse journal";
-            this.buttonWarehouseJournals.Click += new System.EventHandler(this.buttonWarehouseJournals_Click);
+            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
             // imageList32
             // 
@@ -124,9 +84,11 @@
             // 
             this.treeWarehouseID.DataSource = null;
             this.treeWarehouseID.FullRowSelect = true;
-            this.treeWarehouseID.Location = new System.Drawing.Point(22, 0);
+            this.treeWarehouseID.KeyAspectName = "NodeID";
+            this.treeWarehouseID.Location = new System.Drawing.Point(593, 228);
             this.treeWarehouseID.Name = "treeWarehouseID";
             this.treeWarehouseID.OwnerDraw = true;
+            this.treeWarehouseID.ParentKeyAspectName = "ParentNodeID";
             this.treeWarehouseID.RootKeyValueString = "";
             this.treeWarehouseID.ShowGroups = false;
             this.treeWarehouseID.ShowKeyColumns = false;
@@ -140,11 +102,21 @@
             // 
             // treeCommodityID
             // 
+            this.treeCommodityID.AllColumns.Add(this.olvCommodityCode);
+            this.treeCommodityID.AllColumns.Add(this.olvCommodityName);
+            this.treeCommodityID.AllColumns.Add(this.olvCommodityNodeName);
+            this.treeCommodityID.AllColumns.Add(this.olvCommoditySelected);
+            this.treeCommodityID.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.olvCommodityCode,
+            this.olvCommodityName,
+            this.olvCommoditySelected});
             this.treeCommodityID.DataSource = null;
             this.treeCommodityID.FullRowSelect = true;
+            this.treeCommodityID.KeyAspectName = "NodeID";
             this.treeCommodityID.Location = new System.Drawing.Point(22, 165);
             this.treeCommodityID.Name = "treeCommodityID";
             this.treeCommodityID.OwnerDraw = true;
+            this.treeCommodityID.ParentKeyAspectName = "ParentNodeID";
             this.treeCommodityID.RootKeyValueString = "";
             this.treeCommodityID.ShowGroups = false;
             this.treeCommodityID.ShowKeyColumns = false;
@@ -155,6 +127,33 @@
             this.treeCommodityID.UseFiltering = true;
             this.treeCommodityID.View = System.Windows.Forms.View.Details;
             this.treeCommodityID.VirtualMode = true;
+            // 
+            // olvCommodityCode
+            // 
+            this.olvCommodityCode.AspectName = "Code";
+            this.olvCommodityCode.Text = "Code";
+            this.olvCommodityCode.Width = 177;
+            // 
+            // olvCommodityName
+            // 
+            this.olvCommodityName.AspectName = "Name";
+            this.olvCommodityName.Text = "Name";
+            this.olvCommodityName.Width = 229;
+            // 
+            // olvCommodityNodeName
+            // 
+            this.olvCommodityNodeName.AspectName = "NodeName";
+            this.olvCommodityNodeName.DisplayIndex = 2;
+            this.olvCommodityNodeName.IsVisible = false;
+            this.olvCommodityNodeName.Text = "NodeName";
+            // 
+            // olvCommoditySelected
+            // 
+            this.olvCommoditySelected.AspectName = "Selected";
+            this.olvCommoditySelected.CheckBoxes = true;
+            this.olvCommoditySelected.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvCommoditySelected.Text = "";
+            this.olvCommoditySelected.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Reports
             // 
@@ -184,14 +183,13 @@
 
         private System.Windows.Forms.ToolStrip toolStripChildForm;
         private System.Windows.Forms.ToolStripButton toolStripButton2;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ImageList imageList32;
-        private System.Windows.Forms.ToolStripButton buttonWarehouseJournals;
-        private System.Windows.Forms.ToolStripComboBox comboLocationID;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private BrightIdeasSoftware.DataTreeListView treeWarehouseID;
         private BrightIdeasSoftware.DataTreeListView treeCommodityID;
+        private BrightIdeasSoftware.OLVColumn olvCommodityCode;
+        private BrightIdeasSoftware.OLVColumn olvCommodityName;
+        private BrightIdeasSoftware.OLVColumn olvCommodityNodeName;
+        private BrightIdeasSoftware.OLVColumn olvCommoditySelected;
 
     }
 }

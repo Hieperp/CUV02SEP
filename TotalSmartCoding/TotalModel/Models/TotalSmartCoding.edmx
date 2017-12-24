@@ -2216,6 +2216,7 @@
           <Parameter Name="FromDate" Type="datetime" Mode="In" />
           <Parameter Name="ToDate" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="GetCommodityTrees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetCustomerBases" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetCustomerCategoryBases" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetCustomerCategoryIndexes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -2499,6 +2500,7 @@
         <Function Name="GetWarehouseLocationID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="WarehouseID" Type="int" Mode="In" />
         </Function>
+        <Function Name="GetWarehouseTrees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GoodsIssueApproved" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="EntityID" Type="int" Mode="In" />
         </Function>
@@ -4193,6 +4195,8 @@
             <End Role="Team" EntitySet="Teams" />
             <End Role="SalesOrder" EntitySet="SalesOrders" />
           </AssociationSet>
+          <FunctionImport Name="GetCommodityTrees" ReturnType="Collection(TotalSmartCodingModel.CommodityTree)" />
+          <FunctionImport Name="GetWarehouseTrees" ReturnType="Collection(TotalSmartCodingModel.WarehouseTree)" />
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
           <Property Type="Int32" Name="PickupID" Nullable="false" />
@@ -7366,6 +7370,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="CommodityTree">
+          <Property Type="Int32" Name="NodeID" Nullable="true" />
+          <Property Type="String" Name="Code" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="AncestorID" Nullable="true" />
+          <Property Type="Boolean" Name="Selected" Nullable="true" />
+          <Property Type="String" Name="ParameterName" Nullable="true" MaxLength="19" />
+          <Property Type="Int32" Name="ParentNodeID" Nullable="true" />
+          <Property Type="Int32" Name="PrimaryID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="WarehouseTree">
+          <Property Type="Int32" Name="NodeID" Nullable="true" />
+          <Property Type="String" Name="Code" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="60" />
+          <Property Type="Int32" Name="AncestorID" Nullable="true" />
+          <Property Type="Boolean" Name="Selected" Nullable="true" />
+          <Property Type="String" Name="ParameterName" Nullable="true" MaxLength="11" />
+          <Property Type="Int32" Name="ParentNodeID" Nullable="true" />
+          <Property Type="Int32" Name="PrimaryID" Nullable="true" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -9494,6 +9518,34 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetCommodityTrees" FunctionName="TotalSmartCodingModel.Store.GetCommodityTrees">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TotalSmartCodingModel.CommodityTree">
+                <ScalarProperty Name="NodeID" ColumnName="NodeID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AncestorID" ColumnName="AncestorID" />
+                <ScalarProperty Name="Selected" ColumnName="Selected" />
+                <ScalarProperty Name="ParameterName" ColumnName="ParameterName" />
+                <ScalarProperty Name="ParentNodeID" ColumnName="ParentNodeID" />
+                <ScalarProperty Name="PrimaryID" ColumnName="PrimaryID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetWarehouseTrees" FunctionName="TotalSmartCodingModel.Store.GetWarehouseTrees">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TotalSmartCodingModel.WarehouseTree">
+                <ScalarProperty Name="NodeID" ColumnName="NodeID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AncestorID" ColumnName="AncestorID" />
+                <ScalarProperty Name="Selected" ColumnName="Selected" />
+                <ScalarProperty Name="ParameterName" ColumnName="ParameterName" />
+                <ScalarProperty Name="ParentNodeID" ColumnName="ParentNodeID" />
+                <ScalarProperty Name="PrimaryID" ColumnName="PrimaryID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

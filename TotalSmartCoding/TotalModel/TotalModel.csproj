@@ -105,6 +105,9 @@
     <Compile Include="Models\CommodityIndex.cs">
       <DependentUpon>TotalSmartCoding.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CommodityTree.cs">
+      <DependentUpon>TotalSmartCoding.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\CommodityType.cs">
       <DependentUpon>TotalSmartCoding.tt</DependentUpon>
     </Compile>
@@ -411,6 +414,9 @@
       <DependentUpon>TotalSmartCoding.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\WarehouseIndex.cs">
+      <DependentUpon>TotalSmartCoding.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WarehouseTree.cs">
       <DependentUpon>TotalSmartCoding.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
