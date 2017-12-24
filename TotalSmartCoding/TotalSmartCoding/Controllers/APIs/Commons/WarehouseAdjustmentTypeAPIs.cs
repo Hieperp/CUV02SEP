@@ -34,5 +34,9 @@ namespace TotalSmartCoding.Controllers.APIs.Commons
             return this.warehouseAdjustmentTypeAPIRepository.GetWarehouseAdjustmentTypeBases();
         }
 
+        public IList<WarehouseAdjustmentTypeTree> GetWarehouseAdjustmentTypeTrees()
+        {
+            return this.warehouseAdjustmentTypeAPIRepository.GetWarehouseAdjustmentTypeTrees();
+        }
     }
 }

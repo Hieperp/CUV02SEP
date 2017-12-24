@@ -12,5 +12,6 @@ namespace TotalCore.Repositories.Commons
     public interface IWarehouseAdjustmentTypeAPIRepository : IGenericAPIRepository
     {
         IList<WarehouseAdjustmentTypeBase> GetWarehouseAdjustmentTypeBases();
+        IList<WarehouseAdjustmentTypeTree> GetWarehouseAdjustmentTypeTrees();
     }
 }

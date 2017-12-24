@@ -30,5 +30,10 @@ namespace TotalDAL.Repositories.Commons
         {
             return this.TotalSmartCodingEntities.GetWarehouseAdjustmentTypeBases().ToList();
         }
+
+        public IList<WarehouseAdjustmentTypeTree> GetWarehouseAdjustmentTypeTrees()
+        {
+            return this.TotalSmartCodingEntities.GetWarehouseAdjustmentTypeTrees().ToList();
+        }
     }
 }

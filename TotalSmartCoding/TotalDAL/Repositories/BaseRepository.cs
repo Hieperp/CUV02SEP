@@ -131,6 +131,10 @@ namespace TotalDAL.Repositories
             commodity.RestoreProcedure();
 
             //return;
+            Helpers.SqlProgrammability.Commons.CommodityType commodityType = new Helpers.SqlProgrammability.Commons.CommodityType(totalSmartCodingEntities);
+            commodityType.RestoreProcedure();
+
+            //return;
 
             Helpers.SqlProgrammability.Commons.Warehouse warehouse = new Helpers.SqlProgrammability.Commons.Warehouse(totalSmartCodingEntities);
             warehouse.RestoreProcedure();

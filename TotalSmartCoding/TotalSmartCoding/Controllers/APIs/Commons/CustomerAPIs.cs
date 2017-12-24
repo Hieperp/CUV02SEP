@@ -33,5 +33,10 @@ namespace TotalSmartCoding.Controllers.APIs.Commons
         {
             return this.customerAPIRepository.GetCustomerBases();
         }
+
+        public IList<CustomerTree> GetCustomerTrees()
+        {
+            return this.customerAPIRepository.GetCustomerTrees();
+        }
     }
 }

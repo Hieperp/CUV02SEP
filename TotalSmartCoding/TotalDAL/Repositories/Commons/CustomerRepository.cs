@@ -33,6 +33,13 @@ namespace TotalDAL.Repositories.Commons
         {
             return this.TotalSmartCodingEntities.GetCustomerBases().ToList();
         }
+
+
+        public IList<CustomerTree> GetCustomerTrees()
+        {
+            return this.TotalSmartCodingEntities.GetCustomerTrees().ToList();
+        }
+
     }
 
 }

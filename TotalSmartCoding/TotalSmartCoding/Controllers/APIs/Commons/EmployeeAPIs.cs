@@ -34,5 +34,9 @@ namespace TotalSmartCoding.Controllers.APIs.Commons
             return this.employeeAPIRepository.GetEmployeeBases(userID, nmvnTaskID, roleID);
         }
 
+        public IList<EmployeeTree> GetEmployeeTrees()
+        {
+            return this.employeeAPIRepository.GetEmployeeTrees();
+        }
     }
 }

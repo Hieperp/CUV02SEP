@@ -2128,5 +2128,47 @@ namespace TotalModel.Models
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<WarehouseTree>("GetWarehouseTrees");
         }
+    
+        public virtual ObjectResult<CommodityTypeTree> GetCommodityTypeTrees()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CommodityTypeTree>("GetCommodityTypeTrees");
+        }
+    
+        public virtual ObjectResult<CustomerTree> GetCustomerTrees()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CustomerTree>("GetCustomerTrees");
+        }
+    
+        public virtual ObjectResult<EmployeeTree> GetEmployeeTrees()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<EmployeeTree>("GetEmployeeTrees");
+        }
+    
+        public virtual ObjectResult<WarehouseAdjustmentTypeTree> GetWarehouseAdjustmentTypeTrees()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<WarehouseAdjustmentTypeTree>("GetWarehouseAdjustmentTypeTrees");
+        }
+    
+        public virtual ObjectResult<CommodityTypeBase> GetCommodityTypeBases()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CommodityTypeBase>("GetCommodityTypeBases");
+        }
+    
+        public virtual ObjectResult<CommodityTypeIndex> GetCommodityTypeIndexes(Nullable<int> userID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
+        {
+            var userIDParameter = userID.HasValue ?
+                new ObjectParameter("UserID", userID) :
+                new ObjectParameter("UserID", typeof(int));
+    
+            var fromDateParameter = fromDate.HasValue ?
+                new ObjectParameter("FromDate", fromDate) :
+                new ObjectParameter("FromDate", typeof(System.DateTime));
+    
+            var toDateParameter = toDate.HasValue ?
+                new ObjectParameter("ToDate", toDate) :
+                new ObjectParameter("ToDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CommodityTypeIndex>("GetCommodityTypeIndexes", userIDParameter, fromDateParameter, toDateParameter);
+        }
     }
 }

@@ -30,5 +30,10 @@ namespace TotalDAL.Repositories.Commons
         {
             return this.TotalSmartCodingEntities.GetEmployeeBases(userID, nmvnTaskID, roleID).OrderBy(o => o.Name).ToList();
         }
+
+        public IList<EmployeeTree> GetEmployeeTrees()
+        {
+            return this.TotalSmartCodingEntities.GetEmployeeTrees().ToList();
+        }
     }
 }

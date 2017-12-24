@@ -54,6 +54,7 @@
     <Compile Include="Repositories\Commons\IBinLocationRepository.cs" />
     <Compile Include="Repositories\Commons\ICommodityCategoryRepository.cs" />
     <Compile Include="Repositories\Commons\ICommodityRepository.cs" />
+    <Compile Include="Repositories\Commons\ICommodityTypeRepository.cs" />
     <Compile Include="Repositories\Commons\ICustomerCategoryRepository.cs" />
     <Compile Include="Repositories\Commons\ICustomerRepository.cs" />
     <Compile Include="Repositories\Commons\ICustomerTypeRepository.cs" />
