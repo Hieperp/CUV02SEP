@@ -13,23 +13,35 @@ using TotalSmartCoding.Views.Mains;
 using TotalSmartCoding.Libraries;
 using TotalSmartCoding.Libraries.Helpers;
 
-using TotalCore.Repositories.Inventories;
 using TotalSmartCoding.Controllers.APIs.Inventories;
 using TotalBase;
 using TotalModel.Models;
 using TotalSmartCoding.ViewModels.Helpers;
 using TotalSmartCoding.ViewModels.Inventories;
-using TotalSmartCoding.Controllers.APIs.Commons;
+using TotalSmartCoding.Controllers.APIs.Generals;
 using TotalCore.Repositories.Commons;
 using BrightIdeasSoftware;
 using TotalBase.Enums;
+using TotalCore.Repositories.Generals;
+using TotalSmartCoding.Controllers.APIs.Commons;
 
 
 namespace TotalSmartCoding.Views.Mains
 {
     public partial class Reports : BaseView
     {
+        private TabPage tabPageWarehouses;
+        private TabPage tabPageCommodities;
+        private TabPage tabPageCustomers;
+        private TabPage tabPageWarehouseReceipts;
+        private TabPage tabPageWarehouseAdjustmentTypes;
+        private TabPage[] tabPages;
         private CustomTabControl customTabBatch;
+
+        private ReportAPIs reportAPIs;
+
+        private ReportIndex currentReportIndex;
+        private int currentReportTypeID = 0;
 
         public Reports()
             : base()
@@ -37,6 +49,9 @@ namespace TotalSmartCoding.Views.Mains
             InitializeComponent();
 
             this.toolstripChild = this.toolStripChildForm;
+            this.fastListIndex = this.fastReportIndex;
+
+            this.reportAPIs = new ReportAPIs(CommonNinject.Kernel.Get<IReportAPIRepository>());
 
             this.baseDTO = new GoodsReceiptDetailAvailableViewModel(); ;
         }
@@ -47,29 +62,43 @@ namespace TotalSmartCoding.Views.Mains
             {
                 base.InitializeTabControl();
 
-                this.customTabBatch = new CustomTabControl();
+                this.tabPageWarehouses = new TabPage("Locations"); this.tabPageWarehouses.Tag = ((int)GlobalEnums.ReportTypeID.GoodsReceiptPivot).ToString() + "," + ((int)GlobalEnums.ReportTypeID.GoodsIssuePivot).ToString();
+                this.tabPageCommodities = new TabPage("Commodities"); this.tabPageCommodities.Tag = ((int)GlobalEnums.ReportTypeID.GoodsReceiptPivot).ToString() + "," + ((int)GlobalEnums.ReportTypeID.GoodsIssuePivot).ToString();
+                this.tabPageCustomers = new TabPage("Customers"); this.tabPageCustomers.Tag = ((int)GlobalEnums.ReportTypeID.GoodsIssuePivot).ToString();
+                this.tabPageWarehouseReceipts = new TabPage("Destination Warehouses"); this.tabPageWarehouseReceipts.Tag = ((int)GlobalEnums.ReportTypeID.GoodsReceiptPivot).ToString();
+                this.tabPageWarehouseAdjustmentTypes = new TabPage("Adjustment Types"); this.tabPageWarehouseAdjustmentTypes.Tag = ((int)GlobalEnums.ReportTypeID.GoodsReceiptPivot).ToString() + "," + ((int)GlobalEnums.ReportTypeID.GoodsIssuePivot).ToString();
 
+                this.tabPages = new TabPage[] { this.tabPageWarehouses, this.tabPageCommodities, this.tabPageCustomers, this.tabPageWarehouseReceipts, this.tabPageWarehouseAdjustmentTypes };
+
+                this.customTabBatch = new CustomTabControl();
                 this.customTabBatch.Font = this.treeWarehouseID.Font;
                 this.customTabBatch.DisplayStyle = TabStyle.VisualStudio;
                 this.customTabBatch.DisplayStyleProvider.ImageAlign = ContentAlignment.MiddleLeft;
 
-                this.customTabBatch.TabPages.Add("tabPendingPallets", "Pending pallets");
-                this.customTabBatch.TabPages.Add("tabPendingCartons", "Pending cartons");
-                this.customTabBatch.TabPages.Add("tabPendingCartonsa", "Salesperson, Customer");
-                this.customTabBatch.TabPages.Add("tabPendingCartonsaa", "Destination");
-                this.customTabBatch.TabPages.Add("tabPendingCartonsaaa", "Adjustment Type");
-                this.customTabBatch.TabPages[0].Controls.Add(this.treeWarehouseID);
-                this.customTabBatch.TabPages[1].Controls.Add(this.panelCommodities);
-                this.customTabBatch.TabPages[2].Controls.Add(this.panelCustomers);
-                this.customTabBatch.TabPages[3].Controls.Add(this.treeWarehouseReceiptID);
-                this.customTabBatch.TabPages[4].Controls.Add(this.treeWarehouseAdjustmentTypeID);
+                //this.customTabBatch.TabPages.Add("tabPendingPallets", "Pending pallets");
+                //this.customTabBatch.TabPages.Add("tabPendingCartons", "Pending cartons");
+                //this.customTabBatch.TabPages.Add("tabPendingCartonsa", "Salesperson, Customer");
+                //this.customTabBatch.TabPages.Add("tabPendingCartonsaa", "Destination");
+                //this.customTabBatch.TabPages.Add("tabPendingCartonsaaa", "Adjustment Type");
+                ////////this.customTabBatch.TabPages[0].Controls.Add(this.treeWarehouseID);
+                ////////this.customTabBatch.TabPages[1].Controls.Add(this.panelCommodities);
+                ////////this.customTabBatch.TabPages[2].Controls.Add(this.panelCustomers);
+                ////////this.customTabBatch.TabPages[3].Controls.Add(this.treeWarehouseReceiptID);
+                ////////this.customTabBatch.TabPages[4].Controls.Add(this.treeWarehouseAdjustmentTypeID);
 
-                this.customTabBatch.Dock = DockStyle.Fill;
+                this.tabPageWarehouses.Controls.Add(this.treeWarehouseID);
+                this.tabPageCommodities.Controls.Add(this.panelCommodities);
+                this.tabPageCustomers.Controls.Add(this.panelCustomers);
+                this.tabPageWarehouseReceipts.Controls.Add(this.treeWarehouseReceiptID);
+                this.tabPageWarehouseAdjustmentTypes.Controls.Add(this.treeWarehouseAdjustmentTypeID);
+
                 this.treeWarehouseID.Dock = DockStyle.Fill;
                 this.panelCommodities.Dock = DockStyle.Fill;
                 this.panelCustomers.Dock = DockStyle.Fill;
                 this.treeWarehouseReceiptID.Dock = DockStyle.Fill;
                 this.treeWarehouseAdjustmentTypeID.Dock = DockStyle.Fill;
+
+                this.customTabBatch.Dock = DockStyle.Fill;
                 this.panelCenter.Controls.Add(this.customTabBatch);
             }
             catch (Exception exception)
@@ -138,6 +167,62 @@ namespace TotalSmartCoding.Views.Mains
             if (this.treeCustomerID.GetModelObject(0) != null) this.treeCustomerID.Expand(this.treeCustomerID.GetModelObject(0));
             if (this.treeEmployeeID.GetModelObject(0) != null) this.treeEmployeeID.Expand(this.treeEmployeeID.GetModelObject(0));
             if (this.treeWarehouseAdjustmentTypeID.GetModelObject(0) != null) this.treeWarehouseAdjustmentTypeID.Expand(this.treeWarehouseAdjustmentTypeID.GetModelObject(0));
+
+            this.fastReportIndex.AboutToCreateGroups += fastReportIndex_AboutToCreateGroups;
+
+            this.fastReportIndex.ShowGroups = true;
+            //this.olvApproved.Renderer = new MappedImageRenderer(new Object[] { 1, Resources.Placeholder16, 2, Resources.Void_16 });
+        }
+
+        private void fastReportIndex_AboutToCreateGroups(object sender, CreateGroupsEventArgs e)
+        {
+            if (e.Groups != null && e.Groups.Count > 0)
+            {
+                foreach (OLVGroup olvGroup in e.Groups)
+                {
+                    olvGroup.TitleImage = "Analytics";
+                    olvGroup.Subtitle = "Count: " + olvGroup.Contents.Count.ToString() + " Report(s)";
+                }
+            }
+        }
+
+        public override void Loading()
+        {
+            this.fastReportIndex.SetObjects(this.reportAPIs.GetReportIndexes());
+
+            base.Loading();
+        }
+
+        protected override void DoAfterLoad()
+        {
+            base.DoAfterLoad();
+            this.fastReportIndex.Sort(this.olvReportGroupName, SortOrder.Descending);
+        }
+
+        protected override void invokeEdit(int? id)
+        {
+            //base.invokeEdit(id);
+            if (this.fastReportIndex.SelectedObject != null)
+            {
+                ReportIndex reportIndex = (ReportIndex)this.fastReportIndex.SelectedObject;
+                if (reportIndex != null)
+                {
+                    this.currentReportIndex = reportIndex;
+                    if (this.currentReportTypeID != this.currentReportIndex.ReportTypeID)
+                    {
+                        this.currentReportTypeID = this.currentReportIndex.ReportTypeID;
+
+                        this.customTabBatch.SuspendLayout();
+                        this.customTabBatch.TabPages.Clear();
+                        foreach (TabPage tabpage in this.tabPages)
+                        {
+                            if (tabpage.Tag.ToString().IndexOf(this.currentReportTypeID.ToString()) != -1)
+                                this.customTabBatch.TabPages.Add(tabpage);
+                        }
+                        this.customTabBatch.ResumeLayout();
+                    }
+                }
+            }
         }
 
         public override void ApplyFilter(string filterTexts)
@@ -208,7 +293,7 @@ namespace TotalSmartCoding.Views.Mains
     public class FilterParameter
     {
         public string PrimaryIDs { get; set; }
-        
+
         public string Codes { get; set; }
         public string Names { get; set; }
 

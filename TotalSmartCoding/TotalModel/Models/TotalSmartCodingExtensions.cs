@@ -653,6 +653,11 @@ namespace TotalModel.Models
     //    public System.DateTime EditedDate { get; set; }
     //}
 
+    public partial class ReportIndex : IBaseIndex
+    {
+        public int Id { get { return this.ReportUniqueID; } }
+    }
+
     public partial class CustomerIndex : IBaseIndex
     {
         public int Id { get { return this.CustomerID; } }

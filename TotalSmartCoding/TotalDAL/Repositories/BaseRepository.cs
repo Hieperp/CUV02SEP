@@ -85,12 +85,22 @@ namespace TotalDAL.Repositories
                 this.ExecuteStoreCommand("ALTER TABLE DeliveryAdvices WITH CHECK ADD CONSTRAINT FK_DeliveryAdvices_Teams FOREIGN KEY(TeamID) REFERENCES dbo.Teams (TeamID)", new ObjectParameter[] { });
                 this.ExecuteStoreCommand("ALTER TABLE DeliveryAdvices CHECK CONSTRAINT FK_DeliveryAdvices_Teams", new ObjectParameter[] { });
 
-
+                this.ExecuteStoreCommand("UPDATE CommodityTypes SET Name = 'ABX' WHERE CommodityTypeID = 1", new ObjectParameter[] { });
                 this.ExecuteStoreCommand("UPDATE CommodityTypes SET Name = 'L' WHERE CommodityTypeID = 2", new ObjectParameter[] { });
                 this.ExecuteStoreCommand("UPDATE CommodityTypes SET Name = 'H' WHERE CommodityTypeID = 6", new ObjectParameter[] { });
-
+                
                 this.ExecuteStoreCommand("UPDATE Commodities SET CommodityTypeID = 2 WHERE RIGHT(Code, 1) = 'L' ", new ObjectParameter[] { });
                 this.ExecuteStoreCommand("UPDATE Commodities SET CommodityTypeID = 6 WHERE RIGHT(Code, 1) = 'H' ", new ObjectParameter[] { });
+
+                this.ExecuteStoreCommand("INSERT INTO Reports (ReportUniqueID, ReportGroupID, ReportGroupName, ReportName, ReportURL, ReportTypeID, SerialID, Remarks) VALUES (" + (int)GlobalEnums.ReportUniqueID.GoodsReceiptPivot + ", 1, 'GOODS RECEIPT PIVOT REPORTS', N'Goods receipt pivot report', N'', " + (int)GlobalEnums.ReportTypeID.GoodsReceiptPivot + ", 1, N'')", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("INSERT INTO Reports (ReportUniqueID, ReportGroupID, ReportGroupName, ReportName, ReportURL, ReportTypeID, SerialID, Remarks) VALUES (" + (int)GlobalEnums.ReportUniqueID.ProductionReceiptPivot + ", 1, 'GOODS RECEIPT PIVOT REPORTS', N'Production receipt pivot report', N'', " + (int)GlobalEnums.ReportTypeID.GoodsReceiptPivot + ", 2, N'')", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("INSERT INTO Reports (ReportUniqueID, ReportGroupID, ReportGroupName, ReportName, ReportURL, ReportTypeID, SerialID, Remarks) VALUES (" + (int)GlobalEnums.ReportUniqueID.TransferReceiptPivot + ", 1, 'GOODS RECEIPT PIVOT REPORTS', N'Transfer receipt pivot report', N'', " + (int)GlobalEnums.ReportTypeID.GoodsReceiptPivot + ", 3, N'')", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("INSERT INTO Reports (ReportUniqueID, ReportGroupID, ReportGroupName, ReportName, ReportURL, ReportTypeID, SerialID, Remarks) VALUES (" + (int)GlobalEnums.ReportUniqueID.AdjustmentReceiptPivot + ", 1, 'GOODS RECEIPT PIVOT REPORTS', N'Adjustment receipt pivot report', N'', " + (int)GlobalEnums.ReportTypeID.GoodsReceiptPivot + ", 4, N'')", new ObjectParameter[] { });
+
+                this.ExecuteStoreCommand("INSERT INTO Reports (ReportUniqueID, ReportGroupID, ReportGroupName, ReportName, ReportURL, ReportTypeID, SerialID, Remarks) VALUES (" + (int)GlobalEnums.ReportUniqueID.GoodsIssuePivot + ", 10, 'GOODS ISSUE PIVOT REPORTS', N'Goods issue pivot report', N'', " + (int)GlobalEnums.ReportTypeID.GoodsIssuePivot + ", 11, N'')", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("INSERT INTO Reports (ReportUniqueID, ReportGroupID, ReportGroupName, ReportName, ReportURL, ReportTypeID, SerialID, Remarks) VALUES (" + (int)GlobalEnums.ReportUniqueID.SalesIssuePivot + ", 10, 'GOODS ISSUE PIVOT REPORTS', N'Sales issue pivot report', N'', " + (int)GlobalEnums.ReportTypeID.GoodsIssuePivot + ", 12, N'')", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("INSERT INTO Reports (ReportUniqueID, ReportGroupID, ReportGroupName, ReportName, ReportURL, ReportTypeID, SerialID, Remarks) VALUES (" + (int)GlobalEnums.ReportUniqueID.TransferIssuePivot + ", 10, 'GOODS ISSUE PIVOT REPORTS', N'Transfer issue pivot report', N'', " + (int)GlobalEnums.ReportTypeID.GoodsIssuePivot + ", 13, N'')", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("INSERT INTO Reports (ReportUniqueID, ReportGroupID, ReportGroupName, ReportName, ReportURL, ReportTypeID, SerialID, Remarks) VALUES (" + (int)GlobalEnums.ReportUniqueID.AdjustmentIssuePivot + ", 10, 'GOODS ISSUE PIVOT REPORTS', N'Adjustment issue pivot report', N'', " + (int)GlobalEnums.ReportTypeID.GoodsIssuePivot + ", 14, N'')", new ObjectParameter[] { });
             }
 
         }
@@ -148,6 +158,11 @@ namespace TotalDAL.Repositories
 
             Helpers.SqlProgrammability.Commons.WarehouseAdjustmentType warehouseAdjustmentType = new Helpers.SqlProgrammability.Commons.WarehouseAdjustmentType(totalSmartCodingEntities);
             warehouseAdjustmentType.RestoreProcedure();
+
+            //return;
+
+            Helpers.SqlProgrammability.Generals.Report report = new Helpers.SqlProgrammability.Generals.Report(totalSmartCodingEntities);
+            report.RestoreProcedure();
 
             return;
 

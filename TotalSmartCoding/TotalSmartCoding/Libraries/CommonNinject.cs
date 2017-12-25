@@ -121,6 +121,11 @@ namespace TotalSmartCoding.Libraries
                 Kernel.Bind<IModuleAPIRepository>().To<ModuleAPIRepository>();
                 //Kernel.Bind<ModuleViewModel>().ToSelf();
 
+                //Kernel.Bind<IReportService>().To<ReportService>();
+                //Kernel.Bind<IReportRepository>().To<ReportRepository>();
+                Kernel.Bind<IReportAPIRepository>().To<ReportAPIRepository>();
+                //Kernel.Bind<ReportViewModel>().ToSelf();
+
                 Kernel.Bind<ICustomerService>().To<CustomerService>();
                 Kernel.Bind<ICustomerRepository>().To<CustomerRepository>();
                 Kernel.Bind<ICustomerAPIRepository>().To<CustomerAPIRepository>();

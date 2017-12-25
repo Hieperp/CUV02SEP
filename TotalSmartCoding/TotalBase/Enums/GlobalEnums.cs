@@ -280,9 +280,24 @@
         }
 
 
+        public enum ReportTypeID
+        {
+            GoodsReceiptPivot = 1,
+            GoodsIssuePivot = 2
+        }
 
+        public enum ReportUniqueID
+        {
+            GoodsReceiptPivot = 1,
+            ProductionReceiptPivot = 2,
+            TransferReceiptPivot = 3,
+            AdjustmentReceiptPivot = 4,
 
-
+            GoodsIssuePivot = 11,
+            SalesIssuePivot = 12,
+            TransferIssuePivot = 13,
+            AdjustmentIssuePivot = 14
+        }
 
 
 
@@ -359,7 +374,7 @@
             Maintenance = 3
         };
 
-        
+
 
         public enum CommodityTypeID
         {

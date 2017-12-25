@@ -324,6 +324,9 @@
     <Compile Include="Models\PickupViewDetail.cs">
       <DependentUpon>TotalSmartCoding.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ReportIndex.cs">
+      <DependentUpon>TotalSmartCoding.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SalesOrder.cs">
       <DependentUpon>TotalSmartCoding.tt</DependentUpon>
     </Compile>

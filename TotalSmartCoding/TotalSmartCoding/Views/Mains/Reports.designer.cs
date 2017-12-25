@@ -49,10 +49,10 @@
             this.label5 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelLeft = new System.Windows.Forms.Panel();
-            this.dataTreeListView1 = new BrightIdeasSoftware.DataTreeListView();
-            this.olvColumn1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvColumn2 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvColumn3 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.fastReportIndex = new BrightIdeasSoftware.FastObjectListView();
+            this.olvID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvReportGroupName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvReportName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.panelCenter = new System.Windows.Forms.Panel();
             this.treeWarehouseAdjustmentTypeID = new BrightIdeasSoftware.DataTreeListView();
             this.olvColumn20 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -86,7 +86,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelLeft.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataTreeListView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fastReportIndex)).BeginInit();
             this.panelCenter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeWarehouseAdjustmentTypeID)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeWarehouseReceiptID)).BeginInit();
@@ -133,6 +133,7 @@
             this.imageList32.Images.SetKeyName(5, "Storage32");
             this.imageList32.Images.SetKeyName(6, "Pallet-32-O");
             this.imageList32.Images.SetKeyName(7, "Carton-32");
+            this.imageList32.Images.SetKeyName(8, "Analytics");
             // 
             // treeCommodityID
             // 
@@ -142,6 +143,7 @@
             this.treeCommodityID.AllColumns.Add(this.olvColumn4);
             this.treeCommodityID.AllColumns.Add(this.olvColumn5);
             this.treeCommodityID.AllColumns.Add(this.olvCommodityName);
+            this.treeCommodityID.BackColor = System.Drawing.Color.Ivory;
             this.treeCommodityID.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.olvCommodityCode,
             this.olvCommoditySelected,
@@ -157,7 +159,7 @@
             this.treeCommodityID.RootKeyValueString = "";
             this.treeCommodityID.ShowGroups = false;
             this.treeCommodityID.ShowKeyColumns = false;
-            this.treeCommodityID.Size = new System.Drawing.Size(772, 159);
+            this.treeCommodityID.Size = new System.Drawing.Size(846, 159);
             this.treeCommodityID.TabIndex = 66;
             this.treeCommodityID.UseCompatibleStateImageBehavior = false;
             this.treeCommodityID.UseFilterIndicator = true;
@@ -213,10 +215,10 @@
             // 
             this.panelTop.Controls.Add(this.layoutTop);
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelTop.Location = new System.Drawing.Point(422, 0);
+            this.panelTop.Location = new System.Drawing.Point(348, 0);
             this.panelTop.Name = "panelTop";
             this.panelTop.Padding = new System.Windows.Forms.Padding(3, 3, 3, 0);
-            this.panelTop.Size = new System.Drawing.Size(1109, 32);
+            this.panelTop.Size = new System.Drawing.Size(1183, 32);
             this.panelTop.TabIndex = 67;
             // 
             // layoutTop
@@ -246,14 +248,14 @@
             this.layoutTop.Name = "layoutTop";
             this.layoutTop.RowCount = 1;
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.layoutTop.Size = new System.Drawing.Size(1103, 29);
+            this.layoutTop.Size = new System.Drawing.Size(1177, 29);
             this.layoutTop.TabIndex = 9;
             // 
             // pictureBox2
             // 
             this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Right;
             this.pictureBox2.Image = global::TotalSmartCoding.Properties.Resources.calendar24;
-            this.pictureBox2.Location = new System.Drawing.Point(852, 0);
+            this.pictureBox2.Location = new System.Drawing.Point(926, 0);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(24, 29);
@@ -269,7 +271,7 @@
             this.dateTimexEntryDate.Editable = true;
             this.dateTimexEntryDate.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimexEntryDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimexEntryDate.Location = new System.Drawing.Point(603, 1);
+            this.dateTimexEntryDate.Location = new System.Drawing.Point(677, 1);
             this.dateTimexEntryDate.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.dateTimexEntryDate.Name = "dateTimexEntryDate";
             this.dateTimexEntryDate.ReadOnly = false;
@@ -283,7 +285,7 @@
             this.dateTimexPicker1.Editable = true;
             this.dateTimexPicker1.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimexPicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimexPicker1.Location = new System.Drawing.Point(879, 1);
+            this.dateTimexPicker1.Location = new System.Drawing.Point(953, 1);
             this.dateTimexPicker1.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.dateTimexPicker1.Name = "dateTimexPicker1";
             this.dateTimexPicker1.ReadOnly = false;
@@ -294,7 +296,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(827, 0);
+            this.label1.Location = new System.Drawing.Point(901, 0);
             this.label1.Margin = new System.Windows.Forms.Padding(0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(25, 29);
@@ -306,7 +308,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Location = new System.Drawing.Point(529, 0);
+            this.label5.Location = new System.Drawing.Point(603, 0);
             this.label5.Margin = new System.Windows.Forms.Padding(0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(47, 29);
@@ -318,7 +320,7 @@
             // 
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Right;
             this.pictureBox1.Image = global::TotalSmartCoding.Properties.Resources.calendar24;
-            this.pictureBox1.Location = new System.Drawing.Point(576, 0);
+            this.pictureBox1.Location = new System.Drawing.Point(650, 0);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(24, 29);
@@ -328,61 +330,62 @@
             // 
             // panelLeft
             // 
-            this.panelLeft.Controls.Add(this.dataTreeListView1);
+            this.panelLeft.Controls.Add(this.fastReportIndex);
             this.panelLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelLeft.Location = new System.Drawing.Point(0, 0);
             this.panelLeft.Name = "panelLeft";
-            this.panelLeft.Size = new System.Drawing.Size(422, 734);
+            this.panelLeft.Padding = new System.Windows.Forms.Padding(0, 0, 0, 3);
+            this.panelLeft.Size = new System.Drawing.Size(348, 734);
             this.panelLeft.TabIndex = 68;
             // 
-            // dataTreeListView1
+            // fastReportIndex
             // 
-            this.dataTreeListView1.AllColumns.Add(this.olvColumn1);
-            this.dataTreeListView1.AllColumns.Add(this.olvColumn2);
-            this.dataTreeListView1.AllColumns.Add(this.olvColumn33);
-            this.dataTreeListView1.AllColumns.Add(this.olvColumn3);
-            this.dataTreeListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.olvColumn1,
-            this.olvColumn2,
-            this.olvColumn3});
-            this.dataTreeListView1.DataSource = null;
-            this.dataTreeListView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataTreeListView1.FullRowSelect = true;
-            this.dataTreeListView1.KeyAspectName = "NodeID";
-            this.dataTreeListView1.Location = new System.Drawing.Point(0, 0);
-            this.dataTreeListView1.Name = "dataTreeListView1";
-            this.dataTreeListView1.OwnerDraw = true;
-            this.dataTreeListView1.ParentKeyAspectName = "ParentNodeID";
-            this.dataTreeListView1.RootKeyValueString = "";
-            this.dataTreeListView1.ShowGroups = false;
-            this.dataTreeListView1.ShowKeyColumns = false;
-            this.dataTreeListView1.Size = new System.Drawing.Size(422, 734);
-            this.dataTreeListView1.TabIndex = 67;
-            this.dataTreeListView1.UseCompatibleStateImageBehavior = false;
-            this.dataTreeListView1.UseFilterIndicator = true;
-            this.dataTreeListView1.UseFiltering = true;
-            this.dataTreeListView1.View = System.Windows.Forms.View.Details;
-            this.dataTreeListView1.VirtualMode = true;
+            this.fastReportIndex.AllColumns.Add(this.olvID);
+            this.fastReportIndex.AllColumns.Add(this.olvReportGroupName);
+            this.fastReportIndex.AllColumns.Add(this.olvReportName);
+            this.fastReportIndex.BackColor = System.Drawing.Color.Ivory;
+            this.fastReportIndex.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.olvID,
+            this.olvReportName});
+            this.fastReportIndex.Cursor = System.Windows.Forms.Cursors.Default;
+            this.fastReportIndex.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fastReportIndex.Font = new System.Drawing.Font("Calibri Light", 10.2F);
+            this.fastReportIndex.FullRowSelect = true;
+            this.fastReportIndex.GroupImageList = this.imageList32;
+            this.fastReportIndex.HideSelection = false;
+            this.fastReportIndex.HighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
+            this.fastReportIndex.Location = new System.Drawing.Point(0, 0);
+            this.fastReportIndex.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.fastReportIndex.Name = "fastReportIndex";
+            this.fastReportIndex.OwnerDraw = true;
+            this.fastReportIndex.ShowGroups = false;
+            this.fastReportIndex.Size = new System.Drawing.Size(348, 731);
+            this.fastReportIndex.TabIndex = 70;
+            this.fastReportIndex.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
+            this.fastReportIndex.UseCompatibleStateImageBehavior = false;
+            this.fastReportIndex.UseFiltering = true;
+            this.fastReportIndex.View = System.Windows.Forms.View.Details;
+            this.fastReportIndex.VirtualMode = true;
             // 
-            // olvColumn1
+            // olvID
             // 
-            this.olvColumn1.AspectName = "Code";
-            this.olvColumn1.Text = "Code";
-            this.olvColumn1.Width = 177;
+            this.olvID.Text = "";
+            this.olvID.Width = 20;
             // 
-            // olvColumn2
+            // olvReportGroupName
             // 
-            this.olvColumn2.AspectName = "Name";
-            this.olvColumn2.Text = "Name";
-            this.olvColumn2.Width = 229;
+            this.olvReportGroupName.AspectName = "ReportGroupName";
+            this.olvReportGroupName.IsVisible = false;
+            this.olvReportGroupName.Text = "Report Group";
             // 
-            // olvColumn3
+            // olvReportName
             // 
-            this.olvColumn3.AspectName = "Selected";
-            this.olvColumn3.CheckBoxes = true;
-            this.olvColumn3.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvColumn3.Text = "";
-            this.olvColumn3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvReportName.AspectName = "ReportName";
+            this.olvReportName.FillsFreeSpace = true;
+            this.olvReportName.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvReportName.Sortable = false;
+            this.olvReportName.Text = "Reports";
+            this.olvReportName.Width = 90;
             // 
             // panelCenter
             // 
@@ -392,9 +395,9 @@
             this.panelCenter.Controls.Add(this.panelCustomers);
             this.panelCenter.Controls.Add(this.panelCommodities);
             this.panelCenter.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelCenter.Location = new System.Drawing.Point(422, 32);
+            this.panelCenter.Location = new System.Drawing.Point(348, 32);
             this.panelCenter.Name = "panelCenter";
-            this.panelCenter.Size = new System.Drawing.Size(1109, 702);
+            this.panelCenter.Size = new System.Drawing.Size(1183, 702);
             this.panelCenter.TabIndex = 69;
             this.panelCenter.Paint += new System.Windows.Forms.PaintEventHandler(this.panelCenter_Paint);
             // 
@@ -406,6 +409,7 @@
             this.treeWarehouseAdjustmentTypeID.AllColumns.Add(this.olvColumn4);
             this.treeWarehouseAdjustmentTypeID.AllColumns.Add(this.olvColumn5);
             this.treeWarehouseAdjustmentTypeID.AllColumns.Add(this.olvColumn22);
+            this.treeWarehouseAdjustmentTypeID.BackColor = System.Drawing.Color.Ivory;
             this.treeWarehouseAdjustmentTypeID.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.olvColumn20,
             this.olvColumn21,
@@ -421,7 +425,7 @@
             this.treeWarehouseAdjustmentTypeID.RootKeyValueString = "";
             this.treeWarehouseAdjustmentTypeID.ShowGroups = false;
             this.treeWarehouseAdjustmentTypeID.ShowKeyColumns = false;
-            this.treeWarehouseAdjustmentTypeID.Size = new System.Drawing.Size(1109, 112);
+            this.treeWarehouseAdjustmentTypeID.Size = new System.Drawing.Size(1183, 112);
             this.treeWarehouseAdjustmentTypeID.TabIndex = 71;
             this.treeWarehouseAdjustmentTypeID.UseCompatibleStateImageBehavior = false;
             this.treeWarehouseAdjustmentTypeID.UseFilterIndicator = true;
@@ -459,6 +463,7 @@
             this.treeWarehouseReceiptID.AllColumns.Add(this.olvColumn4);
             this.treeWarehouseReceiptID.AllColumns.Add(this.olvColumn5);
             this.treeWarehouseReceiptID.AllColumns.Add(this.olvColumn19);
+            this.treeWarehouseReceiptID.BackColor = System.Drawing.Color.Ivory;
             this.treeWarehouseReceiptID.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.olvColumn17,
             this.olvColumn18,
@@ -474,7 +479,7 @@
             this.treeWarehouseReceiptID.RootKeyValueString = "";
             this.treeWarehouseReceiptID.ShowGroups = false;
             this.treeWarehouseReceiptID.ShowKeyColumns = false;
-            this.treeWarehouseReceiptID.Size = new System.Drawing.Size(1109, 112);
+            this.treeWarehouseReceiptID.Size = new System.Drawing.Size(1183, 112);
             this.treeWarehouseReceiptID.TabIndex = 70;
             this.treeWarehouseReceiptID.UseCompatibleStateImageBehavior = false;
             this.treeWarehouseReceiptID.UseFilterIndicator = true;
@@ -512,6 +517,7 @@
             this.treeWarehouseID.AllColumns.Add(this.olvColumn4);
             this.treeWarehouseID.AllColumns.Add(this.olvColumn5);
             this.treeWarehouseID.AllColumns.Add(this.olvColumn8);
+            this.treeWarehouseID.BackColor = System.Drawing.Color.Ivory;
             this.treeWarehouseID.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.olvColumn6,
             this.olvColumn7,
@@ -527,7 +533,7 @@
             this.treeWarehouseID.RootKeyValueString = "";
             this.treeWarehouseID.ShowGroups = false;
             this.treeWarehouseID.ShowKeyColumns = false;
-            this.treeWarehouseID.Size = new System.Drawing.Size(1109, 112);
+            this.treeWarehouseID.Size = new System.Drawing.Size(1183, 112);
             this.treeWarehouseID.TabIndex = 67;
             this.treeWarehouseID.UseCompatibleStateImageBehavior = false;
             this.treeWarehouseID.UseFilterIndicator = true;
@@ -564,7 +570,7 @@
             this.panelCustomers.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelCustomers.Location = new System.Drawing.Point(0, 159);
             this.panelCustomers.Name = "panelCustomers";
-            this.panelCustomers.Size = new System.Drawing.Size(1109, 159);
+            this.panelCustomers.Size = new System.Drawing.Size(1183, 159);
             this.panelCustomers.TabIndex = 69;
             // 
             // treeCustomerID
@@ -575,6 +581,7 @@
             this.treeCustomerID.AllColumns.Add(this.olvColumn4);
             this.treeCustomerID.AllColumns.Add(this.olvColumn5);
             this.treeCustomerID.AllColumns.Add(this.olvColumn14);
+            this.treeCustomerID.BackColor = System.Drawing.Color.Ivory;
             this.treeCustomerID.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.olvColumn12,
             this.olvColumn13,
@@ -590,7 +597,7 @@
             this.treeCustomerID.RootKeyValueString = "";
             this.treeCustomerID.ShowGroups = false;
             this.treeCustomerID.ShowKeyColumns = false;
-            this.treeCustomerID.Size = new System.Drawing.Size(772, 159);
+            this.treeCustomerID.Size = new System.Drawing.Size(846, 159);
             this.treeCustomerID.TabIndex = 66;
             this.treeCustomerID.UseCompatibleStateImageBehavior = false;
             this.treeCustomerID.UseFilterIndicator = true;
@@ -628,6 +635,7 @@
             this.treeEmployeeID.AllColumns.Add(this.olvColumn4);
             this.treeEmployeeID.AllColumns.Add(this.olvColumn5);
             this.treeEmployeeID.AllColumns.Add(this.olvColumn11);
+            this.treeEmployeeID.BackColor = System.Drawing.Color.Ivory;
             this.treeEmployeeID.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.olvColumn15,
             this.olvColumn16});
@@ -681,7 +689,7 @@
             this.panelCommodities.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelCommodities.Location = new System.Drawing.Point(0, 0);
             this.panelCommodities.Name = "panelCommodities";
-            this.panelCommodities.Size = new System.Drawing.Size(1109, 159);
+            this.panelCommodities.Size = new System.Drawing.Size(1183, 159);
             this.panelCommodities.TabIndex = 68;
             // 
             // treeCommodityTypeID
@@ -692,6 +700,7 @@
             this.treeCommodityTypeID.AllColumns.Add(this.olvColumn4);
             this.treeCommodityTypeID.AllColumns.Add(this.olvColumn5);
             this.treeCommodityTypeID.AllColumns.Add(this.olvColumn11);
+            this.treeCommodityTypeID.BackColor = System.Drawing.Color.Ivory;
             this.treeCommodityTypeID.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.olvColumn9,
             this.olvColumn10});
@@ -742,7 +751,7 @@
             this.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Reports";
-            this.Text = "Available Items";
+            this.Text = "Reports";
             this.Controls.SetChildIndex(this.toolStripChildForm, 0);
             this.Controls.SetChildIndex(this.panelLeft, 0);
             this.Controls.SetChildIndex(this.panelTop, 0);
@@ -757,7 +766,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panelLeft.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataTreeListView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fastReportIndex)).EndInit();
             this.panelCenter.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.treeWarehouseAdjustmentTypeID)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeWarehouseReceiptID)).EndInit();
@@ -792,10 +801,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panelLeft;
         private System.Windows.Forms.Panel panelCenter;
-        private BrightIdeasSoftware.DataTreeListView dataTreeListView1;
-        private BrightIdeasSoftware.OLVColumn olvColumn1;
-        private BrightIdeasSoftware.OLVColumn olvColumn2;
-        private BrightIdeasSoftware.OLVColumn olvColumn3;
         private BrightIdeasSoftware.OLVColumn olvColumn4;
         private BrightIdeasSoftware.OLVColumn olvColumn5;
         private BrightIdeasSoftware.DataTreeListView treeWarehouseID;
@@ -823,6 +828,10 @@
         private BrightIdeasSoftware.OLVColumn olvColumn17;
         private BrightIdeasSoftware.OLVColumn olvColumn18;
         private BrightIdeasSoftware.OLVColumn olvColumn19;
+        private BrightIdeasSoftware.FastObjectListView fastReportIndex;
+        private BrightIdeasSoftware.OLVColumn olvID;
+        private BrightIdeasSoftware.OLVColumn olvReportName;
+        private BrightIdeasSoftware.OLVColumn olvReportGroupName;
 
     }
 }
