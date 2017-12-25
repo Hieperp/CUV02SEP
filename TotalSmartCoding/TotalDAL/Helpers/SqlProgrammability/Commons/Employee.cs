@@ -118,7 +118,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             queryString = queryString + "       SELECT      " + GlobalEnums.AncestorNode + " + TeamID AS NodeID, " + GlobalEnums.RootNode + " AS ParentNodeID, TeamID AS PrimaryID, NULL AS AncestorID, Name AS Code, NULL AS Name, 'TeamID' AS ParameterName, CAST(0 AS bit) AS Selected " + "\r\n";
             queryString = queryString + "       FROM        Teams " + "\r\n";
             queryString = queryString + "       UNION ALL " + "\r\n";
-            queryString = queryString + "       SELECT      EmployeeID AS NodeID, " + GlobalEnums.AncestorNode + " + TeamID AS ParentNodeID, EmployeeID AS PrimaryID, TeamID AS AncestorID, Code, Name, 'EmployeeID' AS ParameterName, CAST(0 AS bit) AS Selected " + "\r\n";
+            queryString = queryString + "       SELECT      EmployeeID AS NodeID, " + GlobalEnums.AncestorNode + " + TeamID AS ParentNodeID, EmployeeID AS PrimaryID, TeamID AS AncestorID, Name AS Code, Name, 'EmployeeID' AS ParameterName, CAST(0 AS bit) AS Selected " + "\r\n";
             queryString = queryString + "       FROM        Employees " + "\r\n";
 
             queryString = queryString + "    END " + "\r\n";

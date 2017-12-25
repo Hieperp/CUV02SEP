@@ -55,14 +55,22 @@ namespace TotalSmartCoding.Views.Mains
 
                 this.customTabBatch.TabPages.Add("tabPendingPallets", "Pending pallets");
                 this.customTabBatch.TabPages.Add("tabPendingCartons", "Pending cartons");
+                this.customTabBatch.TabPages.Add("tabPendingCartonsa", "Salesperson, Customer");
+                this.customTabBatch.TabPages.Add("tabPendingCartonsaa", "Destination");
+                this.customTabBatch.TabPages.Add("tabPendingCartonsaaa", "Adjustment Type");
                 this.customTabBatch.TabPages[0].Controls.Add(this.treeWarehouseID);
-                this.customTabBatch.TabPages[1].Controls.Add(this.treeCommodityID);
-
+                this.customTabBatch.TabPages[1].Controls.Add(this.panelCommodities);
+                this.customTabBatch.TabPages[2].Controls.Add(this.panelCustomers);
+                this.customTabBatch.TabPages[3].Controls.Add(this.treeWarehouseReceiptID);
+                this.customTabBatch.TabPages[4].Controls.Add(this.treeWarehouseAdjustmentTypeID);
 
                 this.customTabBatch.Dock = DockStyle.Fill;
                 this.treeWarehouseID.Dock = DockStyle.Fill;
-                this.treeCommodityID.Dock = DockStyle.Fill;
-                this.Controls.Add(this.customTabBatch);
+                this.panelCommodities.Dock = DockStyle.Fill;
+                this.panelCustomers.Dock = DockStyle.Fill;
+                this.treeWarehouseReceiptID.Dock = DockStyle.Fill;
+                this.treeWarehouseAdjustmentTypeID.Dock = DockStyle.Fill;
+                this.panelCenter.Controls.Add(this.customTabBatch);
             }
             catch (Exception exception)
             {
@@ -70,8 +78,19 @@ namespace TotalSmartCoding.Views.Mains
             }
         }
 
+        protected override void InitializeReadOnlyModeBinding()
+        {
+            base.InitializeReadOnlyModeBinding();
+            this.dateTimexEntryDate.ReadOnly = false;
+            this.dateTimexPicker1.ReadOnly = false;
+        }
         private IList<WarehouseTree> warehouseTrees;
         private IList<CommodityTree> commodityTrees;
+        private IList<CommodityTypeTree> commodityTypeTrees;
+        private IList<CustomerTree> customerTrees;
+        private IList<EmployeeTree> employeeTrees;
+        private IList<WarehouseTree> warehouseReceiptTrees;
+        private IList<WarehouseAdjustmentTypeTree> warehouseAdjustmentTypeTrees;
 
         protected override void InitializeCommonControlBinding()
         {
@@ -79,24 +98,57 @@ namespace TotalSmartCoding.Views.Mains
 
             this.treeWarehouseID.RootKeyValue = 0;
             this.treeCommodityID.RootKeyValue = 0;
+            this.treeCommodityTypeID.RootKeyValue = 0;
+            this.treeCustomerID.RootKeyValue = 0;
+            this.treeEmployeeID.RootKeyValue = 0;
+            this.treeWarehouseReceiptID.RootKeyValue = 0;
+            this.treeWarehouseAdjustmentTypeID.RootKeyValue = 0;
 
             WarehouseAPIs warehouseAPIs = new WarehouseAPIs(CommonNinject.Kernel.Get<IWarehouseAPIRepository>());
             this.warehouseTrees = warehouseAPIs.GetWarehouseTrees();
             this.treeWarehouseID.DataSource = new BindingSource(this.warehouseTrees, "");
 
+            this.warehouseReceiptTrees = warehouseAPIs.GetWarehouseTrees();
+            this.treeWarehouseReceiptID.DataSource = new BindingSource(this.warehouseReceiptTrees, "");
+
+            WarehouseAdjustmentTypeAPIs warehouseAdjustmentTypeAPIs = new WarehouseAdjustmentTypeAPIs(CommonNinject.Kernel.Get<IWarehouseAdjustmentTypeAPIRepository>());
+            this.warehouseAdjustmentTypeTrees = warehouseAdjustmentTypeAPIs.GetWarehouseAdjustmentTypeTrees();
+            this.treeWarehouseAdjustmentTypeID.DataSource = new BindingSource(this.warehouseAdjustmentTypeTrees, "");
+
             CommodityAPIs commodityAPIs = new CommodityAPIs(CommonNinject.Kernel.Get<ICommodityAPIRepository>());
             this.commodityTrees = commodityAPIs.GetCommodityTrees();
             this.treeCommodityID.DataSource = new BindingSource(this.commodityTrees, "");
 
+            CommodityTypeAPIs commodityTypeAPIs = new CommodityTypeAPIs(CommonNinject.Kernel.Get<ICommodityTypeAPIRepository>());
+            this.commodityTypeTrees = commodityTypeAPIs.GetCommodityTypeTrees();
+            this.treeCommodityTypeID.DataSource = new BindingSource(this.commodityTypeTrees, "");
+
+            CustomerAPIs customerAPIs = new CustomerAPIs(CommonNinject.Kernel.Get<ICustomerAPIRepository>());
+            this.customerTrees = customerAPIs.GetCustomerTrees();
+            this.treeCustomerID.DataSource = new BindingSource(this.customerTrees, "");
+
+            EmployeeAPIs employeeAPIs = new EmployeeAPIs(CommonNinject.Kernel.Get<IEmployeeAPIRepository>());
+            this.employeeTrees = employeeAPIs.GetEmployeeTrees();
+            this.treeEmployeeID.DataSource = new BindingSource(this.employeeTrees, "");
+
             if (this.treeWarehouseID.GetModelObject(0) != null) this.treeWarehouseID.Expand(this.treeWarehouseID.GetModelObject(0));
+            if (this.treeWarehouseReceiptID.GetModelObject(0) != null) this.treeWarehouseReceiptID.Expand(this.treeWarehouseReceiptID.GetModelObject(0));
             if (this.treeCommodityID.GetModelObject(0) != null) this.treeCommodityID.Expand(this.treeCommodityID.GetModelObject(0));
+            if (this.treeCommodityTypeID.GetModelObject(0) != null) this.treeCommodityTypeID.Expand(this.treeCommodityTypeID.GetModelObject(0));
+            if (this.treeCustomerID.GetModelObject(0) != null) this.treeCustomerID.Expand(this.treeCustomerID.GetModelObject(0));
+            if (this.treeEmployeeID.GetModelObject(0) != null) this.treeEmployeeID.Expand(this.treeEmployeeID.GetModelObject(0));
+            if (this.treeWarehouseAdjustmentTypeID.GetModelObject(0) != null) this.treeWarehouseAdjustmentTypeID.Expand(this.treeWarehouseAdjustmentTypeID.GetModelObject(0));
         }
 
         public override void ApplyFilter(string filterTexts)
         {
-            IList<WarehouseTree> warehouseTreesx = this.warehouseTrees;
             OLVHelpers.ApplyFilters(this.treeWarehouseID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
+            OLVHelpers.ApplyFilters(this.treeWarehouseReceiptID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
             OLVHelpers.ApplyFilters(this.treeCommodityID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
+            OLVHelpers.ApplyFilters(this.treeCommodityTypeID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
+            OLVHelpers.ApplyFilters(this.treeCustomerID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
+            OLVHelpers.ApplyFilters(this.treeEmployeeID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
+            OLVHelpers.ApplyFilters(this.treeWarehouseAdjustmentTypeID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
         }
 
 
@@ -140,6 +192,17 @@ namespace TotalSmartCoding.Views.Mains
 
             string i = locationID.PrimaryIDs + warehouseID.PrimaryIDs;
         }
+
+        private void panelCenter_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 
     public class FilterParameter

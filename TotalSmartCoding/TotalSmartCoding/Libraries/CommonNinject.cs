@@ -141,6 +141,10 @@ namespace TotalSmartCoding.Libraries
                 Kernel.Bind<ICommodityCategoryAPIRepository>().To<CommodityCategoryAPIRepository>();
                 //Kernel.Bind<CommodityCategoryViewModel>().ToSelf();
 
+                //Kernel.Bind<ICommodityTypeService>().To<CommodityTypeService>();
+                Kernel.Bind<ICommodityTypeRepository>().To<CommodityTypeRepository>();
+                Kernel.Bind<ICommodityTypeAPIRepository>().To<CommodityTypeAPIRepository>();
+                //Kernel.Bind<CommodityTypeViewModel>().ToSelf();
 
                 //Kernel.Bind<IEmployeeService>().To<EmployeeService>();
                 Kernel.Bind<IEmployeeRepository>().To<EmployeeRepository>();
