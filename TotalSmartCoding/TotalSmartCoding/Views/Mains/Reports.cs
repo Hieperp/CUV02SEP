@@ -160,14 +160,6 @@ namespace TotalSmartCoding.Views.Mains
             this.employeeTrees = employeeAPIs.GetEmployeeTrees();
             this.treeEmployeeID.DataSource = new BindingSource(this.employeeTrees, "");
 
-            if (this.treeWarehouseID.GetModelObject(0) != null) this.treeWarehouseID.Expand(this.treeWarehouseID.GetModelObject(0));
-            if (this.treeWarehouseReceiptID.GetModelObject(0) != null) this.treeWarehouseReceiptID.Expand(this.treeWarehouseReceiptID.GetModelObject(0));
-            if (this.treeCommodityID.GetModelObject(0) != null) this.treeCommodityID.Expand(this.treeCommodityID.GetModelObject(0));
-            if (this.treeCommodityTypeID.GetModelObject(0) != null) this.treeCommodityTypeID.Expand(this.treeCommodityTypeID.GetModelObject(0));
-            if (this.treeCustomerID.GetModelObject(0) != null) this.treeCustomerID.Expand(this.treeCustomerID.GetModelObject(0));
-            if (this.treeEmployeeID.GetModelObject(0) != null) this.treeEmployeeID.Expand(this.treeEmployeeID.GetModelObject(0));
-            if (this.treeWarehouseAdjustmentTypeID.GetModelObject(0) != null) this.treeWarehouseAdjustmentTypeID.Expand(this.treeWarehouseAdjustmentTypeID.GetModelObject(0));
-
             this.fastReportIndex.AboutToCreateGroups += fastReportIndex_AboutToCreateGroups;
 
             this.fastReportIndex.ShowGroups = true;
@@ -197,31 +189,82 @@ namespace TotalSmartCoding.Views.Mains
         {
             base.DoAfterLoad();
             this.fastReportIndex.Sort(this.olvReportGroupName, SortOrder.Descending);
+
+            if (this.treeWarehouseID.GetModelObject(0) != null) { this.treeWarehouseID.Expand(this.treeWarehouseID.GetModelObject(0)); if (this.treeWarehouseID.Items.Count >= 2) this.treeWarehouseID.SelectedIndex = 1; }
+            if (this.treeWarehouseReceiptID.GetModelObject(0) != null) { this.treeWarehouseReceiptID.Expand(this.treeWarehouseReceiptID.GetModelObject(0)); if (this.treeWarehouseReceiptID.Items.Count >= 2) this.treeWarehouseReceiptID.SelectedIndex = 1; }
+            if (this.treeCommodityID.GetModelObject(0) != null) { this.treeCommodityID.Expand(this.treeCommodityID.GetModelObject(0)); if (this.treeCommodityID.Items.Count >= 2) this.treeCommodityID.SelectedIndex = 1; }
+            if (this.treeCommodityTypeID.GetModelObject(0) != null) { this.treeCommodityTypeID.Expand(this.treeCommodityTypeID.GetModelObject(0)); if (this.treeCommodityTypeID.Items.Count >= 2) this.treeCommodityTypeID.SelectedIndex = 1; }
+            if (this.treeCustomerID.GetModelObject(0) != null) { this.treeCustomerID.Expand(this.treeCustomerID.GetModelObject(0)); if (this.treeCustomerID.Items.Count >= 2) this.treeCustomerID.SelectedIndex = 1; }
+            if (this.treeEmployeeID.GetModelObject(0) != null) { this.treeEmployeeID.Expand(this.treeEmployeeID.GetModelObject(0)); if (this.treeEmployeeID.Items.Count >= 2) this.treeEmployeeID.SelectedIndex = 1; }
+            if (this.treeWarehouseAdjustmentTypeID.GetModelObject(0) != null) { this.treeWarehouseAdjustmentTypeID.Expand(this.treeWarehouseAdjustmentTypeID.GetModelObject(0)); if (this.treeWarehouseAdjustmentTypeID.Items.Count >= 2) this.treeWarehouseAdjustmentTypeID.SelectedIndex = 1; }
         }
 
         protected override void invokeEdit(int? id)
         {
-            //base.invokeEdit(id);
-            if (this.fastReportIndex.SelectedObject != null)
+            try
             {
-                ReportIndex reportIndex = (ReportIndex)this.fastReportIndex.SelectedObject;
-                if (reportIndex != null)
+                //base.invokeEdit(id);
+                if (this.fastReportIndex.SelectedObject != null)
                 {
-                    this.currentReportIndex = reportIndex;
-                    if (this.currentReportTypeID != this.currentReportIndex.ReportTypeID)
+                    ReportIndex reportIndex = (ReportIndex)this.fastReportIndex.SelectedObject;
+                    if (reportIndex != null)
                     {
-                        this.currentReportTypeID = this.currentReportIndex.ReportTypeID;
-
-                        this.customTabBatch.SuspendLayout();
-                        this.customTabBatch.TabPages.Clear();
-                        foreach (TabPage tabpage in this.tabPages)
+                        this.currentReportIndex = reportIndex;
+                        if (this.currentReportTypeID != this.currentReportIndex.ReportTypeID)
                         {
-                            if (tabpage.Tag.ToString().IndexOf(this.currentReportTypeID.ToString()) != -1)
-                                this.customTabBatch.TabPages.Add(tabpage);
+                            this.currentReportTypeID = this.currentReportIndex.ReportTypeID;
+                            this.reloadTabPages();
                         }
-                        this.customTabBatch.ResumeLayout();
                     }
                 }
+            }
+            catch (Exception exception)
+            {
+                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+            }
+        }
+
+        private void reloadTabPages()
+        {
+            try
+            {
+                this.customTabBatch.SuspendLayout();
+                this.clearTabPages();
+                foreach (TabPage tabpage in this.tabPages)
+                {
+                    if (tabpage.Tag.ToString().IndexOf(this.currentReportTypeID.ToString()) != -1)
+                        this.customTabBatch.TabPages.Add(tabpage);
+                }
+            }
+            catch (Exception exception)
+            {
+                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+            }
+            finally
+            {
+                this.customTabBatch.ResumeLayout();
+            }
+        }
+
+        private void clearTabPages()
+        {
+            try
+            {
+                //CALL CollapseAll() TO PREVENT UNKNOW ERROR!!!
+                this.treeWarehouseID.CollapseAll();
+                this.treeCommodityID.CollapseAll();
+                this.treeCommodityTypeID.CollapseAll();
+                this.treeCustomerID.CollapseAll();
+                this.treeEmployeeID.CollapseAll();
+                this.treeWarehouseReceiptID.CollapseAll();
+                this.treeWarehouseAdjustmentTypeID.CollapseAll();
+
+                this.customTabBatch.TabPages.Clear();
+            }
+            catch (Exception exception)
+            {
+                int i = 1;
+                //ExceptionHandlers.ShowExceptionMessageBox(this, exception);
             }
         }
 
