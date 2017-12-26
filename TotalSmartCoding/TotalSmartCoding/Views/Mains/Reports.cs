@@ -187,6 +187,8 @@ namespace TotalSmartCoding.Views.Mains
             if (this.treeWarehouseAdjustmentTypeID.GetModelObject(0) != null) { this.treeWarehouseAdjustmentTypeID.Expand(this.treeWarehouseAdjustmentTypeID.GetModelObject(0)); if (this.treeWarehouseAdjustmentTypeID.Items.Count >= 2) this.treeWarehouseAdjustmentTypeID.SelectedIndex = 1; }
         }
 
+
+        #region CONTEXTUAL LOAD TAB PAGE: TAB FOR FILTER
         protected override void invokeEdit(int? id)
         {
             try
@@ -216,7 +218,7 @@ namespace TotalSmartCoding.Views.Mains
                 this.clearTabPages();
                 foreach (TabPage tabpage in this.tabPages)
                 {
-                    if (this.currentReportIndex.ReportTabPageIDs.IndexOf(tabpage.Tag.ToString()) != -1)
+                    if (this.currentReportIndex.ReportTabPageIDs.IndexOf(tabpage.Tag.ToString()) != -1 && !this.customTabBatch.TabPages.Contains(tabpage))
                         this.customTabBatch.TabPages.Add(tabpage);
                 }
                 if (this.customTabBatch.TabPages.Contains(this.tabPageCommodities)) this.customTabBatch.SelectedTab = this.tabPageCommodities;
@@ -235,23 +237,33 @@ namespace TotalSmartCoding.Views.Mains
         {
             try
             {
-                //CALL CollapseAll() TO PREVENT UNKNOW ERROR!!!
-                this.treeWarehouseID.CollapseAll();
-                this.treeCommodityID.CollapseAll();
-                this.treeCommodityTypeID.CollapseAll();
-                this.treeCustomerID.CollapseAll();
-                this.treeEmployeeID.CollapseAll();
-                this.treeWarehouseReceiptID.CollapseAll();
-                this.treeWarehouseAdjustmentTypeID.CollapseAll();
+                foreach (TabPage tabpage in this.customTabBatch.TabPages)
+                {
+                    if (this.currentReportIndex.ReportTabPageIDs.IndexOf(tabpage.Tag.ToString()) == -1)
+                    {//CALL CollapseAll() TO PREVENT UNKNOW ERROR!!! //IF WE DON'T COLLAPSE ALL THE TREE, IT WIL RAISE ERROR WHEN WE CALL CLEAR OR REMOVE TABPAGES
+                        if (tabpage.Equals(this.tabPageWarehouses))
+                        { this.treeWarehouseID.CollapseAll(); }
+                        if (tabpage.Equals(this.tabPageCommodities))
+                        { this.treeCommodityID.CollapseAll(); this.treeCommodityTypeID.CollapseAll(); }
+                        if (tabpage.Equals(this.tabPageCustomers))
+                        { this.treeEmployeeID.CollapseAll(); this.treeCustomerID.CollapseAll(); }
+                        if (tabpage.Equals(this.tabPageWarehouseReceipts))
+                        { this.treeWarehouseReceiptID.CollapseAll(); }
+                        if (tabpage.Equals(this.tabPageWarehouseAdjustmentTypes))
+                        { this.treeWarehouseAdjustmentTypeID.CollapseAll(); }
 
-                this.customTabBatch.TabPages.Clear();
+                        this.customTabBatch.TabPages.Remove(tabpage);
+                    }
+                }
             }
             catch (Exception exception)
-            {
+            { //EVENT WHEN ERROR OCCUR, WE IGNORE IT
                 int i = 1;
                 //ExceptionHandlers.ShowExceptionMessageBox(this, exception);
             }
         }
+        #endregion CONTEXTUAL LOAD TAB PAGE: TAB FOR FILTER
+
 
         public override void ApplyFilter(string filterTexts)
         {
