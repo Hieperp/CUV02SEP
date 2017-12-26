@@ -18,5 +18,6 @@ namespace TotalModel.Models
         public string ReportGroupName { get; set; }
         public string ReportName { get; set; }
         public int ReportTypeID { get; set; }
+        public string ReportTabPageIDs { get; set; }
     }
 }

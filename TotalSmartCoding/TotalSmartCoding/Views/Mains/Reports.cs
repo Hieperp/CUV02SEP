@@ -41,7 +41,6 @@ namespace TotalSmartCoding.Views.Mains
         private ReportAPIs reportAPIs;
 
         private ReportIndex currentReportIndex;
-        private int currentReportTypeID = 0;
 
         public Reports()
             : base()
@@ -62,11 +61,11 @@ namespace TotalSmartCoding.Views.Mains
             {
                 base.InitializeTabControl();
 
-                this.tabPageWarehouses = new TabPage("Locations"); this.tabPageWarehouses.Tag = ((int)GlobalEnums.ReportTypeID.GoodsReceiptPivot).ToString() + "," + ((int)GlobalEnums.ReportTypeID.GoodsIssuePivot).ToString();
-                this.tabPageCommodities = new TabPage("Commodities"); this.tabPageCommodities.Tag = ((int)GlobalEnums.ReportTypeID.GoodsReceiptPivot).ToString() + "," + ((int)GlobalEnums.ReportTypeID.GoodsIssuePivot).ToString();
-                this.tabPageCustomers = new TabPage("Customers"); this.tabPageCustomers.Tag = ((int)GlobalEnums.ReportTypeID.GoodsIssuePivot).ToString();
-                this.tabPageWarehouseReceipts = new TabPage("Destination Warehouses"); this.tabPageWarehouseReceipts.Tag = ((int)GlobalEnums.ReportTypeID.GoodsReceiptPivot).ToString();
-                this.tabPageWarehouseAdjustmentTypes = new TabPage("Adjustment Types"); this.tabPageWarehouseAdjustmentTypes.Tag = ((int)GlobalEnums.ReportTypeID.GoodsReceiptPivot).ToString() + "," + ((int)GlobalEnums.ReportTypeID.GoodsIssuePivot).ToString();
+                this.tabPageWarehouses = new TabPage("Locations"); this.tabPageWarehouses.Tag = (int)GlobalEnums.ReportTabPageID.TabPageWarehouses;
+                this.tabPageCommodities = new TabPage("Commodities"); this.tabPageCommodities.Tag = (int)GlobalEnums.ReportTabPageID.TabPageCommodities;
+                this.tabPageCustomers = new TabPage("Customers"); this.tabPageCustomers.Tag = (int)GlobalEnums.ReportTabPageID.TabPageCustomers;
+                this.tabPageWarehouseReceipts = new TabPage("Destination Warehouses"); this.tabPageWarehouseReceipts.Tag = (int)GlobalEnums.ReportTabPageID.TabPageWarehouseReceipts;
+                this.tabPageWarehouseAdjustmentTypes = new TabPage("Adjustment Types"); this.tabPageWarehouseAdjustmentTypes.Tag = (int)GlobalEnums.ReportTabPageID.TabPageWarehouseAdjustmentTypes;
 
                 this.tabPages = new TabPage[] { this.tabPageWarehouses, this.tabPageCommodities, this.tabPageCustomers, this.tabPageWarehouseReceipts, this.tabPageWarehouseAdjustmentTypes };
 
@@ -74,17 +73,6 @@ namespace TotalSmartCoding.Views.Mains
                 this.customTabBatch.Font = this.treeWarehouseID.Font;
                 this.customTabBatch.DisplayStyle = TabStyle.VisualStudio;
                 this.customTabBatch.DisplayStyleProvider.ImageAlign = ContentAlignment.MiddleLeft;
-
-                //this.customTabBatch.TabPages.Add("tabPendingPallets", "Pending pallets");
-                //this.customTabBatch.TabPages.Add("tabPendingCartons", "Pending cartons");
-                //this.customTabBatch.TabPages.Add("tabPendingCartonsa", "Salesperson, Customer");
-                //this.customTabBatch.TabPages.Add("tabPendingCartonsaa", "Destination");
-                //this.customTabBatch.TabPages.Add("tabPendingCartonsaaa", "Adjustment Type");
-                ////////this.customTabBatch.TabPages[0].Controls.Add(this.treeWarehouseID);
-                ////////this.customTabBatch.TabPages[1].Controls.Add(this.panelCommodities);
-                ////////this.customTabBatch.TabPages[2].Controls.Add(this.panelCustomers);
-                ////////this.customTabBatch.TabPages[3].Controls.Add(this.treeWarehouseReceiptID);
-                ////////this.customTabBatch.TabPages[4].Controls.Add(this.treeWarehouseAdjustmentTypeID);
 
                 this.tabPageWarehouses.Controls.Add(this.treeWarehouseID);
                 this.tabPageCommodities.Controls.Add(this.panelCommodities);
@@ -210,11 +198,7 @@ namespace TotalSmartCoding.Views.Mains
                     if (reportIndex != null)
                     {
                         this.currentReportIndex = reportIndex;
-                        if (this.currentReportTypeID != this.currentReportIndex.ReportTypeID)
-                        {
-                            this.currentReportTypeID = this.currentReportIndex.ReportTypeID;
-                            this.reloadTabPages();
-                        }
+                        this.reloadTabPages();
                     }
                 }
             }
@@ -232,9 +216,10 @@ namespace TotalSmartCoding.Views.Mains
                 this.clearTabPages();
                 foreach (TabPage tabpage in this.tabPages)
                 {
-                    if (tabpage.Tag.ToString().IndexOf(this.currentReportTypeID.ToString()) != -1)
+                    if (this.currentReportIndex.ReportTabPageIDs.IndexOf(tabpage.Tag.ToString()) != -1)
                         this.customTabBatch.TabPages.Add(tabpage);
                 }
+                if (this.customTabBatch.TabPages.Contains(this.tabPageCommodities)) this.customTabBatch.SelectedTab = this.tabPageCommodities;
             }
             catch (Exception exception)
             {

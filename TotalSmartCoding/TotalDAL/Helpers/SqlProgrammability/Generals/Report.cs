@@ -31,7 +31,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
-            queryString = queryString + "       SELECT      ReportUniqueID, ReportGroupID, UPPER(ReportGroupName) AS ReportGroupName, ReportName, ReportTypeID " + "\r\n";
+            queryString = queryString + "       SELECT      ReportUniqueID, ReportGroupID, UPPER(ReportGroupName) AS ReportGroupName, ReportTabPageIDs, ReportName, ReportTypeID " + "\r\n";
             queryString = queryString + "       FROM        Reports " + "\r\n";
             queryString = queryString + "       ORDER BY    ReportGroupName, SerialID " + "\r\n";
 

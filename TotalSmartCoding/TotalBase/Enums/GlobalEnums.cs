@@ -286,6 +286,16 @@
             GoodsIssuePivot = 2
         }
 
+        public enum ReportTabPageID
+        {
+            TabPageWarehouses = 1,
+            TabPageCommodities = 2,
+            TabPageCustomers = 3,
+            TabPageWarehouseIssues = 4,
+            TabPageWarehouseReceipts = 5,
+            TabPageWarehouseAdjustmentTypes = 6
+        }
+
         public enum ReportUniqueID
         {
             GoodsReceiptPivot = 1,
