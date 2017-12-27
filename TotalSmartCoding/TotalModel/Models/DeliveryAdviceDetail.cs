@@ -40,6 +40,7 @@ namespace TotalModel.Models
         public Nullable<System.DateTime> InActivePartialDate { get; set; }
         public Nullable<int> BatchID { get; set; }
         public int ReceiverID { get; set; }
+        public int SalespersonID { get; set; }
     
         public virtual SalesOrderDetail SalesOrderDetail { get; set; }
         public virtual DeliveryAdvice DeliveryAdvice { get; set; }

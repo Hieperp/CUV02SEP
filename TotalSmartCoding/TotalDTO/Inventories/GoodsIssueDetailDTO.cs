@@ -23,6 +23,7 @@ namespace TotalDTO.Inventories
 
         public Nullable<int> DeliveryAdviceID { get; set; }
         public Nullable<int> DeliveryAdviceDetailID { get; set; }
+        public Nullable<int> SalespersonID { get; set; }
 
         public string DeliveryAdviceReference { get; set; }
         public Nullable<System.DateTime> DeliveryAdviceEntryDate { get; set; }
@@ -39,6 +40,7 @@ namespace TotalDTO.Inventories
         public Nullable<int> GoodsIssueTypeID { get; set; }
         public Nullable<int> CustomerID { get; set; }
         public Nullable<int> ReceiverID { get; set; }
+        public Nullable<int> LocationReceiptID { get; set; }
         public Nullable<int> WarehouseReceiptID { get; set; }
 
         public int GoodsReceiptID { get; set; }

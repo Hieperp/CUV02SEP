@@ -125,6 +125,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                                 this.goodsIssueViewModel.VoucherCodes = pendingTransferOrder.VoucherCode;
                                 this.goodsIssueViewModel.WarehouseID = pendingTransferOrder.WarehouseID;
                                 this.goodsIssueViewModel.WarehouseName = pendingTransferOrder.WarehouseName;
+                                this.goodsIssueViewModel.LocationReceiptID = pendingTransferOrder.LocationReceiptID;
                                 this.goodsIssueViewModel.WarehouseReceiptID = pendingTransferOrder.WarehouseReceiptID;
                                 this.goodsIssueViewModel.WarehouseReceiptName = pendingTransferOrder.WarehouseReceiptName;
                                 this.goodsIssueViewModel.ForkliftDriverID = pendingTransferOrder.ForkliftDriverID;
@@ -141,6 +142,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                             {
                                 this.goodsIssueViewModel.WarehouseID = pendingTransferOrderWarehouse.WarehouseID;
                                 this.goodsIssueViewModel.WarehouseName = pendingTransferOrderWarehouse.WarehouseName;
+                                this.goodsIssueViewModel.LocationReceiptID = pendingTransferOrderWarehouse.LocationReceiptID;
                                 this.goodsIssueViewModel.WarehouseReceiptID = pendingTransferOrderWarehouse.WarehouseReceiptID;
                                 this.goodsIssueViewModel.WarehouseReceiptName = pendingTransferOrderWarehouse.WarehouseReceiptName;
                                 nextOK = true;

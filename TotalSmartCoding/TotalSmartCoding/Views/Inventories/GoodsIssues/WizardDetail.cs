@@ -123,6 +123,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                     {
                         goodsReceiptDetailAvailable.DeliveryAdviceID = this.pendingPrimaryDetail.DeliveryAdviceID;
                         goodsReceiptDetailAvailable.DeliveryAdviceDetailID = this.pendingPrimaryDetail.DeliveryAdviceDetailID;
+                        goodsReceiptDetailAvailable.SalespersonID = this.pendingPrimaryDetail.SalespersonID;
 
                         goodsReceiptDetailAvailable.TransferOrderID = this.pendingPrimaryDetail.TransferOrderID;
                         goodsReceiptDetailAvailable.TransferOrderDetailID = this.pendingPrimaryDetail.TransferOrderDetailID;
@@ -165,6 +166,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
 
                                         goodsReceiptDetailAvailable.DeliveryAdviceID = pendingPrimaryDetail.DeliveryAdviceID;
                                         goodsReceiptDetailAvailable.DeliveryAdviceDetailID = pendingPrimaryDetail.DeliveryAdviceDetailID;
+                                        goodsReceiptDetailAvailable.SalespersonID = pendingPrimaryDetail.SalespersonID;
 
                                         goodsReceiptDetailAvailable.TransferOrderID = pendingPrimaryDetail.TransferOrderID;
                                         goodsReceiptDetailAvailable.TransferOrderDetailID = pendingPrimaryDetail.TransferOrderDetailID;
@@ -286,6 +288,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                                     DeliveryAdviceDetailID = goodsReceiptDetailAvailable.DeliveryAdviceDetailID > 0 ? goodsReceiptDetailAvailable.DeliveryAdviceDetailID : (int?)null,
                                     DeliveryAdviceReference = goodsReceiptDetailAvailable.PrimaryReference,
                                     DeliveryAdviceEntryDate = goodsReceiptDetailAvailable.PrimaryEntryDate,
+                                    SalespersonID = goodsReceiptDetailAvailable.SalespersonID > 0 ? goodsReceiptDetailAvailable.SalespersonID : (int?)null,
 
                                     TransferOrderID = goodsReceiptDetailAvailable.TransferOrderID > 0 ? goodsReceiptDetailAvailable.TransferOrderID : (int?)null,
                                     TransferOrderDetailID = goodsReceiptDetailAvailable.TransferOrderDetailID > 0 ? goodsReceiptDetailAvailable.TransferOrderDetailID : (int?)null,

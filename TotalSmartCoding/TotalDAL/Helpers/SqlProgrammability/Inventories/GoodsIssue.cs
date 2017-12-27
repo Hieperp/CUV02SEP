@@ -30,9 +30,9 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             this.GetPendingTransferOrderWarehouses();
 
 
-            GenerateSQLPendingDetails generatePendingDeliveryAdviceDetails = new GenerateSQLPendingDetails(totalSmartCodingEntities, "GetPendingDeliveryAdviceDetails", "DeliveryAdviceDetails", "DeliveryAdviceID", "@DeliveryAdviceID", "DeliveryAdviceDetailID", "@DeliveryAdviceDetailIDs", "CustomerID", "@CustomerID", true, false, "PrimaryReference", "PrimaryEntryDate");
+            GenerateSQLPendingDetails generatePendingDeliveryAdviceDetails = new GenerateSQLPendingDetails(totalSmartCodingEntities, "GetPendingDeliveryAdviceDetails", "DeliveryAdviceDetails", "DeliveryAdviceID", "@DeliveryAdviceID", "DeliveryAdviceDetailID", "@DeliveryAdviceDetailIDs", "CustomerID", "@CustomerID", true, false, "PrimaryReference", "PrimaryEntryDate", "DeliveryAdviceDetails.SalespersonID");
             generatePendingDeliveryAdviceDetails.GetPendingDeliveryAdviceDetails();
-            GenerateSQLPendingDetails generatePendingTransferOrderDetails = new GenerateSQLPendingDetails(totalSmartCodingEntities, "GetPendingTransferOrderDetails", "TransferOrderDetails", "TransferOrderID", "@TransferOrderID", "TransferOrderDetailID", "@TransferOrderDetailIDs", "WarehouseReceiptID", "@WarehouseReceiptID", false, true, "PrimaryReference", "PrimaryEntryDate");
+            GenerateSQLPendingDetails generatePendingTransferOrderDetails = new GenerateSQLPendingDetails(totalSmartCodingEntities, "GetPendingTransferOrderDetails", "TransferOrderDetails", "TransferOrderID", "@TransferOrderID", "TransferOrderDetailID", "@TransferOrderDetailIDs", "WarehouseReceiptID", "@WarehouseReceiptID", false, true, "PrimaryReference", "PrimaryEntryDate", null);
             generatePendingTransferOrderDetails.GetPendingDeliveryAdviceDetails();
 
 
@@ -84,7 +84,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
-            queryString = queryString + "       SELECT      GoodsIssueDetails.GoodsIssueDetailID, GoodsIssueDetails.GoodsIssueID, GoodsIssueDetails.DeliveryAdviceID, GoodsIssueDetails.DeliveryAdviceDetailID, DeliveryAdviceDetails.Reference AS DeliveryAdviceReference, DeliveryAdviceDetails.EntryDate AS DeliveryAdviceEntryDate, GoodsIssueDetails.TransferOrderID, GoodsIssueDetails.TransferOrderDetailID, TransferOrderDetails.Reference AS TransferOrderReference, TransferOrderDetails.EntryDate AS TransferOrderEntryDate, " + "\r\n";
+            queryString = queryString + "       SELECT      GoodsIssueDetails.GoodsIssueDetailID, GoodsIssueDetails.GoodsIssueID, GoodsIssueDetails.DeliveryAdviceID, GoodsIssueDetails.DeliveryAdviceDetailID, DeliveryAdviceDetails.Reference AS DeliveryAdviceReference, DeliveryAdviceDetails.EntryDate AS DeliveryAdviceEntryDate, GoodsIssueDetails.SalespersonID, GoodsIssueDetails.TransferOrderID, GoodsIssueDetails.TransferOrderDetailID, TransferOrderDetails.Reference AS TransferOrderReference, TransferOrderDetails.EntryDate AS TransferOrderEntryDate, " + "\r\n";
             queryString = queryString + "                   GoodsIssueDetails.GoodsReceiptID, GoodsIssueDetails.GoodsReceiptDetailID, GoodsReceiptDetails.BatchID, GoodsReceiptDetails.BatchEntryDate, GoodsReceiptDetails.Reference AS GoodsReceiptReference, GoodsReceiptDetails.EntryDate AS GoodsReceiptEntryDate," + "\r\n";
             queryString = queryString + "                   GoodsReceiptDetails.WarehouseID, Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, BinLocations.BinLocationID, BinLocations.Code AS BinLocationCode, " + "\r\n";
             queryString = queryString + "                   GoodsReceiptDetails.PackID, Packs.Code AS PackCode, GoodsReceiptDetails.CartonID, Cartons.Code AS CartonCode, GoodsReceiptDetails.PalletID, Pallets.Code AS PalletCode, GoodsReceiptDetails.PackCounts, GoodsReceiptDetails.CartonCounts, GoodsReceiptDetails.PalletCounts, " + "\r\n";
@@ -154,7 +154,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
 
-            queryString = queryString + "       SELECT          TransferOrders.TransferOrderID, TransferOrders.Reference AS TransferOrderReference, TransferOrders.EntryDate AS TransferOrderEntryDate, TransferOrders.VoucherCode, TransferOrders.TransferJobs, TransferOrders.WarehouseID, Warehouses.Code AS WarehouseCode, Warehouses.Name AS WarehouseName, TransferOrders.WarehouseReceiptID, WarehouseReceipts.Code AS WarehouseReceiptCode, WarehouseReceipts.Name AS WarehouseReceiptName, TransferOrders.ForkliftDriverID, TransferOrders.StorekeeperID, TransferOrders.Vehicle, TransferOrders.VehicleDriver, TransferOrders.Description, TransferOrders.Remarks " + "\r\n";
+            queryString = queryString + "       SELECT          TransferOrders.TransferOrderID, TransferOrders.Reference AS TransferOrderReference, TransferOrders.EntryDate AS TransferOrderEntryDate, TransferOrders.VoucherCode, TransferOrders.TransferJobs, TransferOrders.WarehouseID, Warehouses.Code AS WarehouseCode, Warehouses.Name AS WarehouseName, WarehouseReceipts.LocationID AS LocationReceiptID, TransferOrders.WarehouseReceiptID, WarehouseReceipts.Code AS WarehouseReceiptCode, WarehouseReceipts.Name AS WarehouseReceiptName, TransferOrders.ForkliftDriverID, TransferOrders.StorekeeperID, TransferOrders.Vehicle, TransferOrders.VehicleDriver, TransferOrders.Description, TransferOrders.Remarks " + "\r\n";
             queryString = queryString + "       FROM            TransferOrders " + "\r\n";
             queryString = queryString + "                       INNER JOIN Warehouses ON TransferOrders.TransferOrderID IN (SELECT TransferOrderID FROM TransferOrderDetails WHERE LocationID = @LocationID AND Approved = 1 AND InActive = 0 AND ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") > 0) AND TransferOrders.WarehouseID = Warehouses.WarehouseID " + "\r\n";
             queryString = queryString + "                       INNER JOIN Warehouses WarehouseReceipts ON TransferOrders.WarehouseReceiptID = WarehouseReceipts.WarehouseID " + "\r\n";
@@ -168,7 +168,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
 
-            queryString = queryString + "       SELECT          Warehouses.WarehouseID, Warehouses.Code AS WarehouseCode, Warehouses.Name AS WarehouseName, WarehouseReceipts.WarehouseID AS WarehouseReceiptID, WarehouseReceipts.Code AS WarehouseReceiptCode, WarehouseReceipts.Name AS WarehouseReceiptName " + "\r\n";
+            queryString = queryString + "       SELECT          Warehouses.WarehouseID, Warehouses.Code AS WarehouseCode, Warehouses.Name AS WarehouseName, WarehouseReceipts.LocationID AS LocationReceiptID, WarehouseReceipts.WarehouseID AS WarehouseReceiptID, WarehouseReceipts.Code AS WarehouseReceiptCode, WarehouseReceipts.Name AS WarehouseReceiptName " + "\r\n";
             queryString = queryString + "       FROM           (SELECT WarehouseID, WarehouseReceiptID FROM TransferOrderDetails WHERE LocationID = @LocationID AND Approved = 1 AND InActive = 0 AND ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") > 0 GROUP BY WarehouseID, WarehouseReceiptID) WarehousePENDING " + "\r\n";
             queryString = queryString + "                       INNER JOIN Warehouses ON WarehousePENDING.WarehouseID = Warehouses.WarehouseID " + "\r\n";
             queryString = queryString + "                       INNER JOIN Warehouses WarehouseReceipts ON WarehousePENDING.WarehouseReceiptID = WarehouseReceipts.WarehouseID " + "\r\n";
@@ -240,7 +240,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryArray[1] = " SELECT TOP 1 @FoundEntity = N'Ngày đề nghị chuyển kho: ' + CAST(TransferOrders.EntryDate AS nvarchar) FROM GoodsIssueDetails INNER JOIN TransferOrders ON GoodsIssueDetails.GoodsIssueID = @EntityID AND GoodsIssueDetails.TransferOrderID = TransferOrders.TransferOrderID AND GoodsIssueDetails.EntryDate < TransferOrders.EntryDate ";
             queryArray[2] = " SELECT TOP 1 @FoundEntity = N'Ngày nhập kho: ' + CAST(GoodsReceipts.EntryDate AS nvarchar) FROM GoodsIssueDetails INNER JOIN GoodsReceipts ON GoodsIssueDetails.GoodsIssueID = @EntityID AND GoodsIssueDetails.GoodsReceiptID = GoodsReceipts.GoodsReceiptID AND GoodsIssueDetails.EntryDate < GoodsReceipts.EntryDate ";
             queryArray[3] = " SELECT TOP 1 @FoundEntity = N'Đề nghị giao hàng chưa duyệt hoặc số lượng xuất kho vượt quá số lượng đề nghị: ' + CAST(ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") AS nvarchar) + N' Hoặc khối lượng: ' + CAST(ROUND(LineVolume - LineVolumeIssue, " + (int)GlobalEnums.rndVolume + ") AS nvarchar) FROM DeliveryAdviceDetails WHERE (Approved = 0 AND (QuantityIssue > 0 OR LineVolumeIssue > 0)) OR (ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") < 0) OR (ROUND(LineVolume - LineVolumeIssue, " + (int)GlobalEnums.rndVolume + ") < 0) ";
-            queryArray[4] = " SELECT TOP 1 @FoundEntity = N'Đề nghị chuyển kho chưa duyệt hoặc số lượng xuất kho vượt quá số lượng đề nghị: ' + CAST(ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") AS nvarchar) + N' Hoặc khối lượng: ' + CAST(ROUND(LineVolume - LineVolumeIssue, " + (int)GlobalEnums.rndVolume + ") AS nvarchar) FROM TransferOrderDetails WHERE (Approved = 0 AND (QuantityIssue > 0 OR LineVolumeIssue > 0)) OR (ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") < 0) OR (ROUND(LineVolume - LineVolumeIssue, " + (int)GlobalEnums.rndVolume + ") < 0) ";            
+            queryArray[4] = " SELECT TOP 1 @FoundEntity = N'Đề nghị chuyển kho chưa duyệt hoặc số lượng xuất kho vượt quá số lượng đề nghị: ' + CAST(ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") AS nvarchar) + N' Hoặc khối lượng: ' + CAST(ROUND(LineVolume - LineVolumeIssue, " + (int)GlobalEnums.rndVolume + ") AS nvarchar) FROM TransferOrderDetails WHERE (Approved = 0 AND (QuantityIssue > 0 OR LineVolumeIssue > 0)) OR (ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") < 0) OR (ROUND(LineVolume - LineVolumeIssue, " + (int)GlobalEnums.rndVolume + ") < 0) ";
             queryArray[5] = " SELECT TOP 1 @FoundEntity = N'Phiếu nhập kho chưa duyệt hoặc số lượng xuất kho vượt quá số lượng tồn kho: ' + CAST(ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") AS nvarchar) + N' Hoặc khối lượng: ' + CAST(ROUND(LineVolume - LineVolumeIssue, " + (int)GlobalEnums.rndVolume + ") AS nvarchar) FROM GoodsReceiptDetails WHERE (Approved = 0 AND (QuantityIssue > 0 OR LineVolumeIssue > 0)) OR (ROUND(Quantity - QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") < 0) OR (ROUND(LineVolume - LineVolumeIssue, " + (int)GlobalEnums.rndVolume + ") < 0) ";
 
             this.totalSmartCodingEntities.CreateProcedureToCheckExisting("GoodsIssuePostSaveValidate", queryArray);
@@ -289,8 +289,8 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryString = queryString + "                           BEGIN " + "\r\n";
 
             queryString = queryString + "                               SELECT  TOP 1 @LocationID = LocationID FROM Warehouses WHERE WarehouseID = @WarehouseReceiptID " + "\r\n";
-            queryString = queryString + "                               SELECT  TOP 1 @TransferPackageTypeID = TransferPackageTypeID FROM TransferOrders WHERE TransferOrderID = @TransferOrderID " + "\r\n";            
-            
+            queryString = queryString + "                               SELECT  TOP 1 @TransferPackageTypeID = TransferPackageTypeID FROM TransferOrders WHERE TransferOrderID = @TransferOrderID " + "\r\n";
+
             queryString = queryString + "                               INSERT INTO     GoodsIssueTransferDetails (GoodsIssueDetailID, GoodsIssueID, TransferOrderDetailID, TransferOrderID, EntryDate, Reference, LocationID, WarehouseID, WarehouseReceiptID, CommodityID, BinLocationID, BatchID, BatchEntryDate, PackID, CartonID, PalletID, PackCounts, CartonCounts, PalletCounts, Quantity, QuantityReceipt, LineVolume, LineVolumeReceipt, Remarks, Approved) " + "\r\n";
             queryString = queryString + "                               SELECT          GoodsIssueDetailID, GoodsIssueID, TransferOrderDetailID, TransferOrderID, EntryDate, Reference, @LocationID, WarehouseID, WarehouseReceiptID, CommodityID, BinLocationID, BatchID, BatchEntryDate, PackID, CartonID, PalletID, PackCounts, CartonCounts, PalletCounts, Quantity, 0 AS QuantityReceipt, LineVolume, 0 AS LineVolumeReceipt, Remarks, Approved FROM GoodsIssueDetails WHERE GoodsIssueID = @EntityID AND (@TransferPackageTypeID = " + (int)GlobalEnums.TransferPackageTypeID.Pallets + " OR PalletID IS NULL OR (NOT PalletID IS NULL AND CartonCounts = 0)) " + "\r\n";
 
@@ -387,9 +387,11 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             private readonly string primaryReference;
             private readonly string primaryEntryDate;
 
+            private readonly string extraField;
+
             private readonly TotalSmartCodingEntities totalSmartCodingEntities;
 
-            public GenerateSQLPendingDetails(TotalSmartCodingEntities totalSmartCodingEntities, string functionName, string primaryTableDetails, string primaryKey, string paraPrimaryKey, string primaryKeyDetails, string paraPrimaryKeyDetails, string filterKey, string paraFilterKey, bool isReceiverID, bool isWarehouse, string primaryReference, string primaryEntryDate)
+            public GenerateSQLPendingDetails(TotalSmartCodingEntities totalSmartCodingEntities, string functionName, string primaryTableDetails, string primaryKey, string paraPrimaryKey, string primaryKeyDetails, string paraPrimaryKeyDetails, string filterKey, string paraFilterKey, bool isReceiverID, bool isWarehouse, string primaryReference, string primaryEntryDate, string extraField)
             {
                 this.totalSmartCodingEntities = totalSmartCodingEntities;
 
@@ -410,6 +412,8 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
                 this.primaryReference = primaryReference;
                 this.primaryEntryDate = primaryEntryDate;
+
+                this.extraField = extraField;
             }
 
 
@@ -500,7 +504,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             {
                 string queryString = "";
 
-                queryString = queryString + "       SELECT      " + this.primaryTableDetails + ".LocationID, " + this.primaryTableDetails + "." + this.primaryKey + ", " + this.primaryTableDetails + "." + this.primaryKeyDetail + ", " + this.primaryTableDetails + ".Reference AS " + this.primaryReference + ", " + this.primaryTableDetails + ".EntryDate AS " + this.primaryEntryDate + ", " + "\r\n";
+                queryString = queryString + "       SELECT      " + this.primaryTableDetails + ".LocationID, " + this.primaryTableDetails + "." + this.primaryKey + ", " + this.primaryTableDetails + "." + this.primaryKeyDetail + ", " + this.primaryTableDetails + ".Reference AS " + this.primaryReference + ", " + this.primaryTableDetails + ".EntryDate AS " + this.primaryEntryDate + ", " + (this.extraField != null ? this.extraField + ", " : "") + "\r\n";
                 queryString = queryString + "                   Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, Commodities.PackageSize, Commodities.Volume, Commodities.PackageVolume, " + this.primaryTableDetails + ".BatchID, Batches.Code AS BatchCode, " + "\r\n";
                 queryString = queryString + "                   ROUND(" + this.primaryTableDetails + ".Quantity - " + this.primaryTableDetails + ".QuantityIssue,  " + (int)GlobalEnums.rndQuantity + ") AS QuantityRemains, CAST(0 AS decimal(18, 2)) AS Quantity, ROUND(" + this.primaryTableDetails + ".LineVolume - " + this.primaryTableDetails + ".LineVolumeIssue,  " + (int)GlobalEnums.rndVolume + ") AS LineVolumeRemains, CAST(0 AS decimal(18, 2)) AS LineVolume, " + this.primaryTableDetails + ".Remarks, CAST(0 AS bit) AS IsSelected " + "\r\n";
 
@@ -514,7 +518,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             {
                 string queryString = "";
 
-                queryString = queryString + "       SELECT      " + this.primaryTableDetails + ".LocationID, " + this.primaryTableDetails + "." + this.primaryKey + ", " + this.primaryTableDetails + "." + this.primaryKeyDetail + ", " + this.primaryTableDetails + ".Reference AS " + this.primaryReference + ", " + this.primaryTableDetails + ".EntryDate AS " + this.primaryEntryDate + ", " + "\r\n";
+                queryString = queryString + "       SELECT      " + this.primaryTableDetails + ".LocationID, " + this.primaryTableDetails + "." + this.primaryKey + ", " + this.primaryTableDetails + "." + this.primaryKeyDetail + ", " + this.primaryTableDetails + ".Reference AS " + this.primaryReference + ", " + this.primaryTableDetails + ".EntryDate AS " + this.primaryEntryDate + ", " + (this.extraField != null ? this.extraField + ", " : "") + "\r\n";
                 queryString = queryString + "                   Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, Commodities.PackageSize, Commodities.Volume, Commodities.PackageVolume, " + this.primaryTableDetails + ".BatchID, Batches.Code AS BatchCode, " + "\r\n";
                 queryString = queryString + "                   ROUND(" + this.primaryTableDetails + ".Quantity - " + this.primaryTableDetails + ".QuantityIssue + GoodsIssueDetails.Quantity,  " + (int)GlobalEnums.rndQuantity + ") AS QuantityRemains, CAST(0 AS decimal(18, 2)) AS Quantity, ROUND(" + this.primaryTableDetails + ".LineVolume - " + this.primaryTableDetails + ".LineVolumeIssue + GoodsIssueDetails.LineVolume,  " + (int)GlobalEnums.rndVolume + ") AS LineVolumeRemains, CAST(0 AS decimal(18, 2)) AS LineVolume, " + this.primaryTableDetails + ".Remarks, CAST(0 AS bit) AS IsSelected " + "\r\n";
 

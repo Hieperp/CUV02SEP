@@ -30,5 +30,6 @@ namespace TotalModel.Models
         public int StorekeeperID { get; set; }
         public string Vehicle { get; set; }
         public string VehicleDriver { get; set; }
+        public int LocationReceiptID { get; set; }
     }
 }

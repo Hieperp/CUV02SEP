@@ -160,6 +160,7 @@ namespace TotalModel.Models
 
         int DeliveryAdviceID { get; set; }
         int DeliveryAdviceDetailID { get; set; }
+        int SalespersonID { get; set; }
 
         int TransferOrderID { get; set; }
         int TransferOrderDetailID { get; set; }
@@ -179,6 +180,7 @@ namespace TotalModel.Models
     {
         public int DeliveryAdviceID { get; set; }
         public int DeliveryAdviceDetailID { get; set; }
+        public int SalespersonID { get; set; }
 
         public decimal QuantityIssue { get; set; }
         public decimal LineVolumeIssue { get; set; }
@@ -188,6 +190,7 @@ namespace TotalModel.Models
     {
         public int DeliveryAdviceID { get; set; }
         public int DeliveryAdviceDetailID { get; set; }
+        public int SalespersonID { get; set; }
 
         public int TransferOrderID { get; set; }
         public int TransferOrderDetailID { get; set; }

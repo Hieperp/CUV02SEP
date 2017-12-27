@@ -32,5 +32,6 @@ namespace TotalModel.Models
         public string BatchCode { get; set; }
         public string PrimaryReference { get; set; }
         public System.DateTime PrimaryEntryDate { get; set; }
+        public int SalespersonID { get; set; }
     }
 }

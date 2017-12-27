@@ -137,6 +137,14 @@ namespace TotalDTO.Inventories
             set { ApplyPropertyChange<GoodsIssuePrimitiveDTO, string>(ref this.warehouseName, o => o.WarehouseName, value); }
         }
 
+        private Nullable<int> locationReceiptID;
+        [DefaultValue(null)]
+        public Nullable<int> LocationReceiptID
+        {
+            get { return this.locationReceiptID; }
+            set { ApplyPropertyChange<GoodsIssuePrimitiveDTO, Nullable<int>>(ref this.locationReceiptID, o => o.LocationReceiptID, value); }
+        }
+
         private Nullable<int> warehouseReceiptID;
         [DefaultValue(null)]
         public Nullable<int> WarehouseReceiptID
@@ -209,7 +217,7 @@ namespace TotalDTO.Inventories
             base.PerformPresaveRule();
 
             string primaryReferences = ""; //string voucherCodes = "";
-            this.DtoDetails().ToList().ForEach(e => { e.GoodsIssueTypeID = this.GoodsIssueTypeID; e.CustomerID = this.CustomerID; e.ReceiverID = this.ReceiverID; e.WarehouseReceiptID = this.WarehouseReceiptID; if (primaryReferences.IndexOf(e.PrimaryReference) < 0) primaryReferences = primaryReferences + (primaryReferences != "" ? ", " : "") + e.PrimaryReference; }); //if (voucherCodes.IndexOf(e.VoucherCode) < 0) voucherCodes = voucherCodes + (voucherCodes != "" ? ", " : "") + e.VoucherCode; 
+            this.DtoDetails().ToList().ForEach(e => { e.GoodsIssueTypeID = this.GoodsIssueTypeID; e.CustomerID = this.CustomerID; e.ReceiverID = this.ReceiverID; e.LocationReceiptID = this.LocationReceiptID; e.WarehouseReceiptID = this.WarehouseReceiptID; if (primaryReferences.IndexOf(e.PrimaryReference) < 0) primaryReferences = primaryReferences + (primaryReferences != "" ? ", " : "") + e.PrimaryReference; }); //if (voucherCodes.IndexOf(e.VoucherCode) < 0) voucherCodes = voucherCodes + (voucherCodes != "" ? ", " : "") + e.VoucherCode; 
             this.PrimaryReferences = primaryReferences; //this.VoucherCodes = voucherCodes;
         }
 
@@ -219,7 +227,7 @@ namespace TotalDTO.Inventories
             validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<GoodsIssuePrimitiveDTO>(p => p.CustomerID), "Vui lòng chọn khách hàng.", delegate { return (this.GoodsIssueTypeID == (int)GlobalEnums.GoodsIssueTypeID.TransferOrder || (this.CustomerID != null && this.CustomerID > 0)); }));
             validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<GoodsIssuePrimitiveDTO>(p => p.ReceiverID), "Vui lòng chọn đơn vị nhận hàng.", delegate { return (this.GoodsIssueTypeID == (int)GlobalEnums.GoodsIssueTypeID.TransferOrder || (this.ReceiverID != null && this.ReceiverID > 0)); }));
             validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<GoodsIssuePrimitiveDTO>(p => p.WarehouseID), "Vui lòng chọn kho xuất.", delegate { return (this.GoodsIssueTypeID == (int)GlobalEnums.GoodsIssueTypeID.DeliveryAdvice || (this.WarehouseID != null && this.WarehouseID > 0)); }));
-            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<GoodsIssuePrimitiveDTO>(p => p.WarehouseReceiptID), "Vui lòng chọn kho nhận.", delegate { return (this.GoodsIssueTypeID == (int)GlobalEnums.GoodsIssueTypeID.DeliveryAdvice || (this.WarehouseReceiptID != null && this.WarehouseReceiptID > 0)); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<GoodsIssuePrimitiveDTO>(p => p.WarehouseReceiptID), "Vui lòng chọn kho nhận.", delegate { return (this.GoodsIssueTypeID == (int)GlobalEnums.GoodsIssueTypeID.DeliveryAdvice || (this.WarehouseReceiptID != null && this.WarehouseReceiptID > 0 && this.LocationReceiptID != null && this.LocationReceiptID > 0)); }));
             validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<GoodsIssuePrimitiveDTO>(p => p.ForkliftDriverID), "Vui lòng chọn thủ kho.", delegate { return (this.ForkliftDriverID != null && this.ForkliftDriverID > 0); }));
             validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<GoodsIssuePrimitiveDTO>(p => p.StorekeeperID), "Vui lòng chọn người lập.", delegate { return (this.StorekeeperID != null && this.StorekeeperID > 0); }));
 

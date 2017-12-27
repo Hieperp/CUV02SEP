@@ -173,6 +173,7 @@
           <Property Name="InActive" Type="bit" Nullable="false" />
           <Property Name="InActivePartial" Type="bit" Nullable="false" />
           <Property Name="InActivePartialDate" Type="datetime" />
+          <Property Name="SalespersonID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="DeliveryAdvices">
           <Key>
@@ -294,6 +295,8 @@
           <Property Name="LineVolume" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Remarks" Type="nvarchar" MaxLength="100" />
           <Property Name="Approved" Type="bit" Nullable="false" />
+          <Property Name="LocationReceiptID" Type="int" />
+          <Property Name="SalespersonID" Type="int" />
         </EntityType>
         <EntityType Name="GoodsIssues">
           <Key>
@@ -4649,6 +4652,7 @@
           <Property Name="ReceiverID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Customer1" Relationship="TotalSmartCodingModel.FK_DeliveryAdviceDetails_Receivers" FromRole="DeliveryAdviceDetail" ToRole="Customer" />
           <NavigationProperty Name="GoodsIssueDetails" Relationship="TotalSmartCodingModel.FK_GoodsIssueDetails_DeliveryAdviceDetails" FromRole="DeliveryAdviceDetail" ToRole="GoodsIssueDetail" />
+          <Property Name="SalespersonID" Type="Int32" Nullable="false" />
         </EntityType>
         <ComplexType Name="DeliveryAdviceIndex">
           <Property Type="Int32" Name="DeliveryAdviceID" Nullable="false" />
@@ -4798,6 +4802,7 @@
           <Property Type="DateTime" Name="TransferOrderEntryDate" Nullable="true" Precision="23" />
           <Property Type="Int32" Name="BatchID" Nullable="false" />
           <Property Type="Int32" Name="WarehouseID" Nullable="false" />
+          <Property Type="Int32" Name="SalespersonID" Nullable="true" />
         </ComplexType>
         <ComplexType Name="PendingDeliveryAdviceCustomer">
           <Property Type="Int32" Name="CustomerID" Nullable="false" />
@@ -4827,6 +4832,7 @@
           <Property Type="String" Name="BatchCode" Nullable="true" MaxLength="20" />
           <Property Type="String" Name="PrimaryReference" Nullable="true" MaxLength="10" />
           <Property Type="DateTime" Name="PrimaryEntryDate" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="SalespersonID" Nullable="false" />
         </ComplexType>
         <ComplexType Name="PendingDeliveryAdvice">
           <Property Type="Int32" Name="DeliveryAdviceID" Nullable="false" />
@@ -5743,6 +5749,7 @@
           <Property Type="Int32" Name="StorekeeperID" Nullable="false" />
           <Property Type="String" Name="Vehicle" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="VehicleDriver" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="LocationReceiptID" Nullable="false" />
           </ComplexType>
         <ComplexType Name="PendingTransferOrderWarehouse">
           <Property Type="Int32" Name="WarehouseReceiptID" Nullable="false" />
@@ -5751,6 +5758,7 @@
           <Property Type="Int32" Name="WarehouseID" Nullable="false" />
           <Property Type="String" Name="WarehouseCode" Nullable="false" MaxLength="10" />
           <Property Type="String" Name="WarehouseName" Nullable="false" MaxLength="60" />
+          <Property Type="Int32" Name="LocationReceiptID" Nullable="false" />
           </ComplexType>
         <ComplexType Name="PendingTransferOrderDetail">
           <Property Type="Int32" Name="LocationID" Nullable="false" />
@@ -6534,6 +6542,8 @@
           <NavigationProperty Name="TransferOrderDetail" Relationship="TotalSmartCodingModel.FK_GoodsIssueDetails_TransferOrderDetails" FromRole="GoodsIssueDetail" ToRole="TransferOrderDetail" />
           <NavigationProperty Name="GoodsIssue" Relationship="TotalSmartCodingModel.FK_GoodsIssueDetails_GoodsIssues" FromRole="GoodsIssueDetail" ToRole="GoodsIssue" />
           <Property Name="GoodsIssueTypeID" Type="Int32" Nullable="false" />
+          <Property Name="LocationReceiptID" Type="Int32" />
+          <Property Name="SalespersonID" Type="Int32" />
         </EntityType>
         <Association Name="FK_GoodsIssueDetails_Commodities">
           <End Type="TotalSmartCodingModel.Commodity" Role="Commodity" Multiplicity="1" />
@@ -7998,6 +8008,7 @@
           <EntitySetMapping Name="DeliveryAdviceDetails">
             <EntityTypeMapping TypeName="TotalSmartCodingModel.DeliveryAdviceDetail">
               <MappingFragment StoreEntitySet="DeliveryAdviceDetails">
+                <ScalarProperty Name="SalespersonID" ColumnName="SalespersonID" />
                 <ScalarProperty Name="ReceiverID" ColumnName="ReceiverID" />
                 <ScalarProperty Name="BatchID" ColumnName="BatchID" />
                 <ScalarProperty Name="InActivePartialDate" ColumnName="InActivePartialDate" />
@@ -8200,6 +8211,7 @@
                 <ScalarProperty Name="TransferOrderEntryDate" ColumnName="TransferOrderEntryDate" />
                 <ScalarProperty Name="BatchID" ColumnName="BatchID" />
                 <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
+                <ScalarProperty Name="SalespersonID" ColumnName="SalespersonID" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -8237,6 +8249,7 @@
                 <ScalarProperty Name="BatchCode" ColumnName="BatchCode" />
                 <ScalarProperty Name="PrimaryReference" ColumnName="PrimaryReference" />
                 <ScalarProperty Name="PrimaryEntryDate" ColumnName="PrimaryEntryDate" />
+                <ScalarProperty Name="SalespersonID" ColumnName="SalespersonID" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -8844,6 +8857,7 @@
                 <ScalarProperty Name="StorekeeperID" ColumnName="StorekeeperID" />
                 <ScalarProperty Name="Vehicle" ColumnName="Vehicle" />
                 <ScalarProperty Name="VehicleDriver" ColumnName="VehicleDriver" />
+                <ScalarProperty Name="LocationReceiptID" ColumnName="LocationReceiptID" />
                 </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -8856,6 +8870,7 @@
                 <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
                 <ScalarProperty Name="WarehouseCode" ColumnName="WarehouseCode" />
                 <ScalarProperty Name="WarehouseName" ColumnName="WarehouseName" />
+                <ScalarProperty Name="LocationReceiptID" ColumnName="LocationReceiptID" />
                 </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -9276,6 +9291,8 @@
           <EntitySetMapping Name="GoodsIssueDetails">
             <EntityTypeMapping TypeName="TotalSmartCodingModel.GoodsIssueDetail">
               <MappingFragment StoreEntitySet="GoodsIssueDetails">
+                <ScalarProperty Name="SalespersonID" ColumnName="SalespersonID" />
+                <ScalarProperty Name="LocationReceiptID" ColumnName="LocationReceiptID" />
                 <ScalarProperty Name="GoodsIssueTypeID" ColumnName="GoodsIssueTypeID" />
                 <ScalarProperty Name="Approved" ColumnName="Approved" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />

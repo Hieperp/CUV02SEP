@@ -20,7 +20,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
         {
             this.WarehouseJournals();
 
-            this.GoodsIssueJournals();
+            //this.GoodsIssueJournals();
         }
 
         private void WarehouseJournals()

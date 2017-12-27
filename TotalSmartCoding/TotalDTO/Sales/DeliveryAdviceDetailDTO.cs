@@ -74,6 +74,7 @@ namespace TotalDTO.Sales
         public string VoucherCode { get; set; }
         public int CustomerID { get; set; }
         public int ReceiverID { get; set; }
+        public Nullable<int> SalespersonID { get; set; }
 
         public decimal QuantityIssue { get; set; }
         public decimal LineVolumeIssue { get; set; }
