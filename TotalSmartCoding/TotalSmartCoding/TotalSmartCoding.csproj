@@ -1136,6 +1136,9 @@
     <None Include="Resources\Calendar-Icon-Yellow.ico" />
     <None Include="Resources\calendar.png" />
     <None Include="Resources\calendar24.png" />
+    <None Include="Resources\Present.png" />
+    <None Include="Resources\Calendar-1.ico" />
+    <None Include="Resources\Calendar-2.ico" />
     <Content Include="SmartCodingSolution.ico" />
     <None Include="Resources\Yellow-cross.ico" />
     <None Include="Resources\White-Pallet.ico" />

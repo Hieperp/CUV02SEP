@@ -1223,6 +1223,26 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Calendar_1 {
+            get {
+                object obj = ResourceManager.GetObject("Calendar-1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Calendar_2 {
+            get {
+                object obj = ResourceManager.GetObject("Calendar-2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Calendar_icon {
             get {
                 object obj = ResourceManager.GetObject("Calendar-icon", resourceCulture);
@@ -4166,6 +4186,16 @@ namespace TotalSmartCoding.Properties {
         internal static System.Drawing.Bitmap portable_barcode_scanner_32T {
             get {
                 object obj = ResourceManager.GetObject("portable_barcode_scanner_32T", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Present {
+            get {
+                object obj = ResourceManager.GetObject("Present", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

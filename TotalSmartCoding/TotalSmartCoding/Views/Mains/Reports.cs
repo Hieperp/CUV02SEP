@@ -33,6 +33,7 @@ namespace TotalSmartCoding.Views.Mains
         private TabPage tabPageWarehouses;
         private TabPage tabPageCommodities;
         private TabPage tabPageCustomers;
+        private TabPage tabPageWarehouseIssues;
         private TabPage tabPageWarehouseReceipts;
         private TabPage tabPageWarehouseAdjustmentTypes;
         private TabPage[] tabPages;
@@ -64,10 +65,11 @@ namespace TotalSmartCoding.Views.Mains
                 this.tabPageWarehouses = new TabPage("Locations"); this.tabPageWarehouses.Tag = (int)GlobalEnums.ReportTabPageID.TabPageWarehouses;
                 this.tabPageCommodities = new TabPage("Commodities"); this.tabPageCommodities.Tag = (int)GlobalEnums.ReportTabPageID.TabPageCommodities;
                 this.tabPageCustomers = new TabPage("Customers"); this.tabPageCustomers.Tag = (int)GlobalEnums.ReportTabPageID.TabPageCustomers;
+                this.tabPageWarehouseIssues = new TabPage("Source Warehouses"); this.tabPageWarehouseIssues.Tag = (int)GlobalEnums.ReportTabPageID.TabPageWarehouseIssues;
                 this.tabPageWarehouseReceipts = new TabPage("Destination Warehouses"); this.tabPageWarehouseReceipts.Tag = (int)GlobalEnums.ReportTabPageID.TabPageWarehouseReceipts;
                 this.tabPageWarehouseAdjustmentTypes = new TabPage("Adjustment Types"); this.tabPageWarehouseAdjustmentTypes.Tag = (int)GlobalEnums.ReportTabPageID.TabPageWarehouseAdjustmentTypes;
 
-                this.tabPages = new TabPage[] { this.tabPageWarehouses, this.tabPageCommodities, this.tabPageCustomers, this.tabPageWarehouseReceipts, this.tabPageWarehouseAdjustmentTypes };
+                this.tabPages = new TabPage[] { this.tabPageWarehouses, this.tabPageCommodities, this.tabPageCustomers, this.tabPageWarehouseIssues, this.tabPageWarehouseReceipts, this.tabPageWarehouseAdjustmentTypes };
 
                 this.customTabBatch = new CustomTabControl();
                 this.customTabBatch.Font = this.treeWarehouseID.Font;
@@ -77,12 +79,14 @@ namespace TotalSmartCoding.Views.Mains
                 this.tabPageWarehouses.Controls.Add(this.treeWarehouseID);
                 this.tabPageCommodities.Controls.Add(this.panelCommodities);
                 this.tabPageCustomers.Controls.Add(this.panelCustomers);
+                this.tabPageWarehouseIssues.Controls.Add(this.treeWarehouseIssueID);
                 this.tabPageWarehouseReceipts.Controls.Add(this.treeWarehouseReceiptID);
                 this.tabPageWarehouseAdjustmentTypes.Controls.Add(this.treeWarehouseAdjustmentTypeID);
 
                 this.treeWarehouseID.Dock = DockStyle.Fill;
                 this.panelCommodities.Dock = DockStyle.Fill;
                 this.panelCustomers.Dock = DockStyle.Fill;
+                this.treeWarehouseIssueID.Dock = DockStyle.Fill;
                 this.treeWarehouseReceiptID.Dock = DockStyle.Fill;
                 this.treeWarehouseAdjustmentTypeID.Dock = DockStyle.Fill;
 
@@ -106,6 +110,7 @@ namespace TotalSmartCoding.Views.Mains
         private IList<CommodityTypeTree> commodityTypeTrees;
         private IList<CustomerTree> customerTrees;
         private IList<EmployeeTree> employeeTrees;
+        private IList<WarehouseTree> warehouseIssueTrees;
         private IList<WarehouseTree> warehouseReceiptTrees;
         private IList<WarehouseAdjustmentTypeTree> warehouseAdjustmentTypeTrees;
 
@@ -118,12 +123,16 @@ namespace TotalSmartCoding.Views.Mains
             this.treeCommodityTypeID.RootKeyValue = 0;
             this.treeCustomerID.RootKeyValue = 0;
             this.treeEmployeeID.RootKeyValue = 0;
+            this.treeWarehouseIssueID.RootKeyValue = 0;
             this.treeWarehouseReceiptID.RootKeyValue = 0;
             this.treeWarehouseAdjustmentTypeID.RootKeyValue = 0;
 
             WarehouseAPIs warehouseAPIs = new WarehouseAPIs(CommonNinject.Kernel.Get<IWarehouseAPIRepository>());
             this.warehouseTrees = warehouseAPIs.GetWarehouseTrees();
             this.treeWarehouseID.DataSource = new BindingSource(this.warehouseTrees, "");
+
+            this.warehouseIssueTrees = warehouseAPIs.GetWarehouseTrees();
+            this.treeWarehouseIssueID.DataSource = new BindingSource(this.warehouseIssueTrees, "");
 
             this.warehouseReceiptTrees = warehouseAPIs.GetWarehouseTrees();
             this.treeWarehouseReceiptID.DataSource = new BindingSource(this.warehouseReceiptTrees, "");
@@ -178,12 +187,13 @@ namespace TotalSmartCoding.Views.Mains
             base.DoAfterLoad();
             this.fastReportIndex.Sort(this.olvReportGroupName, SortOrder.Descending);
 
-            if (this.treeWarehouseID.GetModelObject(0) != null) { this.treeWarehouseID.Expand(this.treeWarehouseID.GetModelObject(0)); if (this.treeWarehouseID.Items.Count >= 2) this.treeWarehouseID.SelectedIndex = 1; }
-            if (this.treeWarehouseReceiptID.GetModelObject(0) != null) { this.treeWarehouseReceiptID.Expand(this.treeWarehouseReceiptID.GetModelObject(0)); if (this.treeWarehouseReceiptID.Items.Count >= 2) this.treeWarehouseReceiptID.SelectedIndex = 1; }
+            if (this.treeWarehouseID.GetModelObject(0) != null) { this.treeWarehouseID.Expand(this.treeWarehouseID.GetModelObject(0)); if (this.treeWarehouseID.Items.Count >= 2) this.treeWarehouseID.SelectedIndex = 1; }            
             if (this.treeCommodityID.GetModelObject(0) != null) { this.treeCommodityID.Expand(this.treeCommodityID.GetModelObject(0)); if (this.treeCommodityID.Items.Count >= 2) this.treeCommodityID.SelectedIndex = 1; }
             if (this.treeCommodityTypeID.GetModelObject(0) != null) { this.treeCommodityTypeID.Expand(this.treeCommodityTypeID.GetModelObject(0)); if (this.treeCommodityTypeID.Items.Count >= 2) this.treeCommodityTypeID.SelectedIndex = 1; }
             if (this.treeCustomerID.GetModelObject(0) != null) { this.treeCustomerID.Expand(this.treeCustomerID.GetModelObject(0)); if (this.treeCustomerID.Items.Count >= 2) this.treeCustomerID.SelectedIndex = 1; }
             if (this.treeEmployeeID.GetModelObject(0) != null) { this.treeEmployeeID.Expand(this.treeEmployeeID.GetModelObject(0)); if (this.treeEmployeeID.Items.Count >= 2) this.treeEmployeeID.SelectedIndex = 1; }
+            if (this.treeWarehouseIssueID.GetModelObject(0) != null) { this.treeWarehouseIssueID.Expand(this.treeWarehouseIssueID.GetModelObject(0)); if (this.treeWarehouseIssueID.Items.Count >= 2) this.treeWarehouseIssueID.SelectedIndex = 1; }
+            if (this.treeWarehouseReceiptID.GetModelObject(0) != null) { this.treeWarehouseReceiptID.Expand(this.treeWarehouseReceiptID.GetModelObject(0)); if (this.treeWarehouseReceiptID.Items.Count >= 2) this.treeWarehouseReceiptID.SelectedIndex = 1; }
             if (this.treeWarehouseAdjustmentTypeID.GetModelObject(0) != null) { this.treeWarehouseAdjustmentTypeID.Expand(this.treeWarehouseAdjustmentTypeID.GetModelObject(0)); if (this.treeWarehouseAdjustmentTypeID.Items.Count >= 2) this.treeWarehouseAdjustmentTypeID.SelectedIndex = 1; }
         }
 
@@ -201,6 +211,9 @@ namespace TotalSmartCoding.Views.Mains
                     {
                         this.currentReportIndex = reportIndex;
                         this.reloadTabPages();
+
+                        this.comboPivotGroupID.Visible = this.currentReportIndex.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsReceiptPivot || this.currentReportIndex.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsIssuePivot; this.buttonPivotGroupID.Visible = this.comboPivotGroupID.Visible;
+                        this.comboSalesPromotionID.Visible = this.currentReportIndex.ReportUniqueID == (int)GlobalEnums.ReportUniqueID.SalesIssuePivot; this.buttonSalesPromotionID.Visible = this.comboSalesPromotionID.Visible;
                     }
                 }
             }
@@ -247,6 +260,8 @@ namespace TotalSmartCoding.Views.Mains
                         { this.treeCommodityID.CollapseAll(); this.treeCommodityTypeID.CollapseAll(); }
                         if (tabpage.Equals(this.tabPageCustomers))
                         { this.treeEmployeeID.CollapseAll(); this.treeCustomerID.CollapseAll(); }
+                        if (tabpage.Equals(this.tabPageWarehouseIssues))
+                        { this.treeWarehouseIssueID.CollapseAll(); }
                         if (tabpage.Equals(this.tabPageWarehouseReceipts))
                         { this.treeWarehouseReceiptID.CollapseAll(); }
                         if (tabpage.Equals(this.tabPageWarehouseAdjustmentTypes))
@@ -267,12 +282,13 @@ namespace TotalSmartCoding.Views.Mains
 
         public override void ApplyFilter(string filterTexts)
         {
-            OLVHelpers.ApplyFilters(this.treeWarehouseID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
-            OLVHelpers.ApplyFilters(this.treeWarehouseReceiptID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
+            OLVHelpers.ApplyFilters(this.treeWarehouseID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));            
             OLVHelpers.ApplyFilters(this.treeCommodityID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
             OLVHelpers.ApplyFilters(this.treeCommodityTypeID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
             OLVHelpers.ApplyFilters(this.treeCustomerID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
             OLVHelpers.ApplyFilters(this.treeEmployeeID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
+            OLVHelpers.ApplyFilters(this.treeWarehouseIssueID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
+            OLVHelpers.ApplyFilters(this.treeWarehouseReceiptID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
             OLVHelpers.ApplyFilters(this.treeWarehouseAdjustmentTypeID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
         }
 

@@ -41,6 +41,11 @@
             this.olvColumn5 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvCommodityName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.panelTop = new System.Windows.Forms.Panel();
+            this.toolReport = new System.Windows.Forms.ToolStrip();
+            this.comboPivotGroupID = new System.Windows.Forms.ToolStripComboBox();
+            this.buttonPivotGroupID = new System.Windows.Forms.ToolStripButton();
+            this.comboSalesPromotionID = new System.Windows.Forms.ToolStripComboBox();
+            this.buttonSalesPromotionID = new System.Windows.Forms.ToolStripButton();
             this.layoutTop = new System.Windows.Forms.TableLayoutPanel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.dateTimexEntryDate = new CustomControls.DateTimexPicker();
@@ -54,6 +59,10 @@
             this.olvReportGroupName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvReportName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.panelCenter = new System.Windows.Forms.Panel();
+            this.treeWarehouseIssueID = new BrightIdeasSoftware.DataTreeListView();
+            this.olvColumn1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn2 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn3 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.treeWarehouseAdjustmentTypeID = new BrightIdeasSoftware.DataTreeListView();
             this.olvColumn20 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn21 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -82,12 +91,14 @@
             this.toolStripChildForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeCommodityID)).BeginInit();
             this.panelTop.SuspendLayout();
+            this.toolReport.SuspendLayout();
             this.layoutTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastReportIndex)).BeginInit();
             this.panelCenter.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.treeWarehouseIssueID)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeWarehouseAdjustmentTypeID)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeWarehouseReceiptID)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeWarehouseID)).BeginInit();
@@ -213,13 +224,67 @@
             // 
             // panelTop
             // 
+            this.panelTop.Controls.Add(this.toolReport);
             this.panelTop.Controls.Add(this.layoutTop);
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelTop.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panelTop.Location = new System.Drawing.Point(348, 0);
             this.panelTop.Name = "panelTop";
             this.panelTop.Padding = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.panelTop.Size = new System.Drawing.Size(1183, 32);
             this.panelTop.TabIndex = 67;
+            // 
+            // toolReport
+            // 
+            this.toolReport.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.toolReport.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolReport.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolReport.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.toolReport.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.comboPivotGroupID,
+            this.buttonPivotGroupID,
+            this.comboSalesPromotionID,
+            this.buttonSalesPromotionID});
+            this.toolReport.Location = new System.Drawing.Point(3, 3);
+            this.toolReport.Name = "toolReport";
+            this.toolReport.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.toolReport.Size = new System.Drawing.Size(603, 29);
+            this.toolReport.TabIndex = 10;
+            this.toolReport.Text = "toolStrip1";
+            // 
+            // comboPivotGroupID
+            // 
+            this.comboPivotGroupID.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
+            this.comboPivotGroupID.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboPivotGroupID.Name = "comboPivotGroupID";
+            this.comboPivotGroupID.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.comboPivotGroupID.Size = new System.Drawing.Size(200, 29);
+            // 
+            // buttonPivotGroupID
+            // 
+            this.buttonPivotGroupID.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.buttonPivotGroupID.Image = global::TotalSmartCoding.Properties.Resources.Calendar_Icon_Yellow;
+            this.buttonPivotGroupID.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonPivotGroupID.Name = "buttonPivotGroupID";
+            this.buttonPivotGroupID.Size = new System.Drawing.Size(36, 26);
+            this.buttonPivotGroupID.Text = "toolStripButton1";
+            // 
+            // comboSalesPromotionID
+            // 
+            this.comboSalesPromotionID.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
+            this.comboSalesPromotionID.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboSalesPromotionID.Name = "comboSalesPromotionID";
+            this.comboSalesPromotionID.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.comboSalesPromotionID.Size = new System.Drawing.Size(200, 29);
+            // 
+            // buttonSalesPromotionID
+            // 
+            this.buttonSalesPromotionID.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.buttonSalesPromotionID.Image = global::TotalSmartCoding.Properties.Resources.Present;
+            this.buttonSalesPromotionID.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonSalesPromotionID.Name = "buttonSalesPromotionID";
+            this.buttonSalesPromotionID.Size = new System.Drawing.Size(36, 26);
+            this.buttonSalesPromotionID.Text = "toolStripButton3";
             // 
             // layoutTop
             // 
@@ -241,21 +306,21 @@
             this.layoutTop.Controls.Add(this.label1, 4, 0);
             this.layoutTop.Controls.Add(this.label5, 1, 0);
             this.layoutTop.Controls.Add(this.pictureBox1, 2, 0);
-            this.layoutTop.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.layoutTop.Dock = System.Windows.Forms.DockStyle.Right;
             this.layoutTop.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.layoutTop.Location = new System.Drawing.Point(3, 3);
+            this.layoutTop.Location = new System.Drawing.Point(606, 3);
             this.layoutTop.Margin = new System.Windows.Forms.Padding(0);
             this.layoutTop.Name = "layoutTop";
             this.layoutTop.RowCount = 1;
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.layoutTop.Size = new System.Drawing.Size(1177, 29);
+            this.layoutTop.Size = new System.Drawing.Size(574, 29);
             this.layoutTop.TabIndex = 9;
             // 
             // pictureBox2
             // 
             this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox2.Image = global::TotalSmartCoding.Properties.Resources.calendar24;
-            this.pictureBox2.Location = new System.Drawing.Point(926, 0);
+            this.pictureBox2.Image = global::TotalSmartCoding.Properties.Resources.Calendar_2;
+            this.pictureBox2.Location = new System.Drawing.Point(323, 0);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(24, 29);
@@ -271,7 +336,7 @@
             this.dateTimexEntryDate.Editable = true;
             this.dateTimexEntryDate.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimexEntryDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimexEntryDate.Location = new System.Drawing.Point(677, 1);
+            this.dateTimexEntryDate.Location = new System.Drawing.Point(74, 1);
             this.dateTimexEntryDate.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.dateTimexEntryDate.Name = "dateTimexEntryDate";
             this.dateTimexEntryDate.ReadOnly = false;
@@ -285,7 +350,7 @@
             this.dateTimexPicker1.Editable = true;
             this.dateTimexPicker1.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimexPicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimexPicker1.Location = new System.Drawing.Point(953, 1);
+            this.dateTimexPicker1.Location = new System.Drawing.Point(350, 1);
             this.dateTimexPicker1.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.dateTimexPicker1.Name = "dateTimexPicker1";
             this.dateTimexPicker1.ReadOnly = false;
@@ -296,7 +361,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(901, 0);
+            this.label1.Location = new System.Drawing.Point(298, 0);
             this.label1.Margin = new System.Windows.Forms.Padding(0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(25, 29);
@@ -308,7 +373,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Location = new System.Drawing.Point(603, 0);
+            this.label5.Location = new System.Drawing.Point(0, 0);
             this.label5.Margin = new System.Windows.Forms.Padding(0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(47, 29);
@@ -319,8 +384,8 @@
             // pictureBox1
             // 
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox1.Image = global::TotalSmartCoding.Properties.Resources.calendar24;
-            this.pictureBox1.Location = new System.Drawing.Point(650, 0);
+            this.pictureBox1.Image = global::TotalSmartCoding.Properties.Resources.Calendar_icon;
+            this.pictureBox1.Location = new System.Drawing.Point(47, 0);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(24, 29);
@@ -389,6 +454,7 @@
             // 
             // panelCenter
             // 
+            this.panelCenter.Controls.Add(this.treeWarehouseIssueID);
             this.panelCenter.Controls.Add(this.treeWarehouseAdjustmentTypeID);
             this.panelCenter.Controls.Add(this.treeWarehouseReceiptID);
             this.panelCenter.Controls.Add(this.treeWarehouseID);
@@ -400,6 +466,60 @@
             this.panelCenter.Size = new System.Drawing.Size(1183, 702);
             this.panelCenter.TabIndex = 69;
             this.panelCenter.Paint += new System.Windows.Forms.PaintEventHandler(this.panelCenter_Paint);
+            // 
+            // treeWarehouseIssueID
+            // 
+            this.treeWarehouseIssueID.AllColumns.Add(this.olvColumn1);
+            this.treeWarehouseIssueID.AllColumns.Add(this.olvColumn2);
+            this.treeWarehouseIssueID.AllColumns.Add(this.olvColumn33);
+            this.treeWarehouseIssueID.AllColumns.Add(this.olvColumn4);
+            this.treeWarehouseIssueID.AllColumns.Add(this.olvColumn5);
+            this.treeWarehouseIssueID.AllColumns.Add(this.olvColumn3);
+            this.treeWarehouseIssueID.BackColor = System.Drawing.Color.Ivory;
+            this.treeWarehouseIssueID.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.olvColumn1,
+            this.olvColumn2,
+            this.olvColumn3});
+            this.treeWarehouseIssueID.DataSource = null;
+            this.treeWarehouseIssueID.Dock = System.Windows.Forms.DockStyle.Top;
+            this.treeWarehouseIssueID.FullRowSelect = true;
+            this.treeWarehouseIssueID.KeyAspectName = "NodeID";
+            this.treeWarehouseIssueID.Location = new System.Drawing.Point(0, 654);
+            this.treeWarehouseIssueID.Name = "treeWarehouseIssueID";
+            this.treeWarehouseIssueID.OwnerDraw = true;
+            this.treeWarehouseIssueID.ParentKeyAspectName = "ParentNodeID";
+            this.treeWarehouseIssueID.RootKeyValueString = "";
+            this.treeWarehouseIssueID.ShowGroups = false;
+            this.treeWarehouseIssueID.ShowKeyColumns = false;
+            this.treeWarehouseIssueID.Size = new System.Drawing.Size(1183, 112);
+            this.treeWarehouseIssueID.TabIndex = 72;
+            this.treeWarehouseIssueID.UseCompatibleStateImageBehavior = false;
+            this.treeWarehouseIssueID.UseFilterIndicator = true;
+            this.treeWarehouseIssueID.UseFiltering = true;
+            this.treeWarehouseIssueID.View = System.Windows.Forms.View.Details;
+            this.treeWarehouseIssueID.VirtualMode = true;
+            // 
+            // olvColumn1
+            // 
+            this.olvColumn1.AspectName = "Code";
+            this.olvColumn1.Text = "Items";
+            this.olvColumn1.Width = 188;
+            // 
+            // olvColumn2
+            // 
+            this.olvColumn2.AspectName = "Selected";
+            this.olvColumn2.CheckBoxes = true;
+            this.olvColumn2.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvColumn2.Text = "";
+            this.olvColumn2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvColumn2.Width = 45;
+            // 
+            // olvColumn3
+            // 
+            this.olvColumn3.AspectName = "Name";
+            this.olvColumn3.FillsFreeSpace = true;
+            this.olvColumn3.Text = "Description";
+            this.olvColumn3.Width = 100;
             // 
             // treeWarehouseAdjustmentTypeID
             // 
@@ -761,6 +881,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.treeCommodityID)).EndInit();
             this.panelTop.ResumeLayout(false);
             this.panelTop.PerformLayout();
+            this.toolReport.ResumeLayout(false);
+            this.toolReport.PerformLayout();
             this.layoutTop.ResumeLayout(false);
             this.layoutTop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -768,6 +890,7 @@
             this.panelLeft.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.fastReportIndex)).EndInit();
             this.panelCenter.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.treeWarehouseIssueID)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeWarehouseAdjustmentTypeID)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeWarehouseReceiptID)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeWarehouseID)).EndInit();
@@ -832,6 +955,15 @@
         private BrightIdeasSoftware.OLVColumn olvID;
         private BrightIdeasSoftware.OLVColumn olvReportName;
         private BrightIdeasSoftware.OLVColumn olvReportGroupName;
+        private BrightIdeasSoftware.DataTreeListView treeWarehouseIssueID;
+        private BrightIdeasSoftware.OLVColumn olvColumn1;
+        private BrightIdeasSoftware.OLVColumn olvColumn2;
+        private BrightIdeasSoftware.OLVColumn olvColumn3;
+        private System.Windows.Forms.ToolStrip toolReport;
+        private System.Windows.Forms.ToolStripComboBox comboPivotGroupID;
+        private System.Windows.Forms.ToolStripButton buttonPivotGroupID;
+        private System.Windows.Forms.ToolStripComboBox comboSalesPromotionID;
+        private System.Windows.Forms.ToolStripButton buttonSalesPromotionID;
 
     }
 }

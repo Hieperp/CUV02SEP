@@ -204,33 +204,34 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
         private void GoodsIssueJournals()
         {
-            string queryString = " @FromDate DateTime, @ToDate DateTime, @LocationIDs varchar(3999), @WarehouseIDs varchar(3999), @CommodityCategoryIDs varchar(3999), @CommodityTypeIDs varchar(3999), @CommodityIDs varchar(3999), @CustomerCategoryIDs varchar(3999), @CustomerIDs varchar(3999), @SupplierCategoryIDs varchar(3999), @SupplierIDs varchar(3999), @WarehouseReceiptIDs varchar(3999), @LocationReceiptIDs varchar(3999), @WarehouseAdjustmentTypeIDs varchar(3999), @TeamIDs varchar(3999), @EmployeeIDs varchar(3999) " + "\r\n";
+            string queryString = " @FromDate DateTime, @ToDate DateTime, @LocationIDs varchar(3999), @WarehouseIDs varchar(3999), @CommodityCategoryIDs varchar(3999), @CommodityTypeIDs varchar(3999), @CommodityIDs varchar(3999), @CustomerCategoryIDs varchar(3999), @CustomerIDs varchar(3999), @LocationReceiptIDs varchar(3999), @WarehouseReceiptIDs varchar(3999), @TeamIDs varchar(3999), @EmployeeIDs varchar(3999), @WarehouseAdjustmentTypeIDs varchar(3999) " + "\r\n";
 
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
-            queryString = queryString + "       DECLARE     @LocalFromDate DateTime, @LocalToDate DateTime, @LocalLocationIDs varchar(3999), @LocalWarehouseIDs varchar(3999), @LocalCommodityCategoryIDs varchar(3999), @LocalCommodityTypeIDs varchar(3999), @LocalCommodityIDs varchar(3999), @LocalCustomerCategoryIDs varchar(3999), @LocalCustomerIDs varchar(3999), @LocalSupplierCategoryIDs varchar(3999), @LocalSupplierIDs varchar(3999), @LocalWarehouseReceiptIDs varchar(3999), @LocalLocationReceiptIDs varchar(3999), @LocalWarehouseAdjustmentTypeIDs varchar(3999), @LocalTeamIDs varchar(3999), @LocalEmployeeIDs varchar(3999) " + "\r\n";
+            queryString = queryString + "       DECLARE     @LocalFromDate DateTime, @LocalToDate DateTime, @LocalLocationIDs varchar(3999), @LocalWarehouseIDs varchar(3999), @LocalCommodityCategoryIDs varchar(3999), @LocalCommodityTypeIDs varchar(3999), @LocalCommodityIDs varchar(3999), @LocalCustomerCategoryIDs varchar(3999), @LocalCustomerIDs varchar(3999), @LocalSupplierCategoryIDs varchar(3999), @LocalSupplierIDs varchar(3999), @LocalLocationReceiptIDs varchar(3999), @LocalWarehouseReceiptIDs varchar(3999), @LocalTeamIDs varchar(3999), @LocalEmployeeIDs varchar(3999), @LocalWarehouseAdjustmentTypeIDs varchar(3999) " + "\r\n";
 
             queryString = queryString + "       SET         @LocalFromDate = @FromDate                                          SET @LocalToDate = @ToDate " + "\r\n";
             queryString = queryString + "       SET         @LocalLocationIDs = @LocationIDs                                    SET @LocalWarehouseIDs = @WarehouseIDs " + "\r\n";
             queryString = queryString + "       SET         @LocalCommodityCategoryIDs = @CommodityCategoryIDs                  SET @LocalCommodityTypeIDs = @CommodityTypeIDs          SET @LocalCommodityIDs = @CommodityIDs " + "\r\n";
-            queryString = queryString + "       SET         @LocalCustomerCategoryIDs = @CustomerCategoryIDs                    SET @LocalCustomerIDs = @CustomerIDs                    SET @LocalSupplierCategoryIDs = @SupplierCategoryIDs            SET @LocalSupplierIDs = @SupplierIDs " + "\r\n";
+            queryString = queryString + "       SET         @LocalCustomerCategoryIDs = @CustomerCategoryIDs                    SET @LocalCustomerIDs = @CustomerIDs" + "\r\n";
             queryString = queryString + "       SET         @LocalLocationReceiptIDs = @LocationReceiptIDs                      SET @LocalWarehouseReceiptIDs = @WarehouseReceiptIDs " + "\r\n";
-            queryString = queryString + "       SET         @LocalWarehouseAdjustmentTypeIDs = @WarehouseAdjustmentTypeIDs      SET @LocalTeamIDs = @TeamIDs                            SET @LocalEmployeeIDs = @EmployeeIDs " + "\r\n";
+            queryString = queryString + "       SET         @LocalTeamIDs = @TeamIDs                                            SET @LocalEmployeeIDs = @EmployeeIDs " + "\r\n";
+            queryString = queryString + "       SET         @LocalWarehouseAdjustmentTypeIDs = @WarehouseAdjustmentTypeIDs" + "\r\n";
 
             queryString = queryString + "       IF         (@LocalLocationIDs <> '') " + "\r\n";
-            queryString = queryString + "                   " + this.GoodsIssueJournalBUILD(false, false, false, false, false, false, false, false, false, false, false, false, false, false) + "\r\n";
+            queryString = queryString + "                   " + this.GoodsIssueJournalBUILD(false, false, false, false, false, false, false, false, false, false, false, false) + "\r\n";
             queryString = queryString + "       ELSE " + "\r\n";
-            queryString = queryString + "                   " + this.GoodsIssueJournalBUILD(true, true, true, true, true, true, true, true, true, true, true, true, true, true) + "\r\n";
-            
+            queryString = queryString + "                   " + this.GoodsIssueJournalBUILD(true, true, true, true, true, true, true, true, true, true, true, true) + "\r\n";
+
             queryString = queryString + "    END " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("GoodsIssueJournals", queryString);
 
         }
 
-        private string GoodsIssueJournalBUILD(bool isLocationID, bool isWarehouseID, bool isCommodityCategoryID, bool isCommodityTypeID, bool isCommodityID, bool isCustomerCategoryID, bool isCustomerID, bool isSupplierCategoryID, bool isSupplierID, bool isWarehouseReceiptID, bool isLocationReceiptID, bool isWarehouseAdjustmentTypeID, bool isTeamID, bool isEmployeeID)
+        private string GoodsIssueJournalBUILD(bool isLocationID, bool isWarehouseID, bool isCommodityCategoryID, bool isCommodityTypeID, bool isCommodityID, bool isCustomerCategoryID, bool isCustomerID, bool isLocationReceiptID, bool isWarehouseReceiptID, bool isTeamID, bool isEmployeeID, bool isWarehouseAdjustmentTypeID)
         {
             string queryString = "" + "\r\n";
 
@@ -238,18 +239,25 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
             queryString = queryString + "       SELECT      GoodsIssueDetails.GoodsIssueID, GoodsIssueDetails.GoodsIssueDetailID, GoodsIssueDetails.EntryDate, " + "\r\n";
             queryString = queryString + "                   Commodities.CommodityID, Commodities.Code, Commodities.Name, GoodsIssueDetails.Quantity, GoodsIssueDetails.LineVolume " + "\r\n";
+
             queryString = queryString + "       FROM        GoodsIssueDetails " + "\r\n";
-            queryString = queryString + "                   INNER JOIN Locations ON GoodsIssueDetails.EntryDate >= @LocalFromDate AND GoodsIssueDetails.EntryDate <= @LocalToDate AND " + (isLocationID ? "GoodsIssueDetails.LocationID IN (SELECT Id FROM dbo.SplitToIntList (@LocalLocationIDs)) AND " : "") + " GoodsIssueDetails.LocationID = Locations.LocationID " + "\r\n";
-            queryString = queryString + "                   INNER JOIN Warehouses ON " + (isWarehouseID ? "GoodsIssueDetails.WarehouseID IN (SELECT Id FROM dbo.SplitToIntList (@LocalWarehouseIDs)) AND " : "") + " GoodsIssueDetails.WarehouseID = Warehouses.WarehouseID " + "\r\n";
-            queryString = queryString + "                   INNER JOIN Commodities ON " + (isCommodityID ? "GoodsIssueDetails.CommodityID IN (SELECT Id FROM dbo.SplitToIntList (@LocalCommodityIDs)) AND " : "") + " GoodsIssueDetails.CommodityID = Commodities.CommodityID " + "\r\n";
-            queryString = queryString + "                   INNER JOIN CommodityCategories ON " + (isCommodityCategoryID ? "Commodities.CommodityCategoryID IN (SELECT Id FROM dbo.SplitToIntList (@LocalCommodityCategoryIDs)) AND " : "") + " Commodities.CommodityCategoryID = CommodityCategories.CommodityCategoryID " + "\r\n";
+
+            queryString = queryString + "                   INNER JOIN Locations ON GoodsIssueDetails.EntryDate >= @LocalFromDate AND GoodsIssueDetails.EntryDate <= @LocalToDate AND GoodsIssueDetails.OrganizationalUnitID IN (SELECT OrganizationalUnitID FROM AccessControls WHERE UserID = @UserID AND NMVNTaskID = " + (int)TotalBase.Enums.GlobalEnums.NmvnTaskID.GoodsIssue + " AND AccessControls.AccessLevel > 0) AND " + (isLocationID || isWarehouseID ? "(" + (isLocationID ? "GoodsIssueDetails.LocationID IN (SELECT Id FROM dbo.SplitToIntList (@LocalLocationIDs)) " : "") + (isLocationID && isWarehouseID ? " OR " : "") + (isWarehouseID ? "GoodsIssueDetails.WarehouseID IN (SELECT Id FROM dbo.SplitToIntList (@LocalWarehouseIDs)) " : "") + ") AND " : "") + " GoodsIssueDetails.LocationID = Locations.LocationID " + "\r\n";
+            queryString = queryString + "                   INNER JOIN Warehouses ON GoodsIssueDetails.WarehouseID = Warehouses.WarehouseID " + "\r\n";
+
+            queryString = queryString + "                   INNER JOIN Commodities ON " + (isCommodityCategoryID || isCommodityID ? "(" + (isCommodityCategoryID ? "Commodities.CommodityCategoryID IN (SELECT Id FROM dbo.SplitToIntList (@LocalCommodityCategoryIDs))" : "") + (isCommodityCategoryID && isCommodityID ? " OR " : "") + (isCommodityID ? "Commodities.CommodityID IN (SELECT Id FROM dbo.SplitToIntList (@LocalCommodityIDs)) " : "") + ") AND " : "") + " GoodsIssueDetails.CommodityID = Commodities.CommodityID " + "\r\n";
+            queryString = queryString + "                   INNER JOIN CommodityCategories ON " + " Commodities.CommodityCategoryID = CommodityCategories.CommodityCategoryID " + "\r\n";
+
             queryString = queryString + "                   INNER JOIN CommodityTypes ON " + (isCommodityTypeID ? "Commodities.CommodityTypeID IN (SELECT Id FROM dbo.SplitToIntList (@LocalCommodityTypeIDs)) AND " : "") + " Commodities.CommodityTypeID = CommodityTypes.CommodityTypeID " + "\r\n";
 
-            queryString = queryString + "                   LEFT JOIN Customers ON " + (isCustomerID ? "GoodsIssueDetails.CustomerID IN (SELECT Id FROM dbo.SplitToIntList (@LocalCustomerIDs)) AND " : "") + " GoodsIssueDetails.CustomerID = Customers.CustomerID " + "\r\n";
-            queryString = queryString + "                   LEFT JOIN CustomerCategories ON " + (isCustomerCategoryID ? "Customers.CustomerCategoryID IN (SELECT Id FROM dbo.SplitToIntList (@LocalCustomerCategoryIDs)) AND " : "") + " Customers.CustomerCategoryID = CustomerCategories.CustomerCategoryID " + "\r\n";
+            queryString = queryString + "                   LEFT JOIN Customers ON " + (isCustomerCategoryID || isCustomerID ? "(" + (isCustomerCategoryID ? "Customers.CustomerCategoryID IN (SELECT Id FROM dbo.SplitToIntList (@LocalCustomerCategoryIDs))" : "") + (isCustomerCategoryID && isCustomerID ? " OR " : "") + (isCustomerID ? "Customers.CustomerID IN (SELECT Id FROM dbo.SplitToIntList (@LocalCustomerIDs)) " : "") + ") AND " : "") + " GoodsIssueDetails.CustomerID = Customers.CustomerID " + "\r\n";
+            queryString = queryString + "                   LEFT JOIN CustomerCategories ON Customers.CustomerCategoryID = CustomerCategories.CustomerCategoryID " + "\r\n";
 
-            queryString = queryString + "                   LEFT JOIN Warehouses AS WarehouseReceipts ON " + (isWarehouseReceiptID ? "GoodsIssueDetails.WarehouseReceiptID IN (SELECT Id FROM dbo.SplitToIntList (@LocalWarehouseReceiptIDs)) AND " : "") + " GoodsIssueDetails.WarehouseReceiptID = WarehouseReceipts.WarehouseID " + "\r\n";
-            queryString = queryString + "                   LEFT JOIN LocationReceipts AS LocationReceiptReceipts ON " + (isLocationReceiptID ? "WarehouseReceipts.LocationID IN (SELECT Id FROM dbo.SplitToIntList (@LocalLocationReceiptIDs)) AND " : "") + " WarehouseReceipts.LocationReceiptID = LocationReceiptReceipts.LocationReceiptID " + "\r\n";
+            queryString = queryString + "                   LEFT JOIN Employees ON " + (isTeamID || isEmployeeID ? "(" + (isTeamID ? "Employees.TeamID IN (SELECT Id FROM dbo.SplitToIntList (@LocalTeamIDs))" : "") + (isTeamID && isEmployeeID ? " OR " : "") + (isEmployeeID ? "Employees.EmployeeID IN (SELECT Id FROM dbo.SplitToIntList (@LocalEmployeeIDs)) " : "") + ") AND " : "") + " GoodsIssueDetails.SalespersonID = Employees.EmployeeID " + "\r\n";
+            queryString = queryString + "                   LEFT JOIN Teams ON Employees.TeamID = Teams.TeamID " + "\r\n";
+
+            queryString = queryString + "                   LEFT JOIN Locations AS LocationReceipts ON " + (isLocationReceiptID || isWarehouseReceiptID ? "(" + (isLocationReceiptID ? "GoodsIssueDetails.LocationReceiptID IN (SELECT Id FROM dbo.SplitToIntList (@LocalLocationReceiptIDs)) " : "") + (isLocationReceiptID && isWarehouseReceiptID ? " OR " : "") + (isWarehouseReceiptID ? "GoodsIssueDetails.WarehouseReceiptID IN (SELECT Id FROM dbo.SplitToIntList (@LocalWarehouseReceiptIDs)) " : "") + ") AND " : "") + " GoodsIssueDetails.LocationReceiptID = LocationReceipts.LocationID " + "\r\n";
+            queryString = queryString + "                   LEFT JOIN Warehouses AS WarehouseReceipts ON GoodsIssueDetails.WarehouseReceiptID = WarehouseReceipts.WarehouseID " + "\r\n";
 
             queryString = queryString + "    END " + "\r\n";
 
