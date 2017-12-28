@@ -266,7 +266,7 @@
             this.buttonPivotGroupID.Image = global::TotalSmartCoding.Properties.Resources.Calendar_Icon_Yellow;
             this.buttonPivotGroupID.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonPivotGroupID.Name = "buttonPivotGroupID";
-            this.buttonPivotGroupID.Size = new System.Drawing.Size(36, 26);
+            this.buttonPivotGroupID.Size = new System.Drawing.Size(28, 26);
             this.buttonPivotGroupID.Text = "toolStripButton1";
             // 
             // comboSalesPromotionID
@@ -283,7 +283,7 @@
             this.buttonSalesPromotionID.Image = global::TotalSmartCoding.Properties.Resources.Present;
             this.buttonSalesPromotionID.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonSalesPromotionID.Name = "buttonSalesPromotionID";
-            this.buttonSalesPromotionID.Size = new System.Drawing.Size(36, 26);
+            this.buttonSalesPromotionID.Size = new System.Drawing.Size(28, 26);
             this.buttonSalesPromotionID.Text = "toolStripButton3";
             // 
             // layoutTop
@@ -311,6 +311,7 @@
             this.layoutTop.Location = new System.Drawing.Point(606, 3);
             this.layoutTop.Margin = new System.Windows.Forms.Padding(0);
             this.layoutTop.Name = "layoutTop";
+            this.layoutTop.Padding = new System.Windows.Forms.Padding(0, 1, 0, 0);
             this.layoutTop.RowCount = 1;
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.layoutTop.Size = new System.Drawing.Size(574, 29);
@@ -320,7 +321,7 @@
             // 
             this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Right;
             this.pictureBox2.Image = global::TotalSmartCoding.Properties.Resources.Calendar_2;
-            this.pictureBox2.Location = new System.Drawing.Point(323, 0);
+            this.pictureBox2.Location = new System.Drawing.Point(323, 1);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(24, 29);
@@ -336,7 +337,7 @@
             this.dateTimexEntryDate.Editable = true;
             this.dateTimexEntryDate.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimexEntryDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimexEntryDate.Location = new System.Drawing.Point(74, 1);
+            this.dateTimexEntryDate.Location = new System.Drawing.Point(74, 2);
             this.dateTimexEntryDate.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.dateTimexEntryDate.Name = "dateTimexEntryDate";
             this.dateTimexEntryDate.ReadOnly = false;
@@ -350,7 +351,7 @@
             this.dateTimexPicker1.Editable = true;
             this.dateTimexPicker1.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimexPicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimexPicker1.Location = new System.Drawing.Point(350, 1);
+            this.dateTimexPicker1.Location = new System.Drawing.Point(350, 2);
             this.dateTimexPicker1.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.dateTimexPicker1.Name = "dateTimexPicker1";
             this.dateTimexPicker1.ReadOnly = false;
@@ -361,7 +362,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(298, 0);
+            this.label1.Location = new System.Drawing.Point(298, 1);
             this.label1.Margin = new System.Windows.Forms.Padding(0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(25, 29);
@@ -373,7 +374,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Location = new System.Drawing.Point(0, 0);
+            this.label5.Location = new System.Drawing.Point(0, 1);
             this.label5.Margin = new System.Windows.Forms.Padding(0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(47, 29);
@@ -385,7 +386,7 @@
             // 
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Right;
             this.pictureBox1.Image = global::TotalSmartCoding.Properties.Resources.Calendar_icon;
-            this.pictureBox1.Location = new System.Drawing.Point(47, 0);
+            this.pictureBox1.Location = new System.Drawing.Point(47, 1);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(24, 29);
