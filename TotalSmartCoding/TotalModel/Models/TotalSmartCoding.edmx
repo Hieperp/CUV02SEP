@@ -297,6 +297,7 @@
           <Property Name="Approved" Type="bit" Nullable="false" />
           <Property Name="LocationReceiptID" Type="int" />
           <Property Name="SalespersonID" Type="int" />
+          <Property Name="OrganizationalUnitID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="GoodsIssues">
           <Key>
@@ -6544,6 +6545,7 @@
           <Property Name="GoodsIssueTypeID" Type="Int32" Nullable="false" />
           <Property Name="LocationReceiptID" Type="Int32" />
           <Property Name="SalespersonID" Type="Int32" />
+          <Property Name="OrganizationalUnitID" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="FK_GoodsIssueDetails_Commodities">
           <End Type="TotalSmartCodingModel.Commodity" Role="Commodity" Multiplicity="1" />
@@ -9291,6 +9293,7 @@
           <EntitySetMapping Name="GoodsIssueDetails">
             <EntityTypeMapping TypeName="TotalSmartCodingModel.GoodsIssueDetail">
               <MappingFragment StoreEntitySet="GoodsIssueDetails">
+                <ScalarProperty Name="OrganizationalUnitID" ColumnName="OrganizationalUnitID" />
                 <ScalarProperty Name="SalespersonID" ColumnName="SalespersonID" />
                 <ScalarProperty Name="LocationReceiptID" ColumnName="LocationReceiptID" />
                 <ScalarProperty Name="GoodsIssueTypeID" ColumnName="GoodsIssueTypeID" />

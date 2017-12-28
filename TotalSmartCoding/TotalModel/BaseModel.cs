@@ -43,7 +43,12 @@ namespace TotalModel
 
 
 
+        public int UserID { get; set; }
+        public int OrganizationalUnitID { get; set; }
         public int LocationID { get; set; }
+
+
+
 
         public virtual string Caption { get { return ""; } }
 

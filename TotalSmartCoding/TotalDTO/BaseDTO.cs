@@ -59,12 +59,9 @@ namespace TotalDTO
         /// ------------CÓ NGHĨA LÀ: CHÚNG TA BỎ Ý TƯỞNG: UserID MAKE & SAVE DATA FOR PreparedPersonID (LÀM DÙM, THAY THẾ)---Ý TƯỞNG NÀY CÓ RẤT LÂU RỒI, TỪ THỜI VB6. CŨNG HAY, NHƯNG CÓ VẺ KHÔNG CÓ CŨNG KHÔNG SAO!!!! PHẢI BẮT USER LOGOUT -> LOGIN FOR APPROPRIATE USER IF NEEDED
         /// ------------THỰC TẾ: HIỆN GIƠ VẪN CHƯA ĐƯA PreparedPersonID VÀO VIEW ĐỂ CHỌN
         /// </summary>
-        public int UserID { get; set; }
         [Required]
-        [Display(Name = "Người lập")]        
+        [Display(Name = "Người lập")]
         public virtual int PreparedPersonID { get { return ContextAttributes.User.UserID; } }
-        public int OrganizationalUnitID { get; set; }
-
 
         [Display(Name = "Người duyệt")]
         public int ApproverID { get; set; }
