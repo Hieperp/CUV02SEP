@@ -55,7 +55,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
         private string WarehouseJournalBUILD(bool isLocationID, bool isWarehouseID)
         {
-            string queryString = "" + "\r\n";
+            string queryString = "";
 
             queryString = queryString + "    BEGIN " + "\r\n";
 
@@ -206,11 +206,11 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
         {
             string queryString = " @UserID Int, @FromDate DateTime, @ToDate DateTime, @LocationIDs varchar(3999), @WarehouseIDs varchar(3999), @CommodityCategoryIDs varchar(3999), @CommodityTypeIDs varchar(3999), @CommodityIDs varchar(3999), @GoodsIssueTypeID int, @CustomerCategoryIDs varchar(3999), @CustomerIDs varchar(3999), @LocationReceiptIDs varchar(3999), @WarehouseReceiptIDs varchar(3999), @TeamIDs varchar(3999), @EmployeeIDs varchar(3999), @WarehouseAdjustmentTypeIDs varchar(3999) " + "\r\n";
 
-            //queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
-            queryString = queryString + "       DECLARE     @LocalUserID Int, @LocalFromDate DateTime, @LocalToDate DateTime, @LocalLocationIDs varchar(3999), @LocalWarehouseIDs varchar(3999), @LocalCommodityCategoryIDs varchar(3999), @LocalCommodityTypeIDs varchar(3999), @LocalCommodityIDs varchar(3999), @LocalGoodsIssueTypeID int, @LocalCustomerCategoryIDs varchar(3999), @LocalCustomerIDs varchar(3999), @LocalSupplierCategoryIDs varchar(3999), @LocalSupplierIDs varchar(3999), @LocalLocationReceiptIDs varchar(3999), @LocalWarehouseReceiptIDs varchar(3999), @LocalTeamIDs varchar(3999), @LocalEmployeeIDs varchar(3999), @LocalWarehouseAdjustmentTypeIDs varchar(3999) " + "\r\n";
+            queryString = queryString + "       DECLARE     @LocalUserID Int, @LocalFromDate DateTime, @LocalToDate DateTime, @LocalLocationIDs varchar(3999), @LocalWarehouseIDs varchar(3999), @LocalCommodityCategoryIDs varchar(3999), @LocalCommodityTypeIDs varchar(3999), @LocalCommodityIDs varchar(3999), @LocalGoodsIssueTypeID int, @LocalCustomerCategoryIDs varchar(3999), @LocalCustomerIDs varchar(3999), @LocalLocationReceiptIDs varchar(3999), @LocalWarehouseReceiptIDs varchar(3999), @LocalTeamIDs varchar(3999), @LocalEmployeeIDs varchar(3999), @LocalWarehouseAdjustmentTypeIDs varchar(3999) " + "\r\n";
 
             queryString = queryString + "       SET         @LocalUserID = @UserID                                              SET @LocalFromDate = @FromDate                          SET @LocalToDate = @ToDate " + "\r\n";
             queryString = queryString + "       SET         @LocalLocationIDs = @LocationIDs                                    SET @LocalWarehouseIDs = @WarehouseIDs                  " + "\r\n";
@@ -227,15 +227,6 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryString = queryString + "       ELSE " + "\r\n";
             queryString = queryString + "                   " + this.BUILDLocation(false) + "\r\n";
 
-
-
-
-
-            //queryString = queryString + "       IF         (@LocalLocationIDs = '') " + "\r\n";
-            //queryString = queryString + "                   " + this.GoodsIssueJournalBUILD(false, false, false, false, false, GlobalEnums.GoodsIssueTypeID.All, false, false, false, false, false, false, false) + "\r\n";
-            //queryString = queryString + "       ELSE " + "\r\n";
-            //queryString = queryString + "                   " + this.GoodsIssueJournalBUILD(true, true, true, true, true, GlobalEnums.GoodsIssueTypeID.DeliveryAdvice, true, true, true, true, true, true, true) + "\r\n";
-
             queryString = queryString + "    END " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("GoodsIssueJournals", queryString);
@@ -244,7 +235,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
         private string BUILDLocation(bool isLocationID)
         {
-            string queryString = "" + "\r\n";
+            string queryString = "";
 
             queryString = queryString + "    BEGIN " + "\r\n";
 
@@ -260,7 +251,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
         private string BUILDWarehouse(bool isLocationID, bool isWarehouseID)
         {
-            string queryString = "" + "\r\n";
+            string queryString = "";
 
             queryString = queryString + "    BEGIN " + "\r\n";
 
@@ -276,7 +267,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
         private string BUILDCommodityCategory(bool isLocationID, bool isWarehouseID, bool isCommodityCategoryID)
         {
-            string queryString = "" + "\r\n";
+            string queryString = "";
 
             queryString = queryString + "    BEGIN " + "\r\n";
 
@@ -292,7 +283,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
         private string BUILDCommodity(bool isLocationID, bool isWarehouseID, bool isCommodityCategoryID, bool isCommodityID)
         {
-            string queryString = "" + "\r\n";
+            string queryString = "";
 
             queryString = queryString + "    BEGIN " + "\r\n";
 
@@ -308,7 +299,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
         private string BUILDCommodityType(bool isLocationID, bool isWarehouseID, bool isCommodityCategoryID, bool isCommodityID, bool isCommodityTypeID)
         {
-            string queryString = "" + "\r\n";
+            string queryString = "";
 
             queryString = queryString + "    BEGIN " + "\r\n";
 
@@ -334,7 +325,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
         private string BUILDGoodsIssueType(bool isLocationID, bool isWarehouseID, bool isCommodityCategoryID, bool isCommodityID, bool isCommodityTypeID, GlobalEnums.GoodsIssueTypeID goodsIssueTypeID)
         {
-            string queryString = "" + "\r\n";
+            string queryString = "";
 
             queryString = queryString + "    BEGIN " + "\r\n";
 
@@ -350,7 +341,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
         private string BUILDCustomerCategory(bool isLocationID, bool isWarehouseID, bool isCommodityCategoryID, bool isCommodityID, bool isCommodityTypeID, GlobalEnums.GoodsIssueTypeID goodsIssueTypeID, bool isCustomerCategoryID)
         {
-            string queryString = "" + "\r\n";
+            string queryString = "";
 
             queryString = queryString + "    BEGIN " + "\r\n";
 
@@ -366,7 +357,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
         private string BUILDCustomer(bool isLocationID, bool isWarehouseID, bool isCommodityCategoryID, bool isCommodityID, bool isCommodityTypeID, GlobalEnums.GoodsIssueTypeID goodsIssueTypeID, bool isCustomerCategoryID, bool isCustomerID)
         {
-            string queryString = "" + "\r\n";
+            string queryString = "";
 
             queryString = queryString + "    BEGIN " + "\r\n";
 
@@ -382,7 +373,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
         private string BUILDLocationReceipt(bool isLocationID, bool isWarehouseID, bool isCommodityCategoryID, bool isCommodityID, bool isCommodityTypeID, GlobalEnums.GoodsIssueTypeID goodsIssueTypeID, bool isCustomerCategoryID, bool isCustomerID, bool isLocationReceiptID)
         {
-            string queryString = "" + "\r\n";
+            string queryString = "";
 
             queryString = queryString + "    BEGIN " + "\r\n";
 
@@ -398,7 +389,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
         private string BUILDWarehouseReceipt(bool isLocationID, bool isWarehouseID, bool isCommodityCategoryID, bool isCommodityID, bool isCommodityTypeID, GlobalEnums.GoodsIssueTypeID goodsIssueTypeID, bool isCustomerCategoryID, bool isCustomerID, bool isLocationReceiptID, bool isWarehouseReceiptID)
         {
-            string queryString = "" + "\r\n";
+            string queryString = "";
 
             queryString = queryString + "    BEGIN " + "\r\n";
 
@@ -414,7 +405,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
         private string BUILDTeam(bool isLocationID, bool isWarehouseID, bool isCommodityCategoryID, bool isCommodityID, bool isCommodityTypeID, GlobalEnums.GoodsIssueTypeID goodsIssueTypeID, bool isCustomerCategoryID, bool isCustomerID, bool isLocationReceiptID, bool isWarehouseReceiptID, bool isTeamID)
         {
-            string queryString = "" + "\r\n";
+            string queryString = "";
 
             queryString = queryString + "    BEGIN " + "\r\n";
 
@@ -430,7 +421,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
         private string BUILDEmployee(bool isLocationID, bool isWarehouseID, bool isCommodityCategoryID, bool isCommodityID, bool isCommodityTypeID, GlobalEnums.GoodsIssueTypeID goodsIssueTypeID, bool isCustomerCategoryID, bool isCustomerID, bool isLocationReceiptID, bool isWarehouseReceiptID, bool isTeamID, bool isEmployeeID)
         {
-            string queryString = "" + "\r\n";
+            string queryString = "";
 
             queryString = queryString + "    BEGIN " + "\r\n";
 
@@ -448,7 +439,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
         private string GoodsIssueJournalBUILD(bool isLocationID, bool isWarehouseID, bool isCommodityCategoryID, bool isCommodityID, bool isCommodityTypeID, GlobalEnums.GoodsIssueTypeID goodsIssueTypeID, bool isCustomerCategoryID, bool isCustomerID, bool isLocationReceiptID, bool isWarehouseReceiptID, bool isTeamID, bool isEmployeeID, bool isWarehouseAdjustmentTypeID)
         {
-            string queryString = "" + "\r\n";
+            string queryString = "";
 
             queryString = queryString + "    BEGIN " + "\r\n";
 
@@ -484,7 +475,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
         private string GoodsIssueJournalBUILDTable(GlobalEnums.NmvnTaskID nmvnTaskID, string tableName, string primaryKey, string primaryDetailKey, bool isLocationID, bool isWarehouseID, bool isCommodityCategoryID, bool isCommodityTypeID, bool isCommodityID, bool isGoodsIssueTypeID)
         {
-            string queryString = "" + "\r\n";
+            string queryString = "";
 
             queryString = queryString + "       SELECT      " + tableName + "." + primaryKey + " AS PrimaryKey, " + tableName + "." + primaryDetailKey + " AS PrimaryDetailKey, " + tableName + ".EntryDate, " + "\r\n";
             queryString = queryString + "                   Commodities.CommodityID, Commodities.Code, Commodities.Name, " + tableName + ".Quantity, " + tableName + ".LineVolume " + "\r\n";
