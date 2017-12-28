@@ -46,6 +46,7 @@ namespace TotalModel.Models
         public decimal LineVolumeReceipt { get; set; }
         public string Remarks { get; set; }
         public bool Approved { get; set; }
+        public int OrganizationalUnitID { get; set; }
     
         public virtual BinLocation BinLocation { get; set; }
         public virtual Carton Carton { get; set; }

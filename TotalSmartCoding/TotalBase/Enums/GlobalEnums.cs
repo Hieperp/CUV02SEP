@@ -330,8 +330,11 @@
 
         public enum GoodsIssueTypeID
         {
+            All = 999,
             DeliveryAdvice = 1,
-            TransferOrder = 2
+            TransferOrder = 2,
+
+            WarehouseAdjustment = 99
         };
 
         public enum WarehouseAdjustmentTypeID

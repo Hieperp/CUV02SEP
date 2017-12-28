@@ -785,6 +785,7 @@
           <Property Name="LineVolumeReceipt" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Remarks" Type="nvarchar" MaxLength="100" />
           <Property Name="Approved" Type="bit" Nullable="false" />
+          <Property Name="OrganizationalUnitID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="WarehouseAdjustments">
           <Key>
@@ -7015,6 +7016,7 @@
           <NavigationProperty Name="WarehouseAdjustment" Relationship="TotalSmartCodingModel.FK_WarehouseAdjustmentDetails_WarehouseAdjustments" FromRole="WarehouseAdjustmentDetail" ToRole="WarehouseAdjustment" />
           <NavigationProperty Name="Warehouse" Relationship="TotalSmartCodingModel.FK_WarehouseAdjustmentDetails_Warehouses" FromRole="WarehouseAdjustmentDetail" ToRole="Warehouse" />
           <NavigationProperty Name="Warehouse1" Relationship="TotalSmartCodingModel.FK_WarehouseAdjustmentDetails_Warehouses1" FromRole="WarehouseAdjustmentDetail" ToRole="Warehouse" />
+          <Property Name="OrganizationalUnitID" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="WarehouseAdjustment">
           <Key>
@@ -9466,6 +9468,7 @@
           <EntitySetMapping Name="WarehouseAdjustmentDetails">
             <EntityTypeMapping TypeName="TotalSmartCodingModel.WarehouseAdjustmentDetail">
               <MappingFragment StoreEntitySet="WarehouseAdjustmentDetails">
+                <ScalarProperty Name="OrganizationalUnitID" ColumnName="OrganizationalUnitID" />
                 <ScalarProperty Name="Approved" ColumnName="Approved" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
                 <ScalarProperty Name="LineVolumeReceipt" ColumnName="LineVolumeReceipt" />

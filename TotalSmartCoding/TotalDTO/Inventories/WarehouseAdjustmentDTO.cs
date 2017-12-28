@@ -120,7 +120,7 @@ namespace TotalDTO.Inventories
         {
             base.PerformPresaveRule();
 
-            this.DtoDetails().ToList().ForEach(e => { e.WarehouseID = this.WarehouseID; e.WarehouseReceiptID = this.WarehouseReceiptID; e.WarehouseAdjustmentTypeID = this.WarehouseAdjustmentTypeID; });
+            this.DtoDetails().ToList().ForEach(e => { e.OrganizationalUnitID = this.OrganizationalUnitID; e.WarehouseID = this.WarehouseID; e.WarehouseReceiptID = this.WarehouseReceiptID; e.WarehouseAdjustmentTypeID = this.WarehouseAdjustmentTypeID; });
         }
 
         protected override List<ValidationRule> CreateRules()
