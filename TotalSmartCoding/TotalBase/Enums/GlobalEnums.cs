@@ -329,7 +329,7 @@
         };
 
         public enum GoodsIssueTypeID
-        {
+        { //IMPORTANT: SOMETIME WE USE goodsIssueTypeID.ToString().Substring(0, 1) => SO: SHOULD NAME WITH THE FIRST CHAR DIFFERENTLY!!!
             All = 999,
             DeliveryAdvice = 1,
             TransferOrder = 2,
