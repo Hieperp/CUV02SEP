@@ -224,7 +224,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
         private string BUILDParameter()
         {
-            return " @UserID, @FromDate, @ToDate, @LocationIDs, @WarehouseIDs, @CommodityCategoryIDs, @CommodityTypeIDs, @CommodityIDs, @GoodsIssueTypeIDs, @CustomerCategoryIDs, @CustomerIDs, @LocationReceiptIDs, @WarehouseReceiptIDs, @TeamIDs, @EmployeeIDs, @WarehouseAdjustmentTypeIDs ";
+            return " @LocalUserID, @LocalFromDate, @LocalToDate, @LocalLocationIDs, @LocalWarehouseIDs, @LocalCommodityCategoryIDs, @LocalCommodityTypeIDs, @LocalCommodityIDs, @LocalGoodsIssueTypeIDs, @LocalCustomerCategoryIDs, @LocalCustomerIDs, @LocalLocationReceiptIDs, @LocalWarehouseReceiptIDs, @LocalTeamIDs, @LocalEmployeeIDs, @LocalWarehouseAdjustmentTypeIDs ";
         }
 
         private void GoodsIssueJournals()
@@ -232,6 +232,14 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             this.GoodsIssueJournal08();
 
             string queryString = this.BUILDHeader() + this.BUILDGoodsIssue() + "\r\n";
+            this.totalSmartCodingEntities.CreateStoredProcedure("GIJ08", queryString);
+
+
+            queryString = this.BUILDHeader();
+            queryString = queryString + "       DECLARE     @GoodsIssueJournals TABLE (PrimaryID int NOT NULL, PrimaryDetailID int NOT NULL, EntryDate datetime NOT NULL, LocationName nvarchar(50) NOT NULL, WarehouseName nvarchar(60) NOT NULL, CommodityID int NOT NULL, Code nvarchar(50) NOT NULL, Name nvarchar(200) NOT NULL, PackageSize nvarchar(60) NULL, CommodityCategoryName nvarchar(100) NOT NULL, CommodityTypeName nvarchar(100) NOT NULL, Quantity decimal(18, 2) NOT NULL, LineVolume decimal(18, 2) NOT NULL, LineForeignCode nvarchar(50) NOT NULL, LineForeignName nvarchar(100) NOT NULL, LineReferences nvarchar(110) NULL, CustomerCategoryName nvarchar(100) NULL, TeamName nvarchar(100) NULL, SalespersonName nvarchar(50) NULL) " + "\r\n";
+            queryString = queryString + "       INSERT INTO @GoodsIssueJournals         EXEC GIJ08 " + this.BUILDParameter() + "\r\n";
+            queryString = queryString + "       SELECT *    FROM @GoodsIssueJournals " + "\r\n";
+
             this.totalSmartCodingEntities.CreateStoredProcedure("GoodsIssueJournals", queryString);
         }
 
