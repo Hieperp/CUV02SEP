@@ -329,12 +329,21 @@
         };
 
         public enum GoodsIssueTypeID
-        { //IMPORTANT: SOMETIME WE USE goodsIssueTypeID.ToString().Substring(0, 1) => SO: SHOULD NAME WITH THE FIRST CHAR DIFFERENTLY!!!
-            All = 999,
+        {
             DeliveryAdvice = 1,
             TransferOrder = 2,
 
             WarehouseAdjustment = 99
+        };
+
+        public enum GoodsIssueTypeID_REPORTONLY
+        { //THIS GoodsIssueTypeID_REPORTONLY IS MAPPED FROM GoodsIssueTypeID FOR REPORT FILTER ONLY
+          //IMPORTANT: SOMETIME WE USE goodsIssueTypeID_REPORTONLY.ToString().Substring(0, 1) => SO: SHOULD NAME WITH THE FIRST CHAR DIFFERENTLY!!!
+            Alls = 1976999,
+            CombineSelectedAlls = 1976888,
+            GoodsIssues = 19761,
+            SelectedGoodsIssues = 19762,
+            WarehouseAdjustments = 197699
         };
 
         public enum WarehouseAdjustmentTypeID
