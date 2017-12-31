@@ -47,6 +47,7 @@ namespace TotalModel.Models
         public Nullable<int> LocationReceiptID { get; set; }
         public Nullable<int> SalespersonID { get; set; }
         public int OrganizationalUnitID { get; set; }
+        public string VoucherCodes { get; set; }
     
         public virtual Commodity Commodity { get; set; }
         public virtual Customer Customer { get; set; }

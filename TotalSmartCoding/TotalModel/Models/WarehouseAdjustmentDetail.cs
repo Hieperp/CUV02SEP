@@ -47,6 +47,7 @@ namespace TotalModel.Models
         public string Remarks { get; set; }
         public bool Approved { get; set; }
         public int OrganizationalUnitID { get; set; }
+        public string AdjustmentJobs { get; set; }
     
         public virtual BinLocation BinLocation { get; set; }
         public virtual Carton Carton { get; set; }
