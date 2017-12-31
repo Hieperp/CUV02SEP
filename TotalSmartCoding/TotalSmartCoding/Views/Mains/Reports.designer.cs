@@ -42,10 +42,10 @@
             this.olvCommodityName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.panelTop = new System.Windows.Forms.Panel();
             this.toolReport = new System.Windows.Forms.ToolStrip();
-            this.comboPivotGroupID = new System.Windows.Forms.ToolStripComboBox();
-            this.buttonPivotGroupID = new System.Windows.Forms.ToolStripButton();
-            this.comboSalesPromotionID = new System.Windows.Forms.ToolStripComboBox();
-            this.buttonSalesPromotionID = new System.Windows.Forms.ToolStripButton();
+            this.comboPivotColumnType = new System.Windows.Forms.ToolStripComboBox();
+            this.buttonPivotColumnType = new System.Windows.Forms.ToolStripButton();
+            this.comboSalesVersusPromotion = new System.Windows.Forms.ToolStripComboBox();
+            this.buttonSalesVersusPromotion = new System.Windows.Forms.ToolStripButton();
             this.layoutTop = new System.Windows.Forms.TableLayoutPanel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.dateTimexEntryDate = new CustomControls.DateTimexPicker();
@@ -241,10 +241,10 @@
             this.toolReport.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolReport.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.toolReport.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.comboPivotGroupID,
-            this.buttonPivotGroupID,
-            this.comboSalesPromotionID,
-            this.buttonSalesPromotionID});
+            this.comboPivotColumnType,
+            this.buttonPivotColumnType,
+            this.comboSalesVersusPromotion,
+            this.buttonSalesVersusPromotion});
             this.toolReport.Location = new System.Drawing.Point(3, 3);
             this.toolReport.Name = "toolReport";
             this.toolReport.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -252,39 +252,41 @@
             this.toolReport.TabIndex = 10;
             this.toolReport.Text = "toolStrip1";
             // 
-            // comboPivotGroupID
+            // comboPivotColumnType
             // 
-            this.comboPivotGroupID.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
-            this.comboPivotGroupID.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboPivotGroupID.Name = "comboPivotGroupID";
-            this.comboPivotGroupID.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.comboPivotGroupID.Size = new System.Drawing.Size(200, 29);
+            this.comboPivotColumnType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboPivotColumnType.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
+            this.comboPivotColumnType.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboPivotColumnType.Name = "comboPivotColumnType";
+            this.comboPivotColumnType.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.comboPivotColumnType.Size = new System.Drawing.Size(130, 29);
             // 
-            // buttonPivotGroupID
+            // buttonPivotColumnType
             // 
-            this.buttonPivotGroupID.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.buttonPivotGroupID.Image = global::TotalSmartCoding.Properties.Resources.Calendar_Icon_Yellow;
-            this.buttonPivotGroupID.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonPivotGroupID.Name = "buttonPivotGroupID";
-            this.buttonPivotGroupID.Size = new System.Drawing.Size(28, 26);
-            this.buttonPivotGroupID.Text = "toolStripButton1";
+            this.buttonPivotColumnType.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.buttonPivotColumnType.Image = global::TotalSmartCoding.Properties.Resources.Calendar_Icon_Yellow;
+            this.buttonPivotColumnType.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonPivotColumnType.Name = "buttonPivotColumnType";
+            this.buttonPivotColumnType.Size = new System.Drawing.Size(28, 26);
+            this.buttonPivotColumnType.Text = "toolStripButton1";
             // 
-            // comboSalesPromotionID
+            // comboSalesVersusPromotion
             // 
-            this.comboSalesPromotionID.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
-            this.comboSalesPromotionID.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboSalesPromotionID.Name = "comboSalesPromotionID";
-            this.comboSalesPromotionID.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.comboSalesPromotionID.Size = new System.Drawing.Size(200, 29);
+            this.comboSalesVersusPromotion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboSalesVersusPromotion.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
+            this.comboSalesVersusPromotion.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboSalesVersusPromotion.Name = "comboSalesVersusPromotion";
+            this.comboSalesVersusPromotion.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.comboSalesVersusPromotion.Size = new System.Drawing.Size(165, 29);
             // 
-            // buttonSalesPromotionID
+            // buttonSalesVersusPromotion
             // 
-            this.buttonSalesPromotionID.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.buttonSalesPromotionID.Image = global::TotalSmartCoding.Properties.Resources.Present;
-            this.buttonSalesPromotionID.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonSalesPromotionID.Name = "buttonSalesPromotionID";
-            this.buttonSalesPromotionID.Size = new System.Drawing.Size(28, 26);
-            this.buttonSalesPromotionID.Text = "toolStripButton3";
+            this.buttonSalesVersusPromotion.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.buttonSalesVersusPromotion.Image = global::TotalSmartCoding.Properties.Resources.Present;
+            this.buttonSalesVersusPromotion.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonSalesVersusPromotion.Name = "buttonSalesVersusPromotion";
+            this.buttonSalesVersusPromotion.Size = new System.Drawing.Size(28, 26);
+            this.buttonSalesVersusPromotion.Text = "toolStripButton3";
             // 
             // layoutTop
             // 
@@ -961,10 +963,10 @@
         private BrightIdeasSoftware.OLVColumn olvColumn2;
         private BrightIdeasSoftware.OLVColumn olvColumn3;
         private System.Windows.Forms.ToolStrip toolReport;
-        private System.Windows.Forms.ToolStripComboBox comboPivotGroupID;
-        private System.Windows.Forms.ToolStripButton buttonPivotGroupID;
-        private System.Windows.Forms.ToolStripComboBox comboSalesPromotionID;
-        private System.Windows.Forms.ToolStripButton buttonSalesPromotionID;
+        private System.Windows.Forms.ToolStripComboBox comboPivotColumnType;
+        private System.Windows.Forms.ToolStripButton buttonPivotColumnType;
+        private System.Windows.Forms.ToolStripComboBox comboSalesVersusPromotion;
+        private System.Windows.Forms.ToolStripButton buttonSalesVersusPromotion;
 
     }
 }

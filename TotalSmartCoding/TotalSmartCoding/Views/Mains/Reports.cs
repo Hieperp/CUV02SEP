@@ -157,8 +157,13 @@ namespace TotalSmartCoding.Views.Mains
             this.employeeTrees = employeeAPIs.GetEmployeeTrees();
             this.treeEmployeeID.DataSource = new BindingSource(this.employeeTrees, "");
 
-            this.fastReportIndex.AboutToCreateGroups += fastReportIndex_AboutToCreateGroups;
+            this.comboPivotColumnType.ComboBox.Items.AddRange(new string[] { "Daily summary", "Monthly summary" });
+            this.comboPivotColumnType.ComboBox.SelectedIndex = 1;
 
+            this.comboSalesVersusPromotion.ComboBox.Items.AddRange(new string[] { "Both sales & promotions", "Sales only", "Promotions only" });
+            this.comboSalesVersusPromotion.ComboBox.SelectedIndex = 0;
+
+            this.fastReportIndex.AboutToCreateGroups += fastReportIndex_AboutToCreateGroups;
             this.fastReportIndex.ShowGroups = true;
             //this.olvApproved.Renderer = new MappedImageRenderer(new Object[] { 1, Resources.Placeholder16, 2, Resources.Void_16 });
         }
@@ -187,7 +192,7 @@ namespace TotalSmartCoding.Views.Mains
             base.DoAfterLoad();
             this.fastReportIndex.Sort(this.olvReportGroupName, SortOrder.Descending);
 
-            if (this.treeWarehouseID.GetModelObject(0) != null) { this.treeWarehouseID.Expand(this.treeWarehouseID.GetModelObject(0)); if (this.treeWarehouseID.Items.Count >= 2) this.treeWarehouseID.SelectedIndex = 1; }            
+            if (this.treeWarehouseID.GetModelObject(0) != null) { this.treeWarehouseID.Expand(this.treeWarehouseID.GetModelObject(0)); if (this.treeWarehouseID.Items.Count >= 2) this.treeWarehouseID.SelectedIndex = 1; }
             if (this.treeCommodityID.GetModelObject(0) != null) { this.treeCommodityID.Expand(this.treeCommodityID.GetModelObject(0)); if (this.treeCommodityID.Items.Count >= 2) this.treeCommodityID.SelectedIndex = 1; }
             if (this.treeCommodityTypeID.GetModelObject(0) != null) { this.treeCommodityTypeID.Expand(this.treeCommodityTypeID.GetModelObject(0)); if (this.treeCommodityTypeID.Items.Count >= 2) this.treeCommodityTypeID.SelectedIndex = 1; }
             if (this.treeCustomerID.GetModelObject(0) != null) { this.treeCustomerID.Expand(this.treeCustomerID.GetModelObject(0)); if (this.treeCustomerID.Items.Count >= 2) this.treeCustomerID.SelectedIndex = 1; }
@@ -212,8 +217,8 @@ namespace TotalSmartCoding.Views.Mains
                         this.currentReportIndex = reportIndex;
                         this.reloadTabPages();
 
-                        this.comboPivotGroupID.Visible = this.currentReportIndex.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsReceiptPivot || this.currentReportIndex.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsIssuePivot; this.buttonPivotGroupID.Visible = this.comboPivotGroupID.Visible;
-                        this.comboSalesPromotionID.Visible = this.currentReportIndex.ReportUniqueID == (int)GlobalEnums.ReportUniqueID.SalesIssuePivot; this.buttonSalesPromotionID.Visible = this.comboSalesPromotionID.Visible;
+                        this.comboPivotColumnType.Visible = this.currentReportIndex.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsReceiptPivot || this.currentReportIndex.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsIssuePivot; this.buttonPivotColumnType.Visible = this.comboPivotColumnType.Visible;
+                        this.comboSalesVersusPromotion.Visible = this.currentReportIndex.ReportUniqueID == (int)GlobalEnums.ReportUniqueID.SalesIssuePivot; this.buttonSalesVersusPromotion.Visible = this.comboSalesVersusPromotion.Visible;
                     }
                 }
             }
@@ -282,7 +287,7 @@ namespace TotalSmartCoding.Views.Mains
 
         public override void ApplyFilter(string filterTexts)
         {
-            OLVHelpers.ApplyFilters(this.treeWarehouseID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));            
+            OLVHelpers.ApplyFilters(this.treeWarehouseID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
             OLVHelpers.ApplyFilters(this.treeCommodityID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
             OLVHelpers.ApplyFilters(this.treeCommodityTypeID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
             OLVHelpers.ApplyFilters(this.treeCustomerID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));

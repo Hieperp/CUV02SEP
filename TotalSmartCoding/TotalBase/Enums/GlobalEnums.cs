@@ -329,7 +329,8 @@
         };
 
         public enum GoodsIssueTypeID
-        {
+        {//AT NOW, IN REPORT FILTER, WE CHECK: @LocalGoodsIssueTypeIDs LIKE '%" + (int)GlobalEnums.GoodsIssueTypeID.WarehouseAdjustment + "%'
+            //SO: THIS ENUM NUMBER MUST BE SEPARATELY. IT SHOULD NOT CONTAIN EACH OTHERS (EX: SHOULD NOT BE: 1 Vs 199/ 9 Vs 199)
             DeliveryAdvice = 1,
             TransferOrder = 2,
 
@@ -338,7 +339,7 @@
 
         public enum GoodsIssueTypeID_REPORTONLY
         { //THIS GoodsIssueTypeID_REPORTONLY IS MAPPED FROM GoodsIssueTypeID FOR REPORT FILTER ONLY
-          //IMPORTANT: SOMETIME WE USE goodsIssueTypeID_REPORTONLY.ToString().Substring(0, 1) => SO: SHOULD NAME WITH THE FIRST CHAR DIFFERENTLY!!!
+            //IMPORTANT: SOMETIME WE USE goodsIssueTypeID_REPORTONLY.ToString().Substring(0, 1) => SO: SHOULD NAME WITH THE FIRST CHAR DIFFERENTLY!!!
             Alls = 1976999,
             CombineSelectedAlls = 1976888,
             GoodsIssues = 19761,
