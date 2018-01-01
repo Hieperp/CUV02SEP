@@ -732,6 +732,7 @@
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 55);
+            this.toolStripSeparator1.Visible = false;
             // 
             // comboDetailFilterTexts
             // 
@@ -739,6 +740,7 @@
             this.comboDetailFilterTexts.Font = new System.Drawing.Font("Calibri", 10.2F);
             this.comboDetailFilterTexts.Name = "comboDetailFilterTexts";
             this.comboDetailFilterTexts.Size = new System.Drawing.Size(318, 55);
+            this.comboDetailFilterTexts.Visible = false;
             this.comboDetailFilterTexts.TextChanged += new System.EventHandler(this.comboFilterTexts_TextChanged);
             // 
             // buttonClearDetailFilters
@@ -750,6 +752,7 @@
             this.buttonClearDetailFilters.Name = "buttonClearDetailFilters";
             this.buttonClearDetailFilters.Size = new System.Drawing.Size(52, 52);
             this.buttonClearDetailFilters.Text = "toolStripButton1";
+            this.buttonClearDetailFilters.Visible = false;
             this.buttonClearDetailFilters.Click += new System.EventHandler(this.buttonClearFilters_Click);
             // 
             // MasterMDI

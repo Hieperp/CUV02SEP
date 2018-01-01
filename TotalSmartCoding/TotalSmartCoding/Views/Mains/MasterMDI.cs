@@ -41,6 +41,7 @@ using TotalSmartCoding.Views.Commons.Customers;
 using TotalSmartCoding.Views.Commons.BinLocations;
 using TotalSmartCoding.ViewModels.Helpers;
 using TotalSmartCoding.Views.Commons.Commodities;
+using TotalSmartCoding.Views.Generals;
 
 
 namespace TotalSmartCoding.Views.Mains
