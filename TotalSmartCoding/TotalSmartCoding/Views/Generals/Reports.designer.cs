@@ -230,7 +230,7 @@
             this.panelTop.Controls.Add(this.layoutTop);
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTop.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panelTop.Location = new System.Drawing.Point(297, 39);
+            this.panelTop.Location = new System.Drawing.Point(297, 0);
             this.panelTop.Name = "panelTop";
             this.panelTop.Padding = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.panelTop.Size = new System.Drawing.Size(1234, 32);
@@ -299,12 +299,12 @@
             this.comboSalesVersusPromotion.Font = new System.Drawing.Font("Calibri Light", 10.2F);
             this.comboSalesVersusPromotion.Name = "comboSalesVersusPromotion";
             this.comboSalesVersusPromotion.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.comboSalesVersusPromotion.Size = new System.Drawing.Size(165, 29);
+            this.comboSalesVersusPromotion.Size = new System.Drawing.Size(135, 29);
             // 
             // buttonSalesVersusPromotion
             // 
             this.buttonSalesVersusPromotion.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.buttonSalesVersusPromotion.Image = global::TotalSmartCoding.Properties.Resources.Present;
+            this.buttonSalesVersusPromotion.Image = global::TotalSmartCoding.Properties.Resources.Energy_24;
             this.buttonSalesVersusPromotion.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonSalesVersusPromotion.Name = "buttonSalesVersusPromotion";
             this.buttonSalesVersusPromotion.Size = new System.Drawing.Size(28, 26);
@@ -421,10 +421,10 @@
             // 
             this.panelLeft.Controls.Add(this.fastReportIndex);
             this.panelLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelLeft.Location = new System.Drawing.Point(0, 39);
+            this.panelLeft.Location = new System.Drawing.Point(0, 0);
             this.panelLeft.Name = "panelLeft";
             this.panelLeft.Padding = new System.Windows.Forms.Padding(0, 0, 0, 3);
-            this.panelLeft.Size = new System.Drawing.Size(297, 695);
+            this.panelLeft.Size = new System.Drawing.Size(297, 734);
             this.panelLeft.TabIndex = 68;
             // 
             // fastReportIndex
@@ -448,7 +448,7 @@
             this.fastReportIndex.Name = "fastReportIndex";
             this.fastReportIndex.OwnerDraw = true;
             this.fastReportIndex.ShowGroups = false;
-            this.fastReportIndex.Size = new System.Drawing.Size(297, 692);
+            this.fastReportIndex.Size = new System.Drawing.Size(297, 731);
             this.fastReportIndex.TabIndex = 70;
             this.fastReportIndex.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastReportIndex.UseCompatibleStateImageBehavior = false;
@@ -485,9 +485,9 @@
             this.panelCenter.Controls.Add(this.panelCustomers);
             this.panelCenter.Controls.Add(this.panelCommodities);
             this.panelCenter.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelCenter.Location = new System.Drawing.Point(297, 71);
+            this.panelCenter.Location = new System.Drawing.Point(297, 32);
             this.panelCenter.Name = "panelCenter";
-            this.panelCenter.Size = new System.Drawing.Size(1234, 663);
+            this.panelCenter.Size = new System.Drawing.Size(1234, 702);
             this.panelCenter.TabIndex = 69;
             // 
             // treeWarehouseIssueID

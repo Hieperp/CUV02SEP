@@ -24,6 +24,7 @@ namespace TotalModel.Models
     }
 
     public partial class WarehouseTree : IFilterTree { }
+    public partial class CommodityTree : IFilterTree { }
 
     #endregion Interface for report
 
@@ -658,7 +659,7 @@ namespace TotalModel.Models
 
     public partial class ReportIndex : IBaseIndex
     {
-        public int Id { get { return this.ReportUniqueID; } }
+        public int Id { get { return this.ReportID; } }
     }
 
     public partial class Report : IPrimitiveEntity, IBaseEntity

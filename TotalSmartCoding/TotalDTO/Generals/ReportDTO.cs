@@ -23,25 +23,25 @@ namespace TotalDTO.Generals
             set { ApplyPropertyChange<ReportPrimitiveDTO, int>(ref this.reportID, o => o.ReportID, value); }
         }
 
-        private Nullable<int> reportUniqueID;
-        public Nullable<int> ReportUniqueID
+        private int reportUniqueID;
+        public int ReportUniqueID
         {
             get { return this.reportUniqueID; }
-            set { ApplyPropertyChange<ReportPrimitiveDTO, Nullable<int>>(ref this.reportUniqueID, o => o.ReportUniqueID, value); }
+            set { ApplyPropertyChange<ReportPrimitiveDTO, int>(ref this.reportUniqueID, o => o.ReportUniqueID, value); }
         }
 
-        private Nullable<int> reportTypeID;
-        public Nullable<int> ReportTypeID
+        private int reportTypeID;
+        public int ReportTypeID
         {
             get { return this.reportTypeID; }
-            set { ApplyPropertyChange<ReportPrimitiveDTO, Nullable<int>>(ref this.reportTypeID, o => o.ReportTypeID, value); }
+            set { ApplyPropertyChange<ReportPrimitiveDTO, int>(ref this.reportTypeID, o => o.ReportTypeID, value); }
         }
 
-        private Nullable<int> reportGroupID;
-        public Nullable<int> ReportGroupID
+        private int reportGroupID;
+        public int ReportGroupID
         {
             get { return this.reportGroupID; }
-            set { ApplyPropertyChange<ReportPrimitiveDTO, Nullable<int>>(ref this.reportGroupID, o => o.ReportGroupID, value); }
+            set { ApplyPropertyChange<ReportPrimitiveDTO, int>(ref this.reportGroupID, o => o.ReportGroupID, value); }
         }
 
         private string reportName;

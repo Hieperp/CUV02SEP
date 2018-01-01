@@ -7510,6 +7510,7 @@
           <Property Type="String" Name="ReportName" Nullable="false" MaxLength="100" />
           <Property Type="Int32" Name="ReportTypeID" Nullable="false" />
           <Property Type="String" Name="ReportTabPageIDs" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="ReportID" Nullable="false" />
         </ComplexType>
         <EntityType Name="Report">
           <Key>
@@ -9774,6 +9775,7 @@
                 <ScalarProperty Name="ReportName" ColumnName="ReportName" />
                 <ScalarProperty Name="ReportTypeID" ColumnName="ReportTypeID" />
                 <ScalarProperty Name="ReportTabPageIDs" ColumnName="ReportTabPageIDs" />
+                <ScalarProperty Name="ReportID" ColumnName="ReportID" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

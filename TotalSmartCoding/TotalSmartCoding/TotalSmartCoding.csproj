@@ -1143,6 +1143,7 @@
     <None Include="Resources\Calendar-2.ico" />
     <None Include="Resources\P-1-26-24.png" />
     <None Include="Resources\xxx042-24.png" />
+    <None Include="Resources\Energy_24.png" />
     <Content Include="SmartCodingSolution.ico" />
     <None Include="Resources\Yellow-cross.ico" />
     <None Include="Resources\White-Pallet.ico" />
