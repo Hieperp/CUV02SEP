@@ -166,6 +166,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
             {
                 PrintViewModel printViewModel = new PrintViewModel();
                 printViewModel.ReportPath = "WarehouseJournals";
+                printViewModel.ShowPromptAreaButton = true;
                 printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("LocationID", this.LocationID.ToString()));
 
                 SsrsViewer ssrsViewer = new SsrsViewer(printViewModel);

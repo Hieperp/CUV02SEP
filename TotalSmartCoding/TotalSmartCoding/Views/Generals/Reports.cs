@@ -316,7 +316,7 @@ namespace TotalSmartCoding.Views.Generals
         {
             PrintViewModel printViewModel = base.InitPrintViewModel();
             printViewModel.ReportPath = this.reportViewModel.ReportURL;
-
+            
             this.PassFilterParameters(printViewModel);
 
             return printViewModel;
@@ -338,11 +338,8 @@ namespace TotalSmartCoding.Views.Generals
                 printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("UserID", ContextAttributes.User.UserID.ToString()));
                 printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("GoodsIssueTypeIDs", (this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.SalesIssuePivot || this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.SalesIssueJournal ? ((int)GlobalEnums.GoodsIssueTypeID.DeliveryAdvice).ToString() : (this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.TransferIssuePivot || this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.TransferIssueJournal ? ((int)GlobalEnums.GoodsIssueTypeID.TransferOrder).ToString() : (this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.AdjustmentIssuePivot || this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.AdjustmentIssueJournal ? ((int)GlobalEnums.GoodsIssueTypeID.WarehouseAdjustment).ToString() : null)))));
 
-                if (this.buttonDateVersusMonth.Visible)
-                {
-                    headerTitle = this.comboDateVersusMonth.Text + " " + headerTitle;
-                    printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("DateVersusMonth", this.comboDateVersusMonth.ComboBox.SelectedIndex.ToString()));
-                }
+                if (this.buttonDateVersusMonth.Visible) headerTitle = this.comboDateVersusMonth.Text + " " + headerTitle;
+                printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("DateVersusMonth", (this.buttonDateVersusMonth.Visible ? this.comboDateVersusMonth.ComboBox.SelectedIndex : 0).ToString()));
 
                 if (this.comboSummaryVersusDetail.Visible)
                 {

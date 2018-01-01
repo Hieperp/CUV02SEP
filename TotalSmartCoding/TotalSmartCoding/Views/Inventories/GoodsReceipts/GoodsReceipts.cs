@@ -285,6 +285,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
         {
             PrintViewModel printViewModel = base.InitPrintViewModel();
             printViewModel.ReportPath = "GoodsReceiptSheet";
+            printViewModel.ShowPromptAreaButton = true;
             printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("GoodsReceiptID", this.goodsReceiptViewModel.GoodsReceiptID.ToString()));
             return printViewModel;
         }

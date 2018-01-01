@@ -229,7 +229,21 @@ namespace TotalSmartCoding.Views.Mains
                 this.listViewTaskMaster.Visible = true;
                 SetWindowTheme(listViewTaskMaster.Handle, "explorer", null);
 
-                int moduleID; if (int.TryParse(this.naviBarModuleMaster.ActiveBand.Tag.ToString(), out  moduleID)) InitializeTaskMaster(moduleID);
+                int moduleID;
+                if (int.TryParse(this.naviBarModuleMaster.ActiveBand.Tag.ToString(), out  moduleID))
+                {
+                    InitializeTaskMaster(moduleID);
+
+                    if (moduleID == 9) //Reports
+                    {
+                        if (this.listViewTaskMaster.Items.Count > 0)
+                        {
+                            this.listViewTaskMaster.Items[0].Selected = true;
+                            if (!this.naviBarModuleMaster.Collapsed)
+                                buttonNaviBarHeader_Click(this.buttonNaviBarHeader, new EventArgs());
+                        }
+                    }
+                }
             }
             catch (Exception exception)
             {
@@ -360,6 +374,10 @@ namespace TotalSmartCoding.Views.Mains
                             break;
 
                         case (int)GlobalEnums.NmvnTaskID.GoodsReceiptDetailAvailable:
+                            openingView = new GoodsReceiptDetailAvailables();
+                            break;
+
+                        case (int)GlobalEnums.NmvnTaskID.Report:
                             openingView = new Reports();
                             break;
 

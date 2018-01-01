@@ -379,6 +379,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
         {
             PrintViewModel printViewModel = base.InitPrintViewModel();
             printViewModel.ReportPath = "GoodsIssueSheet";
+            printViewModel.ShowPromptAreaButton = true;
             printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("GoodsIssueID", this.goodsIssueViewModel.GoodsIssueID.ToString()));
             return printViewModel;
         }
