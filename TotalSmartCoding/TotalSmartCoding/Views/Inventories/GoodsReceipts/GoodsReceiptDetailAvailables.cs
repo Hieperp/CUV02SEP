@@ -154,6 +154,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
         {
             PrintViewModel printViewModel = base.InitPrintViewModel();
             printViewModel.ReportPath = "AvailableItems";
+            printViewModel.ShowPromptAreaButton = true;
             printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("LocationID", this.LocationID.ToString()));
             printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("LocationCode", this.comboLocationID.Text));
             return printViewModel;

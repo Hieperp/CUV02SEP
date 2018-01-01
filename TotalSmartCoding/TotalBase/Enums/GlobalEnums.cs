@@ -285,7 +285,10 @@
         public enum ReportTypeID
         {
             GoodsReceiptPivot = 1,
-            GoodsIssuePivot = 2
+            GoodsIssuePivot = 2,
+
+            GoodsReceiptJournal = 21,
+            GoodsIssueJournal = 22
         }
 
         public enum ReportTabPageID
@@ -308,7 +311,17 @@
             GoodsIssuePivot = 11,
             SalesIssuePivot = 12,
             TransferIssuePivot = 15,
-            AdjustmentIssuePivot = 16
+            AdjustmentIssuePivot = 16,
+
+            GoodsReceiptJournal = 21,
+            ProductionReceiptJournal = 22,
+            TransferReceiptJournal = 25,
+            AdjustmentReceiptJournal = 26,
+
+            GoodsIssueJournal = 31,
+            SalesIssueJournal = 32,
+            TransferIssueJournal = 35,
+            AdjustmentIssueJournal = 36
         }
 
 

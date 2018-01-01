@@ -42,6 +42,7 @@
             this.olvCommodityName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.panelTop = new System.Windows.Forms.Panel();
             this.toolReport = new System.Windows.Forms.ToolStrip();
+            this.comboSummaryVersusDetail = new System.Windows.Forms.ToolStripComboBox();
             this.comboQuantityVersusVolume = new System.Windows.Forms.ToolStripComboBox();
             this.buttonQuantityVersusVolume = new System.Windows.Forms.ToolStripButton();
             this.comboDateVersusMonth = new System.Windows.Forms.ToolStripComboBox();
@@ -172,7 +173,7 @@
             this.treeCommodityID.RootKeyValueString = "";
             this.treeCommodityID.ShowGroups = false;
             this.treeCommodityID.ShowKeyColumns = false;
-            this.treeCommodityID.Size = new System.Drawing.Size(897, 159);
+            this.treeCommodityID.Size = new System.Drawing.Size(882, 159);
             this.treeCommodityID.TabIndex = 66;
             this.treeCommodityID.UseCompatibleStateImageBehavior = false;
             this.treeCommodityID.UseFilterIndicator = true;
@@ -230,10 +231,10 @@
             this.panelTop.Controls.Add(this.layoutTop);
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTop.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panelTop.Location = new System.Drawing.Point(297, 0);
+            this.panelTop.Location = new System.Drawing.Point(312, 0);
             this.panelTop.Name = "panelTop";
             this.panelTop.Padding = new System.Windows.Forms.Padding(3, 3, 3, 0);
-            this.panelTop.Size = new System.Drawing.Size(1234, 32);
+            this.panelTop.Size = new System.Drawing.Size(1219, 32);
             this.panelTop.TabIndex = 67;
             // 
             // toolReport
@@ -243,6 +244,7 @@
             this.toolReport.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolReport.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.toolReport.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.comboSummaryVersusDetail,
             this.comboQuantityVersusVolume,
             this.buttonQuantityVersusVolume,
             this.comboDateVersusMonth,
@@ -252,9 +254,18 @@
             this.toolReport.Location = new System.Drawing.Point(3, 3);
             this.toolReport.Name = "toolReport";
             this.toolReport.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolReport.Size = new System.Drawing.Size(654, 29);
+            this.toolReport.Size = new System.Drawing.Size(639, 29);
             this.toolReport.TabIndex = 10;
             this.toolReport.Text = "toolStrip1";
+            // 
+            // comboSummaryVersusDetail
+            // 
+            this.comboSummaryVersusDetail.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboSummaryVersusDetail.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
+            this.comboSummaryVersusDetail.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboSummaryVersusDetail.Name = "comboSummaryVersusDetail";
+            this.comboSummaryVersusDetail.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.comboSummaryVersusDetail.Size = new System.Drawing.Size(105, 29);
             // 
             // comboQuantityVersusVolume
             // 
@@ -263,7 +274,7 @@
             this.comboQuantityVersusVolume.Font = new System.Drawing.Font("Calibri Light", 10.2F);
             this.comboQuantityVersusVolume.Name = "comboQuantityVersusVolume";
             this.comboQuantityVersusVolume.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.comboQuantityVersusVolume.Size = new System.Drawing.Size(90, 29);
+            this.comboQuantityVersusVolume.Size = new System.Drawing.Size(105, 29);
             // 
             // buttonQuantityVersusVolume
             // 
@@ -332,7 +343,7 @@
             this.layoutTop.Controls.Add(this.pictureBox1, 2, 0);
             this.layoutTop.Dock = System.Windows.Forms.DockStyle.Right;
             this.layoutTop.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.layoutTop.Location = new System.Drawing.Point(657, 3);
+            this.layoutTop.Location = new System.Drawing.Point(642, 3);
             this.layoutTop.Margin = new System.Windows.Forms.Padding(0);
             this.layoutTop.Name = "layoutTop";
             this.layoutTop.Padding = new System.Windows.Forms.Padding(0, 1, 0, 0);
@@ -424,7 +435,7 @@
             this.panelLeft.Location = new System.Drawing.Point(0, 0);
             this.panelLeft.Name = "panelLeft";
             this.panelLeft.Padding = new System.Windows.Forms.Padding(0, 0, 0, 3);
-            this.panelLeft.Size = new System.Drawing.Size(297, 734);
+            this.panelLeft.Size = new System.Drawing.Size(312, 734);
             this.panelLeft.TabIndex = 68;
             // 
             // fastReportIndex
@@ -448,7 +459,7 @@
             this.fastReportIndex.Name = "fastReportIndex";
             this.fastReportIndex.OwnerDraw = true;
             this.fastReportIndex.ShowGroups = false;
-            this.fastReportIndex.Size = new System.Drawing.Size(297, 731);
+            this.fastReportIndex.Size = new System.Drawing.Size(312, 731);
             this.fastReportIndex.TabIndex = 70;
             this.fastReportIndex.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastReportIndex.UseCompatibleStateImageBehavior = false;
@@ -485,9 +496,9 @@
             this.panelCenter.Controls.Add(this.panelCustomers);
             this.panelCenter.Controls.Add(this.panelCommodities);
             this.panelCenter.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelCenter.Location = new System.Drawing.Point(297, 32);
+            this.panelCenter.Location = new System.Drawing.Point(312, 32);
             this.panelCenter.Name = "panelCenter";
-            this.panelCenter.Size = new System.Drawing.Size(1234, 702);
+            this.panelCenter.Size = new System.Drawing.Size(1219, 702);
             this.panelCenter.TabIndex = 69;
             // 
             // treeWarehouseIssueID
@@ -514,7 +525,7 @@
             this.treeWarehouseIssueID.RootKeyValueString = "";
             this.treeWarehouseIssueID.ShowGroups = false;
             this.treeWarehouseIssueID.ShowKeyColumns = false;
-            this.treeWarehouseIssueID.Size = new System.Drawing.Size(1234, 112);
+            this.treeWarehouseIssueID.Size = new System.Drawing.Size(1219, 112);
             this.treeWarehouseIssueID.TabIndex = 72;
             this.treeWarehouseIssueID.UseCompatibleStateImageBehavior = false;
             this.treeWarehouseIssueID.UseFilterIndicator = true;
@@ -568,7 +579,7 @@
             this.treeWarehouseAdjustmentTypeID.RootKeyValueString = "";
             this.treeWarehouseAdjustmentTypeID.ShowGroups = false;
             this.treeWarehouseAdjustmentTypeID.ShowKeyColumns = false;
-            this.treeWarehouseAdjustmentTypeID.Size = new System.Drawing.Size(1234, 112);
+            this.treeWarehouseAdjustmentTypeID.Size = new System.Drawing.Size(1219, 112);
             this.treeWarehouseAdjustmentTypeID.TabIndex = 71;
             this.treeWarehouseAdjustmentTypeID.UseCompatibleStateImageBehavior = false;
             this.treeWarehouseAdjustmentTypeID.UseFilterIndicator = true;
@@ -622,7 +633,7 @@
             this.treeWarehouseReceiptID.RootKeyValueString = "";
             this.treeWarehouseReceiptID.ShowGroups = false;
             this.treeWarehouseReceiptID.ShowKeyColumns = false;
-            this.treeWarehouseReceiptID.Size = new System.Drawing.Size(1234, 112);
+            this.treeWarehouseReceiptID.Size = new System.Drawing.Size(1219, 112);
             this.treeWarehouseReceiptID.TabIndex = 70;
             this.treeWarehouseReceiptID.UseCompatibleStateImageBehavior = false;
             this.treeWarehouseReceiptID.UseFilterIndicator = true;
@@ -676,7 +687,7 @@
             this.treeWarehouseID.RootKeyValueString = "";
             this.treeWarehouseID.ShowGroups = false;
             this.treeWarehouseID.ShowKeyColumns = false;
-            this.treeWarehouseID.Size = new System.Drawing.Size(1234, 112);
+            this.treeWarehouseID.Size = new System.Drawing.Size(1219, 112);
             this.treeWarehouseID.TabIndex = 67;
             this.treeWarehouseID.UseCompatibleStateImageBehavior = false;
             this.treeWarehouseID.UseFilterIndicator = true;
@@ -713,7 +724,7 @@
             this.panelCustomers.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelCustomers.Location = new System.Drawing.Point(0, 159);
             this.panelCustomers.Name = "panelCustomers";
-            this.panelCustomers.Size = new System.Drawing.Size(1234, 159);
+            this.panelCustomers.Size = new System.Drawing.Size(1219, 159);
             this.panelCustomers.TabIndex = 69;
             // 
             // treeCustomerID
@@ -740,7 +751,7 @@
             this.treeCustomerID.RootKeyValueString = "";
             this.treeCustomerID.ShowGroups = false;
             this.treeCustomerID.ShowKeyColumns = false;
-            this.treeCustomerID.Size = new System.Drawing.Size(897, 159);
+            this.treeCustomerID.Size = new System.Drawing.Size(882, 159);
             this.treeCustomerID.TabIndex = 66;
             this.treeCustomerID.UseCompatibleStateImageBehavior = false;
             this.treeCustomerID.UseFilterIndicator = true;
@@ -832,7 +843,7 @@
             this.panelCommodities.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelCommodities.Location = new System.Drawing.Point(0, 0);
             this.panelCommodities.Name = "panelCommodities";
-            this.panelCommodities.Size = new System.Drawing.Size(1234, 159);
+            this.panelCommodities.Size = new System.Drawing.Size(1219, 159);
             this.panelCommodities.TabIndex = 68;
             // 
             // treeCommodityTypeID
@@ -989,6 +1000,7 @@
         private System.Windows.Forms.ToolStripButton buttonSalesVersusPromotion;
         private System.Windows.Forms.ToolStripComboBox comboQuantityVersusVolume;
         private System.Windows.Forms.ToolStripButton buttonQuantityVersusVolume;
+        private System.Windows.Forms.ToolStripComboBox comboSummaryVersusDetail;
 
     }
 }

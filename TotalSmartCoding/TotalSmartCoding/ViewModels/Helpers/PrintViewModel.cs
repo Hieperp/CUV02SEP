@@ -17,6 +17,7 @@ namespace TotalSmartCoding.ViewModels.Helpers
         public int PrintOptionID { get; set; }
 
         public string ReportServerUrl = GlobalVariables.ReportServerUrl;
+        public bool ShowPromptAreaButton { get; set; }
 
         public List<ReportParameter> ReportParameters { get; set; }
 

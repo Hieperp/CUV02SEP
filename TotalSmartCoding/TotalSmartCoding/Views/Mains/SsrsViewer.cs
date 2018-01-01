@@ -41,6 +41,8 @@ namespace TotalSmartCoding.Views.Mains
                 if (this.printViewModel.ReportParameters != null && this.printViewModel.ReportParameters.Count > 0)
                     this.ssrsMainViewer.ServerReport.SetParameters(this.printViewModel.ReportParameters); // Set the report parameters for the report  
 
+                this.ssrsMainViewer.ShowPromptAreaButton = this.printViewModel.ShowPromptAreaButton;
+
                 this.ssrsMainViewer.RefreshReport();
             }
             catch (Exception ex)
