@@ -31,9 +31,9 @@ namespace TotalDAL.Repositories.Commons
             return this.TotalSmartCodingEntities.GetWarehouseBases().ToList();
         }
 
-        public IList<WarehouseTree> GetWarehouseTrees()
+        public IList<WarehouseTree> GetWarehouseTrees(int? locationID)
         {
-            return this.TotalSmartCodingEntities.GetWarehouseTrees().ToList();
+            return this.TotalSmartCodingEntities.GetWarehouseTrees(locationID).ToList();
         }
 
         public int? GetWarehouseLocationID(int? warehouseID)

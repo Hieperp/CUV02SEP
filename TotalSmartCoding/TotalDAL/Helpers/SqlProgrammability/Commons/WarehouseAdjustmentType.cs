@@ -115,7 +115,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
 
             queryString = queryString + "       SELECT      " + GlobalEnums.RootNode + " AS NodeID, 0 AS ParentNodeID, NULL AS PrimaryID, NULL AS AncestorID, '[All]' AS Code, NULL AS Name, NULL AS ParameterName, CAST(1 AS bit) AS Selected " + "\r\n";
             queryString = queryString + "       UNION ALL " + "\r\n";
-            queryString = queryString + "       SELECT      " + GlobalEnums.AncestorNode + " + WarehouseAdjustmentTypeID AS NodeID, " + GlobalEnums.RootNode + " AS ParentNodeID, WarehouseAdjustmentTypeID AS PrimaryID, NULL AS AncestorID, Name AS Code, NULL AS Name, 'WarehouseAdjustmentTypeID' AS ParameterName, CAST(0 AS bit) AS Selected " + "\r\n";
+            queryString = queryString + "       SELECT      " + GlobalEnums.AncestorNode + " + WarehouseAdjustmentTypeID AS NodeID, " + GlobalEnums.RootNode + " + 0 AS ParentNodeID, WarehouseAdjustmentTypeID AS PrimaryID, NULL AS AncestorID, Name AS Code, N'' AS Name, 'WarehouseAdjustmentTypeID' AS ParameterName, CAST(0 AS bit) AS Selected " + "\r\n";
             queryString = queryString + "       FROM        WarehouseAdjustmentTypes " + "\r\n";
 
             queryString = queryString + "    END " + "\r\n";

@@ -298,7 +298,7 @@
             TabPageWarehouseAdjustmentTypes = 6
         }
 
-        public enum ReportUniqueID
+        public enum ReportID
         {
             GoodsReceiptPivot = 1,
             ProductionReceiptPivot = 2,

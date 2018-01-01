@@ -14,11 +14,11 @@ namespace TotalModel.Models
     public partial class WarehouseAdjustmentTypeTree
     {
         public Nullable<int> NodeID { get; set; }
-        public int ParentNodeID { get; set; }
+        public Nullable<int> ParentNodeID { get; set; }
         public Nullable<int> PrimaryID { get; set; }
         public Nullable<int> AncestorID { get; set; }
         public string Code { get; set; }
-        public Nullable<int> Name { get; set; }
+        public string Name { get; set; }
         public string ParameterName { get; set; }
         public Nullable<bool> Selected { get; set; }
     }

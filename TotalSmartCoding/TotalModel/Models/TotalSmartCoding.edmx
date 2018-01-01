@@ -2537,7 +2537,9 @@
         <Function Name="GetWarehouseLocationID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="WarehouseID" Type="int" Mode="In" />
         </Function>
-        <Function Name="GetWarehouseTrees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetWarehouseTrees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LocationID" Type="int" Mode="In" />
+        </Function>
         <Function Name="GoodsIssueApproved" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="EntityID" Type="int" Mode="In" />
         </Function>
@@ -4234,7 +4236,9 @@
             <End Role="SalesOrder" EntitySet="SalesOrders" />
           </AssociationSet>
           <FunctionImport Name="GetCommodityTrees" ReturnType="Collection(TotalSmartCodingModel.CommodityTree)" />
-          <FunctionImport Name="GetWarehouseTrees" ReturnType="Collection(TotalSmartCodingModel.WarehouseTree)" />
+          <FunctionImport Name="GetWarehouseTrees" ReturnType="Collection(TotalSmartCodingModel.WarehouseTree)" >
+            <Parameter Name="LocationID" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="GetCommodityTypeTrees" ReturnType="Collection(TotalSmartCodingModel.CommodityTypeTree)" />
           <FunctionImport Name="GetCustomerTrees" ReturnType="Collection(TotalSmartCodingModel.CustomerTree)" />
           <FunctionImport Name="GetEmployeeTrees" ReturnType="Collection(TotalSmartCodingModel.EmployeeTree)" />
@@ -7457,11 +7461,11 @@
         </ComplexType>
         <ComplexType Name="CommodityTypeTree">
           <Property Type="Int32" Name="NodeID" Nullable="true" />
-          <Property Type="Int32" Name="ParentNodeID" Nullable="false" />
+          <Property Type="Int32" Name="ParentNodeID" Nullable="true" />
           <Property Type="Int32" Name="PrimaryID" Nullable="true" />
           <Property Type="Int32" Name="AncestorID" Nullable="true" />
           <Property Type="String" Name="Code" Nullable="false" MaxLength="100" />
-          <Property Type="Int32" Name="Name" Nullable="true" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="1" />
           <Property Type="String" Name="ParameterName" Nullable="true" MaxLength="15" />
           <Property Type="Boolean" Name="Selected" Nullable="true" />
         </ComplexType>
@@ -7487,11 +7491,11 @@
         </ComplexType>
         <ComplexType Name="WarehouseAdjustmentTypeTree">
           <Property Type="Int32" Name="NodeID" Nullable="true" />
-          <Property Type="Int32" Name="ParentNodeID" Nullable="false" />
+          <Property Type="Int32" Name="ParentNodeID" Nullable="true" />
           <Property Type="Int32" Name="PrimaryID" Nullable="true" />
           <Property Type="Int32" Name="AncestorID" Nullable="true" />
           <Property Type="String" Name="Code" Nullable="false" MaxLength="50" />
-          <Property Type="Int32" Name="Name" Nullable="true" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="1" />
           <Property Type="String" Name="ParameterName" Nullable="true" MaxLength="25" />
           <Property Type="Boolean" Name="Selected" Nullable="true" />
         </ComplexType>

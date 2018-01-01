@@ -25,6 +25,10 @@ namespace TotalModel.Models
 
     public partial class WarehouseTree : IFilterTree { }
     public partial class CommodityTree : IFilterTree { }
+    public partial class CommodityTypeTree : IFilterTree { }
+    public partial class CustomerTree : IFilterTree { }
+    public partial class EmployeeTree : IFilterTree { }
+    public partial class WarehouseAdjustmentTypeTree : IFilterTree { }
 
     #endregion Interface for report
 

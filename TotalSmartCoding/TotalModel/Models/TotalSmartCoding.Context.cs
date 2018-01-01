@@ -2125,9 +2125,13 @@ namespace TotalModel.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CommodityTree>("GetCommodityTrees");
         }
     
-        public virtual ObjectResult<WarehouseTree> GetWarehouseTrees()
+        public virtual ObjectResult<WarehouseTree> GetWarehouseTrees(Nullable<int> locationID)
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<WarehouseTree>("GetWarehouseTrees");
+            var locationIDParameter = locationID.HasValue ?
+                new ObjectParameter("LocationID", locationID) :
+                new ObjectParameter("LocationID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<WarehouseTree>("GetWarehouseTrees", locationIDParameter);
         }
     
         public virtual ObjectResult<CommodityTypeTree> GetCommodityTypeTrees()

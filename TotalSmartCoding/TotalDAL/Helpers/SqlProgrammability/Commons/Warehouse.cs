@@ -110,14 +110,14 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
         {
             string queryString;
 
-            queryString = " " + "\r\n";
+            queryString = " @LocationID int" + "\r\n";
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
-            queryString = queryString + "       SELECT      " + GlobalEnums.RootNode + " AS NodeID, 0 AS ParentNodeID, NULL AS PrimaryID, NULL AS AncestorID, '[All]' AS Code, NULL AS Name, NULL AS ParameterName, CAST(1 AS bit) AS Selected " + "\r\n";
+            queryString = queryString + "       SELECT      " + GlobalEnums.RootNode + " AS NodeID, 0 AS ParentNodeID, NULL AS PrimaryID, NULL AS AncestorID, '[All]' AS Code, NULL AS Name, NULL AS ParameterName, CAST(CASE WHEN @LocationID IS NULL THEN 1 ELSE 0 END AS bit) AS Selected " + "\r\n";
             queryString = queryString + "       UNION ALL " + "\r\n";
-            queryString = queryString + "       SELECT      " + GlobalEnums.AncestorNode + " + LocationID AS NodeID, " + GlobalEnums.RootNode + " AS ParentNodeID, LocationID AS PrimaryID, NULL AS AncestorID, Name AS Code, NULL AS Name, 'LocationID' AS ParameterName, CAST(0 AS bit) AS Selected " + "\r\n";
+            queryString = queryString + "       SELECT      " + GlobalEnums.AncestorNode + " + LocationID AS NodeID, " + GlobalEnums.RootNode + " AS ParentNodeID, LocationID AS PrimaryID, NULL AS AncestorID, Name AS Code, NULL AS Name, 'LocationID' AS ParameterName, CAST(CASE WHEN NOT @LocationID IS NULL AND LocationID = @LocationID THEN 1 ELSE 0 END AS bit) AS Selected " + "\r\n";
             queryString = queryString + "       FROM        Locations " + "\r\n";
             queryString = queryString + "       UNION ALL " + "\r\n";
             queryString = queryString + "       SELECT      WarehouseID AS NodeID, " + GlobalEnums.AncestorNode + " + LocationID AS ParentNodeID, WarehouseID AS PrimaryID, LocationID AS AncestorID, Code, Name, 'WarehouseID' AS ParameterName, CAST(0 AS bit) AS Selected " + "\r\n";

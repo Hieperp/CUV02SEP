@@ -50,8 +50,8 @@
             this.buttonSalesVersusPromotion = new System.Windows.Forms.ToolStripButton();
             this.layoutTop = new System.Windows.Forms.TableLayoutPanel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.dateTimexEntryDate = new CustomControls.DateTimexPicker();
-            this.dateTimexPicker1 = new CustomControls.DateTimexPicker();
+            this.dateTimexFromDate = new CustomControls.DateTimexPicker();
+            this.dateTimexToDate = new CustomControls.DateTimexPicker();
             this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -325,8 +325,8 @@
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.layoutTop.Controls.Add(this.pictureBox2, 5, 0);
-            this.layoutTop.Controls.Add(this.dateTimexEntryDate, 3, 0);
-            this.layoutTop.Controls.Add(this.dateTimexPicker1, 6, 0);
+            this.layoutTop.Controls.Add(this.dateTimexFromDate, 3, 0);
+            this.layoutTop.Controls.Add(this.dateTimexToDate, 6, 0);
             this.layoutTop.Controls.Add(this.label1, 4, 0);
             this.layoutTop.Controls.Add(this.label5, 1, 0);
             this.layoutTop.Controls.Add(this.pictureBox1, 2, 0);
@@ -353,33 +353,33 @@
             this.pictureBox2.TabIndex = 79;
             this.pictureBox2.TabStop = false;
             // 
-            // dateTimexEntryDate
+            // dateTimexFromDate
             // 
-            this.dateTimexEntryDate.CustomFormat = "dd/MMM/yyyy HH:mm:ss";
-            this.dateTimexEntryDate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dateTimexEntryDate.Editable = true;
-            this.dateTimexEntryDate.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimexEntryDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimexEntryDate.Location = new System.Drawing.Point(74, 2);
-            this.dateTimexEntryDate.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
-            this.dateTimexEntryDate.Name = "dateTimexEntryDate";
-            this.dateTimexEntryDate.ReadOnly = false;
-            this.dateTimexEntryDate.Size = new System.Drawing.Size(223, 28);
-            this.dateTimexEntryDate.TabIndex = 90;
+            this.dateTimexFromDate.CustomFormat = "dd/MMM/yyyy HH:mm:ss";
+            this.dateTimexFromDate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dateTimexFromDate.Editable = true;
+            this.dateTimexFromDate.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimexFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimexFromDate.Location = new System.Drawing.Point(74, 2);
+            this.dateTimexFromDate.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
+            this.dateTimexFromDate.Name = "dateTimexFromDate";
+            this.dateTimexFromDate.ReadOnly = false;
+            this.dateTimexFromDate.Size = new System.Drawing.Size(223, 28);
+            this.dateTimexFromDate.TabIndex = 90;
             // 
-            // dateTimexPicker1
+            // dateTimexToDate
             // 
-            this.dateTimexPicker1.CustomFormat = "dd/MMM/yyyy HH:mm:ss";
-            this.dateTimexPicker1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dateTimexPicker1.Editable = true;
-            this.dateTimexPicker1.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimexPicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimexPicker1.Location = new System.Drawing.Point(350, 2);
-            this.dateTimexPicker1.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
-            this.dateTimexPicker1.Name = "dateTimexPicker1";
-            this.dateTimexPicker1.ReadOnly = false;
-            this.dateTimexPicker1.Size = new System.Drawing.Size(223, 28);
-            this.dateTimexPicker1.TabIndex = 91;
+            this.dateTimexToDate.CustomFormat = "dd/MMM/yyyy HH:mm:ss";
+            this.dateTimexToDate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dateTimexToDate.Editable = true;
+            this.dateTimexToDate.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimexToDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimexToDate.Location = new System.Drawing.Point(350, 2);
+            this.dateTimexToDate.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
+            this.dateTimexToDate.Name = "dateTimexToDate";
+            this.dateTimexToDate.ReadOnly = false;
+            this.dateTimexToDate.Size = new System.Drawing.Size(223, 28);
+            this.dateTimexToDate.TabIndex = 91;
             // 
             // label1
             // 
@@ -941,8 +941,8 @@
         private System.Windows.Forms.TableLayoutPanel layoutTop;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label5;
-        private CustomControls.DateTimexPicker dateTimexEntryDate;
-        private CustomControls.DateTimexPicker dateTimexPicker1;
+        private CustomControls.DateTimexPicker dateTimexFromDate;
+        private CustomControls.DateTimexPicker dateTimexToDate;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panelLeft;

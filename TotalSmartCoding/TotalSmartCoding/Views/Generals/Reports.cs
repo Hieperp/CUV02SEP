@@ -106,8 +106,8 @@ namespace TotalSmartCoding.Views.Generals
         protected override void InitializeReadOnlyModeBinding()
         {
             base.InitializeReadOnlyModeBinding();
-            this.dateTimexEntryDate.ReadOnly = false;
-            this.dateTimexPicker1.ReadOnly = false;
+            this.dateTimexFromDate.ReadOnly = false;
+            this.dateTimexToDate.ReadOnly = false;
         }
 
         public override void ApplyFilter(string filterTexts)
@@ -145,13 +145,13 @@ namespace TotalSmartCoding.Views.Generals
             this.treeWarehouseAdjustmentTypeID.RootKeyValue = 0;
 
             WarehouseAPIs warehouseAPIs = new WarehouseAPIs(CommonNinject.Kernel.Get<IWarehouseAPIRepository>());
-            this.warehouseTrees = warehouseAPIs.GetWarehouseTrees();
+            this.warehouseTrees = warehouseAPIs.GetWarehouseTrees(ContextAttributes.User.LocationID);
             this.treeWarehouseID.DataSource = new BindingSource(this.warehouseTrees, "");
 
-            this.warehouseIssueTrees = warehouseAPIs.GetWarehouseTrees();
+            this.warehouseIssueTrees = warehouseAPIs.GetWarehouseTrees(null);
             this.treeWarehouseIssueID.DataSource = new BindingSource(this.warehouseIssueTrees, "");
 
-            this.warehouseReceiptTrees = warehouseAPIs.GetWarehouseTrees();
+            this.warehouseReceiptTrees = warehouseAPIs.GetWarehouseTrees(null);
             this.treeWarehouseReceiptID.DataSource = new BindingSource(this.warehouseReceiptTrees, "");
 
             WarehouseAdjustmentTypeAPIs warehouseAdjustmentTypeAPIs = new WarehouseAdjustmentTypeAPIs(CommonNinject.Kernel.Get<IWarehouseAdjustmentTypeAPIRepository>());
@@ -239,7 +239,7 @@ namespace TotalSmartCoding.Views.Generals
 
                 this.comboQuantityVersusVolume.Visible = this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsReceiptPivot || this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsIssuePivot; this.buttonQuantityVersusVolume.Visible = this.comboQuantityVersusVolume.Visible;
                 this.comboDateVersusMonth.Visible = this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsReceiptPivot || this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsIssuePivot; this.buttonDateVersusMonth.Visible = this.comboDateVersusMonth.Visible;
-                this.comboSalesVersusPromotion.Visible = this.reportViewModel.ReportUniqueID == (int)GlobalEnums.ReportUniqueID.SalesIssuePivot; this.buttonSalesVersusPromotion.Visible = this.comboSalesVersusPromotion.Visible;
+                this.comboSalesVersusPromotion.Visible = this.reportViewModel.ReportUniqueID == (int)GlobalEnums.ReportID.SalesIssuePivot; this.buttonSalesVersusPromotion.Visible = this.comboSalesVersusPromotion.Visible;
             }
             catch (Exception exception)
             {
@@ -317,15 +317,63 @@ namespace TotalSmartCoding.Views.Generals
 
         private void PassFilterParameters(PrintViewModel printViewModel)
         {
+            if (this.dateTimexFromDate.Visible && this.dateTimexToDate.Visible)
+            {
+                printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("FromDate", this.dateTimexFromDate.Text));
+                printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("ToDate", this.dateTimexToDate.Text));
+                printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("HeaderTerms", "FROM " + this.dateTimexFromDate.Text + " TO " + this.dateTimexToDate.Text));
+            }
+
+            string headerTitle = this.reportViewModel.ReportName;
+
+            if (this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsIssuePivot)
+            {
+                printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("UserID", ContextAttributes.User.UserID.ToString()));
+                printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("GoodsIssueTypeIDs", (this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.SalesIssuePivot ? ((int)GlobalEnums.GoodsIssueTypeID.DeliveryAdvice).ToString() : (this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.TransferIssuePivot ? ((int)GlobalEnums.GoodsIssueTypeID.TransferOrder).ToString() : (this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.AdjustmentIssuePivot ? ((int)GlobalEnums.GoodsIssueTypeID.WarehouseAdjustment).ToString() : null)))));
+
+                if (this.buttonDateVersusMonth.Visible)
+                {
+                    headerTitle = this.comboDateVersusMonth.Text + " " + headerTitle;
+                    printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("DateVersusMonth", this.comboDateVersusMonth.ComboBox.SelectedIndex.ToString()));
+                }
+                if (this.comboQuantityVersusVolume.Visible)
+                {
+                    headerTitle = headerTitle + " [REPORT " + this.comboQuantityVersusVolume.Text + "]";
+                    printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("QuantityVersusVolume", this.comboQuantityVersusVolume.ComboBox.SelectedIndex.ToString()));
+                }
+                if (this.comboSalesVersusPromotion.Visible)
+                {
+                    if (this.comboSalesVersusPromotion.ComboBox.SelectedIndex != 0) headerTitle = headerTitle + " [" + this.comboSalesVersusPromotion.Text + "]";
+                    printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("SalesVersusPromotion", (this.comboSalesVersusPromotion.ComboBox.SelectedIndex - 1).ToString()));
+                }
+
+            }
+
+
             string captionDescriptions = "";
 
             if (this.customTabBatch.TabPages.Contains(this.tabPageWarehouses))
-                this.AddFilterParameters(printViewModel, this.warehouseTrees.Cast<IFilterTree>(), new FilterParameter[] { new FilterParameter("LocationID", "LocationIDs", "Location", true, false), new FilterParameter("WarehouseID", "WarehouseIDs", "Warehouse", true, true) }, ref captionDescriptions);
+                this.AddFilterParameters(printViewModel, this.warehouseTrees.Cast<IFilterTree>(), new FilterParameter[] { new FilterParameter("LocationID", "LocationIDs", "Location", true, false), new FilterParameter("WarehouseID", "WarehouseIDs", "Warehouse", true, false) }, ref captionDescriptions);
             if (this.customTabBatch.TabPages.Contains(this.tabPageCommodities))
-                this.AddFilterParameters(printViewModel, this.commodityTrees.Cast<IFilterTree>(), new FilterParameter[] { new FilterParameter("CommodityCategoryID", "CommodityCategoryIDs", "Item Category", true, false), new FilterParameter("CommodityID", "CommodityIDs", "Item", true, true) }, ref captionDescriptions);
+            {
+                this.AddFilterParameters(printViewModel, this.commodityTrees.Cast<IFilterTree>(), new FilterParameter[] { new FilterParameter("CommodityCategoryID", "CommodityCategoryIDs", "Category", true, false), new FilterParameter("CommodityID", "CommodityIDs", "Item", true, false) }, ref captionDescriptions);
+                this.AddFilterParameters(printViewModel, this.commodityTypeTrees.Cast<IFilterTree>(), new FilterParameter[] { new FilterParameter("CommodityTypeID", "CommodityTypeIDs", "Item Type", true, false) }, ref captionDescriptions);
+            }
+            if (this.customTabBatch.TabPages.Contains(this.tabPageCustomers))
+            {
+                this.AddFilterParameters(printViewModel, this.customerTrees.Cast<IFilterTree>(), new FilterParameter[] { new FilterParameter("CustomerCategoryID", "CustomerCategoryIDs", "Channel", true, false), new FilterParameter("CustomerID", "CustomerIDs", "Customer", true, false) }, ref captionDescriptions);
+                this.AddFilterParameters(printViewModel, this.employeeTrees.Cast<IFilterTree>(), new FilterParameter[] { new FilterParameter("TeamID", "TeamIDs", "Team", true, false), new FilterParameter("EmployeeID", "EmployeeIDs", "Salesperson", true, false) }, ref captionDescriptions);
+            }
+            if (this.customTabBatch.TabPages.Contains(this.tabPageWarehouseIssues))
+                this.AddFilterParameters(printViewModel, this.warehouseIssueTrees.Cast<IFilterTree>(), new FilterParameter[] { new FilterParameter("LocationID", "LocationIssueIDs", "Source Location", true, false), new FilterParameter("WarehouseID", "WarehouseIssueIDs", "Source Warehouse", true, false) }, ref captionDescriptions);
+            if (this.customTabBatch.TabPages.Contains(this.tabPageWarehouseReceipts))
+                this.AddFilterParameters(printViewModel, this.warehouseReceiptTrees.Cast<IFilterTree>(), new FilterParameter[] { new FilterParameter("LocationID", "LocationReceiptIDs", "Source Location", true, false), new FilterParameter("WarehouseID", "WarehouseReceiptIDs", "Source Warehouse", true, false) }, ref captionDescriptions);
+            if (this.customTabBatch.TabPages.Contains(this.tabPageWarehouseAdjustmentTypes))
+                this.AddFilterParameters(printViewModel, this.warehouseAdjustmentTypeTrees.Cast<IFilterTree>(), new FilterParameter[] { new FilterParameter("WarehouseAdjustmentTypeID", "WarehouseAdjustmentTypeIDs", "Adjustment Type", true, false) }, ref captionDescriptions);
 
-            if (captionDescriptions != "")
-                printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("CaptionDescriptions", captionDescriptions));
+
+            printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("HeaderTitle", headerTitle.ToUpper()));
+            if (captionDescriptions != "") printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("CaptionDescriptions", captionDescriptions));
         }
 
         private void AddFilterParameters(PrintViewModel printViewModel, IEnumerable<IFilterTree> filterTrees, FilterParameter[] filterParameters, ref string captionDescriptions)
@@ -385,12 +433,12 @@ namespace TotalSmartCoding.Views.Generals
 
         public string CaptionDescriptions { get; set; } //CARRY THE RETURN VALUES 
 
-        public readonly string ParameterName ;
-        public readonly string ParameterSSRS ;
+        public readonly string ParameterName;
+        public readonly string ParameterSSRS;
 
-        public readonly string CaptionLabel ;
-        public readonly bool ShouldCaptionCode ;
-        public readonly bool ShouldCaptionName ;
+        public readonly string CaptionLabel;
+        public readonly bool ShouldCaptionCode;
+        public readonly bool ShouldCaptionName;
 
         public FilterParameter(string parameterName, string parameterSSRS, string captionLabel, bool shouldCaptionCode, bool shouldCaptionName)
         {
