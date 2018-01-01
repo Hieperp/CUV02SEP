@@ -151,6 +151,7 @@
         <AssociationConnector Association="TotalSmartCodingModel.FK_Employees_Locations" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_Employees_Teams" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_SalesOrders_Teams" />
+        <EntityTypeShape EntityType="TotalSmartCodingModel.Report" Width="1.5" PointX="7.375" PointY="0.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

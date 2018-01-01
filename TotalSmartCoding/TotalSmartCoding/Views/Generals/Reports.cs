@@ -17,13 +17,16 @@ using TotalSmartCoding.Controllers.APIs.Inventories;
 using TotalBase;
 using TotalModel.Models;
 using TotalSmartCoding.ViewModels.Helpers;
-using TotalSmartCoding.ViewModels.Inventories;
+using TotalSmartCoding.ViewModels.Generals;
 using TotalSmartCoding.Controllers.APIs.Generals;
 using TotalCore.Repositories.Commons;
 using BrightIdeasSoftware;
 using TotalBase.Enums;
 using TotalCore.Repositories.Generals;
 using TotalSmartCoding.Controllers.APIs.Commons;
+using System.ComponentModel;
+using TotalCore.Services.Generals;
+using TotalSmartCoding.Controllers.Generals;
 
 
 namespace TotalSmartCoding.Views.Generals
@@ -40,6 +43,8 @@ namespace TotalSmartCoding.Views.Generals
         private CustomTabControl customTabBatch;
 
         private ReportAPIs reportAPIs;
+        private ReportViewModel reportViewModel { get; set; }
+
 
         private ReportIndex currentReportIndex;
 
@@ -53,7 +58,9 @@ namespace TotalSmartCoding.Views.Generals
 
             this.reportAPIs = new ReportAPIs(CommonNinject.Kernel.Get<IReportAPIRepository>());
 
-            this.baseDTO = new GoodsReceiptDetailAvailableViewModel(); ;
+            this.reportViewModel = CommonNinject.Kernel.Get<ReportViewModel>();
+            this.reportViewModel.PropertyChanged += new PropertyChangedEventHandler(ModelDTO_PropertyChanged);
+            this.baseDTO = this.reportViewModel;
         }
 
         protected override void InitializeTabControl()
@@ -105,6 +112,19 @@ namespace TotalSmartCoding.Views.Generals
             this.dateTimexEntryDate.ReadOnly = false;
             this.dateTimexPicker1.ReadOnly = false;
         }
+
+        public override void ApplyFilter(string filterTexts)
+        {
+            OLVHelpers.ApplyFilters(this.treeWarehouseID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
+            OLVHelpers.ApplyFilters(this.treeCommodityID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
+            OLVHelpers.ApplyFilters(this.treeCommodityTypeID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
+            OLVHelpers.ApplyFilters(this.treeCustomerID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
+            OLVHelpers.ApplyFilters(this.treeEmployeeID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
+            OLVHelpers.ApplyFilters(this.treeWarehouseIssueID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
+            OLVHelpers.ApplyFilters(this.treeWarehouseReceiptID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
+            OLVHelpers.ApplyFilters(this.treeWarehouseAdjustmentTypeID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
+        }
+
         private IList<WarehouseTree> warehouseTrees;
         private IList<CommodityTree> commodityTrees;
         private IList<CommodityTypeTree> commodityTypeTrees;
@@ -183,6 +203,11 @@ namespace TotalSmartCoding.Views.Generals
             }
         }
 
+        protected override Controllers.BaseController myController
+        {
+            get { return new ReportController(CommonNinject.Kernel.Get<IReportService>(), this.reportViewModel); }
+        }
+
         public override void Loading()
         {
             this.fastReportIndex.SetObjects(this.reportAPIs.GetReportIndexes());
@@ -207,30 +232,30 @@ namespace TotalSmartCoding.Views.Generals
 
 
         #region CONTEXTUAL LOAD TAB PAGE: TAB FOR FILTER
-        protected override void invokeEdit(int? id)
-        {
-            try
-            {
-                //base.invokeEdit(id);
-                if (this.fastReportIndex.SelectedObject != null)
-                {
-                    ReportIndex reportIndex = (ReportIndex)this.fastReportIndex.SelectedObject;
-                    if (reportIndex != null)
-                    {
-                        this.currentReportIndex = reportIndex;
-                        this.reloadTabPages();
+        //protected override void invokeEdit(int? id)
+        //{
+        //    try
+        //    {
+        //        //base.invokeEdit(id);
+        //        if (this.fastReportIndex.SelectedObject != null)
+        //        {
+        //            ReportIndex reportIndex = (ReportIndex)this.fastReportIndex.SelectedObject;
+        //            if (reportIndex != null)
+        //            {
+        //                this.currentReportIndex = reportIndex;
+        //                this.reloadTabPages();
 
-                        this.comboQuantityVersusVolume.Visible = this.currentReportIndex.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsReceiptPivot || this.currentReportIndex.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsIssuePivot; this.buttonQuantityVersusVolume.Visible = this.comboQuantityVersusVolume.Visible;
-                        this.comboDateVersusMonth.Visible = this.currentReportIndex.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsReceiptPivot || this.currentReportIndex.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsIssuePivot; this.buttonDateVersusMonth.Visible = this.comboDateVersusMonth.Visible;
-                        this.comboSalesVersusPromotion.Visible = this.currentReportIndex.ReportUniqueID == (int)GlobalEnums.ReportUniqueID.SalesIssuePivot; this.buttonSalesVersusPromotion.Visible = this.comboSalesVersusPromotion.Visible;
-                    }
-                }
-            }
-            catch (Exception exception)
-            {
-                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
-            }
-        }
+        //                this.comboQuantityVersusVolume.Visible = this.currentReportIndex.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsReceiptPivot || this.currentReportIndex.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsIssuePivot; this.buttonQuantityVersusVolume.Visible = this.comboQuantityVersusVolume.Visible;
+        //                this.comboDateVersusMonth.Visible = this.currentReportIndex.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsReceiptPivot || this.currentReportIndex.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsIssuePivot; this.buttonDateVersusMonth.Visible = this.comboDateVersusMonth.Visible;
+        //                this.comboSalesVersusPromotion.Visible = this.currentReportIndex.ReportUniqueID == (int)GlobalEnums.ReportUniqueID.SalesIssuePivot; this.buttonSalesVersusPromotion.Visible = this.comboSalesVersusPromotion.Visible;
+        //            }
+        //        }
+        //    }
+        //    catch (Exception exception)
+        //    {
+        //        ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+        //    }
+        //}
 
         private void reloadTabPages()
         {
@@ -289,21 +314,19 @@ namespace TotalSmartCoding.Views.Generals
         #endregion CONTEXTUAL LOAD TAB PAGE: TAB FOR FILTER
 
 
-        public override void ApplyFilter(string filterTexts)
-        {
-            OLVHelpers.ApplyFilters(this.treeWarehouseID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
-            OLVHelpers.ApplyFilters(this.treeCommodityID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
-            OLVHelpers.ApplyFilters(this.treeCommodityTypeID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
-            OLVHelpers.ApplyFilters(this.treeCustomerID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
-            OLVHelpers.ApplyFilters(this.treeEmployeeID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
-            OLVHelpers.ApplyFilters(this.treeWarehouseIssueID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
-            OLVHelpers.ApplyFilters(this.treeWarehouseReceiptID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
-            OLVHelpers.ApplyFilters(this.treeWarehouseAdjustmentTypeID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
-        }
-
 
         protected override PrintViewModel InitPrintViewModel()
         {
+            ////TEST
+            ////FilterParameter locationID = new FilterParameter("LocationID");
+            ////FilterParameter warehouseID = new FilterParameter("WarehouseID");
+
+            ////this.GetFilterParameters(this.warehouseTrees.Cast<IFilterTree>(), new FilterParameter[] { locationID, warehouseID });
+
+            ////string i = locationID.PrimaryIDs + warehouseID.PrimaryIDs;
+
+
+
             PrintViewModel printViewModel = base.InitPrintViewModel();
             printViewModel.ReportPath = "GoodsIssuePivot";
 
@@ -345,26 +368,6 @@ namespace TotalSmartCoding.Views.Generals
                     }
                 }
             }
-        }
-
-        private void toolStripButton2_Click(object sender, EventArgs e)
-        {
-            FilterParameter locationID = new FilterParameter("LocationID");
-            FilterParameter warehouseID = new FilterParameter("WarehouseID");
-
-            this.GetFilterParameters(this.warehouseTrees.Cast<IFilterTree>(), new FilterParameter[] { locationID, warehouseID });
-
-            string i = locationID.PrimaryIDs + warehouseID.PrimaryIDs;
-        }
-
-        private void panelCenter_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-
         }
 
     }

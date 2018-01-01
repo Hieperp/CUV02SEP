@@ -86,6 +86,7 @@
     <Compile Include="Services\Commons\IBinLocationService.cs" />
     <Compile Include="Services\Commons\ICommodityService.cs" />
     <Compile Include="Services\Commons\ICustomerService.cs" />
+    <Compile Include="Services\Generals\IReportService.cs" />
     <Compile Include="Services\IBaseService.cs" />
     <Compile Include="Services\IGenericService.cs" />
     <Compile Include="Services\IGenericWithDetailService.cs" />

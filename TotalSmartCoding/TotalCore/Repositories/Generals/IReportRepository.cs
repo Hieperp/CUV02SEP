@@ -1,8 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
+using TotalModel.Models;
 
 namespace TotalCore.Repositories.Generals
 {
+    public interface IReportRepository : IGenericRepository<Report>
+    {
+    }
+
     public interface IReportAPIRepository : IGenericAPIRepository
     {
     }

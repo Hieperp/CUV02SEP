@@ -69,6 +69,7 @@ namespace TotalModel.Models
         public virtual DbSet<CommodityType> CommodityTypes { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Team> Teams { get; set; }
+        public virtual DbSet<Report> Reports { get; set; }
     
         public virtual ObjectResult<Nullable<int>> GetAccessLevel(Nullable<int> userID, Nullable<int> nMVNTaskID, Nullable<int> organizationalUnitID)
         {

@@ -661,6 +661,20 @@ namespace TotalModel.Models
         public int Id { get { return this.ReportUniqueID; } }
     }
 
+    public partial class Report : IPrimitiveEntity, IBaseEntity
+    {
+        public int GetID() { return this.ReportID; }
+
+        public int UserID { get; set; }
+        public int PreparedPersonID { get; set; }
+        public int OrganizationalUnitID { get; set; }
+
+        public int LocationID { get; set; }
+
+        public System.DateTime CreatedDate { get; set; }
+        public System.DateTime EditedDate { get; set; }
+    }
+
     public partial class CustomerIndex : IBaseIndex
     {
         public int Id { get { return this.CustomerID; } }

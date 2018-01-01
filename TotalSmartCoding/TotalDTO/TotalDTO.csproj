@@ -66,6 +66,7 @@
     <Compile Include="Commons\WarehouseAdjustmentTypeDTO.cs" />
     <Compile Include="Commons\WarehouseDTO.cs" />
     <Compile Include="CustomValidation.cs" />
+    <Compile Include="Generals\ReportDTO.cs" />
     <Compile Include="Generals\UserAccessControlDTO.cs" />
     <Compile Include="Helpers\AmountDetailDTO.cs" />
     <Compile Include="Helpers\AmountDTO.cs" />

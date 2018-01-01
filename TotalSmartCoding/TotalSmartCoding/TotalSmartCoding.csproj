@@ -127,6 +127,7 @@
     <Compile Include="Controllers\Commons\BinLocationController.cs" />
     <Compile Include="Controllers\Commons\CommodityController.cs" />
     <Compile Include="Controllers\Commons\CustomerController.cs" />
+    <Compile Include="Controllers\Generals\ReportController.cs" />
     <Compile Include="Controllers\Inventories\GoodsIssueController.cs" />
     <Compile Include="Controllers\Inventories\PickupController.cs" />
     <Compile Include="Controllers\Inventories\WarehouseAdjustmentController.cs" />
@@ -179,6 +180,7 @@
     <Compile Include="ViewModels\Commons\BinLocationViewModel.cs" />
     <Compile Include="ViewModels\Commons\CommodityViewModel.cs" />
     <Compile Include="ViewModels\Commons\CustomerViewModel.cs" />
+    <Compile Include="ViewModels\Generals\ReportViewModel.cs" />
     <Compile Include="ViewModels\Helpers\IBaseViewModel.cs" />
     <Compile Include="ViewModels\Helpers\PrintViewModel.cs" />
     <Compile Include="ViewModels\Inventories\GoodsIssueViewModel.cs" />

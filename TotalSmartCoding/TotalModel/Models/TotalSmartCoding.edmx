@@ -603,6 +603,21 @@
           <Property Name="Approved" Type="bit" Nullable="false" />
           <Property Name="ApprovedDate" Type="datetime" />
         </EntityType>
+        <EntityType Name="Reports">
+          <Key>
+            <PropertyRef Name="ReportID" />
+          </Key>
+          <Property Name="ReportID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReportUniqueID" Type="int" Nullable="false" />
+          <Property Name="ReportGroupID" Type="int" Nullable="false" />
+          <Property Name="ReportGroupName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ReportName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ReportURL" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="ReportTypeID" Type="int" Nullable="false" />
+          <Property Name="SerialID" Type="int" Nullable="false" />
+          <Property Name="Remarks" Type="nvarchar" MaxLength="100" />
+          <Property Name="ReportTabPageIDs" Type="nvarchar" MaxLength="100" />
+        </EntityType>
         <EntityType Name="SalesOrderDetails">
           <Key>
             <PropertyRef Name="SalesOrderDetailID" />
@@ -2730,6 +2745,7 @@
           <EntitySet Name="Pallets" EntityType="Self.Pallets" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PickupDetails" EntityType="Self.PickupDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pickups" EntityType="Self.Pickups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reports" EntityType="Self.Reports" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SalesOrderDetails" EntityType="Self.SalesOrderDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SalesOrders" EntityType="Self.SalesOrders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Teams" EntityType="Self.Teams" Schema="dbo" store:Type="Tables" />
@@ -4234,6 +4250,7 @@
             <Parameter Name="FromDate" Mode="In" Type="DateTime" />
             <Parameter Name="ToDate" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <EntitySet Name="Reports" EntityType="TotalSmartCodingModel.Report" />
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
           <Property Type="Int32" Name="PickupID" Nullable="false" />
@@ -7494,6 +7511,21 @@
           <Property Type="Int32" Name="ReportTypeID" Nullable="false" />
           <Property Type="String" Name="ReportTabPageIDs" Nullable="true" MaxLength="100" />
         </ComplexType>
+        <EntityType Name="Report">
+          <Key>
+            <PropertyRef Name="ReportID" />
+          </Key>
+          <Property Name="ReportID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReportUniqueID" Type="Int32" Nullable="false" />
+          <Property Name="ReportGroupID" Type="Int32" Nullable="false" />
+          <Property Name="ReportGroupName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ReportName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ReportURL" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ReportTypeID" Type="Int32" Nullable="false" />
+          <Property Name="SerialID" Type="Int32" Nullable="false" />
+          <Property Name="Remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ReportTabPageIDs" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -9745,6 +9777,22 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="Reports">
+            <EntityTypeMapping TypeName="TotalSmartCodingModel.Report">
+              <MappingFragment StoreEntitySet="Reports">
+                <ScalarProperty Name="ReportTabPageIDs" ColumnName="ReportTabPageIDs" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="SerialID" ColumnName="SerialID" />
+                <ScalarProperty Name="ReportTypeID" ColumnName="ReportTypeID" />
+                <ScalarProperty Name="ReportURL" ColumnName="ReportURL" />
+                <ScalarProperty Name="ReportName" ColumnName="ReportName" />
+                <ScalarProperty Name="ReportGroupName" ColumnName="ReportGroupName" />
+                <ScalarProperty Name="ReportGroupID" ColumnName="ReportGroupID" />
+                <ScalarProperty Name="ReportUniqueID" ColumnName="ReportUniqueID" />
+                <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

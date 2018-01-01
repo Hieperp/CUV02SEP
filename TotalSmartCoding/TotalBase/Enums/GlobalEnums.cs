@@ -99,7 +99,9 @@
 
             TransferOrder = 8071,
 
-            Pickup = 8068
+            Pickup = 8068,
+
+            Report = 91976999
 
         };
 
@@ -300,13 +302,13 @@
         {
             GoodsReceiptPivot = 1,
             ProductionReceiptPivot = 2,
-            TransferReceiptPivot = 3,
-            AdjustmentReceiptPivot = 4,
+            TransferReceiptPivot = 5,
+            AdjustmentReceiptPivot = 6,
 
             GoodsIssuePivot = 11,
             SalesIssuePivot = 12,
-            TransferIssuePivot = 13,
-            AdjustmentIssuePivot = 14
+            TransferIssuePivot = 15,
+            AdjustmentIssuePivot = 16
         }
 
 

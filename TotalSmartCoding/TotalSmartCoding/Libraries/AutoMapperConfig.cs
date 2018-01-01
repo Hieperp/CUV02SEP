@@ -16,6 +16,7 @@ using TotalSmartCoding.ViewModels.Sales;
 using TotalSmartCoding.ViewModels.Inventories;
 using TotalSmartCoding.ViewModels.Commons;
 using TotalDTO.Generals;
+using TotalSmartCoding.ViewModels.Generals;
 
 namespace TotalSmartCoding.Libraries
 {
@@ -121,6 +122,10 @@ namespace TotalSmartCoding.Libraries
                 cfg.CreateMap<Warehouse, WarehouseBaseDTO>();
                 cfg.CreateMap<WarehouseAdjustmentType, WarehouseAdjustmentTypeBaseDTO>();
                 cfg.CreateMap<UserAccessControl, UserAccessControlDTO>();
+
+                cfg.CreateMap<Report, ReportViewModel>();
+                cfg.CreateMap<Report, ReportDTO>();
+                cfg.CreateMap<ReportPrimitiveDTO, Report>();
             });
         }
     }
