@@ -1,4 +1,4 @@
-﻿namespace TotalSmartCoding.Views.Mains
+﻿namespace TotalSmartCoding.Views.Generals
 {
     partial class Reports
     {

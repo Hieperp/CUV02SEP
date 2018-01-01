@@ -3943,6 +3943,16 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap P_1_26_24 {
+            get {
+                object obj = ResourceManager.GetObject("P-1-26-24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap palet_01_png_32 {
             get {
                 object obj = ResourceManager.GetObject("palet-01-png-32", resourceCulture);
@@ -5046,6 +5056,16 @@ namespace TotalSmartCoding.Properties {
         internal static System.Drawing.Bitmap White_Pallet {
             get {
                 object obj = ResourceManager.GetObject("White-Pallet", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap xxx042_24 {
+            get {
+                object obj = ResourceManager.GetObject("xxx042-24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -223,6 +223,12 @@
     <Compile Include="Views\Commons\CustomMessageBox.Designer.cs">
       <DependentUpon>CustomMessageBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Generals\Reports.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Generals\Reports.designer.cs">
+      <DependentUpon>Reports.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Inventories\GoodsIssues\GoodsIssues.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -321,12 +327,6 @@
     </Compile>
     <Compile Include="Views\Mains\BlankView.Designer.cs">
       <DependentUpon>BlankView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Mains\Reports.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\Mains\Reports.designer.cs">
-      <DependentUpon>Reports.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Mains\SearchBarcode.cs">
       <SubType>Form</SubType>
@@ -456,6 +456,9 @@
     <EmbeddedResource Include="Views\Commons\CustomMessageBox.resx">
       <DependentUpon>CustomMessageBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Generals\Reports.resx">
+      <DependentUpon>Reports.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Inventories\GoodsIssues\GoodsIssues.resx">
       <DependentUpon>GoodsIssues.cs</DependentUpon>
     </EmbeddedResource>
@@ -506,9 +509,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Mains\BlankView.resx">
       <DependentUpon>BlankView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\Mains\Reports.resx">
-      <DependentUpon>Reports.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Mains\SearchBarcode.resx">
       <DependentUpon>SearchBarcode.cs</DependentUpon>
@@ -1139,6 +1139,8 @@
     <None Include="Resources\Present.png" />
     <None Include="Resources\Calendar-1.ico" />
     <None Include="Resources\Calendar-2.ico" />
+    <None Include="Resources\P-1-26-24.png" />
+    <None Include="Resources\xxx042-24.png" />
     <Content Include="SmartCodingSolution.ico" />
     <None Include="Resources\Yellow-cross.ico" />
     <None Include="Resources\White-Pallet.ico" />

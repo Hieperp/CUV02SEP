@@ -26,7 +26,7 @@ using TotalCore.Repositories.Generals;
 using TotalSmartCoding.Controllers.APIs.Commons;
 
 
-namespace TotalSmartCoding.Views.Mains
+namespace TotalSmartCoding.Views.Generals
 {
     public partial class Reports : BaseView
     {
