@@ -102,19 +102,9 @@
         <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssueDetails_TransferOrderDetails" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.User" Width="1.5" PointX="10.375" PointY="8" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_OrganizationalUnitUsers_Users" />
-        <EntityTypeShape EntityType="TotalSmartCodingModel.GoodsIssue" Width="1.5" PointX="19" PointY="11.125" />
-        <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssues_Customers" />
-        <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssues_Receivers" />
-        <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssues_DeliveryAdvices" />
-        <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssueDetails_GoodsIssues" />
-        <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssues_GoodsIssueTypes" />
-        <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssues_Locations" />
-        <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssues_WarehouseReceipts" />
-        <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssues_Warehouses" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.TransferOrderType" Width="1.5" PointX="18.5" PointY="28.625" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsReceiptDetails_GoodsIssueTransferDetails" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.TransferOrder" Width="1.5" PointX="20.75" PointY="21.625" />
-        <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssues_TransferOrders" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_TransferOrders_Locations" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_TransferOrderDetails_TransferOrders" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_TransferOrders_TransferOrderTypes" />
@@ -152,6 +142,16 @@
         <AssociationConnector Association="TotalSmartCodingModel.FK_Employees_Teams" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_SalesOrders_Teams" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.Report" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="TotalSmartCodingModel.GoodsIssue" Width="1.5" PointX="23" PointY="13" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssues_Customers" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssues_Receivers" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssues_DeliveryAdvices" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssueDetails_GoodsIssues" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssues_GoodsIssueTypes" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssues_Locations" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssues_TransferOrders" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssues_Warehouses" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssues_Warehouses1" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
