@@ -4342,6 +4342,9 @@
           <Property Type="Int32" Name="WarehouseAdjustmentDetailID" Nullable="true" />
           <Property Type="String" Name="WarehouseAdjustmentReference" Nullable="true" MaxLength="10" />
           <Property Type="DateTime" Name="WarehouseAdjustmentEntryDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="LocationIssueID" Nullable="true" />
+          <Property Type="Int32" Name="WarehouseIssueID" Nullable="true" />
+          <Property Type="Int32" Name="WarehouseAdjustmentTypeID" Nullable="true" />
         </ComplexType>
         <ComplexType Name="PendingPickup">
           <Property Type="Int32" Name="PickupID" Nullable="false" />
@@ -7661,6 +7664,9 @@
                 <ScalarProperty Name="WarehouseAdjustmentDetailID" ColumnName="WarehouseAdjustmentDetailID" />
                 <ScalarProperty Name="WarehouseAdjustmentReference" ColumnName="WarehouseAdjustmentReference" />
                 <ScalarProperty Name="WarehouseAdjustmentEntryDate" ColumnName="WarehouseAdjustmentEntryDate" />
+                <ScalarProperty Name="LocationIssueID" ColumnName="LocationIssueID" />
+                <ScalarProperty Name="WarehouseIssueID" ColumnName="WarehouseIssueID" />
+                <ScalarProperty Name="WarehouseAdjustmentTypeID" ColumnName="WarehouseAdjustmentTypeID" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

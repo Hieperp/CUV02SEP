@@ -46,5 +46,8 @@ namespace TotalModel.Models
         public Nullable<int> WarehouseAdjustmentDetailID { get; set; }
         public string WarehouseAdjustmentReference { get; set; }
         public Nullable<System.DateTime> WarehouseAdjustmentEntryDate { get; set; }
+        public Nullable<int> LocationIssueID { get; set; }
+        public Nullable<int> WarehouseIssueID { get; set; }
+        public Nullable<int> WarehouseAdjustmentTypeID { get; set; }
     }
 }
