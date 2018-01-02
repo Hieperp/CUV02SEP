@@ -90,8 +90,12 @@ namespace TotalModel.Models
         int GoodsIssueID { get; set; }
         int GoodsIssueTransferDetailID { get; set; }
 
+        Nullable<int> WarehouseIssueID { get; set; }
+        Nullable<int> LocationIssueID { get; set; }
+
         //int WarehouseAdjustmentID { get; set; }
         //int WarehouseAdjustmentDetailID { get; set; }
+        //Nullable<int> WarehouseAdjustmentTypeID { get; set; }
 
         string PrimaryReference { get; set; }
         System.DateTime PrimaryEntryDate { get; set; }

@@ -118,6 +118,9 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
                                     GoodsIssueReference = pendingforGoodsReceiptDetail.PrimaryReference,
                                     GoodsIssueEntryDate = pendingforGoodsReceiptDetail.GoodsIssueID > 0 ? pendingforGoodsReceiptDetail.PrimaryEntryDate : (DateTime?)null,
 
+                                    LocationIssueID = pendingforGoodsReceiptDetail.LocationIssueID,
+                                    WarehouseIssueID = pendingforGoodsReceiptDetail.WarehouseIssueID,
+
                                     BatchID = pendingforGoodsReceiptDetail.BatchID,
                                     BatchEntryDate = pendingforGoodsReceiptDetail.BatchEntryDate,
 

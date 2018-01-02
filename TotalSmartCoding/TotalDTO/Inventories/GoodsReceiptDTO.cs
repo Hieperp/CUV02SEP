@@ -83,7 +83,7 @@ namespace TotalDTO.Inventories
             get { return this.warehouseAdjustmentID; }
             set { ApplyPropertyChange<GoodsReceiptPrimitiveDTO, Nullable<int>>(ref this.warehouseAdjustmentID, o => o.WarehouseAdjustmentID, value); }
         }
-        
+
 
         public bool HasPickup { get; set; }
 
@@ -129,7 +129,7 @@ namespace TotalDTO.Inventories
 
         public override string Caption
         {
-            get { return this.Reference + " for " + this.GoodsReceiptTypeName + ": " + (this.PickupID != null ? this.PickupReference : this.PrimaryReferences) + "             " + this.WarehouseName + (this.WarehouseName != ""? ", ":"") + this.EntryDate.ToString() + "             Total Quantity: " + this.TotalQuantity.ToString("N0") + ",    Total Volume: " + this.TotalLineVolume.ToString("N2"); }
+            get { return this.Reference + " for " + this.GoodsReceiptTypeName + ": " + (this.PickupID != null ? this.PickupReference : this.PrimaryReferences) + "             " + this.WarehouseName + (this.WarehouseName != "" ? ", " : "") + this.EntryDate.ToString() + "             Total Quantity: " + this.TotalQuantity.ToString("N0") + ",    Total Volume: " + this.TotalLineVolume.ToString("N2"); }
         }
 
         public override void PerformPresaveRule()
@@ -137,8 +137,10 @@ namespace TotalDTO.Inventories
             base.PerformPresaveRule();
 
             string primaryReferences = "";
-            this.DtoDetails().ToList().ForEach(e => { e.GoodsReceiptTypeID = this.GoodsReceiptTypeID; e.WarehouseID = this.WarehouseID; if (this.HasPickup && primaryReferences.IndexOf(e.PrimaryReference) < 0) primaryReferences = primaryReferences + (primaryReferences != "" ? ", " : "") + e.PrimaryReference; });
+            this.DtoDetails().ToList().ForEach(e => { e.OrganizationalUnitID = this.OrganizationalUnitID; e.GoodsReceiptTypeID = this.GoodsReceiptTypeID; e.WarehouseID = this.WarehouseID; if (this.HasPickup && e.PrimaryReference != null && primaryReferences.IndexOf(e.PrimaryReference) < 0) primaryReferences = primaryReferences + (primaryReferences != "" ? ", " : "") + e.PrimaryReference; });
             this.PrimaryReferences = primaryReferences;
+
+            this.DtoDetails().ToList().ForEach(e => { e.PrimaryReferences = this.PrimaryReferences; });
         }
 
         protected override List<ValidationRule> CreateRules()

@@ -46,6 +46,7 @@ namespace TotalModel.Models
         public decimal LineVolumeReceipt { get; set; }
         public string Remarks { get; set; }
         public bool Approved { get; set; }
+        public int LocationIssueID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GoodsReceiptDetail> GoodsReceiptDetails { get; set; }

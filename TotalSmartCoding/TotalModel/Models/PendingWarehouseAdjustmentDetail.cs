@@ -39,5 +39,8 @@ namespace TotalModel.Models
         public Nullable<bool> IsSelected { get; set; }
         public string PrimaryReference { get; set; }
         public System.DateTime PrimaryEntryDate { get; set; }
+        public Nullable<int> LocationIssueID { get; set; }
+        public Nullable<int> WarehouseIssueID { get; set; }
+        public Nullable<int> WarehouseAdjustmentTypeID { get; set; }
     }
 }

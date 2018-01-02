@@ -39,5 +39,8 @@ namespace TotalModel.Models
         public int PalletCounts { get; set; }
         public string Remarks { get; set; }
         public Nullable<bool> IsSelected { get; set; }
+        public Nullable<int> LocationIssueID { get; set; }
+        public Nullable<int> WarehouseIssueID { get; set; }
+        public Nullable<int> WarehouseAdjustmentTypeID { get; set; }
     }
 }
