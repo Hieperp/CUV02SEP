@@ -411,6 +411,12 @@
           <Property Name="LineVolumeIssue" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Remarks" Type="nvarchar" MaxLength="100" />
           <Property Name="Approved" Type="bit" Nullable="false" />
+          <Property Name="SupplierID" Type="int" />
+          <Property Name="WarehouseIssueID" Type="int" />
+          <Property Name="LocationIssueID" Type="int" />
+          <Property Name="OrganizationalUnitID" Type="int" Nullable="false" />
+          <Property Name="PrimaryReferences" Type="nvarchar" MaxLength="100" />
+          <Property Name="WarehouseAdjustmentTypeID" Type="int" />
         </EntityType>
         <EntityType Name="GoodsReceipts">
           <Key>
@@ -4237,7 +4243,7 @@
           </AssociationSet>
           <FunctionImport Name="GetCommodityTrees" ReturnType="Collection(TotalSmartCodingModel.CommodityTree)" />
           <FunctionImport Name="GetWarehouseTrees" ReturnType="Collection(TotalSmartCodingModel.WarehouseTree)" >
-            <Parameter Name="LocationID" Mode="In" Type="Int32" />
+          <Parameter Name="LocationID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetCommodityTypeTrees" ReturnType="Collection(TotalSmartCodingModel.CommodityTypeTree)" />
           <FunctionImport Name="GetCustomerTrees" ReturnType="Collection(TotalSmartCodingModel.CustomerTree)" />
@@ -6178,6 +6184,12 @@
           <Property Name="GoodsReceiptTypeID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="WarehouseAdjustmentDetail" Relationship="TotalSmartCodingModel.FK_GoodsReceiptDetails_WarehouseAdjustmentDetails" FromRole="GoodsReceiptDetail" ToRole="WarehouseAdjustmentDetail" />
           <NavigationProperty Name="WarehouseAdjustmentDetails" Relationship="TotalSmartCodingModel.FK_WarehouseAdjustmentDetails_GoodsReceiptDetails" FromRole="GoodsReceiptDetail" ToRole="WarehouseAdjustmentDetail" />
+          <Property Name="SupplierID" Type="Int32" />
+          <Property Name="WarehouseIssueID" Type="Int32" />
+          <Property Name="LocationIssueID" Type="Int32" />
+          <Property Name="OrganizationalUnitID" Type="Int32" Nullable="false" />
+          <Property Name="PrimaryReferences" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="WarehouseAdjustmentTypeID" Type="Int32" />
         </EntityType>
         <EntityType Name="GoodsReceipt">
           <Key>
@@ -9185,6 +9197,12 @@
           <EntitySetMapping Name="GoodsReceiptDetails">
             <EntityTypeMapping TypeName="TotalSmartCodingModel.GoodsReceiptDetail">
               <MappingFragment StoreEntitySet="GoodsReceiptDetails">
+                <ScalarProperty Name="WarehouseAdjustmentTypeID" ColumnName="WarehouseAdjustmentTypeID" />
+                <ScalarProperty Name="PrimaryReferences" ColumnName="PrimaryReferences" />
+                <ScalarProperty Name="OrganizationalUnitID" ColumnName="OrganizationalUnitID" />
+                <ScalarProperty Name="LocationIssueID" ColumnName="LocationIssueID" />
+                <ScalarProperty Name="WarehouseIssueID" ColumnName="WarehouseIssueID" />
+                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
                 <ScalarProperty Name="GoodsReceiptTypeID" ColumnName="GoodsReceiptTypeID" />
                 <ScalarProperty Name="Approved" ColumnName="Approved" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />

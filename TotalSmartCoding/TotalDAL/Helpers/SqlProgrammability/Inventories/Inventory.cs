@@ -202,7 +202,9 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
         private string BUILDHeader(bool localParameter, bool quantityVersusVolume)
         {
-            string queryString = " @UserID Int, @FromDate DateTime, @ToDate DateTime, @LocationIDs varchar(3999), @WarehouseIDs varchar(3999), @CommodityCategoryIDs varchar(3999), @CommodityTypeIDs varchar(3999), @CommodityIDs varchar(3999), @GoodsIssueTypeIDs varchar(3999), @CustomerCategoryIDs varchar(3999), @CustomerIDs varchar(3999), @LocationReceiptIDs varchar(3999), @WarehouseReceiptIDs varchar(3999), @TeamIDs varchar(3999), @EmployeeIDs varchar(3999), @WarehouseAdjustmentTypeIDs varchar(3999) " + (quantityVersusVolume ? ", @DateVersusMonth int, @QuantityVersusVolume int, @SalesVersusPromotion int" : "") + "\r\n";
+            string queryString = " @UserID Int, @FromDate DateTime, @ToDate DateTime, @IssueVersusReceipt int, @LocationIDs varchar(3999), @WarehouseIDs varchar(3999), @CommodityCategoryIDs varchar(3999), @CommodityTypeIDs varchar(3999), @CommodityIDs varchar(3999), @GoodsIssueTypeIDs varchar(3999), @CustomerCategoryIDs varchar(3999), @CustomerIDs varchar(3999), @LocationReceiptIDs varchar(3999), @WarehouseReceiptIDs varchar(3999), @TeamIDs varchar(3999), @EmployeeIDs varchar(3999), @WarehouseAdjustmentTypeIDs varchar(3999), @GoodsReceiptTypeIDs varchar(3999), @SupplierCategoryIDs varchar(3999), @SupplierIDs varchar(3999), @LocationIssueIDs varchar(3999), @WarehouseIssueIDs varchar(3999) " + (quantityVersusVolume ? ", @DateVersusMonth int, @QuantityVersusVolume int, @SalesVersusPromotion int" : "") + "\r\n";
+
+
 
             //queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
@@ -210,16 +212,23 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
             if (localParameter)
             {
-                queryString = queryString + "       DECLARE     @LocalUserID Int, @LocalFromDate DateTime, @LocalToDate DateTime, @LocalLocationIDs varchar(3999), @LocalWarehouseIDs varchar(3999), @LocalCommodityCategoryIDs varchar(3999), @LocalCommodityTypeIDs varchar(3999), @LocalCommodityIDs varchar(3999), @LocalGoodsIssueTypeIDs varchar(3999), @LocalCustomerCategoryIDs varchar(3999), @LocalCustomerIDs varchar(3999), @LocalLocationReceiptIDs varchar(3999), @LocalWarehouseReceiptIDs varchar(3999), @LocalTeamIDs varchar(3999), @LocalEmployeeIDs varchar(3999), @LocalWarehouseAdjustmentTypeIDs varchar(3999) " + (quantityVersusVolume ? ", @LocalDateVersusMonth int, @LocalQuantityVersusVolume int, @LocalSalesVersusPromotion int" : "") + "\r\n";
+                queryString = queryString + "       DECLARE     @LocalUserID Int, @LocalFromDate DateTime, @LocalToDate DateTime, @LocalIssueVersusReceipt int, @LocalLocationIDs varchar(3999), @LocalWarehouseIDs varchar(3999), @LocalCommodityCategoryIDs varchar(3999), @LocalCommodityTypeIDs varchar(3999), @LocalCommodityIDs varchar(3999), @LocalGoodsIssueTypeIDs varchar(3999), @LocalCustomerCategoryIDs varchar(3999), @LocalCustomerIDs varchar(3999), @LocalLocationReceiptIDs varchar(3999), @LocalWarehouseReceiptIDs varchar(3999), @LocalTeamIDs varchar(3999), @LocalEmployeeIDs varchar(3999), @LocalWarehouseAdjustmentTypeIDs varchar(3999), @LocalGoodsReceiptTypeIDs varchar(3999), @LocalSupplierCategoryIDs varchar(3999), @LocalSupplierIDs varchar(3999), @LocalLocationIssueIDs varchar(3999), @LocalWarehouseIssueIDs varchar(3999) " + (quantityVersusVolume ? ", @LocalDateVersusMonth int, @LocalQuantityVersusVolume int, @LocalSalesVersusPromotion int" : "") + "\r\n";
 
-                queryString = queryString + "       SET         @LocalUserID = @UserID                                              SET @LocalFromDate = @FromDate                          SET @LocalToDate = @ToDate " + "\r\n";
+                queryString = queryString + "       SET         @LocalUserID = @UserID                                              SET @LocalFromDate = @FromDate                          SET @LocalToDate = @ToDate          SET @LocalIssueVersusReceipt = @IssueVersusReceipt " + "\r\n";
                 queryString = queryString + "       SET         @LocalLocationIDs = @LocationIDs                                    SET @LocalWarehouseIDs = @WarehouseIDs                  " + "\r\n";
                 queryString = queryString + "       SET         @LocalCommodityCategoryIDs = @CommodityCategoryIDs                  SET @LocalCommodityIDs = @CommodityIDs                  " + "\r\n";
                 queryString = queryString + "       SET         @LocalCommodityTypeIDs = @CommodityTypeIDs                          SET @LocalGoodsIssueTypeIDs = @GoodsIssueTypeIDs " + "\r\n";
                 queryString = queryString + "       SET         @LocalCustomerCategoryIDs = @CustomerCategoryIDs                    SET @LocalCustomerIDs = @CustomerIDs" + "\r\n";
                 queryString = queryString + "       SET         @LocalLocationReceiptIDs = @LocationReceiptIDs                      SET @LocalWarehouseReceiptIDs = @WarehouseReceiptIDs " + "\r\n";
                 queryString = queryString + "       SET         @LocalTeamIDs = @TeamIDs                                            SET @LocalEmployeeIDs = @EmployeeIDs " + "\r\n";
-                queryString = queryString + "       SET         @LocalWarehouseAdjustmentTypeIDs = @WarehouseAdjustmentTypeIDs" + (quantityVersusVolume ? " SET @LocalDateVersusMonth = @DateVersusMonth   SET @LocalQuantityVersusVolume = @QuantityVersusVolume       SET @LocalSalesVersusPromotion = @SalesVersusPromotion" : "") + "\r\n";
+                queryString = queryString + "       SET         @LocalWarehouseAdjustmentTypeIDs = @WarehouseAdjustmentTypeIDs" + "\r\n";
+
+                queryString = queryString + "       SET         @LocalGoodsReceiptTypeIDs = @GoodsReceiptTypeIDs" + "\r\n";
+                queryString = queryString + "       SET         @LocalSupplierCategoryIDs = @SupplierCategoryIDs                    SET @LocalSupplierIDs = @SupplierIDs " + "\r\n";
+                queryString = queryString + "       SET         @LocalLocationIssueIDs = @LocationIssueIDs                          SET @LocalWarehouseIssueIDs = @WarehouseIssueIDs " + "\r\n";
+
+
+                queryString = queryString + (quantityVersusVolume ? " SET @LocalDateVersusMonth = @DateVersusMonth   SET @LocalQuantityVersusVolume = @QuantityVersusVolume       SET @LocalSalesVersusPromotion = @SalesVersusPromotion" : "") + "\r\n";
             }
 
             return queryString;
@@ -227,7 +236,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
         private string BUILDParameter(bool localParameter)
         {
-            return " @" + (localParameter ? "Local" : "") + "UserID, @" + (localParameter ? "Local" : "") + "FromDate, @" + (localParameter ? "Local" : "") + "ToDate, @" + (localParameter ? "Local" : "") + "LocationIDs, @" + (localParameter ? "Local" : "") + "WarehouseIDs, @" + (localParameter ? "Local" : "") + "CommodityCategoryIDs, @" + (localParameter ? "Local" : "") + "CommodityTypeIDs, @" + (localParameter ? "Local" : "") + "CommodityIDs, @" + (localParameter ? "Local" : "") + "GoodsIssueTypeIDs, @" + (localParameter ? "Local" : "") + "CustomerCategoryIDs, @" + (localParameter ? "Local" : "") + "CustomerIDs, @" + (localParameter ? "Local" : "") + "LocationReceiptIDs, @" + (localParameter ? "Local" : "") + "WarehouseReceiptIDs, @" + (localParameter ? "Local" : "") + "TeamIDs, @" + (localParameter ? "Local" : "") + "EmployeeIDs, @" + (localParameter ? "Local" : "") + "WarehouseAdjustmentTypeIDs ";
+            return " @" + (localParameter ? "Local" : "") + "UserID, @" + (localParameter ? "Local" : "") + "FromDate, @" + (localParameter ? "Local" : "") + "ToDate, @" + (localParameter ? "Local" : "") + "IssueVersusReceipt, @" + (localParameter ? "Local" : "") + "LocationIDs, @" + (localParameter ? "Local" : "") + "WarehouseIDs, @" + (localParameter ? "Local" : "") + "CommodityCategoryIDs, @" + (localParameter ? "Local" : "") + "CommodityTypeIDs, @" + (localParameter ? "Local" : "") + "CommodityIDs, @" + (localParameter ? "Local" : "") + "GoodsIssueTypeIDs, @" + (localParameter ? "Local" : "") + "CustomerCategoryIDs, @" + (localParameter ? "Local" : "") + "CustomerIDs, @" + (localParameter ? "Local" : "") + "LocationReceiptIDs, @" + (localParameter ? "Local" : "") + "WarehouseReceiptIDs, @" + (localParameter ? "Local" : "") + "TeamIDs, @" + (localParameter ? "Local" : "") + "EmployeeIDs, @" + (localParameter ? "Local" : "") + "WarehouseAdjustmentTypeIDs, @" + (localParameter ? "Local" : "") + "GoodsReceiptTypeIDs, @" + (localParameter ? "Local" : "") + "SupplierCategoryIDs, @" + (localParameter ? "Local" : "") + "SupplierIDs, @" + (localParameter ? "Local" : "") + "LocationIssueIDs, @" + (localParameter ? "Local" : "") + "WarehouseIssueIDs ";
         }
 
         /// <summary>
@@ -253,15 +262,17 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
         private void WarehouseLedgers()
         {
+            this.WarehouseLedgerIssue08();
+            this.WarehouseLedgerReceipt08();
+
             this.WarehouseLedger06();
-            this.WarehouseLedger08();
 
             string queryString = this.BUILDHeader(false, false) + this.BUILDGoodsIssue() + "\r\n";
             this.totalSmartCodingEntities.CreateStoredProcedure("WHLS", queryString);
 
 
             queryString = this.BUILDHeader(true, true);
-            queryString = queryString + "       DECLARE     @WarehouseLedgers TABLE (PrimaryID int NOT NULL, PrimaryDetailID int NOT NULL, EntryDate datetime NOT NULL, Reference nvarchar(10) NULL, LocationName nvarchar(50) NOT NULL, WarehouseName nvarchar(60) NOT NULL, CommodityID int NOT NULL, Code nvarchar(50) NOT NULL, Name nvarchar(200) NOT NULL, PackageSize nvarchar(60) NULL, CommodityCategoryName nvarchar(100) NOT NULL, CommodityTypeName nvarchar(100) NOT NULL, IsPromotion bit NOT NULL, Quantity decimal(18, 2) NOT NULL, LineVolume decimal(18, 2) NOT NULL, LineForeignCode nvarchar(50) NOT NULL, LineForeignName nvarchar(100) NOT NULL, LineReferences nvarchar(110) NULL, CustomerCategoryName nvarchar(100) NULL, TeamName nvarchar(100) NULL, SalespersonName nvarchar(50) NULL) " + "\r\n";
+            queryString = queryString + "       DECLARE     @WarehouseLedgers TABLE (PrimaryID int NOT NULL, PrimaryDetailID int NOT NULL, EntryDate datetime NOT NULL, Reference nvarchar(10) NULL, LocationName nvarchar(50) NOT NULL, WarehouseName nvarchar(60) NOT NULL, CommodityID int NOT NULL, Code nvarchar(50) NOT NULL, Name nvarchar(200) NOT NULL, PackageSize nvarchar(60) NULL, CommodityCategoryName nvarchar(100) NOT NULL, CommodityTypeName nvarchar(100) NOT NULL, IsPromotion bit NOT NULL, Quantity decimal(18, 2) NOT NULL, LineVolume decimal(18, 2) NOT NULL, LineForeignCode nvarchar(50) NULL, LineForeignName nvarchar(100) NULL, LineReferences nvarchar(110) NULL, CustomerCategoryName nvarchar(100) NULL, TeamName nvarchar(100) NULL, SalespersonName nvarchar(50) NULL) " + "\r\n";
             queryString = queryString + "       INSERT INTO @WarehouseLedgers         EXEC WHLS " + this.BUILDParameter(true) + "\r\n";
 
             string queryMaster = "              SELECT      PrimaryID, PrimaryDetailID, EntryDate, CASE @LocalDateVersusMonth WHEN 0 THEN CONVERT(Date, EntryDate) ELSE DATEADD(Month, DateDiff(Month, 0, EntryDate), 0) END AS GroupDate, Reference, LocationName, WarehouseName, CommodityID, Code, Name, PackageSize, CommodityCategoryName, CommodityTypeName, IsPromotion, Quantity, LineVolume, CASE @LocalQuantityVersusVolume WHEN 0 THEN Quantity ELSE LineVolume END AS LineValue, LineForeignCode, LineForeignName, LineReferences, CustomerCategoryName, TeamName, SalespersonName " + "\r\n";
@@ -347,15 +358,31 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryString = queryString + "    BEGIN " + "\r\n";
 
             queryString = queryString + "       IF         (@CommodityTypeIDs <> '') " + "\r\n";
-            queryString = queryString + "                   EXEC WHL06" + isLocationID.ToString().Substring(0, 1) + isWarehouseID.ToString().Substring(0, 1) + isCommodityCategoryID.ToString().Substring(0, 1) + isCommodityID.ToString().Substring(0, 1) + true.ToString().Substring(0, 1) + this.BUILDParameter(false) + "\r\n";
+            queryString = queryString + "                   " + this.BUILDCommodityType(isLocationID, isWarehouseID, isCommodityCategoryID, isCommodityID, true) + "\r\n";
             queryString = queryString + "       ELSE " + "\r\n";
-            queryString = queryString + "                   EXEC WHL06" + isLocationID.ToString().Substring(0, 1) + isWarehouseID.ToString().Substring(0, 1) + isCommodityCategoryID.ToString().Substring(0, 1) + isCommodityID.ToString().Substring(0, 1) + false.ToString().Substring(0, 1) + this.BUILDParameter(false) + "\r\n";
+            queryString = queryString + "                   " + this.BUILDCommodityType(isLocationID, isWarehouseID, isCommodityCategoryID, isCommodityID, false) + "\r\n";
+
 
             queryString = queryString + "    END " + "\r\n";
 
             return queryString;
         }
 
+        private string BUILDCommodityType(bool isLocationID, bool isWarehouseID, bool isCommodityCategoryID, bool isCommodityID, bool isCommodityTypeID)
+        {
+            string queryString = "";
+
+            queryString = queryString + "    BEGIN " + "\r\n";
+
+            queryString = queryString + "       IF         (@IssueVersusReceipt = 0) " + "\r\n";
+            queryString = queryString + "                   EXEC WHLIssue06" + isLocationID.ToString().Substring(0, 1) + isWarehouseID.ToString().Substring(0, 1) + isCommodityCategoryID.ToString().Substring(0, 1) + isCommodityID.ToString().Substring(0, 1) + isCommodityTypeID.ToString().Substring(0, 1) + this.BUILDParameter(false) + "\r\n";
+            queryString = queryString + "       ELSE " + "\r\n";
+            queryString = queryString + "                   EXEC WHLReceipt06" + isLocationID.ToString().Substring(0, 1) + isWarehouseID.ToString().Substring(0, 1) + isCommodityCategoryID.ToString().Substring(0, 1) + isCommodityID.ToString().Substring(0, 1) + isCommodityTypeID.ToString().Substring(0, 1) + this.BUILDParameter(false) + "\r\n";
+
+            queryString = queryString + "    END " + "\r\n";
+
+            return queryString;
+        }
 
         private void WarehouseLedger06()
         {
@@ -370,7 +397,8 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
                         {
                             foreach (bool isCommodityTypeID in boolArray)
                             {
-                                this.totalSmartCodingEntities.CreateStoredProcedure("WHL06" + isLocationID.ToString().Substring(0, 1) + isWarehouseID.ToString().Substring(0, 1) + isCommodityCategoryID.ToString().Substring(0, 1) + isCommodityID.ToString().Substring(0, 1) + isCommodityTypeID.ToString().Substring(0, 1), this.BUILDHeader(false, false) + this.BUILDCommodityType(isLocationID, isWarehouseID, isCommodityCategoryID, isCommodityID, isCommodityTypeID));
+                                this.totalSmartCodingEntities.CreateStoredProcedure("WHLIssue06" + isLocationID.ToString().Substring(0, 1) + isWarehouseID.ToString().Substring(0, 1) + isCommodityCategoryID.ToString().Substring(0, 1) + isCommodityID.ToString().Substring(0, 1) + isCommodityTypeID.ToString().Substring(0, 1), this.BUILDHeader(false, false) + this.WHLIssue06(isLocationID, isWarehouseID, isCommodityCategoryID, isCommodityID, isCommodityTypeID));
+                                this.totalSmartCodingEntities.CreateStoredProcedure("WHLReceipt06" + isLocationID.ToString().Substring(0, 1) + isWarehouseID.ToString().Substring(0, 1) + isCommodityCategoryID.ToString().Substring(0, 1) + isCommodityID.ToString().Substring(0, 1) + isCommodityTypeID.ToString().Substring(0, 1), this.BUILDHeader(false, false) + this.WHLReceipt06(isLocationID, isWarehouseID, isCommodityCategoryID, isCommodityID, isCommodityTypeID));
                             }
                         }
                     }
@@ -378,8 +406,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             }
         }
 
-
-        private string BUILDCommodityType(bool isLocationID, bool isWarehouseID, bool isCommodityCategoryID, bool isCommodityID, bool isCommodityTypeID)
+        private string WHLIssue06(bool isLocationID, bool isWarehouseID, bool isCommodityCategoryID, bool isCommodityID, bool isCommodityTypeID)
         {
             string queryString = "";
 
@@ -447,15 +474,15 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryString = queryString + "    BEGIN " + "\r\n";
 
             queryString = queryString + "       IF         (@LocationReceiptIDs <> '') " + "\r\n";
-            queryString = queryString + "                   EXEC WHL08" + isLocationID.ToString().Substring(0, 1) + isWarehouseID.ToString().Substring(0, 1) + isCommodityCategoryID.ToString().Substring(0, 1) + isCommodityID.ToString().Substring(0, 1) + isCommodityTypeID.ToString().Substring(0, 1) + goodsIssueTypeID_REPORTONLY.ToString().Substring(0, 1) + isCustomerCategoryID.ToString().Substring(0, 1) + true.ToString().Substring(0, 1) + this.BUILDParameter(false) + "\r\n";
+            queryString = queryString + "                   EXEC WHLIssue08" + isLocationID.ToString().Substring(0, 1) + isWarehouseID.ToString().Substring(0, 1) + isCommodityCategoryID.ToString().Substring(0, 1) + isCommodityID.ToString().Substring(0, 1) + isCommodityTypeID.ToString().Substring(0, 1) + goodsIssueTypeID_REPORTONLY.ToString().Substring(0, 1) + isCustomerCategoryID.ToString().Substring(0, 1) + true.ToString().Substring(0, 1) + this.BUILDParameter(false) + "\r\n";
             queryString = queryString + "       ELSE " + "\r\n";
-            queryString = queryString + "                   EXEC WHL08" + isLocationID.ToString().Substring(0, 1) + isWarehouseID.ToString().Substring(0, 1) + isCommodityCategoryID.ToString().Substring(0, 1) + isCommodityID.ToString().Substring(0, 1) + isCommodityTypeID.ToString().Substring(0, 1) + goodsIssueTypeID_REPORTONLY.ToString().Substring(0, 1) + isCustomerCategoryID.ToString().Substring(0, 1) + false.ToString().Substring(0, 1) + this.BUILDParameter(false) + "\r\n";
+            queryString = queryString + "                   EXEC WHLIssue08" + isLocationID.ToString().Substring(0, 1) + isWarehouseID.ToString().Substring(0, 1) + isCommodityCategoryID.ToString().Substring(0, 1) + isCommodityID.ToString().Substring(0, 1) + isCommodityTypeID.ToString().Substring(0, 1) + goodsIssueTypeID_REPORTONLY.ToString().Substring(0, 1) + isCustomerCategoryID.ToString().Substring(0, 1) + false.ToString().Substring(0, 1) + this.BUILDParameter(false) + "\r\n";
             queryString = queryString + "    END " + "\r\n";
 
             return queryString;
         }
 
-        private void WarehouseLedger08()
+        private void WarehouseLedgerIssue08()
         {
             bool[] boolArray = new bool[2] { true, false };
             foreach (bool isLocationID in boolArray)
@@ -474,7 +501,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
                                     {
                                         foreach (bool isLocationReceiptID in boolArray)
                                         {
-                                            this.totalSmartCodingEntities.CreateStoredProcedure("WHL08" + isLocationID.ToString().Substring(0, 1) + isWarehouseID.ToString().Substring(0, 1) + isCommodityCategoryID.ToString().Substring(0, 1) + isCommodityID.ToString().Substring(0, 1) + isCommodityTypeID.ToString().Substring(0, 1) + goodsIssueTypeID_REPORTONLY.ToString().Substring(0, 1) + isCustomerCategoryID.ToString().Substring(0, 1) + isLocationReceiptID.ToString().Substring(0, 1), this.BUILDHeader(false, false) + this.BUILDLocationReceipt(isLocationID, isWarehouseID, isCommodityCategoryID, isCommodityID, isCommodityTypeID, goodsIssueTypeID_REPORTONLY, isCustomerCategoryID, isLocationReceiptID));
+                                            this.totalSmartCodingEntities.CreateStoredProcedure("WHLIssue08" + isLocationID.ToString().Substring(0, 1) + isWarehouseID.ToString().Substring(0, 1) + isCommodityCategoryID.ToString().Substring(0, 1) + isCommodityID.ToString().Substring(0, 1) + isCommodityTypeID.ToString().Substring(0, 1) + goodsIssueTypeID_REPORTONLY.ToString().Substring(0, 1) + isCustomerCategoryID.ToString().Substring(0, 1) + isLocationReceiptID.ToString().Substring(0, 1), this.BUILDHeader(false, false) + this.BUILDLocationReceipt(isLocationID, isWarehouseID, isCommodityCategoryID, isCommodityID, isCommodityTypeID, goodsIssueTypeID_REPORTONLY, isCustomerCategoryID, isLocationReceiptID));
                                         }
                                     }
                                 }
@@ -557,9 +584,9 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryString = queryString + "    BEGIN " + "\r\n";
 
             queryString = queryString + "       IF         (@WarehouseAdjustmentTypeIDs <> '') " + "\r\n";
-            queryString = queryString + "                   " + this.WarehouseLedgerBUILD(isLocationID, isWarehouseID, isCommodityCategoryID, isCommodityID, isCommodityTypeID, goodsIssueTypeID_REPORTONLY, isCustomerCategoryID, isLocationReceiptID, isCustomerID, isWarehouseReceiptID, isTeamID, isEmployeeID, true) + "\r\n";
+            queryString = queryString + "                   " + this.WarehouseLedgerBUILD(true, isLocationID, isWarehouseID, isCommodityCategoryID, isCommodityID, isCommodityTypeID, goodsIssueTypeID_REPORTONLY, isCustomerCategoryID, isLocationReceiptID, isCustomerID, isWarehouseReceiptID, isTeamID, isEmployeeID, true, false, false, false, false, false) + "\r\n";
             queryString = queryString + "       ELSE " + "\r\n";
-            queryString = queryString + "                   " + this.WarehouseLedgerBUILD(isLocationID, isWarehouseID, isCommodityCategoryID, isCommodityID, isCommodityTypeID, goodsIssueTypeID_REPORTONLY, isCustomerCategoryID, isLocationReceiptID, isCustomerID, isWarehouseReceiptID, isTeamID, isEmployeeID, false) + "\r\n";
+            queryString = queryString + "                   " + this.WarehouseLedgerBUILD(true, isLocationID, isWarehouseID, isCommodityCategoryID, isCommodityID, isCommodityTypeID, goodsIssueTypeID_REPORTONLY, isCustomerCategoryID, isLocationReceiptID, isCustomerID, isWarehouseReceiptID, isTeamID, isEmployeeID, false, false, false, false, false, false) + "\r\n";
 
             queryString = queryString + "    END " + "\r\n";
 
@@ -568,32 +595,45 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
 
 
-        private string WarehouseLedgerBUILD(bool isLocationID, bool isWarehouseID, bool isCommodityCategoryID, bool isCommodityID, bool isCommodityTypeID, GlobalEnums.GoodsIssueTypeID_REPORTONLY goodsIssueTypeID_REPORTONLY, bool isCustomerCategoryID, bool isLocationReceiptID, bool isCustomerID, bool isWarehouseReceiptID, bool isTeamID, bool isEmployeeID, bool isWarehouseAdjustmentTypeID)
+        private string WarehouseLedgerBUILD(bool isIssueVersusReceipt, bool isLocationID, bool isWarehouseID, bool isCommodityCategoryID, bool isCommodityID, bool isCommodityTypeID, GlobalEnums.GoodsIssueTypeID_REPORTONLY goodsIssueTypeID_REPORTONLY, bool isCustomerCategoryID, bool isLocationReceiptID, bool isCustomerID, bool isWarehouseReceiptID, bool isTeamID, bool isEmployeeID, bool isWarehouseAdjustmentTypeID, bool isGoodsReceiptTypeID, bool isSupplierCategoryID, bool isLocationIssueID, bool isSupplierID, bool isWarehouseIssueID)
         {
             string queryString = "";
 
             queryString = queryString + "    BEGIN " + "\r\n";
 
-            if (goodsIssueTypeID_REPORTONLY == GlobalEnums.GoodsIssueTypeID_REPORTONLY.Alls || goodsIssueTypeID_REPORTONLY == GlobalEnums.GoodsIssueTypeID_REPORTONLY.CombineSelectedAlls || goodsIssueTypeID_REPORTONLY == GlobalEnums.GoodsIssueTypeID_REPORTONLY.GoodsIssues || goodsIssueTypeID_REPORTONLY == GlobalEnums.GoodsIssueTypeID_REPORTONLY.SelectedGoodsIssues)
+            if (!isIssueVersusReceipt || goodsIssueTypeID_REPORTONLY == GlobalEnums.GoodsIssueTypeID_REPORTONLY.Alls || goodsIssueTypeID_REPORTONLY == GlobalEnums.GoodsIssueTypeID_REPORTONLY.CombineSelectedAlls || goodsIssueTypeID_REPORTONLY == GlobalEnums.GoodsIssueTypeID_REPORTONLY.GoodsIssues || goodsIssueTypeID_REPORTONLY == GlobalEnums.GoodsIssueTypeID_REPORTONLY.SelectedGoodsIssues)
             { //isGoodsIssueTypeID IS true WHEN goodsIssueTypeID_REPORTONLY == GlobalEnums.GoodsIssueTypeID_REPORTONLY.CombineSelectedAlls || goodsIssueTypeID_REPORTONLY == GlobalEnums.GoodsIssueTypeID_REPORTONLY.SelectedGoodsIssues
-                queryString = queryString + "                   " + this.WarehouseLedgerBUILDTable(GlobalEnums.NmvnTaskID.GoodsIssue, "GoodsIssueDetails", "GoodsIssueID", "GoodsIssueDetailID", isLocationID, isWarehouseID, isCommodityCategoryID, isCommodityTypeID, isCommodityID, goodsIssueTypeID_REPORTONLY == GlobalEnums.GoodsIssueTypeID_REPORTONLY.CombineSelectedAlls || goodsIssueTypeID_REPORTONLY == GlobalEnums.GoodsIssueTypeID_REPORTONLY.SelectedGoodsIssues) + "\r\n";
+                queryString = queryString + "                   " + this.WarehouseLedgerBUILDTable((isIssueVersusReceipt ? GlobalEnums.NmvnTaskID.GoodsIssue : GlobalEnums.NmvnTaskID.GoodsReceipt), (isIssueVersusReceipt ? "GoodsIssueDetails" : "GoodsReceiptDetails"), (isIssueVersusReceipt ? "GoodsIssueID" : "GoodsReceiptID"), (isIssueVersusReceipt ? "GoodsIssueDetailID" : "GoodsReceiptDetailID"), isLocationID, isWarehouseID, isCommodityCategoryID, isCommodityTypeID, isCommodityID, goodsIssueTypeID_REPORTONLY == GlobalEnums.GoodsIssueTypeID_REPORTONLY.CombineSelectedAlls || goodsIssueTypeID_REPORTONLY == GlobalEnums.GoodsIssueTypeID_REPORTONLY.SelectedGoodsIssues, isGoodsReceiptTypeID) + "\r\n";
 
-                queryString = queryString + "                   " + (isCustomerCategoryID || isCustomerID ? "INNER" : "LEFT") + "        JOIN Customers ON " + (isCustomerCategoryID || isCustomerID ? "(" + (isCustomerCategoryID ? "Customers.CustomerCategoryID IN (SELECT Id FROM dbo.SplitToIntList (@CustomerCategoryIDs))" : "") + (isCustomerCategoryID && isCustomerID ? " OR " : "") + (isCustomerID ? "Customers.CustomerID IN (SELECT Id FROM dbo.SplitToIntList (@CustomerIDs)) " : "") + ") AND " : "") + " GoodsIssueDetails.CustomerID = Customers.CustomerID " + "\r\n";
-                queryString = queryString + "                   " + (isCustomerCategoryID || isCustomerID ? "INNER" : "LEFT") + "        JOIN CustomerCategories ON Customers.CustomerCategoryID = CustomerCategories.CustomerCategoryID " + "\r\n";
+                if (isIssueVersusReceipt)
+                {
+                    queryString = queryString + "                   " + (isCustomerCategoryID || isCustomerID ? "INNER" : "LEFT") + "        JOIN Customers ON " + (isCustomerCategoryID || isCustomerID ? "(" + (isCustomerCategoryID ? "Customers.CustomerCategoryID IN (SELECT Id FROM dbo.SplitToIntList (@CustomerCategoryIDs))" : "") + (isCustomerCategoryID && isCustomerID ? " OR " : "") + (isCustomerID ? "Customers.CustomerID IN (SELECT Id FROM dbo.SplitToIntList (@CustomerIDs)) " : "") + ") AND " : "") + " GoodsIssueDetails.CustomerID = Customers.CustomerID " + "\r\n";
+                    queryString = queryString + "                   " + (isCustomerCategoryID || isCustomerID ? "INNER" : "LEFT") + "        JOIN CustomerCategories ON Customers.CustomerCategoryID = CustomerCategories.CustomerCategoryID " + "\r\n";
 
-                queryString = queryString + "                   " + (isTeamID || isEmployeeID ? "INNER" : "LEFT") + "                    JOIN Employees ON " + (isTeamID || isEmployeeID ? "(" + (isTeamID ? "Employees.TeamID IN (SELECT Id FROM dbo.SplitToIntList (@TeamIDs))" : "") + (isTeamID && isEmployeeID ? " OR " : "") + (isEmployeeID ? "Employees.EmployeeID IN (SELECT Id FROM dbo.SplitToIntList (@EmployeeIDs)) " : "") + ") AND " : "") + " GoodsIssueDetails.SalespersonID = Employees.EmployeeID " + "\r\n";
-                queryString = queryString + "                   " + (isTeamID || isEmployeeID ? "INNER" : "LEFT") + "                    JOIN Teams ON Employees.TeamID = Teams.TeamID " + "\r\n";
+                    queryString = queryString + "                   " + (isTeamID || isEmployeeID ? "INNER" : "LEFT") + "                    JOIN Employees ON " + (isTeamID || isEmployeeID ? "(" + (isTeamID ? "Employees.TeamID IN (SELECT Id FROM dbo.SplitToIntList (@TeamIDs))" : "") + (isTeamID && isEmployeeID ? " OR " : "") + (isEmployeeID ? "Employees.EmployeeID IN (SELECT Id FROM dbo.SplitToIntList (@EmployeeIDs)) " : "") + ") AND " : "") + " GoodsIssueDetails.SalespersonID = Employees.EmployeeID " + "\r\n";
+                    queryString = queryString + "                   " + (isTeamID || isEmployeeID ? "INNER" : "LEFT") + "                    JOIN Teams ON Employees.TeamID = Teams.TeamID " + "\r\n";
 
-                queryString = queryString + "                   " + (isLocationReceiptID || isWarehouseReceiptID ? "INNER" : "LEFT") + " JOIN Locations AS LocationReceipts ON " + (isLocationReceiptID || isWarehouseReceiptID ? "(" + (isLocationReceiptID ? "GoodsIssueDetails.LocationReceiptID IN (SELECT Id FROM dbo.SplitToIntList (@LocationReceiptIDs)) " : "") + (isLocationReceiptID && isWarehouseReceiptID ? " OR " : "") + (isWarehouseReceiptID ? "GoodsIssueDetails.WarehouseReceiptID IN (SELECT Id FROM dbo.SplitToIntList (@WarehouseReceiptIDs)) " : "") + ") AND " : "") + " GoodsIssueDetails.LocationReceiptID = LocationReceipts.LocationID " + "\r\n";
-                queryString = queryString + "                   " + (isLocationReceiptID || isWarehouseReceiptID ? "INNER" : "LEFT") + " JOIN Warehouses AS WarehouseReceipts ON GoodsIssueDetails.WarehouseReceiptID = WarehouseReceipts.WarehouseID " + "\r\n";
+                    queryString = queryString + "                   " + (isLocationReceiptID || isWarehouseReceiptID ? "INNER" : "LEFT") + " JOIN Locations AS LocationReceipts ON " + (isLocationReceiptID || isWarehouseReceiptID ? "(" + (isLocationReceiptID ? "GoodsIssueDetails.LocationReceiptID IN (SELECT Id FROM dbo.SplitToIntList (@LocationReceiptIDs)) " : "") + (isLocationReceiptID && isWarehouseReceiptID ? " OR " : "") + (isWarehouseReceiptID ? "GoodsIssueDetails.WarehouseReceiptID IN (SELECT Id FROM dbo.SplitToIntList (@WarehouseReceiptIDs)) " : "") + ") AND " : "") + " GoodsIssueDetails.LocationReceiptID = LocationReceipts.LocationID " + "\r\n";
+                    queryString = queryString + "                   " + (isLocationReceiptID || isWarehouseReceiptID ? "INNER" : "LEFT") + " JOIN Warehouses AS WarehouseReceipts ON GoodsIssueDetails.WarehouseReceiptID = WarehouseReceipts.WarehouseID " + "\r\n";
+                }
+                else
+                {
+                    queryString = queryString + "                   " + (isSupplierCategoryID || isSupplierID ? "INNER" : "LEFT") + "        JOIN Customers Suppliers ON " + (isSupplierCategoryID || isSupplierID ? "(" + (isSupplierCategoryID ? "Suppliers.CustomerCategoryID IN (SELECT Id FROM dbo.SplitToIntList (@SupplierCategoryIDs))" : "") + (isSupplierCategoryID && isSupplierID ? " OR " : "") + (isSupplierID ? "Suppliers.CustomerID IN (SELECT Id FROM dbo.SplitToIntList (@SupplierIDs)) " : "") + ") AND " : "") + " GoodsReceiptDetails.SupplierID = Suppliers.CustomerID " + "\r\n";
+                    queryString = queryString + "                   " + (isSupplierCategoryID || isSupplierID ? "INNER" : "LEFT") + "        JOIN CustomerCategories SupplierCategories ON Suppliers.CustomerCategoryID = SupplierCategories.CustomerCategoryID " + "\r\n";
+
+                    queryString = queryString + "                   " + (isLocationIssueID || isWarehouseIssueID ? "INNER" : "LEFT") + "     JOIN Locations AS LocationIssues ON " + (isLocationIssueID || isWarehouseIssueID ? "(" + (isLocationIssueID ? "GoodsReceiptDetails.LocationIssueID IN (SELECT Id FROM dbo.SplitToIntList (@LocationIssueIDs)) " : "") + (isLocationIssueID && isWarehouseIssueID ? " OR " : "") + (isWarehouseIssueID ? "GoodsReceiptDetails.WarehouseIssueID IN (SELECT Id FROM dbo.SplitToIntList (@WarehouseIssueIDs)) " : "") + ") AND " : "") + " GoodsReceiptDetails.LocationIssueID = LocationIssues.LocationID " + "\r\n";
+                    queryString = queryString + "                   " + (isLocationIssueID || isWarehouseIssueID ? "INNER" : "LEFT") + "     JOIN Warehouses AS WarehouseIssues ON GoodsReceiptDetails.WarehouseIssueID = WarehouseIssues.WarehouseID " + "\r\n";
+
+                    queryString = queryString + "                   " + (isWarehouseAdjustmentTypeID ? "INNER" : "LEFT") + "                 JOIN WarehouseAdjustmentTypes ON " + (isWarehouseAdjustmentTypeID ? "GoodsReceiptDetails.WarehouseAdjustmentTypeID IN (SELECT Id FROM dbo.SplitToIntList (@WarehouseAdjustmentTypeIDs)) AND " : "") + " GoodsReceiptDetails.WarehouseAdjustmentTypeID = WarehouseAdjustmentTypes.WarehouseAdjustmentTypeID " + "\r\n";
+                }
             }
 
-            if (goodsIssueTypeID_REPORTONLY == GlobalEnums.GoodsIssueTypeID_REPORTONLY.Alls || goodsIssueTypeID_REPORTONLY == GlobalEnums.GoodsIssueTypeID_REPORTONLY.CombineSelectedAlls)
+            if (isIssueVersusReceipt && (goodsIssueTypeID_REPORTONLY == GlobalEnums.GoodsIssueTypeID_REPORTONLY.Alls || goodsIssueTypeID_REPORTONLY == GlobalEnums.GoodsIssueTypeID_REPORTONLY.CombineSelectedAlls))
                 queryString = queryString + "                   UNION ALL " + "\r\n";
 
-            if (goodsIssueTypeID_REPORTONLY == GlobalEnums.GoodsIssueTypeID_REPORTONLY.Alls || goodsIssueTypeID_REPORTONLY == GlobalEnums.GoodsIssueTypeID_REPORTONLY.CombineSelectedAlls || goodsIssueTypeID_REPORTONLY == GlobalEnums.GoodsIssueTypeID_REPORTONLY.WarehouseAdjustments)
+            if (isIssueVersusReceipt && (goodsIssueTypeID_REPORTONLY == GlobalEnums.GoodsIssueTypeID_REPORTONLY.Alls || goodsIssueTypeID_REPORTONLY == GlobalEnums.GoodsIssueTypeID_REPORTONLY.CombineSelectedAlls || goodsIssueTypeID_REPORTONLY == GlobalEnums.GoodsIssueTypeID_REPORTONLY.WarehouseAdjustments))
             { //isGoodsIssueTypeID IS ALWAYS false
-                queryString = queryString + "                   " + this.WarehouseLedgerBUILDTable(GlobalEnums.NmvnTaskID.WarehouseAdjustment, "WarehouseAdjustmentDetails", "WarehouseAdjustmentID", "WarehouseAdjustmentDetailID", isLocationID, isWarehouseID, isCommodityCategoryID, isCommodityTypeID, isCommodityID, false) + "\r\n";
+                queryString = queryString + "                   " + this.WarehouseLedgerBUILDTable(GlobalEnums.NmvnTaskID.WarehouseAdjustment, "WarehouseAdjustmentDetails", "WarehouseAdjustmentID", "WarehouseAdjustmentDetailID", isLocationID, isWarehouseID, isCommodityCategoryID, isCommodityTypeID, isCommodityID, false, false) + "\r\n";
 
                 queryString = queryString + "                   INNER JOIN WarehouseAdjustmentTypes ON " + (isWarehouseAdjustmentTypeID ? "WarehouseAdjustmentDetails.WarehouseAdjustmentTypeID IN (SELECT Id FROM dbo.SplitToIntList (@WarehouseAdjustmentTypeIDs)) AND " : "") + " WarehouseAdjustmentDetails.WarehouseAdjustmentTypeID = WarehouseAdjustmentTypes.WarehouseAdjustmentTypeID " + "\r\n";
             }
@@ -604,7 +644,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
         }
 
 
-        private string WarehouseLedgerBUILDTable(GlobalEnums.NmvnTaskID nmvnTaskID, string tableName, string primaryKey, string primaryDetailKey, bool isLocationID, bool isWarehouseID, bool isCommodityCategoryID, bool isCommodityTypeID, bool isCommodityID, bool isGoodsIssueTypeID)
+        private string WarehouseLedgerBUILDTable(GlobalEnums.NmvnTaskID nmvnTaskID, string tableName, string primaryKey, string primaryDetailKey, bool isLocationID, bool isWarehouseID, bool isCommodityCategoryID, bool isCommodityTypeID, bool isCommodityID, bool isGoodsIssueTypeID, bool isGoodsReceiptTypeID)
         {
             string queryString = "";
 
@@ -612,19 +652,155 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryString = queryString + "                   Commodities.CommodityID, Commodities.Code, Commodities.Name, Commodities.PackageSize, CommodityCategories.Name AS CommodityCategoryName, CommodityTypes.Name AS CommodityTypeName, CAST(0 AS bit) AS IsPromotion, " + (nmvnTaskID == GlobalEnums.NmvnTaskID.WarehouseAdjustment ? "-" : "") + tableName + ".Quantity, " + (nmvnTaskID == GlobalEnums.NmvnTaskID.WarehouseAdjustment ? "-" : "") + tableName + ".LineVolume, " + "\r\n";
             if (nmvnTaskID == GlobalEnums.NmvnTaskID.GoodsIssue)
                 queryString = queryString + "               ISNULL(Customers.Code, LocationReceipts.Name) AS LineForeignCode, ISNULL(Customers.Name, WarehouseReceipts.Name) AS LineForeignName, GoodsIssueDetails.VoucherCodes AS LineReferences, CustomerCategories.Name AS CustomerCategoryName, Teams.Name AS TeamName, Employees.Name AS SalespersonName " + "\r\n";
+
+
+            if (nmvnTaskID == GlobalEnums.NmvnTaskID.GoodsReceipt)
+                queryString = queryString + "               ISNULL(Suppliers.Code, LocationIssues.Name) AS LineForeignCode, ISNULL(Suppliers.Name, WarehouseIssues.Name) AS LineForeignName, GoodsReceiptDetails.PrimaryReferences AS LineReferences, SupplierCategories.Name AS CustomerCategoryName, NULL AS TeamName, NULL AS SalespersonName " + "\r\n";
+
+
             if (nmvnTaskID == GlobalEnums.NmvnTaskID.WarehouseAdjustment)
                 queryString = queryString + "               WarehouseAdjustmentTypes.Code AS LineForeignCode, WarehouseAdjustmentTypes.Name AS LineForeignName, WarehouseAdjustmentDetails.Reference + ' ' + WarehouseAdjustmentDetails.AdjustmentJobs AS LineReferences, NULL AS CustomerCategoryName, NULL AS TeamName, NULL AS SalespersonName " + "\r\n";
 
 
             queryString = queryString + "       FROM        " + tableName + " " + "\r\n";
 
-            queryString = queryString + "                   INNER JOIN Locations ON " + (nmvnTaskID == GlobalEnums.NmvnTaskID.WarehouseAdjustment ? tableName + ".Quantity < 0 AND " : "") + tableName + ".EntryDate >= @FromDate AND " + tableName + ".EntryDate <= @ToDate AND " + tableName + ".OrganizationalUnitID IN (SELECT OrganizationalUnitID FROM AccessControls WHERE UserID = @UserID AND NMVNTaskID = " + (int)nmvnTaskID + " AND AccessControls.AccessLevel > 0) AND " + (isGoodsIssueTypeID ? tableName + ".GoodsIssueTypeID IN (SELECT Id FROM dbo.SplitToIntList (@GoodsIssueTypeIDs)) AND " : "") + (isLocationID || isWarehouseID ? "(" + (isLocationID ? "" + tableName + ".LocationID IN (SELECT Id FROM dbo.SplitToIntList (@LocationIDs)) " : "") + (isLocationID && isWarehouseID ? " OR " : "") + (isWarehouseID ? "" + tableName + ".WarehouseID IN (SELECT Id FROM dbo.SplitToIntList (@WarehouseIDs)) " : "") + ") AND " : "") + " " + tableName + ".LocationID = Locations.LocationID " + "\r\n";
+            queryString = queryString + "                   INNER JOIN Locations ON " + (nmvnTaskID == GlobalEnums.NmvnTaskID.WarehouseAdjustment ? tableName + ".Quantity < 0 AND " : "") + tableName + ".EntryDate >= @FromDate AND " + tableName + ".EntryDate <= @ToDate AND " + tableName + ".OrganizationalUnitID IN (SELECT OrganizationalUnitID FROM AccessControls WHERE UserID = @UserID AND NMVNTaskID = " + (int)nmvnTaskID + " AND AccessControls.AccessLevel > 0) AND " + (isGoodsIssueTypeID ? tableName + ".GoodsIssueTypeID IN (SELECT Id FROM dbo.SplitToIntList (@GoodsIssueTypeIDs)) AND " : "") + (isGoodsReceiptTypeID ? tableName + ".GoodsReceiptTypeID IN (SELECT Id FROM dbo.SplitToIntList (@GoodsReceiptTypeIDs)) AND " : "") + (isLocationID || isWarehouseID ? "(" + (isLocationID ? "" + tableName + ".LocationID IN (SELECT Id FROM dbo.SplitToIntList (@LocationIDs)) " : "") + (isLocationID && isWarehouseID ? " OR " : "") + (isWarehouseID ? "" + tableName + ".WarehouseID IN (SELECT Id FROM dbo.SplitToIntList (@WarehouseIDs)) " : "") + ") AND " : "") + " " + tableName + ".LocationID = Locations.LocationID " + "\r\n";
             queryString = queryString + "                   INNER JOIN Warehouses ON " + tableName + ".WarehouseID = Warehouses.WarehouseID " + "\r\n";
 
             queryString = queryString + "                   INNER JOIN Commodities ON " + (isCommodityCategoryID || isCommodityID ? "(" + (isCommodityCategoryID ? "Commodities.CommodityCategoryID IN (SELECT Id FROM dbo.SplitToIntList (@CommodityCategoryIDs))" : "") + (isCommodityCategoryID && isCommodityID ? " OR " : "") + (isCommodityID ? "Commodities.CommodityID IN (SELECT Id FROM dbo.SplitToIntList (@CommodityIDs)) " : "") + ") AND " : "") + " " + tableName + ".CommodityID = Commodities.CommodityID " + "\r\n";
             queryString = queryString + "                   INNER JOIN CommodityCategories ON " + " Commodities.CommodityCategoryID = CommodityCategories.CommodityCategoryID " + "\r\n";
 
             queryString = queryString + "                   INNER JOIN CommodityTypes ON " + (isCommodityTypeID ? "Commodities.CommodityTypeID IN (SELECT Id FROM dbo.SplitToIntList (@CommodityTypeIDs)) AND " : "") + " Commodities.CommodityTypeID = CommodityTypes.CommodityTypeID " + "\r\n";
+
+            return queryString;
+        }
+
+
+
+
+
+        private string WHLReceipt06(bool isLocationID, bool isWarehouseID, bool isCommodityCategoryID, bool isCommodityID, bool isCommodityTypeID)
+        {
+            string queryString = "";
+
+            queryString = queryString + "    BEGIN " + "\r\n";
+
+            queryString = queryString + "       IF         (@GoodsReceiptTypeIDs <> '') " + "\r\n";
+            queryString = queryString + "                   " + this.BUILDGoodsReceiptType(isLocationID, isWarehouseID, isCommodityCategoryID, isCommodityID, isCommodityTypeID, true) + "\r\n";
+            queryString = queryString + "       ELSE " + "\r\n";
+            queryString = queryString + "                   " + this.BUILDGoodsReceiptType(isLocationID, isWarehouseID, isCommodityCategoryID, isCommodityID, isCommodityTypeID, false) + "\r\n";
+
+            queryString = queryString + "    END " + "\r\n";
+
+            return queryString;
+        }
+
+        private string BUILDGoodsReceiptType(bool isLocationID, bool isWarehouseID, bool isCommodityCategoryID, bool isCommodityID, bool isCommodityTypeID, bool isGoodsReceiptTypeID)
+        {
+            string queryString = "";
+
+            queryString = queryString + "    BEGIN " + "\r\n";
+
+            queryString = queryString + "       IF         (@SupplierCategoryIDs <> '') " + "\r\n";
+            queryString = queryString + "                   " + this.BUILDSupplierCategory(isLocationID, isWarehouseID, isCommodityCategoryID, isCommodityID, isCommodityTypeID, isGoodsReceiptTypeID, true) + "\r\n";
+            queryString = queryString + "       ELSE " + "\r\n";
+            queryString = queryString + "                   " + this.BUILDSupplierCategory(isLocationID, isWarehouseID, isCommodityCategoryID, isCommodityID, isCommodityTypeID, isGoodsReceiptTypeID, false) + "\r\n";
+
+            queryString = queryString + "    END " + "\r\n";
+
+            return queryString;
+        }
+
+        private string BUILDSupplierCategory(bool isLocationID, bool isWarehouseID, bool isCommodityCategoryID, bool isCommodityID, bool isCommodityTypeID, bool isGoodsReceiptTypeID, bool isSupplierCategoryID)
+        {
+            string queryString = "";
+
+            queryString = queryString + "    BEGIN " + "\r\n";
+
+            queryString = queryString + "       IF         (@LocationIssueIDs <> '') " + "\r\n";
+            queryString = queryString + "                   EXEC WHLReceipt08" + isLocationID.ToString().Substring(0, 1) + isWarehouseID.ToString().Substring(0, 1) + isCommodityCategoryID.ToString().Substring(0, 1) + isCommodityID.ToString().Substring(0, 1) + isCommodityTypeID.ToString().Substring(0, 1) + isGoodsReceiptTypeID.ToString().Substring(0, 1) + isSupplierCategoryID.ToString().Substring(0, 1) + true.ToString().Substring(0, 1) + this.BUILDParameter(false) + "\r\n";
+            queryString = queryString + "       ELSE " + "\r\n";
+            queryString = queryString + "                   EXEC WHLReceipt08" + isLocationID.ToString().Substring(0, 1) + isWarehouseID.ToString().Substring(0, 1) + isCommodityCategoryID.ToString().Substring(0, 1) + isCommodityID.ToString().Substring(0, 1) + isCommodityTypeID.ToString().Substring(0, 1) + isGoodsReceiptTypeID.ToString().Substring(0, 1) + isSupplierCategoryID.ToString().Substring(0, 1) + false.ToString().Substring(0, 1) + this.BUILDParameter(false) + "\r\n";
+            queryString = queryString + "    END " + "\r\n";
+
+            return queryString;
+        }
+
+        private void WarehouseLedgerReceipt08()
+        {
+            bool[] boolArray = new bool[2] { true, false };
+            foreach (bool isLocationID in boolArray)
+            {
+                foreach (bool isWarehouseID in boolArray)
+                {
+                    foreach (bool isCommodityCategoryID in boolArray)
+                    {
+                        foreach (bool isCommodityID in boolArray)
+                        {
+                            foreach (bool isCommodityTypeID in boolArray)
+                            {
+                                foreach (bool isGoodsReceiptTypeID in boolArray)
+                                {
+                                    foreach (bool isSupplierCategoryID in boolArray)
+                                    {
+                                        foreach (bool isLocationIssueID in boolArray)
+                                        {
+                                            this.totalSmartCodingEntities.CreateStoredProcedure("WHLReceipt08" + isLocationID.ToString().Substring(0, 1) + isWarehouseID.ToString().Substring(0, 1) + isCommodityCategoryID.ToString().Substring(0, 1) + isCommodityID.ToString().Substring(0, 1) + isCommodityTypeID.ToString().Substring(0, 1) + isGoodsReceiptTypeID.ToString().Substring(0, 1) + isSupplierCategoryID.ToString().Substring(0, 1) + isLocationIssueID.ToString().Substring(0, 1), this.BUILDHeader(false, false) + this.BUILDLocationIssue(isLocationID, isWarehouseID, isCommodityCategoryID, isCommodityID, isCommodityTypeID, isGoodsReceiptTypeID, isSupplierCategoryID, isLocationIssueID));
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
+        private string BUILDLocationIssue(bool isLocationID, bool isWarehouseID, bool isCommodityCategoryID, bool isCommodityID, bool isCommodityTypeID, bool isGoodsReceiptTypeID, bool isSupplierCategoryID, bool isLocationIssueID)
+        {
+            string queryString = "";
+
+            queryString = queryString + "    BEGIN " + "\r\n";
+
+            queryString = queryString + "       IF         (@SupplierIDs <> '') " + "\r\n";
+            queryString = queryString + "                   " + this.BUILDSupplier(isLocationID, isWarehouseID, isCommodityCategoryID, isCommodityID, isCommodityTypeID, isGoodsReceiptTypeID, isSupplierCategoryID, isLocationIssueID, true) + "\r\n";
+            queryString = queryString + "       ELSE " + "\r\n";
+            queryString = queryString + "                   " + this.BUILDSupplier(isLocationID, isWarehouseID, isCommodityCategoryID, isCommodityID, isCommodityTypeID, isGoodsReceiptTypeID, isSupplierCategoryID, isLocationIssueID, false) + "\r\n";
+
+            queryString = queryString + "    END " + "\r\n";
+
+            return queryString;
+        }
+
+        private string BUILDSupplier(bool isLocationID, bool isWarehouseID, bool isCommodityCategoryID, bool isCommodityID, bool isCommodityTypeID, bool isGoodsReceiptTypeID, bool isSupplierCategoryID, bool isLocationIssueID, bool isSupplierID)
+        {
+            string queryString = "";
+
+            queryString = queryString + "    BEGIN " + "\r\n";
+
+            queryString = queryString + "       IF         (@WarehouseIssueIDs <> '') " + "\r\n";
+            queryString = queryString + "                   " + this.BUILDWarehouseIssue(isLocationID, isWarehouseID, isCommodityCategoryID, isCommodityID, isCommodityTypeID, isGoodsReceiptTypeID, isSupplierCategoryID, isLocationIssueID, isSupplierID, true) + "\r\n";
+            queryString = queryString + "       ELSE " + "\r\n";
+            queryString = queryString + "                   " + this.BUILDWarehouseIssue(isLocationID, isWarehouseID, isCommodityCategoryID, isCommodityID, isCommodityTypeID, isGoodsReceiptTypeID, isSupplierCategoryID, isLocationIssueID, isSupplierID, false) + "\r\n";
+
+            queryString = queryString + "    END " + "\r\n";
+
+            return queryString;
+        }
+
+        private string BUILDWarehouseIssue(bool isLocationID, bool isWarehouseID, bool isCommodityCategoryID, bool isCommodityID, bool isCommodityTypeID, bool isGoodsReceiptTypeID, bool isSupplierCategoryID, bool isLocationIssueID, bool isSupplierID, bool isWarehouseIssueID)
+        {
+            string queryString = "";
+
+            queryString = queryString + "    BEGIN " + "\r\n";
+
+            queryString = queryString + "       IF         (@WarehouseAdjustmentTypeIDs <> '') " + "\r\n";
+            queryString = queryString + "                   " + this.WarehouseLedgerBUILD(false, isLocationID, isWarehouseID, isCommodityCategoryID, isCommodityID, isCommodityTypeID, GlobalEnums.GoodsIssueTypeID_REPORTONLY.Alls, false, false, false, false, false, false, true, isGoodsReceiptTypeID, isSupplierCategoryID, isLocationIssueID, isSupplierID, isWarehouseIssueID) + "\r\n";
+            queryString = queryString + "       ELSE " + "\r\n";
+            queryString = queryString + "                   " + this.WarehouseLedgerBUILD(false, isLocationID, isWarehouseID, isCommodityCategoryID, isCommodityID, isCommodityTypeID, GlobalEnums.GoodsIssueTypeID_REPORTONLY.Alls, false, false, false, false, false, false, false, isGoodsReceiptTypeID, isSupplierCategoryID, isLocationIssueID, isSupplierID, isWarehouseIssueID) + "\r\n";
+
+            queryString = queryString + "    END " + "\r\n";
 
             return queryString;
         }

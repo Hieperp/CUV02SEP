@@ -316,7 +316,7 @@ namespace TotalSmartCoding.Views.Generals
         {
             PrintViewModel printViewModel = base.InitPrintViewModel();
             printViewModel.ReportPath = this.reportViewModel.ReportURL;
-            
+
             this.PassFilterParameters(printViewModel);
 
             return printViewModel;
@@ -333,10 +333,16 @@ namespace TotalSmartCoding.Views.Generals
 
             string headerTitle = this.reportViewModel.ReportName;
 
-            if (this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsIssuePivot || this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsIssueJournal)
+            if (this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsReceiptPivot || this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsIssuePivot || this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsReceiptJournal || this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsIssueJournal)
             {
                 printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("UserID", ContextAttributes.User.UserID.ToString()));
-                printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("GoodsIssueTypeIDs", (this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.SalesIssuePivot || this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.SalesIssueJournal ? ((int)GlobalEnums.GoodsIssueTypeID.DeliveryAdvice).ToString() : (this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.TransferIssuePivot || this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.TransferIssueJournal ? ((int)GlobalEnums.GoodsIssueTypeID.TransferOrder).ToString() : (this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.AdjustmentIssuePivot || this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.AdjustmentIssueJournal ? ((int)GlobalEnums.GoodsIssueTypeID.WarehouseAdjustment).ToString() : null)))));
+                printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("IssueVersusReceipt", (this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsIssuePivot || this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsIssueJournal ? 0 : 1).ToString()));
+
+                if (this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsIssuePivot || this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsIssueJournal)
+                    printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("GoodsIssueTypeIDs", (this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.SalesIssuePivot || this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.SalesIssueJournal ? ((int)GlobalEnums.GoodsIssueTypeID.DeliveryAdvice).ToString() : (this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.TransferIssuePivot || this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.TransferIssueJournal ? ((int)GlobalEnums.GoodsIssueTypeID.TransferOrder).ToString() : (this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.AdjustmentIssuePivot || this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.AdjustmentIssueJournal ? ((int)GlobalEnums.GoodsIssueTypeID.WarehouseAdjustment).ToString() : null)))));
+
+                if (this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsReceiptPivot || this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsReceiptJournal)
+                    printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("GoodsReceiptTypeIDs", (this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.ProductionReceiptPivot || this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.ProductionReceiptJournal ? ((int)GlobalEnums.GoodsReceiptTypeID.Pickup).ToString() : (this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.TransferReceiptPivot || this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.TransferReceiptJournal ? ((int)GlobalEnums.GoodsReceiptTypeID.GoodsIssueTransfer).ToString() : (this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.AdjustmentReceiptPivot || this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.AdjustmentReceiptJournal ? ((int)GlobalEnums.GoodsReceiptTypeID.WarehouseAdjustments).ToString() : null)))));
 
                 if (this.buttonDateVersusMonth.Visible) headerTitle = this.comboDateVersusMonth.Text + " " + headerTitle;
                 printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("DateVersusMonth", (this.buttonDateVersusMonth.Visible ? this.comboDateVersusMonth.ComboBox.SelectedIndex : 0).ToString()));

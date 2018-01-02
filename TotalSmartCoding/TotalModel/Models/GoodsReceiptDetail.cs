@@ -50,6 +50,12 @@ namespace TotalModel.Models
         public string Remarks { get; set; }
         public bool Approved { get; set; }
         public int GoodsReceiptTypeID { get; set; }
+        public Nullable<int> SupplierID { get; set; }
+        public Nullable<int> WarehouseIssueID { get; set; }
+        public Nullable<int> LocationIssueID { get; set; }
+        public int OrganizationalUnitID { get; set; }
+        public string PrimaryReferences { get; set; }
+        public Nullable<int> WarehouseAdjustmentTypeID { get; set; }
     
         public virtual BinLocation BinLocation { get; set; }
         public virtual Carton Carton { get; set; }
