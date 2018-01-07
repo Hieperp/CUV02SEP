@@ -2192,5 +2192,10 @@ namespace TotalModel.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ReportIndex>("GetReportIndexes", userIDParameter, fromDateParameter, toDateParameter);
         }
+    
+        public virtual ObjectResult<UserTree> GetUserTrees()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UserTree>("GetUserTrees");
+        }
     }
 }

@@ -25,6 +25,11 @@ namespace TotalDAL.Repositories.Generals
         {
         }
 
+        public List<UserTree> GetUserTrees()
+        {
+            return this.TotalSmartCodingEntities.GetUserTrees().ToList();
+        }
+
         public IList<OrganizationalUnitIndex> GetOrganizationalUnitIndexes()
         {
             return this.TotalSmartCodingEntities.GetOrganizationalUnitIndexes().ToList();

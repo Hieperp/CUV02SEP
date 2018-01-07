@@ -28,6 +28,8 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
 
             this.GetUserAccessControls();
             this.SaveUserAccessControls();
+
+            this.GetUserTrees();
         }
 
 
@@ -93,6 +95,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             string queryString = " @OrganizationalUnitID int, @FirstName nvarchar(60), @LastName nvarchar(60), @UserName nvarchar(256), @SecurityIdentifier nvarchar(256) " + "\r\n";
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
+            //LUU Y RAT QUAN TRONG - VERY IMPORTANT
             //AT NOW: OrganizationalUnitUsers KHONG CON PHU HOP NUA, TUY NHIEN, VAN PHAI DUY TRI VI KHONG CO THOI GIAN MODIFY
             //YEU CAU LUC NAY LA: LAM SAO DAM BAO Users(UserID, OrganizationalUnitID) VA OrganizationalUnitUsers(OrganizationalUnitID, UserID) PHAI MATCH 1-1
             //DO DO: KHI ADD, REMOVE, EDIT, INACTIVE, ... PHAI DAM BAO YEU CAU NAY THI MOI THU SE OK
@@ -170,5 +173,29 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             this.totalSmartCodingEntities.CreateStoredProcedure("SaveUserAccessControls", queryString);
         }
 
+
+        private void GetUserTrees()
+        {
+            string queryString;
+
+            queryString = " " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+            queryString = queryString + "    BEGIN " + "\r\n";
+
+            queryString = queryString + "       SELECT      " + GlobalEnums.RootNode + " + LocationID AS NodeID, 0 AS ParentNodeID, LocationID AS PrimaryID, NULL AS AncestorID, Code, Name, 'LocationID' AS ParameterName, CAST(0 AS bit) AS Selected " + "\r\n";
+            queryString = queryString + "       FROM        Locations " + "\r\n";
+
+            queryString = queryString + "       UNION ALL " + "\r\n";
+            queryString = queryString + "       SELECT      " + GlobalEnums.AncestorNode + " + OrganizationalUnitID AS NodeID, " + GlobalEnums.RootNode + " + LocationID AS ParentNodeID, OrganizationalUnitID AS PrimaryID, LocationID AS AncestorID, Code, Name, 'OrganizationalUnitID' AS ParameterName, CAST(0 AS bit) AS Selected " + "\r\n";
+            queryString = queryString + "       FROM        OrganizationalUnits " + "\r\n";
+            queryString = queryString + "       UNION ALL " + "\r\n";
+            queryString = queryString + "       SELECT      UserID AS NodeID, " + GlobalEnums.AncestorNode + " + OrganizationalUnitID AS ParentNodeID, UserID AS PrimaryID, OrganizationalUnitID AS AncestorID, SecurityIdentifier AS Code, UserName AS Name, 'UserID' AS ParameterName, InActive AS Selected " + "\r\n";
+            queryString = queryString + "       FROM        Users " + "\r\n";
+
+            queryString = queryString + "    END " + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("GetUserTrees", queryString);
+        }
     }
 }

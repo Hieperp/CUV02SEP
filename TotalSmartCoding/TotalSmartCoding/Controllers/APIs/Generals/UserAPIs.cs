@@ -29,6 +29,11 @@ namespace TotalSmartCoding.Controllers.APIs.Generals
             return this.userAPIRepository.GetEntityIndexes<UserIndex>(ContextAttributes.User.UserID, ContextAttributes.FromDate, ContextAttributes.ToDate).ToList();
         }
 
+        public List<UserTree> GetUserTrees()
+        {
+            return this.userAPIRepository.GetUserTrees();
+        }
+
         public IList<OrganizationalUnitIndex> GetOrganizationalUnitIndexes()
         {
             return this.userAPIRepository.GetOrganizationalUnitIndexes();

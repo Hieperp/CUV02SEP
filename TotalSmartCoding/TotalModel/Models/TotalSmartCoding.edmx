@@ -2513,6 +2513,7 @@
         <Function Name="GetUserOrganizationalUnit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserName" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="GetUserTrees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetVersionID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ConfigID" Type="int" Mode="In" />
         </Function>
@@ -4263,6 +4264,7 @@
             <End Role="Warehouse" EntitySet="Warehouses" />
             <End Role="GoodsIssue" EntitySet="GoodsIssues" />
           </AssociationSet>
+          <FunctionImport Name="GetUserTrees" ReturnType="Collection(TotalSmartCodingModel.UserTree)" />
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
           <Property Type="Int32" Name="PickupID" Nullable="false" />
@@ -7559,6 +7561,16 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="UserTree">
+          <Property Type="Int32" Name="NodeID" Nullable="true" />
+          <Property Type="Int32" Name="ParentNodeID" Nullable="true" />
+          <Property Type="Int32" Name="PrimaryID" Nullable="false" />
+          <Property Type="Int32" Name="AncestorID" Nullable="true" />
+          <Property Type="String" Name="Code" Nullable="false" MaxLength="256" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="256" />
+          <Property Type="String" Name="ParameterName" Nullable="false" MaxLength="20" />
+          <Property Type="Boolean" Name="Selected" Nullable="true" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -9847,6 +9859,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetUserTrees" FunctionName="TotalSmartCodingModel.Store.GetUserTrees">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TotalSmartCodingModel.UserTree">
+                <ScalarProperty Name="NodeID" ColumnName="NodeID" />
+                <ScalarProperty Name="ParentNodeID" ColumnName="ParentNodeID" />
+                <ScalarProperty Name="PrimaryID" ColumnName="PrimaryID" />
+                <ScalarProperty Name="AncestorID" ColumnName="AncestorID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ParameterName" ColumnName="ParameterName" />
+                <ScalarProperty Name="Selected" ColumnName="Selected" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

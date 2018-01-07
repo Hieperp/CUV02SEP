@@ -43,6 +43,9 @@ namespace TotalSmartCoding.Views.Mains
                 this.fastNMVNTasks.Sort(this.olvModuleName, SortOrder.Ascending);
 
                 this.userAPIs = new UserAPIs(CommonNinject.Kernel.Get<IUserAPIRepository>());
+
+                this.LoadUserTrees();
+
                 this.comboUserID.ComboBox.DataSource = this.userAPIs.GetUserIndexes();
                 this.comboUserID.ComboBox.DisplayMember = CommonExpressions.PropertyName<UserIndex>(p => p.FullyQualifiedUserName);
                 this.comboUserID.ComboBox.ValueMember = CommonExpressions.PropertyName<UserIndex>(p => p.UserID);
@@ -62,6 +65,14 @@ namespace TotalSmartCoding.Views.Mains
             {
                 ExceptionHandlers.ShowExceptionMessageBox(this, exception);
             }
+        }
+
+        private void LoadUserTrees()
+        {
+            this.treeUserID.RootKeyValue = 0;
+            IList<UserTree> userTrees = this.userAPIs.GetUserTrees();
+            this.treeUserID.DataSource = new BindingSource(userTrees, "");
+            this.treeUserID.ExpandAll();
         }
 
         private void comboUserID_SelectedIndexChanged(object sender, EventArgs e)

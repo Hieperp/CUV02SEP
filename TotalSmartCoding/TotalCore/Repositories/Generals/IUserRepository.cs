@@ -11,6 +11,7 @@ namespace TotalCore.Repositories.Generals
 
     public interface IUserAPIRepository : IGenericAPIRepository
     {
+        List<UserTree> GetUserTrees();
         IList<OrganizationalUnitIndex> GetOrganizationalUnitIndexes();
 
         IList<ActiveUser> GetActiveUsers(string securityIdentifier);
