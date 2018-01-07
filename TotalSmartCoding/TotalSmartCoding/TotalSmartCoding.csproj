@@ -1144,6 +1144,12 @@
     <None Include="Resources\P-1-26-24.png" />
     <None Include="Resources\xxx042-24.png" />
     <None Include="Resources\Energy_24.png" />
+    <None Include="Resources\Button_background_small.png" />
+    <None Include="Resources\Button_background_small1.png" />
+    <None Include="Resources\Button_background_small2.png" />
+    <None Include="Resources\Button_background_small3.png" />
+    <None Include="Resources\Button_background_small4.png" />
+    <None Include="Resources\Data-add.ico" />
     <Content Include="SmartCodingSolution.ico" />
     <None Include="Resources\Yellow-cross.ico" />
     <None Include="Resources\White-Pallet.ico" />

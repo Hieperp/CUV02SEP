@@ -17,6 +17,7 @@ using TotalSmartCoding.Libraries.StackedHeaders;
 using System.ComponentModel;
 using AutoMapper;
 using TotalDTO.Generals;
+using TotalBase.Enums;
 
 
 namespace TotalSmartCoding.Views.Mains
@@ -44,10 +45,12 @@ namespace TotalSmartCoding.Views.Mains
 
                 this.userAPIs = new UserAPIs(CommonNinject.Kernel.Get<IUserAPIRepository>());
 
-                this.LoadUserTrees();
+                this.comboActiveOption.SelectedIndex = 0;
+                this.treeUserID.SelectedIndexChanged += treeUserID_SelectedIndexChanged;
+                
 
-                this.comboUserID.ComboBox.DataSource = this.userAPIs.GetUserIndexes();
-                this.comboUserID.ComboBox.DisplayMember = CommonExpressions.PropertyName<UserIndex>(p => p.FullyQualifiedUserName);
+                this.comboUserID.ComboBox.DataSource = this.userAPIs.GetUserIndexes(this.comboActiveOption.SelectedIndex == 0 ? GlobalEnums.ActiveOption.Active : GlobalEnums.ActiveOption.Both);
+                this.comboUserID.ComboBox.DisplayMember = CommonExpressions.PropertyName<UserIndex>(p => p.UserName);
                 this.comboUserID.ComboBox.ValueMember = CommonExpressions.PropertyName<UserIndex>(p => p.UserID);
                 this.bindingUserID = this.comboUserID.ComboBox.DataBindings.Add("SelectedValue", this, CommonExpressions.PropertyName<UserIndex>(p => p.UserID), true, DataSourceUpdateMode.OnPropertyChanged);
 
@@ -67,10 +70,40 @@ namespace TotalSmartCoding.Views.Mains
             }
         }
 
+        private void treeUserID_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                int? selectedUserID = this.getSelectedUserID();
+                if (selectedUserID != null && selectedUserID != this.UserID)
+                {
+                    foreach (UserIndex userIndex in this.comboUserID.Items)
+                    {
+                        if (userIndex.UserID == (int)selectedUserID)
+                            this.comboUserID.SelectedIndex = this.comboUserID.Items.IndexOf(userIndex);
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+            }
+        }
+
+        private int? getSelectedUserID()
+        {
+            if (this.treeUserID.SelectedObject != null)
+            {
+                UserTree userTree = (UserTree)this.treeUserID.SelectedObject;
+                if (userTree != null && userTree.ParameterName == "UserID") return userTree.PrimaryID; else return null;
+            }
+            else return null;
+        }
+
         private void LoadUserTrees()
         {
             this.treeUserID.RootKeyValue = 0;
-            IList<UserTree> userTrees = this.userAPIs.GetUserTrees();
+            IList<UserTree> userTrees = this.userAPIs.GetUserTrees(this.comboActiveOption.SelectedIndex == 0 ? GlobalEnums.ActiveOption.Active : GlobalEnums.ActiveOption.Both);
             this.treeUserID.DataSource = new BindingSource(userTrees, "");
             this.treeUserID.ExpandAll();
         }
@@ -81,7 +114,10 @@ namespace TotalSmartCoding.Views.Mains
             {
                 UserIndex userIndex = this.comboUserID.SelectedItem as UserIndex;
                 if (userIndex != null)
-                    this.labelCaption.Text = "            " + userIndex.LocationName + "\\" + userIndex.OrganizationalUnitName;
+                {
+                    this.comboOrganizationalUnit.Text = userIndex.LocationName + "\\" + userIndex.OrganizationalUnitName;
+                    this.comboInActive.Text = userIndex.IsDatabaseAdmin ? "In Active" : "Active";
+                }
             }
         }
 
@@ -168,7 +204,7 @@ namespace TotalSmartCoding.Views.Mains
             DialogResult dialogResult = wizardUserAdd.ShowDialog();
 
             wizardUserAdd.Dispose();
-            if (dialogResult == DialogResult.OK) this.comboUserID.ComboBox.DataSource = this.userAPIs.GetUserIndexes();
+            if (dialogResult == DialogResult.OK) this.comboUserID.ComboBox.DataSource = this.userAPIs.GetUserIndexes(this.comboActiveOption.SelectedIndex == 0 ? GlobalEnums.ActiveOption.Active : GlobalEnums.ActiveOption.Both);
         }
 
         private void buttonUserRemove_Click(object sender, EventArgs e)
@@ -180,7 +216,7 @@ namespace TotalSmartCoding.Views.Mains
                     if (CustomMsgBox.Show(this, "Are you sure you want to delete " + this.comboUserID.Text + "?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Stop) == DialogResult.Yes)
                     {
                         this.userAPIs.UserRemove(this.UserID);
-                        this.comboUserID.ComboBox.DataSource = this.userAPIs.GetUserIndexes();
+                        this.comboUserID.ComboBox.DataSource = this.userAPIs.GetUserIndexes(this.comboActiveOption.SelectedIndex == 0 ? GlobalEnums.ActiveOption.Active : GlobalEnums.ActiveOption.Both);
                     }
                 }
             }
@@ -188,6 +224,19 @@ namespace TotalSmartCoding.Views.Mains
             {
                 ExceptionHandlers.ShowExceptionMessageBox(this, exception);
             }
+        }
+
+        private void comboActiveOption_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                this.LoadUserTrees();
+            }
+            catch (Exception exception)
+            {
+                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+            }
+            
         }
     }
 }

@@ -24,14 +24,15 @@ namespace TotalSmartCoding.Controllers.APIs.Generals
         }
 
 
-        public ICollection<UserIndex> GetUserIndexes()
+        public ICollection<UserIndex> GetUserIndexes(GlobalEnums.ActiveOption activeOption)
         {
+            this.userAPIRepository.RepositoryBag["ActiveOption"] = (int)activeOption;
             return this.userAPIRepository.GetEntityIndexes<UserIndex>(ContextAttributes.User.UserID, ContextAttributes.FromDate, ContextAttributes.ToDate).ToList();
         }
 
-        public List<UserTree> GetUserTrees()
+        public List<UserTree> GetUserTrees(GlobalEnums.ActiveOption activeOption)
         {
-            return this.userAPIRepository.GetUserTrees();
+            return this.userAPIRepository.GetUserTrees((int)activeOption);
         }
 
         public IList<OrganizationalUnitIndex> GetOrganizationalUnitIndexes()
@@ -43,7 +44,7 @@ namespace TotalSmartCoding.Controllers.APIs.Generals
         {
             return this.userAPIRepository.GetActiveUsers(securityIdentifier);
         }
-        
+
         public IList<UserAccessControl> GetUserAccessControls(int? userID, int? nmvnTaskID)
         {
             return this.userAPIRepository.GetUserAccessControls(userID, nmvnTaskID);

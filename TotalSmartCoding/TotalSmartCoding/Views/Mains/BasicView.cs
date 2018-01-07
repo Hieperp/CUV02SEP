@@ -301,6 +301,7 @@ namespace TotalSmartCoding.Views.Mains
             // 
             // toolStrip1
             // 
+            this.toolStrip1.BackgroundImage = global::TotalSmartCoding.Properties.Resources.Button_background_small4;
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton1});

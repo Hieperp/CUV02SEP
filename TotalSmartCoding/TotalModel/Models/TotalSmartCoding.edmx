@@ -2509,11 +2509,14 @@
           <Parameter Name="UserID" Type="int" Mode="In" />
           <Parameter Name="FromDate" Type="datetime" Mode="In" />
           <Parameter Name="ToDate" Type="datetime" Mode="In" />
+          <Parameter Name="ActiveOption" Type="int" Mode="In" />
         </Function>
         <Function Name="GetUserOrganizationalUnit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserName" Type="nvarchar" Mode="In" />
         </Function>
-        <Function Name="GetUserTrees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetUserTrees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ActiveOption" Type="int" Mode="In" />
+        </Function>
         <Function Name="GetVersionID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ConfigID" Type="int" Mode="In" />
         </Function>
@@ -3931,6 +3934,7 @@
             <Parameter Name="UserID" Mode="In" Type="Int32" />
             <Parameter Name="FromDate" Mode="In" Type="DateTime" />
             <Parameter Name="ToDate" Mode="In" Type="DateTime" />
+            <Parameter Name="ActiveOption" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetUserAccessControls" ReturnType="Collection(TotalSmartCodingModel.UserAccessControl)">
             <Parameter Name="UserID" Mode="In" Type="Int32" />
@@ -4264,7 +4268,9 @@
             <End Role="Warehouse" EntitySet="Warehouses" />
             <End Role="GoodsIssue" EntitySet="GoodsIssues" />
           </AssociationSet>
-          <FunctionImport Name="GetUserTrees" ReturnType="Collection(TotalSmartCodingModel.UserTree)" />
+          <FunctionImport Name="GetUserTrees" ReturnType="Collection(TotalSmartCodingModel.UserTree)" >
+          <Parameter Name="ActiveOption" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
           <Property Type="Int32" Name="PickupID" Nullable="false" />
@@ -6500,6 +6506,7 @@
           <Property Type="String" Name="OrganizationalUnitName" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="LocationName" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="SecurityIdentifier" Nullable="false" MaxLength="256" />
+          <Property Type="Boolean" Name="InActive" Nullable="false" />
         </ComplexType>
         <ComplexType Name="UserAccessControl">
           <Property Type="Int32" Name="AccessControlID" Nullable="false" />
@@ -9360,6 +9367,7 @@
                 <ScalarProperty Name="OrganizationalUnitName" ColumnName="OrganizationalUnitName" />
                 <ScalarProperty Name="LocationName" ColumnName="LocationName" />
                 <ScalarProperty Name="SecurityIdentifier" ColumnName="SecurityIdentifier" />
+                <ScalarProperty Name="InActive" ColumnName="InActive" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

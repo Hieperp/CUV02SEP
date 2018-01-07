@@ -30,10 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserReferences));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.comboUserID = new System.Windows.Forms.ToolStripComboBox();
+            this.comboOrganizationalUnit = new System.Windows.Forms.ToolStripComboBox();
+            this.comboInActive = new System.Windows.Forms.ToolStripComboBox();
             this.buttonUserAdd = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.buttonUserRemove = new System.Windows.Forms.ToolStripButton();
@@ -53,7 +55,8 @@
             this.VoidablePermitted = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.UnVoidablePermitted = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
-            this.labelCaption = new System.Windows.Forms.ToolStripLabel();
+            this.comboActiveOption = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.treeUserID = new BrightIdeasSoftware.DataTreeListView();
             this.olvTreeName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvTreeSelected = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -62,15 +65,17 @@
             this.olvTreeCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvTreeParameterName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.naviIndex = new Guifreaks.Navisuite.NaviBar(this.components);
-            this.naviUserTrees = new Guifreaks.Navisuite.NaviBand(this.components);
+            this.navibandUserTrees = new Guifreaks.Navisuite.NaviBand(this.components);
+            this.button1 = new System.Windows.Forms.Button();
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastNMVNTasks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridexUserAccessControl)).BeginInit();
             this.toolStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeUserID)).BeginInit();
             this.naviIndex.SuspendLayout();
-            this.naviUserTrees.ClientArea.SuspendLayout();
-            this.naviUserTrees.SuspendLayout();
+            this.navibandUserTrees.ClientArea.SuspendLayout();
+            this.navibandUserTrees.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -80,10 +85,12 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton1,
             this.comboUserID,
+            this.comboOrganizationalUnit,
+            this.comboInActive,
             this.buttonUserAdd,
             this.toolStripSeparator1,
             this.buttonUserRemove});
-            this.toolStrip1.Location = new System.Drawing.Point(33, 0);
+            this.toolStrip1.Location = new System.Drawing.Point(33, 55);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1255, 55);
             this.toolStrip1.TabIndex = 0;
@@ -101,10 +108,25 @@
             // comboUserID
             // 
             this.comboUserID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboUserID.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
+            this.comboUserID.Enabled = false;
+            this.comboUserID.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboUserID.Name = "comboUserID";
-            this.comboUserID.Size = new System.Drawing.Size(764, 55);
+            this.comboUserID.Size = new System.Drawing.Size(368, 55);
             this.comboUserID.SelectedIndexChanged += new System.EventHandler(this.comboUserID_SelectedIndexChanged);
+            // 
+            // comboOrganizationalUnit
+            // 
+            this.comboOrganizationalUnit.Enabled = false;
+            this.comboOrganizationalUnit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboOrganizationalUnit.Name = "comboOrganizationalUnit";
+            this.comboOrganizationalUnit.Size = new System.Drawing.Size(168, 55);
+            // 
+            // comboInActive
+            // 
+            this.comboInActive.Enabled = false;
+            this.comboInActive.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboInActive.Name = "comboInActive";
+            this.comboInActive.Size = new System.Drawing.Size(96, 55);
             // 
             // buttonUserAdd
             // 
@@ -114,7 +136,7 @@
             this.buttonUserAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonUserAdd.Name = "buttonUserAdd";
             this.buttonUserAdd.Size = new System.Drawing.Size(52, 52);
-            this.buttonUserAdd.ToolTipText = "Add user from domain directory";
+            this.buttonUserAdd.ToolTipText = "Add new location to user from domain directory";
             this.buttonUserAdd.Click += new System.EventHandler(this.buttonUserAdd_Click);
             // 
             // toolStripSeparator1
@@ -150,12 +172,12 @@
             this.fastNMVNTasks.GroupImageList = this.imageList32;
             this.fastNMVNTasks.HideSelection = false;
             this.fastNMVNTasks.HighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
-            this.fastNMVNTasks.Location = new System.Drawing.Point(33, 80);
+            this.fastNMVNTasks.Location = new System.Drawing.Point(33, 110);
             this.fastNMVNTasks.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.fastNMVNTasks.Name = "fastNMVNTasks";
             this.fastNMVNTasks.OwnerDraw = true;
             this.fastNMVNTasks.ShowGroups = false;
-            this.fastNMVNTasks.Size = new System.Drawing.Size(289, 591);
+            this.fastNMVNTasks.Size = new System.Drawing.Size(289, 561);
             this.fastNMVNTasks.TabIndex = 69;
             this.fastNMVNTasks.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastNMVNTasks.UseCompatibleStateImageBehavior = false;
@@ -220,14 +242,14 @@
             this.gridexUserAccessControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridexUserAccessControl.Editable = true;
             this.gridexUserAccessControl.GridColor = System.Drawing.SystemColors.ButtonFace;
-            this.gridexUserAccessControl.Location = new System.Drawing.Point(322, 80);
+            this.gridexUserAccessControl.Location = new System.Drawing.Point(322, 110);
             this.gridexUserAccessControl.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gridexUserAccessControl.Name = "gridexUserAccessControl";
             this.gridexUserAccessControl.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridexUserAccessControl.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridexUserAccessControl.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.gridexUserAccessControl.RowTemplate.Height = 24;
-            this.gridexUserAccessControl.Size = new System.Drawing.Size(966, 591);
+            this.gridexUserAccessControl.Size = new System.Drawing.Size(966, 561);
             this.gridexUserAccessControl.TabIndex = 70;
             this.gridexUserAccessControl.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridexAccessControls_CellContentClick);
             // 
@@ -310,19 +332,34 @@
             this.toolStrip2.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.labelCaption});
-            this.toolStrip2.Location = new System.Drawing.Point(33, 55);
+            this.toolStripButton3,
+            this.comboActiveOption,
+            this.toolStripButton2});
+            this.toolStrip2.Location = new System.Drawing.Point(33, 0);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(1255, 25);
+            this.toolStrip2.Size = new System.Drawing.Size(1255, 55);
             this.toolStrip2.TabIndex = 0;
             this.toolStrip2.Text = "toolStrip2";
             // 
-            // labelCaption
+            // comboActiveOption
             // 
-            this.labelCaption.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.labelCaption.Name = "labelCaption";
-            this.labelCaption.Size = new System.Drawing.Size(225, 22);
-            this.labelCaption.Text = "            HAI PHONG\\ LOGISTICCS";
+            this.comboActiveOption.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboActiveOption.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
+            this.comboActiveOption.Items.AddRange(new object[] {
+            "Active only",
+            "Show Inactive"});
+            this.comboActiveOption.Name = "comboActiveOption";
+            this.comboActiveOption.Size = new System.Drawing.Size(168, 55);
+            this.comboActiveOption.SelectedIndexChanged += new System.EventHandler(this.comboActiveOption_SelectedIndexChanged);
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.Image = global::TotalSmartCoding.Properties.Resources.Data_add;
+            this.toolStripButton2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(286, 52);
+            this.toolStripButton2.Text = "Add new organizational Unit [OU]";
             // 
             // treeUserID
             // 
@@ -332,7 +369,7 @@
             this.treeUserID.AllColumns.Add(this.olvTreeAncestorID);
             this.treeUserID.AllColumns.Add(this.olvTreeCode);
             this.treeUserID.AllColumns.Add(this.olvTreeParameterName);
-            this.treeUserID.BackColor = System.Drawing.Color.Ivory;
+            this.treeUserID.BackColor = System.Drawing.Color.Wheat;
             this.treeUserID.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.olvTreeName,
             this.olvTreeSelected});
@@ -358,7 +395,8 @@
             // olvTreeName
             // 
             this.olvTreeName.AspectName = "Name";
-            this.olvTreeName.Text = "";
+            this.olvTreeName.Sortable = false;
+            this.olvTreeName.Text = "All Organizational Units";
             this.olvTreeName.Width = 308;
             // 
             // olvTreeSelected
@@ -367,6 +405,7 @@
             this.olvTreeSelected.CheckBoxes = true;
             this.olvTreeSelected.FillsFreeSpace = true;
             this.olvTreeSelected.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvTreeSelected.Sortable = false;
             this.olvTreeSelected.Text = "";
             this.olvTreeSelected.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvTreeSelected.Width = 45;
@@ -393,9 +432,10 @@
             // 
             // naviIndex
             // 
-            this.naviIndex.ActiveBand = this.naviUserTrees;
+            this.naviIndex.ActiveBand = this.navibandUserTrees;
             this.naviIndex.Collapsed = true;
-            this.naviIndex.Controls.Add(this.naviUserTrees);
+            this.naviIndex.Controls.Add(this.navibandUserTrees);
+            this.naviIndex.Controls.Add(this.button1);
             this.naviIndex.Dock = System.Windows.Forms.DockStyle.Left;
             this.naviIndex.HeaderHeight = 42;
             this.naviIndex.Location = new System.Drawing.Point(0, 0);
@@ -403,31 +443,51 @@
             this.naviIndex.Name = "naviIndex";
             this.naviIndex.PopupHeight = 590;
             this.naviIndex.PopupMinWidth = 368;
-            this.naviIndex.ShowCollapseButton = false;
             this.naviIndex.ShowMoreOptionsButton = false;
             this.naviIndex.Size = new System.Drawing.Size(33, 671);
             this.naviIndex.TabIndex = 72;
             // 
-            // naviUserTrees
+            // navibandUserTrees
             // 
             // 
-            // naviUserTrees.ClientArea
+            // navibandUserTrees.ClientArea
             // 
-            this.naviUserTrees.ClientArea.Controls.Add(this.treeUserID);
-            this.naviUserTrees.ClientArea.LayoutStyle = Guifreaks.Navisuite.NaviLayoutStyle.StyleFromOwner;
-            this.naviUserTrees.ClientArea.Location = new System.Drawing.Point(0, 0);
-            this.naviUserTrees.ClientArea.Margin = new System.Windows.Forms.Padding(0);
-            this.naviUserTrees.ClientArea.Name = "ClientArea";
-            this.naviUserTrees.ClientArea.Size = new System.Drawing.Size(1, 1);
-            this.naviUserTrees.ClientArea.TabIndex = 0;
-            this.naviUserTrees.LargeImageIndex = 0;
-            this.naviUserTrees.LayoutStyle = Guifreaks.Navisuite.NaviLayoutStyle.StyleFromOwner;
-            this.naviUserTrees.Location = new System.Drawing.Point(1, 42);
-            this.naviUserTrees.Margin = new System.Windows.Forms.Padding(4);
-            this.naviUserTrees.Name = "naviUserTrees";
-            this.naviUserTrees.Size = new System.Drawing.Size(0, 0);
-            this.naviUserTrees.SmallImageIndex = 0;
-            this.naviUserTrees.TabIndex = 72;
+            this.navibandUserTrees.ClientArea.Controls.Add(this.treeUserID);
+            this.navibandUserTrees.ClientArea.LayoutStyle = Guifreaks.Navisuite.NaviLayoutStyle.StyleFromOwner;
+            this.navibandUserTrees.ClientArea.Location = new System.Drawing.Point(0, 0);
+            this.navibandUserTrees.ClientArea.Margin = new System.Windows.Forms.Padding(0);
+            this.navibandUserTrees.ClientArea.Name = "ClientArea";
+            this.navibandUserTrees.ClientArea.Size = new System.Drawing.Size(1, 1);
+            this.navibandUserTrees.ClientArea.TabIndex = 0;
+            this.navibandUserTrees.LargeImageIndex = 0;
+            this.navibandUserTrees.LayoutStyle = Guifreaks.Navisuite.NaviLayoutStyle.StyleFromOwner;
+            this.navibandUserTrees.Location = new System.Drawing.Point(1, 42);
+            this.navibandUserTrees.Margin = new System.Windows.Forms.Padding(4);
+            this.navibandUserTrees.Name = "navibandUserTrees";
+            this.navibandUserTrees.Size = new System.Drawing.Size(0, 0);
+            this.navibandUserTrees.SmallImageIndex = 0;
+            this.navibandUserTrees.TabIndex = 72;
+            this.navibandUserTrees.Text = "Click here to expand";
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Transparent;
+            this.button1.BackgroundImage = global::TotalSmartCoding.Properties.Resources.Button_background_small;
+            this.button1.Location = new System.Drawing.Point(0, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(33, 44);
+            this.button1.TabIndex = 77;
+            this.button1.UseVisualStyleBackColor = false;
+            // 
+            // toolStripButton3
+            // 
+            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton3.Image = global::TotalSmartCoding.Properties.Resources.refresh;
+            this.toolStripButton3.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton3.Name = "toolStripButton3";
+            this.toolStripButton3.Size = new System.Drawing.Size(52, 52);
+            this.toolStripButton3.Text = "toolStripButton3";
             // 
             // UserReferences
             // 
@@ -436,8 +496,8 @@
             this.ClientSize = new System.Drawing.Size(1288, 671);
             this.Controls.Add(this.gridexUserAccessControl);
             this.Controls.Add(this.fastNMVNTasks);
-            this.Controls.Add(this.toolStrip2);
             this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.toolStrip2);
             this.Controls.Add(this.naviIndex);
             this.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -446,7 +506,7 @@
             this.MinimizeBox = false;
             this.Name = "UserReferences";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "User References";
+            this.Text = "User References [Determine the tasks every user can perform]";
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastNMVNTasks)).EndInit();
@@ -455,8 +515,8 @@
             this.toolStrip2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeUserID)).EndInit();
             this.naviIndex.ResumeLayout(false);
-            this.naviUserTrees.ClientArea.ResumeLayout(false);
-            this.naviUserTrees.ResumeLayout(false);
+            this.navibandUserTrees.ClientArea.ResumeLayout(false);
+            this.navibandUserTrees.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -486,7 +546,6 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn UnVoidablePermitted;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStrip toolStrip2;
-        private System.Windows.Forms.ToolStripLabel labelCaption;
         private BrightIdeasSoftware.DataTreeListView treeUserID;
         private BrightIdeasSoftware.OLVColumn olvTreeName;
         private BrightIdeasSoftware.OLVColumn olvTreeSelected;
@@ -495,6 +554,12 @@
         private BrightIdeasSoftware.OLVColumn olvTreeCode;
         private BrightIdeasSoftware.OLVColumn olvTreeParameterName;
         private Guifreaks.Navisuite.NaviBar naviIndex;
-        private Guifreaks.Navisuite.NaviBand naviUserTrees;
+        private Guifreaks.Navisuite.NaviBand navibandUserTrees;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ToolStripComboBox comboOrganizationalUnit;
+        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripComboBox comboInActive;
+        private System.Windows.Forms.ToolStripComboBox comboActiveOption;
+        private System.Windows.Forms.ToolStripButton toolStripButton3;
     }
 }

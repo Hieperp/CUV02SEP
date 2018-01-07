@@ -1740,7 +1740,7 @@ namespace TotalModel.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ModuleDetailIndex>("GetModuleDetailIndexes");
         }
     
-        public virtual ObjectResult<UserIndex> GetUserIndexes(Nullable<int> userID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
+        public virtual ObjectResult<UserIndex> GetUserIndexes(Nullable<int> userID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate, Nullable<int> activeOption)
         {
             var userIDParameter = userID.HasValue ?
                 new ObjectParameter("UserID", userID) :
@@ -1754,7 +1754,11 @@ namespace TotalModel.Models
                 new ObjectParameter("ToDate", toDate) :
                 new ObjectParameter("ToDate", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UserIndex>("GetUserIndexes", userIDParameter, fromDateParameter, toDateParameter);
+            var activeOptionParameter = activeOption.HasValue ?
+                new ObjectParameter("ActiveOption", activeOption) :
+                new ObjectParameter("ActiveOption", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UserIndex>("GetUserIndexes", userIDParameter, fromDateParameter, toDateParameter, activeOptionParameter);
         }
     
         public virtual ObjectResult<UserAccessControl> GetUserAccessControls(Nullable<int> userID, Nullable<int> nMVNTaskID)
@@ -2193,9 +2197,13 @@ namespace TotalModel.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ReportIndex>("GetReportIndexes", userIDParameter, fromDateParameter, toDateParameter);
         }
     
-        public virtual ObjectResult<UserTree> GetUserTrees()
+        public virtual ObjectResult<UserTree> GetUserTrees(Nullable<int> activeOption)
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UserTree>("GetUserTrees");
+            var activeOptionParameter = activeOption.HasValue ?
+                new ObjectParameter("ActiveOption", activeOption) :
+                new ObjectParameter("ActiveOption", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UserTree>("GetUserTrees", activeOptionParameter);
         }
     }
 }

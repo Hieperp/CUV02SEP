@@ -37,14 +37,14 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
         {
             string queryString;
 
-            queryString = " @UserID Int, @FromDate DateTime, @ToDate DateTime " + "\r\n";
+            queryString = " @UserID Int, @FromDate DateTime, @ToDate DateTime, @ActiveOption int " + "\r\n";
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
-            queryString = queryString + "       SELECT      Users.UserID, Users.FirstName, Users.LastName, Users.UserName, Users.SecurityIdentifier, Users.IsDatabaseAdmin, OrganizationalUnits.Name AS OrganizationalUnitName, Locations.Name AS LocationName " + "\r\n";
+            queryString = queryString + "       SELECT      Users.UserID, Users.FirstName, Users.LastName, Users.UserName, Users.SecurityIdentifier, Users.IsDatabaseAdmin, OrganizationalUnits.Name AS OrganizationalUnitName, Locations.Name AS LocationName, OrganizationalUnitUsers.InActive " + "\r\n";
             queryString = queryString + "       FROM        Users " + "\r\n";
-            queryString = queryString + "                   INNER JOIN OrganizationalUnitUsers ON Users.UserID = OrganizationalUnitUsers.UserID AND OrganizationalUnitUsers.InActive = 0 " + "\r\n";
+            queryString = queryString + "                   INNER JOIN OrganizationalUnitUsers ON Users.UserID = OrganizationalUnitUsers.UserID AND (@ActiveOption = 0 OR OrganizationalUnitUsers.InActive = 0) " + "\r\n";
             queryString = queryString + "                   INNER JOIN OrganizationalUnits ON OrganizationalUnitUsers.OrganizationalUnitID = OrganizationalUnits.OrganizationalUnitID " + "\r\n";
             queryString = queryString + "                   INNER JOIN Locations ON OrganizationalUnits.LocationID = Locations.LocationID " + "\r\n";
 
@@ -178,7 +178,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
         {
             string queryString;
 
-            queryString = " " + "\r\n";
+            queryString = " @ActiveOption int " + "\r\n";
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
@@ -193,6 +193,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             queryString = queryString + "       SELECT      UserID AS NodeID, " + GlobalEnums.AncestorNode + " + OrganizationalUnitID AS ParentNodeID, UserID AS PrimaryID, OrganizationalUnitID AS AncestorID, SecurityIdentifier AS Code, UserName AS Name, 'UserID' AS ParameterName, InActive AS Selected " + "\r\n";
             queryString = queryString + "       FROM        Users " + "\r\n";
 
+            queryString = queryString + "       WHERE       @ActiveOption = 0 OR UserID IN (SELECT UserID FROM OrganizationalUnitUsers WHERE InActive = 0) " + "\r\n";
             queryString = queryString + "    END " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("GetUserTrees", queryString);

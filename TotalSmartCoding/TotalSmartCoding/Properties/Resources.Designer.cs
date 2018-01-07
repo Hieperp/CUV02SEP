@@ -1163,6 +1163,56 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Button_background_small {
+            get {
+                object obj = ResourceManager.GetObject("Button_background_small", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Button_background_small1 {
+            get {
+                object obj = ResourceManager.GetObject("Button_background_small1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Button_background_small2 {
+            get {
+                object obj = ResourceManager.GetObject("Button_background_small2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Button_background_small3 {
+            get {
+                object obj = ResourceManager.GetObject("Button_background_small3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Button_background_small4 {
+            get {
+                object obj = ResourceManager.GetObject("Button_background_small4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Button_Delete {
             get {
                 object obj = ResourceManager.GetObject("Button-Delete", resourceCulture);
@@ -1696,6 +1746,16 @@ namespace TotalSmartCoding.Properties {
         internal static System.Drawing.Bitmap Dario_Arnaez_Genesis_3G_User_Files {
             get {
                 object obj = ResourceManager.GetObject("Dario-Arnaez-Genesis-3G-User-Files", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Data_add {
+            get {
+                object obj = ResourceManager.GetObject("Data-add", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

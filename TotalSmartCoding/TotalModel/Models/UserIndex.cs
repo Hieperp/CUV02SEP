@@ -21,5 +21,6 @@ namespace TotalModel.Models
         public string OrganizationalUnitName { get; set; }
         public string LocationName { get; set; }
         public string SecurityIdentifier { get; set; }
+        public bool InActive { get; set; }
     }
 }
