@@ -145,7 +145,7 @@ namespace TotalSmartCoding.Views.Mains
                 }
 
                 DateTime buildDate = new FileInfo(Assembly.GetExecutingAssembly().Location).LastWriteTime;
-                this.statusVersion.Text = "Version 1.0." + GlobalVariables.ConfigVersionID(GlobalVariables.ConfigID).ToString() + ", Date: " + buildDate.ToString("dd/MM/yyyy hh:mm:ss");
+                this.statusVersion.Text = "Version 1.0." + GlobalVariables.ConfigVersionID(GlobalVariables.ConfigID).ToString() + ", Date: " + buildDate.ToString("dd/MM/yyyy HH:mm:ss");
 
                 this.comboSearchBarcode.Text = this.searchPlaceHolder;
                 this.toolUserReferences.Visible = ContextAttributes.User.IsDatabaseAdmin;
