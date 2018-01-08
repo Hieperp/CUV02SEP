@@ -1150,6 +1150,10 @@
     <None Include="Resources\Button_background_small3.png" />
     <None Include="Resources\Button_background_small4.png" />
     <None Include="Resources\Data-add.ico" />
+    <None Include="Resources\settings-1.png" />
+    <None Include="Resources\app.png" />
+    <None Include="Resources\RemoveOU.png" />
+    <None Include="Resources\no-persons.png" />
     <Content Include="SmartCodingSolution.ico" />
     <None Include="Resources\Yellow-cross.ico" />
     <None Include="Resources\White-Pallet.ico" />

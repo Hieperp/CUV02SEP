@@ -58,7 +58,7 @@ namespace TotalDAL.Repositories
             }
 
 
-            #region DELETE NOT USED OrganizationalUnitID
+            #region DELETE NOT USED OrganizationalUnitID, RESET ReadOnly TO AccessControls WHERE Users.LocationID <> AccessControls.LocationID
             this.ExecuteStoreCommand(@"IF (SELECT   COUNT(OrganizationalUnitID) FROM OrganizationalUnits) > 15
                                        BEGIN
                                             DELETE FROM AccessControls WHERE OrganizationalUnitID NOT IN (
@@ -121,6 +121,16 @@ namespace TotalDAL.Repositories
                                                 UNION ALL
                                                 SELECT OrganizationalUnitID FROM WarehouseAdjustments
                                                 ) AS UNIONOrganizationalUnitID)
+
+
+                                            UPDATE  AccessControls
+                                                SET     AccessControls.AccessLevel = CASE WHEN AccessControls.AccessLevel > 1 THEN 1 ELSE AccessControls.AccessLevel END, AccessControls.ApprovalPermitted = 0, AccessControls.UnApprovalPermitted = 0, AccessControls.VoidablePermitted = 0, AccessControls.UnVoidablePermitted = 0
+                                                FROM    AccessControls INNER JOIN
+                                                        OrganizationalUnits ON AccessControls.OrganizationalUnitID = OrganizationalUnits.OrganizationalUnitID INNER JOIN
+                                                        Users ON AccessControls.UserID = Users.UserID INNER JOIN
+                                                        OrganizationalUnits AS OrganizationalUnits_1 ON Users.OrganizationalUnitID = OrganizationalUnits_1.OrganizationalUnitID
+                                                WHERE   OrganizationalUnits_1.LocationID <> OrganizationalUnits.LocationID
+
 
                                        END
                                 ", new ObjectParameter[] { });

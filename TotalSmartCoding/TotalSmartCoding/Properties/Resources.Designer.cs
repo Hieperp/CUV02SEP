@@ -733,6 +733,16 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap app {
+            get {
+                object obj = ResourceManager.GetObject("app", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Apps_Burn {
             get {
                 object obj = ResourceManager.GetObject("Apps-Burn", resourceCulture);
@@ -3683,6 +3693,16 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap no_persons {
+            get {
+                object obj = ResourceManager.GetObject("no-persons", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Number_Keys_0 {
             get {
                 object obj = ResourceManager.GetObject("Number-Keys-0", resourceCulture);
@@ -4363,6 +4383,16 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap RemoveOU {
+            get {
+                object obj = ResourceManager.GetObject("RemoveOU", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Robsonbillponte_IRob_Folder_Utilities_Folder {
             get {
                 object obj = ResourceManager.GetObject("Robsonbillponte-IRob-Folder-Utilities-Folder", resourceCulture);
@@ -4496,6 +4526,16 @@ namespace TotalSmartCoding.Properties {
         internal static System.Drawing.Bitmap Settings {
             get {
                 object obj = ResourceManager.GetObject("Settings", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap settings_1 {
+            get {
+                object obj = ResourceManager.GetObject("settings-1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

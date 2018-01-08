@@ -116,7 +116,7 @@ namespace TotalSmartCoding.Views.Mains
                 if (userIndex != null)
                 {
                     this.comboOrganizationalUnit.Text = userIndex.LocationName + "\\" + userIndex.OrganizationalUnitName;
-                    this.comboInActive.Text = userIndex.IsDatabaseAdmin ? "In Active" : "Active";
+                    this.comboInActive.Text = userIndex.InActive ? "In Active" : "Active";
                 }
             }
         }

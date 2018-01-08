@@ -30,15 +30,16 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserReferences));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.comboUserID = new System.Windows.Forms.ToolStripComboBox();
             this.comboOrganizationalUnit = new System.Windows.Forms.ToolStripComboBox();
             this.comboInActive = new System.Windows.Forms.ToolStripComboBox();
             this.buttonUserAdd = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.buttonUserRemove = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.buttonUserInactive = new System.Windows.Forms.ToolStripButton();
             this.fastNMVNTasks = new BrightIdeasSoftware.FastObjectListView();
             this.olvID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvModuleName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -57,6 +58,7 @@
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.comboActiveOption = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.treeUserID = new BrightIdeasSoftware.DataTreeListView();
             this.olvTreeName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvTreeSelected = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -67,7 +69,8 @@
             this.naviIndex = new Guifreaks.Navisuite.NaviBar(this.components);
             this.navibandUserTrees = new Guifreaks.Navisuite.NaviBand(this.components);
             this.button1 = new System.Windows.Forms.Button();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.panelLeft = new System.Windows.Forms.Panel();
+            this.pictureTopleft = new System.Windows.Forms.PictureBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastNMVNTasks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridexUserAccessControl)).BeginInit();
@@ -76,6 +79,8 @@
             this.naviIndex.SuspendLayout();
             this.navibandUserTrees.ClientArea.SuspendLayout();
             this.navibandUserTrees.SuspendLayout();
+            this.panelLeft.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureTopleft)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -83,27 +88,19 @@
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1,
             this.comboUserID,
             this.comboOrganizationalUnit,
             this.comboInActive,
             this.buttonUserAdd,
             this.toolStripSeparator1,
-            this.buttonUserRemove});
+            this.buttonUserRemove,
+            this.toolStripSeparator2,
+            this.buttonUserInactive});
             this.toolStrip1.Location = new System.Drawing.Point(33, 55);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1255, 55);
+            this.toolStrip1.Size = new System.Drawing.Size(1208, 55);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = global::TotalSmartCoding.Properties.Resources.Man_2;
-            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(52, 52);
             // 
             // comboUserID
             // 
@@ -111,7 +108,7 @@
             this.comboUserID.Enabled = false;
             this.comboUserID.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboUserID.Name = "comboUserID";
-            this.comboUserID.Size = new System.Drawing.Size(368, 55);
+            this.comboUserID.Size = new System.Drawing.Size(396, 55);
             this.comboUserID.SelectedIndexChanged += new System.EventHandler(this.comboUserID_SelectedIndexChanged);
             // 
             // comboOrganizationalUnit
@@ -119,14 +116,14 @@
             this.comboOrganizationalUnit.Enabled = false;
             this.comboOrganizationalUnit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboOrganizationalUnit.Name = "comboOrganizationalUnit";
-            this.comboOrganizationalUnit.Size = new System.Drawing.Size(168, 55);
+            this.comboOrganizationalUnit.Size = new System.Drawing.Size(196, 55);
             // 
             // comboInActive
             // 
             this.comboInActive.Enabled = false;
             this.comboInActive.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboInActive.Name = "comboInActive";
-            this.comboInActive.Size = new System.Drawing.Size(96, 55);
+            this.comboInActive.Size = new System.Drawing.Size(88, 55);
             // 
             // buttonUserAdd
             // 
@@ -136,7 +133,7 @@
             this.buttonUserAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonUserAdd.Name = "buttonUserAdd";
             this.buttonUserAdd.Size = new System.Drawing.Size(52, 52);
-            this.buttonUserAdd.ToolTipText = "Add new location to user from domain directory";
+            this.buttonUserAdd.ToolTipText = "Register user for new location";
             this.buttonUserAdd.Click += new System.EventHandler(this.buttonUserAdd_Click);
             // 
             // toolStripSeparator1
@@ -152,9 +149,22 @@
             this.buttonUserRemove.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonUserRemove.Name = "buttonUserRemove";
             this.buttonUserRemove.Size = new System.Drawing.Size(52, 52);
-            this.buttonUserRemove.ToolTipText = "Remove selected user";
-            this.buttonUserRemove.Visible = false;
+            this.buttonUserRemove.ToolTipText = "Cancel user registration";
             this.buttonUserRemove.Click += new System.EventHandler(this.buttonUserRemove_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 55);
+            // 
+            // buttonUserInactive
+            // 
+            this.buttonUserInactive.Image = global::TotalSmartCoding.Properties.Resources.no_persons;
+            this.buttonUserInactive.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonUserInactive.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonUserInactive.Name = "buttonUserInactive";
+            this.buttonUserInactive.Size = new System.Drawing.Size(151, 52);
+            this.buttonUserInactive.Text = "Set active status";
             // 
             // fastNMVNTasks
             // 
@@ -246,10 +256,10 @@
             this.gridexUserAccessControl.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gridexUserAccessControl.Name = "gridexUserAccessControl";
             this.gridexUserAccessControl.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridexUserAccessControl.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridexUserAccessControl.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.gridexUserAccessControl.RowTemplate.Height = 24;
-            this.gridexUserAccessControl.Size = new System.Drawing.Size(966, 561);
+            this.gridexUserAccessControl.Size = new System.Drawing.Size(919, 561);
             this.gridexUserAccessControl.TabIndex = 70;
             this.gridexUserAccessControl.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridexAccessControls_CellContentClick);
             // 
@@ -332,12 +342,12 @@
             this.toolStrip2.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton3,
             this.comboActiveOption,
-            this.toolStripButton2});
+            this.toolStripButton2,
+            this.toolStripButton1});
             this.toolStrip2.Location = new System.Drawing.Point(33, 0);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(1255, 55);
+            this.toolStrip2.Size = new System.Drawing.Size(1208, 55);
             this.toolStrip2.TabIndex = 0;
             this.toolStrip2.Text = "toolStrip2";
             // 
@@ -349,7 +359,7 @@
             "Active only",
             "Show Inactive"});
             this.comboActiveOption.Name = "comboActiveOption";
-            this.comboActiveOption.Size = new System.Drawing.Size(168, 55);
+            this.comboActiveOption.Size = new System.Drawing.Size(139, 55);
             this.comboActiveOption.SelectedIndexChanged += new System.EventHandler(this.comboActiveOption_SelectedIndexChanged);
             // 
             // toolStripButton2
@@ -360,6 +370,15 @@
             this.toolStripButton2.Name = "toolStripButton2";
             this.toolStripButton2.Size = new System.Drawing.Size(286, 52);
             this.toolStripButton2.Text = "Add new organizational Unit [OU]";
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.Image = global::TotalSmartCoding.Properties.Resources.RemoveOU;
+            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(124, 52);
+            this.toolStripButton1.Text = "Remove OU";
             // 
             // treeUserID
             // 
@@ -397,7 +416,7 @@
             this.olvTreeName.AspectName = "Name";
             this.olvTreeName.Sortable = false;
             this.olvTreeName.Text = "All Organizational Units";
-            this.olvTreeName.Width = 308;
+            this.olvTreeName.Width = 275;
             // 
             // olvTreeSelected
             // 
@@ -406,9 +425,9 @@
             this.olvTreeSelected.FillsFreeSpace = true;
             this.olvTreeSelected.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvTreeSelected.Sortable = false;
-            this.olvTreeSelected.Text = "";
+            this.olvTreeSelected.Text = "Inactive";
             this.olvTreeSelected.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvTreeSelected.Width = 45;
+            this.olvTreeSelected.Width = 79;
             // 
             // olvTreePrimaryID
             // 
@@ -436,15 +455,16 @@
             this.naviIndex.Collapsed = true;
             this.naviIndex.Controls.Add(this.navibandUserTrees);
             this.naviIndex.Controls.Add(this.button1);
-            this.naviIndex.Dock = System.Windows.Forms.DockStyle.Left;
+            this.naviIndex.Dock = System.Windows.Forms.DockStyle.Fill;
             this.naviIndex.HeaderHeight = 42;
-            this.naviIndex.Location = new System.Drawing.Point(0, 0);
+            this.naviIndex.LayoutStyle = Guifreaks.Navisuite.NaviLayoutStyle.Office2010Blue;
+            this.naviIndex.Location = new System.Drawing.Point(0, 36);
             this.naviIndex.Margin = new System.Windows.Forms.Padding(4);
             this.naviIndex.Name = "naviIndex";
-            this.naviIndex.PopupHeight = 590;
+            this.naviIndex.PopupHeight = 554;
             this.naviIndex.PopupMinWidth = 368;
             this.naviIndex.ShowMoreOptionsButton = false;
-            this.naviIndex.Size = new System.Drawing.Size(33, 671);
+            this.naviIndex.Size = new System.Drawing.Size(33, 635);
             this.naviIndex.TabIndex = 72;
             // 
             // navibandUserTrees
@@ -472,33 +492,44 @@
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.Transparent;
-            this.button1.BackgroundImage = global::TotalSmartCoding.Properties.Resources.Button_background_small;
+            this.button1.Image = global::TotalSmartCoding.Properties.Resources.Man_2;
             this.button1.Location = new System.Drawing.Point(0, 0);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(33, 44);
+            this.button1.Size = new System.Drawing.Size(33, 43);
             this.button1.TabIndex = 77;
             this.button1.UseVisualStyleBackColor = false;
             // 
-            // toolStripButton3
+            // panelLeft
             // 
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton3.Image = global::TotalSmartCoding.Properties.Resources.refresh;
-            this.toolStripButton3.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(52, 52);
-            this.toolStripButton3.Text = "toolStripButton3";
+            this.panelLeft.Controls.Add(this.naviIndex);
+            this.panelLeft.Controls.Add(this.pictureTopleft);
+            this.panelLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelLeft.Location = new System.Drawing.Point(0, 0);
+            this.panelLeft.Name = "panelLeft";
+            this.panelLeft.Size = new System.Drawing.Size(33, 671);
+            this.panelLeft.TabIndex = 73;
+            // 
+            // pictureTopleft
+            // 
+            this.pictureTopleft.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pictureTopleft.Image = global::TotalSmartCoding.Properties.Resources.refresh;
+            this.pictureTopleft.Location = new System.Drawing.Point(0, 0);
+            this.pictureTopleft.Name = "pictureTopleft";
+            this.pictureTopleft.Size = new System.Drawing.Size(33, 36);
+            this.pictureTopleft.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureTopleft.TabIndex = 73;
+            this.pictureTopleft.TabStop = false;
             // 
             // UserReferences
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1288, 671);
+            this.ClientSize = new System.Drawing.Size(1241, 671);
             this.Controls.Add(this.gridexUserAccessControl);
             this.Controls.Add(this.fastNMVNTasks);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.toolStrip2);
-            this.Controls.Add(this.naviIndex);
+            this.Controls.Add(this.panelLeft);
             this.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -517,6 +548,8 @@
             this.naviIndex.ResumeLayout(false);
             this.navibandUserTrees.ClientArea.ResumeLayout(false);
             this.navibandUserTrees.ResumeLayout(false);
+            this.panelLeft.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureTopleft)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -534,7 +567,6 @@
         private CustomControls.DataGridexView gridexUserAccessControl;
         private System.Windows.Forms.ImageList imageList32;
         private BrightIdeasSoftware.OLVColumn olvModuleName;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.DataGridViewTextBoxColumn LocationName;
         private System.Windows.Forms.DataGridViewTextBoxColumn OrganizationalUnitName;
         private System.Windows.Forms.DataGridViewCheckBoxColumn NoAccess;
@@ -560,6 +592,10 @@
         private System.Windows.Forms.ToolStripButton toolStripButton2;
         private System.Windows.Forms.ToolStripComboBox comboInActive;
         private System.Windows.Forms.ToolStripComboBox comboActiveOption;
-        private System.Windows.Forms.ToolStripButton toolStripButton3;
+        private System.Windows.Forms.Panel panelLeft;
+        private System.Windows.Forms.PictureBox pictureTopleft;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripButton buttonUserInactive;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }
