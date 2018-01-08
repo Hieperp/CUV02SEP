@@ -2201,13 +2201,21 @@ namespace TotalModel.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UserRegister", locationIDParameter, organizationalUnitIDParameter, firstNameParameter, lastNameParameter, userNameParameter, securityIdentifierParameter);
         }
     
-        public virtual int UserUnregister(Nullable<int> userID)
+        public virtual int UserUnregister(Nullable<int> userID, string userName, string organizationalUnitName)
         {
             var userIDParameter = userID.HasValue ?
                 new ObjectParameter("UserID", userID) :
                 new ObjectParameter("UserID", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UserUnregister", userIDParameter);
+            var userNameParameter = userName != null ?
+                new ObjectParameter("UserName", userName) :
+                new ObjectParameter("UserName", typeof(string));
+    
+            var organizationalUnitNameParameter = organizationalUnitName != null ?
+                new ObjectParameter("OrganizationalUnitName", organizationalUnitName) :
+                new ObjectParameter("OrganizationalUnitName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UserUnregister", userIDParameter, userNameParameter, organizationalUnitNameParameter);
         }
     }
 }

@@ -1154,6 +1154,8 @@
     <None Include="Resources\app.png" />
     <None Include="Resources\RemoveOU.png" />
     <None Include="Resources\no-persons.png" />
+    <None Include="Resources\no-persons-1.png" />
+    <None Include="Resources\no-persons-2.png" />
     <Content Include="SmartCodingSolution.ico" />
     <None Include="Resources\Yellow-cross.ico" />
     <None Include="Resources\White-Pallet.ico" />

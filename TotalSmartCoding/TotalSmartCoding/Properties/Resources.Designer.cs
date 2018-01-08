@@ -3703,6 +3703,26 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap no_persons_1 {
+            get {
+                object obj = ResourceManager.GetObject("no-persons-1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap no_persons_2 {
+            get {
+                object obj = ResourceManager.GetObject("no-persons-2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Number_Keys_0 {
             get {
                 object obj = ResourceManager.GetObject("Number-Keys-0", resourceCulture);

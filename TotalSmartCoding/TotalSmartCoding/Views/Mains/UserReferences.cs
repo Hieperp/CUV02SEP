@@ -116,7 +116,7 @@ namespace TotalSmartCoding.Views.Mains
                 if (userIndex != null)
                 {
                     this.SelectedUserIndex = userIndex;
-                    this.comboOrganizationalUnit.Text = this.SelectedUserIndex.LocationName + "\\" + this.SelectedUserIndex.OrganizationalUnitName;
+                    this.comboOrganizationalUnit.Text = this.SelectedUserIndex.FullyQualifiedOrganizationalUnitName;
                     this.comboInActive.Text = this.SelectedUserIndex.InActive ? "In Active" : "Active";
                 }
             }
@@ -220,9 +220,9 @@ namespace TotalSmartCoding.Views.Mains
             {
                 if (this.SelectedUserIndex != null && this.SelectedUserIndex.UserID > 0)
                 {
-                    if (CustomMsgBox.Show(this, "Are you sure you want to delete " + this.comboUserID.Text + "?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Stop) == DialogResult.Yes)
+                    if (CustomMsgBox.Show(this, "Are you sure you want to cancel this user registration?" + "\r\n" + "\r\nUser:  " + this.SelectedUserIndex.UserName + "\r\nAt:  " + this.SelectedUserIndex.FullyQualifiedOrganizationalUnitName, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Stop) == DialogResult.Yes)
                     {
-                        this.userAPIs.UserUnregister(this.SelectedUserIndex.UserID);
+                        this.userAPIs.UserUnregister(this.SelectedUserIndex.UserID, this.SelectedUserIndex.UserName, this.SelectedUserIndex.FullyQualifiedOrganizationalUnitName);
                         this.comboUserID.ComboBox.DataSource = this.userAPIs.GetUserIndexes(this.comboActiveOption.SelectedIndex == 0 ? GlobalEnums.ActiveOption.Active : GlobalEnums.ActiveOption.Both);
                     }
                 }

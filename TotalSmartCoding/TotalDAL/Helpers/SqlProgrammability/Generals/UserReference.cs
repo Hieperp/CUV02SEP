@@ -26,6 +26,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             this.UserEditable();
             this.UserRegister();
             this.UserUnregister();
+            this.UserToggleVoid();
 
             this.GetUserAccessControls();
             this.SaveUserAccessControls();
@@ -124,10 +125,10 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             queryString = queryString + "                   DECLARE         @UserID Int" + "\r\n";
             queryString = queryString + "                   INSERT INTO     Users (OrganizationalUnitID, FirstName, LastName, UserName, SecurityIdentifier, IsDatabaseAdmin, InActive) VALUES (@OrganizationalUnitID, @FirstName, @LastName, @UserName, @SecurityIdentifier, 0, 0); " + "\r\n";
             queryString = queryString + "                   SELECT          @UserID = SCOPE_IDENTITY(); " + "\r\n";
-            queryString = queryString + "                   INSERT INTO     OrganizationalUnitUsers (OrganizationalUnitID, UserID, InActive) VALUES (@OrganizationalUnitID, @UserID, 0); " + "\r\n";
+            queryString = queryString + "                   INSERT INTO     OrganizationalUnitUsers (OrganizationalUnitID, UserID, InActive, InActiveDate) VALUES (@OrganizationalUnitID, @UserID, 0, NULL); " + "\r\n";
 
-            queryString = queryString + "                   INSERT INTO     AccessControls (UserID, NMVNTaskID, OrganizationalUnitID, AccessLevel, ApprovalPermitted, UnApprovalPermitted, VoidablePermitted, UnVoidablePermitted, ShowDiscount) " + "\r\n";
-            queryString = queryString + "                   SELECT          @UserID, ModuleDetails.ModuleDetailID, OrganizationalUnits.OrganizationalUnitID, 0 AS AccessLevel, 0 AS ApprovalPermitted, 0 AS UnApprovalPermitted, 0 AS VoidablePermitted, 0 AS UnVoidablePermitted, 0 AS ShowDiscount " + "\r\n";
+            queryString = queryString + "                   INSERT INTO     AccessControls (UserID, NMVNTaskID, OrganizationalUnitID, AccessLevel, ApprovalPermitted, UnApprovalPermitted, VoidablePermitted, UnVoidablePermitted, ShowDiscount, InActive) " + "\r\n";
+            queryString = queryString + "                   SELECT          @UserID, ModuleDetails.ModuleDetailID, OrganizationalUnits.OrganizationalUnitID, 0 AS AccessLevel, 0 AS ApprovalPermitted, 0 AS UnApprovalPermitted, 0 AS VoidablePermitted, 0 AS UnVoidablePermitted, 0 AS ShowDiscount, 0 AS InActive " + "\r\n";
             queryString = queryString + "                   FROM            ModuleDetails CROSS JOIN OrganizationalUnits" + "\r\n";
             queryString = queryString + "                   WHERE           ModuleDetails.InActive = 0; " + "\r\n";
             queryString = queryString + "               END " + "\r\n";
@@ -145,7 +146,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
 
         private void UserUnregister()
         {
-            string queryString = " @UserID int " + "\r\n";
+            string queryString = " @UserID int, @UserName nvarchar(256), @OrganizationalUnitName nvarchar(256)" + "\r\n";
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "       BEGIN " + "\r\n";
@@ -162,13 +163,26 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
 
             queryString = queryString + "           ELSE " + "\r\n";
             queryString = queryString + "               BEGIN " + "\r\n";
-            queryString = queryString + "                   DECLARE     @msg NVARCHAR(300) = N'Không thể hủy đăng ký user tại location, vì user đã có dữ liệu tại location này. \r\nVui lòng Inactive để thay vì unregister.' ; " + "\r\n";
+            queryString = queryString + "                   DECLARE     @msg NVARCHAR(300) = N'Không thể hủy đăng ký ' + @UserName + N' tại ' + @OrganizationalUnitName + N', do ' + @UserName + N' hiện đang có dữ liệu tại ' + @OrganizationalUnitName + N'\r\n\r\n\r\nVui lòng Inactive để dừng đăng ký và sử dụng ' + @UserName + N' tại ' + @OrganizationalUnitName + '.' ; " + "\r\n";
             queryString = queryString + "                   THROW       61001,  @msg, 1; " + "\r\n";
             queryString = queryString + "               END " + "\r\n";
 
             queryString = queryString + "       END " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("UserUnregister", queryString);
+        }
+
+        private void UserToggleVoid()
+        {
+            string queryString = " @EntityID int, @InActive bit " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+
+            queryString = queryString + "       UPDATE      Users                       SET InActive = @InActive                            WHERE UserID = @EntityID AND InActive = ~@InActive" + "\r\n";
+            queryString = queryString + "       UPDATE      AccessControls              SET InActive = @InActive                            WHERE UserID = @EntityID AND InActive = ~@InActive" + "\r\n";
+            queryString = queryString + "       UPDATE      OrganizationalUnitUsers     SET InActive = @InActive, InActiveDate = GetDate()  WHERE UserID = @EntityID AND InActive = ~@InActive" + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("UserToggleVoid", queryString);
         }
 
         private void GetUserAccessControls()

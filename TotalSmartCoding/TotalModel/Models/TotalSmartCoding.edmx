@@ -2711,6 +2711,8 @@
         </Function>
         <Function Name="UserUnregister" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserID" Type="int" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="OrganizationalUnitName" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="WarehouseAdjustmentApproved" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="EntityID" Type="int" Mode="In" />
@@ -4272,6 +4274,8 @@
           </FunctionImport>
           <FunctionImport Name="UserUnregister">
           <Parameter Name="UserID" Mode="In" Type="Int32" />
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="OrganizationalUnitName" Mode="In" Type="String" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">

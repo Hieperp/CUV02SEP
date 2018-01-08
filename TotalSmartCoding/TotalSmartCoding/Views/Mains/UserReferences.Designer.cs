@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserReferences));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.comboUserID = new System.Windows.Forms.ToolStripComboBox();
             this.comboOrganizationalUnit = new System.Windows.Forms.ToolStripComboBox();
@@ -159,7 +159,7 @@
             // 
             // buttonUserInactive
             // 
-            this.buttonUserInactive.Image = global::TotalSmartCoding.Properties.Resources.no_persons;
+            this.buttonUserInactive.Image = global::TotalSmartCoding.Properties.Resources.no_persons_2;
             this.buttonUserInactive.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.buttonUserInactive.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonUserInactive.Name = "buttonUserInactive";
@@ -256,8 +256,8 @@
             this.gridexUserAccessControl.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gridexUserAccessControl.Name = "gridexUserAccessControl";
             this.gridexUserAccessControl.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridexUserAccessControl.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridexUserAccessControl.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.gridexUserAccessControl.RowTemplate.Height = 24;
             this.gridexUserAccessControl.Size = new System.Drawing.Size(919, 561);
             this.gridexUserAccessControl.TabIndex = 70;

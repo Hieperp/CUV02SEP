@@ -143,6 +143,11 @@ namespace TotalDAL.Repositories
             //    this.totalSmartCodingEntities.ColumnDrop("Users", "LastName");
             //}
 
+            if (!this.totalSmartCodingEntities.ColumnExists("AccessControls", "InActive"))
+            {
+                this.totalSmartCodingEntities.ColumnAdd("AccessControls", "InActive", "bit", "0", true);
+                this.totalSmartCodingEntities.ColumnAdd("OrganizationalUnitUsers", "InActiveDate", "datetime", null, false);
+            }
         }
 
         public bool RestoreProcedures()

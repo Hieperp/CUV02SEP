@@ -60,9 +60,9 @@ namespace TotalDAL.Repositories.Generals
             return this.TotalSmartCodingEntities.UserRegister(locationID, organizationalUnitID, firstName, lastName, userName, securityIdentifier);
         }
 
-        public int UserUnregister(int? userID)
+        public int UserUnregister(int? userID, string userName, string organizationalUnitName)
         {
-            return this.TotalSmartCodingEntities.UserUnregister(userID);
+            return this.TotalSmartCodingEntities.UserUnregister(userID, userName, organizationalUnitName);
         }
 
         public int SaveUserAccessControls(int? accessControlID, int? accessLevel, bool? approvalPermitted, bool? unApprovalPermitted, bool? voidablePermitted, bool? unVoidablePermitted, bool? showDiscount)
