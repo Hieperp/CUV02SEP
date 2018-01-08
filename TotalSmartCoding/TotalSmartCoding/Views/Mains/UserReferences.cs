@@ -34,7 +34,7 @@ namespace TotalSmartCoding.Views.Mains
             InitializeComponent();
             try
             {
-                this.UserID = ContextAttributes.User.UserID;
+                this.SelectedUserID = ContextAttributes.User.UserID;
 
                 ModuleAPIs moduleAPIs = new ModuleAPIs(CommonNinject.Kernel.Get<IModuleAPIRepository>());
 
@@ -47,12 +47,12 @@ namespace TotalSmartCoding.Views.Mains
 
                 this.comboActiveOption.SelectedIndex = 0;
                 this.treeUserID.SelectedIndexChanged += treeUserID_SelectedIndexChanged;
-                
+
 
                 this.comboUserID.ComboBox.DataSource = this.userAPIs.GetUserIndexes(this.comboActiveOption.SelectedIndex == 0 ? GlobalEnums.ActiveOption.Active : GlobalEnums.ActiveOption.Both);
                 this.comboUserID.ComboBox.DisplayMember = CommonExpressions.PropertyName<UserIndex>(p => p.UserName);
                 this.comboUserID.ComboBox.ValueMember = CommonExpressions.PropertyName<UserIndex>(p => p.UserID);
-                this.bindingUserID = this.comboUserID.ComboBox.DataBindings.Add("SelectedValue", this, CommonExpressions.PropertyName<UserIndex>(p => p.UserID), true, DataSourceUpdateMode.OnPropertyChanged);
+                this.bindingUserID = this.comboUserID.ComboBox.DataBindings.Add("SelectedValue", this, "SelectedUserID", true, DataSourceUpdateMode.OnPropertyChanged);
 
 
                 this.gridexUserAccessControl.AutoGenerateColumns = false;
@@ -75,7 +75,7 @@ namespace TotalSmartCoding.Views.Mains
             try
             {
                 int? selectedUserID = this.getSelectedUserID();
-                if (selectedUserID != null && selectedUserID != this.UserID)
+                if (selectedUserID != null && selectedUserID != this.SelectedUserID)
                 {
                     foreach (UserIndex userIndex in this.comboUserID.Items)
                     {
@@ -115,8 +115,9 @@ namespace TotalSmartCoding.Views.Mains
                 UserIndex userIndex = this.comboUserID.SelectedItem as UserIndex;
                 if (userIndex != null)
                 {
-                    this.comboOrganizationalUnit.Text = userIndex.LocationName + "\\" + userIndex.OrganizationalUnitName;
-                    this.comboInActive.Text = userIndex.InActive ? "In Active" : "Active";
+                    this.SelectedUserIndex = userIndex;
+                    this.comboOrganizationalUnit.Text = this.SelectedUserIndex.LocationName + "\\" + this.SelectedUserIndex.OrganizationalUnitName;
+                    this.comboInActive.Text = this.SelectedUserIndex.InActive ? "In Active" : "Active";
                 }
             }
         }
@@ -133,15 +134,16 @@ namespace TotalSmartCoding.Views.Mains
             }
         }
 
-        private int userID;
-        public int UserID
+        private UserIndex SelectedUserIndex { get; set; }
+        private int selectedUserID;
+        public int SelectedUserID
         {
-            get { return this.userID; }
+            get { return this.selectedUserID; }
             set
             {
-                if (this.userID != value)
+                if (this.selectedUserID != value)
                 {
-                    this.userID = value;
+                    this.selectedUserID = value;
                     this.GetUserAccessControls();
                 }
             }
@@ -157,12 +159,12 @@ namespace TotalSmartCoding.Views.Mains
         {
             try
             {
-                if (this.UserID > 0 && this.fastNMVNTasks.SelectedObject != null)
+                if (this.SelectedUserIndex != null && this.SelectedUserIndex.UserID > 0 && this.fastNMVNTasks.SelectedObject != null)
                 {
                     ModuleDetailIndex moduleDetailIndex = (ModuleDetailIndex)this.fastNMVNTasks.SelectedObject;
                     if (moduleDetailIndex != null)
                     {
-                        IList<UserAccessControl> userAccessControls = this.userAPIs.GetUserAccessControls(this.UserID, moduleDetailIndex.ModuleDetailID);
+                        IList<UserAccessControl> userAccessControls = this.userAPIs.GetUserAccessControls(this.SelectedUserIndex.UserID, moduleDetailIndex.ModuleDetailID);
                         this.bindingListUserAccessControls.RaiseListChangedEvents = false;
                         Mapper.Map<ICollection<UserAccessControl>, ICollection<UserAccessControlDTO>>(userAccessControls, this.bindingListUserAccessControls);
                         this.bindingListUserAccessControls.RaiseListChangedEvents = true;
@@ -189,7 +191,12 @@ namespace TotalSmartCoding.Views.Mains
                 {
                     UserAccessControlDTO userAccessControlDTO = this.bindingListUserAccessControls[e.NewIndex];
                     if (userAccessControlDTO != null)
+                    {
+                        if (userAccessControlDTO.LocationID != this.SelectedUserIndex.LocationID) { userAccessControlDTO.ApprovalPermitted = false; userAccessControlDTO.UnApprovalPermitted = false; userAccessControlDTO.VoidablePermitted = false; userAccessControlDTO.UnVoidablePermitted = false; }
+                        if (userAccessControlDTO.LocationID != this.SelectedUserIndex.LocationID && userAccessControlDTO.AccessLevel > 1) { userAccessControlDTO.AccessLevel = 1; }
+
                         this.userAPIs.SaveUserAccessControls(userAccessControlDTO.AccessControlID, userAccessControlDTO.AccessLevel, userAccessControlDTO.ApprovalPermitted, userAccessControlDTO.UnApprovalPermitted, userAccessControlDTO.VoidablePermitted, userAccessControlDTO.UnVoidablePermitted, userAccessControlDTO.ShowDiscount);
+                    }
                 }
             }
             catch (Exception exception)
@@ -211,11 +218,11 @@ namespace TotalSmartCoding.Views.Mains
         {
             try
             {
-                if (this.UserID > 0)
+                if (this.SelectedUserIndex != null && this.SelectedUserIndex.UserID > 0)
                 {
                     if (CustomMsgBox.Show(this, "Are you sure you want to delete " + this.comboUserID.Text + "?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Stop) == DialogResult.Yes)
                     {
-                        this.userAPIs.UserRemove(this.UserID);
+                        this.userAPIs.UserUnregister(this.SelectedUserIndex.UserID);
                         this.comboUserID.ComboBox.DataSource = this.userAPIs.GetUserIndexes(this.comboActiveOption.SelectedIndex == 0 ? GlobalEnums.ActiveOption.Active : GlobalEnums.ActiveOption.Both);
                     }
                 }
@@ -236,7 +243,7 @@ namespace TotalSmartCoding.Views.Mains
             {
                 ExceptionHandlers.ShowExceptionMessageBox(this, exception);
             }
-            
+
         }
     }
 }

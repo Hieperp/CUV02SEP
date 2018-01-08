@@ -206,7 +206,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
 
 
-            //queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "       SET NOCOUNT ON; " + "\r\n";
 

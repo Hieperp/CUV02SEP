@@ -2701,14 +2701,15 @@
         <Function Name="TransferOrderVoidable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="EntityID" Type="int" Mode="In" />
         </Function>
-        <Function Name="UserAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="UserRegister" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LocationID" Type="int" Mode="In" />
           <Parameter Name="OrganizationalUnitID" Type="int" Mode="In" />
           <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
           <Parameter Name="LastName" Type="nvarchar" Mode="In" />
           <Parameter Name="UserName" Type="nvarchar" Mode="In" />
           <Parameter Name="SecurityIdentifier" Type="nvarchar" Mode="In" />
         </Function>
-        <Function Name="UserRemove" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="UserUnregister" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserID" Type="int" Mode="In" />
         </Function>
         <Function Name="WarehouseAdjustmentApproved" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -3950,16 +3951,6 @@
             <Parameter Name="ShowDiscount" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="GetOrganizationalUnitIndexes" ReturnType="Collection(TotalSmartCodingModel.OrganizationalUnitIndex)" />
-          <FunctionImport Name="UserAdd">
-            <Parameter Name="OrganizationalUnitID" Mode="In" Type="Int32" />
-            <Parameter Name="FirstName" Mode="In" Type="String" />
-            <Parameter Name="LastName" Mode="In" Type="String" />
-            <Parameter Name="UserName" Mode="In" Type="String" />
-            <Parameter Name="SecurityIdentifier" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="UserRemove">
-          <Parameter Name="UserID" Mode="In" Type="Int32" />
-          </FunctionImport>
           <AssociationSet Name="FK_DeliveryAdviceDetails_Receivers" Association="TotalSmartCodingModel.FK_DeliveryAdviceDetails_Receivers">
             <End Role="Customer" EntitySet="Customers" />
             <End Role="DeliveryAdviceDetail" EntitySet="DeliveryAdviceDetails" />
@@ -4270,6 +4261,17 @@
           </AssociationSet>
           <FunctionImport Name="GetUserTrees" ReturnType="Collection(TotalSmartCodingModel.UserTree)" >
           <Parameter Name="ActiveOption" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UserRegister">
+            <Parameter Name="LocationID" Mode="In" Type="Int32" />
+            <Parameter Name="OrganizationalUnitID" Mode="In" Type="Int32" />
+            <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="LastName" Mode="In" Type="String" />
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="SecurityIdentifier" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UserUnregister">
+          <Parameter Name="UserID" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
@@ -6507,6 +6509,7 @@
           <Property Type="String" Name="LocationName" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="SecurityIdentifier" Nullable="false" MaxLength="256" />
           <Property Type="Boolean" Name="InActive" Nullable="false" />
+          <Property Type="Int32" Name="LocationID" Nullable="false" />
         </ComplexType>
         <ComplexType Name="UserAccessControl">
           <Property Type="Int32" Name="AccessControlID" Nullable="false" />
@@ -6519,12 +6522,14 @@
           <Property Type="Boolean" Name="VoidablePermitted" Nullable="false" />
           <Property Type="Boolean" Name="UnVoidablePermitted" Nullable="false" />
           <Property Type="Boolean" Name="ShowDiscount" Nullable="false" />
+          <Property Type="Int32" Name="LocationID" Nullable="false" />
         </ComplexType>
         <ComplexType Name="OrganizationalUnitIndex">
           <Property Type="Int32" Name="OrganizationalUnitID" Nullable="false" />
           <Property Type="String" Name="OrganizationalUnitName" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="LocationName" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="LocationOrganizationalUnitName" Nullable="false" MaxLength="151" />
+          <Property Type="Int32" Name="LocationID" Nullable="false" />
         </ComplexType>
         <Association Name="FK_DeliveryAdviceDetails_Receivers">
           <End Type="TotalSmartCodingModel.Customer" Role="Customer" Multiplicity="1" />
@@ -9368,6 +9373,7 @@
                 <ScalarProperty Name="LocationName" ColumnName="LocationName" />
                 <ScalarProperty Name="SecurityIdentifier" ColumnName="SecurityIdentifier" />
                 <ScalarProperty Name="InActive" ColumnName="InActive" />
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -9384,6 +9390,7 @@
                 <ScalarProperty Name="VoidablePermitted" ColumnName="VoidablePermitted" />
                 <ScalarProperty Name="UnVoidablePermitted" ColumnName="UnVoidablePermitted" />
                 <ScalarProperty Name="ShowDiscount" ColumnName="ShowDiscount" />
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -9395,11 +9402,10 @@
                 <ScalarProperty Name="OrganizationalUnitName" ColumnName="OrganizationalUnitName" />
                 <ScalarProperty Name="LocationName" ColumnName="LocationName" />
                 <ScalarProperty Name="LocationOrganizationalUnitName" ColumnName="LocationOrganizationalUnitName" />
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UserAdd" FunctionName="TotalSmartCodingModel.Store.UserAdd" />
-          <FunctionImportMapping FunctionImportName="UserRemove" FunctionName="TotalSmartCodingModel.Store.UserRemove" />
           <EntitySetMapping Name="GoodsIssueDetails">
             <EntityTypeMapping TypeName="TotalSmartCodingModel.GoodsIssueDetail">
               <MappingFragment StoreEntitySet="GoodsIssueDetails">
@@ -9881,6 +9887,8 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UserRegister" FunctionName="TotalSmartCodingModel.Store.UserRegister" />
+          <FunctionImportMapping FunctionImportName="UserUnregister" FunctionName="TotalSmartCodingModel.Store.UserUnregister" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -48,6 +48,7 @@ namespace TotalDTO.Generals
         }
 
         public int AccessControlID { get; set; }
+        public int LocationID { get; set; }
         public string LocationName { get; set; }
         public string OrganizationalUnitName { get; set; }
         public int OrganizationalUnitID { get; set; }

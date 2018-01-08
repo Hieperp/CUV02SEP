@@ -1812,40 +1812,6 @@ namespace TotalModel.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<OrganizationalUnitIndex>("GetOrganizationalUnitIndexes");
         }
     
-        public virtual int UserAdd(Nullable<int> organizationalUnitID, string firstName, string lastName, string userName, string securityIdentifier)
-        {
-            var organizationalUnitIDParameter = organizationalUnitID.HasValue ?
-                new ObjectParameter("OrganizationalUnitID", organizationalUnitID) :
-                new ObjectParameter("OrganizationalUnitID", typeof(int));
-    
-            var firstNameParameter = firstName != null ?
-                new ObjectParameter("FirstName", firstName) :
-                new ObjectParameter("FirstName", typeof(string));
-    
-            var lastNameParameter = lastName != null ?
-                new ObjectParameter("LastName", lastName) :
-                new ObjectParameter("LastName", typeof(string));
-    
-            var userNameParameter = userName != null ?
-                new ObjectParameter("UserName", userName) :
-                new ObjectParameter("UserName", typeof(string));
-    
-            var securityIdentifierParameter = securityIdentifier != null ?
-                new ObjectParameter("SecurityIdentifier", securityIdentifier) :
-                new ObjectParameter("SecurityIdentifier", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UserAdd", organizationalUnitIDParameter, firstNameParameter, lastNameParameter, userNameParameter, securityIdentifierParameter);
-        }
-    
-        public virtual int UserRemove(Nullable<int> userID)
-        {
-            var userIDParameter = userID.HasValue ?
-                new ObjectParameter("UserID", userID) :
-                new ObjectParameter("UserID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UserRemove", userIDParameter);
-        }
-    
         public virtual ObjectResult<Nullable<int>> GetWarehouseLocationID(Nullable<int> warehouseID)
         {
             var warehouseIDParameter = warehouseID.HasValue ?
@@ -2204,6 +2170,44 @@ namespace TotalModel.Models
                 new ObjectParameter("ActiveOption", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UserTree>("GetUserTrees", activeOptionParameter);
+        }
+    
+        public virtual int UserRegister(Nullable<int> locationID, Nullable<int> organizationalUnitID, string firstName, string lastName, string userName, string securityIdentifier)
+        {
+            var locationIDParameter = locationID.HasValue ?
+                new ObjectParameter("LocationID", locationID) :
+                new ObjectParameter("LocationID", typeof(int));
+    
+            var organizationalUnitIDParameter = organizationalUnitID.HasValue ?
+                new ObjectParameter("OrganizationalUnitID", organizationalUnitID) :
+                new ObjectParameter("OrganizationalUnitID", typeof(int));
+    
+            var firstNameParameter = firstName != null ?
+                new ObjectParameter("FirstName", firstName) :
+                new ObjectParameter("FirstName", typeof(string));
+    
+            var lastNameParameter = lastName != null ?
+                new ObjectParameter("LastName", lastName) :
+                new ObjectParameter("LastName", typeof(string));
+    
+            var userNameParameter = userName != null ?
+                new ObjectParameter("UserName", userName) :
+                new ObjectParameter("UserName", typeof(string));
+    
+            var securityIdentifierParameter = securityIdentifier != null ?
+                new ObjectParameter("SecurityIdentifier", securityIdentifier) :
+                new ObjectParameter("SecurityIdentifier", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UserRegister", locationIDParameter, organizationalUnitIDParameter, firstNameParameter, lastNameParameter, userNameParameter, securityIdentifierParameter);
+        }
+    
+        public virtual int UserUnregister(Nullable<int> userID)
+        {
+            var userIDParameter = userID.HasValue ?
+                new ObjectParameter("UserID", userID) :
+                new ObjectParameter("UserID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UserUnregister", userIDParameter);
         }
     }
 }

@@ -50,14 +50,14 @@ namespace TotalSmartCoding.Controllers.APIs.Generals
             return this.userAPIRepository.GetUserAccessControls(userID, nmvnTaskID);
         }
 
-        public int UserAdd(int? organizationalUnitID, string firstName, string lastName, string userName, string securityIdentifier)
+        public int UserRegister(int? locationID, int? organizationalUnitID, string firstName, string lastName, string userName, string securityIdentifier)
         {
-            return this.userAPIRepository.UserAdd(organizationalUnitID, firstName, lastName, userName, securityIdentifier);
+            return this.userAPIRepository.UserRegister(locationID, organizationalUnitID, firstName, lastName, userName, securityIdentifier);
         }
 
-        public int UserRemove(int? userID)
+        public int UserUnregister(int? userID)
         {
-            return this.userAPIRepository.UserRemove(userID);
+            return this.userAPIRepository.UserUnregister(userID);
         }
 
         public int SaveUserAccessControls(int? accessControlID, int? accessLevel, bool? approvalPermitted, bool? unApprovalPermitted, bool? voidablePermitted, bool? unVoidablePermitted, bool? showDiscount)

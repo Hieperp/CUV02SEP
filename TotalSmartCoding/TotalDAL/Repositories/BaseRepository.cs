@@ -137,6 +137,12 @@ namespace TotalDAL.Repositories
 
             #endregion DELETE NOT USED OrganizationalUnitID
 
+            //if (this.totalSmartCodingEntities.ColumnExists("Users", "FirstName"))
+            //{
+            //    this.totalSmartCodingEntities.ColumnDrop("Users", "FirstName");
+            //    this.totalSmartCodingEntities.ColumnDrop("Users", "LastName");
+            //}
+
         }
 
         public bool RestoreProcedures()

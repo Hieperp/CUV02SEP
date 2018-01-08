@@ -55,14 +55,14 @@ namespace TotalDAL.Repositories.Generals
             return this.TotalSmartCodingEntities.GetUserAccessControls(userID, nmvnTaskID).ToList();
         }
 
-        public int UserAdd(int? organizationalUnitID, string firstName, string lastName, string userName, string securityIdentifier)
+        public int UserRegister(int? locationID, int? organizationalUnitID, string firstName, string lastName, string userName, string securityIdentifier)
         {
-            return this.TotalSmartCodingEntities.UserAdd(organizationalUnitID, firstName, lastName, userName, securityIdentifier);
+            return this.TotalSmartCodingEntities.UserRegister(locationID, organizationalUnitID, firstName, lastName, userName, securityIdentifier);
         }
 
-        public int UserRemove(int? userID)
+        public int UserUnregister(int? userID)
         {
-            return this.TotalSmartCodingEntities.UserRemove(userID);
+            return this.TotalSmartCodingEntities.UserUnregister(userID);
         }
 
         public int SaveUserAccessControls(int? accessControlID, int? accessLevel, bool? approvalPermitted, bool? unApprovalPermitted, bool? voidablePermitted, bool? unVoidablePermitted, bool? showDiscount)

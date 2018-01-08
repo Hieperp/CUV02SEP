@@ -22,5 +22,6 @@ namespace TotalModel.Models
         public string LocationName { get; set; }
         public string SecurityIdentifier { get; set; }
         public bool InActive { get; set; }
+        public int LocationID { get; set; }
     }
 }

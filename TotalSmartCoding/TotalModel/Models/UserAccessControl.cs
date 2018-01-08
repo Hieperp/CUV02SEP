@@ -23,5 +23,6 @@ namespace TotalModel.Models
         public bool VoidablePermitted { get; set; }
         public bool UnVoidablePermitted { get; set; }
         public bool ShowDiscount { get; set; }
+        public int LocationID { get; set; }
     }
 }

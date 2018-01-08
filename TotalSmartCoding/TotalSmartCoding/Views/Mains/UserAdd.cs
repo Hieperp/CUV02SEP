@@ -83,8 +83,12 @@ namespace TotalSmartCoding.Views.Mains
                         DomainUser domainUser = this.combexUserID.SelectedItem as DomainUser;
                         if (domainUser != null)
                         {
-                            this.userAPIs.UserAdd(this.OrganizationalUnitID, domainUser.FirstName, domainUser.LastName, domainUser.UserName, domainUser.SecurityIdentifier);
-                            this.DialogResult = DialogResult.OK;
+                            OrganizationalUnitIndex organizationalUnitIndex = this.combexOrganizationalUnitID.SelectedItem as OrganizationalUnitIndex;
+                            if (organizationalUnitIndex != null && organizationalUnitIndex.OrganizationalUnitID == this.OrganizationalUnitID)
+                            {
+                                this.userAPIs.UserRegister(organizationalUnitIndex.LocationID, organizationalUnitIndex.OrganizationalUnitID, domainUser.FirstName, domainUser.LastName, domainUser.UserName, domainUser.SecurityIdentifier);
+                                this.DialogResult = DialogResult.OK;
+                            }
                         }
                     }
                 }

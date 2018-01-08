@@ -17,5 +17,6 @@ namespace TotalModel.Models
         public string OrganizationalUnitName { get; set; }
         public string LocationName { get; set; }
         public string LocationOrganizationalUnitName { get; set; }
+        public int LocationID { get; set; }
     }
 }
