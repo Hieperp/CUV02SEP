@@ -360,17 +360,23 @@
     <Compile Include="Views\Mains\TabletMDI.Designer.cs">
       <DependentUpon>TabletMDI.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Mains\UserAdd.cs">
+    <Compile Include="Views\Mains\UserOUs.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\Mains\UserAdd.Designer.cs">
-      <DependentUpon>UserAdd.cs</DependentUpon>
+    <Compile Include="Views\Mains\UserOUs.Designer.cs">
+      <DependentUpon>UserOUs.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Mains\UserReferences.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\Mains\UserReferences.Designer.cs">
       <DependentUpon>UserReferences.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Mains\UserRegister.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Mains\UserRegister.Designer.cs">
+      <DependentUpon>UserRegister.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Productions\Batches.cs">
       <SubType>Form</SubType>
@@ -527,11 +533,14 @@
     <EmbeddedResource Include="Views\Mains\TabletMDI.resx">
       <DependentUpon>TabletMDI.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Mains\UserAdd.resx">
-      <DependentUpon>UserAdd.cs</DependentUpon>
+    <EmbeddedResource Include="Views\Mains\UserOUs.resx">
+      <DependentUpon>UserOUs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Mains\UserReferences.resx">
       <DependentUpon>UserReferences.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Mains\UserRegister.resx">
+      <DependentUpon>UserRegister.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Productions\Batches.resx">
       <DependentUpon>Batches.cs</DependentUpon>
@@ -1156,6 +1165,8 @@
     <None Include="Resources\no-persons.png" />
     <None Include="Resources\no-persons-1.png" />
     <None Include="Resources\no-persons-2.png" />
+    <None Include="Resources\hierarchical-structure.png" />
+    <None Include="Resources\hierarchical-structure-64.png" />
     <Content Include="SmartCodingSolution.ico" />
     <None Include="Resources\Yellow-cross.ico" />
     <None Include="Resources\White-Pallet.ico" />

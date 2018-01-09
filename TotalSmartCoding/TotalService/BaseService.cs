@@ -46,7 +46,7 @@ namespace TotalService
         public virtual GlobalEnums.AccessLevel GetAccessLevel()
         { return this.GetAccessLevel(0); }
         public virtual GlobalEnums.AccessLevel GetAccessLevel(int? organizationalUnitID)
-        { return GlobalEnums.AccessLevel.Deny; }
+        { return GlobalEnums.AccessLevel.NoAccess; }
 
 
         public virtual bool GetApprovalPermitted()

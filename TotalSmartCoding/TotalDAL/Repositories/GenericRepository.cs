@@ -158,10 +158,10 @@ namespace TotalDAL.Repositories
 
         public GlobalEnums.AccessLevel GetAccessLevel(int? userID, GlobalEnums.NmvnTaskID nmvnTaskID, int? organizationalUnitID)
         {
-            if (userID == null || userID == 0 || (int)nmvnTaskID == 0) return GlobalEnums.AccessLevel.Deny;
+            if (userID == null || userID == 0 || (int)nmvnTaskID == 0) return GlobalEnums.AccessLevel.NoAccess;
 
             int? accessLevel = this.TotalSmartCodingEntities.GetAccessLevel(userID, (int)nmvnTaskID, organizationalUnitID).Single();
-            return accessLevel == null || accessLevel == (int)GlobalEnums.AccessLevel.Deny ? GlobalEnums.AccessLevel.Deny : (accessLevel == (int)GlobalEnums.AccessLevel.Readable ? GlobalEnums.AccessLevel.Readable : (accessLevel == (int)GlobalEnums.AccessLevel.Editable ? GlobalEnums.AccessLevel.Editable : GlobalEnums.AccessLevel.Deny));
+            return accessLevel == null || accessLevel == (int)GlobalEnums.AccessLevel.NoAccess ? GlobalEnums.AccessLevel.NoAccess : (accessLevel == (int)GlobalEnums.AccessLevel.Readable ? GlobalEnums.AccessLevel.Readable : (accessLevel == (int)GlobalEnums.AccessLevel.Editable ? GlobalEnums.AccessLevel.Editable : GlobalEnums.AccessLevel.NoAccess));
         }
 
 

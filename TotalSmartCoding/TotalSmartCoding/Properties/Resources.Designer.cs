@@ -2423,6 +2423,26 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap hierarchical_structure {
+            get {
+                object obj = ResourceManager.GetObject("hierarchical-structure", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap hierarchical_structure_64 {
+            get {
+                object obj = ResourceManager.GetObject("hierarchical-structure-64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Honeycomb_Barcode_Scanner_32 {
             get {
                 object obj = ResourceManager.GetObject("Honeycomb-Barcode-Scanner-32", resourceCulture);

@@ -448,7 +448,7 @@
 
         public enum AccessLevel
         {
-            Deny = 0,
+            NoAccess = 0,
             Readable = 1,
             Editable = 2
         };

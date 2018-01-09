@@ -111,7 +111,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
 
         private void UserRegister()
         {
-            string queryString = " @LocationID int, @OrganizationalUnitID int, @FirstName nvarchar(60), @LastName nvarchar(60), @UserName nvarchar(256), @SecurityIdentifier nvarchar(256) " + "\r\n";
+            string queryString = " @LocationID int, @OrganizationalUnitID int, @FirstName nvarchar(60), @LastName nvarchar(60), @UserName nvarchar(256), @SecurityIdentifier nvarchar(256), @SameOUAccessLevel int, @SameLocationAccessLevel int, @OtherOUAccessLevel int " + "\r\n";
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
             //LUU Y RAT QUAN TRONG - VERY IMPORTANT
@@ -120,7 +120,12 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             //DO DO: KHI ADD, REMOVE, EDIT, INACTIVE, ... PHAI DAM BAO YEU CAU NAY THI MOI THU SE OK
             queryString = queryString + "       BEGIN " + "\r\n";
 
-            queryString = queryString + "           IF (SELECT COUNT(Users.UserID) FROM Users INNER JOIN OrganizationalUnits ON Users.OrganizationalUnitID = OrganizationalUnits.OrganizationalUnitID WHERE InActive = 0 AND OrganizationalUnits.LocationID = @LocationID AND Users.SecurityIdentifier = @SecurityIdentifier) <= 0 " + "\r\n";
+            //---08/JAN/2018: HIỆN TẠI KHÔNG CHO PHÉP ĐĂNG KÝ TRÙNG USER-LOCATION
+            //--->TUY NHIÊN, HOÀN TOÀN CÓ THỂ CẢI TIẾN CHỔ NÀY, CHO PHÉP ĐĂNG KÝ TRÙNG CHO NEW USER-LOCATION NẾU: Users.InActive = 0 AND 
+            //--->KHI ĐÓ: UserToggleVoid: CẦN PHẢI XEM XÉT LẠI --> NHẰM ĐẢM BẢO RẰNG: NẾU ĐÃ CÓ 1 InActive THÌ SẼ KHÔNG THỂ ENABLE CÙNG 1 USER-LOCATION
+            //--->TỨC LÀ: CÓ THỂ CẢI TIẾN --> CHO PHÉP TRÙNG USER-LOCATION, TUY NHIÊN: PHẢI ĐẢM BẢO CHỈ CÓ 1 USER-LOCATION LÀ InActive = 0
+            //--->NHU CẦU ĐĂMG KÝ TRÙNG USER-LOCATION LÀ CÓ: NÓ GIẢI QUYẾT VẤN ĐỀ CẤP LẠI OrganizationalUnits CHO USER TRONG CÙNG LOCATION (VÍ DỤ: CẦN CHIA OrganizationalUnits => DO ĐÓ: PHẢI ĐĂNG KÝ LẠI USER-LOCATION CHO MỘT OrganizationalUnits KHÁC)
+            queryString = queryString + "           IF (SELECT COUNT(Users.UserID) FROM Users INNER JOIN OrganizationalUnits ON Users.OrganizationalUnitID = OrganizationalUnits.OrganizationalUnitID WHERE OrganizationalUnits.LocationID = @LocationID AND Users.SecurityIdentifier = @SecurityIdentifier) <= 0 " + "\r\n";
             queryString = queryString + "               BEGIN " + "\r\n";
             queryString = queryString + "                   DECLARE         @UserID Int" + "\r\n";
             queryString = queryString + "                   INSERT INTO     Users (OrganizationalUnitID, FirstName, LastName, UserName, SecurityIdentifier, IsDatabaseAdmin, InActive) VALUES (@OrganizationalUnitID, @FirstName, @LastName, @UserName, @SecurityIdentifier, 0, 0); " + "\r\n";
@@ -128,7 +133,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             queryString = queryString + "                   INSERT INTO     OrganizationalUnitUsers (OrganizationalUnitID, UserID, InActive, InActiveDate) VALUES (@OrganizationalUnitID, @UserID, 0, NULL); " + "\r\n";
 
             queryString = queryString + "                   INSERT INTO     AccessControls (UserID, NMVNTaskID, OrganizationalUnitID, AccessLevel, ApprovalPermitted, UnApprovalPermitted, VoidablePermitted, UnVoidablePermitted, ShowDiscount, InActive) " + "\r\n";
-            queryString = queryString + "                   SELECT          @UserID, ModuleDetails.ModuleDetailID, OrganizationalUnits.OrganizationalUnitID, 0 AS AccessLevel, 0 AS ApprovalPermitted, 0 AS UnApprovalPermitted, 0 AS VoidablePermitted, 0 AS UnVoidablePermitted, 0 AS ShowDiscount, 0 AS InActive " + "\r\n";
+            queryString = queryString + "                   SELECT          @UserID, ModuleDetails.ModuleDetailID, OrganizationalUnits.OrganizationalUnitID, CASE WHEN OrganizationalUnits.OrganizationalUnitID = @OrganizationalUnitID THEN @SameOUAccessLevel WHEN OrganizationalUnits.LocationID = @LocationID THEN @SameLocationAccessLevel ELSE @OtherOUAccessLevel END AS AccessLevel, CASE WHEN OrganizationalUnits.OrganizationalUnitID = @OrganizationalUnitID AND @SameOUAccessLevel = " + (int)GlobalEnums.AccessLevel.Editable + " THEN 1 ELSE 0 END AS ApprovalPermitted, CASE WHEN OrganizationalUnits.OrganizationalUnitID = @OrganizationalUnitID AND @SameOUAccessLevel = " + (int)GlobalEnums.AccessLevel.Editable + " THEN 1 ELSE 0 END AS UnApprovalPermitted, CASE WHEN OrganizationalUnits.OrganizationalUnitID = @OrganizationalUnitID AND @SameOUAccessLevel = " + (int)GlobalEnums.AccessLevel.Editable + " THEN 1 ELSE 0 END AS VoidablePermitted, CASE WHEN OrganizationalUnits.OrganizationalUnitID = @OrganizationalUnitID AND @SameOUAccessLevel = " + (int)GlobalEnums.AccessLevel.Editable + " THEN 1 ELSE 0 END AS UnVoidablePermitted, 0 AS ShowDiscount, 0 AS InActive " + "\r\n";
             queryString = queryString + "                   FROM            ModuleDetails CROSS JOIN OrganizationalUnits" + "\r\n";
             queryString = queryString + "                   WHERE           ModuleDetails.InActive = 0; " + "\r\n";
             queryString = queryString + "               END " + "\r\n";

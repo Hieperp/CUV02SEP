@@ -2172,7 +2172,7 @@ namespace TotalModel.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UserTree>("GetUserTrees", activeOptionParameter);
         }
     
-        public virtual int UserRegister(Nullable<int> locationID, Nullable<int> organizationalUnitID, string firstName, string lastName, string userName, string securityIdentifier)
+        public virtual int UserRegister(Nullable<int> locationID, Nullable<int> organizationalUnitID, string firstName, string lastName, string userName, string securityIdentifier, Nullable<int> sameOUAccessLevel, Nullable<int> sameLocationAccessLevel, Nullable<int> otherOUAccessLevel)
         {
             var locationIDParameter = locationID.HasValue ?
                 new ObjectParameter("LocationID", locationID) :
@@ -2198,7 +2198,19 @@ namespace TotalModel.Models
                 new ObjectParameter("SecurityIdentifier", securityIdentifier) :
                 new ObjectParameter("SecurityIdentifier", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UserRegister", locationIDParameter, organizationalUnitIDParameter, firstNameParameter, lastNameParameter, userNameParameter, securityIdentifierParameter);
+            var sameOUAccessLevelParameter = sameOUAccessLevel.HasValue ?
+                new ObjectParameter("SameOUAccessLevel", sameOUAccessLevel) :
+                new ObjectParameter("SameOUAccessLevel", typeof(int));
+    
+            var sameLocationAccessLevelParameter = sameLocationAccessLevel.HasValue ?
+                new ObjectParameter("SameLocationAccessLevel", sameLocationAccessLevel) :
+                new ObjectParameter("SameLocationAccessLevel", typeof(int));
+    
+            var otherOUAccessLevelParameter = otherOUAccessLevel.HasValue ?
+                new ObjectParameter("OtherOUAccessLevel", otherOUAccessLevel) :
+                new ObjectParameter("OtherOUAccessLevel", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UserRegister", locationIDParameter, organizationalUnitIDParameter, firstNameParameter, lastNameParameter, userNameParameter, securityIdentifierParameter, sameOUAccessLevelParameter, sameLocationAccessLevelParameter, otherOUAccessLevelParameter);
         }
     
         public virtual int UserUnregister(Nullable<int> userID, string userName, string organizationalUnitName)
@@ -2216,6 +2228,19 @@ namespace TotalModel.Models
                 new ObjectParameter("OrganizationalUnitName", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UserUnregister", userIDParameter, userNameParameter, organizationalUnitNameParameter);
+        }
+    
+        public virtual int UserToggleVoid(Nullable<int> entityID, Nullable<bool> inActive)
+        {
+            var entityIDParameter = entityID.HasValue ?
+                new ObjectParameter("EntityID", entityID) :
+                new ObjectParameter("EntityID", typeof(int));
+    
+            var inActiveParameter = inActive.HasValue ?
+                new ObjectParameter("InActive", inActive) :
+                new ObjectParameter("InActive", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UserToggleVoid", entityIDParameter, inActiveParameter);
         }
     }
 }

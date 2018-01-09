@@ -18,8 +18,10 @@ namespace TotalCore.Repositories.Generals
 
         IList<UserAccessControl> GetUserAccessControls(int? userID, int? nmvnTaskID);
 
-        int UserRegister(int? locationID, int? organizationalUnitID, string firstName, string lastName, string userName, string securityIdentifier);
+        int UserRegister(int? locationID, int? organizationalUnitID, string firstName, string lastName, string userName, string securityIdentifier, int? sameOUAccessLevel, int? sameLocationAccessLevel, int? otherOUAccessLevel);
         int UserUnregister(int? userID, string userName, string organizationalUnitName);
+        int UserToggleVoid(int? userID, bool? inActive);
+
         int SaveUserAccessControls(int? accessControlID, int? accessLevel, bool? approvalPermitted, bool? unApprovalPermitted, bool? voidablePermitted, bool? unVoidablePermitted, bool? showDiscount);
     }
 }

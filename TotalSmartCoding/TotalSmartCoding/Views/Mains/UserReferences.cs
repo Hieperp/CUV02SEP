@@ -1,23 +1,24 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Windows.Forms;
 using System.Collections.Generic;
-using System.Windows.Forms;
 
 using Ninject;
+using AutoMapper;
+
 using BrightIdeasSoftware;
 
+using TotalBase;
+using TotalBase.Enums;
 using TotalModel.Models;
+using TotalDTO.Generals;
 
 using TotalCore.Repositories.Generals;
+
 using TotalSmartCoding.Libraries;
 using TotalSmartCoding.Libraries.Helpers;
 using TotalSmartCoding.Controllers.APIs.Generals;
-using TotalBase;
 using TotalSmartCoding.Libraries.StackedHeaders;
-using System.ComponentModel;
-using AutoMapper;
-using TotalDTO.Generals;
-using TotalBase.Enums;
 
 
 namespace TotalSmartCoding.Views.Mains
@@ -45,11 +46,12 @@ namespace TotalSmartCoding.Views.Mains
 
                 this.userAPIs = new UserAPIs(CommonNinject.Kernel.Get<IUserAPIRepository>());
 
-                this.comboActiveOption.SelectedIndex = 0;
+                
+                this.treeUserID.RootKeyValue = 0;
                 this.treeUserID.SelectedIndexChanged += treeUserID_SelectedIndexChanged;
 
-
-                this.comboUserID.ComboBox.DataSource = this.userAPIs.GetUserIndexes(this.comboActiveOption.SelectedIndex == 0 ? GlobalEnums.ActiveOption.Active : GlobalEnums.ActiveOption.Both);
+                this.comboActiveOption.SelectedIndex = 0;
+                
                 this.comboUserID.ComboBox.DisplayMember = CommonExpressions.PropertyName<UserIndex>(p => p.UserName);
                 this.comboUserID.ComboBox.ValueMember = CommonExpressions.PropertyName<UserIndex>(p => p.UserID);
                 this.bindingUserID = this.comboUserID.ComboBox.DataBindings.Add("SelectedValue", this, "SelectedUserID", true, DataSourceUpdateMode.OnPropertyChanged);
@@ -68,6 +70,29 @@ namespace TotalSmartCoding.Views.Mains
             {
                 ExceptionHandlers.ShowExceptionMessageBox(this, exception);
             }
+        }
+
+        #region Select User
+        private void comboActiveOption_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                this.LoadUserTrees();
+            }
+            catch (Exception exception)
+            {
+                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+            }
+
+        }
+
+        private void LoadUserTrees()
+        {
+            this.comboUserID.ComboBox.DataSource = this.userAPIs.GetUserIndexes(this.comboActiveOption.SelectedIndex == 0 ? GlobalEnums.ActiveOption.Active : GlobalEnums.ActiveOption.Both);
+
+            IList<UserTree> userTrees = this.userAPIs.GetUserTrees(this.comboActiveOption.SelectedIndex == 0 ? GlobalEnums.ActiveOption.Active : GlobalEnums.ActiveOption.Both);
+            this.treeUserID.DataSource = new BindingSource(userTrees, "");
+            this.treeUserID.ExpandAll();
         }
 
         private void treeUserID_SelectedIndexChanged(object sender, EventArgs e)
@@ -100,14 +125,7 @@ namespace TotalSmartCoding.Views.Mains
             else return null;
         }
 
-        private void LoadUserTrees()
-        {
-            this.treeUserID.RootKeyValue = 0;
-            IList<UserTree> userTrees = this.userAPIs.GetUserTrees(this.comboActiveOption.SelectedIndex == 0 ? GlobalEnums.ActiveOption.Active : GlobalEnums.ActiveOption.Both);
-            this.treeUserID.DataSource = new BindingSource(userTrees, "");
-            this.treeUserID.ExpandAll();
-        }
-
+        
         private void comboUserID_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (this.comboUserID.SelectedItem != null)
@@ -118,10 +136,15 @@ namespace TotalSmartCoding.Views.Mains
                     this.SelectedUserIndex = userIndex;
                     this.comboOrganizationalUnit.Text = this.SelectedUserIndex.FullyQualifiedOrganizationalUnitName;
                     this.comboInActive.Text = this.SelectedUserIndex.InActive ? "In Active" : "Active";
+
+                    this.GetUserAccessControls();
                 }
             }
         }
 
+        #endregion Select User
+
+        #region Handle Task
         private void fastNMVNTasks_AboutToCreateGroups(object sender, BrightIdeasSoftware.CreateGroupsEventArgs e)
         {
             if (e.Groups != null && e.Groups.Count > 0)
@@ -205,25 +228,28 @@ namespace TotalSmartCoding.Views.Mains
             }
         }
 
-        private void buttonUserAdd_Click(object sender, EventArgs e)
-        {
-            UserAdd wizardUserAdd = new UserAdd(this.userAPIs);
-            DialogResult dialogResult = wizardUserAdd.ShowDialog();
+        #endregion Handle Task
 
-            wizardUserAdd.Dispose();
-            if (dialogResult == DialogResult.OK) this.comboUserID.ComboBox.DataSource = this.userAPIs.GetUserIndexes(this.comboActiveOption.SelectedIndex == 0 ? GlobalEnums.ActiveOption.Active : GlobalEnums.ActiveOption.Both);
+        #region Register, Unuegister, ToggleVoid
+        private void buttonUserRegister_Click(object sender, EventArgs e)
+        {
+            UserRegister wizardUserRegister = new UserRegister(this.userAPIs);
+            DialogResult dialogResult = wizardUserRegister.ShowDialog();
+
+            wizardUserRegister.Dispose();
+            if (dialogResult == DialogResult.OK) this.LoadUserTrees();
         }
 
-        private void buttonUserRemove_Click(object sender, EventArgs e)
+        private void buttonUserUnregister_Click(object sender, EventArgs e)
         {
             try
             {
-                if (this.SelectedUserIndex != null && this.SelectedUserIndex.UserID > 0)
+                if (this.SelectedUserIndex != null && this.SelectedUserIndex.UserID > 0 && !this.SelectedUserIndex.IsDatabaseAdmin)
                 {
-                    if (CustomMsgBox.Show(this, "Are you sure you want to cancel this user registration?" + "\r\n" + "\r\nUser:  " + this.SelectedUserIndex.UserName + "\r\nAt:  " + this.SelectedUserIndex.FullyQualifiedOrganizationalUnitName, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Stop) == DialogResult.Yes)
+                    if (CustomMsgBox.Show(this, "Are you sure you want to cancel this user registration?" + "\r\n" + "\r\nUser:  " + this.SelectedUserIndex.UserName + "\r\nAt:  " + this.SelectedUserIndex.FullyQualifiedOrganizationalUnitName, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
                     {
                         this.userAPIs.UserUnregister(this.SelectedUserIndex.UserID, this.SelectedUserIndex.UserName, this.SelectedUserIndex.FullyQualifiedOrganizationalUnitName);
-                        this.comboUserID.ComboBox.DataSource = this.userAPIs.GetUserIndexes(this.comboActiveOption.SelectedIndex == 0 ? GlobalEnums.ActiveOption.Active : GlobalEnums.ActiveOption.Both);
+                        this.LoadUserTrees();
                     }
                 }
             }
@@ -233,17 +259,24 @@ namespace TotalSmartCoding.Views.Mains
             }
         }
 
-        private void comboActiveOption_SelectedIndexChanged(object sender, EventArgs e)
+        private void buttonUserToggleVoid_Click(object sender, EventArgs e)
         {
             try
             {
-                this.LoadUserTrees();
+                if (this.SelectedUserIndex != null && this.SelectedUserIndex.UserID > 0 && !this.SelectedUserIndex.IsDatabaseAdmin)
+                {
+                    if (CustomMsgBox.Show(this, "Are you sure you want to " + (this.SelectedUserIndex.InActive ? "enable" : "disable") + " this user registration?" + "\r\n" + "\r\nUser:  " + this.SelectedUserIndex.UserName + "\r\nAt:  " + this.SelectedUserIndex.FullyQualifiedOrganizationalUnitName, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Stop) == DialogResult.Yes)
+                    {
+                        this.userAPIs.UserToggleVoid(this.SelectedUserIndex.UserID, !this.SelectedUserIndex.InActive);
+                        this.LoadUserTrees();
+                    }
+                }
             }
             catch (Exception exception)
             {
                 ExceptionHandlers.ShowExceptionMessageBox(this, exception);
             }
-
         }
+        #endregion Register, Unuegister, ToggleVoid
     }
 }

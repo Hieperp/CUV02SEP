@@ -521,6 +521,7 @@
           <Property Name="OrganizationalUnitID" Type="int" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
           <Property Name="InActive" Type="bit" Nullable="false" />
+          <Property Name="InActiveDate" Type="datetime" />
         </EntityType>
         <EntityType Name="Packs">
           <Key>
@@ -2708,6 +2709,13 @@
           <Parameter Name="LastName" Type="nvarchar" Mode="In" />
           <Parameter Name="UserName" Type="nvarchar" Mode="In" />
           <Parameter Name="SecurityIdentifier" Type="nvarchar" Mode="In" />
+          <Parameter Name="SameOUAccessLevel" Type="int" Mode="In" />
+          <Parameter Name="SameLocationAccessLevel" Type="int" Mode="In" />
+          <Parameter Name="OtherOUAccessLevel" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UserToggleVoid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="int" Mode="In" />
+          <Parameter Name="InActive" Type="bit" Mode="In" />
         </Function>
         <Function Name="UserUnregister" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserID" Type="int" Mode="In" />
@@ -4271,11 +4279,18 @@
             <Parameter Name="LastName" Mode="In" Type="String" />
             <Parameter Name="UserName" Mode="In" Type="String" />
             <Parameter Name="SecurityIdentifier" Mode="In" Type="String" />
+            <Parameter Name="SameOUAccessLevel" Mode="In" Type="Int32" />
+            <Parameter Name="SameLocationAccessLevel" Mode="In" Type="Int32" />
+            <Parameter Name="OtherOUAccessLevel" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="UserUnregister">
-          <Parameter Name="UserID" Mode="In" Type="Int32" />
+            <Parameter Name="UserID" Mode="In" Type="Int32" />
             <Parameter Name="UserName" Mode="In" Type="String" />
             <Parameter Name="OrganizationalUnitName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UserToggleVoid">
+            <Parameter Name="EntityID" Mode="In" Type="Int32" />
+            <Parameter Name="InActive" Mode="In" Type="Boolean" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
@@ -4586,6 +4601,7 @@
           <Property Name="InActive" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="OrganizationalUnit" Relationship="TotalSmartCodingModel.FK_OrganizationalUnitIUsers_OrganizationalUnits" FromRole="OrganizationalUnitUser" ToRole="OrganizationalUnit" />
           <NavigationProperty Name="User" Relationship="TotalSmartCodingModel.FK_OrganizationalUnitUsers_Users" FromRole="OrganizationalUnitUser" ToRole="User" />
+          <Property Name="InActiveDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Territory">
           <Key>
@@ -7986,6 +8002,7 @@
           <EntitySetMapping Name="OrganizationalUnitUsers">
             <EntityTypeMapping TypeName="TotalSmartCodingModel.OrganizationalUnitUser">
               <MappingFragment StoreEntitySet="OrganizationalUnitUsers">
+                <ScalarProperty Name="InActiveDate" ColumnName="InActiveDate" />
                 <ScalarProperty Name="InActive" ColumnName="InActive" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="OrganizationalUnitID" ColumnName="OrganizationalUnitID" />
@@ -9893,6 +9910,7 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UserRegister" FunctionName="TotalSmartCodingModel.Store.UserRegister" />
           <FunctionImportMapping FunctionImportName="UserUnregister" FunctionName="TotalSmartCodingModel.Store.UserUnregister" />
+          <FunctionImportMapping FunctionImportName="UserToggleVoid" FunctionName="TotalSmartCodingModel.Store.UserToggleVoid" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
