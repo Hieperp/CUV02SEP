@@ -25,5 +25,16 @@ namespace TotalSmartCoding.Controllers.APIs.Generals
         {
             return this.organizationalUnitAPIRepository.GetEntityIndexes<OrganizationalUnitIndex>(ContextAttributes.User.UserID, ContextAttributes.FromDate, ContextAttributes.ToDate).ToList();
         }
+
+        public int OrganizationalUnitAdd(int? locationID, string code, string name)
+        {
+            return this.organizationalUnitAPIRepository.OrganizationalUnitAdd(locationID, code, name);
+        }
+
+        public int OrganizationalUnitRemove(int? organizationalUnitID, string code)
+        {
+            return this.organizationalUnitAPIRepository.OrganizationalUnitRemove(organizationalUnitID, code);
+        }
+
     }
 }

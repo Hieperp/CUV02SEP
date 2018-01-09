@@ -2272,5 +2272,35 @@ namespace TotalModel.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("OrganizationalUnitEditable", entityIDParameter);
         }
+    
+        public virtual int OrganizationalUnitAdd(Nullable<int> locationID, string code, string name)
+        {
+            var locationIDParameter = locationID.HasValue ?
+                new ObjectParameter("LocationID", locationID) :
+                new ObjectParameter("LocationID", typeof(int));
+    
+            var codeParameter = code != null ?
+                new ObjectParameter("Code", code) :
+                new ObjectParameter("Code", typeof(string));
+    
+            var nameParameter = name != null ?
+                new ObjectParameter("Name", name) :
+                new ObjectParameter("Name", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("OrganizationalUnitAdd", locationIDParameter, codeParameter, nameParameter);
+        }
+    
+        public virtual int OrganizationalUnitRemove(Nullable<int> organizationalUnitID, string code)
+        {
+            var organizationalUnitIDParameter = organizationalUnitID.HasValue ?
+                new ObjectParameter("OrganizationalUnitID", organizationalUnitID) :
+                new ObjectParameter("OrganizationalUnitID", typeof(int));
+    
+            var codeParameter = code != null ?
+                new ObjectParameter("Code", code) :
+                new ObjectParameter("Code", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("OrganizationalUnitRemove", organizationalUnitIDParameter, codeParameter);
+        }
     }
 }

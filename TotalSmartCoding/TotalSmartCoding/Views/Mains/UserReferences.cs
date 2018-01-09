@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.ComponentModel;
 using System.Windows.Forms;
 using System.Collections.Generic;
@@ -92,11 +93,26 @@ namespace TotalSmartCoding.Views.Mains
 
         private void LoadUserTrees()
         {
-            this.comboUserID.ComboBox.DataSource = this.userAPIs.GetUserIndexes(this.comboActiveOption.SelectedIndex == 0 ? GlobalEnums.ActiveOption.Active : GlobalEnums.ActiveOption.Both);
+            try
+            {
+                int lastSelectedUserID = this.SelectedUserID;
 
-            IList<UserTree> userTrees = this.userAPIs.GetUserTrees(this.comboActiveOption.SelectedIndex == 0 ? GlobalEnums.ActiveOption.Active : GlobalEnums.ActiveOption.Both);
-            this.treeUserID.DataSource = new BindingSource(userTrees, "");
-            this.treeUserID.ExpandAll();
+                this.comboUserID.ComboBox.DataSource = this.userAPIs.GetUserIndexes(this.comboActiveOption.SelectedIndex == 0 ? GlobalEnums.ActiveOption.Active : GlobalEnums.ActiveOption.Both);
+
+                IList<UserTree> userTrees = this.userAPIs.GetUserTrees(this.comboActiveOption.SelectedIndex == 0 ? GlobalEnums.ActiveOption.Active : GlobalEnums.ActiveOption.Both);
+                this.treeUserID.DataSource = new BindingSource(userTrees, "");
+                this.treeUserID.ExpandAll();
+
+                if (this.SelectedUserID != lastSelectedUserID)
+                { //OPTION: TRY TO KEEP LAST SelectedUserID
+                    UserTree userTree = userTrees.FirstOrDefault(w => w.PrimaryID == lastSelectedUserID);
+                    if (userTree != null) this.treeUserID.SelectObject(userTree);
+                }
+            }
+            catch (Exception exception)
+            {
+                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+            }
         }
 
         private void treeUserID_SelectedIndexChanged(object sender, EventArgs e)
@@ -141,6 +157,7 @@ namespace TotalSmartCoding.Views.Mains
                     this.comboOrganizationalUnit.Text = this.SelectedUserIndex.FullyQualifiedOrganizationalUnitName;
                     this.comboInActive.Text = this.SelectedUserIndex.InActive ? "In Active" : "Active";
 
+                    this.buttonUserToggleVoid.Enabled = !this.SelectedUserIndex.IsDatabaseAdmin;
                     this.buttonUserUnregister.Enabled = !this.SelectedUserIndex.IsDatabaseAdmin && this.userRepository.GetEditable(this.SelectedUserIndex.UserID);
 
                     this.GetUserAccessControls();

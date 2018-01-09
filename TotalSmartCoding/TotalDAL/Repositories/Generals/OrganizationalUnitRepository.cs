@@ -24,5 +24,15 @@ namespace TotalDAL.Repositories.Generals
             : base(totalSmartCodingEntities, "GetOrganizationalUnitIndexes")
         {
         }
+
+        public int OrganizationalUnitAdd(int? locationID, string code, string name)
+        {
+            return this.TotalSmartCodingEntities.OrganizationalUnitAdd(locationID, code, name);
+        }
+
+        public int OrganizationalUnitRemove(int? organizationalUnitID, string code)
+        {
+            return this.TotalSmartCodingEntities.OrganizationalUnitRemove(organizationalUnitID, code);
+        }
     }
 }

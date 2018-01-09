@@ -2591,8 +2591,17 @@
           <Parameter Name="EntityID" Type="int" Mode="In" />
           <Parameter Name="Approved" Type="bit" Mode="In" />
         </Function>
+        <Function Name="OrganizationalUnitAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LocationID" Type="int" Mode="In" />
+          <Parameter Name="Code" Type="nvarchar" Mode="In" />
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="OrganizationalUnitEditable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="EntityID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="OrganizationalUnitRemove" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="OrganizationalUnitID" Type="int" Mode="In" />
+          <Parameter Name="Code" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="PackEditable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="EntityID" Type="int" Mode="In" />
@@ -4311,6 +4320,15 @@
           </FunctionImport>
           <FunctionImport Name="OrganizationalUnitEditable" ReturnType="Collection(String)">
           <Parameter Name="EntityID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="OrganizationalUnitAdd">
+            <Parameter Name="LocationID" Mode="In" Type="Int32" />
+            <Parameter Name="Code" Mode="In" Type="String" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="OrganizationalUnitRemove">
+            <Parameter Name="OrganizationalUnitID" Mode="In" Type="Int32" />
+            <Parameter Name="Code" Mode="In" Type="String" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
@@ -9933,6 +9951,8 @@
           <FunctionImportMapping FunctionImportName="UserToggleVoid" FunctionName="TotalSmartCodingModel.Store.UserToggleVoid" />
           <FunctionImportMapping FunctionImportName="UserEditable" FunctionName="TotalSmartCodingModel.Store.UserEditable" />
           <FunctionImportMapping FunctionImportName="OrganizationalUnitEditable" FunctionName="TotalSmartCodingModel.Store.OrganizationalUnitEditable" />
+          <FunctionImportMapping FunctionImportName="OrganizationalUnitAdd" FunctionName="TotalSmartCodingModel.Store.OrganizationalUnitAdd" />
+          <FunctionImportMapping FunctionImportName="OrganizationalUnitRemove" FunctionName="TotalSmartCodingModel.Store.OrganizationalUnitRemove" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

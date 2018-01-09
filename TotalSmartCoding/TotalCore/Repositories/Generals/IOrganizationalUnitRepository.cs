@@ -10,6 +10,8 @@ namespace TotalCore.Repositories.Generals
 
     public interface IOrganizationalUnitAPIRepository : IGenericAPIRepository
     {
+        int OrganizationalUnitAdd(int? locationID, string code, string name);
+        int OrganizationalUnitRemove(int? organizationalUnitID, string code);
     }
 
 }
