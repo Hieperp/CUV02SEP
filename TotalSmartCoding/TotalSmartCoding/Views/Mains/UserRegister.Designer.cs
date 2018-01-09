@@ -78,14 +78,15 @@
             // 
             // buttonOK
             // 
+            this.buttonOK.Enabled = false;
             this.buttonOK.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonOK.Image = global::TotalSmartCoding.Properties.Resources.Add_continue;
             this.buttonOK.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.buttonOK.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.buttonOK.Size = new System.Drawing.Size(103, 52);
-            this.buttonOK.Text = "Finish";
+            this.buttonOK.Size = new System.Drawing.Size(118, 52);
+            this.buttonOK.Text = "Register";
             this.buttonOK.Click += new System.EventHandler(this.buttonOKESC_Click);
             // 
             // layoutTop

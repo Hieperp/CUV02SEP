@@ -12,7 +12,7 @@ namespace TotalDAL.Repositories.Generals
     public class UserRepository : GenericRepository<User>, IUserRepository
     {
         public UserRepository(TotalSmartCodingEntities totalSmartCodingEntities)
-            : base(totalSmartCodingEntities)
+            : base(totalSmartCodingEntities, "UserEditable")
         {
         }
     }

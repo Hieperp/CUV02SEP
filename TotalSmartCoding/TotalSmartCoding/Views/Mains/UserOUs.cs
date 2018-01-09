@@ -30,16 +30,30 @@ namespace TotalSmartCoding.Views.Mains
                 this.combexOrganizationalUnitID.DataSource = this.userAPIs.GetOrganizationalUnitIndexes();
                 this.combexOrganizationalUnitID.DisplayMember = CommonExpressions.PropertyName<OrganizationalUnitIndex>(p => p.LocationOrganizationalUnitName);
                 this.combexOrganizationalUnitID.ValueMember = CommonExpressions.PropertyName<OrganizationalUnitIndex>(p => p.OrganizationalUnitID);
-                //this.bindingOrganizationalUnitID = this.combexOrganizationalUnitID.DataBindings.Add("SelectedValue", this, CommonExpressions.PropertyName<OrganizationalUnitIndex>(p => p.OrganizationalUnitID), true, DataSourceUpdateMode.OnPropertyChanged);
+                this.bindingOrganizationalUnitID = this.combexOrganizationalUnitID.DataBindings.Add("SelectedValue", this, CommonExpressions.PropertyName<OrganizationalUnitIndex>(p => p.OrganizationalUnitID), true, DataSourceUpdateMode.OnPropertyChanged);
+                this.bindingOrganizationalUnitID.BindingComplete += bindingOrganizationalUnitID_BindingComplete;
+                this.textexNewOrganizationalUnitID.TextChanged += textexNewOrganizationalUnitID_TextChanged;
 
                 this.addOU = addOU;
                 this.labelOrganizationalUnitID.Visible = !this.addOU; this.combexOrganizationalUnitID.Visible = !this.addOU;
                 this.labelNewOrganizationalUnitID.Visible = this.addOU; this.textexNewOrganizationalUnitID.Visible = this.addOU;
+                this.Text = this.addOU ? "Add new organizational unit" : "Remove OU";
+                this.buttonOK.Text = this.addOU ? "Add" : "Remove";
             }
             catch (Exception exception)
             {
                 ExceptionHandlers.ShowExceptionMessageBox(this, exception);
             }
+        }
+
+        private void textexNewOrganizationalUnitID_TextChanged(object sender, EventArgs e)
+        {
+            this.buttonOK.Enabled = this.textexNewOrganizationalUnitID.Text.Trim().Length > 0;
+        }
+
+        private void bindingOrganizationalUnitID_BindingComplete(object sender, BindingCompleteEventArgs e)
+        {
+            this.buttonOK.Enabled = this.OrganizationalUnitID != null;
         }
 
         private void buttonOKESC_Click(object sender, EventArgs e)

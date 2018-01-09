@@ -59,12 +59,14 @@ namespace TotalSmartCoding.Views.Mains
                 this.combexUserID.DisplayMember = CommonExpressions.PropertyName<DomainUser>(p => p.UserName);
                 this.combexUserID.ValueMember = CommonExpressions.PropertyName<DomainUser>(p => p.UserName);
                 this.bindingUserName = this.combexUserID.DataBindings.Add("SelectedValue", this, CommonExpressions.PropertyName<DomainUser>(p => p.UserName), true, DataSourceUpdateMode.OnPropertyChanged);
+                this.bindingUserName.BindingComplete += binding_BindingComplete;
 
                 this.userAPIs = userAPIs;
                 this.combexOrganizationalUnitID.DataSource = this.userAPIs.GetOrganizationalUnitIndexes();
                 this.combexOrganizationalUnitID.DisplayMember = CommonExpressions.PropertyName<OrganizationalUnitIndex>(p => p.LocationOrganizationalUnitName);
                 this.combexOrganizationalUnitID.ValueMember = CommonExpressions.PropertyName<OrganizationalUnitIndex>(p => p.OrganizationalUnitID);
                 this.bindingOrganizationalUnitID = this.combexOrganizationalUnitID.DataBindings.Add("SelectedValue", this, CommonExpressions.PropertyName<OrganizationalUnitIndex>(p => p.OrganizationalUnitID), true, DataSourceUpdateMode.OnPropertyChanged);
+                this.bindingOrganizationalUnitID.BindingComplete += binding_BindingComplete;
 
                 this.SameOUAccessLevel = GlobalEnums.AccessLevel.NoAccess;
                 this.combexSameOUAccessLevels.DataSource = new List<ACL>() { new ACL() { AccessLevelID = GlobalEnums.AccessLevel.NoAccess }, new ACL() { AccessLevelID = GlobalEnums.AccessLevel.Readable }, new ACL() { AccessLevelID = GlobalEnums.AccessLevel.Editable } };
@@ -104,6 +106,11 @@ namespace TotalSmartCoding.Views.Mains
             }
 
             return windowsIdentityName;
+        }
+
+        private void binding_BindingComplete(object sender, BindingCompleteEventArgs e)
+        {
+            this.buttonOK.Enabled = this.UserName != null && this.OrganizationalUnitID != null;
         }
 
         private void buttonOKESC_Click(object sender, EventArgs e)

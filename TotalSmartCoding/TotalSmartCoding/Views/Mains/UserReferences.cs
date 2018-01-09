@@ -21,12 +21,14 @@ using TotalSmartCoding.Controllers.APIs.Generals;
 using TotalSmartCoding.Libraries.StackedHeaders;
 
 
+
 namespace TotalSmartCoding.Views.Mains
 {
     public partial class UserReferences : Form
     {
         private Binding bindingUserID;
         private UserAPIs userAPIs { get; set; }
+        private IUserRepository userRepository { get; set; }
 
         private BindingList<UserAccessControlDTO> bindingListUserAccessControls;
 
@@ -45,13 +47,13 @@ namespace TotalSmartCoding.Views.Mains
                 this.fastNMVNTasks.Sort(this.olvModuleName, SortOrder.Ascending);
 
                 this.userAPIs = new UserAPIs(CommonNinject.Kernel.Get<IUserAPIRepository>());
+                this.userRepository = CommonNinject.Kernel.Get<IUserRepository>();
 
-                
                 this.treeUserID.RootKeyValue = 0;
                 this.treeUserID.SelectedIndexChanged += treeUserID_SelectedIndexChanged;
 
                 this.comboActiveOption.SelectedIndex = 0;
-                
+
                 this.comboUserID.ComboBox.DisplayMember = CommonExpressions.PropertyName<UserIndex>(p => p.UserName);
                 this.comboUserID.ComboBox.ValueMember = CommonExpressions.PropertyName<UserIndex>(p => p.UserID);
                 this.bindingUserID = this.comboUserID.ComboBox.DataBindings.Add("SelectedValue", this, "SelectedUserID", true, DataSourceUpdateMode.OnPropertyChanged);
@@ -125,7 +127,7 @@ namespace TotalSmartCoding.Views.Mains
             else return null;
         }
 
-        
+
         private void comboUserID_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (this.comboUserID.SelectedItem != null)
@@ -136,6 +138,8 @@ namespace TotalSmartCoding.Views.Mains
                     this.SelectedUserIndex = userIndex;
                     this.comboOrganizationalUnit.Text = this.SelectedUserIndex.FullyQualifiedOrganizationalUnitName;
                     this.comboInActive.Text = this.SelectedUserIndex.InActive ? "In Active" : "Active";
+
+                    this.buttonUserUnregister.Enabled = !this.SelectedUserIndex.IsDatabaseAdmin && this.userRepository.GetEditable(this.SelectedUserIndex.UserID);
 
                     this.GetUserAccessControls();
                 }
@@ -278,5 +282,14 @@ namespace TotalSmartCoding.Views.Mains
             }
         }
         #endregion Register, Unuegister, ToggleVoid
+
+        private void buttonAddRemoveOU_Click(object sender, EventArgs e)
+        {
+            UserOUs wizardUserOUs = new UserOUs(this.userAPIs, sender.Equals(this.buttonAddOU));
+            DialogResult dialogResult = wizardUserOUs.ShowDialog();
+
+            wizardUserOUs.Dispose();
+            if (dialogResult == DialogResult.OK) this.LoadUserTrees();
+        }
     }
 }

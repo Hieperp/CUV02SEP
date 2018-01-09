@@ -1167,6 +1167,7 @@
     <None Include="Resources\no-persons-2.png" />
     <None Include="Resources\hierarchical-structure.png" />
     <None Include="Resources\hierarchical-structure-64.png" />
+    <None Include="Resources\networking.png" />
     <Content Include="SmartCodingSolution.ico" />
     <None Include="Resources\Yellow-cross.ico" />
     <None Include="Resources\White-Pallet.ico" />

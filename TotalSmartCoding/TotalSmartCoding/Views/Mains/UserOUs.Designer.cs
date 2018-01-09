@@ -50,10 +50,10 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.buttonESC,
             this.buttonOK});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 118);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 92);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStrip1.Size = new System.Drawing.Size(626, 55);
+            this.toolStrip1.Size = new System.Drawing.Size(699, 39);
             this.toolStrip1.TabIndex = 100;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -66,7 +66,7 @@
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65F));
-            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 28F));
+            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 15F));
             this.layoutTop.Controls.Add(this.labelNewOrganizationalUnitID, 2, 1);
             this.layoutTop.Controls.Add(this.combexOrganizationalUnitID, 3, 2);
             this.layoutTop.Controls.Add(this.labelOrganizationalUnitID, 2, 2);
@@ -82,7 +82,7 @@
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.layoutTop.Size = new System.Drawing.Size(626, 118);
+            this.layoutTop.Size = new System.Drawing.Size(699, 92);
             this.layoutTop.TabIndex = 101;
             // 
             // labelNewOrganizationalUnitID
@@ -92,7 +92,7 @@
             this.labelNewOrganizationalUnitID.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelNewOrganizationalUnitID.Location = new System.Drawing.Point(71, 27);
             this.labelNewOrganizationalUnitID.Name = "labelNewOrganizationalUnitID";
-            this.labelNewOrganizationalUnitID.Size = new System.Drawing.Size(179, 30);
+            this.labelNewOrganizationalUnitID.Size = new System.Drawing.Size(209, 30);
             this.labelNewOrganizationalUnitID.TabIndex = 78;
             this.labelNewOrganizationalUnitID.Text = "New Organizational Unit";
             this.labelNewOrganizationalUnitID.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -106,11 +106,11 @@
             this.combexOrganizationalUnitID.Editable = true;
             this.combexOrganizationalUnitID.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combexOrganizationalUnitID.FormattingEnabled = true;
-            this.combexOrganizationalUnitID.Location = new System.Drawing.Point(254, 58);
+            this.combexOrganizationalUnitID.Location = new System.Drawing.Point(284, 58);
             this.combexOrganizationalUnitID.Margin = new System.Windows.Forms.Padding(1);
             this.combexOrganizationalUnitID.Name = "combexOrganizationalUnitID";
             this.combexOrganizationalUnitID.ReadOnly = false;
-            this.combexOrganizationalUnitID.Size = new System.Drawing.Size(342, 29);
+            this.combexOrganizationalUnitID.Size = new System.Drawing.Size(398, 29);
             this.combexOrganizationalUnitID.TabIndex = 2;
             // 
             // labelOrganizationalUnitID
@@ -120,7 +120,7 @@
             this.labelOrganizationalUnitID.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelOrganizationalUnitID.Location = new System.Drawing.Point(71, 57);
             this.labelOrganizationalUnitID.Name = "labelOrganizationalUnitID";
-            this.labelOrganizationalUnitID.Size = new System.Drawing.Size(179, 31);
+            this.labelOrganizationalUnitID.Size = new System.Drawing.Size(209, 31);
             this.labelOrganizationalUnitID.TabIndex = 83;
             this.labelOrganizationalUnitID.Text = "Organizational Unit";
             this.labelOrganizationalUnitID.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -130,10 +130,10 @@
             this.textexNewOrganizationalUnitID.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexNewOrganizationalUnitID.Editable = false;
             this.textexNewOrganizationalUnitID.Font = new System.Drawing.Font("Calibri Light", 10.2F);
-            this.textexNewOrganizationalUnitID.Location = new System.Drawing.Point(254, 28);
+            this.textexNewOrganizationalUnitID.Location = new System.Drawing.Point(284, 28);
             this.textexNewOrganizationalUnitID.Margin = new System.Windows.Forms.Padding(1);
             this.textexNewOrganizationalUnitID.Name = "textexNewOrganizationalUnitID";
-            this.textexNewOrganizationalUnitID.Size = new System.Drawing.Size(342, 28);
+            this.textexNewOrganizationalUnitID.Size = new System.Drawing.Size(398, 28);
             this.textexNewOrganizationalUnitID.TabIndex = 88;
             // 
             // pictureBox2
@@ -155,19 +155,20 @@
             this.buttonESC.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonESC.Name = "buttonESC";
             this.buttonESC.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.buttonESC.Size = new System.Drawing.Size(83, 52);
+            this.buttonESC.Size = new System.Drawing.Size(83, 36);
             this.buttonESC.Text = "Cancel";
             this.buttonESC.Click += new System.EventHandler(this.buttonOKESC_Click);
             // 
             // buttonOK
             // 
+            this.buttonOK.Enabled = false;
             this.buttonOK.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonOK.Image = global::TotalSmartCoding.Properties.Resources.Add_continue;
+            this.buttonOK.Image = global::TotalSmartCoding.Properties.Resources.networking;
             this.buttonOK.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.buttonOK.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.buttonOK.Size = new System.Drawing.Size(90, 52);
+            this.buttonOK.Size = new System.Drawing.Size(74, 36);
             this.buttonOK.Text = "Add";
             this.buttonOK.Click += new System.EventHandler(this.buttonOKESC_Click);
             // 
@@ -175,7 +176,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(626, 173);
+            this.ClientSize = new System.Drawing.Size(699, 131);
             this.Controls.Add(this.layoutTop);
             this.Controls.Add(this.toolStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

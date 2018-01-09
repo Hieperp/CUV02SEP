@@ -2702,6 +2702,9 @@
         <Function Name="TransferOrderVoidable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="EntityID" Type="int" Mode="In" />
         </Function>
+        <Function Name="UserEditable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="int" Mode="In" />
+        </Function>
         <Function Name="UserRegister" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="LocationID" Type="int" Mode="In" />
           <Parameter Name="OrganizationalUnitID" Type="int" Mode="In" />
@@ -4291,6 +4294,9 @@
           <FunctionImport Name="UserToggleVoid">
             <Parameter Name="EntityID" Mode="In" Type="Int32" />
             <Parameter Name="InActive" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="UserEditable" ReturnType="Collection(String)">
+            <Parameter Name="EntityID" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
@@ -9911,6 +9917,7 @@
           <FunctionImportMapping FunctionImportName="UserRegister" FunctionName="TotalSmartCodingModel.Store.UserRegister" />
           <FunctionImportMapping FunctionImportName="UserUnregister" FunctionName="TotalSmartCodingModel.Store.UserUnregister" />
           <FunctionImportMapping FunctionImportName="UserToggleVoid" FunctionName="TotalSmartCodingModel.Store.UserToggleVoid" />
+          <FunctionImportMapping FunctionImportName="UserEditable" FunctionName="TotalSmartCodingModel.Store.UserEditable" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

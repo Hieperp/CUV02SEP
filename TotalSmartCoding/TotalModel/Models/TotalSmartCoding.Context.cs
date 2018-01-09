@@ -2242,5 +2242,14 @@ namespace TotalModel.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UserToggleVoid", entityIDParameter, inActiveParameter);
         }
+    
+        public virtual ObjectResult<string> UserEditable(Nullable<int> entityID)
+        {
+            var entityIDParameter = entityID.HasValue ?
+                new ObjectParameter("EntityID", entityID) :
+                new ObjectParameter("EntityID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UserEditable", entityIDParameter);
+        }
     }
 }

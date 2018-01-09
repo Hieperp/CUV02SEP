@@ -4,7 +4,7 @@ using TotalModel.Models;
 
 namespace TotalCore.Repositories.Generals
 {
-    public interface IUserRepository
+    public interface IUserRepository : IGenericRepository<User>
     {
 
     }

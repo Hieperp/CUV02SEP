@@ -57,8 +57,8 @@
             this.UnVoidablePermitted = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.comboActiveOption = new System.Windows.Forms.ToolStripComboBox();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.buttonAddOU = new System.Windows.Forms.ToolStripButton();
+            this.buttonRemoveOU = new System.Windows.Forms.ToolStripButton();
             this.treeUserID = new BrightIdeasSoftware.DataTreeListView();
             this.olvTreeName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvTreeSelected = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -344,8 +344,8 @@
             this.toolStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.comboActiveOption,
-            this.toolStripButton2,
-            this.toolStripButton1});
+            this.buttonAddOU,
+            this.buttonRemoveOU});
             this.toolStrip2.Location = new System.Drawing.Point(33, 0);
             this.toolStrip2.Name = "toolStrip2";
             this.toolStrip2.Size = new System.Drawing.Size(1208, 55);
@@ -363,23 +363,25 @@
             this.comboActiveOption.Size = new System.Drawing.Size(139, 55);
             this.comboActiveOption.SelectedIndexChanged += new System.EventHandler(this.comboActiveOption_SelectedIndexChanged);
             // 
-            // toolStripButton2
+            // buttonAddOU
             // 
-            this.toolStripButton2.Image = global::TotalSmartCoding.Properties.Resources.Data_add;
-            this.toolStripButton2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(284, 52);
-            this.toolStripButton2.Text = "Add new organizational unit [OU]";
+            this.buttonAddOU.Image = global::TotalSmartCoding.Properties.Resources.Data_add;
+            this.buttonAddOU.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonAddOU.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonAddOU.Name = "buttonAddOU";
+            this.buttonAddOU.Size = new System.Drawing.Size(284, 52);
+            this.buttonAddOU.Text = "Add new organizational unit [OU]";
+            this.buttonAddOU.Click += new System.EventHandler(this.buttonAddRemoveOU_Click);
             // 
-            // toolStripButton1
+            // buttonRemoveOU
             // 
-            this.toolStripButton1.Image = global::TotalSmartCoding.Properties.Resources.RemoveOU;
-            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(124, 52);
-            this.toolStripButton1.Text = "Remove OU";
+            this.buttonRemoveOU.Image = global::TotalSmartCoding.Properties.Resources.RemoveOU;
+            this.buttonRemoveOU.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonRemoveOU.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonRemoveOU.Name = "buttonRemoveOU";
+            this.buttonRemoveOU.Size = new System.Drawing.Size(124, 52);
+            this.buttonRemoveOU.Text = "Remove OU";
+            this.buttonRemoveOU.Click += new System.EventHandler(this.buttonAddRemoveOU_Click);
             // 
             // treeUserID
             // 
@@ -593,12 +595,12 @@
         private Guifreaks.Navisuite.NaviBand navibandUserTrees;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ToolStripComboBox comboOrganizationalUnit;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripButton buttonAddOU;
         private System.Windows.Forms.ToolStripComboBox comboInActive;
         private System.Windows.Forms.ToolStripComboBox comboActiveOption;
         private System.Windows.Forms.Panel panelLeft;
         private System.Windows.Forms.PictureBox pictureTopleft;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripButton buttonRemoveOU;
         private System.Windows.Forms.ToolStripButton buttonUserToggleVoid;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
