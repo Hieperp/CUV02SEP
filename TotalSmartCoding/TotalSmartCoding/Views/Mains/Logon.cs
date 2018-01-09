@@ -115,9 +115,12 @@ namespace TotalSmartCoding.Views.Mains
 
                 if (activeUsers.Count > 0)
                 {
-                    this.comboBoxEmployeeID.DataSource = activeUsers;
-                    this.comboBoxEmployeeID.DisplayMember = CommonExpressions.PropertyName<ActiveUser>(p => p.FullyQualifiedUserName);
-                    this.comboBoxEmployeeID.ValueMember = CommonExpressions.PropertyName<ActiveUser>(p => p.UserID);
+                    this.comboSecurityIdentifier.Items.Add(activeUsers[0].UserName);
+                    this.comboSecurityIdentifier.SelectedIndex = 0;
+
+                    this.comboUserID.DataSource = activeUsers;
+                    this.comboUserID.DisplayMember = CommonExpressions.PropertyName<ActiveUser>(p => p.FullyQualifiedOrganizationalUnitName);
+                    this.comboUserID.ValueMember = CommonExpressions.PropertyName<ActiveUser>(p => p.UserID);
 
                     FillingLineAPIs fillingLineAPIs = new FillingLineAPIs(CommonNinject.Kernel.Get<IFillingLineAPIRepository>());
 
@@ -131,24 +134,21 @@ namespace TotalSmartCoding.Views.Mains
 
                     if (!(GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Smallpack || GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Pail || GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Drum))
                     {
-                        this.lbProductionLineID.Visible = false;
+                        this.labelFillingLineID.Visible = false;
                         this.comboFillingLineID.Visible = false;
-
-                        this.lbEmployeeID.Top = this.lbProductionLineID.Top;
-                        this.comboBoxEmployeeID.Top = this.comboFillingLineID.Top;
                     }
 
 
-                    this.comboBoxAutonicsPortName.DataSource = System.IO.Ports.SerialPort.GetPortNames();
-                    if (this.comboBoxAutonicsPortName.Items.Count == 0)
+                    this.comboComportName.DataSource = System.IO.Ports.SerialPort.GetPortNames();
+                    if (this.comboComportName.Items.Count == 0)
                     {
-                        this.comboBoxAutonicsPortName.DataSource = null;
-                        this.comboBoxAutonicsPortName.Items.Add("COM0");
+                        this.comboComportName.DataSource = null;
+                        this.comboComportName.Items.Add("COM0");
                     }
 
                     string comportName = CommonConfigs.ReadSetting("ComportName");
-                    if (this.comboBoxAutonicsPortName.Items.IndexOf(comportName) >= 0)
-                        this.comboBoxAutonicsPortName.SelectedIndex = this.comboBoxAutonicsPortName.Items.IndexOf(comportName);
+                    if (this.comboComportName.Items.IndexOf(comportName) >= 0)
+                        this.comboComportName.SelectedIndex = this.comboComportName.Items.IndexOf(comportName);
 
 
                     this.buttonDownload.Visible = true;
@@ -156,10 +156,13 @@ namespace TotalSmartCoding.Views.Mains
                 }
                 else
                 {
+                    this.comboSecurityIdentifier.Visible = false;
+                    this.comboUserID.Visible = false;
                     this.comboFillingLineID.Visible = false;
-                    this.comboBoxEmployeeID.Visible = false;
-                    this.lbEmployeeID.Visible = false;
-                    this.lbProductionLineID.Text = "\r\n" + "Sorry, user: " + currentUserPrincipal.Name + "\r\n" + "Don't have permission to run this program." + "\r\n" + "\r\n" + "Contact your admin for more information. Thank you!" + "\r\n" + "\r\n" + "\r\n" + "Xin lỗi, bạn chưa được cấp quyền sử dụng phần mềm này.";
+
+                    this.labelUserID.Visible = false;
+                    this.labelFillingLineID.Visible = false;
+                    this.labelSecurityIdentifier.Text = "\r\n" + "Sorry, user: " + currentUserPrincipal.Name + "\r\n" + "Don't have permission to run this program." + "\r\n" + "\r\n" + "Contact your admin for more information. Thank you!" + "\r\n" + "\r\n" + "\r\n" + "Xin lỗi, bạn chưa được cấp quyền sử dụng phần mềm này.";
 
                     this.buttonLogin.Visible = false;
                 }
@@ -178,8 +181,11 @@ namespace TotalSmartCoding.Views.Mains
 
         private void pictureBoxIcon_DoubleClick(object sender, EventArgs e)
         {
-            this.labelPortAutonis.Visible = true;
-            this.comboBoxAutonicsPortName.Visible = true;
+            if (this.comboFillingLineID.Visible)
+            {
+                this.labelComportName.Visible = true;
+                this.comboComportName.Visible = true;
+            }
         }
 
         private void buttonLoginExit_Click(object sender, EventArgs e)
@@ -188,14 +194,14 @@ namespace TotalSmartCoding.Views.Mains
             {
                 if (sender.Equals(this.buttonExit)) { this.DialogResult = DialogResult.Cancel; return; }
 
-                if (this.comboBoxEmployeeID.SelectedIndex >= 0)
+                if (this.comboUserID.SelectedIndex >= 0)
                 {
-                    ActiveUser activeUser = this.comboBoxEmployeeID.SelectedItem as ActiveUser;
+                    ActiveUser activeUser = this.comboUserID.SelectedItem as ActiveUser;
                     if (activeUser != null)
                     {
                         ContextAttributes.User = new UserInformation(activeUser.UserID, activeUser.OrganizationalUnitID, activeUser.LocationID, activeUser.LocationName, activeUser.UserName, activeUser.SecurityIdentifier, activeUser.FullyQualifiedUserName, activeUser.IsDatabaseAdmin, new DateTime());
 
-                        if (this.comboFillingLineID.Visible && (this.comboFillingLineID.SelectedIndex < 0 || this.comboBoxAutonicsPortName.SelectedIndex < 0)) throw new System.ArgumentException("Vui lòng chọn chuyền sản xuất (NOF1, NOF2, NOF...), và chọn đúng cổng COM để chạy phần mềm"); // || (this.comboFillingLineID.Enabled && (GlobalVariables.ProductionLine)this.comboFillingLineID.SelectedValue == GlobalVariables.ProductionLine.SERVER)
+                        if (this.comboFillingLineID.Visible && (this.comboFillingLineID.SelectedIndex < 0 || this.comboComportName.SelectedIndex < 0)) throw new System.ArgumentException("Vui lòng chọn chuyền sản xuất (NOF1, NOF2, NOF...), và chọn đúng cổng COM để chạy phần mềm"); // || (this.comboFillingLineID.Enabled && (GlobalVariables.ProductionLine)this.comboFillingLineID.SelectedValue == GlobalVariables.ProductionLine.SERVER)
 
                         if (this.comboFillingLineID.Visible)
                         {
@@ -206,7 +212,7 @@ namespace TotalSmartCoding.Views.Mains
                         else
                             GlobalVariables.FillingLineID = GlobalVariables.FillingLine.None;
 
-                        GlobalVariables.ComportName = (string)this.comboBoxAutonicsPortName.SelectedValue;
+                        GlobalVariables.ComportName = (string)this.comboComportName.SelectedValue;
 
                         CommonConfigs.AddUpdateAppSetting("ConfigID", (GlobalVariables.ConfigID).ToString());
                         CommonConfigs.AddUpdateAppSetting("ComportName", GlobalVariables.ComportName);
@@ -291,7 +297,7 @@ namespace TotalSmartCoding.Views.Mains
                             CustomMsgBox.Show(this, "The program on this computer must be updated to the latest version." + "\r\n" + "\r\n" + "Contact your administrator for more information.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                             this.buttonDownload_Click(this.buttonDownload, new EventArgs());
                         }
-                                                    
+
                     }
                 }
             }
@@ -344,28 +350,7 @@ namespace TotalSmartCoding.Views.Mains
             if (this.comboFillingLineID.SelectedIndex < 0) this.comboFillingLineID.Text = "";
         }
 
-        private void labelNoDomino_DoubleClick(object sender, EventArgs e)
-        {
-            //if ((int)this.comboFillingLineID.SelectedValue != (int)GlobalVariables.ProductionLine.SERVER)
-            //{
-            //    this.labelNoDomino.Visible = false;
-            //    this.checkBoxNoDomino.Visible = true;
-            //}
-        }
 
-        private void lbProductionLineID_DoubleClick(object sender, EventArgs e)
-        {
-            //try
-            //{
-            //    string textInput = "";
-            //    if (CustomInputBox.Show("NMVN", "Vui lòng nhập mật khẩu đổi chuyền", ref textInput) == System.Windows.Forms.DialogResult.OK)
-            //        this.comboFillingLineID.Enabled = (textInput == "9876543210");
-            //}
-            //catch (Exception exception)
-            //{
-            //    GlobalExceptionHandler.ShowExceptionMessageBox(this, exception);
-            //}
-        }
 
 
 
