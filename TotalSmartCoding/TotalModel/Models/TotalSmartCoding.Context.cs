@@ -1807,9 +1807,21 @@ namespace TotalModel.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SaveUserAccessControls", accessControlIDParameter, accessLevelParameter, approvalPermittedParameter, unApprovalPermittedParameter, voidablePermittedParameter, unVoidablePermittedParameter, showDiscountParameter);
         }
     
-        public virtual ObjectResult<OrganizationalUnitIndex> GetOrganizationalUnitIndexes()
+        public virtual ObjectResult<OrganizationalUnitIndex> GetOrganizationalUnitIndexes(Nullable<int> userID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<OrganizationalUnitIndex>("GetOrganizationalUnitIndexes");
+            var userIDParameter = userID.HasValue ?
+                new ObjectParameter("UserID", userID) :
+                new ObjectParameter("UserID", typeof(int));
+    
+            var fromDateParameter = fromDate.HasValue ?
+                new ObjectParameter("FromDate", fromDate) :
+                new ObjectParameter("FromDate", typeof(System.DateTime));
+    
+            var toDateParameter = toDate.HasValue ?
+                new ObjectParameter("ToDate", toDate) :
+                new ObjectParameter("ToDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<OrganizationalUnitIndex>("GetOrganizationalUnitIndexes", userIDParameter, fromDateParameter, toDateParameter);
         }
     
         public virtual ObjectResult<Nullable<int>> GetWarehouseLocationID(Nullable<int> warehouseID)
@@ -2250,6 +2262,15 @@ namespace TotalModel.Models
                 new ObjectParameter("EntityID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UserEditable", entityIDParameter);
+        }
+    
+        public virtual ObjectResult<string> OrganizationalUnitEditable(Nullable<int> entityID)
+        {
+            var entityIDParameter = entityID.HasValue ?
+                new ObjectParameter("EntityID", entityID) :
+                new ObjectParameter("EntityID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("OrganizationalUnitEditable", entityIDParameter);
         }
     }
 }

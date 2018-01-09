@@ -502,6 +502,17 @@ namespace TotalModel.Models
         public System.DateTime CreatedDate { get; set; }
         public System.DateTime EditedDate { get; set; }
     }
+    
+    public partial class OrganizationalUnit : IPrimitiveEntity, IBaseEntity
+    {
+        public int GetID() { return this.OrganizationalUnitID; }
+
+        public int UserID { get; set; }
+        public int PreparedPersonID { get; set; }
+
+        public System.DateTime CreatedDate { get; set; }
+        public System.DateTime EditedDate { get; set; }
+    }
 
     public partial class User : IPrimitiveEntity, IBaseEntity
     {

@@ -2342,7 +2342,11 @@
         <Function Name="GetModuleViewDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ModuleID" Type="int" Mode="In" />
         </Function>
-        <Function Name="GetOrganizationalUnitIndexes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetOrganizationalUnitIndexes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserID" Type="int" Mode="In" />
+          <Parameter Name="FromDate" Type="datetime" Mode="In" />
+          <Parameter Name="ToDate" Type="datetime" Mode="In" />
+        </Function>
         <Function Name="GetPacks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="FillingLineID" Type="int" Mode="In" />
           <Parameter Name="EntryStatusIDs" Type="varchar" Mode="In" />
@@ -2586,6 +2590,9 @@
         <Function Name="GoodsReceiptToggleApproved" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="EntityID" Type="int" Mode="In" />
           <Parameter Name="Approved" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="OrganizationalUnitEditable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="int" Mode="In" />
         </Function>
         <Function Name="PackEditable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="EntityID" Type="int" Mode="In" />
@@ -3963,7 +3970,11 @@
             <Parameter Name="UnVoidablePermitted" Mode="In" Type="Boolean" />
             <Parameter Name="ShowDiscount" Mode="In" Type="Boolean" />
           </FunctionImport>
-          <FunctionImport Name="GetOrganizationalUnitIndexes" ReturnType="Collection(TotalSmartCodingModel.OrganizationalUnitIndex)" />
+          <FunctionImport Name="GetOrganizationalUnitIndexes" ReturnType="Collection(TotalSmartCodingModel.OrganizationalUnitIndex)" >
+            <Parameter Name="UserID" Mode="In" Type="Int32" />
+            <Parameter Name="FromDate" Mode="In" Type="DateTime" />
+            <Parameter Name="ToDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
           <AssociationSet Name="FK_DeliveryAdviceDetails_Receivers" Association="TotalSmartCodingModel.FK_DeliveryAdviceDetails_Receivers">
             <End Role="Customer" EntitySet="Customers" />
             <End Role="DeliveryAdviceDetail" EntitySet="DeliveryAdviceDetails" />
@@ -4296,7 +4307,10 @@
             <Parameter Name="InActive" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="UserEditable" ReturnType="Collection(String)">
-            <Parameter Name="EntityID" Mode="In" Type="Int32" />
+          <Parameter Name="EntityID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="OrganizationalUnitEditable" ReturnType="Collection(String)">
+          <Parameter Name="EntityID" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
@@ -9918,6 +9932,7 @@
           <FunctionImportMapping FunctionImportName="UserUnregister" FunctionName="TotalSmartCodingModel.Store.UserUnregister" />
           <FunctionImportMapping FunctionImportName="UserToggleVoid" FunctionName="TotalSmartCodingModel.Store.UserToggleVoid" />
           <FunctionImportMapping FunctionImportName="UserEditable" FunctionName="TotalSmartCodingModel.Store.UserEditable" />
+          <FunctionImportMapping FunctionImportName="OrganizationalUnitEditable" FunctionName="TotalSmartCodingModel.Store.OrganizationalUnitEditable" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

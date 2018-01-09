@@ -26,10 +26,11 @@ namespace TotalSmartCoding.Views.Mains
 {
     public partial class UserReferences : Form
     {
-        private Binding bindingUserID;
-        private UserAPIs userAPIs { get; set; }
         private IUserRepository userRepository { get; set; }
+        private UserAPIs userAPIs { get; set; }
+        private OrganizationalUnitAPIs organizationalUnitAPIs { get; set; }
 
+        private Binding bindingUserID;
         private BindingList<UserAccessControlDTO> bindingListUserAccessControls;
 
         public UserReferences()
@@ -46,8 +47,9 @@ namespace TotalSmartCoding.Views.Mains
                 this.fastNMVNTasks.SetObjects(moduleAPIs.GetModuleDetailIndexes());
                 this.fastNMVNTasks.Sort(this.olvModuleName, SortOrder.Ascending);
 
-                this.userAPIs = new UserAPIs(CommonNinject.Kernel.Get<IUserAPIRepository>());
                 this.userRepository = CommonNinject.Kernel.Get<IUserRepository>();
+                this.userAPIs = new UserAPIs(CommonNinject.Kernel.Get<IUserAPIRepository>());
+                this.organizationalUnitAPIs = new OrganizationalUnitAPIs(CommonNinject.Kernel.Get<IOrganizationalUnitAPIRepository>());
 
                 this.treeUserID.RootKeyValue = 0;
                 this.treeUserID.SelectedIndexChanged += treeUserID_SelectedIndexChanged;
@@ -237,7 +239,7 @@ namespace TotalSmartCoding.Views.Mains
         #region Register, Unuegister, ToggleVoid
         private void buttonUserRegister_Click(object sender, EventArgs e)
         {
-            UserRegister wizardUserRegister = new UserRegister(this.userAPIs);
+            UserRegister wizardUserRegister = new UserRegister(this.userAPIs, this.organizationalUnitAPIs);
             DialogResult dialogResult = wizardUserRegister.ShowDialog();
 
             wizardUserRegister.Dispose();
@@ -285,7 +287,7 @@ namespace TotalSmartCoding.Views.Mains
 
         private void buttonAddRemoveOU_Click(object sender, EventArgs e)
         {
-            UserOUs wizardUserOUs = new UserOUs(this.userAPIs, sender.Equals(this.buttonAddOU));
+            UserOUs wizardUserOUs = new UserOUs(this.organizationalUnitAPIs, sender.Equals(this.buttonAddOU));
             DialogResult dialogResult = wizardUserOUs.ShowDialog();
 
             wizardUserOUs.Dispose();

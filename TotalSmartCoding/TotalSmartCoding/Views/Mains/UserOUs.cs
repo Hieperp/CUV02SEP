@@ -1,33 +1,40 @@
 ﻿using System;
 using System.Windows.Forms;
 
+using Ninject;
+
 using TotalBase;
 using TotalModel.Models;
+using TotalCore.Repositories.Generals;
 using TotalSmartCoding.Libraries.Helpers;
 using TotalSmartCoding.Controllers.APIs.Generals;
+using TotalSmartCoding.Libraries;
 
 
 namespace TotalSmartCoding.Views.Mains
 {
     public partial class UserOUs : Form
     {
-
-        private UserAPIs userAPIs { get; set; }
         private bool addOU;
+
+        private IOrganizationalUnitRepository organizationalUnitRepository { get; set; }
+        private OrganizationalUnitAPIs organizationalUnitAPIs { get; set; }
 
         public int? OrganizationalUnitID { get; set; }
 
 
         private Binding bindingOrganizationalUnitID;
 
-        public UserOUs(UserAPIs userAPIs, bool addOU)
+        public UserOUs(OrganizationalUnitAPIs organizationalUnitAPIs, bool addOU)
         {
             InitializeComponent();
 
             try
             {
-                this.userAPIs = userAPIs;
-                this.combexOrganizationalUnitID.DataSource = this.userAPIs.GetOrganizationalUnitIndexes();
+                this.organizationalUnitRepository = CommonNinject.Kernel.Get<IOrganizationalUnitRepository>();
+
+                this.organizationalUnitAPIs = organizationalUnitAPIs;
+                this.combexOrganizationalUnitID.DataSource = this.organizationalUnitAPIs.GetOrganizationalUnitIndexes();
                 this.combexOrganizationalUnitID.DisplayMember = CommonExpressions.PropertyName<OrganizationalUnitIndex>(p => p.LocationOrganizationalUnitName);
                 this.combexOrganizationalUnitID.ValueMember = CommonExpressions.PropertyName<OrganizationalUnitIndex>(p => p.OrganizationalUnitID);
                 this.bindingOrganizationalUnitID = this.combexOrganizationalUnitID.DataBindings.Add("SelectedValue", this, CommonExpressions.PropertyName<OrganizationalUnitIndex>(p => p.OrganizationalUnitID), true, DataSourceUpdateMode.OnPropertyChanged);
@@ -53,7 +60,7 @@ namespace TotalSmartCoding.Views.Mains
 
         private void bindingOrganizationalUnitID_BindingComplete(object sender, BindingCompleteEventArgs e)
         {
-            this.buttonOK.Enabled = this.OrganizationalUnitID != null;
+            this.buttonOK.Enabled = this.OrganizationalUnitID != null && this.organizationalUnitRepository.GetEditable((int)this.OrganizationalUnitID); ;
         }
 
         private void buttonOKESC_Click(object sender, EventArgs e)
@@ -70,7 +77,7 @@ namespace TotalSmartCoding.Views.Mains
                     {
                         if (CustomMsgBox.Show(this, "Are you sure you want to " + (this.addOU ? "add" : "remove") + " this organizational unit?" + "\r\n" + "\r\n" + (this.addOU ? this.textexNewOrganizationalUnitID.Text : organizationalUnitIndex.OrganizationalUnitName + "\r\nAt:  " + organizationalUnitIndex.LocationName), "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Stop) == DialogResult.Yes)
                         {
-                            //this.userAPIs.UserRegister(organizationalUnitIndex.LocationID, organizationalUnitIndex.OrganizationalUnitID, organizationalUnitIndex.FirstName, organizationalUnitIndex.LastName, organizationalUnitIndex.UserName, organizationalUnitIndex.SecurityIdentifier, (int)this.SameOUAccessLevel, (int)this.SameLocationAccessLevel, (int)this.OtherOUAccessLevel);
+                            //this.organizationalUnitAPIs.UserRegister(organizationalUnitIndex.LocationID, organizationalUnitIndex.OrganizationalUnitID, organizationalUnitIndex.FirstName, organizationalUnitIndex.LastName, organizationalUnitIndex.UserName, organizationalUnitIndex.SecurityIdentifier, (int)this.SameOUAccessLevel, (int)this.SameLocationAccessLevel, (int)this.OtherOUAccessLevel);
                             this.DialogResult = DialogResult.OK;
                         }
                     }

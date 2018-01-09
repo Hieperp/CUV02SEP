@@ -40,11 +40,6 @@ namespace TotalDAL.Repositories.Generals
             return this.TotalSmartCodingEntities.GetUserTrees(activeOption).ToList();
         }
 
-        public IList<OrganizationalUnitIndex> GetOrganizationalUnitIndexes()
-        {
-            return this.TotalSmartCodingEntities.GetOrganizationalUnitIndexes().ToList();
-        }
-
         public IList<ActiveUser> GetActiveUsers(string securityIdentifier)
         {
             return this.TotalSmartCodingEntities.GetActiveUsers(securityIdentifier).ToList();

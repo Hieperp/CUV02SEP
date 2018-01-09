@@ -35,11 +35,6 @@ namespace TotalSmartCoding.Controllers.APIs.Generals
             return this.userAPIRepository.GetUserTrees((int)activeOption);
         }
 
-        public IList<OrganizationalUnitIndex> GetOrganizationalUnitIndexes()
-        {
-            return this.userAPIRepository.GetOrganizationalUnitIndexes();
-        }
-
         public IList<ActiveUser> GetActiveUsers(string securityIdentifier)
         {
             return this.userAPIRepository.GetActiveUsers(securityIdentifier);

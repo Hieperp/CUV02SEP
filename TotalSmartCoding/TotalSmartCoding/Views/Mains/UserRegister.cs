@@ -17,6 +17,7 @@ namespace TotalSmartCoding.Views.Mains
     {
 
         private UserAPIs userAPIs { get; set; }
+        private OrganizationalUnitAPIs organizationalUnitAPIs { get; set; }
 
         public string UserName { get; set; }
         public int? OrganizationalUnitID { get; set; }
@@ -28,7 +29,7 @@ namespace TotalSmartCoding.Views.Mains
         private Binding bindingUserName;
         private Binding bindingOrganizationalUnitID;
 
-        public UserRegister(UserAPIs userAPIs)
+        public UserRegister(UserAPIs userAPIs, OrganizationalUnitAPIs organizationalUnitAPIs)
         {
             InitializeComponent();
 
@@ -62,7 +63,9 @@ namespace TotalSmartCoding.Views.Mains
                 this.bindingUserName.BindingComplete += binding_BindingComplete;
 
                 this.userAPIs = userAPIs;
-                this.combexOrganizationalUnitID.DataSource = this.userAPIs.GetOrganizationalUnitIndexes();
+                this.organizationalUnitAPIs = organizationalUnitAPIs;
+
+                this.combexOrganizationalUnitID.DataSource = this.organizationalUnitAPIs.GetOrganizationalUnitIndexes();
                 this.combexOrganizationalUnitID.DisplayMember = CommonExpressions.PropertyName<OrganizationalUnitIndex>(p => p.LocationOrganizationalUnitName);
                 this.combexOrganizationalUnitID.ValueMember = CommonExpressions.PropertyName<OrganizationalUnitIndex>(p => p.OrganizationalUnitID);
                 this.bindingOrganizationalUnitID = this.combexOrganizationalUnitID.DataBindings.Add("SelectedValue", this, CommonExpressions.PropertyName<OrganizationalUnitIndex>(p => p.OrganizationalUnitID), true, DataSourceUpdateMode.OnPropertyChanged);

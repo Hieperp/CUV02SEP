@@ -18,8 +18,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
 
         public void RestoreProcedure()
         {
-            this.GetUserIndexes();
-            this.GetOrganizationalUnitIndexes();
+            this.GetUserIndexes();            
 
             this.GetActiveUsers();
             
@@ -53,24 +52,6 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             queryString = queryString + "    END " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("GetUserIndexes", queryString);
-        }
-
-        private void GetOrganizationalUnitIndexes()
-        {
-            string queryString;
-
-            queryString = " " + "\r\n";
-            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
-            queryString = queryString + " AS " + "\r\n";
-            queryString = queryString + "    BEGIN " + "\r\n";
-
-            queryString = queryString + "       SELECT      OrganizationalUnits.OrganizationalUnitID, OrganizationalUnits.Name AS OrganizationalUnitName, OrganizationalUnits.LocationID, Locations.Name AS LocationName, Locations.Name + '\\' + OrganizationalUnits.Name AS LocationOrganizationalUnitName " + "\r\n";
-            queryString = queryString + "       FROM        Locations INNER JOIN OrganizationalUnits ON Locations.LocationID = OrganizationalUnits.LocationID " + "\r\n";
-            queryString = queryString + "       ORDER BY    Locations.Name, OrganizationalUnits.Name " + "\r\n";
-
-            queryString = queryString + "    END " + "\r\n";
-
-            this.totalSmartCodingEntities.CreateStoredProcedure("GetOrganizationalUnitIndexes", queryString);
         }
 
         private void GetActiveUsers()
