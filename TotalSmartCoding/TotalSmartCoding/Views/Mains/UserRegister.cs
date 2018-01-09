@@ -37,7 +37,7 @@ namespace TotalSmartCoding.Views.Mains
             {
                 List<DomainUser> allUsers = new List<DomainUser>();
 
-                if (false)
+                if (true)
                 {
                     PrincipalContext ctx = new PrincipalContext(ContextType.Domain, "chevronvn.com"); //, "OU=SomeOU,dc=YourCompany,dc=com"// create your domain context and define the OU container to search in
                     UserPrincipal qbeUser = new UserPrincipal(ctx);// define a "query-by-example" principal - here, we search for a UserPrincipal (user)
@@ -114,6 +114,17 @@ namespace TotalSmartCoding.Views.Mains
         private void binding_BindingComplete(object sender, BindingCompleteEventArgs e)
         {
             this.buttonOK.Enabled = this.UserName != null && this.OrganizationalUnitID != null;
+
+            if (this.UserName != null) this.labelAccessControl.Text = "Initialize the access controls for " + this.UserName + ":";
+            if (this.OrganizationalUnitID != null)
+            {
+                OrganizationalUnitIndex organizationalUnitIndex = this.combexOrganizationalUnitID.SelectedItem as OrganizationalUnitIndex;
+                if (organizationalUnitIndex != null && organizationalUnitIndex.OrganizationalUnitID == this.OrganizationalUnitID)
+                {
+                    this.labelSameOU.Text = "Access right applies to " + organizationalUnitIndex.LocationOrganizationalUnitName;
+                    this.labelSameLocation.Text = "Access right applies to " + organizationalUnitIndex.LocationName;
+                }
+            }
         }
 
         private void buttonOKESC_Click(object sender, EventArgs e)

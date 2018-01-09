@@ -37,13 +37,14 @@
             this.combexOrganizationalUnitID = new CustomControls.CombexBox();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.labelSameOU = new System.Windows.Forms.Label();
+            this.labelOtherOU = new System.Windows.Forms.Label();
+            this.labelSameLocation = new System.Windows.Forms.Label();
+            this.labelAccessControl = new System.Windows.Forms.Label();
             this.combexSameOUAccessLevels = new CustomControls.CombexBox();
             this.combexSameLocationAccessLevels = new CustomControls.CombexBox();
             this.combexOtherOUAccessLevels = new CustomControls.CombexBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             this.layoutTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -57,10 +58,10 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.buttonESC,
             this.buttonOK});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 245);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 415);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStrip1.Size = new System.Drawing.Size(810, 55);
+            this.toolStrip1.Size = new System.Drawing.Size(830, 55);
             this.toolStrip1.TabIndex = 100;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -93,40 +94,49 @@
             // 
             this.layoutTop.AutoSize = true;
             this.layoutTop.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.layoutTop.BackColor = System.Drawing.SystemColors.Control;
             this.layoutTop.ColumnCount = 5;
-            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75F));
-            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 26F));
-            this.layoutTop.Controls.Add(this.combexUserID, 3, 1);
-            this.layoutTop.Controls.Add(this.label5, 2, 1);
-            this.layoutTop.Controls.Add(this.combexOrganizationalUnitID, 3, 2);
-            this.layoutTop.Controls.Add(this.label2, 2, 2);
+            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.layoutTop.Controls.Add(this.label1, 3, 7);
+            this.layoutTop.Controls.Add(this.combexUserID, 3, 2);
+            this.layoutTop.Controls.Add(this.combexOrganizationalUnitID, 3, 4);
             this.layoutTop.Controls.Add(this.pictureBox2, 1, 1);
-            this.layoutTop.Controls.Add(this.label1, 2, 5);
-            this.layoutTop.Controls.Add(this.label4, 2, 7);
-            this.layoutTop.Controls.Add(this.label6, 2, 6);
-            this.layoutTop.Controls.Add(this.label3, 3, 4);
-            this.layoutTop.Controls.Add(this.combexSameOUAccessLevels, 3, 5);
-            this.layoutTop.Controls.Add(this.combexSameLocationAccessLevels, 3, 6);
-            this.layoutTop.Controls.Add(this.combexOtherOUAccessLevels, 3, 7);
+            this.layoutTop.Controls.Add(this.labelAccessControl, 3, 6);
+            this.layoutTop.Controls.Add(this.combexSameOUAccessLevels, 3, 10);
+            this.layoutTop.Controls.Add(this.combexSameLocationAccessLevels, 3, 12);
+            this.layoutTop.Controls.Add(this.combexOtherOUAccessLevels, 3, 14);
+            this.layoutTop.Controls.Add(this.label5, 3, 1);
+            this.layoutTop.Controls.Add(this.label2, 3, 3);
+            this.layoutTop.Controls.Add(this.labelSameOU, 3, 9);
+            this.layoutTop.Controls.Add(this.labelSameLocation, 3, 11);
+            this.layoutTop.Controls.Add(this.labelOtherOU, 3, 13);
             this.layoutTop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutTop.Location = new System.Drawing.Point(0, 0);
             this.layoutTop.Margin = new System.Windows.Forms.Padding(0);
             this.layoutTop.Name = "layoutTop";
             this.layoutTop.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.layoutTop.RowCount = 9;
-            this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutTop.RowCount = 16;
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.layoutTop.Size = new System.Drawing.Size(810, 245);
+            this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.layoutTop.Size = new System.Drawing.Size(830, 415);
             this.layoutTop.TabIndex = 101;
             // 
             // combexUserID
@@ -138,21 +148,21 @@
             this.combexUserID.Editable = true;
             this.combexUserID.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combexUserID.FormattingEnabled = true;
-            this.combexUserID.Location = new System.Drawing.Point(260, 28);
-            this.combexUserID.Margin = new System.Windows.Forms.Padding(1);
+            this.combexUserID.Location = new System.Drawing.Point(118, 44);
+            this.combexUserID.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
             this.combexUserID.Name = "combexUserID";
             this.combexUserID.ReadOnly = false;
-            this.combexUserID.Size = new System.Drawing.Size(523, 29);
+            this.combexUserID.Size = new System.Drawing.Size(691, 29);
             this.combexUserID.TabIndex = 1;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label5.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(87, 27);
+            this.label5.Location = new System.Drawing.Point(114, 22);
+            this.label5.Margin = new System.Windows.Forms.Padding(0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(169, 31);
+            this.label5.Size = new System.Drawing.Size(42, 21);
             this.label5.TabIndex = 78;
             this.label5.Text = "User";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -161,26 +171,27 @@
             // 
             this.combexOrganizationalUnitID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.combexOrganizationalUnitID.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.combexOrganizationalUnitID.BackColor = System.Drawing.SystemColors.Window;
             this.combexOrganizationalUnitID.Dock = System.Windows.Forms.DockStyle.Fill;
             this.combexOrganizationalUnitID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.combexOrganizationalUnitID.Editable = true;
             this.combexOrganizationalUnitID.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combexOrganizationalUnitID.FormattingEnabled = true;
-            this.combexOrganizationalUnitID.Location = new System.Drawing.Point(260, 59);
-            this.combexOrganizationalUnitID.Margin = new System.Windows.Forms.Padding(1);
+            this.combexOrganizationalUnitID.Location = new System.Drawing.Point(118, 102);
+            this.combexOrganizationalUnitID.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
             this.combexOrganizationalUnitID.Name = "combexOrganizationalUnitID";
             this.combexOrganizationalUnitID.ReadOnly = false;
-            this.combexOrganizationalUnitID.Size = new System.Drawing.Size(523, 29);
+            this.combexOrganizationalUnitID.Size = new System.Drawing.Size(691, 29);
             this.combexOrganizationalUnitID.TabIndex = 2;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label2.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(87, 58);
+            this.label2.Location = new System.Drawing.Point(114, 80);
+            this.label2.Margin = new System.Windows.Forms.Padding(0, 6, 0, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(169, 31);
+            this.label2.Size = new System.Drawing.Size(144, 21);
             this.label2.TabIndex = 83;
             this.label2.Text = "Organizational Unit";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -188,62 +199,63 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = global::TotalSmartCoding.Properties.Resources.add_user;
-            this.pictureBox2.Location = new System.Drawing.Point(33, 30);
+            this.pictureBox2.Location = new System.Drawing.Point(38, 25);
             this.pictureBox2.Name = "pictureBox2";
-            this.layoutTop.SetRowSpan(this.pictureBox2, 8);
+            this.layoutTop.SetRowSpan(this.pictureBox2, 4);
             this.pictureBox2.Size = new System.Drawing.Size(48, 48);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox2.TabIndex = 75;
             this.pictureBox2.TabStop = false;
             // 
-            // label1
+            // labelSameOU
             // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(87, 133);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(169, 31);
-            this.label1.TabIndex = 84;
-            this.label1.Text = "Division";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.labelSameOU.AutoSize = true;
+            this.labelSameOU.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelSameOU.Location = new System.Drawing.Point(114, 226);
+            this.labelSameOU.Margin = new System.Windows.Forms.Padding(0, 6, 0, 0);
+            this.labelSameOU.Name = "labelSameOU";
+            this.labelSameOU.Size = new System.Drawing.Size(250, 21);
+            this.labelSameOU.TabIndex = 84;
+            this.labelSameOU.Text = "Access right applies to my own OU";
+            this.labelSameOU.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label4
+            // labelOtherOU
             // 
-            this.label4.AutoSize = true;
-            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(87, 195);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(169, 31);
-            this.label4.TabIndex = 86;
-            this.label4.Text = "Division";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.labelOtherOU.AutoSize = true;
+            this.labelOtherOU.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelOtherOU.Location = new System.Drawing.Point(114, 342);
+            this.labelOtherOU.Margin = new System.Windows.Forms.Padding(0, 6, 0, 0);
+            this.labelOtherOU.Name = "labelOtherOU";
+            this.labelOtherOU.Size = new System.Drawing.Size(273, 21);
+            this.labelOtherOU.TabIndex = 86;
+            this.labelOtherOU.Text = "Access right applies to other locations";
+            this.labelOtherOU.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label6
+            // labelSameLocation
             // 
-            this.label6.AutoSize = true;
-            this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label6.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(87, 164);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(169, 31);
-            this.label6.TabIndex = 87;
-            this.label6.Text = "Division";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.labelSameLocation.AutoSize = true;
+            this.labelSameLocation.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelSameLocation.Location = new System.Drawing.Point(114, 284);
+            this.labelSameLocation.Margin = new System.Windows.Forms.Padding(0, 6, 0, 0);
+            this.labelSameLocation.Name = "labelSameLocation";
+            this.labelSameLocation.Size = new System.Drawing.Size(283, 21);
+            this.labelSameLocation.TabIndex = 87;
+            this.labelSameLocation.Text = "Access right applies to my own location";
+            this.labelSameLocation.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label3
+            // labelAccessControl
             // 
-            this.label3.AutoSize = true;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(259, 109);
-            this.label3.Margin = new System.Windows.Forms.Padding(0, 0, 3, 3);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(522, 21);
-            this.label3.TabIndex = 85;
-            this.label3.Text = "Division";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labelAccessControl.AutoSize = true;
+            this.labelAccessControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelAccessControl.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAccessControl.ForeColor = System.Drawing.Color.DarkCyan;
+            this.labelAccessControl.Location = new System.Drawing.Point(114, 162);
+            this.labelAccessControl.Margin = new System.Windows.Forms.Padding(0, 0, 3, 3);
+            this.labelAccessControl.Name = "labelAccessControl";
+            this.labelAccessControl.Size = new System.Drawing.Size(693, 21);
+            this.labelAccessControl.TabIndex = 85;
+            this.labelAccessControl.Text = "Initialize the access controls:";
+            this.labelAccessControl.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // combexSameOUAccessLevels
             // 
@@ -254,11 +266,11 @@
             this.combexSameOUAccessLevels.Editable = true;
             this.combexSameOUAccessLevels.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combexSameOUAccessLevels.FormattingEnabled = true;
-            this.combexSameOUAccessLevels.Location = new System.Drawing.Point(260, 134);
-            this.combexSameOUAccessLevels.Margin = new System.Windows.Forms.Padding(1);
+            this.combexSameOUAccessLevels.Location = new System.Drawing.Point(118, 248);
+            this.combexSameOUAccessLevels.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
             this.combexSameOUAccessLevels.Name = "combexSameOUAccessLevels";
             this.combexSameOUAccessLevels.ReadOnly = false;
-            this.combexSameOUAccessLevels.Size = new System.Drawing.Size(523, 29);
+            this.combexSameOUAccessLevels.Size = new System.Drawing.Size(691, 29);
             this.combexSameOUAccessLevels.TabIndex = 3;
             // 
             // combexSameLocationAccessLevels
@@ -270,11 +282,11 @@
             this.combexSameLocationAccessLevels.Editable = true;
             this.combexSameLocationAccessLevels.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combexSameLocationAccessLevels.FormattingEnabled = true;
-            this.combexSameLocationAccessLevels.Location = new System.Drawing.Point(260, 165);
-            this.combexSameLocationAccessLevels.Margin = new System.Windows.Forms.Padding(1);
+            this.combexSameLocationAccessLevels.Location = new System.Drawing.Point(118, 306);
+            this.combexSameLocationAccessLevels.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
             this.combexSameLocationAccessLevels.Name = "combexSameLocationAccessLevels";
             this.combexSameLocationAccessLevels.ReadOnly = false;
-            this.combexSameLocationAccessLevels.Size = new System.Drawing.Size(523, 29);
+            this.combexSameLocationAccessLevels.Size = new System.Drawing.Size(691, 29);
             this.combexSameLocationAccessLevels.TabIndex = 4;
             // 
             // combexOtherOUAccessLevels
@@ -286,18 +298,32 @@
             this.combexOtherOUAccessLevels.Editable = true;
             this.combexOtherOUAccessLevels.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combexOtherOUAccessLevels.FormattingEnabled = true;
-            this.combexOtherOUAccessLevels.Location = new System.Drawing.Point(260, 196);
-            this.combexOtherOUAccessLevels.Margin = new System.Windows.Forms.Padding(1);
+            this.combexOtherOUAccessLevels.Location = new System.Drawing.Point(118, 364);
+            this.combexOtherOUAccessLevels.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
             this.combexOtherOUAccessLevels.Name = "combexOtherOUAccessLevels";
             this.combexOtherOUAccessLevels.ReadOnly = false;
-            this.combexOtherOUAccessLevels.Size = new System.Drawing.Size(523, 29);
+            this.combexOtherOUAccessLevels.Size = new System.Drawing.Size(691, 29);
             this.combexOtherOUAccessLevels.TabIndex = 5;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.DarkCyan;
+            this.label1.Location = new System.Drawing.Point(114, 186);
+            this.label1.Margin = new System.Windows.Forms.Padding(0, 0, 3, 3);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(693, 21);
+            this.label1.TabIndex = 88;
+            this.label1.Text = "Notes: All detail rights may be customized later.";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // UserRegister
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(810, 300);
+            this.ClientSize = new System.Drawing.Size(830, 470);
             this.Controls.Add(this.layoutTop);
             this.Controls.Add(this.toolStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -327,12 +353,13 @@
         private CustomControls.CombexBox combexOrganizationalUnitID;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label labelSameOU;
+        private System.Windows.Forms.Label labelOtherOU;
+        private System.Windows.Forms.Label labelSameLocation;
+        private System.Windows.Forms.Label labelAccessControl;
         private CustomControls.CombexBox combexSameOUAccessLevels;
         private CustomControls.CombexBox combexSameLocationAccessLevels;
         private CustomControls.CombexBox combexOtherOUAccessLevels;
+        private System.Windows.Forms.Label label1;
     }
 }
