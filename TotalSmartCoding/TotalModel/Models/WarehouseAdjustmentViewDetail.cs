@@ -35,5 +35,7 @@ namespace TotalModel.Models
         public string Remarks { get; set; }
         public Nullable<decimal> QuantityAvailable { get; set; }
         public Nullable<decimal> LineVolumeAvailable { get; set; }
+        public int BatchID { get; set; }
+        public System.DateTime BatchEntryDate { get; set; }
     }
 }

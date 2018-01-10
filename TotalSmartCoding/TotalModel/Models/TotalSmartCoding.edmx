@@ -5160,6 +5160,8 @@
           <Property Type="String" Name="Remarks" Nullable="true" MaxLength="100" />
           <Property Type="Decimal" Name="QuantityAvailable" Nullable="true" Precision="20" Scale="2" />
           <Property Type="Decimal" Name="LineVolumeAvailable" Nullable="true" Precision="20" Scale="2" />
+          <Property Type="Int32" Name="BatchID" Nullable="false" />
+          <Property Type="DateTime" Name="BatchEntryDate" Nullable="false" />
         </ComplexType>
         <ComplexType Name="WarehouseAdjustmentTypeBase">
           <Property Type="Int32" Name="WarehouseAdjustmentTypeID" Nullable="false" />
@@ -8598,6 +8600,8 @@
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
                 <ScalarProperty Name="QuantityAvailable" ColumnName="QuantityAvailable" />
                 <ScalarProperty Name="LineVolumeAvailable" ColumnName="LineVolumeAvailable" />
+                <ScalarProperty Name="BatchID" ColumnName="BatchID" />
+                <ScalarProperty Name="BatchEntryDate" ColumnName="BatchEntryDate" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
