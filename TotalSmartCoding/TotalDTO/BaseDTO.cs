@@ -34,7 +34,7 @@ namespace TotalDTO
             base.Init();
             this.Initialize();
         }
-        private void Initialize() { this.OrganizationalUnitID = ContextAttributes.User.OrganizationalUnitID; }
+        private void Initialize() { this.OrganizationalUnitID = (ContextAttributes.User != null ? ContextAttributes.User.OrganizationalUnitID : 0); }
 
         public virtual int GetID() { return 0; }
         public int LastID { get; set; } //THIS KEEP THE LAST ID WHEN CREATE NEW Entity. HOWEVER, EACH TIME TO EDIT THE CURRENT Entity, THIS ALSO KEEP CURRENT EDITED ID
