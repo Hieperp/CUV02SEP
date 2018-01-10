@@ -37,7 +37,7 @@ namespace TotalSmartCoding.Views.Mains
             {
                 List<DomainUser> allUsers = new List<DomainUser>();
 
-                if (false)
+                if (true)
                 {
                     PrincipalContext ctx = new PrincipalContext(ContextType.Domain, "chevronvn.com"); //, "OU=SomeOU,dc=YourCompany,dc=com"// create your domain context and define the OU container to search in
                     UserPrincipal qbeUser = new UserPrincipal(ctx);// define a "query-by-example" principal - here, we search for a UserPrincipal (user)
