@@ -37,7 +37,7 @@ namespace TotalSmartCoding.Views.Mains
             {
                 List<DomainUser> allUsers = new List<DomainUser>();
 
-                if (true)
+                if (false)
                 {
                     PrincipalContext ctx = new PrincipalContext(ContextType.Domain, "chevronvn.com"); //, "OU=SomeOU,dc=YourCompany,dc=com"// create your domain context and define the OU container to search in
                     UserPrincipal qbeUser = new UserPrincipal(ctx);// define a "query-by-example" principal - here, we search for a UserPrincipal (user)
@@ -52,7 +52,7 @@ namespace TotalSmartCoding.Views.Mains
                 {
                     for (int i = 1; i <= 5; i++)
                     {
-                        allUsers.Add(new DomainUser() { FirstName = "FIST NAME" + i.ToString(), LastName = "FIST NAME" + i.ToString(), UserName = "CHEVRONVN\\Bui Minh Trang", SecurityIdentifier = "S-1-5-21-2907738014-1953812902-1740135539-2126" });
+                        allUsers.Add(new DomainUser() { FirstName = "FIST NAME" + i.ToString(), LastName = "FIST NAME" + i.ToString(), UserName = "CHEVRONVN\\Thi Thanh Giang Le", SecurityIdentifier = "S-1-5-21-2907738014-1953812902-1740135539-2131" });
                     }
                 }
 

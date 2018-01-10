@@ -18,9 +18,9 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
         public void RestoreProcedure()
         {
-            //this.WarehouseJournals();
+            this.WarehouseJournals();
 
-            //this.WarehouseLedgers();
+            this.WarehouseLedgers();
         }
 
         private void WarehouseJournals()

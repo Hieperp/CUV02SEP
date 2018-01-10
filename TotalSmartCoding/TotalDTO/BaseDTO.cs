@@ -24,9 +24,17 @@ namespace TotalDTO
                     propertyInfo.SetValue(this, attribute.Value, null);
                 }
             }
+            this.Initialize();
         }
 
         public virtual GlobalEnums.NmvnTaskID NMVNTaskID { get { return GlobalEnums.NmvnTaskID.UnKnown; } }
+
+        public override void Init()
+        {
+            base.Init();
+            this.Initialize();
+        }
+        private void Initialize() { this.OrganizationalUnitID = ContextAttributes.User.OrganizationalUnitID; }
 
         public virtual int GetID() { return 0; }
         public int LastID { get; set; } //THIS KEEP THE LAST ID WHEN CREATE NEW Entity. HOWEVER, EACH TIME TO EDIT THE CURRENT Entity, THIS ALSO KEEP CURRENT EDITED ID
@@ -101,9 +109,9 @@ namespace TotalDTO
         public bool Approvable { get; set; }
         public bool UnApprovable { get; set; }
         public virtual bool NoApprovable { get { return false; } }
-        
 
-        
+
+
         public bool Voidable { get; set; }
         public bool UnVoidable { get; set; }
         public virtual bool NoVoidable { get { return true; } }

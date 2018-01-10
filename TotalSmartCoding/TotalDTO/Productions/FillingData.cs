@@ -27,6 +27,7 @@ namespace TotalDTO.Productions
         private string commodityCode;
         private string commodityAPICode;
         private string commodityOfficialCode;
+        private string commodityName;
         private decimal volume;
 
         private int shelflife;
@@ -100,6 +101,12 @@ namespace TotalDTO.Productions
         {
             get { return this.commodityOfficialCode; }
             set { ApplyPropertyChange<FillingData, string>(ref this.commodityOfficialCode, o => o.CommodityOfficialCode, value); }
+        }
+
+        public string CommodityName
+        {
+            get { return this.commodityName; }
+            set { ApplyPropertyChange<FillingData, string>(ref this.commodityName, o => o.CommodityName, value); }
         }
 
         public decimal Volume

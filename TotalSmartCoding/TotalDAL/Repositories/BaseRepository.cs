@@ -147,6 +147,9 @@ namespace TotalDAL.Repositories
             {
                 this.totalSmartCodingEntities.ColumnAdd("AccessControls", "InActive", "bit", "0", true);
                 this.totalSmartCodingEntities.ColumnAdd("OrganizationalUnitUsers", "InActiveDate", "datetime", null, false);
+
+
+                this.ExecuteStoreCommand("UPDATE Modules SET InActive = 1 WHERE ModuleID = 9", new ObjectParameter[] { });
             }
         }
 

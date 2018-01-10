@@ -543,7 +543,7 @@
             this.MinimizeBox = false;
             this.Name = "UserReferences";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "User References [Determine the tasks every user can perform]";
+            this.Text = "User References [Determine the tasks each user can perform]";
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastNMVNTasks)).EndInit();

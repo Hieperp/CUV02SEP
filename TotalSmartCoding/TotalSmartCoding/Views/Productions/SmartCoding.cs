@@ -100,7 +100,7 @@ namespace TotalSmartCoding.Views.Productions
                 this.textNextPackNo.TextBox.DataBindings.Add("Text", this.fillingData, "NextPackNo");
                 this.textNextCartonNo.TextBox.DataBindings.Add("Text", this.fillingData, "NextCartonNo");
                 this.textNextPalletNo.TextBox.DataBindings.Add("Text", this.fillingData, "NextPalletNo");
-
+                
                 this.comboBoxEmptyCarton.ComboBox.Items.AddRange(new string[] { "Ignore empty carton", "Keep empty carton" });
                 this.comboBoxEmptyCarton.ComboBox.SelectedIndex = GlobalVariables.IgnoreEmptyCarton ? 0 : 1;
                 this.comboBoxEmptyCarton.Enabled = this.fillingData.FillingLineID != GlobalVariables.FillingLine.Pail;
@@ -114,14 +114,13 @@ namespace TotalSmartCoding.Views.Productions
                 this.buttonCartonNoreadNow.Visible = GlobalEnums.OnTestScanner;
                 this.buttonPalletReceivedNow.Visible = GlobalEnums.OnTestScanner;
 
-                if (!fillingData.HasPack) { this.labelNextDigitNo.Visible = false; this.textNextDigitNo.Visible = false; this.labelNextPackNo.Visible = false; this.textNextPackNo.Visible = false; this.dgvCartonPendingQueue.RowTemplate.Height = 280; this.dgvCartonQueue.RowTemplate.Height = 280; this.dgvCartonsetQueue.RowTemplate.Height = 280; this.labelLEDPack.Visible = false; this.labelLEDCartonIgnore.Visible = false; }
-                if (!fillingData.HasCarton) { this.labelNextCartonNo.Visible = false; this.textNextCartonNo.Visible = false; this.dgvPalletQueue.RowTemplate.Height = 280; this.dgvPalletPickupQueue.RowTemplate.Height = 280; this.labelLEDCarton.Visible = false; this.labelLEDCartonPending.Visible = false; }
+                if (!fillingData.HasPack) { this.labelNextDigitNo.Visible = false; this.textNextDigitNo.Visible = false; this.labelNextPackNo.Visible = false; this.textNextPackNo.Visible = false; this.dgvCartonPendingQueue.RowTemplate.Height = 280; this.dgvCartonQueue.RowTemplate.Height = 280; this.dgvCartonsetQueue.RowTemplate.Height = 280; this.labelLEDPack.Visible = false; this.labelLEDCartonIgnore.Visible = false; this.labelCommodityNameCarton.Visible = true; }
+                if (!fillingData.HasCarton) { this.labelNextCartonNo.Visible = false; this.textNextCartonNo.Visible = false; this.dgvPalletQueue.RowTemplate.Height = 280; this.dgvPalletPickupQueue.RowTemplate.Height = 280; this.labelLEDCarton.Visible = false; this.labelLEDCartonPending.Visible = false; this.labelCommodityNamePallet.Visible = true; }
 
 
 
 
-                this.labelNextDigitNo.Visible = false; this.textNextDigitNo.Visible = false; 
-
+                this.labelNextDigitNo.Visible = false; this.textNextDigitNo.Visible = false;
 
 
 
@@ -195,6 +194,17 @@ namespace TotalSmartCoding.Views.Productions
             }
         }
 
+        private void textBoxCommodityCode_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                this.labelCommodityNamePack.Text = "                                                            " + this.fillingData.CommodityName;
+                this.labelCommodityNameCarton.Text = "     " + this.fillingData.CommodityName;
+                this.labelCommodityNamePallet.Text = "                                    " + this.fillingData.CommodityName;
+            }
+            catch
+            { }
+        }
 
 
         private void comboBoxEmptyCarton_SelectedIndexChanged(object sender, EventArgs e)
@@ -966,6 +976,8 @@ namespace TotalSmartCoding.Views.Productions
         }
 
         #endregion Backup
+
+        
 
     }
 }
