@@ -288,7 +288,9 @@
             GoodsIssuePivot = 2,
 
             GoodsReceiptJournal = 21,
-            GoodsIssueJournal = 22
+            GoodsIssueJournal = 22,
+
+            WarehouseJournal = 800
         }
 
         public enum ReportTabPageID
@@ -321,7 +323,9 @@
             GoodsIssueJournal = 31,
             SalesIssueJournal = 32,
             TransferIssueJournal = 35,
-            AdjustmentIssueJournal = 36
+            AdjustmentIssueJournal = 36,
+
+            WarehouseJournal = 801
         }
 
 

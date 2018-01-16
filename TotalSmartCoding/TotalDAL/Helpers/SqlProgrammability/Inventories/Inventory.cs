@@ -20,40 +20,219 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
         {
             this.WarehouseJournals();
 
-            this.WarehouseLedgers();
+            //this.WarehouseLedgers();
+        }
+
+
+
+        //private void ABC()
+        //{
+        //    string queryString;
+
+        //    queryString = " @FromDate DateTime, @ToDate DateTime " + "\r\n";
+        //    queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+        //    queryString = queryString + " AS " + "\r\n";
+        //    queryString = queryString + "    BEGIN " + "\r\n";
+
+        //    queryString = queryString + "       IF (@FromDate) " + "\r\n";
+        //    queryString = queryString + "       FROM        GoodsReceipts " + "\r\n";
+        //    queryString = queryString + "                   INNER JOIN Locations ON GoodsReceipts.EntryDate >= @FromDate AND GoodsReceipts.EntryDate <= @ToDate AND GoodsReceipts.OrganizationalUnitID IN (SELECT OrganizationalUnitID FROM AccessControls WHERE UserID = @UserID AND NMVNTaskID = " + (int)TotalBase.Enums.GlobalEnums.NmvnTaskID.GoodsReceipt + " AND AccessControls.AccessLevel > 0) AND Locations.LocationID = GoodsReceipts.LocationID " + "\r\n";
+        //    queryString = queryString + "                   INNER JOIN Warehouses ON GoodsReceipts.WarehouseID = Warehouses.WarehouseID " + "\r\n";
+        //    queryString = queryString + "                   INNER JOIN GoodsReceiptTypes ON GoodsReceipts.GoodsReceiptTypeID = GoodsReceiptTypes.GoodsReceiptTypeID " + "\r\n";
+
+        //    queryString = queryString + "    END " + "\r\n";
+
+        //    this.totalSmartCodingEntities.CreateStoredProcedure("ABC", queryString);
+        //}
+
+
+
+
+
+        #region WarehouseJournals
+
+        #region  DEFINE Switch Query
+
+        private string DEFINEHeader(bool localParameter)
+        {
+            string queryString = " @UserID Int, @FromDate DateTime, @ToDate DateTime, @QuantityVersusVolume int, @LocationIDs varchar(3999), @WarehouseIDs varchar(3999), @CommodityCategoryIDs varchar(3999), @CommodityTypeIDs varchar(3999), @CommodityIDs varchar(3999) " + "\r\n";
+
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+            queryString = queryString + "       SET NOCOUNT ON; " + "\r\n";
+
+            if (localParameter)
+            {
+                queryString = queryString + "       DECLARE     @LocalUserID Int, @LocalFromDate DateTime, @LocalToDate DateTime, @LocalQuantityVersusVolume int, @LocalLocationIDs varchar(3999), @LocalWarehouseIDs varchar(3999), @LocalCommodityCategoryIDs varchar(3999), @LocalCommodityTypeIDs varchar(3999), @LocalCommodityIDs varchar(3999) " + "\r\n";
+
+                queryString = queryString + "       SET         @LocalUserID = @UserID                                              SET @LocalFromDate = @FromDate                          SET @LocalToDate = @ToDate                          SET @LocalQuantityVersusVolume = @QuantityVersusVolume " + "\r\n";
+                queryString = queryString + "       SET         @LocalLocationIDs = @LocationIDs                                    SET @LocalWarehouseIDs = @WarehouseIDs                  " + "\r\n";
+                queryString = queryString + "       SET         @LocalCommodityCategoryIDs = @CommodityCategoryIDs                  SET @LocalCommodityTypeIDs = @CommodityTypeIDs          SET @LocalCommodityIDs = @CommodityIDs              " + "\r\n";
+            }
+
+            return queryString;
+        }
+
+        private string DEFINEParameter(bool localParameter)
+        {
+            return " @" + (localParameter ? "Local" : "") + "UserID, @" + (localParameter ? "Local" : "") + "FromDate, @" + (localParameter ? "Local" : "") + "ToDate, @" + (localParameter ? "Local" : "") + "QuantityVersusVolume, @" + (localParameter ? "Local" : "") + "LocationIDs, @" + (localParameter ? "Local" : "") + "WarehouseIDs, @" + (localParameter ? "Local" : "") + "CommodityCategoryIDs, @" + (localParameter ? "Local" : "") + "CommodityTypeIDs, @" + (localParameter ? "Local" : "") + "CommodityIDs ";
         }
 
         private void WarehouseJournals()
         {
-            string queryString = " @LocationID int, @WarehouseID int, @FromDate DateTime, @ToDate DateTime " + "\r\n"; //Filter by @LocalWarehouseID to make this stored procedure run faster, but it may be removed without any effect the algorithm
+            this.WarehouseJournal02();
 
-            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
-            queryString = queryString + " AS " + "\r\n";
+            string queryString = this.DEFINEHeader(true) + this.DEFINEQuantityVersusVolume() + "\r\n";
+            this.totalSmartCodingEntities.CreateStoredProcedure("WarehouseJournals", queryString);
+        }
+
+        private string DEFINEQuantityVersusVolume()
+        {
+            string queryString = "";
+
             queryString = queryString + "    BEGIN " + "\r\n";
 
-            queryString = queryString + "       DECLARE     @LocalLocationID int, @LocalWarehouseID int , @LocalFromDate DateTime, @LocalToDate DateTime " + "\r\n";
-            queryString = queryString + "       SET         @LocalLocationID = @LocationID      SET         @LocalWarehouseID = @WarehouseID " + "\r\n";
-            queryString = queryString + "       SET         @LocalFromDate = @FromDate          SET         @LocalToDate = @ToDate " + "\r\n";
+            queryString = queryString + "       IF (@LocalFromDate > @LocalToDate) " + "\r\n";
+            queryString = queryString + "           BEGIN " + "\r\n";
+            queryString = queryString + "               DECLARE     @msg NVARCHAR(300) = N'Chọn sai ngày. Vui lòng kiểm tra lại trước khi tiếp tục.' ; " + "\r\n";
+            queryString = queryString + "               THROW       61001,  @msg, 1; " + "\r\n";
+            queryString = queryString + "           END " + "\r\n";
 
-            queryString = queryString + "       IF         (@LocalLocationID > 0 AND @LocalWarehouseID > 0) " + "\r\n";
-            queryString = queryString + "                   " + this.WarehouseJournalBUILD(true, true) + "\r\n";
+
+            queryString = queryString + "       IF         (@LocalQuantityVersusVolume = 0) " + "\r\n";
+            queryString = queryString + "                   " + this.DEFINELocation(true) + "\r\n";
             queryString = queryString + "       ELSE " + "\r\n";
-            queryString = queryString + "           IF         (@LocalLocationID > 0 AND @LocalWarehouseID <= 0) " + "\r\n";
-            queryString = queryString + "                       " + this.WarehouseJournalBUILD(true, false) + "\r\n";
-            queryString = queryString + "           ELSE " + "\r\n";
-            queryString = queryString + "               IF         (@LocalLocationID <= 0 AND @LocalWarehouseID > 0) " + "\r\n";
-            queryString = queryString + "                           " + this.WarehouseJournalBUILD(false, true) + "\r\n";
-            queryString = queryString + "               ELSE " + "\r\n";
-            queryString = queryString + "                           " + this.WarehouseJournalBUILD(false, false) + "\r\n";
+            queryString = queryString + "                   " + this.DEFINELocation(false) + "\r\n";
 
             queryString = queryString + "    END " + "\r\n";
 
-            this.totalSmartCodingEntities.CreateStoredProcedure("WarehouseJournals", queryString);
+            return queryString;
+        }
 
+        private string DEFINELocation(bool isQuantityVersusVolume)
+        {
+            string queryString = "";
+
+            queryString = queryString + "    BEGIN " + "\r\n";
+
+            queryString = queryString + "       IF         (@LocalLocationIDs <> '') " + "\r\n";
+            queryString = queryString + "                   " + this.DEFINEWarehouse(isQuantityVersusVolume, true) + "\r\n";
+            queryString = queryString + "       ELSE " + "\r\n";
+            queryString = queryString + "                   " + this.DEFINEWarehouse(isQuantityVersusVolume, false) + "\r\n";
+
+            queryString = queryString + "    END " + "\r\n";
+
+            return queryString;
+        }
+
+        private string DEFINEWarehouse(bool isQuantityVersusVolume, bool isLocationID)
+        {
+            string queryString = "";
+
+            queryString = queryString + "    BEGIN " + "\r\n";
+
+            queryString = queryString + "       IF         (@LocalWarehouseIDs <> '') " + "\r\n";
+            queryString = queryString + "                   EXEC WarehouseJournal02" + isQuantityVersusVolume.ToString().Substring(0, 1) + isLocationID.ToString().Substring(0, 1) + true.ToString().Substring(0, 1) + this.DEFINEParameter(false) + "\r\n";
+            queryString = queryString + "       ELSE " + "\r\n";
+            queryString = queryString + "                   EXEC WarehouseJournal02" + isQuantityVersusVolume.ToString().Substring(0, 1) + isLocationID.ToString().Substring(0, 1) + false.ToString().Substring(0, 1) + this.DEFINEParameter(false) + "\r\n";
+
+            queryString = queryString + "    END " + "\r\n";
+
+            return queryString;
+        }
+
+        private void WarehouseJournal02()
+        {
+            bool[] boolArray = new bool[2] { true, false };
+
+            foreach (bool isQuantityVersusVolume in boolArray)
+            {
+                foreach (bool isLocationID in boolArray)
+                {
+                    foreach (bool isWarehouseID in boolArray)
+                    {
+                        this.totalSmartCodingEntities.CreateStoredProcedure("WarehouseJournal02" + isQuantityVersusVolume.ToString().Substring(0, 1) + isLocationID.ToString().Substring(0, 1) + isWarehouseID.ToString().Substring(0, 1), this.DEFINEHeader(false) + this.DEFINECommodityCategory(isQuantityVersusVolume, isLocationID, isWarehouseID));
+                    }
+                }
+            }
+        }
+
+        private string DEFINECommodityCategory(bool isQuantityVersusVolume, bool isLocationID, bool isWarehouseID)
+        {
+            string queryString = "";
+
+            queryString = queryString + "    BEGIN " + "\r\n";
+
+            queryString = queryString + "       IF         (@CommodityCategoryIDs <> '') " + "\r\n";
+            queryString = queryString + "                   " + this.DEFINECommodity(isQuantityVersusVolume, isLocationID, isWarehouseID, true) + "\r\n";
+            queryString = queryString + "       ELSE " + "\r\n";
+            queryString = queryString + "                   " + this.DEFINECommodity(isQuantityVersusVolume, isLocationID, isWarehouseID, false) + "\r\n";
+
+            queryString = queryString + "    END " + "\r\n";
+
+            return queryString;
+        }
+
+        private string DEFINECommodity(bool isQuantityVersusVolume, bool isLocationID, bool isWarehouseID, bool isCommodityCategoryID)
+        {
+            string queryString = "";
+
+            queryString = queryString + "    BEGIN " + "\r\n";
+
+            queryString = queryString + "       IF         (@CommodityIDs <> '') " + "\r\n";
+            queryString = queryString + "                   " + this.DEFINECommodityType(isQuantityVersusVolume, isLocationID, isWarehouseID, isCommodityCategoryID, true) + "\r\n";
+            queryString = queryString + "       ELSE " + "\r\n";
+            queryString = queryString + "                   " + this.DEFINECommodityType(isQuantityVersusVolume, isLocationID, isWarehouseID, isCommodityCategoryID, false) + "\r\n";
+
+            queryString = queryString + "    END " + "\r\n";
+
+            return queryString;
+        }
+
+        private string DEFINECommodityType(bool isQuantityVersusVolume, bool isLocationID, bool isWarehouseID, bool isCommodityCategoryID, bool isCommodityID)
+        {
+            string queryString = "";
+
+            queryString = queryString + "    BEGIN " + "\r\n";
+
+            queryString = queryString + "       IF         (@CommodityTypeIDs <> '') " + "\r\n";
+            queryString = queryString + "                   " + this.DEFINESameFromToDate(isQuantityVersusVolume, isLocationID, isWarehouseID, isCommodityCategoryID, isCommodityID, true) + "\r\n";
+            queryString = queryString + "       ELSE " + "\r\n";
+            queryString = queryString + "                   " + this.DEFINESameFromToDate(isQuantityVersusVolume, isLocationID, isWarehouseID, isCommodityCategoryID, isCommodityID, false) + "\r\n";
+
+
+            queryString = queryString + "    END " + "\r\n";
+
+            return queryString;
         }
 
 
-        private string WarehouseJournalBUILD(bool isLocationID, bool isWarehouseID)
+        private string DEFINESameFromToDate(bool isQuantityVersusVolume, bool isLocationID, bool isWarehouseID, bool isCommodityCategoryID, bool isCommodityID, bool isCommodityTypeID)
+        {
+            string queryString = "";
+
+            queryString = queryString + "    BEGIN " + "\r\n";
+
+            queryString = queryString + "       IF         (@FromDate = @ToDate) " + "\r\n";
+            queryString = queryString + "                   BEGIN " + "\r\n";
+            queryString = queryString + "                       SET @FromDate = DATEADD(ms, 2, @FromDate) " + "\r\n";
+            queryString = queryString + "                       " + this.WarehouseJournalDEFINE(isQuantityVersusVolume, isLocationID, isWarehouseID, isCommodityCategoryID, isCommodityID, isCommodityTypeID, true) + "\r\n";
+            queryString = queryString + "                   END " + "\r\n";
+            queryString = queryString + "       ELSE " + "\r\n";
+            queryString = queryString + "                   " + this.WarehouseJournalDEFINE(isQuantityVersusVolume, isLocationID, isWarehouseID, isCommodityCategoryID, isCommodityID, isCommodityTypeID, false) + "\r\n";
+
+
+            queryString = queryString + "    END " + "\r\n";
+
+            return queryString;
+        }
+
+
+        #endregion DEFINE Switch Query
+
+        #region Actual DEFINE WarehouseJournal
+
+        private string WarehouseJournalDEFINE(bool isQuantityVersusVolume, bool isLocationID, bool isWarehouseID, bool isCommodityCategoryID, bool isCommodityID, bool isCommodityTypeID, bool isSameFromToDate)
         {
             string queryString = "";
 
@@ -63,10 +242,10 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryString = queryString + "                   CommodityCategories.CommodityCategoryID, CommodityCategories.Name AS CommodityCategoryName, Commodities.CommodityID, Commodities.Code, Commodities.Name, Commodities.Unit, Commodities.PackageSize, ISNULL(Pallets.Code, ISNULL(Cartons.Code, ISNULL(Packs.Code, ''))) AS Barcode, CASE WHEN NOT WarehouseJournalDetails.PalletID IS NULL THEN N'Pallet' WHEN NOT WarehouseJournalDetails.CartonID IS NULL THEN N'Carton'  WHEN NOT WarehouseJournalDetails.PackID IS NULL THEN N'Pack' ELSE '' END AS BarcodeUnit, " + "\r\n";
             queryString = queryString + "                   WarehouseJournalDetails.GoodsReceiptDetailID, WarehouseJournalDetails.EntryDate, ISNULL('Production: ' + ' ' + Pickups.Reference, ISNULL('From: ' + ' ' + SourceWarehouses.Name + ', ' + GoodsIssues.VoucherCodes, ISNULL(WarehouseAdjustmentTypes.Name  + ' ' + WarehouseAdjustments.AdjustmentJobs, ''))) AS LineReferences, " + "\r\n";
 
-            queryString = queryString + "                   WarehouseJournalDetails.QuantityBegin, WarehouseJournalDetails.QuantityReceiptPickup, WarehouseJournalDetails.QuantityReceiptPurchasing, WarehouseJournalDetails.QuantityReceiptTransfer, WarehouseJournalDetails.QuantityReceiptReturn, WarehouseJournalDetails.QuantityReceiptAdjustment, WarehouseJournalDetails.QuantityReceiptPickup + WarehouseJournalDetails.QuantityReceiptPurchasing + WarehouseJournalDetails.QuantityReceiptTransfer + WarehouseJournalDetails.QuantityReceiptReturn + WarehouseJournalDetails.QuantityReceiptAdjustment AS QuantityReceipt, " + "\r\n";
-            queryString = queryString + "                   WarehouseJournalDetails.QuantityIssueSelling, WarehouseJournalDetails.QuantityIssueTransfer, WarehouseJournalDetails.QuantityIssueAdjustment, WarehouseJournalDetails.QuantityIssueSelling + WarehouseJournalDetails.QuantityIssueTransfer + WarehouseJournalDetails.QuantityIssueAdjustment AS QuantityIssue, " + "\r\n";
-            queryString = queryString + "                   WarehouseJournalDetails.QuantityBegin + WarehouseJournalDetails.QuantityReceiptPickup + WarehouseJournalDetails.QuantityReceiptPurchasing + WarehouseJournalDetails.QuantityReceiptTransfer + WarehouseJournalDetails.QuantityReceiptReturn + WarehouseJournalDetails.QuantityReceiptAdjustment - WarehouseJournalDetails.QuantityIssueSelling - WarehouseJournalDetails.QuantityIssueTransfer - WarehouseJournalDetails.QuantityIssueAdjustment AS QuantityEnd, " + "\r\n";
-            queryString = queryString + "                   WarehouseJournalDetails.QuantityOnPurchasing, WarehouseJournalDetails.QuantityOnPickup, WarehouseJournalDetails.QuantityOnTransit, " + "\r\n";
+            queryString = queryString + "                   WarehouseJournalDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "Begin AS ValueBegin, WarehouseJournalDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptPickup AS ValueReceiptPickup, WarehouseJournalDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptPurchasing AS ValueReceiptPurchasing, WarehouseJournalDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptTransfer AS ValueReceiptTransfer, WarehouseJournalDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptReturn AS ValueReceiptReturn, WarehouseJournalDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptAdjustment AS ValueReceiptAdjustment, WarehouseJournalDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptPickup + WarehouseJournalDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptPurchasing + WarehouseJournalDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptTransfer + WarehouseJournalDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptReturn + WarehouseJournalDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptAdjustment AS ValueReceipt, " + "\r\n";
+            queryString = queryString + "                   WarehouseJournalDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueSelling AS ValueIssueSelling, WarehouseJournalDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueTransfer AS ValueIssueTransfer, WarehouseJournalDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueAdjustment AS ValueIssueAdjustment, WarehouseJournalDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueSelling + WarehouseJournalDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueTransfer + WarehouseJournalDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueAdjustment AS ValueIssue, " + "\r\n";
+            queryString = queryString + "                   WarehouseJournalDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "Begin + WarehouseJournalDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptPickup + WarehouseJournalDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptPurchasing + WarehouseJournalDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptTransfer + WarehouseJournalDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptReturn + WarehouseJournalDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptAdjustment - WarehouseJournalDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueSelling - WarehouseJournalDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueTransfer - WarehouseJournalDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueAdjustment AS ValueEnd, " + "\r\n";
+            queryString = queryString + "                   WarehouseJournalDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "OnPurchasing AS ValueOnPurchasing, WarehouseJournalDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "OnPickup AS ValueOnPickup, WarehouseJournalDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "OnTransit AS ValueOnTransit, " + "\r\n";
             queryString = queryString + "                   WarehouseJournalDetails.MovementMIN, WarehouseJournalDetails.MovementMAX, WarehouseJournalDetails.MovementAVG " + "\r\n";
 
 
@@ -74,66 +253,67 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
             //--BEGIN-INPUT-OUTPUT-END.END
             queryString = queryString + "                   SELECT  GoodsReceiptDetails.EntryDate, GoodsReceiptDetails.GoodsReceiptDetailID, GoodsReceiptDetails.CommodityID, GoodsReceiptDetails.BatchEntryDate, GoodsReceiptDetails.LocationID, GoodsReceiptDetails.WarehouseID, GoodsReceiptDetails.BinLocationID, GoodsReceiptDetails.PickupID, GoodsReceiptDetails.GoodsIssueID, GoodsReceiptDetails.WarehouseAdjustmentID, GoodsReceiptDetails.PackID, GoodsReceiptDetails.CartonID, GoodsReceiptDetails.PalletID, " + "\r\n";
-            queryString = queryString + "                           GoodsReceiptDetailUnionMasters.QuantityBegin, GoodsReceiptDetailUnionMasters.QuantityReceiptPickup, GoodsReceiptDetailUnionMasters.QuantityReceiptPurchasing, GoodsReceiptDetailUnionMasters.QuantityReceiptTransfer, GoodsReceiptDetailUnionMasters.QuantityReceiptReturn, GoodsReceiptDetailUnionMasters.QuantityReceiptAdjustment, GoodsReceiptDetailUnionMasters.QuantityIssueSelling, GoodsReceiptDetailUnionMasters.QuantityIssueTransfer, GoodsReceiptDetailUnionMasters.QuantityIssueAdjustment, 0 AS QuantityOnPurchasing, 0 AS QuantityOnPickup, 0 AS QuantityOnTransit, GoodsReceiptDetailUnionMasters.MovementMIN, GoodsReceiptDetailUnionMasters.MovementMAX, GoodsReceiptDetailUnionMasters.MovementAVG " + "\r\n";
+            queryString = queryString + "                           GoodsReceiptDetailUnionMasters." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "Begin, GoodsReceiptDetailUnionMasters." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptPickup, GoodsReceiptDetailUnionMasters." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptPurchasing, GoodsReceiptDetailUnionMasters." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptTransfer, GoodsReceiptDetailUnionMasters." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptReturn, GoodsReceiptDetailUnionMasters." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptAdjustment, GoodsReceiptDetailUnionMasters." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueSelling, GoodsReceiptDetailUnionMasters." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueTransfer, GoodsReceiptDetailUnionMasters." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueAdjustment, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "OnPurchasing, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "OnPickup, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "OnTransit, GoodsReceiptDetailUnionMasters.MovementMIN, GoodsReceiptDetailUnionMasters.MovementMAX, GoodsReceiptDetailUnionMasters.MovementAVG " + "\r\n";
 
 
             queryString = queryString + "                   FROM   (" + "\r\n";
             queryString = queryString + "                           SELECT  GoodsReceiptDetailUnions.GoodsReceiptDetailID, " + "\r\n";
-            queryString = queryString + "                                   SUM(QuantityBegin) AS QuantityBegin, SUM(QuantityReceiptPickup) AS QuantityReceiptPickup, SUM(QuantityReceiptPurchasing) AS QuantityReceiptPurchasing, SUM(QuantityReceiptTransfer) AS QuantityReceiptTransfer, SUM(QuantityReceiptReturn) AS QuantityReceiptReturn, SUM(QuantityReceiptAdjustment) AS QuantityReceiptAdjustment, " + "\r\n";
-            queryString = queryString + "                                   SUM(QuantityIssueSelling) AS QuantityIssueSelling, SUM(QuantityIssueTransfer) AS QuantityIssueTransfer, SUM(QuantityIssueAdjustment) AS QuantityIssueAdjustment, " + "\r\n";
-            queryString = queryString + "                                   MIN(MovementDate) AS MovementMIN, MAX(MovementDate) AS MovementMAX, SUM((QuantityIssueSelling + QuantityIssueTransfer + QuantityIssueAdjustment) * MovementDate) / SUM(QuantityIssueSelling + QuantityIssueTransfer + QuantityIssueAdjustment) AS MovementAVG " + "\r\n";
+            queryString = queryString + "                                   SUM(" + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "Begin) AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "Begin, SUM(" + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptPickup) AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptPickup, SUM(" + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptPurchasing) AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptPurchasing, SUM(" + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptTransfer) AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptTransfer, SUM(" + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptReturn) AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptReturn, SUM(" + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptAdjustment) AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptAdjustment, " + "\r\n";
+            queryString = queryString + "                                   SUM(" + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueSelling) AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueSelling, SUM(" + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueTransfer) AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueTransfer, SUM(" + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueAdjustment) AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueAdjustment, " + "\r\n";
+            queryString = queryString + "                                   MIN(MovementDate) AS MovementMIN, MAX(MovementDate) AS MovementMAX, 0 AS MovementAVG " + "\r\n"; //SUM((" + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueSelling + " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueTransfer + " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueAdjustment) * MovementDate) / SUM(" + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueSelling + " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueTransfer + " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueAdjustment)  AS MovementAVG
             queryString = queryString + "                           FROM    (" + "\r\n";
 
 
             //1.BEGINING
             //  BEGINING.GoodsReceipts
-            queryString = queryString + "                                   SELECT      GoodsReceiptDetails.GoodsReceiptDetailID, ROUND(GoodsReceiptDetails.Quantity - GoodsReceiptDetails.QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") AS QuantityBegin, 0 AS QuantityReceiptPickup, 0 AS QuantityReceiptPurchasing, 0 AS QuantityReceiptTransfer, 0 AS QuantityReceiptReturn, 0 AS QuantityReceiptAdjustment, 0 AS QuantityIssueSelling, 0 AS QuantityIssueTransfer, 0 AS QuantityIssueAdjustment, NULL AS MovementDate " + "\r\n";
+            queryString = queryString + "                                   SELECT      GoodsReceiptDetails.GoodsReceiptDetailID, ROUND(GoodsReceiptDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + " - GoodsReceiptDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "Issue, " + (int)GlobalEnums.rndQuantity + ") AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "Begin, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptPickup, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptPurchasing, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptTransfer, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptReturn, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptAdjustment, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueSelling, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueTransfer, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueAdjustment, 0 AS MovementDate " + "\r\n"; //NULL AS MovementDate
             queryString = queryString + "                                   FROM        GoodsReceiptDetails " + "\r\n";
-            queryString = queryString + "                                   WHERE       GoodsReceiptDetails.EntryDate < @LocalFromDate AND GoodsReceiptDetails.Quantity > GoodsReceiptDetails.QuantityIssue " + (isLocationID ? " AND GoodsReceiptDetails.LocationID = @LocalLocationID" : "") + (isWarehouseID ? " AND GoodsReceiptDetails.WarehouseID = @LocalWarehouseID" : "") + "\r\n";
+            queryString = queryString + "                                   WHERE       GoodsReceiptDetails.EntryDate < @FromDate AND GoodsReceiptDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + " > GoodsReceiptDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "Issue " + this.DEFINEFilterLW(isLocationID, isWarehouseID, "GoodsReceiptDetails") + "\r\n";
 
             queryString = queryString + "                                   UNION ALL " + "\r\n";
-            //  BEGINING.UNDO (CAC CAU SQL CHO GoodsIssues, WarehouseAdjustments LA HOAN TOAN GIONG NHAU. LUU Y T/H DAT BIET: WarehouseAdjustments.Quantity < 0)
+            //  BEGINING.UNDO (CAC CAU SQL CHO GoodsIssues, WarehouseAdjustments LA HOAN TOAN GIONG NHAU. LUU Y T/H DAT BIET: WarehouseAdjustments." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + " < 0)
             //  BEGINING.UNDO.GoodsIssues
-            queryString = queryString + "                                   SELECT      GoodsReceiptDetails.GoodsReceiptDetailID, GoodsIssueDetails.Quantity AS QuantityBegin, 0 AS QuantityReceiptPickup, 0 AS QuantityReceiptPurchasing, 0 AS QuantityReceiptTransfer, 0 AS QuantityReceiptReturn, 0 AS QuantityReceiptAdjustment, 0 AS QuantityIssueSelling, 0 AS QuantityIssueTransfer, 0 AS QuantityIssueAdjustment, NULL AS MovementDate " + "\r\n";
+            queryString = queryString + "                                   SELECT      GoodsReceiptDetails.GoodsReceiptDetailID, GoodsIssueDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + " AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "Begin, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptPickup, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptPurchasing, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptTransfer, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptReturn, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptAdjustment, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueSelling, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueTransfer, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueAdjustment, 0 AS MovementDate " + "\r\n"; //NULL AS MovementDate
             queryString = queryString + "                                   FROM        GoodsReceiptDetails INNER JOIN " + "\r\n";
-            queryString = queryString + "                                               GoodsIssueDetails ON GoodsReceiptDetails.GoodsReceiptDetailID = GoodsIssueDetails.GoodsReceiptDetailID AND GoodsReceiptDetails.EntryDate < @LocalFromDate AND GoodsIssueDetails.EntryDate >= @LocalFromDate " + (isLocationID ? " AND GoodsReceiptDetails.LocationID = @LocalLocationID " : "") + (isWarehouseID ? " AND GoodsReceiptDetails.WarehouseID = @LocalWarehouseID" : "") + "\r\n";
+            queryString = queryString + "                                               GoodsIssueDetails ON GoodsReceiptDetails.GoodsReceiptDetailID = GoodsIssueDetails.GoodsReceiptDetailID AND GoodsReceiptDetails.EntryDate < @FromDate AND GoodsIssueDetails.EntryDate >= @FromDate " + this.DEFINEFilterLW(isLocationID, isWarehouseID, "GoodsReceiptDetails") + "\r\n";
 
             queryString = queryString + "                                   UNION ALL " + "\r\n";
             //  BEGINING.UNDO.WarehouseAdjustments
-            queryString = queryString + "                                   SELECT      GoodsReceiptDetails.GoodsReceiptDetailID, -WarehouseAdjustmentDetails.Quantity AS QuantityBegin, 0 AS QuantityReceiptPickup, 0 AS QuantityReceiptPurchasing, 0 AS QuantityReceiptTransfer, 0 AS QuantityReceiptReturn, 0 AS QuantityReceiptAdjustment, 0 AS QuantityIssueSelling, 0 AS QuantityIssueTransfer, 0 AS QuantityIssueAdjustment, NULL AS MovementDate " + "\r\n";
+            queryString = queryString + "                                   SELECT      GoodsReceiptDetails.GoodsReceiptDetailID, -WarehouseAdjustmentDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + " AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "Begin, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptPickup, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptPurchasing, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptTransfer, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptReturn, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptAdjustment, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueSelling, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueTransfer, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueAdjustment, 0 AS MovementDate " + "\r\n"; //NULL AS MovementDate
             queryString = queryString + "                                   FROM        GoodsReceiptDetails INNER JOIN " + "\r\n";
-            queryString = queryString + "                                               WarehouseAdjustmentDetails ON GoodsReceiptDetails.GoodsReceiptDetailID = WarehouseAdjustmentDetails.GoodsReceiptDetailID AND GoodsReceiptDetails.EntryDate < @LocalFromDate AND WarehouseAdjustmentDetails.EntryDate >= @LocalFromDate AND WarehouseAdjustmentDetails.Quantity < 0 " + (isLocationID ? " AND GoodsReceiptDetails.LocationID = @LocalLocationID " : "") + (isWarehouseID ? " AND GoodsReceiptDetails.WarehouseID = @LocalWarehouseID" : "") + "\r\n";
+            queryString = queryString + "                                               WarehouseAdjustmentDetails ON GoodsReceiptDetails.GoodsReceiptDetailID = WarehouseAdjustmentDetails.GoodsReceiptDetailID AND GoodsReceiptDetails.EntryDate < @FromDate AND WarehouseAdjustmentDetails.EntryDate >= @FromDate AND WarehouseAdjustmentDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + " < 0 " + this.DEFINEFilterLW(isLocationID, isWarehouseID, "GoodsReceiptDetails") + "\r\n";
 
 
 
-            //2.INTPUT
-            queryString = queryString + "                                   UNION ALL " + "\r\n";
-            queryString = queryString + "                                   SELECT      GoodsReceiptDetails.GoodsReceiptDetailID, 0 AS QuantityBegin, " + "\r\n";
-            queryString = queryString + "                                               CASE WHEN GoodsReceiptDetails.GoodsReceiptTypeID = " + (int)GlobalEnums.GoodsReceiptTypeID.Pickup + " THEN GoodsReceiptDetails.Quantity ELSE 0 END AS QuantityReceiptPickup, " + "\r\n";
-            queryString = queryString + "                                               CASE WHEN GoodsReceiptDetails.GoodsReceiptTypeID = " + (int)GlobalEnums.GoodsReceiptTypeID.PurchaseInvoice + " THEN GoodsReceiptDetails.Quantity ELSE 0 END AS QuantityReceiptPurchasing, " + "\r\n";
-            queryString = queryString + "                                               CASE WHEN GoodsReceiptDetails.GoodsReceiptTypeID = " + (int)GlobalEnums.GoodsReceiptTypeID.GoodsIssueTransfer + " THEN GoodsReceiptDetails.Quantity ELSE 0 END AS QuantityReceiptTransfer, " + "\r\n";
-            queryString = queryString + "                                               CASE WHEN GoodsReceiptDetails.GoodsReceiptTypeID = " + (int)GlobalEnums.GoodsReceiptTypeID.SalesReturn + " THEN GoodsReceiptDetails.Quantity ELSE 0 END AS QuantityReceiptReturn, " + "\r\n";
-            queryString = queryString + "                                               CASE WHEN GoodsReceiptDetails.GoodsReceiptTypeID = " + (int)GlobalEnums.GoodsReceiptTypeID.WarehouseAdjustments + " THEN GoodsReceiptDetails.Quantity ELSE 0 END AS QuantityReceiptAdjustment, " + "\r\n";
-            queryString = queryString + "                                               0 AS QuantityIssueSelling, 0 AS QuantityIssueTransfer, 0 AS QuantityIssueAdjustment, NULL AS MovementDate " + "\r\n";
-            queryString = queryString + "                                   FROM        GoodsReceiptDetails " + "\r\n";
-            queryString = queryString + "                                   WHERE       GoodsReceiptDetails.EntryDate >= @LocalFromDate AND GoodsReceiptDetails.EntryDate <= @LocalToDate " + (isLocationID ? " AND GoodsReceiptDetails.LocationID = @LocalLocationID " : "") + (isWarehouseID ? " AND GoodsReceiptDetails.WarehouseID = @LocalWarehouseID" : "") + "\r\n";
+            if (!isSameFromToDate)
+            {
+                //2.INTPUT
+                queryString = queryString + "                               UNION ALL " + "\r\n";
+                queryString = queryString + "                               SELECT      GoodsReceiptDetails.GoodsReceiptDetailID, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "Begin, " + "\r\n";
+                queryString = queryString + "                                           CASE WHEN GoodsReceiptDetails.GoodsReceiptTypeID = " + (int)GlobalEnums.GoodsReceiptTypeID.Pickup + " THEN GoodsReceiptDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + " ELSE 0 END AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptPickup, " + "\r\n";
+                queryString = queryString + "                                           CASE WHEN GoodsReceiptDetails.GoodsReceiptTypeID = " + (int)GlobalEnums.GoodsReceiptTypeID.PurchaseInvoice + " THEN GoodsReceiptDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + " ELSE 0 END AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptPurchasing, " + "\r\n";
+                queryString = queryString + "                                           CASE WHEN GoodsReceiptDetails.GoodsReceiptTypeID = " + (int)GlobalEnums.GoodsReceiptTypeID.GoodsIssueTransfer + " THEN GoodsReceiptDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + " ELSE 0 END AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptTransfer, " + "\r\n";
+                queryString = queryString + "                                           CASE WHEN GoodsReceiptDetails.GoodsReceiptTypeID = " + (int)GlobalEnums.GoodsReceiptTypeID.SalesReturn + " THEN GoodsReceiptDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + " ELSE 0 END AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptReturn, " + "\r\n";
+                queryString = queryString + "                                           CASE WHEN GoodsReceiptDetails.GoodsReceiptTypeID = " + (int)GlobalEnums.GoodsReceiptTypeID.WarehouseAdjustments + " THEN GoodsReceiptDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + " ELSE 0 END AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptAdjustment, " + "\r\n";
+                queryString = queryString + "                                           0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueSelling, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueTransfer, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueAdjustment, 0 AS MovementDate " + "\r\n"; //NULL AS MovementDate
+                queryString = queryString + "                               FROM        GoodsReceiptDetails " + "\r\n";
+                queryString = queryString + "                               WHERE       GoodsReceiptDetails.EntryDate >= @FromDate AND GoodsReceiptDetails.EntryDate <= @ToDate  " + this.DEFINEFilterLW(isLocationID, isWarehouseID, "GoodsReceiptDetails") + "\r\n";
 
 
 
-            //3.OUTPUT (CAC CAU SQL CHO GoodsIssues, WarehouseAdjustments LA HOAN TOAN GIONG NHAU. LUU Y T/H DAT BIET: WarehouseAdjustments.Quantity < 0)
-            queryString = queryString + "                                   UNION ALL " + "\r\n";
-            //GoodsIssueDetails + "\r\n";
-            queryString = queryString + "                                   SELECT      GoodsIssueDetails.GoodsReceiptDetailID, 0 AS QuantityBegin, 0 AS QuantityReceiptPickup, 0 AS QuantityReceiptPurchasing, 0 AS QuantityReceiptTransfer, 0 AS QuantityReceiptReturn, 0 AS QuantityReceiptAdjustment, CASE WHEN DeliveryAdviceDetailID IS NULL THEN 0 ELSE GoodsIssueDetails.Quantity END AS QuantityIssueSelling, CASE WHEN TransferOrderDetailID IS NULL THEN 0 ELSE GoodsIssueDetails.Quantity END AS QuantityIssueTransfer, 0 AS QuantityIssueAdjustment, 0 AS MovementDate " + "\r\n"; //DATEDIFF(DAY, GoodsReceiptDetails.EntryDate, GoodsIssueDetails.EntryDate) AS MovementDate
-            queryString = queryString + "                                   FROM        GoodsIssueDetails " + "\r\n";
-            queryString = queryString + "                                   WHERE       GoodsIssueDetails.EntryDate >= @LocalFromDate AND GoodsIssueDetails.EntryDate <= @LocalToDate " + (isLocationID ? " AND GoodsIssueDetails.LocationID = @LocalLocationID " : "") + (isWarehouseID ? " AND GoodsIssueDetails.WarehouseID = @LocalWarehouseID" : "") + "\r\n";
+                //3.OUTPUT (CAC CAU SQL CHO GoodsIssues, WarehouseAdjustments LA HOAN TOAN GIONG NHAU. LUU Y T/H DAT BIET: WarehouseAdjustments." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + " < 0)
+                queryString = queryString + "                               UNION ALL " + "\r\n";
+                //GoodsIssueDetails + "\r\n";
+                queryString = queryString + "                               SELECT      GoodsIssueDetails.GoodsReceiptDetailID, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "Begin, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptPickup, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptPurchasing, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptTransfer, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptReturn, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptAdjustment, CASE WHEN DeliveryAdviceDetailID IS NULL THEN 0 ELSE GoodsIssueDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + " END AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueSelling, CASE WHEN TransferOrderDetailID IS NULL THEN 0 ELSE GoodsIssueDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + " END AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueTransfer, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueAdjustment, 0 AS MovementDate " + "\r\n"; //DATEDIFF(DAY, GoodsReceiptDetails.EntryDate, GoodsIssueDetails.EntryDate) AS MovementDate
+                queryString = queryString + "                               FROM        GoodsIssueDetails " + "\r\n";
+                queryString = queryString + "                               WHERE       GoodsIssueDetails.EntryDate >= @FromDate AND GoodsIssueDetails.EntryDate <= @ToDate  " + this.DEFINEFilterLW(isLocationID, isWarehouseID, "GoodsIssueDetails") + "\r\n";
 
-            queryString = queryString + "                                   UNION ALL " + "\r\n";
-            //WarehouseAdjustmentDetails
-            queryString = queryString + "                                   SELECT      WarehouseAdjustmentDetails.GoodsReceiptDetailID, 0 AS QuantityBegin, 0 AS QuantityReceiptPickup, 0 AS QuantityReceiptPurchasing, 0 AS QuantityReceiptTransfer, 0 AS QuantityReceiptReturn, 0 AS QuantityReceiptAdjustment, 0 AS QuantityIssueSelling, 0 AS QuantityIssueTransfer, -WarehouseAdjustmentDetails.Quantity AS QuantityIssueAdjustment, 0 AS MovementDate " + "\r\n"; //DATEDIFF(DAY, GoodsReceiptDetails.EntryDate, WarehouseAdjustmentDetails.EntryDate) AS MovementDate
-            queryString = queryString + "                                   FROM        WarehouseAdjustmentDetails " + "\r\n";
-            queryString = queryString + "                                   WHERE       WarehouseAdjustmentDetails.EntryDate >= @LocalFromDate AND WarehouseAdjustmentDetails.EntryDate <= @LocalToDate AND WarehouseAdjustmentDetails.Quantity < 0 " + (isLocationID ? " AND WarehouseAdjustmentDetails.LocationID = @LocalLocationID " : "") + (isWarehouseID ? " AND WarehouseAdjustmentDetails.WarehouseID = @LocalWarehouseID" : "") + "\r\n";
-
-
+                queryString = queryString + "                               UNION ALL " + "\r\n";
+                //WarehouseAdjustmentDetails
+                queryString = queryString + "                               SELECT      WarehouseAdjustmentDetails.GoodsReceiptDetailID, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "Begin, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptPickup, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptPurchasing, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptTransfer, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptReturn, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptAdjustment, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueSelling, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueTransfer, -WarehouseAdjustmentDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + " AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueAdjustment, 0 AS MovementDate " + "\r\n"; //DATEDIFF(DAY, GoodsReceiptDetails.EntryDate, WarehouseAdjustmentDetails.EntryDate) AS MovementDate
+                queryString = queryString + "                               FROM        WarehouseAdjustmentDetails " + "\r\n";
+                queryString = queryString + "                               WHERE       WarehouseAdjustmentDetails.EntryDate >= @FromDate AND WarehouseAdjustmentDetails.EntryDate <= @ToDate  AND WarehouseAdjustmentDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + " < 0 " + this.DEFINEFilterLW(isLocationID, isWarehouseID, "WarehouseAdjustmentDetails") + "\r\n";
+            }
 
             queryString = queryString + "                                   ) AS GoodsReceiptDetailUnions " + "\r\n";
             queryString = queryString + "                           GROUP BY GoodsReceiptDetailUnions.GoodsReceiptDetailID " + "\r\n";
@@ -146,37 +326,40 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             //--ON INPUT.BEGIN (CAC CAU SQL DUNG CHO EWHInputVoucherTypeID.EInvoice, EWHInputVoucherTypeID.EReturn, EWHInputVoucherTypeID.EWHTransfer, EWHInputVoucherTypeID.EWHAdjust, EWHInputVoucherTypeID.EWHAssemblyMaster, EWHInputVoucherTypeID.EWHAssemblyDetail LA HOAN TOAN GIONG NHAU)
             //EWHInputVoucherTypeID.EInvoice
             queryString = queryString + "                   SELECT  NULL AS EntryDate, NULL AS GoodsReceiptDetailID, PickupDetails.CommodityID, PickupDetails.BatchEntryDate, PickupDetails.LocationID, NULL AS WarehouseID, NULL AS BinLocationID, NULL AS PickupID, NULL AS GoodsIssueID, NULL AS WarehouseAdjustmentID, PickupDetails.PackID, PickupDetails.CartonID, PickupDetails.PalletID, " + "\r\n";
-            queryString = queryString + "                           0 AS QuantityBegin, 0 AS QuantityReceiptPickup, 0 AS QuantityReceiptPurchasing, 0 AS QuantityReceiptTransfer, 0 AS QuantityReceiptReturn, 0 AS QuantityReceiptAdjustment, 0 AS QuantityIssueSelling, 0 AS QuantityIssueTransfer, 0 AS QuantityIssueAdjustment, 0 AS QuantityOnPurchasing, (PickupDetails.Quantity - PickupDetails.QuantityReceipt) AS QuantityOnPickup, 0 AS QuantityOnTransit, 0 AS MovementMIN, 0 AS MovementMAX, 0 AS MovementAVG " + "\r\n";
+            queryString = queryString + "                           0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "Begin, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptPickup, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptPurchasing, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptTransfer, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptReturn, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptAdjustment, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueSelling, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueTransfer, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueAdjustment, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "OnPurchasing, (PickupDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + " - PickupDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "Receipt) AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "OnPickup, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "OnTransit, 0 AS MovementMIN, 0 AS MovementMAX, 0 AS MovementAVG " + "\r\n";
             queryString = queryString + "                   FROM    PickupDetails " + "\r\n";
-            queryString = queryString + "                   WHERE   PickupDetails.EntryDate <= @LocalToDate AND PickupDetails.Quantity > PickupDetails.QuantityReceipt " + (isLocationID || isWarehouseID ? " AND PickupDetails.LocationID = @LocalLocationID" : "") + "\r\n";
+            queryString = queryString + "                   WHERE   PickupDetails.EntryDate <= @ToDate  AND PickupDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + " > PickupDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "Receipt " + this.DEFINEFilterLW(isLocationID, isWarehouseID, "PickupDetails") + "\r\n";
 
             queryString = queryString + "                   UNION ALL " + "\r\n";
 
             queryString = queryString + "                   SELECT  NULL AS EntryDate, NULL AS GoodsReceiptDetailID, GoodsReceiptDetails.CommodityID, GoodsReceiptDetails.BatchEntryDate, GoodsReceiptDetails.LocationID, NULL AS WarehouseID, NULL AS BinLocationID, NULL AS PickupID, NULL AS GoodsIssueID, NULL AS WarehouseAdjustmentID, GoodsReceiptDetails.PackID, GoodsReceiptDetails.CartonID, GoodsReceiptDetails.PalletID, " + "\r\n";
-            queryString = queryString + "                           0 AS QuantityBegin, 0 AS QuantityReceiptPickup, 0 AS QuantityReceiptPurchasing, 0 AS QuantityReceiptTransfer, 0 AS QuantityReceiptReturn, 0 AS QuantityReceiptAdjustment, 0 AS QuantityIssueSelling, 0 AS QuantityIssueTransfer, 0 AS QuantityIssueAdjustment, 0 AS QuantityOnPurchasing, GoodsReceiptDetails.Quantity AS QuantityOnPickup, 0 AS QuantityOnTransit, 0 AS MovementMIN, 0 AS MovementMAX, 0 AS MovementAVG " + "\r\n";
+            queryString = queryString + "                           0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "Begin, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptPickup, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptPurchasing, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptTransfer, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptReturn, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptAdjustment, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueSelling, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueTransfer, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueAdjustment, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "OnPurchasing, GoodsReceiptDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + " AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "OnPickup, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "OnTransit, 0 AS MovementMIN, 0 AS MovementMAX, 0 AS MovementAVG " + "\r\n";
             queryString = queryString + "                   FROM    Pickups INNER JOIN " + "\r\n";
-            queryString = queryString + "                           GoodsReceiptDetails ON Pickups.PickupID = GoodsReceiptDetails.PickupID AND Pickups.EntryDate <= @LocalToDate AND GoodsReceiptDetails.EntryDate > @LocalToDate " + (isLocationID || isWarehouseID ? " AND GoodsReceiptDetails.LocationID = @LocalLocationID" : "") + "\r\n";
+            queryString = queryString + "                           GoodsReceiptDetails ON Pickups.PickupID = GoodsReceiptDetails.PickupID AND Pickups.EntryDate <= @ToDate  AND GoodsReceiptDetails.EntryDate > @ToDate  " + this.DEFINEFilterLW(isLocationID, isWarehouseID, "GoodsReceiptDetails") + "\r\n";
 
             queryString = queryString + "                   UNION ALL " + "\r\n";
             //EWHInputVoucherTypeID.EWHTransfer
             queryString = queryString + "                   SELECT  NULL AS EntryDate, NULL AS GoodsReceiptDetailID, GoodsIssueTransferDetails.CommodityID, GoodsIssueTransferDetails.BatchEntryDate, GoodsIssueTransferDetails.LocationID, NULL AS WarehouseID, NULL AS BinLocationID, NULL AS PickupID, NULL AS GoodsIssueID, NULL AS WarehouseAdjustmentID, GoodsIssueTransferDetails.PackID, GoodsIssueTransferDetails.CartonID, GoodsIssueTransferDetails.PalletID, " + "\r\n";
-            queryString = queryString + "                           0 AS QuantityBegin, 0 AS QuantityReceiptPickup, 0 AS QuantityReceiptPurchasing, 0 AS QuantityReceiptTransfer, 0 AS QuantityReceiptReturn, 0 AS QuantityReceiptAdjustment, 0 AS QuantityIssueSelling, 0 AS QuantityIssueTransfer, 0 AS QuantityIssueAdjustment, 0 AS QuantityOnPurchasing, 0 AS QuantityOnPickup, (GoodsIssueTransferDetails.Quantity - GoodsIssueTransferDetails.QuantityReceipt) AS QuantityOnTransit, 0 AS MovementMIN, 0 AS MovementMAX, 0 AS MovementAVG " + "\r\n";
-            queryString = queryString + "                   FROM    GoodsIssues INNER JOIN " + "\r\n";
-            queryString = queryString + "                           GoodsIssueTransferDetails ON GoodsIssues.GoodsIssueID = GoodsIssueTransferDetails.GoodsIssueID AND GoodsIssueTransferDetails.EntryDate <= @LocalToDate AND GoodsIssueTransferDetails.Quantity > GoodsIssueTransferDetails.QuantityReceipt " + (isLocationID || isWarehouseID ? " AND GoodsIssueTransferDetails.LocationID = @LocalLocationID" : "") + "\r\n";
+            queryString = queryString + "                           0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "Begin, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptPickup, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptPurchasing, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptTransfer, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptReturn, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptAdjustment, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueSelling, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueTransfer, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueAdjustment, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "OnPurchasing, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "OnPickup, (GoodsIssueTransferDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + " - GoodsIssueTransferDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "Receipt) AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "OnTransit, 0 AS MovementMIN, 0 AS MovementMAX, 0 AS MovementAVG " + "\r\n";
+            queryString = queryString + "                   FROM    GoodsIssueTransferDetails " + "\r\n";
+            queryString = queryString + "                   WHERE   GoodsIssueTransferDetails.EntryDate <= @ToDate  AND GoodsIssueTransferDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + " > GoodsIssueTransferDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "Receipt " + this.DEFINEFilterLW(isLocationID, isWarehouseID, "GoodsIssueTransferDetails", null, "WarehouseReceiptID") + "\r\n";
 
             queryString = queryString + "                   UNION ALL " + "\r\n";
 
             queryString = queryString + "                   SELECT  NULL AS EntryDate, NULL AS GoodsReceiptDetailID, GoodsReceiptDetails.CommodityID, GoodsReceiptDetails.BatchEntryDate, GoodsReceiptDetails.LocationID, NULL AS WarehouseID, NULL AS BinLocationID, NULL AS PickupID, NULL AS GoodsIssueID, NULL AS WarehouseAdjustmentID, GoodsReceiptDetails.PackID, GoodsReceiptDetails.CartonID, GoodsReceiptDetails.PalletID, " + "\r\n";
-            queryString = queryString + "                           0 AS QuantityBegin, 0 AS QuantityReceiptPickup, 0 AS QuantityReceiptPurchasing, 0 AS QuantityReceiptTransfer, 0 AS QuantityReceiptReturn, 0 AS QuantityReceiptAdjustment, 0 AS QuantityIssueSelling, 0 AS QuantityIssueTransfer, 0 AS QuantityIssueAdjustment, 0 AS QuantityOnPurchasing, 0 AS QuantityOnPickup, GoodsReceiptDetails.Quantity AS QuantityOnTransit, 0 AS MovementMIN, 0 AS MovementMAX, 0 AS MovementAVG " + "\r\n";
+            queryString = queryString + "                           0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "Begin, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptPickup, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptPurchasing, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptTransfer, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptReturn, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptAdjustment, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueSelling, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueTransfer, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueAdjustment, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "OnPurchasing, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "OnPickup, GoodsReceiptDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + " AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "OnTransit, 0 AS MovementMIN, 0 AS MovementMAX, 0 AS MovementAVG " + "\r\n";
             queryString = queryString + "                   FROM    GoodsIssues INNER JOIN " + "\r\n";
-            queryString = queryString + "                           GoodsReceiptDetails ON GoodsIssues.GoodsIssueID = GoodsReceiptDetails.GoodsIssueID AND GoodsIssues.EntryDate <= @LocalToDate AND GoodsReceiptDetails.EntryDate > @LocalToDate " + (isLocationID || isWarehouseID ? " AND GoodsReceiptDetails.LocationID = @LocalLocationID" : "") + "\r\n";
+            queryString = queryString + "                           GoodsReceiptDetails ON GoodsIssues.GoodsIssueID = GoodsReceiptDetails.GoodsIssueID AND GoodsIssues.EntryDate <= @ToDate  AND GoodsReceiptDetails.EntryDate > @ToDate  " + this.DEFINEFilterLW(isLocationID, isWarehouseID, "GoodsReceiptDetails") + "\r\n";
             //--ON INPUT.END
 
             queryString = queryString + "                   ) AS WarehouseJournalDetails " + "\r\n";
 
-            queryString = queryString + "                   INNER JOIN Commodities ON WarehouseJournalDetails.CommodityID = Commodities.CommodityID " + "\r\n";
+            queryString = queryString + "                   INNER JOIN Commodities ON " + (isCommodityCategoryID || isCommodityID ? "(" + (isCommodityCategoryID ? "Commodities.CommodityCategoryID IN (SELECT Id FROM dbo.SplitToIntList (@CommodityCategoryIDs))" : "") + (isCommodityCategoryID && isCommodityID ? " OR " : "") + (isCommodityID ? "Commodities.CommodityID IN (SELECT Id FROM dbo.SplitToIntList (@CommodityIDs)) " : "") + ") AND " : "") + " WarehouseJournalDetails.CommodityID = Commodities.CommodityID " + "\r\n";
             queryString = queryString + "                   INNER JOIN CommodityCategories ON Commodities.CommodityCategoryID = CommodityCategories.CommodityCategoryID " + "\r\n";
+
+            queryString = queryString + "                   INNER JOIN CommodityTypes ON " + (isCommodityTypeID ? "Commodities.CommodityTypeID IN (SELECT Id FROM dbo.SplitToIntList (@CommodityTypeIDs)) AND " : "") + " Commodities.CommodityTypeID = CommodityTypes.CommodityTypeID " + "\r\n";
             queryString = queryString + "                   INNER JOIN Locations ON WarehouseJournalDetails.LocationID = Locations.LocationID " + "\r\n";
+
 
             queryString = queryString + "                   LEFT JOIN Warehouses ON WarehouseJournalDetails.WarehouseID = Warehouses.WarehouseID " + "\r\n";
             queryString = queryString + "                   LEFT JOIN BinLocations ON WarehouseJournalDetails.BinLocationID = BinLocations.BinLocationID " + "\r\n";
@@ -197,9 +380,24 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             return queryString;
 
         }
+        private string DEFINEFilterLW(bool isLocationID, bool isWarehouseID, string tableName)
+        {
+            return this.DEFINEFilterLW(isLocationID, isWarehouseID, tableName, null, null);
+        }
+        private string DEFINEFilterLW(bool isLocationID, bool isWarehouseID, string tableName, string locationID, string warehouseID)
+        {
+            string x = (isLocationID || isWarehouseID ? " AND (" + (isLocationID ? "" + tableName + "." + (locationID == null ? "LocationID" : locationID) + " IN (SELECT Id FROM dbo.SplitToIntList (@LocationIDs)) " : "") + (isLocationID && isWarehouseID ? " OR " : "") + (isWarehouseID ? "" + tableName + "." + (warehouseID == null ? "WarehouseID" : warehouseID) + " IN (SELECT Id FROM dbo.SplitToIntList (@WarehouseIDs)) " : "") + ") " : "");
+            return x;
+        }
+
+        #endregion Actual DEFINE WarehouseJournal
+
+        #endregion WarehouseJournals
 
 
 
+
+        #region WarehouseLedgers
         private string BUILDHeader(bool localParameter, bool quantityVersusVolume)
         {
             string queryString = " @UserID Int, @FromDate DateTime, @ToDate DateTime, @IssueVersusReceipt int, @LocationIDs varchar(3999), @WarehouseIDs varchar(3999), @CommodityCategoryIDs varchar(3999), @CommodityTypeIDs varchar(3999), @CommodityIDs varchar(3999), @GoodsIssueTypeIDs varchar(3999), @CustomerCategoryIDs varchar(3999), @CustomerIDs varchar(3999), @LocationReceiptIDs varchar(3999), @WarehouseReceiptIDs varchar(3999), @TeamIDs varchar(3999), @EmployeeIDs varchar(3999), @WarehouseAdjustmentTypeIDs varchar(3999), @GoodsReceiptTypeIDs varchar(3999), @SupplierCategoryIDs varchar(3999), @SupplierIDs varchar(3999), @LocationIssueIDs varchar(3999), @WarehouseIssueIDs varchar(3999) " + (quantityVersusVolume ? ", @DateVersusMonth int, @QuantityVersusVolume int, @SalesVersusPromotion int" : "") + "\r\n";
@@ -807,6 +1005,6 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
             return queryString;
         }
-
+        #endregion WarehouseLedgers
     }
 }

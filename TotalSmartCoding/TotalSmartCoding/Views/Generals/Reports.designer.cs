@@ -239,6 +239,7 @@
             // 
             // toolReport
             // 
+            this.toolReport.BackColor = System.Drawing.Color.Transparent;
             this.toolReport.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolReport.Font = new System.Drawing.Font("Calibri Light", 10.2F);
             this.toolReport.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;

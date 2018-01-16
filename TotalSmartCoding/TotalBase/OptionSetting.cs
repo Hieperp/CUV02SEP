@@ -20,8 +20,8 @@ namespace TotalBase
 
             this.FromDate = DateTime.Today;
             this.FromDate = new DateTime(this.FromDate.Year, this.FromDate.Month, 1);
-            this.ToDate = this.FromDate.AddMonths(1).AddDays(-1).AddHours(23).AddMinutes(59).AddSeconds(59).AddMilliseconds(999);
-            this.FromDate = this.FromDate.AddYears(-1);
+            this.ToDate = this.FromDate.AddDays(-1).AddHours(23).AddMinutes(59).AddSeconds(59).AddMilliseconds(999);
+            this.FromDate = this.FromDate.AddMonths(-1);
         }
 
         public DateTime LowerFillterDate

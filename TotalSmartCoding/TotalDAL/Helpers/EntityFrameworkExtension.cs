@@ -141,13 +141,6 @@ namespace TotalDAL.Helpers
         /// <param name="queryString"></param>
         public static void CreateStoredProcedure(this DbContext dbContext, string storedProcedureName, string queryString)
         {
-            if (dbContext.StoredProcedureExists("UserAdd")) dbContext.Database.ExecuteSqlCommand(@"DROP PROCEDURE UserAdd");
-            if (dbContext.StoredProcedureExists("UserRemove")) dbContext.Database.ExecuteSqlCommand(@"DROP PROCEDURE UserRemove");
-
-
-
-
-
             if (dbContext.StoredProcedureExists(storedProcedureName)) dbContext.Database.ExecuteSqlCommand(@"DROP PROCEDURE " + storedProcedureName);
 
             dbContext.Database.ExecuteSqlCommand(@"CREATE PROC " + storedProcedureName + "\r\n" + queryString);

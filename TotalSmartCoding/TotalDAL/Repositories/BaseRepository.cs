@@ -58,118 +58,44 @@ namespace TotalDAL.Repositories
             }
 
 
-            #region DELETE NOT USED OrganizationalUnitID, RESET ReadOnly TO AccessControls WHERE Users.LocationID <> AccessControls.LocationID
-            this.ExecuteStoreCommand(@"IF (SELECT   COUNT(OrganizationalUnitID) FROM OrganizationalUnits) > 15
-                                       BEGIN
-                                            DELETE FROM AccessControls WHERE OrganizationalUnitID NOT IN (
-                                                SELECT DISTINCT OrganizationalUnitID
-                                                FROM (
-                                                SELECT OrganizationalUnitID FROM BinLocations
-                                                UNION ALL
-                                                SELECT OrganizationalUnitID FROM DeliveryAdvices
-                                                UNION ALL
-                                                SELECT OrganizationalUnitID FROM GoodsIssueDetails
-                                                UNION ALL
-                                                SELECT OrganizationalUnitID FROM GoodsIssues
-                                                UNION ALL
-                                                SELECT OrganizationalUnitID FROM GoodsReceiptDetails
-                                                UNION ALL
-                                                SELECT OrganizationalUnitID FROM GoodsReceipts
-                                                UNION ALL
-                                                SELECT OrganizationalUnitID FROM OrganizationalUnitUsers
-                                                UNION ALL
-                                                SELECT OrganizationalUnitID FROM Pickups
-                                                UNION ALL
-                                                SELECT OrganizationalUnitID FROM SalesOrders
-                                                UNION ALL
-                                                SELECT OrganizationalUnitID FROM TransferOrders
-                                                UNION ALL
-                                                SELECT OrganizationalUnitID FROM Users
-                                                UNION ALL
-                                                SELECT OrganizationalUnitID FROM WarehouseAdjustmentDetails
-                                                UNION ALL
-                                                SELECT OrganizationalUnitID FROM WarehouseAdjustments
-                                                ) AS UNIONOrganizationalUnitID)
+
+            if (!this.totalSmartCodingEntities.ColumnExists("A_Commodities", "Version72"))
+            {
+                this.totalSmartCodingEntities.ColumnAdd("A_Commodities", "Version72", "bit", "0", true);
+
+                string reportTabPageIDs = ((int)GlobalEnums.ReportTabPageID.TabPageWarehouses).ToString() + "," + ((int)GlobalEnums.ReportTabPageID.TabPageCommodities).ToString();
+                this.ExecuteStoreCommand("SET IDENTITY_INSERT Reports ON  INSERT INTO Reports (ReportID, ReportUniqueID, ReportGroupID, ReportGroupName, ReportName, ReportURL, ReportTabPageIDs, ReportTypeID, SerialID, Remarks) VALUES (" + (int)GlobalEnums.ReportID.WarehouseJournal + ", " + (int)GlobalEnums.ReportID.WarehouseJournal + ", 8, '0.INVENTORY REPORTS', N'Warehouse journal', N'WarehouseJournals', N'" + reportTabPageIDs + "', " + (int)GlobalEnums.ReportTypeID.WarehouseJournal + ", 200, N'')      SET IDENTITY_INSERT Reports OFF ", new ObjectParameter[] { });
+
+            }
 
 
-                                            DELETE FROM OrganizationalUnits WHERE OrganizationalUnitID NOT IN (
-                                                SELECT DISTINCT OrganizationalUnitID
-                                                FROM (
-                                                SELECT OrganizationalUnitID FROM BinLocations
-                                                UNION ALL
-                                                SELECT OrganizationalUnitID FROM DeliveryAdvices
-                                                UNION ALL
-                                                SELECT OrganizationalUnitID FROM GoodsIssueDetails
-                                                UNION ALL
-                                                SELECT OrganizationalUnitID FROM GoodsIssues
-                                                UNION ALL
-                                                SELECT OrganizationalUnitID FROM GoodsReceiptDetails
-                                                UNION ALL
-                                                SELECT OrganizationalUnitID FROM GoodsReceipts
-                                                UNION ALL
-                                                SELECT OrganizationalUnitID FROM OrganizationalUnitUsers
-                                                UNION ALL
-                                                SELECT OrganizationalUnitID FROM Pickups
-                                                UNION ALL
-                                                SELECT OrganizationalUnitID FROM SalesOrders
-                                                UNION ALL
-                                                SELECT OrganizationalUnitID FROM TransferOrders
-                                                UNION ALL
-                                                SELECT OrganizationalUnitID FROM Users
-                                                UNION ALL
-                                                SELECT OrganizationalUnitID FROM WarehouseAdjustmentDetails
-                                                UNION ALL
-                                                SELECT OrganizationalUnitID FROM WarehouseAdjustments
-                                                ) AS UNIONOrganizationalUnitID)
+            //DateTime a;
+            //a = new DateTime(2018,1,1,19,10,10,100);
+            //Console.WriteLine(a.ToString("yyyy-MM-dd HH:mm:ss.fff"));
 
+            //DateTime b;
+            //b = a.AddMilliseconds(1);
+            //Console.WriteLine(b.ToString("yyyy-MM-dd HH:mm:ss.fff"));
 
-                                            UPDATE  AccessControls
-                                                SET     AccessControls.AccessLevel = CASE WHEN AccessControls.AccessLevel > 1 THEN 1 ELSE AccessControls.AccessLevel END, AccessControls.ApprovalPermitted = 0, AccessControls.UnApprovalPermitted = 0, AccessControls.VoidablePermitted = 0, AccessControls.UnVoidablePermitted = 0
-                                                FROM    AccessControls INNER JOIN
-                                                        OrganizationalUnits ON AccessControls.OrganizationalUnitID = OrganizationalUnits.OrganizationalUnitID INNER JOIN
-                                                        Users ON AccessControls.UserID = Users.UserID INNER JOIN
-                                                        OrganizationalUnits AS OrganizationalUnits_1 ON Users.OrganizationalUnitID = OrganizationalUnits_1.OrganizationalUnitID
-                                                WHERE   OrganizationalUnits_1.LocationID <> OrganizationalUnits.LocationID
+            //DateTime c;
+            //c = a.AddMilliseconds(2);
+            //Console.WriteLine(c.ToString("yyyy-MM-dd HH:mm:ss.fff"));
 
+            //DateTime d;
+            //d = a.AddTicks(1);
+            //Console.WriteLine(d.ToString("yyyy-MM-dd HH:mm:ss.fff"));
 
-                                       END
-                                ", new ObjectParameter[] { });
+            //TimeSpan i = d.Subtract(a);
+            //Console.WriteLine(i.ToString("yyyy-MM-dd HH:mm:ss.fff"));
 
-            #endregion DELETE NOT USED OrganizationalUnitID
-
+            #region REMOVE FirstName, LastName
             //if (this.totalSmartCodingEntities.ColumnExists("Users", "FirstName"))
             //{
             //    this.totalSmartCodingEntities.ColumnDrop("Users", "FirstName");
             //    this.totalSmartCodingEntities.ColumnDrop("Users", "LastName");
             //}
+            #endregion REMOVE FirstName, LastName
 
-            if (!this.totalSmartCodingEntities.ColumnExists("AccessControls", "InActive"))
-            {
-                this.totalSmartCodingEntities.ColumnAdd("AccessControls", "InActive", "bit", "0", true);
-                this.totalSmartCodingEntities.ColumnAdd("OrganizationalUnitUsers", "InActiveDate", "datetime", null, false);
-
-
-                this.ExecuteStoreCommand("UPDATE Modules SET InActive = 1 WHERE ModuleID = 9", new ObjectParameter[] { });                
-            }
-
-            if (!this.totalSmartCodingEntities.ColumnExists("A_Commodities", "InActive"))
-            {
-                this.totalSmartCodingEntities.ColumnAdd("A_Commodities", "InActive", "bit", "0", true);
-
-
-                this.ExecuteStoreCommand("UPDATE GoodsIssueDetails SET GoodsIssueDetails.BatchID = Batches.BatchID, GoodsIssueDetails.BatchEntryDate = Batches.EntryDate FROM GoodsIssueDetails INNER JOIN Pallets ON GoodsIssueDetails.BatchID = 0 AND GoodsIssueDetails.PalletID = Pallets.PalletID INNER JOIN Batches ON Pallets.BatchID = Batches.BatchID", new ObjectParameter[] { });
-                this.ExecuteStoreCommand("UPDATE GoodsIssueTransferDetails SET GoodsIssueTransferDetails.BatchID = Batches.BatchID, GoodsIssueTransferDetails.BatchEntryDate = Batches.EntryDate FROM GoodsIssueTransferDetails INNER JOIN Pallets ON GoodsIssueTransferDetails.BatchID = 0 AND GoodsIssueTransferDetails.PalletID = Pallets.PalletID INNER JOIN Batches ON Pallets.BatchID = Batches.BatchID", new ObjectParameter[] { });
-                this.ExecuteStoreCommand("UPDATE GoodsReceiptDetails SET GoodsReceiptDetails.BatchID = Batches.BatchID, GoodsReceiptDetails.BatchEntryDate = Batches.EntryDate FROM GoodsReceiptDetails INNER JOIN Pallets ON GoodsReceiptDetails.BatchID = 0 AND GoodsReceiptDetails.PalletID = Pallets.PalletID INNER JOIN Batches ON Pallets.BatchID = Batches.BatchID", new ObjectParameter[] { });
-                this.ExecuteStoreCommand("UPDATE PickupDetails SET PickupDetails.BatchID = Batches.BatchID, PickupDetails.BatchEntryDate = Batches.EntryDate FROM PickupDetails INNER JOIN Pallets ON PickupDetails.BatchID = 0 AND PickupDetails.PalletID = Pallets.PalletID INNER JOIN Batches ON Pallets.BatchID = Batches.BatchID", new ObjectParameter[] { });
-                this.ExecuteStoreCommand("UPDATE WarehouseAdjustmentDetails SET WarehouseAdjustmentDetails.BatchID = Batches.BatchID, WarehouseAdjustmentDetails.BatchEntryDate = Batches.EntryDate FROM WarehouseAdjustmentDetails INNER JOIN Pallets ON WarehouseAdjustmentDetails.BatchID = 0 AND WarehouseAdjustmentDetails.PalletID = Pallets.PalletID INNER JOIN Batches ON Pallets.BatchID = Batches.BatchID", new ObjectParameter[] { });
-
-
-                this.ExecuteStoreCommand("UPDATE GoodsIssueDetails SET GoodsIssueDetails.BatchID = Batches.BatchID, GoodsIssueDetails.BatchEntryDate = Batches.EntryDate FROM GoodsIssueDetails INNER JOIN Cartons ON GoodsIssueDetails.BatchID = 0 AND GoodsIssueDetails.CartonID = Cartons.CartonID INNER JOIN Batches ON Cartons.BatchID = Batches.BatchID", new ObjectParameter[] { });
-                this.ExecuteStoreCommand("UPDATE GoodsIssueTransferDetails SET GoodsIssueTransferDetails.BatchID = Batches.BatchID, GoodsIssueTransferDetails.BatchEntryDate = Batches.EntryDate FROM GoodsIssueTransferDetails INNER JOIN Cartons ON GoodsIssueTransferDetails.BatchID = 0 AND GoodsIssueTransferDetails.CartonID = Cartons.CartonID INNER JOIN Batches ON Cartons.BatchID = Batches.BatchID", new ObjectParameter[] { });
-                this.ExecuteStoreCommand("UPDATE GoodsReceiptDetails SET GoodsReceiptDetails.BatchID = Batches.BatchID, GoodsReceiptDetails.BatchEntryDate = Batches.EntryDate FROM GoodsReceiptDetails INNER JOIN Cartons ON GoodsReceiptDetails.BatchID = 0 AND GoodsReceiptDetails.CartonID = Cartons.CartonID INNER JOIN Batches ON Cartons.BatchID = Batches.BatchID", new ObjectParameter[] { });
-                this.ExecuteStoreCommand("UPDATE PickupDetails SET PickupDetails.BatchID = Batches.BatchID, PickupDetails.BatchEntryDate = Batches.EntryDate FROM PickupDetails INNER JOIN Cartons ON PickupDetails.BatchID = 0 AND PickupDetails.CartonID = Cartons.CartonID INNER JOIN Batches ON Cartons.BatchID = Batches.BatchID", new ObjectParameter[] { });
-                this.ExecuteStoreCommand("UPDATE WarehouseAdjustmentDetails SET WarehouseAdjustmentDetails.BatchID = Batches.BatchID, WarehouseAdjustmentDetails.BatchEntryDate = Batches.EntryDate FROM WarehouseAdjustmentDetails INNER JOIN Cartons ON WarehouseAdjustmentDetails.BatchID = 0 AND WarehouseAdjustmentDetails.CartonID = Cartons.CartonID INNER JOIN Batches ON Cartons.BatchID = Batches.BatchID", new ObjectParameter[] { });               
-            }
         }
 
         public bool RestoreProcedures()
@@ -380,7 +306,121 @@ namespace TotalDAL.Repositories
         #region Backup for update log
         private void UpdateBackup()
         {
-            //*******VERSION 61 DATE: 01-O1-2018
+
+
+            #region VERSION 71 DATE: 10-O1-2018
+
+
+            //if (!this.totalSmartCodingEntities.ColumnExists("A_Commodities", "InActive"))
+            //{
+            //    this.totalSmartCodingEntities.ColumnAdd("A_Commodities", "InActive", "bit", "0", true);
+
+
+            //    this.ExecuteStoreCommand("UPDATE GoodsIssueDetails SET GoodsIssueDetails.BatchID = Batches.BatchID, GoodsIssueDetails.BatchEntryDate = Batches.EntryDate FROM GoodsIssueDetails INNER JOIN Pallets ON GoodsIssueDetails.BatchID = 0 AND GoodsIssueDetails.PalletID = Pallets.PalletID INNER JOIN Batches ON Pallets.BatchID = Batches.BatchID", new ObjectParameter[] { });
+            //    this.ExecuteStoreCommand("UPDATE GoodsIssueTransferDetails SET GoodsIssueTransferDetails.BatchID = Batches.BatchID, GoodsIssueTransferDetails.BatchEntryDate = Batches.EntryDate FROM GoodsIssueTransferDetails INNER JOIN Pallets ON GoodsIssueTransferDetails.BatchID = 0 AND GoodsIssueTransferDetails.PalletID = Pallets.PalletID INNER JOIN Batches ON Pallets.BatchID = Batches.BatchID", new ObjectParameter[] { });
+            //    this.ExecuteStoreCommand("UPDATE GoodsReceiptDetails SET GoodsReceiptDetails.BatchID = Batches.BatchID, GoodsReceiptDetails.BatchEntryDate = Batches.EntryDate FROM GoodsReceiptDetails INNER JOIN Pallets ON GoodsReceiptDetails.BatchID = 0 AND GoodsReceiptDetails.PalletID = Pallets.PalletID INNER JOIN Batches ON Pallets.BatchID = Batches.BatchID", new ObjectParameter[] { });
+            //    this.ExecuteStoreCommand("UPDATE PickupDetails SET PickupDetails.BatchID = Batches.BatchID, PickupDetails.BatchEntryDate = Batches.EntryDate FROM PickupDetails INNER JOIN Pallets ON PickupDetails.BatchID = 0 AND PickupDetails.PalletID = Pallets.PalletID INNER JOIN Batches ON Pallets.BatchID = Batches.BatchID", new ObjectParameter[] { });
+            //    this.ExecuteStoreCommand("UPDATE WarehouseAdjustmentDetails SET WarehouseAdjustmentDetails.BatchID = Batches.BatchID, WarehouseAdjustmentDetails.BatchEntryDate = Batches.EntryDate FROM WarehouseAdjustmentDetails INNER JOIN Pallets ON WarehouseAdjustmentDetails.BatchID = 0 AND WarehouseAdjustmentDetails.PalletID = Pallets.PalletID INNER JOIN Batches ON Pallets.BatchID = Batches.BatchID", new ObjectParameter[] { });
+
+
+            //    this.ExecuteStoreCommand("UPDATE GoodsIssueDetails SET GoodsIssueDetails.BatchID = Batches.BatchID, GoodsIssueDetails.BatchEntryDate = Batches.EntryDate FROM GoodsIssueDetails INNER JOIN Cartons ON GoodsIssueDetails.BatchID = 0 AND GoodsIssueDetails.CartonID = Cartons.CartonID INNER JOIN Batches ON Cartons.BatchID = Batches.BatchID", new ObjectParameter[] { });
+            //    this.ExecuteStoreCommand("UPDATE GoodsIssueTransferDetails SET GoodsIssueTransferDetails.BatchID = Batches.BatchID, GoodsIssueTransferDetails.BatchEntryDate = Batches.EntryDate FROM GoodsIssueTransferDetails INNER JOIN Cartons ON GoodsIssueTransferDetails.BatchID = 0 AND GoodsIssueTransferDetails.CartonID = Cartons.CartonID INNER JOIN Batches ON Cartons.BatchID = Batches.BatchID", new ObjectParameter[] { });
+            //    this.ExecuteStoreCommand("UPDATE GoodsReceiptDetails SET GoodsReceiptDetails.BatchID = Batches.BatchID, GoodsReceiptDetails.BatchEntryDate = Batches.EntryDate FROM GoodsReceiptDetails INNER JOIN Cartons ON GoodsReceiptDetails.BatchID = 0 AND GoodsReceiptDetails.CartonID = Cartons.CartonID INNER JOIN Batches ON Cartons.BatchID = Batches.BatchID", new ObjectParameter[] { });
+            //    this.ExecuteStoreCommand("UPDATE PickupDetails SET PickupDetails.BatchID = Batches.BatchID, PickupDetails.BatchEntryDate = Batches.EntryDate FROM PickupDetails INNER JOIN Cartons ON PickupDetails.BatchID = 0 AND PickupDetails.CartonID = Cartons.CartonID INNER JOIN Batches ON Cartons.BatchID = Batches.BatchID", new ObjectParameter[] { });
+            //    this.ExecuteStoreCommand("UPDATE WarehouseAdjustmentDetails SET WarehouseAdjustmentDetails.BatchID = Batches.BatchID, WarehouseAdjustmentDetails.BatchEntryDate = Batches.EntryDate FROM WarehouseAdjustmentDetails INNER JOIN Cartons ON WarehouseAdjustmentDetails.BatchID = 0 AND WarehouseAdjustmentDetails.CartonID = Cartons.CartonID INNER JOIN Batches ON Cartons.BatchID = Batches.BatchID", new ObjectParameter[] { });
+            //}
+
+
+            //if (!this.totalSmartCodingEntities.ColumnExists("AccessControls", "InActive"))
+            //{
+            //    this.totalSmartCodingEntities.ColumnAdd("AccessControls", "InActive", "bit", "0", true);
+            //    this.totalSmartCodingEntities.ColumnAdd("OrganizationalUnitUsers", "InActiveDate", "datetime", null, false);
+
+            //    this.ExecuteStoreCommand("UPDATE Modules SET InActive = 1 WHERE ModuleID = 9", new ObjectParameter[] { });
+            //}
+
+            //            #region DELETE NOT USED OrganizationalUnitID, RESET ReadOnly TO AccessControls WHERE Users.LocationID <> AccessControls.LocationID
+            //            this.ExecuteStoreCommand(@"IF (SELECT   COUNT(OrganizationalUnitID) FROM OrganizationalUnits) > 15
+            //                                       BEGIN
+            //                                            DELETE FROM AccessControls WHERE OrganizationalUnitID NOT IN (
+            //                                                SELECT DISTINCT OrganizationalUnitID
+            //                                                FROM (
+            //                                                SELECT OrganizationalUnitID FROM BinLocations
+            //                                                UNION ALL
+            //                                                SELECT OrganizationalUnitID FROM DeliveryAdvices
+            //                                                UNION ALL
+            //                                                SELECT OrganizationalUnitID FROM GoodsIssueDetails
+            //                                                UNION ALL
+            //                                                SELECT OrganizationalUnitID FROM GoodsIssues
+            //                                                UNION ALL
+            //                                                SELECT OrganizationalUnitID FROM GoodsReceiptDetails
+            //                                                UNION ALL
+            //                                                SELECT OrganizationalUnitID FROM GoodsReceipts
+            //                                                UNION ALL
+            //                                                SELECT OrganizationalUnitID FROM OrganizationalUnitUsers
+            //                                                UNION ALL
+            //                                                SELECT OrganizationalUnitID FROM Pickups
+            //                                                UNION ALL
+            //                                                SELECT OrganizationalUnitID FROM SalesOrders
+            //                                                UNION ALL
+            //                                                SELECT OrganizationalUnitID FROM TransferOrders
+            //                                                UNION ALL
+            //                                                SELECT OrganizationalUnitID FROM Users
+            //                                                UNION ALL
+            //                                                SELECT OrganizationalUnitID FROM WarehouseAdjustmentDetails
+            //                                                UNION ALL
+            //                                                SELECT OrganizationalUnitID FROM WarehouseAdjustments
+            //                                                ) AS UNIONOrganizationalUnitID)
+            //
+            //
+            //                                            DELETE FROM OrganizationalUnits WHERE OrganizationalUnitID NOT IN (
+            //                                                SELECT DISTINCT OrganizationalUnitID
+            //                                                FROM (
+            //                                                SELECT OrganizationalUnitID FROM BinLocations
+            //                                                UNION ALL
+            //                                                SELECT OrganizationalUnitID FROM DeliveryAdvices
+            //                                                UNION ALL
+            //                                                SELECT OrganizationalUnitID FROM GoodsIssueDetails
+            //                                                UNION ALL
+            //                                                SELECT OrganizationalUnitID FROM GoodsIssues
+            //                                                UNION ALL
+            //                                                SELECT OrganizationalUnitID FROM GoodsReceiptDetails
+            //                                                UNION ALL
+            //                                                SELECT OrganizationalUnitID FROM GoodsReceipts
+            //                                                UNION ALL
+            //                                                SELECT OrganizationalUnitID FROM OrganizationalUnitUsers
+            //                                                UNION ALL
+            //                                                SELECT OrganizationalUnitID FROM Pickups
+            //                                                UNION ALL
+            //                                                SELECT OrganizationalUnitID FROM SalesOrders
+            //                                                UNION ALL
+            //                                                SELECT OrganizationalUnitID FROM TransferOrders
+            //                                                UNION ALL
+            //                                                SELECT OrganizationalUnitID FROM Users
+            //                                                UNION ALL
+            //                                                SELECT OrganizationalUnitID FROM WarehouseAdjustmentDetails
+            //                                                UNION ALL
+            //                                                SELECT OrganizationalUnitID FROM WarehouseAdjustments
+            //                                                ) AS UNIONOrganizationalUnitID)
+            //
+            //
+            //                                            UPDATE  AccessControls
+            //                                                SET     AccessControls.AccessLevel = CASE WHEN AccessControls.AccessLevel > 1 THEN 1 ELSE AccessControls.AccessLevel END, AccessControls.ApprovalPermitted = 0, AccessControls.UnApprovalPermitted = 0, AccessControls.VoidablePermitted = 0, AccessControls.UnVoidablePermitted = 0
+            //                                                FROM    AccessControls INNER JOIN
+            //                                                        OrganizationalUnits ON AccessControls.OrganizationalUnitID = OrganizationalUnits.OrganizationalUnitID INNER JOIN
+            //                                                        Users ON AccessControls.UserID = Users.UserID INNER JOIN
+            //                                                        OrganizationalUnits AS OrganizationalUnits_1 ON Users.OrganizationalUnitID = OrganizationalUnits_1.OrganizationalUnitID
+            //                                                WHERE   OrganizationalUnits_1.LocationID <> OrganizationalUnits.LocationID
+            //
+            //
+            //                                       END
+            //                                ", new ObjectParameter[] { });
+
+            //            #endregion DELETE NOT USED OrganizationalUnitID
+            #endregion VERSION 71 DATE: 10-O1-2018
+
+
+            #region VERSION 61 DATE: 01-O1-2018
 
             ////if (!this.totalSmartCodingEntities.TableExists("Teams"))
             ////{
@@ -527,17 +567,10 @@ namespace TotalDAL.Repositories
             ////    this.ExecuteStoreCommand("UPDATE GoodsIssueTransferDetails SET GoodsIssueTransferDetails.LocationIssueID = GoodsIssueDetails.LocationID FROM GoodsIssueTransferDetails INNER JOIN GoodsIssueDetails ON GoodsIssueTransferDetails.GoodsIssueDetailID = GoodsIssueDetails.GoodsIssueDetailID ", new ObjectParameter[] { });
             ////}
 
-            //*******VERSION 61 DATE: 01-01-2018
+            #endregion VERSION 61 DATE: 01-01-2018
 
 
-
-
-
-
-
-
-
-
+            #region OLD
             //this.ExecuteStoreCommand("UPDATE AccessControls SET AccessLevel = 1, ApprovalPermitted = 0, UnApprovalPermitted = 0, VoidablePermitted = 0, UnVoidablePermitted = 0 WHERE NMVNTaskID = " + (int)GlobalEnums.NmvnTaskID.Commodity + " AND UserID <> 11 ", new ObjectParameter[] { }); //CHEVRONVN\Thanh Hai Tran [HAIPHONG\LOGISTICS 2]
 
 
@@ -688,6 +721,7 @@ namespace TotalDAL.Repositories
             //    this.ExecuteStoreCommand("INSERT INTO ModuleDetails (ModuleDetailID, ModuleID, Code, Name, FullName, Actions, Controller, LastOpen, SerialID, ImageIndex, InActive) VALUES(800001, 6, 'AvailableItems', 'Available Items', '#', '#', '#', 1, 60, 1, 0)", new ObjectParameter[] { });
             //}
 
+            #endregion OLD
         }
         #endregion Backup for update log
 

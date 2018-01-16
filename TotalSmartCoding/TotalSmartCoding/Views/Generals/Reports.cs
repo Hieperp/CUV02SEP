@@ -243,8 +243,8 @@ namespace TotalSmartCoding.Views.Generals
 
                 this.reloadTabPages();
 
-                this.comboSummaryVersusDetail.Visible = this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsReceiptJournal || this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsIssueJournal;
-                this.comboQuantityVersusVolume.Visible = this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsReceiptPivot || this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsIssuePivot; this.buttonQuantityVersusVolume.Visible = this.comboSummaryVersusDetail.Visible || this.comboQuantityVersusVolume.Visible;
+                this.comboSummaryVersusDetail.Visible = this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsReceiptJournal || this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsIssueJournal || this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.WarehouseJournal;
+                this.comboQuantityVersusVolume.Visible = this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsReceiptPivot || this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsIssuePivot || this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.WarehouseJournal; this.buttonQuantityVersusVolume.Visible = this.comboSummaryVersusDetail.Visible || this.comboQuantityVersusVolume.Visible;
                 this.comboDateVersusMonth.Visible = this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsReceiptPivot || this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsIssuePivot; this.buttonDateVersusMonth.Visible = this.comboDateVersusMonth.Visible;
                 this.comboSalesVersusPromotion.Visible = this.reportViewModel.ReportUniqueID == (int)GlobalEnums.ReportID.SalesIssuePivot || this.reportViewModel.ReportUniqueID == (int)GlobalEnums.ReportID.SalesIssueJournal; this.buttonSalesVersusPromotion.Visible = this.comboSalesVersusPromotion.Visible;
             }
@@ -346,18 +346,7 @@ namespace TotalSmartCoding.Views.Generals
 
                 if (this.buttonDateVersusMonth.Visible) headerTitle = this.comboDateVersusMonth.Text + " " + headerTitle;
                 printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("DateVersusMonth", (this.buttonDateVersusMonth.Visible ? this.comboDateVersusMonth.ComboBox.SelectedIndex : 0).ToString()));
-
-                if (this.comboSummaryVersusDetail.Visible)
-                {
-                    headerTitle = headerTitle + " [" + this.comboSummaryVersusDetail.Text + "]";
-                    printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("SummaryVersusDetail", this.comboSummaryVersusDetail.ComboBox.SelectedIndex.ToString()));
-                }
-
-                if (this.comboQuantityVersusVolume.Visible)
-                {
-                    headerTitle = headerTitle + " [REPORT " + this.comboQuantityVersusVolume.Text + "]";
-                    printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("QuantityVersusVolume", this.comboQuantityVersusVolume.ComboBox.SelectedIndex.ToString()));
-                }
+                                
                 if (this.comboSalesVersusPromotion.Visible)
                 {
                     if (this.comboSalesVersusPromotion.ComboBox.SelectedIndex != 0) headerTitle = headerTitle + " [" + this.comboSalesVersusPromotion.Text + "]";
@@ -366,6 +355,17 @@ namespace TotalSmartCoding.Views.Generals
 
             }
 
+            if (this.comboQuantityVersusVolume.Visible)
+            {
+                headerTitle = headerTitle + " [REPORT " + this.comboQuantityVersusVolume.Text + "]";
+                printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("QuantityVersusVolume", this.comboQuantityVersusVolume.ComboBox.SelectedIndex.ToString()));
+            }
+
+            if (this.comboSummaryVersusDetail.Visible)
+            {
+                headerTitle = headerTitle + " [" + this.comboSummaryVersusDetail.Text + "]";
+                printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("SummaryVersusDetail", this.comboSummaryVersusDetail.ComboBox.SelectedIndex.ToString()));
+            }
 
             string captionDescriptions = "";
 
