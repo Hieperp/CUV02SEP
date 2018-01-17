@@ -100,7 +100,7 @@ namespace TotalSmartCoding.Views.Productions
                 this.textNextPackNo.TextBox.DataBindings.Add("Text", this.fillingData, "NextPackNo");
                 this.textNextCartonNo.TextBox.DataBindings.Add("Text", this.fillingData, "NextCartonNo");
                 this.textNextPalletNo.TextBox.DataBindings.Add("Text", this.fillingData, "NextPalletNo");
-                
+
                 this.comboBoxEmptyCarton.ComboBox.Items.AddRange(new string[] { "Ignore empty carton", "Keep empty carton" });
                 this.comboBoxEmptyCarton.ComboBox.SelectedIndex = GlobalVariables.IgnoreEmptyCarton ? 0 : 1;
                 this.comboBoxEmptyCarton.Enabled = this.fillingData.FillingLineID != GlobalVariables.FillingLine.Pail;
@@ -138,6 +138,11 @@ namespace TotalSmartCoding.Views.Productions
             {
                 BatchIndex batchIndex = (new BatchAPIs(CommonNinject.Kernel.Get<IBatchAPIRepository>())).GetActiveBatchIndex();
                 if (batchIndex != null) Mapper.Map<BatchIndex, FillingData>(batchIndex, this.fillingData);
+
+                string commodityDescription = this.fillingData.CommodityName + "      [Pack size: " + this.fillingData.Volume.ToString("N2") + (this.fillingData.HasPack ? ", Carton size: " + this.fillingData.PackPerCarton + " packs" : "") + (this.fillingData.HasCarton ? ", Pallet size: " + this.fillingData.CartonPerPallet + " cartons" : "") + "]";
+                this.labelCommodityNamePack.Text = "                                         " + commodityDescription;
+                this.labelCommodityNameCarton.Text = "     " + commodityDescription;
+                this.labelCommodityNamePallet.Text = "                            " + commodityDescription;
             }
             catch (Exception exception)
             {
@@ -192,18 +197,6 @@ namespace TotalSmartCoding.Views.Productions
             {
                 ExceptionHandlers.ShowExceptionMessageBox(this, exception);
             }
-        }
-
-        private void textBoxCommodityCode_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                this.labelCommodityNamePack.Text = "                                                            " + this.fillingData.CommodityName;
-                this.labelCommodityNameCarton.Text = "     " + this.fillingData.CommodityName;
-                this.labelCommodityNamePallet.Text = "                                    " + this.fillingData.CommodityName;
-            }
-            catch
-            { }
         }
 
 
@@ -977,7 +970,7 @@ namespace TotalSmartCoding.Views.Productions
 
         #endregion Backup
 
-        
+
 
     }
 }

@@ -2144,7 +2144,6 @@
             this.textBoxCommodityCode.Size = new System.Drawing.Size(118, 75);
             this.textBoxCommodityCode.Text = "88888888";
             this.textBoxCommodityCode.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBoxCommodityCode.TextChanged += new System.EventHandler(this.textBoxCommodityCode_TextChanged);
             // 
             // textBoxCommodityOfficialCode
             // 

@@ -69,25 +69,6 @@ namespace TotalDAL.Repositories
             }
 
 
-            //DateTime a;
-            //a = new DateTime(2018,1,1,19,10,10,100);
-            //Console.WriteLine(a.ToString("yyyy-MM-dd HH:mm:ss.fff"));
-
-            //DateTime b;
-            //b = a.AddMilliseconds(1);
-            //Console.WriteLine(b.ToString("yyyy-MM-dd HH:mm:ss.fff"));
-
-            //DateTime c;
-            //c = a.AddMilliseconds(2);
-            //Console.WriteLine(c.ToString("yyyy-MM-dd HH:mm:ss.fff"));
-
-            //DateTime d;
-            //d = a.AddTicks(1);
-            //Console.WriteLine(d.ToString("yyyy-MM-dd HH:mm:ss.fff"));
-
-            //TimeSpan i = d.Subtract(a);
-            //Console.WriteLine(i.ToString("yyyy-MM-dd HH:mm:ss.fff"));
-
             #region REMOVE FirstName, LastName
             //if (this.totalSmartCodingEntities.ColumnExists("Users", "FirstName"))
             //{

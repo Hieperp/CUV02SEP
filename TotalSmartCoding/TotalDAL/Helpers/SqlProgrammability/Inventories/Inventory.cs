@@ -352,6 +352,31 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryString = queryString + "                           GoodsReceiptDetails ON GoodsIssues.GoodsIssueID = GoodsReceiptDetails.GoodsIssueID AND GoodsIssues.EntryDate <= @ToDate  AND GoodsReceiptDetails.EntryDate > @ToDate  " + this.DEFINEFilterLW(isLocationID, isWarehouseID, "GoodsReceiptDetails") + "\r\n";
             //--ON INPUT.END
 
+
+
+
+
+            //--PENDING SALESORDER.BEGIN
+            queryString = queryString + "                   UNION ALL " + "\r\n";
+            queryString = queryString + "                   SELECT  NULL AS EntryDate, NULL AS GoodsReceiptDetailID, SalesOrderDetails.CommodityID, NULL AS BatchEntryDate, SalesOrderDetails.LocationID, NULL AS WarehouseID, NULL AS BinLocationID, NULL AS PickupID, NULL AS GoodsIssueID, NULL AS WarehouseAdjustmentID, NULL AS PackID, NULL AS CartonID, NULL AS PalletID, " + "\r\n";
+            queryString = queryString + "                           0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "Begin, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptPickup, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptPurchasing, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptTransfer, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptReturn, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptAdjustment, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueSelling, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueTransfer, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueAdjustment, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "OnPurchasing, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "OnPickup, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "OnTransit, (SalesOrderDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + " - SalesOrderDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "Advice) AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "PendingSalesOrder, 0 AS MovementMIN, 0 AS MovementMAX, 0 AS MovementAVG " + "\r\n";
+            queryString = queryString + "                   FROM    SalesOrderDetails " + "\r\n";
+            queryString = queryString + "                   WHERE   SalesOrderDetails.EntryDate <= @ToDate  AND SalesOrderDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + " > SalesOrderDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "Advice" + this.DEFINEFilterLW(true, false, "SalesOrderDetails") + "\r\n";
+
+            queryString = queryString + "                   UNION ALL " + "\r\n";
+            queryString = queryString + "                   SELECT  NULL AS EntryDate, NULL AS GoodsReceiptDetailID, DeliveryAdviceDetails.CommodityID, NULL AS BatchEntryDate, DeliveryAdviceDetails.LocationID, NULL AS WarehouseID, NULL AS BinLocationID, NULL AS PickupID, NULL AS GoodsIssueID, NULL AS WarehouseAdjustmentID, NULL AS PackID, NULL AS CartonID, NULL AS PalletID, " + "\r\n";
+            queryString = queryString + "                           0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "Begin, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptPickup, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptPurchasing, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptTransfer, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptReturn, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "ReceiptAdjustment, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueSelling, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueTransfer, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "IssueAdjustment, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "OnPurchasing, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "OnPickup, 0 AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "OnTransit, DeliveryAdviceDetails." + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + " AS " + (isQuantityVersusVolume ? "Quantity" : "LineVolume") + "PendingSalesOrder, 0 AS MovementMIN, 0 AS MovementMAX, 0 AS MovementAVG " + "\r\n";
+            queryString = queryString + "                   FROM    SalesOrders INNER JOIN " + "\r\n";
+            queryString = queryString + "                           DeliveryAdviceDetails ON SalesOrders.SalesOrderID = DeliveryAdviceDetails.SalesOrderID AND SalesOrders.EntryDate <= @ToDate  AND DeliveryAdviceDetails.EntryDate > @ToDate  " + this.DEFINEFilterLW(true, false, "DeliveryAdviceDetails") + "\r\n";
+            //--PENDING SALESORDER.END
+
+
+
+
+
+
+
+
             queryString = queryString + "                   ) AS WarehouseJournalDetails " + "\r\n";
 
             queryString = queryString + "                   INNER JOIN Commodities ON " + (isCommodityCategoryID || isCommodityID ? "(" + (isCommodityCategoryID ? "Commodities.CommodityCategoryID IN (SELECT Id FROM dbo.SplitToIntList (@CommodityCategoryIDs))" : "") + (isCommodityCategoryID && isCommodityID ? " OR " : "") + (isCommodityID ? "Commodities.CommodityID IN (SELECT Id FROM dbo.SplitToIntList (@CommodityIDs)) " : "") + ") AND " : "") + " WarehouseJournalDetails.CommodityID = Commodities.CommodityID " + "\r\n";
