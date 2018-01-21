@@ -66,6 +66,8 @@ namespace TotalDAL.Repositories
                 string reportTabPageIDs = ((int)GlobalEnums.ReportTabPageID.TabPageWarehouses).ToString() + "," + ((int)GlobalEnums.ReportTabPageID.TabPageCommodities).ToString();
                 this.ExecuteStoreCommand("SET IDENTITY_INSERT Reports ON  INSERT INTO Reports (ReportID, ReportUniqueID, ReportGroupID, ReportGroupName, ReportName, ReportURL, ReportTabPageIDs, ReportTypeID, SerialID, Remarks) VALUES (" + (int)GlobalEnums.ReportID.WarehouseJournal + ", " + (int)GlobalEnums.ReportID.WarehouseJournal + ", 8, '0.INVENTORY REPORTS', N'Warehouse journal', N'WarehouseJournals', N'" + reportTabPageIDs + "', " + (int)GlobalEnums.ReportTypeID.WarehouseJournal + ", 200, N'')      SET IDENTITY_INSERT Reports OFF ", new ObjectParameter[] { });
 
+                
+                this.ExecuteStoreCommand("SET IDENTITY_INSERT Reports ON  INSERT INTO Reports (ReportID, ReportUniqueID, ReportGroupID, ReportGroupName, ReportName, ReportURL, ReportTabPageIDs, ReportTypeID, SerialID, Remarks) VALUES (" + (int)GlobalEnums.ReportID.SalesIssuePivotbyCustomers + ", " + (int)GlobalEnums.ReportID.SalesIssuePivotbyCustomers + ", 10, '4.GOODS ISSUE PIVOT REPORTS', N'Goods issue for sales pivot by customers', N'WarehouseLedgerPivotCustomers', N'" + reportTabPageIDs + "," + ((int)GlobalEnums.ReportTabPageID.TabPageCustomers).ToString() + "', " + (int)GlobalEnums.ReportTypeID.GoodsIssuePivot + ", 12, N'')      SET IDENTITY_INSERT Reports OFF ", new ObjectParameter[] { });
             }
 
 

@@ -312,6 +312,7 @@
 
             GoodsIssuePivot = 11,
             SalesIssuePivot = 12,
+            SalesIssuePivotbyCustomers = 13,
             TransferIssuePivot = 15,
             AdjustmentIssuePivot = 16,
 
