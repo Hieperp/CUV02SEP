@@ -580,13 +580,13 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
         private void WarehouseLedgers()
         {
-            this.WarehouseLedgerIssue08();
-            this.WarehouseLedgerReceipt08();
+            //this.WarehouseLedgerIssue08();
+            //this.WarehouseLedgerReceipt08();
 
-            this.WarehouseLedger06();
+            //this.WarehouseLedger06();
 
             string queryString = this.BUILDHeader(false, false) + this.BUILDGoodsIssue() + "\r\n";
-            this.totalSmartCodingEntities.CreateStoredProcedure("WHLS", queryString);
+            //this.totalSmartCodingEntities.CreateStoredProcedure("WHLS", queryString);
 
 
             queryString = this.BUILDHeader(true, true);
@@ -601,7 +601,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryString = queryString + "       ELSE " + "\r\n";
             queryString = queryString + "                   " + queryMaster + "\r\n" + " WHERE IsPromotion = @LocalSalesVersusPromotion";
 
-            this.totalSmartCodingEntities.CreateStoredProcedure("WarehouseLedgers", queryString);
+            //this.totalSmartCodingEntities.CreateStoredProcedure("WarehouseLedgers", queryString);
 
 
 
@@ -609,19 +609,45 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
 
 
-            queryString = this.BUILDHeader(true, true);
-            queryString = queryString + "       DECLARE     @WarehouseLedgerCombos  TABLE (ISSUEPrimaryID int NULL, ISSUEPrimaryDetailID int NULL, ISSUEEntryDate datetime NULL, ISSUEReference nvarchar(10) NULL, ISSUELocationName nvarchar(50) NULL, ISSUEWarehouseName nvarchar(60) NULL, ISSUEBarcode nvarchar(50) NULL, ISSUECommodityID int NULL, ISSUECode nvarchar(50) NULL, ISSUEName nvarchar(200) NULL, ISSUEPackageSize nvarchar(60) NULL, ISSUECommodityCategoryName nvarchar(100) NULL, ISSUECommodityTypeName nvarchar(100) NULL, ISSUEIsPromotion bit NULL, ISSUEQuantity decimal(18, 2) NULL, ISSUELineVolume decimal(18, 2) NULL, ISSUEJournalTypeID Int NULL, ISSUEJournalTypeName nvarchar(50) NULL, ISSUELineForeignCode nvarchar(50) NULL, ISSUELineForeignName nvarchar(100) NULL, ISSUELineReferences nvarchar(110) NULL, ISSUECustomerCategoryName nvarchar(100) NULL, ISSUETeamName nvarchar(100) NULL, ISSUESalespersonName nvarchar(50) NULL, RECEIPTPrimaryID int NULL, RECEIPTPrimaryDetailID int NULL, RECEIPTEntryDate datetime NULL, RECEIPTReference nvarchar(10) NULL, RECEIPTLocationName nvarchar(50) NULL, RECEIPTWarehouseName nvarchar(60) NULL, RECEIPTBarcode nvarchar(50) NULL, RECEIPTCommodityID int NULL, RECEIPTCode nvarchar(50) NULL, RECEIPTName nvarchar(200) NULL, RECEIPTPackageSize nvarchar(60) NULL, RECEIPTCommodityCategoryName nvarchar(100) NULL, RECEIPTCommodityTypeName nvarchar(100) NULL, RECEIPTIsPromotion bit NULL, RECEIPTQuantity decimal(18, 2) NULL, RECEIPTLineVolume decimal(18, 2) NULL, RECEIPTJournalTypeID Int NULL, RECEIPTJournalTypeName nvarchar(50) NULL, RECEIPTLineForeignCode nvarchar(50) NULL, RECEIPTLineForeignName nvarchar(100) NULL, RECEIPTLineReferences nvarchar(110) NULL, RECEIPTCustomerCategoryName nvarchar(100) NULL, RECEIPTTeamName nvarchar(100) NULL, RECEIPTSalespersonName nvarchar(50) NULL) " + "\r\n";
-            queryString = queryString + "       INSERT INTO @WarehouseLedgerCombos  (ISSUEPrimaryID, ISSUEPrimaryDetailID, ISSUEEntryDate, ISSUEReference, ISSUELocationName, ISSUEWarehouseName, ISSUEBarcode, ISSUECommodityID, ISSUECode, ISSUEName, ISSUEPackageSize, ISSUECommodityCategoryName, ISSUECommodityTypeName, ISSUEIsPromotion, ISSUEQuantity, ISSUELineVolume, ISSUEJournalTypeID, ISSUEJournalTypeName, ISSUELineForeignCode, ISSUELineForeignName, ISSUELineReferences, ISSUECustomerCategoryName, ISSUETeamName, ISSUESalespersonName) EXEC WHLS " + this.BUILDParameter(true).Replace("@LocalIssueVersusReceipt", "0") + "\r\n";
-            queryString = queryString + "       INSERT INTO @WarehouseLedgerCombos  (RECEIPTPrimaryID, RECEIPTPrimaryDetailID, RECEIPTEntryDate, RECEIPTReference, RECEIPTLocationName, RECEIPTWarehouseName, RECEIPTBarcode, RECEIPTCommodityID, RECEIPTCode, RECEIPTName, RECEIPTPackageSize, RECEIPTCommodityCategoryName, RECEIPTCommodityTypeName, RECEIPTIsPromotion, RECEIPTQuantity, RECEIPTLineVolume, RECEIPTJournalTypeID, RECEIPTJournalTypeName, RECEIPTLineForeignCode, RECEIPTLineForeignName, RECEIPTLineReferences, RECEIPTCustomerCategoryName, RECEIPTTeamName, RECEIPTSalespersonName) EXEC WHLS " + this.BUILDParameter(true).Replace("@LocalIssueVersusReceipt", "1") + "\r\n";
+            #region InventoryAccumulation
+            queryString = this.BUILDHeader(true, true).Replace("@FromDate DateTime, ", "").Replace("@LocalFromDate DateTime, ", "").Replace("SET @LocalFromDate = @FromDate", "").Replace(", @IssueVersusReceipt int", "").Replace(", @LocalIssueVersusReceipt int", "").Replace("SET @LocalIssueVersusReceipt = @IssueVersusReceipt", "").Replace(", @SalesVersusPromotion int", "").Replace("SET @LocalSalesVersusPromotion = @SalesVersusPromotion", "");
+
+            queryString = queryString + "       DECLARE		@ToDate01 Datetime  = DATEADD(Month, DateDiff(Month, 0, @ToDate), 0)" + "\r\n";
+            queryString = queryString + "       DECLARE		@Last3Month Datetime = DATEADD(Month, -3, @ToDate01)" + "\r\n";
+
+            queryString = queryString + "       DECLARE     @FromDate DateTime = IIF(DATEFROMPARTS (YEAR(@ToDate), 1, 1) < @Last3Month, DATEFROMPARTS (YEAR(@ToDate), 1, 1), @Last3Month) " + "\r\n";
+            queryString = queryString + "       DECLARE     @LocalFromDate DateTime = @FromDate " + "\r\n";
 
 
-            queryString = queryString + "       SELECT      CASE WHEN NOT ISSUEPrimaryID IS NULL THEN 0 ELSE 1 END AS IssueVersusReceipt, " + "\r\n";
-            queryString = queryString + "                   ISSUEPrimaryID, ISSUEPrimaryDetailID, ISSUEEntryDate, ISSUEReference, ISSUELocationName, ISSUEWarehouseName, ISSUEBarcode, ISSUECommodityID, ISSUECode, ISSUEName, ISSUEPackageSize, ISSUECommodityCategoryName, ISSUECommodityTypeName, ISSUEIsPromotion, ISSUEQuantity, ISSUELineVolume, ISSUEJournalTypeID, ISSUEJournalTypeName, ISSUELineForeignCode, ISSUELineForeignName, ISSUELineReferences, ISSUECustomerCategoryName, ISSUETeamName, ISSUESalespersonName " + "\r\n";
 
-            queryString = queryString + "           FROM @WarehouseLedgerCombos " + "\r\n";
+            queryString = queryString + "       DECLARE     @InventoryAccumulation  TABLE (ISSUEPrimaryID int NULL, ISSUEPrimaryDetailID int NULL, ISSUEEntryDate datetime NULL, ISSUEReference nvarchar(10) NULL, ISSUELocationName nvarchar(50) NULL, ISSUEWarehouseName nvarchar(60) NULL, ISSUEBarcode nvarchar(50) NULL, ISSUECommodityID int NULL, ISSUECode nvarchar(50) NULL, ISSUEName nvarchar(200) NULL, ISSUEPackageSize nvarchar(60) NULL, ISSUECommodityCategoryName nvarchar(100) NULL, ISSUECommodityTypeName nvarchar(100) NULL, ISSUEIsPromotion bit NULL, ISSUEQuantity decimal(18, 2) NULL, ISSUELineVolume decimal(18, 2) NULL, ISSUEJournalTypeID Int NULL, ISSUEJournalTypeName nvarchar(50) NULL, ISSUELineForeignCode nvarchar(50) NULL, ISSUELineForeignName nvarchar(100) NULL, ISSUELineReferences nvarchar(110) NULL, ISSUECustomerCategoryName nvarchar(100) NULL, ISSUETeamName nvarchar(100) NULL, ISSUESalespersonName nvarchar(50) NULL, RECEIPTPrimaryID int NULL, RECEIPTPrimaryDetailID int NULL, RECEIPTEntryDate datetime NULL, RECEIPTReference nvarchar(10) NULL, RECEIPTLocationName nvarchar(50) NULL, RECEIPTWarehouseName nvarchar(60) NULL, RECEIPTBarcode nvarchar(50) NULL, RECEIPTCommodityID int NULL, RECEIPTCode nvarchar(50) NULL, RECEIPTName nvarchar(200) NULL, RECEIPTPackageSize nvarchar(60) NULL, RECEIPTCommodityCategoryName nvarchar(100) NULL, RECEIPTCommodityTypeName nvarchar(100) NULL, RECEIPTIsPromotion bit NULL, RECEIPTQuantity decimal(18, 2) NULL, RECEIPTLineVolume decimal(18, 2) NULL, RECEIPTJournalTypeID Int NULL, RECEIPTJournalTypeName nvarchar(50) NULL, RECEIPTLineForeignCode nvarchar(50) NULL, RECEIPTLineForeignName nvarchar(100) NULL, RECEIPTLineReferences nvarchar(110) NULL, RECEIPTCustomerCategoryName nvarchar(100) NULL, RECEIPTTeamName nvarchar(100) NULL, RECEIPTSalespersonName nvarchar(50) NULL) " + "\r\n";
+            //INSERT GlobalEnums.GoodsIssueTypeID.DeliveryAdvice ONLY
+            queryString = queryString + "       INSERT INTO @InventoryAccumulation  (ISSUEPrimaryID, ISSUEPrimaryDetailID, ISSUEEntryDate, ISSUEReference, ISSUELocationName, ISSUEWarehouseName, ISSUEBarcode, ISSUECommodityID, ISSUECode, ISSUEName, ISSUEPackageSize, ISSUECommodityCategoryName, ISSUECommodityTypeName, ISSUEIsPromotion, ISSUEQuantity, ISSUELineVolume, ISSUEJournalTypeID, ISSUEJournalTypeName, ISSUELineForeignCode, ISSUELineForeignName, ISSUELineReferences, ISSUECustomerCategoryName, ISSUETeamName, ISSUESalespersonName) EXEC WHLS " + this.BUILDParameter(true).Replace("@LocalIssueVersusReceipt", "0").Replace("@LocalGoodsIssueTypeIDs", "'" + (int)GlobalEnums.GoodsIssueTypeID.DeliveryAdvice + "'") + "\r\n";
+            //INSERT GlobalEnums.GoodsReceiptTypeID.Pickup ONLY
+            queryString = queryString + "       INSERT INTO @InventoryAccumulation  (RECEIPTPrimaryID, RECEIPTPrimaryDetailID, RECEIPTEntryDate, RECEIPTReference, RECEIPTLocationName, RECEIPTWarehouseName, RECEIPTBarcode, RECEIPTCommodityID, RECEIPTCode, RECEIPTName, RECEIPTPackageSize, RECEIPTCommodityCategoryName, RECEIPTCommodityTypeName, RECEIPTIsPromotion, RECEIPTQuantity, RECEIPTLineVolume, RECEIPTJournalTypeID, RECEIPTJournalTypeName, RECEIPTLineForeignCode, RECEIPTLineForeignName, RECEIPTLineReferences, RECEIPTCustomerCategoryName, RECEIPTTeamName, RECEIPTSalespersonName) EXEC WHLS " + this.BUILDParameter(true).Replace("@LocalIssueVersusReceipt", "1").Replace("@LocalGoodsReceiptTypeIDs", "'" + (int)GlobalEnums.GoodsReceiptTypeID.Pickup + "'") + "\r\n";
 
-            this.totalSmartCodingEntities.CreateStoredProcedure("WarehouseLedgerCombos", queryString);
 
+
+            queryString = queryString + "       SELECT      IIF(NOT ISSUEPrimaryID IS NULL, 0, 1) AS IssueVersusReceipt, " + "\r\n";
+
+            queryString = queryString + "                   ISNULL(ISSUEEntryDate, RECEIPTEntryDate) AS EntryDate, ISNULL(ISSUELocationName, RECEIPTLocationName) AS LocationName, ISNULL(ISSUEWarehouseName, RECEIPTWarehouseName) AS WarehouseName, ISNULL(ISSUECommodityID, RECEIPTCommodityID) AS CommodityID, ISNULL(ISSUECode, RECEIPTCode) AS Code, ISNULL(ISSUEName, RECEIPTName) AS Name, ISNULL(ISSUEPackageSize, RECEIPTPackageSize) AS PackageSize, ISNULL(ISSUECommodityCategoryName, RECEIPTCommodityCategoryName) AS CommodityCategoryName, ISNULL(ISSUEQuantity, RECEIPTQuantity) AS Quantity, ISNULL(ISSUELineVolume, RECEIPTLineVolume) AS LineVolume, ISNULL(ISSUEJournalTypeID, RECEIPTJournalTypeID) AS JournalTypeID, ISNULL(ISSUEJournalTypeName, RECEIPTJournalTypeName) AS JournalTypeName, ISNULL(ISSUELineForeignCode, RECEIPTLineForeignCode) AS LineForeignCode, ISNULL(ISSUELineForeignName, RECEIPTLineForeignName) AS LineForeignName, " + "\r\n";
+
+            queryString = queryString + "                   CASE WHEN MONTH(ISSUEEntryDate) = MONTH(@LocalToDate) THEN IIF(@LocalQuantityVersusVolume = 0, ISSUEQuantity, ISSUELineVolume) ELSE 0 END AS MTDIssueDA, " + "\r\n";
+            queryString = queryString + "                   CASE WHEN MONTH(ISSUEEntryDate) = MONTH(@LocalToDate) AND ISSUEIsPromotion = 0 THEN IIF(@LocalQuantityVersusVolume = 0, ISSUEQuantity, ISSUELineVolume) ELSE 0 END AS MTDIssueDANotPromotion, " + "\r\n";
+            queryString = queryString + "                   CASE WHEN MONTH(RECEIPTEntryDate) = MONTH(@LocalToDate) THEN IIF(@LocalQuantityVersusVolume = 0, RECEIPTQuantity, RECEIPTLineVolume) ELSE 0 END AS MTDReceiptPickup, " + "\r\n";
+
+            queryString = queryString + "                   CASE WHEN YEAR(ISSUEEntryDate) = YEAR(@LocalToDate) THEN IIF(@LocalQuantityVersusVolume = 0, ISSUEQuantity, ISSUELineVolume) ELSE 0 END AS YTDIssueDA, " + "\r\n";
+            queryString = queryString + "                   CASE WHEN YEAR(ISSUEEntryDate) = YEAR(@LocalToDate) AND ISSUEIsPromotion = 0 THEN IIF(@LocalQuantityVersusVolume = 0, ISSUEQuantity, ISSUELineVolume) ELSE 0 END AS YTDIssueDANotPromotion, " + "\r\n";
+            queryString = queryString + "                   CASE WHEN YEAR(RECEIPTEntryDate) = YEAR(@LocalToDate) THEN IIF(@LocalQuantityVersusVolume = 0, RECEIPTQuantity, RECEIPTLineVolume) ELSE 0 END AS YTDReceiptPickup, " + "\r\n";
+
+            queryString = queryString + "                   CASE WHEN ISSUEEntryDate >= @Last3Month AND ISSUEEntryDate < @ToDate01 THEN IIF(@LocalQuantityVersusVolume = 0, ISSUEQuantity, ISSUELineVolume) ELSE 0 END AS Last3MIssueDA, " + "\r\n";
+            queryString = queryString + "                   CASE WHEN ISSUEEntryDate >= @Last3Month AND ISSUEEntryDate < @ToDate01 AND ISSUEIsPromotion = 0 THEN IIF(@LocalQuantityVersusVolume = 0, ISSUEQuantity, ISSUELineVolume) ELSE 0 END AS Last3MIssueDANotPromotion, " + "\r\n";
+            queryString = queryString + "                   CASE WHEN RECEIPTEntryDate >= @Last3Month AND RECEIPTEntryDate < @ToDate01 THEN IIF(@LocalQuantityVersusVolume = 0, RECEIPTQuantity, RECEIPTLineVolume) ELSE 0 END AS Last3MReceiptPickup " + "\r\n";
+
+            queryString = queryString + "       FROM        @InventoryAccumulation " + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("InventoryAccumulation", queryString);
+            #endregion InventoryAccumulation
         }
 
         private string BUILDGoodsIssue()
@@ -988,15 +1014,15 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryString = queryString + "       SELECT      " + tableName + "." + primaryKey + " AS PrimaryID, " + tableName + "." + primaryDetailKey + " AS PrimaryDetailID, " + tableName + ".EntryDate, " + tableName + ".Reference, Locations.Name AS LocationName, Warehouses.Name AS WarehouseName, ISNULL(Pallets.Code, Cartons.Code) AS Barcode, " + "\r\n";
             queryString = queryString + "                   Commodities.CommodityID, Commodities.Code, Commodities.Name, Commodities.PackageSize, CommodityCategories.Name AS CommodityCategoryName, CommodityTypes.Name AS CommodityTypeName, CAST(0 AS bit) AS IsPromotion, " + (nmvnTaskID == GlobalEnums.NmvnTaskID.WarehouseAdjustment ? "-" : "") + tableName + ".Quantity, " + (nmvnTaskID == GlobalEnums.NmvnTaskID.WarehouseAdjustment ? "-" : "") + tableName + ".LineVolume, " + "\r\n";
             if (nmvnTaskID == GlobalEnums.NmvnTaskID.GoodsIssue)
-                queryString = queryString + "               GoodsIssueDetails.GoodsIssueTypeID AS JournalTypeID, GoodsIssueTypes.Name AS JournalTypeName,                   ISNULL(Customers.Code, LocationReceipts.Name) AS LineForeignCode, ISNULL(Customers.Name, WarehouseReceipts.Name) AS LineForeignName, GoodsIssueDetails.VoucherCodes AS LineReferences, CustomerCategories.Name AS CustomerCategoryName, Teams.Name AS TeamName, Employees.Name AS SalespersonName " + "\r\n";
+                queryString = queryString + "               9000 + GoodsIssueDetails.GoodsIssueTypeID AS JournalTypeID, GoodsIssueTypes.Name AS JournalTypeName,                   ISNULL(Customers.Code, LocationReceipts.Name) AS LineForeignCode, ISNULL(Customers.Name, WarehouseReceipts.Name) AS LineForeignName, GoodsIssueDetails.VoucherCodes AS LineReferences, CustomerCategories.Name AS CustomerCategoryName, Teams.Name AS TeamName, Employees.Name AS SalespersonName " + "\r\n";
 
 
             if (nmvnTaskID == GlobalEnums.NmvnTaskID.GoodsReceipt)
-                queryString = queryString + "               CASE WHEN GoodsReceiptDetails.GoodsReceiptTypeID <> " + (int)GlobalEnums.GoodsReceiptTypeID.WarehouseAdjustments + " THEN GoodsReceiptDetails.GoodsReceiptTypeID ELSE 9000 + GoodsReceiptDetails.WarehouseAdjustmentTypeID END AS JournalTypeID, CASE WHEN GoodsReceiptDetails.GoodsReceiptTypeID <> " + (int)GlobalEnums.GoodsReceiptTypeID.WarehouseAdjustments + " THEN GoodsReceiptTypes.Name ELSE WarehouseAdjustmentTypes.Name END AS JournalTypeName,                   ISNULL(Suppliers.Code, LocationIssues.Name) AS LineForeignCode, ISNULL(Suppliers.Name, WarehouseIssues.Name) AS LineForeignName, GoodsReceiptDetails.PrimaryReferences AS LineReferences, SupplierCategories.Name AS CustomerCategoryName, NULL AS TeamName, NULL AS SalespersonName " + "\r\n";
+                queryString = queryString + "               CASE WHEN GoodsReceiptDetails.GoodsReceiptTypeID <> " + (int)GlobalEnums.GoodsReceiptTypeID.WarehouseAdjustments + " THEN GoodsReceiptDetails.GoodsReceiptTypeID ELSE 8000 + GoodsReceiptDetails.WarehouseAdjustmentTypeID END AS JournalTypeID, CASE WHEN GoodsReceiptDetails.GoodsReceiptTypeID <> " + (int)GlobalEnums.GoodsReceiptTypeID.WarehouseAdjustments + " THEN GoodsReceiptTypes.Name ELSE WarehouseAdjustmentTypes.Name END AS JournalTypeName,                   ISNULL(Suppliers.Code, LocationIssues.Name) AS LineForeignCode, ISNULL(Suppliers.Name, WarehouseIssues.Name) AS LineForeignName, GoodsReceiptDetails.PrimaryReferences AS LineReferences, SupplierCategories.Name AS CustomerCategoryName, NULL AS TeamName, NULL AS SalespersonName " + "\r\n";
 
 
             if (nmvnTaskID == GlobalEnums.NmvnTaskID.WarehouseAdjustment)
-                queryString = queryString + "               9000 + WarehouseAdjustmentDetails.WarehouseAdjustmentTypeID AS JournalTypeID, WarehouseAdjustmentTypes.Name AS JournalTypeName,                   WarehouseAdjustmentTypes.Code AS LineForeignCode, WarehouseAdjustmentTypes.Name AS LineForeignName, WarehouseAdjustmentDetails.Reference + ' ' + WarehouseAdjustmentDetails.AdjustmentJobs AS LineReferences, NULL AS CustomerCategoryName, NULL AS TeamName, NULL AS SalespersonName " + "\r\n";
+                queryString = queryString + "               8000 + WarehouseAdjustmentDetails.WarehouseAdjustmentTypeID AS JournalTypeID, WarehouseAdjustmentTypes.Name AS JournalTypeName,                   WarehouseAdjustmentTypes.Code AS LineForeignCode, WarehouseAdjustmentTypes.Name AS LineForeignName, WarehouseAdjustmentDetails.Reference + ' ' + WarehouseAdjustmentDetails.AdjustmentJobs AS LineReferences, NULL AS CustomerCategoryName, NULL AS TeamName, NULL AS SalespersonName " + "\r\n";
 
 
             queryString = queryString + "       FROM        " + tableName + " " + "\r\n";
