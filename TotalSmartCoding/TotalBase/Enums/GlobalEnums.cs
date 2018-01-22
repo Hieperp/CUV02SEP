@@ -326,6 +326,8 @@
             TransferIssueJournal = 35,
             AdjustmentIssueJournal = 36,
 
+            
+            
             WarehouseJournal = 801
         }
 
