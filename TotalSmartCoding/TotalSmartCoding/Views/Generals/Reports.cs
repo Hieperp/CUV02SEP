@@ -121,6 +121,23 @@ namespace TotalSmartCoding.Views.Generals
             OLVHelpers.ApplyFilters(this.treeWarehouseIssueID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
             OLVHelpers.ApplyFilters(this.treeWarehouseReceiptID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
             OLVHelpers.ApplyFilters(this.treeWarehouseAdjustmentTypeID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
+
+            var a = this.treeCommodityID.FilteredObjects;
+            var b = a;
+
+            ObjectListView LV = this.treeCommodityID;
+
+            List<IFilterTree> effectedFilterTrees = LV.FilteredObjects.Cast<IFilterTree>().ToList();
+
+            if (effectedFilterTrees != null && effectedFilterTrees.Count() > 0)
+            {
+                List<int?> ancestorIDs = effectedFilterTrees.Select(n => n.PrimaryID).ToList();
+                IList<CommodityTree> enumerableFilterTree = this.commodityTrees.Where(w => !ancestorIDs.Contains(w.PrimaryID)).ToList();
+
+                foreach (CommodityTree c in enumerableFilterTree) { c.Selected = false; }
+            }
+
+
         }
 
         private IList<WarehouseTree> warehouseTrees;
@@ -186,6 +203,9 @@ namespace TotalSmartCoding.Views.Generals
 
             this.comboSalesVersusPromotion.ComboBox.Items.AddRange(new string[] { "Sales & promotions", "Sales only", "Promotions only" });
             this.comboSalesVersusPromotion.ComboBox.SelectedIndex = 0;
+
+            this.comboForecastFilters.ComboBox.Items.AddRange(new string[] { "[All Items in Stock]", "Old & Slow Moving", "[Current Stock + In Transit] > 0", "[Current Stock + In Transit] = 0", "[Current Stock + In Transit] < 0", "[Current Stock + In Transit] Between Low-High Level", "[Current Stock + In Transit] Out of Range Low-High Level", "[Current Stock + In Transit] Under Low-Level", "[Current Stock + In Transit] Over High-Level" });
+            this.comboForecastFilters.ComboBox.SelectedIndex = 0;
 
             this.dateTimexFromDate.DataBindings.Add("Value", GlobalEnums.GlobalOptionSetting, CommonExpressions.PropertyName<OptionSetting>(p => p.FromDate), true, DataSourceUpdateMode.OnPropertyChanged);
             this.dateTimexToDate.DataBindings.Add("Value", GlobalEnums.GlobalOptionSetting, CommonExpressions.PropertyName<OptionSetting>(p => p.ToDate), true, DataSourceUpdateMode.OnPropertyChanged);
@@ -255,7 +275,8 @@ namespace TotalSmartCoding.Views.Generals
                 this.comboSummaryVersusDetail.Visible = this.reportViewModel.OptionBoxIDs.IndexOf(GlobalEnums.OBx(GlobalEnums.OptionBoxID.SummaryVersusDetail)) != -1;
                 this.comboQuantityVersusVolume.Visible = this.reportViewModel.OptionBoxIDs.IndexOf(GlobalEnums.OBx(GlobalEnums.OptionBoxID.QuantityVersusVolume)) != -1; this.buttonQuantityVersusVolume.Visible = this.comboSummaryVersusDetail.Visible || this.comboQuantityVersusVolume.Visible;
                 this.comboDateVersusMonth.Visible = this.reportViewModel.OptionBoxIDs.IndexOf(GlobalEnums.OBx(GlobalEnums.OptionBoxID.DateVersusMonth)) != -1; this.buttonDateVersusMonth.Visible = this.comboDateVersusMonth.Visible;
-                this.comboSalesVersusPromotion.Visible = this.reportViewModel.OptionBoxIDs.IndexOf(GlobalEnums.OBx(GlobalEnums.OptionBoxID.SalesVersusPromotion)) != -1; this.buttonSalesVersusPromotion.Visible = this.comboSalesVersusPromotion.Visible;
+                this.comboSalesVersusPromotion.Visible = this.reportViewModel.OptionBoxIDs.IndexOf(GlobalEnums.OBx(GlobalEnums.OptionBoxID.SalesVersusPromotion)) != -1;
+                this.comboForecastFilters.Visible = this.reportViewModel.OptionBoxIDs.IndexOf(GlobalEnums.OBx(GlobalEnums.OptionBoxID.ForecastFilters)) != -1; this.buttonSalesVersusPromotion.Visible = this.comboSalesVersusPromotion.Visible || this.comboForecastFilters.Visible;
             }
             catch (Exception exception)
             {
@@ -343,6 +364,12 @@ namespace TotalSmartCoding.Views.Generals
             }
 
             string headerTitle = this.reportViewModel.ReportName;
+
+            if (this.comboForecastFilters.Visible)
+            {
+                if (this.comboForecastFilters.ComboBox.SelectedIndex != 0) headerTitle = headerTitle + " [" + this.comboForecastFilters.Text + "]";
+                printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("ForecastFilterIndex", (this.comboForecastFilters.ComboBox.SelectedIndex - 1).ToString()));
+            }
 
             if (this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsReceiptPivot || this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsIssuePivot || this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsReceiptJournal || this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsIssueJournal)
             {

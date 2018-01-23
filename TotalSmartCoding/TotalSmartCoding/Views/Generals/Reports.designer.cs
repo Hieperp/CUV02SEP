@@ -48,6 +48,7 @@
             this.comboDateVersusMonth = new System.Windows.Forms.ToolStripComboBox();
             this.buttonDateVersusMonth = new System.Windows.Forms.ToolStripButton();
             this.comboSalesVersusPromotion = new System.Windows.Forms.ToolStripComboBox();
+            this.comboForecastFilters = new System.Windows.Forms.ToolStripComboBox();
             this.buttonSalesVersusPromotion = new System.Windows.Forms.ToolStripButton();
             this.layoutTop = new System.Windows.Forms.TableLayoutPanel();
             this.pictureToDate = new System.Windows.Forms.PictureBox();
@@ -251,6 +252,7 @@
             this.comboDateVersusMonth,
             this.buttonDateVersusMonth,
             this.comboSalesVersusPromotion,
+            this.comboForecastFilters,
             this.buttonSalesVersusPromotion});
             this.toolReport.Location = new System.Drawing.Point(3, 3);
             this.toolReport.Name = "toolReport";
@@ -313,13 +315,22 @@
             this.comboSalesVersusPromotion.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.comboSalesVersusPromotion.Size = new System.Drawing.Size(135, 29);
             // 
+            // comboForecastFilters
+            // 
+            this.comboForecastFilters.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboForecastFilters.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
+            this.comboForecastFilters.Font = new System.Drawing.Font("Calibri Light", 10.2F);
+            this.comboForecastFilters.Name = "comboForecastFilters";
+            this.comboForecastFilters.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.comboForecastFilters.Size = new System.Drawing.Size(339, 29);
+            // 
             // buttonSalesVersusPromotion
             // 
             this.buttonSalesVersusPromotion.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.buttonSalesVersusPromotion.Image = global::TotalSmartCoding.Properties.Resources.Energy_24;
             this.buttonSalesVersusPromotion.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonSalesVersusPromotion.Name = "buttonSalesVersusPromotion";
-            this.buttonSalesVersusPromotion.Size = new System.Drawing.Size(28, 26);
+            this.buttonSalesVersusPromotion.Size = new System.Drawing.Size(28, 28);
             this.buttonSalesVersusPromotion.Text = "toolStripButton3";
             // 
             // layoutTop
@@ -1003,6 +1014,7 @@
         private System.Windows.Forms.ToolStripComboBox comboQuantityVersusVolume;
         private System.Windows.Forms.ToolStripButton buttonQuantityVersusVolume;
         private System.Windows.Forms.ToolStripComboBox comboSummaryVersusDetail;
+        private System.Windows.Forms.ToolStripComboBox comboForecastFilters;
 
     }
 }

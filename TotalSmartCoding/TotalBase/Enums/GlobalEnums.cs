@@ -312,7 +312,8 @@
             SummaryVersusDetail = 10,
             QuantityVersusVolume = 20,
             DateVersusMonth = 30,
-            SalesVersusPromotion = 50
+            SalesVersusPromotion = 50,
+            ForecastFilters = 60
         }
 
         public static string OBx(OptionBoxID optionBoxID)
