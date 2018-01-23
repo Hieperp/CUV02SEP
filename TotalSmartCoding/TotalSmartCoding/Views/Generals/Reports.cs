@@ -33,6 +33,7 @@ namespace TotalSmartCoding.Views.Generals
 {
     public partial class Reports : BaseView
     {
+        #region MANAGE THE VIEW
         private TabPage tabPageWarehouses;
         private TabPage tabPageCommodities;
         private TabPage tabPageCustomers;
@@ -196,12 +197,15 @@ namespace TotalSmartCoding.Views.Generals
 
         private void fastReportIndex_AboutToCreateGroups(object sender, CreateGroupsEventArgs e)
         {
+            //return; //DON'T SHOW ICON
             if (e.Groups != null && e.Groups.Count > 0)
             {
                 foreach (OLVGroup olvGroup in e.Groups)
                 {
                     olvGroup.TitleImage = "Analytics";
                     olvGroup.Subtitle = "Count: " + olvGroup.Contents.Count.ToString() + " Reports";
+
+                    if ((string)olvGroup.Key == "2.GOODS RECEIPT JOURNALS" || (string)olvGroup.Key == "3.GOODS RECEIPT PIVOT REPORTS") olvGroup.Collapsed = true;
                 }
             }
         }
@@ -233,6 +237,7 @@ namespace TotalSmartCoding.Views.Generals
             if (this.treeWarehouseAdjustmentTypeID.GetModelObject(0) != null) { this.treeWarehouseAdjustmentTypeID.Expand(this.treeWarehouseAdjustmentTypeID.GetModelObject(0)); if (this.treeWarehouseAdjustmentTypeID.Items.Count >= 2) this.treeWarehouseAdjustmentTypeID.SelectedIndex = 1; }
         }
 
+        #endregion MANAGE THE VIEW
 
         #region CONTEXTUAL LOAD TAB PAGE: TAB FOR FILTER
         protected override void invokeEdit(int? id)
@@ -243,12 +248,14 @@ namespace TotalSmartCoding.Views.Generals
 
                 this.reloadTabPages();
 
-                this.comboSummaryVersusDetail.Visible = this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsReceiptJournal || this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsIssueJournal || this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.WarehouseJournal;
-                this.comboQuantityVersusVolume.Visible = this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsReceiptPivot || this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsIssuePivot || this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.WarehouseJournal; this.buttonQuantityVersusVolume.Visible = this.comboSummaryVersusDetail.Visible || this.comboQuantityVersusVolume.Visible;
 
-                this.comboDateVersusMonth.Visible = this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsReceiptPivot || (this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsIssuePivot && this.reportViewModel.ReportUniqueID != (int)GlobalEnums.ReportID.SalesIssuePivotbyCustomers); this.buttonDateVersusMonth.Visible = this.comboDateVersusMonth.Visible;
+                this.dateTimexFromDate.Visible = this.reportViewModel.OptionBoxIDs.IndexOf(GlobalEnums.OBx(GlobalEnums.OptionBoxID.FromDate)) != -1; this.labelFromDate.Visible = this.dateTimexFromDate.Visible; this.pictureFromDate.Visible = this.dateTimexFromDate.Visible;
+                this.dateTimexToDate.Visible = this.reportViewModel.OptionBoxIDs.IndexOf(GlobalEnums.OBx(GlobalEnums.OptionBoxID.ToDate)) != -1; this.labelToDate.Visible = this.dateTimexToDate.Visible; this.pictureToDate.Visible = this.dateTimexToDate.Visible;
 
-                this.comboSalesVersusPromotion.Visible = this.reportViewModel.ReportUniqueID == (int)GlobalEnums.ReportID.SalesIssuePivot || this.reportViewModel.ReportUniqueID == (int)GlobalEnums.ReportID.SalesIssuePivotbyCustomers || this.reportViewModel.ReportUniqueID == (int)GlobalEnums.ReportID.SalesIssueJournal; this.buttonSalesVersusPromotion.Visible = this.comboSalesVersusPromotion.Visible;
+                this.comboSummaryVersusDetail.Visible = this.reportViewModel.OptionBoxIDs.IndexOf(GlobalEnums.OBx(GlobalEnums.OptionBoxID.SummaryVersusDetail)) != -1;
+                this.comboQuantityVersusVolume.Visible = this.reportViewModel.OptionBoxIDs.IndexOf(GlobalEnums.OBx(GlobalEnums.OptionBoxID.QuantityVersusVolume)) != -1; this.buttonQuantityVersusVolume.Visible = this.comboSummaryVersusDetail.Visible || this.comboQuantityVersusVolume.Visible;
+                this.comboDateVersusMonth.Visible = this.reportViewModel.OptionBoxIDs.IndexOf(GlobalEnums.OBx(GlobalEnums.OptionBoxID.DateVersusMonth)) != -1; this.buttonDateVersusMonth.Visible = this.comboDateVersusMonth.Visible;
+                this.comboSalesVersusPromotion.Visible = this.reportViewModel.OptionBoxIDs.IndexOf(GlobalEnums.OBx(GlobalEnums.OptionBoxID.SalesVersusPromotion)) != -1; this.buttonSalesVersusPromotion.Visible = this.comboSalesVersusPromotion.Visible;
             }
             catch (Exception exception)
             {
@@ -326,18 +333,19 @@ namespace TotalSmartCoding.Views.Generals
 
         private void PassFilterParameters(PrintViewModel printViewModel)
         {
-            if (this.dateTimexFromDate.Visible && this.dateTimexToDate.Visible)
+            printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("UserID", ContextAttributes.User.UserID.ToString()));
+
+            if (this.dateTimexFromDate.Visible || this.dateTimexToDate.Visible)
             {
-                printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("FromDate", this.dateTimexFromDate.Text));
-                printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("ToDate", this.dateTimexToDate.Text));
-                printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("HeaderTerms", "FROM " + this.dateTimexFromDate.Text + " TO " + this.dateTimexToDate.Text));
+                if (this.dateTimexFromDate.Visible) printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("FromDate", this.dateTimexFromDate.Text));
+                if (this.dateTimexToDate.Visible) printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("ToDate", this.dateTimexToDate.Text));
+                printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("HeaderTerms", (this.dateTimexFromDate.Visible ? "FROM " + this.dateTimexFromDate.Text : "") + (this.dateTimexToDate.Visible ? (this.dateTimexFromDate.Visible ? " TO " : "AS AT ") + this.dateTimexToDate.Text : "")));
             }
 
             string headerTitle = this.reportViewModel.ReportName;
 
             if (this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsReceiptPivot || this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsIssuePivot || this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsReceiptJournal || this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsIssueJournal)
             {
-                printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("UserID", ContextAttributes.User.UserID.ToString()));
                 printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("IssueVersusReceipt", (this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsIssuePivot || this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsIssueJournal ? 0 : 1).ToString()));
 
                 if (this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsIssuePivot || this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsIssueJournal)
@@ -346,15 +354,17 @@ namespace TotalSmartCoding.Views.Generals
                 if (this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsReceiptPivot || this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsReceiptJournal)
                     printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("GoodsReceiptTypeIDs", (this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.ProductionReceiptPivot || this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.ProductionReceiptJournal ? ((int)GlobalEnums.GoodsReceiptTypeID.Pickup).ToString() : (this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.TransferReceiptPivot || this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.TransferReceiptJournal ? ((int)GlobalEnums.GoodsReceiptTypeID.GoodsIssueTransfer).ToString() : (this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.AdjustmentReceiptPivot || this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.AdjustmentReceiptJournal ? ((int)GlobalEnums.GoodsReceiptTypeID.WarehouseAdjustments).ToString() : null)))));
 
-                if (this.buttonDateVersusMonth.Visible) headerTitle = this.comboDateVersusMonth.Text + " " + headerTitle;
-                printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("DateVersusMonth", (this.buttonDateVersusMonth.Visible ? this.comboDateVersusMonth.ComboBox.SelectedIndex : 0).ToString()));
+                if (this.buttonDateVersusMonth.Visible)
+                {
+                    headerTitle = this.comboDateVersusMonth.Text + " " + headerTitle;
+                    printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("DateVersusMonth", this.comboDateVersusMonth.ComboBox.SelectedIndex.ToString()));
+                }
 
                 if (this.comboSalesVersusPromotion.Visible)
                 {
                     if (this.comboSalesVersusPromotion.ComboBox.SelectedIndex != 0) headerTitle = headerTitle + " [" + this.comboSalesVersusPromotion.Text + "]";
                     printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("SalesVersusPromotion", (this.comboSalesVersusPromotion.ComboBox.SelectedIndex - 1).ToString()));
                 }
-
             }
 
             if (this.comboQuantityVersusVolume.Visible)
@@ -389,6 +399,14 @@ namespace TotalSmartCoding.Views.Generals
                 this.AddFilterParameters(printViewModel, this.warehouseReceiptTrees.Cast<IFilterTree>(), new FilterParameter[] { new FilterParameter("LocationID", "LocationReceiptIDs", "Source Location", true, false), new FilterParameter("WarehouseID", "WarehouseReceiptIDs", "Source Warehouse", true, false) }, ref captionDescriptions);
             if (this.customTabBatch.TabPages.Contains(this.tabPageWarehouseAdjustmentTypes))
                 this.AddFilterParameters(printViewModel, this.warehouseAdjustmentTypeTrees.Cast<IFilterTree>(), new FilterParameter[] { new FilterParameter("WarehouseAdjustmentTypeID", "WarehouseAdjustmentTypeIDs", "Adjustment Type", true, false) }, ref captionDescriptions);
+
+
+
+
+
+
+            if (this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.PivotStockDIOH3M || this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.PivotStockDRP || this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.PivotStockDIOH3MAndDRP)
+                printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("PrintOptionID", ((int)this.reportViewModel.ReportID).ToString()));
 
 
             printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("HeaderTitle", headerTitle.ToUpper()));

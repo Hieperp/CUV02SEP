@@ -24,5 +24,6 @@ namespace TotalModel.Models
         public int SerialID { get; set; }
         public string Remarks { get; set; }
         public string ReportTabPageIDs { get; set; }
+        public string OptionBoxIDs { get; set; }
     }
 }

@@ -75,6 +75,14 @@ namespace TotalDTO.Generals
             get { return this.reportTabPageIDs; }
             set { ApplyPropertyChange<ReportPrimitiveDTO, string>(ref this.reportTabPageIDs, o => o.ReportTabPageIDs, value); }
         }
+
+        private string optionBoxIDs;
+        [DefaultValue(null)]
+        public string OptionBoxIDs
+        {
+            get { return this.optionBoxIDs; }
+            set { ApplyPropertyChange<ReportPrimitiveDTO, string>(ref this.optionBoxIDs, o => o.OptionBoxIDs, value); }
+        }
     }
 
     public class ReportDTO : ReportPrimitiveDTO

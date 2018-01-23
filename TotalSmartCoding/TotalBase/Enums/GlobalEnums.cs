@@ -290,6 +290,8 @@
             GoodsReceiptJournal = 21,
             GoodsIssueJournal = 22,
 
+            WarehouseForecast = 686,
+
             WarehouseJournal = 800
         }
 
@@ -303,6 +305,21 @@
             TabPageWarehouseAdjustmentTypes = 6
         }
 
+        public enum OptionBoxID
+        {
+            FromDate = 1,
+            ToDate = 2,
+            SummaryVersusDetail = 10,
+            QuantityVersusVolume = 20,
+            DateVersusMonth = 30,
+            SalesVersusPromotion = 50
+        }
+
+        public static string OBx(OptionBoxID optionBoxID)
+        {
+            return ((int)optionBoxID).ToString() + "X";
+        }
+
         public enum ReportID
         {
             GoodsReceiptPivot = 1,
@@ -312,7 +329,7 @@
 
             GoodsIssuePivot = 11,
             SalesIssuePivot = 12,
-            SalesIssuePivotbyCustomers = 13,
+            SalesIssuePivotbyCustomers = 17,
             TransferIssuePivot = 15,
             AdjustmentIssuePivot = 16,
 
@@ -326,9 +343,18 @@
             TransferIssueJournal = 35,
             AdjustmentIssueJournal = 36,
 
-            
-            
-            WarehouseJournal = 801
+
+
+            PivotStockDIOH3M = 812,
+            PivotStockDRP = 815,
+            PivotStockDIOH3MAndDRP = 817,
+
+            CurrentWarehouse = 832,
+            CurrentWarehouseFilter = 837,
+
+            SaleAndProduction = 868,
+
+            WarehouseJournal = 888
         }
 
 

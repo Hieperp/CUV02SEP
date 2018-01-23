@@ -626,6 +626,7 @@
           <Property Name="SerialID" Type="int" Nullable="false" />
           <Property Name="Remarks" Type="nvarchar" MaxLength="100" />
           <Property Name="ReportTabPageIDs" Type="nvarchar" MaxLength="100" />
+          <Property Name="OptionBoxIDs" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="SalesOrderDetails">
           <Key>
@@ -7476,6 +7477,7 @@
           <Property Name="SerialID" Type="Int32" Nullable="false" />
           <Property Name="Remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="ReportTabPageIDs" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="OptionBoxIDs" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="GoodsIssue">
           <Key>
@@ -9883,6 +9885,7 @@
           <EntitySetMapping Name="Reports">
             <EntityTypeMapping TypeName="TotalSmartCodingModel.Report">
               <MappingFragment StoreEntitySet="Reports">
+                <ScalarProperty Name="OptionBoxIDs" ColumnName="OptionBoxIDs" />
                 <ScalarProperty Name="ReportTabPageIDs" ColumnName="ReportTabPageIDs" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
                 <ScalarProperty Name="SerialID" ColumnName="SerialID" />

@@ -42,20 +42,20 @@
             this.olvCommodityName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.panelTop = new System.Windows.Forms.Panel();
             this.toolReport = new System.Windows.Forms.ToolStrip();
-            this.comboSummaryVersusDetail = new System.Windows.Forms.ToolStripComboBox();
             this.comboQuantityVersusVolume = new System.Windows.Forms.ToolStripComboBox();
+            this.comboSummaryVersusDetail = new System.Windows.Forms.ToolStripComboBox();
             this.buttonQuantityVersusVolume = new System.Windows.Forms.ToolStripButton();
             this.comboDateVersusMonth = new System.Windows.Forms.ToolStripComboBox();
             this.buttonDateVersusMonth = new System.Windows.Forms.ToolStripButton();
             this.comboSalesVersusPromotion = new System.Windows.Forms.ToolStripComboBox();
             this.buttonSalesVersusPromotion = new System.Windows.Forms.ToolStripButton();
             this.layoutTop = new System.Windows.Forms.TableLayoutPanel();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureToDate = new System.Windows.Forms.PictureBox();
             this.dateTimexFromDate = new CustomControls.DateTimexPicker();
             this.dateTimexToDate = new CustomControls.DateTimexPicker();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.labelToDate = new System.Windows.Forms.Label();
+            this.labelFromDate = new System.Windows.Forms.Label();
+            this.pictureFromDate = new System.Windows.Forms.PictureBox();
             this.panelLeft = new System.Windows.Forms.Panel();
             this.fastReportIndex = new BrightIdeasSoftware.FastObjectListView();
             this.olvID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -96,8 +96,8 @@
             this.panelTop.SuspendLayout();
             this.toolReport.SuspendLayout();
             this.layoutTop.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureToDate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureFromDate)).BeginInit();
             this.panelLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastReportIndex)).BeginInit();
             this.panelCenter.SuspendLayout();
@@ -245,8 +245,8 @@
             this.toolReport.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolReport.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.toolReport.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.comboSummaryVersusDetail,
             this.comboQuantityVersusVolume,
+            this.comboSummaryVersusDetail,
             this.buttonQuantityVersusVolume,
             this.comboDateVersusMonth,
             this.buttonDateVersusMonth,
@@ -259,15 +259,6 @@
             this.toolReport.TabIndex = 10;
             this.toolReport.Text = "toolStrip1";
             // 
-            // comboSummaryVersusDetail
-            // 
-            this.comboSummaryVersusDetail.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboSummaryVersusDetail.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
-            this.comboSummaryVersusDetail.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboSummaryVersusDetail.Name = "comboSummaryVersusDetail";
-            this.comboSummaryVersusDetail.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.comboSummaryVersusDetail.Size = new System.Drawing.Size(105, 29);
-            // 
             // comboQuantityVersusVolume
             // 
             this.comboQuantityVersusVolume.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -276,6 +267,15 @@
             this.comboQuantityVersusVolume.Name = "comboQuantityVersusVolume";
             this.comboQuantityVersusVolume.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.comboQuantityVersusVolume.Size = new System.Drawing.Size(105, 29);
+            // 
+            // comboSummaryVersusDetail
+            // 
+            this.comboSummaryVersusDetail.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboSummaryVersusDetail.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
+            this.comboSummaryVersusDetail.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboSummaryVersusDetail.Name = "comboSummaryVersusDetail";
+            this.comboSummaryVersusDetail.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.comboSummaryVersusDetail.Size = new System.Drawing.Size(105, 29);
             // 
             // buttonQuantityVersusVolume
             // 
@@ -293,7 +293,7 @@
             this.comboDateVersusMonth.Font = new System.Drawing.Font("Calibri Light", 10.2F);
             this.comboDateVersusMonth.Name = "comboDateVersusMonth";
             this.comboDateVersusMonth.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.comboDateVersusMonth.Size = new System.Drawing.Size(128, 29);
+            this.comboDateVersusMonth.Size = new System.Drawing.Size(135, 29);
             // 
             // buttonDateVersusMonth
             // 
@@ -336,12 +336,12 @@
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.layoutTop.Controls.Add(this.pictureBox2, 5, 0);
+            this.layoutTop.Controls.Add(this.pictureToDate, 5, 0);
             this.layoutTop.Controls.Add(this.dateTimexFromDate, 3, 0);
             this.layoutTop.Controls.Add(this.dateTimexToDate, 6, 0);
-            this.layoutTop.Controls.Add(this.label1, 4, 0);
-            this.layoutTop.Controls.Add(this.label5, 1, 0);
-            this.layoutTop.Controls.Add(this.pictureBox1, 2, 0);
+            this.layoutTop.Controls.Add(this.labelToDate, 4, 0);
+            this.layoutTop.Controls.Add(this.labelFromDate, 1, 0);
+            this.layoutTop.Controls.Add(this.pictureFromDate, 2, 0);
             this.layoutTop.Dock = System.Windows.Forms.DockStyle.Right;
             this.layoutTop.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.layoutTop.Location = new System.Drawing.Point(642, 3);
@@ -353,17 +353,17 @@
             this.layoutTop.Size = new System.Drawing.Size(574, 29);
             this.layoutTop.TabIndex = 9;
             // 
-            // pictureBox2
+            // pictureToDate
             // 
-            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox2.Image = global::TotalSmartCoding.Properties.Resources.Calendar_2;
-            this.pictureBox2.Location = new System.Drawing.Point(323, 1);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(0);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(24, 29);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 79;
-            this.pictureBox2.TabStop = false;
+            this.pictureToDate.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pictureToDate.Image = global::TotalSmartCoding.Properties.Resources.Calendar_2;
+            this.pictureToDate.Location = new System.Drawing.Point(323, 1);
+            this.pictureToDate.Margin = new System.Windows.Forms.Padding(0);
+            this.pictureToDate.Name = "pictureToDate";
+            this.pictureToDate.Size = new System.Drawing.Size(24, 29);
+            this.pictureToDate.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureToDate.TabIndex = 79;
+            this.pictureToDate.TabStop = false;
             // 
             // dateTimexFromDate
             // 
@@ -393,41 +393,41 @@
             this.dateTimexToDate.Size = new System.Drawing.Size(223, 28);
             this.dateTimexToDate.TabIndex = 91;
             // 
-            // label1
+            // labelToDate
             // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(298, 1);
-            this.label1.Margin = new System.Windows.Forms.Padding(0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(25, 29);
-            this.label1.TabIndex = 92;
-            this.label1.Text = "To";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.labelToDate.AutoSize = true;
+            this.labelToDate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelToDate.Location = new System.Drawing.Point(298, 1);
+            this.labelToDate.Margin = new System.Windows.Forms.Padding(0);
+            this.labelToDate.Name = "labelToDate";
+            this.labelToDate.Size = new System.Drawing.Size(25, 29);
+            this.labelToDate.TabIndex = 92;
+            this.labelToDate.Text = "To";
+            this.labelToDate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label5
+            // labelFromDate
             // 
-            this.label5.AutoSize = true;
-            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Location = new System.Drawing.Point(0, 1);
-            this.label5.Margin = new System.Windows.Forms.Padding(0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(47, 29);
-            this.label5.TabIndex = 89;
-            this.label5.Text = "From";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.labelFromDate.AutoSize = true;
+            this.labelFromDate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelFromDate.Location = new System.Drawing.Point(0, 1);
+            this.labelFromDate.Margin = new System.Windows.Forms.Padding(0);
+            this.labelFromDate.Name = "labelFromDate";
+            this.labelFromDate.Size = new System.Drawing.Size(47, 29);
+            this.labelFromDate.TabIndex = 89;
+            this.labelFromDate.Text = "From";
+            this.labelFromDate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // pictureBox1
+            // pictureFromDate
             // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox1.Image = global::TotalSmartCoding.Properties.Resources.Calendar_icon;
-            this.pictureBox1.Location = new System.Drawing.Point(47, 1);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(24, 29);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 93;
-            this.pictureBox1.TabStop = false;
+            this.pictureFromDate.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pictureFromDate.Image = global::TotalSmartCoding.Properties.Resources.Calendar_icon;
+            this.pictureFromDate.Location = new System.Drawing.Point(47, 1);
+            this.pictureFromDate.Margin = new System.Windows.Forms.Padding(0);
+            this.pictureFromDate.Name = "pictureFromDate";
+            this.pictureFromDate.Size = new System.Drawing.Size(24, 29);
+            this.pictureFromDate.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureFromDate.TabIndex = 93;
+            this.pictureFromDate.TabStop = false;
             // 
             // panelLeft
             // 
@@ -453,6 +453,7 @@
             this.fastReportIndex.Font = new System.Drawing.Font("Calibri Light", 10.2F);
             this.fastReportIndex.FullRowSelect = true;
             this.fastReportIndex.GroupImageList = this.imageList32;
+            this.fastReportIndex.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.fastReportIndex.HideSelection = false;
             this.fastReportIndex.HighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastReportIndex.Location = new System.Drawing.Point(0, 0);
@@ -920,8 +921,8 @@
             this.toolReport.PerformLayout();
             this.layoutTop.ResumeLayout(false);
             this.layoutTop.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureToDate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureFromDate)).EndInit();
             this.panelLeft.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.fastReportIndex)).EndInit();
             this.panelCenter.ResumeLayout(false);
@@ -951,12 +952,12 @@
         private BrightIdeasSoftware.OLVColumn olvCommoditySelected;
         private System.Windows.Forms.Panel panelTop;
         private System.Windows.Forms.TableLayoutPanel layoutTop;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.PictureBox pictureToDate;
+        private System.Windows.Forms.Label labelFromDate;
         private CustomControls.DateTimexPicker dateTimexFromDate;
         private CustomControls.DateTimexPicker dateTimexToDate;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label labelToDate;
+        private System.Windows.Forms.PictureBox pictureFromDate;
         private System.Windows.Forms.Panel panelLeft;
         private System.Windows.Forms.Panel panelCenter;
         private BrightIdeasSoftware.OLVColumn olvColumn4;
