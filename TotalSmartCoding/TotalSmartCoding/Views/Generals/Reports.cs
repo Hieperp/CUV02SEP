@@ -113,14 +113,14 @@ namespace TotalSmartCoding.Views.Generals
 
         public override void ApplyFilter(string filterTexts)
         {
-            OLVHelpers.ApplyFilters(this.treeWarehouseID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
-            OLVHelpers.ApplyFilters(this.treeCommodityID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
-            OLVHelpers.ApplyFilters(this.treeCommodityTypeID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
-            OLVHelpers.ApplyFilters(this.treeCustomerID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
-            OLVHelpers.ApplyFilters(this.treeEmployeeID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
-            OLVHelpers.ApplyFilters(this.treeWarehouseIssueID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
-            OLVHelpers.ApplyFilters(this.treeWarehouseReceiptID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
-            OLVHelpers.ApplyFilters(this.treeWarehouseAdjustmentTypeID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
+            //OLVHelpers.ApplyFilters(this.treeWarehouseID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
+            //OLVHelpers.ApplyFilters(this.treeCommodityID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
+            //OLVHelpers.ApplyFilters(this.treeCommodityTypeID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
+            //OLVHelpers.ApplyFilters(this.treeCustomerID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
+            //OLVHelpers.ApplyFilters(this.treeEmployeeID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
+            //OLVHelpers.ApplyFilters(this.treeWarehouseIssueID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
+            //OLVHelpers.ApplyFilters(this.treeWarehouseReceiptID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
+            //OLVHelpers.ApplyFilters(this.treeWarehouseAdjustmentTypeID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
 
             var a = this.treeCommodityID.FilteredObjects;
             var b = a;
@@ -501,19 +501,36 @@ namespace TotalSmartCoding.Views.Generals
                     {
                         if (senderButton.Tag.ToString().ToUpper() == "COLLAPSE") { dataTreeListView.CollapseAll(); dataTreeListView.Expand(dataTreeListView.GetModelObject(0)); }
                         if (senderButton.Tag.ToString().ToUpper() == "EXPAND") dataTreeListView.ExpandAll();
-                        if (senderButton.Tag.ToString().ToUpper() == "SELECT")
+                        if (senderButton.Tag.ToString().ToUpper() == "SELECT" || senderButton.Tag.ToString().ToUpper() == "SELECTFILTER" || senderButton.Tag.ToString().ToUpper() == "DESELECT")
                         {
                             List<IFilterTree> filterTrees = dataTreeListView.FilteredObjects.Cast<IFilterTree>().ToList();
+
                             if (filterTrees != null && filterTrees.Count() > 0)
-                                //{
-                                filterTrees.Each(t => t.Selected = true);
+                            {
+                                string textFilter = "";
+                                if (senderButton.Tag.ToString().ToUpper() == "SELECTFILTER")
+                                    textFilter = (senderButton.Owner.Equals(this.stripCommodityType) ? this.textCommodityType.Text : (senderButton.Owner.Equals(this.stripCommodity) ? this.textCommodity.Text : (senderButton.Owner.Equals(this.stripEmployee) ? this.textEmployee.Text : (senderButton.Owner.Equals(this.stripCustomer) ? this.textCustomer.Text : (senderButton.Owner.Equals(this.stripWarehouse) ? this.textWarehouse.Text : (senderButton.Owner.Equals(this.stripWarehouseReceipt) ? this.textWarehouseReceipt.Text : (senderButton.Owner.Equals(this.stripWarehouseAdjustmentType) ? this.textWarehouseAdjustmentType.Text : (senderButton.Owner.Equals(this.stripWarehouseIssue) ? this.textWarehouseIssue.Text : null)))))))).ToUpper();
 
-                            //    List<int?> ancestorIDs = filterTrees.Select(n => n.PrimaryID).ToList();
-                            //    IList<CommodityTree> enumerableFilterTree = this.commodityTrees.Where(w => !ancestorIDs.Contains(w.PrimaryID)).ToList();
+                                bool selected = senderButton.Tag.ToString().ToUpper() != "DESELECT";
 
-                            //    foreach (CommodityTree c in enumerableFilterTree) { c.Selected = false; }
-                            //}
+                                filterTrees.Each(filterItem =>
+                                {
+                                    if (senderButton.Tag.ToString().ToUpper() == "SELECTFILTER")
+                                        filterItem.Selected = filterItem.Code.ToUpper().IndexOf(textFilter) != -1 || (filterItem.Name != null && filterItem.Name.ToUpper().IndexOf(textFilter) != -1);
+                                    else
+                                        filterItem.Selected = selected;
+                                }); //dataTreeListView.RefreshObject(filterItem); NO NEED TO RefreshObject EVERY OBJECT. 
 
+
+                                if (!selected) filterTrees[0].Selected = true;
+                                dataTreeListView.RefreshObject(filterTrees[0]); //JUST RefreshObject THE FIRST OBJECT WHEN FINISH.
+                            }
+
+                        }
+                        if (senderButton.Tag.ToString().ToUpper() == "CLEAR")
+                        {
+                            TextBox textBoxCLEAR = senderButton.Owner.Equals(this.stripCommodityType) ? this.textCommodityType : (senderButton.Owner.Equals(this.stripCommodity) ? this.textCommodity : (senderButton.Owner.Equals(this.stripEmployee) ? this.textEmployee : (senderButton.Owner.Equals(this.stripCustomer) ? this.textCustomer : (senderButton.Owner.Equals(this.stripWarehouse) ? this.textWarehouse : (senderButton.Owner.Equals(this.stripWarehouseReceipt) ? this.textWarehouseReceipt : (senderButton.Owner.Equals(this.stripWarehouseAdjustmentType) ? this.textWarehouseAdjustmentType : (senderButton.Owner.Equals(this.stripWarehouseIssue) ? this.textWarehouseIssue : null)))))));
+                            textBoxCLEAR.Clear();
                         }
                     }
                 }
@@ -521,6 +538,39 @@ namespace TotalSmartCoding.Views.Generals
             catch { }
         }
 
+        private void textCLEAR_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                TextBox senderTextBox = sender as TextBox;
+                if (senderTextBox != null)
+                {
+                    DataTreeListView dataTreeListView = sender.Equals(this.textCommodityType) ? this.treeCommodityTypeID : (sender.Equals(this.textCommodity) ? this.treeCommodityID : (sender.Equals(this.textEmployee) ? this.treeEmployeeID : (sender.Equals(this.textCustomer) ? this.treeCustomerID : (sender.Equals(this.textWarehouse) ? this.treeWarehouseID : (sender.Equals(this.textWarehouseReceipt) ? this.treeWarehouseReceiptID : (sender.Equals(this.textWarehouseAdjustmentType) ? this.treeWarehouseAdjustmentTypeID : (sender.Equals(this.textWarehouseIssue) ? this.treeWarehouseIssueID : null)))))));
+                    IList<IFilterTree> dataSourceFilterTrees = (sender.Equals(this.textCommodityType) ? this.commodityTypeTrees.Cast<IFilterTree>().ToList() : (sender.Equals(this.textCommodity) ? this.commodityTrees.Cast<IFilterTree>().ToList() : (sender.Equals(this.textEmployee) ? this.employeeTrees.Cast<IFilterTree>().ToList() : (sender.Equals(this.textCustomer) ? this.customerTrees.Cast<IFilterTree>().ToList() : (sender.Equals(this.textWarehouse) ? this.warehouseTrees.Cast<IFilterTree>().ToList() : (sender.Equals(this.textWarehouseReceipt) ? this.warehouseReceiptTrees.Cast<IFilterTree>().ToList() : (sender.Equals(this.textWarehouseAdjustmentType) ? this.warehouseAdjustmentTypeTrees.Cast<IFilterTree>().ToList() : (sender.Equals(this.textWarehouseIssue) ? this.warehouseIssueTrees.Cast<IFilterTree>().ToList() : null))))))));
+
+                    if (dataTreeListView != null && dataSourceFilterTrees != null)
+                    {
+                        if (senderTextBox.Text != null && senderTextBox.Text != "") dataTreeListView.ExpandAll();
+
+                        OLVHelpers.ApplyFilters(dataTreeListView, senderTextBox.Text.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
+
+
+                        List<IFilterTree> filteredFilterTrees = dataTreeListView.FilteredObjects.Cast<IFilterTree>().ToList();
+                        if (filteredFilterTrees != null && filteredFilterTrees.Count() > 0)
+                        { //SEARCH FOR NOT MATCH ITEMS IN dataSourceFilterTrees FROM filteredFilterTrees  => then Deselect it.
+                            List<int?> primaryIDs = filteredFilterTrees.Select(n => n.PrimaryID).ToList(); //FILTERED PrimaryID
+                            IList<IFilterTree> notmatchFilterTrees = dataSourceFilterTrees.Where(w => !primaryIDs.Contains(w.PrimaryID)).ToList(); //FIND NOT MATCH ITEMS
+
+                            foreach (IFilterTree c in notmatchFilterTrees) { c.Selected = false; } //DESELECTED NOT MATCH ITEMS
+
+
+                            dataTreeListView.RefreshObject(filteredFilterTrees[0]); //NO NEED, BUT HERE: FOR SURE: WE RefreshObject THE FIRST OBJECT WHEN FINISH.
+                        }
+                    }
+                }
+            }
+            catch { }
+        }
     }
 
     public class FilterParameter

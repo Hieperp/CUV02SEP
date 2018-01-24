@@ -1443,6 +1443,86 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap check_Black_16 {
+            get {
+                object obj = ResourceManager.GetObject("check_Black_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap check_Black_20 {
+            get {
+                object obj = ResourceManager.GetObject("check_Black_20", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap check_Black_Light_16 {
+            get {
+                object obj = ResourceManager.GetObject("check_Black_Light_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap check_Circle_16 {
+            get {
+                object obj = ResourceManager.GetObject("check_Circle_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap check_Circle_20 {
+            get {
+                object obj = ResourceManager.GetObject("check_Circle_20", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap check_Filter_16 {
+            get {
+                object obj = ResourceManager.GetObject("check_Filter_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap check_Filter_20 {
+            get {
+                object obj = ResourceManager.GetObject("check_Filter_20", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap check_Filter_24 {
+            get {
+                object obj = ResourceManager.GetObject("check_Filter_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap check_Ok_16 {
             get {
                 object obj = ResourceManager.GetObject("check_Ok_16", resourceCulture);
@@ -1466,6 +1546,16 @@ namespace TotalSmartCoding.Properties {
         internal static System.Drawing.Bitmap Check_Saki_Ok {
             get {
                 object obj = ResourceManager.GetObject("Check-Saki-Ok", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap check_Simple_16 {
+            get {
+                object obj = ResourceManager.GetObject("check_Simple_16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

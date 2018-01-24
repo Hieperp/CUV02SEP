@@ -1191,6 +1191,15 @@
     <None Include="Resources\Empty_20.png" />
     <None Include="Resources\godown_14.png" />
     <None Include="Resources\backspace_l_R_16.png" />
+    <None Include="Resources\check_Filter_16.png" />
+    <None Include="Resources\check_Filter_20.png" />
+    <None Include="Resources\check_Filter_24.png" />
+    <None Include="Resources\check_Black_16.png" />
+    <None Include="Resources\check_Black_Light_16.png" />
+    <None Include="Resources\check_Black_20.png" />
+    <None Include="Resources\check_Simple_16.png" />
+    <None Include="Resources\check_Circle_16.png" />
+    <None Include="Resources\check_Circle_20.png" />
     <Content Include="SmartCodingSolution.ico" />
     <None Include="Resources\Yellow-cross.ico" />
     <None Include="Resources\White-Pallet.ico" />

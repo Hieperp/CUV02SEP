@@ -170,6 +170,7 @@
             this.buttonCommodityExpand = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator15 = new System.Windows.Forms.ToolStripSeparator();
             this.buttonCommoditySelect = new System.Windows.Forms.ToolStripButton();
+            this.buttonCommoditySelectFilter = new System.Windows.Forms.ToolStripButton();
             this.buttonCommodityDeselect = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator16 = new System.Windows.Forms.ToolStripSeparator();
             this.buttonCommodityClear = new System.Windows.Forms.ToolStripButton();
@@ -185,9 +186,16 @@
             this.buttonCommodityTypeExpand = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.buttonCommodityTypeSelect = new System.Windows.Forms.ToolStripButton();
+            this.buttonCommodityTypeSelectFilter = new System.Windows.Forms.ToolStripButton();
             this.buttonCommodityTypeDeselect = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
             this.buttonCommodityTypeClear = new System.Windows.Forms.ToolStripButton();
+            this.buttonEmployeeSelectFilter = new System.Windows.Forms.ToolStripButton();
+            this.buttonCustomerSelectFilter = new System.Windows.Forms.ToolStripButton();
+            this.buttonWarehouseSelectFilter = new System.Windows.Forms.ToolStripButton();
+            this.buttonWarehouseReceiptSelectFilter = new System.Windows.Forms.ToolStripButton();
+            this.buttonWarehouseAdjustmentTypeSelectFilter = new System.Windows.Forms.ToolStripButton();
+            this.buttonWarehouseIssueSelectFilter = new System.Windows.Forms.ToolStripButton();
             this.toolStripChildForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeCommodityID)).BeginInit();
             this.panelTop.SuspendLayout();
@@ -718,10 +726,11 @@
             // textWarehouseIssue
             // 
             this.textWarehouseIssue.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textWarehouseIssue.Location = new System.Drawing.Point(130, 0);
+            this.textWarehouseIssue.Location = new System.Drawing.Point(153, 0);
             this.textWarehouseIssue.Name = "textWarehouseIssue";
-            this.textWarehouseIssue.Size = new System.Drawing.Size(1089, 28);
+            this.textWarehouseIssue.Size = new System.Drawing.Size(1066, 28);
             this.textWarehouseIssue.TabIndex = 70;
+            this.textWarehouseIssue.TextChanged += new System.EventHandler(this.textCLEAR_TextChanged);
             // 
             // panel11
             // 
@@ -729,7 +738,7 @@
             this.panel11.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel11.Location = new System.Drawing.Point(0, 0);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(130, 41);
+            this.panel11.Size = new System.Drawing.Size(153, 41);
             this.panel11.TabIndex = 69;
             // 
             // stripWarehouseIssue
@@ -741,12 +750,13 @@
             this.buttonWarehouseIssueExpand,
             this.toolStripSeparator7,
             this.buttonWarehouseIssueSelect,
+            this.buttonWarehouseIssueSelectFilter,
             this.buttonWarehouseIssueDeselect,
             this.toolStripSeparator8,
             this.buttonWarehouseIssueClear});
             this.stripWarehouseIssue.Location = new System.Drawing.Point(0, 0);
             this.stripWarehouseIssue.Name = "stripWarehouseIssue";
-            this.stripWarehouseIssue.Size = new System.Drawing.Size(130, 27);
+            this.stripWarehouseIssue.Size = new System.Drawing.Size(153, 27);
             this.stripWarehouseIssue.TabIndex = 0;
             this.stripWarehouseIssue.Text = "Collapse All";
             // 
@@ -772,6 +782,7 @@
             this.buttonWarehouseIssueExpand.Size = new System.Drawing.Size(23, 24);
             this.buttonWarehouseIssueExpand.Text = "toolStripButton5";
             this.buttonWarehouseIssueExpand.ToolTipText = "Expand All";
+            this.buttonWarehouseIssueExpand.Click += new System.EventHandler(this.buttonCollapse_Click);
             // 
             // toolStripSeparator7
             // 
@@ -788,6 +799,7 @@
             this.buttonWarehouseIssueSelect.Size = new System.Drawing.Size(23, 24);
             this.buttonWarehouseIssueSelect.Text = "toolStripButton1";
             this.buttonWarehouseIssueSelect.ToolTipText = "Select All";
+            this.buttonWarehouseIssueSelect.Click += new System.EventHandler(this.buttonCollapse_Click);
             // 
             // buttonWarehouseIssueDeselect
             // 
@@ -799,6 +811,7 @@
             this.buttonWarehouseIssueDeselect.Size = new System.Drawing.Size(24, 24);
             this.buttonWarehouseIssueDeselect.Text = "toolStripButton3";
             this.buttonWarehouseIssueDeselect.ToolTipText = "Deselect All";
+            this.buttonWarehouseIssueDeselect.Click += new System.EventHandler(this.buttonCollapse_Click);
             // 
             // toolStripSeparator8
             // 
@@ -812,9 +825,10 @@
             this.buttonWarehouseIssueClear.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.buttonWarehouseIssueClear.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonWarehouseIssueClear.Name = "buttonWarehouseIssueClear";
-            this.buttonWarehouseIssueClear.Size = new System.Drawing.Size(23, 24);
+            this.buttonWarehouseIssueClear.Size = new System.Drawing.Size(23, 20);
             this.buttonWarehouseIssueClear.Text = "toolStripButton6";
             this.buttonWarehouseIssueClear.ToolTipText = "Clear Filters";
+            this.buttonWarehouseIssueClear.Click += new System.EventHandler(this.buttonCollapse_Click);
             // 
             // panelWarehouseAdjustmentTypeID
             // 
@@ -892,10 +906,11 @@
             // textWarehouseAdjustmentType
             // 
             this.textWarehouseAdjustmentType.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textWarehouseAdjustmentType.Location = new System.Drawing.Point(130, 0);
+            this.textWarehouseAdjustmentType.Location = new System.Drawing.Point(153, 0);
             this.textWarehouseAdjustmentType.Name = "textWarehouseAdjustmentType";
-            this.textWarehouseAdjustmentType.Size = new System.Drawing.Size(1089, 28);
+            this.textWarehouseAdjustmentType.Size = new System.Drawing.Size(1066, 28);
             this.textWarehouseAdjustmentType.TabIndex = 70;
+            this.textWarehouseAdjustmentType.TextChanged += new System.EventHandler(this.textCLEAR_TextChanged);
             // 
             // panel8
             // 
@@ -903,7 +918,7 @@
             this.panel8.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel8.Location = new System.Drawing.Point(0, 0);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(130, 52);
+            this.panel8.Size = new System.Drawing.Size(153, 52);
             this.panel8.TabIndex = 69;
             // 
             // stripWarehouseAdjustmentType
@@ -915,12 +930,13 @@
             this.buttonWarehouseAdjustmentTypeExpand,
             this.toolStripSeparator5,
             this.buttonWarehouseAdjustmentTypeSelect,
+            this.buttonWarehouseAdjustmentTypeSelectFilter,
             this.buttonWarehouseAdjustmentTypeDeselect,
             this.toolStripSeparator6,
             this.buttonWarehouseAdjustmentTypeClear});
             this.stripWarehouseAdjustmentType.Location = new System.Drawing.Point(0, 0);
             this.stripWarehouseAdjustmentType.Name = "stripWarehouseAdjustmentType";
-            this.stripWarehouseAdjustmentType.Size = new System.Drawing.Size(130, 27);
+            this.stripWarehouseAdjustmentType.Size = new System.Drawing.Size(153, 27);
             this.stripWarehouseAdjustmentType.TabIndex = 0;
             this.stripWarehouseAdjustmentType.Text = "Collapse All";
             // 
@@ -946,6 +962,7 @@
             this.buttonWarehouseAdjustmentTypeExpand.Size = new System.Drawing.Size(23, 24);
             this.buttonWarehouseAdjustmentTypeExpand.Text = "toolStripButton5";
             this.buttonWarehouseAdjustmentTypeExpand.ToolTipText = "Expand All";
+            this.buttonWarehouseAdjustmentTypeExpand.Click += new System.EventHandler(this.buttonCollapse_Click);
             // 
             // toolStripSeparator5
             // 
@@ -962,6 +979,7 @@
             this.buttonWarehouseAdjustmentTypeSelect.Size = new System.Drawing.Size(23, 24);
             this.buttonWarehouseAdjustmentTypeSelect.Text = "toolStripButton1";
             this.buttonWarehouseAdjustmentTypeSelect.ToolTipText = "Select All";
+            this.buttonWarehouseAdjustmentTypeSelect.Click += new System.EventHandler(this.buttonCollapse_Click);
             // 
             // buttonWarehouseAdjustmentTypeDeselect
             // 
@@ -973,6 +991,7 @@
             this.buttonWarehouseAdjustmentTypeDeselect.Size = new System.Drawing.Size(24, 24);
             this.buttonWarehouseAdjustmentTypeDeselect.Text = "toolStripButton3";
             this.buttonWarehouseAdjustmentTypeDeselect.ToolTipText = "Deselect All";
+            this.buttonWarehouseAdjustmentTypeDeselect.Click += new System.EventHandler(this.buttonCollapse_Click);
             // 
             // toolStripSeparator6
             // 
@@ -989,6 +1008,7 @@
             this.buttonWarehouseAdjustmentTypeClear.Size = new System.Drawing.Size(23, 24);
             this.buttonWarehouseAdjustmentTypeClear.Text = "toolStripButton6";
             this.buttonWarehouseAdjustmentTypeClear.ToolTipText = "Clear Filters";
+            this.buttonWarehouseAdjustmentTypeClear.Click += new System.EventHandler(this.buttonCollapse_Click);
             // 
             // panelWarehouseReceiptID
             // 
@@ -1066,10 +1086,11 @@
             // textWarehouseReceipt
             // 
             this.textWarehouseReceipt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textWarehouseReceipt.Location = new System.Drawing.Point(130, 0);
+            this.textWarehouseReceipt.Location = new System.Drawing.Point(153, 0);
             this.textWarehouseReceipt.Name = "textWarehouseReceipt";
-            this.textWarehouseReceipt.Size = new System.Drawing.Size(1089, 28);
+            this.textWarehouseReceipt.Size = new System.Drawing.Size(1066, 28);
             this.textWarehouseReceipt.TabIndex = 70;
+            this.textWarehouseReceipt.TextChanged += new System.EventHandler(this.textCLEAR_TextChanged);
             // 
             // panel5
             // 
@@ -1077,7 +1098,7 @@
             this.panel5.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel5.Location = new System.Drawing.Point(0, 0);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(130, 48);
+            this.panel5.Size = new System.Drawing.Size(153, 48);
             this.panel5.TabIndex = 69;
             // 
             // stripWarehouseReceipt
@@ -1089,12 +1110,13 @@
             this.buttonWarehouseReceiptExpand,
             this.toolStripSeparator3,
             this.buttonWarehouseReceiptSelect,
+            this.buttonWarehouseReceiptSelectFilter,
             this.buttonWarehouseReceiptDeselect,
             this.toolStripSeparator4,
             this.buttonWarehouseReceiptClear});
             this.stripWarehouseReceipt.Location = new System.Drawing.Point(0, 0);
             this.stripWarehouseReceipt.Name = "stripWarehouseReceipt";
-            this.stripWarehouseReceipt.Size = new System.Drawing.Size(130, 27);
+            this.stripWarehouseReceipt.Size = new System.Drawing.Size(153, 27);
             this.stripWarehouseReceipt.TabIndex = 0;
             this.stripWarehouseReceipt.Text = "Collapse All";
             // 
@@ -1120,6 +1142,7 @@
             this.buttonWarehouseReceiptExpand.Size = new System.Drawing.Size(23, 24);
             this.buttonWarehouseReceiptExpand.Text = "toolStripButton5";
             this.buttonWarehouseReceiptExpand.ToolTipText = "Expand All";
+            this.buttonWarehouseReceiptExpand.Click += new System.EventHandler(this.buttonCollapse_Click);
             // 
             // toolStripSeparator3
             // 
@@ -1136,6 +1159,7 @@
             this.buttonWarehouseReceiptSelect.Size = new System.Drawing.Size(23, 24);
             this.buttonWarehouseReceiptSelect.Text = "toolStripButton1";
             this.buttonWarehouseReceiptSelect.ToolTipText = "Select All";
+            this.buttonWarehouseReceiptSelect.Click += new System.EventHandler(this.buttonCollapse_Click);
             // 
             // buttonWarehouseReceiptDeselect
             // 
@@ -1147,6 +1171,7 @@
             this.buttonWarehouseReceiptDeselect.Size = new System.Drawing.Size(24, 24);
             this.buttonWarehouseReceiptDeselect.Text = "toolStripButton3";
             this.buttonWarehouseReceiptDeselect.ToolTipText = "Deselect All";
+            this.buttonWarehouseReceiptDeselect.Click += new System.EventHandler(this.buttonCollapse_Click);
             // 
             // toolStripSeparator4
             // 
@@ -1163,6 +1188,7 @@
             this.buttonWarehouseReceiptClear.Size = new System.Drawing.Size(23, 24);
             this.buttonWarehouseReceiptClear.Text = "toolStripButton6";
             this.buttonWarehouseReceiptClear.ToolTipText = "Clear Filters";
+            this.buttonWarehouseReceiptClear.Click += new System.EventHandler(this.buttonCollapse_Click);
             // 
             // panelWarehouseID
             // 
@@ -1240,10 +1266,11 @@
             // textWarehouse
             // 
             this.textWarehouse.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textWarehouse.Location = new System.Drawing.Point(130, 0);
+            this.textWarehouse.Location = new System.Drawing.Point(153, 0);
             this.textWarehouse.Name = "textWarehouse";
-            this.textWarehouse.Size = new System.Drawing.Size(1086, 28);
+            this.textWarehouse.Size = new System.Drawing.Size(1063, 28);
             this.textWarehouse.TabIndex = 70;
+            this.textWarehouse.TextChanged += new System.EventHandler(this.textCLEAR_TextChanged);
             // 
             // panel2
             // 
@@ -1251,7 +1278,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(130, 48);
+            this.panel2.Size = new System.Drawing.Size(153, 48);
             this.panel2.TabIndex = 69;
             // 
             // stripWarehouse
@@ -1263,12 +1290,13 @@
             this.buttonWarehouseExpand,
             this.toolStripSeparator1,
             this.buttonWarehouseSelect,
+            this.buttonWarehouseSelectFilter,
             this.buttonWarehouseDeselect,
             this.toolStripSeparator2,
             this.buttonWarehouseClear});
             this.stripWarehouse.Location = new System.Drawing.Point(0, 0);
             this.stripWarehouse.Name = "stripWarehouse";
-            this.stripWarehouse.Size = new System.Drawing.Size(130, 27);
+            this.stripWarehouse.Size = new System.Drawing.Size(153, 27);
             this.stripWarehouse.TabIndex = 0;
             this.stripWarehouse.Text = "Collapse All";
             // 
@@ -1294,6 +1322,7 @@
             this.buttonWarehouseExpand.Size = new System.Drawing.Size(23, 24);
             this.buttonWarehouseExpand.Text = "toolStripButton5";
             this.buttonWarehouseExpand.ToolTipText = "Expand All";
+            this.buttonWarehouseExpand.Click += new System.EventHandler(this.buttonCollapse_Click);
             // 
             // toolStripSeparator1
             // 
@@ -1310,6 +1339,7 @@
             this.buttonWarehouseSelect.Size = new System.Drawing.Size(23, 24);
             this.buttonWarehouseSelect.Text = "toolStripButton1";
             this.buttonWarehouseSelect.ToolTipText = "Select All";
+            this.buttonWarehouseSelect.Click += new System.EventHandler(this.buttonCollapse_Click);
             // 
             // buttonWarehouseDeselect
             // 
@@ -1321,6 +1351,7 @@
             this.buttonWarehouseDeselect.Size = new System.Drawing.Size(24, 24);
             this.buttonWarehouseDeselect.Text = "toolStripButton3";
             this.buttonWarehouseDeselect.ToolTipText = "Deselect All";
+            this.buttonWarehouseDeselect.Click += new System.EventHandler(this.buttonCollapse_Click);
             // 
             // toolStripSeparator2
             // 
@@ -1337,6 +1368,7 @@
             this.buttonWarehouseClear.Size = new System.Drawing.Size(23, 24);
             this.buttonWarehouseClear.Text = "toolStripButton6";
             this.buttonWarehouseClear.ToolTipText = "Clear Filters";
+            this.buttonWarehouseClear.Click += new System.EventHandler(this.buttonCollapse_Click);
             // 
             // panelCustomers
             // 
@@ -1424,10 +1456,11 @@
             // textCustomer
             // 
             this.textCustomer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textCustomer.Location = new System.Drawing.Point(130, 0);
+            this.textCustomer.Location = new System.Drawing.Point(153, 0);
             this.textCustomer.Name = "textCustomer";
-            this.textCustomer.Size = new System.Drawing.Size(663, 28);
+            this.textCustomer.Size = new System.Drawing.Size(640, 28);
             this.textCustomer.TabIndex = 70;
+            this.textCustomer.TextChanged += new System.EventHandler(this.textCLEAR_TextChanged);
             // 
             // panel17
             // 
@@ -1435,7 +1468,7 @@
             this.panel17.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel17.Location = new System.Drawing.Point(0, 0);
             this.panel17.Name = "panel17";
-            this.panel17.Size = new System.Drawing.Size(130, 45);
+            this.panel17.Size = new System.Drawing.Size(153, 45);
             this.panel17.TabIndex = 69;
             // 
             // stripCustomer
@@ -1447,12 +1480,13 @@
             this.buttonCustomerExpand,
             this.toolStripSeparator11,
             this.buttonCustomerSelect,
+            this.buttonCustomerSelectFilter,
             this.buttonCustomerDeselect,
             this.toolStripSeparator12,
             this.buttonCustomerClear});
             this.stripCustomer.Location = new System.Drawing.Point(0, 0);
             this.stripCustomer.Name = "stripCustomer";
-            this.stripCustomer.Size = new System.Drawing.Size(130, 27);
+            this.stripCustomer.Size = new System.Drawing.Size(153, 27);
             this.stripCustomer.TabIndex = 0;
             this.stripCustomer.Text = "Collapse All";
             // 
@@ -1478,6 +1512,7 @@
             this.buttonCustomerExpand.Size = new System.Drawing.Size(23, 24);
             this.buttonCustomerExpand.Text = "toolStripButton5";
             this.buttonCustomerExpand.ToolTipText = "Expand All";
+            this.buttonCustomerExpand.Click += new System.EventHandler(this.buttonCollapse_Click);
             // 
             // toolStripSeparator11
             // 
@@ -1494,6 +1529,7 @@
             this.buttonCustomerSelect.Size = new System.Drawing.Size(23, 24);
             this.buttonCustomerSelect.Text = "toolStripButton1";
             this.buttonCustomerSelect.ToolTipText = "Select All";
+            this.buttonCustomerSelect.Click += new System.EventHandler(this.buttonCollapse_Click);
             // 
             // buttonCustomerDeselect
             // 
@@ -1505,6 +1541,7 @@
             this.buttonCustomerDeselect.Size = new System.Drawing.Size(24, 24);
             this.buttonCustomerDeselect.Text = "toolStripButton3";
             this.buttonCustomerDeselect.ToolTipText = "Deselect All";
+            this.buttonCustomerDeselect.Click += new System.EventHandler(this.buttonCollapse_Click);
             // 
             // toolStripSeparator12
             // 
@@ -1521,6 +1558,7 @@
             this.buttonCustomerClear.Size = new System.Drawing.Size(23, 24);
             this.buttonCustomerClear.Text = "toolStripButton6";
             this.buttonCustomerClear.ToolTipText = "Clear Filters";
+            this.buttonCustomerClear.Click += new System.EventHandler(this.buttonCollapse_Click);
             // 
             // panel12
             // 
@@ -1548,14 +1586,14 @@
             this.treeEmployeeID.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeEmployeeID.FullRowSelect = true;
             this.treeEmployeeID.KeyAspectName = "NodeID";
-            this.treeEmployeeID.Location = new System.Drawing.Point(0, 45);
+            this.treeEmployeeID.Location = new System.Drawing.Point(0, 71);
             this.treeEmployeeID.Name = "treeEmployeeID";
             this.treeEmployeeID.OwnerDraw = true;
             this.treeEmployeeID.ParentKeyAspectName = "ParentNodeID";
             this.treeEmployeeID.RootKeyValueString = "";
             this.treeEmployeeID.ShowGroups = false;
             this.treeEmployeeID.ShowKeyColumns = false;
-            this.treeEmployeeID.Size = new System.Drawing.Size(426, 54);
+            this.treeEmployeeID.Size = new System.Drawing.Size(426, 28);
             this.treeEmployeeID.TabIndex = 67;
             this.treeEmployeeID.UseCompatibleStateImageBehavior = false;
             this.treeEmployeeID.UseFilterIndicator = true;
@@ -1594,16 +1632,17 @@
             this.panel13.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel13.Location = new System.Drawing.Point(0, 0);
             this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(426, 45);
+            this.panel13.Size = new System.Drawing.Size(426, 71);
             this.panel13.TabIndex = 69;
             // 
             // textEmployee
             // 
             this.textEmployee.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textEmployee.Location = new System.Drawing.Point(130, 0);
+            this.textEmployee.Location = new System.Drawing.Point(153, 0);
             this.textEmployee.Name = "textEmployee";
-            this.textEmployee.Size = new System.Drawing.Size(296, 28);
+            this.textEmployee.Size = new System.Drawing.Size(273, 28);
             this.textEmployee.TabIndex = 70;
+            this.textEmployee.TextChanged += new System.EventHandler(this.textCLEAR_TextChanged);
             // 
             // panel14
             // 
@@ -1611,7 +1650,7 @@
             this.panel14.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel14.Location = new System.Drawing.Point(0, 0);
             this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(130, 45);
+            this.panel14.Size = new System.Drawing.Size(153, 71);
             this.panel14.TabIndex = 69;
             // 
             // stripEmployee
@@ -1623,12 +1662,13 @@
             this.buttonEmployeeExpand,
             this.toolStripSeparator9,
             this.buttonEmployeeSelect,
+            this.buttonEmployeeSelectFilter,
             this.buttonEmployeeDeselect,
             this.toolStripSeparator10,
             this.buttonEmployeeClear});
             this.stripEmployee.Location = new System.Drawing.Point(0, 0);
             this.stripEmployee.Name = "stripEmployee";
-            this.stripEmployee.Size = new System.Drawing.Size(130, 27);
+            this.stripEmployee.Size = new System.Drawing.Size(153, 27);
             this.stripEmployee.TabIndex = 0;
             this.stripEmployee.Text = "Collapse All";
             // 
@@ -1654,6 +1694,7 @@
             this.buttonEmployeeExpand.Size = new System.Drawing.Size(23, 24);
             this.buttonEmployeeExpand.Text = "toolStripButton5";
             this.buttonEmployeeExpand.ToolTipText = "Expand All";
+            this.buttonEmployeeExpand.Click += new System.EventHandler(this.buttonCollapse_Click);
             // 
             // toolStripSeparator9
             // 
@@ -1670,6 +1711,7 @@
             this.buttonEmployeeSelect.Size = new System.Drawing.Size(23, 24);
             this.buttonEmployeeSelect.Text = "toolStripButton1";
             this.buttonEmployeeSelect.ToolTipText = "Select All";
+            this.buttonEmployeeSelect.Click += new System.EventHandler(this.buttonCollapse_Click);
             // 
             // buttonEmployeeDeselect
             // 
@@ -1681,6 +1723,7 @@
             this.buttonEmployeeDeselect.Size = new System.Drawing.Size(24, 24);
             this.buttonEmployeeDeselect.Text = "toolStripButton3";
             this.buttonEmployeeDeselect.ToolTipText = "Deselect All";
+            this.buttonEmployeeDeselect.Click += new System.EventHandler(this.buttonCollapse_Click);
             // 
             // toolStripSeparator10
             // 
@@ -1697,6 +1740,7 @@
             this.buttonEmployeeClear.Size = new System.Drawing.Size(23, 24);
             this.buttonEmployeeClear.Text = "toolStripButton6";
             this.buttonEmployeeClear.ToolTipText = "Clear Filters";
+            this.buttonEmployeeClear.Click += new System.EventHandler(this.buttonCollapse_Click);
             // 
             // panelCommodities
             // 
@@ -1730,10 +1774,11 @@
             // textCommodity
             // 
             this.textCommodity.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textCommodity.Location = new System.Drawing.Point(130, 0);
+            this.textCommodity.Location = new System.Drawing.Point(153, 0);
             this.textCommodity.Name = "textCommodity";
-            this.textCommodity.Size = new System.Drawing.Size(663, 28);
+            this.textCommodity.Size = new System.Drawing.Size(640, 28);
             this.textCommodity.TabIndex = 70;
+            this.textCommodity.TextChanged += new System.EventHandler(this.textCLEAR_TextChanged);
             // 
             // panel23
             // 
@@ -1741,7 +1786,7 @@
             this.panel23.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel23.Location = new System.Drawing.Point(0, 0);
             this.panel23.Name = "panel23";
-            this.panel23.Size = new System.Drawing.Size(130, 58);
+            this.panel23.Size = new System.Drawing.Size(153, 58);
             this.panel23.TabIndex = 69;
             // 
             // stripCommodity
@@ -1753,12 +1798,13 @@
             this.buttonCommodityExpand,
             this.toolStripSeparator15,
             this.buttonCommoditySelect,
+            this.buttonCommoditySelectFilter,
             this.buttonCommodityDeselect,
             this.toolStripSeparator16,
             this.buttonCommodityClear});
             this.stripCommodity.Location = new System.Drawing.Point(0, 0);
             this.stripCommodity.Name = "stripCommodity";
-            this.stripCommodity.Size = new System.Drawing.Size(130, 27);
+            this.stripCommodity.Size = new System.Drawing.Size(153, 27);
             this.stripCommodity.TabIndex = 0;
             this.stripCommodity.Text = "Collapse All";
             // 
@@ -1806,6 +1852,19 @@
             this.buttonCommoditySelect.ToolTipText = "Select All";
             this.buttonCommoditySelect.Click += new System.EventHandler(this.buttonCollapse_Click);
             // 
+            // buttonCommoditySelectFilter
+            // 
+            this.buttonCommoditySelectFilter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.buttonCommoditySelectFilter.Image = global::TotalSmartCoding.Properties.Resources.check_Circle_20;
+            this.buttonCommoditySelectFilter.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonCommoditySelectFilter.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonCommoditySelectFilter.Name = "buttonCommoditySelectFilter";
+            this.buttonCommoditySelectFilter.Size = new System.Drawing.Size(24, 24);
+            this.buttonCommoditySelectFilter.Tag = "SELECTFILTER";
+            this.buttonCommoditySelectFilter.Text = "toolStripButton1";
+            this.buttonCommoditySelectFilter.ToolTipText = "Select Filtered Items";
+            this.buttonCommoditySelectFilter.Click += new System.EventHandler(this.buttonCollapse_Click);
+            // 
             // buttonCommodityDeselect
             // 
             this.buttonCommodityDeselect.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -1831,9 +1890,11 @@
             this.buttonCommodityClear.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.buttonCommodityClear.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonCommodityClear.Name = "buttonCommodityClear";
-            this.buttonCommodityClear.Size = new System.Drawing.Size(23, 20);
+            this.buttonCommodityClear.Size = new System.Drawing.Size(23, 24);
+            this.buttonCommodityClear.Tag = "CLEAR";
             this.buttonCommodityClear.Text = "toolStripButton6";
             this.buttonCommodityClear.ToolTipText = "Clear Filters";
+            this.buttonCommodityClear.Click += new System.EventHandler(this.buttonCollapse_Click);
             // 
             // panel18
             // 
@@ -1905,10 +1966,11 @@
             // textCommodityType
             // 
             this.textCommodityType.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textCommodityType.Location = new System.Drawing.Point(130, 0);
+            this.textCommodityType.Location = new System.Drawing.Point(153, 0);
             this.textCommodityType.Name = "textCommodityType";
-            this.textCommodityType.Size = new System.Drawing.Size(296, 28);
+            this.textCommodityType.Size = new System.Drawing.Size(273, 28);
             this.textCommodityType.TabIndex = 70;
+            this.textCommodityType.TextChanged += new System.EventHandler(this.textCLEAR_TextChanged);
             // 
             // panel20
             // 
@@ -1916,7 +1978,7 @@
             this.panel20.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel20.Location = new System.Drawing.Point(0, 0);
             this.panel20.Name = "panel20";
-            this.panel20.Size = new System.Drawing.Size(130, 64);
+            this.panel20.Size = new System.Drawing.Size(153, 64);
             this.panel20.TabIndex = 69;
             // 
             // stripCommodityType
@@ -1928,12 +1990,13 @@
             this.buttonCommodityTypeExpand,
             this.toolStripSeparator13,
             this.buttonCommodityTypeSelect,
+            this.buttonCommodityTypeSelectFilter,
             this.buttonCommodityTypeDeselect,
             this.toolStripSeparator14,
             this.buttonCommodityTypeClear});
             this.stripCommodityType.Location = new System.Drawing.Point(0, 0);
             this.stripCommodityType.Name = "stripCommodityType";
-            this.stripCommodityType.Size = new System.Drawing.Size(130, 27);
+            this.stripCommodityType.Size = new System.Drawing.Size(153, 27);
             this.stripCommodityType.TabIndex = 0;
             this.stripCommodityType.Text = "Collapse All";
             // 
@@ -1960,6 +2023,7 @@
             this.buttonCommodityTypeExpand.Size = new System.Drawing.Size(23, 24);
             this.buttonCommodityTypeExpand.Text = "toolStripButton5";
             this.buttonCommodityTypeExpand.ToolTipText = "Expand All";
+            this.buttonCommodityTypeExpand.Click += new System.EventHandler(this.buttonCollapse_Click);
             // 
             // toolStripSeparator13
             // 
@@ -1976,6 +2040,20 @@
             this.buttonCommodityTypeSelect.Size = new System.Drawing.Size(23, 24);
             this.buttonCommodityTypeSelect.Text = "toolStripButton1";
             this.buttonCommodityTypeSelect.ToolTipText = "Select All";
+            this.buttonCommodityTypeSelect.Click += new System.EventHandler(this.buttonCollapse_Click);
+            // 
+            // buttonCommodityTypeSelectFilter
+            // 
+            this.buttonCommodityTypeSelectFilter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.buttonCommodityTypeSelectFilter.Image = global::TotalSmartCoding.Properties.Resources.check_Circle_20;
+            this.buttonCommodityTypeSelectFilter.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonCommodityTypeSelectFilter.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonCommodityTypeSelectFilter.Name = "buttonCommodityTypeSelectFilter";
+            this.buttonCommodityTypeSelectFilter.Size = new System.Drawing.Size(24, 24);
+            this.buttonCommodityTypeSelectFilter.Tag = "SELECTFILTER";
+            this.buttonCommodityTypeSelectFilter.Text = "toolStripButton1";
+            this.buttonCommodityTypeSelectFilter.ToolTipText = "Select Filtered Items";
+            this.buttonCommodityTypeSelectFilter.Click += new System.EventHandler(this.buttonCollapse_Click);
             // 
             // buttonCommodityTypeDeselect
             // 
@@ -1987,6 +2065,7 @@
             this.buttonCommodityTypeDeselect.Size = new System.Drawing.Size(24, 24);
             this.buttonCommodityTypeDeselect.Text = "toolStripButton3";
             this.buttonCommodityTypeDeselect.ToolTipText = "Deselect All";
+            this.buttonCommodityTypeDeselect.Click += new System.EventHandler(this.buttonCollapse_Click);
             // 
             // toolStripSeparator14
             // 
@@ -2003,6 +2082,85 @@
             this.buttonCommodityTypeClear.Size = new System.Drawing.Size(23, 24);
             this.buttonCommodityTypeClear.Text = "toolStripButton6";
             this.buttonCommodityTypeClear.ToolTipText = "Clear Filters";
+            this.buttonCommodityTypeClear.Click += new System.EventHandler(this.buttonCollapse_Click);
+            // 
+            // buttonEmployeeSelectFilter
+            // 
+            this.buttonEmployeeSelectFilter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.buttonEmployeeSelectFilter.Image = global::TotalSmartCoding.Properties.Resources.check_Circle_20;
+            this.buttonEmployeeSelectFilter.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonEmployeeSelectFilter.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonEmployeeSelectFilter.Name = "buttonEmployeeSelectFilter";
+            this.buttonEmployeeSelectFilter.Size = new System.Drawing.Size(24, 24);
+            this.buttonEmployeeSelectFilter.Tag = "SELECTFILTER";
+            this.buttonEmployeeSelectFilter.Text = "toolStripButton3";
+            this.buttonEmployeeSelectFilter.ToolTipText = "Select Filtered Items";
+            this.buttonEmployeeSelectFilter.Click += new System.EventHandler(this.buttonCollapse_Click);
+            // 
+            // buttonCustomerSelectFilter
+            // 
+            this.buttonCustomerSelectFilter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.buttonCustomerSelectFilter.Image = global::TotalSmartCoding.Properties.Resources.check_Circle_20;
+            this.buttonCustomerSelectFilter.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonCustomerSelectFilter.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonCustomerSelectFilter.Name = "buttonCustomerSelectFilter";
+            this.buttonCustomerSelectFilter.Size = new System.Drawing.Size(24, 24);
+            this.buttonCustomerSelectFilter.Tag = "SELECTFILTER";
+            this.buttonCustomerSelectFilter.Text = "toolStripButton4";
+            this.buttonCustomerSelectFilter.ToolTipText = "Select Filtered Items";
+            this.buttonCustomerSelectFilter.Click += new System.EventHandler(this.buttonCollapse_Click);
+            // 
+            // buttonWarehouseSelectFilter
+            // 
+            this.buttonWarehouseSelectFilter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.buttonWarehouseSelectFilter.Image = global::TotalSmartCoding.Properties.Resources.check_Circle_20;
+            this.buttonWarehouseSelectFilter.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonWarehouseSelectFilter.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonWarehouseSelectFilter.Name = "buttonWarehouseSelectFilter";
+            this.buttonWarehouseSelectFilter.Size = new System.Drawing.Size(24, 24);
+            this.buttonWarehouseSelectFilter.Tag = "SELECTFILTER";
+            this.buttonWarehouseSelectFilter.Text = "toolStripButton5";
+            this.buttonWarehouseSelectFilter.ToolTipText = "Select Filtered Items";
+            this.buttonWarehouseSelectFilter.Click += new System.EventHandler(this.buttonCollapse_Click);
+            // 
+            // buttonWarehouseReceiptSelectFilter
+            // 
+            this.buttonWarehouseReceiptSelectFilter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.buttonWarehouseReceiptSelectFilter.Image = global::TotalSmartCoding.Properties.Resources.check_Circle_20;
+            this.buttonWarehouseReceiptSelectFilter.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonWarehouseReceiptSelectFilter.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonWarehouseReceiptSelectFilter.Name = "buttonWarehouseReceiptSelectFilter";
+            this.buttonWarehouseReceiptSelectFilter.Size = new System.Drawing.Size(24, 24);
+            this.buttonWarehouseReceiptSelectFilter.Tag = "SELECTFILTER";
+            this.buttonWarehouseReceiptSelectFilter.Text = "toolStripButton6";
+            this.buttonWarehouseReceiptSelectFilter.ToolTipText = "Select Filtered Items";
+            this.buttonWarehouseReceiptSelectFilter.Click += new System.EventHandler(this.buttonCollapse_Click);
+            // 
+            // buttonWarehouseAdjustmentTypeSelectFilter
+            // 
+            this.buttonWarehouseAdjustmentTypeSelectFilter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.buttonWarehouseAdjustmentTypeSelectFilter.Image = global::TotalSmartCoding.Properties.Resources.check_Circle_20;
+            this.buttonWarehouseAdjustmentTypeSelectFilter.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonWarehouseAdjustmentTypeSelectFilter.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonWarehouseAdjustmentTypeSelectFilter.Name = "buttonWarehouseAdjustmentTypeSelectFilter";
+            this.buttonWarehouseAdjustmentTypeSelectFilter.Size = new System.Drawing.Size(24, 24);
+            this.buttonWarehouseAdjustmentTypeSelectFilter.Tag = "SELECTFILTER";
+            this.buttonWarehouseAdjustmentTypeSelectFilter.Text = "toolStripButton7";
+            this.buttonWarehouseAdjustmentTypeSelectFilter.ToolTipText = "Select Filtered Items";
+            this.buttonWarehouseAdjustmentTypeSelectFilter.Click += new System.EventHandler(this.buttonCollapse_Click);
+            // 
+            // buttonWarehouseIssueSelectFilter
+            // 
+            this.buttonWarehouseIssueSelectFilter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.buttonWarehouseIssueSelectFilter.Image = global::TotalSmartCoding.Properties.Resources.check_Circle_20;
+            this.buttonWarehouseIssueSelectFilter.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonWarehouseIssueSelectFilter.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonWarehouseIssueSelectFilter.Name = "buttonWarehouseIssueSelectFilter";
+            this.buttonWarehouseIssueSelectFilter.Size = new System.Drawing.Size(24, 24);
+            this.buttonWarehouseIssueSelectFilter.Tag = "SELECTFILTER";
+            this.buttonWarehouseIssueSelectFilter.Text = "toolStripButton8";
+            this.buttonWarehouseIssueSelectFilter.ToolTipText = "Select Filtered Items";
+            this.buttonWarehouseIssueSelectFilter.Click += new System.EventHandler(this.buttonCollapse_Click);
             // 
             // Reports
             // 
@@ -2265,6 +2423,14 @@
         private System.Windows.Forms.ToolStripButton buttonCommodityTypeDeselect;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator14;
         private System.Windows.Forms.ToolStripButton buttonCommodityTypeClear;
+        private System.Windows.Forms.ToolStripButton buttonCommoditySelectFilter;
+        private System.Windows.Forms.ToolStripButton buttonCommodityTypeSelectFilter;
+        private System.Windows.Forms.ToolStripButton buttonWarehouseIssueSelectFilter;
+        private System.Windows.Forms.ToolStripButton buttonWarehouseAdjustmentTypeSelectFilter;
+        private System.Windows.Forms.ToolStripButton buttonWarehouseReceiptSelectFilter;
+        private System.Windows.Forms.ToolStripButton buttonWarehouseSelectFilter;
+        private System.Windows.Forms.ToolStripButton buttonCustomerSelectFilter;
+        private System.Windows.Forms.ToolStripButton buttonEmployeeSelectFilter;
 
     }
 }
