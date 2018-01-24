@@ -5383,9 +5383,9 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Void_24 {
+        internal static System.Drawing.Bitmap Void_22 {
             get {
-                object obj = ResourceManager.GetObject("Void-24", resourceCulture);
+                object obj = ResourceManager.GetObject("Void_22", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -5393,9 +5393,9 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Void_32 {
+        internal static System.Drawing.Bitmap Void_24 {
             get {
-                object obj = ResourceManager.GetObject("Void-32", resourceCulture);
+                object obj = ResourceManager.GetObject("Void-24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -537,11 +537,11 @@
             // buttonVoid
             // 
             this.buttonVoid.Enabled = false;
-            this.buttonVoid.Image = global::TotalSmartCoding.Properties.Resources.Void_24;
+            this.buttonVoid.Image = global::TotalSmartCoding.Properties.Resources.Void_22;
             this.buttonVoid.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.buttonVoid.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonVoid.Name = "buttonVoid";
-            this.buttonVoid.Size = new System.Drawing.Size(68, 52);
+            this.buttonVoid.Size = new System.Drawing.Size(66, 52);
             this.buttonVoid.Text = "Void";
             this.buttonVoid.Click += new System.EventHandler(this.buttonVoid_Click);
             // 
