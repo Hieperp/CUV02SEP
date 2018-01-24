@@ -81,19 +81,19 @@ namespace TotalSmartCoding.Views.Generals
                 this.customTabBatch.DisplayStyle = TabStyle.VisualStudio;
                 this.customTabBatch.DisplayStyleProvider.ImageAlign = ContentAlignment.MiddleLeft;
 
-                this.tabPageWarehouses.Controls.Add(this.treeWarehouseID);
+                this.tabPageWarehouses.Controls.Add(this.panelWarehouseID);
                 this.tabPageCommodities.Controls.Add(this.panelCommodities);
                 this.tabPageCustomers.Controls.Add(this.panelCustomers);
-                this.tabPageWarehouseIssues.Controls.Add(this.treeWarehouseIssueID);
-                this.tabPageWarehouseReceipts.Controls.Add(this.treeWarehouseReceiptID);
-                this.tabPageWarehouseAdjustmentTypes.Controls.Add(this.treeWarehouseAdjustmentTypeID);
+                this.tabPageWarehouseIssues.Controls.Add(this.panelWarehouseIssueID);
+                this.tabPageWarehouseReceipts.Controls.Add(this.panelWarehouseReceiptID);
+                this.tabPageWarehouseAdjustmentTypes.Controls.Add(this.panelWarehouseAdjustmentTypeID);
 
-                this.treeWarehouseID.Dock = DockStyle.Fill;
+                this.panelWarehouseID.Dock = DockStyle.Fill;
                 this.panelCommodities.Dock = DockStyle.Fill;
                 this.panelCustomers.Dock = DockStyle.Fill;
-                this.treeWarehouseIssueID.Dock = DockStyle.Fill;
-                this.treeWarehouseReceiptID.Dock = DockStyle.Fill;
-                this.treeWarehouseAdjustmentTypeID.Dock = DockStyle.Fill;
+                this.panelWarehouseIssueID.Dock = DockStyle.Fill;
+                this.panelWarehouseReceiptID.Dock = DockStyle.Fill;
+                this.panelWarehouseAdjustmentTypeID.Dock = DockStyle.Fill;
 
                 this.customTabBatch.Dock = DockStyle.Fill;
                 this.panelCenter.Controls.Add(this.customTabBatch);
@@ -487,6 +487,38 @@ namespace TotalSmartCoding.Views.Generals
                     }
                 }
             }
+        }
+
+        private void buttonCollapse_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ToolStripButton senderButton = sender as ToolStripButton;
+                if (sender != null)
+                {
+                    DataTreeListView dataTreeListView = senderButton.Owner.Equals(this.stripCommodityType) ? this.treeCommodityTypeID : (senderButton.Owner.Equals(this.stripCommodity) ? this.treeCommodityID : (senderButton.Owner.Equals(this.stripEmployee) ? this.treeEmployeeID : (senderButton.Owner.Equals(this.stripCustomer) ? this.treeCustomerID : (senderButton.Owner.Equals(this.stripWarehouse) ? this.treeWarehouseID : (senderButton.Owner.Equals(this.stripWarehouseReceipt) ? this.treeWarehouseReceiptID : (senderButton.Owner.Equals(this.stripWarehouseAdjustmentType) ? this.treeWarehouseAdjustmentTypeID : (senderButton.Owner.Equals(this.stripWarehouseIssue) ? this.treeWarehouseIssueID : null)))))));
+                    if (dataTreeListView != null)
+                    {
+                        if (senderButton.Tag.ToString().ToUpper() == "COLLAPSE") { dataTreeListView.CollapseAll(); dataTreeListView.Expand(dataTreeListView.GetModelObject(0)); }
+                        if (senderButton.Tag.ToString().ToUpper() == "EXPAND") dataTreeListView.ExpandAll();
+                        if (senderButton.Tag.ToString().ToUpper() == "SELECT")
+                        {
+                            List<IFilterTree> filterTrees = dataTreeListView.FilteredObjects.Cast<IFilterTree>().ToList();
+                            if (filterTrees != null && filterTrees.Count() > 0)
+                                //{
+                                filterTrees.Each(t => t.Selected = true);
+
+                            //    List<int?> ancestorIDs = filterTrees.Select(n => n.PrimaryID).ToList();
+                            //    IList<CommodityTree> enumerableFilterTree = this.commodityTrees.Where(w => !ancestorIDs.Contains(w.PrimaryID)).ToList();
+
+                            //    foreach (CommodityTree c in enumerableFilterTree) { c.Selected = false; }
+                            //}
+
+                        }
+                    }
+                }
+            }
+            catch { }
         }
 
     }
