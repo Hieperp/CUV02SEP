@@ -130,8 +130,8 @@ namespace TotalSmartCoding.Views.Mains
                 this.buttonNaviBarHeaderVisibleBinding.Parse += new ConvertEventHandler(buttonNaviBarHeaderVisibleBinding_Parse);
                 this.buttonNaviBarHeaderVisibleBinding.Format += new ConvertEventHandler(buttonNaviBarHeaderVisibleBinding_Format);
 
-                this.listViewTaskMaster.Dock = DockStyle.Fill;
-                this.listViewTaskMaster.Columns.Add(new ColumnHeader() { Width = this.listViewTaskMaster.Width });
+                //this.fastNMVNTask.Dock = DockStyle.Fill;
+                //this.fastNMVNTask.Columns.Add(new ColumnHeader() { Width = this.fastNMVNTask.Width });
 
                 if (loadedView != null)
                 {
@@ -202,7 +202,7 @@ namespace TotalSmartCoding.Views.Mains
 
         private void naviBarModuleMaster_CollapsedChanged(object sender, EventArgs e)
         {
-            this.listViewTaskMaster.Columns[0].Width = this.listViewTaskMaster.Columns[0].Width + (this.naviBarModuleMaster.Collapsed ? -4 : 4);
+            //this.fastNMVNTask.Columns[0].Width = this.fastNMVNTask.Columns[0].Width + (this.naviBarModuleMaster.Collapsed ? -4 : 4);
         }
 
         private void CommonControl_BindingComplete(object sender, BindingCompleteEventArgs e)
@@ -223,11 +223,12 @@ namespace TotalSmartCoding.Views.Mains
             {
                 this.buttonNaviBarHeader.Text = this.naviBarModuleMaster.ActiveBand.Text;
 
-                this.listViewTaskMaster.SelectedItems.Clear();
-                this.listViewTaskMaster.Parent = null;
-                this.naviBarModuleMaster.ActiveBand.ClientArea.Controls.Add(this.listViewTaskMaster);
-                this.listViewTaskMaster.Visible = true;
-                SetWindowTheme(listViewTaskMaster.Handle, "explorer", null);
+                //this.fastNMVNTask.SelectedItems.Clear();
+                this.fastNMVNTask.Parent = null;
+                this.naviBarModuleMaster.ActiveBand.ClientArea.Controls.Add(this.fastNMVNTask);
+                this.fastNMVNTask.Dock = DockStyle.Fill;
+                this.fastNMVNTask.Visible = true;
+                //SetWindowTheme(fastNMVNTask.Handle, "explorer", null);
 
                 int moduleID;
                 if (int.TryParse(this.naviBarModuleMaster.ActiveBand.Tag.ToString(), out  moduleID))
@@ -236,12 +237,12 @@ namespace TotalSmartCoding.Views.Mains
 
                     if (moduleID == 9) //Reports
                     {
-                        if (this.listViewTaskMaster.Items.Count > 0)
-                        {
-                            this.listViewTaskMaster.Items[0].Selected = true;
-                            if (!this.naviBarModuleMaster.Collapsed)
-                                buttonNaviBarHeader_Click(this.buttonNaviBarHeader, new EventArgs());
-                        }
+                        //if (this.fastNMVNTask.Items.Count > 0)
+                        //{
+                        //    this.fastNMVNTask.Items[0].Selected = true;
+                        //    if (!this.naviBarModuleMaster.Collapsed)
+                        //        buttonNaviBarHeader_Click(this.buttonNaviBarHeader, new EventArgs());
+                        //}
                     }
                 }
             }
@@ -287,11 +288,12 @@ namespace TotalSmartCoding.Views.Mains
             try
             {
 
-                //////fastNMVNTaskIndex.UseTranslucentHotItem = true;
+                this.fastNMVNTask.SetObjects(this.moduleAPIs.GetModuleViewDetails(moduleID));
+                this.fastNMVNTask.UseTranslucentHotItem = true;
 
-                //fastNMVNTaskIndex.UseTranslucentHotItem = false;
-                //fastNMVNTaskIndex.UseHotItem = true;
-                //fastNMVNTaskIndex.UseExplorerTheme = false;
+                //fastNMVNTask.UseTranslucentHotItem = false;
+                //fastNMVNTask.UseHotItem = true;
+                //fastNMVNTask.UseExplorerTheme = false;
 
                 //RowBorderDecoration rbd = new RowBorderDecoration();
                 //rbd.BorderPen = new Pen(Color.SeaGreen, 2);
@@ -299,20 +301,20 @@ namespace TotalSmartCoding.Views.Mains
                 //rbd.CornerRounding = 4.0f;
                 //HotItemStyle hotItemStyle2 = new HotItemStyle();
                 //hotItemStyle2.Decoration = rbd;
-                //fastNMVNTaskIndex.HotItemStyle = hotItemStyle2;
+                //fastNMVNTask.HotItemStyle = hotItemStyle2;
 
 
 
-                this.listViewTaskMaster.Items.Clear();
+                //this.fastNMVNTask.Items.Clear();
 
-                IList<ModuleViewDetail> moduleViewDetails = this.moduleAPIs.GetModuleViewDetails(moduleID);
+                //IList<ModuleViewDetail> moduleViewDetails = this.moduleAPIs.GetModuleViewDetails(moduleID);
 
-                foreach (ModuleViewDetail moduleViewDetail in moduleViewDetails)
-                {
-                    this.listViewTaskMaster.Items.Add(moduleViewDetail.ModuleDetailID.ToString(), moduleViewDetail.Name, moduleViewDetail.ImageIndex);
-                }
+                //foreach (ModuleViewDetail moduleViewDetail in moduleViewDetails)
+                //{
+                //    this.fastNMVNTask.Items.Add(moduleViewDetail.ModuleDetailID.ToString(), moduleViewDetail.Name, moduleViewDetail.ImageIndex);
+                //}
 
-                SetWindowTheme(listViewTaskMaster.Handle, "explorer", null);
+                //SetWindowTheme(fastNMVNTask.Handle, "explorer", null);
             }
             catch (Exception exception)
             {
@@ -321,14 +323,15 @@ namespace TotalSmartCoding.Views.Mains
 
         }
 
-        private void listViewTaskMaster_SelectedIndexChanged(object sender, EventArgs e)
+        private void fastNMVNTask_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                if (this.listViewTaskMaster.SelectedItems.Count > 0)
+                return;
+                if (this.fastNMVNTask.SelectedItems.Count > 0)
                 {
                     //Get taskID by ListViewItem key (The key defined when add ListViewItem to ListView)
-                    int taskID; if (!int.TryParse(this.listViewTaskMaster.SelectedItems[0].Name, out taskID)) return;
+                    int taskID; if (!int.TryParse(this.fastNMVNTask.SelectedItems[0].Name, out taskID)) return;
 
                     //Find and active the current form
                     for (int i = 0; i < this.MdiChildren.Length; i++)

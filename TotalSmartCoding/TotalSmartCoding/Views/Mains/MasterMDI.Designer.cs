@@ -34,7 +34,9 @@
             this.imageListModuleMasterLarge = new System.Windows.Forms.ImageList(this.components);
             this.imageListTaskMaster = new System.Windows.Forms.ImageList(this.components);
             this.naviBarModuleMaster = new Guifreaks.Navisuite.NaviBar(this.components);
-            this.listViewTaskMaster = new System.Windows.Forms.ListView();
+            this.fastNMVNTask = new BrightIdeasSoftware.FastObjectListView();
+            this.olvID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvModuleDetailName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.buttonNaviBarHeader = new System.Windows.Forms.Button();
             this.InvisibleMainMenuStripOfMDI = new System.Windows.Forms.MenuStrip();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
@@ -87,6 +89,7 @@
             this.comboDetailFilterTexts = new System.Windows.Forms.ToolStripComboBox();
             this.buttonClearDetailFilters = new System.Windows.Forms.ToolStripButton();
             this.naviBarModuleMaster.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fastNMVNTask)).BeginInit();
             this.statusStrip.SuspendLayout();
             this.panelTop.SuspendLayout();
             this.panelTopLeft.SuspendLayout();
@@ -182,40 +185,63 @@
             // naviBarModuleMaster
             // 
             this.naviBarModuleMaster.ActiveBand = null;
-            this.naviBarModuleMaster.Controls.Add(this.listViewTaskMaster);
+            this.naviBarModuleMaster.Controls.Add(this.fastNMVNTask);
             this.naviBarModuleMaster.Controls.Add(this.buttonNaviBarHeader);
             this.naviBarModuleMaster.Dock = System.Windows.Forms.DockStyle.Left;
-            this.naviBarModuleMaster.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.naviBarModuleMaster.ForeColor = System.Drawing.SystemColors.ControlText;
             this.naviBarModuleMaster.HeaderHeight = 32;
             this.naviBarModuleMaster.LayoutStyle = Guifreaks.Navisuite.NaviLayoutStyle.Office2010Blue;
-            this.naviBarModuleMaster.Location = new System.Drawing.Point(0, 110);
-            this.naviBarModuleMaster.Margin = new System.Windows.Forms.Padding(4);
+            this.naviBarModuleMaster.Location = new System.Drawing.Point(0, 124);
+            this.naviBarModuleMaster.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.naviBarModuleMaster.Name = "naviBarModuleMaster";
-            this.naviBarModuleMaster.Size = new System.Drawing.Size(291, 807);
+            this.naviBarModuleMaster.Size = new System.Drawing.Size(291, 887);
             this.naviBarModuleMaster.TabIndex = 14;
             this.naviBarModuleMaster.Text = "naviBar1";
             this.naviBarModuleMaster.VisibleLargeButtons = 3;
             this.naviBarModuleMaster.ActiveBandChanged += new System.EventHandler(this.naviBarModuleMaster_ActiveBandChanged);
             this.naviBarModuleMaster.CollapsedChanged += new System.EventHandler(this.naviBarModuleMaster_CollapsedChanged);
             // 
-            // listViewTaskMaster
+            // fastNMVNTask
             // 
-            this.listViewTaskMaster.BackgroundImage = global::TotalSmartCoding.Properties.Resources.Blue2010Large;
-            this.listViewTaskMaster.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listViewTaskMaster.FullRowSelect = true;
-            this.listViewTaskMaster.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.listViewTaskMaster.LargeImageList = this.imageListTaskMaster;
-            this.listViewTaskMaster.Location = new System.Drawing.Point(0, 42);
-            this.listViewTaskMaster.Margin = new System.Windows.Forms.Padding(4);
-            this.listViewTaskMaster.Name = "listViewTaskMaster";
-            this.listViewTaskMaster.Size = new System.Drawing.Size(287, 720);
-            this.listViewTaskMaster.SmallImageList = this.imageListTaskMaster;
-            this.listViewTaskMaster.TabIndex = 24;
-            this.listViewTaskMaster.UseCompatibleStateImageBehavior = false;
-            this.listViewTaskMaster.View = System.Windows.Forms.View.Details;
-            this.listViewTaskMaster.Visible = false;
-            this.listViewTaskMaster.SelectedIndexChanged += new System.EventHandler(this.listViewTaskMaster_SelectedIndexChanged);
+            this.fastNMVNTask.AllColumns.Add(this.olvID);
+            this.fastNMVNTask.AllColumns.Add(this.olvModuleDetailName);
+            this.fastNMVNTask.BackColor = System.Drawing.Color.Ivory;
+            this.fastNMVNTask.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.olvID,
+            this.olvModuleDetailName});
+            this.fastNMVNTask.Cursor = System.Windows.Forms.Cursors.Default;
+            this.fastNMVNTask.FullRowSelect = true;
+            this.fastNMVNTask.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.fastNMVNTask.HideSelection = false;
+            this.fastNMVNTask.HighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
+            this.fastNMVNTask.Location = new System.Drawing.Point(0, 55);
+            this.fastNMVNTask.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.fastNMVNTask.Name = "fastNMVNTask";
+            this.fastNMVNTask.OwnerDraw = true;
+            this.fastNMVNTask.ShowGroups = false;
+            this.fastNMVNTask.Size = new System.Drawing.Size(287, 248);
+            this.fastNMVNTask.TabIndex = 71;
+            this.fastNMVNTask.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
+            this.fastNMVNTask.UseCompatibleStateImageBehavior = false;
+            this.fastNMVNTask.UseFiltering = true;
+            this.fastNMVNTask.UseHotItem = true;
+            this.fastNMVNTask.UseTranslucentHotItem = true;
+            this.fastNMVNTask.View = System.Windows.Forms.View.Details;
+            this.fastNMVNTask.VirtualMode = true;
+            // 
+            // olvID
+            // 
+            this.olvID.Text = "";
+            this.olvID.Width = 20;
+            // 
+            // olvModuleDetailName
+            // 
+            this.olvModuleDetailName.AspectName = "Name";
+            this.olvModuleDetailName.FillsFreeSpace = true;
+            this.olvModuleDetailName.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvModuleDetailName.Sortable = false;
+            this.olvModuleDetailName.Text = "Reports";
+            this.olvModuleDetailName.Width = 90;
             // 
             // buttonNaviBarHeader
             // 
@@ -225,9 +251,9 @@
             this.buttonNaviBarHeader.Image = global::TotalSmartCoding.Properties.Resources.ButtonImageIcon;
             this.buttonNaviBarHeader.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.buttonNaviBarHeader.Location = new System.Drawing.Point(0, 2);
-            this.buttonNaviBarHeader.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonNaviBarHeader.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonNaviBarHeader.Name = "buttonNaviBarHeader";
-            this.buttonNaviBarHeader.Size = new System.Drawing.Size(287, 34);
+            this.buttonNaviBarHeader.Size = new System.Drawing.Size(287, 30);
             this.buttonNaviBarHeader.TabIndex = 20;
             this.buttonNaviBarHeader.Text = "Home Navigation Panel";
             this.buttonNaviBarHeader.UseVisualStyleBackColor = true;
@@ -239,7 +265,7 @@
             this.InvisibleMainMenuStripOfMDI.Location = new System.Drawing.Point(0, 0);
             this.InvisibleMainMenuStripOfMDI.Name = "InvisibleMainMenuStripOfMDI";
             this.InvisibleMainMenuStripOfMDI.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.InvisibleMainMenuStripOfMDI.Size = new System.Drawing.Size(1906, 28);
+            this.InvisibleMainMenuStripOfMDI.Size = new System.Drawing.Size(1906, 35);
             this.InvisibleMainMenuStripOfMDI.TabIndex = 16;
             this.InvisibleMainMenuStripOfMDI.Text = "MenuStrip";
             this.InvisibleMainMenuStripOfMDI.Visible = false;
@@ -258,7 +284,7 @@
             this.toolStripStatusLabel2,
             this.toolStripSplitButton4,
             this.statusUserDescription});
-            this.statusStrip.Location = new System.Drawing.Point(0, 917);
+            this.statusStrip.Location = new System.Drawing.Point(0, 1011);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
             this.statusStrip.Size = new System.Drawing.Size(1906, 26);
@@ -343,8 +369,9 @@
             this.panelTop.Controls.Add(this.panelTopRight);
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTop.Location = new System.Drawing.Point(0, 55);
+            this.panelTop.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(1906, 55);
+            this.panelTop.Size = new System.Drawing.Size(1906, 69);
             this.panelTop.TabIndex = 73;
             // 
             // panelTopLeft
@@ -352,8 +379,9 @@
             this.panelTopLeft.Controls.Add(this.toolstripMain);
             this.panelTopLeft.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelTopLeft.Location = new System.Drawing.Point(0, 0);
+            this.panelTopLeft.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelTopLeft.Name = "panelTopLeft";
-            this.panelTopLeft.Size = new System.Drawing.Size(1359, 55);
+            this.panelTopLeft.Size = new System.Drawing.Size(1350, 69);
             this.panelTopLeft.TabIndex = 1;
             // 
             // toolstripMain
@@ -382,7 +410,7 @@
             this.toolstripMain.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.toolstripMain.Location = new System.Drawing.Point(0, 0);
             this.toolstripMain.Name = "toolstripMain";
-            this.toolstripMain.Size = new System.Drawing.Size(1359, 55);
+            this.toolstripMain.Size = new System.Drawing.Size(1350, 69);
             this.toolstripMain.TabIndex = 10;
             this.toolstripMain.Text = "ToolStrip";
             // 
@@ -549,9 +577,10 @@
             // 
             this.panelTopRight.Controls.Add(this.toolStripTopRight);
             this.panelTopRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelTopRight.Location = new System.Drawing.Point(1359, 0);
+            this.panelTopRight.Location = new System.Drawing.Point(1350, 0);
+            this.panelTopRight.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelTopRight.Name = "panelTopRight";
-            this.panelTopRight.Size = new System.Drawing.Size(547, 55);
+            this.panelTopRight.Size = new System.Drawing.Size(556, 69);
             this.panelTopRight.TabIndex = 0;
             // 
             // toolStripTopRight
@@ -567,7 +596,7 @@
             this.toolStripTopRight.Location = new System.Drawing.Point(0, 0);
             this.toolStripTopRight.Name = "toolStripTopRight";
             this.toolStripTopRight.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStripTopRight.Size = new System.Drawing.Size(547, 55);
+            this.toolStripTopRight.Size = new System.Drawing.Size(556, 69);
             this.toolStripTopRight.TabIndex = 1;
             this.toolStripTopRight.Text = "toolStrip2";
             // 
@@ -757,16 +786,18 @@
             // 
             // MasterMDI
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1906, 943);
+            this.ClientSize = new System.Drawing.Size(1906, 1037);
             this.Controls.Add(this.naviBarModuleMaster);
             this.Controls.Add(this.panelTop);
             this.Controls.Add(this.toolStripTopHead);
             this.Controls.Add(this.InvisibleMainMenuStripOfMDI);
             this.Controls.Add(this.statusStrip);
+            this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.InvisibleMainMenuStripOfMDI;
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "MasterMDI";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Total 2D Coding Solution";
@@ -774,6 +805,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MasterMDI_FormClosing);
             this.MdiChildActivate += new System.EventHandler(this.MasterMdi_MdiChildActivate);
             this.naviBarModuleMaster.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.fastNMVNTask)).EndInit();
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
             this.panelTop.ResumeLayout(false);
@@ -823,7 +855,6 @@
         private System.Windows.Forms.ToolStripButton buttonPrintPreview;
         private System.Windows.Forms.ToolStripButton buttonPrint;
         private Guifreaks.Navisuite.NaviBar naviBarModuleMaster;
-        private System.Windows.Forms.ListView listViewTaskMaster;
         private System.Windows.Forms.Button buttonNaviBarHeader;
         private System.Windows.Forms.MenuStrip InvisibleMainMenuStripOfMDI;
         private System.Windows.Forms.ToolStripButton buttonLockedDate;
@@ -850,6 +881,9 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripComboBox comboDetailFilterTexts;
         private System.Windows.Forms.ToolStripButton buttonClearDetailFilters;
+        private BrightIdeasSoftware.FastObjectListView fastNMVNTask;
+        private BrightIdeasSoftware.OLVColumn olvID;
+        private BrightIdeasSoftware.OLVColumn olvModuleDetailName;
 
     }
 }
