@@ -613,6 +613,8 @@
             this.fastReportIndex.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastReportIndex.UseCompatibleStateImageBehavior = false;
             this.fastReportIndex.UseFiltering = true;
+            this.fastReportIndex.UseHotItem = true;
+            this.fastReportIndex.UseTranslucentHotItem = true;
             this.fastReportIndex.View = System.Windows.Forms.View.Details;
             this.fastReportIndex.VirtualMode = true;
             // 

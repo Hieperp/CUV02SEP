@@ -286,6 +286,23 @@ namespace TotalSmartCoding.Views.Mains
         {
             try
             {
+
+                //////fastNMVNTaskIndex.UseTranslucentHotItem = true;
+
+                //fastNMVNTaskIndex.UseTranslucentHotItem = false;
+                //fastNMVNTaskIndex.UseHotItem = true;
+                //fastNMVNTaskIndex.UseExplorerTheme = false;
+
+                //RowBorderDecoration rbd = new RowBorderDecoration();
+                //rbd.BorderPen = new Pen(Color.SeaGreen, 2);
+                //rbd.FillBrush = null;
+                //rbd.CornerRounding = 4.0f;
+                //HotItemStyle hotItemStyle2 = new HotItemStyle();
+                //hotItemStyle2.Decoration = rbd;
+                //fastNMVNTaskIndex.HotItemStyle = hotItemStyle2;
+
+
+
                 this.listViewTaskMaster.Items.Clear();
 
                 IList<ModuleViewDetail> moduleViewDetails = this.moduleAPIs.GetModuleViewDetails(moduleID);
