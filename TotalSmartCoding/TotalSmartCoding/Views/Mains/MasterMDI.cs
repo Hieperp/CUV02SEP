@@ -42,6 +42,7 @@ using TotalSmartCoding.Views.Commons.BinLocations;
 using TotalSmartCoding.ViewModels.Helpers;
 using TotalSmartCoding.Views.Commons.Commodities;
 using TotalSmartCoding.Views.Generals;
+using BrightIdeasSoftware;
 
 
 namespace TotalSmartCoding.Views.Mains
@@ -130,8 +131,8 @@ namespace TotalSmartCoding.Views.Mains
                 this.buttonNaviBarHeaderVisibleBinding.Parse += new ConvertEventHandler(buttonNaviBarHeaderVisibleBinding_Parse);
                 this.buttonNaviBarHeaderVisibleBinding.Format += new ConvertEventHandler(buttonNaviBarHeaderVisibleBinding_Format);
 
-                //this.fastNMVNTask.Dock = DockStyle.Fill;
-                //this.fastNMVNTask.Columns.Add(new ColumnHeader() { Width = this.fastNMVNTask.Width });
+                this.fastNMVNTask.AboutToCreateGroups += fastNMVNTask_AboutToCreateGroups;
+                this.fastNMVNTask.ShowGroups = true;
 
                 if (loadedView != null)
                 {
@@ -151,7 +152,7 @@ namespace TotalSmartCoding.Views.Mains
                 this.toolUserReferences.Visible = ContextAttributes.User.IsDatabaseAdmin;
                 this.statusUserDescription.Text = ContextAttributes.User.FullyQualifiedUserName;
 
-                this.panelTopRight.Width = (this.nmvnTaskID == GlobalEnums.NmvnTaskID.SmartCoding ? 10 : this.labelSearchBarcode.Width) + this.comboSearchBarcode.Width + this.buttonSearchBarcode.Width;
+                this.panelTopRight.Width = (this.nmvnTaskID == GlobalEnums.NmvnTaskID.SmartCoding ? 10 : this.labelSearchBarcode.Width) + this.comboSearchBarcode.Width + this.buttonSearchBarcode.Width + 10;
                 this.panelTop.Height = this.nmvnTaskID == GlobalEnums.NmvnTaskID.SmartCoding ? 61 : 39;
             }
             catch (Exception exception)
@@ -184,6 +185,17 @@ namespace TotalSmartCoding.Views.Mains
             }
         }
 
+        private void fastNMVNTask_AboutToCreateGroups(object sender, CreateGroupsEventArgs e)
+        {
+            if (e.Groups != null && e.Groups.Count > 0)
+            {
+                foreach (OLVGroup olvGroup in e.Groups)
+                {
+                    olvGroup.TitleImage = "Analytics";
+                    if (olvGroup.Key != null) olvGroup.Subtitle = olvGroup.Key.ToString() == "LOGISTICS ADMIN" ? "Focuses on Orders" : (olvGroup.Key.ToString() == "WAREHOUSE CONTROLS" ? "Regulator for Warehousing Activities" : (olvGroup.Key.ToString() == "CUSTOMER MANAGEMENT" ? "Sales Governance & Organization" : (olvGroup.Key.ToString() == "WAREHOUSE RESOURCES" ? "Commodities & Related Resources" : null)));
+                }
+            }
+        }
 
         private void buttonNaviBarHeaderVisibleBinding_Parse(object sender, ConvertEventArgs e)
         {
@@ -202,7 +214,7 @@ namespace TotalSmartCoding.Views.Mains
 
         private void naviBarModuleMaster_CollapsedChanged(object sender, EventArgs e)
         {
-            //this.fastNMVNTask.Columns[0].Width = this.fastNMVNTask.Columns[0].Width + (this.naviBarModuleMaster.Collapsed ? -4 : 4);
+            this.olvModuleDetailName.Width = 239;// this.naviBarModuleMaster.Width - this.fastNMVNTask.Columns[0].Width + (this.naviBarModuleMaster.Collapsed ? -4 : 4);
         }
 
         private void CommonControl_BindingComplete(object sender, BindingCompleteEventArgs e)
@@ -221,27 +233,31 @@ namespace TotalSmartCoding.Views.Mains
         {
             try
             {
-                this.buttonNaviBarHeader.Text = this.naviBarModuleMaster.ActiveBand.Text;
-
-                //this.fastNMVNTask.SelectedItems.Clear();
-                this.fastNMVNTask.Parent = null;
-                this.naviBarModuleMaster.ActiveBand.ClientArea.Controls.Add(this.fastNMVNTask);
-                this.fastNMVNTask.Dock = DockStyle.Fill;
-                this.fastNMVNTask.Visible = true;
-                //SetWindowTheme(fastNMVNTask.Handle, "explorer", null);
-
                 int moduleID;
                 if (int.TryParse(this.naviBarModuleMaster.ActiveBand.Tag.ToString(), out  moduleID))
                 {
-                    InitializeTaskMaster(moduleID);
-
                     if (moduleID == 9) //Reports
+                        this.OpenModuleDetail((int)GlobalEnums.NmvnTaskID.Report);
+                    else
                     {
+                        this.buttonNaviBarHeader.Text = this.naviBarModuleMaster.ActiveBand.Text;
+
+                        this.fastNMVNTask.Parent = null;
+                        this.naviBarModuleMaster.ActiveBand.ClientArea.Controls.Add(this.fastNMVNTask);
+                        this.fastNMVNTask.Dock = DockStyle.Fill;
+                        this.fastNMVNTask.Visible = true;
+
+
+                        InitializeTaskMaster(moduleID);
+
+                        //if (moduleID == 9) //Reports
+                        //{
                         //if (this.fastNMVNTask.Items.Count > 0)
                         //{
                         //    this.fastNMVNTask.Items[0].Selected = true;
                         //    if (!this.naviBarModuleMaster.Collapsed)
                         //        buttonNaviBarHeader_Click(this.buttonNaviBarHeader, new EventArgs());
+                        //}
                         //}
                     }
                 }
@@ -260,7 +276,7 @@ namespace TotalSmartCoding.Views.Mains
 
                 foreach (ModuleIndex moduleIndex in moduleIndexs)
                 {
-                    if (moduleIndex.ModuleID != 8)
+                    if (moduleIndex.ModuleID == 1 || moduleIndex.ModuleID == 6 || moduleIndex.ModuleID == 9)
                     {
                         NaviBand naviBand = new NaviBand();
 
@@ -276,6 +292,7 @@ namespace TotalSmartCoding.Views.Mains
 
                 this.naviBarModuleMaster.VisibleLargeButtons = this.naviBarModuleMaster.Bands.Count;
                 this.naviBarModuleMaster.PopupHeight = this.naviBarModuleMaster.Height + this.naviBarModuleMaster.HeaderHeight - (this.naviBarModuleMaster.ButtonHeight) * this.naviBarModuleMaster.Bands.Count - 15;
+                //this.naviBarModuleMaster.PopupMinWidth = this.naviBarModuleMaster.Width;
             }
             catch (Exception exception)
             {
@@ -287,22 +304,24 @@ namespace TotalSmartCoding.Views.Mains
         {
             try
             {
-
                 this.fastNMVNTask.SetObjects(this.moduleAPIs.GetModuleViewDetails(moduleID));
-                this.fastNMVNTask.UseTranslucentHotItem = true;
+                this.fastNMVNTask.Sort(this.olvModuleDetailController, SortOrder.Ascending);
 
-                //fastNMVNTask.UseTranslucentHotItem = false;
-                //fastNMVNTask.UseHotItem = true;
-                //fastNMVNTask.UseExplorerTheme = false;
+                ////this.fastNMVNTask.UseTranslucentHotItem = true;
 
-                //RowBorderDecoration rbd = new RowBorderDecoration();
-                //rbd.BorderPen = new Pen(Color.SeaGreen, 2);
-                //rbd.FillBrush = null;
-                //rbd.CornerRounding = 4.0f;
-                //HotItemStyle hotItemStyle2 = new HotItemStyle();
-                //hotItemStyle2.Decoration = rbd;
-                //fastNMVNTask.HotItemStyle = hotItemStyle2;
+                fastNMVNTask.UseTranslucentHotItem = false;
+                fastNMVNTask.UseHotItem = true;
+                fastNMVNTask.UseExplorerTheme = false;
 
+                RowBorderDecoration rbd = new RowBorderDecoration();
+                rbd.BorderPen = new Pen(Color.SeaGreen, 2);
+                rbd.FillBrush = null;
+                rbd.CornerRounding = 4.0f;
+                HotItemStyle hotItemStyle2 = new HotItemStyle();
+                hotItemStyle2.Decoration = rbd;
+                fastNMVNTask.HotItemStyle = hotItemStyle2;
+
+                this.olvModuleDetailName.Width = 239;
 
 
                 //this.fastNMVNTask.Items.Clear();
@@ -327,31 +346,44 @@ namespace TotalSmartCoding.Views.Mains
         {
             try
             {
-                return;
-                if (this.fastNMVNTask.SelectedItems.Count > 0)
+                if (this.fastNMVNTask.SelectedObject != null)
                 {
-                    //Get taskID by ListViewItem key (The key defined when add ListViewItem to ListView)
-                    int taskID; if (!int.TryParse(this.fastNMVNTask.SelectedItems[0].Name, out taskID)) return;
+                    ModuleViewDetail moduleViewDetail = (ModuleViewDetail)this.fastNMVNTask.SelectedObject;
+                    if (moduleViewDetail != null)
+                        this.OpenModuleDetail(moduleViewDetail.ModuleDetailID);
 
-                    //Find and active the current form
-                    for (int i = 0; i < this.MdiChildren.Length; i++)
+                }
+            }
+            catch (Exception exception)
+            {
+                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+            }
+        }
+
+        private void OpenModuleDetail(int moduleDetailID)
+        {
+            if (moduleDetailID > 0)
+            {
+                Form openingView = null;//Form to open
+
+                for (int i = 0; i < this.MdiChildren.Length; i++)
+                {//Find and active the current form
+                    IToolstripChild mdiChildCallToolStrip = this.MdiChildren[i] as IToolstripChild;
+                    if (mdiChildCallToolStrip != null)
                     {
-                        IToolstripChild mdiChildCallToolStrip = this.MdiChildren[i] as IToolstripChild;
-                        if (mdiChildCallToolStrip != null)
+                        if (moduleDetailID == (int)mdiChildCallToolStrip.NMVNTaskID)
                         {
-                            if (taskID == (int)mdiChildCallToolStrip.NMVNTaskID)
-                            {
-                                Form mdiChildrenForm = (Form)this.MdiChildren[i];
-                                mdiChildrenForm.Activate();
-                                return;
-                            }
+                            openingView = (Form)this.MdiChildren[i];
+                            break;
                         }
-
                     }
+                }
 
-                    //Open new form
-                    Form openingView;
-                    switch (taskID)
+                if (openingView != null)
+                    openingView.Activate();
+                else
+                { //OPEN NEW VIEW
+                    switch (moduleDetailID)
                     {
                         case (int)GlobalEnums.NmvnTaskID.Customer:
                             openingView = new Customers();
@@ -408,10 +440,12 @@ namespace TotalSmartCoding.Views.Mains
 
                     if (openingView != null) this.OpenView(openingView);
                 }
-            }
-            catch (Exception exception)
-            {
-                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+                buttonNaviBarHeader_Click(this.buttonNaviBarHeader, new EventArgs());
+
+                //if (!this.naviBarModuleMaster.Collapsed)
+                //    buttonNaviBarHeader_Click(this.buttonNaviBarHeader, new EventArgs());
+
+                openingView.Focus();
             }
         }
 
@@ -786,6 +820,7 @@ namespace TotalSmartCoding.Views.Mains
             }
         }
         #endregion Search barcode
+
 
 
 

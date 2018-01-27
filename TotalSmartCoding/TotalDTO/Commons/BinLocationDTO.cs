@@ -11,6 +11,11 @@ using TotalBase;
 
 namespace TotalDTO.Commons
 {
+    /// <summary>
+    /// Its a way of sorting of items in proper  storage location in a warehouse 
+    /// so that warehouse will become more accessible, items are easy to locate, lesser effort and time consumes 
+    /// and easy way to do the inventory management specially when using a bin card. 
+    /// </summary>
     public class BinLocationPrimitiveDTO : BaseDTO, IPrimitiveEntity, IPrimitiveDTO
     {
         public override GlobalEnums.NmvnTaskID NMVNTaskID { get { return GlobalEnums.NmvnTaskID.BinLocation; } }

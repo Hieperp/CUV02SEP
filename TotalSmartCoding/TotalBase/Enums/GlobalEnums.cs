@@ -75,7 +75,10 @@
             Commodity = 8002,
             Promotion = 8003,
             Employee = 8005,
+            Warehouse = 8006,
             BinLocation = 8008,
+            Territory = 8007,
+            
 
             PurchaseOrder = 8021,
             PurchaseInvoice = 8022,

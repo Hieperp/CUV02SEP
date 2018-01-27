@@ -48,6 +48,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.textexWarehouseName = new CustomControls.TextexBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.combexForkliftDriverID = new CustomControls.CombexBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.toolStripChildForm = new System.Windows.Forms.ToolStrip();
@@ -100,8 +102,6 @@
             this.olvTotalLineVolume = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvApproved = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.imageList32 = new System.Windows.Forms.ImageList(this.components);
-            this.label3 = new System.Windows.Forms.Label();
-            this.combexForkliftDriverID = new CustomControls.CombexBox();
             this.layoutLeft.SuspendLayout();
             this.toolStripChildForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.naviGroupDetails)).BeginInit();
@@ -258,12 +258,40 @@
             this.textexWarehouseName.Size = new System.Drawing.Size(252, 28);
             this.textexWarehouseName.TabIndex = 78;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label3.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(0, 136);
+            this.label3.Margin = new System.Windows.Forms.Padding(0, 10, 3, 1);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(253, 21);
+            this.label3.TabIndex = 79;
+            this.label3.Text = "Storekeeper";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // combexForkliftDriverID
+            // 
+            this.combexForkliftDriverID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.combexForkliftDriverID.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.combexForkliftDriverID.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.combexForkliftDriverID.Editable = true;
+            this.combexForkliftDriverID.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.combexForkliftDriverID.FormattingEnabled = true;
+            this.combexForkliftDriverID.Location = new System.Drawing.Point(3, 159);
+            this.combexForkliftDriverID.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
+            this.combexForkliftDriverID.Name = "combexForkliftDriverID";
+            this.combexForkliftDriverID.ReadOnly = false;
+            this.combexForkliftDriverID.Size = new System.Drawing.Size(252, 29);
+            this.combexForkliftDriverID.TabIndex = 80;
+            // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label11.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(162, 7);
+            this.label11.Location = new System.Drawing.Point(160, 7);
             this.label11.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(38, 99);
@@ -276,7 +304,7 @@
             this.label12.AutoSize = true;
             this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label12.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(321, 7);
+            this.label12.Location = new System.Drawing.Point(317, 7);
             this.label12.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(38, 99);
@@ -706,7 +734,7 @@
             this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 11F));
             this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.019F));
             this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.32099F));
-            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 764F));
+            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 770F));
             this.tableLayoutPanelExtend.Controls.Add(this.combexCommodityID, 0, 0);
             this.tableLayoutPanelExtend.Controls.Add(this.label11, 3, 0);
             this.tableLayoutPanelExtend.Controls.Add(this.label12, 6, 0);
@@ -733,7 +761,7 @@
             this.combexCommodityID.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.combexCommodityID.Name = "combexCommodityID";
             this.combexCommodityID.ReadOnly = false;
-            this.combexCommodityID.Size = new System.Drawing.Size(100, 29);
+            this.combexCommodityID.Size = new System.Drawing.Size(98, 29);
             this.combexCommodityID.TabIndex = 72;
             // 
             // label10
@@ -894,34 +922,6 @@
             this.imageList32.Images.SetKeyName(3, "ForkliftJapan");
             this.imageList32.Images.SetKeyName(4, "Placeholder32");
             this.imageList32.Images.SetKeyName(5, "Storage32");
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(0, 136);
-            this.label3.Margin = new System.Windows.Forms.Padding(0, 10, 3, 1);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(253, 21);
-            this.label3.TabIndex = 79;
-            this.label3.Text = "Storekeeper";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // combexForkliftDriverID
-            // 
-            this.combexForkliftDriverID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.combexForkliftDriverID.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.combexForkliftDriverID.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.combexForkliftDriverID.Editable = true;
-            this.combexForkliftDriverID.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.combexForkliftDriverID.FormattingEnabled = true;
-            this.combexForkliftDriverID.Location = new System.Drawing.Point(3, 159);
-            this.combexForkliftDriverID.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
-            this.combexForkliftDriverID.Name = "combexForkliftDriverID";
-            this.combexForkliftDriverID.ReadOnly = false;
-            this.combexForkliftDriverID.Size = new System.Drawing.Size(252, 29);
-            this.combexForkliftDriverID.TabIndex = 80;
             // 
             // GoodsReceipts
             // 

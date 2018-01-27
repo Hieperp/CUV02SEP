@@ -35,6 +35,7 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.comboLocationID = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.buttonWarehouseJournals = new System.Windows.Forms.ToolStripButton();
             this.imageList32 = new System.Windows.Forms.ImageList(this.components);
             this.fastAvailableCartons = new BrightIdeasSoftware.FastObjectListView();
@@ -65,7 +66,6 @@
             this.olvColumn20 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvPalletCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn22 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripChildForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastAvailableCartons)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fastAvailablePallets)).BeginInit();
@@ -118,6 +118,11 @@
             this.comboLocationID.Name = "comboLocationID";
             this.comboLocationID.Size = new System.Drawing.Size(118, 55);
             // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 55);
+            // 
             // buttonWarehouseJournals
             // 
             this.buttonWarehouseJournals.Image = global::TotalSmartCoding.Properties.Resources.Printer__1_;
@@ -156,6 +161,7 @@
             this.fastAvailableCartons.AllColumns.Add(this.olvCartonLineVolumeAvailable);
             this.fastAvailableCartons.AllColumns.Add(this.olvCartonCode);
             this.fastAvailableCartons.AllColumns.Add(this.olvColumn5);
+            this.fastAvailableCartons.BackColor = System.Drawing.Color.Ivory;
             this.fastAvailableCartons.CheckedAspectName = "";
             this.fastAvailableCartons.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.olvColumn1,
@@ -297,6 +303,7 @@
             this.fastAvailablePallets.AllColumns.Add(this.olvColumn20);
             this.fastAvailablePallets.AllColumns.Add(this.olvPalletCode);
             this.fastAvailablePallets.AllColumns.Add(this.olvColumn22);
+            this.fastAvailablePallets.BackColor = System.Drawing.Color.Ivory;
             this.fastAvailablePallets.CheckedAspectName = "";
             this.fastAvailablePallets.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.olvColumn10,
@@ -422,11 +429,6 @@
             this.olvColumn22.FillsFreeSpace = true;
             this.olvColumn22.Text = "Name";
             this.olvColumn22.Width = 120;
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 55);
             // 
             // GoodsReceiptDetailAvailables
             // 
