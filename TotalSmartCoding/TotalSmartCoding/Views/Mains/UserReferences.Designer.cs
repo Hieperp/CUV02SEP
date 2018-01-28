@@ -46,15 +46,6 @@
             this.olvModuleDetailName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.imageList32 = new System.Windows.Forms.ImageList(this.components);
             this.gridexUserAccessControl = new CustomControls.DataGridexView();
-            this.LocationName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OrganizationalUnitName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NoAccess = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.ReadOnly = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Editable = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.ApprovalPermitted = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.UnApprovalPermitted = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.VoidablePermitted = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.UnVoidablePermitted = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.comboActiveOption = new System.Windows.Forms.ToolStripComboBox();
             this.buttonAddOU = new System.Windows.Forms.ToolStripButton();
@@ -71,6 +62,15 @@
             this.button1 = new System.Windows.Forms.Button();
             this.panelLeft = new System.Windows.Forms.Panel();
             this.pictureTopleft = new System.Windows.Forms.PictureBox();
+            this.LocationName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OrganizationalUnitName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NoAccess = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.ReadOnly = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Editable = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.ApprovalPermitted = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.UnApprovalPermitted = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.VoidablePermitted = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.UnVoidablePermitted = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastNMVNTasks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridexUserAccessControl)).BeginInit();
@@ -264,80 +264,6 @@
             this.gridexUserAccessControl.TabIndex = 70;
             this.gridexUserAccessControl.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridexAccessControls_CellContentClick);
             // 
-            // LocationName
-            // 
-            this.LocationName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.LocationName.DataPropertyName = "LocationName";
-            this.LocationName.FillWeight = 15F;
-            this.LocationName.HeaderText = "Organizational Units.Location";
-            this.LocationName.Name = "LocationName";
-            this.LocationName.ReadOnly = true;
-            // 
-            // OrganizationalUnitName
-            // 
-            this.OrganizationalUnitName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.OrganizationalUnitName.DataPropertyName = "OrganizationalUnitName";
-            this.OrganizationalUnitName.FillWeight = 22F;
-            this.OrganizationalUnitName.HeaderText = "Organizational Units.Division";
-            this.OrganizationalUnitName.Name = "OrganizationalUnitName";
-            this.OrganizationalUnitName.ReadOnly = true;
-            // 
-            // NoAccess
-            // 
-            this.NoAccess.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.NoAccess.DataPropertyName = "NoAccess";
-            this.NoAccess.FillWeight = 9F;
-            this.NoAccess.HeaderText = "Access Controls.No Access";
-            this.NoAccess.Name = "NoAccess";
-            // 
-            // ReadOnly
-            // 
-            this.ReadOnly.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ReadOnly.DataPropertyName = "ReadOnly";
-            this.ReadOnly.FillWeight = 9F;
-            this.ReadOnly.HeaderText = "Access Controls.Read Only";
-            this.ReadOnly.Name = "ReadOnly";
-            // 
-            // Editable
-            // 
-            this.Editable.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Editable.DataPropertyName = "Editable";
-            this.Editable.FillWeight = 9F;
-            this.Editable.HeaderText = "Access Controls.Editable";
-            this.Editable.Name = "Editable";
-            // 
-            // ApprovalPermitted
-            // 
-            this.ApprovalPermitted.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ApprovalPermitted.DataPropertyName = "ApprovalPermitted";
-            this.ApprovalPermitted.FillWeight = 9F;
-            this.ApprovalPermitted.HeaderText = "Verify Permissions.Verify";
-            this.ApprovalPermitted.Name = "ApprovalPermitted";
-            // 
-            // UnApprovalPermitted
-            // 
-            this.UnApprovalPermitted.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.UnApprovalPermitted.DataPropertyName = "UnApprovalPermitted";
-            this.UnApprovalPermitted.FillWeight = 9F;
-            this.UnApprovalPermitted.HeaderText = "Verify Permissions.Unverify";
-            this.UnApprovalPermitted.Name = "UnApprovalPermitted";
-            // 
-            // VoidablePermitted
-            // 
-            this.VoidablePermitted.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.VoidablePermitted.DataPropertyName = "VoidablePermitted";
-            this.VoidablePermitted.FillWeight = 9F;
-            this.VoidablePermitted.HeaderText = "Void Permissions.Void";
-            this.VoidablePermitted.Name = "VoidablePermitted";
-            // 
-            // UnVoidablePermitted
-            // 
-            this.UnVoidablePermitted.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.UnVoidablePermitted.DataPropertyName = "UnVoidablePermitted";
-            this.UnVoidablePermitted.FillWeight = 9F;
-            this.UnVoidablePermitted.HeaderText = "Void Permissions.Unvoid";
-            this.UnVoidablePermitted.Name = "UnVoidablePermitted";
-            // 
             // toolStrip2
             // 
             this.toolStrip2.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
@@ -526,6 +452,80 @@
             this.pictureTopleft.TabIndex = 73;
             this.pictureTopleft.TabStop = false;
             // 
+            // LocationName
+            // 
+            this.LocationName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.LocationName.DataPropertyName = "LocationName";
+            this.LocationName.FillWeight = 15F;
+            this.LocationName.HeaderText = "Organizational Units.Location";
+            this.LocationName.Name = "LocationName";
+            this.LocationName.ReadOnly = true;
+            // 
+            // OrganizationalUnitName
+            // 
+            this.OrganizationalUnitName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.OrganizationalUnitName.DataPropertyName = "OrganizationalUnitName";
+            this.OrganizationalUnitName.FillWeight = 22F;
+            this.OrganizationalUnitName.HeaderText = "Organizational Units.OU";
+            this.OrganizationalUnitName.Name = "OrganizationalUnitName";
+            this.OrganizationalUnitName.ReadOnly = true;
+            // 
+            // NoAccess
+            // 
+            this.NoAccess.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.NoAccess.DataPropertyName = "NoAccess";
+            this.NoAccess.FillWeight = 9F;
+            this.NoAccess.HeaderText = "Access Controls.No Access";
+            this.NoAccess.Name = "NoAccess";
+            // 
+            // ReadOnly
+            // 
+            this.ReadOnly.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ReadOnly.DataPropertyName = "ReadOnly";
+            this.ReadOnly.FillWeight = 9F;
+            this.ReadOnly.HeaderText = "Access Controls.Read Only";
+            this.ReadOnly.Name = "ReadOnly";
+            // 
+            // Editable
+            // 
+            this.Editable.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Editable.DataPropertyName = "Editable";
+            this.Editable.FillWeight = 9F;
+            this.Editable.HeaderText = "Access Controls.Editable";
+            this.Editable.Name = "Editable";
+            // 
+            // ApprovalPermitted
+            // 
+            this.ApprovalPermitted.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ApprovalPermitted.DataPropertyName = "ApprovalPermitted";
+            this.ApprovalPermitted.FillWeight = 9F;
+            this.ApprovalPermitted.HeaderText = "Verify Permissions.Verify";
+            this.ApprovalPermitted.Name = "ApprovalPermitted";
+            // 
+            // UnApprovalPermitted
+            // 
+            this.UnApprovalPermitted.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.UnApprovalPermitted.DataPropertyName = "UnApprovalPermitted";
+            this.UnApprovalPermitted.FillWeight = 9F;
+            this.UnApprovalPermitted.HeaderText = "Verify Permissions.Unverify";
+            this.UnApprovalPermitted.Name = "UnApprovalPermitted";
+            // 
+            // VoidablePermitted
+            // 
+            this.VoidablePermitted.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.VoidablePermitted.DataPropertyName = "VoidablePermitted";
+            this.VoidablePermitted.FillWeight = 9F;
+            this.VoidablePermitted.HeaderText = "Void Permissions.Void";
+            this.VoidablePermitted.Name = "VoidablePermitted";
+            // 
+            // UnVoidablePermitted
+            // 
+            this.UnVoidablePermitted.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.UnVoidablePermitted.DataPropertyName = "UnVoidablePermitted";
+            this.UnVoidablePermitted.FillWeight = 9F;
+            this.UnVoidablePermitted.HeaderText = "Void Permissions.Unvoid";
+            this.UnVoidablePermitted.Name = "UnVoidablePermitted";
+            // 
             // UserReferences
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
@@ -573,15 +573,6 @@
         private CustomControls.DataGridexView gridexUserAccessControl;
         private System.Windows.Forms.ImageList imageList32;
         private BrightIdeasSoftware.OLVColumn olvModuleName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LocationName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OrganizationalUnitName;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn NoAccess;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn ReadOnly;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Editable;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn ApprovalPermitted;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn UnApprovalPermitted;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn VoidablePermitted;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn UnVoidablePermitted;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStrip toolStrip2;
         private BrightIdeasSoftware.DataTreeListView treeUserID;
@@ -603,5 +594,14 @@
         private System.Windows.Forms.ToolStripButton buttonRemoveOU;
         private System.Windows.Forms.ToolStripButton buttonUserToggleVoid;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LocationName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OrganizationalUnitName;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn NoAccess;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn ReadOnly;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Editable;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn ApprovalPermitted;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn UnApprovalPermitted;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn VoidablePermitted;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn UnVoidablePermitted;
     }
 }

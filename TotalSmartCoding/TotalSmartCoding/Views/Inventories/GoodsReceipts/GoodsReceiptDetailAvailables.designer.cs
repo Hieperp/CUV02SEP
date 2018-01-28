@@ -36,7 +36,6 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.comboLocationID = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.buttonWarehouseJournals = new System.Windows.Forms.ToolStripButton();
             this.imageList32 = new System.Windows.Forms.ImageList(this.components);
             this.fastAvailableCartons = new BrightIdeasSoftware.FastObjectListView();
             this.olvColumn1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -80,11 +79,10 @@
             this.toolStripSeparator1,
             this.toolStripSeparator2,
             this.comboLocationID,
-            this.toolStripSeparator3,
-            this.buttonWarehouseJournals});
+            this.toolStripSeparator3});
             this.toolStripChildForm.Location = new System.Drawing.Point(0, 0);
             this.toolStripChildForm.Name = "toolStripChildForm";
-            this.toolStripChildForm.Size = new System.Drawing.Size(1531, 55);
+            this.toolStripChildForm.Size = new System.Drawing.Size(1531, 39);
             this.toolStripChildForm.TabIndex = 29;
             this.toolStripChildForm.Text = "toolStrip1";
             this.toolStripChildForm.Visible = false;
@@ -95,20 +93,20 @@
             this.toolStripButton2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(118, 52);
+            this.toolStripButton2.Size = new System.Drawing.Size(118, 36);
             this.toolStripButton2.Text = "Disconnect";
             this.toolStripButton2.Visible = false;
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 55);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 39);
             this.toolStripSeparator1.Visible = false;
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 55);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 39);
             // 
             // comboLocationID
             // 
@@ -116,22 +114,12 @@
             this.comboLocationID.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             this.comboLocationID.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboLocationID.Name = "comboLocationID";
-            this.comboLocationID.Size = new System.Drawing.Size(118, 55);
+            this.comboLocationID.Size = new System.Drawing.Size(168, 39);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 55);
-            // 
-            // buttonWarehouseJournals
-            // 
-            this.buttonWarehouseJournals.Image = global::TotalSmartCoding.Properties.Resources.Printer__1_;
-            this.buttonWarehouseJournals.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.buttonWarehouseJournals.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonWarehouseJournals.Name = "buttonWarehouseJournals";
-            this.buttonWarehouseJournals.Size = new System.Drawing.Size(237, 52);
-            this.buttonWarehouseJournals.Text = "Preview warehouse journal";
-            this.buttonWarehouseJournals.Click += new System.EventHandler(this.buttonWarehouseJournals_Click);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 39);
             // 
             // imageList32
             // 
@@ -488,7 +476,6 @@
         private BrightIdeasSoftware.OLVColumn olvColumn20;
         private BrightIdeasSoftware.OLVColumn olvPalletCode;
         private BrightIdeasSoftware.OLVColumn olvColumn22;
-        private System.Windows.Forms.ToolStripButton buttonWarehouseJournals;
         private System.Windows.Forms.ToolStripComboBox comboLocationID;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;

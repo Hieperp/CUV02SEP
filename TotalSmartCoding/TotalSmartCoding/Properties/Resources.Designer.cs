@@ -2213,6 +2213,16 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Email_icon_16 {
+            get {
+                object obj = ResourceManager.GetObject("Email-icon-16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Emey87_Trainee_Box_double_tape {
             get {
                 object obj = ResourceManager.GetObject("Emey87-Trainee-Box-double-tape", resourceCulture);
@@ -2376,6 +2386,16 @@ namespace TotalSmartCoding.Properties {
         internal static System.Drawing.Bitmap Fatcow_Farm_Fresh_Key_escape {
             get {
                 object obj = ResourceManager.GetObject("Fatcow-Farm-Fresh-Key-escape", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap fax_icon_16 {
+            get {
+                object obj = ResourceManager.GetObject("fax-icon-16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -4506,6 +4526,16 @@ namespace TotalSmartCoding.Properties {
         internal static System.Drawing.Bitmap Paomedia_Small_N_Flat_Carton {
             get {
                 object obj = ResourceManager.GetObject("Paomedia-Small-N-Flat-Carton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Phone_icon_16 {
+            get {
+                object obj = ResourceManager.GetObject("Phone-icon-16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

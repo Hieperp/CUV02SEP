@@ -1203,6 +1203,9 @@
     <None Include="Resources\check_Circle_16.png" />
     <None Include="Resources\check_Circle_20.png" />
     <None Include="Resources\Void_22.png" />
+    <None Include="Resources\Email-icon-16.png" />
+    <None Include="Resources\fax-icon-16.png" />
+    <None Include="Resources\Phone-icon-16.png" />
     <Content Include="SmartCodingSolution.ico" />
     <None Include="Resources\Yellow-cross.ico" />
     <None Include="Resources\White-Pallet.ico" />
