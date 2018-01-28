@@ -1913,6 +1913,16 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Customer_Blue_16 {
+            get {
+                object obj = ResourceManager.GetObject("Customer-Blue-16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Customer_Blue_24 {
             get {
                 object obj = ResourceManager.GetObject("Customer Blue 24", resourceCulture);
@@ -1936,6 +1946,16 @@ namespace TotalSmartCoding.Properties {
         internal static System.Drawing.Bitmap Customer_Orange_241 {
             get {
                 object obj = ResourceManager.GetObject("Customer Orange 241", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Customer_Red_16 {
+            get {
+                object obj = ResourceManager.GetObject("Customer-Red-16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

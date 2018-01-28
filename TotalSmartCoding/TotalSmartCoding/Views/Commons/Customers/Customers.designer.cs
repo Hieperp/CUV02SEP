@@ -334,7 +334,7 @@
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.layoutTop.Controls.Add(this.textexOfficialName, 1, 2);
             this.layoutTop.Controls.Add(this.label3, 0, 2);
             this.layoutTop.Controls.Add(this.textexVATCode, 1, 4);
@@ -367,11 +367,11 @@
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 15F));
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 15F));
+            this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 15F));
+            this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -387,7 +387,7 @@
             this.textexOfficialName.Location = new System.Drawing.Point(180, 52);
             this.textexOfficialName.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.textexOfficialName.Name = "textexOfficialName";
-            this.textexOfficialName.Size = new System.Drawing.Size(1024, 28);
+            this.textexOfficialName.Size = new System.Drawing.Size(1027, 28);
             this.textexOfficialName.TabIndex = 76;
             // 
             // label3
@@ -406,60 +406,60 @@
             // 
             this.textexVATCode.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexVATCode.Editable = true;
-            this.textexVATCode.Location = new System.Drawing.Point(180, 99);
+            this.textexVATCode.Location = new System.Drawing.Point(180, 94);
             this.textexVATCode.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.textexVATCode.Name = "textexVATCode";
-            this.textexVATCode.Size = new System.Drawing.Size(527, 28);
+            this.textexVATCode.Size = new System.Drawing.Size(529, 28);
             this.textexVATCode.TabIndex = 80;
             // 
             // textexAttentionName
             // 
             this.textexAttentionName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexAttentionName.Editable = true;
-            this.textexAttentionName.Location = new System.Drawing.Point(180, 163);
+            this.textexAttentionName.Location = new System.Drawing.Point(180, 158);
             this.textexAttentionName.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.textexAttentionName.Name = "textexAttentionName";
-            this.textexAttentionName.Size = new System.Drawing.Size(527, 28);
+            this.textexAttentionName.Size = new System.Drawing.Size(529, 28);
             this.textexAttentionName.TabIndex = 82;
             // 
             // textexTelephone
             // 
             this.textexTelephone.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexTelephone.Editable = true;
-            this.textexTelephone.Location = new System.Drawing.Point(854, 99);
+            this.textexTelephone.Location = new System.Drawing.Point(856, 94);
             this.textexTelephone.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.textexTelephone.Name = "textexTelephone";
-            this.textexTelephone.Size = new System.Drawing.Size(350, 28);
+            this.textexTelephone.Size = new System.Drawing.Size(351, 28);
             this.textexTelephone.TabIndex = 83;
             // 
             // textexFacsimile
             // 
             this.textexFacsimile.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexFacsimile.Editable = true;
-            this.textexFacsimile.Location = new System.Drawing.Point(854, 131);
+            this.textexFacsimile.Location = new System.Drawing.Point(856, 126);
             this.textexFacsimile.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.textexFacsimile.Name = "textexFacsimile";
-            this.textexFacsimile.Size = new System.Drawing.Size(350, 28);
+            this.textexFacsimile.Size = new System.Drawing.Size(351, 28);
             this.textexFacsimile.TabIndex = 84;
             // 
             // textexEmail
             // 
             this.textexEmail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexEmail.Editable = true;
-            this.textexEmail.Location = new System.Drawing.Point(854, 163);
+            this.textexEmail.Location = new System.Drawing.Point(856, 158);
             this.textexEmail.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.textexEmail.Name = "textexEmail";
-            this.textexEmail.Size = new System.Drawing.Size(350, 28);
+            this.textexEmail.Size = new System.Drawing.Size(351, 28);
             this.textexEmail.TabIndex = 85;
             // 
             // textexContactInfo
             // 
             this.textexContactInfo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexContactInfo.Editable = true;
-            this.textexContactInfo.Location = new System.Drawing.Point(180, 131);
+            this.textexContactInfo.Location = new System.Drawing.Point(180, 126);
             this.textexContactInfo.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.textexContactInfo.Name = "textexContactInfo";
-            this.textexContactInfo.Size = new System.Drawing.Size(527, 28);
+            this.textexContactInfo.Size = new System.Drawing.Size(529, 28);
             this.textexContactInfo.TabIndex = 78;
             // 
             // textexName
@@ -470,14 +470,14 @@
             this.textexName.Location = new System.Drawing.Point(180, 20);
             this.textexName.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.textexName.Name = "textexName";
-            this.textexName.Size = new System.Drawing.Size(1024, 28);
+            this.textexName.Size = new System.Drawing.Size(1027, 28);
             this.textexName.TabIndex = 86;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Location = new System.Drawing.Point(3, 97);
+            this.label5.Location = new System.Drawing.Point(3, 92);
             this.label5.Margin = new System.Windows.Forms.Padding(3, 0, 1, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(173, 32);
@@ -489,7 +489,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label8.Location = new System.Drawing.Point(3, 129);
+            this.label8.Location = new System.Drawing.Point(3, 124);
             this.label8.Margin = new System.Windows.Forms.Padding(3, 0, 1, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(173, 32);
@@ -501,7 +501,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label9.Location = new System.Drawing.Point(3, 161);
+            this.label9.Location = new System.Drawing.Point(3, 156);
             this.label9.Margin = new System.Windows.Forms.Padding(3, 0, 1, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(173, 32);
@@ -513,7 +513,7 @@
             // 
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.pictureBox1.Image = global::TotalSmartCoding.Properties.Resources.fax_icon_16;
-            this.pictureBox1.Location = new System.Drawing.Point(834, 137);
+            this.pictureBox1.Location = new System.Drawing.Point(836, 132);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(16, 16);
@@ -524,7 +524,7 @@
             // 
             this.pictureBox3.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.pictureBox3.Image = global::TotalSmartCoding.Properties.Resources.Email_icon_16;
-            this.pictureBox3.Location = new System.Drawing.Point(834, 169);
+            this.pictureBox3.Location = new System.Drawing.Point(836, 164);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(16, 16);
@@ -548,10 +548,10 @@
             this.layoutTop.SetColumnSpan(this.textexBillingAddress, 4);
             this.textexBillingAddress.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexBillingAddress.Editable = true;
-            this.textexBillingAddress.Location = new System.Drawing.Point(180, 210);
+            this.textexBillingAddress.Location = new System.Drawing.Point(180, 200);
             this.textexBillingAddress.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.textexBillingAddress.Name = "textexBillingAddress";
-            this.textexBillingAddress.Size = new System.Drawing.Size(1024, 28);
+            this.textexBillingAddress.Size = new System.Drawing.Size(1027, 28);
             this.textexBillingAddress.TabIndex = 81;
             // 
             // textexShippingAddress
@@ -559,10 +559,10 @@
             this.layoutTop.SetColumnSpan(this.textexShippingAddress, 4);
             this.textexShippingAddress.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexShippingAddress.Editable = true;
-            this.textexShippingAddress.Location = new System.Drawing.Point(180, 242);
+            this.textexShippingAddress.Location = new System.Drawing.Point(180, 232);
             this.textexShippingAddress.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.textexShippingAddress.Name = "textexShippingAddress";
-            this.textexShippingAddress.Size = new System.Drawing.Size(1024, 28);
+            this.textexShippingAddress.Size = new System.Drawing.Size(1027, 28);
             this.textexShippingAddress.TabIndex = 87;
             // 
             // textexRemarks
@@ -570,17 +570,17 @@
             this.layoutTop.SetColumnSpan(this.textexRemarks, 4);
             this.textexRemarks.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexRemarks.Editable = true;
-            this.textexRemarks.Location = new System.Drawing.Point(180, 274);
+            this.textexRemarks.Location = new System.Drawing.Point(180, 264);
             this.textexRemarks.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.textexRemarks.Name = "textexRemarks";
-            this.textexRemarks.Size = new System.Drawing.Size(1024, 28);
+            this.textexRemarks.Size = new System.Drawing.Size(1027, 28);
             this.textexRemarks.TabIndex = 88;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label10.Location = new System.Drawing.Point(3, 208);
+            this.label10.Location = new System.Drawing.Point(3, 198);
             this.label10.Margin = new System.Windows.Forms.Padding(3, 0, 1, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(173, 32);
@@ -592,7 +592,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label11.Location = new System.Drawing.Point(3, 240);
+            this.label11.Location = new System.Drawing.Point(3, 230);
             this.label11.Margin = new System.Windows.Forms.Padding(3, 0, 1, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(173, 32);
@@ -604,7 +604,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label12.Location = new System.Drawing.Point(3, 272);
+            this.label12.Location = new System.Drawing.Point(3, 262);
             this.label12.Margin = new System.Windows.Forms.Padding(3, 0, 1, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(173, 32);
@@ -616,7 +616,7 @@
             // 
             this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.pictureBox2.Image = global::TotalSmartCoding.Properties.Resources.Phone_icon_16;
-            this.pictureBox2.Location = new System.Drawing.Point(834, 105);
+            this.pictureBox2.Location = new System.Drawing.Point(836, 100);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(16, 16);

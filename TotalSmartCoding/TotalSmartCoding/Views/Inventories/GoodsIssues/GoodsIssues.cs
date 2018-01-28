@@ -95,7 +95,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                 this.naviDetails.Expanded = false;
 
                 this.labelCaption.Left = 68; this.labelCaption.Top = 12;
-                if (GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.GoodsIssue) { ViewHelpers.SetFont(this, new Font("Calibri", 11), new Font("Calibri", 11), new Font("Calibri", 11)); ViewHelpers.SetFont(this.MdiParent, new Font("Calibri", 11), new Font("Calibri", 11), new Font("Calibri", 11)); } else { this.labelCaption.Top = this.labelCaption.Top + 1; }
+                if (GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.GoodsIssue) { ViewHelpers.SetFont(this, new Font("Calibri", 11), new Font("Calibri", 11), new Font("Calibri", 11)); } else { this.labelCaption.Top = this.labelCaption.Top + 1; } //ViewHelpers.SetFont(this.MdiParent, new Font("Calibri", 11), new Font("Calibri", 11), new Font("Calibri", 11)); 
 
                 this.customTabCenter.SelectedIndexChanged += customTabCenter_SelectedIndexChanged;
             }

@@ -575,11 +575,11 @@
             // buttonVoid
             // 
             this.buttonVoid.Enabled = false;
-            this.buttonVoid.Image = global::TotalSmartCoding.Properties.Resources.Void_22;
+            this.buttonVoid.Image = global::TotalSmartCoding.Properties.Resources.Void_24;
             this.buttonVoid.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.buttonVoid.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonVoid.Name = "buttonVoid";
-            this.buttonVoid.Size = new System.Drawing.Size(66, 66);
+            this.buttonVoid.Size = new System.Drawing.Size(68, 66);
             this.buttonVoid.Text = "Void";
             this.buttonVoid.Click += new System.EventHandler(this.buttonVoid_Click);
             // 
@@ -624,11 +624,11 @@
             // comboSearchBarcode
             // 
             this.comboSearchBarcode.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
-            this.comboSearchBarcode.Font = new System.Drawing.Font("Calibri", 10.2F);
+            this.comboSearchBarcode.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboSearchBarcode.ForeColor = System.Drawing.SystemColors.ControlDark;
             this.comboSearchBarcode.Name = "comboSearchBarcode";
             this.comboSearchBarcode.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.comboSearchBarcode.Size = new System.Drawing.Size(350, 69);
+            this.comboSearchBarcode.Size = new System.Drawing.Size(258, 69);
             this.comboSearchBarcode.Text = "Enter a whole or any section of barcode ...";
             this.comboSearchBarcode.Enter += new System.EventHandler(this.comboSearchBarcode_Enter);
             this.comboSearchBarcode.Leave += new System.EventHandler(this.comboSearchBarcode_Leave);

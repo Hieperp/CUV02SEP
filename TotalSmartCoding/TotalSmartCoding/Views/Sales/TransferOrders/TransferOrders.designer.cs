@@ -625,10 +625,10 @@
             this.layoutTop.ColumnCount = 6;
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
-            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 17F));
+            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 27F));
             this.layoutTop.Controls.Add(this.pictureBox5, 3, 3);
             this.layoutTop.Controls.Add(this.combexWarehouseReceiptID, 1, 2);
             this.layoutTop.Controls.Add(this.combexTransferPackageTypeID, 4, 3);
@@ -645,9 +645,8 @@
             this.layoutTop.Location = new System.Drawing.Point(1, 2);
             this.layoutTop.Margin = new System.Windows.Forms.Padding(0);
             this.layoutTop.Name = "layoutTop";
-            this.layoutTop.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.layoutTop.RowCount = 5;
-            this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 13F));
+            this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -657,13 +656,12 @@
             // 
             // pictureBox5
             // 
-            this.pictureBox5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox5.Image = global::TotalSmartCoding.Properties.Resources.pallet_24;
-            this.pictureBox5.Location = new System.Drawing.Point(816, 94);
-            this.pictureBox5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pictureBox5.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.pictureBox5.Image = global::TotalSmartCoding.Properties.Resources.Customer_Red_16;
+            this.pictureBox5.Location = new System.Drawing.Point(834, 84);
+            this.pictureBox5.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(24, 29);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox5.Size = new System.Drawing.Size(16, 16);
             this.pictureBox5.TabIndex = 93;
             this.pictureBox5.TabStop = false;
             // 
@@ -675,11 +673,11 @@
             this.combexWarehouseReceiptID.Editable = true;
             this.combexWarehouseReceiptID.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combexWarehouseReceiptID.FormattingEnabled = true;
-            this.combexWarehouseReceiptID.Location = new System.Drawing.Point(180, 57);
-            this.combexWarehouseReceiptID.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.combexWarehouseReceiptID.Location = new System.Drawing.Point(180, 45);
+            this.combexWarehouseReceiptID.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.combexWarehouseReceiptID.Name = "combexWarehouseReceiptID";
             this.combexWarehouseReceiptID.ReadOnly = false;
-            this.combexWarehouseReceiptID.Size = new System.Drawing.Size(525, 29);
+            this.combexWarehouseReceiptID.Size = new System.Drawing.Size(527, 29);
             this.combexWarehouseReceiptID.TabIndex = 92;
             // 
             // combexTransferPackageTypeID
@@ -690,22 +688,21 @@
             this.combexTransferPackageTypeID.Editable = true;
             this.combexTransferPackageTypeID.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combexTransferPackageTypeID.FormattingEnabled = true;
-            this.combexTransferPackageTypeID.Location = new System.Drawing.Point(846, 94);
-            this.combexTransferPackageTypeID.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.combexTransferPackageTypeID.Location = new System.Drawing.Point(854, 78);
+            this.combexTransferPackageTypeID.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.combexTransferPackageTypeID.Name = "combexTransferPackageTypeID";
             this.combexTransferPackageTypeID.ReadOnly = false;
-            this.combexTransferPackageTypeID.Size = new System.Drawing.Size(348, 29);
+            this.combexTransferPackageTypeID.Size = new System.Drawing.Size(350, 29);
             this.combexTransferPackageTypeID.TabIndex = 91;
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox1.Image = global::TotalSmartCoding.Properties.Resources.Warehouse_Transfer_24;
-            this.pictureBox1.Location = new System.Drawing.Point(150, 20);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.pictureBox1.Image = global::TotalSmartCoding.Properties.Resources.Customer_Blue_16;
+            this.pictureBox1.Location = new System.Drawing.Point(160, 18);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(24, 29);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.Size = new System.Drawing.Size(16, 16);
             this.pictureBox1.TabIndex = 75;
             this.pictureBox1.TabStop = false;
             // 
@@ -713,9 +710,10 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Location = new System.Drawing.Point(3, 90);
+            this.label3.Location = new System.Drawing.Point(3, 78);
+            this.label3.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(171, 37);
+            this.label3.Size = new System.Drawing.Size(173, 29);
             this.label3.TabIndex = 77;
             this.label3.Text = "Jobs Description";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -724,10 +722,10 @@
             // 
             this.textexTransferJobs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexTransferJobs.Editable = true;
-            this.textexTransferJobs.Location = new System.Drawing.Point(180, 94);
-            this.textexTransferJobs.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textexTransferJobs.Location = new System.Drawing.Point(180, 78);
+            this.textexTransferJobs.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.textexTransferJobs.Name = "textexTransferJobs";
-            this.textexTransferJobs.Size = new System.Drawing.Size(525, 28);
+            this.textexTransferJobs.Size = new System.Drawing.Size(527, 28);
             this.textexTransferJobs.TabIndex = 78;
             // 
             // textexWarehouseName
@@ -735,33 +733,31 @@
             this.textexWarehouseName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexWarehouseName.Editable = false;
             this.textexWarehouseName.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textexWarehouseName.Location = new System.Drawing.Point(180, 20);
-            this.textexWarehouseName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textexWarehouseName.Location = new System.Drawing.Point(180, 12);
+            this.textexWarehouseName.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.textexWarehouseName.Name = "textexWarehouseName";
-            this.textexWarehouseName.Size = new System.Drawing.Size(525, 28);
+            this.textexWarehouseName.Size = new System.Drawing.Size(527, 28);
             this.textexWarehouseName.TabIndex = 80;
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox2.Image = global::TotalSmartCoding.Properties.Resources.warehouse_full_24_1_24;
-            this.pictureBox2.Location = new System.Drawing.Point(150, 57);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.pictureBox2.Image = global::TotalSmartCoding.Properties.Resources.Customer_Red_16;
+            this.pictureBox2.Location = new System.Drawing.Point(160, 51);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(24, 29);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox2.Size = new System.Drawing.Size(16, 16);
             this.pictureBox2.TabIndex = 79;
             this.pictureBox2.TabStop = false;
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox3.Image = global::TotalSmartCoding.Properties.Resources.Admin_icon;
-            this.pictureBox3.Location = new System.Drawing.Point(816, 57);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pictureBox3.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.pictureBox3.Image = global::TotalSmartCoding.Properties.Resources.Customer_Blue_16;
+            this.pictureBox3.Location = new System.Drawing.Point(834, 51);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(24, 29);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox3.Size = new System.Drawing.Size(16, 16);
             this.pictureBox3.TabIndex = 86;
             this.pictureBox3.TabStop = false;
             // 
@@ -773,11 +769,11 @@
             this.combexStorekeeperID.Editable = true;
             this.combexStorekeeperID.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combexStorekeeperID.FormattingEnabled = true;
-            this.combexStorekeeperID.Location = new System.Drawing.Point(846, 57);
-            this.combexStorekeeperID.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.combexStorekeeperID.Location = new System.Drawing.Point(854, 45);
+            this.combexStorekeeperID.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.combexStorekeeperID.Name = "combexStorekeeperID";
             this.combexStorekeeperID.ReadOnly = false;
-            this.combexStorekeeperID.Size = new System.Drawing.Size(348, 29);
+            this.combexStorekeeperID.Size = new System.Drawing.Size(350, 29);
             this.combexStorekeeperID.TabIndex = 87;
             // 
             // combexTransferOrderTypeID
@@ -788,22 +784,21 @@
             this.combexTransferOrderTypeID.Editable = true;
             this.combexTransferOrderTypeID.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combexTransferOrderTypeID.FormattingEnabled = true;
-            this.combexTransferOrderTypeID.Location = new System.Drawing.Point(846, 20);
-            this.combexTransferOrderTypeID.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.combexTransferOrderTypeID.Location = new System.Drawing.Point(854, 12);
+            this.combexTransferOrderTypeID.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.combexTransferOrderTypeID.Name = "combexTransferOrderTypeID";
             this.combexTransferOrderTypeID.ReadOnly = false;
-            this.combexTransferOrderTypeID.Size = new System.Drawing.Size(348, 29);
+            this.combexTransferOrderTypeID.Size = new System.Drawing.Size(350, 29);
             this.combexTransferOrderTypeID.TabIndex = 88;
             // 
             // pictureBox4
             // 
-            this.pictureBox4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox4.Image = global::TotalSmartCoding.Properties.Resources.Type_icon_24;
-            this.pictureBox4.Location = new System.Drawing.Point(816, 20);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pictureBox4.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.pictureBox4.Image = global::TotalSmartCoding.Properties.Resources.Customer_Red_16;
+            this.pictureBox4.Location = new System.Drawing.Point(834, 18);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(24, 29);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox4.Size = new System.Drawing.Size(16, 16);
             this.pictureBox4.TabIndex = 89;
             this.pictureBox4.TabStop = false;
             // 

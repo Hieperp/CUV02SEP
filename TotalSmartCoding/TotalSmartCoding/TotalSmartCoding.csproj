@@ -1206,6 +1206,8 @@
     <None Include="Resources\Email-icon-16.png" />
     <None Include="Resources\fax-icon-16.png" />
     <None Include="Resources\Phone-icon-16.png" />
+    <None Include="Resources\Customer-Blue-16.png" />
+    <None Include="Resources\Customer-Red-16.png" />
     <Content Include="SmartCodingSolution.ico" />
     <None Include="Resources\Yellow-cross.ico" />
     <None Include="Resources\White-Pallet.ico" />

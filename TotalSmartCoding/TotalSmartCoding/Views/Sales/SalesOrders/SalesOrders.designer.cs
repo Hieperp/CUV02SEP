@@ -30,12 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SalesOrders));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             this.layoutLeft = new System.Windows.Forms.TableLayoutPanel();
             this.dateTimexEntryDate = new CustomControls.DateTimexPicker();
             this.textexReference = new CustomControls.TextexBox();
@@ -434,8 +434,8 @@
             this.gridexViewDetails.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gridexViewDetails.Name = "gridexViewDetails";
             this.gridexViewDetails.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridexViewDetails.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridexViewDetails.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.gridexViewDetails.RowTemplate.Height = 24;
             this.gridexViewDetails.Size = new System.Drawing.Size(888, 194);
             this.gridexViewDetails.TabIndex = 65;
@@ -473,8 +473,8 @@
             // 
             this.PackageVolume.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.PackageVolume.DataPropertyName = "PackageVolume";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.PackageVolume.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.PackageVolume.DefaultCellStyle = dataGridViewCellStyle7;
             this.PackageVolume.FillWeight = 7F;
             this.PackageVolume.HeaderText = "Package.Volume";
             this.PackageVolume.Name = "PackageVolume";
@@ -484,9 +484,9 @@
             // 
             this.QuantityAvailable.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.QuantityAvailable.DataPropertyName = "QuantityAvailable";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.Format = "N0";
-            this.QuantityAvailable.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle8.Format = "N0";
+            this.QuantityAvailable.DefaultCellStyle = dataGridViewCellStyle8;
             this.QuantityAvailable.FillWeight = 7F;
             this.QuantityAvailable.HeaderText = "Quantity.Available";
             this.QuantityAvailable.Name = "QuantityAvailable";
@@ -496,10 +496,10 @@
             // 
             this.Quantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Quantity.DataPropertyName = "Quantity";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.Format = "N0";
-            dataGridViewCellStyle3.NullValue = null;
-            this.Quantity.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle9.Format = "N0";
+            dataGridViewCellStyle9.NullValue = null;
+            this.Quantity.DefaultCellStyle = dataGridViewCellStyle9;
             this.Quantity.FillWeight = 7F;
             this.Quantity.HeaderText = "Quantity.Order";
             this.Quantity.Name = "Quantity";
@@ -508,9 +508,9 @@
             // 
             this.LineVolumeAvailable.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.LineVolumeAvailable.DataPropertyName = "LineVolumeAvailable";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle4.Format = "N2";
-            this.LineVolumeAvailable.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle10.Format = "N2";
+            this.LineVolumeAvailable.DefaultCellStyle = dataGridViewCellStyle10;
             this.LineVolumeAvailable.FillWeight = 7F;
             this.LineVolumeAvailable.HeaderText = "Volume.Available";
             this.LineVolumeAvailable.Name = "LineVolumeAvailable";
@@ -520,9 +520,9 @@
             // 
             this.LineVolume.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.LineVolume.DataPropertyName = "LineVolume";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.Format = "N2";
-            this.LineVolume.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle11.Format = "N2";
+            this.LineVolume.DefaultCellStyle = dataGridViewCellStyle11;
             this.LineVolume.FillWeight = 7F;
             this.LineVolume.HeaderText = "Volume.Order";
             this.LineVolume.Name = "LineVolume";
@@ -561,10 +561,10 @@
             this.layoutTop.ColumnCount = 6;
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
-            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 17F));
+            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.layoutTop.Controls.Add(this.combexCustomerID, 1, 1);
             this.layoutTop.Controls.Add(this.pictureBox1, 0, 1);
             this.layoutTop.Controls.Add(this.textexDeliveryAddress, 1, 3);
@@ -579,9 +579,8 @@
             this.layoutTop.Location = new System.Drawing.Point(1, 2);
             this.layoutTop.Margin = new System.Windows.Forms.Padding(0);
             this.layoutTop.Name = "layoutTop";
-            this.layoutTop.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.layoutTop.RowCount = 5;
-            this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 13F));
+            this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -596,22 +595,21 @@
             this.combexCustomerID.Dock = System.Windows.Forms.DockStyle.Fill;
             this.combexCustomerID.Editable = false;
             this.combexCustomerID.FormattingEnabled = true;
-            this.combexCustomerID.Location = new System.Drawing.Point(180, 20);
-            this.combexCustomerID.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.combexCustomerID.Location = new System.Drawing.Point(180, 12);
+            this.combexCustomerID.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.combexCustomerID.Name = "combexCustomerID";
             this.combexCustomerID.ReadOnly = false;
-            this.combexCustomerID.Size = new System.Drawing.Size(525, 29);
+            this.combexCustomerID.Size = new System.Drawing.Size(528, 29);
             this.combexCustomerID.TabIndex = 74;
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(150, 20);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.pictureBox1.Image = global::TotalSmartCoding.Properties.Resources.Customer_Blue_16;
+            this.pictureBox1.Location = new System.Drawing.Point(160, 18);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(24, 28);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.Size = new System.Drawing.Size(16, 16);
             this.pictureBox1.TabIndex = 75;
             this.pictureBox1.TabStop = false;
             // 
@@ -620,19 +618,20 @@
             this.layoutTop.SetColumnSpan(this.textexDeliveryAddress, 4);
             this.textexDeliveryAddress.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexDeliveryAddress.Editable = true;
-            this.textexDeliveryAddress.Location = new System.Drawing.Point(180, 92);
-            this.textexDeliveryAddress.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textexDeliveryAddress.Location = new System.Drawing.Point(180, 76);
+            this.textexDeliveryAddress.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.textexDeliveryAddress.Name = "textexDeliveryAddress";
-            this.textexDeliveryAddress.Size = new System.Drawing.Size(1014, 28);
+            this.textexDeliveryAddress.Size = new System.Drawing.Size(1025, 28);
             this.textexDeliveryAddress.TabIndex = 76;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Location = new System.Drawing.Point(3, 88);
+            this.label3.Location = new System.Drawing.Point(3, 74);
+            this.label3.Margin = new System.Windows.Forms.Padding(3, 0, 1, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(171, 36);
+            this.label3.Size = new System.Drawing.Size(173, 32);
             this.label3.TabIndex = 77;
             this.label3.Text = "Shipping Address";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -641,21 +640,20 @@
             // 
             this.textexContactInfo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexContactInfo.Editable = true;
-            this.textexContactInfo.Location = new System.Drawing.Point(846, 20);
-            this.textexContactInfo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textexContactInfo.Location = new System.Drawing.Point(855, 12);
+            this.textexContactInfo.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.textexContactInfo.Name = "textexContactInfo";
-            this.textexContactInfo.Size = new System.Drawing.Size(348, 28);
+            this.textexContactInfo.Size = new System.Drawing.Size(350, 28);
             this.textexContactInfo.TabIndex = 78;
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox2.Image = global::TotalSmartCoding.Properties.Resources.Phone_icon_24;
-            this.pictureBox2.Location = new System.Drawing.Point(816, 20);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.pictureBox2.Image = global::TotalSmartCoding.Properties.Resources.Phone_icon_16;
+            this.pictureBox2.Location = new System.Drawing.Point(835, 18);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(24, 28);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox2.Size = new System.Drawing.Size(16, 16);
             this.pictureBox2.TabIndex = 79;
             this.pictureBox2.TabStop = false;
             // 
@@ -666,44 +664,42 @@
             this.combexReceiverID.Dock = System.Windows.Forms.DockStyle.Fill;
             this.combexReceiverID.Editable = false;
             this.combexReceiverID.FormattingEnabled = true;
-            this.combexReceiverID.Location = new System.Drawing.Point(180, 56);
-            this.combexReceiverID.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.combexReceiverID.Location = new System.Drawing.Point(180, 44);
+            this.combexReceiverID.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.combexReceiverID.Name = "combexReceiverID";
             this.combexReceiverID.ReadOnly = false;
-            this.combexReceiverID.Size = new System.Drawing.Size(525, 29);
+            this.combexReceiverID.Size = new System.Drawing.Size(528, 29);
             this.combexReceiverID.TabIndex = 80;
             // 
             // textexTelephone
             // 
             this.textexTelephone.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexTelephone.Editable = true;
-            this.textexTelephone.Location = new System.Drawing.Point(846, 56);
-            this.textexTelephone.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textexTelephone.Location = new System.Drawing.Point(855, 44);
+            this.textexTelephone.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.textexTelephone.Name = "textexTelephone";
-            this.textexTelephone.Size = new System.Drawing.Size(348, 28);
+            this.textexTelephone.Size = new System.Drawing.Size(350, 28);
             this.textexTelephone.TabIndex = 81;
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox3.Image = global::TotalSmartCoding.Properties.Resources.Phone_icon_24;
-            this.pictureBox3.Location = new System.Drawing.Point(816, 56);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pictureBox3.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.pictureBox3.Image = global::TotalSmartCoding.Properties.Resources.Phone_icon_16;
+            this.pictureBox3.Location = new System.Drawing.Point(835, 50);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(24, 28);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox3.Size = new System.Drawing.Size(16, 16);
             this.pictureBox3.TabIndex = 82;
             this.pictureBox3.TabStop = false;
             // 
             // pictureBox4
             // 
-            this.pictureBox4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox4.Image = global::TotalSmartCoding.Properties.Resources.user_group_icon_24;
-            this.pictureBox4.Location = new System.Drawing.Point(150, 56);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pictureBox4.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.pictureBox4.Image = global::TotalSmartCoding.Properties.Resources.Customer_Red_16;
+            this.pictureBox4.Location = new System.Drawing.Point(160, 50);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(24, 28);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox4.Size = new System.Drawing.Size(16, 16);
             this.pictureBox4.TabIndex = 83;
             this.pictureBox4.TabStop = false;
             // 
