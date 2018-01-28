@@ -131,8 +131,24 @@ namespace TotalSmartCoding.Views.Mains
                 this.buttonNaviBarHeaderVisibleBinding.Parse += new ConvertEventHandler(buttonNaviBarHeaderVisibleBinding_Parse);
                 this.buttonNaviBarHeaderVisibleBinding.Format += new ConvertEventHandler(buttonNaviBarHeaderVisibleBinding_Format);
 
+                #region fastNMVNTask
                 this.fastNMVNTask.AboutToCreateGroups += fastNMVNTask_AboutToCreateGroups;
                 this.fastNMVNTask.ShowGroups = true;
+
+                //this.fastNMVNTask.UseTranslucentHotItem = true; //DEFAULT HotItem
+                fastNMVNTask.UseTranslucentHotItem = false;
+                fastNMVNTask.UseHotItem = true;
+                fastNMVNTask.UseExplorerTheme = false;
+
+                RowBorderDecoration rbd = new RowBorderDecoration();
+                rbd.BorderPen = new Pen(Color.SeaGreen, 2);
+                rbd.FillBrush = null;
+                rbd.CornerRounding = 4.0f;
+                HotItemStyle hotItemStyle2 = new HotItemStyle();
+                hotItemStyle2.Decoration = rbd;
+                fastNMVNTask.HotItemStyle = hotItemStyle2;
+                #endregion fastNMVNTask
+
 
                 if (loadedView != null)
                 {
@@ -142,7 +158,7 @@ namespace TotalSmartCoding.Views.Mains
                 else
                 {
                     this.InitializeModuleMaster();
-                    this.buttonNaviBarHeader_Click(this.buttonNaviBarHeader, new EventArgs());
+                    //this.buttonNaviBarHeader_Click(this.buttonNaviBarHeader, new EventArgs());
                 }
 
                 DateTime buildDate = new FileInfo(Assembly.GetExecutingAssembly().Location).LastWriteTime;
@@ -154,6 +170,21 @@ namespace TotalSmartCoding.Views.Mains
 
                 this.panelTopRight.Width = (this.nmvnTaskID == GlobalEnums.NmvnTaskID.SmartCoding ? 10 : this.labelSearchBarcode.Width) + this.comboSearchBarcode.Width + this.buttonSearchBarcode.Width + 10;
                 this.panelTop.Height = this.nmvnTaskID == GlobalEnums.NmvnTaskID.SmartCoding ? 61 : 39;
+            }
+            catch (Exception exception)
+            {
+                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+            }
+        }
+
+
+        private void MasterMDI_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                if (this.naviBarModuleMaster.Bands.Count > 0) this.naviBarModuleMaster.ActiveBand = this.naviBarModuleMaster.Bands[1];
+                this.naviBarModuleMaster.PopupHeight = this.naviBarModuleMaster.Height + this.naviBarModuleMaster.HeaderHeight - (this.naviBarModuleMaster.ButtonHeight + 6) * (this.naviBarModuleMaster.Bands.Count + 2) - 7;
+                //this.naviBarModuleMaster.PopupMinWidth = this.naviBarModuleMaster.Width;
             }
             catch (Exception exception)
             {
@@ -191,8 +222,11 @@ namespace TotalSmartCoding.Views.Mains
             {
                 foreach (OLVGroup olvGroup in e.Groups)
                 {
-                    olvGroup.TitleImage = "Analytics";
-                    if (olvGroup.Key != null) olvGroup.Subtitle = olvGroup.Key.ToString() == "LOGISTICS ADMIN" ? "Focuses on Orders" : (olvGroup.Key.ToString() == "WAREHOUSE CONTROLS" ? "Regulator for Warehousing Activities" : (olvGroup.Key.ToString() == "CUSTOMER MANAGEMENT" ? "Sales Governance & Organization" : (olvGroup.Key.ToString() == "WAREHOUSE RESOURCES" ? "Commodities & Related Resources" : null)));
+                    if (olvGroup.Key != null)
+                    {
+                        olvGroup.TitleImage = olvGroup.Key.ToString() == "LOGISTICS ADMIN" ? "Warehouse_Navy-32" : (olvGroup.Key.ToString() == "WAREHOUSE CONTROLS" ? "Warehouse_Navy-32" : (olvGroup.Key.ToString() == "CUSTOMER MANAGEMENT" ? "Member-32" : (olvGroup.Key.ToString() == "WAREHOUSE RESOURCES" ? "Member-32" : "Report-Yellow-32")));
+                        olvGroup.Subtitle = olvGroup.Key.ToString() == "LOGISTICS ADMIN" ? "Focuses on Orders" : (olvGroup.Key.ToString() == "WAREHOUSE CONTROLS" ? "Regulator for Warehousing Activities" : (olvGroup.Key.ToString() == "CUSTOMER MANAGEMENT" ? "Sales Governance & Organization" : (olvGroup.Key.ToString() == "WAREHOUSE RESOURCES" ? "Commodities & Related Resources" : null)));
+                    }
                 }
             }
         }
@@ -229,6 +263,7 @@ namespace TotalSmartCoding.Views.Mains
 
         #region Load and Open Module, Task
 
+        private NaviBand lastActiveBand;
         private void naviBarModuleMaster_ActiveBandChanged(object sender, EventArgs e)
         {
             try
@@ -236,8 +271,11 @@ namespace TotalSmartCoding.Views.Mains
                 int moduleID;
                 if (int.TryParse(this.naviBarModuleMaster.ActiveBand.Tag.ToString(), out  moduleID))
                 {
-                    if (moduleID == 9) //Reports
+                    if (moduleID == 9)
+                    {
                         this.OpenModuleDetail((int)GlobalEnums.NmvnTaskID.Report);
+                        if (lastActiveBand != null) this.naviBarModuleMaster.ActiveBand = lastActiveBand;
+                    }
                     else
                     {
                         this.buttonNaviBarHeader.Text = this.naviBarModuleMaster.ActiveBand.Text;
@@ -247,18 +285,9 @@ namespace TotalSmartCoding.Views.Mains
                         this.fastNMVNTask.Dock = DockStyle.Fill;
                         this.fastNMVNTask.Visible = true;
 
+                        lastActiveBand = this.naviBarModuleMaster.ActiveBand;
 
                         InitializeTaskMaster(moduleID);
-
-                        //if (moduleID == 9) //Reports
-                        //{
-                        //if (this.fastNMVNTask.Items.Count > 0)
-                        //{
-                        //    this.fastNMVNTask.Items[0].Selected = true;
-                        //    if (!this.naviBarModuleMaster.Collapsed)
-                        //        buttonNaviBarHeader_Click(this.buttonNaviBarHeader, new EventArgs());
-                        //}
-                        //}
                     }
                 }
             }
@@ -283,16 +312,14 @@ namespace TotalSmartCoding.Views.Mains
                         naviBand.Text = moduleIndex.Code;
                         naviBand.Tag = moduleIndex.ModuleID.ToString();
 
-                        naviBand.SmallImage = this.imageListModuleMasterSmall.Images[moduleIndex.ModuleID <= 9 ? moduleIndex.ModuleID : 8];
-                        naviBand.LargeImage = this.imageListModuleMasterLarge.Images[moduleIndex.ModuleID <= 9 ? moduleIndex.ModuleID : 8];
+                        naviBand.SmallImage = this.imageListModuleMasterSmall.Images[moduleIndex.ModuleID == 1 ? 0 : (moduleIndex.ModuleID == 6 ? 1 : 2)];
+                        naviBand.LargeImage = this.imageListModuleMasterLarge.Images[moduleIndex.ModuleID == 1 ? 0 : (moduleIndex.ModuleID == 6 ? 1 : 2)];
 
                         this.naviBarModuleMaster.Bands.Add(naviBand);
                     }
                 }
 
                 this.naviBarModuleMaster.VisibleLargeButtons = this.naviBarModuleMaster.Bands.Count;
-                this.naviBarModuleMaster.PopupHeight = this.naviBarModuleMaster.Height + this.naviBarModuleMaster.HeaderHeight - (this.naviBarModuleMaster.ButtonHeight) * this.naviBarModuleMaster.Bands.Count - 15;
-                //this.naviBarModuleMaster.PopupMinWidth = this.naviBarModuleMaster.Width;
             }
             catch (Exception exception)
             {
@@ -307,33 +334,7 @@ namespace TotalSmartCoding.Views.Mains
                 this.fastNMVNTask.SetObjects(this.moduleAPIs.GetModuleViewDetails(moduleID));
                 this.fastNMVNTask.Sort(this.olvModuleDetailController, SortOrder.Ascending);
 
-                ////this.fastNMVNTask.UseTranslucentHotItem = true;
-
-                fastNMVNTask.UseTranslucentHotItem = false;
-                fastNMVNTask.UseHotItem = true;
-                fastNMVNTask.UseExplorerTheme = false;
-
-                RowBorderDecoration rbd = new RowBorderDecoration();
-                rbd.BorderPen = new Pen(Color.SeaGreen, 2);
-                rbd.FillBrush = null;
-                rbd.CornerRounding = 4.0f;
-                HotItemStyle hotItemStyle2 = new HotItemStyle();
-                hotItemStyle2.Decoration = rbd;
-                fastNMVNTask.HotItemStyle = hotItemStyle2;
-
                 this.olvModuleDetailName.Width = 239;
-
-
-                //this.fastNMVNTask.Items.Clear();
-
-                //IList<ModuleViewDetail> moduleViewDetails = this.moduleAPIs.GetModuleViewDetails(moduleID);
-
-                //foreach (ModuleViewDetail moduleViewDetail in moduleViewDetails)
-                //{
-                //    this.fastNMVNTask.Items.Add(moduleViewDetail.ModuleDetailID.ToString(), moduleViewDetail.Name, moduleViewDetail.ImageIndex);
-                //}
-
-                //SetWindowTheme(fastNMVNTask.Handle, "explorer", null);
             }
             catch (Exception exception)
             {
@@ -440,12 +441,10 @@ namespace TotalSmartCoding.Views.Mains
 
                     if (openingView != null) this.OpenView(openingView);
                 }
-                buttonNaviBarHeader_Click(this.buttonNaviBarHeader, new EventArgs());
 
-                //if (!this.naviBarModuleMaster.Collapsed)
-                //    buttonNaviBarHeader_Click(this.buttonNaviBarHeader, new EventArgs());
+                if (!this.naviBarModuleMaster.Collapsed)
+                    buttonNaviBarHeader_Click(this.buttonNaviBarHeader, new EventArgs());
 
-                openingView.Focus();
             }
         }
 
@@ -820,6 +819,7 @@ namespace TotalSmartCoding.Views.Mains
             }
         }
         #endregion Search barcode
+
 
 
 

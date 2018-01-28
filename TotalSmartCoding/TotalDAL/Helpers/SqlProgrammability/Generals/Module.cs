@@ -115,7 +115,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
-
+            
             queryString = queryString + "       SELECT ModuleDetailID, ModuleID, Code, Name, FullName, Actions, Controller, LastOpen, SerialID, ImageIndex, InActive FROM ModuleDetails WHERE ModuleID = @ModuleID ORDER BY SerialID" + "\r\n";
 
             queryString = queryString + "    END " + "\r\n";

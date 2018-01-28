@@ -138,7 +138,7 @@ namespace TotalSmartCoding.Views.Commons.BinLocations
             {
                 foreach (OLVGroup olvGroup in e.Groups)
                 {
-                    olvGroup.TitleImage = "Storage32";
+                    olvGroup.TitleImage = "BinLocation-32";
                     olvGroup.Subtitle = "Count: " + olvGroup.Contents.Count.ToString() + " Bin(s)";
                 }
             }

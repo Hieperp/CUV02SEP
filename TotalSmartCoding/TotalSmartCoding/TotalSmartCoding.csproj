@@ -530,9 +530,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Mains\MasterMDI.resx">
       <DependentUpon>MasterMDI.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Mains\TabletMDI.resx">
       <DependentUpon>TabletMDI.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Mains\UserOUs.resx">
       <DependentUpon>UserOUs.cs</DependentUpon>

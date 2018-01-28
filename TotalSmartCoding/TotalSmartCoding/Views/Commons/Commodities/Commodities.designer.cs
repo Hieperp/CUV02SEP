@@ -687,6 +687,7 @@
             this.imageList32.Images.SetKeyName(6, "Sales-Order-32");
             this.imageList32.Images.SetKeyName(7, "Sign_Order_32");
             this.imageList32.Images.SetKeyName(8, "CustomerRed");
+            this.imageList32.Images.SetKeyName(9, "price-tag-32");
             // 
             // Commodities
             // 

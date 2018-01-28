@@ -204,7 +204,7 @@ namespace TotalSmartCoding.Views.Commons.Customers
             {
                 foreach (OLVGroup olvGroup in e.Groups)
                 {
-                    olvGroup.TitleImage = "CustomerRed";
+                    olvGroup.TitleImage = "Bank-32";
                     olvGroup.Subtitle = "Count: " + olvGroup.Contents.Count.ToString() + " Order(s)";
                 }
             }

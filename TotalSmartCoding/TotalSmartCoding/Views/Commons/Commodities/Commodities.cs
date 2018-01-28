@@ -160,7 +160,7 @@ namespace TotalSmartCoding.Views.Commons.Commodities
             {
                 foreach (OLVGroup olvGroup in e.Groups)
                 {
-                    olvGroup.TitleImage = "Storage32";
+                    olvGroup.TitleImage = "price-tag-32";
                     olvGroup.Subtitle = "Count: " + olvGroup.Contents.Count.ToString() + " Item(s)";
                 }
             }

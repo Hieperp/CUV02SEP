@@ -36,7 +36,9 @@
             this.naviBarModuleMaster = new Guifreaks.Navisuite.NaviBar(this.components);
             this.fastNMVNTask = new BrightIdeasSoftware.FastObjectListView();
             this.olvID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvModuleDetailController = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvModuleDetailName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.imageList32 = new System.Windows.Forms.ImageList(this.components);
             this.buttonNaviBarHeader = new System.Windows.Forms.Button();
             this.InvisibleMainMenuStripOfMDI = new System.Windows.Forms.MenuStrip();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
@@ -88,8 +90,6 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.comboDetailFilterTexts = new System.Windows.Forms.ToolStripComboBox();
             this.buttonClearDetailFilters = new System.Windows.Forms.ToolStripButton();
-            this.olvModuleDetailController = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.imageList32 = new System.Windows.Forms.ImageList(this.components);
             this.naviBarModuleMaster.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastNMVNTask)).BeginInit();
             this.statusStrip.SuspendLayout();
@@ -105,31 +105,17 @@
             // 
             this.imageListModuleMasterSmall.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListModuleMasterSmall.ImageStream")));
             this.imageListModuleMasterSmall.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageListModuleMasterSmall.Images.SetKeyName(0, "Fatcow-Farm-Fresh-Pill-add.ico");
-            this.imageListModuleMasterSmall.Images.SetKeyName(1, "Aha-Soft-Medical-Health-care-shield.ico");
-            this.imageListModuleMasterSmall.Images.SetKeyName(2, "Fatcow-Farm-Fresh-Group-add.ico");
-            this.imageListModuleMasterSmall.Images.SetKeyName(3, "Iconfactory-Echelon-System-ROM.ico");
-            this.imageListModuleMasterSmall.Images.SetKeyName(4, "Fatcow-Farm-Fresh-Drugs-com.ico");
-            this.imageListModuleMasterSmall.Images.SetKeyName(5, "Fatcow-Farm-Fresh-Database-lightning.ico");
-            this.imageListModuleMasterSmall.Images.SetKeyName(6, "Fatcow-Farm-Fresh-Advertising.ico");
-            this.imageListModuleMasterSmall.Images.SetKeyName(7, "Graphicrating-Quartz-Chart-1.ico");
-            this.imageListModuleMasterSmall.Images.SetKeyName(8, "Simon-Cook-Xtra-Orange-Documents.ico");
-            this.imageListModuleMasterSmall.Images.SetKeyName(9, "Graphicloads-Folded-Barcode-folded.ico");
+            this.imageListModuleMasterSmall.Images.SetKeyName(0, "Member-24.png");
+            this.imageListModuleMasterSmall.Images.SetKeyName(1, "Warehouse_Navy-24.png");
+            this.imageListModuleMasterSmall.Images.SetKeyName(2, "Report-Navy-24.png");
             // 
             // imageListModuleMasterLarge
             // 
             this.imageListModuleMasterLarge.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListModuleMasterLarge.ImageStream")));
             this.imageListModuleMasterLarge.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageListModuleMasterLarge.Images.SetKeyName(0, "Fatcow-Farm-Fresh-Pill-add.ico");
-            this.imageListModuleMasterLarge.Images.SetKeyName(1, "Aha-Soft-Medical-Health-care-shield.ico");
-            this.imageListModuleMasterLarge.Images.SetKeyName(2, "Fatcow-Farm-Fresh-Group-add.ico");
-            this.imageListModuleMasterLarge.Images.SetKeyName(3, "Iconfactory-Echelon-System-ROM.ico");
-            this.imageListModuleMasterLarge.Images.SetKeyName(4, "Fatcow-Farm-Fresh-Drugs-com.ico");
-            this.imageListModuleMasterLarge.Images.SetKeyName(5, "Fatcow-Farm-Fresh-Database-lightning.ico");
-            this.imageListModuleMasterLarge.Images.SetKeyName(6, "Fatcow-Farm-Fresh-Advertising.ico");
-            this.imageListModuleMasterLarge.Images.SetKeyName(7, "Graphicrating-Quartz-Chart-1.ico");
-            this.imageListModuleMasterLarge.Images.SetKeyName(8, "Simon-Cook-Xtra-Orange-Documents.ico");
-            this.imageListModuleMasterLarge.Images.SetKeyName(9, "Graphicloads-Folded-Barcode-folded.ico");
+            this.imageListModuleMasterLarge.Images.SetKeyName(0, "Member-24.png");
+            this.imageListModuleMasterLarge.Images.SetKeyName(1, "Warehouse_Navy-24.png");
+            this.imageListModuleMasterLarge.Images.SetKeyName(2, "Report-Navy-24.png");
             // 
             // imageListTaskMaster
             // 
@@ -196,6 +182,7 @@
             this.naviBarModuleMaster.Location = new System.Drawing.Point(0, 124);
             this.naviBarModuleMaster.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.naviBarModuleMaster.Name = "naviBarModuleMaster";
+            this.naviBarModuleMaster.ShowMoreOptionsButton = false;
             this.naviBarModuleMaster.Size = new System.Drawing.Size(278, 887);
             this.naviBarModuleMaster.TabIndex = 14;
             this.naviBarModuleMaster.Text = "naviBar1";
@@ -208,21 +195,22 @@
             this.fastNMVNTask.AllColumns.Add(this.olvID);
             this.fastNMVNTask.AllColumns.Add(this.olvModuleDetailController);
             this.fastNMVNTask.AllColumns.Add(this.olvModuleDetailName);
-            this.fastNMVNTask.BackColor = System.Drawing.Color.Ivory;
+            this.fastNMVNTask.BackColor = System.Drawing.Color.AliceBlue;
             this.fastNMVNTask.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.olvID,
             this.olvModuleDetailName});
             this.fastNMVNTask.Cursor = System.Windows.Forms.Cursors.Default;
+            this.fastNMVNTask.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fastNMVNTask.FullRowSelect = true;
             this.fastNMVNTask.GroupImageList = this.imageList32;
             this.fastNMVNTask.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.fastNMVNTask.HideSelection = false;
-            this.fastNMVNTask.HighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
+            this.fastNMVNTask.HighlightBackgroundColor = System.Drawing.SystemColors.HotTrack;
             this.fastNMVNTask.Location = new System.Drawing.Point(0, 55);
             this.fastNMVNTask.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.fastNMVNTask.Name = "fastNMVNTask";
             this.fastNMVNTask.OwnerDraw = true;
-            this.fastNMVNTask.RowHeight = 32;
+            this.fastNMVNTask.RowHeight = 27;
             this.fastNMVNTask.ShowGroups = false;
             this.fastNMVNTask.Size = new System.Drawing.Size(275, 248);
             this.fastNMVNTask.TabIndex = 71;
@@ -241,6 +229,13 @@
             this.olvID.Text = "";
             this.olvID.Width = 10;
             // 
+            // olvModuleDetailController
+            // 
+            this.olvModuleDetailController.AspectName = "Controller";
+            this.olvModuleDetailController.DisplayIndex = 1;
+            this.olvModuleDetailController.IsVisible = false;
+            this.olvModuleDetailController.Text = "Controller";
+            // 
             // olvModuleDetailName
             // 
             this.olvModuleDetailName.AspectName = "Name";
@@ -249,6 +244,15 @@
             this.olvModuleDetailName.Sortable = false;
             this.olvModuleDetailName.Text = "Reports";
             this.olvModuleDetailName.Width = 239;
+            // 
+            // imageList32
+            // 
+            this.imageList32.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList32.ImageStream")));
+            this.imageList32.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList32.Images.SetKeyName(0, "Member-32");
+            this.imageList32.Images.SetKeyName(1, "Warehouse_Navy-32");
+            this.imageList32.Images.SetKeyName(2, "Report-Navy-32");
+            this.imageList32.Images.SetKeyName(3, "Report-Yellow-32");
             // 
             // buttonNaviBarHeader
             // 
@@ -790,27 +794,6 @@
             this.buttonClearDetailFilters.Visible = false;
             this.buttonClearDetailFilters.Click += new System.EventHandler(this.buttonClearFilters_Click);
             // 
-            // olvModuleDetailController
-            // 
-            this.olvModuleDetailController.AspectName = "Controller";
-            this.olvModuleDetailController.DisplayIndex = 1;
-            this.olvModuleDetailController.IsVisible = false;
-            this.olvModuleDetailController.Text = "Controller";
-            // 
-            // imageList32
-            // 
-            this.imageList32.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList32.ImageStream")));
-            this.imageList32.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList32.Images.SetKeyName(0, "Forklift");
-            this.imageList32.Images.SetKeyName(1, "ForkliftYellow");
-            this.imageList32.Images.SetKeyName(2, "ForkliftOrange");
-            this.imageList32.Images.SetKeyName(3, "ForkliftJapan");
-            this.imageList32.Images.SetKeyName(4, "Placeholder32");
-            this.imageList32.Images.SetKeyName(5, "Storage32");
-            this.imageList32.Images.SetKeyName(6, "Pallet-32-O");
-            this.imageList32.Images.SetKeyName(7, "Carton-32");
-            this.imageList32.Images.SetKeyName(8, "Analytics");
-            // 
             // MasterMDI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -830,6 +813,7 @@
             this.Text = "Total 2D Coding Solution";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MasterMDI_FormClosing);
+            this.Load += new System.EventHandler(this.MasterMDI_Load);
             this.MdiChildActivate += new System.EventHandler(this.MasterMdi_MdiChildActivate);
             this.naviBarModuleMaster.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.fastNMVNTask)).EndInit();

@@ -732,7 +732,7 @@
             this.textWarehouseIssue.Name = "textWarehouseIssue";
             this.textWarehouseIssue.Size = new System.Drawing.Size(1066, 28);
             this.textWarehouseIssue.TabIndex = 70;
-            this.textWarehouseIssue.TextChanged += new System.EventHandler(this.textCLEAR_TextChanged);
+            this.textWarehouseIssue.TextChanged += new System.EventHandler(this.textFILTER_TextChanged);
             // 
             // panel11
             // 
@@ -930,7 +930,7 @@
             this.textWarehouseAdjustmentType.Name = "textWarehouseAdjustmentType";
             this.textWarehouseAdjustmentType.Size = new System.Drawing.Size(1066, 28);
             this.textWarehouseAdjustmentType.TabIndex = 70;
-            this.textWarehouseAdjustmentType.TextChanged += new System.EventHandler(this.textCLEAR_TextChanged);
+            this.textWarehouseAdjustmentType.TextChanged += new System.EventHandler(this.textFILTER_TextChanged);
             // 
             // panel8
             // 
@@ -1128,7 +1128,7 @@
             this.textWarehouseReceipt.Name = "textWarehouseReceipt";
             this.textWarehouseReceipt.Size = new System.Drawing.Size(1066, 28);
             this.textWarehouseReceipt.TabIndex = 70;
-            this.textWarehouseReceipt.TextChanged += new System.EventHandler(this.textCLEAR_TextChanged);
+            this.textWarehouseReceipt.TextChanged += new System.EventHandler(this.textFILTER_TextChanged);
             // 
             // panel5
             // 
@@ -1326,7 +1326,7 @@
             this.textWarehouse.Name = "textWarehouse";
             this.textWarehouse.Size = new System.Drawing.Size(1063, 28);
             this.textWarehouse.TabIndex = 70;
-            this.textWarehouse.TextChanged += new System.EventHandler(this.textCLEAR_TextChanged);
+            this.textWarehouse.TextChanged += new System.EventHandler(this.textFILTER_TextChanged);
             // 
             // panel2
             // 
@@ -1534,7 +1534,7 @@
             this.textCustomer.Name = "textCustomer";
             this.textCustomer.Size = new System.Drawing.Size(658, 28);
             this.textCustomer.TabIndex = 70;
-            this.textCustomer.TextChanged += new System.EventHandler(this.textCLEAR_TextChanged);
+            this.textCustomer.TextChanged += new System.EventHandler(this.textFILTER_TextChanged);
             // 
             // panel17
             // 
@@ -1734,7 +1734,7 @@
             this.textEmployee.Name = "textEmployee";
             this.textEmployee.Size = new System.Drawing.Size(255, 28);
             this.textEmployee.TabIndex = 70;
-            this.textEmployee.TextChanged += new System.EventHandler(this.textCLEAR_TextChanged);
+            this.textEmployee.TextChanged += new System.EventHandler(this.textFILTER_TextChanged);
             // 
             // panel14
             // 
@@ -1888,7 +1888,7 @@
             this.textCommodity.Name = "textCommodity";
             this.textCommodity.Size = new System.Drawing.Size(658, 28);
             this.textCommodity.TabIndex = 70;
-            this.textCommodity.TextChanged += new System.EventHandler(this.textCLEAR_TextChanged);
+            this.textCommodity.TextChanged += new System.EventHandler(this.textFILTER_TextChanged);
             // 
             // panel23
             // 
@@ -2080,7 +2080,7 @@
             this.textCommodityType.Name = "textCommodityType";
             this.textCommodityType.Size = new System.Drawing.Size(255, 28);
             this.textCommodityType.TabIndex = 70;
-            this.textCommodityType.TextChanged += new System.EventHandler(this.textCLEAR_TextChanged);
+            this.textCommodityType.TextChanged += new System.EventHandler(this.textFILTER_TextChanged);
             // 
             // panel20
             // 

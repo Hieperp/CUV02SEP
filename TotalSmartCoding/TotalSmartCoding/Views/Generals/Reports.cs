@@ -109,36 +109,7 @@ namespace TotalSmartCoding.Views.Generals
             base.InitializeReadOnlyModeBinding();
             this.dateTimexFromDate.ReadOnly = false;
             this.dateTimexToDate.ReadOnly = false;
-        }
-
-        public override void ApplyFilter(string filterTexts)
-        {
-            //OLVHelpers.ApplyFilters(this.treeWarehouseID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
-            //OLVHelpers.ApplyFilters(this.treeCommodityID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
-            //OLVHelpers.ApplyFilters(this.treeCommodityTypeID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
-            //OLVHelpers.ApplyFilters(this.treeCustomerID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
-            //OLVHelpers.ApplyFilters(this.treeEmployeeID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
-            //OLVHelpers.ApplyFilters(this.treeWarehouseIssueID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
-            //OLVHelpers.ApplyFilters(this.treeWarehouseReceiptID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
-            //OLVHelpers.ApplyFilters(this.treeWarehouseAdjustmentTypeID, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
-
-            var a = this.treeCommodityID.FilteredObjects;
-            var b = a;
-
-            ObjectListView LV = this.treeCommodityID;
-
-            List<IFilterTree> effectedFilterTrees = LV.FilteredObjects.Cast<IFilterTree>().ToList();
-
-            if (effectedFilterTrees != null && effectedFilterTrees.Count() > 0)
-            {
-                List<int?> ancestorIDs = effectedFilterTrees.Select(n => n.PrimaryID).ToList();
-                IList<CommodityTree> enumerableFilterTree = this.commodityTrees.Where(w => !ancestorIDs.Contains(w.PrimaryID)).ToList();
-
-                foreach (CommodityTree c in enumerableFilterTree) { c.Selected = false; }
-            }
-
-
-        }
+        }        
 
         private IList<WarehouseTree> warehouseTrees;
         private IList<CommodityTree> commodityTrees;
@@ -538,7 +509,7 @@ namespace TotalSmartCoding.Views.Generals
             catch { }
         }
 
-        private void textCLEAR_TextChanged(object sender, EventArgs e)
+        private void textFILTER_TextChanged(object sender, EventArgs e)
         {
             try
             {
