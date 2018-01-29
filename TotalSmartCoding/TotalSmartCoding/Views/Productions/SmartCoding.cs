@@ -114,8 +114,8 @@ namespace TotalSmartCoding.Views.Productions
                 this.buttonCartonNoreadNow.Visible = GlobalEnums.OnTestScanner;
                 this.buttonPalletReceivedNow.Visible = GlobalEnums.OnTestScanner;
 
-                if (!fillingData.HasPack) { this.labelNextDigitNo.Visible = false; this.textNextDigitNo.Visible = false; this.labelNextPackNo.Visible = false; this.textNextPackNo.Visible = false; this.dgvCartonPendingQueue.RowTemplate.Height = 280; this.dgvCartonQueue.RowTemplate.Height = 280; this.dgvCartonsetQueue.RowTemplate.Height = 280; this.labelLEDPack.Visible = false; this.labelLEDCartonIgnore.Visible = false; this.labelCommodityNameCarton.Visible = true; }
-                if (!fillingData.HasCarton) { this.labelNextCartonNo.Visible = false; this.textNextCartonNo.Visible = false; this.dgvPalletQueue.RowTemplate.Height = 280; this.dgvPalletPickupQueue.RowTemplate.Height = 280; this.labelLEDCarton.Visible = false; this.labelLEDCartonPending.Visible = false; this.labelCommodityNamePallet.Visible = true; }
+                if (!fillingData.HasPack) { this.labelNextDigitNo.Visible = false; this.textNextDigitNo.Visible = false; this.labelNextPackNo.Visible = false; this.textNextPackNo.Visible = false; this.dgvCartonPendingQueue.RowTemplate.Height = 280; this.dgvCartonQueue.RowTemplate.Height = 280; this.dgvCartonsetQueue.RowTemplate.Height = 280; this.labelLEDPack.Visible = false; this.labelLEDCartonIgnore.Visible = false; this.separatorLEDPack.Visible = false; this.separatorLEDCartonIgnore.Visible = false; this.labelCommodityNameCarton.Visible = true; }
+                if (!fillingData.HasCarton) { this.labelNextCartonNo.Visible = false; this.textNextCartonNo.Visible = false; this.dgvPalletQueue.RowTemplate.Height = 280; this.dgvPalletPickupQueue.RowTemplate.Height = 280; this.labelLEDCarton.Visible = false; this.labelLEDCartonPending.Visible = false; this.separatorLEDCarton.Visible = false; this.separatorLEDCartonPending.Visible = false; this.labelCommodityNamePallet.Visible = true; }
 
 
 
@@ -139,9 +139,9 @@ namespace TotalSmartCoding.Views.Productions
                 BatchIndex batchIndex = (new BatchAPIs(CommonNinject.Kernel.Get<IBatchAPIRepository>())).GetActiveBatchIndex();
                 if (batchIndex != null) Mapper.Map<BatchIndex, FillingData>(batchIndex, this.fillingData);
 
-                string commodityDescription = this.fillingData.CommodityName + "      [Pack size: " + this.fillingData.Volume.ToString("N2") + (this.fillingData.HasPack ? ", Carton size: " + this.fillingData.PackPerCarton + " packs" : "") + (this.fillingData.HasCarton ? ", Pallet size: " + this.fillingData.CartonPerPallet + " cartons" : "") + "]";
+                string commodityDescription = this.fillingData.CommodityName + "      [Volume: " + this.fillingData.Volume.ToString("N2") + (this.fillingData.HasPack ? ", Carton size: " + this.fillingData.PackPerCarton + " packs" : "") + (this.fillingData.HasCarton ? ", Pallet size: " + this.fillingData.CartonPerPallet + " cartons" : "") + "]";
                 this.labelCommodityNamePack.Text = "                                         " + commodityDescription;
-                this.labelCommodityNameCarton.Text = "     " + commodityDescription;
+                this.labelCommodityNameCarton.Text = "  " + commodityDescription;
                 this.labelCommodityNamePallet.Text = "                            " + commodityDescription;
             }
             catch (Exception exception)
@@ -557,7 +557,7 @@ namespace TotalSmartCoding.Views.Productions
                         this.buttonPalletPickupQueueCount.Text = "[" + this.scannerController.PalletPickupQueueCount.ToString("N0") + "]";
                     }
                 }
-
+                
             }
             catch (Exception exception)
             {
