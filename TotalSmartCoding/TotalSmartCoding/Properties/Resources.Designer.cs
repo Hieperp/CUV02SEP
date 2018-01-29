@@ -553,6 +553,26 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Admin_16 {
+            get {
+                object obj = ResourceManager.GetObject("Admin-16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Admin_161 {
+            get {
+                object obj = ResourceManager.GetObject("Admin-161", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Admin_icon {
             get {
                 object obj = ResourceManager.GetObject("Admin-icon", resourceCulture);
@@ -1406,6 +1426,16 @@ namespace TotalSmartCoding.Properties {
         internal static System.Drawing.Bitmap Cancel_20 {
             get {
                 object obj = ResourceManager.GetObject("Cancel-20", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Cargo_Ship_16 {
+            get {
+                object obj = ResourceManager.GetObject("Cargo_Ship-16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -4513,6 +4543,26 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Pallet_I_16 {
+            get {
+                object obj = ResourceManager.GetObject("Pallet-I-16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Pallet_N_16 {
+            get {
+                object obj = ResourceManager.GetObject("Pallet-N-16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap PalletBin32 {
             get {
                 object obj = ResourceManager.GetObject("PalletBin32", resourceCulture);
@@ -4796,6 +4846,16 @@ namespace TotalSmartCoding.Properties {
         internal static System.Drawing.Bitmap Saki_NuoveXT_Actions_ok {
             get {
                 object obj = ResourceManager.GetObject("Saki-NuoveXT-Actions-ok", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Salesperson_16 {
+            get {
+                object obj = ResourceManager.GetObject("Salesperson-16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -5253,6 +5313,16 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Transfer_16 {
+            get {
+                object obj = ResourceManager.GetObject("Transfer-16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap trash_empty {
             get {
                 object obj = ResourceManager.GetObject("trash-empty", resourceCulture);
@@ -5453,6 +5523,16 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Warehouse_full_16 {
+            get {
+                object obj = ResourceManager.GetObject("Warehouse-full-16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Warehouse_Full_20 {
             get {
                 object obj = ResourceManager.GetObject("Warehouse-Full-20", resourceCulture);
@@ -5506,6 +5586,16 @@ namespace TotalSmartCoding.Properties {
         internal static System.Drawing.Bitmap Warehouse_Full_32 {
             get {
                 object obj = ResourceManager.GetObject("Warehouse-Full-32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Warehouse_transfer_16 {
+            get {
+                object obj = ResourceManager.GetObject("Warehouse-transfer-16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

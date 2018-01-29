@@ -1208,6 +1208,15 @@
     <None Include="Resources\Phone-icon-16.png" />
     <None Include="Resources\Customer-Blue-16.png" />
     <None Include="Resources\Customer-Red-16.png" />
+    <None Include="Resources\Pallet-N-16.png" />
+    <None Include="Resources\Admin-16.png" />
+    <None Include="Resources\Warehouse-full-16.png" />
+    <None Include="Resources\Warehouse-transfer-16.png" />
+    <None Include="Resources\Transfer-16.png" />
+    <None Include="Resources\Salesperson-16.png" />
+    <None Include="Resources\Admin-161.png" />
+    <None Include="Resources\Pallet-I-16.png" />
+    <None Include="Resources\Cargo_Ship-16.png" />
     <Content Include="SmartCodingSolution.ico" />
     <None Include="Resources\Yellow-cross.ico" />
     <None Include="Resources\White-Pallet.ico" />

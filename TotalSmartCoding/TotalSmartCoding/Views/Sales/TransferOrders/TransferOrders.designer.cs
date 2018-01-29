@@ -628,7 +628,7 @@
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.layoutTop.Controls.Add(this.pictureBox5, 3, 3);
             this.layoutTop.Controls.Add(this.combexWarehouseReceiptID, 1, 2);
             this.layoutTop.Controls.Add(this.combexTransferPackageTypeID, 4, 3);
@@ -657,7 +657,7 @@
             // pictureBox5
             // 
             this.pictureBox5.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.pictureBox5.Image = global::TotalSmartCoding.Properties.Resources.Customer_Red_16;
+            this.pictureBox5.Image = global::TotalSmartCoding.Properties.Resources.Cargo_Ship_16;
             this.pictureBox5.Location = new System.Drawing.Point(834, 84);
             this.pictureBox5.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.pictureBox5.Name = "pictureBox5";
@@ -698,7 +698,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.pictureBox1.Image = global::TotalSmartCoding.Properties.Resources.Customer_Blue_16;
+            this.pictureBox1.Image = global::TotalSmartCoding.Properties.Resources.Warehouse_transfer_16;
             this.pictureBox1.Location = new System.Drawing.Point(160, 18);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.pictureBox1.Name = "pictureBox1";
@@ -742,7 +742,7 @@
             // pictureBox2
             // 
             this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.pictureBox2.Image = global::TotalSmartCoding.Properties.Resources.Customer_Red_16;
+            this.pictureBox2.Image = global::TotalSmartCoding.Properties.Resources.Warehouse_full_16;
             this.pictureBox2.Location = new System.Drawing.Point(160, 51);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.pictureBox2.Name = "pictureBox2";
@@ -753,7 +753,7 @@
             // pictureBox3
             // 
             this.pictureBox3.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.pictureBox3.Image = global::TotalSmartCoding.Properties.Resources.Customer_Blue_16;
+            this.pictureBox3.Image = global::TotalSmartCoding.Properties.Resources.Admin_16;
             this.pictureBox3.Location = new System.Drawing.Point(834, 51);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.pictureBox3.Name = "pictureBox3";
@@ -794,7 +794,7 @@
             // pictureBox4
             // 
             this.pictureBox4.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.pictureBox4.Image = global::TotalSmartCoding.Properties.Resources.Customer_Red_16;
+            this.pictureBox4.Image = global::TotalSmartCoding.Properties.Resources.Transfer_16;
             this.pictureBox4.Location = new System.Drawing.Point(834, 18);
             this.pictureBox4.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.pictureBox4.Name = "pictureBox4";

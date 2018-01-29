@@ -29,19 +29,19 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DeliveryAdvices));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
             this.layoutLeft = new System.Windows.Forms.TableLayoutPanel();
             this.dateTimexEntryDate = new CustomControls.DateTimexPicker();
             this.label6 = new System.Windows.Forms.Label();
@@ -56,15 +56,12 @@
             this.combexStorekeeperID = new CustomControls.CombexBox();
             this.combexSalespersonID = new CustomControls.CombexBox();
             this.toolStripChildForm = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.naviGroupDetails = new Guifreaks.Navisuite.NaviGroup(this.components);
             this.labelCaption = new System.Windows.Forms.Label();
             this.toolStripNaviGroup = new System.Windows.Forms.ToolStrip();
-            this.buttonExpandTop = new System.Windows.Forms.ToolStripButton();
             this.panelCenter = new System.Windows.Forms.Panel();
             this.toolStripPallet = new System.Windows.Forms.ToolStrip();
-            this.buttonAddDetails = new System.Windows.Forms.ToolStripButton();
             this.textexDescription = new CustomControls.TextexBox();
             this.textexRemarks = new CustomControls.TextexBox();
             this.gridexViewDetails = new CustomControls.DataGridexView();
@@ -89,13 +86,9 @@
             this.naviGroupTop = new Guifreaks.Navisuite.NaviGroup(this.components);
             this.layoutTop = new System.Windows.Forms.TableLayoutPanel();
             this.combexCustomerID = new CustomControls.CombexBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.textexDeliveryAddress = new CustomControls.TextexBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.combexReceiverID = new CustomControls.CombexBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.panelLeft = new System.Windows.Forms.Panel();
             this.fastDeliveryAdviceIndex = new BrightIdeasSoftware.FastObjectListView();
             this.olvID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -110,6 +103,13 @@
             this.olvTotalLineVolume = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvApproved = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.imageList32 = new System.Windows.Forms.ImageList(this.components);
+            this.buttonExpandTop = new System.Windows.Forms.ToolStripButton();
+            this.buttonAddDetails = new System.Windows.Forms.ToolStripButton();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.layoutLeft.SuspendLayout();
             this.toolStripChildForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.naviGroupDetails)).BeginInit();
@@ -122,12 +122,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.naviGroupTop)).BeginInit();
             this.naviGroupTop.SuspendLayout();
             this.layoutTop.SuspendLayout();
+            this.panelLeft.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fastDeliveryAdviceIndex)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            this.panelLeft.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.fastDeliveryAdviceIndex)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutLeft
@@ -304,7 +304,7 @@
             this.combexStorekeeperID.Editable = true;
             this.combexStorekeeperID.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combexStorekeeperID.FormattingEnabled = true;
-            this.combexStorekeeperID.Location = new System.Drawing.Point(855, 45);
+            this.combexStorekeeperID.Location = new System.Drawing.Point(854, 45);
             this.combexStorekeeperID.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.combexStorekeeperID.Name = "combexStorekeeperID";
             this.combexStorekeeperID.ReadOnly = false;
@@ -319,7 +319,7 @@
             this.combexSalespersonID.Editable = true;
             this.combexSalespersonID.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combexSalespersonID.FormattingEnabled = true;
-            this.combexSalespersonID.Location = new System.Drawing.Point(855, 12);
+            this.combexSalespersonID.Location = new System.Drawing.Point(854, 12);
             this.combexSalespersonID.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.combexSalespersonID.Name = "combexSalespersonID";
             this.combexSalespersonID.ReadOnly = false;
@@ -339,16 +339,6 @@
             this.toolStripChildForm.TabIndex = 29;
             this.toolStripChildForm.Text = "toolStrip1";
             this.toolStripChildForm.Visible = false;
-            // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.Image = global::TotalSmartCoding.Properties.Resources.Checklist32;
-            this.toolStripButton2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(118, 48);
-            this.toolStripButton2.Text = "Disconnect";
-            this.toolStripButton2.Visible = false;
             // 
             // toolStripSeparator1
             // 
@@ -405,16 +395,6 @@
             this.toolStripNaviGroup.Size = new System.Drawing.Size(27, 27);
             this.toolStripNaviGroup.TabIndex = 74;
             // 
-            // buttonExpandTop
-            // 
-            this.buttonExpandTop.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.buttonExpandTop.Image = ((System.Drawing.Image)(resources.GetObject("buttonExpandTop.Image")));
-            this.buttonExpandTop.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonExpandTop.Name = "buttonExpandTop";
-            this.buttonExpandTop.Size = new System.Drawing.Size(24, 24);
-            this.buttonExpandTop.ToolTipText = "Click here to expand the detail pane";
-            this.buttonExpandTop.Click += new System.EventHandler(this.buttonExpandTop_Click);
-            // 
             // panelCenter
             // 
             this.panelCenter.BackColor = System.Drawing.Color.Ivory;
@@ -443,17 +423,6 @@
             this.toolStripPallet.TabIndex = 79;
             this.toolStripPallet.Text = "toolStrip1";
             this.toolStripPallet.TextDirection = System.Windows.Forms.ToolStripTextDirection.Vertical270;
-            // 
-            // buttonAddDetails
-            // 
-            this.buttonAddDetails.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.buttonAddDetails.Image = global::TotalSmartCoding.Properties.Resources.Add_icon_24;
-            this.buttonAddDetails.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonAddDetails.Name = "buttonAddDetails";
-            this.buttonAddDetails.Size = new System.Drawing.Size(23, 24);
-            this.buttonAddDetails.Text = "Add items from pickups";
-            this.buttonAddDetails.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.buttonAddDetails.Click += new System.EventHandler(this.buttonAddDetails_Click);
             // 
             // textexDescription
             // 
@@ -516,8 +485,8 @@
             this.gridexViewDetails.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gridexViewDetails.Name = "gridexViewDetails";
             this.gridexViewDetails.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle24.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridexViewDetails.RowsDefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridexViewDetails.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.gridexViewDetails.RowTemplate.Height = 24;
             this.gridexViewDetails.Size = new System.Drawing.Size(888, 194);
             this.gridexViewDetails.TabIndex = 65;
@@ -535,10 +504,10 @@
             // 
             this.SalesOrderEntryDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.SalesOrderEntryDate.DataPropertyName = "SalesOrderEntryDate";
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle13.Format = "d";
-            dataGridViewCellStyle13.NullValue = null;
-            this.SalesOrderEntryDate.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.Format = "d";
+            dataGridViewCellStyle1.NullValue = null;
+            this.SalesOrderEntryDate.DefaultCellStyle = dataGridViewCellStyle1;
             this.SalesOrderEntryDate.FillWeight = 7F;
             this.SalesOrderEntryDate.HeaderText = "Sales Orders.Date";
             this.SalesOrderEntryDate.Name = "SalesOrderEntryDate";
@@ -578,9 +547,9 @@
             // 
             this.PackageVolume.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.PackageVolume.DataPropertyName = "PackageVolume";
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle14.Format = "N2";
-            this.PackageVolume.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Format = "N2";
+            this.PackageVolume.DefaultCellStyle = dataGridViewCellStyle2;
             this.PackageVolume.FillWeight = 5F;
             this.PackageVolume.HeaderText = "Package.Volume";
             this.PackageVolume.Name = "PackageVolume";
@@ -599,9 +568,9 @@
             // 
             this.QuantityBatchAvailable.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.QuantityBatchAvailable.DataPropertyName = "QuantityBatchAvailable";
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle15.Format = "N0";
-            this.QuantityBatchAvailable.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.Format = "N0";
+            this.QuantityBatchAvailable.DefaultCellStyle = dataGridViewCellStyle3;
             this.QuantityBatchAvailable.FillWeight = 5F;
             this.QuantityBatchAvailable.HeaderText = "Batches.Available";
             this.QuantityBatchAvailable.Name = "QuantityBatchAvailable";
@@ -611,9 +580,9 @@
             // 
             this.QuantityAvailable.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.QuantityAvailable.DataPropertyName = "QuantityAvailable";
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle16.Format = "N0";
-            this.QuantityAvailable.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.Format = "N0";
+            this.QuantityAvailable.DefaultCellStyle = dataGridViewCellStyle4;
             this.QuantityAvailable.FillWeight = 5F;
             this.QuantityAvailable.HeaderText = "Quantity.Available";
             this.QuantityAvailable.Name = "QuantityAvailable";
@@ -623,9 +592,9 @@
             // 
             this.QuantityRemains.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.QuantityRemains.DataPropertyName = "QuantityRemains";
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle17.Format = "N0";
-            this.QuantityRemains.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle5.Format = "N0";
+            this.QuantityRemains.DefaultCellStyle = dataGridViewCellStyle5;
             this.QuantityRemains.FillWeight = 8F;
             this.QuantityRemains.HeaderText = "Quantity.Order Pending";
             this.QuantityRemains.Name = "QuantityRemains";
@@ -635,10 +604,10 @@
             // 
             this.Quantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Quantity.DataPropertyName = "Quantity";
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle18.Format = "N0";
-            dataGridViewCellStyle18.NullValue = null;
-            this.Quantity.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle6.Format = "N0";
+            dataGridViewCellStyle6.NullValue = null;
+            this.Quantity.DefaultCellStyle = dataGridViewCellStyle6;
             this.Quantity.FillWeight = 6F;
             this.Quantity.HeaderText = "Quantity.Advice";
             this.Quantity.Name = "Quantity";
@@ -647,9 +616,9 @@
             // 
             this.QuantityIssue.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.QuantityIssue.DataPropertyName = "QuantityIssue";
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle19.Format = "N0";
-            this.QuantityIssue.DefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle7.Format = "N0";
+            this.QuantityIssue.DefaultCellStyle = dataGridViewCellStyle7;
             this.QuantityIssue.FillWeight = 5F;
             this.QuantityIssue.HeaderText = "Quantity.Issued";
             this.QuantityIssue.Name = "QuantityIssue";
@@ -659,9 +628,9 @@
             // 
             this.VolumeAvailable.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.VolumeAvailable.DataPropertyName = "LineVolumeAvailable";
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle20.Format = "N2";
-            this.VolumeAvailable.DefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle8.Format = "N2";
+            this.VolumeAvailable.DefaultCellStyle = dataGridViewCellStyle8;
             this.VolumeAvailable.FillWeight = 6F;
             this.VolumeAvailable.HeaderText = "Volume.Available";
             this.VolumeAvailable.Name = "VolumeAvailable";
@@ -671,9 +640,9 @@
             // 
             this.VolumeRemains.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.VolumeRemains.DataPropertyName = "LineVolumeRemains";
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle21.Format = "N2";
-            this.VolumeRemains.DefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle9.Format = "N2";
+            this.VolumeRemains.DefaultCellStyle = dataGridViewCellStyle9;
             this.VolumeRemains.FillWeight = 8F;
             this.VolumeRemains.HeaderText = "Volume.Order Pending";
             this.VolumeRemains.Name = "VolumeRemains";
@@ -683,9 +652,9 @@
             // 
             this.LineVolume.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.LineVolume.DataPropertyName = "LineVolume";
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle22.Format = "N2";
-            this.LineVolume.DefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle10.Format = "N2";
+            this.LineVolume.DefaultCellStyle = dataGridViewCellStyle10;
             this.LineVolume.FillWeight = 7F;
             this.LineVolume.HeaderText = "Volume.Advice";
             this.LineVolume.Name = "LineVolume";
@@ -695,9 +664,9 @@
             // 
             this.LineVolumeIssue.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.LineVolumeIssue.DataPropertyName = "LineVolumeIssue";
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle23.Format = "N2";
-            this.LineVolumeIssue.DefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle11.Format = "N2";
+            this.LineVolumeIssue.DefaultCellStyle = dataGridViewCellStyle11;
             this.LineVolumeIssue.FillWeight = 5F;
             this.LineVolumeIssue.HeaderText = "Volume.Issued";
             this.LineVolumeIssue.Name = "LineVolumeIssue";
@@ -747,7 +716,7 @@
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.layoutTop.Controls.Add(this.combexCustomerID, 1, 1);
             this.layoutTop.Controls.Add(this.pictureBox1, 0, 1);
             this.layoutTop.Controls.Add(this.textexDeliveryAddress, 1, 3);
@@ -782,20 +751,8 @@
             this.combexCustomerID.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.combexCustomerID.Name = "combexCustomerID";
             this.combexCustomerID.ReadOnly = false;
-            this.combexCustomerID.Size = new System.Drawing.Size(528, 29);
+            this.combexCustomerID.Size = new System.Drawing.Size(527, 29);
             this.combexCustomerID.TabIndex = 74;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.pictureBox1.Image = global::TotalSmartCoding.Properties.Resources.Customer_Blue_16;
-            this.pictureBox1.Location = new System.Drawing.Point(160, 18);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 75;
-            this.pictureBox1.TabStop = false;
             // 
             // textexDeliveryAddress
             // 
@@ -805,7 +762,7 @@
             this.textexDeliveryAddress.Location = new System.Drawing.Point(180, 78);
             this.textexDeliveryAddress.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.textexDeliveryAddress.Name = "textexDeliveryAddress";
-            this.textexDeliveryAddress.Size = new System.Drawing.Size(1025, 28);
+            this.textexDeliveryAddress.Size = new System.Drawing.Size(1024, 28);
             this.textexDeliveryAddress.TabIndex = 76;
             // 
             // label3
@@ -820,17 +777,6 @@
             this.label3.Text = "Shipping Address";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.pictureBox2.Image = global::TotalSmartCoding.Properties.Resources.Customer_Red_16;
-            this.pictureBox2.Location = new System.Drawing.Point(835, 18);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox2.TabIndex = 79;
-            this.pictureBox2.TabStop = false;
-            // 
             // combexReceiverID
             // 
             this.combexReceiverID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
@@ -842,31 +788,8 @@
             this.combexReceiverID.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.combexReceiverID.Name = "combexReceiverID";
             this.combexReceiverID.ReadOnly = false;
-            this.combexReceiverID.Size = new System.Drawing.Size(528, 29);
+            this.combexReceiverID.Size = new System.Drawing.Size(527, 29);
             this.combexReceiverID.TabIndex = 75;
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.pictureBox4.Image = global::TotalSmartCoding.Properties.Resources.Customer_Red_16;
-            this.pictureBox4.Location = new System.Drawing.Point(160, 51);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox4.TabIndex = 84;
-            this.pictureBox4.TabStop = false;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.pictureBox3.Image = global::TotalSmartCoding.Properties.Resources.Customer_Blue_16;
-            this.pictureBox3.Location = new System.Drawing.Point(835, 51);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox3.TabIndex = 85;
-            this.pictureBox3.TabStop = false;
             // 
             // panelLeft
             // 
@@ -1021,6 +944,83 @@
             this.imageList32.Images.SetKeyName(10, "Schedule-32");
             this.imageList32.Images.SetKeyName(11, "item_List-32");
             // 
+            // buttonExpandTop
+            // 
+            this.buttonExpandTop.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.buttonExpandTop.Image = ((System.Drawing.Image)(resources.GetObject("buttonExpandTop.Image")));
+            this.buttonExpandTop.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonExpandTop.Name = "buttonExpandTop";
+            this.buttonExpandTop.Size = new System.Drawing.Size(24, 24);
+            this.buttonExpandTop.ToolTipText = "Click here to expand the detail pane";
+            this.buttonExpandTop.Click += new System.EventHandler(this.buttonExpandTop_Click);
+            // 
+            // buttonAddDetails
+            // 
+            this.buttonAddDetails.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.buttonAddDetails.Image = global::TotalSmartCoding.Properties.Resources.Add_icon_24;
+            this.buttonAddDetails.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonAddDetails.Name = "buttonAddDetails";
+            this.buttonAddDetails.Size = new System.Drawing.Size(23, 24);
+            this.buttonAddDetails.Text = "Add items from pickups";
+            this.buttonAddDetails.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.buttonAddDetails.Click += new System.EventHandler(this.buttonAddDetails_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.pictureBox1.Image = global::TotalSmartCoding.Properties.Resources.Customer_Blue_16;
+            this.pictureBox1.Location = new System.Drawing.Point(160, 18);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(16, 16);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 75;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.pictureBox2.Image = global::TotalSmartCoding.Properties.Resources.Salesperson_16;
+            this.pictureBox2.Location = new System.Drawing.Point(834, 18);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(16, 16);
+            this.pictureBox2.TabIndex = 79;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.pictureBox4.Image = global::TotalSmartCoding.Properties.Resources.Customer_Red_16;
+            this.pictureBox4.Location = new System.Drawing.Point(160, 51);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(16, 16);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox4.TabIndex = 84;
+            this.pictureBox4.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.pictureBox3.Image = global::TotalSmartCoding.Properties.Resources.Admin_161;
+            this.pictureBox3.Location = new System.Drawing.Point(834, 51);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(16, 16);
+            this.pictureBox3.TabIndex = 85;
+            this.pictureBox3.TabStop = false;
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.Image = global::TotalSmartCoding.Properties.Resources.Checklist32;
+            this.toolStripButton2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(118, 48);
+            this.toolStripButton2.Text = "Disconnect";
+            this.toolStripButton2.Visible = false;
+            // 
             // DeliveryAdvices
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
@@ -1056,13 +1056,13 @@
             this.naviGroupTop.PerformLayout();
             this.layoutTop.ResumeLayout(false);
             this.layoutTop.PerformLayout();
+            this.panelLeft.ResumeLayout(false);
+            this.panelLeft.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fastDeliveryAdviceIndex)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            this.panelLeft.ResumeLayout(false);
-            this.panelLeft.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.fastDeliveryAdviceIndex)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

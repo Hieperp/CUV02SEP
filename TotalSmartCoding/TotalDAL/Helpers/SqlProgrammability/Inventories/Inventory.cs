@@ -17,39 +17,14 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
         }
 
         public void RestoreProcedure()
-        {
-            //this.WarehouseJournals();
-            this.WarehouseForecasts();
+        {            
+            this.WarehouseLedgers();
 
-            //this.WarehouseLedgers();
+            this.WarehouseJournals();
+            this.WarehouseForecasts();
         }
 
-
-
-        //private void ABC()
-        //{
-        //    string queryString;
-
-        //    queryString = " @FromDate DateTime, @ToDate DateTime " + "\r\n";
-        //    queryString = queryString + " WITH ENCRYPTION " + "\r\n";
-        //    queryString = queryString + " AS " + "\r\n";
-        //    queryString = queryString + "    BEGIN " + "\r\n";
-
-        //    queryString = queryString + "       IF (@FromDate) " + "\r\n";
-        //    queryString = queryString + "       FROM        GoodsReceipts " + "\r\n";
-        //    queryString = queryString + "                   INNER JOIN Locations ON GoodsReceipts.EntryDate >= @FromDate AND GoodsReceipts.EntryDate <= @ToDate AND GoodsReceipts.OrganizationalUnitID IN (SELECT OrganizationalUnitID FROM AccessControls WHERE UserID = @UserID AND NMVNTaskID = " + (int)TotalBase.Enums.GlobalEnums.NmvnTaskID.GoodsReceipt + " AND AccessControls.AccessLevel > 0) AND Locations.LocationID = GoodsReceipts.LocationID " + "\r\n";
-        //    queryString = queryString + "                   INNER JOIN Warehouses ON GoodsReceipts.WarehouseID = Warehouses.WarehouseID " + "\r\n";
-        //    queryString = queryString + "                   INNER JOIN GoodsReceiptTypes ON GoodsReceipts.GoodsReceiptTypeID = GoodsReceiptTypes.GoodsReceiptTypeID " + "\r\n";
-
-        //    queryString = queryString + "    END " + "\r\n";
-
-        //    this.totalSmartCodingEntities.CreateStoredProcedure("ABC", queryString);
-        //}
-
-
-
-
-
+      
         #region WarehouseJournals
 
         #region  DEFINE Switch Query
@@ -580,13 +555,13 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
         private void WarehouseLedgers()
         {
-            //this.WarehouseLedgerIssue08();
-            //this.WarehouseLedgerReceipt08();
+            this.WarehouseLedgerIssue08();
+            this.WarehouseLedgerReceipt08();
 
-            //this.WarehouseLedger06();
+            this.WarehouseLedger06();
 
             string queryString = this.BUILDHeader(false, false) + this.BUILDGoodsIssue() + "\r\n";
-            //this.totalSmartCodingEntities.CreateStoredProcedure("WHLS", queryString);
+            this.totalSmartCodingEntities.CreateStoredProcedure("WHLS", queryString);
 
 
             queryString = this.BUILDHeader(true, true);
@@ -601,7 +576,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryString = queryString + "       ELSE " + "\r\n";
             queryString = queryString + "                   " + queryMaster + "\r\n" + " WHERE IsPromotion = @LocalSalesVersusPromotion";
 
-            //this.totalSmartCodingEntities.CreateStoredProcedure("WarehouseLedgers", queryString);
+            this.totalSmartCodingEntities.CreateStoredProcedure("WarehouseLedgers", queryString);
 
 
 
