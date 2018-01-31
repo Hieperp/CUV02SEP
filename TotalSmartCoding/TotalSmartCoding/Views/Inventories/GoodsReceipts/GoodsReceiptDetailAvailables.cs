@@ -41,7 +41,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
 
             this.goodsReceiptAPIs = new GoodsReceiptAPIs(CommonNinject.Kernel.Get<IGoodsReceiptAPIRepository>());
 
-            this.baseDTO = new GoodsReceiptDetailAvailableViewModel(); ;
+            this.baseDTO = new GoodsReceiptDetailAvailableViewModel();
         }
 
         protected override void InitializeTabControl()
@@ -79,7 +79,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
         {
             base.InitializeCommonControlBinding();
 
-            this.LocationID = ContextAttributes.User.LocationID;
+            this.locationID = ContextAttributes.User.LocationID; //JUST INIT THE local parameter only. DON'T INIT VIA: this.LocationID: BECAUSE IT WILL RAISE THE LocationID CHANGE EVENT
             LocationAPIs locationAPIs = new LocationAPIs(CommonNinject.Kernel.Get<ILocationAPIRepository>());
 
             this.comboLocationID.ComboBox.DataSource = locationAPIs.GetLocationBases();
@@ -93,8 +93,6 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
             this.fastAvailableCartons.AboutToCreateGroups += fastAvailableItems_AboutToCreateGroups;
             this.fastAvailablePallets.ShowGroups = true;
             this.fastAvailableCartons.ShowGroups = true;
-            this.fastAvailablePallets.Sort(this.olvPalletCommodityCode);
-            this.fastAvailableCartons.Sort(this.olvCartonCommodityCode);
         }
 
         private void fastAvailableItems_AboutToCreateGroups(object sender, BrightIdeasSoftware.CreateGroupsEventArgs e)
@@ -109,6 +107,41 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
             }
         }
 
+        public override void Loading()
+        {
+            try
+            {
+                List<GoodsReceiptDetailAvailable> goodsReceiptDetailAvailables = goodsReceiptAPIs.GetGoodsReceiptDetailAvailables(this.LocationID, null, null, null, null, null, false);
+
+                this.fastAvailablePallets.SelectedObject = null; this.fastAvailablePallets.SelectedObjects = null;
+                this.fastAvailableCartons.SelectedObject = null; this.fastAvailableCartons.SelectedObjects = null;
+
+                this.fastAvailablePallets.SetObjects(goodsReceiptDetailAvailables.Where(w => w.PalletID != null));
+                this.fastAvailableCartons.SetObjects(goodsReceiptDetailAvailables.Where(w => w.CartonID != null));
+
+                this.ShowRowCount();
+
+                base.Loading();
+            }
+            catch (Exception exception)
+            {
+                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+            }
+        }
+
+        protected override void DoAfterLoad()
+        {
+            base.DoAfterLoad();
+            this.fastAvailablePallets.Sort(this.olvPalletCommodityCode);
+            this.fastAvailableCartons.Sort(this.olvCartonCommodityCode);
+        }
+
+        public override void DoAfterActivate()
+        {
+            base.DoAfterActivate();
+            this.Loading();
+        }
+
         private int locationID;
         public int LocationID
         {
@@ -118,15 +151,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
                 if (this.locationID != value)
                 {
                     this.locationID = value;
-                    if (this.locationID > 0)
-                    {
-                        List<GoodsReceiptDetailAvailable> goodsReceiptDetailAvailables = goodsReceiptAPIs.GetGoodsReceiptDetailAvailables(this.LocationID, null, null, null, null, null, false);
-
-                        this.fastAvailablePallets.SetObjects(goodsReceiptDetailAvailables.Where(w => w.PalletID != null));
-                        this.fastAvailableCartons.SetObjects(goodsReceiptDetailAvailables.Where(w => w.CartonID != null));
-
-                        this.ShowRowCount();
-                    }
+                    if (this.locationID > 0) this.Loading();
                 }
             }
         }
@@ -159,6 +184,6 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
             printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("LocationCode", this.comboLocationID.Text));
             return printViewModel;
         }
-        
+
     }
 }

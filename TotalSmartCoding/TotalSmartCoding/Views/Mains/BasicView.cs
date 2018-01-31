@@ -146,6 +146,8 @@ namespace TotalSmartCoding.Views.Mains
 
         #region ICallToolStrip
 
+        public virtual void DoAfterActivate() { }
+
         public void Escape()
         {
             if (this.EditableMode)

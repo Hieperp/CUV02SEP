@@ -381,7 +381,11 @@ namespace TotalSmartCoding.Views.Mains
                 }
 
                 if (openingView != null)
+                {
                     openingView.Activate();
+                    IToolstripChild mdiChildCallToolStrip = openingView as IToolstripChild;
+                    if (mdiChildCallToolStrip != null) mdiChildCallToolStrip.DoAfterActivate();
+                }
                 else
                 { //OPEN NEW VIEW
                     switch (moduleDetailID)

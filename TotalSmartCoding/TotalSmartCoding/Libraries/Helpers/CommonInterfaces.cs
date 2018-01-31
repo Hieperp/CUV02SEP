@@ -19,6 +19,8 @@ namespace TotalSmartCoding.Libraries.Helpers
     {
         GlobalEnums.NmvnTaskID NMVNTaskID { get; }
 
+        void DoAfterActivate();
+
         void Escape();
         void Loading();
 

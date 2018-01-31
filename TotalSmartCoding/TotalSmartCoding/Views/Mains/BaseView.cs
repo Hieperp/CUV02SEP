@@ -75,6 +75,8 @@ namespace TotalSmartCoding.Views.Mains
 
         protected virtual void DoAfterLoad() { }
 
+        public virtual void DoAfterActivate() { }
+
         Binding bindingIsDirty;
 
         protected virtual void InitializeTabControl() { }
@@ -340,9 +342,11 @@ namespace TotalSmartCoding.Views.Mains
             if (this.ReadonlyMode) this.invokeEdit(this.baseDTO.GetID()); //THIS LINE IS FOR REFRESH THE STATE OF THE CURRENT ENTITY (Editable/ Deletable/ ...)=> THIS MAY BE NOT NECCESSARY IN SOME CASE => LATER: WE SHOULD TRY TO REFRESH BY A BETTER WAY: TO REFRESH WHEN NECCESSARY ONLY
         }
 
+        public string CurrenntFilterTexts { get; set; }
         public virtual void ApplyFilter(string filterTexts)
         {
             OLVHelpers.ApplyFilters(this.fastListIndex, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
+            this.CurrenntFilterTexts = filterTexts;
         }
 
         public virtual void ApplyDetailFilter(string filterTexts)
