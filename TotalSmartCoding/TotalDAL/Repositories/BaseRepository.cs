@@ -174,6 +174,11 @@ namespace TotalDAL.Repositories
 
             //return;
 
+            Helpers.SqlProgrammability.Inventories.Inventory inventory = new Helpers.SqlProgrammability.Inventories.Inventory(totalSmartCodingEntities);
+            inventory.RestoreProcedure();
+
+            return;
+
             Helpers.SqlProgrammability.Commons.WarehouseAdjustmentType warehouseAdjustmentType = new Helpers.SqlProgrammability.Commons.WarehouseAdjustmentType(totalSmartCodingEntities);
             warehouseAdjustmentType.RestoreProcedure();
 
@@ -196,11 +201,7 @@ namespace TotalDAL.Repositories
             Helpers.SqlProgrammability.Inventories.GoodsIssue goodsIssue = new Helpers.SqlProgrammability.Inventories.GoodsIssue(totalSmartCodingEntities);
             goodsIssue.RestoreProcedure();
 
-            //return;
-
-            Helpers.SqlProgrammability.Inventories.Inventory inventory = new Helpers.SqlProgrammability.Inventories.Inventory(totalSmartCodingEntities);
-            inventory.RestoreProcedure();
-
+            
             //return;
 
             Helpers.SqlProgrammability.Commons.Commodity commodity = new Helpers.SqlProgrammability.Commons.Commodity(totalSmartCodingEntities);
