@@ -3,14 +3,12 @@ using System.Linq;
 using System.Data.Entity;
 using System.Collections.Generic;
 
-
+using TotalBase;
 using TotalBase.Enums;
 using TotalModel.Models;
 
 using TotalDTO.Inventories;
-
 using TotalCore.Repositories.Generals;
-using TotalBase;
 
 namespace TotalSmartCoding.Controllers.APIs.Generals
 {
@@ -26,7 +24,7 @@ namespace TotalSmartCoding.Controllers.APIs.Generals
 
         public ICollection<ModuleIndex> GetModuleIndexes()
         {
-            return this.moduleAPIRepository.GetEntityIndexes<ModuleIndex>(ContextAttributes.User.UserID, ContextAttributes.FromDate, ContextAttributes.ToDate).ToList();
+            return this.moduleAPIRepository.GetEntityIndexes<ModuleIndex>(ContextAttributes.User.UserID, GlobalEnums.GlobalOptionSetting.LowerFillterDate, GlobalEnums.GlobalOptionSetting.UpperFillterDate).ToList();
         }
 
         public IList<ModuleDetailIndex> GetModuleDetailIndexes()

@@ -28,7 +28,7 @@ namespace TotalSmartCoding.Controllers.APIs.Productions
         public ICollection<BatchIndex> GetBatchIndexes(GlobalEnums.ActiveOption activeOption)
         {
             this.batchAPIRepository.RepositoryBag["ActiveOption"] = (int)activeOption;
-            ICollection<BatchIndex> goodsReceiptIndexes = this.batchAPIRepository.GetEntityIndexes<BatchIndex>(ContextAttributes.User.UserID, ContextAttributes.FromDate, ContextAttributes.ToDate);
+            ICollection<BatchIndex> goodsReceiptIndexes = this.batchAPIRepository.GetEntityIndexes<BatchIndex>(ContextAttributes.User.UserID, GlobalEnums.GlobalOptionSetting.LowerFillterDate, GlobalEnums.GlobalOptionSetting.UpperFillterDate);
 
             return goodsReceiptIndexes;
         }

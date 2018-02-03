@@ -576,7 +576,7 @@
             this.olvFillingLineNickName.Groupable = false;
             this.olvFillingLineNickName.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvFillingLineNickName.Text = "";
-            this.olvFillingLineNickName.Width = 35;
+            this.olvFillingLineNickName.Width = 50;
             // 
             // olvPickupIndexReference
             // 

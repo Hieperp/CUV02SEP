@@ -179,7 +179,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                 {
                     olvGroup.TitleImage = "Forklift_Yellow-32";
                     olvGroup.Subtitle = "List count: " + olvGroup.Contents.Count.ToString();
-                    if ((DateTime)olvGroup.Key < DateTime.Today.AddDays(-1)) olvGroup.Collapsed = true;
+                    if ((this.CurrenntFilterTexts == null || this.CurrenntFilterTexts.Trim() == "") && (DateTime)olvGroup.Key < DateTime.Today.AddDays(-1)) olvGroup.Collapsed = true;
                 }
             }
         }

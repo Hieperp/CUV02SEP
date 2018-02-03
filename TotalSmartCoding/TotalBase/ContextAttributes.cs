@@ -10,7 +10,7 @@ namespace TotalBase
     {
         public static UserInformation User;
 
-        public static DateTime FromDate { get { return DateTime.Today.AddDays(-60); } }
-        public static DateTime ToDate { get {return DateTime.Today.AddDays(2).AddHours(23).AddMinutes(59).AddSeconds(59);}}
+        //public static DateTime FromDate { get { return DateTime.Today.AddDays(-60); } }
+        //public static DateTime ToDate { get {return DateTime.Today.AddDays(2).AddHours(23).AddMinutes(59).AddSeconds(59);}}
     }
 }

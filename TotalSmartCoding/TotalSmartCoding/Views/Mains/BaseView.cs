@@ -345,8 +345,14 @@ namespace TotalSmartCoding.Views.Mains
         public string CurrenntFilterTexts { get; set; }
         public virtual void ApplyFilter(string filterTexts)
         {
-            OLVHelpers.ApplyFilters(this.fastListIndex, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
             this.CurrenntFilterTexts = filterTexts;
+            if (filterTexts != null && filterTexts != "")
+            {
+                foreach (OLVGroup olvGroup in this.fastListIndex.CollapsedGroups)
+                    if (olvGroup.Collapsed) olvGroup.Collapsed = false;
+            }
+
+            OLVHelpers.ApplyFilters(this.fastListIndex, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));            
         }
 
         public virtual void ApplyDetailFilter(string filterTexts)

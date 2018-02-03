@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 
 using TotalBase;
+using TotalBase.Enums;
 using TotalModel.Models;
 using TotalCore.Repositories.Sales;
 
@@ -18,7 +19,7 @@ namespace TotalSmartCoding.Controllers.APIs.Sales
 
         public ICollection<DeliveryAdviceIndex> GetDeliveryAdviceIndexes()
         {
-            return this.deliveryAdviceAPIRepository.GetEntityIndexes<DeliveryAdviceIndex>(ContextAttributes.User.UserID, ContextAttributes.FromDate, ContextAttributes.ToDate);
+            return this.deliveryAdviceAPIRepository.GetEntityIndexes<DeliveryAdviceIndex>(ContextAttributes.User.UserID, GlobalEnums.GlobalOptionSetting.LowerFillterDate, GlobalEnums.GlobalOptionSetting.UpperFillterDate);
         }
 
         public List<PendingSalesOrder> GetPendingSalesOrders(int? locationID)

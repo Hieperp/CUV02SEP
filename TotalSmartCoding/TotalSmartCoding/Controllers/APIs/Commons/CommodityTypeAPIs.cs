@@ -3,14 +3,12 @@ using System.Linq;
 using System.Data.Entity;
 using System.Collections.Generic;
 
-
+using TotalBase;
 using TotalBase.Enums;
 using TotalModel.Models;
 
 using TotalDTO.Inventories;
-
 using TotalCore.Repositories.Commons;
-using TotalBase;
 
 namespace TotalSmartCoding.Controllers.APIs.Commons
 {
@@ -26,7 +24,7 @@ namespace TotalSmartCoding.Controllers.APIs.Commons
 
         public ICollection<CommodityTypeIndex> GetCommodityTypeIndexes()
         {
-            return this.commodityCategoryAPIRepository.GetEntityIndexes<CommodityTypeIndex>(ContextAttributes.User.UserID, ContextAttributes.FromDate, ContextAttributes.ToDate).ToList();
+            return this.commodityCategoryAPIRepository.GetEntityIndexes<CommodityTypeIndex>(ContextAttributes.User.UserID, GlobalEnums.GlobalOptionSetting.LowerFillterDate, GlobalEnums.GlobalOptionSetting.UpperFillterDate).ToList();
         }
 
         public IList<CommodityTypeBase> GetCommodityTypeBases()

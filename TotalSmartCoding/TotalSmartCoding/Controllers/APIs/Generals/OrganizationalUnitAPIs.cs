@@ -23,7 +23,7 @@ namespace TotalSmartCoding.Controllers.APIs.Generals
 
         public ICollection<OrganizationalUnitIndex> GetOrganizationalUnitIndexes()
         {
-            return this.organizationalUnitAPIRepository.GetEntityIndexes<OrganizationalUnitIndex>(ContextAttributes.User.UserID, ContextAttributes.FromDate, ContextAttributes.ToDate).ToList();
+            return this.organizationalUnitAPIRepository.GetEntityIndexes<OrganizationalUnitIndex>(ContextAttributes.User.UserID, GlobalEnums.GlobalOptionSetting.LowerFillterDate, GlobalEnums.GlobalOptionSetting.UpperFillterDate).ToList();
         }
 
         public int OrganizationalUnitAdd(int? locationID, string code, string name)

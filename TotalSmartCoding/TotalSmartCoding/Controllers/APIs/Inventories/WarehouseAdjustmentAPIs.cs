@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 
 using TotalBase;
+using TotalBase.Enums;
 using TotalModel.Models;
 using TotalCore.Repositories.Inventories;
 
@@ -18,7 +19,7 @@ namespace TotalSmartCoding.Controllers.APIs.Inventories
 
         public ICollection<WarehouseAdjustmentIndex> GetWarehouseAdjustmentIndexes()
         {
-            return this.warehouseAdjustmentAPIRepository.GetEntityIndexes<WarehouseAdjustmentIndex>(ContextAttributes.User.UserID, ContextAttributes.FromDate, ContextAttributes.ToDate);
+            return this.warehouseAdjustmentAPIRepository.GetEntityIndexes<WarehouseAdjustmentIndex>(ContextAttributes.User.UserID, GlobalEnums.GlobalOptionSetting.LowerFillterDate, GlobalEnums.GlobalOptionSetting.UpperFillterDate);
         }
     }
 }

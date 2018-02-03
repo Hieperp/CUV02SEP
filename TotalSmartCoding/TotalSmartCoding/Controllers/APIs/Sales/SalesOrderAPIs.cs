@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 
 using TotalBase;
+using TotalBase.Enums;
 using TotalModel.Models;
 using TotalCore.Repositories.Sales;
 
@@ -18,7 +19,7 @@ namespace TotalSmartCoding.Controllers.APIs.Sales
 
         public ICollection<SalesOrderIndex> GetSalesOrderIndexes()
         {
-            return this.salesOrderAPIRepository.GetEntityIndexes<SalesOrderIndex>(ContextAttributes.User.UserID, ContextAttributes.FromDate, ContextAttributes.ToDate);
+            return this.salesOrderAPIRepository.GetEntityIndexes<SalesOrderIndex>(ContextAttributes.User.UserID, GlobalEnums.GlobalOptionSetting.LowerFillterDate, GlobalEnums.GlobalOptionSetting.UpperFillterDate);
         }
     }
 }
