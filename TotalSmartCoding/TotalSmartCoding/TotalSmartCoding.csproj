@@ -1217,6 +1217,7 @@
     <None Include="Resources\Admin-161.png" />
     <None Include="Resources\Pallet-I-16.png" />
     <None Include="Resources\Cargo_Ship-16.png" />
+    <None Include="Resources\calendar-blue-32.png" />
     <Content Include="SmartCodingSolution.ico" />
     <None Include="Resources\Yellow-cross.ico" />
     <None Include="Resources\White-Pallet.ico" />

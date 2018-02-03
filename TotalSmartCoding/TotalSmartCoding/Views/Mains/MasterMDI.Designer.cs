@@ -75,14 +75,9 @@
             this.buttonSearchBarcode = new System.Windows.Forms.ToolStripButton();
             this.comboSearchBarcode = new System.Windows.Forms.ToolStripComboBox();
             this.labelSearchBarcode = new System.Windows.Forms.ToolStripLabel();
+            this.panelTopMost = new System.Windows.Forms.Panel();
             this.toolStripTopHead = new System.Windows.Forms.ToolStrip();
-            this.toolUserReferences = new System.Windows.Forms.ToolStripButton();
-            this.buttonLockedDate = new System.Windows.Forms.ToolStripButton();
-            this.txtLockedDate = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.textFillterLowerDate = new System.Windows.Forms.ToolStripTextBox();
-            this.textFillterUpperDate = new System.Windows.Forms.ToolStripTextBox();
             this.buttonLoading = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.comboFilterTexts = new System.Windows.Forms.ToolStripComboBox();
@@ -90,6 +85,14 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.comboDetailFilterTexts = new System.Windows.Forms.ToolStripComboBox();
             this.buttonClearDetailFilters = new System.Windows.Forms.ToolStripButton();
+            this.layoutTop = new System.Windows.Forms.TableLayoutPanel();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolUserReferences = new System.Windows.Forms.ToolStripButton();
+            this.buttonLockedDate = new System.Windows.Forms.ToolStripButton();
+            this.txtLockedDate = new System.Windows.Forms.ToolStripTextBox();
+            this.dateTimexLowerFillterDate = new CustomControls.DateTimexPicker();
+            this.dateTimexUpperFillterDate = new CustomControls.DateTimexPicker();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.naviBarModuleMaster.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastNMVNTask)).BeginInit();
             this.statusStrip.SuspendLayout();
@@ -98,7 +101,11 @@
             this.toolstripMain.SuspendLayout();
             this.panelTopRight.SuspendLayout();
             this.toolStripTopRight.SuspendLayout();
+            this.panelTopMost.SuspendLayout();
             this.toolStripTopHead.SuspendLayout();
+            this.layoutTop.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // imageListModuleMasterSmall
@@ -640,19 +647,28 @@
             this.labelSearchBarcode.Size = new System.Drawing.Size(94, 66);
             this.labelSearchBarcode.Text = "Quick Search";
             // 
+            // panelTopMost
+            // 
+            this.panelTopMost.AutoSize = true;
+            this.panelTopMost.Controls.Add(this.toolStripTopHead);
+            this.panelTopMost.Controls.Add(this.layoutTop);
+            this.panelTopMost.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelTopMost.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panelTopMost.Location = new System.Drawing.Point(0, 0);
+            this.panelTopMost.Margin = new System.Windows.Forms.Padding(0);
+            this.panelTopMost.Name = "panelTopMost";
+            this.panelTopMost.Size = new System.Drawing.Size(1906, 55);
+            this.panelTopMost.TabIndex = 75;
+            // 
             // toolStripTopHead
             // 
             this.toolStripTopHead.BackColor = System.Drawing.SystemColors.Control;
             this.toolStripTopHead.BackgroundImage = global::TotalSmartCoding.Properties.Resources.Toolbar_Image;
+            this.toolStripTopHead.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.toolStripTopHead.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStripTopHead.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStripTopHead.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolUserReferences,
-            this.buttonLockedDate,
-            this.txtLockedDate,
             this.toolStripSeparator12,
-            this.toolStripLabel1,
-            this.textFillterLowerDate,
-            this.textFillterUpperDate,
             this.buttonLoading,
             this.toolStripSeparator13,
             this.comboFilterTexts,
@@ -661,72 +677,17 @@
             this.comboDetailFilterTexts,
             this.buttonClearDetailFilters});
             this.toolStripTopHead.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.toolStripTopHead.Location = new System.Drawing.Point(0, 0);
+            this.toolStripTopHead.Location = new System.Drawing.Point(601, 0);
             this.toolStripTopHead.Name = "toolStripTopHead";
-            this.toolStripTopHead.Size = new System.Drawing.Size(1906, 55);
+            this.toolStripTopHead.Size = new System.Drawing.Size(1305, 55);
             this.toolStripTopHead.TabIndex = 5;
             this.toolStripTopHead.Text = "toolStrip1";
-            // 
-            // toolUserReferences
-            // 
-            this.toolUserReferences.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolUserReferences.Image = global::TotalSmartCoding.Properties.Resources.Addressbook;
-            this.toolUserReferences.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolUserReferences.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolUserReferences.Name = "toolUserReferences";
-            this.toolUserReferences.Size = new System.Drawing.Size(52, 52);
-            this.toolUserReferences.ToolTipText = "User References";
-            this.toolUserReferences.Click += new System.EventHandler(this.toolUserReferences_Click);
-            // 
-            // buttonLockedDate
-            // 
-            this.buttonLockedDate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.buttonLockedDate.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonLockedDate.Image = global::TotalSmartCoding.Properties.Resources.key_32;
-            this.buttonLockedDate.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.buttonLockedDate.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonLockedDate.Name = "buttonLockedDate";
-            this.buttonLockedDate.Size = new System.Drawing.Size(36, 52);
-            this.buttonLockedDate.ToolTipText = "Lock data readonly";
-            // 
-            // txtLockedDate
-            // 
-            this.txtLockedDate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtLockedDate.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLockedDate.Name = "txtLockedDate";
-            this.txtLockedDate.Size = new System.Drawing.Size(108, 55);
-            this.txtLockedDate.Text = "01/09/2017";
-            this.txtLockedDate.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // toolStripSeparator12
             // 
             this.toolStripSeparator12.Name = "toolStripSeparator12";
             this.toolStripSeparator12.Size = new System.Drawing.Size(6, 55);
-            // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(46, 52);
-            this.toolStripLabel1.Text = "Filter";
-            // 
-            // textFillterLowerDate
-            // 
-            this.textFillterLowerDate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textFillterLowerDate.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textFillterLowerDate.Name = "textFillterLowerDate";
-            this.textFillterLowerDate.Size = new System.Drawing.Size(108, 55);
-            this.textFillterLowerDate.Text = "31/12/2013";
-            this.textFillterLowerDate.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textFillterUpperDate
-            // 
-            this.textFillterUpperDate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textFillterUpperDate.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textFillterUpperDate.Name = "textFillterUpperDate";
-            this.textFillterUpperDate.Size = new System.Drawing.Size(108, 55);
-            this.textFillterUpperDate.Text = "01/01/2018";
-            this.textFillterUpperDate.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.toolStripSeparator12.Visible = false;
             // 
             // buttonLoading
             // 
@@ -737,7 +698,7 @@
             this.buttonLoading.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonLoading.Name = "buttonLoading";
             this.buttonLoading.Size = new System.Drawing.Size(52, 52);
-            this.buttonLoading.Text = "Refresh";
+            this.buttonLoading.Text = "Refresh. Click here to reload saved data after change date range.";
             this.buttonLoading.Click += new System.EventHandler(this.buttonLoading_Click);
             // 
             // toolStripSeparator13
@@ -752,7 +713,7 @@
             this.comboFilterTexts.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             this.comboFilterTexts.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboFilterTexts.Name = "comboFilterTexts";
-            this.comboFilterTexts.Size = new System.Drawing.Size(418, 55);
+            this.comboFilterTexts.Size = new System.Drawing.Size(368, 55);
             this.comboFilterTexts.TextChanged += new System.EventHandler(this.comboFilterTexts_TextChanged);
             // 
             // buttonClearFilters
@@ -794,6 +755,116 @@
             this.buttonClearDetailFilters.Visible = false;
             this.buttonClearDetailFilters.Click += new System.EventHandler(this.buttonClearFilters_Click);
             // 
+            // layoutTop
+            // 
+            this.layoutTop.AutoSize = true;
+            this.layoutTop.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.layoutTop.BackColor = System.Drawing.Color.Transparent;
+            this.layoutTop.BackgroundImage = global::TotalSmartCoding.Properties.Resources.Toolbar_Image;
+            this.layoutTop.ColumnCount = 4;
+            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.layoutTop.Controls.Add(this.toolStrip1, 0, 0);
+            this.layoutTop.Controls.Add(this.dateTimexLowerFillterDate, 2, 0);
+            this.layoutTop.Controls.Add(this.dateTimexUpperFillterDate, 3, 0);
+            this.layoutTop.Controls.Add(this.pictureBox1, 1, 0);
+            this.layoutTop.Dock = System.Windows.Forms.DockStyle.Left;
+            this.layoutTop.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.layoutTop.Location = new System.Drawing.Point(0, 0);
+            this.layoutTop.Margin = new System.Windows.Forms.Padding(0);
+            this.layoutTop.Name = "layoutTop";
+            this.layoutTop.RowCount = 1;
+            this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 55F));
+            this.layoutTop.Size = new System.Drawing.Size(601, 55);
+            this.layoutTop.TabIndex = 9;
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.BackColor = System.Drawing.SystemColors.Control;
+            this.toolStrip1.BackgroundImage = global::TotalSmartCoding.Properties.Resources.Toolbar_Image;
+            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolUserReferences,
+            this.buttonLockedDate,
+            this.txtLockedDate});
+            this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(210, 55);
+            this.toolStrip1.TabIndex = 76;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolUserReferences
+            // 
+            this.toolUserReferences.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolUserReferences.Image = global::TotalSmartCoding.Properties.Resources.Addressbook;
+            this.toolUserReferences.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolUserReferences.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolUserReferences.Name = "toolUserReferences";
+            this.toolUserReferences.Size = new System.Drawing.Size(52, 52);
+            this.toolUserReferences.ToolTipText = "User References";
+            this.toolUserReferences.Click += new System.EventHandler(this.toolUserReferences_Click);
+            // 
+            // buttonLockedDate
+            // 
+            this.buttonLockedDate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.buttonLockedDate.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonLockedDate.Image = global::TotalSmartCoding.Properties.Resources.key_32;
+            this.buttonLockedDate.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonLockedDate.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonLockedDate.Name = "buttonLockedDate";
+            this.buttonLockedDate.Size = new System.Drawing.Size(36, 52);
+            this.buttonLockedDate.ToolTipText = "Lock data readonly";
+            // 
+            // txtLockedDate
+            // 
+            this.txtLockedDate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtLockedDate.Enabled = false;
+            this.txtLockedDate.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtLockedDate.Name = "txtLockedDate";
+            this.txtLockedDate.Size = new System.Drawing.Size(108, 55);
+            this.txtLockedDate.Text = "01/09/2017";
+            this.txtLockedDate.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // dateTimexLowerFillterDate
+            // 
+            this.dateTimexLowerFillterDate.CustomFormat = "dd/MMM/yyyy HH:mm:ss";
+            this.dateTimexLowerFillterDate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dateTimexLowerFillterDate.Editable = true;
+            this.dateTimexLowerFillterDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimexLowerFillterDate.Location = new System.Drawing.Point(248, 8);
+            this.dateTimexLowerFillterDate.Margin = new System.Windows.Forms.Padding(0, 8, 1, 1);
+            this.dateTimexLowerFillterDate.Name = "dateTimexLowerFillterDate";
+            this.dateTimexLowerFillterDate.ReadOnly = false;
+            this.dateTimexLowerFillterDate.Size = new System.Drawing.Size(176, 28);
+            this.dateTimexLowerFillterDate.TabIndex = 90;
+            // 
+            // dateTimexUpperFillterDate
+            // 
+            this.dateTimexUpperFillterDate.CustomFormat = "dd/MMM/yyyy HH:mm:ss";
+            this.dateTimexUpperFillterDate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dateTimexUpperFillterDate.Editable = true;
+            this.dateTimexUpperFillterDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimexUpperFillterDate.Location = new System.Drawing.Point(425, 8);
+            this.dateTimexUpperFillterDate.Margin = new System.Windows.Forms.Padding(0, 8, 0, 1);
+            this.dateTimexUpperFillterDate.Name = "dateTimexUpperFillterDate";
+            this.dateTimexUpperFillterDate.ReadOnly = false;
+            this.dateTimexUpperFillterDate.Size = new System.Drawing.Size(176, 28);
+            this.dateTimexUpperFillterDate.TabIndex = 91;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::TotalSmartCoding.Properties.Resources.calendar_blue_32;
+            this.pictureBox1.Location = new System.Drawing.Point(213, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 92;
+            this.pictureBox1.TabStop = false;
+            // 
             // MasterMDI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -801,7 +872,7 @@
             this.ClientSize = new System.Drawing.Size(1906, 1037);
             this.Controls.Add(this.naviBarModuleMaster);
             this.Controls.Add(this.panelTop);
-            this.Controls.Add(this.toolStripTopHead);
+            this.Controls.Add(this.panelTopMost);
             this.Controls.Add(this.InvisibleMainMenuStripOfMDI);
             this.Controls.Add(this.statusStrip);
             this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -828,8 +899,15 @@
             this.panelTopRight.PerformLayout();
             this.toolStripTopRight.ResumeLayout(false);
             this.toolStripTopRight.PerformLayout();
+            this.panelTopMost.ResumeLayout(false);
+            this.panelTopMost.PerformLayout();
             this.toolStripTopHead.ResumeLayout(false);
             this.toolStripTopHead.PerformLayout();
+            this.layoutTop.ResumeLayout(false);
+            this.layoutTop.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -841,11 +919,7 @@
         private System.Windows.Forms.ImageList imageListModuleMasterLarge;
         private System.Windows.Forms.ImageList imageListTaskMaster;
         private System.Windows.Forms.ToolStrip toolStripTopHead;
-        private System.Windows.Forms.ToolStripTextBox txtLockedDate;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
-        private System.Windows.Forms.ToolStripTextBox textFillterLowerDate;
-        private System.Windows.Forms.ToolStripTextBox textFillterUpperDate;
         private System.Windows.Forms.ToolStripButton buttonLoading;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator13;
         private System.Windows.Forms.ToolStripComboBox comboFilterTexts;
@@ -868,7 +942,6 @@
         private Guifreaks.Navisuite.NaviBar naviBarModuleMaster;
         private System.Windows.Forms.Button buttonNaviBarHeader;
         private System.Windows.Forms.MenuStrip InvisibleMainMenuStripOfMDI;
-        private System.Windows.Forms.ToolStripButton buttonLockedDate;
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
         private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton1;
@@ -879,7 +952,6 @@
         private System.Windows.Forms.ToolStripStatusLabel statusVersion;
         private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton4;
         private System.Windows.Forms.ToolStripStatusLabel statusUserDescription;
-        private System.Windows.Forms.ToolStripButton toolUserReferences;
         private System.Windows.Forms.Panel panelTop;
         private System.Windows.Forms.Panel panelTopRight;
         private System.Windows.Forms.ToolStrip toolStripTopRight;
@@ -897,6 +969,15 @@
         private BrightIdeasSoftware.OLVColumn olvModuleDetailName;
         private BrightIdeasSoftware.OLVColumn olvModuleDetailController;
         private System.Windows.Forms.ImageList imageList32;
+        private System.Windows.Forms.Panel panelTopMost;
+        private System.Windows.Forms.TableLayoutPanel layoutTop;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton toolUserReferences;
+        private System.Windows.Forms.ToolStripButton buttonLockedDate;
+        private System.Windows.Forms.ToolStripTextBox txtLockedDate;
+        private CustomControls.DateTimexPicker dateTimexLowerFillterDate;
+        private CustomControls.DateTimexPicker dateTimexUpperFillterDate;
+        private System.Windows.Forms.PictureBox pictureBox1;
 
     }
 }

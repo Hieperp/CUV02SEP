@@ -120,10 +120,10 @@ namespace TotalSmartCoding.Views.Mains
                     default:
                         break;
                 }
-
-                this.beginingDateBinding = this.textFillterLowerDate.TextBox.DataBindings.Add("Text", GlobalEnums.GlobalOptionSetting, "LowerFillterDate", true);
-                this.endingDateBinding = this.textFillterUpperDate.TextBox.DataBindings.Add("Text", GlobalEnums.GlobalOptionSetting, "UpperFillterDate", true);
-
+                
+                this.beginingDateBinding = this.dateTimexLowerFillterDate.DataBindings.Add("Value", GlobalEnums.GlobalOptionSetting, CommonExpressions.PropertyName<OptionSetting>(p => p.LowerFillterDate), true, DataSourceUpdateMode.OnPropertyChanged);
+                this.endingDateBinding = this.dateTimexUpperFillterDate.DataBindings.Add("Value", GlobalEnums.GlobalOptionSetting, CommonExpressions.PropertyName<OptionSetting>(p => p.UpperFillterDate), true, DataSourceUpdateMode.OnPropertyChanged);
+                
                 this.beginingDateBinding.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
                 this.endingDateBinding.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
 
