@@ -585,6 +585,7 @@ namespace TotalSmartCoding.Views.Mains
             {
                 IToolstripChild toolstripChild = ActiveMdiChild as IToolstripChild;
                 if (toolstripChild != null) toolstripChild.Escape();
+                if (this.MdiChildren.Length <= 0) this.naviBarModuleMaster.Collapsed = false;
             }
             catch (Exception exception)
             {

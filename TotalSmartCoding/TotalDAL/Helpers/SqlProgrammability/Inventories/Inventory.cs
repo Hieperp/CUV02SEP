@@ -18,7 +18,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
         public void RestoreProcedure()
         {
-            //this.WarehouseLedgers();
+            this.WarehouseLedgers();
 
             //this.WarehouseJournals();
             this.WarehouseForecasts();
@@ -28,10 +28,12 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
         #region WarehouseJournals
 
         #region  DEFINE Switch Query
-
         private string DEFINEHeader(bool localParameter, int pendingForecast)
+        { return this.DEFINEHeader(localParameter, pendingForecast, null); }
+
+        private string DEFINEHeader(bool localParameter, int pendingForecast, string extendedParameters)
         {//pendingForecast: 0, 1: 
-            string queryString = " @UserID Int, @FromDate DateTime, @ToDate DateTime, @QuantityVersusVolume int " + (pendingForecast == 0 || pendingForecast == 1 ? "" : ", @WithPending bit, @WithForecast bit") + ", @LocationIDs varchar(3999), @WarehouseIDs varchar(3999), @CommodityCategoryIDs varchar(3999), @CommodityTypeIDs varchar(3999), @CommodityIDs varchar(3999) " + "\r\n";
+            string queryString = " @UserID Int, @FromDate DateTime, @ToDate DateTime, @QuantityVersusVolume int " + (pendingForecast == 0 || pendingForecast == 1 ? "" : ", @WithPending bit, @WithForecast bit") + ", @LocationIDs varchar(3999), @WarehouseIDs varchar(3999), @CommodityCategoryIDs varchar(3999), @CommodityTypeIDs varchar(3999), @CommodityIDs varchar(3999) " + (extendedParameters != "" ? ", " + extendedParameters : "") + "\r\n";
 
             //queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
@@ -57,31 +59,135 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             return " @" + (localParameter ? "Local" : "") + "UserID, @" + (localParameter ? "Local" : "") + "FromDate, @" + (localParameter ? "Local" : "") + "ToDate, @" + (localParameter ? "Local" : "") + "QuantityVersusVolume " + (pendingForecast == 0 ? ", 0, 0" : (pendingForecast == 1 ? ", 1, 1" : ", @" + (localParameter ? "Local" : "") + "WithPending, @" + (localParameter ? "Local" : "") + "WithForecast")) + ", @" + (localParameter ? "Local" : "") + "LocationIDs, @" + (localParameter ? "Local" : "") + "WarehouseIDs, @" + (localParameter ? "Local" : "") + "CommodityCategoryIDs, @" + (localParameter ? "Local" : "") + "CommodityTypeIDs, @" + (localParameter ? "Local" : "") + "CommodityIDs ";
         }
 
+
+
+        #region WarehouseForecasts
         private void WarehouseForecasts()
         {
-            string queryString = this.DEFINEHeader(true, 1).Replace("@FromDate DateTime, ", "").Replace("SET @LocalFromDate = @FromDate", "SET @LocalFromDate = @ToDate"); ////@FromDate = DATEADD(Month, DATEDIFF(Month, 0, @ToDate) - 3, 0) - Last 3 Months => IF @ToDate = 10/NOV THEN: @FromDate = 01/AUG: 
-            queryString = queryString + "       DECLARE     @WarehouseForecasts TABLE (LocationID int NOT NULL, LocationName nvarchar(50) NOT NULL, WarehouseID int NULL, WarehouseName nvarchar(60) NULL, BinLocationID int NULL, BinLocationCode nvarchar(50) NULL, BatchEntryDate datetime NULL, CommodityCategoryID int NOT NULL, CommodityCategoryName nvarchar(100) NOT NULL, CommodityID int NOT NULL, Code nvarchar(50) NOT NULL, Name nvarchar(200) NOT NULL, Unit nvarchar(10) NULL, PackageSize nvarchar(60) NULL, Barcode nvarchar(50) NULL, BarcodeUnit nvarchar(20) NULL, GoodsReceiptDetailID	int NULL, EntryDate	datetime NULL, LineReferences nvarchar(100) NULL, ValueBegin decimal(18, 2) NOT NULL, ValueReceiptPickup decimal(18, 2) NOT NULL, ValueReceiptPurchasing decimal(18, 2) NOT NULL, ValueReceiptTransfer decimal(18, 2) NOT NULL, ValueReceiptReturn decimal(18, 2) NOT NULL, ValueReceiptAdjustment decimal(18, 2) NOT NULL, ValueReceipt decimal(18, 2) NOT NULL, ValueIssueSelling decimal(18, 2) NOT NULL, ValueIssueTransfer decimal(18, 2) NOT NULL, ValueIssueProduction decimal(18, 2) NOT NULL, ValueIssueAdjustment decimal(18, 2) NOT NULL, ValueIssue decimal(18, 2) NOT NULL, ValueEnd decimal(18, 2) NOT NULL, ValueOnPurchasing decimal(18, 2) NOT NULL, ValueOnPickup decimal(18, 2) NOT NULL, ValueOnTransit decimal(18, 2) NOT NULL, ValuePendingOrder decimal(18, 2) NOT NULL, ValuePendingAdvice decimal(18, 2) NOT NULL, ValueForecasts decimal(18, 2) NOT NULL, ValueM1Forecasts decimal(18, 2) NOT NULL, ValueM2Forecasts decimal(18, 2) NOT NULL, ValueM3Forecasts decimal(18, 2) NOT NULL, MovementMIN decimal(18, 2) NOT NULL, MovementMAX decimal(18, 2) NOT NULL, MovementAVG decimal(18, 2) NOT NULL, DIOHLow decimal(18, 2) NULL, DIOHHigh decimal(18, 2) NULL, DIOHAlert decimal(18, 2) NULL) " + "\r\n";
-            queryString = queryString + "       INSERT INTO @WarehouseForecasts (LocationID, LocationName, WarehouseID, WarehouseName, BinLocationID, BinLocationCode, BatchEntryDate, CommodityCategoryID, CommodityCategoryName, CommodityID, Code, Name, Unit, PackageSize, Barcode, BarcodeUnit, GoodsReceiptDetailID, EntryDate, LineReferences, ValueBegin, ValueReceiptPickup, ValueReceiptPurchasing, ValueReceiptTransfer, ValueReceiptReturn, ValueReceiptAdjustment, ValueReceipt, ValueIssueSelling, ValueIssueTransfer, ValueIssueProduction, ValueIssueAdjustment, ValueIssue, ValueEnd, ValueOnPurchasing, ValueOnPickup, ValueOnTransit, ValuePendingOrder, ValuePendingAdvice, ValueForecasts, ValueM1Forecasts, ValueM2Forecasts, ValueM3Forecasts, MovementMIN, MovementMAX, MovementAVG) EXEC WarehouseJournals " + this.DEFINEParameter(true, 1) + "\r\n";
+            string queryString = this.DEFINEHeader(true, 1, "@FilterID int").Replace("@FromDate DateTime, ", "").Replace("SET @LocalFromDate = @FromDate", "SET @LocalFromDate = @ToDate"); //AT FIRST: @LocalFromDate = @ToDate
 
-
-
+            //not sold over 30 days
+            queryString = queryString + "       DECLARE     @LocalFilterID int = @FilterID " + "\r\n";
+            queryString = queryString + "       DECLARE     @WarehouseForecasts TABLE (LocationID int NOT NULL, LocationName nvarchar(50) NOT NULL, WarehouseID int NULL, WarehouseName nvarchar(60) NULL, BinLocationID int NULL, BinLocationCode nvarchar(50) NULL, BatchEntryDate datetime NULL, CommodityCategoryID int NOT NULL, CommodityCategoryName nvarchar(100) NOT NULL, CommodityID int NOT NULL, Code nvarchar(50) NOT NULL, Name nvarchar(200) NOT NULL, Unit nvarchar(10) NULL, PackageSize nvarchar(60) NULL, Barcode nvarchar(50) NULL, BarcodeUnit nvarchar(20) NULL, GoodsReceiptDetailID int NULL, EntryDate datetime NULL, LineReferences nvarchar(100) NULL, ValueBegin decimal(18, 2) NOT NULL, ValueReceiptPickup decimal(18, 2) NOT NULL, ValueReceiptPurchasing decimal(18, 2) NOT NULL, ValueReceiptTransfer decimal(18, 2) NOT NULL, ValueReceiptReturn decimal(18, 2) NOT NULL, ValueReceiptAdjustment decimal(18, 2) NOT NULL, ValueReceipt decimal(18, 2) NOT NULL, ValueIssueSelling decimal(18, 2) NOT NULL, ValueIssueTransfer decimal(18, 2) NOT NULL, ValueIssueProduction decimal(18, 2) NOT NULL, ValueIssueAdjustment decimal(18, 2) NOT NULL, ValueIssue decimal(18, 2) NOT NULL, ValueEnd decimal(18, 2) NOT NULL, ValueOnPurchasing decimal(18, 2) NOT NULL, ValueOnPickup decimal(18, 2) NOT NULL, ValueOnTransit decimal(18, 2) NOT NULL, ValuePendingOrder decimal(18, 2) NOT NULL, ValuePendingAdvice decimal(18, 2) NOT NULL, ValueForecasts decimal(18, 2) NOT NULL, ValueM1Forecasts decimal(18, 2) NOT NULL, ValueM2Forecasts decimal(18, 2) NOT NULL, ValueM3Forecasts decimal(18, 2) NOT NULL, MovementMIN decimal(18, 2) NOT NULL, MovementMAX decimal(18, 2) NOT NULL, MovementAVG decimal(18, 2) NOT NULL, DIOHLow decimal(18, 2) NULL, DIOHHigh decimal(18, 2) NULL, DIOHAlert decimal(18, 2) NULL, LastEntryDate datetime NULL) " + "\r\n";
+            queryString = queryString + "       INSERT INTO @WarehouseForecasts (LocationID, LocationName, WarehouseID, WarehouseName, BinLocationID, BinLocationCode, BatchEntryDate, CommodityCategoryID, CommodityCategoryName, CommodityID, Code, Name, Unit, PackageSize, Barcode, BarcodeUnit, GoodsReceiptDetailID, EntryDate, LineReferences, ValueBegin, ValueReceiptPickup, ValueReceiptPurchasing, ValueReceiptTransfer, ValueReceiptReturn, ValueReceiptAdjustment, ValueReceipt, ValueIssueSelling, ValueIssueTransfer, ValueIssueProduction, ValueIssueAdjustment, ValueIssue, ValueEnd, ValueOnPurchasing, ValueOnPickup, ValueOnTransit, ValuePendingOrder, ValuePendingAdvice, ValueForecasts, ValueM1Forecasts, ValueM2Forecasts, ValueM3Forecasts, MovementMIN, MovementMAX, MovementAVG) EXEC WarehouseJournals " + this.DEFINEParameter(true, 1) + "\r\n"; //RIGHT HERE: @LocalFromDate = @ToDate
 
             queryString = queryString + "       IF         (@LocalLocationIDs <> '') " + "\r\n";
-            queryString = queryString + "                   " + this.WarehouseForecastUpdateL_H_A_DIOH(true) + "\r\n";
+            queryString = queryString + "                   " + this.WFUpdate_L_H_A_DIOH(true) + "\r\n";
             queryString = queryString + "       ELSE " + "\r\n";
-            queryString = queryString + "                   " + this.WarehouseForecastUpdateL_H_A_DIOH(false) + "\r\n";
+            queryString = queryString + "                   " + this.WFUpdate_L_H_A_DIOH(false) + "\r\n";
 
-            queryString = queryString + "       DECLARE     @Day01 Datetime = DATEFROMPARTS (YEAR(@ToDate), MONTH(@ToDate), 1)            DECLARE @M1Firstdate Datetime = DATEADD(MONTH, 1, @Day01)     DECLARE @M3Lastdate Datetime = DATEADD(DAY, -1, DATEADD(MONTH, 3, @M1Firstdate))            DECLARE @M1M3Datediff Int = DATEDIFF(DAY, @M1Firstdate, @M3Lastdate) + 1 " + "\r\n";
 
-            queryString = queryString + "       SELECT      LocationID, LocationName, WarehouseID, WarehouseName, BinLocationID, BinLocationCode, BatchEntryDate, CommodityCategoryID, CommodityCategoryName, CommodityID, Code, Name, Unit, PackageSize, Barcode, BarcodeUnit, GoodsReceiptDetailID, EntryDate, LineReferences, ValueBegin, ValueReceiptPickup, ValueReceiptPurchasing, ValueReceiptTransfer, ValueReceiptReturn, ValueReceiptAdjustment, ValueReceipt, ValueIssueSelling, ValueIssueTransfer, ValueIssueProduction, ValueIssueAdjustment, ValueIssue, ValueEnd, ValueOnPurchasing, ValueOnPickup, ValueOnTransit, ValuePendingOrder, ValuePendingAdvice, ValueForecasts, ValueM1Forecasts, ValueM2Forecasts, ValueM3Forecasts, MovementMIN, MovementMAX, MovementAVG, DIOHLow, DIOHHigh, DIOHAlert, " + "\r\n";
-            queryString = queryString + "                   CASE WHEN EntryDate >= @Day01 THEN ValueIssueSelling ELSE 0 END AS ValueIssueSellingMTD, CASE WHEN EntryDate >= @Day01 THEN ValueReceiptPickup ELSE 0 END AS ValueReceiptPickupMTD, CASE WHEN EntryDate < @Day01 THEN ValueIssueSelling/ 3 ELSE 0 END AS ValueIssueSellingAVR3M, CASE WHEN EntryDate < @Day01 THEN ValueReceiptPickup/ 3 ELSE 0 END AS ValueReceiptPickupAVR3M,  " + "\r\n";
-            queryString = queryString + "                   (ValueOnPurchasing + ValueOnPickup + ValueOnTransit) AS ValueOnReceipt, (ValueEnd + ValueOnPurchasing + ValueOnPickup + ValueOnTransit) AS ValueInventory, (ValuePendingOrder + ValuePendingAdvice) AS ValueReserve, (ValueEnd + ValueOnPurchasing + ValueOnPickup + ValueOnTransit) - (ValuePendingOrder + ValuePendingAdvice) AS ValueStock, ValueEnd - (ValuePendingOrder + ValuePendingAdvice) AS ValueAvailable, CASE WHEN ValueM1Forecasts + ValueM2Forecasts + ValueM3Forecasts <> 0 THEN (  ((ValueEnd + ValueOnPurchasing + ValueOnPickup + ValueOnTransit) - (ValuePendingOrder + ValuePendingAdvice))/ ((ValueM1Forecasts + ValueM2Forecasts + ValueM3Forecasts) / @M1M3Datediff)  )  ELSE 0 END AS DIOH3M " + "\r\n"; //[OnHand = ValueEnd] [ValueOnReceipt = ValueOnPurchasing + ValueOnPickup + ValueOnTransit] [ValueInventory = ValueEnd + ValueOnReceipt] [ValueStock = ValueInventory - ValueReserve] [ValueAvailable =  ValueEnd - ValueReserve] [DIOH3M = ValueStock / ((ValueM1Forecasts + ValueM2Forecasts + ValueM3Forecasts)/ 90)]
-            queryString = queryString + "       FROM        @WarehouseForecasts " + "\r\n";
+            queryString = queryString + "       " + this.InventoryAccumulationHeader(false, false, true, true);//AFTER HERE: @LocalFromDate = @Last3Month. *****NOTE: THIS WILL DECLARE		@ToDate01: THE FIRST DATE OF MONTH OF ToDate
+            //???CO CAN UPDATE WarehouseForecastUpdateL_H_A_DIOH CHO InventoryAccumulationHeader????
+
+
+            #region Filter
+            queryString = queryString + "       DECLARE     @CommodityFilters TABLE (CommodityID int NOT NULL) " + "\r\n";
+            queryString = queryString + "       IF         (@LocalFilterID >= " + (int)GlobalEnums.ForecastFilterID.SlowMoving + ") " + "\r\n";
+            queryString = queryString + "                   " + this.WFFilterSlowMoving() + "\r\n"; //GET Filter: SLOWMOVING ITEMS => AND THIS ALSO UPDATE LastEntryDate FOR THESE SLOWMOVING ITEMS
+            #endregion Filter
+
+            queryString = queryString + "       DECLARE     @M1Firstdate Datetime = DATEADD(MONTH, 1, @ToDate01)     DECLARE @M3Lastdate Datetime = DATEADD(DAY, -1, DATEADD(MONTH, 3, @M1Firstdate))            DECLARE @M1M3Datediff Int = DATEDIFF(DAY, @M1Firstdate, @M3Lastdate) + 1 " + "\r\n";
+
+            queryString = queryString + "       IF         (@LocalFilterID >= " + (int)GlobalEnums.ForecastFilterID.SlowMoving + ") " + "\r\n";
+            queryString = queryString + "                   " + this.WFReturnResult(false) + "\r\n";//SLOWMOVING ITEMS: NO NEED TO GET History Sales (MONTH TO DATE, YTD, LAST 3M AVERAGE)
+            queryString = queryString + "       ELSE " + "\r\n";
+            queryString = queryString + "                   " + this.WFReturnResult(true) + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("WarehouseForecasts", queryString);
         }
 
-        private string WarehouseForecastUpdateL_H_A_DIOH(bool isLocationID)
+        #region Get Return Result
+        private string WFReturnResult(bool withHistorySales)
+        {
+            string queryString = "";
+            queryString = queryString + "   BEGIN " + "\r\n";
+            queryString = queryString + "       IF         (@LocalFilterID = " + (int)GlobalEnums.ForecastFilterID.None + ") " + "\r\n";
+            queryString = queryString + "                   " + this.WFReturnResultWithFilter(withHistorySales, false) + "\r\n";
+            queryString = queryString + "       ELSE " + "\r\n";
+            queryString = queryString + "                   " + this.WFReturnResultWithFilter(withHistorySales, true) + "\r\n";
+            queryString = queryString + "   END " + "\r\n";
+            return queryString;
+        }
+
+        private string WFReturnResultWithFilter(bool withHistorySales, bool isFilterIndex)
+        {
+            string queryString = "";
+            queryString = queryString + "   BEGIN " + "\r\n";
+            queryString = queryString + "       SELECT      EntryDate, LastEntryDate, LocationName, WarehouseName, CommodityCategoryName, CommodityID, Code, Name, PackageSize, " + "\r\n";
+            queryString = queryString + "                   ValueBegin, ValueReceiptPickup, ValueReceiptPurchasing, ValueReceiptTransfer, ValueReceiptReturn, ValueReceiptAdjustment, ValueReceipt, ValueIssueSelling, ValueIssueTransfer, ValueIssueProduction, ValueIssueAdjustment, ValueIssue, ValueEnd, ValueOnPurchasing, ValueOnPickup, ValueOnTransit, ValuePendingOrder, ValuePendingAdvice, ValueForecasts, ValueM1Forecasts, ValueM2Forecasts, ValueM3Forecasts, MovementMIN, MovementMAX, MovementAVG, DIOHLow, DIOHHigh, DIOHAlert, " + "\r\n";
+            queryString = queryString + "                   (ValueOnPurchasing + ValueOnPickup + ValueOnTransit) AS ValueOnReceipt, (ValueEnd + ValueOnPurchasing + ValueOnPickup + ValueOnTransit) AS ValueInventory, (ValuePendingOrder + ValuePendingAdvice) AS ValueReserve, (ValueEnd + ValueOnPurchasing + ValueOnPickup + ValueOnTransit) - (ValuePendingOrder + ValuePendingAdvice) AS ValueStock, ValueEnd - (ValuePendingOrder + ValuePendingAdvice) AS ValueAvailable, CASE WHEN ValueM1Forecasts + ValueM2Forecasts + ValueM3Forecasts <> 0 THEN (  ((ValueEnd + ValueOnPurchasing + ValueOnPickup + ValueOnTransit) - (ValuePendingOrder + ValuePendingAdvice))/ ((ValueM1Forecasts + ValueM2Forecasts + ValueM3Forecasts) / @M1M3Datediff)  )  ELSE 0 END AS DIOH3M, " + "\r\n"; //[OnHand = ValueEnd] [ValueOnReceipt = ValueOnPurchasing + ValueOnPickup + ValueOnTransit] [ValueInventory = ValueEnd + ValueOnReceipt] [ValueStock = ValueInventory - ValueReserve] [ValueAvailable =  ValueEnd - ValueReserve] [DIOH3M = ValueStock / ((ValueM1Forecasts + ValueM2Forecasts + ValueM3Forecasts)/ 90)]
+            queryString = queryString + "                   0 AS MTDIssueDA, 0 AS MTDIssueDANotPromotion, 0 AS MTDReceiptPickup, 0 AS AVR3MIssueDA, 0 AS AVR3MIssueDANotPromotion, 0 AS AVR3MReceiptPickup " + "\r\n";
+            queryString = queryString + "       FROM        @WarehouseForecasts " + this.WFReturnResultApplyFilter(isFilterIndex) + "\r\n";
+
+            if (withHistorySales)
+            {
+                queryString = queryString + "   UNION ALL   " + "\r\n";
+                queryString = queryString + "               " + this.InventoryAccumulationSelect(false, true) + this.WFReturnResultApplyFilter(isFilterIndex) + "\r\n";
+            }
+            queryString = queryString + "   END " + "\r\n";
+            return queryString;
+        }
+
+        private string WFReturnResultApplyFilter(bool isFilterID)
+        {
+            return (isFilterID ? "WHERE CommodityID IN (SELECT CommodityID FROM @CommodityFilters) " : "") + "\r\n";
+        }
+        #endregion Get Return Result
+
+
+        #region FilterSlowMoving
+        private string WFFilterSlowMoving()
+        {
+            string queryString = "";
+
+            queryString = queryString + "   BEGIN " + "\r\n";
+
+            queryString = queryString + "       DECLARE @SlowMovingDate int = @LocalFilterID - " + (int)GlobalEnums.ForecastFilterID.SlowMoving + "\r\n";
+            queryString = queryString + "       IF (@SlowMovingDate >= " + (int)GlobalEnums.ForecastFilterID.SlowMovingNoForecast + ")      SET @SlowMovingDate = @SlowMovingDate - " + (int)GlobalEnums.ForecastFilterID.SlowMovingNoForecast + "\r\n";
+            
+            queryString = queryString + "       IF         (@LocalLocationIDs <> '') " + "\r\n";
+            queryString = queryString + "                   " + this.WFFilterSlowMovingLocation(true) + "\r\n";
+            queryString = queryString + "       ELSE " + "\r\n";
+            queryString = queryString + "                   " + this.WFFilterSlowMovingLocation(false) + "\r\n";
+
+            queryString = queryString + "   END " + "\r\n";
+
+            return queryString;
+        }
+
+        private string WFFilterSlowMovingLocation(bool isLocationID)
+        {
+            string queryString = "";
+
+            queryString = queryString + "    BEGIN " + "\r\n";
+
+            queryString = queryString + "       IF         (@LocalLocationIDs <> '') " + "\r\n";
+            queryString = queryString + "                   " + this.WFFilterSlowMovingLocationWarehouse(isLocationID, true) + "\r\n";
+            queryString = queryString + "       ELSE " + "\r\n";
+            queryString = queryString + "                   " + this.WFFilterSlowMovingLocationWarehouse(isLocationID, false) + "\r\n";
+
+            queryString = queryString + "    END " + "\r\n";
+
+            return queryString;
+        }
+
+
+        private string WFFilterSlowMovingLocationWarehouse(bool isLocationID, bool isWarehouseID)
+        {
+            string queryString = "";
+            queryString = queryString + "    BEGIN " + "\r\n";            
+            queryString = queryString + "           INSERT INTO @CommodityFilters (CommodityID) SELECT CommodityID FROM Commodities WHERE CommodityID NOT IN (SELECT CommodityID FROM GoodsIssueDetails WHERE GoodsIssueTypeID = " + (int)GlobalEnums.GoodsIssueTypeID.DeliveryAdvice + " AND EntryDate >= DATEADD(Day, -@SlowMovingDate, @LocalToDate) AND EntryDate <= @LocalToDate" + this.DEFINEFilterLW(isLocationID, isWarehouseID, "GoodsIssueDetails") + ") " + "\r\n";
+            queryString = queryString + "           IF ((@LocalFilterID - " + (int)GlobalEnums.ForecastFilterID.SlowMoving + ") >= " + (int)GlobalEnums.ForecastFilterID.SlowMovingNoForecast + ")      DELETE FROM @CommodityFilters WHERE CommodityID IN (SELECT CommodityID FROM @WarehouseForecasts WHERE ValueForecasts <> 0 OR ValueM1Forecasts <> 0 OR ValueM2Forecasts <> 0 OR ValueM3Forecasts <> 0) " + "\r\n"; //EXCLUDE THESE CommodityID WHICH HAVE FORECAST
+
+            queryString = queryString + "           UPDATE WarehouseForecasts SET WarehouseForecasts.LastEntryDate = CommodityLastEntryDate.LastEntryDate FROM @WarehouseForecasts WarehouseForecasts INNER JOIN (SELECT CommodityID, MAX(EntryDate) AS LastEntryDate FROM GoodsIssueDetails WHERE EntryDate <= @LocalToDate AND GoodsIssueTypeID = " + (int)GlobalEnums.GoodsIssueTypeID.DeliveryAdvice + this.DEFINEFilterLW(isLocationID, isWarehouseID, "GoodsIssueDetails") + " AND CommodityID IN (SELECT CommodityID FROM @CommodityFilters) GROUP BY CommodityID) CommodityLastEntryDate ON WarehouseForecasts.CommodityID = CommodityLastEntryDate.CommodityID " + "\r\n";
+            queryString = queryString + "    END " + "\r\n";
+            return queryString;
+        }
+
+        #endregion FilterSlowMoving
+
+        private string WFUpdate_L_H_A_DIOH(bool isLocationID)
         {
             string queryString = "";
 
@@ -92,6 +198,13 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
             return queryString;
         }
+
+        #endregion WarehouseForecasts
+
+
+
+
+
 
 
         private void WarehouseJournals()
@@ -515,43 +628,58 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
 
         #region WarehouseLedgers
-        private string BUILDHeader(bool localParameter, bool quantityVersusVolume)
+        private string BUILDHeader(bool localParameter, bool dateVersusMonth, bool quantityVersusVolume, bool salesVersusPromotion, bool onlySalesAndPickup)
         {
-            string queryString = " @UserID Int, @FromDate DateTime, @ToDate DateTime, @IssueVersusReceipt int, @LocationIDs varchar(3999), @WarehouseIDs varchar(3999), @CommodityCategoryIDs varchar(3999), @CommodityTypeIDs varchar(3999), @CommodityIDs varchar(3999), @GoodsIssueTypeIDs varchar(3999), @CustomerCategoryIDs varchar(3999), @CustomerIDs varchar(3999), @LocationReceiptIDs varchar(3999), @WarehouseReceiptIDs varchar(3999), @TeamIDs varchar(3999), @EmployeeIDs varchar(3999), @WarehouseAdjustmentTypeIDs varchar(3999), @GoodsReceiptTypeIDs varchar(3999), @SupplierCategoryIDs varchar(3999), @SupplierIDs varchar(3999), @LocationIssueIDs varchar(3999), @WarehouseIssueIDs varchar(3999) " + (quantityVersusVolume ? ", @DateVersusMonth int, @QuantityVersusVolume int, @SalesVersusPromotion int" : "") + "\r\n";
+            string queryString = " @UserID Int, @FromDate DateTime, @ToDate DateTime, @IssueVersusReceipt int, @LocationIDs varchar(3999), @WarehouseIDs varchar(3999), @CommodityCategoryIDs varchar(3999), @CommodityTypeIDs varchar(3999), @CommodityIDs varchar(3999)" + (onlySalesAndPickup ? "" : ", @GoodsIssueTypeIDs varchar(3999)") + ", @CustomerCategoryIDs varchar(3999), @CustomerIDs varchar(3999)" + (onlySalesAndPickup ? "" : ", @LocationReceiptIDs varchar(3999), @WarehouseReceiptIDs varchar(3999)") + ", @TeamIDs varchar(3999), @EmployeeIDs varchar(3999)" + (onlySalesAndPickup ? "" : ", @WarehouseAdjustmentTypeIDs varchar(3999), @GoodsReceiptTypeIDs varchar(3999), @SupplierCategoryIDs varchar(3999), @SupplierIDs varchar(3999), @LocationIssueIDs varchar(3999), @WarehouseIssueIDs varchar(3999) ") + (dateVersusMonth ? ", @DateVersusMonth int" : "") + (quantityVersusVolume ? ", @QuantityVersusVolume int" : "") + (salesVersusPromotion ? ", @SalesVersusPromotion int" : "") + "\r\n";
 
 
 
-            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            //queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "       SET NOCOUNT ON; " + "\r\n";
 
             if (localParameter)
             {
-                queryString = queryString + "       DECLARE     @LocalUserID Int, @LocalFromDate DateTime, @LocalToDate DateTime, @LocalIssueVersusReceipt int, @LocalLocationIDs varchar(3999), @LocalWarehouseIDs varchar(3999), @LocalCommodityCategoryIDs varchar(3999), @LocalCommodityTypeIDs varchar(3999), @LocalCommodityIDs varchar(3999), @LocalGoodsIssueTypeIDs varchar(3999), @LocalCustomerCategoryIDs varchar(3999), @LocalCustomerIDs varchar(3999), @LocalLocationReceiptIDs varchar(3999), @LocalWarehouseReceiptIDs varchar(3999), @LocalTeamIDs varchar(3999), @LocalEmployeeIDs varchar(3999), @LocalWarehouseAdjustmentTypeIDs varchar(3999), @LocalGoodsReceiptTypeIDs varchar(3999), @LocalSupplierCategoryIDs varchar(3999), @LocalSupplierIDs varchar(3999), @LocalLocationIssueIDs varchar(3999), @LocalWarehouseIssueIDs varchar(3999) " + (quantityVersusVolume ? ", @LocalDateVersusMonth int, @LocalQuantityVersusVolume int, @LocalSalesVersusPromotion int" : "") + "\r\n";
+                queryString = queryString + "       DECLARE     @LocalUserID Int, @LocalFromDate DateTime, @LocalToDate DateTime, @LocalIssueVersusReceipt int, @LocalLocationIDs varchar(3999), @LocalWarehouseIDs varchar(3999), @LocalCommodityCategoryIDs varchar(3999), @LocalCommodityTypeIDs varchar(3999), @LocalCommodityIDs varchar(3999)" + (onlySalesAndPickup ? "" : ", @LocalGoodsIssueTypeIDs varchar(3999)") + ", @LocalCustomerCategoryIDs varchar(3999), @LocalCustomerIDs varchar(3999)" + (onlySalesAndPickup ? "" : ", @LocalLocationReceiptIDs varchar(3999), @LocalWarehouseReceiptIDs varchar(3999)") + ", @LocalTeamIDs varchar(3999), @LocalEmployeeIDs varchar(3999)" + (onlySalesAndPickup ? "" : ", @LocalWarehouseAdjustmentTypeIDs varchar(3999), @LocalGoodsReceiptTypeIDs varchar(3999), @LocalSupplierCategoryIDs varchar(3999), @LocalSupplierIDs varchar(3999), @LocalLocationIssueIDs varchar(3999), @LocalWarehouseIssueIDs varchar(3999) ") + (dateVersusMonth ? ", @LocalDateVersusMonth int" : "") + (quantityVersusVolume ? ", @LocalQuantityVersusVolume int" : "") + (salesVersusPromotion ? ", @LocalSalesVersusPromotion int" : "") + "\r\n";
 
                 queryString = queryString + "       SET         @LocalUserID = @UserID                                              SET @LocalFromDate = @FromDate                          SET @LocalToDate = @ToDate          SET @LocalIssueVersusReceipt = @IssueVersusReceipt " + "\r\n";
                 queryString = queryString + "       SET         @LocalLocationIDs = @LocationIDs                                    SET @LocalWarehouseIDs = @WarehouseIDs                  " + "\r\n";
                 queryString = queryString + "       SET         @LocalCommodityCategoryIDs = @CommodityCategoryIDs                  SET @LocalCommodityIDs = @CommodityIDs                  " + "\r\n";
-                queryString = queryString + "       SET         @LocalCommodityTypeIDs = @CommodityTypeIDs                          SET @LocalGoodsIssueTypeIDs = @GoodsIssueTypeIDs " + "\r\n";
+                queryString = queryString + "       SET         @LocalCommodityTypeIDs = @CommodityTypeIDs                          " + "\r\n";
+
+                if (!onlySalesAndPickup)
+                    queryString = queryString + "   SET         @LocalGoodsIssueTypeIDs = @GoodsIssueTypeIDs " + "\r\n";
+
                 queryString = queryString + "       SET         @LocalCustomerCategoryIDs = @CustomerCategoryIDs                    SET @LocalCustomerIDs = @CustomerIDs" + "\r\n";
-                queryString = queryString + "       SET         @LocalLocationReceiptIDs = @LocationReceiptIDs                      SET @LocalWarehouseReceiptIDs = @WarehouseReceiptIDs " + "\r\n";
+
+                if (!onlySalesAndPickup)
+                    queryString = queryString + "   SET         @LocalLocationReceiptIDs = @LocationReceiptIDs                      SET @LocalWarehouseReceiptIDs = @WarehouseReceiptIDs " + "\r\n";
+
                 queryString = queryString + "       SET         @LocalTeamIDs = @TeamIDs                                            SET @LocalEmployeeIDs = @EmployeeIDs " + "\r\n";
-                queryString = queryString + "       SET         @LocalWarehouseAdjustmentTypeIDs = @WarehouseAdjustmentTypeIDs" + "\r\n";
 
-                queryString = queryString + "       SET         @LocalGoodsReceiptTypeIDs = @GoodsReceiptTypeIDs" + "\r\n";
-                queryString = queryString + "       SET         @LocalSupplierCategoryIDs = @SupplierCategoryIDs                    SET @LocalSupplierIDs = @SupplierIDs " + "\r\n";
-                queryString = queryString + "       SET         @LocalLocationIssueIDs = @LocationIssueIDs                          SET @LocalWarehouseIssueIDs = @WarehouseIssueIDs " + "\r\n";
+                if (!onlySalesAndPickup)
+                {
+                    queryString = queryString + "   SET         @LocalWarehouseAdjustmentTypeIDs = @WarehouseAdjustmentTypeIDs" + "\r\n";
 
+                    queryString = queryString + "   SET         @LocalGoodsReceiptTypeIDs = @GoodsReceiptTypeIDs" + "\r\n";
+                    queryString = queryString + "   SET         @LocalSupplierCategoryIDs = @SupplierCategoryIDs                    SET @LocalSupplierIDs = @SupplierIDs " + "\r\n";
+                    queryString = queryString + "   SET         @LocalLocationIssueIDs = @LocationIssueIDs                          SET @LocalWarehouseIssueIDs = @WarehouseIssueIDs " + "\r\n";
+                }
 
-                queryString = queryString + (quantityVersusVolume ? " SET @LocalDateVersusMonth = @DateVersusMonth   SET @LocalQuantityVersusVolume = @QuantityVersusVolume       SET @LocalSalesVersusPromotion = @SalesVersusPromotion" : "") + "\r\n";
+                queryString = queryString + (dateVersusMonth ? " SET @LocalDateVersusMonth = @DateVersusMonth " : "") + (quantityVersusVolume ? " SET @LocalQuantityVersusVolume = @QuantityVersusVolume " : "") + (salesVersusPromotion ? " SET @LocalSalesVersusPromotion = @SalesVersusPromotion" : "") + "\r\n";
             }
 
             return queryString;
         }
 
-        private string BUILDParameter(bool localParameter)
+        private string BUILDParameter(bool localParameter, bool onlySalesAndPickup)
         {
-            return " @" + (localParameter ? "Local" : "") + "UserID, @" + (localParameter ? "Local" : "") + "FromDate, @" + (localParameter ? "Local" : "") + "ToDate, @" + (localParameter ? "Local" : "") + "IssueVersusReceipt, @" + (localParameter ? "Local" : "") + "LocationIDs, @" + (localParameter ? "Local" : "") + "WarehouseIDs, @" + (localParameter ? "Local" : "") + "CommodityCategoryIDs, @" + (localParameter ? "Local" : "") + "CommodityTypeIDs, @" + (localParameter ? "Local" : "") + "CommodityIDs, @" + (localParameter ? "Local" : "") + "GoodsIssueTypeIDs, @" + (localParameter ? "Local" : "") + "CustomerCategoryIDs, @" + (localParameter ? "Local" : "") + "CustomerIDs, @" + (localParameter ? "Local" : "") + "LocationReceiptIDs, @" + (localParameter ? "Local" : "") + "WarehouseReceiptIDs, @" + (localParameter ? "Local" : "") + "TeamIDs, @" + (localParameter ? "Local" : "") + "EmployeeIDs, @" + (localParameter ? "Local" : "") + "WarehouseAdjustmentTypeIDs, @" + (localParameter ? "Local" : "") + "GoodsReceiptTypeIDs, @" + (localParameter ? "Local" : "") + "SupplierCategoryIDs, @" + (localParameter ? "Local" : "") + "SupplierIDs, @" + (localParameter ? "Local" : "") + "LocationIssueIDs, @" + (localParameter ? "Local" : "") + "WarehouseIssueIDs ";
+            return this.BUILDParameter(localParameter, onlySalesAndPickup, "NULL", "NULL");
+        }
+
+        private string BUILDParameter(bool localParameter, bool onlySalesAndPickup, string goodsIssueTypeIDs, string goodsReceiptTypeIDs)
+        {
+            return " @" + (localParameter ? "Local" : "") + "UserID, @" + (localParameter ? "Local" : "") + "FromDate, @" + (localParameter ? "Local" : "") + "ToDate, @" + (localParameter ? "Local" : "") + "IssueVersusReceipt, @" + (localParameter ? "Local" : "") + "LocationIDs, @" + (localParameter ? "Local" : "") + "WarehouseIDs, @" + (localParameter ? "Local" : "") + "CommodityCategoryIDs, @" + (localParameter ? "Local" : "") + "CommodityTypeIDs, @" + (localParameter ? "Local" : "") + "CommodityIDs, " + (onlySalesAndPickup ? goodsIssueTypeIDs : "@" + (localParameter ? "Local" : "") + "GoodsIssueTypeIDs") + ", @" + (localParameter ? "Local" : "") + "CustomerCategoryIDs, @" + (localParameter ? "Local" : "") + "CustomerIDs, " + (onlySalesAndPickup ? "NULL, NULL" : "@" + (localParameter ? "Local" : "") + "LocationReceiptIDs, @" + (localParameter ? "Local" : "") + "WarehouseReceiptIDs") + ", @" + (localParameter ? "Local" : "") + "TeamIDs, @" + (localParameter ? "Local" : "") + "EmployeeIDs, " + (onlySalesAndPickup ? "NULL" : "@" + (localParameter ? "Local" : "") + "WarehouseAdjustmentTypeIDs") + ", " + (onlySalesAndPickup ? goodsReceiptTypeIDs : "@" + (localParameter ? "Local" : "") + "GoodsReceiptTypeIDs") + ", " + (onlySalesAndPickup ? "NULL, NULL, NULL, NULL" : "@" + (localParameter ? "Local" : "") + "SupplierCategoryIDs, @" + (localParameter ? "Local" : "") + "SupplierIDs, @" + (localParameter ? "Local" : "") + "LocationIssueIDs, @" + (localParameter ? "Local" : "") + "WarehouseIssueIDs ");
         }
 
         /// <summary>
@@ -577,18 +705,18 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
         private void WarehouseLedgers()
         {
-            this.WarehouseLedgerIssue08();
-            this.WarehouseLedgerReceipt08();
+            //this.WarehouseLedgerIssue08();
+            //this.WarehouseLedgerReceipt08();
 
-            this.WarehouseLedger06();
+            //this.WarehouseLedger06();
 
-            string queryString = this.BUILDHeader(false, false) + this.BUILDGoodsIssue() + "\r\n";
-            this.totalSmartCodingEntities.CreateStoredProcedure("WHLS", queryString);
+            string queryString = this.BUILDHeader(false, false, false, false, false) + this.BUILDGoodsIssue() + "\r\n";
+            //this.totalSmartCodingEntities.CreateStoredProcedure("WHLS", queryString);
 
 
-            queryString = this.BUILDHeader(true, true);
+            queryString = this.BUILDHeader(true, true, true, true, false);
             queryString = queryString + "       DECLARE     @WarehouseLedgers TABLE (PrimaryID int NOT NULL, PrimaryDetailID int NOT NULL, EntryDate datetime NOT NULL, Reference nvarchar(10) NULL, LocationName nvarchar(50) NOT NULL, WarehouseName nvarchar(60) NOT NULL, Barcode nvarchar(50) NULL, CommodityID int NOT NULL, Code nvarchar(50) NOT NULL, Name nvarchar(200) NOT NULL, PackageSize nvarchar(60) NULL, CommodityCategoryName nvarchar(100) NOT NULL, CommodityTypeName nvarchar(100) NOT NULL, IsPromotion bit NOT NULL, Quantity decimal(18, 2) NOT NULL, LineVolume decimal(18, 2) NOT NULL, JournalTypeID Int NOT NULL, JournalTypeName nvarchar(50) NOT NULL, LineForeignCode nvarchar(50) NULL, LineForeignName nvarchar(100) NULL, LineReferences nvarchar(110) NULL, CustomerCategoryName nvarchar(100) NULL, TeamName nvarchar(100) NULL, SalespersonName nvarchar(50) NULL) " + "\r\n";
-            queryString = queryString + "       INSERT INTO @WarehouseLedgers         EXEC WHLS " + this.BUILDParameter(true) + "\r\n";
+            queryString = queryString + "       INSERT INTO @WarehouseLedgers         EXEC WHLS " + this.BUILDParameter(true, false) + "\r\n";
 
             string queryMaster = "              SELECT      PrimaryID, PrimaryDetailID, EntryDate, CASE @LocalDateVersusMonth WHEN 0 THEN CONVERT(Date, EntryDate) ELSE DATEADD(Month, DateDiff(Month, 0, EntryDate), 0) END AS GroupDate, Reference, LocationName, WarehouseName, Barcode, CommodityID, Code, Name, PackageSize, CommodityCategoryName, CommodityTypeName, IsPromotion, Quantity, LineVolume, CASE @LocalQuantityVersusVolume WHEN 0 THEN Quantity ELSE LineVolume END AS LineValue, JournalTypeID, JournalTypeName, LineForeignCode, LineForeignName, LineReferences, CustomerCategoryName, TeamName, SalespersonName " + "\r\n";
             queryMaster = queryMaster + "       FROM        @WarehouseLedgers " + "\r\n";
@@ -598,7 +726,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryString = queryString + "       ELSE " + "\r\n";
             queryString = queryString + "                   " + queryMaster + "\r\n" + " WHERE IsPromotion = @LocalSalesVersusPromotion";
 
-            this.totalSmartCodingEntities.CreateStoredProcedure("WarehouseLedgers", queryString);
+            //this.totalSmartCodingEntities.CreateStoredProcedure("WarehouseLedgers", queryString);
 
 
 
@@ -607,44 +735,65 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
 
             #region InventoryAccumulation
-            queryString = this.BUILDHeader(true, true).Replace("@FromDate DateTime, ", "").Replace("@LocalFromDate DateTime, ", "").Replace("SET @LocalFromDate = @FromDate", "").Replace(", @IssueVersusReceipt int", "").Replace(", @LocalIssueVersusReceipt int", "").Replace("SET @LocalIssueVersusReceipt = @IssueVersusReceipt", "").Replace(", @SalesVersusPromotion int", "").Replace("SET @LocalSalesVersusPromotion = @SalesVersusPromotion", "");
+
+            queryString = this.InventoryAccumulationHeader(true, true, false, false);
+            queryString = queryString + "                   " + this.InventoryAccumulationSelect(true, false) + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("InventoryAccumulation", queryString);
+            #endregion InventoryAccumulation
+        }
+
+        private string InventoryAccumulationHeader(bool withYTD, bool defineParameter, bool noCustomerFilter, bool noEmployeeFilter)
+        {
+            string queryString = "";
+            queryString = defineParameter ? this.BUILDHeader(true, false, true, false, true).Replace("@FromDate DateTime, ", "").Replace("SET @LocalFromDate = @FromDate", "").Replace(", @IssueVersusReceipt int", "").Replace(", @LocalIssueVersusReceipt int", "").Replace("SET @LocalIssueVersusReceipt = @IssueVersusReceipt", "") : "";
 
             queryString = queryString + "       DECLARE		@ToDate01 Datetime  = DATEADD(Month, DateDiff(Month, 0, @ToDate), 0)" + "\r\n";
             queryString = queryString + "       DECLARE		@Last3Month Datetime = DATEADD(Month, -3, @ToDate01)" + "\r\n";
 
-            queryString = queryString + "       DECLARE     @FromDate DateTime = IIF(DATEFROMPARTS (YEAR(@ToDate), 1, 1) < @Last3Month, DATEFROMPARTS (YEAR(@ToDate), 1, 1), @Last3Month) " + "\r\n";
-            queryString = queryString + "       DECLARE     @LocalFromDate DateTime = @FromDate " + "\r\n";
+            queryString = queryString + "       SET         @LocalFromDate = " + (withYTD ? "IIF(DATEFROMPARTS (YEAR(@ToDate), 1, 1) < @Last3Month, DATEFROMPARTS (YEAR(@ToDate), 1, 1), @Last3Month)" : "@Last3Month") + "\r\n";
 
 
 
-            queryString = queryString + "       DECLARE     @InventoryAccumulation  TABLE (ISSUEPrimaryID int NULL, ISSUEPrimaryDetailID int NULL, ISSUEEntryDate datetime NULL, ISSUEReference nvarchar(10) NULL, ISSUELocationName nvarchar(50) NULL, ISSUEWarehouseName nvarchar(60) NULL, ISSUEBarcode nvarchar(50) NULL, ISSUECommodityID int NULL, ISSUECode nvarchar(50) NULL, ISSUEName nvarchar(200) NULL, ISSUEPackageSize nvarchar(60) NULL, ISSUECommodityCategoryName nvarchar(100) NULL, ISSUECommodityTypeName nvarchar(100) NULL, ISSUEIsPromotion bit NULL, ISSUEQuantity decimal(18, 2) NULL, ISSUELineVolume decimal(18, 2) NULL, ISSUEJournalTypeID Int NULL, ISSUEJournalTypeName nvarchar(50) NULL, ISSUELineForeignCode nvarchar(50) NULL, ISSUELineForeignName nvarchar(100) NULL, ISSUELineReferences nvarchar(110) NULL, ISSUECustomerCategoryName nvarchar(100) NULL, ISSUETeamName nvarchar(100) NULL, ISSUESalespersonName nvarchar(50) NULL, RECEIPTPrimaryID int NULL, RECEIPTPrimaryDetailID int NULL, RECEIPTEntryDate datetime NULL, RECEIPTReference nvarchar(10) NULL, RECEIPTLocationName nvarchar(50) NULL, RECEIPTWarehouseName nvarchar(60) NULL, RECEIPTBarcode nvarchar(50) NULL, RECEIPTCommodityID int NULL, RECEIPTCode nvarchar(50) NULL, RECEIPTName nvarchar(200) NULL, RECEIPTPackageSize nvarchar(60) NULL, RECEIPTCommodityCategoryName nvarchar(100) NULL, RECEIPTCommodityTypeName nvarchar(100) NULL, RECEIPTIsPromotion bit NULL, RECEIPTQuantity decimal(18, 2) NULL, RECEIPTLineVolume decimal(18, 2) NULL, RECEIPTJournalTypeID Int NULL, RECEIPTJournalTypeName nvarchar(50) NULL, RECEIPTLineForeignCode nvarchar(50) NULL, RECEIPTLineForeignName nvarchar(100) NULL, RECEIPTLineReferences nvarchar(110) NULL, RECEIPTCustomerCategoryName nvarchar(100) NULL, RECEIPTTeamName nvarchar(100) NULL, RECEIPTSalespersonName nvarchar(50) NULL) " + "\r\n";
+            queryString = queryString + "       DECLARE     @InventoryAccumulation  TABLE (ISSUEPrimaryID int NULL, ISSUEPrimaryDetailID int NULL, ISSUEEntryDate datetime NULL, ISSUEReference nvarchar(10) NULL, ISSUELocationName nvarchar(50) NULL, ISSUEWarehouseName nvarchar(60) NULL, ISSUEBarcode nvarchar(50) NULL, CommodityID int NULL, ISSUECode nvarchar(50) NULL, ISSUEName nvarchar(200) NULL, ISSUEPackageSize nvarchar(60) NULL, ISSUECommodityCategoryName nvarchar(100) NULL, ISSUECommodityTypeName nvarchar(100) NULL, ISSUEIsPromotion bit NULL, ISSUEQuantity decimal(18, 2) NULL, ISSUELineVolume decimal(18, 2) NULL, ISSUEJournalTypeID Int NULL, ISSUEJournalTypeName nvarchar(50) NULL, ISSUELineForeignCode nvarchar(50) NULL, ISSUELineForeignName nvarchar(100) NULL, ISSUELineReferences nvarchar(110) NULL, ISSUECustomerCategoryName nvarchar(100) NULL, ISSUETeamName nvarchar(100) NULL, ISSUESalespersonName nvarchar(50) NULL, RECEIPTPrimaryID int NULL, RECEIPTPrimaryDetailID int NULL, RECEIPTEntryDate datetime NULL, RECEIPTReference nvarchar(10) NULL, RECEIPTLocationName nvarchar(50) NULL, RECEIPTWarehouseName nvarchar(60) NULL, RECEIPTBarcode nvarchar(50) NULL, RECEIPTCode nvarchar(50) NULL, RECEIPTName nvarchar(200) NULL, RECEIPTPackageSize nvarchar(60) NULL, RECEIPTCommodityCategoryName nvarchar(100) NULL, RECEIPTCommodityTypeName nvarchar(100) NULL, RECEIPTIsPromotion bit NULL, RECEIPTQuantity decimal(18, 2) NULL, RECEIPTLineVolume decimal(18, 2) NULL, RECEIPTJournalTypeID Int NULL, RECEIPTJournalTypeName nvarchar(50) NULL, RECEIPTLineForeignCode nvarchar(50) NULL, RECEIPTLineForeignName nvarchar(100) NULL, RECEIPTLineReferences nvarchar(110) NULL, RECEIPTCustomerCategoryName nvarchar(100) NULL, RECEIPTTeamName nvarchar(100) NULL, RECEIPTSalespersonName nvarchar(50) NULL) " + "\r\n";
             //INSERT GlobalEnums.GoodsIssueTypeID.DeliveryAdvice ONLY
-            queryString = queryString + "       INSERT INTO @InventoryAccumulation  (ISSUEPrimaryID, ISSUEPrimaryDetailID, ISSUEEntryDate, ISSUEReference, ISSUELocationName, ISSUEWarehouseName, ISSUEBarcode, ISSUECommodityID, ISSUECode, ISSUEName, ISSUEPackageSize, ISSUECommodityCategoryName, ISSUECommodityTypeName, ISSUEIsPromotion, ISSUEQuantity, ISSUELineVolume, ISSUEJournalTypeID, ISSUEJournalTypeName, ISSUELineForeignCode, ISSUELineForeignName, ISSUELineReferences, ISSUECustomerCategoryName, ISSUETeamName, ISSUESalespersonName) EXEC WHLS " + this.BUILDParameter(true).Replace("@LocalIssueVersusReceipt", "0").Replace("@LocalGoodsIssueTypeIDs", "'" + (int)GlobalEnums.GoodsIssueTypeID.DeliveryAdvice + "'") + "\r\n";
+            queryString = queryString + "       INSERT INTO @InventoryAccumulation  (ISSUEPrimaryID, ISSUEPrimaryDetailID, ISSUEEntryDate, ISSUEReference, ISSUELocationName, ISSUEWarehouseName, ISSUEBarcode, CommodityID, ISSUECode, ISSUEName, ISSUEPackageSize, ISSUECommodityCategoryName, ISSUECommodityTypeName, ISSUEIsPromotion, ISSUEQuantity, ISSUELineVolume, ISSUEJournalTypeID, ISSUEJournalTypeName, ISSUELineForeignCode, ISSUELineForeignName, ISSUELineReferences, ISSUECustomerCategoryName, ISSUETeamName, ISSUESalespersonName) EXEC WHLS " + this.BUILDParameter(true, true, "'" + (int)GlobalEnums.GoodsIssueTypeID.DeliveryAdvice + "'", "NULL").Replace("@LocalIssueVersusReceipt", "0") + "\r\n";
             //INSERT GlobalEnums.GoodsReceiptTypeID.Pickup ONLY
-            queryString = queryString + "       INSERT INTO @InventoryAccumulation  (RECEIPTPrimaryID, RECEIPTPrimaryDetailID, RECEIPTEntryDate, RECEIPTReference, RECEIPTLocationName, RECEIPTWarehouseName, RECEIPTBarcode, RECEIPTCommodityID, RECEIPTCode, RECEIPTName, RECEIPTPackageSize, RECEIPTCommodityCategoryName, RECEIPTCommodityTypeName, RECEIPTIsPromotion, RECEIPTQuantity, RECEIPTLineVolume, RECEIPTJournalTypeID, RECEIPTJournalTypeName, RECEIPTLineForeignCode, RECEIPTLineForeignName, RECEIPTLineReferences, RECEIPTCustomerCategoryName, RECEIPTTeamName, RECEIPTSalespersonName) EXEC WHLS " + this.BUILDParameter(true).Replace("@LocalIssueVersusReceipt", "1").Replace("@LocalGoodsReceiptTypeIDs", "'" + (int)GlobalEnums.GoodsReceiptTypeID.Pickup + "'") + "\r\n";
+            queryString = queryString + "       INSERT INTO @InventoryAccumulation  (RECEIPTPrimaryID, RECEIPTPrimaryDetailID, RECEIPTEntryDate, RECEIPTReference, RECEIPTLocationName, RECEIPTWarehouseName, RECEIPTBarcode, CommodityID, RECEIPTCode, RECEIPTName, RECEIPTPackageSize, RECEIPTCommodityCategoryName, RECEIPTCommodityTypeName, RECEIPTIsPromotion, RECEIPTQuantity, RECEIPTLineVolume, RECEIPTJournalTypeID, RECEIPTJournalTypeName, RECEIPTLineForeignCode, RECEIPTLineForeignName, RECEIPTLineReferences, RECEIPTCustomerCategoryName, RECEIPTTeamName, RECEIPTSalespersonName) EXEC WHLS " + this.BUILDParameter(true, true, "NULL", "'" + (int)GlobalEnums.GoodsReceiptTypeID.Pickup + "'").Replace("@LocalIssueVersusReceipt", "1") + "\r\n";
+
+            if (noCustomerFilter) queryString = queryString.Replace("@LocalCustomerCategoryIDs, @LocalCustomerIDs", "NULL, NULL");
+            if (noEmployeeFilter) queryString = queryString.Replace("@LocalTeamIDs, @LocalEmployeeIDs", "NULL, NULL");
 
 
+            return queryString;
+        }
 
-            queryString = queryString + "       SELECT      IIF(NOT ISSUEPrimaryID IS NULL, 0, 1) AS IssueVersusReceipt, " + "\r\n";
+        private string InventoryAccumulationSelect(bool withYTD, bool withForecast)
+        {
+            string queryString = "              SELECT      " + "\r\n"; //IIF(NOT ISSUEPrimaryID IS NULL, 0, 1) AS IssueVersusReceipt, "            
 
-            queryString = queryString + "                   ISNULL(ISSUEEntryDate, RECEIPTEntryDate) AS EntryDate, ISNULL(ISSUELocationName, RECEIPTLocationName) AS LocationName, ISNULL(ISSUEWarehouseName, RECEIPTWarehouseName) AS WarehouseName, ISNULL(ISSUECommodityID, RECEIPTCommodityID) AS CommodityID, ISNULL(ISSUECode, RECEIPTCode) AS Code, ISNULL(ISSUEName, RECEIPTName) AS Name, ISNULL(ISSUEPackageSize, RECEIPTPackageSize) AS PackageSize, ISNULL(ISSUECommodityCategoryName, RECEIPTCommodityCategoryName) AS CommodityCategoryName, ISNULL(ISSUEQuantity, RECEIPTQuantity) AS Quantity, ISNULL(ISSUELineVolume, RECEIPTLineVolume) AS LineVolume, ISNULL(ISSUEJournalTypeID, RECEIPTJournalTypeID) AS JournalTypeID, ISNULL(ISSUEJournalTypeName, RECEIPTJournalTypeName) AS JournalTypeName, ISNULL(ISSUELineForeignCode, RECEIPTLineForeignCode) AS LineForeignCode, ISNULL(ISSUELineForeignName, RECEIPTLineForeignName) AS LineForeignName, " + "\r\n";
-
+            queryString = queryString + "                   ISNULL(ISSUEEntryDate, RECEIPTEntryDate) AS EntryDate" + (withForecast ? ", NULL AS LastEntryDate" : "") + ", ISNULL(ISSUELocationName, RECEIPTLocationName) AS LocationName, ISNULL(ISSUEWarehouseName, RECEIPTWarehouseName) AS WarehouseName, ISNULL(ISSUECommodityCategoryName, RECEIPTCommodityCategoryName) AS CommodityCategoryName, CommodityID, ISNULL(ISSUECode, RECEIPTCode) AS Code, ISNULL(ISSUEName, RECEIPTName) AS Name, ISNULL(ISSUEPackageSize, RECEIPTPackageSize) AS PackageSize, " + "\r\n";
+            if (withForecast)
+            {
+                queryString = queryString + "               0 AS ValueBegin, 0 AS ValueReceiptPickup, 0 AS ValueReceiptPurchasing, 0 AS ValueReceiptTransfer, 0 AS ValueReceiptReturn, 0 AS ValueReceiptAdjustment, 0 AS ValueReceipt, 0 AS ValueIssueSelling, 0 AS ValueIssueTransfer, 0 AS ValueIssueProduction, 0 AS ValueIssueAdjustment, 0 AS ValueIssue, 0 AS ValueEnd, 0 AS ValueOnPurchasing, 0 AS ValueOnPickup, 0 AS ValueOnTransit, 0 AS ValuePendingOrder, 0 AS ValuePendingAdvice, 0 AS ValueForecasts, 0 AS ValueM1Forecasts, 0 AS ValueM2Forecasts, 0 AS ValueM3Forecasts, 0 AS MovementMIN, 0 AS MovementMAX, 0 AS MovementAVG, 0 AS DIOHLow, 0 AS DIOHHigh, 0 AS DIOHAlert, " + "\r\n";
+                queryString = queryString + "               0 AS ValueOnReceipt, 0 AS ValueInventory, 0 AS ValueReserve, 0 AS ValueStock, 0 AS ValueAvailable, 0 AS DIOH3M, " + "\r\n";
+            }
             queryString = queryString + "                   CASE WHEN MONTH(ISSUEEntryDate) = MONTH(@LocalToDate) THEN IIF(@LocalQuantityVersusVolume = 0, ISSUEQuantity, ISSUELineVolume) ELSE 0 END AS MTDIssueDA, " + "\r\n";
             queryString = queryString + "                   CASE WHEN MONTH(ISSUEEntryDate) = MONTH(@LocalToDate) AND ISSUEIsPromotion = 0 THEN IIF(@LocalQuantityVersusVolume = 0, ISSUEQuantity, ISSUELineVolume) ELSE 0 END AS MTDIssueDANotPromotion, " + "\r\n";
             queryString = queryString + "                   CASE WHEN MONTH(RECEIPTEntryDate) = MONTH(@LocalToDate) THEN IIF(@LocalQuantityVersusVolume = 0, RECEIPTQuantity, RECEIPTLineVolume) ELSE 0 END AS MTDReceiptPickup, " + "\r\n";
-
-            queryString = queryString + "                   CASE WHEN YEAR(ISSUEEntryDate) = YEAR(@LocalToDate) THEN IIF(@LocalQuantityVersusVolume = 0, ISSUEQuantity, ISSUELineVolume) ELSE 0 END AS YTDIssueDA, " + "\r\n";
-            queryString = queryString + "                   CASE WHEN YEAR(ISSUEEntryDate) = YEAR(@LocalToDate) AND ISSUEIsPromotion = 0 THEN IIF(@LocalQuantityVersusVolume = 0, ISSUEQuantity, ISSUELineVolume) ELSE 0 END AS YTDIssueDANotPromotion, " + "\r\n";
-            queryString = queryString + "                   CASE WHEN YEAR(RECEIPTEntryDate) = YEAR(@LocalToDate) THEN IIF(@LocalQuantityVersusVolume = 0, RECEIPTQuantity, RECEIPTLineVolume) ELSE 0 END AS YTDReceiptPickup, " + "\r\n";
-
-            queryString = queryString + "                   CASE WHEN ISSUEEntryDate >= @Last3Month AND ISSUEEntryDate < @ToDate01 THEN IIF(@LocalQuantityVersusVolume = 0, ISSUEQuantity, ISSUELineVolume) ELSE 0 END AS Last3MIssueDA, " + "\r\n";
-            queryString = queryString + "                   CASE WHEN ISSUEEntryDate >= @Last3Month AND ISSUEEntryDate < @ToDate01 AND ISSUEIsPromotion = 0 THEN IIF(@LocalQuantityVersusVolume = 0, ISSUEQuantity, ISSUELineVolume) ELSE 0 END AS Last3MIssueDANotPromotion, " + "\r\n";
-            queryString = queryString + "                   CASE WHEN RECEIPTEntryDate >= @Last3Month AND RECEIPTEntryDate < @ToDate01 THEN IIF(@LocalQuantityVersusVolume = 0, RECEIPTQuantity, RECEIPTLineVolume) ELSE 0 END AS Last3MReceiptPickup " + "\r\n";
+            if (withYTD)
+            {
+                queryString = queryString + "               CASE WHEN YEAR(ISSUEEntryDate) = YEAR(@LocalToDate) THEN IIF(@LocalQuantityVersusVolume = 0, ISSUEQuantity, ISSUELineVolume) ELSE 0 END AS YTDIssueDA, " + "\r\n";
+                queryString = queryString + "               CASE WHEN YEAR(ISSUEEntryDate) = YEAR(@LocalToDate) AND ISSUEIsPromotion = 0 THEN IIF(@LocalQuantityVersusVolume = 0, ISSUEQuantity, ISSUELineVolume) ELSE 0 END AS YTDIssueDANotPromotion, " + "\r\n";
+                queryString = queryString + "               CASE WHEN YEAR(RECEIPTEntryDate) = YEAR(@LocalToDate) THEN IIF(@LocalQuantityVersusVolume = 0, RECEIPTQuantity, RECEIPTLineVolume) ELSE 0 END AS YTDReceiptPickup, " + "\r\n";
+            }
+            queryString = queryString + "                   CASE WHEN ISSUEEntryDate >= @Last3Month AND ISSUEEntryDate < @ToDate01 THEN IIF(@LocalQuantityVersusVolume = 0, ISSUEQuantity, ISSUELineVolume)/3 ELSE 0 END AS AVR3MIssueDA, " + "\r\n";
+            queryString = queryString + "                   CASE WHEN ISSUEEntryDate >= @Last3Month AND ISSUEEntryDate < @ToDate01 AND ISSUEIsPromotion = 0 THEN IIF(@LocalQuantityVersusVolume = 0, ISSUEQuantity, ISSUELineVolume)/3 ELSE 0 END AS AVR3MIssueDANotPromotion, " + "\r\n";
+            queryString = queryString + "                   CASE WHEN RECEIPTEntryDate >= @Last3Month AND RECEIPTEntryDate < @ToDate01 THEN IIF(@LocalQuantityVersusVolume = 0, RECEIPTQuantity, RECEIPTLineVolume)/3 ELSE 0 END AS AVR3MReceiptPickup " + "\r\n";
 
             queryString = queryString + "       FROM        @InventoryAccumulation " + "\r\n";
 
-            this.totalSmartCodingEntities.CreateStoredProcedure("InventoryAccumulation", queryString);
-            #endregion InventoryAccumulation
+            return queryString;
         }
 
         private string BUILDGoodsIssue()
@@ -735,9 +884,9 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryString = queryString + "    BEGIN " + "\r\n";
 
             queryString = queryString + "       IF         (@IssueVersusReceipt = 0) " + "\r\n";
-            queryString = queryString + "                   EXEC WHLIssue06" + isLocationID.ToString().Substring(0, 1) + isWarehouseID.ToString().Substring(0, 1) + isCommodityCategoryID.ToString().Substring(0, 1) + isCommodityID.ToString().Substring(0, 1) + isCommodityTypeID.ToString().Substring(0, 1) + this.BUILDParameter(false) + "\r\n";
+            queryString = queryString + "                   EXEC WHLIssue06" + isLocationID.ToString().Substring(0, 1) + isWarehouseID.ToString().Substring(0, 1) + isCommodityCategoryID.ToString().Substring(0, 1) + isCommodityID.ToString().Substring(0, 1) + isCommodityTypeID.ToString().Substring(0, 1) + this.BUILDParameter(false, false) + "\r\n";
             queryString = queryString + "       ELSE " + "\r\n";
-            queryString = queryString + "                   EXEC WHLReceipt06" + isLocationID.ToString().Substring(0, 1) + isWarehouseID.ToString().Substring(0, 1) + isCommodityCategoryID.ToString().Substring(0, 1) + isCommodityID.ToString().Substring(0, 1) + isCommodityTypeID.ToString().Substring(0, 1) + this.BUILDParameter(false) + "\r\n";
+            queryString = queryString + "                   EXEC WHLReceipt06" + isLocationID.ToString().Substring(0, 1) + isWarehouseID.ToString().Substring(0, 1) + isCommodityCategoryID.ToString().Substring(0, 1) + isCommodityID.ToString().Substring(0, 1) + isCommodityTypeID.ToString().Substring(0, 1) + this.BUILDParameter(false, false) + "\r\n";
 
             queryString = queryString + "    END " + "\r\n";
 
@@ -757,8 +906,8 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
                         {
                             foreach (bool isCommodityTypeID in boolArray)
                             {
-                                this.totalSmartCodingEntities.CreateStoredProcedure("WHLIssue06" + isLocationID.ToString().Substring(0, 1) + isWarehouseID.ToString().Substring(0, 1) + isCommodityCategoryID.ToString().Substring(0, 1) + isCommodityID.ToString().Substring(0, 1) + isCommodityTypeID.ToString().Substring(0, 1), this.BUILDHeader(false, false) + this.WHLIssue06(isLocationID, isWarehouseID, isCommodityCategoryID, isCommodityID, isCommodityTypeID));
-                                this.totalSmartCodingEntities.CreateStoredProcedure("WHLReceipt06" + isLocationID.ToString().Substring(0, 1) + isWarehouseID.ToString().Substring(0, 1) + isCommodityCategoryID.ToString().Substring(0, 1) + isCommodityID.ToString().Substring(0, 1) + isCommodityTypeID.ToString().Substring(0, 1), this.BUILDHeader(false, false) + this.WHLReceipt06(isLocationID, isWarehouseID, isCommodityCategoryID, isCommodityID, isCommodityTypeID));
+                                this.totalSmartCodingEntities.CreateStoredProcedure("WHLIssue06" + isLocationID.ToString().Substring(0, 1) + isWarehouseID.ToString().Substring(0, 1) + isCommodityCategoryID.ToString().Substring(0, 1) + isCommodityID.ToString().Substring(0, 1) + isCommodityTypeID.ToString().Substring(0, 1), this.BUILDHeader(false, false, false, false, false) + this.WHLIssue06(isLocationID, isWarehouseID, isCommodityCategoryID, isCommodityID, isCommodityTypeID));
+                                this.totalSmartCodingEntities.CreateStoredProcedure("WHLReceipt06" + isLocationID.ToString().Substring(0, 1) + isWarehouseID.ToString().Substring(0, 1) + isCommodityCategoryID.ToString().Substring(0, 1) + isCommodityID.ToString().Substring(0, 1) + isCommodityTypeID.ToString().Substring(0, 1), this.BUILDHeader(false, false, false, false, false) + this.WHLReceipt06(isLocationID, isWarehouseID, isCommodityCategoryID, isCommodityID, isCommodityTypeID));
                             }
                         }
                     }
@@ -834,9 +983,9 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryString = queryString + "    BEGIN " + "\r\n";
 
             queryString = queryString + "       IF         (@LocationReceiptIDs <> '') " + "\r\n";
-            queryString = queryString + "                   EXEC WHLIssue08" + isLocationID.ToString().Substring(0, 1) + isWarehouseID.ToString().Substring(0, 1) + isCommodityCategoryID.ToString().Substring(0, 1) + isCommodityID.ToString().Substring(0, 1) + isCommodityTypeID.ToString().Substring(0, 1) + goodsIssueTypeID_REPORTONLY.ToString().Substring(0, 1) + isCustomerCategoryID.ToString().Substring(0, 1) + true.ToString().Substring(0, 1) + this.BUILDParameter(false) + "\r\n";
+            queryString = queryString + "                   EXEC WHLIssue08" + isLocationID.ToString().Substring(0, 1) + isWarehouseID.ToString().Substring(0, 1) + isCommodityCategoryID.ToString().Substring(0, 1) + isCommodityID.ToString().Substring(0, 1) + isCommodityTypeID.ToString().Substring(0, 1) + goodsIssueTypeID_REPORTONLY.ToString().Substring(0, 1) + isCustomerCategoryID.ToString().Substring(0, 1) + true.ToString().Substring(0, 1) + this.BUILDParameter(false, false) + "\r\n";
             queryString = queryString + "       ELSE " + "\r\n";
-            queryString = queryString + "                   EXEC WHLIssue08" + isLocationID.ToString().Substring(0, 1) + isWarehouseID.ToString().Substring(0, 1) + isCommodityCategoryID.ToString().Substring(0, 1) + isCommodityID.ToString().Substring(0, 1) + isCommodityTypeID.ToString().Substring(0, 1) + goodsIssueTypeID_REPORTONLY.ToString().Substring(0, 1) + isCustomerCategoryID.ToString().Substring(0, 1) + false.ToString().Substring(0, 1) + this.BUILDParameter(false) + "\r\n";
+            queryString = queryString + "                   EXEC WHLIssue08" + isLocationID.ToString().Substring(0, 1) + isWarehouseID.ToString().Substring(0, 1) + isCommodityCategoryID.ToString().Substring(0, 1) + isCommodityID.ToString().Substring(0, 1) + isCommodityTypeID.ToString().Substring(0, 1) + goodsIssueTypeID_REPORTONLY.ToString().Substring(0, 1) + isCustomerCategoryID.ToString().Substring(0, 1) + false.ToString().Substring(0, 1) + this.BUILDParameter(false, false) + "\r\n";
             queryString = queryString + "    END " + "\r\n";
 
             return queryString;
@@ -861,7 +1010,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
                                     {
                                         foreach (bool isLocationReceiptID in boolArray)
                                         {
-                                            this.totalSmartCodingEntities.CreateStoredProcedure("WHLIssue08" + isLocationID.ToString().Substring(0, 1) + isWarehouseID.ToString().Substring(0, 1) + isCommodityCategoryID.ToString().Substring(0, 1) + isCommodityID.ToString().Substring(0, 1) + isCommodityTypeID.ToString().Substring(0, 1) + goodsIssueTypeID_REPORTONLY.ToString().Substring(0, 1) + isCustomerCategoryID.ToString().Substring(0, 1) + isLocationReceiptID.ToString().Substring(0, 1), this.BUILDHeader(false, false) + this.BUILDLocationReceipt(isLocationID, isWarehouseID, isCommodityCategoryID, isCommodityID, isCommodityTypeID, goodsIssueTypeID_REPORTONLY, isCustomerCategoryID, isLocationReceiptID));
+                                            this.totalSmartCodingEntities.CreateStoredProcedure("WHLIssue08" + isLocationID.ToString().Substring(0, 1) + isWarehouseID.ToString().Substring(0, 1) + isCommodityCategoryID.ToString().Substring(0, 1) + isCommodityID.ToString().Substring(0, 1) + isCommodityTypeID.ToString().Substring(0, 1) + goodsIssueTypeID_REPORTONLY.ToString().Substring(0, 1) + isCustomerCategoryID.ToString().Substring(0, 1) + isLocationReceiptID.ToString().Substring(0, 1), this.BUILDHeader(false, false, false, false, false) + this.BUILDLocationReceipt(isLocationID, isWarehouseID, isCommodityCategoryID, isCommodityID, isCommodityTypeID, goodsIssueTypeID_REPORTONLY, isCustomerCategoryID, isLocationReceiptID));
                                         }
                                     }
                                 }
@@ -1088,9 +1237,9 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryString = queryString + "    BEGIN " + "\r\n";
 
             queryString = queryString + "       IF         (@LocationIssueIDs <> '') " + "\r\n";
-            queryString = queryString + "                   EXEC WHLReceipt08" + isLocationID.ToString().Substring(0, 1) + isWarehouseID.ToString().Substring(0, 1) + isCommodityCategoryID.ToString().Substring(0, 1) + isCommodityID.ToString().Substring(0, 1) + isCommodityTypeID.ToString().Substring(0, 1) + isGoodsReceiptTypeID.ToString().Substring(0, 1) + isSupplierCategoryID.ToString().Substring(0, 1) + true.ToString().Substring(0, 1) + this.BUILDParameter(false) + "\r\n";
+            queryString = queryString + "                   EXEC WHLReceipt08" + isLocationID.ToString().Substring(0, 1) + isWarehouseID.ToString().Substring(0, 1) + isCommodityCategoryID.ToString().Substring(0, 1) + isCommodityID.ToString().Substring(0, 1) + isCommodityTypeID.ToString().Substring(0, 1) + isGoodsReceiptTypeID.ToString().Substring(0, 1) + isSupplierCategoryID.ToString().Substring(0, 1) + true.ToString().Substring(0, 1) + this.BUILDParameter(false, false) + "\r\n";
             queryString = queryString + "       ELSE " + "\r\n";
-            queryString = queryString + "                   EXEC WHLReceipt08" + isLocationID.ToString().Substring(0, 1) + isWarehouseID.ToString().Substring(0, 1) + isCommodityCategoryID.ToString().Substring(0, 1) + isCommodityID.ToString().Substring(0, 1) + isCommodityTypeID.ToString().Substring(0, 1) + isGoodsReceiptTypeID.ToString().Substring(0, 1) + isSupplierCategoryID.ToString().Substring(0, 1) + false.ToString().Substring(0, 1) + this.BUILDParameter(false) + "\r\n";
+            queryString = queryString + "                   EXEC WHLReceipt08" + isLocationID.ToString().Substring(0, 1) + isWarehouseID.ToString().Substring(0, 1) + isCommodityCategoryID.ToString().Substring(0, 1) + isCommodityID.ToString().Substring(0, 1) + isCommodityTypeID.ToString().Substring(0, 1) + isGoodsReceiptTypeID.ToString().Substring(0, 1) + isSupplierCategoryID.ToString().Substring(0, 1) + false.ToString().Substring(0, 1) + this.BUILDParameter(false, false) + "\r\n";
             queryString = queryString + "    END " + "\r\n";
 
             return queryString;
@@ -1115,7 +1264,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
                                     {
                                         foreach (bool isLocationIssueID in boolArray)
                                         {
-                                            this.totalSmartCodingEntities.CreateStoredProcedure("WHLReceipt08" + isLocationID.ToString().Substring(0, 1) + isWarehouseID.ToString().Substring(0, 1) + isCommodityCategoryID.ToString().Substring(0, 1) + isCommodityID.ToString().Substring(0, 1) + isCommodityTypeID.ToString().Substring(0, 1) + isGoodsReceiptTypeID.ToString().Substring(0, 1) + isSupplierCategoryID.ToString().Substring(0, 1) + isLocationIssueID.ToString().Substring(0, 1), this.BUILDHeader(false, false) + this.BUILDLocationIssue(isLocationID, isWarehouseID, isCommodityCategoryID, isCommodityID, isCommodityTypeID, isGoodsReceiptTypeID, isSupplierCategoryID, isLocationIssueID));
+                                            this.totalSmartCodingEntities.CreateStoredProcedure("WHLReceipt08" + isLocationID.ToString().Substring(0, 1) + isWarehouseID.ToString().Substring(0, 1) + isCommodityCategoryID.ToString().Substring(0, 1) + isCommodityID.ToString().Substring(0, 1) + isCommodityTypeID.ToString().Substring(0, 1) + isGoodsReceiptTypeID.ToString().Substring(0, 1) + isSupplierCategoryID.ToString().Substring(0, 1) + isLocationIssueID.ToString().Substring(0, 1), this.BUILDHeader(false, false, false, false, false) + this.BUILDLocationIssue(isLocationID, isWarehouseID, isCommodityCategoryID, isCommodityID, isCommodityTypeID, isGoodsReceiptTypeID, isSupplierCategoryID, isLocationIssueID));
                                         }
                                     }
                                 }

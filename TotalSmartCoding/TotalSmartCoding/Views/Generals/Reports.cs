@@ -175,7 +175,7 @@ namespace TotalSmartCoding.Views.Generals
             this.comboSalesVersusPromotion.ComboBox.Items.AddRange(new string[] { "Sales & promotions", "Sales only", "Promotions only" });
             this.comboSalesVersusPromotion.ComboBox.SelectedIndex = 0;
 
-            this.comboForecastFilters.ComboBox.Items.AddRange(new string[] { "[All Items in Stock]", "Old & Slow Moving", "[Current Stock + In Transit] > 0", "[Current Stock + In Transit] = 0", "[Current Stock + In Transit] < 0", "[Current Stock + In Transit] Between Low-High Level", "[Current Stock + In Transit] Out of Range Low-High Level", "[Current Stock + In Transit] Under Low-Level", "[Current Stock + In Transit] Over High-Level" });
+            this.comboForecastFilters.ComboBox.Items.AddRange(new string[] { "[All Items in Stock]", "[Current Stock + In Transit] > 0", "[Current Stock + In Transit] = 0", "[Current Stock + In Transit] Between Low-High Level", "[Current Stock + In Transit] Out of Range Low-High Level", "[Current Stock + In Transit] Under Low-Level", "[Current Stock + In Transit] Over High-Level" });
             this.comboForecastFilters.ComboBox.SelectedIndex = 0;
 
             this.dateTimexFromDate.DataBindings.Add("Value", GlobalEnums.GlobalOptionSetting, CommonExpressions.PropertyName<OptionSetting>(p => p.FromDate), true, DataSourceUpdateMode.OnPropertyChanged);
@@ -339,7 +339,7 @@ namespace TotalSmartCoding.Views.Generals
             if (this.comboForecastFilters.Visible)
             {
                 if (this.comboForecastFilters.ComboBox.SelectedIndex != 0) headerTitle = headerTitle + " [" + this.comboForecastFilters.Text + "]";
-                printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("ForecastFilterIndex", (this.comboForecastFilters.ComboBox.SelectedIndex - 1).ToString()));
+                printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("FilterID", (this.comboForecastFilters.ComboBox.SelectedIndex - 1).ToString()));
             }
 
             if (this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsReceiptPivot || this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsIssuePivot || this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsReceiptJournal || this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsIssueJournal)

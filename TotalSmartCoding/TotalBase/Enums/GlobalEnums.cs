@@ -354,13 +354,20 @@
             PivotStockDIOH3MAndDRP = 817,
 
             CurrentWarehouse = 832,
-            CurrentWarehouseFilter = 837,
+            
 
             SaleAndProduction = 868,
+            OldAndSlowMoving = 869,
 
             WarehouseJournal = 888
         }
 
+        public enum ForecastFilterID
+        {
+            None = -1,
+            SlowMoving = 999999,
+            SlowMovingNoForecast = 888888
+        }
 
 
         public enum TransferPackageTypeID
