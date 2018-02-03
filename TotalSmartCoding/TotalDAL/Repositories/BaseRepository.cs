@@ -143,6 +143,29 @@ namespace TotalDAL.Repositories
 
                 #endregion Add forecast table
 
+
+                #region Add forecast table
+                this.ExecuteStoreCommand(@"CREATE TABLE [dbo].[CommoditySettings](
+	                                                    [CommoditySettingID] [int] IDENTITY(1,1) NOT NULL,
+	                                                    [CommodityID] [int] NOT NULL,
+	                                                    [LocationID] [int] NOT NULL,
+	                                                    [DIOHLow] [decimal](18, 3) NOT NULL,
+	                                                    [DIOHHigh] [decimal](18, 3) NOT NULL,
+	                                                    [DIOHAlert] [decimal](18, 3) NOT NULL,
+                                                     CONSTRAINT [PK_CommoditySettings] PRIMARY KEY CLUSTERED 
+                                                    (
+	                                                    [CommoditySettingID] ASC
+                                                    )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY],
+                                                     CONSTRAINT [IX_CommoditySettings] UNIQUE NONCLUSTERED 
+                                                    (
+	                                                    [CommodityID] ASC,
+	                                                    [LocationID] ASC
+                                                    )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+                                                    ) ON [PRIMARY]
+                                                ", new ObjectParameter[] { });
+
+                #endregion Add forecast table
+
             }
 
 
@@ -177,7 +200,7 @@ namespace TotalDAL.Repositories
             Helpers.SqlProgrammability.Inventories.Inventory inventory = new Helpers.SqlProgrammability.Inventories.Inventory(totalSmartCodingEntities);
             inventory.RestoreProcedure();
 
-            return;
+            //return;
 
             Helpers.SqlProgrammability.Commons.WarehouseAdjustmentType warehouseAdjustmentType = new Helpers.SqlProgrammability.Commons.WarehouseAdjustmentType(totalSmartCodingEntities);
             warehouseAdjustmentType.RestoreProcedure();
@@ -337,7 +360,7 @@ namespace TotalDAL.Repositories
             accessControl.RestoreProcedure();
 
 
-            return;
+            //return;
 
             Helpers.SqlProgrammability.Commons.FillingLine fillingLine = new Helpers.SqlProgrammability.Commons.FillingLine(totalSmartCodingEntities);
             fillingLine.RestoreProcedure();

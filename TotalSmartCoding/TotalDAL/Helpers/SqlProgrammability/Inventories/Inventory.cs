@@ -20,7 +20,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
         {
             this.WarehouseLedgers();
 
-            //this.WarehouseJournals();
+            this.WarehouseJournals();
             this.WarehouseForecasts();
         }
 
@@ -704,13 +704,13 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
         private void WarehouseLedgers()
         {
-            //this.WarehouseLedgerIssue08();
-            //this.WarehouseLedgerReceipt08();
+            this.WarehouseLedgerIssue08();
+            this.WarehouseLedgerReceipt08();
 
-            //this.WarehouseLedger06();
+            this.WarehouseLedger06();
 
             string queryString = this.BUILDHeader(false, false, false, false, false) + this.BUILDGoodsIssue() + "\r\n";
-            //this.totalSmartCodingEntities.CreateStoredProcedure("WHLS", queryString);
+            this.totalSmartCodingEntities.CreateStoredProcedure("WHLS", queryString);
 
 
             queryString = this.BUILDHeader(true, true, true, true, false);
@@ -725,7 +725,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryString = queryString + "       ELSE " + "\r\n";
             queryString = queryString + "                   " + queryMaster + "\r\n" + " WHERE IsPromotion = @LocalSalesVersusPromotion";
 
-            //this.totalSmartCodingEntities.CreateStoredProcedure("WarehouseLedgers", queryString);
+            this.totalSmartCodingEntities.CreateStoredProcedure("WarehouseLedgers", queryString);
 
 
 
