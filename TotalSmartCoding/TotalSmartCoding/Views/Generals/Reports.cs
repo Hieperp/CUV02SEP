@@ -109,7 +109,7 @@ namespace TotalSmartCoding.Views.Generals
             base.InitializeReadOnlyModeBinding();
             this.dateTimexFromDate.ReadOnly = false;
             this.dateTimexToDate.ReadOnly = false;
-        }        
+        }
 
         private IList<WarehouseTree> warehouseTrees;
         private IList<CommodityTree> commodityTrees;
@@ -175,8 +175,11 @@ namespace TotalSmartCoding.Views.Generals
             this.comboSalesVersusPromotion.ComboBox.Items.AddRange(new string[] { "Sales & promotions", "Sales only", "Promotions only" });
             this.comboSalesVersusPromotion.ComboBox.SelectedIndex = 0;
 
-            this.comboForecastFilters.ComboBox.Items.AddRange(new string[] { "[All Items in Stock]", "[Current Stock + In Transit] > 0", "[Current Stock + In Transit] = 0", "[Current Stock + In Transit] Between Low-High Level", "[Current Stock + In Transit] Out of Range Low-High Level", "[Current Stock + In Transit] Under Low-Level", "[Current Stock + In Transit] Over High-Level" });
+            this.comboForecastFilters.ComboBox.Items.AddRange(new string[] { "[All Items in Stock]", "[Current Stock + In Transit] > 0", "[Current Stock + In Transit] = 0", "[Current Stock + In Transit] < 0", "[Current Stock + In Transit] Between Low-High Level", "[Current Stock + In Transit] Out of Range Low-High Level", "[Current Stock + In Transit] Under Low-Level", "[Current Stock + In Transit] Over High-Level" });
             this.comboForecastFilters.ComboBox.SelectedIndex = 0;
+
+            this.comboSlowMoving.Items.AddRange(new string[] { "Don't care forecast", "And without forecast" });
+            this.comboSlowMoving.SelectedIndex = 0;
 
             this.dateTimexFromDate.DataBindings.Add("Value", GlobalEnums.GlobalOptionSetting, CommonExpressions.PropertyName<OptionSetting>(p => p.FromDate), true, DataSourceUpdateMode.OnPropertyChanged);
             this.dateTimexToDate.DataBindings.Add("Value", GlobalEnums.GlobalOptionSetting, CommonExpressions.PropertyName<OptionSetting>(p => p.ToDate), true, DataSourceUpdateMode.OnPropertyChanged);
@@ -241,13 +244,16 @@ namespace TotalSmartCoding.Views.Generals
 
 
                 this.dateTimexFromDate.Visible = this.reportViewModel.OptionBoxIDs.IndexOf(GlobalEnums.OBx(GlobalEnums.OptionBoxID.FromDate)) != -1; this.labelFromDate.Visible = this.dateTimexFromDate.Visible; this.pictureFromDate.Visible = this.dateTimexFromDate.Visible;
-                this.dateTimexToDate.Visible = this.reportViewModel.OptionBoxIDs.IndexOf(GlobalEnums.OBx(GlobalEnums.OptionBoxID.ToDate)) != -1; this.labelToDate.Visible = this.dateTimexToDate.Visible; this.pictureToDate.Visible = this.dateTimexToDate.Visible;
+                this.dateTimexToDate.Visible = this.reportViewModel.OptionBoxIDs.IndexOf(GlobalEnums.OBx(GlobalEnums.OptionBoxID.ToDate)) != -1; this.labelToDate.Visible = this.dateTimexToDate.Visible; this.pictureToDate.Visible = this.dateTimexToDate.Visible; labelToDate.Text = this.dateTimexFromDate.Visible ? "To" : "As at";
 
                 this.comboSummaryVersusDetail.Visible = this.reportViewModel.OptionBoxIDs.IndexOf(GlobalEnums.OBx(GlobalEnums.OptionBoxID.SummaryVersusDetail)) != -1;
                 this.comboQuantityVersusVolume.Visible = this.reportViewModel.OptionBoxIDs.IndexOf(GlobalEnums.OBx(GlobalEnums.OptionBoxID.QuantityVersusVolume)) != -1; this.buttonQuantityVersusVolume.Visible = this.comboSummaryVersusDetail.Visible || this.comboQuantityVersusVolume.Visible;
                 this.comboDateVersusMonth.Visible = this.reportViewModel.OptionBoxIDs.IndexOf(GlobalEnums.OBx(GlobalEnums.OptionBoxID.DateVersusMonth)) != -1; this.buttonDateVersusMonth.Visible = this.comboDateVersusMonth.Visible;
                 this.comboSalesVersusPromotion.Visible = this.reportViewModel.OptionBoxIDs.IndexOf(GlobalEnums.OBx(GlobalEnums.OptionBoxID.SalesVersusPromotion)) != -1;
+
                 this.comboForecastFilters.Visible = this.reportViewModel.OptionBoxIDs.IndexOf(GlobalEnums.OBx(GlobalEnums.OptionBoxID.ForecastFilters)) != -1; this.buttonSalesVersusPromotion.Visible = this.comboSalesVersusPromotion.Visible || this.comboForecastFilters.Visible;
+
+                this.comboSlowMoving.Visible = this.reportViewModel.OptionBoxIDs.IndexOf(GlobalEnums.OBx(GlobalEnums.OptionBoxID.SlowMoving)) != -1; this.labelSlowMoving.Visible = this.comboSlowMoving.Visible; this.numericSlowMoving.Visible = this.comboSlowMoving.Visible;
             }
             catch (Exception exception)
             {
@@ -326,20 +332,28 @@ namespace TotalSmartCoding.Views.Generals
         private void PassFilterParameters(PrintViewModel printViewModel)
         {
             printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("UserID", ContextAttributes.User.UserID.ToString()));
+            string headerTitle = this.reportViewModel.ReportName; string headerTerms = "";
 
             if (this.dateTimexFromDate.Visible || this.dateTimexToDate.Visible)
             {
                 if (this.dateTimexFromDate.Visible) printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("FromDate", this.dateTimexFromDate.Text));
                 if (this.dateTimexToDate.Visible) printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("ToDate", this.dateTimexToDate.Text));
-                printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("HeaderTerms", (this.dateTimexFromDate.Visible ? "FROM " + this.dateTimexFromDate.Text : "") + (this.dateTimexToDate.Visible ? (this.dateTimexFromDate.Visible ? " TO " : "AS AT ") + this.dateTimexToDate.Text : "")));
+                headerTerms = headerTerms + " " + (this.dateTimexFromDate.Visible ? this.labelFromDate.Text + " " + this.dateTimexFromDate.Text : "") + (this.dateTimexToDate.Visible ? this.labelToDate.Text + " " + this.dateTimexToDate.Text : "");
             }
 
-            string headerTitle = this.reportViewModel.ReportName;
+
 
             if (this.comboForecastFilters.Visible)
             {
                 if (this.comboForecastFilters.ComboBox.SelectedIndex != 0) headerTitle = headerTitle + " [" + this.comboForecastFilters.Text + "]";
                 printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("FilterID", (this.comboForecastFilters.ComboBox.SelectedIndex - 1).ToString()));
+            }
+
+            if (this.comboSlowMoving.Visible)
+            {
+                if (this.comboSlowMoving.SelectedIndex != 0) headerTitle = headerTitle + " " + this.comboSlowMoving.Text;
+                headerTerms = "Not sold over " + this.numericSlowMoving.Value.ToString("N0") + " days. " + " " + headerTerms;
+                printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("FilterID", ((int)GlobalEnums.ForecastFilterID.SlowMoving + this.numericSlowMoving.Value + (this.comboSlowMoving.SelectedIndex != 0 ? (int)GlobalEnums.ForecastFilterID.SlowMovingNoForecast : 0)).ToString()));
             }
 
             if (this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsReceiptPivot || this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsIssuePivot || this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsReceiptJournal || this.reportViewModel.ReportTypeID == (int)GlobalEnums.ReportTypeID.GoodsIssueJournal)
@@ -403,11 +417,11 @@ namespace TotalSmartCoding.Views.Generals
 
 
 
-            if (this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.PivotStockDIOH3M || this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.PivotStockDRP || this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.PivotStockDIOH3MAndDRP)
-                printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("PrintOptionID", ((int)this.reportViewModel.ReportID).ToString()));
-
+            if (this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.PivotStockDIOH3M || this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.PivotStockDRP || this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.PivotStockDIOH3MAndDRP || this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.OldAndSlowMoving)
+                printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("PrintOptionID", (this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.OldAndSlowMoving ? (int)GlobalEnums.ReportID.PivotStockDIOH3M : this.reportViewModel.ReportID).ToString()));
 
             printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("HeaderTitle", headerTitle.ToUpper()));
+            printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("HeaderTerms", headerTerms.Trim()));
             if (captionDescriptions != "") printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("CaptionDescriptions", captionDescriptions));
         }
 

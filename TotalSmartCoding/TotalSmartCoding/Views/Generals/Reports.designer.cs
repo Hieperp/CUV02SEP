@@ -51,12 +51,15 @@
             this.comboForecastFilters = new System.Windows.Forms.ToolStripComboBox();
             this.buttonSalesVersusPromotion = new System.Windows.Forms.ToolStripButton();
             this.layoutTop = new System.Windows.Forms.TableLayoutPanel();
+            this.labelSlowMoving = new System.Windows.Forms.Label();
             this.pictureToDate = new System.Windows.Forms.PictureBox();
             this.dateTimexFromDate = new CustomControls.DateTimexPicker();
             this.dateTimexToDate = new CustomControls.DateTimexPicker();
             this.labelToDate = new System.Windows.Forms.Label();
             this.labelFromDate = new System.Windows.Forms.Label();
             this.pictureFromDate = new System.Windows.Forms.PictureBox();
+            this.numericSlowMoving = new System.Windows.Forms.NumericUpDown();
+            this.comboSlowMoving = new System.Windows.Forms.ComboBox();
             this.panelLeft = new System.Windows.Forms.Panel();
             this.fastReportIndex = new BrightIdeasSoftware.FastObjectListView();
             this.olvID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -203,6 +206,7 @@
             this.layoutTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureToDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureFromDate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericSlowMoving)).BeginInit();
             this.panelLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastReportIndex)).BeginInit();
             this.panelCenter.SuspendLayout();
@@ -393,7 +397,7 @@
             this.toolReport.Location = new System.Drawing.Point(3, 3);
             this.toolReport.Name = "toolReport";
             this.toolReport.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolReport.Size = new System.Drawing.Size(639, 29);
+            this.toolReport.Size = new System.Drawing.Size(276, 29);
             this.toolReport.TabIndex = 10;
             this.toolReport.Text = "toolStrip1";
             // 
@@ -439,7 +443,7 @@
             this.buttonDateVersusMonth.Image = global::TotalSmartCoding.Properties.Resources.Calendar_Icon_Yellow;
             this.buttonDateVersusMonth.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonDateVersusMonth.Name = "buttonDateVersusMonth";
-            this.buttonDateVersusMonth.Size = new System.Drawing.Size(28, 26);
+            this.buttonDateVersusMonth.Size = new System.Drawing.Size(28, 28);
             this.buttonDateVersusMonth.Text = "toolStripButton1";
             // 
             // comboSalesVersusPromotion
@@ -474,37 +478,53 @@
             this.layoutTop.AutoSize = true;
             this.layoutTop.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.layoutTop.BackColor = System.Drawing.Color.Transparent;
-            this.layoutTop.ColumnCount = 7;
-            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.layoutTop.ColumnCount = 9;
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.layoutTop.Controls.Add(this.pictureToDate, 5, 0);
-            this.layoutTop.Controls.Add(this.dateTimexFromDate, 3, 0);
-            this.layoutTop.Controls.Add(this.dateTimexToDate, 6, 0);
-            this.layoutTop.Controls.Add(this.labelToDate, 4, 0);
-            this.layoutTop.Controls.Add(this.labelFromDate, 1, 0);
-            this.layoutTop.Controls.Add(this.pictureFromDate, 2, 0);
+            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.layoutTop.Controls.Add(this.labelSlowMoving, 0, 0);
+            this.layoutTop.Controls.Add(this.pictureToDate, 7, 0);
+            this.layoutTop.Controls.Add(this.dateTimexFromDate, 5, 0);
+            this.layoutTop.Controls.Add(this.dateTimexToDate, 8, 0);
+            this.layoutTop.Controls.Add(this.labelToDate, 6, 0);
+            this.layoutTop.Controls.Add(this.labelFromDate, 3, 0);
+            this.layoutTop.Controls.Add(this.pictureFromDate, 4, 0);
+            this.layoutTop.Controls.Add(this.numericSlowMoving, 1, 0);
+            this.layoutTop.Controls.Add(this.comboSlowMoving, 2, 0);
             this.layoutTop.Dock = System.Windows.Forms.DockStyle.Right;
             this.layoutTop.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.layoutTop.Location = new System.Drawing.Point(642, 3);
+            this.layoutTop.Location = new System.Drawing.Point(279, 3);
             this.layoutTop.Margin = new System.Windows.Forms.Padding(0);
             this.layoutTop.Name = "layoutTop";
             this.layoutTop.Padding = new System.Windows.Forms.Padding(0, 1, 0, 0);
             this.layoutTop.RowCount = 1;
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.layoutTop.Size = new System.Drawing.Size(574, 29);
+            this.layoutTop.Size = new System.Drawing.Size(937, 29);
             this.layoutTop.TabIndex = 9;
+            // 
+            // labelSlowMoving
+            // 
+            this.labelSlowMoving.AutoSize = true;
+            this.labelSlowMoving.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelSlowMoving.Location = new System.Drawing.Point(0, 1);
+            this.labelSlowMoving.Margin = new System.Windows.Forms.Padding(0);
+            this.labelSlowMoving.Name = "labelSlowMoving";
+            this.labelSlowMoving.Size = new System.Drawing.Size(153, 29);
+            this.labelSlowMoving.TabIndex = 94;
+            this.labelSlowMoving.Text = "Not sold over n days";
+            this.labelSlowMoving.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // pictureToDate
             // 
             this.pictureToDate.Dock = System.Windows.Forms.DockStyle.Right;
             this.pictureToDate.Image = global::TotalSmartCoding.Properties.Resources.Calendar_2;
-            this.pictureToDate.Location = new System.Drawing.Point(323, 1);
+            this.pictureToDate.Location = new System.Drawing.Point(686, 1);
             this.pictureToDate.Margin = new System.Windows.Forms.Padding(0);
             this.pictureToDate.Name = "pictureToDate";
             this.pictureToDate.Size = new System.Drawing.Size(24, 29);
@@ -519,7 +539,7 @@
             this.dateTimexFromDate.Editable = true;
             this.dateTimexFromDate.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimexFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimexFromDate.Location = new System.Drawing.Point(74, 2);
+            this.dateTimexFromDate.Location = new System.Drawing.Point(437, 2);
             this.dateTimexFromDate.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.dateTimexFromDate.Name = "dateTimexFromDate";
             this.dateTimexFromDate.ReadOnly = false;
@@ -533,7 +553,7 @@
             this.dateTimexToDate.Editable = true;
             this.dateTimexToDate.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimexToDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimexToDate.Location = new System.Drawing.Point(350, 2);
+            this.dateTimexToDate.Location = new System.Drawing.Point(713, 2);
             this.dateTimexToDate.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.dateTimexToDate.Name = "dateTimexToDate";
             this.dateTimexToDate.ReadOnly = false;
@@ -544,7 +564,7 @@
             // 
             this.labelToDate.AutoSize = true;
             this.labelToDate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelToDate.Location = new System.Drawing.Point(298, 1);
+            this.labelToDate.Location = new System.Drawing.Point(661, 1);
             this.labelToDate.Margin = new System.Windows.Forms.Padding(0);
             this.labelToDate.Name = "labelToDate";
             this.labelToDate.Size = new System.Drawing.Size(25, 29);
@@ -556,7 +576,7 @@
             // 
             this.labelFromDate.AutoSize = true;
             this.labelFromDate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelFromDate.Location = new System.Drawing.Point(0, 1);
+            this.labelFromDate.Location = new System.Drawing.Point(363, 1);
             this.labelFromDate.Margin = new System.Windows.Forms.Padding(0);
             this.labelFromDate.Name = "labelFromDate";
             this.labelFromDate.Size = new System.Drawing.Size(47, 29);
@@ -568,13 +588,46 @@
             // 
             this.pictureFromDate.Dock = System.Windows.Forms.DockStyle.Right;
             this.pictureFromDate.Image = global::TotalSmartCoding.Properties.Resources.Calendar_icon;
-            this.pictureFromDate.Location = new System.Drawing.Point(47, 1);
+            this.pictureFromDate.Location = new System.Drawing.Point(410, 1);
             this.pictureFromDate.Margin = new System.Windows.Forms.Padding(0);
             this.pictureFromDate.Name = "pictureFromDate";
             this.pictureFromDate.Size = new System.Drawing.Size(24, 29);
             this.pictureFromDate.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureFromDate.TabIndex = 93;
             this.pictureFromDate.TabStop = false;
+            // 
+            // numericSlowMoving
+            // 
+            this.numericSlowMoving.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.numericSlowMoving.Font = new System.Drawing.Font("Calibri Light", 10.2F);
+            this.numericSlowMoving.Location = new System.Drawing.Point(156, 2);
+            this.numericSlowMoving.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
+            this.numericSlowMoving.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.numericSlowMoving.Name = "numericSlowMoving";
+            this.numericSlowMoving.Size = new System.Drawing.Size(56, 28);
+            this.numericSlowMoving.TabIndex = 95;
+            this.numericSlowMoving.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.numericSlowMoving.Value = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            // 
+            // comboSlowMoving
+            // 
+            this.comboSlowMoving.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.comboSlowMoving.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboSlowMoving.Font = new System.Drawing.Font("Calibri Light", 10.2F);
+            this.comboSlowMoving.FormattingEnabled = true;
+            this.comboSlowMoving.Location = new System.Drawing.Point(216, 2);
+            this.comboSlowMoving.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
+            this.comboSlowMoving.Name = "comboSlowMoving";
+            this.comboSlowMoving.Size = new System.Drawing.Size(146, 29);
+            this.comboSlowMoving.TabIndex = 96;
             // 
             // panelLeft
             // 
@@ -2226,6 +2279,7 @@
             this.layoutTop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureToDate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureFromDate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericSlowMoving)).EndInit();
             this.panelLeft.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.fastReportIndex)).EndInit();
             this.panelCenter.ResumeLayout(false);
@@ -2467,6 +2521,9 @@
         private System.Windows.Forms.ToolStripButton buttonWarehouseSelectFilter;
         private System.Windows.Forms.ToolStripButton buttonCustomerSelectFilter;
         private System.Windows.Forms.ToolStripButton buttonEmployeeSelectFilter;
+        private System.Windows.Forms.Label labelSlowMoving;
+        private System.Windows.Forms.NumericUpDown numericSlowMoving;
+        private System.Windows.Forms.ComboBox comboSlowMoving;
 
     }
 }
