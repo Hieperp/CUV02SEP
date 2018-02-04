@@ -178,7 +178,7 @@ namespace TotalSmartCoding.Views.Generals
             this.comboForecastFilters.ComboBox.Items.AddRange(new string[] { "[All Items in Stock]", "[Current Stock + In Transit] > 0", "[Current Stock + In Transit] = 0", "[Current Stock + In Transit] < 0", "[Current Stock + In Transit] Between Low-High Level", "[Current Stock + In Transit] Out of Range Low-High Level", "[Current Stock + In Transit] Under Low-Level", "[Current Stock + In Transit] Over High-Level" });
             this.comboForecastFilters.ComboBox.SelectedIndex = 0;
 
-            this.comboSlowMoving.Items.AddRange(new string[] { "Don't care forecast", "And without forecast" });
+            this.comboSlowMoving.Items.AddRange(new string[] { "Regardless forecast", "And without forecast" });
             this.comboSlowMoving.SelectedIndex = 0;
 
             this.dateTimexFromDate.DataBindings.Add("Value", GlobalEnums.GlobalOptionSetting, CommonExpressions.PropertyName<OptionSetting>(p => p.FromDate), true, DataSourceUpdateMode.OnPropertyChanged);
