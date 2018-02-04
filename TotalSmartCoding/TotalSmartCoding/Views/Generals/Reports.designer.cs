@@ -750,7 +750,7 @@
             // 
             this.olvColumn1.AspectName = "Code";
             this.olvColumn1.Text = "Source Locations";
-            this.olvColumn1.Width = 188;
+            this.olvColumn1.Width = 268;
             // 
             // olvColumn2
             // 
@@ -948,7 +948,7 @@
             // 
             this.olvColumn20.AspectName = "Code";
             this.olvColumn20.Text = "Adjustment Types";
-            this.olvColumn20.Width = 188;
+            this.olvColumn20.Width = 268;
             // 
             // olvColumn21
             // 
@@ -1146,7 +1146,7 @@
             // 
             this.olvColumn17.AspectName = "Code";
             this.olvColumn17.Text = "Destination Locations";
-            this.olvColumn17.Width = 188;
+            this.olvColumn17.Width = 268;
             // 
             // olvColumn18
             // 
@@ -1344,7 +1344,7 @@
             // 
             this.olvColumn6.AspectName = "Code";
             this.olvColumn6.Text = "Locations & Warehouses";
-            this.olvColumn6.Width = 188;
+            this.olvColumn6.Width = 268;
             // 
             // olvColumn7
             // 
