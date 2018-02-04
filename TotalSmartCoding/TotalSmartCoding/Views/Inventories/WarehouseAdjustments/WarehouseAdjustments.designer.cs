@@ -314,10 +314,10 @@
             this.label11.AutoSize = true;
             this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label11.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(198, 7);
+            this.label11.Location = new System.Drawing.Point(196, 7);
             this.label11.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(49, 99);
+            this.label11.Size = new System.Drawing.Size(48, 99);
             this.label11.TabIndex = 45;
             this.label11.Text = "Noted By";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -327,7 +327,7 @@
             this.label12.AutoSize = true;
             this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label12.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(393, 7);
+            this.label12.Location = new System.Drawing.Point(389, 7);
             this.label12.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(49, 99);
@@ -946,7 +946,7 @@
             this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 11F));
             this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.019F));
             this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.32099F));
-            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 847F));
+            this.tableLayoutPanelExtend.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 853F));
             this.tableLayoutPanelExtend.Controls.Add(this.combexCommodityID, 0, 0);
             this.tableLayoutPanelExtend.Controls.Add(this.label11, 3, 0);
             this.tableLayoutPanelExtend.Controls.Add(this.label12, 6, 0);
@@ -969,11 +969,11 @@
             this.combexCommodityID.Editable = true;
             this.combexCommodityID.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combexCommodityID.FormattingEnabled = true;
-            this.combexCommodityID.Location = new System.Drawing.Point(58, 4);
+            this.combexCommodityID.Location = new System.Drawing.Point(57, 4);
             this.combexCommodityID.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.combexCommodityID.Name = "combexCommodityID";
             this.combexCommodityID.ReadOnly = false;
-            this.combexCommodityID.Size = new System.Drawing.Size(125, 29);
+            this.combexCommodityID.Size = new System.Drawing.Size(124, 29);
             this.combexCommodityID.TabIndex = 72;
             // 
             // label10
@@ -984,7 +984,7 @@
             this.label10.Location = new System.Drawing.Point(3, 7);
             this.label10.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(49, 99);
+            this.label10.Size = new System.Drawing.Size(48, 99);
             this.label10.TabIndex = 35;
             this.label10.Text = "Requested By";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1070,7 +1070,7 @@
             // olvWarehouseAdjustmentTypeName
             // 
             this.olvWarehouseAdjustmentTypeName.AspectName = "WarehouseAdjustmentTypeName";
-            this.olvWarehouseAdjustmentTypeName.Text = "Receipt Type";
+            this.olvWarehouseAdjustmentTypeName.Text = "Types of Adjustments";
             this.olvWarehouseAdjustmentTypeName.Width = 180;
             // 
             // olvAdjustmentJobs
@@ -1095,7 +1095,7 @@
             // 
             this.olvDescription.AspectName = "Description";
             this.olvDescription.Text = "Description";
-            this.olvDescription.Width = 502;
+            this.olvDescription.Width = 488;
             // 
             // olvTotalQuantity
             // 

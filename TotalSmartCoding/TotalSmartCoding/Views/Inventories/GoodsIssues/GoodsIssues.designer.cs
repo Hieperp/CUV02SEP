@@ -155,10 +155,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(490, 74);
-            this.label2.Margin = new System.Windows.Forms.Padding(4);
+            this.label2.Location = new System.Drawing.Point(487, 71);
+            this.label2.Margin = new System.Windows.Forms.Padding(1, 1, 0, 1);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(182, 22);
+            this.label2.Size = new System.Drawing.Size(189, 28);
             this.label2.TabIndex = 56;
             this.label2.Text = "Customer Attn";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -168,9 +168,9 @@
             this.label4.AutoSize = true;
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label4.Location = new System.Drawing.Point(487, 41);
-            this.label4.Margin = new System.Windows.Forms.Padding(1);
+            this.label4.Margin = new System.Windows.Forms.Padding(1, 1, 0, 1);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(188, 28);
+            this.label4.Size = new System.Drawing.Size(189, 28);
             this.label4.TabIndex = 28;
             this.label4.Text = "Truck #";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -193,10 +193,10 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Location = new System.Drawing.Point(4, 74);
-            this.label3.Margin = new System.Windows.Forms.Padding(4);
+            this.label3.Location = new System.Drawing.Point(1, 71);
+            this.label3.Margin = new System.Windows.Forms.Padding(1, 1, 0, 1);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(182, 22);
+            this.label3.Size = new System.Drawing.Size(189, 28);
             this.label3.TabIndex = 76;
             this.label3.Text = "Prepared by";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -205,10 +205,10 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label10.Location = new System.Drawing.Point(4, 44);
-            this.label10.Margin = new System.Windows.Forms.Padding(4);
+            this.label10.Location = new System.Drawing.Point(1, 41);
+            this.label10.Margin = new System.Windows.Forms.Padding(1, 1, 0, 1);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(182, 22);
+            this.label10.Size = new System.Drawing.Size(189, 28);
             this.label10.TabIndex = 35;
             this.label10.Text = "Store Keeper";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -218,9 +218,9 @@
             this.label6.AutoSize = true;
             this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label6.Location = new System.Drawing.Point(1, 11);
-            this.label6.Margin = new System.Windows.Forms.Padding(1);
+            this.label6.Margin = new System.Windows.Forms.Padding(1, 1, 0, 1);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(188, 28);
+            this.label6.Size = new System.Drawing.Size(189, 28);
             this.label6.TabIndex = 30;
             this.label6.Text = "Date";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -287,10 +287,10 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label7.Location = new System.Drawing.Point(490, 14);
-            this.label7.Margin = new System.Windows.Forms.Padding(4);
+            this.label7.Location = new System.Drawing.Point(487, 11);
+            this.label7.Margin = new System.Windows.Forms.Padding(1, 1, 0, 1);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(182, 22);
+            this.label7.Size = new System.Drawing.Size(189, 28);
             this.label7.TabIndex = 31;
             this.label7.Text = "Invoice #";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;

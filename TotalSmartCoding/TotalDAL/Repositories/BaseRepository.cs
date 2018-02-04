@@ -62,6 +62,12 @@ namespace TotalDAL.Repositories
             {
                 this.totalSmartCodingEntities.ColumnAdd("Reports", "OptionBoxIDs", "nvarchar(100)", "", false);
 
+                this.ExecuteStoreCommand("UPDATE  GoodsIssueTypes SET Code = IIF(GoodsIssueTypeID  = 1, N'Sales', N'Transfer')", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("UPDATE  GoodsIssueTypes SET Name = Code", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("UPDATE  GoodsReceiptTypes SET Name = Code", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("UPDATE  WarehouseAdjustmentTypes SET Code = IIF(WarehouseAdjustmentTypeID = 1, N'Unpack pallet', IIF(WarehouseAdjustmentTypeID = 10, N'Change bin', IIF(WarehouseAdjustmentTypeID = 20, N'Hold/ un-hold', IIF(WarehouseAdjustmentTypeID = 30, N'To production', N'Lost, broken, ...' ))))", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("UPDATE  WarehouseAdjustmentTypes SET Name = Code", new ObjectParameter[] { });
+
                 this.InitReports();
 
                 this.ExecuteStoreCommand("UPDATE Modules SET Code = N'Warehouse Management', Name = N'2.Warehouse Management' WHERE ModuleID = 6 ", new ObjectParameter[] { });
@@ -71,6 +77,8 @@ namespace TotalDAL.Repositories
 
                 this.ExecuteStoreCommand("UPDATE ModuleDetails SET Controller = N'LOGISTICS ADMIN', ModuleID = 6 WHERE ModuleDetailID IN (" + (int)GlobalEnums.NmvnTaskID.SalesOrder + "," + (int)GlobalEnums.NmvnTaskID.DeliveryAdvice + "," + (int)GlobalEnums.NmvnTaskID.TransferOrder + ") ", new ObjectParameter[] { });
                 this.ExecuteStoreCommand("UPDATE ModuleDetails SET Controller = N'WAREHOUSE CONTROLS', ModuleID = 6 WHERE ModuleDetailID IN (" + (int)GlobalEnums.NmvnTaskID.GoodsReceipt + "," + (int)GlobalEnums.NmvnTaskID.GoodsIssue + "," + (int)GlobalEnums.NmvnTaskID.WarehouseAdjustment + "," + (int)GlobalEnums.NmvnTaskID.GoodsReceiptDetailAvailable + ") ", new ObjectParameter[] { });
+
+                
 
 
                 #region Add forecast table

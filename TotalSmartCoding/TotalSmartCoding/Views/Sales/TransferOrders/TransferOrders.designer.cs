@@ -590,13 +590,13 @@
             this.contextMenuDetails.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuOptionBatches});
             this.contextMenuDetails.Name = "contextMenuDetails";
-            this.contextMenuDetails.Size = new System.Drawing.Size(225, 30);
+            this.contextMenuDetails.Size = new System.Drawing.Size(219, 28);
             this.contextMenuDetails.Text = "Context MenuDetails";
             // 
             // menuOptionBatches
             // 
             this.menuOptionBatches.Name = "menuOptionBatches";
-            this.menuOptionBatches.Size = new System.Drawing.Size(224, 26);
+            this.menuOptionBatches.Size = new System.Drawing.Size(218, 24);
             this.menuOptionBatches.Text = "Set batch for this line";
             this.menuOptionBatches.Click += new System.EventHandler(this.menuOptionBatches_Click);
             // 
@@ -920,7 +920,7 @@
             // 
             this.olvDescription.AspectName = "Description";
             this.olvDescription.Text = "Description";
-            this.olvDescription.Width = 308;
+            this.olvDescription.Width = 296;
             // 
             // olvTotalQuantity
             // 

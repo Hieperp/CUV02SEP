@@ -188,7 +188,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             string queryString;
 
             queryString = " @Barcode varchar(50) " + "\r\n";
-            //queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 

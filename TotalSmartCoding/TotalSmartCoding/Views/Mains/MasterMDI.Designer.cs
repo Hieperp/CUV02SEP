@@ -713,7 +713,7 @@
             this.comboFilterTexts.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             this.comboFilterTexts.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboFilterTexts.Name = "comboFilterTexts";
-            this.comboFilterTexts.Size = new System.Drawing.Size(368, 55);
+            this.comboFilterTexts.Size = new System.Drawing.Size(339, 55);
             this.comboFilterTexts.TextChanged += new System.EventHandler(this.comboFilterTexts_TextChanged);
             // 
             // buttonClearFilters
