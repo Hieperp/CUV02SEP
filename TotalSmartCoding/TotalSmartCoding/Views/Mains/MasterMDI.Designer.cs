@@ -677,9 +677,9 @@
             this.comboDetailFilterTexts,
             this.buttonClearDetailFilters});
             this.toolStripTopHead.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.toolStripTopHead.Location = new System.Drawing.Point(601, 0);
+            this.toolStripTopHead.Location = new System.Drawing.Point(501, 0);
             this.toolStripTopHead.Name = "toolStripTopHead";
-            this.toolStripTopHead.Size = new System.Drawing.Size(1305, 55);
+            this.toolStripTopHead.Size = new System.Drawing.Size(1405, 55);
             this.toolStripTopHead.TabIndex = 5;
             this.toolStripTopHead.Text = "toolStrip1";
             // 
@@ -713,7 +713,7 @@
             this.comboFilterTexts.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             this.comboFilterTexts.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboFilterTexts.Name = "comboFilterTexts";
-            this.comboFilterTexts.Size = new System.Drawing.Size(339, 55);
+            this.comboFilterTexts.Size = new System.Drawing.Size(368, 55);
             this.comboFilterTexts.TextChanged += new System.EventHandler(this.comboFilterTexts_TextChanged);
             // 
             // buttonClearFilters
@@ -777,7 +777,7 @@
             this.layoutTop.Name = "layoutTop";
             this.layoutTop.RowCount = 1;
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 55F));
-            this.layoutTop.Size = new System.Drawing.Size(601, 55);
+            this.layoutTop.Size = new System.Drawing.Size(501, 55);
             this.layoutTop.TabIndex = 9;
             // 
             // toolStrip1
@@ -831,7 +831,7 @@
             // 
             // dateTimexLowerFillterDate
             // 
-            this.dateTimexLowerFillterDate.CustomFormat = "dd/MMM/yyyy HH:mm:ss";
+            this.dateTimexLowerFillterDate.CustomFormat = "dd/MMM/yyyy";
             this.dateTimexLowerFillterDate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dateTimexLowerFillterDate.Editable = true;
             this.dateTimexLowerFillterDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
@@ -839,20 +839,20 @@
             this.dateTimexLowerFillterDate.Margin = new System.Windows.Forms.Padding(0, 8, 1, 1);
             this.dateTimexLowerFillterDate.Name = "dateTimexLowerFillterDate";
             this.dateTimexLowerFillterDate.ReadOnly = false;
-            this.dateTimexLowerFillterDate.Size = new System.Drawing.Size(176, 28);
+            this.dateTimexLowerFillterDate.Size = new System.Drawing.Size(126, 28);
             this.dateTimexLowerFillterDate.TabIndex = 90;
             // 
             // dateTimexUpperFillterDate
             // 
-            this.dateTimexUpperFillterDate.CustomFormat = "dd/MMM/yyyy HH:mm:ss";
+            this.dateTimexUpperFillterDate.CustomFormat = "dd/MMM/yyyy";
             this.dateTimexUpperFillterDate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dateTimexUpperFillterDate.Editable = true;
             this.dateTimexUpperFillterDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimexUpperFillterDate.Location = new System.Drawing.Point(425, 8);
+            this.dateTimexUpperFillterDate.Location = new System.Drawing.Point(375, 8);
             this.dateTimexUpperFillterDate.Margin = new System.Windows.Forms.Padding(0, 8, 0, 1);
             this.dateTimexUpperFillterDate.Name = "dateTimexUpperFillterDate";
             this.dateTimexUpperFillterDate.ReadOnly = false;
-            this.dateTimexUpperFillterDate.Size = new System.Drawing.Size(176, 28);
+            this.dateTimexUpperFillterDate.Size = new System.Drawing.Size(126, 28);
             this.dateTimexUpperFillterDate.TabIndex = 91;
             // 
             // pictureBox1

@@ -426,7 +426,6 @@
             this.buttonQuantityVersusVolume.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonQuantityVersusVolume.Name = "buttonQuantityVersusVolume";
             this.buttonQuantityVersusVolume.Size = new System.Drawing.Size(28, 26);
-            this.buttonQuantityVersusVolume.Text = "toolStripButton1";
             // 
             // comboDateVersusMonth
             // 
@@ -444,7 +443,6 @@
             this.buttonDateVersusMonth.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonDateVersusMonth.Name = "buttonDateVersusMonth";
             this.buttonDateVersusMonth.Size = new System.Drawing.Size(28, 28);
-            this.buttonDateVersusMonth.Text = "toolStripButton1";
             // 
             // comboSalesVersusPromotion
             // 
@@ -471,7 +469,6 @@
             this.buttonSalesVersusPromotion.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonSalesVersusPromotion.Name = "buttonSalesVersusPromotion";
             this.buttonSalesVersusPromotion.Size = new System.Drawing.Size(28, 28);
-            this.buttonSalesVersusPromotion.Text = "toolStripButton3";
             // 
             // layoutTop
             // 

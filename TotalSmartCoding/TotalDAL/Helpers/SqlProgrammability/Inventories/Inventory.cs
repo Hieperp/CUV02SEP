@@ -18,10 +18,10 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
         public void RestoreProcedure()
         {
-            //this.WarehouseLedgers();
+            this.WarehouseLedgers();
 
-            //this.WarehouseJournals();
-            //this.WarehouseForecasts();
+            this.WarehouseJournals();
+            this.WarehouseForecasts();
         }
 
 
