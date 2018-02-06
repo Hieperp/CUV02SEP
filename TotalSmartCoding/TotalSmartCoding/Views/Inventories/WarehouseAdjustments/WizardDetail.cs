@@ -178,7 +178,7 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
             {
                 this.fastPendingPallets.CheckedObjects = null;
                 OLVHelpers.ApplyFilters(this.fastPendingPallets, this.textexFilters.Text.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
-
+                OLVHelpers.ApplyFilters(this.fastPendingCartons, this.textexFilters.Text.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
                 this.ShowRowCount(true, true);
             }
             catch (Exception exception)

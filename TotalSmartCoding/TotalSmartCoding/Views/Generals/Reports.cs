@@ -351,8 +351,7 @@ namespace TotalSmartCoding.Views.Generals
 
             if (this.comboSlowMoving.Visible)
             {
-                if (this.comboSlowMoving.SelectedIndex != 0) headerTitle = headerTitle + " " + this.comboSlowMoving.Text;
-                headerTerms = "Not sold over " + this.numericSlowMoving.Value.ToString("N0") + " days. " + " " + headerTerms;
+                headerTerms = "Not sold over " + this.numericSlowMoving.Value.ToString("N0") + " days" + (this.comboSlowMoving.SelectedIndex != 0 ? "; " + this.comboSlowMoving.Text : "") + ". " + headerTerms;
                 printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("FilterID", ((int)GlobalEnums.ForecastFilterID.SlowMoving + this.numericSlowMoving.Value + (this.comboSlowMoving.SelectedIndex != 0 ? (int)GlobalEnums.ForecastFilterID.SlowMovingNoForecast : 0)).ToString()));
             }
 
@@ -408,7 +407,7 @@ namespace TotalSmartCoding.Views.Generals
             if (this.customTabBatch.TabPages.Contains(this.tabPageWarehouseIssues))
                 this.AddFilterParameters(printViewModel, this.warehouseIssueTrees.Cast<IFilterTree>(), new FilterParameter[] { new FilterParameter("LocationID", "LocationIssueIDs", "Source Location", true, false), new FilterParameter("WarehouseID", "WarehouseIssueIDs", "Source Warehouse", true, false) }, ref captionDescriptions);
             if (this.customTabBatch.TabPages.Contains(this.tabPageWarehouseReceipts))
-                this.AddFilterParameters(printViewModel, this.warehouseReceiptTrees.Cast<IFilterTree>(), new FilterParameter[] { new FilterParameter("LocationID", "LocationReceiptIDs", "Source Location", true, false), new FilterParameter("WarehouseID", "WarehouseReceiptIDs", "Source Warehouse", true, false) }, ref captionDescriptions);
+                this.AddFilterParameters(printViewModel, this.warehouseReceiptTrees.Cast<IFilterTree>(), new FilterParameter[] { new FilterParameter("LocationID", "LocationReceiptIDs", "Destination Location", true, false), new FilterParameter("WarehouseID", "WarehouseReceiptIDs", "Destination Warehouse", true, false) }, ref captionDescriptions);
             if (this.customTabBatch.TabPages.Contains(this.tabPageWarehouseAdjustmentTypes))
                 this.AddFilterParameters(printViewModel, this.warehouseAdjustmentTypeTrees.Cast<IFilterTree>(), new FilterParameter[] { new FilterParameter("WarehouseAdjustmentTypeID", "WarehouseAdjustmentTypeIDs", "Adjustment Type", true, false) }, ref captionDescriptions);
 
