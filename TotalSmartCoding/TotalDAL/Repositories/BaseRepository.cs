@@ -77,103 +77,7 @@ namespace TotalDAL.Repositories
 
                 this.ExecuteStoreCommand("UPDATE ModuleDetails SET Controller = N'LOGISTICS ADMIN', ModuleID = 6 WHERE ModuleDetailID IN (" + (int)GlobalEnums.NmvnTaskID.SalesOrder + "," + (int)GlobalEnums.NmvnTaskID.DeliveryAdvice + "," + (int)GlobalEnums.NmvnTaskID.TransferOrder + ") ", new ObjectParameter[] { });
                 this.ExecuteStoreCommand("UPDATE ModuleDetails SET Controller = N'WAREHOUSE CONTROLS', ModuleID = 6 WHERE ModuleDetailID IN (" + (int)GlobalEnums.NmvnTaskID.GoodsReceipt + "," + (int)GlobalEnums.NmvnTaskID.GoodsIssue + "," + (int)GlobalEnums.NmvnTaskID.WarehouseAdjustment + "," + (int)GlobalEnums.NmvnTaskID.GoodsReceiptDetailAvailable + ") ", new ObjectParameter[] { });
-
                 
-
-
-                #region Add forecast table
-                this.ExecuteStoreCommand(@"CREATE TABLE [dbo].[Forecasts](
-	                                                    [ForecastID] [int] IDENTITY(1,1) NOT NULL,
-	                                                    [EntryDate] [datetime] NOT NULL,
-	                                                    [Reference] [nvarchar](10) NULL,
-	                                                    [VoucherCode] [nvarchar](60) NULL,
-	                                                    [ForecastLocationID] [int] NOT NULL,
-	                                                    [SalespersonID] [int] NOT NULL,
-	                                                    [UserID] [int] NOT NULL,
-	                                                    [PreparedPersonID] [int] NOT NULL,
-	                                                    [OrganizationalUnitID] [int] NOT NULL,
-	                                                    [LocationID] [int] NOT NULL,
-	                                                    [TotalQuantity] [decimal](18, 2) NOT NULL,
-	                                                    [TotalLineVolume] [decimal](18, 2) NOT NULL,
-	                                                    [TotalQuantityM1] [decimal](18, 2) NOT NULL,
-	                                                    [TotalLineVolumeM1] [decimal](18, 2) NOT NULL,
-	                                                    [TotalQuantityM2] [decimal](18, 2) NOT NULL,
-	                                                    [TotalLineVolumeM2] [decimal](18, 2) NOT NULL,
-	                                                    [TotalQuantityM3] [decimal](18, 2) NOT NULL,
-	                                                    [TotalLineVolumeM3] [decimal](18, 2) NOT NULL,
-	                                                    [Description] [nvarchar](100) NULL,
-	                                                    [Remarks] [nvarchar](100) NULL,
-	                                                    [CreatedDate] [datetime] NOT NULL,
-	                                                    [EditedDate] [datetime] NOT NULL,
-	                                                    [Approved] [bit] NOT NULL,
-	                                                    [ApprovedDate] [datetime] NULL,
-                                                     CONSTRAINT [PK_Forecasts] PRIMARY KEY CLUSTERED 
-                                                    (
-	                                                    [ForecastID] ASC
-                                                    )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-                                                    ) ON [PRIMARY]                                                            
-                                                ", new ObjectParameter[] { });
-
-
-                this.ExecuteStoreCommand(@"CREATE TABLE [dbo].[ForecastDetails](
-	                                                    [ForecastDetailID] [int] IDENTITY(1,1) NOT NULL,
-	                                                    [ForecastID] [int] NOT NULL,
-	                                                    [EntryDate] [datetime] NOT NULL,
-	                                                    [Reference] [nvarchar](10) NULL,
-	                                                    [VoucherCode] [nvarchar](60) NULL,
-	                                                    [ForecastLocationID] [int] NOT NULL,
-	                                                    [LocationID] [int] NOT NULL,
-	                                                    [CommodityID] [int] NOT NULL,
-	                                                    [Quantity] [decimal](18, 2) NOT NULL,
-	                                                    [LineVolume] [decimal](18, 2) NOT NULL,
-	                                                    [QuantityM1] [decimal](18, 2) NOT NULL,
-	                                                    [LineVolumeM1] [decimal](18, 2) NOT NULL,
-	                                                    [QuantityM2] [decimal](18, 2) NOT NULL,
-	                                                    [LineVolumeM2] [decimal](18, 2) NOT NULL,
-	                                                    [QuantityM3] [decimal](18, 2) NOT NULL,
-	                                                    [LineVolumeM3] [decimal](18, 2) NOT NULL,
-	                                                    [Remarks] [nvarchar](100) NULL,
-	                                                    [Approved] [bit] NOT NULL,
-                                                     CONSTRAINT [PK_ForecastDetails] PRIMARY KEY CLUSTERED 
-                                                    (
-	                                                    [ForecastDetailID] ASC
-                                                    )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-                                                    ) ON [PRIMARY]
-
-
-                                                    ALTER TABLE [dbo].[ForecastDetails]  WITH CHECK ADD  CONSTRAINT [FK_ForecastDetails_Forecasts] FOREIGN KEY([ForecastID])
-                                                    REFERENCES [dbo].[Forecasts] ([ForecastID])
-
-
-                                                    ALTER TABLE [dbo].[ForecastDetails] CHECK CONSTRAINT [FK_ForecastDetails_Forecasts]
-                                                ", new ObjectParameter[] { });
-
-
-                #endregion Add forecast table
-
-
-                #region Add forecast table
-                this.ExecuteStoreCommand(@"CREATE TABLE [dbo].[CommoditySettings](
-	                                                    [CommoditySettingID] [int] IDENTITY(1,1) NOT NULL,
-	                                                    [CommodityID] [int] NOT NULL,
-	                                                    [LocationID] [int] NOT NULL,
-	                                                    [DIOHLow] [decimal](18, 3) NOT NULL,
-	                                                    [DIOHHigh] [decimal](18, 3) NOT NULL,
-	                                                    [DIOHAlert] [decimal](18, 3) NOT NULL,
-                                                     CONSTRAINT [PK_CommoditySettings] PRIMARY KEY CLUSTERED 
-                                                    (
-	                                                    [CommoditySettingID] ASC
-                                                    )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY],
-                                                     CONSTRAINT [IX_CommoditySettings] UNIQUE NONCLUSTERED 
-                                                    (
-	                                                    [CommodityID] ASC,
-	                                                    [LocationID] ASC
-                                                    )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-                                                    ) ON [PRIMARY]
-                                                ", new ObjectParameter[] { });
-
-                #endregion Add forecast table
-
             }
 
 
@@ -203,12 +107,12 @@ namespace TotalDAL.Repositories
         {
             //CHÚ Ý: PHẢI GỬI CustomControl.dll KHI UPDATE PHAN MEM CHO MR LUU
 
-            //return;
+            return;
 
             Helpers.SqlProgrammability.Inventories.Inventory inventory = new Helpers.SqlProgrammability.Inventories.Inventory(totalSmartCodingEntities);
             inventory.RestoreProcedure();
 
-            //return;
+            return;
 
             Helpers.SqlProgrammability.Commons.WarehouseAdjustmentType warehouseAdjustmentType = new Helpers.SqlProgrammability.Commons.WarehouseAdjustmentType(totalSmartCodingEntities);
             warehouseAdjustmentType.RestoreProcedure();
@@ -438,6 +342,103 @@ namespace TotalDAL.Repositories
         #region Backup for update log
         private void UpdateBackup()
         {
+
+
+            #region VERSION 73: DATE: BEFORE TET HOLIDAY
+
+            #region Add forecast table
+            this.ExecuteStoreCommand(@"CREATE TABLE [dbo].[Forecasts](
+	                                                    [ForecastID] [int] IDENTITY(1,1) NOT NULL,
+	                                                    [EntryDate] [datetime] NOT NULL,
+	                                                    [Reference] [nvarchar](10) NULL,
+	                                                    [VoucherCode] [nvarchar](60) NULL,
+	                                                    [ForecastLocationID] [int] NOT NULL,
+	                                                    [SalespersonID] [int] NOT NULL,
+	                                                    [UserID] [int] NOT NULL,
+	                                                    [PreparedPersonID] [int] NOT NULL,
+	                                                    [OrganizationalUnitID] [int] NOT NULL,
+	                                                    [LocationID] [int] NOT NULL,
+	                                                    [TotalQuantity] [decimal](18, 2) NOT NULL,
+	                                                    [TotalLineVolume] [decimal](18, 2) NOT NULL,
+	                                                    [TotalQuantityM1] [decimal](18, 2) NOT NULL,
+	                                                    [TotalLineVolumeM1] [decimal](18, 2) NOT NULL,
+	                                                    [TotalQuantityM2] [decimal](18, 2) NOT NULL,
+	                                                    [TotalLineVolumeM2] [decimal](18, 2) NOT NULL,
+	                                                    [TotalQuantityM3] [decimal](18, 2) NOT NULL,
+	                                                    [TotalLineVolumeM3] [decimal](18, 2) NOT NULL,
+	                                                    [Description] [nvarchar](100) NULL,
+	                                                    [Remarks] [nvarchar](100) NULL,
+	                                                    [CreatedDate] [datetime] NOT NULL,
+	                                                    [EditedDate] [datetime] NOT NULL,
+	                                                    [Approved] [bit] NOT NULL,
+	                                                    [ApprovedDate] [datetime] NULL,
+                                                     CONSTRAINT [PK_Forecasts] PRIMARY KEY CLUSTERED 
+                                                    (
+	                                                    [ForecastID] ASC
+                                                    )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+                                                    ) ON [PRIMARY]                                                            
+                                                ", new ObjectParameter[] { });
+
+
+            this.ExecuteStoreCommand(@"CREATE TABLE [dbo].[ForecastDetails](
+	                                                    [ForecastDetailID] [int] IDENTITY(1,1) NOT NULL,
+	                                                    [ForecastID] [int] NOT NULL,
+	                                                    [EntryDate] [datetime] NOT NULL,
+	                                                    [Reference] [nvarchar](10) NULL,
+	                                                    [VoucherCode] [nvarchar](60) NULL,
+	                                                    [ForecastLocationID] [int] NOT NULL,
+	                                                    [LocationID] [int] NOT NULL,
+	                                                    [CommodityID] [int] NOT NULL,
+	                                                    [Quantity] [decimal](18, 2) NOT NULL,
+	                                                    [LineVolume] [decimal](18, 2) NOT NULL,
+	                                                    [QuantityM1] [decimal](18, 2) NOT NULL,
+	                                                    [LineVolumeM1] [decimal](18, 2) NOT NULL,
+	                                                    [QuantityM2] [decimal](18, 2) NOT NULL,
+	                                                    [LineVolumeM2] [decimal](18, 2) NOT NULL,
+	                                                    [QuantityM3] [decimal](18, 2) NOT NULL,
+	                                                    [LineVolumeM3] [decimal](18, 2) NOT NULL,
+	                                                    [Remarks] [nvarchar](100) NULL,
+	                                                    [Approved] [bit] NOT NULL,
+                                                     CONSTRAINT [PK_ForecastDetails] PRIMARY KEY CLUSTERED 
+                                                    (
+	                                                    [ForecastDetailID] ASC
+                                                    )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+                                                    ) ON [PRIMARY]
+
+
+                                                    ALTER TABLE [dbo].[ForecastDetails]  WITH CHECK ADD  CONSTRAINT [FK_ForecastDetails_Forecasts] FOREIGN KEY([ForecastID])
+                                                    REFERENCES [dbo].[Forecasts] ([ForecastID])
+
+
+                                                    ALTER TABLE [dbo].[ForecastDetails] CHECK CONSTRAINT [FK_ForecastDetails_Forecasts]
+                                                ", new ObjectParameter[] { });
+
+
+            #endregion Add forecast table
+
+
+            #region Add forecast table
+            this.ExecuteStoreCommand(@"CREATE TABLE [dbo].[CommoditySettings](
+	                                                    [CommoditySettingID] [int] IDENTITY(1,1) NOT NULL,
+	                                                    [CommodityID] [int] NOT NULL,
+	                                                    [LocationID] [int] NOT NULL,
+	                                                    [DIOHLow] [decimal](18, 3) NOT NULL,
+	                                                    [DIOHHigh] [decimal](18, 3) NOT NULL,
+	                                                    [DIOHAlert] [decimal](18, 3) NOT NULL,
+                                                     CONSTRAINT [PK_CommoditySettings] PRIMARY KEY CLUSTERED 
+                                                    (
+	                                                    [CommoditySettingID] ASC
+                                                    )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY],
+                                                     CONSTRAINT [IX_CommoditySettings] UNIQUE NONCLUSTERED 
+                                                    (
+	                                                    [CommodityID] ASC,
+	                                                    [LocationID] ASC
+                                                    )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+                                                    ) ON [PRIMARY]
+                                                ", new ObjectParameter[] { });
+
+            #endregion Add forecast table
+            #endregion VERSION 73: DATE: BEFORE TET HOLIDAY
 
 
             #region VERSION 71 DATE: 10-O1-2018
