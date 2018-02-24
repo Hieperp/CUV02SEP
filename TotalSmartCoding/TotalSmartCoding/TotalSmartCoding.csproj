@@ -214,7 +214,9 @@
     <Compile Include="Views\Commons\Customers\Customers.designer.cs">
       <DependentUpon>Customers.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Commons\CustomExceptionMessageBox.cs" />
+    <Compile Include="Views\Commons\CustomExceptionMessageBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Views\Commons\CustomExceptionMessageBox.designer.cs">
       <DependentUpon>CustomExceptionMessageBox.cs</DependentUpon>
     </Compile>
@@ -329,6 +331,12 @@
     </Compile>
     <Compile Include="Views\Mains\BlankView.Designer.cs">
       <DependentUpon>BlankView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Mains\ColumnMappings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Mains\ColumnMappings.designer.cs">
+      <DependentUpon>ColumnMappings.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Mains\SearchBarcode.cs">
       <SubType>Form</SubType>
@@ -517,6 +525,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Mains\BlankView.resx">
       <DependentUpon>BlankView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Mains\ColumnMappings.resx">
+      <DependentUpon>ColumnMappings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Mains\SearchBarcode.resx">
       <DependentUpon>SearchBarcode.cs</DependentUpon>
@@ -1221,6 +1232,8 @@
     <None Include="Resources\exit-to-app-button-green-24.png" />
     <None Include="Resources\exit-to-app-button-green.png" />
     <None Include="Resources\exit-to-app-button-magenta.png" />
+    <None Include="Resources\Navigate-left.ico" />
+    <None Include="Resources\Navigate-right.ico" />
     <Content Include="SmartCodingSolution.ico" />
     <None Include="Resources\Yellow-cross.ico" />
     <None Include="Resources\White-Pallet.ico" />

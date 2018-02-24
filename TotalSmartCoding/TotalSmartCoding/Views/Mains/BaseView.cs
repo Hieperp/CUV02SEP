@@ -293,8 +293,8 @@ namespace TotalSmartCoding.Views.Mains
         public virtual bool Editable { get { return this.baseDTO.Editable; } }
         public virtual bool Deletable { get { return this.baseDTO.Deletable; } }
 
-        public virtual bool Importable { get { return false; } }
-        public virtual bool Exportable { get { return false; } }
+        public virtual bool Importable { get { return this.baseDTO.Importable; } }
+        public virtual bool Exportable { get { return this.baseDTO.Exportable; } }
 
         public virtual bool Approvable { get { return this.baseDTO.Approvable; } }
         public virtual bool Unapprovable { get { return this.baseDTO.UnApprovable; } }
@@ -546,10 +546,36 @@ namespace TotalSmartCoding.Views.Mains
 
         protected virtual PrintViewModel InitPrintViewModel() { return new PrintViewModel(); }
 
-        public void Import()
+        public virtual void Import() { }
+
+        protected virtual void ImportExcel(GlobalEnums.MappingTaskID mappingTaskID)
         {
-            //this.ImportExcel(OleDbDatabase.MappingTaskID.MarketingProgram);
+            try
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Filter = "Excel File (.xlsx)|*.xlsx";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string fileName = openFileDialog.FileName;
+
+                    ColumnMappings columnMappings = new ColumnMappings(mappingTaskID, fileName);
+
+                    if (columnMappings.ShowDialog() == DialogResult.OK)
+                        this.DoImportExcel(fileName);
+
+                    columnMappings.Dispose();
+                }
+                openFileDialog.Dispose();
+            }
+            catch (Exception exception)
+            {
+                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+            }
         }
+
+        protected virtual void DoImportExcel(string fileName) { }
+
 
         public void Export()
         {
