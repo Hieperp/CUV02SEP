@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 using TotalModel.Helpers;
 using BrightIdeasSoftware;
@@ -28,6 +21,8 @@ namespace TotalSmartCoding.Views.Commons
 
             this.labelExceptionMessage.Text = this.customException.Message;
 
+            this.dataListViewExceptionTable.AboutToCreateGroups += dataListViewExceptionTable_AboutToCreateGroups;
+
             this.dataListViewExceptionTable.ShowGroups = customException.ShowGroups;
             this.dataListViewExceptionTable.DataSource = customException.ExceptionTable;
 
@@ -36,9 +31,24 @@ namespace TotalSmartCoding.Views.Commons
             if (customException.ShowGroups && this.dataListViewExceptionTable.Columns.Count > 1)
             {
                 this.dataListViewExceptionTable.Columns[0].Width = 0;
-                if (this.dataListViewExceptionTable.Columns.Count == 2) this.dataListViewExceptionTable.Columns[1].Width = this.dataListViewExceptionTable.Width-10;
+                if (this.dataListViewExceptionTable.Columns.Count == 2) this.dataListViewExceptionTable.Columns[1].Width = this.dataListViewExceptionTable.Width - 30;
             }
+        }
 
+        private void dataListViewExceptionTable_AboutToCreateGroups(object sender, CreateGroupsEventArgs e)
+        {
+            if (e.Groups != null && e.Groups.Count > 0)
+            {
+                foreach (OLVGroup olvGroup in e.Groups)
+                {
+                    olvGroup.Collapsed = true;
+                }
+            }
+        }
+
+        private void buttonOK_Click(object sender, System.EventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
         }
     }
 }

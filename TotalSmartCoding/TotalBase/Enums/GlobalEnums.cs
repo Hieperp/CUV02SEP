@@ -113,6 +113,11 @@
 
 
 
+        public enum MappingTaskID : int
+        {
+            Default = 0,
+            BatchMaster = 1888
+        }
 
 
 

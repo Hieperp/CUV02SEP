@@ -87,6 +87,9 @@
     <Compile Include="Models\Carton.cs">
       <DependentUpon>TotalSmartCoding.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ColumnMapping.cs">
+      <DependentUpon>TotalSmartCoding.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Commodity.cs">
       <DependentUpon>TotalSmartCoding.tt</DependentUpon>
     </Compile>

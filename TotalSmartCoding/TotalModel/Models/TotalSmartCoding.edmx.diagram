@@ -152,6 +152,7 @@
         <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssues_TransferOrders" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssues_Warehouses" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssues_Warehouses1" />
+        <EntityTypeShape EntityType="TotalSmartCodingModel.ColumnMapping" Width="1.5" PointX="7.375" PointY="4.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

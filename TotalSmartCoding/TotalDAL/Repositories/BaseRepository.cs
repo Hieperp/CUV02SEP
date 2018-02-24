@@ -105,7 +105,10 @@ namespace TotalDAL.Repositories
 
         private void CreateStoredProcedure()
         {
-            //CHÚ Ý: PHẢI GỬI CustomControl.dll KHI UPDATE PHAN MEM CHO MR LUU
+            //return;
+
+            Helpers.SqlProgrammability.Generals.OleDb oleDb = new Helpers.SqlProgrammability.Generals.OleDb(totalSmartCodingEntities);
+            oleDb.RestoreProcedure();
 
             return;
 

@@ -62,6 +62,20 @@
           <Property Name="PackCounts" Type="int" Nullable="false" />
           <Property Name="EntryStatusID" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="ColumnMappings">
+          <Key>
+            <PropertyRef Name="ColumnMappingID" />
+          </Key>
+          <Property Name="ColumnMappingID" Type="int" Nullable="false" />
+          <Property Name="MappingTaskID" Type="int" Nullable="false" />
+          <Property Name="ColumnID" Type="int" Nullable="false" />
+          <Property Name="ColumnName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ColumnDisplayName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ColumnMappingName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SerialID" Type="int" Nullable="false" />
+          <Property Name="OrderBy" Type="int" />
+          <Property Name="ImportedDate" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="Commodities">
           <Key>
             <PropertyRef Name="CommodityID" />
@@ -2236,6 +2250,9 @@
           <Parameter Name="EntryStatusIDs" Type="varchar" Mode="In" />
           <Parameter Name="PalletID" Type="int" Mode="In" />
         </Function>
+        <Function Name="GetColumnMappings" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MappingTaskID" Type="int" Mode="In" />
+        </Function>
         <Function Name="GetCommodityBases" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetCommodityCategoryBases" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetCommodityCategoryIndexes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -2669,6 +2686,10 @@
         <Function Name="SalesOrderVoidable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="EntityID" Type="int" Mode="In" />
         </Function>
+        <Function Name="SaveColumnMapping" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ColumnMappingID" Type="int" Mode="In" />
+          <Parameter Name="ColumnMappingName" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="SaveUserAccessControls" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="AccessControlID" Type="int" Mode="In" />
           <Parameter Name="AccessLevel" Type="int" Mode="In" />
@@ -2763,6 +2784,7 @@
           <EntitySet Name="Batches" EntityType="Self.Batches" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BinLocations" EntityType="Self.BinLocations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cartons" EntityType="Self.Cartons" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ColumnMappings" EntityType="Self.ColumnMappings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Commodities" EntityType="Self.Commodities" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CommodityCategories" EntityType="Self.CommodityCategories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CommodityTypes" EntityType="Self.CommodityTypes" Schema="dbo" store:Type="Tables" />
@@ -4330,6 +4352,14 @@
           <FunctionImport Name="OrganizationalUnitRemove">
             <Parameter Name="OrganizationalUnitID" Mode="In" Type="Int32" />
             <Parameter Name="Code" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="ColumnMappings" EntityType="TotalSmartCodingModel.ColumnMapping" />
+          <FunctionImport Name="GetColumnMappings" EntitySet="ColumnMappings" ReturnType="Collection(TotalSmartCodingModel.ColumnMapping)">
+            <Parameter Name="MappingTaskID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SaveColumnMapping">
+            <Parameter Name="ColumnMappingID" Mode="In" Type="Int32" />
+            <Parameter Name="ColumnMappingName" Mode="In" Type="String" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
@@ -7645,6 +7675,20 @@
           <Property Type="String" Name="ParameterName" Nullable="false" MaxLength="20" />
           <Property Type="Boolean" Name="Selected" Nullable="true" />
         </ComplexType>
+        <EntityType Name="ColumnMapping">
+          <Key>
+            <PropertyRef Name="ColumnMappingID" />
+          </Key>
+          <Property Name="ColumnMappingID" Type="Int32" Nullable="false" />
+          <Property Name="MappingTaskID" Type="Int32" Nullable="false" />
+          <Property Name="ColumnID" Type="Int32" Nullable="false" />
+          <Property Name="ColumnName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ColumnDisplayName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ColumnMappingName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SerialID" Type="Int32" Nullable="false" />
+          <Property Name="OrderBy" Type="Int32" />
+          <Property Name="ImportedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -9960,6 +10004,24 @@
           <FunctionImportMapping FunctionImportName="OrganizationalUnitEditable" FunctionName="TotalSmartCodingModel.Store.OrganizationalUnitEditable" />
           <FunctionImportMapping FunctionImportName="OrganizationalUnitAdd" FunctionName="TotalSmartCodingModel.Store.OrganizationalUnitAdd" />
           <FunctionImportMapping FunctionImportName="OrganizationalUnitRemove" FunctionName="TotalSmartCodingModel.Store.OrganizationalUnitRemove" />
+          <EntitySetMapping Name="ColumnMappings">
+            <EntityTypeMapping TypeName="TotalSmartCodingModel.ColumnMapping">
+              <MappingFragment StoreEntitySet="ColumnMappings">
+                <ScalarProperty Name="ImportedDate" ColumnName="ImportedDate" />
+                <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+                <ScalarProperty Name="SerialID" ColumnName="SerialID" />
+                <ScalarProperty Name="ColumnMappingName" ColumnName="ColumnMappingName" />
+                <ScalarProperty Name="ColumnDisplayName" ColumnName="ColumnDisplayName" />
+                <ScalarProperty Name="ColumnName" ColumnName="ColumnName" />
+                <ScalarProperty Name="ColumnID" ColumnName="ColumnID" />
+                <ScalarProperty Name="MappingTaskID" ColumnName="MappingTaskID" />
+                <ScalarProperty Name="ColumnMappingID" ColumnName="ColumnMappingID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetColumnMappings" FunctionName="TotalSmartCodingModel.Store.GetColumnMappings">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SaveColumnMapping" FunctionName="TotalSmartCodingModel.Store.SaveColumnMapping" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -114,6 +114,7 @@
     <Compile Include="Controllers\APIs\Commons\WarehouseAdjustmentTypeAPIs.cs" />
     <Compile Include="Controllers\APIs\Commons\WarehouseAPIs.cs" />
     <Compile Include="Controllers\APIs\Generals\ModuleAPIs.cs" />
+    <Compile Include="Controllers\APIs\Generals\OleDbAPIs.cs" />
     <Compile Include="Controllers\APIs\Generals\OrganizationalUnitAPIs.cs" />
     <Compile Include="Controllers\APIs\Generals\ReportAPIs.cs" />
     <Compile Include="Controllers\APIs\Generals\UserAPIs.cs" />
@@ -213,9 +214,7 @@
     <Compile Include="Views\Commons\Customers\Customers.designer.cs">
       <DependentUpon>Customers.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Commons\CustomExceptionMessageBox.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Views\Commons\CustomExceptionMessageBox.cs" />
     <Compile Include="Views\Commons\CustomExceptionMessageBox.designer.cs">
       <DependentUpon>CustomExceptionMessageBox.cs</DependentUpon>
     </Compile>
@@ -1218,6 +1217,10 @@
     <None Include="Resources\Pallet-I-16.png" />
     <None Include="Resources\Cargo_Ship-16.png" />
     <None Include="Resources\calendar-blue-32.png" />
+    <None Include="Resources\exit-to-app-button-magenta-24.png" />
+    <None Include="Resources\exit-to-app-button-green-24.png" />
+    <None Include="Resources\exit-to-app-button-green.png" />
+    <None Include="Resources\exit-to-app-button-magenta.png" />
     <Content Include="SmartCodingSolution.ico" />
     <None Include="Resources\Yellow-cross.ico" />
     <None Include="Resources\White-Pallet.ico" />

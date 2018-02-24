@@ -66,6 +66,7 @@
     <Compile Include="Repositories\Commons\IWarehouseRepository.cs" />
     <Compile Include="Repositories\Commons\TransferOrderTypeRepository.cs" />
     <Compile Include="Repositories\Generals\IModuleRepository.cs" />
+    <Compile Include="Repositories\Generals\IOleDbRepository.cs" />
     <Compile Include="Repositories\Generals\IOrganizationalUnitRepository.cs" />
     <Compile Include="Repositories\Generals\IReportRepository.cs" />
     <Compile Include="Repositories\Generals\IUserRepository.cs" />
