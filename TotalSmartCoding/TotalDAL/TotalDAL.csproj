@@ -80,6 +80,7 @@
     <Compile Include="Helpers\SqlProgrammability\Productions\Pack.cs" />
     <Compile Include="Helpers\SqlProgrammability\Productions\Pallet.cs" />
     <Compile Include="Helpers\SqlProgrammability\Sales\DeliveryAdvice.cs" />
+    <Compile Include="Helpers\SqlProgrammability\Sales\Forecast.cs" />
     <Compile Include="Helpers\SqlProgrammability\Sales\SalesOrder.cs" />
     <Compile Include="Helpers\SqlProgrammability\Sales\TransferOrder.cs" />
     <Compile Include="Helpers\SqlProgrammability\Temporary.cs" />

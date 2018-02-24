@@ -189,6 +189,18 @@
     <Compile Include="Models\FillingLineIndex.cs">
       <DependentUpon>TotalSmartCoding.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Forecast.cs">
+      <DependentUpon>TotalSmartCoding.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ForecastDetail.cs">
+      <DependentUpon>TotalSmartCoding.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ForecastIndex.cs">
+      <DependentUpon>TotalSmartCoding.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ForecastViewDetail.cs">
+      <DependentUpon>TotalSmartCoding.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\GoodsIssue.cs">
       <DependentUpon>TotalSmartCoding.tt</DependentUpon>
     </Compile>

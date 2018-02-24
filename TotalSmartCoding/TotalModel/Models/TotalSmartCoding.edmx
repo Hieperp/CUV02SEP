@@ -275,6 +275,57 @@
           <Property Name="PalletChanged" Type="bit" Nullable="false" />
           <Property Name="InActive" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="ForecastDetails">
+          <Key>
+            <PropertyRef Name="ForecastDetailID" />
+          </Key>
+          <Property Name="ForecastDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ForecastID" Type="int" Nullable="false" />
+          <Property Name="EntryDate" Type="datetime" Nullable="false" />
+          <Property Name="Reference" Type="nvarchar" MaxLength="10" />
+          <Property Name="VoucherCode" Type="nvarchar" MaxLength="60" />
+          <Property Name="ForecastLocationID" Type="int" Nullable="false" />
+          <Property Name="LocationID" Type="int" Nullable="false" />
+          <Property Name="CommodityID" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="LineVolume" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="QuantityM1" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="LineVolumeM1" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="QuantityM2" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="LineVolumeM2" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="QuantityM3" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="LineVolumeM3" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Remarks" Type="nvarchar" MaxLength="100" />
+          <Property Name="Approved" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Forecasts">
+          <Key>
+            <PropertyRef Name="ForecastID" />
+          </Key>
+          <Property Name="ForecastID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EntryDate" Type="datetime" Nullable="false" />
+          <Property Name="Reference" Type="nvarchar" MaxLength="10" />
+          <Property Name="VoucherCode" Type="nvarchar" MaxLength="60" />
+          <Property Name="ForecastLocationID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="PreparedPersonID" Type="int" Nullable="false" />
+          <Property Name="OrganizationalUnitID" Type="int" Nullable="false" />
+          <Property Name="LocationID" Type="int" Nullable="false" />
+          <Property Name="TotalQuantity" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="TotalLineVolume" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="TotalQuantityM1" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="TotalLineVolumeM1" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="TotalQuantityM2" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="TotalLineVolumeM2" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="TotalQuantityM3" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="TotalLineVolumeM3" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="Remarks" Type="nvarchar" MaxLength="100" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="EditedDate" Type="datetime" Nullable="false" />
+          <Property Name="Approved" Type="bit" Nullable="false" />
+          <Property Name="ApprovedDate" Type="datetime" />
+        </EntityType>
         <EntityType Name="GoodsIssueDetails">
           <Key>
             <PropertyRef Name="GoodsIssueDetailID" />
@@ -1225,6 +1276,42 @@
             </Principal>
             <Dependent Role="Employees">
               <PropertyRef Name="TeamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ForecastDetails_Forecasts">
+          <End Role="Forecasts" Type="Self.Forecasts" Multiplicity="1" />
+          <End Role="ForecastDetails" Type="Self.ForecastDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Forecasts">
+              <PropertyRef Name="ForecastID" />
+            </Principal>
+            <Dependent Role="ForecastDetails">
+              <PropertyRef Name="ForecastID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Forecasts_ForecastLocations">
+          <End Role="Locations" Type="Self.Locations" Multiplicity="1" />
+          <End Role="Forecasts" Type="Self.Forecasts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Locations">
+              <PropertyRef Name="LocationID" />
+            </Principal>
+            <Dependent Role="Forecasts">
+              <PropertyRef Name="ForecastLocationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Forecasts_Locations">
+          <End Role="Locations" Type="Self.Locations" Multiplicity="1" />
+          <End Role="Forecasts" Type="Self.Forecasts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Locations">
+              <PropertyRef Name="LocationID" />
+            </Principal>
+            <Dependent Role="Forecasts">
+              <PropertyRef Name="LocationID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2211,6 +2298,16 @@
         <Function Name="DeliveryAdviceVoidable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="EntityID" Type="int" Mode="In" />
         </Function>
+        <Function Name="ForecastEditable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ForecastPostSaveValidate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ForecastSaveRelative" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="int" Mode="In" />
+          <Parameter Name="SaveRelativeOption" Type="int" Mode="In" />
+        </Function>
         <Function Name="GetAccessLevel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserID" Type="int" Mode="In" />
           <Parameter Name="NMVNTaskID" Type="int" Mode="In" />
@@ -2316,6 +2413,14 @@
           <Parameter Name="UserID" Type="int" Mode="In" />
           <Parameter Name="FromDate" Type="datetime" Mode="In" />
           <Parameter Name="ToDate" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="GetForecastIndexes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserID" Type="int" Mode="In" />
+          <Parameter Name="FromDate" Type="datetime" Mode="In" />
+          <Parameter Name="ToDate" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="GetForecastViewDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ForecastID" Type="int" Mode="In" />
         </Function>
         <Function Name="GetGoodsIssueIndexes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserID" Type="int" Mode="In" />
@@ -2796,6 +2901,8 @@
           <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EntireTerritories" EntityType="Self.EntireTerritories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FillingLines" EntityType="Self.FillingLines" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ForecastDetails" EntityType="Self.ForecastDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Forecasts" EntityType="Self.Forecasts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GoodsIssueDetails" EntityType="Self.GoodsIssueDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GoodsIssues" EntityType="Self.GoodsIssues" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GoodsIssueTransferDetails" EntityType="Self.GoodsIssueTransferDetails" Schema="dbo" store:Type="Tables" />
@@ -2940,6 +3047,18 @@
           <AssociationSet Name="FK_Employees_Teams" Association="Self.FK_Employees_Teams">
             <End Role="Teams" EntitySet="Teams" />
             <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ForecastDetails_Forecasts" Association="Self.FK_ForecastDetails_Forecasts">
+            <End Role="Forecasts" EntitySet="Forecasts" />
+            <End Role="ForecastDetails" EntitySet="ForecastDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Forecasts_ForecastLocations" Association="Self.FK_Forecasts_ForecastLocations">
+            <End Role="Locations" EntitySet="Locations" />
+            <End Role="Forecasts" EntitySet="Forecasts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Forecasts_Locations" Association="Self.FK_Forecasts_Locations">
+            <End Role="Locations" EntitySet="Locations" />
+            <End Role="Forecasts" EntitySet="Forecasts" />
           </AssociationSet>
           <AssociationSet Name="FK_GoodsIssueDetails_Commodities" Association="Self.FK_GoodsIssueDetails_Commodities">
             <End Role="Commodities" EntitySet="Commodities" />
@@ -4355,12 +4474,44 @@
           </FunctionImport>
           <EntitySet Name="ColumnMappings" EntityType="TotalSmartCodingModel.ColumnMapping" />
           <FunctionImport Name="GetColumnMappings" EntitySet="ColumnMappings" ReturnType="Collection(TotalSmartCodingModel.ColumnMapping)">
-            <Parameter Name="MappingTaskID" Mode="In" Type="Int32" />
+          <Parameter Name="MappingTaskID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SaveColumnMapping">
             <Parameter Name="ColumnMappingID" Mode="In" Type="Int32" />
             <Parameter Name="ColumnMappingName" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="ForecastDetails" EntityType="TotalSmartCodingModel.ForecastDetail" />
+          <FunctionImport Name="ForecastEditable" ReturnType="Collection(String)">
+          <Parameter Name="EntityID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ForecastPostSaveValidate" ReturnType="Collection(String)">
+          <Parameter Name="EntityID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ForecastSaveRelative">
+            <Parameter Name="EntityID" Mode="In" Type="Int32" />
+            <Parameter Name="SaveRelativeOption" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetForecastIndexes" ReturnType="Collection(TotalSmartCodingModel.ForecastIndex)">
+            <Parameter Name="UserID" Mode="In" Type="Int32" />
+            <Parameter Name="FromDate" Mode="In" Type="DateTime" />
+            <Parameter Name="ToDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="GetForecastViewDetails" ReturnType="Collection(TotalSmartCodingModel.ForecastViewDetail)">
+          <Parameter Name="ForecastID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="Forecasts" EntityType="TotalSmartCodingModel.Forecast" />
+          <AssociationSet Name="FK_ForecastDetails_Forecasts" Association="TotalSmartCodingModel.FK_ForecastDetails_Forecasts">
+            <End Role="Forecast" EntitySet="Forecasts" />
+            <End Role="ForecastDetail" EntitySet="ForecastDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Forecasts_ForecastLocations" Association="TotalSmartCodingModel.FK_Forecasts_ForecastLocations">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="Forecast" EntitySet="Forecasts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Forecasts_Locations" Association="TotalSmartCodingModel.FK_Forecasts_Locations">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="Forecast" EntitySet="Forecasts" />
+          </AssociationSet>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
           <Property Type="Int32" Name="PickupID" Nullable="false" />
@@ -6502,7 +6653,9 @@
           <NavigationProperty Name="WarehouseAdjustments" Relationship="TotalSmartCodingModel.FK_WarehouseAdjustments_Locations" FromRole="Location" ToRole="WarehouseAdjustment" />
           <NavigationProperty Name="Employees" Relationship="TotalSmartCodingModel.FK_Employees_Locations" FromRole="Location" ToRole="Employee" />
           <NavigationProperty Name="GoodsIssues" Relationship="TotalSmartCodingModel.FK_GoodsIssues_Locations" FromRole="Location" ToRole="GoodsIssue" />
-        </EntityType>
+          <NavigationProperty Name="Forecasts" Relationship="TotalSmartCodingModel.FK_Forecasts_ForecastLocations" FromRole="Location" ToRole="Forecast" />
+          <NavigationProperty Name="Forecasts1" Relationship="TotalSmartCodingModel.FK_Forecasts_Locations" FromRole="Location" ToRole="Forecast" />
+          </EntityType>
         <Association Name="FK_DeliveryAdvices_Locations">
           <End Type="TotalSmartCodingModel.Location" Role="Location" Multiplicity="1" />
           <End Type="TotalSmartCodingModel.DeliveryAdvice" Role="DeliveryAdvice" Multiplicity="*" />
@@ -7689,6 +7842,129 @@
           <Property Name="OrderBy" Type="Int32" />
           <Property Name="ImportedDate" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
+        <EntityType Name="ForecastDetail">
+          <Key>
+            <PropertyRef Name="ForecastDetailID" />
+          </Key>
+          <Property Name="ForecastDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ForecastID" Type="Int32" Nullable="false" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Reference" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="VoucherCode" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="ForecastLocationID" Type="Int32" Nullable="false" />
+          <Property Name="LocationID" Type="Int32" Nullable="false" />
+          <Property Name="CommodityID" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="LineVolume" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="QuantityM1" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="LineVolumeM1" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="QuantityM2" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="LineVolumeM2" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="QuantityM3" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="LineVolumeM3" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Approved" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Forecast" Relationship="TotalSmartCodingModel.FK_ForecastDetails_Forecasts" FromRole="ForecastDetail" ToRole="Forecast" />
+        </EntityType>
+        <ComplexType Name="ForecastIndex">
+          <Property Type="Int32" Name="ForecastID" Nullable="false" />
+          <Property Type="DateTime" Name="EntryDate" Nullable="true" />
+          <Property Type="String" Name="Reference" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="VoucherCode" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="LocationCode" Nullable="false" MaxLength="10" />
+          <Property Type="Decimal" Name="TotalQuantity" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="TotalLineVolume" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="TotalQuantityM1" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="TotalLineVolumeM1" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="TotalQuantityM2" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="TotalLineVolumeM2" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="TotalQuantityM3" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="TotalLineVolumeM3" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="ForecastViewDetail">
+          <Property Type="Int32" Name="ForecastID" Nullable="false" />
+          <Property Type="Int32" Name="ForecastDetailID" Nullable="false" />
+          <Property Type="Int32" Name="CommodityID" Nullable="false" />
+          <Property Type="String" Name="Code" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="200" />
+          <Property Type="Decimal" Name="Quantity" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="LineVolume" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="QuantityM1" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="LineVolumeM1" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="QuantityM2" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="LineVolumeM2" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="QuantityM3" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="LineVolumeM3" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="Remarks" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <EntityType Name="Forecast">
+          <Key>
+            <PropertyRef Name="ForecastID" />
+          </Key>
+          <Property Name="ForecastID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Reference" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="VoucherCode" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="ForecastLocationID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="PreparedPersonID" Type="Int32" Nullable="false" />
+          <Property Name="OrganizationalUnitID" Type="Int32" Nullable="false" />
+          <Property Name="LocationID" Type="Int32" Nullable="false" />
+          <Property Name="TotalQuantity" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="TotalLineVolume" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="TotalQuantityM1" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="TotalLineVolumeM1" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="TotalQuantityM2" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="TotalLineVolumeM2" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="TotalQuantityM3" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="TotalLineVolumeM3" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EditedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Approved" Type="Boolean" Nullable="false" />
+          <Property Name="ApprovedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ForecastDetails" Relationship="TotalSmartCodingModel.FK_ForecastDetails_Forecasts" FromRole="Forecast" ToRole="ForecastDetail" />
+          <NavigationProperty Name="Location" Relationship="TotalSmartCodingModel.FK_Forecasts_ForecastLocations" FromRole="Forecast" ToRole="Location" />
+          <NavigationProperty Name="Location1" Relationship="TotalSmartCodingModel.FK_Forecasts_Locations" FromRole="Forecast" ToRole="Location" />
+        </EntityType>
+        <Association Name="FK_ForecastDetails_Forecasts">
+          <End Type="TotalSmartCodingModel.Forecast" Role="Forecast" Multiplicity="1" />
+          <End Type="TotalSmartCodingModel.ForecastDetail" Role="ForecastDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Forecast">
+              <PropertyRef Name="ForecastID" />
+            </Principal>
+            <Dependent Role="ForecastDetail">
+              <PropertyRef Name="ForecastID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Forecasts_ForecastLocations">
+          <End Type="TotalSmartCodingModel.Location" Role="Location" Multiplicity="1" />
+          <End Type="TotalSmartCodingModel.Forecast" Role="Forecast" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="LocationID" />
+            </Principal>
+            <Dependent Role="Forecast">
+              <PropertyRef Name="ForecastLocationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Forecasts_Locations">
+          <End Type="TotalSmartCodingModel.Location" Role="Location" Multiplicity="1" />
+          <End Type="TotalSmartCodingModel.Forecast" Role="Forecast" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="LocationID" />
+            </Principal>
+            <Dependent Role="Forecast">
+              <PropertyRef Name="LocationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -10022,6 +10298,102 @@
           <FunctionImportMapping FunctionImportName="GetColumnMappings" FunctionName="TotalSmartCodingModel.Store.GetColumnMappings">
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SaveColumnMapping" FunctionName="TotalSmartCodingModel.Store.SaveColumnMapping" />
+          <EntitySetMapping Name="ForecastDetails">
+            <EntityTypeMapping TypeName="TotalSmartCodingModel.ForecastDetail">
+              <MappingFragment StoreEntitySet="ForecastDetails">
+                <ScalarProperty Name="Approved" ColumnName="Approved" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="LineVolumeM3" ColumnName="LineVolumeM3" />
+                <ScalarProperty Name="QuantityM3" ColumnName="QuantityM3" />
+                <ScalarProperty Name="LineVolumeM2" ColumnName="LineVolumeM2" />
+                <ScalarProperty Name="QuantityM2" ColumnName="QuantityM2" />
+                <ScalarProperty Name="LineVolumeM1" ColumnName="LineVolumeM1" />
+                <ScalarProperty Name="QuantityM1" ColumnName="QuantityM1" />
+                <ScalarProperty Name="LineVolume" ColumnName="LineVolume" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="CommodityID" ColumnName="CommodityID" />
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+                <ScalarProperty Name="ForecastLocationID" ColumnName="ForecastLocationID" />
+                <ScalarProperty Name="VoucherCode" ColumnName="VoucherCode" />
+                <ScalarProperty Name="Reference" ColumnName="Reference" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="ForecastID" ColumnName="ForecastID" />
+                <ScalarProperty Name="ForecastDetailID" ColumnName="ForecastDetailID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="ForecastEditable" FunctionName="TotalSmartCodingModel.Store.ForecastEditable" />
+          <FunctionImportMapping FunctionImportName="ForecastPostSaveValidate" FunctionName="TotalSmartCodingModel.Store.ForecastPostSaveValidate" />
+          <FunctionImportMapping FunctionImportName="ForecastSaveRelative" FunctionName="TotalSmartCodingModel.Store.ForecastSaveRelative" />
+          <FunctionImportMapping FunctionImportName="GetForecastIndexes" FunctionName="TotalSmartCodingModel.Store.GetForecastIndexes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TotalSmartCodingModel.ForecastIndex">
+                <ScalarProperty Name="ForecastID" ColumnName="ForecastID" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="Reference" ColumnName="Reference" />
+                <ScalarProperty Name="VoucherCode" ColumnName="VoucherCode" />
+                <ScalarProperty Name="LocationCode" ColumnName="LocationCode" />
+                <ScalarProperty Name="TotalQuantity" ColumnName="TotalQuantity" />
+                <ScalarProperty Name="TotalLineVolume" ColumnName="TotalLineVolume" />
+                <ScalarProperty Name="TotalQuantityM1" ColumnName="TotalQuantityM1" />
+                <ScalarProperty Name="TotalLineVolumeM1" ColumnName="TotalLineVolumeM1" />
+                <ScalarProperty Name="TotalQuantityM2" ColumnName="TotalQuantityM2" />
+                <ScalarProperty Name="TotalLineVolumeM2" ColumnName="TotalLineVolumeM2" />
+                <ScalarProperty Name="TotalQuantityM3" ColumnName="TotalQuantityM3" />
+                <ScalarProperty Name="TotalLineVolumeM3" ColumnName="TotalLineVolumeM3" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetForecastViewDetails" FunctionName="TotalSmartCodingModel.Store.GetForecastViewDetails">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TotalSmartCodingModel.ForecastViewDetail">
+                <ScalarProperty Name="ForecastID" ColumnName="ForecastID" />
+                <ScalarProperty Name="ForecastDetailID" ColumnName="ForecastDetailID" />
+                <ScalarProperty Name="CommodityID" ColumnName="CommodityID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="LineVolume" ColumnName="LineVolume" />
+                <ScalarProperty Name="QuantityM1" ColumnName="QuantityM1" />
+                <ScalarProperty Name="LineVolumeM1" ColumnName="LineVolumeM1" />
+                <ScalarProperty Name="QuantityM2" ColumnName="QuantityM2" />
+                <ScalarProperty Name="LineVolumeM2" ColumnName="LineVolumeM2" />
+                <ScalarProperty Name="QuantityM3" ColumnName="QuantityM3" />
+                <ScalarProperty Name="LineVolumeM3" ColumnName="LineVolumeM3" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Forecasts">
+            <EntityTypeMapping TypeName="TotalSmartCodingModel.Forecast">
+              <MappingFragment StoreEntitySet="Forecasts">
+                <ScalarProperty Name="ApprovedDate" ColumnName="ApprovedDate" />
+                <ScalarProperty Name="Approved" ColumnName="Approved" />
+                <ScalarProperty Name="EditedDate" ColumnName="EditedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="TotalLineVolumeM3" ColumnName="TotalLineVolumeM3" />
+                <ScalarProperty Name="TotalQuantityM3" ColumnName="TotalQuantityM3" />
+                <ScalarProperty Name="TotalLineVolumeM2" ColumnName="TotalLineVolumeM2" />
+                <ScalarProperty Name="TotalQuantityM2" ColumnName="TotalQuantityM2" />
+                <ScalarProperty Name="TotalLineVolumeM1" ColumnName="TotalLineVolumeM1" />
+                <ScalarProperty Name="TotalQuantityM1" ColumnName="TotalQuantityM1" />
+                <ScalarProperty Name="TotalLineVolume" ColumnName="TotalLineVolume" />
+                <ScalarProperty Name="TotalQuantity" ColumnName="TotalQuantity" />
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+                <ScalarProperty Name="OrganizationalUnitID" ColumnName="OrganizationalUnitID" />
+                <ScalarProperty Name="PreparedPersonID" ColumnName="PreparedPersonID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ForecastLocationID" ColumnName="ForecastLocationID" />
+                <ScalarProperty Name="VoucherCode" ColumnName="VoucherCode" />
+                <ScalarProperty Name="Reference" ColumnName="Reference" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="ForecastID" ColumnName="ForecastID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -78,7 +78,7 @@
             Warehouse = 8006,
             BinLocation = 8008,
             Territory = 8007,
-            
+
 
             PurchaseOrder = 8021,
             PurchaseInvoice = 8022,
@@ -103,6 +103,8 @@
             TransferOrder = 8071,
 
             Pickup = 8068,
+
+            Forecast = 8076,
 
             Report = 91976999
 
@@ -360,7 +362,7 @@
             PivotStockDIOH3MAndDRP = 817,
 
             CurrentWarehouse = 832,
-            
+
 
             SaleAndProduction = 868,
             OldAndSlowMoving = 869,

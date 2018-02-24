@@ -838,6 +838,27 @@ namespace TotalModel.Models
 
 
 
+    public partial class ForecastIndex : IBaseIndex
+    {
+        public int Id { get { return this.ForecastID; } }
+        public int ImageID { get { return 0; } }
+    }
+
+    public partial class Forecast : IPrimitiveEntity, IBaseEntity, IBaseDetailEntity<ForecastDetail>
+    {
+        public int GetID() { return this.ForecastID; }
+
+        public virtual Location ForecastLocation { get { return this.Location1; } }
+
+        public ICollection<ForecastDetail> GetDetails() { return this.ForecastDetails; }
+    }
+
+    public partial class ForecastDetail : IPrimitiveEntity, IHelperEntryDate
+    {
+        public int GetID() { return this.ForecastDetailID; }
+    }
+
+
 
     public partial class SalesOrderIndex : IBaseIndex
     {

@@ -153,6 +153,11 @@
         <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssues_Warehouses" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsIssues_Warehouses1" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.ColumnMapping" Width="1.5" PointX="7.375" PointY="4.75" />
+        <EntityTypeShape EntityType="TotalSmartCodingModel.ForecastDetail" Width="1.5" PointX="24.625" PointY="1.75" />
+        <EntityTypeShape EntityType="TotalSmartCodingModel.Forecast" Width="1.5" PointX="3.25" PointY="27.375" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_ForecastDetails_Forecasts" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_Forecasts_ForecastLocations" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_Forecasts_Locations" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

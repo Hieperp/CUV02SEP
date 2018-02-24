@@ -71,6 +71,8 @@ namespace TotalModel.Models
         public virtual DbSet<Report> Reports { get; set; }
         public virtual DbSet<GoodsIssue> GoodsIssues { get; set; }
         public virtual DbSet<ColumnMapping> ColumnMappings { get; set; }
+        public virtual DbSet<ForecastDetail> ForecastDetails { get; set; }
+        public virtual DbSet<Forecast> Forecasts { get; set; }
     
         public virtual ObjectResult<Nullable<int>> GetAccessLevel(Nullable<int> userID, Nullable<int> nMVNTaskID, Nullable<int> organizationalUnitID)
         {
@@ -2333,6 +2335,63 @@ namespace TotalModel.Models
                 new ObjectParameter("ColumnMappingName", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SaveColumnMapping", columnMappingIDParameter, columnMappingNameParameter);
+        }
+    
+        public virtual ObjectResult<string> ForecastEditable(Nullable<int> entityID)
+        {
+            var entityIDParameter = entityID.HasValue ?
+                new ObjectParameter("EntityID", entityID) :
+                new ObjectParameter("EntityID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("ForecastEditable", entityIDParameter);
+        }
+    
+        public virtual ObjectResult<string> ForecastPostSaveValidate(Nullable<int> entityID)
+        {
+            var entityIDParameter = entityID.HasValue ?
+                new ObjectParameter("EntityID", entityID) :
+                new ObjectParameter("EntityID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("ForecastPostSaveValidate", entityIDParameter);
+        }
+    
+        public virtual int ForecastSaveRelative(Nullable<int> entityID, Nullable<int> saveRelativeOption)
+        {
+            var entityIDParameter = entityID.HasValue ?
+                new ObjectParameter("EntityID", entityID) :
+                new ObjectParameter("EntityID", typeof(int));
+    
+            var saveRelativeOptionParameter = saveRelativeOption.HasValue ?
+                new ObjectParameter("SaveRelativeOption", saveRelativeOption) :
+                new ObjectParameter("SaveRelativeOption", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ForecastSaveRelative", entityIDParameter, saveRelativeOptionParameter);
+        }
+    
+        public virtual ObjectResult<ForecastIndex> GetForecastIndexes(Nullable<int> userID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
+        {
+            var userIDParameter = userID.HasValue ?
+                new ObjectParameter("UserID", userID) :
+                new ObjectParameter("UserID", typeof(int));
+    
+            var fromDateParameter = fromDate.HasValue ?
+                new ObjectParameter("FromDate", fromDate) :
+                new ObjectParameter("FromDate", typeof(System.DateTime));
+    
+            var toDateParameter = toDate.HasValue ?
+                new ObjectParameter("ToDate", toDate) :
+                new ObjectParameter("ToDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ForecastIndex>("GetForecastIndexes", userIDParameter, fromDateParameter, toDateParameter);
+        }
+    
+        public virtual ObjectResult<ForecastViewDetail> GetForecastViewDetails(Nullable<int> forecastID)
+        {
+            var forecastIDParameter = forecastID.HasValue ?
+                new ObjectParameter("ForecastID", forecastID) :
+                new ObjectParameter("ForecastID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ForecastViewDetail>("GetForecastViewDetails", forecastIDParameter);
         }
     }
 }

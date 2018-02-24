@@ -81,6 +81,17 @@ namespace TotalDAL.Repositories
             }
 
 
+            if (this.totalSmartCodingEntities.ColumnExists("Forecasts", "SalespersonID"))
+            {
+                this.totalSmartCodingEntities.ColumnDrop("Forecasts", "SalespersonID");
+
+                this.ExecuteStoreCommand("ALTER TABLE Forecasts WITH CHECK ADD CONSTRAINT FK_Forecasts_Locations FOREIGN KEY(LocationID) REFERENCES dbo.Locations (LocationID)", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("ALTER TABLE Forecasts CHECK CONSTRAINT FK_Forecasts_Locations", new ObjectParameter[] { });
+
+                this.ExecuteStoreCommand("ALTER TABLE Forecasts WITH CHECK ADD CONSTRAINT FK_Forecasts_ForecastLocations FOREIGN KEY(ForecastLocationID) REFERENCES dbo.Locations (LocationID)", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("ALTER TABLE Forecasts CHECK CONSTRAINT FK_Forecasts_ForecastLocations", new ObjectParameter[] { });
+            }
+
             #region REMOVE FirstName, LastName
             //if (this.totalSmartCodingEntities.ColumnExists("Users", "FirstName"))
             //{
@@ -106,6 +117,11 @@ namespace TotalDAL.Repositories
         private void CreateStoredProcedure()
         {
             //return;
+
+            Helpers.SqlProgrammability.Sales.Forecast forecast = new Helpers.SqlProgrammability.Sales.Forecast(totalSmartCodingEntities);
+            forecast.RestoreProcedure();
+
+            return;
 
             Helpers.SqlProgrammability.Generals.OleDb oleDb = new Helpers.SqlProgrammability.Generals.OleDb(totalSmartCodingEntities);
             oleDb.RestoreProcedure();
