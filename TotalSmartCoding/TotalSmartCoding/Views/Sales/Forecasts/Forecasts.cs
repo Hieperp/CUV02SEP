@@ -42,8 +42,8 @@ namespace TotalSmartCoding.Views.Sales.Forecasts
         private CustomTabControl customTabLeft;
         private CustomTabControl customTabCenter;
 
-        private ForecastAPIs salesOrderAPIs;
-        private ForecastViewModel salesOrderViewModel { get; set; }
+        private ForecastAPIs forecastAPIs;
+        private ForecastViewModel forecastViewModel { get; set; }
 
         public Forecasts()
             : base()
@@ -54,11 +54,11 @@ namespace TotalSmartCoding.Views.Sales.Forecasts
             this.toolstripChild = this.toolStripChildForm;
             this.fastListIndex = this.fastForecastIndex;
 
-            this.salesOrderAPIs = new ForecastAPIs(CommonNinject.Kernel.Get<IForecastAPIRepository>());
+            this.forecastAPIs = new ForecastAPIs(CommonNinject.Kernel.Get<IForecastAPIRepository>());
 
-            this.salesOrderViewModel = CommonNinject.Kernel.Get<ForecastViewModel>();
-            this.salesOrderViewModel.PropertyChanged += new PropertyChangedEventHandler(ModelDTO_PropertyChanged);
-            this.baseDTO = this.salesOrderViewModel;
+            this.forecastViewModel = CommonNinject.Kernel.Get<ForecastViewModel>();
+            this.forecastViewModel.PropertyChanged += new PropertyChangedEventHandler(ModelDTO_PropertyChanged);
+            this.baseDTO = this.forecastViewModel;
         }
 
         protected override void InitializeTabControl()
@@ -128,18 +128,18 @@ namespace TotalSmartCoding.Views.Sales.Forecasts
         {
             base.InitializeCommonControlBinding();
 
-            this.bindingEntryDate = this.dateTimexEntryDate.DataBindings.Add("Value", this.salesOrderViewModel, CommonExpressions.PropertyName<ForecastDTO>(p => p.EntryDate), true, DataSourceUpdateMode.OnPropertyChanged);
-            this.bindingReference = this.textexReference.DataBindings.Add("Text", this.salesOrderViewModel, CommonExpressions.PropertyName<ForecastDTO>(p => p.Reference), true, DataSourceUpdateMode.OnPropertyChanged);
-            this.bindingVoucherCode = this.textexVoucherCode.DataBindings.Add("Text", this.salesOrderViewModel, CommonExpressions.PropertyName<ForecastDTO>(p => p.VoucherCode), true, DataSourceUpdateMode.OnPropertyChanged);
-            this.bindingDescription = this.textexDescription.DataBindings.Add("Text", this.salesOrderViewModel, CommonExpressions.PropertyName<ForecastDTO>(p => p.Description), true, DataSourceUpdateMode.OnPropertyChanged);
-            this.bindingRemarks = this.textexRemarks.DataBindings.Add("Text", this.salesOrderViewModel, CommonExpressions.PropertyName<ForecastDTO>(p => p.Remarks), true, DataSourceUpdateMode.OnPropertyChanged);
-            this.bindingCaption = this.labelCaption.DataBindings.Add("Text", this.salesOrderViewModel, CommonExpressions.PropertyName<ForecastDTO>(p => p.Caption));
+            this.bindingEntryDate = this.dateTimexEntryDate.DataBindings.Add("Value", this.forecastViewModel, CommonExpressions.PropertyName<ForecastDTO>(p => p.EntryDate), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingReference = this.textexReference.DataBindings.Add("Text", this.forecastViewModel, CommonExpressions.PropertyName<ForecastDTO>(p => p.Reference), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingVoucherCode = this.textexVoucherCode.DataBindings.Add("Text", this.forecastViewModel, CommonExpressions.PropertyName<ForecastDTO>(p => p.VoucherCode), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingDescription = this.textexDescription.DataBindings.Add("Text", this.forecastViewModel, CommonExpressions.PropertyName<ForecastDTO>(p => p.Description), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingRemarks = this.textexRemarks.DataBindings.Add("Text", this.forecastViewModel, CommonExpressions.PropertyName<ForecastDTO>(p => p.Remarks), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingCaption = this.labelCaption.DataBindings.Add("Text", this.forecastViewModel, CommonExpressions.PropertyName<ForecastDTO>(p => p.Caption));
 
             LocationAPIs locationAPIs = new LocationAPIs(CommonNinject.Kernel.Get<ILocationAPIRepository>());
             this.combexForecastLocationID.DataSource = locationAPIs.GetLocationBases();
             this.combexForecastLocationID.DisplayMember = CommonExpressions.PropertyName<LocationBase>(p => p.Name);
             this.combexForecastLocationID.ValueMember = CommonExpressions.PropertyName<LocationBase>(p => p.LocationID);
-            this.bindingForecastLocationID = this.combexForecastLocationID.DataBindings.Add("SelectedValue", this.salesOrderViewModel, CommonExpressions.PropertyName<ForecastViewModel>(p => p.ForecastLocationID), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingForecastLocationID = this.combexForecastLocationID.DataBindings.Add("SelectedValue", this.forecastViewModel, CommonExpressions.PropertyName<ForecastViewModel>(p => p.ForecastLocationID), true, DataSourceUpdateMode.OnPropertyChanged);
 
             
             this.bindingEntryDate.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
@@ -166,7 +166,7 @@ namespace TotalSmartCoding.Views.Sales.Forecasts
                 if (sender.Equals(this.bindingForecastLocationID) && this.combexForecastLocationID.SelectedItem != null)
                 {
                     LocationBase locationBase = (LocationBase)this.combexForecastLocationID.SelectedItem;
-                    this.salesOrderViewModel.ForecastLocationName = locationBase.Name;
+                    this.forecastViewModel.ForecastLocationName = locationBase.Name;
                 }
             }
         }
@@ -193,11 +193,11 @@ namespace TotalSmartCoding.Views.Sales.Forecasts
             this.gridexViewDetails.AutoGenerateColumns = false;
             this.gridexViewDetails.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-            this.bindingSourceViewDetails.DataSource = this.salesOrderViewModel.ViewDetails;
+            this.bindingSourceViewDetails.DataSource = this.forecastViewModel.ViewDetails;
             this.gridexViewDetails.DataSource = this.bindingSourceViewDetails;
 
             this.bindingSourceViewDetails.AddingNew += bindingSourceViewDetails_AddingNew;
-            this.salesOrderViewModel.ViewDetails.ListChanged += ViewDetails_ListChanged;
+            this.forecastViewModel.ViewDetails.ListChanged += ViewDetails_ListChanged;
             this.gridexViewDetails.EditingControlShowing += new DataGridViewEditingControlShowingEventHandler(this.dataGridViewDetails_EditingControlShowing);
             this.gridexViewDetails.ReadOnlyChanged += new System.EventHandler(this.dataGrid_ReadOnlyChanged);
 
@@ -228,24 +228,24 @@ namespace TotalSmartCoding.Views.Sales.Forecasts
         private void ViewDetails_ListChanged(object sender, ListChangedEventArgs e)
         {
             if (e.ListChangedType == ListChangedType.ItemAdded || e.ListChangedType == ListChangedType.ItemDeleted || e.ListChangedType == ListChangedType.Reset)
-                this.customTabCenter.TabPages[0].Text = "Order Lines [" + this.salesOrderViewModel.ViewDetails.Count.ToString("N0") + " item(s)]             ";
+                this.customTabCenter.TabPages[0].Text = "Order Lines [" + this.forecastViewModel.ViewDetails.Count.ToString("N0") + " item(s)]             ";
 
-            if (this.EditableMode && e.PropertyDescriptor != null && e.NewIndex >= 0 && e.NewIndex < this.salesOrderViewModel.ViewDetails.Count)
+            if (this.EditableMode && e.PropertyDescriptor != null && e.NewIndex >= 0 && e.NewIndex < this.forecastViewModel.ViewDetails.Count)
             {
-                ForecastDetailDTO salesOrderDetailDTO = this.salesOrderViewModel.ViewDetails[e.NewIndex];
-                if (salesOrderDetailDTO != null)
-                    this.CalculateQuantityDetailDTO(salesOrderDetailDTO, e.PropertyDescriptor.Name, null, null);
+                ForecastDetailDTO forecastDetailDTO = this.forecastViewModel.ViewDetails[e.NewIndex];
+                //if (forecastDetailDTO != null)
+                //    this.CalculateQuantityDetailDTO(forecastDetailDTO, e.PropertyDescriptor.Name, null, null);
             }
         }
 
         protected override Controllers.BaseController myController
         {
-            get { return new ForecastController(CommonNinject.Kernel.Get<IForecastService>(), this.salesOrderViewModel); }
+            get { return new ForecastController(CommonNinject.Kernel.Get<IForecastService>(), this.forecastViewModel); }
         }
 
         public override void Loading()
         {
-            this.fastForecastIndex.SetObjects(this.salesOrderAPIs.GetForecastIndexes());
+            this.fastForecastIndex.SetObjects(this.forecastAPIs.GetForecastIndexes());
 
             base.Loading();
         }
@@ -258,7 +258,7 @@ namespace TotalSmartCoding.Views.Sales.Forecasts
 
         protected override DialogResult wizardMaster()
         {
-            WizardMaster wizardMaster = new WizardMaster(this.salesOrderViewModel);
+            WizardMaster wizardMaster = new WizardMaster(this.forecastViewModel);
             DialogResult dialogResult = wizardMaster.ShowDialog();
 
             wizardMaster.Dispose();

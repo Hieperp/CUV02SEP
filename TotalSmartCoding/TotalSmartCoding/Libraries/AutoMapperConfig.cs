@@ -45,6 +45,12 @@ namespace TotalSmartCoding.Libraries
                 cfg.CreateMap<GoodsReceiptDetailDTO, GoodsReceiptDetail>();
 
 
+                cfg.CreateMap<Forecast, ForecastViewModel>();
+                cfg.CreateMap<Forecast, ForecastDTO>();
+                cfg.CreateMap<ForecastPrimitiveDTO, Forecast>();
+                cfg.CreateMap<ForecastViewDetail, ForecastDetailDTO>();
+                cfg.CreateMap<ForecastDetailDTO, ForecastDetail>();
+
                 cfg.CreateMap<SalesOrder, SalesOrderViewModel>();
                 cfg.CreateMap<SalesOrder, SalesOrderDTO>();
                 cfg.CreateMap<SalesOrderPrimitiveDTO, SalesOrder>();

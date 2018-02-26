@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing;
 using System.Windows.Forms;
 using System.ComponentModel;
 
@@ -8,89 +7,58 @@ using Ninject;
 using TotalBase;
 using TotalModel.Models;
 using TotalCore.Repositories.Commons;
-using TotalSmartCoding.Controllers.APIs.Commons;
-using TotalSmartCoding.Controllers.APIs.Sales;
+
 using TotalSmartCoding.Libraries;
 using TotalSmartCoding.Libraries.Helpers;
 using TotalSmartCoding.ViewModels.Sales;
-using TotalBase.Enums;
-
+using TotalSmartCoding.Controllers.APIs.Commons;
 
 namespace TotalSmartCoding.Views.Sales.Forecasts
 {
     public partial class WizardMaster : Form
     {
-        private ForecastViewModel salesOrderViewModel;
+        private ForecastViewModel forecastViewModel;
 
-        Binding bindingCustomerID;
-        Binding bindingReceiverID;
-        Binding bindingSalespersonID;
+        Binding bindingForecastLocationID;
 
-        Binding bindingVoucherCode;
         Binding bindingEntryDate;
-        Binding bindingDeliveryDate;
-        Binding bindingCustomerName;
-        Binding bindingContactInfo;
-        Binding bindingReceiverName;
-        Binding bindingShippingAddress;
+        Binding bindingVoucherCode;
+        Binding bindingDescription;
         Binding bindingRemarks;
 
-        public WizardMaster(ForecastViewModel salesOrderViewModel)
+        public WizardMaster(ForecastViewModel forecastViewModel)
         {
             InitializeComponent();
 
-            this.salesOrderViewModel = salesOrderViewModel;
+            this.forecastViewModel = forecastViewModel;
         }
 
         private void WizardMaster_Load(object sender, EventArgs e)
         {
             try
             {
-                this.salesOrderViewModel.PropertyChanged += salesOrderDetailDTO_PropertyChanged;
+                this.forecastViewModel.PropertyChanged += forecastDetailDTO_PropertyChanged;
 
-                CustomerAPIs customerAPIs = new CustomerAPIs(CommonNinject.Kernel.Get<ICustomerAPIRepository>());
+                LocationAPIs locationAPIs = new LocationAPIs(CommonNinject.Kernel.Get<ILocationAPIRepository>());
+                this.combexForecastLocationID.DataSource = locationAPIs.GetLocationBases();
+                this.combexForecastLocationID.DisplayMember = CommonExpressions.PropertyName<LocationBase>(p => p.Name);
+                this.combexForecastLocationID.ValueMember = CommonExpressions.PropertyName<LocationBase>(p => p.LocationID);
+                this.bindingForecastLocationID = this.combexForecastLocationID.DataBindings.Add("SelectedValue", this.forecastViewModel, CommonExpressions.PropertyName<ForecastViewModel>(p => p.ForecastLocationID), true, DataSourceUpdateMode.OnPropertyChanged);
 
-                this.combexCustomerID.DataSource = customerAPIs.GetCustomerBases();
-                this.combexCustomerID.DisplayMember = CommonExpressions.PropertyName<CustomerBase>(p => p.Code);
-                this.combexCustomerID.ValueMember = CommonExpressions.PropertyName<CustomerBase>(p => p.CustomerID);
-                this.bindingCustomerID = this.combexCustomerID.DataBindings.Add("SelectedValue", this.salesOrderViewModel, CommonExpressions.PropertyName<ForecastViewModel>(p => p.CustomerID), true, DataSourceUpdateMode.OnPropertyChanged);
 
-                CustomerAPIs receiverAPIs = new CustomerAPIs(CommonNinject.Kernel.Get<ICustomerAPIRepository>());
-                this.combexReceiverID.DataSource = receiverAPIs.GetCustomerBases();
-                this.combexReceiverID.DisplayMember = CommonExpressions.PropertyName<CustomerBase>(p => p.Code);
-                this.combexReceiverID.ValueMember = CommonExpressions.PropertyName<CustomerBase>(p => p.CustomerID);
-                this.bindingReceiverID = this.combexReceiverID.DataBindings.Add("SelectedValue", this.salesOrderViewModel, CommonExpressions.PropertyName<ForecastViewModel>(p => p.ReceiverID), true, DataSourceUpdateMode.OnPropertyChanged);
+                this.bindingEntryDate = this.dateTimexEntryDate.DataBindings.Add("Value", this.forecastViewModel, CommonExpressions.PropertyName<ForecastViewModel>(p => p.EntryDate), true, DataSourceUpdateMode.OnPropertyChanged);
+                this.bindingVoucherCode = this.textexVoucherCode.DataBindings.Add("Text", this.forecastViewModel, CommonExpressions.PropertyName<ForecastViewModel>(p => p.VoucherCode), true, DataSourceUpdateMode.OnPropertyChanged);
+                this.bindingDescription = this.textexDescription.DataBindings.Add("Text", this.forecastViewModel, CommonExpressions.PropertyName<ForecastViewModel>(p => p.Description), true, DataSourceUpdateMode.OnPropertyChanged);
+                this.bindingRemarks = this.textexRemarks.DataBindings.Add("Text", this.forecastViewModel, CommonExpressions.PropertyName<ForecastViewModel>(p => p.Remarks), true, DataSourceUpdateMode.OnPropertyChanged);
 
-                EmployeeAPIs employeeAPIs = new EmployeeAPIs(CommonNinject.Kernel.Get<IEmployeeAPIRepository>());
+                this.bindingForecastLocationID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
 
-                this.combexSalespersonID.DataSource = employeeAPIs.GetEmployeeBases(ContextAttributes.User.UserID, (int)this.salesOrderViewModel.NMVNTaskID, (int)GlobalEnums.RoleID.Saleperson);
-                this.combexSalespersonID.DisplayMember = CommonExpressions.PropertyName<EmployeeBase>(p => p.Name);
-                this.combexSalespersonID.ValueMember = CommonExpressions.PropertyName<EmployeeBase>(p => p.EmployeeID);
-                this.bindingSalespersonID = this.combexSalespersonID.DataBindings.Add("SelectedValue", this.salesOrderViewModel, CommonExpressions.PropertyName<ForecastViewModel>(p => p.SalespersonID), true, DataSourceUpdateMode.OnPropertyChanged);
-
-                this.bindingVoucherCode = this.textexVoucherCode.DataBindings.Add("Text", this.salesOrderViewModel, CommonExpressions.PropertyName<ForecastViewModel>(p => p.VoucherCode), true, DataSourceUpdateMode.OnPropertyChanged);
-                this.bindingEntryDate = this.dateTimexEntryDate.DataBindings.Add("Value", this.salesOrderViewModel, CommonExpressions.PropertyName<ForecastViewModel>(p => p.EntryDate), true, DataSourceUpdateMode.OnPropertyChanged);
-                this.bindingDeliveryDate = this.dateTimexDeliveryDate.DataBindings.Add("Value", this.salesOrderViewModel, CommonExpressions.PropertyName<ForecastViewModel>(p => p.DeliveryDate), true, DataSourceUpdateMode.OnPropertyChanged);
-                this.bindingCustomerName = this.textexCustomerName.DataBindings.Add("Text", this.salesOrderViewModel, CommonExpressions.PropertyName<ForecastViewModel>(p => p.CustomerName), true, DataSourceUpdateMode.OnPropertyChanged);
-                this.bindingContactInfo = this.textexContactInfo.DataBindings.Add("Text", this.salesOrderViewModel, CommonExpressions.PropertyName<ForecastViewModel>(p => p.ContactInfo), true, DataSourceUpdateMode.OnPropertyChanged);
-                this.bindingReceiverName = this.textexReceiverName.DataBindings.Add("Text", this.salesOrderViewModel, CommonExpressions.PropertyName<ForecastViewModel>(p => p.ReceiverName), true, DataSourceUpdateMode.OnPropertyChanged);
-                this.bindingShippingAddress = this.textexShippingAddress.DataBindings.Add("Text", this.salesOrderViewModel, CommonExpressions.PropertyName<ForecastViewModel>(p => p.ShippingAddress), true, DataSourceUpdateMode.OnPropertyChanged);
-                this.bindingRemarks = this.textexRemarks.DataBindings.Add("Text", this.salesOrderViewModel, CommonExpressions.PropertyName<ForecastViewModel>(p => p.Remarks), true, DataSourceUpdateMode.OnPropertyChanged);
-
-                this.bindingCustomerID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
-                this.bindingReceiverID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
-                this.bindingSalespersonID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
-
-                this.bindingVoucherCode.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
                 this.bindingEntryDate.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
-                this.bindingDeliveryDate.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
-                this.bindingCustomerName.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
-                this.bindingContactInfo.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
-                this.bindingReceiverName.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
-                this.bindingShippingAddress.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+                this.bindingVoucherCode.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+                this.bindingDescription.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
                 this.bindingRemarks.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
 
-                this.errorProviderMaster.DataSource = this.salesOrderViewModel;
+                this.errorProviderMaster.DataSource = this.forecastViewModel;
             }
             catch (Exception exception)
             {
@@ -98,32 +66,18 @@ namespace TotalSmartCoding.Views.Sales.Forecasts
             }
         }
 
-        private void salesOrderDetailDTO_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void forecastDetailDTO_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            this.buttonOK.Enabled = this.salesOrderViewModel.IsValid;
+            this.buttonOK.Enabled = this.forecastViewModel.IsValid;
         }
 
         private void CommonControl_BindingComplete(object sender, BindingCompleteEventArgs e)
         {
             if (e.BindingCompleteState == BindingCompleteState.Exception) { ExceptionHandlers.ShowExceptionMessageBox(this, e.ErrorText); e.Cancel = true; }
-            if (sender.Equals(this.bindingSalespersonID) && this.combexSalespersonID.SelectedItem != null)
+            if (sender.Equals(this.bindingForecastLocationID) && this.combexForecastLocationID.SelectedItem != null)
             {
-                EmployeeBase customerBase = (EmployeeBase)this.combexSalespersonID.SelectedItem;
-                this.salesOrderViewModel.TeamID = customerBase.TeamID;
-            }
-            if (sender.Equals(this.bindingCustomerID) && this.combexCustomerID.SelectedItem != null)
-            {
-                CustomerBase customerBase = (CustomerBase)this.combexCustomerID.SelectedItem;
-                this.salesOrderViewModel.CustomerName = customerBase.Name;
-                this.salesOrderViewModel.ContactInfo = customerBase.ContactInfo;
-                this.salesOrderViewModel.SalespersonID = customerBase.SalespersonID;
-                //this.salesOrderViewModel.ReceiverID = customerBase.CustomerID;
-            }
-            if (sender.Equals(this.bindingReceiverID) && this.combexReceiverID.SelectedItem != null)
-            {
-                CustomerBase customerBase = (CustomerBase)this.combexReceiverID.SelectedItem;
-                this.salesOrderViewModel.ReceiverName = customerBase.Name;
-                this.salesOrderViewModel.ShippingAddress = customerBase.ShippingAddress;
+                LocationBase locationBase = (LocationBase)this.combexForecastLocationID.SelectedItem;
+                this.forecastViewModel.ForecastLocationName = locationBase.Name;
             }
         }
 
@@ -133,15 +87,14 @@ namespace TotalSmartCoding.Views.Sales.Forecasts
             {
                 if (sender.Equals(this.buttonOK))
                 {
-                    if (this.salesOrderViewModel.CustomerID != null && this.salesOrderViewModel.ReceiverID != null && this.salesOrderViewModel.SalespersonID != null)
+                    if (this.forecastViewModel.ForecastLocationID != null)
                         this.DialogResult = DialogResult.OK;
                     else
-                        CustomMsgBox.Show(this, "Vui lòng chọn khách hàng, nhân viên kinh doanh.", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Stop);
+                        CustomMsgBox.Show(this, "Vui lòng chọn forecast location.", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Stop);
                 }
 
                 if (sender.Equals(this.buttonESC))
                     this.DialogResult = DialogResult.Cancel;
-
 
             }
             catch (Exception exception)

@@ -80,6 +80,11 @@ namespace TotalSmartCoding.Libraries
                 Kernel.Bind<GoodsReceiptViewModel>().ToSelf();
                 Kernel.Bind<GoodsReceiptDetailAvailableDTO>().ToSelf();
 
+                Kernel.Bind<IForecastService>().To<ForecastService>();
+                Kernel.Bind<IForecastRepository>().To<ForecastRepository>();
+                Kernel.Bind<IForecastAPIRepository>().To<ForecastAPIRepository>();
+                Kernel.Bind<ForecastViewModel>().ToSelf();
+
                 Kernel.Bind<ISalesOrderService>().To<SalesOrderService>();
                 Kernel.Bind<ISalesOrderRepository>().To<SalesOrderRepository>();
                 Kernel.Bind<ISalesOrderAPIRepository>().To<SalesOrderAPIRepository>();
