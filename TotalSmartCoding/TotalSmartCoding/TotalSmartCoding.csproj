@@ -124,6 +124,7 @@
     <Compile Include="Controllers\APIs\Productions\CartonAPIs.cs" />
     <Compile Include="Controllers\APIs\Productions\ScannerAPIs.cs" />
     <Compile Include="Controllers\APIs\Sales\DeliveryAdviceAPIs.cs" />
+    <Compile Include="Controllers\APIs\Sales\ForecastAPIs.cs" />
     <Compile Include="Controllers\APIs\Sales\SalesOrderAPIs.cs" />
     <Compile Include="Controllers\APIs\Sales\TransferOrderAPIs.cs" />
     <Compile Include="Controllers\Commons\BinLocationController.cs" />
@@ -134,6 +135,7 @@
     <Compile Include="Controllers\Inventories\PickupController.cs" />
     <Compile Include="Controllers\Inventories\WarehouseAdjustmentController.cs" />
     <Compile Include="Controllers\Sales\DeliveryAdviceController.cs" />
+    <Compile Include="Controllers\Sales\ForecastController.cs" />
     <Compile Include="Controllers\Sales\SalesOrderController.cs" />
     <Compile Include="Controllers\Sales\TransferOrderController.cs" />
     <Compile Include="Libraries\AutoMapperConfig.cs" />
@@ -194,6 +196,7 @@
     <Compile Include="ViewModels\Productions\PackViewModel.cs" />
     <Compile Include="ViewModels\Productions\PalletViewModel.cs" />
     <Compile Include="ViewModels\Sales\DeliveryAdviceViewModel.cs" />
+    <Compile Include="ViewModels\Sales\ForecastViewModel.cs" />
     <Compile Include="ViewModels\Sales\SalesOrderViewModel.cs" />
     <Compile Include="ViewModels\Sales\TransferOrderViewModel.cs" />
     <Compile Include="Views\Commons\BinLocations\BinLocations.cs">
@@ -422,6 +425,18 @@
     <Compile Include="Views\Sales\DeliveryAdvices\WizardMaster.designer.cs">
       <DependentUpon>WizardMaster.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Sales\Forecasts\Forecasts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Sales\Forecasts\Forecasts.designer.cs">
+      <DependentUpon>Forecasts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sales\Forecasts\WizardMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Sales\Forecasts\WizardMaster.designer.cs">
+      <DependentUpon>WizardMaster.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Sales\OptionBatches.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -571,6 +586,12 @@
       <DependentUpon>WizardDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Sales\DeliveryAdvices\WizardMaster.resx">
+      <DependentUpon>WizardMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Sales\Forecasts\Forecasts.resx">
+      <DependentUpon>Forecasts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Sales\Forecasts\WizardMaster.resx">
       <DependentUpon>WizardMaster.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Sales\OptionBatches.resx">

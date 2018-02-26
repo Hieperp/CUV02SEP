@@ -16,7 +16,7 @@ using TotalDTO.Commons;
 
 namespace TotalDTO.Sales
 {
-    public class ForecastPrimitiveDTO : BaseWithDetailDTO<ForecastDetailDTO>
+    public class ForecastPrimitiveDTO : BaseWithDetailDTO<ForecastDetailDTO>, IPrimitiveEntity, IPrimitiveDTO
     {
         public override GlobalEnums.NmvnTaskID NMVNTaskID { get { return GlobalEnums.NmvnTaskID.Forecast; } }
 

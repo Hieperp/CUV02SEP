@@ -10,7 +10,7 @@ using TotalModel.Helpers;
 
 namespace TotalDTO.Sales
 {
-    public class ForecastDetailDTO : BaseModel, IBaseModel
+    public class ForecastDetailDTO : BaseModel, IBaseModel, IPrimitiveEntity
     {
         public int GetID() { return this.ForecastDetailID; }
 
