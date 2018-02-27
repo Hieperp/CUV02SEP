@@ -28,5 +28,6 @@ namespace TotalModel.Models
         public decimal LineVolumeAvailable { get; set; }
         public decimal QuantityBatchAvailable { get; set; }
         public decimal LineVolumeBatchAvailable { get; set; }
+        public string CommodityCategoryName { get; set; }
     }
 }

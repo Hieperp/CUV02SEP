@@ -502,7 +502,7 @@ namespace TotalModel.Models
         public System.DateTime CreatedDate { get; set; }
         public System.DateTime EditedDate { get; set; }
     }
-    
+
     public partial class OrganizationalUnit : IPrimitiveEntity, IBaseEntity
     {
         public int GetID() { return this.OrganizationalUnitID; }
@@ -842,6 +842,9 @@ namespace TotalModel.Models
     {
         public int Id { get { return this.ForecastID; } }
         public int ImageID { get { return 0; } }
+
+        public decimal TotalTotalQuantity { get { return this.TotalQuantity + this.TotalQuantityM1 + this.TotalQuantityM2 + this.TotalQuantityM3; } }
+        public decimal TotalTotalLineVolume { get { return this.TotalLineVolume + this.TotalLineVolumeM1 + this.TotalLineVolumeM2 + this.TotalLineVolumeM3; } }
     }
 
     public partial class Forecast : IPrimitiveEntity, IBaseEntity, IBaseDetailEntity<ForecastDetail>

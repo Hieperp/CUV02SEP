@@ -7117,6 +7117,7 @@
           <Property Type="Decimal" Name="LineVolumeAvailable" Nullable="false" Precision="38" Scale="2" />
           <Property Type="Decimal" Name="QuantityBatchAvailable" Nullable="false" Precision="38" Scale="2" />
           <Property Type="Decimal" Name="LineVolumeBatchAvailable" Nullable="false" Precision="38" Scale="2" />
+          <Property Type="String" Name="CommodityCategoryName" Nullable="false" MaxLength="100" />
         </ComplexType>
         <Association Name="FK_Users_OrganizationalUnits">
           <End Type="TotalSmartCodingModel.OrganizationalUnit" Role="OrganizationalUnit" Multiplicity="1" />
@@ -7886,8 +7887,6 @@
           <Property Type="Int32" Name="ForecastID" Nullable="false" />
           <Property Type="Int32" Name="ForecastDetailID" Nullable="false" />
           <Property Type="Int32" Name="CommodityID" Nullable="false" />
-          <Property Type="String" Name="Code" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="200" />
           <Property Type="Decimal" Name="Quantity" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="LineVolume" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="QuantityM1" Nullable="false" Precision="18" Scale="2" />
@@ -7897,6 +7896,9 @@
           <Property Type="Decimal" Name="QuantityM3" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="LineVolumeM3" Nullable="false" Precision="18" Scale="2" />
           <Property Type="String" Name="Remarks" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="CommodityCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="CommodityName" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="CommodityCategoryName" Nullable="false" MaxLength="100" />
         </ComplexType>
         <EntityType Name="Forecast">
           <Key>
@@ -8459,6 +8461,7 @@
                 <ScalarProperty Name="LineVolumeAvailable" ColumnName="LineVolumeAvailable" />
                 <ScalarProperty Name="QuantityBatchAvailable" ColumnName="QuantityBatchAvailable" />
                 <ScalarProperty Name="LineVolumeBatchAvailable" ColumnName="LineVolumeBatchAvailable" />
+                <ScalarProperty Name="CommodityCategoryName" ColumnName="CommodityCategoryName" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -10351,8 +10354,6 @@
                 <ScalarProperty Name="ForecastID" ColumnName="ForecastID" />
                 <ScalarProperty Name="ForecastDetailID" ColumnName="ForecastDetailID" />
                 <ScalarProperty Name="CommodityID" ColumnName="CommodityID" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="LineVolume" ColumnName="LineVolume" />
                 <ScalarProperty Name="QuantityM1" ColumnName="QuantityM1" />
@@ -10362,6 +10363,9 @@
                 <ScalarProperty Name="QuantityM3" ColumnName="QuantityM3" />
                 <ScalarProperty Name="LineVolumeM3" ColumnName="LineVolumeM3" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="CommodityCode" ColumnName="CommodityCode" />
+                <ScalarProperty Name="CommodityName" ColumnName="CommodityName" />
+                <ScalarProperty Name="CommodityCategoryName" ColumnName="CommodityCategoryName" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

@@ -146,10 +146,11 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             queryString = queryString + "       ELSE " + "\r\n";
             queryString = queryString + "           " + this.BuildSQLSearchCommodities(false) + "\r\n";
 
-            queryString = queryString + "       SELECT      SearchCommodities.LocationID, SearchCommodities.BatchID, SearchCommodities.CommodityID, SearchCommodities.Code, SearchCommodities.Name, SearchCommodities.CommodityCategoryID, SearchCommodities.CommodityTypeID, SearchCommodities.Unit, SearchCommodities.PackageSize, SearchCommodities.Volume, SearchCommodities.PackageVolume, " + "\r\n";
+            queryString = queryString + "       SELECT      SearchCommodities.LocationID, SearchCommodities.BatchID, SearchCommodities.CommodityID, SearchCommodities.Code, SearchCommodities.Name, SearchCommodities.CommodityCategoryID, CommodityCategories.Name AS CommodityCategoryName, SearchCommodities.CommodityTypeID, SearchCommodities.Unit, SearchCommodities.PackageSize, SearchCommodities.Volume, SearchCommodities.PackageVolume, " + "\r\n";
             queryString = queryString + "                   ISNULL(CommoditiesAvailable.QuantityAvailable, 0) AS QuantityAvailable, ISNULL(CommoditiesAvailable.LineVolumeAvailable, 0) AS LineVolumeAvailable, ISNULL(CommoditiesAvailableByBatches.QuantityAvailable, 0) AS QuantityBatchAvailable, ISNULL(CommoditiesAvailableByBatches.LineVolumeAvailable, 0) AS LineVolumeBatchAvailable " + "\r\n";
 
             queryString = queryString + "       FROM        @SearchCommodities SearchCommodities " + "\r\n";
+            queryString = queryString + "                   INNER JOIN CommodityCategories ON SearchCommodities.CommodityCategoryID = CommodityCategories.CommodityCategoryID " + "\r\n";
             queryString = queryString + "                   LEFT JOIN (SELECT CommodityID, SUM(QuantityAvailable) AS QuantityAvailable, SUM(LineVolumeAvailable) AS LineVolumeAvailable FROM @CommoditiesAvailable GROUP BY CommodityID) CommoditiesAvailable ON SearchCommodities.CommodityID = CommoditiesAvailable.CommodityID " + "\r\n";
             queryString = queryString + "                   LEFT JOIN (SELECT CommodityID, BatchID, SUM(QuantityAvailable) AS QuantityAvailable, SUM(LineVolumeAvailable) AS LineVolumeAvailable FROM @CommoditiesAvailableByBatches GROUP BY CommodityID, BatchID) CommoditiesAvailableByBatches ON SearchCommodities.BatchID = CommoditiesAvailableByBatches.BatchID AND SearchCommodities.CommodityID = CommoditiesAvailableByBatches.CommodityID " + "\r\n";
 

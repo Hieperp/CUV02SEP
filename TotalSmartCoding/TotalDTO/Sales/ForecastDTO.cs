@@ -80,11 +80,13 @@ namespace TotalDTO.Sales
         public virtual decimal TotalQuantityM3 { get { return this.DtoDetails().Select(o => o.QuantityM3).Sum(); } }
         public virtual decimal TotalLineVolumeM3 { get { return this.DtoDetails().Select(o => o.LineVolumeM3).Sum(); } }
 
+        public virtual decimal TotalTotalQuantity { get { return this.DtoDetails().Select(o => o.TotalQuantity).Sum(); } }
+        public virtual decimal TotalTotalLineVolume { get { return this.DtoDetails().Select(o => o.TotalLineVolume).Sum(); } }
 
         
         public override string Caption
         {
-            get { return "ForecastLocation: " + this.ForecastLocationName + "SO Date: " + this.EntryDate.ToString() + "             Total Quantity: " + this.TotalQuantity.ToString("N0") + ",    Total Volume: " + this.TotalLineVolume.ToString("N2"); }
+            get { return this.ForecastLocationName + ", Entry Date: " + this.EntryDate.ToString() + "             Total Forecast: " + this.TotalTotalLineVolume.ToString("N2") + ",             Current Month: " + this.TotalLineVolume.ToString("N2") + ",             Next Month: " + this.TotalLineVolumeM1.ToString("N2") + ",             Next Two Month: " + this.TotalLineVolumeM2.ToString("N2") + ",             Next Three Month: " + this.TotalLineVolumeM3.ToString("N2"); }
         }
 
         public override void PerformPresaveRule()

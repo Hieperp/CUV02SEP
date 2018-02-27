@@ -71,7 +71,7 @@ namespace TotalSmartCoding.Views.Sales.Forecasts
                 this.customTabLeft = new CustomTabControl();
                 this.customTabLeft.DisplayStyle = TabStyle.VisualStudio;
 
-                this.customTabLeft.TabPages.Add("tabLeftAA", "Sales Order  ");
+                this.customTabLeft.TabPages.Add("tabLeftAA", "Sales Forecast  ");
                 this.customTabLeft.TabPages[0].BackColor = this.panelLeft.BackColor;
                 this.customTabLeft.TabPages[0].Padding = new Padding(15, 0, 0, 0);
                 this.customTabLeft.TabPages[0].Controls.Add(this.layoutLeft);
@@ -86,7 +86,7 @@ namespace TotalSmartCoding.Views.Sales.Forecasts
                 this.customTabCenter = new CustomTabControl();
                 this.customTabCenter.DisplayStyle = TabStyle.VisualStudio;
 
-                this.customTabCenter.TabPages.Add("tabCenterAA", "Order Lines            ");
+                this.customTabCenter.TabPages.Add("tabCenterAA", "Forecast Lines            ");
                 this.customTabCenter.TabPages.Add("tabCenterBB", "Description            ");
                 this.customTabCenter.TabPages.Add("tabCenterBB", "Remarks                    ");
 
@@ -141,7 +141,7 @@ namespace TotalSmartCoding.Views.Sales.Forecasts
             this.combexForecastLocationID.ValueMember = CommonExpressions.PropertyName<LocationBase>(p => p.LocationID);
             this.bindingForecastLocationID = this.combexForecastLocationID.DataBindings.Add("SelectedValue", this.forecastViewModel, CommonExpressions.PropertyName<ForecastViewModel>(p => p.ForecastLocationID), true, DataSourceUpdateMode.OnPropertyChanged);
 
-            
+
             this.bindingEntryDate.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingReference.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingVoucherCode.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
@@ -150,11 +150,10 @@ namespace TotalSmartCoding.Views.Sales.Forecasts
             this.bindingCaption.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
 
             this.bindingForecastLocationID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
-            
+
             this.fastForecastIndex.AboutToCreateGroups += fastForecastIndex_AboutToCreateGroups;
 
             this.fastForecastIndex.ShowGroups = true;
-            this.olvApproved.Renderer = new MappedImageRenderer(new Object[] { 1, Resources.Placeholder16, 2, Resources.Void_16 });
             this.naviGroupDetails.ExpandedHeight = this.naviGroupDetails.Size.Height;
         }
 
@@ -178,7 +177,7 @@ namespace TotalSmartCoding.Views.Sales.Forecasts
                 foreach (OLVGroup olvGroup in e.Groups)
                 {
                     olvGroup.TitleImage = "Sign_Order_32";
-                    olvGroup.Subtitle = "Count: " + olvGroup.Contents.Count.ToString() + " Order(s)";
+                    olvGroup.Subtitle = "Count: " + olvGroup.Contents.Count.ToString() + " Forecast(s)";
                 }
             }
         }
@@ -228,15 +227,33 @@ namespace TotalSmartCoding.Views.Sales.Forecasts
         private void ViewDetails_ListChanged(object sender, ListChangedEventArgs e)
         {
             if (e.ListChangedType == ListChangedType.ItemAdded || e.ListChangedType == ListChangedType.ItemDeleted || e.ListChangedType == ListChangedType.Reset)
-                this.customTabCenter.TabPages[0].Text = "Order Lines [" + this.forecastViewModel.ViewDetails.Count.ToString("N0") + " item(s)]             ";
+                this.customTabCenter.TabPages[0].Text = "Forecast Lines [" + this.forecastViewModel.ViewDetails.Count.ToString("N0") + " item(s)]             ";
 
             if (this.EditableMode && e.PropertyDescriptor != null && e.NewIndex >= 0 && e.NewIndex < this.forecastViewModel.ViewDetails.Count)
             {
                 ForecastDetailDTO forecastDetailDTO = this.forecastViewModel.ViewDetails[e.NewIndex];
-                //if (forecastDetailDTO != null)
-                //    this.CalculateQuantityDetailDTO(forecastDetailDTO, e.PropertyDescriptor.Name, null, null);
+                if (forecastDetailDTO != null)
+                    this.CalculateDetailDTO(forecastDetailDTO, e.PropertyDescriptor.Name);
             }
         }
+
+
+        #region Helper Method
+        private void CalculateDetailDTO(ForecastDetailDTO forecastDetailDTO, string propertyName)
+        {
+            if (propertyName == CommonExpressions.PropertyName<ForecastDetailDTO>(p => p.CommodityID))
+            {
+                CommodityAPIs commodityAPIs = new CommodityAPIs(CommonNinject.Kernel.Get<ICommodityAPIRepository>()); //WE MUST USE ContextAttributes.User.LocationID, INSTEAD OF quantityDetailDTO.LocationID, BECAUSE AT FIRST quantityDetailDTO.LocationID = 0. WHEN SAVE: GenericService.PreSaveRoutines WILL UPDATE DTO.LocationID = ContextAttributes.User.LocationID. SEE GenericService.PreSaveRoutines FOR MORE INFORMATION!!!
+                IList<SearchCommodity> searchCommodities = commodityAPIs.SearchCommodities(forecastDetailDTO.CommodityID, ContextAttributes.User.LocationID, null, null, null);
+                if (searchCommodities.Count > 0)
+                {
+                    forecastDetailDTO.CommodityCode = searchCommodities[0].Code;
+                    forecastDetailDTO.CommodityName = searchCommodities[0].Name;
+                    forecastDetailDTO.CommodityCategoryName = searchCommodities[0].CommodityCategoryName;
+                }
+            }
+        }
+        #endregion Helper Method
 
         protected override Controllers.BaseController myController
         {

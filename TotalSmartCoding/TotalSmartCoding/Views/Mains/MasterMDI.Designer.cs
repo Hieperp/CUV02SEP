@@ -698,7 +698,7 @@
             this.buttonLoading.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonLoading.Name = "buttonLoading";
             this.buttonLoading.Size = new System.Drawing.Size(52, 52);
-            this.buttonLoading.Text = "Refresh. Click here to reload saved data after change filter date range.";
+            this.buttonLoading.Text = "Refresh. Click here to reload saved data after change date range.";
             this.buttonLoading.Click += new System.EventHandler(this.buttonLoading_Click);
             // 
             // toolStripSeparator13

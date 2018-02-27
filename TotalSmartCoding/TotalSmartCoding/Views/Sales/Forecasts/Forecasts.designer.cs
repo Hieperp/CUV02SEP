@@ -30,13 +30,14 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Forecasts));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             this.layoutLeft = new System.Windows.Forms.TableLayoutPanel();
+            this.combexForecastLocationID = new CustomControls.CombexBox();
             this.dateTimexEntryDate = new CustomControls.DateTimexPicker();
             this.textexReference = new CustomControls.TextexBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -58,34 +59,28 @@
             this.CommodityID = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.CommodityName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PackageSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PackageVolume = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.QuantityAvailable = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LineVolumeAvailable = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalLineVolume = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LineVolume = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LineVolumeM1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LineVolumeM2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LineVolumeM3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Remarks = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.naviGroupTop = new Guifreaks.Navisuite.NaviGroup(this.components);
             this.layoutTop = new System.Windows.Forms.TableLayoutPanel();
-            this.combexForecastLocationID = new CustomControls.CombexBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.panelLeft = new System.Windows.Forms.Panel();
             this.fastForecastIndex = new BrightIdeasSoftware.FastObjectListView();
             this.olvID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvEntryDate = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvReference = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvVoucherCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvDeliveryDate = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvCustomerCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvCustomerName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvLocationCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvDescription = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvTotalQuantity = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvTotalTotalLineVolume = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvTotalLineVolume = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvApproved = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvTotalLineVolumeM1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvTotalLineVolumeM2 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvTotalLineVolumeM3 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvDescription = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.imageList32 = new System.Windows.Forms.ImageList(this.components);
             this.layoutLeft.SuspendLayout();
             this.toolStripChildForm.SuspendLayout();
@@ -97,10 +92,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.naviGroupTop)).BeginInit();
             this.naviGroupTop.SuspendLayout();
             this.layoutTop.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.panelLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastForecastIndex)).BeginInit();
             this.SuspendLayout();
@@ -138,6 +129,20 @@
             this.layoutLeft.Size = new System.Drawing.Size(296, 328);
             this.layoutLeft.TabIndex = 62;
             // 
+            // combexForecastLocationID
+            // 
+            this.combexForecastLocationID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.combexForecastLocationID.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.combexForecastLocationID.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.combexForecastLocationID.Editable = false;
+            this.combexForecastLocationID.FormattingEnabled = true;
+            this.combexForecastLocationID.Location = new System.Drawing.Point(3, 223);
+            this.combexForecastLocationID.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
+            this.combexForecastLocationID.Name = "combexForecastLocationID";
+            this.combexForecastLocationID.ReadOnly = false;
+            this.combexForecastLocationID.Size = new System.Drawing.Size(247, 29);
+            this.combexForecastLocationID.TabIndex = 74;
+            // 
             // dateTimexEntryDate
             // 
             this.dateTimexEntryDate.CustomFormat = "dd/MMM/yyyy HH:mm:ss";
@@ -173,7 +178,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(248, 21);
             this.label6.TabIndex = 30;
-            this.label6.Text = "Order Date";
+            this.label6.Text = "Entry Date";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label7
@@ -199,7 +204,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(248, 21);
             this.label1.TabIndex = 76;
-            this.label1.Text = "Salesperson";
+            this.label1.Text = "Location";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label2
@@ -258,7 +263,7 @@
             // 
             // naviGroupDetails
             // 
-            this.naviGroupDetails.Caption = "   Sales order for";
+            this.naviGroupDetails.Caption = "   Onward forecast for";
             this.naviGroupDetails.Controls.Add(this.labelCaption);
             this.naviGroupDetails.Controls.Add(this.toolStripNaviGroup);
             this.naviGroupDetails.Controls.Add(this.panelCenter);
@@ -283,7 +288,7 @@
             this.labelCaption.BackColor = System.Drawing.Color.Transparent;
             this.labelCaption.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelCaption.ForeColor = System.Drawing.Color.Firebrick;
-            this.labelCaption.Location = new System.Drawing.Point(129, 7);
+            this.labelCaption.Location = new System.Drawing.Point(126, 7);
             this.labelCaption.Name = "labelCaption";
             this.labelCaption.Size = new System.Drawing.Size(191, 21);
             this.labelCaption.TabIndex = 75;
@@ -368,11 +373,11 @@
             this.CommodityID,
             this.CommodityName,
             this.PackageSize,
-            this.PackageVolume,
-            this.QuantityAvailable,
-            this.Quantity,
-            this.LineVolumeAvailable,
+            this.TotalLineVolume,
             this.LineVolume,
+            this.LineVolumeM1,
+            this.LineVolumeM2,
+            this.LineVolumeM3,
             this.Remarks});
             this.gridexViewDetails.Dock = System.Windows.Forms.DockStyle.Left;
             this.gridexViewDetails.Editable = true;
@@ -381,8 +386,8 @@
             this.gridexViewDetails.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gridexViewDetails.Name = "gridexViewDetails";
             this.gridexViewDetails.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle30.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridexViewDetails.RowsDefaultCellStyle = dataGridViewCellStyle30;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridexViewDetails.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.gridexViewDetails.RowTemplate.Height = 24;
             this.gridexViewDetails.Size = new System.Drawing.Size(888, 194);
             this.gridexViewDetails.TabIndex = 65;
@@ -410,70 +415,68 @@
             // PackageSize
             // 
             this.PackageSize.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.PackageSize.DataPropertyName = "PackageSize";
+            this.PackageSize.DataPropertyName = "CommodityCategoryName";
             this.PackageSize.FillWeight = 8F;
-            this.PackageSize.HeaderText = "Package.Size";
+            this.PackageSize.HeaderText = "Items.Category";
             this.PackageSize.Name = "PackageSize";
             this.PackageSize.ReadOnly = true;
             // 
-            // PackageVolume
+            // TotalLineVolume
             // 
-            this.PackageVolume.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.PackageVolume.DataPropertyName = "PackageVolume";
-            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.PackageVolume.DefaultCellStyle = dataGridViewCellStyle25;
-            this.PackageVolume.FillWeight = 7F;
-            this.PackageVolume.HeaderText = "Package.Volume";
-            this.PackageVolume.Name = "PackageVolume";
-            this.PackageVolume.ReadOnly = true;
-            // 
-            // QuantityAvailable
-            // 
-            this.QuantityAvailable.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.QuantityAvailable.DataPropertyName = "QuantityAvailable";
-            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle26.Format = "N0";
-            this.QuantityAvailable.DefaultCellStyle = dataGridViewCellStyle26;
-            this.QuantityAvailable.FillWeight = 7F;
-            this.QuantityAvailable.HeaderText = "Quantity.Available";
-            this.QuantityAvailable.Name = "QuantityAvailable";
-            this.QuantityAvailable.ReadOnly = true;
-            // 
-            // Quantity
-            // 
-            this.Quantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Quantity.DataPropertyName = "Quantity";
-            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle27.Format = "N0";
-            dataGridViewCellStyle27.NullValue = null;
-            this.Quantity.DefaultCellStyle = dataGridViewCellStyle27;
-            this.Quantity.FillWeight = 7F;
-            this.Quantity.HeaderText = "Quantity.Order";
-            this.Quantity.Name = "Quantity";
-            // 
-            // LineVolumeAvailable
-            // 
-            this.LineVolumeAvailable.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.LineVolumeAvailable.DataPropertyName = "LineVolumeAvailable";
-            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle28.Format = "N2";
-            this.LineVolumeAvailable.DefaultCellStyle = dataGridViewCellStyle28;
-            this.LineVolumeAvailable.FillWeight = 7F;
-            this.LineVolumeAvailable.HeaderText = "Volume.Available";
-            this.LineVolumeAvailable.Name = "LineVolumeAvailable";
-            this.LineVolumeAvailable.ReadOnly = true;
+            this.TotalLineVolume.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.TotalLineVolume.DataPropertyName = "TotalLineVolume";
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle7.Format = "N2";
+            this.TotalLineVolume.DefaultCellStyle = dataGridViewCellStyle7;
+            this.TotalLineVolume.FillWeight = 7F;
+            this.TotalLineVolume.HeaderText = "Forecast.Total";
+            this.TotalLineVolume.Name = "TotalLineVolume";
+            this.TotalLineVolume.ReadOnly = true;
             // 
             // LineVolume
             // 
             this.LineVolume.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.LineVolume.DataPropertyName = "LineVolume";
-            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle29.Format = "N2";
-            this.LineVolume.DefaultCellStyle = dataGridViewCellStyle29;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle8.Format = "N2";
+            this.LineVolume.DefaultCellStyle = dataGridViewCellStyle8;
             this.LineVolume.FillWeight = 7F;
-            this.LineVolume.HeaderText = "Volume.Order";
+            this.LineVolume.HeaderText = "Forecast.Nov-17";
             this.LineVolume.Name = "LineVolume";
-            this.LineVolume.ReadOnly = true;
+            // 
+            // LineVolumeM1
+            // 
+            this.LineVolumeM1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.LineVolumeM1.DataPropertyName = "LineVolumeM1";
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle9.Format = "N2";
+            dataGridViewCellStyle9.NullValue = null;
+            this.LineVolumeM1.DefaultCellStyle = dataGridViewCellStyle9;
+            this.LineVolumeM1.FillWeight = 7F;
+            this.LineVolumeM1.HeaderText = "Forecast.Dec-17";
+            this.LineVolumeM1.Name = "LineVolumeM1";
+            // 
+            // LineVolumeM2
+            // 
+            this.LineVolumeM2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.LineVolumeM2.DataPropertyName = "LineVolumeM2";
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle10.Format = "N2";
+            this.LineVolumeM2.DefaultCellStyle = dataGridViewCellStyle10;
+            this.LineVolumeM2.FillWeight = 7F;
+            this.LineVolumeM2.HeaderText = "Forecast.Jan-01";
+            this.LineVolumeM2.Name = "LineVolumeM2";
+            // 
+            // LineVolumeM3
+            // 
+            this.LineVolumeM3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.LineVolumeM3.DataPropertyName = "LineVolumeM3";
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle11.Format = "N2";
+            this.LineVolumeM3.DefaultCellStyle = dataGridViewCellStyle11;
+            this.LineVolumeM3.FillWeight = 7F;
+            this.LineVolumeM3.HeaderText = "Forecast.Feb-18";
+            this.LineVolumeM3.Name = "LineVolumeM3";
             // 
             // Remarks
             // 
@@ -498,7 +501,7 @@
             this.naviGroupTop.Padding = new System.Windows.Forms.Padding(1, 2, 1, 1);
             this.naviGroupTop.Size = new System.Drawing.Size(1235, 134);
             this.naviGroupTop.TabIndex = 67;
-            this.naviGroupTop.Tag = "Expandable";
+            this.naviGroupTop.Tag = "Un Expandable";
             // 
             // layoutTop
             // 
@@ -512,93 +515,29 @@
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 28F));
-            this.layoutTop.Controls.Add(this.pictureBox1, 0, 1);
-            this.layoutTop.Controls.Add(this.label3, 0, 3);
-            this.layoutTop.Controls.Add(this.pictureBox2, 3, 1);
-            this.layoutTop.Controls.Add(this.pictureBox3, 3, 2);
-            this.layoutTop.Controls.Add(this.pictureBox4, 0, 2);
+            this.layoutTop.Controls.Add(this.label3, 0, 1);
             this.layoutTop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutTop.Location = new System.Drawing.Point(1, 2);
             this.layoutTop.Margin = new System.Windows.Forms.Padding(0);
             this.layoutTop.Name = "layoutTop";
-            this.layoutTop.RowCount = 5;
+            this.layoutTop.RowCount = 3;
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
-            this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1F));
             this.layoutTop.Size = new System.Drawing.Size(1233, 131);
             this.layoutTop.TabIndex = 8;
             // 
-            // combexForecastLocationID
-            // 
-            this.combexForecastLocationID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.combexForecastLocationID.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.combexForecastLocationID.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.combexForecastLocationID.Editable = false;
-            this.combexForecastLocationID.FormattingEnabled = true;
-            this.combexForecastLocationID.Location = new System.Drawing.Point(3, 223);
-            this.combexForecastLocationID.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
-            this.combexForecastLocationID.Name = "combexForecastLocationID";
-            this.combexForecastLocationID.ReadOnly = false;
-            this.combexForecastLocationID.Size = new System.Drawing.Size(247, 29);
-            this.combexForecastLocationID.TabIndex = 74;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.pictureBox1.Image = global::TotalSmartCoding.Properties.Resources.Customer_Blue_16;
-            this.pictureBox1.Location = new System.Drawing.Point(160, 12);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox1.TabIndex = 75;
-            this.pictureBox1.TabStop = false;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Location = new System.Drawing.Point(3, 50);
+            this.label3.Location = new System.Drawing.Point(3, 10);
             this.label3.Margin = new System.Windows.Forms.Padding(3, 0, 1, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(173, 21);
             this.label3.TabIndex = 77;
             this.label3.Text = "Shipping Address";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.pictureBox2.Image = global::TotalSmartCoding.Properties.Resources.Phone_icon_16;
-            this.pictureBox2.Location = new System.Drawing.Point(834, 12);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox2.TabIndex = 79;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.pictureBox3.Image = global::TotalSmartCoding.Properties.Resources.Phone_icon_16;
-            this.pictureBox3.Location = new System.Drawing.Point(834, 32);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox3.TabIndex = 82;
-            this.pictureBox3.TabStop = false;
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.pictureBox4.Image = global::TotalSmartCoding.Properties.Resources.Customer_Red_16;
-            this.pictureBox4.Location = new System.Drawing.Point(160, 32);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox4.TabIndex = 83;
-            this.pictureBox4.TabStop = false;
             // 
             // panelLeft
             // 
@@ -617,28 +556,26 @@
             this.fastForecastIndex.AllColumns.Add(this.olvEntryDate);
             this.fastForecastIndex.AllColumns.Add(this.olvReference);
             this.fastForecastIndex.AllColumns.Add(this.olvVoucherCode);
-            this.fastForecastIndex.AllColumns.Add(this.olvDeliveryDate);
-            this.fastForecastIndex.AllColumns.Add(this.olvCustomerCode);
-            this.fastForecastIndex.AllColumns.Add(this.olvCustomerName);
             this.fastForecastIndex.AllColumns.Add(this.olvLocationCode);
-            this.fastForecastIndex.AllColumns.Add(this.olvDescription);
-            this.fastForecastIndex.AllColumns.Add(this.olvTotalQuantity);
+            this.fastForecastIndex.AllColumns.Add(this.olvTotalTotalLineVolume);
             this.fastForecastIndex.AllColumns.Add(this.olvTotalLineVolume);
-            this.fastForecastIndex.AllColumns.Add(this.olvApproved);
+            this.fastForecastIndex.AllColumns.Add(this.olvTotalLineVolumeM1);
+            this.fastForecastIndex.AllColumns.Add(this.olvTotalLineVolumeM2);
+            this.fastForecastIndex.AllColumns.Add(this.olvTotalLineVolumeM3);
+            this.fastForecastIndex.AllColumns.Add(this.olvDescription);
             this.fastForecastIndex.BackColor = System.Drawing.Color.Ivory;
             this.fastForecastIndex.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.olvID,
             this.olvEntryDate,
             this.olvReference,
             this.olvVoucherCode,
-            this.olvDeliveryDate,
-            this.olvCustomerCode,
-            this.olvCustomerName,
             this.olvLocationCode,
-            this.olvDescription,
-            this.olvTotalQuantity,
+            this.olvTotalTotalLineVolume,
             this.olvTotalLineVolume,
-            this.olvApproved});
+            this.olvTotalLineVolumeM1,
+            this.olvTotalLineVolumeM2,
+            this.olvTotalLineVolumeM3,
+            this.olvDescription});
             this.fastForecastIndex.Cursor = System.Windows.Forms.Cursors.Default;
             this.fastForecastIndex.Dock = System.Windows.Forms.DockStyle.Fill;
             this.fastForecastIndex.Font = new System.Drawing.Font("Calibri Light", 10.2F);
@@ -684,67 +621,68 @@
             // olvVoucherCode
             // 
             this.olvVoucherCode.AspectName = "VoucherCode";
+            this.olvVoucherCode.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvVoucherCode.Text = "Voucher #";
-            this.olvVoucherCode.Width = 120;
-            // 
-            // olvDeliveryDate
-            // 
-            this.olvDeliveryDate.AspectName = "DeliveryDate";
-            this.olvDeliveryDate.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvDeliveryDate.Text = "Delivery Date";
-            this.olvDeliveryDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvDeliveryDate.Width = 145;
-            // 
-            // olvCustomerCode
-            // 
-            this.olvCustomerCode.AspectName = "CustomerCode";
-            this.olvCustomerCode.Text = "Customer Code";
-            this.olvCustomerCode.Width = 113;
-            // 
-            // olvCustomerName
-            // 
-            this.olvCustomerName.AspectName = "CustomerName";
-            this.olvCustomerName.Text = "Customer Name";
-            this.olvCustomerName.Width = 309;
+            this.olvVoucherCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvVoucherCode.Width = 108;
             // 
             // olvLocationCode
             // 
             this.olvLocationCode.AspectName = "LocationCode";
             this.olvLocationCode.Text = "Location";
-            this.olvLocationCode.Width = 72;
+            this.olvLocationCode.Width = 168;
             // 
-            // olvDescription
+            // olvTotalTotalLineVolume
             // 
-            this.olvDescription.AspectName = "Description";
-            this.olvDescription.Text = "Description";
-            this.olvDescription.Width = 296;
-            // 
-            // olvTotalQuantity
-            // 
-            this.olvTotalQuantity.AspectName = "TotalQuantity";
-            this.olvTotalQuantity.AspectToStringFormat = "{0:#,#}";
-            this.olvTotalQuantity.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.olvTotalQuantity.Text = "Quantity";
-            this.olvTotalQuantity.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.olvTotalQuantity.Width = 81;
+            this.olvTotalTotalLineVolume.AspectName = "TotalTotalLineVolume";
+            this.olvTotalTotalLineVolume.AspectToStringFormat = "{0:#,##0.00}";
+            this.olvTotalTotalLineVolume.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.olvTotalTotalLineVolume.Text = "Total Forecast";
+            this.olvTotalTotalLineVolume.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.olvTotalTotalLineVolume.Width = 116;
             // 
             // olvTotalLineVolume
             // 
             this.olvTotalLineVolume.AspectName = "TotalLineVolume";
             this.olvTotalLineVolume.AspectToStringFormat = "{0:#,##0.00}";
             this.olvTotalLineVolume.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.olvTotalLineVolume.Text = "Volume";
+            this.olvTotalLineVolume.Text = "Current Month";
             this.olvTotalLineVolume.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.olvTotalLineVolume.Width = 90;
+            this.olvTotalLineVolume.Width = 116;
             // 
-            // olvApproved
+            // olvTotalLineVolumeM1
             // 
-            this.olvApproved.AspectName = "ImageID";
-            this.olvApproved.FillsFreeSpace = true;
-            this.olvApproved.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvApproved.Text = "";
-            this.olvApproved.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvApproved.Width = 54;
+            this.olvTotalLineVolumeM1.AspectName = "TotalLineVolumeM1";
+            this.olvTotalLineVolumeM1.AspectToStringFormat = "{0:#,##0.00}";
+            this.olvTotalLineVolumeM1.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.olvTotalLineVolumeM1.Text = "Next Month";
+            this.olvTotalLineVolumeM1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.olvTotalLineVolumeM1.Width = 116;
+            // 
+            // olvTotalLineVolumeM2
+            // 
+            this.olvTotalLineVolumeM2.AspectName = "TotalLineVolumeM2";
+            this.olvTotalLineVolumeM2.AspectToStringFormat = "{0:#,##0.00}";
+            this.olvTotalLineVolumeM2.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.olvTotalLineVolumeM2.Text = "Next Two Month";
+            this.olvTotalLineVolumeM2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.olvTotalLineVolumeM2.Width = 156;
+            // 
+            // olvTotalLineVolumeM3
+            // 
+            this.olvTotalLineVolumeM3.AspectName = "TotalLineVolumeM1";
+            this.olvTotalLineVolumeM3.AspectToStringFormat = "{0:#,##0.00}";
+            this.olvTotalLineVolumeM3.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.olvTotalLineVolumeM3.Text = "Next Three Month";
+            this.olvTotalLineVolumeM3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.olvTotalLineVolumeM3.Width = 156;
+            // 
+            // olvDescription
+            // 
+            this.olvDescription.AspectName = "Description";
+            this.olvDescription.FillsFreeSpace = true;
+            this.olvDescription.Text = "Description";
+            this.olvDescription.Width = 168;
             // 
             // imageList32
             // 
@@ -770,7 +708,7 @@
             this.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Forecasts";
-            this.Text = "Forecasts";
+            this.Text = "Onward Sales Forecast";
             this.Controls.SetChildIndex(this.toolStripChildForm, 0);
             this.Controls.SetChildIndex(this.naviGroupDetails, 0);
             this.Controls.SetChildIndex(this.fastForecastIndex, 0);
@@ -791,10 +729,6 @@
             this.naviGroupTop.PerformLayout();
             this.layoutTop.ResumeLayout(false);
             this.layoutTop.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.panelLeft.ResumeLayout(false);
             this.panelLeft.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastForecastIndex)).EndInit();
@@ -832,30 +766,25 @@
         private System.Windows.Forms.Label label2;
         private CustomControls.TextexBox textexVoucherCode;
         private System.Windows.Forms.ImageList imageList32;
-        private BrightIdeasSoftware.OLVColumn olvApproved;
-        private BrightIdeasSoftware.OLVColumn olvCustomerCode;
-        private BrightIdeasSoftware.OLVColumn olvCustomerName;
         private BrightIdeasSoftware.OLVColumn olvLocationCode;
-        private BrightIdeasSoftware.OLVColumn olvVoucherCode;
         private BrightIdeasSoftware.OLVColumn olvDescription;
-        private BrightIdeasSoftware.OLVColumn olvTotalQuantity;
+        private BrightIdeasSoftware.OLVColumn olvTotalLineVolumeM1;
         private BrightIdeasSoftware.OLVColumn olvTotalLineVolume;
         private CustomControls.CombexBox combexForecastLocationID;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private BrightIdeasSoftware.OLVColumn olvDeliveryDate;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.DataGridViewComboBoxColumn CommodityID;
         private System.Windows.Forms.DataGridViewTextBoxColumn CommodityName;
         private System.Windows.Forms.DataGridViewTextBoxColumn PackageSize;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PackageVolume;
-        private System.Windows.Forms.DataGridViewTextBoxColumn QuantityAvailable;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LineVolumeAvailable;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TotalLineVolume;
         private System.Windows.Forms.DataGridViewTextBoxColumn LineVolume;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LineVolumeM1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LineVolumeM2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LineVolumeM3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Remarks;
+        private BrightIdeasSoftware.OLVColumn olvTotalTotalLineVolume;
+        private BrightIdeasSoftware.OLVColumn olvTotalLineVolumeM2;
+        private BrightIdeasSoftware.OLVColumn olvTotalLineVolumeM3;
+        private BrightIdeasSoftware.OLVColumn olvVoucherCode;
 
     }
 }

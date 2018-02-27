@@ -16,8 +16,6 @@ namespace TotalModel.Models
         public int ForecastID { get; set; }
         public int ForecastDetailID { get; set; }
         public int CommodityID { get; set; }
-        public string Code { get; set; }
-        public string Name { get; set; }
         public decimal Quantity { get; set; }
         public decimal LineVolume { get; set; }
         public decimal QuantityM1 { get; set; }
@@ -27,5 +25,8 @@ namespace TotalModel.Models
         public decimal QuantityM3 { get; set; }
         public decimal LineVolumeM3 { get; set; }
         public string Remarks { get; set; }
+        public string CommodityCode { get; set; }
+        public string CommodityName { get; set; }
+        public string CommodityCategoryName { get; set; }
     }
 }
