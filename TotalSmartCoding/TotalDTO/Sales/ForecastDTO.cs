@@ -19,6 +19,7 @@ namespace TotalDTO.Sales
     public class ForecastPrimitiveDTO : BaseWithDetailDTO<ForecastDetailDTO>, IPrimitiveEntity, IPrimitiveDTO
     {
         public override GlobalEnums.NmvnTaskID NMVNTaskID { get { return GlobalEnums.NmvnTaskID.Forecast; } }
+        public override bool Importable { get { return true; } }
 
         public ForecastPrimitiveDTO() { this.Initialize(); }
 
@@ -67,6 +68,13 @@ namespace TotalDTO.Sales
         }
 
 
+        private int quantityVersusVolume;
+        [DefaultValue(0)]
+        public int QuantityVersusVolume
+        {
+            get { return this.quantityVersusVolume; }
+            set { ApplyPropertyChange<ForecastDTO, int>(ref this.quantityVersusVolume, o => o.QuantityVersusVolume, value); }
+        }
 
         public virtual decimal TotalQuantity { get { return this.DtoDetails().Select(o => o.Quantity).Sum(); } }
         public virtual decimal TotalLineVolume { get { return this.DtoDetails().Select(o => o.LineVolume).Sum(); } }
@@ -83,10 +91,10 @@ namespace TotalDTO.Sales
         public virtual decimal TotalTotalQuantity { get { return this.DtoDetails().Select(o => o.TotalQuantity).Sum(); } }
         public virtual decimal TotalTotalLineVolume { get { return this.DtoDetails().Select(o => o.TotalLineVolume).Sum(); } }
 
-        
+
         public override string Caption
         {
-            get { return this.ForecastLocationName + ", Entry Date: " + this.EntryDate.ToString() + "             Total Forecast: " + this.TotalTotalLineVolume.ToString("N2") + ",             Current Month: " + this.TotalLineVolume.ToString("N2") + ",             Next Month: " + this.TotalLineVolumeM1.ToString("N2") + ",             Next Two Month: " + this.TotalLineVolumeM2.ToString("N2") + ",             Next Three Month: " + this.TotalLineVolumeM3.ToString("N2"); }
+            get { return this.ForecastLocationName + ", Entry Date: " + this.EntryDate.ToString() + "   Total Forecast: " + (this.QuantityVersusVolume == 0 ? this.TotalTotalQuantity.ToString("N0") : this.TotalTotalLineVolume.ToString("N2")) + ",   Current Month: " + (this.QuantityVersusVolume == 0 ? this.TotalQuantity.ToString("N0") : this.TotalLineVolume.ToString("N2")) + ",   Next Month: " + (this.QuantityVersusVolume == 0 ? this.TotalQuantityM1.ToString("N0") : this.TotalLineVolumeM1.ToString("N2")) + ",   Next Two Month: " + (this.QuantityVersusVolume == 0 ? this.TotalQuantityM2.ToString("N0") : this.TotalLineVolumeM2.ToString("N2")) + ",   Next Three Month: " + (this.QuantityVersusVolume == 0 ? this.TotalQuantityM3.ToString("N0") : this.TotalLineVolumeM3.ToString("N2")); }
         }
 
         public override void PerformPresaveRule()
@@ -106,7 +114,7 @@ namespace TotalDTO.Sales
 
     }
 
-    
+
     public class ForecastDTO : ForecastPrimitiveDTO, IBaseDetailEntity<ForecastDetailDTO>
     {
         public ForecastDTO()

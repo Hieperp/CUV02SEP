@@ -325,6 +325,7 @@
           <Property Name="EditedDate" Type="datetime" Nullable="false" />
           <Property Name="Approved" Type="bit" Nullable="false" />
           <Property Name="ApprovedDate" Type="datetime" />
+          <Property Name="QuantityVersusVolume" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="GoodsIssueDetails">
           <Key>
@@ -7882,6 +7883,7 @@
           <Property Type="Decimal" Name="TotalQuantityM3" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="TotalLineVolumeM3" Nullable="false" Precision="18" Scale="2" />
           <Property Type="String" Name="Description" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="QuantityVersusVolume" Nullable="false" />
         </ComplexType>
         <ComplexType Name="ForecastViewDetail">
           <Property Type="Int32" Name="ForecastID" Nullable="false" />
@@ -7930,6 +7932,7 @@
           <NavigationProperty Name="ForecastDetails" Relationship="TotalSmartCodingModel.FK_ForecastDetails_Forecasts" FromRole="Forecast" ToRole="ForecastDetail" />
           <NavigationProperty Name="Location" Relationship="TotalSmartCodingModel.FK_Forecasts_ForecastLocations" FromRole="Forecast" ToRole="Location" />
           <NavigationProperty Name="Location1" Relationship="TotalSmartCodingModel.FK_Forecasts_Locations" FromRole="Forecast" ToRole="Location" />
+          <Property Name="QuantityVersusVolume" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="FK_ForecastDetails_Forecasts">
           <End Type="TotalSmartCodingModel.Forecast" Role="Forecast" Multiplicity="1" />
@@ -10345,6 +10348,7 @@
                 <ScalarProperty Name="TotalQuantityM3" ColumnName="TotalQuantityM3" />
                 <ScalarProperty Name="TotalLineVolumeM3" ColumnName="TotalLineVolumeM3" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="QuantityVersusVolume" ColumnName="QuantityVersusVolume" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -10372,6 +10376,7 @@
           <EntitySetMapping Name="Forecasts">
             <EntityTypeMapping TypeName="TotalSmartCodingModel.Forecast">
               <MappingFragment StoreEntitySet="Forecasts">
+                <ScalarProperty Name="QuantityVersusVolume" ColumnName="QuantityVersusVolume" />
                 <ScalarProperty Name="ApprovedDate" ColumnName="ApprovedDate" />
                 <ScalarProperty Name="Approved" ColumnName="Approved" />
                 <ScalarProperty Name="EditedDate" ColumnName="EditedDate" />

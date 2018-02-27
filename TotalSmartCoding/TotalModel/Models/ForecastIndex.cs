@@ -27,5 +27,6 @@ namespace TotalModel.Models
         public decimal TotalQuantityM3 { get; set; }
         public decimal TotalLineVolumeM3 { get; set; }
         public string Description { get; set; }
+        public int QuantityVersusVolume { get; set; }
     }
 }

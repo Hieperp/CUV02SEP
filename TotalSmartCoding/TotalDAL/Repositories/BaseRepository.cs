@@ -58,6 +58,8 @@ namespace TotalDAL.Repositories
             }
 
 
+            #region Forecasts
+            this.totalSmartCodingEntities.ColumnAdd("Forecasts", "QuantityVersusVolume", "int", "0", true);
             var query = this.totalSmartCodingEntities.Database.SqlQuery(typeof(int), "SELECT COUNT(ModuleDetailID) AS Expr1 FROM ModuleDetails WHERE ModuleDetailID = " + (int)GlobalEnums.NmvnTaskID.Forecast + ";", new object[] { });
             int exists = query.Cast<int>().Single();
             if (exists == 0)
@@ -66,9 +68,9 @@ namespace TotalDAL.Repositories
                 this.ExecuteStoreCommand("INSERT INTO AccessControls (UserID, NMVNTaskID, OrganizationalUnitID, AccessLevel, ApprovalPermitted, UnApprovalPermitted, VoidablePermitted, UnVoidablePermitted, ShowDiscount, AccessLevelBACKUP, ApprovalPermittedBACKUP, UnApprovalPermittedBACKUP, InActive) SELECT UserID, " + (int)GlobalEnums.NmvnTaskID.Forecast + " AS NMVNTaskID, OrganizationalUnitID, AccessLevel, ApprovalPermitted, UnApprovalPermitted, VoidablePermitted, UnVoidablePermitted, ShowDiscount, AccessLevelBACKUP, ApprovalPermittedBACKUP, UnApprovalPermittedBACKUP, InActive FROM AccessControls WHERE (NMVNTaskID = " + (int)GlobalEnums.NmvnTaskID.Commodity + ") AND (SELECT COUNT(*) FROM AccessControls WHERE NMVNTaskID = " + (int)GlobalEnums.NmvnTaskID.Forecast + ") = 0", new ObjectParameter[] { });
 
             }
+            #endregion Forecasts
 
 
-            
 
             if (!this.totalSmartCodingEntities.ColumnExists("Reports", "OptionBoxIDs"))
             {

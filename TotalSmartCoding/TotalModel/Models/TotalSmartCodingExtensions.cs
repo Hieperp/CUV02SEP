@@ -843,8 +843,11 @@ namespace TotalModel.Models
         public int Id { get { return this.ForecastID; } }
         public int ImageID { get { return 0; } }
 
-        public decimal TotalTotalQuantity { get { return this.TotalQuantity + this.TotalQuantityM1 + this.TotalQuantityM2 + this.TotalQuantityM3; } }
-        public decimal TotalTotalLineVolume { get { return this.TotalLineVolume + this.TotalLineVolumeM1 + this.TotalLineVolumeM2 + this.TotalLineVolumeM3; } }
+        public decimal GrandTotalValue { get { return this.QuantityVersusVolume == 0 ? this.TotalQuantity + this.TotalQuantityM1 + this.TotalQuantityM2 + this.TotalQuantityM3 : this.TotalLineVolume + this.TotalLineVolumeM1 + this.TotalLineVolumeM2 + this.TotalLineVolumeM3; } }
+        public decimal TotalValue { get { return this.QuantityVersusVolume == 0 ? this.TotalQuantity: this.TotalLineVolume; } }
+        public decimal TotalValueM1 { get { return this.QuantityVersusVolume == 0 ? this.TotalQuantityM1 : this.TotalLineVolumeM1; } }
+        public decimal TotalValueM2 { get { return this.QuantityVersusVolume == 0 ? this.TotalQuantityM2 : this.TotalLineVolumeM2; } }
+        public decimal TotalValueM3 { get { return this.QuantityVersusVolume == 0 ? this.TotalQuantityM3 : this.TotalLineVolumeM3; } }
     }
 
     public partial class Forecast : IPrimitiveEntity, IBaseEntity, IBaseDetailEntity<ForecastDetail>

@@ -40,7 +40,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
-            queryString = queryString + "       SELECT      Forecasts.ForecastID, CAST(Forecasts.EntryDate AS DATE) AS EntryDate, Forecasts.Reference, Forecasts.VoucherCode, Locations.Code AS LocationCode, Forecasts.TotalQuantity, Forecasts.TotalLineVolume, Forecasts.TotalQuantityM1, Forecasts.TotalLineVolumeM1, Forecasts.TotalQuantityM2, Forecasts.TotalLineVolumeM2, Forecasts.TotalQuantityM3, Forecasts.TotalLineVolumeM3, Forecasts.Description " + "\r\n";
+            queryString = queryString + "       SELECT      Forecasts.ForecastID, CAST(Forecasts.EntryDate AS DATE) AS EntryDate, Forecasts.Reference, Forecasts.VoucherCode, Locations.Code AS LocationCode, Forecasts.TotalQuantity, Forecasts.TotalLineVolume, Forecasts.TotalQuantityM1, Forecasts.TotalLineVolumeM1, Forecasts.TotalQuantityM2, Forecasts.TotalLineVolumeM2, Forecasts.TotalQuantityM3, Forecasts.TotalLineVolumeM3, Forecasts.QuantityVersusVolume, Forecasts.Description " + "\r\n";
             queryString = queryString + "       FROM        Forecasts " + "\r\n";
             queryString = queryString + "                   INNER JOIN Locations ON Forecasts.EntryDate >= @FromDate AND Forecasts.EntryDate <= @ToDate AND Forecasts.OrganizationalUnitID IN (SELECT OrganizationalUnitID FROM AccessControls WHERE UserID = @UserID AND NMVNTaskID = " + (int)TotalBase.Enums.GlobalEnums.NmvnTaskID.Forecast + " AND AccessControls.AccessLevel > 0) AND Forecasts.ForecastLocationID = Locations.LocationID " + "\r\n";
 

@@ -176,7 +176,7 @@ namespace TotalSmartCoding.Views.Sales.Forecasts
             {
                 foreach (OLVGroup olvGroup in e.Groups)
                 {
-                    olvGroup.TitleImage = "Sign_Order_32";
+                    olvGroup.TitleImage = "pay-per-click";
                     olvGroup.Subtitle = "Count: " + olvGroup.Contents.Count.ToString() + " Forecast(s)";
                 }
             }
@@ -271,6 +271,24 @@ namespace TotalSmartCoding.Views.Sales.Forecasts
         {
             base.DoAfterLoad();
             this.fastForecastIndex.Sort(this.olvEntryDate, SortOrder.Descending);
+        }
+
+        protected override void invokeEdit(int? id)
+        {
+            base.invokeEdit(id);
+
+            bool byQuantity = this.forecastViewModel.QuantityVersusVolume == 0;
+            this.gridexViewDetails.Columns[CommonExpressions.PropertyName<ForecastDetailDTO>(p => p.TotalQuantity)].Visible = byQuantity;
+            this.gridexViewDetails.Columns[CommonExpressions.PropertyName<ForecastDetailDTO>(p => p.TotalLineVolume)].Visible = !byQuantity;
+
+            this.gridexViewDetails.Columns[CommonExpressions.PropertyName<ForecastDetailDTO>(p => p.Quantity)].Visible = byQuantity;
+            this.gridexViewDetails.Columns[CommonExpressions.PropertyName<ForecastDetailDTO>(p => p.LineVolume)].Visible = !byQuantity;
+            this.gridexViewDetails.Columns[CommonExpressions.PropertyName<ForecastDetailDTO>(p => p.QuantityM1)].Visible = byQuantity;
+            this.gridexViewDetails.Columns[CommonExpressions.PropertyName<ForecastDetailDTO>(p => p.LineVolumeM1)].Visible = !byQuantity;
+            this.gridexViewDetails.Columns[CommonExpressions.PropertyName<ForecastDetailDTO>(p => p.QuantityM2)].Visible = byQuantity;
+            this.gridexViewDetails.Columns[CommonExpressions.PropertyName<ForecastDetailDTO>(p => p.LineVolumeM2)].Visible = !byQuantity;
+            this.gridexViewDetails.Columns[CommonExpressions.PropertyName<ForecastDetailDTO>(p => p.QuantityM3)].Visible = byQuantity;
+            this.gridexViewDetails.Columns[CommonExpressions.PropertyName<ForecastDetailDTO>(p => p.LineVolumeM3)].Visible = !byQuantity;
         }
 
         protected override DialogResult wizardMaster()
