@@ -39,14 +39,19 @@ namespace TotalSmartCoding.Controllers.APIs.Generals
             this.oleDbAPIRepository.SaveColumnMapping(columnMappingID, columnMappingName);
         }
 
-        public DataTable OpenExcelSheet(string excelFile)
+        public List<string> GetExcelSheets(string excelFile)
         {
-            return this.oleDbAPIRepository.OpenExcelSheet(excelFile);
+            return this.oleDbAPIRepository.GetExcelSheets(excelFile);
         }
 
-        public DataTable OpenExcelSheet(string excelFile, string querySelect)
+        public DataTable OpenExcelSheet(string excelFile, string sheetName)
         {
-            return this.oleDbAPIRepository.OpenExcelSheet(excelFile, querySelect);
+            return this.oleDbAPIRepository.OpenExcelSheet(excelFile, sheetName);
+        }
+
+        public DataTable OpenExcelSheet(string excelFile, string sheetName, string querySelect)
+        {
+            return this.oleDbAPIRepository.OpenExcelSheet(excelFile, sheetName, querySelect);
         }
 
     }

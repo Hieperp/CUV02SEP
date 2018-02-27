@@ -352,7 +352,7 @@ namespace TotalSmartCoding.Views.Mains
                     if (olvGroup.Collapsed) olvGroup.Collapsed = false;
             }
 
-            OLVHelpers.ApplyFilters(this.fastListIndex, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));            
+            OLVHelpers.ApplyFilters(this.fastListIndex, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
         }
 
         public virtual void ApplyDetailFilter(string filterTexts)
@@ -558,13 +558,16 @@ namespace TotalSmartCoding.Views.Mains
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     string fileName = openFileDialog.FileName;
+                    string sheetName = this.GetExcelSheet(mappingTaskID, fileName);
+                    if (sheetName != null)
+                    {
+                        ColumnMappings columnMappings = new ColumnMappings(mappingTaskID, fileName, sheetName);
 
-                    ColumnMappings columnMappings = new ColumnMappings(mappingTaskID, fileName);
+                        if (columnMappings.ShowDialog() == DialogResult.OK)
+                            this.DoImportExcel(fileName);
 
-                    if (columnMappings.ShowDialog() == DialogResult.OK)
-                        this.DoImportExcel(fileName);
-
-                    columnMappings.Dispose();
+                        columnMappings.Dispose();
+                    }
                 }
                 openFileDialog.Dispose();
             }
@@ -572,6 +575,17 @@ namespace TotalSmartCoding.Views.Mains
             {
                 ExceptionHandlers.ShowExceptionMessageBox(this, exception);
             }
+        }
+
+        private string GetExcelSheet(GlobalEnums.MappingTaskID mappingTaskID, string excelFile)
+        {
+            string sheetName = null;
+            ExcelSheets excelSheets = new ExcelSheets(mappingTaskID, excelFile);
+
+            if (excelSheets.ShowDialog() == DialogResult.OK) sheetName = excelSheets.Tag.ToString();
+            excelSheets.Dispose();
+
+            return sheetName;
         }
 
         protected virtual void DoImportExcel(string fileName) { }

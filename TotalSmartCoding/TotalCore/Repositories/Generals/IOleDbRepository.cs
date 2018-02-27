@@ -10,8 +10,11 @@ namespace TotalCore.Repositories.Generals
     {
         GlobalEnums.MappingTaskID MappingTaskID { get; set; }
 
-        DataTable OpenExcelSheet(string excelFile);
-        DataTable OpenExcelSheet(string excelFile, string querySelect);
+        List<string> GetExcelSheets(string excelFile);
+
+        DataTable OpenExcelSheet(string excelFile, string sheetName);
+        DataTable OpenExcelSheet(string excelFile, string sheetName, string querySelect);
+        DataTable OpenExcelSheet(string excelFile, string sheetName, string querySelect, string queryWhere, string queryOrderBy);
 
         IList<ColumnMapping> GetColumnMappings();
         void SaveColumnMapping(int columnMappingID, string columnMappingName);

@@ -132,6 +132,8 @@ namespace TotalSmartCoding.Libraries
                 cfg.CreateMap<Report, ReportViewModel>();
                 cfg.CreateMap<Report, ReportDTO>();
                 cfg.CreateMap<ReportPrimitiveDTO, Report>();
+
+                cfg.CreateMap<ColumnMapping, ColumnMappingDTO>();
             });
         }
     }

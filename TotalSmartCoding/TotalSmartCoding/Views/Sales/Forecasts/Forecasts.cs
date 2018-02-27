@@ -33,6 +33,9 @@ using TotalModel.Models;
 using TotalDTO.Sales;
 using BrightIdeasSoftware;
 using TotalSmartCoding.Libraries.StackedHeaders;
+using TotalSmartCoding.Controllers.APIs.Generals;
+using TotalCore.Repositories.Generals;
+using TotalModel.Helpers;
 
 
 namespace TotalSmartCoding.Views.Sales.Forecasts
@@ -291,6 +294,18 @@ namespace TotalSmartCoding.Views.Sales.Forecasts
             this.gridexViewDetails.Columns[CommonExpressions.PropertyName<ForecastDetailDTO>(p => p.LineVolumeM3)].Visible = !byQuantity;
         }
 
+        public override void Import()
+        {
+            this.ImportExcel(GlobalEnums.MappingTaskID.Forecast);
+        }
+
+        protected override void DoImportExcel(string fileName)
+        {
+            base.DoImportExcel(fileName);
+            this.ImportExcel(fileName);
+            this.Loading();
+        }
+
         protected override DialogResult wizardMaster()
         {
             WizardMaster wizardMaster = new WizardMaster(this.forecastViewModel);
@@ -314,5 +329,113 @@ namespace TotalSmartCoding.Views.Sales.Forecasts
                 this.buttonExpandTop.Image = this.naviGroupTop.Expanded ? Resources.chevron : Resources.chevron_expand;
             }
         }
+
+
+        #region Import Excel
+
+        public bool ImportExcel(string fileName)
+        {
+            try
+            {
+                OleDbAPIs oleDbAPIs = new OleDbAPIs(CommonNinject.Kernel.Get<IOleDbAPIRepository>(), GlobalEnums.MappingTaskID.Forecast);
+
+                //CommodityViewModel commodityViewModel = CommonNinject.Kernel.Get<CommodityViewModel>();
+                //CommodityController commodityController = new CommodityController(CommonNinject.Kernel.Get<ICommodityService>(), commodityViewModel);
+
+
+                //int intValue; decimal decimalValue; DateTime dateTimeValue;
+                //ExceptionTable exceptionTable = new ExceptionTable(new string[2, 2] { { "ExceptionCategory", "System.String" }, { "Description", "System.String" } });
+
+                ////////////TimeSpan timeout = TimeSpan.FromMinutes(90);
+                ////////////using (TransactionScope transactionScope = new TransactionScope(TransactionScopeOption.Required, timeout))
+                ////////////{
+                ////////////if (!this.Editable(this.)) throw new System.ArgumentException("Import", "Permission conflict");
+
+
+                //DataTable excelDataTable = oleDbAPIs.OpenExcelSheet(fileName);
+                //if (excelDataTable != null && excelDataTable.Rows.Count > 0)
+                //{
+                //    foreach (DataRow excelDataRow in excelDataTable.Rows)
+                //    {
+                //        exceptionTable.ClearDirty();
+
+                //        string code = excelDataRow["Code"].ToString().Trim();
+                //        if (code.Length < 5) code = new String('0', 5 - code.Length) + code;
+
+                //        BatchMasterBase batchMasterBase = this.batchMasterAPIs.GetBatchMasterBase(code);
+
+                //        if (batchMasterBase == null)
+                //        {
+                //            this.batchMasterController.Create();
+
+                //            this.batchMasterViewModel.EntryDate = new DateTime(2000, 1, 1);
+                //            this.batchMasterViewModel.Code = code;
+
+
+                //            if (DateTime.TryParse(excelDataRow["PlannedDate"].ToString(), out dateTimeValue)) this.batchMasterViewModel.PlannedDate = dateTimeValue; else exceptionTable.AddException(new string[] { "Lỗi cột dữ liệu Plan start date", "Batch: " + code + ": " + excelDataRow["PlannedDate"].ToString() });
+                //            if (decimal.TryParse(excelDataRow["PlannedQuantity"].ToString(), out decimalValue)) this.batchMasterViewModel.PlannedQuantity = decimalValue; else exceptionTable.AddException(new string[] { "Lỗi cột dữ liệu SL Kế hoạch", "Batch: " + code + ": " + excelDataRow["PlannedQuantity"].ToString() });
+
+                //            CommodityBase commodityBase = this.commodityAPIs.GetCommodityBase(excelDataRow["CommodityCode"].ToString());
+                //            if (commodityBase != null) this.batchMasterViewModel.CommodityID = commodityBase.CommodityID;
+                //            else
+                //            {
+                //                commodityController.Create();
+
+                //                commodityViewModel.Code = excelDataRow["CommodityCode"].ToString();
+                //                commodityViewModel.APICode = excelDataRow["CommodityAPICode"].ToString().Replace("'", "");
+                //                commodityViewModel.CartonCode = excelDataRow["CommodityCartonCode"].ToString().Replace("'", "");
+                //                commodityViewModel.Name = excelDataRow["CommodityName"].ToString();
+                //                commodityViewModel.OfficialName = excelDataRow["CommodityName"].ToString();
+
+                //                commodityViewModel.CommodityCategoryID = 2;
+                //                commodityViewModel.FillingLineIDs = "1,2";
+
+                //                if (decimal.TryParse(excelDataRow["Volume"].ToString(), out decimalValue)) commodityViewModel.Volume = decimalValue / 1000; else exceptionTable.AddException(new string[] { "Lỗi cột dữ liệu Trọng lượng", "Batch: " + code + ": " + excelDataRow["Volume"].ToString() });
+                //                if (int.TryParse(excelDataRow["PackPerCarton"].ToString(), out intValue)) commodityViewModel.PackPerCarton = intValue; else exceptionTable.AddException(new string[] { "Lỗi cột dữ liệu QC thùng", "Batch: " + code + ": " + excelDataRow["PackPerCarton"].ToString() });
+                //                if (int.TryParse(excelDataRow["CartonPerPallet"].ToString(), out intValue)) commodityViewModel.CartonPerPallet = intValue / commodityViewModel.PackPerCarton; else exceptionTable.AddException(new string[] { "Lỗi cột dữ liệu QC pallet", "Batch: " + code + ": " + excelDataRow["CartonPerPallet"].ToString() });
+
+                //                commodityViewModel.PackageSize = commodityViewModel.PackPerCarton.ToString("N0") + "x" + commodityViewModel.Volume.ToString("N2") + "kg";
+
+                //                if (int.TryParse(excelDataRow["Shelflife"].ToString(), out intValue)) commodityViewModel.Shelflife = intValue; else exceptionTable.AddException(new string[] { "Lỗi cột dữ liệu Expiration months", "Batch: " + code + ": " + excelDataRow["Shelflife"].ToString() });
+
+                //                if (!commodityViewModel.IsValid) exceptionTable.AddException(new string[] { "Lỗi dữ liệu sản phẩm không hợp lệ", excelDataRow["CommodityCode"].ToString() + ": " + commodityViewModel.Error });
+                //                else
+                //                    if (commodityViewModel.IsDirty)
+                //                        if (commodityController.Save())
+                //                            this.batchMasterViewModel.CommodityID = commodityViewModel.CommodityID;
+                //                        else
+                //                            exceptionTable.AddException(new string[] { "Lỗi lưu dữ liệu [thêm sản phẩm mới]", excelDataRow["CommodityCode"].ToString() + commodityController.BaseService.ServiceTag });
+                //            }
+
+
+                //            BatchStatusBase batchStatusBase = this.batchStatusAPIs.GetBatchStatusBase(excelDataRow["BatchStatusCode"].ToString());
+                //            if (batchStatusBase != null) this.batchMasterViewModel.BatchStatusID = batchStatusBase.BatchStatusID; else exceptionTable.AddException(new string[] { "Lỗi cột dữ liệu Trạng thái", "Batch: " + code + ": " + excelDataRow["BatchStatusCode"].ToString() });
+
+
+                //            if (!this.batchMasterViewModel.IsValid) exceptionTable.AddException(new string[] { "Lỗi dữ liệu Batch không hợp lệ", "Batch: " + code + ": " + this.batchMasterViewModel.Error }); ;
+                //            if (!exceptionTable.IsDirty)
+                //                if (this.batchMasterViewModel.IsDirty && !this.batchMasterController.Save())
+                //                    exceptionTable.AddException(new string[] { "Lỗi lưu dữ liệu [thêm batch mới]", code + this.batchMasterController.BaseService.ServiceTag });
+                //        }
+                //        else
+                //            exceptionTable.AddException(new string[] { "Batch không được import, do đã tồn tại trên hệ thống", "Batch: " + code });
+                //    }
+                //}
+
+                //if (exceptionTable.Table.Rows.Count <= 0)
+                return true;
+                //else
+                //    throw new CustomException("Lỗi import file excel. Vui lòng xem danh sách đính kèm. Click vào từng nội dung để xem chi tiết.", exceptionTable.Table);
+
+            }
+            catch (System.Exception exception)
+            {
+                throw exception;
+            }
+        }
+
+
+        #endregion Import Excel
+
     }
 }

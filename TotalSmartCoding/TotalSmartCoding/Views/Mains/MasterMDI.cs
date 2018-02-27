@@ -640,6 +640,19 @@ namespace TotalSmartCoding.Views.Mains
         }
 
 
+        private void buttonImport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                IToolstripChild toolstripChild = ActiveMdiChild as IToolstripChild;
+                if (toolstripChild != null) toolstripChild.Import();
+            }
+            catch (Exception exception)
+            {
+                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+            }
+        }
+
         private void buttonNew_Click(object sender, EventArgs e)
         {
             try

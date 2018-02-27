@@ -20,6 +20,7 @@ namespace TotalSmartCoding.Views.Mains
     public partial class ColumnMappings : Form
     {
         private string excelFile;
+        private string sheetName;
         private GlobalEnums.MappingTaskID mappingTaskID;
 
         private OleDbAPIs oleDbAPIs { get; set; }
@@ -27,7 +28,7 @@ namespace TotalSmartCoding.Views.Mains
         BindingList<ColumnAvailableDTO> ColumnAvailableDTOs;
         BindingList<ColumnMappingDTO> ColumnMappingDTOs;
 
-        public ColumnMappings(GlobalEnums.MappingTaskID mappingTaskID, string excelFile)
+        public ColumnMappings(GlobalEnums.MappingTaskID mappingTaskID, string excelFile, string sheetName)
         {
             InitializeComponent();
             try
@@ -35,6 +36,7 @@ namespace TotalSmartCoding.Views.Mains
                 this.oleDbAPIs = new OleDbAPIs(CommonNinject.Kernel.Get<IOleDbAPIRepository>(), mappingTaskID);
 
                 this.excelFile = excelFile;
+                this.sheetName = sheetName;
                 this.mappingTaskID = mappingTaskID;
 
                 this.Text = "Mapping for " + this.excelFile;
@@ -51,7 +53,7 @@ namespace TotalSmartCoding.Views.Mains
             {
                 this.ColumnAvailableDTOs = new BindingList<ColumnAvailableDTO>();
 
-                DataTable excelDataTable = this.oleDbAPIs.OpenExcelSheet(this.excelFile, "*");
+                DataTable excelDataTable = this.oleDbAPIs.OpenExcelSheet(this.excelFile, this.sheetName, "*");
                 if (excelDataTable != null && excelDataTable.Columns.Count > 0)
                 {//Get available column from current file
                     foreach (DataColumn dataColumn in excelDataTable.Columns)

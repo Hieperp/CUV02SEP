@@ -4683,6 +4683,16 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap pay_per_click_1 {
+            get {
+                object obj = ResourceManager.GetObject("pay-per-click-1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Phone_icon_16 {
             get {
                 object obj = ResourceManager.GetObject("Phone-icon-16", resourceCulture);
