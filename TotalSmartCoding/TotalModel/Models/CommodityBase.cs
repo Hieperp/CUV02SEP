@@ -22,5 +22,7 @@ namespace TotalModel.Models
         public decimal PackageVolume { get; set; }
         public string APICode { get; set; }
         public string FillingLineIDs { get; set; }
+        public int CommodityCategoryID { get; set; }
+        public string CommodityCategoryName { get; set; }
     }
 }

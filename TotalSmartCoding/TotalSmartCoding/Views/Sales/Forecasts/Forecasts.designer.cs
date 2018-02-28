@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Forecasts));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -40,6 +40,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             this.layoutLeft = new System.Windows.Forms.TableLayoutPanel();
             this.combexForecastLocationID = new CustomControls.CombexBox();
             this.dateTimexEntryDate = new CustomControls.DateTimexPicker();
@@ -60,20 +62,6 @@
             this.textexDescription = new CustomControls.TextexBox();
             this.textexRemarks = new CustomControls.TextexBox();
             this.gridexViewDetails = new CustomControls.DataGridexView();
-            this.CommodityID = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.CommodityName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PackageSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TotalQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TotalLineVolume = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LineVolume = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.QuantityM1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LineVolumeM1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.QuantityM2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LineVolumeM2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.QuantityM3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LineVolumeM3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Remarks = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.naviGroupTop = new Guifreaks.Navisuite.NaviGroup(this.components);
             this.layoutTop = new System.Windows.Forms.TableLayoutPanel();
             this.label3 = new System.Windows.Forms.Label();
@@ -91,6 +79,20 @@
             this.olvTotalValueM3 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvDescription = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.imageList32 = new System.Windows.Forms.ImageList(this.components);
+            this.CommodityID = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.CommodityName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PackageSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalLineVolume = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LineVolume = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QuantityM1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LineVolumeM1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QuantityM2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LineVolumeM2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QuantityM3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LineVolumeM3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Remarks = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.layoutLeft.SuspendLayout();
             this.toolStripChildForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.naviGroupDetails)).BeginInit();
@@ -112,14 +114,14 @@
             this.layoutLeft.ColumnCount = 2;
             this.layoutLeft.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.layoutLeft.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.layoutLeft.Controls.Add(this.combexForecastLocationID, 0, 7);
+            this.layoutLeft.Controls.Add(this.combexForecastLocationID, 0, 3);
             this.layoutLeft.Controls.Add(this.dateTimexEntryDate, 0, 1);
-            this.layoutLeft.Controls.Add(this.textexReference, 0, 3);
+            this.layoutLeft.Controls.Add(this.textexReference, 0, 5);
             this.layoutLeft.Controls.Add(this.label6, 0, 0);
             this.layoutLeft.Controls.Add(this.label7, 0, 2);
             this.layoutLeft.Controls.Add(this.label1, 0, 6);
             this.layoutLeft.Controls.Add(this.label2, 0, 4);
-            this.layoutLeft.Controls.Add(this.textexVoucherCode, 0, 5);
+            this.layoutLeft.Controls.Add(this.textexVoucherCode, 0, 7);
             this.layoutLeft.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutLeft.Location = new System.Drawing.Point(0, 0);
             this.layoutLeft.Margin = new System.Windows.Forms.Padding(0);
@@ -145,7 +147,7 @@
             this.combexForecastLocationID.Dock = System.Windows.Forms.DockStyle.Fill;
             this.combexForecastLocationID.Editable = false;
             this.combexForecastLocationID.FormattingEnabled = true;
-            this.combexForecastLocationID.Location = new System.Drawing.Point(3, 223);
+            this.combexForecastLocationID.Location = new System.Drawing.Point(3, 99);
             this.combexForecastLocationID.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.combexForecastLocationID.Name = "combexForecastLocationID";
             this.combexForecastLocationID.ReadOnly = false;
@@ -156,7 +158,7 @@
             // 
             this.dateTimexEntryDate.CustomFormat = "dd/MMM/yyyy HH:mm:ss";
             this.dateTimexEntryDate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dateTimexEntryDate.Editable = true;
+            this.dateTimexEntryDate.Editable = false;
             this.dateTimexEntryDate.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimexEntryDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimexEntryDate.Location = new System.Drawing.Point(3, 36);
@@ -171,7 +173,7 @@
             this.textexReference.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexReference.Editable = false;
             this.textexReference.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textexReference.Location = new System.Drawing.Point(3, 98);
+            this.textexReference.Location = new System.Drawing.Point(3, 163);
             this.textexReference.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.textexReference.Name = "textexReference";
             this.textexReference.Size = new System.Drawing.Size(247, 28);
@@ -200,7 +202,7 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(248, 21);
             this.label7.TabIndex = 31;
-            this.label7.Text = "Reference";
+            this.label7.Text = "Location";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label1
@@ -208,12 +210,12 @@
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(0, 199);
+            this.label1.Location = new System.Drawing.Point(0, 202);
             this.label1.Margin = new System.Windows.Forms.Padding(0, 10, 3, 1);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(248, 21);
             this.label1.TabIndex = 76;
-            this.label1.Text = "Location";
+            this.label1.Text = "Voucher #";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label2
@@ -221,12 +223,12 @@
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label2.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(0, 137);
+            this.label2.Location = new System.Drawing.Point(0, 140);
             this.label2.Margin = new System.Windows.Forms.Padding(0, 10, 3, 1);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(248, 21);
             this.label2.TabIndex = 77;
-            this.label2.Text = "Voucher #";
+            this.label2.Text = "Reference";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // textexVoucherCode
@@ -234,7 +236,7 @@
             this.textexVoucherCode.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexVoucherCode.Editable = true;
             this.textexVoucherCode.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textexVoucherCode.Location = new System.Drawing.Point(3, 160);
+            this.textexVoucherCode.Location = new System.Drawing.Point(3, 225);
             this.textexVoucherCode.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.textexVoucherCode.Name = "textexVoucherCode";
             this.textexVoucherCode.Size = new System.Drawing.Size(247, 28);
@@ -400,158 +402,11 @@
             this.gridexViewDetails.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gridexViewDetails.Name = "gridexViewDetails";
             this.gridexViewDetails.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridexViewDetails.RowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridexViewDetails.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.gridexViewDetails.RowTemplate.Height = 24;
             this.gridexViewDetails.Size = new System.Drawing.Size(888, 194);
             this.gridexViewDetails.TabIndex = 65;
-            // 
-            // CommodityID
-            // 
-            this.CommodityID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CommodityID.DataPropertyName = "CommodityID";
-            this.CommodityID.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
-            this.CommodityID.FillWeight = 9F;
-            this.CommodityID.HeaderText = "Items.Code";
-            this.CommodityID.Name = "CommodityID";
-            this.CommodityID.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.CommodityID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // CommodityName
-            // 
-            this.CommodityName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CommodityName.DataPropertyName = "CommodityName";
-            this.CommodityName.FillWeight = 22F;
-            this.CommodityName.HeaderText = "Items.Description";
-            this.CommodityName.Name = "CommodityName";
-            this.CommodityName.ReadOnly = true;
-            // 
-            // PackageSize
-            // 
-            this.PackageSize.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.PackageSize.DataPropertyName = "CommodityCategoryName";
-            this.PackageSize.FillWeight = 8F;
-            this.PackageSize.HeaderText = "Items.Category";
-            this.PackageSize.Name = "PackageSize";
-            this.PackageSize.ReadOnly = true;
-            // 
-            // TotalQuantity
-            // 
-            this.TotalQuantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.TotalQuantity.DataPropertyName = "TotalQuantity";
-            this.TotalQuantity.FillWeight = 7F;
-            this.TotalQuantity.HeaderText = "Forecast.Total";
-            this.TotalQuantity.Name = "TotalQuantity";
-            this.TotalQuantity.ReadOnly = true;
-            // 
-            // TotalLineVolume
-            // 
-            this.TotalLineVolume.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.TotalLineVolume.DataPropertyName = "TotalLineVolume";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle1.Format = "N2";
-            this.TotalLineVolume.DefaultCellStyle = dataGridViewCellStyle1;
-            this.TotalLineVolume.FillWeight = 7F;
-            this.TotalLineVolume.HeaderText = "Forecast.Total";
-            this.TotalLineVolume.Name = "TotalLineVolume";
-            this.TotalLineVolume.ReadOnly = true;
-            // 
-            // Quantity
-            // 
-            this.Quantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Quantity.DataPropertyName = "Quantity";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.Format = "N0";
-            this.Quantity.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Quantity.FillWeight = 7F;
-            this.Quantity.HeaderText = "Forecast.Nov-17";
-            this.Quantity.Name = "Quantity";
-            // 
-            // LineVolume
-            // 
-            this.LineVolume.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.LineVolume.DataPropertyName = "LineVolume";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.Format = "N2";
-            this.LineVolume.DefaultCellStyle = dataGridViewCellStyle3;
-            this.LineVolume.FillWeight = 7F;
-            this.LineVolume.HeaderText = "Forecast.Nov-17";
-            this.LineVolume.Name = "LineVolume";
-            // 
-            // QuantityM1
-            // 
-            this.QuantityM1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.QuantityM1.DataPropertyName = "QuantityM1";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle4.Format = "N0";
-            this.QuantityM1.DefaultCellStyle = dataGridViewCellStyle4;
-            this.QuantityM1.FillWeight = 7F;
-            this.QuantityM1.HeaderText = "Forecast.Dec-17";
-            this.QuantityM1.Name = "QuantityM1";
-            // 
-            // LineVolumeM1
-            // 
-            this.LineVolumeM1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.LineVolumeM1.DataPropertyName = "LineVolumeM1";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.Format = "N2";
-            dataGridViewCellStyle5.NullValue = null;
-            this.LineVolumeM1.DefaultCellStyle = dataGridViewCellStyle5;
-            this.LineVolumeM1.FillWeight = 7F;
-            this.LineVolumeM1.HeaderText = "Forecast.Dec-17";
-            this.LineVolumeM1.Name = "LineVolumeM1";
-            // 
-            // QuantityM2
-            // 
-            this.QuantityM2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.QuantityM2.DataPropertyName = "QuantityM2";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle6.Format = "N0";
-            this.QuantityM2.DefaultCellStyle = dataGridViewCellStyle6;
-            this.QuantityM2.FillWeight = 7F;
-            this.QuantityM2.HeaderText = "Forecast.Jan-01";
-            this.QuantityM2.Name = "QuantityM2";
-            // 
-            // LineVolumeM2
-            // 
-            this.LineVolumeM2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.LineVolumeM2.DataPropertyName = "LineVolumeM2";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle7.Format = "N2";
-            this.LineVolumeM2.DefaultCellStyle = dataGridViewCellStyle7;
-            this.LineVolumeM2.FillWeight = 7F;
-            this.LineVolumeM2.HeaderText = "Forecast.Jan-01";
-            this.LineVolumeM2.Name = "LineVolumeM2";
-            // 
-            // QuantityM3
-            // 
-            this.QuantityM3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.QuantityM3.DataPropertyName = "QuantityM3";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle8.Format = "N0";
-            this.QuantityM3.DefaultCellStyle = dataGridViewCellStyle8;
-            this.QuantityM3.FillWeight = 7F;
-            this.QuantityM3.HeaderText = "Forecast.Feb-18";
-            this.QuantityM3.Name = "QuantityM3";
-            // 
-            // LineVolumeM3
-            // 
-            this.LineVolumeM3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.LineVolumeM3.DataPropertyName = "LineVolumeM3";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle9.Format = "N2";
-            this.LineVolumeM3.DefaultCellStyle = dataGridViewCellStyle9;
-            this.LineVolumeM3.FillWeight = 7F;
-            this.LineVolumeM3.HeaderText = "Forecast.Feb-18";
-            this.LineVolumeM3.Name = "LineVolumeM3";
-            // 
-            // Remarks
-            // 
-            this.Remarks.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Remarks.DataPropertyName = "Remarks";
-            this.Remarks.FillWeight = 18F;
-            this.Remarks.HeaderText = "Remarks";
-            this.Remarks.Name = "Remarks";
             // 
             // naviGroupTop
             // 
@@ -765,6 +620,158 @@
             this.imageList32.Images.SetKeyName(7, "Sign_Order_32");
             this.imageList32.Images.SetKeyName(8, "Sales-by-Payment");
             this.imageList32.Images.SetKeyName(9, "pay-per-click");
+            // 
+            // CommodityID
+            // 
+            this.CommodityID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CommodityID.DataPropertyName = "CommodityID";
+            this.CommodityID.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.CommodityID.FillWeight = 9F;
+            this.CommodityID.HeaderText = "Items.Code";
+            this.CommodityID.Name = "CommodityID";
+            this.CommodityID.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.CommodityID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // CommodityName
+            // 
+            this.CommodityName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CommodityName.DataPropertyName = "CommodityName";
+            this.CommodityName.FillWeight = 22F;
+            this.CommodityName.HeaderText = "Items.Description";
+            this.CommodityName.Name = "CommodityName";
+            this.CommodityName.ReadOnly = true;
+            // 
+            // PackageSize
+            // 
+            this.PackageSize.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.PackageSize.DataPropertyName = "CommodityCategoryName";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.PackageSize.DefaultCellStyle = dataGridViewCellStyle1;
+            this.PackageSize.FillWeight = 8F;
+            this.PackageSize.HeaderText = "Items.Category";
+            this.PackageSize.Name = "PackageSize";
+            this.PackageSize.ReadOnly = true;
+            // 
+            // TotalQuantity
+            // 
+            this.TotalQuantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.TotalQuantity.DataPropertyName = "TotalQuantity";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Format = "N0";
+            this.TotalQuantity.DefaultCellStyle = dataGridViewCellStyle2;
+            this.TotalQuantity.FillWeight = 7F;
+            this.TotalQuantity.HeaderText = "Forecast.Total";
+            this.TotalQuantity.Name = "TotalQuantity";
+            this.TotalQuantity.ReadOnly = true;
+            // 
+            // TotalLineVolume
+            // 
+            this.TotalLineVolume.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.TotalLineVolume.DataPropertyName = "TotalLineVolume";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.Format = "N2";
+            this.TotalLineVolume.DefaultCellStyle = dataGridViewCellStyle3;
+            this.TotalLineVolume.FillWeight = 7F;
+            this.TotalLineVolume.HeaderText = "Forecast.Total";
+            this.TotalLineVolume.Name = "TotalLineVolume";
+            this.TotalLineVolume.ReadOnly = true;
+            // 
+            // Quantity
+            // 
+            this.Quantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Quantity.DataPropertyName = "Quantity";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.Format = "N0";
+            this.Quantity.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Quantity.FillWeight = 7F;
+            this.Quantity.HeaderText = "Forecast.Nov-17";
+            this.Quantity.Name = "Quantity";
+            // 
+            // LineVolume
+            // 
+            this.LineVolume.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.LineVolume.DataPropertyName = "LineVolume";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle5.Format = "N2";
+            this.LineVolume.DefaultCellStyle = dataGridViewCellStyle5;
+            this.LineVolume.FillWeight = 7F;
+            this.LineVolume.HeaderText = "Forecast.Nov-17";
+            this.LineVolume.Name = "LineVolume";
+            // 
+            // QuantityM1
+            // 
+            this.QuantityM1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.QuantityM1.DataPropertyName = "QuantityM1";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle6.Format = "N0";
+            this.QuantityM1.DefaultCellStyle = dataGridViewCellStyle6;
+            this.QuantityM1.FillWeight = 7F;
+            this.QuantityM1.HeaderText = "Forecast.Dec-17";
+            this.QuantityM1.Name = "QuantityM1";
+            // 
+            // LineVolumeM1
+            // 
+            this.LineVolumeM1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.LineVolumeM1.DataPropertyName = "LineVolumeM1";
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle7.Format = "N2";
+            dataGridViewCellStyle7.NullValue = null;
+            this.LineVolumeM1.DefaultCellStyle = dataGridViewCellStyle7;
+            this.LineVolumeM1.FillWeight = 7F;
+            this.LineVolumeM1.HeaderText = "Forecast.Dec-17";
+            this.LineVolumeM1.Name = "LineVolumeM1";
+            // 
+            // QuantityM2
+            // 
+            this.QuantityM2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.QuantityM2.DataPropertyName = "QuantityM2";
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle8.Format = "N0";
+            this.QuantityM2.DefaultCellStyle = dataGridViewCellStyle8;
+            this.QuantityM2.FillWeight = 7F;
+            this.QuantityM2.HeaderText = "Forecast.Jan-01";
+            this.QuantityM2.Name = "QuantityM2";
+            // 
+            // LineVolumeM2
+            // 
+            this.LineVolumeM2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.LineVolumeM2.DataPropertyName = "LineVolumeM2";
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle9.Format = "N2";
+            this.LineVolumeM2.DefaultCellStyle = dataGridViewCellStyle9;
+            this.LineVolumeM2.FillWeight = 7F;
+            this.LineVolumeM2.HeaderText = "Forecast.Jan-01";
+            this.LineVolumeM2.Name = "LineVolumeM2";
+            // 
+            // QuantityM3
+            // 
+            this.QuantityM3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.QuantityM3.DataPropertyName = "QuantityM3";
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle10.Format = "N0";
+            this.QuantityM3.DefaultCellStyle = dataGridViewCellStyle10;
+            this.QuantityM3.FillWeight = 7F;
+            this.QuantityM3.HeaderText = "Forecast.Feb-18";
+            this.QuantityM3.Name = "QuantityM3";
+            // 
+            // LineVolumeM3
+            // 
+            this.LineVolumeM3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.LineVolumeM3.DataPropertyName = "LineVolumeM3";
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle11.Format = "N2";
+            this.LineVolumeM3.DefaultCellStyle = dataGridViewCellStyle11;
+            this.LineVolumeM3.FillWeight = 7F;
+            this.LineVolumeM3.HeaderText = "Forecast.Feb-18";
+            this.LineVolumeM3.Name = "LineVolumeM3";
+            // 
+            // Remarks
+            // 
+            this.Remarks.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Remarks.DataPropertyName = "Remarks";
+            this.Remarks.FillWeight = 18F;
+            this.Remarks.HeaderText = "Remarks";
+            this.Remarks.Name = "Remarks";
             // 
             // Forecasts
             // 

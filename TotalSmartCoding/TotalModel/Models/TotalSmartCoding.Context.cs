@@ -2393,5 +2393,41 @@ namespace TotalModel.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ForecastViewDetail>("GetForecastViewDetails", forecastIDParameter);
         }
+    
+        public virtual ObjectResult<CommodityBase> GetCommodityBase(Nullable<int> commodityID)
+        {
+            var commodityIDParameter = commodityID.HasValue ?
+                new ObjectParameter("CommodityID", commodityID) :
+                new ObjectParameter("CommodityID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CommodityBase>("GetCommodityBase", commodityIDParameter);
+        }
+    
+        public virtual ObjectResult<CommodityBase> GetCommodityBaseByCode(string code)
+        {
+            var codeParameter = code != null ?
+                new ObjectParameter("Code", code) :
+                new ObjectParameter("Code", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CommodityBase>("GetCommodityBaseByCode", codeParameter);
+        }
+    
+        public virtual ObjectResult<WarehouseBase> GetWarehouseBase(Nullable<int> warehouseID)
+        {
+            var warehouseIDParameter = warehouseID.HasValue ?
+                new ObjectParameter("WarehouseID", warehouseID) :
+                new ObjectParameter("WarehouseID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<WarehouseBase>("GetWarehouseBase", warehouseIDParameter);
+        }
+    
+        public virtual ObjectResult<WarehouseBase> GetWarehouseBaseByCode(string code)
+        {
+            var codeParameter = code != null ?
+                new ObjectParameter("Code", code) :
+                new ObjectParameter("Code", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<WarehouseBase>("GetWarehouseBaseByCode", codeParameter);
+        }
     }
 }

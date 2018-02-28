@@ -36,6 +36,8 @@ using TotalSmartCoding.Libraries.StackedHeaders;
 using TotalSmartCoding.Controllers.APIs.Generals;
 using TotalCore.Repositories.Generals;
 using TotalModel.Helpers;
+using TotalSmartCoding.ViewModels.Commons;
+using TotalSmartCoding.Controllers.Commons;
 
 
 namespace TotalSmartCoding.Views.Sales.Forecasts
@@ -47,6 +49,17 @@ namespace TotalSmartCoding.Views.Sales.Forecasts
 
         private ForecastAPIs forecastAPIs;
         private ForecastViewModel forecastViewModel { get; set; }
+
+        private CommodityAPIs commodityAPIs;
+        private WarehouseAPIs _warehouseAPIs;
+        private WarehouseAPIs warehouseAPIs
+        {
+            get
+            {
+                if (_warehouseAPIs == null) _warehouseAPIs = new WarehouseAPIs(CommonNinject.Kernel.Get<IWarehouseAPIRepository>());
+                return _warehouseAPIs;
+            }
+        }
 
         public Forecasts()
             : base()
@@ -74,7 +87,7 @@ namespace TotalSmartCoding.Views.Sales.Forecasts
                 this.customTabLeft = new CustomTabControl();
                 this.customTabLeft.DisplayStyle = TabStyle.VisualStudio;
 
-                this.customTabLeft.TabPages.Add("tabLeftAA", "Sales Forecast  ");
+                this.customTabLeft.TabPages.Add("tabLeftAA", "Onward Forecast  ");
                 this.customTabLeft.TabPages[0].BackColor = this.panelLeft.BackColor;
                 this.customTabLeft.TabPages[0].Padding = new Padding(15, 0, 0, 0);
                 this.customTabLeft.TabPages[0].Controls.Add(this.layoutLeft);
@@ -204,10 +217,10 @@ namespace TotalSmartCoding.Views.Sales.Forecasts
             this.gridexViewDetails.ReadOnlyChanged += new System.EventHandler(this.dataGrid_ReadOnlyChanged);
 
             DataGridViewComboBoxColumn comboBoxColumn;
-            CommodityAPIs commodityAPIs = new CommodityAPIs(CommonNinject.Kernel.Get<ICommodityAPIRepository>());
+            this.commodityAPIs = new CommodityAPIs(CommonNinject.Kernel.Get<ICommodityAPIRepository>());
 
             comboBoxColumn = (DataGridViewComboBoxColumn)this.gridexViewDetails.Columns[CommonExpressions.PropertyName<ForecastDetailDTO>(p => p.CommodityID)];
-            comboBoxColumn.DataSource = commodityAPIs.GetCommodityBases(true);
+            comboBoxColumn.DataSource = this.commodityAPIs.GetCommodityBases(true);
             comboBoxColumn.DisplayMember = CommonExpressions.PropertyName<CommodityBase>(p => p.Code);
             comboBoxColumn.ValueMember = CommonExpressions.PropertyName<CommodityBase>(p => p.CommodityID);
 
@@ -246,8 +259,7 @@ namespace TotalSmartCoding.Views.Sales.Forecasts
         {
             if (propertyName == CommonExpressions.PropertyName<ForecastDetailDTO>(p => p.CommodityID))
             {
-                CommodityAPIs commodityAPIs = new CommodityAPIs(CommonNinject.Kernel.Get<ICommodityAPIRepository>()); //WE MUST USE ContextAttributes.User.LocationID, INSTEAD OF quantityDetailDTO.LocationID, BECAUSE AT FIRST quantityDetailDTO.LocationID = 0. WHEN SAVE: GenericService.PreSaveRoutines WILL UPDATE DTO.LocationID = ContextAttributes.User.LocationID. SEE GenericService.PreSaveRoutines FOR MORE INFORMATION!!!
-                IList<SearchCommodity> searchCommodities = commodityAPIs.SearchCommodities(forecastDetailDTO.CommodityID, ContextAttributes.User.LocationID, null, null, null);
+                IList<SearchCommodity> searchCommodities = this.commodityAPIs.SearchCommodities(forecastDetailDTO.CommodityID, ContextAttributes.User.LocationID, null, null, null); ////WE MUST USE ContextAttributes.User.LocationID, INSTEAD OF quantityDetailDTO.LocationID, BECAUSE AT FIRST quantityDetailDTO.LocationID = 0. WHEN SAVE: GenericService.PreSaveRoutines WILL UPDATE DTO.LocationID = ContextAttributes.User.LocationID. SEE GenericService.PreSaveRoutines FOR MORE INFORMATION!!!
                 if (searchCommodities.Count > 0)
                 {
                     forecastDetailDTO.CommodityCode = searchCommodities[0].Code;
@@ -294,25 +306,109 @@ namespace TotalSmartCoding.Views.Sales.Forecasts
             this.gridexViewDetails.Columns[CommonExpressions.PropertyName<ForecastDetailDTO>(p => p.LineVolumeM3)].Visible = !byQuantity;
         }
 
+        private Dictionary<string, object> optionDictionary;
+        private DataTable excelDataTable;
         public override void Import()
         {
             this.ImportExcel(GlobalEnums.MappingTaskID.Forecast);
         }
 
-        protected override void DoImportExcel(string fileName)
+        protected override Dictionary<string, object> OptionDictionary()
         {
-            base.DoImportExcel(fileName);
-            this.ImportExcel(fileName);
-            this.Loading();
+            this.optionDictionary = base.OptionDictionary();
+            return this.optionDictionary;
+        }
+
+        protected override void DoImportExcel(string fileName, string sheetName)
+        {
+            base.DoImportExcel(fileName, sheetName);
+
+            if (!this.Editable) throw new System.ArgumentException("Import", "Permission conflict");
+
+            OleDbAPIs oleDbAPIs = new OleDbAPIs(CommonNinject.Kernel.Get<IOleDbAPIRepository>(), GlobalEnums.MappingTaskID.Forecast);
+            this.excelDataTable = oleDbAPIs.OpenExcelSheet(fileName, sheetName);
+
+            this.New();
+
+            this.excelDataTable = null;
         }
 
         protected override DialogResult wizardMaster()
         {
+            if (this.optionDictionary != null)
+            { //WHEN IMPORT, this.optionDictionary WILL BE != null
+                object objectValue; DateTime entryDate;
+                if (this.optionDictionary.TryGetValue("EntryDate", out objectValue) && DateTime.TryParse(objectValue.ToString(), out entryDate)) this.forecastViewModel.EntryDate = entryDate;
+                this.optionDictionary = null;
+
+                if (this.excelDataTable != null && this.excelDataTable.Rows.Count > 0 && this.excelDataTable.Rows[0]["WarehouseCode"].ToString().Trim() != "")
+                {
+                    WarehouseBase warehouseBase = this.warehouseAPIs.GetWarehouseBase(this.excelDataTable.Rows[0]["WarehouseCode"].ToString().Trim());
+                    if (warehouseBase != null) this.forecastViewModel.ForecastLocationID = warehouseBase.LocationID;
+                }
+            }
+
             WizardMaster wizardMaster = new WizardMaster(this.forecastViewModel);
             DialogResult dialogResult = wizardMaster.ShowDialog();
 
             wizardMaster.Dispose();
             return dialogResult;
+        }
+
+        protected override void wizardDetail()
+        {
+            try
+            {
+                ExceptionTable exceptionTable = new ExceptionTable(new string[2, 2] { { "ExceptionCategory", "System.String" }, { "Description", "System.String" } }); decimal decimalValue;
+
+                if (this.excelDataTable != null && this.excelDataTable.Rows.Count > 0)
+                {
+                    this.forecastViewModel.ViewDetails.RaiseListChangedEvents = false;
+                    foreach (DataRow excelDataRow in this.excelDataTable.Rows)
+                    {
+                        if (excelDataRow["WarehouseCode"] != null && excelDataRow["WarehouseCode"].ToString().Trim() != "")
+                        {
+                            WarehouseBase warehouseBase = this.warehouseAPIs.GetWarehouseBase(excelDataRow["WarehouseCode"].ToString().Trim());
+                            if (warehouseBase != null && warehouseBase.LocationID == this.forecastViewModel.ForecastLocationID)
+                            {                                
+                                CommodityBase commodityBase = this.commodityAPIs.GetCommodityBase(excelDataRow["CommodityCode"].ToString());
+                                if (commodityBase != null)
+                                {
+                                    ForecastDetailDTO forecastDetailDTO = new ForecastDetailDTO();
+
+                                    forecastDetailDTO.CommodityID = commodityBase.CommodityID;
+                                    forecastDetailDTO.CommodityCode = commodityBase.Code;
+                                    forecastDetailDTO.CommodityName = commodityBase.Name;
+                                    forecastDetailDTO.CommodityCategoryName = commodityBase.CommodityCategoryName;
+
+                                    if (decimal.TryParse(excelDataRow["CurrentMonth"].ToString(), out decimalValue)) { if (this.forecastViewModel.QuantityVersusVolume == 0) forecastDetailDTO.Quantity = decimalValue; else forecastDetailDTO.LineVolume = decimalValue; } else exceptionTable.AddException(new string[] { "Type mismatch; number value required", "Column current month: " + excelDataRow["CurrentMonth"].ToString() });
+                                    if (decimal.TryParse(excelDataRow["NextMonth"].ToString(), out decimalValue)) { if (this.forecastViewModel.QuantityVersusVolume == 0) forecastDetailDTO.QuantityM1 = decimalValue; else forecastDetailDTO.LineVolumeM1 = decimalValue; } else exceptionTable.AddException(new string[] { "Type mismatch; number value required", "Column next month: " + excelDataRow["NextMonth"].ToString() });
+                                    if (decimal.TryParse(excelDataRow["NextTwoMonth"].ToString(), out decimalValue)) { if (this.forecastViewModel.QuantityVersusVolume == 0) forecastDetailDTO.QuantityM2 = decimalValue; else forecastDetailDTO.LineVolumeM2 = decimalValue; } else exceptionTable.AddException(new string[] { "Type mismatch; number value required", "Column next two month: " + excelDataRow["NextTwoMonth"].ToString() });
+                                    if (decimal.TryParse(excelDataRow["NextThreeMonth"].ToString(), out decimalValue)) { if (this.forecastViewModel.QuantityVersusVolume == 0) forecastDetailDTO.QuantityM3 = decimalValue; else forecastDetailDTO.LineVolumeM3 = decimalValue; } else exceptionTable.AddException(new string[] { "Type mismatch; number value required", "Column next three month: " + excelDataRow["NextThreeMonth"].ToString() });
+
+                                    if (forecastDetailDTO.Quantity != 0 || forecastDetailDTO.QuantityM1 != 0 || forecastDetailDTO.QuantityM2 != 0 || forecastDetailDTO.QuantityM3 != 0 || forecastDetailDTO.LineVolume != 0 || forecastDetailDTO.LineVolumeM1 != 0 || forecastDetailDTO.LineVolumeM2 != 0 || forecastDetailDTO.LineVolumeM3 != 0) this.forecastViewModel.ViewDetails.Add(forecastDetailDTO);
+                                }
+                                else
+                                    exceptionTable.AddException(new string[] { "Item not found", "Item: " + excelDataRow["CommodityCode"].ToString() });                                                                
+                            }
+                            else
+                                exceptionTable.AddException(new string[] { "Warehouse does not match", "Warehouse: " + excelDataRow["WarehouseCode"].ToString() });
+                        }
+                    }
+                }
+
+                if (exceptionTable.Table.Rows.Count > 0)
+                    throw new CustomException("Lỗi import file excel. Vui lòng xem danh sách đính kèm. Click vào từng nội dung để xem chi tiết.", exceptionTable.Table);
+            }
+            catch (System.Exception exception)
+            {
+                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+            }
+            finally
+            {
+                this.forecastViewModel.ViewDetails.RaiseListChangedEvents = true;
+                this.forecastViewModel.ViewDetails.ResetBindings();
+            }
         }
 
         private void naviGroupDetails_HeaderMouseClick(object sender, MouseEventArgs e)
@@ -329,113 +425,6 @@ namespace TotalSmartCoding.Views.Sales.Forecasts
                 this.buttonExpandTop.Image = this.naviGroupTop.Expanded ? Resources.chevron : Resources.chevron_expand;
             }
         }
-
-
-        #region Import Excel
-
-        public bool ImportExcel(string fileName)
-        {
-            try
-            {
-                OleDbAPIs oleDbAPIs = new OleDbAPIs(CommonNinject.Kernel.Get<IOleDbAPIRepository>(), GlobalEnums.MappingTaskID.Forecast);
-
-                //CommodityViewModel commodityViewModel = CommonNinject.Kernel.Get<CommodityViewModel>();
-                //CommodityController commodityController = new CommodityController(CommonNinject.Kernel.Get<ICommodityService>(), commodityViewModel);
-
-
-                //int intValue; decimal decimalValue; DateTime dateTimeValue;
-                //ExceptionTable exceptionTable = new ExceptionTable(new string[2, 2] { { "ExceptionCategory", "System.String" }, { "Description", "System.String" } });
-
-                ////////////TimeSpan timeout = TimeSpan.FromMinutes(90);
-                ////////////using (TransactionScope transactionScope = new TransactionScope(TransactionScopeOption.Required, timeout))
-                ////////////{
-                ////////////if (!this.Editable(this.)) throw new System.ArgumentException("Import", "Permission conflict");
-
-
-                //DataTable excelDataTable = oleDbAPIs.OpenExcelSheet(fileName);
-                //if (excelDataTable != null && excelDataTable.Rows.Count > 0)
-                //{
-                //    foreach (DataRow excelDataRow in excelDataTable.Rows)
-                //    {
-                //        exceptionTable.ClearDirty();
-
-                //        string code = excelDataRow["Code"].ToString().Trim();
-                //        if (code.Length < 5) code = new String('0', 5 - code.Length) + code;
-
-                //        BatchMasterBase batchMasterBase = this.batchMasterAPIs.GetBatchMasterBase(code);
-
-                //        if (batchMasterBase == null)
-                //        {
-                //            this.batchMasterController.Create();
-
-                //            this.batchMasterViewModel.EntryDate = new DateTime(2000, 1, 1);
-                //            this.batchMasterViewModel.Code = code;
-
-
-                //            if (DateTime.TryParse(excelDataRow["PlannedDate"].ToString(), out dateTimeValue)) this.batchMasterViewModel.PlannedDate = dateTimeValue; else exceptionTable.AddException(new string[] { "Lỗi cột dữ liệu Plan start date", "Batch: " + code + ": " + excelDataRow["PlannedDate"].ToString() });
-                //            if (decimal.TryParse(excelDataRow["PlannedQuantity"].ToString(), out decimalValue)) this.batchMasterViewModel.PlannedQuantity = decimalValue; else exceptionTable.AddException(new string[] { "Lỗi cột dữ liệu SL Kế hoạch", "Batch: " + code + ": " + excelDataRow["PlannedQuantity"].ToString() });
-
-                //            CommodityBase commodityBase = this.commodityAPIs.GetCommodityBase(excelDataRow["CommodityCode"].ToString());
-                //            if (commodityBase != null) this.batchMasterViewModel.CommodityID = commodityBase.CommodityID;
-                //            else
-                //            {
-                //                commodityController.Create();
-
-                //                commodityViewModel.Code = excelDataRow["CommodityCode"].ToString();
-                //                commodityViewModel.APICode = excelDataRow["CommodityAPICode"].ToString().Replace("'", "");
-                //                commodityViewModel.CartonCode = excelDataRow["CommodityCartonCode"].ToString().Replace("'", "");
-                //                commodityViewModel.Name = excelDataRow["CommodityName"].ToString();
-                //                commodityViewModel.OfficialName = excelDataRow["CommodityName"].ToString();
-
-                //                commodityViewModel.CommodityCategoryID = 2;
-                //                commodityViewModel.FillingLineIDs = "1,2";
-
-                //                if (decimal.TryParse(excelDataRow["Volume"].ToString(), out decimalValue)) commodityViewModel.Volume = decimalValue / 1000; else exceptionTable.AddException(new string[] { "Lỗi cột dữ liệu Trọng lượng", "Batch: " + code + ": " + excelDataRow["Volume"].ToString() });
-                //                if (int.TryParse(excelDataRow["PackPerCarton"].ToString(), out intValue)) commodityViewModel.PackPerCarton = intValue; else exceptionTable.AddException(new string[] { "Lỗi cột dữ liệu QC thùng", "Batch: " + code + ": " + excelDataRow["PackPerCarton"].ToString() });
-                //                if (int.TryParse(excelDataRow["CartonPerPallet"].ToString(), out intValue)) commodityViewModel.CartonPerPallet = intValue / commodityViewModel.PackPerCarton; else exceptionTable.AddException(new string[] { "Lỗi cột dữ liệu QC pallet", "Batch: " + code + ": " + excelDataRow["CartonPerPallet"].ToString() });
-
-                //                commodityViewModel.PackageSize = commodityViewModel.PackPerCarton.ToString("N0") + "x" + commodityViewModel.Volume.ToString("N2") + "kg";
-
-                //                if (int.TryParse(excelDataRow["Shelflife"].ToString(), out intValue)) commodityViewModel.Shelflife = intValue; else exceptionTable.AddException(new string[] { "Lỗi cột dữ liệu Expiration months", "Batch: " + code + ": " + excelDataRow["Shelflife"].ToString() });
-
-                //                if (!commodityViewModel.IsValid) exceptionTable.AddException(new string[] { "Lỗi dữ liệu sản phẩm không hợp lệ", excelDataRow["CommodityCode"].ToString() + ": " + commodityViewModel.Error });
-                //                else
-                //                    if (commodityViewModel.IsDirty)
-                //                        if (commodityController.Save())
-                //                            this.batchMasterViewModel.CommodityID = commodityViewModel.CommodityID;
-                //                        else
-                //                            exceptionTable.AddException(new string[] { "Lỗi lưu dữ liệu [thêm sản phẩm mới]", excelDataRow["CommodityCode"].ToString() + commodityController.BaseService.ServiceTag });
-                //            }
-
-
-                //            BatchStatusBase batchStatusBase = this.batchStatusAPIs.GetBatchStatusBase(excelDataRow["BatchStatusCode"].ToString());
-                //            if (batchStatusBase != null) this.batchMasterViewModel.BatchStatusID = batchStatusBase.BatchStatusID; else exceptionTable.AddException(new string[] { "Lỗi cột dữ liệu Trạng thái", "Batch: " + code + ": " + excelDataRow["BatchStatusCode"].ToString() });
-
-
-                //            if (!this.batchMasterViewModel.IsValid) exceptionTable.AddException(new string[] { "Lỗi dữ liệu Batch không hợp lệ", "Batch: " + code + ": " + this.batchMasterViewModel.Error }); ;
-                //            if (!exceptionTable.IsDirty)
-                //                if (this.batchMasterViewModel.IsDirty && !this.batchMasterController.Save())
-                //                    exceptionTable.AddException(new string[] { "Lỗi lưu dữ liệu [thêm batch mới]", code + this.batchMasterController.BaseService.ServiceTag });
-                //        }
-                //        else
-                //            exceptionTable.AddException(new string[] { "Batch không được import, do đã tồn tại trên hệ thống", "Batch: " + code });
-                //    }
-                //}
-
-                //if (exceptionTable.Table.Rows.Count <= 0)
-                return true;
-                //else
-                //    throw new CustomException("Lỗi import file excel. Vui lòng xem danh sách đính kèm. Click vào từng nội dung để xem chi tiết.", exceptionTable.Table);
-
-            }
-            catch (System.Exception exception)
-            {
-                throw exception;
-            }
-        }
-
-
-        #endregion Import Excel
 
     }
 }

@@ -21,6 +21,8 @@ namespace TotalSmartCoding.Views.Mains
     {
         private string excelFile;
         private string sheetName;
+        private Dictionary<string, object> optionDictionary;
+
         private GlobalEnums.MappingTaskID mappingTaskID;
 
         private OleDbAPIs oleDbAPIs { get; set; }
@@ -28,7 +30,7 @@ namespace TotalSmartCoding.Views.Mains
         BindingList<ColumnAvailableDTO> ColumnAvailableDTOs;
         BindingList<ColumnMappingDTO> ColumnMappingDTOs;
 
-        public ColumnMappings(GlobalEnums.MappingTaskID mappingTaskID, string excelFile, string sheetName)
+        public ColumnMappings(GlobalEnums.MappingTaskID mappingTaskID, string excelFile, string sheetName, Dictionary<string, object> optionDictionary)
         {
             InitializeComponent();
             try
@@ -38,6 +40,8 @@ namespace TotalSmartCoding.Views.Mains
                 this.excelFile = excelFile;
                 this.sheetName = sheetName;
                 this.mappingTaskID = mappingTaskID;
+
+                this.optionDictionary = optionDictionary;
 
                 this.Text = "Mapping for " + this.excelFile;
             }
@@ -62,6 +66,7 @@ namespace TotalSmartCoding.Views.Mains
                     }
                 }
 
+                this.DoInitColumnHeaders();
 
                 ColumnMappingDTOs = this.oleDbAPIs.GetColumnMappings();//Get required column (and saved mapping data)
 
@@ -82,6 +87,28 @@ namespace TotalSmartCoding.Views.Mains
             catch (Exception exception)
             {
                 ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+            }
+        }
+
+        private void DoInitColumnHeaders()
+        {
+            if (mappingTaskID == GlobalEnums.MappingTaskID.Forecast)
+            {
+                DateTime dateTimeSmallest = new DateTime(2100, 1, 1); DateTime dateTimeValue;
+                foreach (ColumnAvailableDTO columnAvailableDTO in this.ColumnAvailableDTOs)
+                {
+                    if (DateTime.TryParse("01-" + columnAvailableDTO.ColumnAvailableName, out dateTimeValue) && dateTimeSmallest > dateTimeValue) dateTimeSmallest = dateTimeValue;
+                }
+
+                if (dateTimeSmallest != new DateTime(2100, 1, 1))
+                {
+                    this.optionDictionary["EntryDate"] = dateTimeSmallest.AddDays(14);
+
+                    this.oleDbAPIs.SaveColumnMapping(3, dateTimeSmallest.ToString("MMM-yy"));
+                    this.oleDbAPIs.SaveColumnMapping(4, dateTimeSmallest.AddMonths(1).ToString("MMM-yy"));
+                    this.oleDbAPIs.SaveColumnMapping(5, dateTimeSmallest.AddMonths(2).ToString("MMM-yy"));
+                    this.oleDbAPIs.SaveColumnMapping(6, dateTimeSmallest.AddMonths(3).ToString("MMM-yy"));
+                }
             }
         }
 

@@ -140,6 +140,11 @@ namespace TotalDAL.Repositories
             Helpers.SqlProgrammability.Commons.Commodity commodity = new Helpers.SqlProgrammability.Commons.Commodity(totalSmartCodingEntities);
             commodity.RestoreProcedure();
 
+            //return;
+
+            Helpers.SqlProgrammability.Commons.Warehouse warehouse = new Helpers.SqlProgrammability.Commons.Warehouse(totalSmartCodingEntities);
+            warehouse.RestoreProcedure();
+
             return;
 
             Helpers.SqlProgrammability.Generals.OleDb oleDb = new Helpers.SqlProgrammability.Generals.OleDb(totalSmartCodingEntities);
@@ -178,10 +183,7 @@ namespace TotalDAL.Repositories
 
 
 
-            //return;
-
-            Helpers.SqlProgrammability.Commons.Warehouse warehouse = new Helpers.SqlProgrammability.Commons.Warehouse(totalSmartCodingEntities);
-            warehouse.RestoreProcedure();
+        
 
             //return;
 

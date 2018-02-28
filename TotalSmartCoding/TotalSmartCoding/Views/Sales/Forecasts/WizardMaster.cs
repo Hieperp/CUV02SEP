@@ -58,6 +58,7 @@ namespace TotalSmartCoding.Views.Sales.Forecasts
                 this.bindingDescription.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
                 this.bindingRemarks.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
 
+                this.buttonOK.Enabled = this.forecastViewModel.IsValid;
                 this.errorProviderMaster.DataSource = this.forecastViewModel;
             }
             catch (Exception exception)
@@ -88,7 +89,10 @@ namespace TotalSmartCoding.Views.Sales.Forecasts
                 if (sender.Equals(this.buttonOK))
                 {
                     if (this.forecastViewModel.ForecastLocationID != null)
+                    {
+                        this.forecastViewModel.EntryDate = ((DateTime)this.forecastViewModel.EntryDate).AddDays(1 - ((DateTime)this.forecastViewModel.EntryDate).Day);
                         this.DialogResult = DialogResult.OK;
+                    }
                     else
                         CustomMsgBox.Show(this, "Vui lòng chọn forecast location.", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Stop);
                 }

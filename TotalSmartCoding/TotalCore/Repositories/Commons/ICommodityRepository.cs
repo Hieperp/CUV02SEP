@@ -10,6 +10,8 @@ namespace TotalCore.Repositories.Commons
 
     public interface ICommodityAPIRepository : IGenericAPIRepository
     {
+        CommodityBase GetCommodityBase(string code);
+        CommodityBase GetCommodityBase(int commodityID);
         IList<CommodityBase> GetCommodityBases(bool withNullRow);
         IList<CommodityTree> GetCommodityTrees();
 

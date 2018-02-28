@@ -87,20 +87,28 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
 
         private void GetCommodityBases()
         {
+            this.totalSmartCodingEntities.CreateStoredProcedure("GetCommodityBases", this.GetCommodityBUILD(0));
+            this.totalSmartCodingEntities.CreateStoredProcedure("GetCommodityBase", this.GetCommodityBUILD(1));
+            this.totalSmartCodingEntities.CreateStoredProcedure("GetCommodityBaseByCode", this.GetCommodityBUILD(2));
+        }
+
+        private string GetCommodityBUILD(int switchID)
+        {
             string queryString;
 
-            queryString = " " + "\r\n";
+            queryString = (switchID == 0 ? "" : (switchID == 1 ? "@CommodityID int" : "@Code nvarchar(50)")) + "\r\n";
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
-            queryString = queryString + "       SELECT      CommodityID, Code, Name, Unit, APICode, Volume, PackageSize, PackageVolume, FillingLineIDs " + "\r\n";
+            queryString = queryString + "       SELECT      Commodities.CommodityID, Commodities.Code, Commodities.Name, Commodities.Unit, Commodities.APICode, Commodities.Volume, Commodities.PackageSize, Commodities.PackageVolume, Commodities.FillingLineIDs, Commodities.CommodityCategoryID, CommodityCategories.Name AS CommodityCategoryName " + "\r\n";
             queryString = queryString + "       FROM        Commodities " + "\r\n";
-            queryString = queryString + "       WHERE       InActive = 0 " + "\r\n";
+            queryString = queryString + "                   INNER JOIN CommodityCategories ON Commodities.CommodityCategoryID = CommodityCategories.CommodityCategoryID " + "\r\n";
+            queryString = queryString + "       WHERE       " + (switchID == 0 ? "InActive = 0" : (switchID == 1 ? "CommodityID = @CommodityID" : "Code = @Code")) + "\r\n";
 
             queryString = queryString + "    END " + "\r\n";
 
-            this.totalSmartCodingEntities.CreateStoredProcedure("GetCommodityBases", queryString);
+            return queryString;
         }
 
         private void GetCommodityTrees()

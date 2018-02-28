@@ -67,7 +67,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
             queryString = queryString + "       FROM        ForecastDetails " + "\r\n";
             queryString = queryString + "                   INNER JOIN Commodities ON ForecastDetails.ForecastID = @ForecastID AND ForecastDetails.CommodityID = Commodities.CommodityID " + "\r\n";
             queryString = queryString + "                   INNER JOIN CommodityCategories ON Commodities.CommodityCategoryID = CommodityCategories.CommodityCategoryID " + "\r\n";
-
+            queryString = queryString + "       ORDER BY    ForecastDetails.ForecastDetailID " + "\r\n";
             queryString = queryString + "    END " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("GetForecastViewDetails", queryString);

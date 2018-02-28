@@ -91,19 +91,27 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
 
         private void GetWarehouseBases()
         {
+            this.totalSmartCodingEntities.CreateStoredProcedure("GetWarehouseBases", this.GetWarehouseBUILD(0));
+            this.totalSmartCodingEntities.CreateStoredProcedure("GetWarehouseBase", this.GetWarehouseBUILD(1));
+            this.totalSmartCodingEntities.CreateStoredProcedure("GetWarehouseBaseByCode", this.GetWarehouseBUILD(2));
+        }
+
+        private string GetWarehouseBUILD(int switchID)
+        {
             string queryString;
 
-            queryString = " " + "\r\n";
+            queryString = (switchID == 0 ? "" : (switchID == 1 ? "@WarehouseID int" : "@Code nvarchar(50)")) + "\r\n";
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
-            queryString = queryString + "       SELECT      WarehouseID, Code, Name " + "\r\n";
+            queryString = queryString + "       SELECT      WarehouseID, Code, Name, LocationID " + "\r\n";
             queryString = queryString + "       FROM        Warehouses " + "\r\n";
+            queryString = queryString + (switchID == 0 ? "" : "WHERE " + (switchID == 1 ? "WarehouseID = @WarehouseID" : "Code = @Code")) + "\r\n";
 
             queryString = queryString + "    END " + "\r\n";
 
-            this.totalSmartCodingEntities.CreateStoredProcedure("GetWarehouseBases", queryString);
+            return queryString;
         }
 
         private void GetWarehouseTrees()

@@ -26,6 +26,16 @@ namespace TotalDAL.Repositories.Commons
         {
         }
 
+        public WarehouseBase GetWarehouseBase(int warehouseID)
+        {
+            return this.TotalSmartCodingEntities.GetWarehouseBase(warehouseID).FirstOrDefault();
+        }
+
+        public WarehouseBase GetWarehouseBase(string code)
+        {
+            return this.TotalSmartCodingEntities.GetWarehouseBaseByCode(code).FirstOrDefault();
+        }
+
         public IList<WarehouseBase> GetWarehouseBases()
         {
             return this.TotalSmartCodingEntities.GetWarehouseBases().ToList();

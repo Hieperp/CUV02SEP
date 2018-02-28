@@ -561,10 +561,10 @@ namespace TotalSmartCoding.Views.Mains
                     string sheetName = this.GetExcelSheet(mappingTaskID, fileName);
                     if (sheetName != null)
                     {
-                        ColumnMappings columnMappings = new ColumnMappings(mappingTaskID, fileName, sheetName);
+                        ColumnMappings columnMappings = new ColumnMappings(mappingTaskID, fileName, sheetName, this.OptionDictionary());
 
                         if (columnMappings.ShowDialog() == DialogResult.OK)
-                            this.DoImportExcel(fileName);
+                            this.DoImportExcel(fileName, sheetName);
 
                         columnMappings.Dispose();
                     }
@@ -588,7 +588,9 @@ namespace TotalSmartCoding.Views.Mains
             return sheetName;
         }
 
-        protected virtual void DoImportExcel(string fileName) { }
+        protected virtual Dictionary<string, object> OptionDictionary() { return new Dictionary<string, object>(); }
+
+        protected virtual void DoImportExcel(string fileName, string sheetName) { }
 
 
         public void Export()

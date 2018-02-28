@@ -2351,6 +2351,12 @@
         <Function Name="GetColumnMappings" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="MappingTaskID" Type="int" Mode="In" />
         </Function>
+        <Function Name="GetCommodityBase" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CommodityID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetCommodityBaseByCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Code" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="GetCommodityBases" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetCommodityCategoryBases" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetCommodityCategoryIndexes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -2668,6 +2674,12 @@
         <Function Name="GetWarehouseAdjustmentTypeTrees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetWarehouseAdjustmentViewDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="WarehouseAdjustmentID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetWarehouseBase" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="WarehouseID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetWarehouseBaseByCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Code" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="GetWarehouseBases" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetWarehouseIndexes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -4513,6 +4525,18 @@
             <End Role="Location" EntitySet="Locations" />
             <End Role="Forecast" EntitySet="Forecasts" />
           </AssociationSet>
+          <FunctionImport Name="GetCommodityBase" ReturnType="Collection(TotalSmartCodingModel.CommodityBase)">
+          <Parameter Name="CommodityID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetCommodityBaseByCode" ReturnType="Collection(TotalSmartCodingModel.CommodityBase)">
+          <Parameter Name="Code" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetWarehouseBase" ReturnType="Collection(TotalSmartCodingModel.WarehouseBase)">
+          <Parameter Name="WarehouseID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetWarehouseBaseByCode" ReturnType="Collection(TotalSmartCodingModel.WarehouseBase)">
+          <Parameter Name="Code" Mode="In" Type="String" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
           <Property Type="Int32" Name="PickupID" Nullable="false" />
@@ -4664,6 +4688,8 @@
           <Property Type="Decimal" Name="PackageVolume" Nullable="false" Precision="18" Scale="3" />
           <Property Type="String" Name="APICode" Nullable="true" MaxLength="60" />
           <Property Type="String" Name="FillingLineIDs" Nullable="true" MaxLength="60" />
+          <Property Type="Int32" Name="CommodityCategoryID" Nullable="false" />
+          <Property Type="String" Name="CommodityCategoryName" Nullable="false" MaxLength="100" />
           </ComplexType>
         <ComplexType Name="PickupIndex">
           <Property Type="Int32" Name="PickupID" Nullable="false" />
@@ -4729,6 +4755,7 @@
           <Property Type="Int32" Name="WarehouseID" Nullable="false" />
           <Property Type="String" Name="Code" Nullable="false" MaxLength="10" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="60" />
+          <Property Type="Int32" Name="LocationID" Nullable="false" />
         </ComplexType>
         <ComplexType Name="EmployeeIndex">
           <Property Type="Int32" Name="EmployeeID" Nullable="false" />
@@ -8170,6 +8197,8 @@
                 <ScalarProperty Name="PackageVolume" ColumnName="PackageVolume" />
                 <ScalarProperty Name="APICode" ColumnName="APICode" />
                 <ScalarProperty Name="FillingLineIDs" ColumnName="FillingLineIDs" />
+                <ScalarProperty Name="CommodityCategoryID" ColumnName="CommodityCategoryID" />
+                <ScalarProperty Name="CommodityCategoryName" ColumnName="CommodityCategoryName" />
                 </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -8262,6 +8291,7 @@
                 <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -10403,6 +10433,60 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetCommodityBase" FunctionName="TotalSmartCodingModel.Store.GetCommodityBase">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="TotalSmartCodingModel.CommodityBase">
+                <ScalarProperty Name="CommodityID" ColumnName="CommodityID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="Volume" ColumnName="Volume" />
+                <ScalarProperty Name="PackageSize" ColumnName="PackageSize" />
+                <ScalarProperty Name="PackageVolume" ColumnName="PackageVolume" />
+                <ScalarProperty Name="APICode" ColumnName="APICode" />
+                <ScalarProperty Name="FillingLineIDs" ColumnName="FillingLineIDs" />
+                <ScalarProperty Name="CommodityCategoryID" ColumnName="CommodityCategoryID" />
+                <ScalarProperty Name="CommodityCategoryName" ColumnName="CommodityCategoryName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetCommodityBaseByCode" FunctionName="TotalSmartCodingModel.Store.GetCommodityBaseByCode">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="TotalSmartCodingModel.CommodityBase">
+                <ScalarProperty Name="CommodityID" ColumnName="CommodityID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="Volume" ColumnName="Volume" />
+                <ScalarProperty Name="PackageSize" ColumnName="PackageSize" />
+                <ScalarProperty Name="PackageVolume" ColumnName="PackageVolume" />
+                <ScalarProperty Name="APICode" ColumnName="APICode" />
+                <ScalarProperty Name="FillingLineIDs" ColumnName="FillingLineIDs" />
+                <ScalarProperty Name="CommodityCategoryID" ColumnName="CommodityCategoryID" />
+                <ScalarProperty Name="CommodityCategoryName" ColumnName="CommodityCategoryName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetWarehouseBase" FunctionName="TotalSmartCodingModel.Store.GetWarehouseBase">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="TotalSmartCodingModel.WarehouseBase">
+                <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetWarehouseBaseByCode" FunctionName="TotalSmartCodingModel.Store.GetWarehouseBaseByCode">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="TotalSmartCodingModel.WarehouseBase">
+                <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
