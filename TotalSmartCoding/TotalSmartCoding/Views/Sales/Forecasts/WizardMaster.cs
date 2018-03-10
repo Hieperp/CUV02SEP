@@ -90,7 +90,7 @@ namespace TotalSmartCoding.Views.Sales.Forecasts
                 {
                     if (this.forecastViewModel.ForecastLocationID != null)
                     {
-                        this.forecastViewModel.EntryDate = ((DateTime)this.forecastViewModel.EntryDate).AddDays(1 - ((DateTime)this.forecastViewModel.EntryDate).Day);
+                        this.forecastViewModel.EntryDate = new DateTime(((DateTime)this.forecastViewModel.EntryDate).Year, ((DateTime)this.forecastViewModel.EntryDate).Month, 1);
                         this.DialogResult = DialogResult.OK;
                     }
                     else

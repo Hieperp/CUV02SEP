@@ -59,10 +59,10 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.buttonESC,
             this.buttonOK});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 381);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 198);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStrip1.Size = new System.Drawing.Size(955, 55);
+            this.toolStrip1.Size = new System.Drawing.Size(689, 55);
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -129,7 +129,7 @@
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.layoutTop.Size = new System.Drawing.Size(955, 381);
+            this.layoutTop.Size = new System.Drawing.Size(689, 198);
             this.layoutTop.TabIndex = 98;
             // 
             // combexForecastLocationID
@@ -140,11 +140,11 @@
             this.combexForecastLocationID.Editable = true;
             this.combexForecastLocationID.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combexForecastLocationID.FormattingEnabled = true;
-            this.combexForecastLocationID.Location = new System.Drawing.Point(297, 58);
+            this.combexForecastLocationID.Location = new System.Drawing.Point(230, 58);
             this.combexForecastLocationID.Margin = new System.Windows.Forms.Padding(1);
             this.combexForecastLocationID.Name = "combexForecastLocationID";
             this.combexForecastLocationID.ReadOnly = false;
-            this.combexForecastLocationID.Size = new System.Drawing.Size(634, 29);
+            this.combexForecastLocationID.Size = new System.Drawing.Size(434, 29);
             this.combexForecastLocationID.TabIndex = 74;
             // 
             // label5
@@ -154,7 +154,7 @@
             this.label5.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(87, 57);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(206, 31);
+            this.label5.Size = new System.Drawing.Size(139, 31);
             this.label5.TabIndex = 78;
             this.label5.Text = "Location";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -164,10 +164,10 @@
             this.textexDescription.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexDescription.Editable = true;
             this.textexDescription.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textexDescription.Location = new System.Drawing.Point(297, 119);
+            this.textexDescription.Location = new System.Drawing.Point(230, 119);
             this.textexDescription.Margin = new System.Windows.Forms.Padding(1);
             this.textexDescription.Name = "textexDescription";
-            this.textexDescription.Size = new System.Drawing.Size(634, 28);
+            this.textexDescription.Size = new System.Drawing.Size(434, 28);
             this.textexDescription.TabIndex = 79;
             // 
             // textexRemarks
@@ -175,10 +175,10 @@
             this.textexRemarks.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexRemarks.Editable = true;
             this.textexRemarks.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textexRemarks.Location = new System.Drawing.Point(297, 149);
+            this.textexRemarks.Location = new System.Drawing.Point(230, 149);
             this.textexRemarks.Margin = new System.Windows.Forms.Padding(1);
             this.textexRemarks.Name = "textexRemarks";
-            this.textexRemarks.Size = new System.Drawing.Size(634, 28);
+            this.textexRemarks.Size = new System.Drawing.Size(434, 28);
             this.textexRemarks.TabIndex = 81;
             // 
             // label2
@@ -188,7 +188,7 @@
             this.label2.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(87, 118);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(206, 30);
+            this.label2.Size = new System.Drawing.Size(139, 30);
             this.label2.TabIndex = 83;
             this.label2.Text = "Description";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -200,7 +200,7 @@
             this.label3.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(87, 148);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(206, 30);
+            this.label3.Size = new System.Drawing.Size(139, 30);
             this.label3.TabIndex = 84;
             this.label3.Text = "Remarks";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -210,10 +210,10 @@
             this.textexVoucherCode.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexVoucherCode.Editable = true;
             this.textexVoucherCode.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textexVoucherCode.Location = new System.Drawing.Point(297, 89);
+            this.textexVoucherCode.Location = new System.Drawing.Point(230, 89);
             this.textexVoucherCode.Margin = new System.Windows.Forms.Padding(1);
             this.textexVoucherCode.Name = "textexVoucherCode";
-            this.textexVoucherCode.Size = new System.Drawing.Size(634, 28);
+            this.textexVoucherCode.Size = new System.Drawing.Size(434, 28);
             this.textexVoucherCode.TabIndex = 87;
             // 
             // label7
@@ -223,7 +223,7 @@
             this.label7.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(87, 88);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(206, 30);
+            this.label7.Size = new System.Drawing.Size(139, 30);
             this.label7.TabIndex = 88;
             this.label7.Text = "Voucher #";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -235,23 +235,23 @@
             this.label8.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(87, 27);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(206, 30);
+            this.label8.Size = new System.Drawing.Size(139, 30);
             this.label8.TabIndex = 89;
-            this.label8.Text = "Forecast Date";
+            this.label8.Text = "Entry Month";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // dateTimexEntryDate
             // 
-            this.dateTimexEntryDate.CustomFormat = "dd/MMM/yyyy HH:mm:ss";
+            this.dateTimexEntryDate.CustomFormat = "MMM-yyyy";
             this.dateTimexEntryDate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dateTimexEntryDate.Editable = true;
             this.dateTimexEntryDate.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimexEntryDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimexEntryDate.Location = new System.Drawing.Point(297, 28);
+            this.dateTimexEntryDate.Location = new System.Drawing.Point(230, 28);
             this.dateTimexEntryDate.Margin = new System.Windows.Forms.Padding(1);
             this.dateTimexEntryDate.Name = "dateTimexEntryDate";
             this.dateTimexEntryDate.ReadOnly = false;
-            this.dateTimexEntryDate.Size = new System.Drawing.Size(634, 28);
+            this.dateTimexEntryDate.Size = new System.Drawing.Size(434, 28);
             this.dateTimexEntryDate.TabIndex = 90;
             // 
             // pictureBox2
@@ -269,7 +269,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(955, 436);
+            this.ClientSize = new System.Drawing.Size(689, 253);
             this.Controls.Add(this.layoutTop);
             this.Controls.Add(this.toolStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

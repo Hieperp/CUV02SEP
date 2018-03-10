@@ -62,6 +62,20 @@
             this.textexDescription = new CustomControls.TextexBox();
             this.textexRemarks = new CustomControls.TextexBox();
             this.gridexViewDetails = new CustomControls.DataGridexView();
+            this.CommodityID = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.CommodityName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PackageSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalLineVolume = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LineVolume = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QuantityM1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LineVolumeM1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QuantityM2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LineVolumeM2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QuantityM3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LineVolumeM3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Remarks = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.naviGroupTop = new Guifreaks.Navisuite.NaviGroup(this.components);
             this.layoutTop = new System.Windows.Forms.TableLayoutPanel();
             this.label3 = new System.Windows.Forms.Label();
@@ -79,20 +93,6 @@
             this.olvTotalValueM3 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvDescription = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.imageList32 = new System.Windows.Forms.ImageList(this.components);
-            this.CommodityID = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.CommodityName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PackageSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TotalQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TotalLineVolume = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LineVolume = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.QuantityM1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LineVolumeM1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.QuantityM2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LineVolumeM2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.QuantityM3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LineVolumeM3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Remarks = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.layoutLeft.SuspendLayout();
             this.toolStripChildForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.naviGroupDetails)).BeginInit();
@@ -156,7 +156,7 @@
             // 
             // dateTimexEntryDate
             // 
-            this.dateTimexEntryDate.CustomFormat = "dd/MMM/yyyy HH:mm:ss";
+            this.dateTimexEntryDate.CustomFormat = "MMM-yyyy";
             this.dateTimexEntryDate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dateTimexEntryDate.Editable = false;
             this.dateTimexEntryDate.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -189,7 +189,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(248, 21);
             this.label6.TabIndex = 30;
-            this.label6.Text = "Entry Date";
+            this.label6.Text = "Entry Month";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label7
@@ -408,219 +408,6 @@
             this.gridexViewDetails.Size = new System.Drawing.Size(888, 194);
             this.gridexViewDetails.TabIndex = 65;
             // 
-            // naviGroupTop
-            // 
-            this.naviGroupTop.BackColor = System.Drawing.Color.Ivory;
-            this.naviGroupTop.Caption = null;
-            this.naviGroupTop.Controls.Add(this.layoutTop);
-            this.naviGroupTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.naviGroupTop.ExpandedHeight = 102;
-            this.naviGroupTop.HeaderContextMenuStrip = null;
-            this.naviGroupTop.HeaderHeight = 0;
-            this.naviGroupTop.Location = new System.Drawing.Point(296, 34);
-            this.naviGroupTop.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.naviGroupTop.Name = "naviGroupTop";
-            this.naviGroupTop.Padding = new System.Windows.Forms.Padding(1, 2, 1, 1);
-            this.naviGroupTop.Size = new System.Drawing.Size(1235, 134);
-            this.naviGroupTop.TabIndex = 67;
-            this.naviGroupTop.Tag = "Un Expandable";
-            // 
-            // layoutTop
-            // 
-            this.layoutTop.AutoSize = true;
-            this.layoutTop.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.layoutTop.BackColor = System.Drawing.Color.Ivory;
-            this.layoutTop.ColumnCount = 6;
-            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
-            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 28F));
-            this.layoutTop.Controls.Add(this.label3, 0, 1);
-            this.layoutTop.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.layoutTop.Location = new System.Drawing.Point(1, 2);
-            this.layoutTop.Margin = new System.Windows.Forms.Padding(0);
-            this.layoutTop.Name = "layoutTop";
-            this.layoutTop.RowCount = 3;
-            this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
-            this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1F));
-            this.layoutTop.Size = new System.Drawing.Size(1233, 131);
-            this.layoutTop.TabIndex = 8;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Location = new System.Drawing.Point(3, 10);
-            this.label3.Margin = new System.Windows.Forms.Padding(3, 0, 1, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(173, 21);
-            this.label3.TabIndex = 77;
-            this.label3.Text = "Shipping Address";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // panelLeft
-            // 
-            this.panelLeft.BackColor = System.Drawing.Color.Ivory;
-            this.panelLeft.Controls.Add(this.layoutLeft);
-            this.panelLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelLeft.Location = new System.Drawing.Point(0, 34);
-            this.panelLeft.Margin = new System.Windows.Forms.Padding(7, 8, 7, 8);
-            this.panelLeft.Name = "panelLeft";
-            this.panelLeft.Size = new System.Drawing.Size(296, 328);
-            this.panelLeft.TabIndex = 73;
-            // 
-            // fastForecastIndex
-            // 
-            this.fastForecastIndex.AllColumns.Add(this.olvID);
-            this.fastForecastIndex.AllColumns.Add(this.olvEntryDate);
-            this.fastForecastIndex.AllColumns.Add(this.olvReference);
-            this.fastForecastIndex.AllColumns.Add(this.olvVoucherCode);
-            this.fastForecastIndex.AllColumns.Add(this.olvLocationCode);
-            this.fastForecastIndex.AllColumns.Add(this.olvGrandTotalValue);
-            this.fastForecastIndex.AllColumns.Add(this.olvTotalValue);
-            this.fastForecastIndex.AllColumns.Add(this.olvTotalValueM1);
-            this.fastForecastIndex.AllColumns.Add(this.olvTotalValueM2);
-            this.fastForecastIndex.AllColumns.Add(this.olvTotalValueM3);
-            this.fastForecastIndex.AllColumns.Add(this.olvDescription);
-            this.fastForecastIndex.BackColor = System.Drawing.Color.Ivory;
-            this.fastForecastIndex.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.olvID,
-            this.olvEntryDate,
-            this.olvReference,
-            this.olvVoucherCode,
-            this.olvLocationCode,
-            this.olvGrandTotalValue,
-            this.olvTotalValue,
-            this.olvTotalValueM1,
-            this.olvTotalValueM2,
-            this.olvTotalValueM3,
-            this.olvDescription});
-            this.fastForecastIndex.Cursor = System.Windows.Forms.Cursors.Default;
-            this.fastForecastIndex.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fastForecastIndex.Font = new System.Drawing.Font("Calibri Light", 10.2F);
-            this.fastForecastIndex.FullRowSelect = true;
-            this.fastForecastIndex.GroupImageList = this.imageList32;
-            this.fastForecastIndex.HideSelection = false;
-            this.fastForecastIndex.HighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
-            this.fastForecastIndex.Location = new System.Drawing.Point(0, 0);
-            this.fastForecastIndex.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.fastForecastIndex.Name = "fastForecastIndex";
-            this.fastForecastIndex.OwnerDraw = true;
-            this.fastForecastIndex.ShowGroups = false;
-            this.fastForecastIndex.Size = new System.Drawing.Size(1531, 292);
-            this.fastForecastIndex.TabIndex = 68;
-            this.fastForecastIndex.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
-            this.fastForecastIndex.UseCompatibleStateImageBehavior = false;
-            this.fastForecastIndex.UseFiltering = true;
-            this.fastForecastIndex.View = System.Windows.Forms.View.Details;
-            this.fastForecastIndex.VirtualMode = true;
-            // 
-            // olvID
-            // 
-            this.olvID.Text = "";
-            this.olvID.Width = 0;
-            // 
-            // olvEntryDate
-            // 
-            this.olvEntryDate.AspectName = "EntryDate";
-            this.olvEntryDate.AspectToStringFormat = "{0:d}";
-            this.olvEntryDate.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvEntryDate.Text = "Date";
-            this.olvEntryDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvEntryDate.Width = 113;
-            // 
-            // olvReference
-            // 
-            this.olvReference.AspectName = "Reference";
-            this.olvReference.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvReference.Text = "Reference";
-            this.olvReference.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvReference.Width = 90;
-            // 
-            // olvVoucherCode
-            // 
-            this.olvVoucherCode.AspectName = "VoucherCode";
-            this.olvVoucherCode.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvVoucherCode.Text = "Voucher #";
-            this.olvVoucherCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvVoucherCode.Width = 108;
-            // 
-            // olvLocationCode
-            // 
-            this.olvLocationCode.AspectName = "LocationCode";
-            this.olvLocationCode.Text = "Location";
-            this.olvLocationCode.Width = 168;
-            // 
-            // olvGrandTotalValue
-            // 
-            this.olvGrandTotalValue.AspectName = "GrandTotalValue";
-            this.olvGrandTotalValue.AspectToStringFormat = "{0:#,#}";
-            this.olvGrandTotalValue.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.olvGrandTotalValue.Text = "Total Forecast";
-            this.olvGrandTotalValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.olvGrandTotalValue.Width = 96;
-            // 
-            // olvTotalValue
-            // 
-            this.olvTotalValue.AspectName = "TotalValue";
-            this.olvTotalValue.AspectToStringFormat = "{0:#,#}";
-            this.olvTotalValue.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.olvTotalValue.Text = "Current Month";
-            this.olvTotalValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.olvTotalValue.Width = 108;
-            // 
-            // olvTotalValueM1
-            // 
-            this.olvTotalValueM1.AspectName = "TotalValueM1";
-            this.olvTotalValueM1.AspectToStringFormat = "{0:#,#}";
-            this.olvTotalValueM1.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.olvTotalValueM1.Text = "Next Month";
-            this.olvTotalValueM1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.olvTotalValueM1.Width = 96;
-            // 
-            // olvTotalValueM2
-            // 
-            this.olvTotalValueM2.AspectName = "TotalValueM2";
-            this.olvTotalValueM2.AspectToStringFormat = "{0:#,#}";
-            this.olvTotalValueM2.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.olvTotalValueM2.Text = "Next Two Month";
-            this.olvTotalValueM2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.olvTotalValueM2.Width = 116;
-            // 
-            // olvTotalValueM3
-            // 
-            this.olvTotalValueM3.AspectName = "TotalValueM3";
-            this.olvTotalValueM3.AspectToStringFormat = "{0:#,#}";
-            this.olvTotalValueM3.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.olvTotalValueM3.Text = "Next Three Month";
-            this.olvTotalValueM3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.olvTotalValueM3.Width = 116;
-            // 
-            // olvDescription
-            // 
-            this.olvDescription.AspectName = "Description";
-            this.olvDescription.FillsFreeSpace = true;
-            this.olvDescription.Text = "Description";
-            this.olvDescription.Width = 168;
-            // 
-            // imageList32
-            // 
-            this.imageList32.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList32.ImageStream")));
-            this.imageList32.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList32.Images.SetKeyName(0, "Forklift");
-            this.imageList32.Images.SetKeyName(1, "ForkliftYellow");
-            this.imageList32.Images.SetKeyName(2, "ForkliftOrange");
-            this.imageList32.Images.SetKeyName(3, "ForkliftJapan");
-            this.imageList32.Images.SetKeyName(4, "Placeholder32");
-            this.imageList32.Images.SetKeyName(5, "Storage32");
-            this.imageList32.Images.SetKeyName(6, "Sales-Order-32");
-            this.imageList32.Images.SetKeyName(7, "Sign_Order_32");
-            this.imageList32.Images.SetKeyName(8, "Sales-by-Payment");
-            this.imageList32.Images.SetKeyName(9, "pay-per-click");
-            // 
             // CommodityID
             // 
             this.CommodityID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -772,6 +559,219 @@
             this.Remarks.FillWeight = 18F;
             this.Remarks.HeaderText = "Remarks";
             this.Remarks.Name = "Remarks";
+            // 
+            // naviGroupTop
+            // 
+            this.naviGroupTop.BackColor = System.Drawing.Color.Ivory;
+            this.naviGroupTop.Caption = null;
+            this.naviGroupTop.Controls.Add(this.layoutTop);
+            this.naviGroupTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.naviGroupTop.ExpandedHeight = 102;
+            this.naviGroupTop.HeaderContextMenuStrip = null;
+            this.naviGroupTop.HeaderHeight = 0;
+            this.naviGroupTop.Location = new System.Drawing.Point(296, 34);
+            this.naviGroupTop.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.naviGroupTop.Name = "naviGroupTop";
+            this.naviGroupTop.Padding = new System.Windows.Forms.Padding(1, 2, 1, 1);
+            this.naviGroupTop.Size = new System.Drawing.Size(1235, 134);
+            this.naviGroupTop.TabIndex = 67;
+            this.naviGroupTop.Tag = "Un Expandable";
+            // 
+            // layoutTop
+            // 
+            this.layoutTop.AutoSize = true;
+            this.layoutTop.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.layoutTop.BackColor = System.Drawing.Color.Ivory;
+            this.layoutTop.ColumnCount = 6;
+            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
+            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 28F));
+            this.layoutTop.Controls.Add(this.label3, 0, 1);
+            this.layoutTop.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.layoutTop.Location = new System.Drawing.Point(1, 2);
+            this.layoutTop.Margin = new System.Windows.Forms.Padding(0);
+            this.layoutTop.Name = "layoutTop";
+            this.layoutTop.RowCount = 3;
+            this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1F));
+            this.layoutTop.Size = new System.Drawing.Size(1233, 131);
+            this.layoutTop.TabIndex = 8;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label3.Location = new System.Drawing.Point(3, 10);
+            this.label3.Margin = new System.Windows.Forms.Padding(3, 0, 1, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(173, 21);
+            this.label3.TabIndex = 77;
+            this.label3.Text = "Shipping Address";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // panelLeft
+            // 
+            this.panelLeft.BackColor = System.Drawing.Color.Ivory;
+            this.panelLeft.Controls.Add(this.layoutLeft);
+            this.panelLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelLeft.Location = new System.Drawing.Point(0, 34);
+            this.panelLeft.Margin = new System.Windows.Forms.Padding(7, 8, 7, 8);
+            this.panelLeft.Name = "panelLeft";
+            this.panelLeft.Size = new System.Drawing.Size(296, 328);
+            this.panelLeft.TabIndex = 73;
+            // 
+            // fastForecastIndex
+            // 
+            this.fastForecastIndex.AllColumns.Add(this.olvID);
+            this.fastForecastIndex.AllColumns.Add(this.olvEntryDate);
+            this.fastForecastIndex.AllColumns.Add(this.olvReference);
+            this.fastForecastIndex.AllColumns.Add(this.olvVoucherCode);
+            this.fastForecastIndex.AllColumns.Add(this.olvLocationCode);
+            this.fastForecastIndex.AllColumns.Add(this.olvGrandTotalValue);
+            this.fastForecastIndex.AllColumns.Add(this.olvTotalValue);
+            this.fastForecastIndex.AllColumns.Add(this.olvTotalValueM1);
+            this.fastForecastIndex.AllColumns.Add(this.olvTotalValueM2);
+            this.fastForecastIndex.AllColumns.Add(this.olvTotalValueM3);
+            this.fastForecastIndex.AllColumns.Add(this.olvDescription);
+            this.fastForecastIndex.BackColor = System.Drawing.Color.Ivory;
+            this.fastForecastIndex.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.olvID,
+            this.olvEntryDate,
+            this.olvReference,
+            this.olvVoucherCode,
+            this.olvLocationCode,
+            this.olvGrandTotalValue,
+            this.olvTotalValue,
+            this.olvTotalValueM1,
+            this.olvTotalValueM2,
+            this.olvTotalValueM3,
+            this.olvDescription});
+            this.fastForecastIndex.Cursor = System.Windows.Forms.Cursors.Default;
+            this.fastForecastIndex.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fastForecastIndex.Font = new System.Drawing.Font("Calibri Light", 10.2F);
+            this.fastForecastIndex.FullRowSelect = true;
+            this.fastForecastIndex.GroupImageList = this.imageList32;
+            this.fastForecastIndex.HideSelection = false;
+            this.fastForecastIndex.HighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
+            this.fastForecastIndex.Location = new System.Drawing.Point(0, 0);
+            this.fastForecastIndex.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.fastForecastIndex.Name = "fastForecastIndex";
+            this.fastForecastIndex.OwnerDraw = true;
+            this.fastForecastIndex.ShowGroups = false;
+            this.fastForecastIndex.Size = new System.Drawing.Size(1531, 292);
+            this.fastForecastIndex.TabIndex = 68;
+            this.fastForecastIndex.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
+            this.fastForecastIndex.UseCompatibleStateImageBehavior = false;
+            this.fastForecastIndex.UseFiltering = true;
+            this.fastForecastIndex.View = System.Windows.Forms.View.Details;
+            this.fastForecastIndex.VirtualMode = true;
+            // 
+            // olvID
+            // 
+            this.olvID.Text = "";
+            this.olvID.Width = 0;
+            // 
+            // olvEntryDate
+            // 
+            this.olvEntryDate.AspectName = "EntryDate";
+            this.olvEntryDate.AspectToStringFormat = "MMM-yyyy";
+            this.olvEntryDate.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvEntryDate.Text = "Month";
+            this.olvEntryDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvEntryDate.Width = 113;
+            // 
+            // olvReference
+            // 
+            this.olvReference.AspectName = "Reference";
+            this.olvReference.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvReference.Text = "Reference";
+            this.olvReference.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvReference.Width = 90;
+            // 
+            // olvVoucherCode
+            // 
+            this.olvVoucherCode.AspectName = "VoucherCode";
+            this.olvVoucherCode.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvVoucherCode.Text = "Voucher #";
+            this.olvVoucherCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvVoucherCode.Width = 108;
+            // 
+            // olvLocationCode
+            // 
+            this.olvLocationCode.AspectName = "LocationCode";
+            this.olvLocationCode.Text = "Location";
+            this.olvLocationCode.Width = 168;
+            // 
+            // olvGrandTotalValue
+            // 
+            this.olvGrandTotalValue.AspectName = "GrandTotalValue";
+            this.olvGrandTotalValue.AspectToStringFormat = "{0:#,#}";
+            this.olvGrandTotalValue.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.olvGrandTotalValue.Text = "Total Forecast";
+            this.olvGrandTotalValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.olvGrandTotalValue.Width = 96;
+            // 
+            // olvTotalValue
+            // 
+            this.olvTotalValue.AspectName = "TotalValue";
+            this.olvTotalValue.AspectToStringFormat = "{0:#,#}";
+            this.olvTotalValue.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.olvTotalValue.Text = "Current Month";
+            this.olvTotalValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.olvTotalValue.Width = 108;
+            // 
+            // olvTotalValueM1
+            // 
+            this.olvTotalValueM1.AspectName = "TotalValueM1";
+            this.olvTotalValueM1.AspectToStringFormat = "{0:#,#}";
+            this.olvTotalValueM1.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.olvTotalValueM1.Text = "Next Month";
+            this.olvTotalValueM1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.olvTotalValueM1.Width = 96;
+            // 
+            // olvTotalValueM2
+            // 
+            this.olvTotalValueM2.AspectName = "TotalValueM2";
+            this.olvTotalValueM2.AspectToStringFormat = "{0:#,#}";
+            this.olvTotalValueM2.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.olvTotalValueM2.Text = "Next Two Month";
+            this.olvTotalValueM2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.olvTotalValueM2.Width = 116;
+            // 
+            // olvTotalValueM3
+            // 
+            this.olvTotalValueM3.AspectName = "TotalValueM3";
+            this.olvTotalValueM3.AspectToStringFormat = "{0:#,#}";
+            this.olvTotalValueM3.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.olvTotalValueM3.Text = "Next Three Month";
+            this.olvTotalValueM3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.olvTotalValueM3.Width = 116;
+            // 
+            // olvDescription
+            // 
+            this.olvDescription.AspectName = "Description";
+            this.olvDescription.FillsFreeSpace = true;
+            this.olvDescription.Text = "Description";
+            this.olvDescription.Width = 168;
+            // 
+            // imageList32
+            // 
+            this.imageList32.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList32.ImageStream")));
+            this.imageList32.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList32.Images.SetKeyName(0, "Forklift");
+            this.imageList32.Images.SetKeyName(1, "ForkliftYellow");
+            this.imageList32.Images.SetKeyName(2, "ForkliftOrange");
+            this.imageList32.Images.SetKeyName(3, "ForkliftJapan");
+            this.imageList32.Images.SetKeyName(4, "Placeholder32");
+            this.imageList32.Images.SetKeyName(5, "Storage32");
+            this.imageList32.Images.SetKeyName(6, "Sales-Order-32");
+            this.imageList32.Images.SetKeyName(7, "Sign_Order_32");
+            this.imageList32.Images.SetKeyName(8, "Sales-by-Payment");
+            this.imageList32.Images.SetKeyName(9, "pay-per-click");
             // 
             // Forecasts
             // 

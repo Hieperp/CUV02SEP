@@ -102,7 +102,7 @@ namespace TotalSmartCoding.Views.Mains
 
                 if (dateTimeSmallest != new DateTime(2100, 1, 1))
                 {
-                    this.optionDictionary["EntryDate"] = dateTimeSmallest.AddDays(14);
+                    this.optionDictionary["EntryDate"] = dateTimeSmallest;
 
                     this.oleDbAPIs.SaveColumnMapping(3, dateTimeSmallest.ToString("MMM-yy"));
                     this.oleDbAPIs.SaveColumnMapping(4, dateTimeSmallest.AddMonths(1).ToString("MMM-yy"));
