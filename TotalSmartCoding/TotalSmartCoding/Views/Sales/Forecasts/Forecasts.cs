@@ -102,7 +102,7 @@ namespace TotalSmartCoding.Views.Sales.Forecasts
                 this.customTabCenter = new CustomTabControl();
                 this.customTabCenter.DisplayStyle = TabStyle.VisualStudio;
 
-                this.customTabCenter.TabPages.Add("tabCenterAA", "Forecast Lines            ");
+                this.customTabCenter.TabPages.Add("tabCenterAA", "Forecast Details            ");
                 this.customTabCenter.TabPages.Add("tabCenterBB", "Description            ");
                 this.customTabCenter.TabPages.Add("tabCenterBB", "Remarks                    ");
 
@@ -173,6 +173,7 @@ namespace TotalSmartCoding.Views.Sales.Forecasts
             this.naviGroupDetails.ExpandedHeight = this.naviGroupDetails.Size.Height;
         }
 
+        private Nullable<DateTime> forecastDate;
         protected override void CommonControl_BindingComplete(object sender, BindingCompleteEventArgs e)
         {
             base.CommonControl_BindingComplete(sender, e);
@@ -182,6 +183,25 @@ namespace TotalSmartCoding.Views.Sales.Forecasts
                 {
                     LocationBase locationBase = (LocationBase)this.combexForecastLocationID.SelectedItem;
                     this.forecastViewModel.ForecastLocationName = locationBase.Name;
+                }
+            }
+            if (sender.Equals(this.bindingEntryDate))
+            {
+                if (this.forecastDate != this.forecastViewModel.EntryDate)
+                {
+                    this.forecastDate = this.forecastViewModel.EntryDate;
+
+                    this.Quantity.HeaderText = "Forecast." + ((DateTime)this.forecastViewModel.EntryDate).ToString("MMM-yy");
+                    this.QuantityM1.HeaderText = "Forecast." + ((DateTime)this.forecastViewModel.EntryDate).AddMonths(1).ToString("MMM-yy");
+                    this.QuantityM2.HeaderText = "Forecast." + ((DateTime)this.forecastViewModel.EntryDate).AddMonths(2).ToString("MMM-yy");
+                    this.QuantityM3.HeaderText = "Forecast." + ((DateTime)this.forecastViewModel.EntryDate).AddMonths(3).ToString("MMM-yy");
+
+                    this.LineVolume.HeaderText = this.Quantity.HeaderText;
+                    this.LineVolumeM1.HeaderText = this.QuantityM1.HeaderText;
+                    this.LineVolumeM2.HeaderText = this.QuantityM2.HeaderText;
+                    this.LineVolumeM3.HeaderText = this.QuantityM3.HeaderText;
+
+                    StackedHeaderDecorator stackedHeaderDecorator = new StackedHeaderDecorator(this.gridexViewDetails);
                 }
             }
         }
@@ -243,7 +263,7 @@ namespace TotalSmartCoding.Views.Sales.Forecasts
         private void ViewDetails_ListChanged(object sender, ListChangedEventArgs e)
         {
             if (e.ListChangedType == ListChangedType.ItemAdded || e.ListChangedType == ListChangedType.ItemDeleted || e.ListChangedType == ListChangedType.Reset)
-                this.customTabCenter.TabPages[0].Text = "Forecast Lines [" + this.forecastViewModel.ViewDetails.Count.ToString("N0") + " item(s)]             ";
+                this.customTabCenter.TabPages[0].Text = "Forecast Details [" + this.forecastViewModel.ViewDetails.Count.ToString("N0") + " Line(s)]             ";
 
             if (this.EditableMode && e.PropertyDescriptor != null && e.NewIndex >= 0 && e.NewIndex < this.forecastViewModel.ViewDetails.Count)
             {
@@ -370,7 +390,7 @@ namespace TotalSmartCoding.Views.Sales.Forecasts
                         {
                             WarehouseBase warehouseBase = this.warehouseAPIs.GetWarehouseBase(excelDataRow["WarehouseCode"].ToString().Trim());
                             if (warehouseBase != null && warehouseBase.LocationID == this.forecastViewModel.ForecastLocationID)
-                            {                                
+                            {
                                 CommodityBase commodityBase = this.commodityAPIs.GetCommodityBase(excelDataRow["CommodityCode"].ToString());
                                 if (commodityBase != null)
                                 {
@@ -389,7 +409,7 @@ namespace TotalSmartCoding.Views.Sales.Forecasts
                                     if (forecastDetailDTO.Quantity != 0 || forecastDetailDTO.QuantityM1 != 0 || forecastDetailDTO.QuantityM2 != 0 || forecastDetailDTO.QuantityM3 != 0 || forecastDetailDTO.LineVolume != 0 || forecastDetailDTO.LineVolumeM1 != 0 || forecastDetailDTO.LineVolumeM2 != 0 || forecastDetailDTO.LineVolumeM3 != 0) this.forecastViewModel.ViewDetails.Add(forecastDetailDTO);
                                 }
                                 else
-                                    exceptionTable.AddException(new string[] { "Item not found", "Item: " + excelDataRow["CommodityCode"].ToString() });                                                                
+                                    exceptionTable.AddException(new string[] { "Item not found", "Item: " + excelDataRow["CommodityCode"].ToString() });
                             }
                             else
                                 exceptionTable.AddException(new string[] { "Warehouse does not match", "Warehouse: " + excelDataRow["WarehouseCode"].ToString() });

@@ -678,7 +678,7 @@
             // olvEntryDate
             // 
             this.olvEntryDate.AspectName = "EntryDate";
-            this.olvEntryDate.AspectToStringFormat = "MMM-yyyy";
+            this.olvEntryDate.AspectToStringFormat = "{0:MMM-yyyy}";
             this.olvEntryDate.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvEntryDate.Text = "Month";
             this.olvEntryDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -738,7 +738,7 @@
             this.olvTotalValueM2.AspectName = "TotalValueM2";
             this.olvTotalValueM2.AspectToStringFormat = "{0:#,#}";
             this.olvTotalValueM2.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.olvTotalValueM2.Text = "Next Two Month";
+            this.olvTotalValueM2.Text = "Next 2 Months";
             this.olvTotalValueM2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.olvTotalValueM2.Width = 116;
             // 
@@ -747,7 +747,7 @@
             this.olvTotalValueM3.AspectName = "TotalValueM3";
             this.olvTotalValueM3.AspectToStringFormat = "{0:#,#}";
             this.olvTotalValueM3.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.olvTotalValueM3.Text = "Next Three Month";
+            this.olvTotalValueM3.Text = "Next 3 Months";
             this.olvTotalValueM3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.olvTotalValueM3.Width = 116;
             // 
