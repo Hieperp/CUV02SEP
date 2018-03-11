@@ -786,6 +786,8 @@ namespace TotalModel.Models
     public partial class CommoditySettingDetail : IPrimitiveEntity, IHelperEntryDate
     {
         public int GetID() { return this.CommoditySettingDetailID; }
+
+        public System.DateTime EntryDate { get; set; }
     }
 
 
