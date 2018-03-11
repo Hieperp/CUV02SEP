@@ -102,6 +102,7 @@
   <ItemGroup>
     <Compile Include="Controllers\APIs\Commons\BinLocationAPIs.cs" />
     <Compile Include="Controllers\APIs\Commons\CommodityCategoryAPIs.cs" />
+    <Compile Include="Controllers\APIs\Commons\CommoditySettingAPIs.cs" />
     <Compile Include="Controllers\APIs\Commons\CommodityTypeAPIs.cs" />
     <Compile Include="Controllers\APIs\Commons\CustomerAPIs.cs" />
     <Compile Include="Controllers\APIs\Commons\CustomerCategoryAPIs.cs" />
@@ -129,6 +130,7 @@
     <Compile Include="Controllers\APIs\Sales\TransferOrderAPIs.cs" />
     <Compile Include="Controllers\Commons\BinLocationController.cs" />
     <Compile Include="Controllers\Commons\CommodityController.cs" />
+    <Compile Include="Controllers\Commons\CommoditySettingController.cs" />
     <Compile Include="Controllers\Commons\CustomerController.cs" />
     <Compile Include="Controllers\Generals\ReportController.cs" />
     <Compile Include="Controllers\Inventories\GoodsIssueController.cs" />
@@ -211,6 +213,12 @@
     </Compile>
     <Compile Include="Views\Commons\Commodities\Commodities.designer.cs">
       <DependentUpon>Commodities.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Commons\CommoditySettings\CommoditySettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Commons\CommoditySettings\CommoditySettings.designer.cs">
+      <DependentUpon>CommoditySettings.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Commons\Customers\Customers.cs">
       <SubType>Form</SubType>
@@ -484,6 +492,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Commons\Commodities\Commodities.resx">
       <DependentUpon>Commodities.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Commons\CommoditySettings\CommoditySettings.resx">
+      <DependentUpon>CommoditySettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Commons\Customers\Customers.resx">
       <DependentUpon>Customers.cs</DependentUpon>

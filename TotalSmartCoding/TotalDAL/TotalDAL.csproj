@@ -92,6 +92,7 @@
     <Compile Include="Repositories\Commons\BinLocationRepository.cs" />
     <Compile Include="Repositories\Commons\CommodityCategoryRepository.cs" />
     <Compile Include="Repositories\Commons\CommodityRepository.cs" />
+    <Compile Include="Repositories\Commons\CommoditySettingRepository.cs" />
     <Compile Include="Repositories\Commons\CommodityTypeRepository.cs" />
     <Compile Include="Repositories\Commons\CustomerCategoryRepository.cs" />
     <Compile Include="Repositories\Commons\CustomerRepository.cs" />

@@ -115,6 +115,11 @@ namespace TotalSmartCoding.Libraries
                 cfg.CreateMap<Commodity, CommodityDTO>();
                 cfg.CreateMap<CommodityPrimitiveDTO, Commodity>();
 
+                cfg.CreateMap<CommoditySetting, CommoditySettingViewModel>();
+                cfg.CreateMap<CommoditySetting, CommoditySettingDTO>();
+                cfg.CreateMap<CommoditySettingPrimitiveDTO, CommoditySetting>();
+                cfg.CreateMap<CommoditySettingDetailDTO, CommoditySettingDetail>();
+
                 //cfg.CreateMap<Employee, EmployeeBaseDTO>();
                 cfg.CreateMap<Customer, CustomerBaseDTO>();
                 cfg.CreateMap<Customer, CustomerViewModel>();
