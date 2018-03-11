@@ -111,6 +111,34 @@
           <Property Name="AncestorID" Type="int" />
           <Property Name="Remarks" Type="nvarchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="CommoditySettingDetails">
+          <Key>
+            <PropertyRef Name="CommoditySettingDetailID" />
+          </Key>
+          <Property Name="CommoditySettingDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CommoditySettingID" Type="int" Nullable="false" />
+          <Property Name="CommodityID" Type="int" Nullable="false" />
+          <Property Name="LocationID" Type="int" Nullable="false" />
+          <Property Name="LowDSI" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="HighDSI" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="AlertDSI" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CommoditySettings">
+          <Key>
+            <PropertyRef Name="CommoditySettingID" />
+          </Key>
+          <Property Name="CommoditySettingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EntryDate" Type="datetime" Nullable="false" />
+          <Property Name="Reference" Type="nvarchar" MaxLength="10" />
+          <Property Name="CommodityID" Type="int" Nullable="false" />
+          <Property Name="LocationID" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="Remarks" Type="nvarchar" MaxLength="100" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="EditedDate" Type="datetime" Nullable="false" />
+          <Property Name="Approved" Type="bit" Nullable="false" />
+          <Property Name="ApprovedDate" Type="datetime" />
+        </EntityType>
         <EntityType Name="CommodityTypes">
           <Key>
             <PropertyRef Name="CommodityTypeID" />
@@ -1037,6 +1065,18 @@
             </Principal>
             <Dependent Role="CommodityCategories1">
               <PropertyRef Name="AncestorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommoditySettingDetails_CommoditySettings">
+          <End Role="CommoditySettings" Type="Self.CommoditySettings" Multiplicity="1" />
+          <End Role="CommoditySettingDetails" Type="Self.CommoditySettingDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CommoditySettings">
+              <PropertyRef Name="CommoditySettingID" />
+            </Principal>
+            <Dependent Role="CommoditySettingDetails">
+              <PropertyRef Name="CommoditySettingID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2267,6 +2307,9 @@
           <Parameter Name="EntityID" Type="int" Mode="In" />
           <Parameter Name="SaveRelativeOption" Type="int" Mode="In" />
         </Function>
+        <Function Name="CommoditySettingEditable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="int" Mode="In" />
+        </Function>
         <Function Name="CustomerEditable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="EntityID" Type="int" Mode="In" />
         </Function>
@@ -2365,6 +2408,11 @@
           <Parameter Name="ToDate" Type="datetime" Mode="In" />
         </Function>
         <Function Name="GetCommodityIndexes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserID" Type="int" Mode="In" />
+          <Parameter Name="FromDate" Type="datetime" Mode="In" />
+          <Parameter Name="ToDate" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="GetCommoditySettingIndexes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserID" Type="int" Mode="In" />
           <Parameter Name="FromDate" Type="datetime" Mode="In" />
           <Parameter Name="ToDate" Type="datetime" Mode="In" />
@@ -2905,6 +2953,8 @@
           <EntitySet Name="ColumnMappings" EntityType="Self.ColumnMappings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Commodities" EntityType="Self.Commodities" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CommodityCategories" EntityType="Self.CommodityCategories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CommoditySettingDetails" EntityType="Self.CommoditySettingDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CommoditySettings" EntityType="Self.CommoditySettings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CommodityTypes" EntityType="Self.CommodityTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CustomerCategories" EntityType="Self.CustomerCategories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
@@ -2980,6 +3030,10 @@
           <AssociationSet Name="FK_CommodityCategories_CommodityCategories" Association="Self.FK_CommodityCategories_CommodityCategories">
             <End Role="CommodityCategories" EntitySet="CommodityCategories" />
             <End Role="CommodityCategories1" EntitySet="CommodityCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommoditySettingDetails_CommoditySettings" Association="Self.FK_CommoditySettingDetails_CommoditySettings">
+            <End Role="CommoditySettings" EntitySet="CommoditySettings" />
+            <End Role="CommoditySettingDetails" EntitySet="CommoditySettingDetails" />
           </AssociationSet>
           <AssociationSet Name="FK_CommodityTypes_CommodityTypes" Association="Self.FK_CommodityTypes_CommodityTypes">
             <End Role="CommodityTypes" EntitySet="CommodityTypes" />
@@ -4536,6 +4590,20 @@
           </FunctionImport>
           <FunctionImport Name="GetWarehouseBaseByCode" ReturnType="Collection(TotalSmartCodingModel.WarehouseBase)">
           <Parameter Name="Code" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="CommoditySettingDetails" EntityType="TotalSmartCodingModel.CommoditySettingDetail" />
+          <EntitySet Name="CommoditySettings" EntityType="TotalSmartCodingModel.CommoditySetting" />
+          <AssociationSet Name="FK_CommoditySettingDetails_CommoditySettings" Association="TotalSmartCodingModel.FK_CommoditySettingDetails_CommoditySettings">
+            <End Role="CommoditySetting" EntitySet="CommoditySettings" />
+            <End Role="CommoditySettingDetail" EntitySet="CommoditySettingDetails" />
+          </AssociationSet>
+          <FunctionImport Name="CommoditySettingEditable" ReturnType="Collection(String)">
+            <Parameter Name="EntityID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetCommoditySettingIndexes" ReturnType="Collection(TotalSmartCodingModel.CommoditySettingIndex)">
+            <Parameter Name="UserID" Mode="In" Type="Int32" />
+            <Parameter Name="FromDate" Mode="In" Type="DateTime" />
+            <Parameter Name="ToDate" Mode="In" Type="DateTime" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
@@ -7997,6 +8065,66 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="CommoditySettingDetail">
+          <Key>
+            <PropertyRef Name="CommoditySettingDetailID" />
+          </Key>
+          <Property Name="CommoditySettingDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CommoditySettingID" Type="Int32" Nullable="false" />
+          <Property Name="CommodityID" Type="Int32" Nullable="false" />
+          <Property Name="LocationID" Type="Int32" Nullable="false" />
+          <Property Name="LowDSI" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
+          <Property Name="HighDSI" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
+          <Property Name="AlertDSI" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
+          <NavigationProperty Name="CommoditySetting" Relationship="TotalSmartCodingModel.FK_CommoditySettingDetails_CommoditySettings" FromRole="CommoditySettingDetail" ToRole="CommoditySetting" />
+        </EntityType>
+        <EntityType Name="CommoditySetting">
+          <Key>
+            <PropertyRef Name="CommoditySettingID" />
+          </Key>
+          <Property Name="CommoditySettingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Reference" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="CommodityID" Type="Int32" Nullable="false" />
+          <Property Name="LocationID" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EditedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Approved" Type="Boolean" Nullable="false" />
+          <Property Name="ApprovedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CommoditySettingDetails" Relationship="TotalSmartCodingModel.FK_CommoditySettingDetails_CommoditySettings" FromRole="CommoditySetting" ToRole="CommoditySettingDetail" />
+        </EntityType>
+        <Association Name="FK_CommoditySettingDetails_CommoditySettings">
+          <End Type="TotalSmartCodingModel.CommoditySetting" Role="CommoditySetting" Multiplicity="1" />
+          <End Type="TotalSmartCodingModel.CommoditySettingDetail" Role="CommoditySettingDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CommoditySetting">
+              <PropertyRef Name="CommoditySettingID" />
+            </Principal>
+            <Dependent Role="CommoditySettingDetail">
+              <PropertyRef Name="CommoditySettingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="CommoditySettingIndex">
+          <Property Type="Int32" Name="CommoditySettingID" Nullable="false" />
+          <Property Type="Int32" Name="CommodityID" Nullable="true" />
+          <Property Type="String" Name="CommodityCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CommodityName" Nullable="true" MaxLength="200" />
+          <Property Type="Decimal" Name="LowDSI1" Nullable="true" Precision="38" Scale="3" />
+          <Property Type="Decimal" Name="HighDSI1" Nullable="true" Precision="38" Scale="3" />
+          <Property Type="Decimal" Name="AlertDSI1" Nullable="true" Precision="38" Scale="3" />
+          <Property Type="Decimal" Name="LowDSI2" Nullable="true" Precision="38" Scale="3" />
+          <Property Type="Decimal" Name="HighDSI2" Nullable="true" Precision="38" Scale="3" />
+          <Property Type="Decimal" Name="AlertDSI2" Nullable="true" Precision="38" Scale="3" />
+          <Property Type="Decimal" Name="LowDSI3" Nullable="true" Precision="38" Scale="3" />
+          <Property Type="Decimal" Name="HighDSI3" Nullable="true" Precision="38" Scale="3" />
+          <Property Type="Decimal" Name="AlertDSI3" Nullable="true" Precision="38" Scale="3" />
+          <Property Type="Decimal" Name="LowDSI4" Nullable="true" Precision="38" Scale="3" />
+          <Property Type="Decimal" Name="HighDSI4" Nullable="true" Precision="38" Scale="3" />
+          <Property Type="Decimal" Name="AlertDSI4" Nullable="true" Precision="38" Scale="3" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -10484,6 +10612,59 @@
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="CommoditySettingDetails">
+            <EntityTypeMapping TypeName="TotalSmartCodingModel.CommoditySettingDetail">
+              <MappingFragment StoreEntitySet="CommoditySettingDetails">
+                <ScalarProperty Name="AlertDSI" ColumnName="AlertDSI" />
+                <ScalarProperty Name="HighDSI" ColumnName="HighDSI" />
+                <ScalarProperty Name="LowDSI" ColumnName="LowDSI" />
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+                <ScalarProperty Name="CommodityID" ColumnName="CommodityID" />
+                <ScalarProperty Name="CommoditySettingID" ColumnName="CommoditySettingID" />
+                <ScalarProperty Name="CommoditySettingDetailID" ColumnName="CommoditySettingDetailID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CommoditySettings">
+            <EntityTypeMapping TypeName="TotalSmartCodingModel.CommoditySetting">
+              <MappingFragment StoreEntitySet="CommoditySettings">
+                <ScalarProperty Name="ApprovedDate" ColumnName="ApprovedDate" />
+                <ScalarProperty Name="Approved" ColumnName="Approved" />
+                <ScalarProperty Name="EditedDate" ColumnName="EditedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+                <ScalarProperty Name="CommodityID" ColumnName="CommodityID" />
+                <ScalarProperty Name="Reference" ColumnName="Reference" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="CommoditySettingID" ColumnName="CommoditySettingID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="CommoditySettingEditable" FunctionName="TotalSmartCodingModel.Store.CommoditySettingEditable" />
+          <FunctionImportMapping FunctionImportName="GetCommoditySettingIndexes" FunctionName="TotalSmartCodingModel.Store.GetCommoditySettingIndexes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TotalSmartCodingModel.CommoditySettingIndex">
+                <ScalarProperty Name="CommoditySettingID" ColumnName="CommoditySettingID" />
+                <ScalarProperty Name="CommodityID" ColumnName="CommodityID" />
+                <ScalarProperty Name="CommodityCode" ColumnName="CommodityCode" />
+                <ScalarProperty Name="CommodityName" ColumnName="CommodityName" />
+                <ScalarProperty Name="LowDSI1" ColumnName="LowDSI1" />
+                <ScalarProperty Name="HighDSI1" ColumnName="HighDSI1" />
+                <ScalarProperty Name="AlertDSI1" ColumnName="AlertDSI1" />
+                <ScalarProperty Name="LowDSI2" ColumnName="LowDSI2" />
+                <ScalarProperty Name="HighDSI2" ColumnName="HighDSI2" />
+                <ScalarProperty Name="AlertDSI2" ColumnName="AlertDSI2" />
+                <ScalarProperty Name="LowDSI3" ColumnName="LowDSI3" />
+                <ScalarProperty Name="HighDSI3" ColumnName="HighDSI3" />
+                <ScalarProperty Name="AlertDSI3" ColumnName="AlertDSI3" />
+                <ScalarProperty Name="LowDSI4" ColumnName="LowDSI4" />
+                <ScalarProperty Name="HighDSI4" ColumnName="HighDSI4" />
+                <ScalarProperty Name="AlertDSI4" ColumnName="AlertDSI4" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

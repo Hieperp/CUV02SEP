@@ -53,6 +53,7 @@
     <Compile Include="Helpers\SqlProgrammability\Commons\AccessControl.cs" />
     <Compile Include="Helpers\SqlProgrammability\Commons\Commodity.cs" />
     <Compile Include="Helpers\SqlProgrammability\Commons\CommodityCategory.cs" />
+    <Compile Include="Helpers\SqlProgrammability\Commons\CommoditySetting.cs" />
     <Compile Include="Helpers\SqlProgrammability\Commons\CommodityType.cs" />
     <Compile Include="Helpers\SqlProgrammability\Commons\Customer.cs" />
     <Compile Include="Helpers\SqlProgrammability\Commons\CustomerCategory.cs" />

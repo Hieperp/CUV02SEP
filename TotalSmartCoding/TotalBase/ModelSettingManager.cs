@@ -37,8 +37,11 @@ namespace TotalBase
                 case GlobalEnums.NmvnTaskID.WarehouseAdjustment:
                     return "WA";
 
+
                 case GlobalEnums.NmvnTaskID.Forecast:
                     return "FC";
+                case GlobalEnums.NmvnTaskID.CommoditySetting:
+                    return "Z";
 
                 default:
                     return "A";

@@ -73,6 +73,8 @@ namespace TotalModel.Models
         public virtual DbSet<ColumnMapping> ColumnMappings { get; set; }
         public virtual DbSet<ForecastDetail> ForecastDetails { get; set; }
         public virtual DbSet<Forecast> Forecasts { get; set; }
+        public virtual DbSet<CommoditySettingDetail> CommoditySettingDetails { get; set; }
+        public virtual DbSet<CommoditySetting> CommoditySettings { get; set; }
     
         public virtual ObjectResult<Nullable<int>> GetAccessLevel(Nullable<int> userID, Nullable<int> nMVNTaskID, Nullable<int> organizationalUnitID)
         {
@@ -2428,6 +2430,32 @@ namespace TotalModel.Models
                 new ObjectParameter("Code", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<WarehouseBase>("GetWarehouseBaseByCode", codeParameter);
+        }
+    
+        public virtual ObjectResult<string> CommoditySettingEditable(Nullable<int> entityID)
+        {
+            var entityIDParameter = entityID.HasValue ?
+                new ObjectParameter("EntityID", entityID) :
+                new ObjectParameter("EntityID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("CommoditySettingEditable", entityIDParameter);
+        }
+    
+        public virtual ObjectResult<CommoditySettingIndex> GetCommoditySettingIndexes(Nullable<int> userID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
+        {
+            var userIDParameter = userID.HasValue ?
+                new ObjectParameter("UserID", userID) :
+                new ObjectParameter("UserID", typeof(int));
+    
+            var fromDateParameter = fromDate.HasValue ?
+                new ObjectParameter("FromDate", fromDate) :
+                new ObjectParameter("FromDate", typeof(System.DateTime));
+    
+            var toDateParameter = toDate.HasValue ?
+                new ObjectParameter("ToDate", toDate) :
+                new ObjectParameter("ToDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CommoditySettingIndex>("GetCommoditySettingIndexes", userIDParameter, fromDateParameter, toDateParameter);
         }
     }
 }

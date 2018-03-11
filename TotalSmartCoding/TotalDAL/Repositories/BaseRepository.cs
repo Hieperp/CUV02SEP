@@ -142,6 +142,11 @@ namespace TotalDAL.Repositories
 
             //return;
 
+            Helpers.SqlProgrammability.Commons.CommoditySetting commoditySetting = new Helpers.SqlProgrammability.Commons.CommoditySetting(totalSmartCodingEntities);
+            commoditySetting.RestoreProcedure();
+
+            //return;
+
             Helpers.SqlProgrammability.Commons.Warehouse warehouse = new Helpers.SqlProgrammability.Commons.Warehouse(totalSmartCodingEntities);
             warehouse.RestoreProcedure();
 
@@ -457,18 +462,18 @@ namespace TotalDAL.Repositories
 
 
             #region Add forecast table
-            this.ExecuteStoreCommand(@"CREATE TABLE [dbo].[CommoditySettings](
+            this.ExecuteStoreCommand(@"CREATE TABLE [dbo].[CommoditySettingDetails](
 	                                                    [CommoditySettingID] [int] IDENTITY(1,1) NOT NULL,
 	                                                    [CommodityID] [int] NOT NULL,
 	                                                    [LocationID] [int] NOT NULL,
-	                                                    [DIOHLow] [decimal](18, 3) NOT NULL,
-	                                                    [DIOHHigh] [decimal](18, 3) NOT NULL,
-	                                                    [DIOHAlert] [decimal](18, 3) NOT NULL,
-                                                     CONSTRAINT [PK_CommoditySettings] PRIMARY KEY CLUSTERED 
+	                                                    [LowDSI] [decimal](18, 3) NOT NULL,
+	                                                    [HighDSI] [decimal](18, 3) NOT NULL,
+	                                                    [AlertDSI] [decimal](18, 3) NOT NULL,
+                                                     CONSTRAINT [PK_CommoditySettingDetails] PRIMARY KEY CLUSTERED 
                                                     (
 	                                                    [CommoditySettingID] ASC
                                                     )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY],
-                                                     CONSTRAINT [IX_CommoditySettings] UNIQUE NONCLUSTERED 
+                                                     CONSTRAINT [IX_CommoditySettingDetails] UNIQUE NONCLUSTERED 
                                                     (
 	                                                    [CommodityID] ASC,
 	                                                    [LocationID] ASC

@@ -73,6 +73,7 @@
 
             Customer = 8001,
             Commodity = 8002,
+            CommoditySetting = 800201,
             Promotion = 8003,
             Employee = 8005,
             Warehouse = 8006,

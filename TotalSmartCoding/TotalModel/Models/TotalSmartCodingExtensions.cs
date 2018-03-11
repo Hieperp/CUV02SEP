@@ -766,6 +766,29 @@ namespace TotalModel.Models
 
     }
 
+
+    public partial class CommoditySettingIndex : IBaseIndex
+    {
+        public int Id { get { return this.CommoditySettingID; } }
+    }
+
+    public partial class CommoditySetting : IPrimitiveEntity, IBaseEntity, IBaseDetailEntity<CommoditySettingDetail>
+    {
+        public int GetID() { return this.CommoditySettingID; }
+
+        public int UserID { get; set; }
+        public int PreparedPersonID { get; set; }
+        public int OrganizationalUnitID { get; set; }
+
+        public ICollection<CommoditySettingDetail> GetDetails() { return this.CommoditySettingDetails; }
+    }
+
+    public partial class CommoditySettingDetail : IPrimitiveEntity, IHelperEntryDate
+    {
+        public int GetID() { return this.CommoditySettingDetailID; }
+    }
+
+
     public partial class BatchIndex : IBaseIndex
     {
         public int Id { get { return this.BatchID; } }
