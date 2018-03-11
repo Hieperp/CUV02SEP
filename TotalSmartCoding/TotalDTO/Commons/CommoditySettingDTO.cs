@@ -43,6 +43,32 @@ namespace TotalDTO.Commons
             set { ApplyPropertyChange<CommoditySettingDTO, string>(ref this.commodityName, o => o.CommodityName, value, false); }
         }
 
+        private string commodityCategoryName;
+        [DefaultValue(null)]
+        public string CommodityCategoryName
+        {
+            get { return this.commodityCategoryName; }
+            set { ApplyPropertyChange<CommoditySettingDTO, string>(ref this.commodityCategoryName, o => o.CommodityCategoryName, value, false); }
+        }
+
+
+        private string packageSize;
+        [DefaultValue(null)]
+        public string PackageSize
+        {
+            get { return this.packageSize; }
+            set { ApplyPropertyChange<CommodityPrimitiveDTO, string>(ref this.packageSize, o => o.PackageSize, value); }
+        }
+
+        private decimal packageVolume;
+        //[DefaultValue(0.0)]
+        [Range(1, 99999999999, ErrorMessage = "Volume không hợp lệ")]
+        public virtual decimal PackageVolume
+        {
+            get { return this.packageVolume; }
+            set { ApplyPropertyChange<CommodityPrimitiveDTO, decimal>(ref this.packageVolume, o => o.PackageVolume, Math.Round(value, (int)GlobalEnums.rndVolume)); }
+        }
+
         public override void PerformPresaveRule()
         {
             base.PerformPresaveRule();

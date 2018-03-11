@@ -13,8 +13,7 @@ namespace TotalModel.Models
     
     public partial class CommoditySettingIndex
     {
-        public int CommoditySettingID { get; set; }
-        public Nullable<int> CommodityID { get; set; }
+        public int CommodityID { get; set; }
         public string CommodityCode { get; set; }
         public string CommodityName { get; set; }
         public Nullable<decimal> LowDSI1 { get; set; }
@@ -29,5 +28,10 @@ namespace TotalModel.Models
         public Nullable<decimal> LowDSI4 { get; set; }
         public Nullable<decimal> HighDSI4 { get; set; }
         public Nullable<decimal> AlertDSI4 { get; set; }
+        public int CommodityCategoryID { get; set; }
+        public string CommodityCategoryName { get; set; }
+        public string PackageSize { get; set; }
+        public decimal PackageVolume { get; set; }
+        public int CommoditySettingID { get; set; }
     }
 }

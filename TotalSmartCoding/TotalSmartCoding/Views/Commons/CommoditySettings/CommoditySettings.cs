@@ -39,8 +39,8 @@ namespace TotalSmartCoding.Views.Commons.CommoditySettings
     {
         private CustomTabControl customTabCenter;
 
-        private CommodityAPIs commodityAPIs;
-        private CommodityViewModel commodityViewModel { get; set; }
+        private CommoditySettingAPIs commoditySettingAPIs;
+        private CommoditySettingViewModel commoditySettingViewModel { get; set; }
 
         public CommoditySettings()
             : base()
@@ -48,13 +48,13 @@ namespace TotalSmartCoding.Views.Commons.CommoditySettings
             InitializeComponent();
 
             this.toolstripChild = this.toolStripChildForm;
-            this.fastListIndex = this.fastCommodityIndex;
+            this.fastListIndex = this.fastCommoditySettingIndex;
 
-            this.commodityAPIs = new CommodityAPIs(CommonNinject.Kernel.Get<ICommodityAPIRepository>());
+            this.commoditySettingAPIs = new CommoditySettingAPIs(CommonNinject.Kernel.Get<ICommoditySettingAPIRepository>());
 
-            this.commodityViewModel = CommonNinject.Kernel.Get<CommodityViewModel>();
-            this.commodityViewModel.PropertyChanged += new PropertyChangedEventHandler(ModelDTO_PropertyChanged);
-            this.baseDTO = this.commodityViewModel;
+            this.commoditySettingViewModel = CommonNinject.Kernel.Get<CommoditySettingViewModel>();
+            this.commoditySettingViewModel.PropertyChanged += new PropertyChangedEventHandler(ModelDTO_PropertyChanged);
+            this.baseDTO = this.commoditySettingViewModel;
         }
 
         protected override void InitializeTabControl()
@@ -62,20 +62,18 @@ namespace TotalSmartCoding.Views.Commons.CommoditySettings
             try
             {
                 base.InitializeTabControl();
-                
+
                 #region TabCenter
                 this.customTabCenter = new CustomTabControl();
                 this.customTabCenter.DisplayStyle = TabStyle.VisualStudio;
                 this.customTabCenter.Font = this.panelCenter.Font;
 
-                this.customTabCenter.TabPages.Add("tabCenterAA", "Commodity Details          ");
-                this.customTabCenter.TabPages.Add("tabCenterBB", "API Code, Remarks        ");
+                this.customTabCenter.TabPages.Add("tabCenterAA", "Low, High & Alert Details          ");
 
                 this.customTabCenter.TabPages[0].Controls.Add(this.layoutTop);
-                this.customTabCenter.TabPages[1].Controls.Add(this.layoutRight);
+                this.customTabCenter.TabPages[0].Controls.Add(this.layoutRight);
                 this.customTabCenter.TabPages[0].BackColor = this.panelCenter.BackColor;
-                this.customTabCenter.TabPages[1].BackColor = this.panelCenter.BackColor;
-                this.layoutTop.Dock = DockStyle.Fill;
+                this.layoutTop.Dock = DockStyle.Top;
                 this.layoutRight.Dock = DockStyle.Fill;
 
                 this.panelCenter.Controls.Add(this.customTabCenter);
@@ -90,71 +88,63 @@ namespace TotalSmartCoding.Views.Commons.CommoditySettings
             }
         }
 
-        Binding bindingCode;
-        Binding bindingName;
-        Binding bindingOfficialName;
+        Binding bindingCommodityID;
+        Binding bindingCommodityName;
+        Binding bindingCommodityCategoryName;
 
         Binding bindingPackageSize;
-        Binding bindingAPICode;
-        Binding bindingFillingLineIDs;
-        Binding bindingRemarks;
-
-        Binding bindingVolume;
         Binding bindingPackageVolume;
-        Binding bindingPackPerCarton;
-        Binding bindingCartonPerPallet;
-        Binding bindingShelflife;
 
-        Binding bindingCommodityCategoryID;
+        Binding bindingRemarks;
 
         protected override void InitializeCommonControlBinding()
         {
             base.InitializeCommonControlBinding();
 
-            this.bindingCode = this.textexCode.DataBindings.Add("Text", this.commodityViewModel, CommonExpressions.PropertyName<CommodityDTO>(p => p.Code), true, DataSourceUpdateMode.OnPropertyChanged);
-            this.bindingName = this.textexName.DataBindings.Add("Text", this.commodityViewModel, CommonExpressions.PropertyName<CommodityDTO>(p => p.Name), true, DataSourceUpdateMode.OnPropertyChanged);
-            this.bindingOfficialName = this.textexOfficialName.DataBindings.Add("Text", this.commodityViewModel, CommonExpressions.PropertyName<CommodityDTO>(p => p.OfficialName), true, DataSourceUpdateMode.OnPropertyChanged);
+            CommodityAPIs commodityAPIs = new CommodityAPIs(CommonNinject.Kernel.Get<ICommodityAPIRepository>());
+            this.combexCommodityID.DataSource = commodityAPIs.GetCommodityBases();
+            this.combexCommodityID.DisplayMember = CommonExpressions.PropertyName<CommodityBase>(p => p.Name);
+            this.combexCommodityID.ValueMember = CommonExpressions.PropertyName<CommodityBase>(p => p.CommodityID);
+            this.bindingCommodityID = this.combexCommodityID.DataBindings.Add("SelectedValue", this.commoditySettingViewModel, CommonExpressions.PropertyName<CommoditySettingDTO>(p => p.CommodityID), true, DataSourceUpdateMode.OnPropertyChanged);
 
-            this.bindingPackageSize = this.textexPackageSize.DataBindings.Add("Text", this.commodityViewModel, CommonExpressions.PropertyName<CommodityDTO>(p => p.PackageSize), true, DataSourceUpdateMode.OnPropertyChanged);
-            this.bindingAPICode = this.textexAPICode.DataBindings.Add("Text", this.commodityViewModel, CommonExpressions.PropertyName<CommodityDTO>(p => p.APICode), true, DataSourceUpdateMode.OnPropertyChanged);
-            this.bindingFillingLineIDs = this.textexFillingLineIDs.DataBindings.Add("Text", this.commodityViewModel, CommonExpressions.PropertyName<CommodityDTO>(p => p.FillingLineIDs), true, DataSourceUpdateMode.OnPropertyChanged);
-            this.bindingRemarks = this.textexRemarks.DataBindings.Add("Text", this.commodityViewModel, CommonExpressions.PropertyName<CommodityDTO>(p => p.Remarks), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingCommodityName = this.textexCommodityName.DataBindings.Add("Text", this.commoditySettingViewModel, CommonExpressions.PropertyName<CommoditySettingDTO>(p => p.CommodityName), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingCommodityCategoryName = this.textexCommodityCategoryName.DataBindings.Add("Text", this.commoditySettingViewModel, CommonExpressions.PropertyName<CommoditySettingDTO>(p => p.CommodityCategoryName), true, DataSourceUpdateMode.OnPropertyChanged);
 
-            this.bindingVolume = this.numericVolume.DataBindings.Add("Value", this.commodityViewModel, CommonExpressions.PropertyName<CommodityDTO>(p => p.Volume), false, DataSourceUpdateMode.OnPropertyChanged);
-            this.bindingPackageVolume = this.numericPackageVolume.DataBindings.Add("Value", this.commodityViewModel, CommonExpressions.PropertyName<CommodityDTO>(p => p.PackageVolume), true, DataSourceUpdateMode.OnPropertyChanged);
-            this.bindingPackPerCarton = this.numericPackPerCarton.DataBindings.Add("Value", this.commodityViewModel, CommonExpressions.PropertyName<CommodityDTO>(p => p.PackPerCarton), true, DataSourceUpdateMode.OnPropertyChanged);
-            this.bindingCartonPerPallet = this.numericCartonPerPallet.DataBindings.Add("Value", this.commodityViewModel, CommonExpressions.PropertyName<CommodityDTO>(p => p.CartonPerPallet), true, DataSourceUpdateMode.OnPropertyChanged);
-            this.bindingShelflife = this.numericShelflife.DataBindings.Add("Value", this.commodityViewModel, CommonExpressions.PropertyName<CommodityDTO>(p => p.Shelflife), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingPackageSize = this.textexPackageSize.DataBindings.Add("Text", this.commoditySettingViewModel, CommonExpressions.PropertyName<CommoditySettingDTO>(p => p.PackageSize), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingPackageVolume = this.numericPackageVolume.DataBindings.Add("Value", this.commoditySettingViewModel, CommonExpressions.PropertyName<CommoditySettingDTO>(p => p.PackageVolume), true, DataSourceUpdateMode.OnPropertyChanged);
 
-            CommodityCategoryAPIs commodityCategoryAPIs = new CommodityCategoryAPIs(CommonNinject.Kernel.Get<ICommodityCategoryAPIRepository>());
-            this.combexCommodityCategoryID.DataSource = commodityCategoryAPIs.GetCommodityCategoryBases();
-            this.combexCommodityCategoryID.DisplayMember = CommonExpressions.PropertyName<CommodityCategoryBase>(p => p.Name);
-            this.combexCommodityCategoryID.ValueMember = CommonExpressions.PropertyName<CommodityCategoryBase>(p => p.CommodityCategoryID);
-            this.bindingCommodityCategoryID = this.combexCommodityCategoryID.DataBindings.Add("SelectedValue", this.commodityViewModel, CommonExpressions.PropertyName<CommodityDTO>(p => p.CommodityCategoryID), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingRemarks = this.textexRemarks.DataBindings.Add("Text", this.commoditySettingViewModel, CommonExpressions.PropertyName<CommoditySettingDTO>(p => p.Remarks), true, DataSourceUpdateMode.OnPropertyChanged);
 
-            this.bindingCode.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
-            this.bindingName.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
-            this.bindingOfficialName.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingCommodityID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+
+            this.bindingCommodityName.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingCommodityCategoryName.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
 
             this.bindingPackageSize.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
-            this.bindingAPICode.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
-            this.bindingFillingLineIDs.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingPackageVolume.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+
             this.bindingRemarks.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
 
-            this.bindingVolume.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
-            this.bindingPackageVolume.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
-            this.bindingPackPerCarton.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
-            this.bindingCartonPerPallet.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
-            this.bindingShelflife.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.fastCommoditySettingIndex.AboutToCreateGroups += fastCommoditySettingIndex_AboutToCreateGroups;
 
-            this.bindingCommodityCategoryID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
-            this.fastCommodityIndex.AboutToCreateGroups += fastCommodityIndex_AboutToCreateGroups;
-
-            this.fastCommodityIndex.ShowGroups = true;
-            this.olvInActive.Renderer = new MappedImageRenderer(new Object[] { true, Resources.Void_16 });            
+            this.fastCommoditySettingIndex.ShowGroups = true;
         }
 
-        private void fastCommodityIndex_AboutToCreateGroups(object sender, CreateGroupsEventArgs e)
+        protected override void CommonControl_BindingComplete(object sender, BindingCompleteEventArgs e)
+        {
+            base.CommonControl_BindingComplete(sender, e);
+            
+            if (sender.Equals(this.bindingCommodityID) && this.combexCommodityID.SelectedItem != null)
+            {
+                CommodityBase commodityBase = (CommodityBase)this.combexCommodityID.SelectedItem;
+                this.commoditySettingViewModel.CommodityName = commodityBase.Name;
+                this.commoditySettingViewModel.CommodityCategoryName = commodityBase.CommodityCategoryName;
+                this.commoditySettingViewModel.PackageSize = commodityBase.PackageSize;
+                this.commoditySettingViewModel.PackageVolume = commodityBase.PackageVolume;
+            }
+        }
+
+        private void fastCommoditySettingIndex_AboutToCreateGroups(object sender, CreateGroupsEventArgs e)
         {
             if (e.Groups != null && e.Groups.Count > 0)
             {
@@ -168,20 +158,20 @@ namespace TotalSmartCoding.Views.Commons.CommoditySettings
 
         protected override Controllers.BaseController myController
         {
-            get { return new CommodityController(CommonNinject.Kernel.Get<ICommodityService>(), this.commodityViewModel); }
+            get { return new CommoditySettingController(CommonNinject.Kernel.Get<ICommoditySettingService>(), this.commoditySettingViewModel); }
         }
 
         public override void Loading()
         {
-            this.fastCommodityIndex.SetObjects(this.commodityAPIs.GetCommodityIndexes());
-            
+            this.fastCommoditySettingIndex.SetObjects(this.commoditySettingAPIs.GetCommoditySettingIndexes());
+
             base.Loading();
         }
 
         protected override void DoAfterLoad()
         {
             base.DoAfterLoad();
-            this.fastCommodityIndex.Sort(this.olvCommodityCategoryName, SortOrder.Descending);
+            this.fastCommoditySettingIndex.Sort(this.olvCommodityCategoryName, SortOrder.Descending);
         }
     }
 }
