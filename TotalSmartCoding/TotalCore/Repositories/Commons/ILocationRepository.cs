@@ -11,6 +11,6 @@ namespace TotalCore.Repositories.Commons
 
     public interface ILocationAPIRepository : IGenericAPIRepository
     {
-        IList<LocationBase> GetLocationBases();
+        IList<LocationBase> GetLocationBases(bool withNullRow);
     }
 }

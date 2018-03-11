@@ -70,11 +70,12 @@ namespace TotalSmartCoding.Views.Commons.CommoditySettings
 
                 this.customTabCenter.TabPages.Add("tabCenterAA", "Low, High & Alert Details          ");
 
+                
+                this.customTabCenter.TabPages[0].Controls.Add(this.gridexViewDetails);
                 this.customTabCenter.TabPages[0].Controls.Add(this.layoutTop);
-                this.customTabCenter.TabPages[0].Controls.Add(this.layoutRight);
                 this.customTabCenter.TabPages[0].BackColor = this.panelCenter.BackColor;
                 this.layoutTop.Dock = DockStyle.Top;
-                this.layoutRight.Dock = DockStyle.Fill;
+                this.gridexViewDetails.Dock = DockStyle.Fill;
 
                 this.panelCenter.Controls.Add(this.customTabCenter);
                 this.customTabCenter.Dock = DockStyle.Fill;
@@ -154,6 +155,62 @@ namespace TotalSmartCoding.Views.Commons.CommoditySettings
                     olvGroup.Subtitle = "Count: " + olvGroup.Contents.Count.ToString() + " Item(s)";
                 }
             }
+        }
+
+
+        private BindingSource bindingSourceViewDetails = new BindingSource();
+
+        protected override void InitializeDataGridBinding()
+        {
+            base.InitializeDataGridBinding();
+            this.InitializeDataGridReadonlyColumns(this.gridexViewDetails);
+
+            this.gridexViewDetails.AutoGenerateColumns = false;
+            this.gridexViewDetails.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            this.bindingSourceViewDetails.DataSource = this.commoditySettingViewModel.ViewDetails;
+            this.gridexViewDetails.DataSource = this.bindingSourceViewDetails;
+
+            this.bindingSourceViewDetails.AddingNew += bindingSourceViewDetails_AddingNew;
+            this.commoditySettingViewModel.ViewDetails.ListChanged += ViewDetails_ListChanged;
+            this.gridexViewDetails.EditingControlShowing += new DataGridViewEditingControlShowingEventHandler(this.dataGridViewDetails_EditingControlShowing);
+            this.gridexViewDetails.ReadOnlyChanged += new System.EventHandler(this.dataGrid_ReadOnlyChanged);
+
+            DataGridViewComboBoxColumn comboBoxColumn;
+            LocationAPIs locationAPIs = new LocationAPIs(CommonNinject.Kernel.Get<ILocationAPIRepository>());
+
+            comboBoxColumn = (DataGridViewComboBoxColumn)this.gridexViewDetails.Columns[CommonExpressions.PropertyName<CommoditySettingDetailDTO>(p => p.LocationID)];
+            comboBoxColumn.DataSource = locationAPIs.GetLocationBases(true);
+            comboBoxColumn.DisplayMember = CommonExpressions.PropertyName<LocationBase>(p => p.Code);
+            comboBoxColumn.ValueMember = CommonExpressions.PropertyName<LocationBase>(p => p.LocationID);
+
+            StackedHeaderDecorator stackedHeaderDecorator = new StackedHeaderDecorator(this.gridexViewDetails);
+        }
+
+        private void bindingSourceViewDetails_AddingNew(object sender, AddingNewEventArgs e)
+        {   //ONLY WHEN USING COMBOBOX TO ADD NEW ROW TO datagridview => WE SHOULD USE BindingSource => THEN WE HANDLE AN EVENT HANDLER FOR AddingNew EVENT
+            //In this form, the datagridview using a combobox for add new item => add new row to the datagridview
+            //If user cancel the combobox => the datagridview will not cancel new adding row (event no new row added???)
+            //This will raise error when user move the cursor to the new row (means: the datagridview will add new row again!!!)
+            //I find an workarround to handle this error from this https://stackoverflow.com/questions/2359124/datagridview-throwing-invalidoperationexception-operation-is-not-valid-whe
+            //The following code: will remove current pending new row => in order add another new row again
+            if (this.gridexViewDetails.Rows.Count == this.bindingSourceViewDetails.Count)
+                this.bindingSourceViewDetails.RemoveAt(this.bindingSourceViewDetails.Count - 1);
+            //-----------The following is explanation from internet (the link above): The reason it works is because on a DataGridView where AllowUserToAddRows is true, it adds an empty row at the end of its rows which if bound to a list creates a null element at the end of your list. Your code removes that element and then the AddNew in the BindingList will trigger the DataGridView to add it again. 
+            //This code bypass the error, BUT NOT SOLVE THE PROBLEM COMPLETELY. SO: WE SHOULD ADVICE USER NOT CANCEL THE COMBOBOX => INSTEAD: CANCEL THE ROW AFTER SELECT THE COMBOBOX
+        }
+
+        private void ViewDetails_ListChanged(object sender, ListChangedEventArgs e)
+        {
+            if (e.ListChangedType == ListChangedType.ItemAdded || e.ListChangedType == ListChangedType.ItemDeleted || e.ListChangedType == ListChangedType.Reset)
+                this.customTabCenter.TabPages[0].Text = "Forecast Details [" + this.commoditySettingViewModel.ViewDetails.Count.ToString("N0") + " Line(s)]             ";
+
+            //if (this.EditableMode && e.PropertyDescriptor != null && e.NewIndex >= 0 && e.NewIndex < this.commoditySettingViewModel.ViewDetails.Count)
+            //{
+            //    CommoditySettingDetailDTO forecastDetailDTO = this.commoditySettingViewModel.ViewDetails[e.NewIndex];
+            //    if (forecastDetailDTO != null)
+            //        this.CalculateDetailDTO(forecastDetailDTO, e.PropertyDescriptor.Name);
+            //}
         }
 
         protected override Controllers.BaseController myController

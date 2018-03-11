@@ -26,10 +26,15 @@ namespace TotalSmartCoding.Controllers.APIs.Commons
         {
             return this.locationAPIRepository.GetEntityIndexes<LocationIndex>(ContextAttributes.User.UserID, GlobalEnums.GlobalOptionSetting.LowerFillterDate, GlobalEnums.GlobalOptionSetting.UpperFillterDate).ToList();
         }
-
+        
         public IList<LocationBase> GetLocationBases()
         {
-            return this.locationAPIRepository.GetLocationBases();
+            return this.GetLocationBases(false);
+        }
+
+        public IList<LocationBase> GetLocationBases(bool withNullRow)
+        {
+            return this.locationAPIRepository.GetLocationBases(withNullRow);
         }
 
     }

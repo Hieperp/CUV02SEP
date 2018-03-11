@@ -26,9 +26,11 @@ namespace TotalDAL.Repositories.Commons
         {
         }
 
-        public IList<LocationBase> GetLocationBases()
+        public IList<LocationBase> GetLocationBases(bool withNullRow)
         {
-            return this.TotalSmartCodingEntities.GetLocationBases().OrderBy(o => o.Name).ToList();
+            IList<LocationBase> locationBases = this.TotalSmartCodingEntities.GetLocationBases().OrderBy(o => o.Name).ToList();
+            if (withNullRow) locationBases.Add(new LocationBase() { LocationID = 0 });
+            return locationBases;
         }
     }
 }

@@ -16,6 +16,17 @@ namespace TotalDTO.Commons
     public class CommoditySettingPrimitiveDTO : BaseWithDetailDTO<CommoditySettingDetailDTO>, IPrimitiveEntity, IPrimitiveDTO
     {
         public override GlobalEnums.NmvnTaskID NMVNTaskID { get { return GlobalEnums.NmvnTaskID.CommoditySetting; } }
+        public override bool NoApprovable { get { return true; } }
+
+        public CommoditySettingPrimitiveDTO() { this.Initialize(); }
+
+        public override void Init()
+        {
+            base.Init();
+            this.Initialize();
+        }
+
+        protected virtual void Initialize() { }
 
         public override int GetID() { return this.CommoditySettingID; }
         public void SetID(int id) { this.CommoditySettingID = id; }
@@ -90,15 +101,22 @@ namespace TotalDTO.Commons
     {
         public CommoditySettingDTO()
         {
-            this.CommoditySettingViewDetails = new BindingList<CommoditySettingDetailDTO>();
+            this.CommoditySettingDetails = new BindingList<CommoditySettingDetailDTO>();
         }
 
 
-        public BindingList<CommoditySettingDetailDTO> CommoditySettingViewDetails { get; set; }
-        public BindingList<CommoditySettingDetailDTO> ViewDetails { get { return this.CommoditySettingViewDetails; } set { this.CommoditySettingViewDetails = value; } }
+        public BindingList<CommoditySettingDetailDTO> CommoditySettingDetails { get; set; }
+        public BindingList<CommoditySettingDetailDTO> ViewDetails { get { return this.CommoditySettingDetails; } set { this.CommoditySettingDetails = value; } }
 
-        public ICollection<CommoditySettingDetailDTO> GetDetails() { return this.CommoditySettingViewDetails; }
+        public ICollection<CommoditySettingDetailDTO> GetDetails() { return this.CommoditySettingDetails; }
 
-        protected override IEnumerable<CommoditySettingDetailDTO> DtoDetails() { return this.CommoditySettingViewDetails; }
+        protected override IEnumerable<CommoditySettingDetailDTO> DtoDetails() { return this.CommoditySettingDetails; }
+
+
+        protected override void Initialize()
+        {
+            base.Initialize();
+            if (this.CommoditySettingDetails != null) this.CommoditySettingDetails.Clear();
+        }
     }
 }

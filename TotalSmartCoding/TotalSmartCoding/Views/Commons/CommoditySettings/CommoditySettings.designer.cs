@@ -30,11 +30,14 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CommoditySettings));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStripChildForm = new System.Windows.Forms.ToolStrip();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.panelCenter = new System.Windows.Forms.Panel();
-            this.layoutRight = new System.Windows.Forms.TableLayoutPanel();
             this.layoutTop = new System.Windows.Forms.TableLayoutPanel();
             this.combexCommodityID = new CustomControls.CombexBox();
             this.textexCommodityCategoryName = new CustomControls.TextexBox();
@@ -60,11 +63,17 @@
             this.olvAlertDSI1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvHighDSI1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.imageList32 = new System.Windows.Forms.ImageList(this.components);
+            this.gridexViewDetails = new CustomControls.DataGridexView();
+            this.LocationID = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.LowDSI = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AlertDSI = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HighDSI = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStripChildForm.SuspendLayout();
             this.panelCenter.SuspendLayout();
             this.layoutTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericPackageVolume)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fastCommoditySettingIndex)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridexViewDetails)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStripChildForm
@@ -101,7 +110,7 @@
             // 
             this.panelCenter.BackColor = System.Drawing.Color.Ivory;
             this.panelCenter.BackgroundImage = global::TotalSmartCoding.Properties.Resources.Blue2010Large;
-            this.panelCenter.Controls.Add(this.layoutRight);
+            this.panelCenter.Controls.Add(this.gridexViewDetails);
             this.panelCenter.Dock = System.Windows.Forms.DockStyle.Right;
             this.panelCenter.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panelCenter.Location = new System.Drawing.Point(1500, 0);
@@ -109,26 +118,6 @@
             this.panelCenter.Name = "panelCenter";
             this.panelCenter.Size = new System.Drawing.Size(368, 858);
             this.panelCenter.TabIndex = 76;
-            // 
-            // layoutRight
-            // 
-            this.layoutRight.AutoSize = true;
-            this.layoutRight.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.layoutRight.BackColor = System.Drawing.Color.Ivory;
-            this.layoutRight.ColumnCount = 3;
-            this.layoutRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.layoutRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.layoutRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.layoutRight.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.layoutRight.Location = new System.Drawing.Point(0, 660);
-            this.layoutRight.Margin = new System.Windows.Forms.Padding(0);
-            this.layoutRight.Name = "layoutRight";
-            this.layoutRight.RowCount = 3;
-            this.layoutRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 15F));
-            this.layoutRight.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.layoutRight.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.layoutRight.Size = new System.Drawing.Size(50, 15);
-            this.layoutRight.TabIndex = 10;
             // 
             // layoutTop
             // 
@@ -453,6 +442,75 @@
             this.imageList32.Images.SetKeyName(8, "CustomerRed");
             this.imageList32.Images.SetKeyName(9, "price-tag-32");
             // 
+            // gridexViewDetails
+            // 
+            this.gridexViewDetails.AllowAddRow = true;
+            this.gridexViewDetails.AllowDeleteRow = true;
+            this.gridexViewDetails.BackgroundColor = System.Drawing.Color.Ivory;
+            this.gridexViewDetails.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.gridexViewDetails.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.gridexViewDetails.ColumnHeadersHeight = 24;
+            this.gridexViewDetails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.LocationID,
+            this.LowDSI,
+            this.AlertDSI,
+            this.HighDSI});
+            this.gridexViewDetails.Editable = true;
+            this.gridexViewDetails.GridColor = System.Drawing.SystemColors.ButtonFace;
+            this.gridexViewDetails.Location = new System.Drawing.Point(6, 424);
+            this.gridexViewDetails.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gridexViewDetails.Name = "gridexViewDetails";
+            this.gridexViewDetails.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridexViewDetails.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.gridexViewDetails.RowTemplate.Height = 24;
+            this.gridexViewDetails.Size = new System.Drawing.Size(350, 125);
+            this.gridexViewDetails.TabIndex = 66;
+            // 
+            // LocationID
+            // 
+            this.LocationID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.LocationID.DataPropertyName = "LocationID";
+            this.LocationID.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.LocationID.FillWeight = 9F;
+            this.LocationID.HeaderText = "Location";
+            this.LocationID.Name = "LocationID";
+            this.LocationID.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.LocationID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // LowDSI
+            // 
+            this.LowDSI.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.LowDSI.DataPropertyName = "LowDSI";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle1.Format = "N0";
+            this.LowDSI.DefaultCellStyle = dataGridViewCellStyle1;
+            this.LowDSI.FillWeight = 7F;
+            this.LowDSI.HeaderText = "Low DSI";
+            this.LowDSI.Name = "LowDSI";
+            // 
+            // AlertDSI
+            // 
+            this.AlertDSI.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.AlertDSI.DataPropertyName = "AlertDSI";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Format = "N2";
+            this.AlertDSI.DefaultCellStyle = dataGridViewCellStyle2;
+            this.AlertDSI.FillWeight = 7F;
+            this.AlertDSI.HeaderText = "Alert DSI";
+            this.AlertDSI.Name = "AlertDSI";
+            // 
+            // HighDSI
+            // 
+            this.HighDSI.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.HighDSI.DataPropertyName = "HighDSI";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.Format = "N2";
+            this.HighDSI.DefaultCellStyle = dataGridViewCellStyle3;
+            this.HighDSI.FillWeight = 7F;
+            this.HighDSI.HeaderText = "High DSI";
+            this.HighDSI.Name = "HighDSI";
+            // 
             // CommoditySettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
@@ -473,11 +531,11 @@
             this.toolStripChildForm.ResumeLayout(false);
             this.toolStripChildForm.PerformLayout();
             this.panelCenter.ResumeLayout(false);
-            this.panelCenter.PerformLayout();
             this.layoutTop.ResumeLayout(false);
             this.layoutTop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericPackageVolume)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fastCommoditySettingIndex)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridexViewDetails)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -505,7 +563,6 @@
         private System.Windows.Forms.Panel panelCenter;
         private BrightIdeasSoftware.OLVColumn olvBlank;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TableLayoutPanel layoutRight;
         private CustomControls.NumericBox numericPackageVolume;
         private System.Windows.Forms.Label label10;
         private BrightIdeasSoftware.OLVColumn olvPackageSize;
@@ -515,6 +572,11 @@
         private BrightIdeasSoftware.OLVColumn olvHighDSI1;
         private CustomControls.TextexBox textexCommodityCategoryName;
         private CustomControls.CombexBox combexCommodityID;
+        private CustomControls.DataGridexView gridexViewDetails;
+        private System.Windows.Forms.DataGridViewComboBoxColumn LocationID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LowDSI;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AlertDSI;
+        private System.Windows.Forms.DataGridViewTextBoxColumn HighDSI;
 
     }
 }
