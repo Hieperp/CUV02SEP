@@ -46,6 +46,14 @@ namespace TotalDTO.Commons
             get { return this.commodityID; }
             set { ApplyPropertyChange<CommoditySettingPrimitiveDTO, Nullable<int>>(ref this.commodityID, o => o.CommodityID, value); }
         }
+        private string commodityCode;
+        [DefaultValue(null)]
+        public string CommodityCode
+        {
+            get { return this.commodityCode; }
+            set { ApplyPropertyChange<CommoditySettingDTO, string>(ref this.commodityCode, o => o.CommodityCode, value, false); }
+        }
+
         private string commodityName;
         [DefaultValue(null)]
         public string CommodityName
@@ -102,6 +110,8 @@ namespace TotalDTO.Commons
         public CommoditySettingDTO()
         {
             this.CommoditySettingDetails = new BindingList<CommoditySettingDetailDTO>();
+
+            this.CommoditySettingDetails.ListChanged += CommoditySettingDetails_ListChanged;
         }
 
 
@@ -115,8 +125,13 @@ namespace TotalDTO.Commons
 
         protected override void Initialize()
         {
-            base.Initialize();
-            if (this.CommoditySettingDetails != null) this.CommoditySettingDetails.Clear();
+            base.Initialize(); //BECAUSE THIS CommoditySettingDTO IS POPULATED BY GenericSimpleController => WHEN INIT: THERE IS NO FUNCTION TO CLEAR ViewDetails WHEN GenericSimpleController.Init()
+            if (this.CommoditySettingDetails != null) this.CommoditySettingDetails.Clear(); //NOTE: WITH GenericViewDetailController.Init(): WILL CALL: ViewDetails.Clear()
+        }
+
+        private void CommoditySettingDetails_ListChanged(object sender, ListChangedEventArgs e)
+        {
+            this.SetDirty();
         }
     }
 }

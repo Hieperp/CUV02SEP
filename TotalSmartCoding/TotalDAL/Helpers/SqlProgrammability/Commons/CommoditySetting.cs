@@ -39,25 +39,25 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             queryString = queryString + "                   FROM    ( " + "\r\n";
             queryString = queryString + "                           SELECT          CommoditySettingID, CommodityID, LowDSI AS LowDSI1, HighDSI AS HighDSI1, AlertDSI AS AlertDSI1, 0 AS LowDSI2, 0 AS HighDSI2, 0 AS AlertDSI2, 0 AS LowDSI3, 0 AS HighDSI3, 0 AS AlertDSI3, 0 AS LowDSI4, 0 AS HighDSI4, 0 AS AlertDSI4 " + "\r\n";
             queryString = queryString + "                           FROM            CommoditySettingDetails " + "\r\n";
-            queryString = queryString + "                           WHERE           LocationID = 1 " + "\r\n";
+            queryString = queryString + "                           WHERE           SettingLocationID = 1 " + "\r\n";
 
             queryString = queryString + "                           UNION ALL " + "\r\n";
 
             queryString = queryString + "                           SELECT          CommoditySettingID, CommodityID, 0 AS LowDSI1, 0 AS HighDSI1, 0 AS AlertDSI1, LowDSI AS LowDSI2, HighDSI AS HighDSI2, AlertDSI AS AlertDSI2, 0 AS LowDSI3, 0 AS HighDSI3, 0 AS AlertDSI3, 0 AS LowDSI4, 0 AS HighDSI4, 0 AS AlertDSI4 " + "\r\n";
             queryString = queryString + "                           FROM            CommoditySettingDetails " + "\r\n";
-            queryString = queryString + "                           WHERE           LocationID = 2 " + "\r\n";
+            queryString = queryString + "                           WHERE           SettingLocationID = 2 " + "\r\n";
 
             queryString = queryString + "                           UNION ALL " + "\r\n";
 
             queryString = queryString + "                           SELECT          CommoditySettingID, CommodityID, 0 AS LowDSI1, 0 AS HighDSI1, 0 AS AlertDSI1, 0 AS LowDSI2, 0 AS HighDSI2, 0 AS AlertDSI2, LowDSI AS LowDSI3, HighDSI AS HighDSI3, AlertDSI AS AlertDSI3, 0 AS LowDSI4, 0 AS HighDSI4, 0 AS AlertDSI4 " + "\r\n";
             queryString = queryString + "                           FROM            CommoditySettingDetails " + "\r\n";
-            queryString = queryString + "                           WHERE           LocationID = 3 " + "\r\n";
+            queryString = queryString + "                           WHERE           SettingLocationID = 3 " + "\r\n";
 
             queryString = queryString + "                           UNION ALL " + "\r\n";
 
             queryString = queryString + "                           SELECT          CommoditySettingID, CommodityID, 0 AS LowDSI1, 0 AS HighDSI1, 0 AS AlertDSI1, 0 AS LowDSI2, 0 AS HighDSI2, 0 AS AlertDSI2, 0 AS LowDSI3, 0 AS HighDSI3, 0 AS AlertDSI3, LowDSI AS LowDSI4, HighDSI AS HighDSI4, AlertDSI AS AlertDSI4 " + "\r\n";
             queryString = queryString + "                           FROM            CommoditySettingDetails " + "\r\n";
-            queryString = queryString + "                           WHERE           LocationID = 4 " + "\r\n";
+            queryString = queryString + "                           WHERE           SettingLocationID = 4 " + "\r\n";
             queryString = queryString + "                           ) AS ABC " + "\r\n";
             queryString = queryString + "                   GROUP BY CommoditySettingID " + "\r\n";
 

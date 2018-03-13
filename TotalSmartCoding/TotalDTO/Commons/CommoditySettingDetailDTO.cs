@@ -20,24 +20,13 @@ namespace TotalDTO.Commons
         public Nullable<int> CommodityID { get; set; }
 
 
-
-        private int locationID;
-        [DefaultValue(null)]
-        public int LocationID
+        private int settingLocationID;
+        //[DefaultValue(null)]
+        public int SettingLocationID
         {
-            get { return this.locationID; }
-            set { ApplyPropertyChange<CommoditySettingDetailDTO, int>(ref this.locationID, o => o.LocationID, value); }
+            get { return this.settingLocationID; }
+            set { ApplyPropertyChange<CommoditySettingDetailDTO, int>(ref this.settingLocationID, o => o.SettingLocationID, value); }
         }
-
-        private string locationCode;
-        [DefaultValue(null)]
-        public virtual string LocationCode
-        {
-            get { return this.locationCode; }
-            set { ApplyPropertyChange<CommoditySettingDetailDTO, string>(ref this.locationCode, o => o.LocationCode, value); }
-        }
-
-
 
         private decimal lowDSI;
         [DefaultValue(0)]
@@ -69,7 +58,7 @@ namespace TotalDTO.Commons
         protected override List<ValidationRule> CreateRules()
         {
             List<ValidationRule> validationRules = base.CreateRules();
-            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<CommoditySettingDetailDTO>(p => p.LocationID), "Vui lòng chọn chi nhánh.", delegate { return (this.LocationID > 0); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<CommoditySettingDetailDTO>(p => p.SettingLocationID), "Vui lòng chọn chi nhánh.", delegate { return (this.SettingLocationID > 0); }));
 
             return validationRules;
 

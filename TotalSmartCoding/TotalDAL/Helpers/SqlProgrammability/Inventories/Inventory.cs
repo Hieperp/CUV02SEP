@@ -195,7 +195,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryString = queryString + "       UPDATE      WarehouseForecasts " + "\r\n";
             queryString = queryString + "       SET         WarehouseForecasts.LowDSI = CommoditySettingDetails.LowDSI, WarehouseForecasts.HighDSI = CommoditySettingDetails.HighDSI, WarehouseForecasts.AlertDSI = CommoditySettingDetails.AlertDSI " + "\r\n";
             queryString = queryString + "       FROM        @WarehouseForecasts WarehouseForecasts " + "\r\n";
-            queryString = queryString + "                   LEFT JOIN (SELECT CommodityID, LocationID, SUM(LowDSI) AS LowDSI, SUM(HighDSI) AS HighDSI, SUM(AlertDSI) AS AlertDSI FROM CommoditySettingDetails " + (isLocationID ? " WHERE LocationID IN (SELECT Id FROM dbo.SplitToIntList (@LocationIDs)) " : "") + " GROUP BY CommodityID, LocationID) CommoditySettingDetails ON WarehouseForecasts.CommodityID = CommoditySettingDetails.CommodityID AND WarehouseForecasts.LocationID = CommoditySettingDetails.LocationID " + "\r\n";
+            queryString = queryString + "                   LEFT JOIN (SELECT CommodityID, SettingLocationID AS LocationID, SUM(LowDSI) AS LowDSI, SUM(HighDSI) AS HighDSI, SUM(AlertDSI) AS AlertDSI FROM CommoditySettingDetails " + (isLocationID ? " WHERE SettingLocationID IN (SELECT Id FROM dbo.SplitToIntList (@LocationIDs)) " : "") + " GROUP BY CommodityID, SettingLocationID) CommoditySettingDetails ON WarehouseForecasts.CommodityID = CommoditySettingDetails.CommodityID AND WarehouseForecasts.LocationID = CommoditySettingDetails.LocationID " + "\r\n";
 
             return queryString;
         }

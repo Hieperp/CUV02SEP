@@ -250,7 +250,7 @@ namespace TotalSmartCoding.Controllers.Productions
         private string dominoSerialNumber(int serialNumberIndentity)
         {
             if (this.printerName != GlobalVariables.PrinterName.PalletLabel)
-                return GlobalVariables.charESC + "/j/" + serialNumberIndentity.ToString() + "/N/06/000001/999999/000001/Y/N/0/000000/00000/N/";
+                return GlobalVariables.charESC + "/j/" + serialNumberIndentity.ToString() + "/N/06/000001/999999/000001/Y/N/0/000001/00000/N/";
             else
                 return this.privateFillingData.NextPalletNo; //---Dont use counter (This will be updated MANUALLY for each pallet)
         }

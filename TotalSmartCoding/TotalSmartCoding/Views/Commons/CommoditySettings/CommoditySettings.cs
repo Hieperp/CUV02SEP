@@ -63,23 +63,39 @@ namespace TotalSmartCoding.Views.Commons.CommoditySettings
             {
                 base.InitializeTabControl();
 
+                #region TabDetails
+                CustomTabControl customTabDetails;
+
+                customTabDetails = new CustomTabControl();
+                customTabDetails.DisplayStyle = TabStyle.VisualStudio;
+                customTabDetails.Font = this.panelCenter.Font;
+
+                customTabDetails.TabPages.Add("tabDetailsAA", "Low, High && Alert Details          ");
+
+
+                customTabDetails.TabPages[0].Controls.Add(this.gridexViewDetails);
+                customTabDetails.TabPages[0].BackColor = this.panelCenter.BackColor;
+                this.gridexViewDetails.Dock = DockStyle.Fill;
+                #endregion TabDetails
+
                 #region TabCenter
                 this.customTabCenter = new CustomTabControl();
                 this.customTabCenter.DisplayStyle = TabStyle.VisualStudio;
                 this.customTabCenter.Font = this.panelCenter.Font;
 
-                this.customTabCenter.TabPages.Add("tabCenterAA", "Low, High & Alert Details          ");
+                this.customTabCenter.TabPages.Add("tabCenterAA", "Settings          ");
 
-                
-                this.customTabCenter.TabPages[0].Controls.Add(this.gridexViewDetails);
+                this.customTabCenter.TabPages[0].Controls.Add(customTabDetails);
                 this.customTabCenter.TabPages[0].Controls.Add(this.layoutTop);
                 this.customTabCenter.TabPages[0].BackColor = this.panelCenter.BackColor;
                 this.layoutTop.Dock = DockStyle.Top;
-                this.gridexViewDetails.Dock = DockStyle.Fill;
+                customTabDetails.Dock = DockStyle.Fill;
 
                 this.panelCenter.Controls.Add(this.customTabCenter);
                 this.customTabCenter.Dock = DockStyle.Fill;
                 #endregion TabCenter
+
+                
 
                 this.layoutTop.ColumnStyles[this.layoutTop.ColumnCount - 1].SizeType = SizeType.Absolute; this.layoutTop.ColumnStyles[this.layoutTop.ColumnCount - 1].Width = 15;
             }
@@ -104,7 +120,7 @@ namespace TotalSmartCoding.Views.Commons.CommoditySettings
 
             CommodityAPIs commodityAPIs = new CommodityAPIs(CommonNinject.Kernel.Get<ICommodityAPIRepository>());
             this.combexCommodityID.DataSource = commodityAPIs.GetCommodityBases();
-            this.combexCommodityID.DisplayMember = CommonExpressions.PropertyName<CommodityBase>(p => p.Name);
+            this.combexCommodityID.DisplayMember = CommonExpressions.PropertyName<CommodityBase>(p => p.Code);
             this.combexCommodityID.ValueMember = CommonExpressions.PropertyName<CommodityBase>(p => p.CommodityID);
             this.bindingCommodityID = this.combexCommodityID.DataBindings.Add("SelectedValue", this.commoditySettingViewModel, CommonExpressions.PropertyName<CommoditySettingDTO>(p => p.CommodityID), true, DataSourceUpdateMode.OnPropertyChanged);
 
@@ -138,10 +154,13 @@ namespace TotalSmartCoding.Views.Commons.CommoditySettings
             if (sender.Equals(this.bindingCommodityID) && this.combexCommodityID.SelectedItem != null)
             {
                 CommodityBase commodityBase = (CommodityBase)this.combexCommodityID.SelectedItem;
+                this.commoditySettingViewModel.CommodityCode = commodityBase.Code;
                 this.commoditySettingViewModel.CommodityName = commodityBase.Name;
                 this.commoditySettingViewModel.CommodityCategoryName = commodityBase.CommodityCategoryName;
                 this.commoditySettingViewModel.PackageSize = commodityBase.PackageSize;
                 this.commoditySettingViewModel.PackageVolume = commodityBase.PackageVolume;
+
+                this.customTabCenter.TabPages[0].Text = " Settings for " + this.commoditySettingViewModel.CommodityCode + "    ";
             }
         }
 
@@ -172,14 +191,13 @@ namespace TotalSmartCoding.Views.Commons.CommoditySettings
             this.gridexViewDetails.DataSource = this.bindingSourceViewDetails;
 
             this.bindingSourceViewDetails.AddingNew += bindingSourceViewDetails_AddingNew;
-            this.commoditySettingViewModel.ViewDetails.ListChanged += ViewDetails_ListChanged;
             this.gridexViewDetails.EditingControlShowing += new DataGridViewEditingControlShowingEventHandler(this.dataGridViewDetails_EditingControlShowing);
             this.gridexViewDetails.ReadOnlyChanged += new System.EventHandler(this.dataGrid_ReadOnlyChanged);
 
             DataGridViewComboBoxColumn comboBoxColumn;
             LocationAPIs locationAPIs = new LocationAPIs(CommonNinject.Kernel.Get<ILocationAPIRepository>());
 
-            comboBoxColumn = (DataGridViewComboBoxColumn)this.gridexViewDetails.Columns[CommonExpressions.PropertyName<CommoditySettingDetailDTO>(p => p.LocationID)];
+            comboBoxColumn = (DataGridViewComboBoxColumn)this.gridexViewDetails.Columns[CommonExpressions.PropertyName<CommoditySettingDetailDTO>(p => p.SettingLocationID)];
             comboBoxColumn.DataSource = locationAPIs.GetLocationBases(true);
             comboBoxColumn.DisplayMember = CommonExpressions.PropertyName<LocationBase>(p => p.Code);
             comboBoxColumn.ValueMember = CommonExpressions.PropertyName<LocationBase>(p => p.LocationID);
@@ -198,19 +216,6 @@ namespace TotalSmartCoding.Views.Commons.CommoditySettings
                 this.bindingSourceViewDetails.RemoveAt(this.bindingSourceViewDetails.Count - 1);
             //-----------The following is explanation from internet (the link above): The reason it works is because on a DataGridView where AllowUserToAddRows is true, it adds an empty row at the end of its rows which if bound to a list creates a null element at the end of your list. Your code removes that element and then the AddNew in the BindingList will trigger the DataGridView to add it again. 
             //This code bypass the error, BUT NOT SOLVE THE PROBLEM COMPLETELY. SO: WE SHOULD ADVICE USER NOT CANCEL THE COMBOBOX => INSTEAD: CANCEL THE ROW AFTER SELECT THE COMBOBOX
-        }
-
-        private void ViewDetails_ListChanged(object sender, ListChangedEventArgs e)
-        {
-            if (e.ListChangedType == ListChangedType.ItemAdded || e.ListChangedType == ListChangedType.ItemDeleted || e.ListChangedType == ListChangedType.Reset)
-                this.customTabCenter.TabPages[0].Text = "Forecast Details [" + this.commoditySettingViewModel.ViewDetails.Count.ToString("N0") + " Line(s)]             ";
-
-            //if (this.EditableMode && e.PropertyDescriptor != null && e.NewIndex >= 0 && e.NewIndex < this.commoditySettingViewModel.ViewDetails.Count)
-            //{
-            //    CommoditySettingDetailDTO forecastDetailDTO = this.commoditySettingViewModel.ViewDetails[e.NewIndex];
-            //    if (forecastDetailDTO != null)
-            //        this.CalculateDetailDTO(forecastDetailDTO, e.PropertyDescriptor.Name);
-            //}
         }
 
         protected override Controllers.BaseController myController

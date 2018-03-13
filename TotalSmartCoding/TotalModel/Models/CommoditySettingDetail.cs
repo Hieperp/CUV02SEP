@@ -18,6 +18,7 @@ namespace TotalModel.Models
         public int CommoditySettingID { get; set; }
         public int CommodityID { get; set; }
         public int LocationID { get; set; }
+        public int SettingLocationID { get; set; }
         public decimal LowDSI { get; set; }
         public decimal HighDSI { get; set; }
         public decimal AlertDSI { get; set; }
