@@ -270,80 +270,82 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
             {
                 if (sender.Equals(this.buttonAddExit))
                 {
-                    FastObjectListView fastAvailableGoodsReceiptDetails = this.customTabBatch.SelectedIndex == 0 ? this.fastAvailablePallets : (this.customTabBatch.SelectedIndex == 1 ? this.fastAvailableCartons : this.customTabBatch.SelectedIndex == 2 ? this.fastAvailablePacks : null);
-
-                    if (fastAvailableGoodsReceiptDetails != null)
+                    for (int fastIndex = 0; fastIndex <= 2; fastIndex++)
                     {
-                        if (fastAvailableGoodsReceiptDetails.CheckedObjects.Count > 0)
+                        FastObjectListView fastAvailableGoodsReceiptDetails = fastIndex == 0 ? this.fastAvailablePallets : (fastIndex == 1 ? this.fastAvailableCartons : fastIndex == 2 ? this.fastAvailablePacks : null);
+
+                        if (fastAvailableGoodsReceiptDetails != null)
                         {
-                            this.goodsIssueViewModel.ViewDetails.RaiseListChangedEvents = false;
-                            foreach (var checkedObjects in fastAvailableGoodsReceiptDetails.CheckedObjects)
+                            if (fastAvailableGoodsReceiptDetails.CheckedObjects.Count > 0)
                             {
-                                GoodsReceiptDetailAvailable goodsReceiptDetailAvailable = (GoodsReceiptDetailAvailable)checkedObjects;
-                                GoodsIssueDetailDTO goodsIssueDetailDTO = new GoodsIssueDetailDTO()
+                                this.goodsIssueViewModel.ViewDetails.RaiseListChangedEvents = false;
+                                foreach (var checkedObjects in fastAvailableGoodsReceiptDetails.CheckedObjects)
                                 {
-                                    GoodsIssueID = this.goodsIssueViewModel.GoodsIssueID,
+                                    GoodsReceiptDetailAvailable goodsReceiptDetailAvailable = (GoodsReceiptDetailAvailable)checkedObjects;
+                                    GoodsIssueDetailDTO goodsIssueDetailDTO = new GoodsIssueDetailDTO()
+                                    {
+                                        GoodsIssueID = this.goodsIssueViewModel.GoodsIssueID,
 
-                                    DeliveryAdviceID = goodsReceiptDetailAvailable.DeliveryAdviceID > 0 ? goodsReceiptDetailAvailable.DeliveryAdviceID : (int?)null,
-                                    DeliveryAdviceDetailID = goodsReceiptDetailAvailable.DeliveryAdviceDetailID > 0 ? goodsReceiptDetailAvailable.DeliveryAdviceDetailID : (int?)null,
-                                    DeliveryAdviceReference = goodsReceiptDetailAvailable.PrimaryReference,
-                                    DeliveryAdviceEntryDate = goodsReceiptDetailAvailable.PrimaryEntryDate,
-                                    SalespersonID = goodsReceiptDetailAvailable.SalespersonID > 0 ? goodsReceiptDetailAvailable.SalespersonID : (int?)null,
+                                        DeliveryAdviceID = goodsReceiptDetailAvailable.DeliveryAdviceID > 0 ? goodsReceiptDetailAvailable.DeliveryAdviceID : (int?)null,
+                                        DeliveryAdviceDetailID = goodsReceiptDetailAvailable.DeliveryAdviceDetailID > 0 ? goodsReceiptDetailAvailable.DeliveryAdviceDetailID : (int?)null,
+                                        DeliveryAdviceReference = goodsReceiptDetailAvailable.PrimaryReference,
+                                        DeliveryAdviceEntryDate = goodsReceiptDetailAvailable.PrimaryEntryDate,
+                                        SalespersonID = goodsReceiptDetailAvailable.SalespersonID > 0 ? goodsReceiptDetailAvailable.SalespersonID : (int?)null,
 
-                                    TransferOrderID = goodsReceiptDetailAvailable.TransferOrderID > 0 ? goodsReceiptDetailAvailable.TransferOrderID : (int?)null,
-                                    TransferOrderDetailID = goodsReceiptDetailAvailable.TransferOrderDetailID > 0 ? goodsReceiptDetailAvailable.TransferOrderDetailID : (int?)null,
-                                    TransferOrderReference = goodsReceiptDetailAvailable.PrimaryReference,
-                                    TransferOrderEntryDate = goodsReceiptDetailAvailable.PrimaryEntryDate,
+                                        TransferOrderID = goodsReceiptDetailAvailable.TransferOrderID > 0 ? goodsReceiptDetailAvailable.TransferOrderID : (int?)null,
+                                        TransferOrderDetailID = goodsReceiptDetailAvailable.TransferOrderDetailID > 0 ? goodsReceiptDetailAvailable.TransferOrderDetailID : (int?)null,
+                                        TransferOrderReference = goodsReceiptDetailAvailable.PrimaryReference,
+                                        TransferOrderEntryDate = goodsReceiptDetailAvailable.PrimaryEntryDate,
 
-                                    CommodityID = goodsReceiptDetailAvailable.CommodityID,
-                                    CommodityCode = goodsReceiptDetailAvailable.CommodityCode,
-                                    CommodityName = goodsReceiptDetailAvailable.CommodityName,
+                                        CommodityID = goodsReceiptDetailAvailable.CommodityID,
+                                        CommodityCode = goodsReceiptDetailAvailable.CommodityCode,
+                                        CommodityName = goodsReceiptDetailAvailable.CommodityName,
 
-                                    PackageSize = goodsReceiptDetailAvailable.PackageSize,
+                                        PackageSize = goodsReceiptDetailAvailable.PackageSize,
 
-                                    Volume = goodsReceiptDetailAvailable.Volume,
-                                    PackageVolume = goodsReceiptDetailAvailable.PackageVolume,
+                                        Volume = goodsReceiptDetailAvailable.Volume,
+                                        PackageVolume = goodsReceiptDetailAvailable.PackageVolume,
 
-                                    GoodsReceiptID = goodsReceiptDetailAvailable.GoodsReceiptID,
-                                    GoodsReceiptDetailID = goodsReceiptDetailAvailable.GoodsReceiptDetailID,
+                                        GoodsReceiptID = goodsReceiptDetailAvailable.GoodsReceiptID,
+                                        GoodsReceiptDetailID = goodsReceiptDetailAvailable.GoodsReceiptDetailID,
 
-                                    GoodsReceiptReference = goodsReceiptDetailAvailable.GoodsReceiptReference,
-                                    GoodsReceiptEntryDate = goodsReceiptDetailAvailable.GoodsReceiptEntryDate,
+                                        GoodsReceiptReference = goodsReceiptDetailAvailable.GoodsReceiptReference,
+                                        GoodsReceiptEntryDate = goodsReceiptDetailAvailable.GoodsReceiptEntryDate,
 
-                                    BatchID = goodsReceiptDetailAvailable.BatchID,
-                                    BatchEntryDate = goodsReceiptDetailAvailable.BatchEntryDate,
+                                        BatchID = goodsReceiptDetailAvailable.BatchID,
+                                        BatchEntryDate = goodsReceiptDetailAvailable.BatchEntryDate,
 
-                                    BinLocationID = goodsReceiptDetailAvailable.BinLocationID,
-                                    BinLocationCode = goodsReceiptDetailAvailable.BinLocationCode,
+                                        BinLocationID = goodsReceiptDetailAvailable.BinLocationID,
+                                        BinLocationCode = goodsReceiptDetailAvailable.BinLocationCode,
 
-                                    WarehouseID = goodsReceiptDetailAvailable.WarehouseID,
-                                    WarehouseCode = goodsReceiptDetailAvailable.WarehouseCode,
+                                        WarehouseID = goodsReceiptDetailAvailable.WarehouseID,
+                                        WarehouseCode = goodsReceiptDetailAvailable.WarehouseCode,
 
-                                    PackID = goodsReceiptDetailAvailable.PackID,
-                                    PackCode = goodsReceiptDetailAvailable.PackCode,
-                                    CartonID = goodsReceiptDetailAvailable.CartonID,
-                                    CartonCode = goodsReceiptDetailAvailable.CartonCode,
-                                    PalletID = goodsReceiptDetailAvailable.PalletID,
-                                    PalletCode = goodsReceiptDetailAvailable.PalletCode,
+                                        PackID = goodsReceiptDetailAvailable.PackID,
+                                        PackCode = goodsReceiptDetailAvailable.PackCode,
+                                        CartonID = goodsReceiptDetailAvailable.CartonID,
+                                        CartonCode = goodsReceiptDetailAvailable.CartonCode,
+                                        PalletID = goodsReceiptDetailAvailable.PalletID,
+                                        PalletCode = goodsReceiptDetailAvailable.PalletCode,
 
-                                    PackCounts = goodsReceiptDetailAvailable.PackCounts,
-                                    CartonCounts = goodsReceiptDetailAvailable.CartonCounts,
-                                    PalletCounts = goodsReceiptDetailAvailable.PalletCounts,
+                                        PackCounts = goodsReceiptDetailAvailable.PackCounts,
+                                        CartonCounts = goodsReceiptDetailAvailable.CartonCounts,
+                                        PalletCounts = goodsReceiptDetailAvailable.PalletCounts,
 
-                                    QuantityAvailable = (decimal)goodsReceiptDetailAvailable.QuantityAvailable,
-                                    LineVolumeAvailable = (decimal)goodsReceiptDetailAvailable.LineVolumeAvailable,
+                                        QuantityAvailable = (decimal)goodsReceiptDetailAvailable.QuantityAvailable,
+                                        LineVolumeAvailable = (decimal)goodsReceiptDetailAvailable.LineVolumeAvailable,
 
-                                    QuantityRemains = goodsReceiptDetailAvailable.QuantityRemains,
-                                    LineVolumeRemains = goodsReceiptDetailAvailable.LineVolumeRemains,
+                                        QuantityRemains = goodsReceiptDetailAvailable.QuantityRemains,
+                                        LineVolumeRemains = goodsReceiptDetailAvailable.LineVolumeRemains,
 
-                                    Quantity = (decimal)goodsReceiptDetailAvailable.QuantityAvailable, //SHOULD: Quantity = QuantityAvailable (ALSO: LineVolume = LineVolumeAvailable): BECAUSE: WE ISSUE BY WHOLE UNIT OF PALLET/ OR CARTON/ OR PACK
-                                    LineVolume = (decimal)goodsReceiptDetailAvailable.LineVolumeAvailable //IF Quantity > QuantityRemains (OR LineVolume > LineVolumeRemains) => THE GoodsIssueDetailDTO WILL BREAK THE ValidationRule => CAN NOT SAVE => USER MUST SELECT OTHER APPROPRIATE UNIT OF PALLET/ OR CARTON/ OR PACK WHICH MATCH THE Quantity/ LineVolume                                
-                                };
-                                this.goodsIssueViewModel.ViewDetails.Insert(0, goodsIssueDetailDTO);
+                                        Quantity = (decimal)goodsReceiptDetailAvailable.QuantityAvailable, //SHOULD: Quantity = QuantityAvailable (ALSO: LineVolume = LineVolumeAvailable): BECAUSE: WE ISSUE BY WHOLE UNIT OF PALLET/ OR CARTON/ OR PACK
+                                        LineVolume = (decimal)goodsReceiptDetailAvailable.LineVolumeAvailable //IF Quantity > QuantityRemains (OR LineVolume > LineVolumeRemains) => THE GoodsIssueDetailDTO WILL BREAK THE ValidationRule => CAN NOT SAVE => USER MUST SELECT OTHER APPROPRIATE UNIT OF PALLET/ OR CARTON/ OR PACK WHICH MATCH THE Quantity/ LineVolume                                
+                                    };
+                                    this.goodsIssueViewModel.ViewDetails.Insert(0, goodsIssueDetailDTO);
+                                }
                             }
                         }
                     }
-
                     if (this.MdiParent != null) this.MdiParent.DialogResult = DialogResult.OK; else this.DialogResult = DialogResult.OK;
                 }
 

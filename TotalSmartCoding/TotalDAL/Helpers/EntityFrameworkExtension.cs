@@ -103,6 +103,13 @@ namespace TotalDAL.Helpers
             return (exists > 0);
         }
 
+        public static void DropTable(this DbContext dbContext, string tableName)
+        {
+            if (dbContext.TableExists(tableName))
+                dbContext.Database.ExecuteSqlCommand(@"DROP TABLE " + tableName);
+        }
+
+
         public static bool ColumnExists(this DbContext dbContext, string tableName, string columnName)
         {
             var query = dbContext.Database.SqlQuery(typeof(int), string.Format("SELECT COUNT(*) FROM syscolumns INNER JOIN sysobjects ON syscolumns.id = sysobjects.id WHERE sysobjects.name = '{0}' AND syscolumns.name = N'{1}' AND sysobjects.xtype = 'U';", new object[] { tableName, columnName }), new object[] { });

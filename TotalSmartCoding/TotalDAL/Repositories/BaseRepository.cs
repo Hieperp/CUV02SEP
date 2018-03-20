@@ -67,23 +67,10 @@ namespace TotalDAL.Repositories
                 this.ExecuteStoreCommand("INSERT INTO ModuleDetails (ModuleDetailID, ModuleID, Code, Name, FullName, Actions, Controller, LastOpen, SerialID, ImageIndex, InActive) VALUES(" + (int)GlobalEnums.NmvnTaskID.Forecast + ", 6, N'Sales Forecast', N'Sales Forecast', '#', '#', N'LOGISTICS ADMIN', 1, 6, 1, 0) ", new ObjectParameter[] { });
                 this.ExecuteStoreCommand("INSERT INTO AccessControls (UserID, NMVNTaskID, OrganizationalUnitID, AccessLevel, ApprovalPermitted, UnApprovalPermitted, VoidablePermitted, UnVoidablePermitted, ShowDiscount, AccessLevelBACKUP, ApprovalPermittedBACKUP, UnApprovalPermittedBACKUP, InActive) SELECT UserID, " + (int)GlobalEnums.NmvnTaskID.Forecast + " AS NMVNTaskID, OrganizationalUnitID, AccessLevel, ApprovalPermitted, UnApprovalPermitted, VoidablePermitted, UnVoidablePermitted, ShowDiscount, AccessLevelBACKUP, ApprovalPermittedBACKUP, UnApprovalPermittedBACKUP, InActive FROM AccessControls WHERE (NMVNTaskID = " + (int)GlobalEnums.NmvnTaskID.Commodity + ") AND (SELECT COUNT(*) FROM AccessControls WHERE NMVNTaskID = " + (int)GlobalEnums.NmvnTaskID.Forecast + ") = 0", new ObjectParameter[] { });
 
-
-
-
-
-
-
-
-
                 //********************
                 this.ExecuteStoreCommand("INSERT INTO ModuleDetails (ModuleDetailID, ModuleID, Code, Name, FullName, Actions, Controller, LastOpen, SerialID, ImageIndex, InActive) VALUES(" + (int)GlobalEnums.NmvnTaskID.CommoditySetting + ", 1, 'Low, High & Alert Settings', 'Low, High & Alert Settings', '#', '#', 'WAREHOUSE RESOURCES', 1, 12, 1, 0) ", new ObjectParameter[] { });
                 this.ExecuteStoreCommand("INSERT INTO AccessControls (UserID, NMVNTaskID, OrganizationalUnitID, AccessLevel, ApprovalPermitted, UnApprovalPermitted, VoidablePermitted, UnVoidablePermitted, ShowDiscount, AccessLevelBACKUP, ApprovalPermittedBACKUP, UnApprovalPermittedBACKUP, InActive) SELECT UserID, " + (int)GlobalEnums.NmvnTaskID.CommoditySetting + " AS NMVNTaskID, OrganizationalUnitID, AccessLevel, ApprovalPermitted, UnApprovalPermitted, VoidablePermitted, UnVoidablePermitted, ShowDiscount, AccessLevelBACKUP, ApprovalPermittedBACKUP, UnApprovalPermittedBACKUP, InActive FROM AccessControls WHERE (NMVNTaskID = " + (int)GlobalEnums.NmvnTaskID.Commodity + ") AND (SELECT COUNT(*) FROM AccessControls WHERE NMVNTaskID = " + (int)GlobalEnums.NmvnTaskID.CommoditySetting + ") = 0", new ObjectParameter[] { });
                 //********************
-
-
-
-
-
             }
             #endregion Forecasts
 
@@ -108,7 +95,7 @@ namespace TotalDAL.Repositories
 
                 this.ExecuteStoreCommand("UPDATE ModuleDetails SET Controller = N'LOGISTICS ADMIN', ModuleID = 6 WHERE ModuleDetailID IN (" + (int)GlobalEnums.NmvnTaskID.SalesOrder + "," + (int)GlobalEnums.NmvnTaskID.DeliveryAdvice + "," + (int)GlobalEnums.NmvnTaskID.TransferOrder + ") ", new ObjectParameter[] { });
                 this.ExecuteStoreCommand("UPDATE ModuleDetails SET Controller = N'WAREHOUSE CONTROLS', ModuleID = 6 WHERE ModuleDetailID IN (" + (int)GlobalEnums.NmvnTaskID.GoodsReceipt + "," + (int)GlobalEnums.NmvnTaskID.GoodsIssue + "," + (int)GlobalEnums.NmvnTaskID.WarehouseAdjustment + "," + (int)GlobalEnums.NmvnTaskID.GoodsReceiptDetailAvailable + ") ", new ObjectParameter[] { });
-                
+
             }
 
 
@@ -130,6 +117,70 @@ namespace TotalDAL.Repositories
             //    this.totalSmartCodingEntities.ColumnDrop("Users", "LastName");
             //}
             #endregion REMOVE FirstName, LastName
+
+//            #region CommoditySettings
+//            if (!this.totalSmartCodingEntities.TableExists("CommoditySettings") || !this.totalSmartCodingEntities.TableExists("CommoditySettingDetails"))
+//            {
+//                this.totalSmartCodingEntities.DropTable("CommoditySettings");
+//                this.totalSmartCodingEntities.DropTable("CommoditySettingDetails");
+
+//                this.ExecuteStoreCommand(@"CREATE TABLE [dbo].[CommoditySettings](
+//	                                                [CommoditySettingID] [int] IDENTITY(1,1) NOT NULL,
+//	                                                [EntryDate] [datetime] NOT NULL,
+//	                                                [Reference] [nvarchar](10) NULL,
+//	                                                [CommodityID] [int] NOT NULL,
+//	                                                [LocationID] [int] NOT NULL,
+//	                                                [Description] [nvarchar](100) NULL,
+//	                                                [Remarks] [nvarchar](100) NULL,
+//	                                                [CreatedDate] [datetime] NOT NULL,
+//	                                                [EditedDate] [datetime] NOT NULL,
+//	                                                [Approved] [bit] NOT NULL,
+//	                                                [ApprovedDate] [datetime] NULL,
+//                                                 CONSTRAINT [PK_CommodityPlots] PRIMARY KEY CLUSTERED 
+//                                                (
+//	                                                [CommoditySettingID] ASC
+//                                                )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+//                                                ) ON [PRIMARY]
+//                                                
+//                                                ALTER TABLE [dbo].[CommoditySettings]  WITH CHECK ADD  CONSTRAINT [FK_CommoditySettings_Commodities] FOREIGN KEY([CommodityID])
+//                                                REFERENCES [dbo].[Commodities] ([CommodityID])                                                
+//
+//                                                ALTER TABLE [dbo].[CommoditySettings] CHECK CONSTRAINT [FK_CommoditySettings_Commodities]
+//                                                ", new ObjectParameter[] { });
+
+//                this.ExecuteStoreCommand(@"CREATE TABLE [dbo].[CommoditySettingDetails](
+//	                                                [CommoditySettingDetailID] [int] IDENTITY(1,1) NOT NULL,
+//	                                                [CommoditySettingID] [int] NOT NULL,
+//	                                                [CommodityID] [int] NOT NULL,
+//	                                                [LocationID] [int] NOT NULL,
+//	                                                [SettingLocationID] [int] NOT NULL,
+//	                                                [LowDSI] [decimal](18, 3) NOT NULL,
+//	                                                [HighDSI] [decimal](18, 3) NOT NULL,
+//	                                                [AlertDSI] [decimal](18, 3) NOT NULL,
+//                                                 CONSTRAINT [PK_CommoditySettings] PRIMARY KEY CLUSTERED 
+//                                                (
+//	                                                [CommoditySettingDetailID] ASC
+//                                                )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY],
+//                                                 CONSTRAINT [IX_CommoditySettings] UNIQUE NONCLUSTERED 
+//                                                (
+//	                                                [CommodityID] ASC,
+//	                                                [SettingLocationID] ASC
+//                                                )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+//                                                ) ON [PRIMARY]
+//
+//                                                ALTER TABLE [dbo].[CommoditySettingDetails]  WITH CHECK ADD  CONSTRAINT [FK_CommoditySettingDetails_Commodities] FOREIGN KEY([CommodityID])
+//                                                REFERENCES [dbo].[Commodities] ([CommodityID])
+//
+//                                                ALTER TABLE [dbo].[CommoditySettingDetails] CHECK CONSTRAINT [FK_CommoditySettingDetails_Commodities]
+//
+//                                                ALTER TABLE [dbo].[CommoditySettingDetails]  WITH CHECK ADD  CONSTRAINT [FK_CommoditySettingDetails_CommoditySettings] FOREIGN KEY([CommoditySettingID])
+//                                                REFERENCES [dbo].[CommoditySettings] ([CommoditySettingID])
+//
+//                                                ALTER TABLE [dbo].[CommoditySettingDetails] CHECK CONSTRAINT [FK_CommoditySettingDetails_CommoditySettings]
+//                                                ", new ObjectParameter[] { });
+
+//            }
+//            #endregion CommoditySettings
 
         }
 
@@ -182,7 +233,7 @@ namespace TotalDAL.Repositories
             Helpers.SqlProgrammability.Generals.OleDb oleDb = new Helpers.SqlProgrammability.Generals.OleDb(totalSmartCodingEntities);
             oleDb.RestoreProcedure();
 
-            
+
 
             return;
 
@@ -212,7 +263,7 @@ namespace TotalDAL.Repositories
 
 
 
-        
+
 
             //return;
 
@@ -236,7 +287,7 @@ namespace TotalDAL.Repositories
             Helpers.SqlProgrammability.Commons.BinLocation binLocation = new Helpers.SqlProgrammability.Commons.BinLocation(totalSmartCodingEntities);
             binLocation.RestoreProcedure();
 
-          
+
 
 
 
