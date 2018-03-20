@@ -57,71 +57,55 @@ namespace TotalDAL.Repositories
                 this.totalSmartCodingEntities.ColumnAdd("Configs", "StoredID", "int", "0", true);
             }
 
-
-            #region Forecasts
-            this.totalSmartCodingEntities.ColumnAdd("Forecasts", "QuantityVersusVolume", "int", "0", true);
-            var query = this.totalSmartCodingEntities.Database.SqlQuery(typeof(int), "SELECT COUNT(ModuleDetailID) AS Expr1 FROM ModuleDetails WHERE ModuleDetailID = " + (int)GlobalEnums.NmvnTaskID.Forecast + ";", new object[] { });
-            int exists = query.Cast<int>().Single();
-            if (exists == 0)
+            #region ColumnMappings
+            if (!this.totalSmartCodingEntities.TableExists("ColumnMappings"))
             {
-                this.ExecuteStoreCommand("INSERT INTO ModuleDetails (ModuleDetailID, ModuleID, Code, Name, FullName, Actions, Controller, LastOpen, SerialID, ImageIndex, InActive) VALUES(" + (int)GlobalEnums.NmvnTaskID.Forecast + ", 6, N'Sales Forecast', N'Sales Forecast', '#', '#', N'LOGISTICS ADMIN', 1, 6, 1, 0) ", new ObjectParameter[] { });
-                this.ExecuteStoreCommand("INSERT INTO AccessControls (UserID, NMVNTaskID, OrganizationalUnitID, AccessLevel, ApprovalPermitted, UnApprovalPermitted, VoidablePermitted, UnVoidablePermitted, ShowDiscount, AccessLevelBACKUP, ApprovalPermittedBACKUP, UnApprovalPermittedBACKUP, InActive) SELECT UserID, " + (int)GlobalEnums.NmvnTaskID.Forecast + " AS NMVNTaskID, OrganizationalUnitID, AccessLevel, ApprovalPermitted, UnApprovalPermitted, VoidablePermitted, UnVoidablePermitted, ShowDiscount, AccessLevelBACKUP, ApprovalPermittedBACKUP, UnApprovalPermittedBACKUP, InActive FROM AccessControls WHERE (NMVNTaskID = " + (int)GlobalEnums.NmvnTaskID.Commodity + ") AND (SELECT COUNT(*) FROM AccessControls WHERE NMVNTaskID = " + (int)GlobalEnums.NmvnTaskID.Forecast + ") = 0", new ObjectParameter[] { });
+                this.ExecuteStoreCommand(@"CREATE TABLE [dbo].[ColumnMappings](
+	                                                [ColumnMappingID] [int] NOT NULL,
+	                                                [MappingTaskID] [int] NOT NULL,
+	                                                [ColumnID] [int] NOT NULL,
+	                                                [ColumnName] [nvarchar](50) NOT NULL,
+	                                                [ColumnDisplayName] [nvarchar](50) NOT NULL,
+	                                                [ColumnMappingName] [nvarchar](50) NOT NULL,
+	                                                [SerialID] [int] NOT NULL,
+	                                                [OrderBy] [int] NULL,
+	                                                [ImportedDate] [datetime] NOT NULL,
+                                                 CONSTRAINT [PK_ColumnMappings] PRIMARY KEY CLUSTERED 
+                                                (
+	                                                [ColumnMappingID] ASC
+                                                )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY],
+                                                 CONSTRAINT [IX_Unique_ColumnID] UNIQUE NONCLUSTERED 
+                                                (
+	                                                [MappingTaskID] ASC,
+	                                                [ColumnID] ASC
+                                                )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY],
+                                                 CONSTRAINT [IX_Unique_ColumnName] UNIQUE NONCLUSTERED 
+                                                (
+	                                                [MappingTaskID] ASC,
+	                                                [ColumnName] ASC
+                                                )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+                                                ) ON [PRIMARY]
+                                                ", new ObjectParameter[] { });
 
-                //********************
-                this.ExecuteStoreCommand("INSERT INTO ModuleDetails (ModuleDetailID, ModuleID, Code, Name, FullName, Actions, Controller, LastOpen, SerialID, ImageIndex, InActive) VALUES(" + (int)GlobalEnums.NmvnTaskID.CommoditySetting + ", 1, 'Low, High & Alert Settings', 'Low, High & Alert Settings', '#', '#', 'WAREHOUSE RESOURCES', 1, 12, 1, 0) ", new ObjectParameter[] { });
-                this.ExecuteStoreCommand("INSERT INTO AccessControls (UserID, NMVNTaskID, OrganizationalUnitID, AccessLevel, ApprovalPermitted, UnApprovalPermitted, VoidablePermitted, UnVoidablePermitted, ShowDiscount, AccessLevelBACKUP, ApprovalPermittedBACKUP, UnApprovalPermittedBACKUP, InActive) SELECT UserID, " + (int)GlobalEnums.NmvnTaskID.CommoditySetting + " AS NMVNTaskID, OrganizationalUnitID, AccessLevel, ApprovalPermitted, UnApprovalPermitted, VoidablePermitted, UnVoidablePermitted, ShowDiscount, AccessLevelBACKUP, ApprovalPermittedBACKUP, UnApprovalPermittedBACKUP, InActive FROM AccessControls WHERE (NMVNTaskID = " + (int)GlobalEnums.NmvnTaskID.Commodity + ") AND (SELECT COUNT(*) FROM AccessControls WHERE NMVNTaskID = " + (int)GlobalEnums.NmvnTaskID.CommoditySetting + ") = 0", new ObjectParameter[] { });
-                //********************
+
+                this.ExecuteStoreCommand(@" SET IDENTITY_INSERT CommoditySettings ON                                                              
+                                        
+                                            INSERT INTO ColumnMappings (ColumnMappingID, MappingTaskID, ColumnID, ColumnName, ColumnDisplayName, ColumnMappingName, SerialID, ImportedDate)   VALUES (1, 8076, 2, N'WarehouseCode', N'WH code', N'WH Code', 10, Getdate())
+                                            INSERT INTO ColumnMappings (ColumnMappingID, MappingTaskID, ColumnID, ColumnName, ColumnDisplayName, ColumnMappingName, SerialID, ImportedDate)   VALUES (2, 8076, 6, N'CommodityCode', N'Product code', N'Product code', 20, Getdate())
+                                            INSERT INTO ColumnMappings (ColumnMappingID, MappingTaskID, ColumnID, ColumnName, ColumnDisplayName, ColumnMappingName, SerialID, ImportedDate)   VALUES (3, 8076, 8, N'CurrentMonth', N'Current month', N'17-Oct', 30, Getdate())
+                                            INSERT INTO ColumnMappings (ColumnMappingID, MappingTaskID, ColumnID, ColumnName, ColumnDisplayName, ColumnMappingName, SerialID, ImportedDate)   VALUES (4, 8076, 12, N'NextMonth', N'Next month', N'17-Nov', 60, Getdate())
+                                            INSERT INTO ColumnMappings (ColumnMappingID, MappingTaskID, ColumnID, ColumnName, ColumnDisplayName, ColumnMappingName, SerialID, ImportedDate)   VALUES (5, 8076, 16, N'NextTwoMonth', N'Next two month', N'17-Dec', 70, Getdate())
+                                            INSERT INTO ColumnMappings (ColumnMappingID, MappingTaskID, ColumnID, ColumnName, ColumnDisplayName, ColumnMappingName, SerialID, ImportedDate)   VALUES (6, 8076, 18, N'NextThreeMonth', N'Next three monnth', N'18-Jan', 80, Getdate())
+
+                                            SET IDENTITY_INSERT CommoditySettings OFF ", new ObjectParameter[] { });
+
             }
-            #endregion Forecasts
-
-
-
-            if (!this.totalSmartCodingEntities.ColumnExists("Reports", "OptionBoxIDs"))
-            {
-                this.totalSmartCodingEntities.ColumnAdd("Reports", "OptionBoxIDs", "nvarchar(100)", "", false);
-
-                this.ExecuteStoreCommand("UPDATE  GoodsIssueTypes SET Code = IIF(GoodsIssueTypeID  = 1, N'Sales', N'Transfer')", new ObjectParameter[] { });
-                this.ExecuteStoreCommand("UPDATE  GoodsIssueTypes SET Name = Code", new ObjectParameter[] { });
-                this.ExecuteStoreCommand("UPDATE  GoodsReceiptTypes SET Name = Code", new ObjectParameter[] { });
-                this.ExecuteStoreCommand("UPDATE  WarehouseAdjustmentTypes SET Code = IIF(WarehouseAdjustmentTypeID = 1, N'Unpack pallet', IIF(WarehouseAdjustmentTypeID = 10, N'Change bin', IIF(WarehouseAdjustmentTypeID = 20, N'Hold/ un-hold', IIF(WarehouseAdjustmentTypeID = 30, N'To production', N'Lost, broken, ...' ))))", new ObjectParameter[] { });
-                this.ExecuteStoreCommand("UPDATE  WarehouseAdjustmentTypes SET Name = Code", new ObjectParameter[] { });
-
-                this.InitReports();
-
-                this.ExecuteStoreCommand("UPDATE Modules SET Code = N'Warehouse Management', Name = N'2.Warehouse Management' WHERE ModuleID = 6 ", new ObjectParameter[] { });
-
-                this.ExecuteStoreCommand("UPDATE ModuleDetails SET Controller = N'WAREHOUSE RESOURCES' WHERE ModuleDetailID IN (" + (int)GlobalEnums.NmvnTaskID.Commodity + "," + (int)GlobalEnums.NmvnTaskID.BinLocation + "," + (int)GlobalEnums.NmvnTaskID.Warehouse + ") ", new ObjectParameter[] { });
-                this.ExecuteStoreCommand("UPDATE ModuleDetails SET Controller = N'CUSTOMER MANAGEMENT' WHERE ModuleDetailID IN (" + (int)GlobalEnums.NmvnTaskID.Employee + "," + (int)GlobalEnums.NmvnTaskID.Customer + "," + (int)GlobalEnums.NmvnTaskID.Territory + ") ", new ObjectParameter[] { });
-
-                this.ExecuteStoreCommand("UPDATE ModuleDetails SET Controller = N'LOGISTICS ADMIN', ModuleID = 6 WHERE ModuleDetailID IN (" + (int)GlobalEnums.NmvnTaskID.SalesOrder + "," + (int)GlobalEnums.NmvnTaskID.DeliveryAdvice + "," + (int)GlobalEnums.NmvnTaskID.TransferOrder + ") ", new ObjectParameter[] { });
-                this.ExecuteStoreCommand("UPDATE ModuleDetails SET Controller = N'WAREHOUSE CONTROLS', ModuleID = 6 WHERE ModuleDetailID IN (" + (int)GlobalEnums.NmvnTaskID.GoodsReceipt + "," + (int)GlobalEnums.NmvnTaskID.GoodsIssue + "," + (int)GlobalEnums.NmvnTaskID.WarehouseAdjustment + "," + (int)GlobalEnums.NmvnTaskID.GoodsReceiptDetailAvailable + ") ", new ObjectParameter[] { });
-
-            }
-
-
-            if (this.totalSmartCodingEntities.ColumnExists("Forecasts", "SalespersonID"))
-            {
-                this.totalSmartCodingEntities.ColumnDrop("Forecasts", "SalespersonID");
-
-                this.ExecuteStoreCommand("ALTER TABLE Forecasts WITH CHECK ADD CONSTRAINT FK_Forecasts_Locations FOREIGN KEY(LocationID) REFERENCES dbo.Locations (LocationID)", new ObjectParameter[] { });
-                this.ExecuteStoreCommand("ALTER TABLE Forecasts CHECK CONSTRAINT FK_Forecasts_Locations", new ObjectParameter[] { });
-
-                this.ExecuteStoreCommand("ALTER TABLE Forecasts WITH CHECK ADD CONSTRAINT FK_Forecasts_ForecastLocations FOREIGN KEY(ForecastLocationID) REFERENCES dbo.Locations (LocationID)", new ObjectParameter[] { });
-                this.ExecuteStoreCommand("ALTER TABLE Forecasts CHECK CONSTRAINT FK_Forecasts_ForecastLocations", new ObjectParameter[] { });
-            }
-
-            #region REMOVE FirstName, LastName
-            //if (this.totalSmartCodingEntities.ColumnExists("Users", "FirstName"))
-            //{
-            //    this.totalSmartCodingEntities.ColumnDrop("Users", "FirstName");
-            //    this.totalSmartCodingEntities.ColumnDrop("Users", "LastName");
-            //}
-            #endregion REMOVE FirstName, LastName
+            #endregion ColumnMappings
 
             #region CommoditySettings
             if (!this.totalSmartCodingEntities.TableExists("CommoditySettings") || !this.totalSmartCodingEntities.TableExists("CommoditySettingDetails"))
             {
-                
+
                 this.totalSmartCodingEntities.DropTable("CommoditySettingDetails");
                 this.totalSmartCodingEntities.DropTable("CommoditySettings");
 
@@ -184,6 +168,67 @@ namespace TotalDAL.Repositories
 
             }
             #endregion CommoditySettings
+
+
+            #region Forecasts
+            this.totalSmartCodingEntities.ColumnAdd("Forecasts", "QuantityVersusVolume", "int", "0", true);
+            var query = this.totalSmartCodingEntities.Database.SqlQuery(typeof(int), "SELECT COUNT(ModuleDetailID) AS Expr1 FROM ModuleDetails WHERE ModuleDetailID = " + (int)GlobalEnums.NmvnTaskID.Forecast + ";", new object[] { });
+            int exists = query.Cast<int>().Single();
+            if (exists == 0)
+            {
+                this.ExecuteStoreCommand("INSERT INTO ModuleDetails (ModuleDetailID, ModuleID, Code, Name, FullName, Actions, Controller, LastOpen, SerialID, ImageIndex, InActive) VALUES(" + (int)GlobalEnums.NmvnTaskID.Forecast + ", 6, N'Sales Forecast', N'Sales Forecast', '#', '#', N'LOGISTICS ADMIN', 1, 6, 1, 0) ", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("INSERT INTO AccessControls (UserID, NMVNTaskID, OrganizationalUnitID, AccessLevel, ApprovalPermitted, UnApprovalPermitted, VoidablePermitted, UnVoidablePermitted, ShowDiscount, AccessLevelBACKUP, ApprovalPermittedBACKUP, UnApprovalPermittedBACKUP, InActive) SELECT UserID, " + (int)GlobalEnums.NmvnTaskID.Forecast + " AS NMVNTaskID, OrganizationalUnitID, AccessLevel, ApprovalPermitted, UnApprovalPermitted, VoidablePermitted, UnVoidablePermitted, ShowDiscount, AccessLevelBACKUP, ApprovalPermittedBACKUP, UnApprovalPermittedBACKUP, InActive FROM AccessControls WHERE (NMVNTaskID = " + (int)GlobalEnums.NmvnTaskID.Commodity + ") AND (SELECT COUNT(*) FROM AccessControls WHERE NMVNTaskID = " + (int)GlobalEnums.NmvnTaskID.Forecast + ") = 0", new ObjectParameter[] { });
+
+                //********************
+                this.ExecuteStoreCommand("INSERT INTO ModuleDetails (ModuleDetailID, ModuleID, Code, Name, FullName, Actions, Controller, LastOpen, SerialID, ImageIndex, InActive) VALUES(" + (int)GlobalEnums.NmvnTaskID.CommoditySetting + ", 1, 'Low, High & Alert Settings', 'Low, High & Alert Settings', '#', '#', 'WAREHOUSE RESOURCES', 1, 12, 1, 0) ", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("INSERT INTO AccessControls (UserID, NMVNTaskID, OrganizationalUnitID, AccessLevel, ApprovalPermitted, UnApprovalPermitted, VoidablePermitted, UnVoidablePermitted, ShowDiscount, AccessLevelBACKUP, ApprovalPermittedBACKUP, UnApprovalPermittedBACKUP, InActive) SELECT UserID, " + (int)GlobalEnums.NmvnTaskID.CommoditySetting + " AS NMVNTaskID, OrganizationalUnitID, AccessLevel, ApprovalPermitted, UnApprovalPermitted, VoidablePermitted, UnVoidablePermitted, ShowDiscount, AccessLevelBACKUP, ApprovalPermittedBACKUP, UnApprovalPermittedBACKUP, InActive FROM AccessControls WHERE (NMVNTaskID = " + (int)GlobalEnums.NmvnTaskID.Commodity + ") AND (SELECT COUNT(*) FROM AccessControls WHERE NMVNTaskID = " + (int)GlobalEnums.NmvnTaskID.CommoditySetting + ") = 0", new ObjectParameter[] { });
+                //********************
+            }
+            #endregion Forecasts
+
+
+
+            if (!this.totalSmartCodingEntities.ColumnExists("Reports", "OptionBoxIDs"))
+            {
+                this.totalSmartCodingEntities.ColumnAdd("Reports", "OptionBoxIDs", "nvarchar(100)", "", false);
+
+                this.ExecuteStoreCommand("UPDATE  GoodsIssueTypes SET Code = IIF(GoodsIssueTypeID  = 1, N'Sales', N'Transfer')", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("UPDATE  GoodsIssueTypes SET Name = Code", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("UPDATE  GoodsReceiptTypes SET Name = Code", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("UPDATE  WarehouseAdjustmentTypes SET Code = IIF(WarehouseAdjustmentTypeID = 1, N'Unpack pallet', IIF(WarehouseAdjustmentTypeID = 10, N'Change bin', IIF(WarehouseAdjustmentTypeID = 20, N'Hold/ un-hold', IIF(WarehouseAdjustmentTypeID = 30, N'To production', N'Lost, broken, ...' ))))", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("UPDATE  WarehouseAdjustmentTypes SET Name = Code", new ObjectParameter[] { });
+
+                this.InitReports();
+
+                this.ExecuteStoreCommand("UPDATE Modules SET Code = N'Warehouse Management', Name = N'2.Warehouse Management' WHERE ModuleID = 6 ", new ObjectParameter[] { });
+
+                this.ExecuteStoreCommand("UPDATE ModuleDetails SET Controller = N'WAREHOUSE RESOURCES' WHERE ModuleDetailID IN (" + (int)GlobalEnums.NmvnTaskID.Commodity + "," + (int)GlobalEnums.NmvnTaskID.BinLocation + "," + (int)GlobalEnums.NmvnTaskID.Warehouse + ") ", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("UPDATE ModuleDetails SET Controller = N'CUSTOMER MANAGEMENT' WHERE ModuleDetailID IN (" + (int)GlobalEnums.NmvnTaskID.Employee + "," + (int)GlobalEnums.NmvnTaskID.Customer + "," + (int)GlobalEnums.NmvnTaskID.Territory + ") ", new ObjectParameter[] { });
+
+                this.ExecuteStoreCommand("UPDATE ModuleDetails SET Controller = N'LOGISTICS ADMIN', ModuleID = 6 WHERE ModuleDetailID IN (" + (int)GlobalEnums.NmvnTaskID.SalesOrder + "," + (int)GlobalEnums.NmvnTaskID.DeliveryAdvice + "," + (int)GlobalEnums.NmvnTaskID.TransferOrder + ") ", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("UPDATE ModuleDetails SET Controller = N'WAREHOUSE CONTROLS', ModuleID = 6 WHERE ModuleDetailID IN (" + (int)GlobalEnums.NmvnTaskID.GoodsReceipt + "," + (int)GlobalEnums.NmvnTaskID.GoodsIssue + "," + (int)GlobalEnums.NmvnTaskID.WarehouseAdjustment + "," + (int)GlobalEnums.NmvnTaskID.GoodsReceiptDetailAvailable + ") ", new ObjectParameter[] { });
+
+            }
+
+
+            if (this.totalSmartCodingEntities.ColumnExists("Forecasts", "SalespersonID"))
+            {
+                this.totalSmartCodingEntities.ColumnDrop("Forecasts", "SalespersonID");
+
+                this.ExecuteStoreCommand("ALTER TABLE Forecasts WITH CHECK ADD CONSTRAINT FK_Forecasts_Locations FOREIGN KEY(LocationID) REFERENCES dbo.Locations (LocationID)", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("ALTER TABLE Forecasts CHECK CONSTRAINT FK_Forecasts_Locations", new ObjectParameter[] { });
+
+                this.ExecuteStoreCommand("ALTER TABLE Forecasts WITH CHECK ADD CONSTRAINT FK_Forecasts_ForecastLocations FOREIGN KEY(ForecastLocationID) REFERENCES dbo.Locations (LocationID)", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("ALTER TABLE Forecasts CHECK CONSTRAINT FK_Forecasts_ForecastLocations", new ObjectParameter[] { });
+            }
+
+            #region REMOVE FirstName, LastName
+            //if (this.totalSmartCodingEntities.ColumnExists("Users", "FirstName"))
+            //{
+            //    this.totalSmartCodingEntities.ColumnDrop("Users", "FirstName");
+            //    this.totalSmartCodingEntities.ColumnDrop("Users", "LastName");
+            //}
+            #endregion REMOVE FirstName, LastName
 
         }
 
