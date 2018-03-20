@@ -257,7 +257,7 @@
             // textexCommodityCategoryName
             // 
             this.textexCommodityCategoryName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textexCommodityCategoryName.Editable = true;
+            this.textexCommodityCategoryName.Editable = false;
             this.textexCommodityCategoryName.Location = new System.Drawing.Point(28, 170);
             this.textexCommodityCategoryName.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.textexCommodityCategoryName.Name = "textexCommodityCategoryName";
@@ -290,7 +290,7 @@
             // textexPackageSize
             // 
             this.textexPackageSize.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textexPackageSize.Editable = true;
+            this.textexPackageSize.Editable = false;
             this.textexPackageSize.Location = new System.Drawing.Point(28, 231);
             this.textexPackageSize.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.textexPackageSize.Name = "textexPackageSize";
@@ -300,7 +300,7 @@
             // textexCommodityName
             // 
             this.textexCommodityName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textexCommodityName.Editable = true;
+            this.textexCommodityName.Editable = false;
             this.textexCommodityName.Location = new System.Drawing.Point(28, 109);
             this.textexCommodityName.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.textexCommodityName.Name = "textexCommodityName";

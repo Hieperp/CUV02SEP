@@ -123,6 +123,24 @@ namespace TotalDTO.Commons
         protected override IEnumerable<CommoditySettingDetailDTO> DtoDetails() { return this.CommoditySettingDetails; }
 
 
+
+
+
+
+        protected override List<ValidationRule> CreateRules()
+        {
+            List<ValidationRule> validationRules = base.CreateRules();
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<CommoditySettingDTO>(p => p.Remarks), "Vui lòng nhập Low, High && Alert Details.", delegate { return (this.GetDetails().Count > 0); }));
+
+            return validationRules;
+        }
+
+
+
+
+
+
+        #region USE GenericSimpleController WITH DETAIL
         protected override void Initialize()
         {
             base.Initialize(); //BECAUSE THIS CommoditySettingDTO IS POPULATED BY GenericSimpleController => WHEN INIT: THERE IS NO FUNCTION TO CLEAR ViewDetails WHEN GenericSimpleController.Init()
@@ -133,5 +151,6 @@ namespace TotalDTO.Commons
         {
             this.SetDirty();
         }
+        #endregion  USE GenericSimpleController WITH DETAIL
     }
 }
