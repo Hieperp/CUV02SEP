@@ -20,6 +20,9 @@ namespace TotalDTO.Inventories
     {
         public override GlobalEnums.NmvnTaskID NMVNTaskID { get { return GlobalEnums.NmvnTaskID.WarehouseAdjustment; } }
 
+        public override bool Printable { get { return true; } }
+        public override bool PrintVisible { get { return true; } }
+
         public override int GetID() { return this.WarehouseAdjustmentID; }
         public void SetID(int id) { this.WarehouseAdjustmentID = id; }
 

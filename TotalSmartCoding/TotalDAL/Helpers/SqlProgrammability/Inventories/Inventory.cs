@@ -113,6 +113,12 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
         private string WFReturnResultWithFilter(bool withHistorySales, bool isFilterIndex)
         {
+            //LƯU Ý: @WarehouseForecasts CO T/H UPDATE LastEntryDate (=> SOME ROW <> NULL), CÓ TÌNH HUỐNG KHÔNG UPDATE LastEntryDate (=> EVERY ROW IS NULL)
+            //TRONG KHI ĐÓ: this.InventoryAccumulationSelect: LUÔN LUÔN LastEntryDate = NULL
+            //TUY NHIEN: CÓ 1 LƯU Ý QUAN TRỌNG: KHI withHistorySales = TRUE: THÌ SẼ KHÔNG BAO GIỜ CÓ UPDATE @WarehouseForecasts.LastEntryDate
+            //VÌ VẬY: NẾU withHistorySales = TRUE THÌ @WarehouseForecasts UNION ALL this.InventoryAccumulationSelect: KHI ĐÓ: CẢ HAI CÁI: @WarehouseForecasts.LastEntryDate VÀ this.InventoryAccumulationSelect.LastEntryDate LUÔN LUÔN NULL
+            //DO ĐÓ: GROUP BY CommodityID, LastEntryDate LÀ OK, KHÔNG SỢ VẤN ĐỀ GÌ (KHÔNG SỢ 1 CommodityID VỪA CÓ LastEntryDate = NULL VỪA CÓ LastEntryDate <> NULL)
+
             string queryString = "";
             queryString = queryString + "   BEGIN " + "\r\n";
             queryString = queryString + "       SELECT      EntryDate, LastEntryDate, LocationName, WarehouseName, BinLocationCode, CommodityCategoryName, CommodityID, Code, Name, PackageSize, " + "\r\n";

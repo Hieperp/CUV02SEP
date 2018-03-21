@@ -60,6 +60,8 @@ namespace TotalDAL.Repositories
             #region ColumnMappings
             if (!this.totalSmartCodingEntities.TableExists("ColumnMappings"))
             {
+                this.ExecuteStoreCommand("UPDATE  WarehouseAdjustmentTypes SET Remarks = IIF(WarehouseAdjustmentTypeID = 1, N'XẢ PALLET/ UNPACK PALLET', IIF(WarehouseAdjustmentTypeID = 10, N'CHUYỂN VỊ TRÍ LƯU KHO/ CHANGE BIN LOCATION', IIF(WarehouseAdjustmentTypeID = 20, N'HOLD/ UN-HOLD', IIF(WarehouseAdjustmentTypeID = 30, N'XUẤT KHO TRẢ SẢN XUẤT/ RETURN TO PRODUCTION', N'XỬ LÝ HÀNG MẤT, BỂ VỠ,.../ LOST, BROKEN, ...' ))))", new ObjectParameter[] { });
+
                 this.ExecuteStoreCommand(@"CREATE TABLE [dbo].[ColumnMappings](
 	                                                [ColumnMappingID] [int] NOT NULL,
 	                                                [MappingTaskID] [int] NOT NULL,
@@ -261,6 +263,21 @@ namespace TotalDAL.Repositories
             Helpers.SqlProgrammability.Commons.CommoditySetting commoditySetting = new Helpers.SqlProgrammability.Commons.CommoditySetting(totalSmartCodingEntities);
             commoditySetting.RestoreProcedure();
 
+            //return;
+
+            Helpers.SqlProgrammability.Inventories.WarehouseAdjustment warehouseAdjustment = new Helpers.SqlProgrammability.Inventories.WarehouseAdjustment(totalSmartCodingEntities);
+            warehouseAdjustment.RestoreProcedure();
+
+            //return;
+
+            Helpers.SqlProgrammability.Commons.WarehouseAdjustmentType warehouseAdjustmentType = new Helpers.SqlProgrammability.Commons.WarehouseAdjustmentType(totalSmartCodingEntities);
+            warehouseAdjustmentType.RestoreProcedure();
+
+            //return;
+
+            Helpers.SqlProgrammability.Inventories.GoodsIssue goodsIssue = new Helpers.SqlProgrammability.Inventories.GoodsIssue(totalSmartCodingEntities);
+            goodsIssue.RestoreProcedure();
+
             return;
 
             Helpers.SqlProgrammability.Commons.Warehouse warehouse = new Helpers.SqlProgrammability.Commons.Warehouse(totalSmartCodingEntities);
@@ -283,10 +300,7 @@ namespace TotalDAL.Repositories
 
 
 
-            //return;
-
-            Helpers.SqlProgrammability.Commons.WarehouseAdjustmentType warehouseAdjustmentType = new Helpers.SqlProgrammability.Commons.WarehouseAdjustmentType(totalSmartCodingEntities);
-            warehouseAdjustmentType.RestoreProcedure();
+            
 
             //return;
             Helpers.SqlProgrammability.Commons.CommodityType commodityType = new Helpers.SqlProgrammability.Commons.CommodityType(totalSmartCodingEntities);
@@ -302,10 +316,7 @@ namespace TotalDAL.Repositories
             Helpers.SqlProgrammability.Sales.DeliveryAdvice deliveryAdvice = new Helpers.SqlProgrammability.Sales.DeliveryAdvice(totalSmartCodingEntities);
             deliveryAdvice.RestoreProcedure();
 
-            //return;
-
-            Helpers.SqlProgrammability.Inventories.GoodsIssue goodsIssue = new Helpers.SqlProgrammability.Inventories.GoodsIssue(totalSmartCodingEntities);
-            goodsIssue.RestoreProcedure();
+            
 
 
 
@@ -368,10 +379,7 @@ namespace TotalDAL.Repositories
             Helpers.SqlProgrammability.Sales.TransferOrder transferOrder = new Helpers.SqlProgrammability.Sales.TransferOrder(totalSmartCodingEntities);
             transferOrder.RestoreProcedure();
 
-            //return;
-
-            Helpers.SqlProgrammability.Inventories.WarehouseAdjustment warehouseAdjustment = new Helpers.SqlProgrammability.Inventories.WarehouseAdjustment(totalSmartCodingEntities);
-            warehouseAdjustment.RestoreProcedure();
+            
 
 
             //return;

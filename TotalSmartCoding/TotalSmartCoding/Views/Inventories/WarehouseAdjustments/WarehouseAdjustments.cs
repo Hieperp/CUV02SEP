@@ -7,31 +7,38 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BrightIdeasSoftware;
 
 using Ninject;
 
 
 
-using TotalSmartCoding.Views.Mains;
 
-
-
+using TotalBase;
 using TotalBase.Enums;
+
+using TotalModel.Models;
+using TotalDTO.Inventories;
+
+using TotalCore.Repositories.Inventories;
+using TotalCore.Repositories.Commons;
+
+using TotalCore.Services.Inventories;
+
+using TotalSmartCoding.ViewModels.Helpers;
+using TotalSmartCoding.ViewModels.Inventories;
+
 using TotalSmartCoding.Properties;
 using TotalSmartCoding.Libraries;
 using TotalSmartCoding.Libraries.Helpers;
 
-using TotalSmartCoding.Controllers.Inventories;
-using TotalCore.Repositories.Inventories;
-using TotalSmartCoding.Controllers.APIs.Inventories;
-using TotalCore.Services.Inventories;
-using TotalSmartCoding.ViewModels.Inventories;
+using TotalSmartCoding.Views.Mains;
+
 using TotalSmartCoding.Controllers.APIs.Commons;
-using TotalCore.Repositories.Commons;
-using TotalBase;
-using TotalModel.Models;
-using TotalDTO.Inventories;
-using BrightIdeasSoftware;
+using TotalSmartCoding.Controllers.APIs.Inventories;
+using TotalSmartCoding.Controllers.Inventories;
+
+
 using TotalSmartCoding.Libraries.StackedHeaders;
 
 
@@ -112,7 +119,7 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
                 this.customTabCenterNegative.TabPages[1].Controls.Add(this.toolStripNegativeCarton);
 
                 this.customTabCenter.TabPages[0].Controls.Add(this.customTabCenterNegative);
-                this.customTabCenter.TabPages[1].Controls.Add(this.customTabCenterPositive);                
+                this.customTabCenter.TabPages[1].Controls.Add(this.customTabCenterPositive);
                 this.customTabCenter.TabPages[2].Controls.Add(this.textexDescription);
                 this.customTabCenter.TabPages[3].Controls.Add(this.textexRemarks);
                 this.customTabCenter.TabPages[2].Padding = new Padding(30, 30, 30, 30);
@@ -131,7 +138,7 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
                 this.gridexNegativePalletDetails.Dock = DockStyle.Fill;
                 this.toolStripNegativeCarton.Dock = DockStyle.Left;
                 this.gridexNegativeCartonDetails.Dock = DockStyle.Fill;
-                
+
                 this.textexDescription.Dock = DockStyle.Fill;
                 this.textexRemarks.Dock = DockStyle.Fill;
 
@@ -243,7 +250,7 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
 
                 this.customTabCenterPositive.TabPages[0].Text = "+" + this.warehouseAdjustmentViewModel.PositivePalletDetails.Count.ToString("N0") + " Pallet" + (this.warehouseAdjustmentViewModel.PositivePalletDetails.Count > 1 ? "s" : "") + "        ";
                 this.customTabCenterPositive.TabPages[1].Text = "+" + this.warehouseAdjustmentViewModel.PositiveCartonDetails.Count.ToString("N0") + " Carton" + (this.warehouseAdjustmentViewModel.PositiveCartonDetails.Count > 1 ? "s" : "") + "        ";
-                this.customTabCenter.TabPages[1].Text = "Receipt: " + this.customTabCenterPositive.TabPages[0].Text.Trim() + ", " + this.customTabCenterPositive.TabPages[1].Text.Trim() + "        ";                
+                this.customTabCenter.TabPages[1].Text = "Receipt: " + this.customTabCenterPositive.TabPages[0].Text.Trim() + ", " + this.customTabCenterPositive.TabPages[1].Text.Trim() + "        ";
             }
         }
 
@@ -255,7 +262,7 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
         public override void Loading()
         {
             this.fastWarehouseAdjustmentIndex.SetObjects(this.warehouseAdjustmentAPIs.GetWarehouseAdjustmentIndexes());
-            
+
             base.Loading();
         }
 
@@ -311,7 +318,7 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
         }
 
         private void buttonExpandTop_Click(object sender, EventArgs e)
-        {            
+        {
             if (this.naviGroupTop.Tag.ToString() == "Expandable" || this.naviGroupTop.Expanded)
             {
                 this.naviGroupTop.Expanded = !this.naviGroupTop.Expanded;
@@ -319,5 +326,16 @@ namespace TotalSmartCoding.Views.Inventories.WarehouseAdjustments
                 this.buttonExpandTop.Image = this.naviGroupTop.Expanded ? Resources.chevron : Resources.chevron_expand;
             }
         }
+
+        protected override PrintViewModel InitPrintViewModel()
+        {
+            PrintViewModel printViewModel = base.InitPrintViewModel();
+            printViewModel.ReportPath = "GoodsIssueSheet";
+            printViewModel.ShowPromptAreaButton = true;
+            printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("GoodsIssueID", (-this.warehouseAdjustmentViewModel.WarehouseAdjustmentID).ToString()));
+            if (this.warehouseAdjustmentViewModel.WarehouseAdjustmentTypeID == (int)GlobalEnums.WarehouseAdjustmentTypeID.ChangeBinLocation) printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("ShowLineDetail", (true).ToString()));
+            return printViewModel;
+        }
+
     }
 }
