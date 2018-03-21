@@ -18,9 +18,9 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
         public void RestoreProcedure()
         {
-            //this.WarehouseLedgers();
+            this.WarehouseLedgers();
 
-            //this.WarehouseJournals();
+            this.WarehouseJournals();
             this.WarehouseForecasts();
         }
 
@@ -64,10 +64,10 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
         #region WarehouseForecasts
         private void WarehouseForecasts()
         {
-            string queryString = this.DEFINEHeader(true, 1, "@FilterID int").Replace("@FromDate DateTime, ", "").Replace("SET @LocalFromDate = @FromDate", "SET @LocalFromDate = @ToDate"); //AT FIRST: @LocalFromDate = @ToDate
-            
-            queryString = queryString + "       DECLARE     @LocalFilterID int = @FilterID " + "\r\n";
-            queryString = queryString + "       DECLARE     @WarehouseForecasts TABLE (LocationID int NOT NULL, LocationName nvarchar(50) NOT NULL, WarehouseID int NULL, WarehouseName nvarchar(60) NULL, BinLocationID int NULL, BinLocationCode nvarchar(50) NULL, BatchEntryDate datetime NULL, CommodityCategoryID int NOT NULL, CommodityCategoryName nvarchar(100) NOT NULL, CommodityID int NOT NULL, Code nvarchar(50) NOT NULL, Name nvarchar(200) NOT NULL, Unit nvarchar(10) NULL, PackageSize nvarchar(60) NULL, Barcode nvarchar(50) NULL, BarcodeUnit nvarchar(20) NULL, GoodsReceiptDetailID int NULL, EntryDate datetime NULL, LineReferences nvarchar(100) NULL, ValueBegin decimal(18, 2) NOT NULL, ValueReceiptPickup decimal(18, 2) NOT NULL, ValueReceiptPurchasing decimal(18, 2) NOT NULL, ValueReceiptTransfer decimal(18, 2) NOT NULL, ValueReceiptReturn decimal(18, 2) NOT NULL, ValueReceiptAdjustment decimal(18, 2) NOT NULL, ValueReceipt decimal(18, 2) NOT NULL, ValueIssueSelling decimal(18, 2) NOT NULL, ValueIssueTransfer decimal(18, 2) NOT NULL, ValueIssueProduction decimal(18, 2) NOT NULL, ValueIssueAdjustment decimal(18, 2) NOT NULL, ValueIssue decimal(18, 2) NOT NULL, ValueEnd decimal(18, 2) NOT NULL, ValueOnPurchasing decimal(18, 2) NOT NULL, ValueOnPickup decimal(18, 2) NOT NULL, ValueOnTransit decimal(18, 2) NOT NULL, ValuePendingOrder decimal(18, 2) NOT NULL, ValuePendingAdvice decimal(18, 2) NOT NULL, ValueForecasts decimal(18, 2) NOT NULL, ValueM1Forecasts decimal(18, 2) NOT NULL, ValueM2Forecasts decimal(18, 2) NOT NULL, ValueM3Forecasts decimal(18, 2) NOT NULL, MovementMIN decimal(18, 2) NOT NULL, MovementMAX decimal(18, 2) NOT NULL, MovementAVG decimal(18, 2) NOT NULL, M1M2M3ValueForecasts decimal(18, 2) NULL, LowDSI decimal(18, 2) NULL, HighDSI decimal(18, 2) NULL, AlertDSI decimal(18, 2) NULL, LastEntryDate datetime NULL) " + "\r\n";
+            string queryString = this.DEFINEHeader(true, 1, "@PivotLocation bit, @FilterID int").Replace("@FromDate DateTime, ", "").Replace("SET @LocalFromDate = @FromDate", "SET @LocalFromDate = @ToDate"); //AT FIRST: @LocalFromDate = @ToDate
+
+            queryString = queryString + "       DECLARE     @LocalPivotLocation bit = @PivotLocation, @LocalFilterID int = @FilterID " + "\r\n";
+            queryString = queryString + "       DECLARE     @WarehouseForecasts TABLE (LocationID int NOT NULL, LocationName nvarchar(50) NOT NULL, WarehouseID int NULL, WarehouseName nvarchar(60) NULL, BinLocationID int NULL, BinLocationCode nvarchar(50) NULL, BatchEntryDate datetime NULL, CommodityCategoryID int NOT NULL, CommodityCategoryName nvarchar(100) NOT NULL, CommodityID int NOT NULL, Code nvarchar(50) NOT NULL, Name nvarchar(200) NOT NULL, Unit nvarchar(10) NULL, PackageSize nvarchar(60) NULL, Barcode nvarchar(50) NULL, BarcodeUnit nvarchar(20) NULL, GoodsReceiptDetailID int NULL, EntryDate datetime NULL, LineReferences nvarchar(100) NULL, ValueBegin decimal(18, 2) NOT NULL, ValueReceiptPickup decimal(18, 2) NOT NULL, ValueReceiptPurchasing decimal(18, 2) NOT NULL, ValueReceiptTransfer decimal(18, 2) NOT NULL, ValueReceiptReturn decimal(18, 2) NOT NULL, ValueReceiptAdjustment decimal(18, 2) NOT NULL, ValueReceipt decimal(18, 2) NOT NULL, ValueIssueSelling decimal(18, 2) NOT NULL, ValueIssueTransfer decimal(18, 2) NOT NULL, ValueIssueProduction decimal(18, 2) NOT NULL, ValueIssueAdjustment decimal(18, 2) NOT NULL, ValueIssue decimal(18, 2) NOT NULL, ValueEnd decimal(18, 2) NOT NULL, ValueOnPurchasing decimal(18, 2) NOT NULL, ValueOnPickup decimal(18, 2) NOT NULL, ValueOnTransit decimal(18, 2) NOT NULL, ValuePendingOrder decimal(18, 2) NOT NULL, ValuePendingAdvice decimal(18, 2) NOT NULL, ValueForecasts decimal(18, 2) NOT NULL, ValueM1Forecasts decimal(18, 2) NOT NULL, ValueM2Forecasts decimal(18, 2) NOT NULL, ValueM3Forecasts decimal(18, 2) NOT NULL, MovementMIN decimal(18, 2) NOT NULL, MovementMAX decimal(18, 2) NOT NULL, MovementAVG decimal(18, 2) NOT NULL, M1M2M3ValueForecasts decimal(18, 2) NULL, LowDSI decimal(18, 2) NULL, LowDSILevel decimal(18, 2) NULL, HighDSI decimal(18, 2) NULL, HighDSILevel decimal(18, 2) NULL, AlertDSI decimal(18, 2) NULL, AlertDSILevel decimal(18, 2) NULL, LastEntryDate datetime NULL) " + "\r\n";
             queryString = queryString + "       INSERT INTO @WarehouseForecasts (LocationID, LocationName, WarehouseID, WarehouseName, BinLocationID, BinLocationCode, BatchEntryDate, CommodityCategoryID, CommodityCategoryName, CommodityID, Code, Name, Unit, PackageSize, Barcode, BarcodeUnit, GoodsReceiptDetailID, EntryDate, LineReferences, ValueBegin, ValueReceiptPickup, ValueReceiptPurchasing, ValueReceiptTransfer, ValueReceiptReturn, ValueReceiptAdjustment, ValueReceipt, ValueIssueSelling, ValueIssueTransfer, ValueIssueProduction, ValueIssueAdjustment, ValueIssue, ValueEnd, ValueOnPurchasing, ValueOnPickup, ValueOnTransit, ValuePendingOrder, ValuePendingAdvice, ValueForecasts, ValueM1Forecasts, ValueM2Forecasts, ValueM3Forecasts, MovementMIN, MovementMAX, MovementAVG) EXEC WarehouseJournals " + this.DEFINEParameter(true, 1) + "\r\n"; //RIGHT HERE: @LocalFromDate = @ToDate
 
             queryString = queryString + "       IF         (@LocalLocationIDs <> '') " + "\r\n";
@@ -88,7 +88,10 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
             queryString = queryString + "       DECLARE     @M1Firstdate Datetime = DATEADD(MONTH, 1, @ToDate01)     DECLARE @M3Lastdate Datetime = DATEADD(DAY, -1, DATEADD(MONTH, 3, @M1Firstdate))            DECLARE @M1M3Datediff Int = DATEDIFF(DAY, @M1Firstdate, @M3Lastdate) + 1 " + "\r\n";
 
-            queryString = queryString + "       UPDATE      WarehouseForecasts SET WarehouseForecasts.M1M2M3ValueForecasts = WarehouseForecastByCommodity.M1M2M3ValueForecasts FROM @WarehouseForecasts WarehouseForecasts INNER JOIN (SELECT CommodityID, SUM(ValueM1Forecasts + ValueM2Forecasts + ValueM3Forecasts) AS M1M2M3ValueForecasts FROM @WarehouseForecasts GROUP BY CommodityID) WarehouseForecastByCommodity ON WarehouseForecasts.CommodityID = WarehouseForecastByCommodity.CommodityID " + "\r\n"; //UPDATE TOTAL ValueForecasts BY COMMODITYID
+            queryString = queryString + "       IF         (@LocalPivotLocation = 0) " + "\r\n";
+            queryString = queryString + "                   " + this.WFUpdate_L_H_A_Level_M1M2M3(false) + "\r\n";
+            queryString = queryString + "       ELSE " + "\r\n";
+            queryString = queryString + "                   " + this.WFUpdate_L_H_A_Level_M1M2M3(true) + "\r\n";
 
             queryString = queryString + "       IF         (@LocalFilterID >= " + (int)GlobalEnums.ForecastFilterID.SlowMoving + ") " + "\r\n";
             queryString = queryString + "                   " + this.WFReturnResult(false) + "\r\n";//SLOWMOVING ITEMS: NO NEED TO GET History Sales (MONTH TO DATE, YTD, LAST 3M AVERAGE)
@@ -104,14 +107,26 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             string queryString = "";
             queryString = queryString + "   BEGIN " + "\r\n";
             queryString = queryString + "       IF         (@LocalFilterID = " + (int)GlobalEnums.ForecastFilterID.None + ") " + "\r\n";
-            queryString = queryString + "                   " + this.WFReturnResultWithFilter(withHistorySales, false) + "\r\n";
+            queryString = queryString + "                   " + this.WFReturnResultPivotLocation(withHistorySales, false) + "\r\n";
             queryString = queryString + "       ELSE " + "\r\n";
-            queryString = queryString + "                   " + this.WFReturnResultWithFilter(withHistorySales, true) + "\r\n";
+            queryString = queryString + "                   " + this.WFReturnResultPivotLocation(withHistorySales, true) + "\r\n";
             queryString = queryString + "   END " + "\r\n";
             return queryString;
         }
 
-        private string WFReturnResultWithFilter(bool withHistorySales, bool isFilterIndex)
+        private string WFReturnResultPivotLocation(bool withHistorySales, bool isFilterIndex)
+        {
+            string queryString = "";
+            queryString = queryString + "   BEGIN " + "\r\n";
+            queryString = queryString + "       IF         (@LocalPivotLocation = 0) " + "\r\n";
+            queryString = queryString + "                   " + this.WFReturnResultWithFilter(withHistorySales, isFilterIndex, false) + "\r\n";
+            queryString = queryString + "       ELSE " + "\r\n";
+            queryString = queryString + "                   " + this.WFReturnResultWithFilter(withHistorySales, isFilterIndex, true) + "\r\n";
+            queryString = queryString + "   END " + "\r\n";
+            return queryString;
+        }
+
+        private string WFReturnResultWithFilter(bool withHistorySales, bool isFilterIndex, bool isPivotLocation)
         {
             //LƯU Ý: @WarehouseForecasts CO T/H UPDATE LastEntryDate (=> SOME ROW <> NULL), CÓ TÌNH HUỐNG KHÔNG UPDATE LastEntryDate (=> EVERY ROW IS NULL)
             //TRONG KHI ĐÓ: this.InventoryAccumulationSelect: LUÔN LUÔN LastEntryDate = NULL
@@ -121,17 +136,28 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
             string queryString = "";
             queryString = queryString + "   BEGIN " + "\r\n";
-            queryString = queryString + "       SELECT      EntryDate, LastEntryDate, LocationName, WarehouseName, BinLocationCode, CommodityCategoryName, CommodityID, Code, Name, PackageSize, " + "\r\n";
-            queryString = queryString + "                   ValueBegin, ValueReceiptPickup, ValueReceiptPurchasing, ValueReceiptTransfer, ValueReceiptReturn, ValueReceiptAdjustment, ValueReceipt, ValueIssueSelling, ValueIssueTransfer, ValueIssueProduction, ValueIssueAdjustment, ValueIssue, ValueEnd, ValueOnPurchasing, ValueOnPickup, ValueOnTransit, ValuePendingOrder, ValuePendingAdvice, ValueForecasts, ValueM1Forecasts, ValueM2Forecasts, ValueM3Forecasts, MovementMIN, MovementMAX, MovementAVG, LowDSI, HighDSI, AlertDSI, " + "\r\n";
-            queryString = queryString + "                   (ValueOnPurchasing + ValueOnPickup + ValueOnTransit) AS ValueOnReceipt, (ValueEnd + ValueOnPurchasing + ValueOnPickup + ValueOnTransit) AS ValueInventory, (ValuePendingOrder + ValuePendingAdvice) AS ValueReserve, (ValueEnd + ValueOnPurchasing + ValueOnPickup + ValueOnTransit) - (ValuePendingOrder + ValuePendingAdvice) AS ValueStock, ValueEnd - (ValuePendingOrder + ValuePendingAdvice) AS ValueAvailable, CASE WHEN M1M2M3ValueForecasts > 0 THEN (  ((ValueEnd + ValueOnPurchasing + ValueOnPickup + ValueOnTransit) - (ValuePendingOrder + ValuePendingAdvice))/ (M1M2M3ValueForecasts / @M1M3Datediff)  )  ELSE 0 END AS DIOH3M, " + "\r\n"; //[OnHand = ValueEnd] [ValueOnReceipt = ValueOnPurchasing + ValueOnPickup + ValueOnTransit] [ValueInventory = ValueEnd + ValueOnReceipt] [ValueStock = ValueInventory - ValueReserve] [ValueAvailable =  ValueEnd - ValueReserve] [DIOH3M = ValueStock / (M1M2M3ValueForecasts/ 90)]
-            queryString = queryString + "                   0 AS MTDIssueDA, 0 AS MTDIssueDANotPromotion, 0 AS MTDReceiptPickup, 0 AS AVR3MIssueDA, 0 AS AVR3MIssueDANotPromotion, 0 AS AVR3MReceiptPickup " + "\r\n";
-            queryString = queryString + "       FROM        @WarehouseForecasts " + this.WFReturnResultApplyFilter(isFilterIndex) + "\r\n";
+            queryString = queryString + "       SELECT      MAX(LastEntryDate) AS LastEntryDate, " + (isPivotLocation ? "LocationName" : "MAX(LocationName)") + " AS LocationName, MAX(CommodityCategoryName) AS CommodityCategoryName, CommodityID, MAX(Code) AS Code, MAX(Name) AS Name, MAX(PackageSize) AS PackageSize, " + "\r\n";
+            queryString = queryString + "                   SUM(ValueBegin) AS ValueBegin, SUM(ValueReceiptPickup) AS ValueReceiptPickup, SUM(ValueReceiptPurchasing) AS ValueReceiptPurchasing, SUM(ValueReceiptTransfer) AS ValueReceiptTransfer, SUM(ValueReceiptReturn) AS ValueReceiptReturn, SUM(ValueReceiptAdjustment) AS ValueReceiptAdjustment, SUM(ValueReceipt) AS ValueReceipt, SUM(ValueIssueSelling) AS ValueIssueSelling, SUM(ValueIssueTransfer) AS ValueIssueTransfer, SUM(ValueIssueProduction) AS ValueIssueProduction, SUM(ValueIssueAdjustment) AS ValueIssueAdjustment, SUM(ValueIssue) AS ValueIssue, SUM(ValueEnd) AS ValueEnd, SUM(ValueOnPurchasing) AS ValueOnPurchasing, SUM(ValueOnPickup) AS ValueOnPickup, SUM(ValueOnTransit) AS ValueOnTransit, SUM(ValuePendingOrder) AS ValuePendingOrder, SUM(ValuePendingAdvice) AS ValuePendingAdvice, SUM(ValueForecasts) AS ValueForecasts, SUM(ValueM1Forecasts) AS ValueM1Forecasts, SUM(ValueM2Forecasts) AS ValueM2Forecasts, SUM(ValueM3Forecasts) AS ValueM3Forecasts, SUM(MovementMIN) AS MovementMIN, SUM(MovementMAX) AS MovementMAX, SUM(MovementAVG) AS MovementAVG, MAX(M1M2M3ValueForecasts) AS M1M2M3ValueForecasts, MAX(LowDSI) AS LowDSI, MAX(LowDSILevel) AS LowDSILevel, MAX(HighDSI) AS HighDSI, MAX(HighDSILevel) AS HighDSILevel, MAX(AlertDSI) AS AlertDSI, MAX(AlertDSILevel) AS AlertDSILevel, " + "\r\n";
+            queryString = queryString + "                   SUM(ValueOnReceipt) AS ValueOnReceipt, SUM(ValueInventory) AS ValueInventory, SUM(ValueReserve) AS ValueReserve, SUM(ValueStock) AS ValueStock, SUM(ValueAvailable) AS ValueAvailable, SUM(DIOH3M) AS DIOH3M, " + "\r\n";
+            queryString = queryString + "                   SUM(MTDIssueDA) AS MTDIssueDA, SUM(MTDIssueDANotPromotion) AS MTDIssueDANotPromotion, SUM(MTDReceiptPickup) AS MTDReceiptPickup, SUM(AVR3MIssueDA) AS AVR3MIssueDA, SUM(AVR3MIssueDANotPromotion) AS AVR3MIssueDANotPromotion, SUM(AVR3MReceiptPickup) AS AVR3MReceiptPickup " + "\r\n";
+
+            queryString = queryString + "       FROM        (" + "\r\n";
+
+            queryString = queryString + "                   SELECT      EntryDate, LastEntryDate, LocationName, WarehouseName, BinLocationCode, CommodityCategoryName, CommodityID, Code, Name, PackageSize, " + "\r\n";
+            queryString = queryString + "                               ValueBegin, ValueReceiptPickup, ValueReceiptPurchasing, ValueReceiptTransfer, ValueReceiptReturn, ValueReceiptAdjustment, ValueReceipt, ValueIssueSelling, ValueIssueTransfer, ValueIssueProduction, ValueIssueAdjustment, ValueIssue, ValueEnd, ValueOnPurchasing, ValueOnPickup, ValueOnTransit, ValuePendingOrder, ValuePendingAdvice, ValueForecasts, ValueM1Forecasts, ValueM2Forecasts, ValueM3Forecasts, MovementMIN, MovementMAX, MovementAVG, M1M2M3ValueForecasts, LowDSI, LowDSILevel, HighDSI, HighDSILevel, AlertDSI, AlertDSILevel, " + "\r\n";
+            queryString = queryString + "                               (ValueOnPurchasing + ValueOnPickup + ValueOnTransit) AS ValueOnReceipt, (ValueEnd + ValueOnPurchasing + ValueOnPickup + ValueOnTransit) AS ValueInventory, (ValuePendingOrder + ValuePendingAdvice) AS ValueReserve, (ValueEnd + ValueOnPurchasing + ValueOnPickup + ValueOnTransit) - (ValuePendingOrder + ValuePendingAdvice) AS ValueStock, ValueEnd - (ValuePendingOrder + ValuePendingAdvice) AS ValueAvailable, CASE WHEN M1M2M3ValueForecasts > 0 THEN (  ((ValueEnd + ValueOnPurchasing + ValueOnPickup + ValueOnTransit) - (ValuePendingOrder + ValuePendingAdvice))/ (M1M2M3ValueForecasts / @M1M3Datediff)  )  ELSE 0 END AS DIOH3M, " + "\r\n"; //[OnHand = ValueEnd] [ValueOnReceipt = ValueOnPurchasing + ValueOnPickup + ValueOnTransit] [ValueInventory = ValueEnd + ValueOnReceipt] [ValueStock = ValueInventory - ValueReserve] [ValueAvailable =  ValueEnd - ValueReserve] [DIOH3M = ValueStock / (M1M2M3ValueForecasts/ 90)]
+            queryString = queryString + "                               0 AS MTDIssueDA, 0 AS MTDIssueDANotPromotion, 0 AS MTDReceiptPickup, 0 AS AVR3MIssueDA, 0 AS AVR3MIssueDANotPromotion, 0 AS AVR3MReceiptPickup " + "\r\n";
+            queryString = queryString + "                   FROM        @WarehouseForecasts " + this.WFReturnResultApplyFilter(isFilterIndex) + "\r\n";
 
             if (withHistorySales)
             {
-                queryString = queryString + "   UNION ALL   " + "\r\n";
-                queryString = queryString + "               " + this.InventoryAccumulationSelect(false, true) + this.WFReturnResultApplyFilter(isFilterIndex) + "\r\n";
+                queryString = queryString + "               UNION ALL   " + "\r\n";
+                queryString = queryString + "                           " + this.InventoryAccumulationSelect(false, true) + this.WFReturnResultApplyFilter(isFilterIndex) + "\r\n";
             }
+
+            queryString = queryString + "                   ) WarehouseForecastCollections " + "\r\n";
+            queryString = queryString + "       GROUP BY    " + (isPivotLocation ? "LocationName, " : "") + "CommodityID" + "\r\n";
+
             queryString = queryString + "   END " + "\r\n";
             return queryString;
         }
@@ -152,7 +178,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
             queryString = queryString + "       DECLARE @SlowMovingDate int = @LocalFilterID - " + (int)GlobalEnums.ForecastFilterID.SlowMoving + "\r\n";
             queryString = queryString + "       IF (@SlowMovingDate >= " + (int)GlobalEnums.ForecastFilterID.SlowMovingNoForecast + ")      SET @SlowMovingDate = @SlowMovingDate - " + (int)GlobalEnums.ForecastFilterID.SlowMovingNoForecast + "\r\n";
-            
+
             queryString = queryString + "       IF         (@LocalLocationIDs <> '') " + "\r\n";
             queryString = queryString + "                   " + this.WFFilterSlowMovingLocation(true) + "\r\n";
             queryString = queryString + "       ELSE " + "\r\n";
@@ -183,7 +209,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
         private string WFFilterSlowMovingLocationWarehouse(bool isLocationID, bool isWarehouseID)
         {
             string queryString = "";
-            queryString = queryString + "    BEGIN " + "\r\n";            
+            queryString = queryString + "    BEGIN " + "\r\n";
             queryString = queryString + "           INSERT INTO @CommodityFilters (CommodityID) SELECT CommodityID FROM Commodities WHERE CommodityID NOT IN (SELECT CommodityID FROM GoodsIssueDetails WHERE GoodsIssueTypeID = " + (int)GlobalEnums.GoodsIssueTypeID.DeliveryAdvice + " AND EntryDate >= DATEADD(Day, -@SlowMovingDate, @LocalToDate) AND EntryDate <= @LocalToDate" + this.DEFINEFilterLW(isLocationID, isWarehouseID, "GoodsIssueDetails") + ") " + "\r\n";
             queryString = queryString + "           IF ((@LocalFilterID - " + (int)GlobalEnums.ForecastFilterID.SlowMoving + ") >= " + (int)GlobalEnums.ForecastFilterID.SlowMovingNoForecast + ")      DELETE FROM @CommodityFilters WHERE CommodityID IN (SELECT CommodityID FROM @WarehouseForecasts WHERE ValueForecasts <> 0 OR ValueM1Forecasts <> 0 OR ValueM2Forecasts <> 0 OR ValueM3Forecasts <> 0) " + "\r\n"; //EXCLUDE THESE CommodityID WHICH HAVE FORECAST
 
@@ -197,11 +223,31 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
         private string WFUpdate_L_H_A_DIOH(bool isLocationID)
         {
             string queryString = "";
+            queryString = queryString + "   BEGIN " + "\r\n";
+            queryString = queryString + "       IF         (@LocalPivotLocation = 0) " + "\r\n";
+            queryString = queryString + "                   " + this.WFUpdate_L_H_A_DIOHPivotLocation(isLocationID, false) + "\r\n";
+            queryString = queryString + "       ELSE " + "\r\n";
+            queryString = queryString + "                   " + this.WFUpdate_L_H_A_DIOHPivotLocation(isLocationID, true) + "\r\n";
+            queryString = queryString + "   END " + "\r\n";
+            return queryString;
+        }
+        private string WFUpdate_L_H_A_DIOHPivotLocation(bool isLocationID, bool isPivotLocation)
+        {
+            string queryString = "";
 
             queryString = queryString + "       UPDATE      WarehouseForecasts " + "\r\n";
             queryString = queryString + "       SET         WarehouseForecasts.LowDSI = CommoditySettingDetails.LowDSI, WarehouseForecasts.HighDSI = CommoditySettingDetails.HighDSI, WarehouseForecasts.AlertDSI = CommoditySettingDetails.AlertDSI " + "\r\n";
             queryString = queryString + "       FROM        @WarehouseForecasts WarehouseForecasts " + "\r\n";
-            queryString = queryString + "                   LEFT JOIN (SELECT CommodityID, SettingLocationID AS LocationID, SUM(LowDSI) AS LowDSI, SUM(HighDSI) AS HighDSI, SUM(AlertDSI) AS AlertDSI FROM CommoditySettingDetails " + (isLocationID ? " WHERE SettingLocationID IN (SELECT Id FROM dbo.SplitToIntList (@LocationIDs)) " : "") + " GROUP BY CommodityID, SettingLocationID) CommoditySettingDetails ON WarehouseForecasts.CommodityID = CommoditySettingDetails.CommodityID AND WarehouseForecasts.LocationID = CommoditySettingDetails.LocationID " + "\r\n";
+            queryString = queryString + "                   LEFT JOIN (SELECT CommodityID" + (isPivotLocation ? ", SettingLocationID AS LocationID" : "") + ", SUM(LowDSI) AS LowDSI, SUM(HighDSI) AS HighDSI, SUM(AlertDSI) AS AlertDSI FROM CommoditySettingDetails " + (isLocationID ? " WHERE SettingLocationID IN (SELECT Id FROM dbo.SplitToIntList (@LocationIDs)) " : "") + " GROUP BY CommodityID" + (isPivotLocation ? ", SettingLocationID" : "") + ") CommoditySettingDetails ON WarehouseForecasts.CommodityID = CommoditySettingDetails.CommodityID " + (isPivotLocation ? "AND WarehouseForecasts.LocationID = CommoditySettingDetails.LocationID " : "") + "\r\n"; // BY CommodityID + [AND LocationID WHEN isPivotLocation]
+
+            return queryString;
+        }
+
+        private string WFUpdate_L_H_A_Level_M1M2M3(bool isPivotLocation)
+        {
+            string queryString = "";
+
+            queryString = queryString + "       UPDATE      WarehouseForecasts SET WarehouseForecasts.M1M2M3ValueForecasts = WarehouseForecastByCommodity.M1M2M3ValueForecasts, WarehouseForecasts.LowDSILevel = WarehouseForecasts.LowDSI * (WarehouseForecastByCommodity.M1M2M3ValueForecasts/ @M1M3Datediff), WarehouseForecasts.HighDSILevel = WarehouseForecasts.HighDSI * (WarehouseForecastByCommodity.M1M2M3ValueForecasts/ @M1M3Datediff), WarehouseForecasts.AlertDSILevel = WarehouseForecasts.AlertDSI * (WarehouseForecastByCommodity.M1M2M3ValueForecasts/ @M1M3Datediff) FROM @WarehouseForecasts WarehouseForecasts INNER JOIN (SELECT CommodityID" + (isPivotLocation ? ", LocationID" : "") + ", SUM(ValueM1Forecasts + ValueM2Forecasts + ValueM3Forecasts) AS M1M2M3ValueForecasts FROM @WarehouseForecasts GROUP BY CommodityID" + (isPivotLocation ? ", LocationID" : "") + ") WarehouseForecastByCommodity ON WarehouseForecasts.CommodityID = WarehouseForecastByCommodity.CommodityID " + (isPivotLocation ? "AND WarehouseForecasts.LocationID = WarehouseForecastByCommodity.LocationID " : "") + "\r\n"; //UPDATE TOTAL M1M2M3ValueForecasts, LowDSILevel, HighDSILevel, AlertDSILevel BY CommodityID + [AND LocationID WHEN isPivotLocation] (NOTE: WE UPDATE LowDSI, HighDSI, AlertDSI ALREADY BEFORE)
 
             return queryString;
         }
@@ -782,7 +828,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             queryString = queryString + "                   ISNULL(ISSUEEntryDate, RECEIPTEntryDate) AS EntryDate" + (withForecast ? ", NULL AS LastEntryDate" : "") + ", ISNULL(ISSUELocationName, RECEIPTLocationName) AS LocationName, ISNULL(ISSUEWarehouseName, RECEIPTWarehouseName) AS WarehouseName, ISNULL(ISSUEBinLocationCode, RECEIPTBinLocationCode) AS BinLocationCode, ISNULL(ISSUECommodityCategoryName, RECEIPTCommodityCategoryName) AS CommodityCategoryName, CommodityID, ISNULL(ISSUECode, RECEIPTCode) AS Code, ISNULL(ISSUEName, RECEIPTName) AS Name, ISNULL(ISSUEPackageSize, RECEIPTPackageSize) AS PackageSize, " + "\r\n";
             if (withForecast)
             {
-                queryString = queryString + "               0 AS ValueBegin, 0 AS ValueReceiptPickup, 0 AS ValueReceiptPurchasing, 0 AS ValueReceiptTransfer, 0 AS ValueReceiptReturn, 0 AS ValueReceiptAdjustment, 0 AS ValueReceipt, 0 AS ValueIssueSelling, 0 AS ValueIssueTransfer, 0 AS ValueIssueProduction, 0 AS ValueIssueAdjustment, 0 AS ValueIssue, 0 AS ValueEnd, 0 AS ValueOnPurchasing, 0 AS ValueOnPickup, 0 AS ValueOnTransit, 0 AS ValuePendingOrder, 0 AS ValuePendingAdvice, 0 AS ValueForecasts, 0 AS ValueM1Forecasts, 0 AS ValueM2Forecasts, 0 AS ValueM3Forecasts, 0 AS MovementMIN, 0 AS MovementMAX, 0 AS MovementAVG, 0 AS LowDSI, 0 AS HighDSI, 0 AS AlertDSI, " + "\r\n";
+                queryString = queryString + "               0 AS ValueBegin, 0 AS ValueReceiptPickup, 0 AS ValueReceiptPurchasing, 0 AS ValueReceiptTransfer, 0 AS ValueReceiptReturn, 0 AS ValueReceiptAdjustment, 0 AS ValueReceipt, 0 AS ValueIssueSelling, 0 AS ValueIssueTransfer, 0 AS ValueIssueProduction, 0 AS ValueIssueAdjustment, 0 AS ValueIssue, 0 AS ValueEnd, 0 AS ValueOnPurchasing, 0 AS ValueOnPickup, 0 AS ValueOnTransit, 0 AS ValuePendingOrder, 0 AS ValuePendingAdvice, 0 AS ValueForecasts, 0 AS ValueM1Forecasts, 0 AS ValueM2Forecasts, 0 AS ValueM3Forecasts, 0 AS MovementMIN, 0 AS MovementMAX, 0 AS MovementAVG, 0 AS M1M2M3ValueForecasts, 0 AS LowDSI, 0 AS LowDSILevel, 0 AS HighDSI, 0 AS HighDSILevel, 0 AS AlertDSI, 0 AS AlertDSILevel, " + "\r\n";
                 queryString = queryString + "               0 AS ValueOnReceipt, 0 AS ValueInventory, 0 AS ValueReserve, 0 AS ValueStock, 0 AS ValueAvailable, 0 AS DIOH3M, " + "\r\n";
             }
             queryString = queryString + "                   CASE WHEN MONTH(ISSUEEntryDate) = MONTH(@LocalToDate) THEN IIF(@LocalQuantityVersusVolume = 0, ISSUEQuantity, ISSUELineVolume) ELSE 0 END AS MTDIssueDA, " + "\r\n";
