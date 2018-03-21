@@ -128,16 +128,16 @@ namespace TotalBase
         public static int ConfigVersionID(int configID)
         {
             if (configID == (int)GlobalVariables.FillingLine.None)
-                return 73;
+                return 75;
             else if (configID == (int)GlobalVariables.FillingLine.Pickup)
-                return 73;
+                return 75;
             else if (configID == (int)GlobalVariables.FillingLine.GoodsIssue)
-                return 73;
+                return 75;
 
 
 
             else if (configID == (int)GlobalVariables.FillingLine.Smallpack || configID == (int)GlobalVariables.FillingLine.Pail || configID == (int)GlobalVariables.FillingLine.Drum)
-                return 73; //PAY ATTENTION WHEN CHANGE THIS VALUE BECAUSE: THIS IS USING ON THE FILLING LINES
+                return 75; //PAY ATTENTION WHEN CHANGE THIS VALUE BECAUSE: THIS IS USING ON THE FILLING LINES
             else
                 return -1;
         }
@@ -162,8 +162,8 @@ namespace TotalBase
         public static int PortNumber = 7000;
         public static string ComportName = "COM6";
 
-        public static string ReportServerUrl = "http://dell-e7240t/ReportServer_SQL2016";
-        //public static string ReportServerUrl = "http://vnhpbcvmsql01/ReportServer_SQL01";
+        //public static string ReportServerUrl = "http://dell-e7240t/ReportServer_SQL2016";
+        public static string ReportServerUrl = "http://vnhpbcvmsql01/ReportServer_SQL01";
 
         public const int ServerLineID = 99;
 
