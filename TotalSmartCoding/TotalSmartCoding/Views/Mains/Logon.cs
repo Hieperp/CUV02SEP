@@ -23,6 +23,8 @@ using System.Data.Entity.Core.Objects;
 using System.DirectoryServices.AccountManagement;
 using TotalSmartCoding.Controllers.APIs.Generals;
 using TotalCore.Repositories.Generals;
+using System.Net;
+using System.Net.Sockets;
 
 namespace TotalSmartCoding.Views.Mains
 {
@@ -199,6 +201,7 @@ namespace TotalSmartCoding.Views.Mains
                     ActiveUser activeUser = this.comboUserID.SelectedItem as ActiveUser;
                     if (activeUser != null)
                     {
+                        ContextAttributes.LocalIPAddress = this.GetLocalIPAddress();
                         ContextAttributes.User = new UserInformation(activeUser.UserID, activeUser.OrganizationalUnitID, activeUser.LocationID, activeUser.LocationName, activeUser.UserName, activeUser.SecurityIdentifier, activeUser.FullyQualifiedUserName, activeUser.IsDatabaseAdmin, new DateTime());
 
                         if (this.comboFillingLineID.Visible && (this.comboFillingLineID.SelectedIndex < 0 || this.comboComportName.SelectedIndex < 0)) throw new System.ArgumentException("Vui lòng chọn chuyền sản xuất (NOF1, NOF2, NOF...), và chọn đúng cổng COM để chạy phần mềm"); // || (this.comboFillingLineID.Enabled && (GlobalVariables.ProductionLine)this.comboFillingLineID.SelectedValue == GlobalVariables.ProductionLine.SERVER)
@@ -352,7 +355,18 @@ namespace TotalSmartCoding.Views.Mains
 
 
 
-
+        private string GetLocalIPAddress()
+        {
+            var host = Dns.GetHostEntry(Dns.GetHostName());
+            foreach (var ip in host.AddressList)
+            {
+                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    return ip.ToString();
+                }
+            }
+            throw new Exception("No network adapters with an IPv4 address in the system!");
+        }
 
 
 
