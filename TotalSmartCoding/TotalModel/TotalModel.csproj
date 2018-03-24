@@ -470,6 +470,15 @@
     <Compile Include="Models\WarehouseTree.cs">
       <DependentUpon>TotalSmartCoding.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\WholePendingDeliveryAdviceDetail.cs">
+      <DependentUpon>TotalSmartCoding.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WholePendingSalesOrderDetail.cs">
+      <DependentUpon>TotalSmartCoding.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WholePendingTransferOrderDetail.cs">
+      <DependentUpon>TotalSmartCoding.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validations\DatabaseConcurrencyException.cs" />
     <Compile Include="Validations\DatabaseValidationErrors.cs" />

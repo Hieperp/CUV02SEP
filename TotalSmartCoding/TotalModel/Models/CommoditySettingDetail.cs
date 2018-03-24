@@ -24,5 +24,6 @@ namespace TotalModel.Models
         public decimal AlertDSI { get; set; }
     
         public virtual CommoditySetting CommoditySetting { get; set; }
+        public virtual Commodity Commodity { get; set; }
     }
 }

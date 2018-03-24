@@ -161,6 +161,8 @@
         <EntityTypeShape EntityType="TotalSmartCodingModel.CommoditySetting" Width="1.5" PointX="18.375" PointY="8" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.CommoditySettingDetail" Width="1.5" PointX="20.625" PointY="8.25" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_CommoditySettingDetails_CommoditySettings" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_CommoditySettingDetails_Commodities" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_CommoditySettings_Commodities" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

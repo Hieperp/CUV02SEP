@@ -1069,6 +1069,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_CommoditySettingDetails_Commodities">
+          <End Role="Commodities" Type="Self.Commodities" Multiplicity="1" />
+          <End Role="CommoditySettingDetails" Type="Self.CommoditySettingDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Commodities">
+              <PropertyRef Name="CommodityID" />
+            </Principal>
+            <Dependent Role="CommoditySettingDetails">
+              <PropertyRef Name="CommodityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_CommoditySettingDetails_CommoditySettings">
           <End Role="CommoditySettings" Type="Self.CommoditySettings" Multiplicity="1" />
           <End Role="CommoditySettingDetails" Type="Self.CommoditySettingDetails" Multiplicity="*" />
@@ -1078,6 +1090,18 @@
             </Principal>
             <Dependent Role="CommoditySettingDetails">
               <PropertyRef Name="CommoditySettingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommoditySettings_Commodities">
+          <End Role="Commodities" Type="Self.Commodities" Multiplicity="1" />
+          <End Role="CommoditySettings" Type="Self.CommoditySettings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Commodities">
+              <PropertyRef Name="CommodityID" />
+            </Principal>
+            <Dependent Role="CommoditySettings">
+              <PropertyRef Name="CommodityID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2742,6 +2766,15 @@
         <Function Name="GetWarehouseTrees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="LocationID" Type="int" Mode="In" />
         </Function>
+        <Function Name="GetWholePendingDeliveryAdviceDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LocationID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetWholePendingSalesOrderDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LocationID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetWholePendingTransferOrderDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LocationID" Type="int" Mode="In" />
+        </Function>
         <Function Name="GoodsIssueApproved" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="EntityID" Type="int" Mode="In" />
         </Function>
@@ -3032,9 +3065,17 @@
             <End Role="CommodityCategories" EntitySet="CommodityCategories" />
             <End Role="CommodityCategories1" EntitySet="CommodityCategories" />
           </AssociationSet>
+          <AssociationSet Name="FK_CommoditySettingDetails_Commodities" Association="Self.FK_CommoditySettingDetails_Commodities">
+            <End Role="Commodities" EntitySet="Commodities" />
+            <End Role="CommoditySettingDetails" EntitySet="CommoditySettingDetails" />
+          </AssociationSet>
           <AssociationSet Name="FK_CommoditySettingDetails_CommoditySettings" Association="Self.FK_CommoditySettingDetails_CommoditySettings">
             <End Role="CommoditySettings" EntitySet="CommoditySettings" />
             <End Role="CommoditySettingDetails" EntitySet="CommoditySettingDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommoditySettings_Commodities" Association="Self.FK_CommoditySettings_Commodities">
+            <End Role="Commodities" EntitySet="Commodities" />
+            <End Role="CommoditySettings" EntitySet="CommoditySettings" />
           </AssociationSet>
           <AssociationSet Name="FK_CommodityTypes_CommodityTypes" Association="Self.FK_CommodityTypes_CommodityTypes">
             <End Role="CommodityTypes" EntitySet="CommodityTypes" />
@@ -4606,6 +4647,23 @@
             <End Role="CommoditySetting" EntitySet="CommoditySettings" />
             <End Role="CommoditySettingDetail" EntitySet="CommoditySettingDetails" />
           </AssociationSet>
+          <AssociationSet Name="FK_CommoditySettingDetails_Commodities" Association="TotalSmartCodingModel.FK_CommoditySettingDetails_Commodities">
+            <End Role="Commodity" EntitySet="Commodities" />
+            <End Role="CommoditySettingDetail" EntitySet="CommoditySettingDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommoditySettings_Commodities" Association="TotalSmartCodingModel.FK_CommoditySettings_Commodities">
+            <End Role="Commodity" EntitySet="Commodities" />
+            <End Role="CommoditySetting" EntitySet="CommoditySettings" />
+          </AssociationSet>
+          <FunctionImport Name="GetWholePendingDeliveryAdviceDetails" ReturnType="Collection(TotalSmartCodingModel.WholePendingDeliveryAdviceDetail)">
+            <Parameter Name="LocationID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetWholePendingSalesOrderDetails" ReturnType="Collection(TotalSmartCodingModel.WholePendingSalesOrderDetail)">
+            <Parameter Name="LocationID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetWholePendingTransferOrderDetails" ReturnType="Collection(TotalSmartCodingModel.WholePendingTransferOrderDetail)">
+            <Parameter Name="LocationID" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
           <Property Type="Int32" Name="PickupID" Nullable="false" />
@@ -5115,7 +5173,7 @@
           <Property Type="Decimal" Name="QuantityAvailable" Nullable="false" Precision="38" Scale="2" />
           <Property Type="Decimal" Name="LineVolumeAvailable" Nullable="false" Precision="38" Scale="2" />
           <Property Type="String" Name="SalesOrderVoucherCode" Nullable="true" MaxLength="60" />
-        </ComplexType>
+          </ComplexType>
         <ComplexType Name="PendingSalesOrder">
           <Property Type="Int32" Name="SalesOrderID" Nullable="false" />
           <Property Type="String" Name="SalesOrderReference" Nullable="true" MaxLength="10" />
@@ -5219,7 +5277,7 @@
           <Property Type="String" Name="PrimaryReference" Nullable="true" MaxLength="10" />
           <Property Type="DateTime" Name="PrimaryEntryDate" Nullable="false" Precision="23" />
           <Property Type="Int32" Name="SalespersonID" Nullable="false" />
-        </ComplexType>
+          </ComplexType>
         <ComplexType Name="PendingDeliveryAdvice">
           <Property Type="Int32" Name="DeliveryAdviceID" Nullable="false" />
           <Property Type="String" Name="DeliveryAdviceReference" Nullable="true" MaxLength="10" />
@@ -5849,6 +5907,8 @@
           <NavigationProperty Name="WarehouseAdjustmentDetails" Relationship="TotalSmartCodingModel.FK_WarehouseAdjustmentDetails_Commodities" FromRole="Commodity" ToRole="WarehouseAdjustmentDetail" />
           <NavigationProperty Name="CommodityCategory" Relationship="TotalSmartCodingModel.FK_Commodities_CommodityCategories" FromRole="Commodity" ToRole="CommodityCategory" />
           <NavigationProperty Name="CommodityType" Relationship="TotalSmartCodingModel.FK_Commodities_CommodityTypes" FromRole="Commodity" ToRole="CommodityType" />
+          <NavigationProperty Name="CommoditySettingDetails" Relationship="TotalSmartCodingModel.FK_CommoditySettingDetails_Commodities" FromRole="Commodity" ToRole="CommoditySettingDetail" />
+          <NavigationProperty Name="CommoditySettings" Relationship="TotalSmartCodingModel.FK_CommoditySettings_Commodities" FromRole="Commodity" ToRole="CommoditySetting" />
         </EntityType>
         <Association Name="FK_Cartons_Commodities">
           <End Type="TotalSmartCodingModel.Commodity" Role="Commodity" Multiplicity="1" />
@@ -8105,6 +8165,7 @@
           <Property Name="Approved" Type="Boolean" Nullable="false" />
           <Property Name="ApprovedDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="CommoditySettingDetails" Relationship="TotalSmartCodingModel.FK_CommoditySettingDetails_CommoditySettings" FromRole="CommoditySetting" ToRole="CommoditySettingDetail" />
+          <NavigationProperty Name="Commodity" Relationship="TotalSmartCodingModel.FK_CommoditySettings_Commodities" FromRole="CommoditySetting" ToRole="Commodity" />
         </EntityType>
         <EntityType Name="CommoditySettingDetail">
           <Key>
@@ -8119,6 +8180,7 @@
           <Property Name="HighDSI" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
           <Property Name="AlertDSI" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
           <NavigationProperty Name="CommoditySetting" Relationship="TotalSmartCodingModel.FK_CommoditySettingDetails_CommoditySettings" FromRole="CommoditySettingDetail" ToRole="CommoditySetting" />
+          <NavigationProperty Name="Commodity" Relationship="TotalSmartCodingModel.FK_CommoditySettingDetails_Commodities" FromRole="CommoditySettingDetail" ToRole="Commodity" />
         </EntityType>
         <Association Name="FK_CommoditySettingDetails_CommoditySettings">
           <End Type="TotalSmartCodingModel.CommoditySetting" Role="CommoditySetting" Multiplicity="1" />
@@ -8132,6 +8194,109 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_CommoditySettingDetails_Commodities">
+          <End Type="TotalSmartCodingModel.Commodity" Role="Commodity" Multiplicity="1" />
+          <End Type="TotalSmartCodingModel.CommoditySettingDetail" Role="CommoditySettingDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Commodity">
+              <PropertyRef Name="CommodityID" />
+            </Principal>
+            <Dependent Role="CommoditySettingDetail">
+              <PropertyRef Name="CommodityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommoditySettings_Commodities">
+          <End Type="TotalSmartCodingModel.Commodity" Role="Commodity" Multiplicity="1" />
+          <End Type="TotalSmartCodingModel.CommoditySetting" Role="CommoditySetting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Commodity">
+              <PropertyRef Name="CommodityID" />
+            </Principal>
+            <Dependent Role="CommoditySetting">
+              <PropertyRef Name="CommodityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="WholePendingDeliveryAdviceDetail">
+          <Property Type="Int32" Name="LocationID" Nullable="false" />
+          <Property Type="Int32" Name="DeliveryAdviceID" Nullable="false" />
+          <Property Type="Int32" Name="DeliveryAdviceDetailID" Nullable="false" />
+          <Property Type="String" Name="PrimaryReference" Nullable="true" MaxLength="10" />
+          <Property Type="DateTime" Name="PrimaryEntryDate" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="SalespersonID" Nullable="false" />
+          <Property Type="String" Name="CustomerCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="CustomerName" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="CommodityID" Nullable="false" />
+          <Property Type="String" Name="CommodityCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="CommodityName" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="PackageSize" Nullable="true" MaxLength="60" />
+          <Property Type="Decimal" Name="Volume" Nullable="false" Precision="18" Scale="3" />
+          <Property Type="Decimal" Name="PackageVolume" Nullable="false" Precision="18" Scale="3" />
+          <Property Type="Int32" Name="BatchID" Nullable="true" />
+          <Property Type="String" Name="BatchCode" Nullable="true" MaxLength="20" />
+          <Property Type="Decimal" Name="OriginalQuantity" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="OriginalLineVolume" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="QuantityRemains" Nullable="true" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="Quantity" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="LineVolumeRemains" Nullable="true" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="LineVolume" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="Remarks" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="Approved" Nullable="false" />
+          <Property Type="Boolean" Name="IsSelected" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="WholePendingSalesOrderDetail">
+          <Property Type="Int32" Name="SalesOrderID" Nullable="false" />
+          <Property Type="Int32" Name="SalesOrderDetailID" Nullable="false" />
+          <Property Type="String" Name="SalesOrderReference" Nullable="true" MaxLength="10" />
+          <Property Type="DateTime" Name="SalesOrderEntryDate" Nullable="false" Precision="23" />
+          <Property Type="String" Name="SalesOrderVoucherCode" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="CustomerCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="CustomerName" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="CommodityID" Nullable="false" />
+          <Property Type="String" Name="CommodityCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="CommodityName" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="PackageSize" Nullable="true" MaxLength="60" />
+          <Property Type="Decimal" Name="Volume" Nullable="false" Precision="18" Scale="3" />
+          <Property Type="Decimal" Name="PackageVolume" Nullable="false" Precision="18" Scale="3" />
+          <Property Type="Decimal" Name="QuantityAvailable" Nullable="true" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="LineVolumeAvailable" Nullable="true" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="OriginalQuantity" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="OriginalLineVolume" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="QuantityRemains" Nullable="true" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="Quantity" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="LineVolumeRemains" Nullable="true" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="LineVolume" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="Remarks" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="Approved" Nullable="false" />
+          <Property Type="Boolean" Name="IsSelected" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="WholePendingTransferOrderDetail">
+          <Property Type="Int32" Name="LocationID" Nullable="false" />
+          <Property Type="Int32" Name="TransferOrderID" Nullable="false" />
+          <Property Type="Int32" Name="TransferOrderDetailID" Nullable="false" />
+          <Property Type="String" Name="PrimaryReference" Nullable="true" MaxLength="10" />
+          <Property Type="DateTime" Name="PrimaryEntryDate" Nullable="false" Precision="23" />
+          <Property Type="String" Name="WarehouseCode" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="WarehouseName" Nullable="false" MaxLength="60" />
+          <Property Type="Int32" Name="CommodityID" Nullable="false" />
+          <Property Type="String" Name="CommodityCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="CommodityName" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="PackageSize" Nullable="true" MaxLength="60" />
+          <Property Type="Decimal" Name="Volume" Nullable="false" Precision="18" Scale="3" />
+          <Property Type="Decimal" Name="PackageVolume" Nullable="false" Precision="18" Scale="3" />
+          <Property Type="Int32" Name="BatchID" Nullable="true" />
+          <Property Type="String" Name="BatchCode" Nullable="true" MaxLength="20" />
+          <Property Type="Decimal" Name="OriginalQuantity" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="OriginalLineVolume" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="QuantityRemains" Nullable="true" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="Quantity" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="LineVolumeRemains" Nullable="true" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="LineVolume" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="Remarks" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="Approved" Nullable="false" />
+          <Property Type="Boolean" Name="IsSelected" Nullable="true" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -8783,7 +8948,7 @@
                 <ScalarProperty Name="QuantityAvailable" ColumnName="QuantityAvailable" />
                 <ScalarProperty Name="LineVolumeAvailable" ColumnName="LineVolumeAvailable" />
                 <ScalarProperty Name="SalesOrderVoucherCode" ColumnName="SalesOrderVoucherCode" />
-              </ComplexTypeMapping>
+                </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="GetPendingSalesOrders" FunctionName="TotalSmartCodingModel.Store.GetPendingSalesOrders">
@@ -8907,7 +9072,7 @@
                 <ScalarProperty Name="PrimaryReference" ColumnName="PrimaryReference" />
                 <ScalarProperty Name="PrimaryEntryDate" ColumnName="PrimaryEntryDate" />
                 <ScalarProperty Name="SalespersonID" ColumnName="SalespersonID" />
-              </ComplexTypeMapping>
+                </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="GetPendingDeliveryAdvices" FunctionName="TotalSmartCodingModel.Store.GetPendingDeliveryAdvices">
@@ -10681,6 +10846,97 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetWholePendingDeliveryAdviceDetails" FunctionName="TotalSmartCodingModel.Store.GetWholePendingDeliveryAdviceDetails">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TotalSmartCodingModel.WholePendingDeliveryAdviceDetail">
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+                <ScalarProperty Name="DeliveryAdviceID" ColumnName="DeliveryAdviceID" />
+                <ScalarProperty Name="DeliveryAdviceDetailID" ColumnName="DeliveryAdviceDetailID" />
+                <ScalarProperty Name="PrimaryReference" ColumnName="PrimaryReference" />
+                <ScalarProperty Name="PrimaryEntryDate" ColumnName="PrimaryEntryDate" />
+                <ScalarProperty Name="SalespersonID" ColumnName="SalespersonID" />
+                <ScalarProperty Name="CustomerCode" ColumnName="CustomerCode" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="CommodityID" ColumnName="CommodityID" />
+                <ScalarProperty Name="CommodityCode" ColumnName="CommodityCode" />
+                <ScalarProperty Name="CommodityName" ColumnName="CommodityName" />
+                <ScalarProperty Name="PackageSize" ColumnName="PackageSize" />
+                <ScalarProperty Name="Volume" ColumnName="Volume" />
+                <ScalarProperty Name="PackageVolume" ColumnName="PackageVolume" />
+                <ScalarProperty Name="BatchID" ColumnName="BatchID" />
+                <ScalarProperty Name="BatchCode" ColumnName="BatchCode" />
+                <ScalarProperty Name="OriginalQuantity" ColumnName="OriginalQuantity" />
+                <ScalarProperty Name="OriginalLineVolume" ColumnName="OriginalLineVolume" />
+                <ScalarProperty Name="QuantityRemains" ColumnName="QuantityRemains" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="LineVolumeRemains" ColumnName="LineVolumeRemains" />
+                <ScalarProperty Name="LineVolume" ColumnName="LineVolume" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="Approved" ColumnName="Approved" />
+                <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetWholePendingSalesOrderDetails" FunctionName="TotalSmartCodingModel.Store.GetWholePendingSalesOrderDetails">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TotalSmartCodingModel.WholePendingSalesOrderDetail">
+                <ScalarProperty Name="SalesOrderID" ColumnName="SalesOrderID" />
+                <ScalarProperty Name="SalesOrderDetailID" ColumnName="SalesOrderDetailID" />
+                <ScalarProperty Name="SalesOrderReference" ColumnName="SalesOrderReference" />
+                <ScalarProperty Name="SalesOrderEntryDate" ColumnName="SalesOrderEntryDate" />
+                <ScalarProperty Name="SalesOrderVoucherCode" ColumnName="SalesOrderVoucherCode" />
+                <ScalarProperty Name="CustomerCode" ColumnName="CustomerCode" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="CommodityID" ColumnName="CommodityID" />
+                <ScalarProperty Name="CommodityCode" ColumnName="CommodityCode" />
+                <ScalarProperty Name="CommodityName" ColumnName="CommodityName" />
+                <ScalarProperty Name="PackageSize" ColumnName="PackageSize" />
+                <ScalarProperty Name="Volume" ColumnName="Volume" />
+                <ScalarProperty Name="PackageVolume" ColumnName="PackageVolume" />
+                <ScalarProperty Name="QuantityAvailable" ColumnName="QuantityAvailable" />
+                <ScalarProperty Name="LineVolumeAvailable" ColumnName="LineVolumeAvailable" />
+                <ScalarProperty Name="OriginalQuantity" ColumnName="OriginalQuantity" />
+                <ScalarProperty Name="OriginalLineVolume" ColumnName="OriginalLineVolume" />
+                <ScalarProperty Name="QuantityRemains" ColumnName="QuantityRemains" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="LineVolumeRemains" ColumnName="LineVolumeRemains" />
+                <ScalarProperty Name="LineVolume" ColumnName="LineVolume" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="Approved" ColumnName="Approved" />
+                <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetWholePendingTransferOrderDetails" FunctionName="TotalSmartCodingModel.Store.GetWholePendingTransferOrderDetails">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TotalSmartCodingModel.WholePendingTransferOrderDetail">
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+                <ScalarProperty Name="TransferOrderID" ColumnName="TransferOrderID" />
+                <ScalarProperty Name="TransferOrderDetailID" ColumnName="TransferOrderDetailID" />
+                <ScalarProperty Name="PrimaryReference" ColumnName="PrimaryReference" />
+                <ScalarProperty Name="PrimaryEntryDate" ColumnName="PrimaryEntryDate" />
+                <ScalarProperty Name="WarehouseCode" ColumnName="WarehouseCode" />
+                <ScalarProperty Name="WarehouseName" ColumnName="WarehouseName" />
+                <ScalarProperty Name="CommodityID" ColumnName="CommodityID" />
+                <ScalarProperty Name="CommodityCode" ColumnName="CommodityCode" />
+                <ScalarProperty Name="CommodityName" ColumnName="CommodityName" />
+                <ScalarProperty Name="PackageSize" ColumnName="PackageSize" />
+                <ScalarProperty Name="Volume" ColumnName="Volume" />
+                <ScalarProperty Name="PackageVolume" ColumnName="PackageVolume" />
+                <ScalarProperty Name="BatchID" ColumnName="BatchID" />
+                <ScalarProperty Name="BatchCode" ColumnName="BatchCode" />
+                <ScalarProperty Name="OriginalQuantity" ColumnName="OriginalQuantity" />
+                <ScalarProperty Name="OriginalLineVolume" ColumnName="OriginalLineVolume" />
+                <ScalarProperty Name="QuantityRemains" ColumnName="QuantityRemains" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="LineVolumeRemains" ColumnName="LineVolumeRemains" />
+                <ScalarProperty Name="LineVolume" ColumnName="LineVolume" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="Approved" ColumnName="Approved" />
+                <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

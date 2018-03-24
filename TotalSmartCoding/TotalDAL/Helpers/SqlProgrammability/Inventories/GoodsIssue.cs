@@ -31,9 +31,9 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
 
             GenerateSQLPendingDetails generatePendingDeliveryAdviceDetails = new GenerateSQLPendingDetails(totalSmartCodingEntities, "GetPendingDeliveryAdviceDetails", "DeliveryAdviceDetails", "DeliveryAdviceID", "@DeliveryAdviceID", "DeliveryAdviceDetailID", "@DeliveryAdviceDetailIDs", "CustomerID", "@CustomerID", true, false, "PrimaryReference", "PrimaryEntryDate", "DeliveryAdviceDetails.SalespersonID");
-            generatePendingDeliveryAdviceDetails.GetPendingDeliveryAdviceDetails();
+            generatePendingDeliveryAdviceDetails.GetPendingDeliveryAdviceDetails(); generatePendingDeliveryAdviceDetails.GetWholePendingDeliveryAdviceDetails();
             GenerateSQLPendingDetails generatePendingTransferOrderDetails = new GenerateSQLPendingDetails(totalSmartCodingEntities, "GetPendingTransferOrderDetails", "TransferOrderDetails", "TransferOrderID", "@TransferOrderID", "TransferOrderDetailID", "@TransferOrderDetailIDs", "WarehouseReceiptID", "@WarehouseReceiptID", false, true, "PrimaryReference", "PrimaryEntryDate", null);
-            generatePendingTransferOrderDetails.GetPendingDeliveryAdviceDetails();
+            generatePendingTransferOrderDetails.GetPendingDeliveryAdviceDetails(); generatePendingTransferOrderDetails.GetWholePendingDeliveryAdviceDetails();
 
 
             this.GoodsIssueSaveRelative();
@@ -552,6 +552,35 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
                 queryString = queryString + "                   LEFT JOIN Batches ON " + this.primaryTableDetails + ".BatchID = Batches.BatchID " + "\r\n";
 
                 return queryString;
+            }
+
+
+
+            public void GetWholePendingDeliveryAdviceDetails() //TO GET WHOLE PENDING
+            {
+                string queryString;
+
+                queryString = " @LocationID Int " + "\r\n";
+                queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+                queryString = queryString + " AS " + "\r\n";
+
+                queryString = queryString + "   BEGIN " + "\r\n";
+
+                //THIS SELECT QUERY IS THE SAME AS THE BuildSQLNew  ==> AT EF, WE MAP TO THE SAME MODEL
+                queryString = queryString + "       SELECT      " + this.primaryTableDetails + ".LocationID, " + this.primaryTableDetails + "." + this.primaryKey + ", " + this.primaryTableDetails + "." + this.primaryKeyDetail + ", " + this.primaryTableDetails + ".Reference AS " + this.primaryReference + ", " + this.primaryTableDetails + ".EntryDate AS " + this.primaryEntryDate + ", " + (this.extraField != null ? this.extraField + ", " : "") + "\r\n";
+                queryString = queryString + "                   " + (this.isReceiverID ? " Customers.Code AS CustomerCode, Customers.Name AS CustomerName " : "") + (this.isWarehouse ? " Warehouses.Code AS WarehouseCode, Warehouses.Name AS WarehouseName " : "") + ", Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, Commodities.PackageSize, Commodities.Volume, Commodities.PackageVolume, " + this.primaryTableDetails + ".BatchID, Batches.Code AS BatchCode, " + "\r\n";
+                queryString = queryString + "                   " + this.primaryTableDetails + ".Quantity AS OriginalQuantity, " + this.primaryTableDetails + ".LineVolume AS OriginalLineVolume, ROUND(" + this.primaryTableDetails + ".Quantity - " + this.primaryTableDetails + ".QuantityIssue,  " + (int)GlobalEnums.rndQuantity + ") AS QuantityRemains, CAST(0 AS decimal(18, 2)) AS Quantity, ROUND(" + this.primaryTableDetails + ".LineVolume - " + this.primaryTableDetails + ".LineVolumeIssue,  " + (int)GlobalEnums.rndVolume + ") AS LineVolumeRemains, CAST(0 AS decimal(18, 2)) AS LineVolume, " + this.primaryTableDetails + ".Remarks, " + this.primaryTableDetails + ".Approved, CAST(0 AS bit) AS IsSelected " + "\r\n";
+
+                queryString = queryString + "       FROM        " + this.primaryTableDetails + " " + "\r\n";
+                queryString = queryString + "                   INNER JOIN Commodities ON " + this.primaryTableDetails + ".LocationID = @LocationID AND " + this.primaryTableDetails + ".InActive = 0 AND ROUND(" + this.primaryTableDetails + ".Quantity - " + this.primaryTableDetails + ".QuantityIssue, " + (int)GlobalEnums.rndQuantity + ") > 0 AND " + this.primaryTableDetails + ".CommodityID = Commodities.CommodityID" + "\r\n";
+
+                queryString = queryString + "                   INNER JOIN " + (this.isReceiverID ? " Customers ON DeliveryAdviceDetails.CustomerID = Customers.CustomerID " : "") + (this.isWarehouse ? " Warehouses ON TransferOrderDetails.WarehouseReceiptID = Warehouses.WarehouseID " : "") + "\r\n";
+                
+                queryString = queryString + "                   LEFT JOIN Batches ON " + this.primaryTableDetails + ".BatchID = Batches.BatchID " + "\r\n";
+
+                queryString = queryString + "   END " + "\r\n";
+
+                this.totalSmartCodingEntities.CreateStoredProcedure("GetWhole" + functionName.Replace("Get",""), queryString);
             }
         }
 

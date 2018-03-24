@@ -34,5 +34,6 @@ namespace TotalModel.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CommoditySettingDetail> CommoditySettingDetails { get; set; }
+        public virtual Commodity Commodity { get; set; }
     }
 }

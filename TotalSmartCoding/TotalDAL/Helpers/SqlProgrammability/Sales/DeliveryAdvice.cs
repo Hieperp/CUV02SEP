@@ -26,6 +26,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
             this.GetPendingSalesOrders();
             this.GetPendingSalesOrderCustomers();
             this.GetPendingSalesOrderDetails();
+            this.GetWholePendingSalesOrderDetails();
 
             this.DeliveryAdviceSaveRelative();
             this.DeliveryAdvicePostSaveValidate();
@@ -259,6 +260,29 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
             return queryString;
         }
 
+        private void GetWholePendingSalesOrderDetails()
+        {
+            string queryString;
+
+            queryString = " @LocationID Int " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+
+            queryString = queryString + "   BEGIN " + "\r\n";
+
+            //THIS SELECT QUERY IS THE SAME AS THE BuildSQLNew  ==> AT EF, WE MAP TO THE SAME MODEL
+            queryString = queryString + "       SELECT      SalesOrderDetails.SalesOrderID, SalesOrderDetails.SalesOrderDetailID, SalesOrderDetails.Reference AS SalesOrderReference, SalesOrderDetails.EntryDate AS SalesOrderEntryDate, SalesOrderDetails.VoucherCode AS SalesOrderVoucherCode, " + "\r\n";
+            queryString = queryString + "                   Customers.Code AS CustomerCode, Customers.Name AS CustomerName, Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, Commodities.PackageSize, Commodities.Volume, Commodities.PackageVolume, " + "\r\n";
+            queryString = queryString + "                   0 + CAST(0 AS decimal(18, 2)) AS QuantityAvailable, 0 + CAST(0 AS decimal(18, 2)) AS LineVolumeAvailable, SalesOrderDetails.Quantity AS OriginalQuantity, SalesOrderDetails.LineVolume AS OriginalLineVolume, ROUND(SalesOrderDetails.Quantity - SalesOrderDetails.QuantityAdvice,  " + (int)GlobalEnums.rndQuantity + ") AS QuantityRemains, CAST(0 AS decimal(18, 2)) AS Quantity, ROUND(SalesOrderDetails.LineVolume - SalesOrderDetails.LineVolumeAdvice, " + (int)GlobalEnums.rndVolume + ") AS LineVolumeRemains, CAST(0 AS decimal(18, 2)) AS LineVolume, SalesOrderDetails.Remarks, SalesOrderDetails.Approved, CAST(1 AS bit) AS IsSelected " + "\r\n";
+
+            queryString = queryString + "       FROM        SalesOrderDetails " + "\r\n";
+            queryString = queryString + "                   INNER JOIN Commodities ON SalesOrderDetails.LocationID = @LocationID AND SalesOrderDetails.InActive = 0 AND ROUND(SalesOrderDetails.Quantity - SalesOrderDetails.QuantityAdvice, " + (int)GlobalEnums.rndQuantity + ") > 0 AND SalesOrderDetails.CommodityID = Commodities.CommodityID " + "\r\n";
+            queryString = queryString + "                   INNER JOIN Customers ON SalesOrderDetails.CustomerID = Customers.CustomerID " + "\r\n";
+
+            queryString = queryString + "   END " + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("GetWholePendingSalesOrderDetails", queryString);
+        }
 
         private void GetBatchAvailables()
         {
@@ -282,14 +306,14 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
             queryString = queryString + "       ELSE " + "\r\n";
             queryString = queryString + "           IF (@TransferOrderID > 0) " + "\r\n";
             queryString = queryString + "                   BEGIN " + "\r\n";
-            queryString = queryString + "                       " + GenerateSQLCommoditiesAvailable.BuildSQL("@SearchTable", false, true, false , true, true, true, true) + "\r\n";
+            queryString = queryString + "                       " + GenerateSQLCommoditiesAvailable.BuildSQL("@SearchTable", false, true, false, true, true, true, true) + "\r\n";
             queryString = queryString + "                   END " + "\r\n";
             queryString = queryString + "           ELSE " + "\r\n";
             queryString = queryString + "                   BEGIN " + "\r\n";
             queryString = queryString + "                       " + GenerateSQLCommoditiesAvailable.BuildSQL("@SearchTable", false, false, false, true, false, true, true) + "\r\n";
             queryString = queryString + "                   END " + "\r\n";
 
-            
+
             queryString = queryString + "       SELECT      CommoditiesAvailableByBatches.BatchID, Batches.EntryDate, Batches.Code, CommoditiesAvailableByBatches.QuantityAvailable, CommoditiesAvailableByBatches.LineVolumeAvailable " + "\r\n";
             queryString = queryString + "       FROM       (SELECT BatchID, SUM(QuantityAvailable) AS QuantityAvailable, SUM(LineVolumeAvailable) AS LineVolumeAvailable FROM @CommoditiesAvailableByBatches GROUP BY BatchID) CommoditiesAvailableByBatches " + "\r\n";
             queryString = queryString + "                   INNER JOIN Batches ON CommoditiesAvailableByBatches.BatchID = Batches.BatchID " + "\r\n";

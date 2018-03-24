@@ -2457,5 +2457,32 @@ namespace TotalModel.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CommoditySettingIndex>("GetCommoditySettingIndexes", userIDParameter, fromDateParameter, toDateParameter);
         }
+    
+        public virtual ObjectResult<WholePendingDeliveryAdviceDetail> GetWholePendingDeliveryAdviceDetails(Nullable<int> locationID)
+        {
+            var locationIDParameter = locationID.HasValue ?
+                new ObjectParameter("LocationID", locationID) :
+                new ObjectParameter("LocationID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<WholePendingDeliveryAdviceDetail>("GetWholePendingDeliveryAdviceDetails", locationIDParameter);
+        }
+    
+        public virtual ObjectResult<WholePendingSalesOrderDetail> GetWholePendingSalesOrderDetails(Nullable<int> locationID)
+        {
+            var locationIDParameter = locationID.HasValue ?
+                new ObjectParameter("LocationID", locationID) :
+                new ObjectParameter("LocationID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<WholePendingSalesOrderDetail>("GetWholePendingSalesOrderDetails", locationIDParameter);
+        }
+    
+        public virtual ObjectResult<WholePendingTransferOrderDetail> GetWholePendingTransferOrderDetails(Nullable<int> locationID)
+        {
+            var locationIDParameter = locationID.HasValue ?
+                new ObjectParameter("LocationID", locationID) :
+                new ObjectParameter("LocationID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<WholePendingTransferOrderDetail>("GetWholePendingTransferOrderDetails", locationIDParameter);
+        }
     }
 }
