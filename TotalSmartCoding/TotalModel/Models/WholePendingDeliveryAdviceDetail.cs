@@ -32,11 +32,8 @@ namespace TotalModel.Models
         public decimal OriginalQuantity { get; set; }
         public decimal OriginalLineVolume { get; set; }
         public Nullable<decimal> QuantityRemains { get; set; }
-        public Nullable<decimal> Quantity { get; set; }
         public Nullable<decimal> LineVolumeRemains { get; set; }
-        public Nullable<decimal> LineVolume { get; set; }
         public string Remarks { get; set; }
         public bool Approved { get; set; }
-        public Nullable<bool> IsSelected { get; set; }
     }
 }

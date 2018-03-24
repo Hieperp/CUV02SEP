@@ -200,6 +200,7 @@
     <Compile Include="ViewModels\Productions\PalletViewModel.cs" />
     <Compile Include="ViewModels\Sales\DeliveryAdviceViewModel.cs" />
     <Compile Include="ViewModels\Sales\ForecastViewModel.cs" />
+    <Compile Include="ViewModels\Sales\PendingOrderViewModel.cs" />
     <Compile Include="ViewModels\Sales\SalesOrderViewModel.cs" />
     <Compile Include="ViewModels\Sales\TransferOrderViewModel.cs" />
     <Compile Include="Views\Commons\BinLocations\BinLocations.cs">
@@ -458,6 +459,12 @@
     <Compile Include="Views\Sales\OptionBatches.Designer.cs">
       <DependentUpon>OptionBatches.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Sales\PendingOrders\PendingOrders.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Sales\PendingOrders\PendingOrders.designer.cs">
+      <DependentUpon>PendingOrders.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Sales\SalesOrders\SalesOrders.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -617,6 +624,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Sales\OptionBatches.resx">
       <DependentUpon>OptionBatches.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Sales\PendingOrders\PendingOrders.resx">
+      <DependentUpon>PendingOrders.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Sales\SalesOrders\SalesOrders.resx">
       <DependentUpon>SalesOrders.cs</DependentUpon>

@@ -74,20 +74,36 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
         }
 
         Binding bindingLocationID;
+        Binding bindingOnlyIssuable;
+        Binding bindingOnlyApproved;
 
         protected override void InitializeCommonControlBinding()
         {
             base.InitializeCommonControlBinding();
 
-            this.locationID = ContextAttributes.User.LocationID; //JUST INIT THE local parameter only. DON'T INIT VIA: this.LocationID: BECAUSE IT WILL RAISE THE LocationID CHANGE EVENT
-            LocationAPIs locationAPIs = new LocationAPIs(CommonNinject.Kernel.Get<ILocationAPIRepository>());
+            //JUST INIT THE local parameter only. DON'T INIT VIA: this.LocationID: BECAUSE IT WILL RAISE THE LocationID CHANGE EVENT
+            this.locationID = ContextAttributes.User.LocationID;
+            this.onlyApproved = true; this.onlyIssuable = true;
 
+            LocationAPIs locationAPIs = new LocationAPIs(CommonNinject.Kernel.Get<ILocationAPIRepository>());
             this.comboLocationID.ComboBox.DataSource = locationAPIs.GetLocationBases();
             this.comboLocationID.ComboBox.DisplayMember = CommonExpressions.PropertyName<LocationBase>(p => p.Name);
             this.comboLocationID.ComboBox.ValueMember = CommonExpressions.PropertyName<LocationBase>(p => p.LocationID);
             this.bindingLocationID = this.comboLocationID.ComboBox.DataBindings.Add("SelectedValue", this, "LocationID", true, DataSourceUpdateMode.OnPropertyChanged);
 
+            this.comboOnlyIssuable.ComboBox.DataSource = new List<OptionBool>() { new OptionBool() { OptionValue = true, OptionDescription = "Issuable Only" }, new OptionBool() { OptionValue = false, OptionDescription = "Include Hold Items" } };
+            this.comboOnlyIssuable.ComboBox.DisplayMember = CommonExpressions.PropertyName<OptionBool>(p => p.OptionDescription);
+            this.comboOnlyIssuable.ComboBox.ValueMember = CommonExpressions.PropertyName<OptionBool>(p => p.OptionValue);
+            this.bindingOnlyIssuable = this.comboOnlyIssuable.ComboBox.DataBindings.Add("SelectedValue", this, "OnlyIssuable", true, DataSourceUpdateMode.OnPropertyChanged);
+
+            this.comboOnlyApproved.ComboBox.DataSource = new List<OptionBool>() { new OptionBool() { OptionValue = true, OptionDescription = "Verified Only" }, new OptionBool() { OptionValue = false, OptionDescription = "Incclude not Verified Items" } };
+            this.comboOnlyApproved.ComboBox.DisplayMember = CommonExpressions.PropertyName<OptionBool>(p => p.OptionDescription);
+            this.comboOnlyApproved.ComboBox.ValueMember = CommonExpressions.PropertyName<OptionBool>(p => p.OptionValue);
+            this.bindingOnlyApproved = this.comboOnlyApproved.ComboBox.DataBindings.Add("SelectedValue", this, "OnlyApproved", true, DataSourceUpdateMode.OnPropertyChanged);
+
             this.bindingLocationID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingOnlyIssuable.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingOnlyApproved.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
 
             this.fastAvailablePallets.AboutToCreateGroups += fastAvailableItems_AboutToCreateGroups;
             this.fastAvailableCartons.AboutToCreateGroups += fastAvailableItems_AboutToCreateGroups;
@@ -111,7 +127,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
         {
             try
             {
-                List<GoodsReceiptDetailAvailable> goodsReceiptDetailAvailables = goodsReceiptAPIs.GetGoodsReceiptDetailAvailables(this.LocationID, null, null, null, null, null, false);
+                List<GoodsReceiptDetailAvailable> goodsReceiptDetailAvailables = goodsReceiptAPIs.GetGoodsReceiptDetailAvailables(this.LocationID, null, null, null, null, null, this.OnlyApproved, this.OnlyIssuable);
 
                 this.fastAvailablePallets.SelectedObject = null; this.fastAvailablePallets.SelectedObjects = null;
                 this.fastAvailableCartons.SelectedObject = null; this.fastAvailableCartons.SelectedObjects = null;
@@ -152,6 +168,34 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
                 {
                     this.locationID = value;
                     if (this.locationID > 0) this.Loading();
+                }
+            }
+        }
+
+        private bool onlyApproved;
+        public bool OnlyApproved
+        {
+            get { return this.onlyApproved; }
+            set
+            {
+                if (this.onlyApproved != value)
+                {
+                    this.onlyApproved = value;
+                    this.Loading();
+                }
+            }
+        }
+
+        private bool onlyIssuable;
+        public bool OnlyIssuable
+        {
+            get { return this.onlyIssuable; }
+            set
+            {
+                if (this.onlyIssuable != value)
+                {
+                    this.onlyIssuable = value;
+                    this.Loading();
                 }
             }
         }

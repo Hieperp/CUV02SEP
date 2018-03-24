@@ -43,5 +43,7 @@ namespace TotalModel.Models
         public decimal Volume { get; set; }
         public decimal PackageVolume { get; set; }
         public string LineReferences { get; set; }
+        public bool Approved { get; set; }
+        public bool Issuable { get; set; }
     }
 }

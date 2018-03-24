@@ -99,7 +99,7 @@
             GoodsReceipt = 8077,
             WarehouseAdjustment = 8078,
             GoodsReceiptDetailAvailable = 800001,
-
+            PendingOrder = 80000101,
 
             TransferOrder = 8071,
 

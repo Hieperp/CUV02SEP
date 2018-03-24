@@ -2517,6 +2517,7 @@
           <Parameter Name="CommodityIDs" Type="varchar" Mode="In" />
           <Parameter Name="BatchID" Type="int" Mode="In" />
           <Parameter Name="GoodsReceiptDetailIDs" Type="varchar" Mode="In" />
+          <Parameter Name="OnlyApproved" Type="bit" Mode="In" />
           <Parameter Name="OnlyIssuable" Type="bit" Mode="In" />
         </Function>
         <Function Name="GetGoodsReceiptIDofWarehouseAdjustment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -3845,6 +3846,7 @@
             <Parameter Name="CommodityIDs" Mode="In" Type="String" />
             <Parameter Name="BatchID" Mode="In" Type="Int32" />
             <Parameter Name="GoodsReceiptDetailIDs" Mode="In" Type="String" />
+            <Parameter Name="OnlyApproved" Mode="In" Type="Boolean" />
             <Parameter Name="OnlyIssuable" Mode="In" Type="Boolean" />
           </FunctionImport>
           <EntitySet Name="WarehouseAdjustmentTypes" EntityType="TotalSmartCodingModel.WarehouseAdjustmentType" />
@@ -4656,13 +4658,13 @@
             <End Role="CommoditySetting" EntitySet="CommoditySettings" />
           </AssociationSet>
           <FunctionImport Name="GetWholePendingDeliveryAdviceDetails" ReturnType="Collection(TotalSmartCodingModel.WholePendingDeliveryAdviceDetail)">
-            <Parameter Name="LocationID" Mode="In" Type="Int32" />
+          <Parameter Name="LocationID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetWholePendingSalesOrderDetails" ReturnType="Collection(TotalSmartCodingModel.WholePendingSalesOrderDetail)">
-            <Parameter Name="LocationID" Mode="In" Type="Int32" />
+          <Parameter Name="LocationID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetWholePendingTransferOrderDetails" ReturnType="Collection(TotalSmartCodingModel.WholePendingTransferOrderDetail)">
-            <Parameter Name="LocationID" Mode="In" Type="Int32" />
+          <Parameter Name="LocationID" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
@@ -5450,6 +5452,8 @@
           <Property Type="Decimal" Name="Volume" Nullable="false" Precision="18" Scale="3" />
           <Property Type="Decimal" Name="PackageVolume" Nullable="false" Precision="18" Scale="3" />
           <Property Type="String" Name="LineReferences" Nullable="true" MaxLength="23" />
+          <Property Type="Boolean" Name="Approved" Nullable="false" />
+          <Property Type="Boolean" Name="Issuable" Nullable="false" />
         </ComplexType>
         <EntityType Name="WarehouseAdjustmentType">
           <Key>
@@ -8238,12 +8242,9 @@
           <Property Type="Decimal" Name="OriginalQuantity" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="OriginalLineVolume" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="QuantityRemains" Nullable="true" Precision="19" Scale="2" />
-          <Property Type="Decimal" Name="Quantity" Nullable="true" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="LineVolumeRemains" Nullable="true" Precision="19" Scale="2" />
-          <Property Type="Decimal" Name="LineVolume" Nullable="true" Precision="18" Scale="2" />
           <Property Type="String" Name="Remarks" Nullable="true" MaxLength="100" />
           <Property Type="Boolean" Name="Approved" Nullable="false" />
-          <Property Type="Boolean" Name="IsSelected" Nullable="true" />
         </ComplexType>
         <ComplexType Name="WholePendingSalesOrderDetail">
           <Property Type="Int32" Name="SalesOrderID" Nullable="false" />
@@ -8259,17 +8260,12 @@
           <Property Type="String" Name="PackageSize" Nullable="true" MaxLength="60" />
           <Property Type="Decimal" Name="Volume" Nullable="false" Precision="18" Scale="3" />
           <Property Type="Decimal" Name="PackageVolume" Nullable="false" Precision="18" Scale="3" />
-          <Property Type="Decimal" Name="QuantityAvailable" Nullable="true" Precision="19" Scale="2" />
-          <Property Type="Decimal" Name="LineVolumeAvailable" Nullable="true" Precision="19" Scale="2" />
           <Property Type="Decimal" Name="OriginalQuantity" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="OriginalLineVolume" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="QuantityRemains" Nullable="true" Precision="19" Scale="2" />
-          <Property Type="Decimal" Name="Quantity" Nullable="true" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="LineVolumeRemains" Nullable="true" Precision="19" Scale="2" />
-          <Property Type="Decimal" Name="LineVolume" Nullable="true" Precision="18" Scale="2" />
           <Property Type="String" Name="Remarks" Nullable="true" MaxLength="100" />
           <Property Type="Boolean" Name="Approved" Nullable="false" />
-          <Property Type="Boolean" Name="IsSelected" Nullable="true" />
         </ComplexType>
         <ComplexType Name="WholePendingTransferOrderDetail">
           <Property Type="Int32" Name="LocationID" Nullable="false" />
@@ -8290,12 +8286,9 @@
           <Property Type="Decimal" Name="OriginalQuantity" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="OriginalLineVolume" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="QuantityRemains" Nullable="true" Precision="19" Scale="2" />
-          <Property Type="Decimal" Name="Quantity" Nullable="true" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="LineVolumeRemains" Nullable="true" Precision="19" Scale="2" />
-          <Property Type="Decimal" Name="LineVolume" Nullable="true" Precision="18" Scale="2" />
           <Property Type="String" Name="Remarks" Nullable="true" MaxLength="100" />
           <Property Type="Boolean" Name="Approved" Nullable="false" />
-          <Property Type="Boolean" Name="IsSelected" Nullable="true" />
         </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
@@ -9203,6 +9196,8 @@
                 <ScalarProperty Name="Volume" ColumnName="Volume" />
                 <ScalarProperty Name="PackageVolume" ColumnName="PackageVolume" />
                 <ScalarProperty Name="LineReferences" ColumnName="LineReferences" />
+                <ScalarProperty Name="Approved" ColumnName="Approved" />
+                <ScalarProperty Name="Issuable" ColumnName="Issuable" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -10868,12 +10863,9 @@
                 <ScalarProperty Name="OriginalQuantity" ColumnName="OriginalQuantity" />
                 <ScalarProperty Name="OriginalLineVolume" ColumnName="OriginalLineVolume" />
                 <ScalarProperty Name="QuantityRemains" ColumnName="QuantityRemains" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="LineVolumeRemains" ColumnName="LineVolumeRemains" />
-                <ScalarProperty Name="LineVolume" ColumnName="LineVolume" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
                 <ScalarProperty Name="Approved" ColumnName="Approved" />
-                <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -10893,17 +10885,12 @@
                 <ScalarProperty Name="PackageSize" ColumnName="PackageSize" />
                 <ScalarProperty Name="Volume" ColumnName="Volume" />
                 <ScalarProperty Name="PackageVolume" ColumnName="PackageVolume" />
-                <ScalarProperty Name="QuantityAvailable" ColumnName="QuantityAvailable" />
-                <ScalarProperty Name="LineVolumeAvailable" ColumnName="LineVolumeAvailable" />
                 <ScalarProperty Name="OriginalQuantity" ColumnName="OriginalQuantity" />
                 <ScalarProperty Name="OriginalLineVolume" ColumnName="OriginalLineVolume" />
                 <ScalarProperty Name="QuantityRemains" ColumnName="QuantityRemains" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="LineVolumeRemains" ColumnName="LineVolumeRemains" />
-                <ScalarProperty Name="LineVolume" ColumnName="LineVolume" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
                 <ScalarProperty Name="Approved" ColumnName="Approved" />
-                <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -10928,12 +10915,9 @@
                 <ScalarProperty Name="OriginalQuantity" ColumnName="OriginalQuantity" />
                 <ScalarProperty Name="OriginalLineVolume" ColumnName="OriginalLineVolume" />
                 <ScalarProperty Name="QuantityRemains" ColumnName="QuantityRemains" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="LineVolumeRemains" ColumnName="LineVolumeRemains" />
-                <ScalarProperty Name="LineVolume" ColumnName="LineVolume" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
                 <ScalarProperty Name="Approved" ColumnName="Approved" />
-                <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

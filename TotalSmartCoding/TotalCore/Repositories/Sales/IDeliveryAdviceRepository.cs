@@ -13,7 +13,8 @@ namespace TotalCore.Repositories.Sales
     {
         List<PendingSalesOrder> GetPendingSalesOrders(int? locationID);
         List<PendingSalesOrderCustomer> GetPendingSalesOrderCustomers(int? locationID);
-        List<PendingSalesOrderDetail> GetPendingSalesOrderDetails(int? locationID, int? deliveryAdviceID, int? salesOrderID, int? customerID, int? receiverID, string salesOrderDetailIDs, bool isReadonly);        
+        List<PendingSalesOrderDetail> GetPendingSalesOrderDetails(int? locationID, int? deliveryAdviceID, int? salesOrderID, int? customerID, int? receiverID, string salesOrderDetailIDs, bool isReadonly);
+        List<WholePendingSalesOrderDetail> GetWholePendingSalesOrderDetails(int? locationID);
     }
 
 }

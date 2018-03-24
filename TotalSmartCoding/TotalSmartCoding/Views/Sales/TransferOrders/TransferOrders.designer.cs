@@ -590,13 +590,13 @@
             this.contextMenuDetails.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuOptionBatches});
             this.contextMenuDetails.Name = "contextMenuDetails";
-            this.contextMenuDetails.Size = new System.Drawing.Size(219, 28);
+            this.contextMenuDetails.Size = new System.Drawing.Size(225, 30);
             this.contextMenuDetails.Text = "Context MenuDetails";
             // 
             // menuOptionBatches
             // 
             this.menuOptionBatches.Name = "menuOptionBatches";
-            this.menuOptionBatches.Size = new System.Drawing.Size(218, 24);
+            this.menuOptionBatches.Size = new System.Drawing.Size(224, 26);
             this.menuOptionBatches.Text = "Set batch for this line";
             this.menuOptionBatches.Click += new System.EventHandler(this.menuOptionBatches_Click);
             // 
@@ -961,6 +961,11 @@
             this.imageList32.Images.SetKeyName(5, "Storage32");
             this.imageList32.Images.SetKeyName(6, "Sales-Order-32");
             this.imageList32.Images.SetKeyName(7, "Sign_Order_32");
+            this.imageList32.Images.SetKeyName(8, "transfer");
+            this.imageList32.Images.SetKeyName(9, "filetransfer24");
+            this.imageList32.Images.SetKeyName(10, "filetransfer32");
+            this.imageList32.Images.SetKeyName(11, "Newtransfer32");
+            this.imageList32.Images.SetKeyName(12, "Greentransfer32");
             // 
             // TransferOrders
             // 

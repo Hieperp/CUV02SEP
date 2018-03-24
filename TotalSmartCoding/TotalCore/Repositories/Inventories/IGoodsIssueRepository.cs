@@ -20,6 +20,9 @@ namespace TotalCore.Repositories.Inventories
 
         List<PendingDeliveryAdviceDetail> GetPendingDeliveryAdviceDetails(int? locationID, int? goodsIssueID, int? deliveryAdviceID, int? customerID, int? receiverID, string deliveryAdviceDetailIDs, bool isReadonly);
         List<PendingTransferOrderDetail> GetPendingTransferOrderDetails(int? locationID, int? goodsIssueID, int? warehouseID, int? transferOrderID, int? warehouseReceiptID, string transferOrderDetailIDs, bool isReadonly);
+
+        List<WholePendingDeliveryAdviceDetail> GetWholePendingDeliveryAdviceDetails(int? locationID);
+        List<WholePendingTransferOrderDetail> GetWholePendingTransferOrderDetails(int? locationID);
     }
 
 }

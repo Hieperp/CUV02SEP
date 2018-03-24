@@ -220,7 +220,7 @@ namespace TotalSmartCoding.Views.Mains
                         CommonConfigs.AddUpdateAppSetting("ConfigID", (GlobalVariables.ConfigID).ToString());
                         CommonConfigs.AddUpdateAppSetting("ComportName", GlobalVariables.ComportName);
 
-                        CommonConfigs.AddUpdateAppSetting("ReportServerUrl", GlobalVariables.ReportServerUrl); //WILL BE REMOVE THIS LINE
+                        if (CommonConfigs.ReadSetting("ReportServerUrl") == "") CommonConfigs.AddUpdateAppSetting("ReportServerUrl", GlobalVariables.ReportServerUrl); //INIT NEW Setting IN CONFIG FILE
                         GlobalVariables.ReportServerUrl = CommonConfigs.ReadSetting("ReportServerUrl");
 
                         this.VersionValidate();

@@ -38,5 +38,9 @@ namespace TotalSmartCoding.Controllers.APIs.Sales
             return this.deliveryAdviceAPIRepository.GetPendingSalesOrderDetails(locationID, deliveryAdviceID, salesOrderID, customerID, receiverID, salesOrderDetailIDs, isReadonly);
         }
 
+        public List<WholePendingSalesOrderDetail> GetWholePendingSalesOrderDetails(int? locationID)
+        {
+            return this.deliveryAdviceAPIRepository.GetWholePendingSalesOrderDetails(locationID);
+        }
     }
 }

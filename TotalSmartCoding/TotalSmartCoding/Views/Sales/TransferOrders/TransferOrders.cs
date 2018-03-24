@@ -220,7 +220,7 @@ namespace TotalSmartCoding.Views.Sales.TransferOrders
             {
                 foreach (OLVGroup olvGroup in e.Groups)
                 {
-                    olvGroup.TitleImage = "Sign_Order_32";
+                    olvGroup.TitleImage = "filetransfer32";
                     olvGroup.Subtitle = "Count: " + olvGroup.Contents.Count.ToString() + " Order(s)";
                 }
             }

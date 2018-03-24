@@ -36,4 +36,10 @@ namespace TotalBase
         }
 
     }
+
+    public class OptionBool
+    {
+        public bool OptionValue { get; set; }
+        public string OptionDescription { get; set; }
+    }
 }

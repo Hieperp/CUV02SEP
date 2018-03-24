@@ -44,7 +44,12 @@ namespace TotalDAL.Repositories.Sales
         public List<PendingSalesOrderDetail> GetPendingSalesOrderDetails(int? locationID, int? deliveryAdviceID, int? salesOrderID, int? customerID, int? receiverID, string salesOrderDetailIDs, bool isReadonly)
         {
             return base.TotalSmartCodingEntities.GetPendingSalesOrderDetails(locationID, deliveryAdviceID, salesOrderID, customerID, receiverID, salesOrderDetailIDs, isReadonly).ToList();
-        }        
+        }
+
+        public List<WholePendingSalesOrderDetail> GetWholePendingSalesOrderDetails(int? locationID)
+        {
+            return base.TotalSmartCodingEntities.GetWholePendingSalesOrderDetails(locationID).ToList();
+        }
     }
 
 

@@ -45,6 +45,7 @@ using TotalSmartCoding.Views.Commons.Commodities;
 using TotalSmartCoding.Views.Generals;
 using BrightIdeasSoftware;
 using TotalSmartCoding.Views.Commons.CommoditySettings;
+using TotalSmartCoding.Views.Sales.PendingOrders;
 
 
 namespace TotalSmartCoding.Views.Mains
@@ -442,6 +443,10 @@ namespace TotalSmartCoding.Views.Mains
 
                         case (int)GlobalEnums.NmvnTaskID.GoodsReceiptDetailAvailable:
                             openingView = new GoodsReceiptDetailAvailables();
+                            break;
+
+                        case (int)GlobalEnums.NmvnTaskID.PendingOrder:
+                            openingView = new PendingOrders();
                             break;
 
                         case (int)GlobalEnums.NmvnTaskID.Report:
