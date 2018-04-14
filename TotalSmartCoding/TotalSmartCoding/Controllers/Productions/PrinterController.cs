@@ -710,7 +710,7 @@ namespace TotalSmartCoding.Controllers.Productions
             if (GlobalEnums.OnTestPrinter && this.printerName != GlobalVariables.PrinterName.DigitInkjet) this.feedbackNextNo((int.Parse(this.getNextNo()) + 1).ToString("0000000").Substring(1));
 
             //This command line is specific to: PalletLabel ON FillingLine.Drum || CartonInkjet ON FillingLine.Pail (Just here only for this specific)
-            if (GlobalEnums.OnTestPrinter || (this.FillingData.FillingLineID == GlobalVariables.FillingLine.Drum && this.printerName != GlobalVariables.PrinterName.PalletLabel) || (this.FillingData.FillingLineID == GlobalVariables.FillingLine.Pail && this.printerName == GlobalVariables.PrinterName.PackInkjet) || (this.printerName == GlobalVariables.PrinterName.DigitInkjet && GlobalEnums.OnTestDigit)) { this.LedGreenOn = true; return; } //DO NOTHING
+            if (GlobalEnums.OnTestPrinter || (this.FillingData.FillingLineID == GlobalVariables.FillingLine.Drum && this.printerName != GlobalVariables.PrinterName.PalletLabel) || (this.FillingData.FillingLineID == GlobalVariables.FillingLine.Pail && this.printerName == GlobalVariables.PrinterName.PackInkjet) || (this.printerName == GlobalVariables.PrinterName.DigitInkjet && GlobalEnums.OnTestDigit)) { this.setLED(true, this.LedAmberOn, this.LedRedOn); return; } //DO NOTHING
 
 
             try
