@@ -36,5 +36,7 @@ namespace TotalModel.Models
         public decimal Volume { get; set; }
         public string CommodityAPICode { get; set; }
         public int Shelflife { get; set; }
+        public decimal TotalQuantity { get; set; }
+        public bool AutoBarcode { get; set; }
     }
 }

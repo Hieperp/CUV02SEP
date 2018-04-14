@@ -26,6 +26,8 @@
           <Property Name="IsDefault" Type="bit" Nullable="false" />
           <Property Name="InActive" Type="bit" Nullable="false" />
           <Property Name="InActiveDate" Type="datetime" />
+          <Property Name="AutoBarcode" Type="bit" Nullable="false" />
+          <Property Name="TotalQuantity" Type="decimal" Precision="18" Scale="3" Nullable="false" />
         </EntityType>
         <EntityType Name="BinLocations">
           <Key>
@@ -4792,6 +4794,8 @@
           <Property Type="Decimal" Name="Volume" Nullable="false" Precision="18" Scale="3" />
           <Property Type="String" Name="CommodityAPICode" Nullable="true" MaxLength="60" />
           <Property Type="Int32" Name="Shelflife" Nullable="false" />
+          <Property Type="Decimal" Name="TotalQuantity" Nullable="false" Precision="18" Scale="3" />
+          <Property Type="Boolean" Name="AutoBarcode" Nullable="false" />
         </ComplexType>
         <ComplexType Name="CommodityIndex">
           <Property Type="Int32" Name="CommodityID" Nullable="false" />
@@ -6056,6 +6060,8 @@
           <NavigationProperty Name="Commodity" Relationship="TotalSmartCodingModel.FK_Batches_Commodities" FromRole="Batch" ToRole="Commodity" />
           <NavigationProperty Name="FillingLine" Relationship="TotalSmartCodingModel.FK_Batches_FillingLines" FromRole="Batch" ToRole="FillingLine" />
           <NavigationProperty Name="DeliveryAdviceDetails" Relationship="TotalSmartCodingModel.FK_DeliveryAdviceDetails_Batches" FromRole="Batch" ToRole="DeliveryAdviceDetail" />
+          <Property Name="AutoBarcode" Type="Boolean" Nullable="false" />
+          <Property Name="TotalQuantity" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
         </EntityType>
         <Association Name="FK_Batches_Commodities">
           <End Type="TotalSmartCodingModel.Commodity" Role="Commodity" Multiplicity="1" />
@@ -8455,6 +8461,8 @@
                 <ScalarProperty Name="Volume" ColumnName="Volume" />
                 <ScalarProperty Name="CommodityAPICode" ColumnName="CommodityAPICode" />
                 <ScalarProperty Name="Shelflife" ColumnName="Shelflife" />
+                <ScalarProperty Name="TotalQuantity" ColumnName="TotalQuantity" />
+                <ScalarProperty Name="AutoBarcode" ColumnName="AutoBarcode" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -9522,6 +9530,8 @@
           <EntitySetMapping Name="Batches">
             <EntityTypeMapping TypeName="TotalSmartCodingModel.Batch">
               <MappingFragment StoreEntitySet="Batches">
+                <ScalarProperty Name="TotalQuantity" ColumnName="TotalQuantity" />
+                <ScalarProperty Name="AutoBarcode" ColumnName="AutoBarcode" />
                 <ScalarProperty Name="InActiveDate" ColumnName="InActiveDate" />
                 <ScalarProperty Name="InActive" ColumnName="InActive" />
                 <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />

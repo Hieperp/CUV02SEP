@@ -113,7 +113,7 @@ namespace TotalSmartCoding.Views.Mains
                         this.toolStripTopHead.Visible = false;
                         break;
                     case GlobalEnums.NmvnTaskID.Batch:
-                        this.Size = new Size(1180, 720);
+                        this.Size = new Size(1180, 732);
                         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
                         this.MinimizeBox = false; this.MaximizeBox = false; this.WindowState = FormWindowState.Normal;
 

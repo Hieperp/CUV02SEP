@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TotalModel.Helpers;
 
 using TotalBase;
+using TotalBase.Enums;
 
 namespace TotalDTO.Productions
 {
@@ -129,6 +130,23 @@ namespace TotalDTO.Productions
             set { ApplyPropertyChange<FillingData, bool>(ref this.isPailLabel, o => o.IsPailLabel, value); }
         }
 
+
+        private decimal totalTotalQuantity;
+        public virtual decimal TotalQuantity
+        {
+            get { return this.totalTotalQuantity; }
+            set { ApplyPropertyChange<FillingData, decimal>(ref this.totalTotalQuantity, o => o.TotalQuantity, Math.Round(value, (int)GlobalEnums.rndQuantity)); }
+        }
+
+        private bool autoBarcode;
+        public bool AutoBarcode
+        {
+            get { return this.autoBarcode; }
+            set {
+                ApplyPropertyChange<FillingData, bool>(ref this.autoBarcode, o => o.AutoBarcode, value);
+                GlobalEnums.OnTestPrinter = this.AutoBarcode; GlobalEnums.OnTestScanner = this.AutoBarcode; 
+            }
+        }
 
         //-------------------------
         private int batchID;

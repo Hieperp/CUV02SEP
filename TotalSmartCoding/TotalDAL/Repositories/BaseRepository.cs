@@ -57,182 +57,9 @@ namespace TotalDAL.Repositories
                 this.totalSmartCodingEntities.ColumnAdd("Configs", "StoredID", "int", "0", true);
             }
 
-            #region ColumnMappings
-            if (!this.totalSmartCodingEntities.TableExists("ColumnMappings"))
-            {
-                this.ExecuteStoreCommand("UPDATE  WarehouseAdjustmentTypes SET Remarks = IIF(WarehouseAdjustmentTypeID = 1, N'XẢ PALLET/ UNPACK PALLET', IIF(WarehouseAdjustmentTypeID = 10, N'CHUYỂN VỊ TRÍ LƯU KHO/ CHANGE BIN LOCATION', IIF(WarehouseAdjustmentTypeID = 20, N'HOLD/ UN-HOLD', IIF(WarehouseAdjustmentTypeID = 30, N'XUẤT KHO TRẢ SẢN XUẤT/ RETURN TO PRODUCTION', N'XỬ LÝ HÀNG MẤT, BỂ VỠ,.../ LOST, BROKEN, ...' ))))", new ObjectParameter[] { });
+            this.totalSmartCodingEntities.ColumnAdd("Batches", "AutoBarcode", "bit", "0", true);
+            this.totalSmartCodingEntities.ColumnAdd("Batches", "TotalQuantity", "decimal(18, 3)", "0", true);
 
-                this.ExecuteStoreCommand(@"CREATE TABLE [dbo].[ColumnMappings](
-	                                                [ColumnMappingID] [int] NOT NULL,
-	                                                [MappingTaskID] [int] NOT NULL,
-	                                                [ColumnID] [int] NOT NULL,
-	                                                [ColumnName] [nvarchar](50) NOT NULL,
-	                                                [ColumnDisplayName] [nvarchar](50) NOT NULL,
-	                                                [ColumnMappingName] [nvarchar](50) NOT NULL,
-	                                                [SerialID] [int] NOT NULL,
-	                                                [OrderBy] [int] NULL,
-	                                                [ImportedDate] [datetime] NOT NULL,
-                                                 CONSTRAINT [PK_ColumnMappings] PRIMARY KEY CLUSTERED 
-                                                (
-	                                                [ColumnMappingID] ASC
-                                                )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY],
-                                                 CONSTRAINT [IX_Unique_ColumnID] UNIQUE NONCLUSTERED 
-                                                (
-	                                                [MappingTaskID] ASC,
-	                                                [ColumnID] ASC
-                                                )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY],
-                                                 CONSTRAINT [IX_Unique_ColumnName] UNIQUE NONCLUSTERED 
-                                                (
-	                                                [MappingTaskID] ASC,
-	                                                [ColumnName] ASC
-                                                )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-                                                ) ON [PRIMARY]
-                                                ", new ObjectParameter[] { });
-
-
-                this.ExecuteStoreCommand(@" SET IDENTITY_INSERT CommoditySettings ON                                                              
-                                        
-                                            INSERT INTO ColumnMappings (ColumnMappingID, MappingTaskID, ColumnID, ColumnName, ColumnDisplayName, ColumnMappingName, SerialID, ImportedDate)   VALUES (1, 8076, 2, N'WarehouseCode', N'WH code', N'WH Code', 10, Getdate())
-                                            INSERT INTO ColumnMappings (ColumnMappingID, MappingTaskID, ColumnID, ColumnName, ColumnDisplayName, ColumnMappingName, SerialID, ImportedDate)   VALUES (2, 8076, 6, N'CommodityCode', N'Product code', N'Product code', 20, Getdate())
-                                            INSERT INTO ColumnMappings (ColumnMappingID, MappingTaskID, ColumnID, ColumnName, ColumnDisplayName, ColumnMappingName, SerialID, ImportedDate)   VALUES (3, 8076, 8, N'CurrentMonth', N'Current month', N'17-Oct', 30, Getdate())
-                                            INSERT INTO ColumnMappings (ColumnMappingID, MappingTaskID, ColumnID, ColumnName, ColumnDisplayName, ColumnMappingName, SerialID, ImportedDate)   VALUES (4, 8076, 12, N'NextMonth', N'Next month', N'17-Nov', 60, Getdate())
-                                            INSERT INTO ColumnMappings (ColumnMappingID, MappingTaskID, ColumnID, ColumnName, ColumnDisplayName, ColumnMappingName, SerialID, ImportedDate)   VALUES (5, 8076, 16, N'NextTwoMonth', N'Next two month', N'17-Dec', 70, Getdate())
-                                            INSERT INTO ColumnMappings (ColumnMappingID, MappingTaskID, ColumnID, ColumnName, ColumnDisplayName, ColumnMappingName, SerialID, ImportedDate)   VALUES (6, 8076, 18, N'NextThreeMonth', N'Next three monnth', N'18-Jan', 80, Getdate())
-
-                                            SET IDENTITY_INSERT CommoditySettings OFF ", new ObjectParameter[] { });
-
-            }
-            #endregion ColumnMappings
-
-            #region CommoditySettings
-            if (!this.totalSmartCodingEntities.TableExists("CommoditySettings") || !this.totalSmartCodingEntities.TableExists("CommoditySettingDetails"))
-            {
-
-                this.totalSmartCodingEntities.DropTable("CommoditySettingDetails");
-                this.totalSmartCodingEntities.DropTable("CommoditySettings");
-
-                this.ExecuteStoreCommand(@"CREATE TABLE [dbo].[CommoditySettings](
-	                                                [CommoditySettingID] [int] IDENTITY(1,1) NOT NULL,
-	                                                [EntryDate] [datetime] NOT NULL,
-	                                                [Reference] [nvarchar](10) NULL,
-	                                                [CommodityID] [int] NOT NULL,
-	                                                [LocationID] [int] NOT NULL,
-	                                                [Description] [nvarchar](100) NULL,
-	                                                [Remarks] [nvarchar](100) NULL,
-	                                                [CreatedDate] [datetime] NOT NULL,
-	                                                [EditedDate] [datetime] NOT NULL,
-	                                                [Approved] [bit] NOT NULL,
-	                                                [ApprovedDate] [datetime] NULL,
-                                                 CONSTRAINT [PK_CommodityPlots] PRIMARY KEY CLUSTERED 
-                                                (
-	                                                [CommoditySettingID] ASC
-                                                )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-                                                ) ON [PRIMARY]
-                                                
-                                                ALTER TABLE [dbo].[CommoditySettings]  WITH CHECK ADD  CONSTRAINT [FK_CommoditySettings_Commodities] FOREIGN KEY([CommodityID])
-                                                REFERENCES [dbo].[Commodities] ([CommodityID])                                                
-
-                                                ALTER TABLE [dbo].[CommoditySettings] CHECK CONSTRAINT [FK_CommoditySettings_Commodities]
-                                                ", new ObjectParameter[] { });
-
-                this.ExecuteStoreCommand(@"CREATE TABLE [dbo].[CommoditySettingDetails](
-	                                                [CommoditySettingDetailID] [int] IDENTITY(1,1) NOT NULL,
-	                                                [CommoditySettingID] [int] NOT NULL,
-	                                                [CommodityID] [int] NOT NULL,
-	                                                [LocationID] [int] NOT NULL,
-	                                                [SettingLocationID] [int] NOT NULL,
-	                                                [LowDSI] [decimal](18, 3) NOT NULL,
-	                                                [HighDSI] [decimal](18, 3) NOT NULL,
-	                                                [AlertDSI] [decimal](18, 3) NOT NULL,
-                                                 CONSTRAINT [PK_CommoditySettings] PRIMARY KEY CLUSTERED 
-                                                (
-	                                                [CommoditySettingDetailID] ASC
-                                                )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY],
-                                                 CONSTRAINT [IX_CommoditySettings] UNIQUE NONCLUSTERED 
-                                                (
-	                                                [CommodityID] ASC,
-	                                                [SettingLocationID] ASC
-                                                )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-                                                ) ON [PRIMARY]
-
-                                                ALTER TABLE [dbo].[CommoditySettingDetails]  WITH CHECK ADD  CONSTRAINT [FK_CommoditySettingDetails_Commodities] FOREIGN KEY([CommodityID])
-                                                REFERENCES [dbo].[Commodities] ([CommodityID])
-
-                                                ALTER TABLE [dbo].[CommoditySettingDetails] CHECK CONSTRAINT [FK_CommoditySettingDetails_Commodities]
-
-                                                ALTER TABLE [dbo].[CommoditySettingDetails]  WITH CHECK ADD  CONSTRAINT [FK_CommoditySettingDetails_CommoditySettings] FOREIGN KEY([CommoditySettingID])
-                                                REFERENCES [dbo].[CommoditySettings] ([CommoditySettingID])
-
-                                                ALTER TABLE [dbo].[CommoditySettingDetails] CHECK CONSTRAINT [FK_CommoditySettingDetails_CommoditySettings]
-                                                ", new ObjectParameter[] { });
-
-                this.InitCommoditySettings();
-
-            }
-            #endregion CommoditySettings
-
-
-            #region Forecasts
-            this.totalSmartCodingEntities.ColumnAdd("Forecasts", "QuantityVersusVolume", "int", "0", true);
-            var query = this.totalSmartCodingEntities.Database.SqlQuery(typeof(int), "SELECT COUNT(ModuleDetailID) AS Expr1 FROM ModuleDetails WHERE ModuleDetailID = " + (int)GlobalEnums.NmvnTaskID.Forecast + ";", new object[] { });
-            int exists = query.Cast<int>().Single();
-            if (exists == 0)
-            {
-                this.ExecuteStoreCommand("INSERT INTO ModuleDetails (ModuleDetailID, ModuleID, Code, Name, FullName, Actions, Controller, LastOpen, SerialID, ImageIndex, InActive) VALUES(" + (int)GlobalEnums.NmvnTaskID.Forecast + ", 6, N'Sales Forecast', N'Sales Forecast', '#', '#', N'LOGISTICS ADMIN', 1, 6, 1, 0) ", new ObjectParameter[] { });
-                this.ExecuteStoreCommand("INSERT INTO AccessControls (UserID, NMVNTaskID, OrganizationalUnitID, AccessLevel, ApprovalPermitted, UnApprovalPermitted, VoidablePermitted, UnVoidablePermitted, ShowDiscount, AccessLevelBACKUP, ApprovalPermittedBACKUP, UnApprovalPermittedBACKUP, InActive) SELECT UserID, " + (int)GlobalEnums.NmvnTaskID.Forecast + " AS NMVNTaskID, OrganizationalUnitID, AccessLevel, ApprovalPermitted, UnApprovalPermitted, VoidablePermitted, UnVoidablePermitted, ShowDiscount, AccessLevelBACKUP, ApprovalPermittedBACKUP, UnApprovalPermittedBACKUP, InActive FROM AccessControls WHERE (NMVNTaskID = " + (int)GlobalEnums.NmvnTaskID.Commodity + ") AND (SELECT COUNT(*) FROM AccessControls WHERE NMVNTaskID = " + (int)GlobalEnums.NmvnTaskID.Forecast + ") = 0", new ObjectParameter[] { });
-
-                //********************
-                this.ExecuteStoreCommand("INSERT INTO ModuleDetails (ModuleDetailID, ModuleID, Code, Name, FullName, Actions, Controller, LastOpen, SerialID, ImageIndex, InActive) VALUES(" + (int)GlobalEnums.NmvnTaskID.CommoditySetting + ", 1, 'Low, High & Alert Settings', 'Low, High & Alert Settings', '#', '#', 'WAREHOUSE RESOURCES', 1, 12, 1, 0) ", new ObjectParameter[] { });
-                this.ExecuteStoreCommand("INSERT INTO AccessControls (UserID, NMVNTaskID, OrganizationalUnitID, AccessLevel, ApprovalPermitted, UnApprovalPermitted, VoidablePermitted, UnVoidablePermitted, ShowDiscount, AccessLevelBACKUP, ApprovalPermittedBACKUP, UnApprovalPermittedBACKUP, InActive) SELECT UserID, " + (int)GlobalEnums.NmvnTaskID.CommoditySetting + " AS NMVNTaskID, OrganizationalUnitID, AccessLevel, ApprovalPermitted, UnApprovalPermitted, VoidablePermitted, UnVoidablePermitted, ShowDiscount, AccessLevelBACKUP, ApprovalPermittedBACKUP, UnApprovalPermittedBACKUP, InActive FROM AccessControls WHERE (NMVNTaskID = " + (int)GlobalEnums.NmvnTaskID.Commodity + ") AND (SELECT COUNT(*) FROM AccessControls WHERE NMVNTaskID = " + (int)GlobalEnums.NmvnTaskID.CommoditySetting + ") = 0", new ObjectParameter[] { });
-                //********************
-            }
-
-
-
-            query = this.totalSmartCodingEntities.Database.SqlQuery(typeof(int), "SELECT COUNT(ModuleDetailID) AS Expr1 FROM ModuleDetails WHERE ModuleDetailID = " + (int)GlobalEnums.NmvnTaskID.PendingOrder + ";", new object[] { });
-            exists = query.Cast<int>().Single();
-            if (exists == 0)
-            {
-                this.ExecuteStoreCommand("INSERT INTO ModuleDetails (ModuleDetailID, ModuleID, Code, Name, FullName, Actions, Controller, LastOpen, SerialID, ImageIndex, InActive) VALUES(" + (int)GlobalEnums.NmvnTaskID.PendingOrder + ", 6, N'Current Pending Orders', N'Current Pending Orders', '#', '#', N'LOGISTICS ADMIN', 1, 68, 1, 0) ", new ObjectParameter[] { });
-                this.ExecuteStoreCommand("INSERT INTO AccessControls (UserID, NMVNTaskID, OrganizationalUnitID, AccessLevel, ApprovalPermitted, UnApprovalPermitted, VoidablePermitted, UnVoidablePermitted, ShowDiscount, AccessLevelBACKUP, ApprovalPermittedBACKUP, UnApprovalPermittedBACKUP, InActive) SELECT UserID, " + (int)GlobalEnums.NmvnTaskID.PendingOrder + " AS NMVNTaskID, OrganizationalUnitID, 1 AS AccessLevel, 0 AS ApprovalPermitted, 0 AS UnApprovalPermitted, 0 AS VoidablePermitted, 0 AS UnVoidablePermitted, ShowDiscount, AccessLevelBACKUP, ApprovalPermittedBACKUP, UnApprovalPermittedBACKUP, InActive FROM AccessControls WHERE (NMVNTaskID = " + (int)GlobalEnums.NmvnTaskID.SalesOrder + ") AND (SELECT COUNT(*) FROM AccessControls WHERE NMVNTaskID = " + (int)GlobalEnums.NmvnTaskID.PendingOrder + ") = 0", new ObjectParameter[] { });
-            }
-            #endregion Forecasts
-
-
-
-            if (!this.totalSmartCodingEntities.ColumnExists("Reports", "OptionBoxIDs"))
-            {
-                this.totalSmartCodingEntities.ColumnAdd("Reports", "OptionBoxIDs", "nvarchar(100)", "", false);
-
-                this.ExecuteStoreCommand("UPDATE  GoodsIssueTypes SET Code = IIF(GoodsIssueTypeID  = 1, N'Sales', N'Transfer')", new ObjectParameter[] { });
-                this.ExecuteStoreCommand("UPDATE  GoodsIssueTypes SET Name = Code", new ObjectParameter[] { });
-                this.ExecuteStoreCommand("UPDATE  GoodsReceiptTypes SET Name = Code", new ObjectParameter[] { });
-                this.ExecuteStoreCommand("UPDATE  WarehouseAdjustmentTypes SET Code = IIF(WarehouseAdjustmentTypeID = 1, N'Unpack pallet', IIF(WarehouseAdjustmentTypeID = 10, N'Change bin', IIF(WarehouseAdjustmentTypeID = 20, N'Hold/ un-hold', IIF(WarehouseAdjustmentTypeID = 30, N'To production', N'Lost, broken, ...' ))))", new ObjectParameter[] { });
-                this.ExecuteStoreCommand("UPDATE  WarehouseAdjustmentTypes SET Name = Code", new ObjectParameter[] { });
-
-                this.InitReports();
-
-                this.ExecuteStoreCommand("UPDATE Modules SET Code = N'Warehouse Management', Name = N'2.Warehouse Management' WHERE ModuleID = 6 ", new ObjectParameter[] { });
-
-                this.ExecuteStoreCommand("UPDATE ModuleDetails SET Controller = N'WAREHOUSE RESOURCES' WHERE ModuleDetailID IN (" + (int)GlobalEnums.NmvnTaskID.Commodity + "," + (int)GlobalEnums.NmvnTaskID.BinLocation + "," + (int)GlobalEnums.NmvnTaskID.Warehouse + ") ", new ObjectParameter[] { });
-                this.ExecuteStoreCommand("UPDATE ModuleDetails SET Controller = N'CUSTOMER MANAGEMENT' WHERE ModuleDetailID IN (" + (int)GlobalEnums.NmvnTaskID.Employee + "," + (int)GlobalEnums.NmvnTaskID.Customer + "," + (int)GlobalEnums.NmvnTaskID.Territory + ") ", new ObjectParameter[] { });
-
-                this.ExecuteStoreCommand("UPDATE ModuleDetails SET Controller = N'LOGISTICS ADMIN', ModuleID = 6 WHERE ModuleDetailID IN (" + (int)GlobalEnums.NmvnTaskID.SalesOrder + "," + (int)GlobalEnums.NmvnTaskID.DeliveryAdvice + "," + (int)GlobalEnums.NmvnTaskID.TransferOrder + ") ", new ObjectParameter[] { });
-                this.ExecuteStoreCommand("UPDATE ModuleDetails SET Controller = N'WAREHOUSE CONTROLS', ModuleID = 6 WHERE ModuleDetailID IN (" + (int)GlobalEnums.NmvnTaskID.GoodsReceipt + "," + (int)GlobalEnums.NmvnTaskID.GoodsIssue + "," + (int)GlobalEnums.NmvnTaskID.WarehouseAdjustment + "," + (int)GlobalEnums.NmvnTaskID.GoodsReceiptDetailAvailable + ") ", new ObjectParameter[] { });
-
-            }
-
-
-            if (this.totalSmartCodingEntities.ColumnExists("Forecasts", "SalespersonID"))
-            {
-                this.totalSmartCodingEntities.ColumnDrop("Forecasts", "SalespersonID");
-
-                this.ExecuteStoreCommand("ALTER TABLE Forecasts WITH CHECK ADD CONSTRAINT FK_Forecasts_Locations FOREIGN KEY(LocationID) REFERENCES dbo.Locations (LocationID)", new ObjectParameter[] { });
-                this.ExecuteStoreCommand("ALTER TABLE Forecasts CHECK CONSTRAINT FK_Forecasts_Locations", new ObjectParameter[] { });
-
-                this.ExecuteStoreCommand("ALTER TABLE Forecasts WITH CHECK ADD CONSTRAINT FK_Forecasts_ForecastLocations FOREIGN KEY(ForecastLocationID) REFERENCES dbo.Locations (LocationID)", new ObjectParameter[] { });
-                this.ExecuteStoreCommand("ALTER TABLE Forecasts CHECK CONSTRAINT FK_Forecasts_ForecastLocations", new ObjectParameter[] { });
-            }
 
             #region REMOVE FirstName, LastName
             //if (this.totalSmartCodingEntities.ColumnExists("Users", "FirstName"))
@@ -259,6 +86,13 @@ namespace TotalDAL.Repositories
         private void CreateStoredProcedure()
         {
             //return;
+
+            Helpers.SqlProgrammability.Productions.Batch batch = new Helpers.SqlProgrammability.Productions.Batch(totalSmartCodingEntities);
+            batch.RestoreProcedure();
+
+
+            return;
+            return;
 
             Helpers.SqlProgrammability.Sales.Forecast forecast = new Helpers.SqlProgrammability.Sales.Forecast(totalSmartCodingEntities);
             forecast.RestoreProcedure();
@@ -430,11 +264,7 @@ namespace TotalDAL.Repositories
             territory.RestoreProcedure();
 
 
-            //return;
-
-            Helpers.SqlProgrammability.Productions.Batch batch = new Helpers.SqlProgrammability.Productions.Batch(totalSmartCodingEntities);
-            batch.RestoreProcedure();
-
+            
 
 
             //return;
@@ -1235,6 +1065,191 @@ namespace TotalDAL.Repositories
 
         private void UpdateBackup()
         {
+
+            #region Forecasts
+            if (this.totalSmartCodingEntities.ColumnExists("Forecasts", "SalespersonID"))
+            {
+                this.totalSmartCodingEntities.ColumnDrop("Forecasts", "SalespersonID");
+
+                this.ExecuteStoreCommand("ALTER TABLE Forecasts WITH CHECK ADD CONSTRAINT FK_Forecasts_Locations FOREIGN KEY(LocationID) REFERENCES dbo.Locations (LocationID)", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("ALTER TABLE Forecasts CHECK CONSTRAINT FK_Forecasts_Locations", new ObjectParameter[] { });
+
+                this.ExecuteStoreCommand("ALTER TABLE Forecasts WITH CHECK ADD CONSTRAINT FK_Forecasts_ForecastLocations FOREIGN KEY(ForecastLocationID) REFERENCES dbo.Locations (LocationID)", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("ALTER TABLE Forecasts CHECK CONSTRAINT FK_Forecasts_ForecastLocations", new ObjectParameter[] { });
+            }
+            #endregion Forecasts
+
+            #region Report
+
+            if (!this.totalSmartCodingEntities.ColumnExists("Reports", "OptionBoxIDs"))
+            {
+                this.totalSmartCodingEntities.ColumnAdd("Reports", "OptionBoxIDs", "nvarchar(100)", "", false);
+
+                this.ExecuteStoreCommand("UPDATE  GoodsIssueTypes SET Code = IIF(GoodsIssueTypeID  = 1, N'Sales', N'Transfer')", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("UPDATE  GoodsIssueTypes SET Name = Code", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("UPDATE  GoodsReceiptTypes SET Name = Code", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("UPDATE  WarehouseAdjustmentTypes SET Code = IIF(WarehouseAdjustmentTypeID = 1, N'Unpack pallet', IIF(WarehouseAdjustmentTypeID = 10, N'Change bin', IIF(WarehouseAdjustmentTypeID = 20, N'Hold/ un-hold', IIF(WarehouseAdjustmentTypeID = 30, N'To production', N'Lost, broken, ...' ))))", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("UPDATE  WarehouseAdjustmentTypes SET Name = Code", new ObjectParameter[] { });
+
+                this.InitReports();
+
+                this.ExecuteStoreCommand("UPDATE Modules SET Code = N'Warehouse Management', Name = N'2.Warehouse Management' WHERE ModuleID = 6 ", new ObjectParameter[] { });
+
+                this.ExecuteStoreCommand("UPDATE ModuleDetails SET Controller = N'WAREHOUSE RESOURCES' WHERE ModuleDetailID IN (" + (int)GlobalEnums.NmvnTaskID.Commodity + "," + (int)GlobalEnums.NmvnTaskID.BinLocation + "," + (int)GlobalEnums.NmvnTaskID.Warehouse + ") ", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("UPDATE ModuleDetails SET Controller = N'CUSTOMER MANAGEMENT' WHERE ModuleDetailID IN (" + (int)GlobalEnums.NmvnTaskID.Employee + "," + (int)GlobalEnums.NmvnTaskID.Customer + "," + (int)GlobalEnums.NmvnTaskID.Territory + ") ", new ObjectParameter[] { });
+
+                this.ExecuteStoreCommand("UPDATE ModuleDetails SET Controller = N'LOGISTICS ADMIN', ModuleID = 6 WHERE ModuleDetailID IN (" + (int)GlobalEnums.NmvnTaskID.SalesOrder + "," + (int)GlobalEnums.NmvnTaskID.DeliveryAdvice + "," + (int)GlobalEnums.NmvnTaskID.TransferOrder + ") ", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("UPDATE ModuleDetails SET Controller = N'WAREHOUSE CONTROLS', ModuleID = 6 WHERE ModuleDetailID IN (" + (int)GlobalEnums.NmvnTaskID.GoodsReceipt + "," + (int)GlobalEnums.NmvnTaskID.GoodsIssue + "," + (int)GlobalEnums.NmvnTaskID.WarehouseAdjustment + "," + (int)GlobalEnums.NmvnTaskID.GoodsReceiptDetailAvailable + ") ", new ObjectParameter[] { });
+
+            }
+
+            #endregion Report
+
+
+            #region ColumnMappings
+            if (!this.totalSmartCodingEntities.TableExists("ColumnMappings"))
+            {
+                this.ExecuteStoreCommand("UPDATE  WarehouseAdjustmentTypes SET Remarks = IIF(WarehouseAdjustmentTypeID = 1, N'XẢ PALLET/ UNPACK PALLET', IIF(WarehouseAdjustmentTypeID = 10, N'CHUYỂN VỊ TRÍ LƯU KHO/ CHANGE BIN LOCATION', IIF(WarehouseAdjustmentTypeID = 20, N'HOLD/ UN-HOLD', IIF(WarehouseAdjustmentTypeID = 30, N'XUẤT KHO TRẢ SẢN XUẤT/ RETURN TO PRODUCTION', N'XỬ LÝ HÀNG MẤT, BỂ VỠ,.../ LOST, BROKEN, ...' ))))", new ObjectParameter[] { });
+
+                this.ExecuteStoreCommand(@"CREATE TABLE [dbo].[ColumnMappings](
+	                                                [ColumnMappingID] [int] NOT NULL,
+	                                                [MappingTaskID] [int] NOT NULL,
+	                                                [ColumnID] [int] NOT NULL,
+	                                                [ColumnName] [nvarchar](50) NOT NULL,
+	                                                [ColumnDisplayName] [nvarchar](50) NOT NULL,
+	                                                [ColumnMappingName] [nvarchar](50) NOT NULL,
+	                                                [SerialID] [int] NOT NULL,
+	                                                [OrderBy] [int] NULL,
+	                                                [ImportedDate] [datetime] NOT NULL,
+                                                 CONSTRAINT [PK_ColumnMappings] PRIMARY KEY CLUSTERED 
+                                                (
+	                                                [ColumnMappingID] ASC
+                                                )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY],
+                                                 CONSTRAINT [IX_Unique_ColumnID] UNIQUE NONCLUSTERED 
+                                                (
+	                                                [MappingTaskID] ASC,
+	                                                [ColumnID] ASC
+                                                )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY],
+                                                 CONSTRAINT [IX_Unique_ColumnName] UNIQUE NONCLUSTERED 
+                                                (
+	                                                [MappingTaskID] ASC,
+	                                                [ColumnName] ASC
+                                                )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+                                                ) ON [PRIMARY]
+                                                ", new ObjectParameter[] { });
+
+
+                this.ExecuteStoreCommand(@" SET IDENTITY_INSERT CommoditySettings ON                                                              
+                                        
+                                            INSERT INTO ColumnMappings (ColumnMappingID, MappingTaskID, ColumnID, ColumnName, ColumnDisplayName, ColumnMappingName, SerialID, ImportedDate)   VALUES (1, 8076, 2, N'WarehouseCode', N'WH code', N'WH Code', 10, Getdate())
+                                            INSERT INTO ColumnMappings (ColumnMappingID, MappingTaskID, ColumnID, ColumnName, ColumnDisplayName, ColumnMappingName, SerialID, ImportedDate)   VALUES (2, 8076, 6, N'CommodityCode', N'Product code', N'Product code', 20, Getdate())
+                                            INSERT INTO ColumnMappings (ColumnMappingID, MappingTaskID, ColumnID, ColumnName, ColumnDisplayName, ColumnMappingName, SerialID, ImportedDate)   VALUES (3, 8076, 8, N'CurrentMonth', N'Current month', N'17-Oct', 30, Getdate())
+                                            INSERT INTO ColumnMappings (ColumnMappingID, MappingTaskID, ColumnID, ColumnName, ColumnDisplayName, ColumnMappingName, SerialID, ImportedDate)   VALUES (4, 8076, 12, N'NextMonth', N'Next month', N'17-Nov', 60, Getdate())
+                                            INSERT INTO ColumnMappings (ColumnMappingID, MappingTaskID, ColumnID, ColumnName, ColumnDisplayName, ColumnMappingName, SerialID, ImportedDate)   VALUES (5, 8076, 16, N'NextTwoMonth', N'Next two month', N'17-Dec', 70, Getdate())
+                                            INSERT INTO ColumnMappings (ColumnMappingID, MappingTaskID, ColumnID, ColumnName, ColumnDisplayName, ColumnMappingName, SerialID, ImportedDate)   VALUES (6, 8076, 18, N'NextThreeMonth', N'Next three monnth', N'18-Jan', 80, Getdate())
+
+                                            SET IDENTITY_INSERT CommoditySettings OFF ", new ObjectParameter[] { });
+
+            }
+            #endregion ColumnMappings
+
+            
+
+            #region CommoditySettings
+            if (!this.totalSmartCodingEntities.TableExists("CommoditySettings") || !this.totalSmartCodingEntities.TableExists("CommoditySettingDetails"))
+            {
+
+                this.totalSmartCodingEntities.DropTable("CommoditySettingDetails");
+                this.totalSmartCodingEntities.DropTable("CommoditySettings");
+
+                this.ExecuteStoreCommand(@"CREATE TABLE [dbo].[CommoditySettings](
+	                                                [CommoditySettingID] [int] IDENTITY(1,1) NOT NULL,
+	                                                [EntryDate] [datetime] NOT NULL,
+	                                                [Reference] [nvarchar](10) NULL,
+	                                                [CommodityID] [int] NOT NULL,
+	                                                [LocationID] [int] NOT NULL,
+	                                                [Description] [nvarchar](100) NULL,
+	                                                [Remarks] [nvarchar](100) NULL,
+	                                                [CreatedDate] [datetime] NOT NULL,
+	                                                [EditedDate] [datetime] NOT NULL,
+	                                                [Approved] [bit] NOT NULL,
+	                                                [ApprovedDate] [datetime] NULL,
+                                                 CONSTRAINT [PK_CommodityPlots] PRIMARY KEY CLUSTERED 
+                                                (
+	                                                [CommoditySettingID] ASC
+                                                )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+                                                ) ON [PRIMARY]
+                                                
+                                                ALTER TABLE [dbo].[CommoditySettings]  WITH CHECK ADD  CONSTRAINT [FK_CommoditySettings_Commodities] FOREIGN KEY([CommodityID])
+                                                REFERENCES [dbo].[Commodities] ([CommodityID])                                                
+
+                                                ALTER TABLE [dbo].[CommoditySettings] CHECK CONSTRAINT [FK_CommoditySettings_Commodities]
+                                                ", new ObjectParameter[] { });
+
+                this.ExecuteStoreCommand(@"CREATE TABLE [dbo].[CommoditySettingDetails](
+	                                                [CommoditySettingDetailID] [int] IDENTITY(1,1) NOT NULL,
+	                                                [CommoditySettingID] [int] NOT NULL,
+	                                                [CommodityID] [int] NOT NULL,
+	                                                [LocationID] [int] NOT NULL,
+	                                                [SettingLocationID] [int] NOT NULL,
+	                                                [LowDSI] [decimal](18, 3) NOT NULL,
+	                                                [HighDSI] [decimal](18, 3) NOT NULL,
+	                                                [AlertDSI] [decimal](18, 3) NOT NULL,
+                                                 CONSTRAINT [PK_CommoditySettings] PRIMARY KEY CLUSTERED 
+                                                (
+	                                                [CommoditySettingDetailID] ASC
+                                                )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY],
+                                                 CONSTRAINT [IX_CommoditySettings] UNIQUE NONCLUSTERED 
+                                                (
+	                                                [CommodityID] ASC,
+	                                                [SettingLocationID] ASC
+                                                )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+                                                ) ON [PRIMARY]
+
+                                                ALTER TABLE [dbo].[CommoditySettingDetails]  WITH CHECK ADD  CONSTRAINT [FK_CommoditySettingDetails_Commodities] FOREIGN KEY([CommodityID])
+                                                REFERENCES [dbo].[Commodities] ([CommodityID])
+
+                                                ALTER TABLE [dbo].[CommoditySettingDetails] CHECK CONSTRAINT [FK_CommoditySettingDetails_Commodities]
+
+                                                ALTER TABLE [dbo].[CommoditySettingDetails]  WITH CHECK ADD  CONSTRAINT [FK_CommoditySettingDetails_CommoditySettings] FOREIGN KEY([CommoditySettingID])
+                                                REFERENCES [dbo].[CommoditySettings] ([CommoditySettingID])
+
+                                                ALTER TABLE [dbo].[CommoditySettingDetails] CHECK CONSTRAINT [FK_CommoditySettingDetails_CommoditySettings]
+                                                ", new ObjectParameter[] { });
+
+                this.InitCommoditySettings();
+
+            }
+            #endregion CommoditySettings
+
+
+
+            #region Forecasts
+            this.totalSmartCodingEntities.ColumnAdd("Forecasts", "QuantityVersusVolume", "int", "0", true);
+            var query = this.totalSmartCodingEntities.Database.SqlQuery(typeof(int), "SELECT COUNT(ModuleDetailID) AS Expr1 FROM ModuleDetails WHERE ModuleDetailID = " + (int)GlobalEnums.NmvnTaskID.Forecast + ";", new object[] { });
+            int exists = query.Cast<int>().Single();
+            if (exists == 0)
+            {
+                this.ExecuteStoreCommand("INSERT INTO ModuleDetails (ModuleDetailID, ModuleID, Code, Name, FullName, Actions, Controller, LastOpen, SerialID, ImageIndex, InActive) VALUES(" + (int)GlobalEnums.NmvnTaskID.Forecast + ", 6, N'Sales Forecast', N'Sales Forecast', '#', '#', N'LOGISTICS ADMIN', 1, 6, 1, 0) ", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("INSERT INTO AccessControls (UserID, NMVNTaskID, OrganizationalUnitID, AccessLevel, ApprovalPermitted, UnApprovalPermitted, VoidablePermitted, UnVoidablePermitted, ShowDiscount, AccessLevelBACKUP, ApprovalPermittedBACKUP, UnApprovalPermittedBACKUP, InActive) SELECT UserID, " + (int)GlobalEnums.NmvnTaskID.Forecast + " AS NMVNTaskID, OrganizationalUnitID, AccessLevel, ApprovalPermitted, UnApprovalPermitted, VoidablePermitted, UnVoidablePermitted, ShowDiscount, AccessLevelBACKUP, ApprovalPermittedBACKUP, UnApprovalPermittedBACKUP, InActive FROM AccessControls WHERE (NMVNTaskID = " + (int)GlobalEnums.NmvnTaskID.Commodity + ") AND (SELECT COUNT(*) FROM AccessControls WHERE NMVNTaskID = " + (int)GlobalEnums.NmvnTaskID.Forecast + ") = 0", new ObjectParameter[] { });
+
+                //********************
+                this.ExecuteStoreCommand("INSERT INTO ModuleDetails (ModuleDetailID, ModuleID, Code, Name, FullName, Actions, Controller, LastOpen, SerialID, ImageIndex, InActive) VALUES(" + (int)GlobalEnums.NmvnTaskID.CommoditySetting + ", 1, 'Low, High & Alert Settings', 'Low, High & Alert Settings', '#', '#', 'WAREHOUSE RESOURCES', 1, 12, 1, 0) ", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("INSERT INTO AccessControls (UserID, NMVNTaskID, OrganizationalUnitID, AccessLevel, ApprovalPermitted, UnApprovalPermitted, VoidablePermitted, UnVoidablePermitted, ShowDiscount, AccessLevelBACKUP, ApprovalPermittedBACKUP, UnApprovalPermittedBACKUP, InActive) SELECT UserID, " + (int)GlobalEnums.NmvnTaskID.CommoditySetting + " AS NMVNTaskID, OrganizationalUnitID, AccessLevel, ApprovalPermitted, UnApprovalPermitted, VoidablePermitted, UnVoidablePermitted, ShowDiscount, AccessLevelBACKUP, ApprovalPermittedBACKUP, UnApprovalPermittedBACKUP, InActive FROM AccessControls WHERE (NMVNTaskID = " + (int)GlobalEnums.NmvnTaskID.Commodity + ") AND (SELECT COUNT(*) FROM AccessControls WHERE NMVNTaskID = " + (int)GlobalEnums.NmvnTaskID.CommoditySetting + ") = 0", new ObjectParameter[] { });
+                //********************
+            }
+
+
+
+            query = this.totalSmartCodingEntities.Database.SqlQuery(typeof(int), "SELECT COUNT(ModuleDetailID) AS Expr1 FROM ModuleDetails WHERE ModuleDetailID = " + (int)GlobalEnums.NmvnTaskID.PendingOrder + ";", new object[] { });
+            exists = query.Cast<int>().Single();
+            if (exists == 0)
+            {
+                this.ExecuteStoreCommand("INSERT INTO ModuleDetails (ModuleDetailID, ModuleID, Code, Name, FullName, Actions, Controller, LastOpen, SerialID, ImageIndex, InActive) VALUES(" + (int)GlobalEnums.NmvnTaskID.PendingOrder + ", 6, N'Current Pending Orders', N'Current Pending Orders', '#', '#', N'LOGISTICS ADMIN', 1, 68, 1, 0) ", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("INSERT INTO AccessControls (UserID, NMVNTaskID, OrganizationalUnitID, AccessLevel, ApprovalPermitted, UnApprovalPermitted, VoidablePermitted, UnVoidablePermitted, ShowDiscount, AccessLevelBACKUP, ApprovalPermittedBACKUP, UnApprovalPermittedBACKUP, InActive) SELECT UserID, " + (int)GlobalEnums.NmvnTaskID.PendingOrder + " AS NMVNTaskID, OrganizationalUnitID, 1 AS AccessLevel, 0 AS ApprovalPermitted, 0 AS UnApprovalPermitted, 0 AS VoidablePermitted, 0 AS UnVoidablePermitted, ShowDiscount, AccessLevelBACKUP, ApprovalPermittedBACKUP, UnApprovalPermittedBACKUP, InActive FROM AccessControls WHERE (NMVNTaskID = " + (int)GlobalEnums.NmvnTaskID.SalesOrder + ") AND (SELECT COUNT(*) FROM AccessControls WHERE NMVNTaskID = " + (int)GlobalEnums.NmvnTaskID.PendingOrder + ") = 0", new ObjectParameter[] { });
+            }
+            #endregion Forecasts
+
 
 
             #region VERSION 73: DATE: BEFORE TET HOLIDAY

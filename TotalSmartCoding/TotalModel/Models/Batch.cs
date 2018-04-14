@@ -37,6 +37,8 @@ namespace TotalModel.Models
         public bool IsDefault { get; set; }
         public bool InActive { get; set; }
         public Nullable<System.DateTime> InActiveDate { get; set; }
+        public bool AutoBarcode { get; set; }
+        public decimal TotalQuantity { get; set; }
     
         public virtual Commodity Commodity { get; set; }
         public virtual FillingLine FillingLine { get; set; }

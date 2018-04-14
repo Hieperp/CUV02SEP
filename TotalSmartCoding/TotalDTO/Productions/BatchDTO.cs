@@ -6,6 +6,7 @@ using TotalBase.Enums;
 using System.ComponentModel;
 using System.Collections.Generic;
 using TotalModel.Helpers;
+using System.ComponentModel.DataAnnotations;
 
 namespace TotalDTO.Productions
 {
@@ -16,6 +17,12 @@ namespace TotalDTO.Productions
 
         public override int GetID() { return this.BatchID; }
         public virtual void SetID(int id) { this.BatchID = id; }
+
+        public override void Init()
+        {
+            base.Init();
+            this.TotalQuantity = 0;
+        }
 
         private int batchID;
         [DefaultValue(0)]
@@ -70,7 +77,22 @@ namespace TotalDTO.Productions
             set { ApplyPropertyChange<BatchPrimitiveDTO, string>(ref this.nextPalletNo, o => o.NextPalletNo, value); }
         }
 
-        
+        private decimal totalTotalQuantity;
+        //[DefaultValue(0)]
+        [Range(0, 99999999999, ErrorMessage = "Số lượng không hợp lệ")]
+        public virtual decimal TotalQuantity
+        {
+            get { return this.totalTotalQuantity; }
+            set { ApplyPropertyChange<BatchPrimitiveDTO, decimal>(ref this.totalTotalQuantity, o => o.TotalQuantity, Math.Round(value, (int)GlobalEnums.rndQuantity)); }
+        }
+
+        private bool autoBarcode;
+        [DefaultValue(false)]
+        public bool AutoBarcode
+        {
+            get { return this.autoBarcode; }
+            set { ApplyPropertyChange<BatchPrimitiveDTO, bool>(ref this.autoBarcode, o => o.AutoBarcode, value); }
+        }
 
         [DefaultValue(false)]
         public bool IsDefault { get; set; }
