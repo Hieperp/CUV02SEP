@@ -506,7 +506,7 @@ namespace TotalSmartCoding.Controllers.Productions
                 if (!GlobalEnums.OnTestPrinter)
                 {
                     this.ionetSocket.Disconnect();
-                    this.ioserialPort.Disconnect();                                        
+                    this.ioserialPort.Disconnect();
                 }
 
                 this.setLED();
@@ -899,8 +899,11 @@ namespace TotalSmartCoding.Controllers.Productions
                     {
                         if (this.OnPrinting)
                         {
-                            if (this.NextAutoBarcodeCode == "")
-                            { this.feedbackNextNo((int.Parse(this.getNextNo()) + 1).ToString("0000000").Substring(1)); this.NextAutoBarcodeCode = this.wholeBarcode(this.printerName != GlobalVariables.PrinterName.PalletLabel ? 2 : 0); }
+                            if (this.NextAutoBarcodeCode == "" && (this.printerName != GlobalVariables.PrinterName.CartonInkjet || int.Parse(this.getNextNo()) <= this.FillingData.TotalQuantity))
+                            { 
+                                this.NextAutoBarcodeCode = this.wholeBarcode(this.printerName != GlobalVariables.PrinterName.PalletLabel ? 2 : 0);
+                                this.feedbackNextNo((int.Parse(this.getNextNo()) + 1).ToString("0000000").Substring(1)); 
+                            }
                             this.MainStatus = "Đang chạy máy in ảo ...";
                         }
                         else

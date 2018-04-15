@@ -13,6 +13,7 @@
 
         public static bool SendToZebra = true;
 
+        public static bool OnTestCartonNoreadNowVisible = false;
         public static bool OnTestCartonNoreadNow = false;
         public static bool OnTestPalletReceivedNow = false;
 

@@ -111,8 +111,6 @@ namespace TotalSmartCoding.Views.Productions
                 this.separatorSendToZebra.Visible = this.fillingData.FillingLineID == GlobalVariables.FillingLine.Drum;
                 this.buttonSendToZebra.Visible = this.fillingData.FillingLineID == GlobalVariables.FillingLine.Drum;
 
-                this.buttonCartonNoreadNow.Visible = GlobalEnums.OnTestScanner;
-                this.buttonPalletReceivedNow.Visible = GlobalEnums.OnTestScanner;
 
                 if (!fillingData.HasPack) { this.labelNextDigitNo.Visible = false; this.textNextDigitNo.Visible = false; this.labelNextPackNo.Visible = false; this.textNextPackNo.Visible = false; this.dgvCartonPendingQueue.RowTemplate.Height = 280; this.dgvCartonQueue.RowTemplate.Height = 280; this.dgvCartonsetQueue.RowTemplate.Height = 280; this.labelLEDPack.Visible = false; this.labelLEDCartonIgnore.Visible = false; this.separatorLEDPack.Visible = false; this.separatorLEDCartonIgnore.Visible = false; this.labelCommodityNameCarton.Visible = true; }
                 if (!fillingData.HasCarton) { this.labelNextCartonNo.Visible = false; this.textNextCartonNo.Visible = false; this.dgvPalletQueue.RowTemplate.Height = 280; this.dgvPalletPickupQueue.RowTemplate.Height = 280; this.labelLEDCarton.Visible = false; this.labelLEDCartonPending.Visible = false; this.separatorLEDCarton.Visible = false; this.separatorLEDCartonPending.Visible = false; this.labelCommodityNamePallet.Visible = true; }
@@ -143,6 +141,15 @@ namespace TotalSmartCoding.Views.Productions
                 this.labelCommodityNamePack.Text = "                                         " + commodityDescription;
                 this.labelCommodityNameCarton.Text = "  " + commodityDescription;
                 this.labelCommodityNamePallet.Text = "                            " + commodityDescription;
+
+                this.buttonCartonNoreadNow.Visible = GlobalEnums.OnTestScanner && GlobalEnums.OnTestCartonNoreadNowVisible;
+                this.buttonPalletReceivedNow.Visible = GlobalEnums.OnTestScanner;
+
+                this.digitStatusbox.BackColor = GlobalEnums.OnTestPrinter ? SystemColors.ControlDark : SystemColors.Control; this.digitStatusbox.ScrollBars = GlobalEnums.OnTestPrinter ? ScrollBars.None : ScrollBars.Vertical;
+                this.packStatusbox.BackColor = this.digitStatusbox.BackColor; this.packStatusbox.ScrollBars = this.digitStatusbox.ScrollBars;
+                this.cartonStatusbox.BackColor = this.digitStatusbox.BackColor; this.cartonStatusbox.ScrollBars = this.digitStatusbox.ScrollBars;
+                this.palletStatusbox.BackColor = this.digitStatusbox.BackColor; this.palletStatusbox.ScrollBars = this.digitStatusbox.ScrollBars;
+                this.scannerStatusbox.BackColor = GlobalEnums.OnTestScanner ? SystemColors.ControlDark : SystemColors.Control; this.scannerStatusbox.ScrollBars = GlobalEnums.OnTestScanner ? ScrollBars.None : ScrollBars.Vertical;
             }
             catch (Exception exception)
             {
@@ -557,7 +564,7 @@ namespace TotalSmartCoding.Views.Productions
                         this.buttonPalletPickupQueueCount.Text = "[" + this.scannerController.PalletPickupQueueCount.ToString("N0") + "]";
                     }
                 }
-                
+
             }
             catch (Exception exception)
             {
