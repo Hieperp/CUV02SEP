@@ -23,6 +23,10 @@ namespace TotalDTO.Productions
         public GlobalVariables.ZebraStatus CartonsetQueueZebraStatus { get; set; } //AT INITIALIZE, THIS = 0 (RIGHT AFTER CartonsetQueue IS SET). AFTER PRINT: THIS = 1. WHEN USER PRESS RE-PRINT => THIS = -1
 
 
+        public string NextAutoPackCode { get; set; }
+        public string NextAutoCartonCode { get; set; }
+        public string NextAutoPalletCode { get; set; }
+
 
         private int commodityID;
         private string commodityCode;

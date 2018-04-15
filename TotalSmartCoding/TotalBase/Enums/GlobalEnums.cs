@@ -2,6 +2,7 @@
 {
     public static class GlobalEnums
     {
+        public static int OnRecivedMillisecond = 900; //1
 
         public static bool OnTestScanner = false; //1
         public static bool OnTestPalletScanner = false; //3 //WHEN REAL TEST WITHOUT PalletScanner
