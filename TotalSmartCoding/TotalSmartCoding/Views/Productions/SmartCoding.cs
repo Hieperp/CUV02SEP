@@ -100,6 +100,7 @@ namespace TotalSmartCoding.Views.Productions
                 this.textNextPackNo.TextBox.DataBindings.Add("Text", this.fillingData, "NextPackNo");
                 this.textNextCartonNo.TextBox.DataBindings.Add("Text", this.fillingData, "NextCartonNo");
                 this.textNextPalletNo.TextBox.DataBindings.Add("Text", this.fillingData, "NextPalletNo");
+                this.textFinalCartonNo.TextBox.DataBindings.Add("Text", this.fillingData, "FinalCartonNo");
 
                 this.comboBoxEmptyCarton.ComboBox.Items.AddRange(new string[] { "Ignore empty carton", "Keep empty carton" });
                 this.comboBoxEmptyCarton.ComboBox.SelectedIndex = GlobalVariables.IgnoreEmptyCarton ? 0 : 1;
@@ -145,6 +146,7 @@ namespace TotalSmartCoding.Views.Productions
                 this.buttonCartonNoreadNow.Visible = GlobalEnums.OnTestScanner && GlobalEnums.OnTestCartonNoreadNowVisible;
                 this.buttonPalletReceivedNow.Visible = GlobalEnums.OnTestScanner;
 
+                this.labelFinalCartonNo.Visible = GlobalEnums.OnTestPrinter; this.textFinalCartonNo.Visible = GlobalEnums.OnTestPrinter;
                 this.digitStatusbox.BackColor = GlobalEnums.OnTestPrinter ? SystemColors.ControlDark : SystemColors.Control; this.digitStatusbox.ScrollBars = GlobalEnums.OnTestPrinter ? ScrollBars.None : ScrollBars.Vertical;
                 this.packStatusbox.BackColor = this.digitStatusbox.BackColor; this.packStatusbox.ScrollBars = this.digitStatusbox.ScrollBars;
                 this.cartonStatusbox.BackColor = this.digitStatusbox.BackColor; this.cartonStatusbox.ScrollBars = this.digitStatusbox.ScrollBars;
