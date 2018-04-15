@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.layoutMaster = new System.Windows.Forms.TableLayoutPanel();
+            this.textexFinalCartonNo = new CustomControls.TextexBox();
             this.labelFinalCartonNo = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -70,7 +71,6 @@
             this.olvNextCartonNo = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvNextPalletNo = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvIsDefault = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.textexFinalCartonNo = new CustomControls.TextexBox();
             this.layoutMaster.SuspendLayout();
             this.toolStripChildForm.SuspendLayout();
             this.naviBarMaster.SuspendLayout();
@@ -140,6 +140,16 @@
             this.layoutMaster.Size = new System.Drawing.Size(366, 675);
             this.layoutMaster.TabIndex = 62;
             // 
+            // textexFinalCartonNo
+            // 
+            this.textexFinalCartonNo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textexFinalCartonNo.Editable = true;
+            this.textexFinalCartonNo.Location = new System.Drawing.Point(33, 473);
+            this.textexFinalCartonNo.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
+            this.textexFinalCartonNo.Name = "textexFinalCartonNo";
+            this.textexFinalCartonNo.Size = new System.Drawing.Size(307, 28);
+            this.textexFinalCartonNo.TabIndex = 107;
+            // 
             // labelFinalCartonNo
             // 
             this.labelFinalCartonNo.AutoSize = true;
@@ -150,7 +160,7 @@
             this.labelFinalCartonNo.Name = "labelFinalCartonNo";
             this.labelFinalCartonNo.Size = new System.Drawing.Size(310, 21);
             this.labelFinalCartonNo.TabIndex = 105;
-            this.labelFinalCartonNo.Text = "Final Carton";
+            this.labelFinalCartonNo.Text = "Ending Carton";
             this.labelFinalCartonNo.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
             // label1
@@ -595,16 +605,6 @@
             this.olvIsDefault.Text = "";
             this.olvIsDefault.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvIsDefault.Width = 24;
-            // 
-            // textexFinalCartonNo
-            // 
-            this.textexFinalCartonNo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textexFinalCartonNo.Editable = true;
-            this.textexFinalCartonNo.Location = new System.Drawing.Point(33, 473);
-            this.textexFinalCartonNo.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
-            this.textexFinalCartonNo.Name = "textexFinalCartonNo";
-            this.textexFinalCartonNo.Size = new System.Drawing.Size(307, 28);
-            this.textexFinalCartonNo.TabIndex = 107;
             // 
             // Batches
             // 
