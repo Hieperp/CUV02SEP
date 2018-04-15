@@ -153,6 +153,9 @@ namespace TotalSmartCoding.Views.Mains
                             ((DataGridView)control).AllowUserToDeleteRows = false;
                     }
                 }
+                else
+                    if (control is CheckBox)
+                        control.DataBindings.Add("Enabled", this, "EditableMode");
             }
 
             //this.fastListIndex.DataBindings.Add("Enabled", this, "ReadonlyMode"); //HERE: WE DON'T LOCK fastListIndex.Enabled TO ReadonlyMode, INSTEAD: WE HANDLE fastListIndex.MouseClick AND fastListIndex.KeyDown TO KEEP THE CURRENT ROW OF fastListIndex WHEN EditableMode

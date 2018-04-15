@@ -58,7 +58,7 @@ namespace TotalDAL.Repositories
             }
 
             this.totalSmartCodingEntities.ColumnAdd("Batches", "AutoBarcode", "bit", "0", true);
-            this.totalSmartCodingEntities.ColumnAdd("Batches", "TotalQuantity", "decimal(18, 3)", "0", true);
+            this.totalSmartCodingEntities.ColumnAdd("Batches", "FinalCartonNo", "nvarchar(10)", "000001", true);
 
 
             #region REMOVE FirstName, LastName

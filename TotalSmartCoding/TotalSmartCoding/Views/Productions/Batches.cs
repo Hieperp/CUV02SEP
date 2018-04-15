@@ -125,7 +125,8 @@ namespace TotalSmartCoding.Views.Productions
         Binding bindingNextCartonNo;
         Binding bindingNextPalletNo;
 
-        Binding bindingTotalQuantity;
+        Binding bindingFinalCartonNo;
+
         Binding bindingAutoBarcode;
 
         Binding bindingRemarks;
@@ -142,10 +143,12 @@ namespace TotalSmartCoding.Views.Productions
             this.bindingNextPackNo = this.textexNextPackNo.DataBindings.Add("Text", this.batchViewModel, "NextPackNo", true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingNextCartonNo = this.textexNextCartonNo.DataBindings.Add("Text", this.batchViewModel, "NextCartonNo", true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingNextPalletNo = this.textexNextPalletNo.DataBindings.Add("Text", this.batchViewModel, "NextPalletNo", true, DataSourceUpdateMode.OnPropertyChanged);
-
-            this.bindingTotalQuantity = this.numericTotalQuantity.DataBindings.Add("Value", this.batchViewModel, "TotalQuantity", true, DataSourceUpdateMode.OnPropertyChanged);
-            this.bindingAutoBarcode = this.checkAutoBarcode.DataBindings.Add("Checked", this.batchViewModel, "AutoBarcode", true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingFinalCartonNo = this.textexFinalCartonNo.DataBindings.Add("Text", this.batchViewModel, "FinalCartonNo", true, DataSourceUpdateMode.OnPropertyChanged);
             
+            this.bindingAutoBarcode = this.checkAutoBarcode.DataBindings.Add("Checked", this.batchViewModel, "AutoBarcode", true, DataSourceUpdateMode.OnPropertyChanged);
+            this.labelFinalCartonNo.DataBindings.Add("Visible", this.batchViewModel, "AutoBarcode", true, DataSourceUpdateMode.OnPropertyChanged);
+            this.textexFinalCartonNo.DataBindings.Add("Visible", this.batchViewModel, "AutoBarcode", true, DataSourceUpdateMode.OnPropertyChanged);
+
             this.bindingRemarks = this.textexRemarks.DataBindings.Add("Text", this.batchViewModel, "Remarks", true, DataSourceUpdateMode.OnPropertyChanged);
 
             this.textexCommodityName.DataBindings.Add("Text", this.batchViewModel, CommonExpressions.PropertyName<BatchViewModel>(p => p.CommodityName), true);
@@ -165,7 +168,7 @@ namespace TotalSmartCoding.Views.Productions
             this.bindingNextCartonNo.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingNextPalletNo.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
 
-            this.bindingTotalQuantity.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingFinalCartonNo.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingAutoBarcode.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
 
             this.bindingRemarks.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);

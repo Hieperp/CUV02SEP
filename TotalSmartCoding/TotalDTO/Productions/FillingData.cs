@@ -45,6 +45,7 @@ namespace TotalDTO.Productions
         private string nextPackNo;
         private string nextCartonNo;
         private string nextPalletNo;
+        private string finalCartonNo;
 
         private string remarks;
 
@@ -135,12 +136,6 @@ namespace TotalDTO.Productions
         }
 
 
-        private decimal totalTotalQuantity;
-        public virtual decimal TotalQuantity
-        {
-            get { return this.totalTotalQuantity; }
-            set { ApplyPropertyChange<FillingData, decimal>(ref this.totalTotalQuantity, o => o.TotalQuantity, Math.Round(value, (int)GlobalEnums.rndQuantity)); }
-        }
 
         private bool autoBarcode;
         public bool AutoBarcode
@@ -272,6 +267,27 @@ namespace TotalDTO.Productions
         }
 
 
+        public string FinalCartonNo
+        {
+            get { return this.finalCartonNo; }
+
+            set
+            {
+                if (value != this.finalCartonNo)
+                {
+                    int intValue = 0;
+                    if (int.TryParse(value, out intValue) && value.Length == 6)
+                    {
+                        ApplyPropertyChange<FillingData, string>(ref this.finalCartonNo, o => o.FinalCartonNo, value);
+                    }
+                    else
+                    {
+                        throw new System.InvalidOperationException("Lỗi sai định dạng số đếm");
+                    }
+                }
+            }
+        }
+
         //-------------------------
 
 
@@ -334,7 +350,7 @@ namespace TotalDTO.Productions
 
         public bool DataValidated()
         {
-            return this.FillingLineID != 0 && this.CommodityID != 0 && this.BatchCode != "" & this.NextPackNo != "" & this.NextCartonNo != "" & this.NextPalletNo != "";
+            return this.FillingLineID != 0 && this.CommodityID != 0 && this.BatchCode != "" & this.NextPackNo != "" & this.NextCartonNo != "" & this.NextPalletNo != "" & this.FinalCartonNo != "";
         }
 
 

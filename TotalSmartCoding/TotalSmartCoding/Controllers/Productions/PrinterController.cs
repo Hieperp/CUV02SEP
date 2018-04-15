@@ -899,7 +899,7 @@ namespace TotalSmartCoding.Controllers.Productions
                     {
                         if (this.OnPrinting)
                         {
-                            if (this.NextAutoBarcodeCode == "" && (this.printerName != GlobalVariables.PrinterName.CartonInkjet || int.Parse(this.getNextNo()) <= this.FillingData.TotalQuantity))
+                            if (this.NextAutoBarcodeCode == "" && (this.printerName != GlobalVariables.PrinterName.CartonInkjet || int.Parse(this.getNextNo()) <= int.Parse(this.FillingData.FinalCartonNo)))
                             { 
                                 this.NextAutoBarcodeCode = this.wholeBarcode(this.printerName != GlobalVariables.PrinterName.PalletLabel ? 2 : 0);
                                 this.feedbackNextNo((int.Parse(this.getNextNo()) + 1).ToString("0000000").Substring(1)); 

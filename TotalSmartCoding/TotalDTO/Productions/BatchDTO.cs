@@ -18,11 +18,6 @@ namespace TotalDTO.Productions
         public override int GetID() { return this.BatchID; }
         public virtual void SetID(int id) { this.BatchID = id; }
 
-        public override void Init()
-        {
-            base.Init();
-            this.TotalQuantity = 0;
-        }
 
         private int batchID;
         [DefaultValue(0)]
@@ -77,13 +72,12 @@ namespace TotalDTO.Productions
             set { ApplyPropertyChange<BatchPrimitiveDTO, string>(ref this.nextPalletNo, o => o.NextPalletNo, value); }
         }
 
-        private decimal totalTotalQuantity;
-        //[DefaultValue(0)]
-        [Range(0, 99999999999, ErrorMessage = "Số lượng không hợp lệ")]
-        public virtual decimal TotalQuantity
+        private string finalCartonNo;
+        [DefaultValue("000001")]
+        public string FinalCartonNo
         {
-            get { return this.totalTotalQuantity; }
-            set { ApplyPropertyChange<BatchPrimitiveDTO, decimal>(ref this.totalTotalQuantity, o => o.TotalQuantity, Math.Round(value, (int)GlobalEnums.rndQuantity)); }
+            get { return this.finalCartonNo; }
+            set { ApplyPropertyChange<BatchPrimitiveDTO, string>(ref this.finalCartonNo, o => o.FinalCartonNo, value); }
         }
 
         private bool autoBarcode;
@@ -130,6 +124,7 @@ namespace TotalDTO.Productions
             validationRules.Add(new SimpleValidationRule("NextPackNo", "Số thứ tự chai quy định là 6 chữ số.", delegate { return this.NextPackNo.Length == 6 && int.TryParse(this.NextPackNo, out value); }));
             validationRules.Add(new SimpleValidationRule("NextCartonNo", "Số thứ tự carton quy định là 6 chữ số.", delegate { return this.NextCartonNo.Length == 6 && int.TryParse(this.NextCartonNo, out value); }));
             validationRules.Add(new SimpleValidationRule("NextPalletNo", "Số thứ tự pallet quy định là 6 chữ số.", delegate { return this.NextPalletNo.Length == 6 && int.TryParse(this.NextPalletNo, out value); }));
+            validationRules.Add(new SimpleValidationRule("FinalCartonNo", "Số carton cuối cùng quy định là 6 chữ số và lớn hơn hoặc bằng số carton.", delegate { return this.FinalCartonNo.Length == 6 && int.TryParse(this.FinalCartonNo, out value) && (!this.AutoBarcode || int.Parse(this.NextCartonNo) <= int.Parse(this.FinalCartonNo)); }));
 
             return validationRules;
 

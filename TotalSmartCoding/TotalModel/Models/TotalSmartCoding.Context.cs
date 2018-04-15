@@ -46,7 +46,6 @@ namespace TotalModel.Models
         public virtual DbSet<Module> Modules { get; set; }
         public virtual DbSet<Commodity> Commodities { get; set; }
         public virtual DbSet<BinLocation> BinLocations { get; set; }
-        public virtual DbSet<Batch> Batches { get; set; }
         public virtual DbSet<ModuleDetail> ModuleDetails { get; set; }
         public virtual DbSet<GoodsIssueType> GoodsIssueTypes { get; set; }
         public virtual DbSet<TransferOrderDetail> TransferOrderDetails { get; set; }
@@ -75,6 +74,7 @@ namespace TotalModel.Models
         public virtual DbSet<Forecast> Forecasts { get; set; }
         public virtual DbSet<CommoditySetting> CommoditySettings { get; set; }
         public virtual DbSet<CommoditySettingDetail> CommoditySettingDetails { get; set; }
+        public virtual DbSet<Batch> Batches { get; set; }
     
         public virtual ObjectResult<Nullable<int>> GetAccessLevel(Nullable<int> userID, Nullable<int> nMVNTaskID, Nullable<int> organizationalUnitID)
         {
