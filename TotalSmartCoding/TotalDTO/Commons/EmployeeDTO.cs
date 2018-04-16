@@ -14,14 +14,26 @@ namespace TotalDTO.Commons
         int EmployeeID { get; set; }
         [Display(Name = "Tên nhân viên")]
         [Required(ErrorMessage = "Vui lòng nhập tên nhân viên")]
-        string Name { get; set; }        
+        string Name { get; set; }
     }
+
     public class EmployeeBaseDTO : BaseDTO, IEmployeeBaseDTO
     {
-        public int EmployeeID { get; set; }
-        
-        [Display(Name = "Tên nhân viên")]        
-        public string Name { get ; set; }
+        private int employeeID;
+        [DefaultValue(0)]
+        public int EmployeeID
+        {
+            get { return this.employeeID; }
+            set { ApplyPropertyChange<EmployeeBaseDTO, int>(ref this.employeeID, o => o.EmployeeID, value); }
+        }
+
+        private string name;
+        [DefaultValue(null)]
+        public string Name
+        {
+            get { return this.name; }
+            set { ApplyPropertyChange<EmployeeBaseDTO, string>(ref this.name, o => o.Name, value); }
+        }
     }
 
     public class EmployeePrimitiveDTO : EmployeeBaseDTO, IPrimitiveEntity, IPrimitiveDTO
@@ -31,22 +43,61 @@ namespace TotalDTO.Commons
         public override int GetID() { return this.EmployeeID; }
         public void SetID(int id) { this.EmployeeID = id; }
 
-        [Display(Name = "Mã nhân viên")]
-        [Required(ErrorMessage = "Vui lòng nhập mã nhân viên")]
-        public string Code { get; set; }
-        [Display(Name = "Chức vụ")]
-        [Required(ErrorMessage = "Vui lòng nhập chức vụ")]
-        public string Title { get; set; }
-        public string Birthday { get; set; }
-        public string Telephone { get; set; }
-        public string Address { get; set; }
+        private string code;
+        [DefaultValue(null)]
+        public string Code
+        {
+            get { return this.code; }
+            set { ApplyPropertyChange<EmployeePrimitiveDTO, string>(ref this.code, o => o.Code, value); }
+        }
 
-        
+        private Nullable<int> teamID;
+        [DefaultValue(null)]
+        public Nullable<int> TeamID
+        {
+            get { return this.teamID; }
+            set { ApplyPropertyChange<EmployeePrimitiveDTO, Nullable<int>>(ref this.teamID, o => o.TeamID, value); }
+        }
+
+        private string title;
+        [DefaultValue(null)]
+        public string Title
+        {
+            get { return this.title; }
+            set { ApplyPropertyChange<EmployeePrimitiveDTO, string>(ref this.title, o => o.Title, value); }
+        }
+
+        private DateTime? birthday;
+        public DateTime? Birthday
+        {
+            get { return this.birthday; }
+            set { ApplyPropertyChange<EmployeePrimitiveDTO, DateTime?>(ref this.birthday, o => o.Birthday, value); }
+        }
+
+        private string telephone;
+        [DefaultValue(null)]
+        public string Telephone
+        {
+            get { return this.telephone; }
+            set { ApplyPropertyChange<EmployeePrimitiveDTO, string>(ref this.telephone, o => o.Telephone, value); }
+        }
+
+        private string address;
+        [DefaultValue(null)]
+        public string Address
+        {
+            get { return this.address; }
+            set { ApplyPropertyChange<EmployeePrimitiveDTO, string>(ref this.address, o => o.Address, value); }
+        }
+
+        [DefaultValue(null)]
+        public string EmployeeRoleIDs { get; set; }
+
+        [DefaultValue(null)]
+        public string EmployeeLocationIDs { get; set; }
     }
-
 
     public class EmployeeDTO : EmployeePrimitiveDTO
     {
     }
-
 }

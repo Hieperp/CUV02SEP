@@ -20,8 +20,8 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
         {
             this.GetEmployeeIndexes();
 
-            //this.EmployeeEditable(); 
-            //this.EmployeeSaveRelative();
+            this.EmployeeEditable();
+            this.EmployeeSaveRelative();
 
             this.GetEmployeeBases();
             this.GetEmployeeTrees();
@@ -37,8 +37,10 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
-            queryString = queryString + "       SELECT      Employees.EmployeeID, Employees.Code, Employees.Name " + "\r\n";
+            queryString = queryString + "       SELECT      Employees.EmployeeID, Employees.Code, Employees.Name, Employees.Title, Teams.Code AS TeamCode, Locations.Code AS LocationCode, Employees.Birthday, Employees.Telephone, Employees.Address, Employees.Remarks " + "\r\n";
             queryString = queryString + "       FROM        Employees " + "\r\n";
+            queryString = queryString + "                   LEFT JOIN Locations ON Employees.LocationID = Locations.LocationID " + "\r\n";
+            queryString = queryString + "                   LEFT JOIN Teams ON Employees.TeamID = Teams.TeamID " + "\r\n";
 
             queryString = queryString + "    END " + "\r\n";
 
@@ -51,26 +53,6 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             string queryString = " @EntityID int, @SaveRelativeOption int " + "\r\n"; //SaveRelativeOption: 1: Update, -1:Undo
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
-            queryString = queryString + "    BEGIN " + "\r\n";
-
-            queryString = queryString + "       IF (@SaveRelativeOption = 1) " + "\r\n";
-            queryString = queryString + "           BEGIN " + "\r\n";
-
-            queryString = queryString + "               INSERT INTO EmployeeWarehouses (EmployeeID, WarehouseID, WarehouseTaskID, EntryDate, Remarks, InActive) " + "\r\n";
-            queryString = queryString + "               SELECT      EmployeeID, 46 AS WarehouseID, " + (int)GlobalEnums.NmvnTaskID.SalesOrder + " AS WarehouseTaskID, GETDATE(), '', 0 FROM Employees WHERE EmployeeID = @EntityID " + "\r\n";
-
-            queryString = queryString + "               INSERT INTO EmployeeWarehouses (EmployeeID, WarehouseID, WarehouseTaskID, EntryDate, Remarks, InActive) " + "\r\n";
-            queryString = queryString + "               SELECT      Employees.EmployeeID, Warehouses.WarehouseID, " + (int)GlobalEnums.NmvnTaskID.DeliveryAdvice + " AS WarehouseTaskID, GETDATE(), '', 0 FROM Employees INNER JOIN Warehouses ON Employees.EmployeeID = @EntityID AND Employees.EmployeeCategoryID NOT IN (4, 5, 7, 9, 10, 11, 12) AND Employees.EmployeeCategoryID = Warehouses.WarehouseCategoryID " + "\r\n";
-
-            queryString = queryString + "               INSERT INTO EmployeeWarehouses (EmployeeID, WarehouseID, WarehouseTaskID, EntryDate, Remarks, InActive) " + "\r\n";
-            queryString = queryString + "               SELECT      EmployeeID, 82 AS WarehouseID, " + (int)GlobalEnums.NmvnTaskID.DeliveryAdvice + " AS WarehouseTaskID, GETDATE(), '', 0 FROM Employees WHERE EmployeeID = @EntityID AND EmployeeCategoryID IN (4, 5, 7, 9, 10, 11, 12) " + "\r\n";
-
-            queryString = queryString + "           END " + "\r\n";
-
-            queryString = queryString + "       ELSE " + "\r\n"; //(@SaveRelativeOption = -1) 
-            queryString = queryString + "           DELETE      EmployeeWarehouses WHERE EmployeeID = @EntityID " + "\r\n";
-
-            queryString = queryString + "    END " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("EmployeeSaveRelative", queryString);
         }
@@ -78,10 +60,24 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
 
         private void EmployeeEditable()
         {
-            string[] queryArray = new string[0];
+            string[] queryArray = new string[16];
 
-            //queryArray[0] = " SELECT TOP 1 @FoundEntity = EmployeeID FROM Employees WHERE EmployeeID = @EntityID AND (InActive = 1 OR InActivePartial = 1)"; //Don't allow approve after void
-            //queryArray[1] = " SELECT TOP 1 @FoundEntity = EmployeeID FROM GoodsIssueDetails WHERE EmployeeID = @EntityID ";
+            queryArray[0] = " SELECT TOP 1 @FoundEntity = SalespersonID FROM Customers WHERE SalespersonID = @EntityID "; 
+            queryArray[1] = " SELECT TOP 1 @FoundEntity = ForkliftDriverID FROM DeliveryAdvices WHERE ForkliftDriverID = @EntityID "; 
+            queryArray[2] = " SELECT TOP 1 @FoundEntity = SalespersonID FROM DeliveryAdvices WHERE SalespersonID = @EntityID "; 
+            queryArray[3] = " SELECT TOP 1 @FoundEntity = StorekeeperID FROM DeliveryAdvices WHERE StorekeeperID = @EntityID "; 
+            queryArray[4] = " SELECT TOP 1 @FoundEntity = ForkliftDriverID FROM GoodsIssues WHERE ForkliftDriverID = @EntityID "; 
+            queryArray[5] = " SELECT TOP 1 @FoundEntity = StorekeeperID FROM GoodsIssues WHERE StorekeeperID = @EntityID "; 
+            queryArray[6] = " SELECT TOP 1 @FoundEntity = ForkliftDriverID FROM GoodsReceipts WHERE ForkliftDriverID = @EntityID "; 
+            queryArray[7] = " SELECT TOP 1 @FoundEntity = StorekeeperID FROM GoodsReceipts WHERE StorekeeperID = @EntityID "; 
+            queryArray[8] = " SELECT TOP 1 @FoundEntity = ForkliftDriverID FROM Pickups WHERE ForkliftDriverID = @EntityID "; 
+            queryArray[9] = " SELECT TOP 1 @FoundEntity = StorekeeperID FROM Pickups WHERE StorekeeperID = @EntityID "; 
+            queryArray[10] = " SELECT TOP 1 @FoundEntity = SalespersonID FROM SalesOrders WHERE SalespersonID = @EntityID "; 
+            queryArray[11] = " SELECT TOP 1 @FoundEntity = ForkliftDriverID FROM TransferOrders WHERE ForkliftDriverID = @EntityID "; 
+            queryArray[12] = " SELECT TOP 1 @FoundEntity = StorekeeperID FROM TransferOrders WHERE StorekeeperID = @EntityID "; 
+            queryArray[13] = " SELECT TOP 1 @FoundEntity = StorekeeperID FROM WarehouseAdjustments WHERE StorekeeperID = @EntityID "; 
+            queryArray[14] = " SELECT TOP 1 @FoundEntity = SalespersonID FROM DeliveryAdviceDetails WHERE SalespersonID = @EntityID ";
+            queryArray[15] = " SELECT TOP 1 @FoundEntity = SalespersonID FROM GoodsIssueDetails WHERE SalespersonID = @EntityID "; 
 
             this.totalSmartCodingEntities.CreateProcedureToCheckExisting("EmployeeEditable", queryArray);
         }

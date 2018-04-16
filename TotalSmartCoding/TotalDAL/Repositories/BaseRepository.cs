@@ -61,6 +61,36 @@ namespace TotalDAL.Repositories
             this.totalSmartCodingEntities.ColumnAdd("Batches", "FinalCartonNo", "nvarchar(10)", "000001", true);
 
 
+
+
+            #region EmployeeLocationIDs & Roles
+            if (!this.totalSmartCodingEntities.ColumnExists("Employees", "EmployeeRoleIDs"))
+            {
+                this.totalSmartCodingEntities.ColumnAdd("Employees", "EmployeeRoleIDs", "nvarchar(100)", "", false);
+                this.totalSmartCodingEntities.ColumnAdd("Employees", "EmployeeLocationIDs", "nvarchar(100)", "", false);
+
+                this.ExecuteStoreCommand(@" DECLARE @EmployeeID Int  
+
+                                            DECLARE Action_Cursor CURSOR FOR SELECT EmployeeID FROM Employees OPEN Action_Cursor;
+                                            FETCH NEXT FROM Action_Cursor INTO @EmployeeID;
+
+                                            WHILE @@FETCH_STATUS = 0
+                                            BEGIN
+
+                                               UPDATE Employees SET EmployeeLocationIDs = STUFF((SELECT ',' + CAST(LocationID AS varchar)  FROM (SELECT DISTINCT LocationID FROM EmployeeLocations WHERE EmployeeID = @EmployeeID) DistinctLocationIDs FOR XML PATH('')) ,1,1,'') WHERE EmployeeID = @EmployeeID
+
+                                               UPDATE Employees SET EmployeeRoleIDs = STUFF((SELECT ',' + CAST(RoleID AS varchar)  FROM (SELECT DISTINCT RoleID FROM EmployeeRoles WHERE EmployeeID = @EmployeeID) DistinctRoleIDs FOR XML PATH('')) ,1,1,'') WHERE EmployeeID = @EmployeeID
+
+                                               FETCH NEXT FROM Action_Cursor  INTO @EmployeeID;
+                                            END
+
+                                            CLOSE Action_Cursor;
+                                            DEALLOCATE Action_Cursor; ", new ObjectParameter[] { });
+
+            }
+            #endregion EmployeeLocationIDs & Roles
+
+
             #region REMOVE FirstName, LastName
             //if (this.totalSmartCodingEntities.ColumnExists("Users", "FirstName"))
             //{
@@ -90,6 +120,10 @@ namespace TotalDAL.Repositories
             Helpers.SqlProgrammability.Productions.Batch batch = new Helpers.SqlProgrammability.Productions.Batch(totalSmartCodingEntities);
             batch.RestoreProcedure();
 
+            //return;
+
+            Helpers.SqlProgrammability.Commons.Employee employee = new Helpers.SqlProgrammability.Commons.Employee(totalSmartCodingEntities);
+            employee.RestoreProcedure();
 
             return;
             return;
@@ -160,10 +194,7 @@ namespace TotalDAL.Repositories
             Helpers.SqlProgrammability.Commons.CommodityType commodityType = new Helpers.SqlProgrammability.Commons.CommodityType(totalSmartCodingEntities);
             commodityType.RestoreProcedure();
 
-            //return;
-
-            Helpers.SqlProgrammability.Commons.Employee employee = new Helpers.SqlProgrammability.Commons.Employee(totalSmartCodingEntities);
-            employee.RestoreProcedure();
+            
 
             
             

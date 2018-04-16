@@ -270,6 +270,8 @@
           <Property Name="Telephone" Type="nvarchar" MaxLength="60" />
           <Property Name="Address" Type="nvarchar" MaxLength="100" />
           <Property Name="Remarks" Type="nvarchar" MaxLength="100" />
+          <Property Name="EmployeeRoleIDs" Type="nvarchar" MaxLength="100" />
+          <Property Name="EmployeeLocationIDs" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="EntireTerritories">
           <Key>
@@ -2368,6 +2370,13 @@
         </Function>
         <Function Name="DeliveryAdviceVoidable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="EntityID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="EmployeeEditable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="EmployeeSaveRelative" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="int" Mode="In" />
+          <Parameter Name="SaveRelativeOption" Type="int" Mode="In" />
         </Function>
         <Function Name="ForecastEditable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="EntityID" Type="int" Mode="In" />
@@ -4668,6 +4677,13 @@
             <End Role="Batch" EntitySet="Batches" />
             <End Role="DeliveryAdviceDetail" EntitySet="DeliveryAdviceDetails" />
           </AssociationSet>
+          <FunctionImport Name="EmployeeEditable" ReturnType="Collection(String)">
+            <Parameter Name="EntityID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="EmployeeSaveRelative">
+            <Parameter Name="EntityID" Mode="In" Type="Int32" />
+            <Parameter Name="SaveRelativeOption" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
           <Property Type="Int32" Name="PickupID" Nullable="false" />
@@ -4894,6 +4910,13 @@
           <Property Type="Int32" Name="EmployeeID" Nullable="false" />
           <Property Type="String" Name="Code" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="TeamCode" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="LocationCode" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Birthday" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Telephone" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Remarks" Nullable="true" MaxLength="100" />
         </ComplexType>
         <ComplexType Name="WarehouseIndex">
           <Property Type="Int32" Name="WarehouseID" Nullable="false" />
@@ -7602,6 +7625,8 @@
           <NavigationProperty Name="Customers" Relationship="TotalSmartCodingModel.FK_Customers_Employees" FromRole="Employee" ToRole="Customer" />
           <NavigationProperty Name="Location" Relationship="TotalSmartCodingModel.FK_Employees_Locations" FromRole="Employee" ToRole="Location" />
           <NavigationProperty Name="Team" Relationship="TotalSmartCodingModel.FK_Employees_Teams" FromRole="Employee" ToRole="Team" />
+          <Property Name="EmployeeRoleIDs" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeLocationIDs" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Team">
           <Key>
@@ -8602,6 +8627,13 @@
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="TeamCode" ColumnName="TeamCode" />
+                <ScalarProperty Name="LocationCode" ColumnName="LocationCode" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -10383,6 +10415,8 @@
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="TotalSmartCodingModel.Employee">
               <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="EmployeeLocationIDs" ColumnName="EmployeeLocationIDs" />
+                <ScalarProperty Name="EmployeeRoleIDs" ColumnName="EmployeeRoleIDs" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Telephone" ColumnName="Telephone" />
@@ -10931,6 +10965,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="EmployeeEditable" FunctionName="TotalSmartCodingModel.Store.EmployeeEditable" />
+          <FunctionImportMapping FunctionImportName="EmployeeSaveRelative" FunctionName="TotalSmartCodingModel.Store.EmployeeSaveRelative" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
