@@ -46,6 +46,7 @@ using TotalSmartCoding.Views.Generals;
 using BrightIdeasSoftware;
 using TotalSmartCoding.Views.Commons.CommoditySettings;
 using TotalSmartCoding.Views.Sales.PendingOrders;
+using TotalSmartCoding.Views.Commons.Employees;
 
 
 namespace TotalSmartCoding.Views.Mains
@@ -407,6 +408,9 @@ namespace TotalSmartCoding.Views.Mains
 
                         case (int)GlobalEnums.NmvnTaskID.BinLocation:
                             openingView = new BinLocations();
+                            break;
+                        case (int)GlobalEnums.NmvnTaskID.Employee:
+                            openingView = new Employees();
                             break;
 
                         case (int)GlobalEnums.NmvnTaskID.Pickup:

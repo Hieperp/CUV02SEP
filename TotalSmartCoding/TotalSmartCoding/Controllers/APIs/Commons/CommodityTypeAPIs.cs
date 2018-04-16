@@ -14,27 +14,27 @@ namespace TotalSmartCoding.Controllers.APIs.Commons
 {
     public class CommodityTypeAPIs
     {
-        private readonly ICommodityTypeAPIRepository commodityCategoryAPIRepository;
+        private readonly ICommodityTypeAPIRepository commodityTypeAPIRepository;
 
-        public CommodityTypeAPIs(ICommodityTypeAPIRepository commodityCategoryAPIRepository)
+        public CommodityTypeAPIs(ICommodityTypeAPIRepository commodityTypeAPIRepository)
         {
-            this.commodityCategoryAPIRepository = commodityCategoryAPIRepository;
+            this.commodityTypeAPIRepository = commodityTypeAPIRepository;
         }
 
 
         public ICollection<CommodityTypeIndex> GetCommodityTypeIndexes()
         {
-            return this.commodityCategoryAPIRepository.GetEntityIndexes<CommodityTypeIndex>(ContextAttributes.User.UserID, GlobalEnums.GlobalOptionSetting.LowerFillterDate, GlobalEnums.GlobalOptionSetting.UpperFillterDate).ToList();
+            return this.commodityTypeAPIRepository.GetEntityIndexes<CommodityTypeIndex>(ContextAttributes.User.UserID, GlobalEnums.GlobalOptionSetting.LowerFillterDate, GlobalEnums.GlobalOptionSetting.UpperFillterDate).ToList();
         }
 
         public IList<CommodityTypeBase> GetCommodityTypeBases()
         {
-            return this.commodityCategoryAPIRepository.GetCommodityTypeBases();
+            return this.commodityTypeAPIRepository.GetCommodityTypeBases();
         }
 
         public IList<CommodityTypeTree> GetCommodityTypeTrees()
         {
-            return this.commodityCategoryAPIRepository.GetCommodityTypeTrees();
+            return this.commodityTypeAPIRepository.GetCommodityTypeTrees();
         }
     }
 }

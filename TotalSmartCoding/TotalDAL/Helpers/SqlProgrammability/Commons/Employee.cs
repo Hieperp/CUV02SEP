@@ -37,9 +37,8 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
-            queryString = queryString + "       SELECT      Employees.EmployeeID, Employees.Code, Employees.Name, Employees.Title, Teams.Code AS TeamCode, Locations.Code AS LocationCode, Employees.Birthday, Employees.Telephone, Employees.Address, Employees.Remarks " + "\r\n";
+            queryString = queryString + "       SELECT      Employees.EmployeeID, Employees.Code, Employees.Name, Employees.Title, ISNULL(Teams.Code, N'[Not belong to a sales team]') AS TeamCode, Employees.Birthday, Employees.Telephone, Employees.Address, Employees.Remarks, Employees.InActive " + "\r\n";
             queryString = queryString + "       FROM        Employees " + "\r\n";
-            queryString = queryString + "                   LEFT JOIN Locations ON Employees.LocationID = Locations.LocationID " + "\r\n";
             queryString = queryString + "                   LEFT JOIN Teams ON Employees.TeamID = Teams.TeamID " + "\r\n";
 
             queryString = queryString + "    END " + "\r\n";

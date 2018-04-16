@@ -130,12 +130,8 @@
         <AssociationConnector Association="TotalSmartCodingModel.FK_Commodities_CommodityTypes" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_CommodityCategories_CommodityCategories" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_CommodityTypes_CommodityTypes" />
-        <EntityTypeShape EntityType="TotalSmartCodingModel.Employee" Width="1.5" PointX="15.625" PointY="7.875" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.Team" Width="1.5" PointX="12.375" PointY="6.625" />
-        <AssociationConnector Association="TotalSmartCodingModel.FK_Customers_Employees" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_DeliveryAdvices_Teams" />
-        <AssociationConnector Association="TotalSmartCodingModel.FK_Employees_Locations" />
-        <AssociationConnector Association="TotalSmartCodingModel.FK_Employees_Teams" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_SalesOrders_Teams" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.Report" Width="1.5" PointX="7.375" PointY="0.75" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.GoodsIssue" Width="1.5" PointX="23" PointY="13" />
@@ -163,6 +159,10 @@
         <AssociationConnector Association="TotalSmartCodingModel.FK_Batches_Commodities" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_Batches_FillingLines" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_DeliveryAdviceDetails_Batches" />
+        <EntityTypeShape EntityType="TotalSmartCodingModel.Employee" Width="1.5" PointX="19.625" PointY="14.75" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_Customers_Employees" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_Employees_Locations" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_Employees_Teams" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

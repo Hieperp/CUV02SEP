@@ -25,10 +25,10 @@ namespace TotalModel.Models
             this.Warehouses = new HashSet<Warehouse>();
             this.TransferOrders = new HashSet<TransferOrder>();
             this.WarehouseAdjustments = new HashSet<WarehouseAdjustment>();
-            this.Employees = new HashSet<Employee>();
             this.GoodsIssues = new HashSet<GoodsIssue>();
             this.Forecasts = new HashSet<Forecast>();
             this.Forecasts1 = new HashSet<Forecast>();
+            this.Employees = new HashSet<Employee>();
         }
     
         public int LocationID { get; set; }
@@ -60,12 +60,12 @@ namespace TotalModel.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WarehouseAdjustment> WarehouseAdjustments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Employee> Employees { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GoodsIssue> GoodsIssues { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Forecast> Forecasts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Forecast> Forecasts1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Employee> Employees { get; set; }
     }
 }

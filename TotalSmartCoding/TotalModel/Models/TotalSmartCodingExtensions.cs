@@ -585,6 +585,31 @@ namespace TotalModel.Models
         public System.DateTime EditedDate { get; set; }
     }
 
+    public partial class TeamIndex : IBaseIndex
+    {
+        public int Id { get { return this.TeamID; } }
+    }
+
+    public partial class Team: IPrimitiveEntity, IBaseEntity
+    {
+        public int GetID() { return this.TeamID; }
+
+        public int LocationID { get; set; }
+
+        public int UserID { get; set; }
+        public int PreparedPersonID { get; set; }
+        public int OrganizationalUnitID { get; set; }
+
+        public System.DateTime CreatedDate { get; set; }
+        public System.DateTime EditedDate { get; set; }
+    }
+
+    public partial class EmployeeIndex : IBaseIndex
+    {
+        public int Id { get { return this.EmployeeID; } }
+        public int ImageID { get { return this.InActive ? 1 : 0; } }
+    }
+
     public partial class Employee : IPrimitiveEntity, IBaseEntity
     {
         public int GetID() { return this.EmployeeID; }

@@ -4,9 +4,8 @@ using TotalModel.Models;
 
 namespace TotalCore.Repositories.Commons
 {
-    public interface IEmployeeRepository
+    public interface IEmployeeRepository : IGenericRepository<Employee>
     {
-
     }
 
     public interface IEmployeeAPIRepository : IGenericAPIRepository

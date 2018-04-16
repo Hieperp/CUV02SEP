@@ -266,12 +266,13 @@
           <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="TeamID" Type="int" />
           <Property Name="LocationID" Type="int" Nullable="false" />
-          <Property Name="Birthday" Type="nvarchar" MaxLength="60" />
           <Property Name="Telephone" Type="nvarchar" MaxLength="60" />
           <Property Name="Address" Type="nvarchar" MaxLength="100" />
           <Property Name="Remarks" Type="nvarchar" MaxLength="100" />
+          <Property Name="InActive" Type="bit" Nullable="false" />
           <Property Name="EmployeeRoleIDs" Type="nvarchar" MaxLength="100" />
           <Property Name="EmployeeLocationIDs" Type="nvarchar" MaxLength="100" />
+          <Property Name="Birthday" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="EntireTerritories">
           <Key>
@@ -2691,6 +2692,13 @@
         <Function Name="GetStoredID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ConfigID" Type="int" Mode="In" />
         </Function>
+        <Function Name="GetTeamBases" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetTeamIndexes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserID" Type="int" Mode="In" />
+          <Parameter Name="FromDate" Type="datetime" Mode="In" />
+          <Parameter Name="ToDate" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="GetTeamTrees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetTerritoryBases" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetTerritoryIndexes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserID" Type="int" Mode="In" />
@@ -4464,23 +4472,10 @@
             <End Role="CommodityType" EntitySet="CommodityTypes" />
             <End Role="CommodityType1" EntitySet="CommodityTypes" />
           </AssociationSet>
-          <EntitySet Name="Employees" EntityType="TotalSmartCodingModel.Employee" />
           <EntitySet Name="Teams" EntityType="TotalSmartCodingModel.Team" />
-          <AssociationSet Name="FK_Customers_Employees" Association="TotalSmartCodingModel.FK_Customers_Employees">
-            <End Role="Employee" EntitySet="Employees" />
-            <End Role="Customer" EntitySet="Customers" />
-          </AssociationSet>
           <AssociationSet Name="FK_DeliveryAdvices_Teams" Association="TotalSmartCodingModel.FK_DeliveryAdvices_Teams">
             <End Role="Team" EntitySet="Teams" />
             <End Role="DeliveryAdvice" EntitySet="DeliveryAdvices" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Employees_Locations" Association="TotalSmartCodingModel.FK_Employees_Locations">
-            <End Role="Location" EntitySet="Locations" />
-            <End Role="Employee" EntitySet="Employees" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Employees_Teams" Association="TotalSmartCodingModel.FK_Employees_Teams">
-            <End Role="Team" EntitySet="Teams" />
-            <End Role="Employee" EntitySet="Employees" />
           </AssociationSet>
           <AssociationSet Name="FK_SalesOrders_Teams" Association="TotalSmartCodingModel.FK_SalesOrders_Teams">
             <End Role="Team" EntitySet="Teams" />
@@ -4678,12 +4673,32 @@
             <End Role="DeliveryAdviceDetail" EntitySet="DeliveryAdviceDetails" />
           </AssociationSet>
           <FunctionImport Name="EmployeeEditable" ReturnType="Collection(String)">
-            <Parameter Name="EntityID" Mode="In" Type="Int32" />
+          <Parameter Name="EntityID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="EmployeeSaveRelative">
             <Parameter Name="EntityID" Mode="In" Type="Int32" />
             <Parameter Name="SaveRelativeOption" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="Employees" EntityType="TotalSmartCodingModel.Employee" />
+          <AssociationSet Name="FK_Customers_Employees" Association="TotalSmartCodingModel.FK_Customers_Employees">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Customer" EntitySet="Customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employees_Locations" Association="TotalSmartCodingModel.FK_Employees_Locations">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employees_Teams" Association="TotalSmartCodingModel.FK_Employees_Teams">
+            <End Role="Team" EntitySet="Teams" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <FunctionImport Name="GetTeamBases" ReturnType="Collection(TotalSmartCodingModel.TeamBase)" />
+          <FunctionImport Name="GetTeamIndexes" ReturnType="Collection(TotalSmartCodingModel.TeamIndex)">
+            <Parameter Name="UserID" Mode="In" Type="Int32" />
+            <Parameter Name="FromDate" Mode="In" Type="DateTime" />
+            <Parameter Name="ToDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="GetTeamTrees" ReturnType="Collection(TotalSmartCodingModel.TeamTree)" />
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
           <Property Type="Int32" Name="PickupID" Nullable="false" />
@@ -4911,12 +4926,12 @@
           <Property Type="String" Name="Code" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="Title" Nullable="false" MaxLength="100" />
-          <Property Type="String" Name="TeamCode" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="LocationCode" Nullable="true" MaxLength="10" />
-          <Property Type="String" Name="Birthday" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="TeamCode" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="Birthday" Nullable="false" />
           <Property Type="String" Name="Telephone" Nullable="true" MaxLength="60" />
           <Property Type="String" Name="Address" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="Remarks" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="InActive" Nullable="false" />
         </ComplexType>
         <ComplexType Name="WarehouseIndex">
           <Property Type="Int32" Name="WarehouseID" Nullable="false" />
@@ -6347,9 +6362,9 @@
           <NavigationProperty Name="SalesOrders1" Relationship="TotalSmartCodingModel.FK_SalesOrders_Receivers" FromRole="Customer" ToRole="SalesOrder" />
           <NavigationProperty Name="GoodsIssueDetails" Relationship="TotalSmartCodingModel.FK_GoodsIssueDetails_Customers" FromRole="Customer" ToRole="GoodsIssueDetail" />
           <NavigationProperty Name="GoodsIssueDetails1" Relationship="TotalSmartCodingModel.FK_GoodsIssueDetails_Receivers" FromRole="Customer" ToRole="GoodsIssueDetail" />
-          <NavigationProperty Name="Employee" Relationship="TotalSmartCodingModel.FK_Customers_Employees" FromRole="Customer" ToRole="Employee" />
           <NavigationProperty Name="GoodsIssues" Relationship="TotalSmartCodingModel.FK_GoodsIssues_Customers" FromRole="Customer" ToRole="GoodsIssue" />
           <NavigationProperty Name="GoodsIssues1" Relationship="TotalSmartCodingModel.FK_GoodsIssues_Receivers" FromRole="Customer" ToRole="GoodsIssue" />
+          <NavigationProperty Name="Employee" Relationship="TotalSmartCodingModel.FK_Customers_Employees" FromRole="Customer" ToRole="Employee" />
         </EntityType>
         <Association Name="FK_Customers_CustomerCategories">
           <End Type="TotalSmartCodingModel.CustomerCategory" Role="CustomerCategory" Multiplicity="1" />
@@ -6778,10 +6793,10 @@
           <NavigationProperty Name="Warehouses" Relationship="TotalSmartCodingModel.FK_Warehouses_Locations" FromRole="Location" ToRole="Warehouse" />
           <NavigationProperty Name="TransferOrders" Relationship="TotalSmartCodingModel.FK_TransferOrders_Locations" FromRole="Location" ToRole="TransferOrder" />
           <NavigationProperty Name="WarehouseAdjustments" Relationship="TotalSmartCodingModel.FK_WarehouseAdjustments_Locations" FromRole="Location" ToRole="WarehouseAdjustment" />
-          <NavigationProperty Name="Employees" Relationship="TotalSmartCodingModel.FK_Employees_Locations" FromRole="Location" ToRole="Employee" />
           <NavigationProperty Name="GoodsIssues" Relationship="TotalSmartCodingModel.FK_GoodsIssues_Locations" FromRole="Location" ToRole="GoodsIssue" />
           <NavigationProperty Name="Forecasts" Relationship="TotalSmartCodingModel.FK_Forecasts_ForecastLocations" FromRole="Location" ToRole="Forecast" />
           <NavigationProperty Name="Forecasts1" Relationship="TotalSmartCodingModel.FK_Forecasts_Locations" FromRole="Location" ToRole="Forecast" />
+          <NavigationProperty Name="Employees" Relationship="TotalSmartCodingModel.FK_Employees_Locations" FromRole="Location" ToRole="Employee" />
           </EntityType>
         <Association Name="FK_DeliveryAdvices_Locations">
           <End Type="TotalSmartCodingModel.Location" Role="Location" Multiplicity="1" />
@@ -7608,26 +7623,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Employee">
-          <Key>
-            <PropertyRef Name="EmployeeID" />
-          </Key>
-          <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="TeamID" Type="Int32" />
-          <Property Name="LocationID" Type="Int32" Nullable="false" />
-          <Property Name="Birthday" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
-          <Property Name="Telephone" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
-          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Customers" Relationship="TotalSmartCodingModel.FK_Customers_Employees" FromRole="Employee" ToRole="Customer" />
-          <NavigationProperty Name="Location" Relationship="TotalSmartCodingModel.FK_Employees_Locations" FromRole="Employee" ToRole="Location" />
-          <NavigationProperty Name="Team" Relationship="TotalSmartCodingModel.FK_Employees_Teams" FromRole="Employee" ToRole="Team" />
-          <Property Name="EmployeeRoleIDs" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="EmployeeLocationIDs" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="Team">
           <Key>
             <PropertyRef Name="TeamID" />
@@ -7637,21 +7632,9 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="DeliveryAdvices" Relationship="TotalSmartCodingModel.FK_DeliveryAdvices_Teams" FromRole="Team" ToRole="DeliveryAdvice" />
-          <NavigationProperty Name="Employees" Relationship="TotalSmartCodingModel.FK_Employees_Teams" FromRole="Team" ToRole="Employee" />
           <NavigationProperty Name="SalesOrders" Relationship="TotalSmartCodingModel.FK_SalesOrders_Teams" FromRole="Team" ToRole="SalesOrder" />
+          <NavigationProperty Name="Employees" Relationship="TotalSmartCodingModel.FK_Employees_Teams" FromRole="Team" ToRole="Employee" />
         </EntityType>
-        <Association Name="FK_Customers_Employees">
-          <End Type="TotalSmartCodingModel.Employee" Role="Employee" Multiplicity="1" />
-          <End Type="TotalSmartCodingModel.Customer" Role="Customer" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="EmployeeID" />
-            </Principal>
-            <Dependent Role="Customer">
-              <PropertyRef Name="SalespersonID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_DeliveryAdvices_Teams">
           <End Type="TotalSmartCodingModel.Team" Role="Team" Multiplicity="1" />
           <End Type="TotalSmartCodingModel.DeliveryAdvice" Role="DeliveryAdvice" Multiplicity="*" />
@@ -7660,30 +7643,6 @@
               <PropertyRef Name="TeamID" />
             </Principal>
             <Dependent Role="DeliveryAdvice">
-              <PropertyRef Name="TeamID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Employees_Locations">
-          <End Type="TotalSmartCodingModel.Location" Role="Location" Multiplicity="1" />
-          <End Type="TotalSmartCodingModel.Employee" Role="Employee" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Location">
-              <PropertyRef Name="LocationID" />
-            </Principal>
-            <Dependent Role="Employee">
-              <PropertyRef Name="LocationID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Employees_Teams">
-          <End Type="TotalSmartCodingModel.Team" Role="Team" Multiplicity="0..1" />
-          <End Type="TotalSmartCodingModel.Employee" Role="Employee" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Team">
-              <PropertyRef Name="TeamID" />
-            </Principal>
-            <Dependent Role="Employee">
               <PropertyRef Name="TeamID" />
             </Dependent>
           </ReferentialConstraint>
@@ -8321,6 +8280,81 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TeamID" Type="Int32" />
+          <Property Name="LocationID" Type="Int32" Nullable="false" />
+          <Property Name="Telephone" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="InActive" Type="Boolean" Nullable="false" />
+          <Property Name="EmployeeRoleIDs" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeLocationIDs" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Customers" Relationship="TotalSmartCodingModel.FK_Customers_Employees" FromRole="Employee" ToRole="Customer" />
+          <NavigationProperty Name="Location" Relationship="TotalSmartCodingModel.FK_Employees_Locations" FromRole="Employee" ToRole="Location" />
+          <NavigationProperty Name="Team" Relationship="TotalSmartCodingModel.FK_Employees_Teams" FromRole="Employee" ToRole="Team" />
+        </EntityType>
+        <Association Name="FK_Customers_Employees">
+          <End Type="TotalSmartCodingModel.Employee" Role="Employee" Multiplicity="1" />
+          <End Type="TotalSmartCodingModel.Customer" Role="Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="SalespersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employees_Locations">
+          <End Type="TotalSmartCodingModel.Location" Role="Location" Multiplicity="1" />
+          <End Type="TotalSmartCodingModel.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="LocationID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="LocationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employees_Teams">
+          <End Type="TotalSmartCodingModel.Team" Role="Team" Multiplicity="0..1" />
+          <End Type="TotalSmartCodingModel.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="TeamID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="TeamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="TeamBase">
+          <Property Type="Int32" Name="TeamID" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="TeamIndex">
+          <Property Type="Int32" Name="TeamID" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="TeamTree">
+          <Property Type="Int32" Name="NodeID" Nullable="true" />
+          <Property Type="Int32" Name="ParentNodeID" Nullable="true" />
+          <Property Type="Int32" Name="PrimaryID" Nullable="true" />
+          <Property Type="Int32" Name="AncestorID" Nullable="true" />
+          <Property Type="String" Name="Code" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="ParameterName" Nullable="true" MaxLength="6" />
+          <Property Type="Boolean" Name="Selected" Nullable="true" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -8629,11 +8663,11 @@
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="TeamCode" ColumnName="TeamCode" />
-                <ScalarProperty Name="LocationCode" ColumnName="LocationCode" />
                 <ScalarProperty Name="Birthday" ColumnName="Birthday" />
                 <ScalarProperty Name="Telephone" ColumnName="Telephone" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="InActive" ColumnName="InActive" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -10412,24 +10446,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Employees">
-            <EntityTypeMapping TypeName="TotalSmartCodingModel.Employee">
-              <MappingFragment StoreEntitySet="Employees">
-                <ScalarProperty Name="EmployeeLocationIDs" ColumnName="EmployeeLocationIDs" />
-                <ScalarProperty Name="EmployeeRoleIDs" ColumnName="EmployeeRoleIDs" />
-                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
-                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
-                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
-                <ScalarProperty Name="TeamID" ColumnName="TeamID" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Teams">
             <EntityTypeMapping TypeName="TotalSmartCodingModel.Team">
               <MappingFragment StoreEntitySet="Teams">
@@ -10967,6 +10983,55 @@
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="EmployeeEditable" FunctionName="TotalSmartCodingModel.Store.EmployeeEditable" />
           <FunctionImportMapping FunctionImportName="EmployeeSaveRelative" FunctionName="TotalSmartCodingModel.Store.EmployeeSaveRelative" />
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="TotalSmartCodingModel.Employee">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="EmployeeLocationIDs" ColumnName="EmployeeLocationIDs" />
+                <ScalarProperty Name="EmployeeRoleIDs" ColumnName="EmployeeRoleIDs" />
+                <ScalarProperty Name="InActive" ColumnName="InActive" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+                <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetTeamBases" FunctionName="TotalSmartCodingModel.Store.GetTeamBases">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TotalSmartCodingModel.TeamBase">
+                <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetTeamIndexes" FunctionName="TotalSmartCodingModel.Store.GetTeamIndexes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TotalSmartCodingModel.TeamIndex">
+                <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetTeamTrees" FunctionName="TotalSmartCodingModel.Store.GetTeamTrees">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TotalSmartCodingModel.TeamTree">
+                <ScalarProperty Name="NodeID" ColumnName="NodeID" />
+                <ScalarProperty Name="ParentNodeID" ColumnName="ParentNodeID" />
+                <ScalarProperty Name="PrimaryID" ColumnName="PrimaryID" />
+                <ScalarProperty Name="AncestorID" ColumnName="AncestorID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ParameterName" ColumnName="ParameterName" />
+                <ScalarProperty Name="Selected" ColumnName="Selected" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

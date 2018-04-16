@@ -64,10 +64,14 @@ namespace TotalDAL.Repositories
 
 
             #region EmployeeLocationIDs & Roles
+            this.totalSmartCodingEntities.ColumnAdd("Employees", "InActive", "bit", "0", true);
             if (!this.totalSmartCodingEntities.ColumnExists("Employees", "EmployeeRoleIDs"))
             {
                 this.totalSmartCodingEntities.ColumnAdd("Employees", "EmployeeRoleIDs", "nvarchar(100)", "", false);
                 this.totalSmartCodingEntities.ColumnAdd("Employees", "EmployeeLocationIDs", "nvarchar(100)", "", false);
+
+                this.totalSmartCodingEntities.ColumnDrop("Employees", "Birthday");
+                this.totalSmartCodingEntities.ColumnAdd("Employees", "Birthday", "date", "01/01/1900", true);
 
                 this.ExecuteStoreCommand(@" DECLARE @EmployeeID Int  
 
@@ -124,6 +128,11 @@ namespace TotalDAL.Repositories
 
             Helpers.SqlProgrammability.Commons.Employee employee = new Helpers.SqlProgrammability.Commons.Employee(totalSmartCodingEntities);
             employee.RestoreProcedure();
+
+            //return;
+
+            Helpers.SqlProgrammability.Commons.Team team = new Helpers.SqlProgrammability.Commons.Team(totalSmartCodingEntities);
+            team.RestoreProcedure();
 
             return;
             return;

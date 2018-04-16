@@ -62,6 +62,7 @@
     <Compile Include="Repositories\Commons\IEmployeeRepository.cs" />
     <Compile Include="Repositories\Commons\IFillingLineRepository.cs" />
     <Compile Include="Repositories\Commons\ILocationRepository.cs" />
+    <Compile Include="Repositories\Commons\ITeamRepository.cs" />
     <Compile Include="Repositories\Commons\ITerritoryRepository.cs" />
     <Compile Include="Repositories\Commons\IWarehouseAdjustmentTypeRepository.cs" />
     <Compile Include="Repositories\Commons\IWarehouseRepository.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="Services\Commons\ICommodityService.cs" />
     <Compile Include="Services\Commons\ICommoditySettingService.cs" />
     <Compile Include="Services\Commons\ICustomerService.cs" />
+    <Compile Include="Services\Commons\IEmployeeService.cs" />
     <Compile Include="Services\Generals\IReportService.cs" />
     <Compile Include="Services\IBaseService.cs" />
     <Compile Include="Services\IGenericService.cs" />

@@ -110,6 +110,7 @@
     <Compile Include="Controllers\APIs\Commons\EmployeeAPIs.cs" />
     <Compile Include="Controllers\APIs\Commons\FillingLineAPIs.cs" />
     <Compile Include="Controllers\APIs\Commons\LocationAPIs.cs" />
+    <Compile Include="Controllers\APIs\Commons\TeamAPIs.cs" />
     <Compile Include="Controllers\APIs\Commons\TerritoryAPIs.cs" />
     <Compile Include="Controllers\APIs\Commons\TransferOrderTypeAPIs.cs" />
     <Compile Include="Controllers\APIs\Commons\WarehouseAdjustmentTypeAPIs.cs" />
@@ -132,6 +133,7 @@
     <Compile Include="Controllers\Commons\CommodityController.cs" />
     <Compile Include="Controllers\Commons\CommoditySettingController.cs" />
     <Compile Include="Controllers\Commons\CustomerController.cs" />
+    <Compile Include="Controllers\Commons\EmployeeController.cs" />
     <Compile Include="Controllers\Generals\ReportController.cs" />
     <Compile Include="Controllers\Inventories\GoodsIssueController.cs" />
     <Compile Include="Controllers\Inventories\PickupController.cs" />
@@ -187,6 +189,7 @@
     <Compile Include="ViewModels\Commons\CommoditySettingViewModel.cs" />
     <Compile Include="ViewModels\Commons\CommodityViewModel.cs" />
     <Compile Include="ViewModels\Commons\CustomerViewModel.cs" />
+    <Compile Include="ViewModels\Commons\EmpoyeeViewModel.cs" />
     <Compile Include="ViewModels\Generals\ReportViewModel.cs" />
     <Compile Include="ViewModels\Helpers\IBaseViewModel.cs" />
     <Compile Include="ViewModels\Helpers\PrintViewModel.cs" />
@@ -239,6 +242,12 @@
     </Compile>
     <Compile Include="Views\Commons\CustomMessageBox.Designer.cs">
       <DependentUpon>CustomMessageBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Commons\Employees\Employees.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Commons\Employees\Employees.designer.cs">
+      <DependentUpon>Employees.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Generals\Reports.cs">
       <SubType>Form</SubType>
@@ -511,6 +520,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Commons\CustomMessageBox.resx">
       <DependentUpon>CustomMessageBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Commons\Employees\Employees.resx">
+      <DependentUpon>Employees.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Generals\Reports.resx">
       <DependentUpon>Reports.cs</DependentUpon>

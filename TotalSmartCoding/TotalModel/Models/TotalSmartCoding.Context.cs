@@ -65,7 +65,6 @@ namespace TotalModel.Models
         public virtual DbSet<WarehouseAdjustment> WarehouseAdjustments { get; set; }
         public virtual DbSet<CommodityCategory> CommodityCategories { get; set; }
         public virtual DbSet<CommodityType> CommodityTypes { get; set; }
-        public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Team> Teams { get; set; }
         public virtual DbSet<Report> Reports { get; set; }
         public virtual DbSet<GoodsIssue> GoodsIssues { get; set; }
@@ -75,6 +74,7 @@ namespace TotalModel.Models
         public virtual DbSet<CommoditySetting> CommoditySettings { get; set; }
         public virtual DbSet<CommoditySettingDetail> CommoditySettingDetails { get; set; }
         public virtual DbSet<Batch> Batches { get; set; }
+        public virtual DbSet<Employee> Employees { get; set; }
     
         public virtual ObjectResult<Nullable<int>> GetAccessLevel(Nullable<int> userID, Nullable<int> nMVNTaskID, Nullable<int> organizationalUnitID)
         {
@@ -2509,6 +2509,33 @@ namespace TotalModel.Models
                 new ObjectParameter("SaveRelativeOption", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("EmployeeSaveRelative", entityIDParameter, saveRelativeOptionParameter);
+        }
+    
+        public virtual ObjectResult<TeamBase> GetTeamBases()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<TeamBase>("GetTeamBases");
+        }
+    
+        public virtual ObjectResult<TeamIndex> GetTeamIndexes(Nullable<int> userID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
+        {
+            var userIDParameter = userID.HasValue ?
+                new ObjectParameter("UserID", userID) :
+                new ObjectParameter("UserID", typeof(int));
+    
+            var fromDateParameter = fromDate.HasValue ?
+                new ObjectParameter("FromDate", fromDate) :
+                new ObjectParameter("FromDate", typeof(System.DateTime));
+    
+            var toDateParameter = toDate.HasValue ?
+                new ObjectParameter("ToDate", toDate) :
+                new ObjectParameter("ToDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<TeamIndex>("GetTeamIndexes", userIDParameter, fromDateParameter, toDateParameter);
+        }
+    
+        public virtual ObjectResult<TeamTree> GetTeamTrees()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<TeamTree>("GetTeamTrees");
         }
     }
 }

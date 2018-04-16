@@ -11,17 +11,15 @@ namespace TotalModel.Models
 {
     using System;
     
-    public partial class EmployeeIndex
+    public partial class TeamTree
     {
-        public int EmployeeID { get; set; }
+        public Nullable<int> NodeID { get; set; }
+        public Nullable<int> ParentNodeID { get; set; }
+        public Nullable<int> PrimaryID { get; set; }
+        public Nullable<int> AncestorID { get; set; }
         public string Code { get; set; }
         public string Name { get; set; }
-        public string Title { get; set; }
-        public string TeamCode { get; set; }
-        public System.DateTime Birthday { get; set; }
-        public string Telephone { get; set; }
-        public string Address { get; set; }
-        public string Remarks { get; set; }
-        public bool InActive { get; set; }
+        public string ParameterName { get; set; }
+        public Nullable<bool> Selected { get; set; }
     }
 }

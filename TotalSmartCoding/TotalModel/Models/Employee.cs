@@ -26,12 +26,13 @@ namespace TotalModel.Models
         public string Title { get; set; }
         public Nullable<int> TeamID { get; set; }
         public int LocationID { get; set; }
-        public string Birthday { get; set; }
         public string Telephone { get; set; }
         public string Address { get; set; }
         public string Remarks { get; set; }
+        public bool InActive { get; set; }
         public string EmployeeRoleIDs { get; set; }
         public string EmployeeLocationIDs { get; set; }
+        public System.DateTime Birthday { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Customer> Customers { get; set; }

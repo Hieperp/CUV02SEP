@@ -11,17 +11,9 @@ namespace TotalModel.Models
 {
     using System;
     
-    public partial class EmployeeIndex
+    public partial class TeamBase
     {
-        public int EmployeeID { get; set; }
-        public string Code { get; set; }
+        public int TeamID { get; set; }
         public string Name { get; set; }
-        public string Title { get; set; }
-        public string TeamCode { get; set; }
-        public System.DateTime Birthday { get; set; }
-        public string Telephone { get; set; }
-        public string Address { get; set; }
-        public string Remarks { get; set; }
-        public bool InActive { get; set; }
     }
 }
