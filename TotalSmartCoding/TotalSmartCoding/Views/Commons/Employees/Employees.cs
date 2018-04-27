@@ -68,11 +68,15 @@ namespace TotalSmartCoding.Views.Commons.Employees
                 this.customTabCenter.DisplayStyle = TabStyle.VisualStudio;
                 this.customTabCenter.Font = this.panelCenter.Font;
 
-                this.customTabCenter.TabPages.Add("tabCenterAA", "Information      ");
+                this.customTabCenter.TabPages.Add("tabCenterAA", "Detail Info      ");
+                this.customTabCenter.TabPages.Add("tabCenterBB", "Location && Roles");
 
                 this.customTabCenter.TabPages[0].Controls.Add(this.layoutTop);
+                this.customTabCenter.TabPages[1].Controls.Add(this.layoutRight);
                 this.customTabCenter.TabPages[0].BackColor = this.panelCenter.BackColor;
+                this.customTabCenter.TabPages[1].BackColor = this.panelCenter.BackColor;
                 this.layoutTop.Dock = DockStyle.Fill;
+                this.layoutRight.Dock = DockStyle.Fill;
 
                 this.panelCenter.Controls.Add(this.customTabCenter);
                 this.customTabCenter.Dock = DockStyle.Fill;
@@ -99,6 +103,16 @@ namespace TotalSmartCoding.Views.Commons.Employees
 
         Binding bindingRemarks;
 
+        Binding bindingCheckLocation1;
+        Binding bindingCheckLocation2;
+        Binding bindingCheckLocation3;
+        Binding bindingCheckLocation4;
+
+        Binding bindingCheckRole1;
+        Binding bindingCheckRole2;
+        Binding bindingCheckRole3;
+
+
         protected override void InitializeCommonControlBinding()
         {
             base.InitializeCommonControlBinding();
@@ -113,6 +127,15 @@ namespace TotalSmartCoding.Views.Commons.Employees
             this.bindingAddress = this.textexAddress.DataBindings.Add("Text", this.employeeViewModel, CommonExpressions.PropertyName<EmployeeDTO>(p => p.Address), true, DataSourceUpdateMode.OnPropertyChanged);
 
             this.bindingRemarks = this.textexRemarks.DataBindings.Add("Text", this.employeeViewModel, CommonExpressions.PropertyName<EmployeeDTO>(p => p.Remarks), true, DataSourceUpdateMode.OnPropertyChanged);
+
+            this.bindingCheckLocation1 = this.CheckLocation1.DataBindings.Add("Checked", this.employeeViewModel, CommonExpressions.PropertyName<EmployeeDTO>(p => p.CheckLocation1), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingCheckLocation2 = this.CheckLocation2.DataBindings.Add("Checked", this.employeeViewModel, CommonExpressions.PropertyName<EmployeeDTO>(p => p.CheckLocation2), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingCheckLocation3 = this.CheckLocation3.DataBindings.Add("Checked", this.employeeViewModel, CommonExpressions.PropertyName<EmployeeDTO>(p => p.CheckLocation3), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingCheckLocation4 = this.CheckLocation4.DataBindings.Add("Checked", this.employeeViewModel, CommonExpressions.PropertyName<EmployeeDTO>(p => p.CheckLocation4), true, DataSourceUpdateMode.OnPropertyChanged);
+
+            this.bindingCheckRole1 = this.CheckRole1.DataBindings.Add("Checked", this.employeeViewModel, CommonExpressions.PropertyName<EmployeeDTO>(p => p.CheckRole1), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingCheckRole2 = this.CheckRole2.DataBindings.Add("Checked", this.employeeViewModel, CommonExpressions.PropertyName<EmployeeDTO>(p => p.CheckRole2), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingCheckRole3 = this.CheckRole3.DataBindings.Add("Checked", this.employeeViewModel, CommonExpressions.PropertyName<EmployeeDTO>(p => p.CheckRole3), true, DataSourceUpdateMode.OnPropertyChanged);
 
             TeamAPIs teamAPIs = new TeamAPIs(CommonNinject.Kernel.Get<ITeamAPIRepository>());
             this.combexTeamID.DataSource = teamAPIs.GetTeamBases();
@@ -130,6 +153,15 @@ namespace TotalSmartCoding.Views.Commons.Employees
             this.bindingAddress.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
 
             this.bindingRemarks.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+
+            this.bindingCheckLocation1.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingCheckLocation2.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingCheckLocation3.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingCheckLocation4.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+
+            this.bindingCheckRole1.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingCheckRole2.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingCheckRole3.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
 
             this.bindingTeamID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.fastEmployeeIndex.AboutToCreateGroups += fastEmployeeIndex_AboutToCreateGroups;

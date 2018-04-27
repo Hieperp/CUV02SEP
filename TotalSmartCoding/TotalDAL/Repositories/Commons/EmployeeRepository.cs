@@ -10,7 +10,7 @@ namespace TotalDAL.Repositories.Commons
     public class EmployeeRepository : GenericRepository<Employee>, IEmployeeRepository
     {
         public EmployeeRepository(TotalSmartCodingEntities totalSmartCodingEntities)
-            : base(totalSmartCodingEntities, "EmployeeEditable")
+            : base(totalSmartCodingEntities, "EmployeeEditable", null, "EmployeeDeletable")
         {
         }
     }

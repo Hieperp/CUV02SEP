@@ -36,6 +36,16 @@
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.panelCenter = new System.Windows.Forms.Panel();
+            this.layoutRight = new System.Windows.Forms.TableLayoutPanel();
+            this.CheckRole3 = new System.Windows.Forms.CheckBox();
+            this.CheckRole2 = new System.Windows.Forms.CheckBox();
+            this.CheckRole1 = new System.Windows.Forms.CheckBox();
+            this.CheckLocation4 = new System.Windows.Forms.CheckBox();
+            this.CheckLocation3 = new System.Windows.Forms.CheckBox();
+            this.CheckLocation2 = new System.Windows.Forms.CheckBox();
+            this.CheckLocation1 = new System.Windows.Forms.CheckBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.layoutTop = new System.Windows.Forms.TableLayoutPanel();
             this.dateTimexBirthday = new CustomControls.DateTimexPicker();
             this.label1 = new System.Windows.Forms.Label();
@@ -65,6 +75,7 @@
             this.imageList32 = new System.Windows.Forms.ImageList(this.components);
             this.toolStripChildForm.SuspendLayout();
             this.panelCenter.SuspendLayout();
+            this.layoutRight.SuspendLayout();
             this.layoutTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastEmployeeIndex)).BeginInit();
             this.SuspendLayout();
@@ -127,14 +138,156 @@
             // 
             this.panelCenter.BackColor = System.Drawing.Color.Ivory;
             this.panelCenter.BackgroundImage = global::TotalSmartCoding.Properties.Resources.Blue2010Large;
+            this.panelCenter.Controls.Add(this.layoutRight);
             this.panelCenter.Controls.Add(this.layoutTop);
             this.panelCenter.Dock = System.Windows.Forms.DockStyle.Right;
             this.panelCenter.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panelCenter.Location = new System.Drawing.Point(1163, 0);
             this.panelCenter.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelCenter.Name = "panelCenter";
-            this.panelCenter.Size = new System.Drawing.Size(368, 654);
+            this.panelCenter.Size = new System.Drawing.Size(368, 1037);
             this.panelCenter.TabIndex = 76;
+            // 
+            // layoutRight
+            // 
+            this.layoutRight.AutoSize = true;
+            this.layoutRight.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.layoutRight.BackColor = System.Drawing.Color.Ivory;
+            this.layoutRight.ColumnCount = 3;
+            this.layoutRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.layoutRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.layoutRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.layoutRight.Controls.Add(this.CheckRole3, 1, 9);
+            this.layoutRight.Controls.Add(this.CheckRole2, 1, 8);
+            this.layoutRight.Controls.Add(this.CheckRole1, 1, 7);
+            this.layoutRight.Controls.Add(this.CheckLocation4, 1, 5);
+            this.layoutRight.Controls.Add(this.CheckLocation3, 1, 4);
+            this.layoutRight.Controls.Add(this.CheckLocation2, 1, 3);
+            this.layoutRight.Controls.Add(this.CheckLocation1, 1, 2);
+            this.layoutRight.Controls.Add(this.label4, 1, 6);
+            this.layoutRight.Controls.Add(this.label2, 1, 1);
+            this.layoutRight.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.layoutRight.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.layoutRight.Location = new System.Drawing.Point(0, 504);
+            this.layoutRight.Margin = new System.Windows.Forms.Padding(0);
+            this.layoutRight.Name = "layoutRight";
+            this.layoutRight.RowCount = 11;
+            this.layoutRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 15F));
+            this.layoutRight.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutRight.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutRight.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutRight.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutRight.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutRight.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutRight.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutRight.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutRight.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutRight.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutRight.Size = new System.Drawing.Size(368, 533);
+            this.layoutRight.TabIndex = 11;
+            // 
+            // CheckRole3
+            // 
+            this.CheckRole3.AutoSize = true;
+            this.CheckRole3.Location = new System.Drawing.Point(28, 315);
+            this.CheckRole3.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.CheckRole3.Name = "CheckRole3";
+            this.CheckRole3.Size = new System.Drawing.Size(108, 25);
+            this.CheckRole3.TabIndex = 113;
+            this.CheckRole3.Text = "Saleperson";
+            this.CheckRole3.UseVisualStyleBackColor = true;
+            // 
+            // CheckRole2
+            // 
+            this.CheckRole2.AutoSize = true;
+            this.CheckRole2.Location = new System.Drawing.Point(28, 277);
+            this.CheckRole2.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.CheckRole2.Name = "CheckRole2";
+            this.CheckRole2.Size = new System.Drawing.Size(83, 25);
+            this.CheckRole2.TabIndex = 112;
+            this.CheckRole2.Text = "Logistic";
+            this.CheckRole2.UseVisualStyleBackColor = true;
+            // 
+            // CheckRole1
+            // 
+            this.CheckRole1.AutoSize = true;
+            this.CheckRole1.Location = new System.Drawing.Point(28, 239);
+            this.CheckRole1.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.CheckRole1.Name = "CheckRole1";
+            this.CheckRole1.Size = new System.Drawing.Size(108, 25);
+            this.CheckRole1.TabIndex = 111;
+            this.CheckRole1.Text = "Production";
+            this.CheckRole1.UseVisualStyleBackColor = true;
+            // 
+            // CheckLocation4
+            // 
+            this.CheckLocation4.AutoSize = true;
+            this.CheckLocation4.Location = new System.Drawing.Point(28, 170);
+            this.CheckLocation4.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.CheckLocation4.Name = "CheckLocation4";
+            this.CheckLocation4.Size = new System.Drawing.Size(90, 25);
+            this.CheckLocation4.TabIndex = 110;
+            this.CheckLocation4.Text = "Da Nang";
+            this.CheckLocation4.UseVisualStyleBackColor = true;
+            // 
+            // CheckLocation3
+            // 
+            this.CheckLocation3.AutoSize = true;
+            this.CheckLocation3.Location = new System.Drawing.Point(28, 132);
+            this.CheckLocation3.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.CheckLocation3.Name = "CheckLocation3";
+            this.CheckLocation3.Size = new System.Drawing.Size(112, 25);
+            this.CheckLocation3.TabIndex = 109;
+            this.CheckLocation3.Text = "Binh Duong";
+            this.CheckLocation3.UseVisualStyleBackColor = true;
+            // 
+            // CheckLocation2
+            // 
+            this.CheckLocation2.AutoSize = true;
+            this.CheckLocation2.Location = new System.Drawing.Point(28, 94);
+            this.CheckLocation2.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.CheckLocation2.Name = "CheckLocation2";
+            this.CheckLocation2.Size = new System.Drawing.Size(97, 25);
+            this.CheckLocation2.TabIndex = 108;
+            this.CheckLocation2.Text = "Hung Yen";
+            this.CheckLocation2.UseVisualStyleBackColor = true;
+            // 
+            // CheckLocation1
+            // 
+            this.CheckLocation1.AutoSize = true;
+            this.CheckLocation1.Location = new System.Drawing.Point(28, 56);
+            this.CheckLocation1.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.CheckLocation1.Name = "CheckLocation1";
+            this.CheckLocation1.Size = new System.Drawing.Size(103, 25);
+            this.CheckLocation1.TabIndex = 107;
+            this.CheckLocation1.Text = "Hai Phong";
+            this.CheckLocation1.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label4.Location = new System.Drawing.Point(25, 198);
+            this.label4.Margin = new System.Windows.Forms.Padding(0);
+            this.label4.Name = "label4";
+            this.label4.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
+            this.label4.Size = new System.Drawing.Size(318, 31);
+            this.label4.TabIndex = 99;
+            this.label4.Text = "Roles";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label2.Location = new System.Drawing.Point(25, 15);
+            this.label2.Margin = new System.Windows.Forms.Padding(0);
+            this.label2.Name = "label2";
+            this.label2.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
+            this.label2.Size = new System.Drawing.Size(318, 31);
+            this.label2.TabIndex = 96;
+            this.label2.Text = "Locations";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
             // layoutTop
             // 
@@ -161,7 +314,7 @@
             this.layoutTop.Controls.Add(this.label8, 1, 9);
             this.layoutTop.Controls.Add(this.label9, 1, 11);
             this.layoutTop.Controls.Add(this.label12, 1, 13);
-            this.layoutTop.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.layoutTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.layoutTop.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.layoutTop.Location = new System.Drawing.Point(0, 0);
             this.layoutTop.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
@@ -185,7 +338,7 @@
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.layoutTop.Size = new System.Drawing.Size(368, 654);
+            this.layoutTop.Size = new System.Drawing.Size(368, 504);
             this.layoutTop.TabIndex = 8;
             // 
             // dateTimexBirthday
@@ -200,7 +353,7 @@
             this.dateTimexBirthday.Name = "dateTimexBirthday";
             this.dateTimexBirthday.ReadOnly = false;
             this.dateTimexBirthday.Size = new System.Drawing.Size(314, 28);
-            this.dateTimexBirthday.TabIndex = 100;
+            this.dateTimexBirthday.TabIndex = 85;
             // 
             // label1
             // 
@@ -223,7 +376,7 @@
             this.textexAddress.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.textexAddress.Name = "textexAddress";
             this.textexAddress.Size = new System.Drawing.Size(314, 28);
-            this.textexAddress.TabIndex = 98;
+            this.textexAddress.TabIndex = 87;
             // 
             // textexTitle
             // 
@@ -233,7 +386,7 @@
             this.textexTitle.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.textexTitle.Name = "textexTitle";
             this.textexTitle.Size = new System.Drawing.Size(314, 28);
-            this.textexTitle.TabIndex = 80;
+            this.textexTitle.TabIndex = 84;
             // 
             // textexTelephone
             // 
@@ -243,7 +396,7 @@
             this.textexTelephone.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.textexTelephone.Name = "textexTelephone";
             this.textexTelephone.Size = new System.Drawing.Size(314, 28);
-            this.textexTelephone.TabIndex = 82;
+            this.textexTelephone.TabIndex = 86;
             // 
             // textexName
             // 
@@ -253,7 +406,7 @@
             this.textexName.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.textexName.Name = "textexName";
             this.textexName.Size = new System.Drawing.Size(314, 28);
-            this.textexName.TabIndex = 86;
+            this.textexName.TabIndex = 82;
             // 
             // textexRemarks
             // 
@@ -391,7 +544,7 @@
             this.fastEmployeeIndex.Name = "fastEmployeeIndex";
             this.fastEmployeeIndex.OwnerDraw = true;
             this.fastEmployeeIndex.ShowGroups = false;
-            this.fastEmployeeIndex.Size = new System.Drawing.Size(1163, 654);
+            this.fastEmployeeIndex.Size = new System.Drawing.Size(1163, 1037);
             this.fastEmployeeIndex.TabIndex = 68;
             this.fastEmployeeIndex.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastEmployeeIndex.UseCompatibleStateImageBehavior = false;
@@ -487,7 +640,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1531, 654);
+            this.ClientSize = new System.Drawing.Size(1531, 1037);
             this.Controls.Add(this.fastEmployeeIndex);
             this.Controls.Add(this.panelCenter);
             this.Controls.Add(this.toolStripChildForm);
@@ -502,6 +655,8 @@
             this.toolStripChildForm.PerformLayout();
             this.panelCenter.ResumeLayout(false);
             this.panelCenter.PerformLayout();
+            this.layoutRight.ResumeLayout(false);
+            this.layoutRight.PerformLayout();
             this.layoutTop.ResumeLayout(false);
             this.layoutTop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastEmployeeIndex)).EndInit();
@@ -545,6 +700,16 @@
         private BrightIdeasSoftware.OLVColumn olvBirthday;
         private BrightIdeasSoftware.OLVColumn olvTelephone;
         private BrightIdeasSoftware.OLVColumn olvTeamCode;
+        private System.Windows.Forms.TableLayoutPanel layoutRight;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckBox CheckLocation4;
+        private System.Windows.Forms.CheckBox CheckLocation3;
+        private System.Windows.Forms.CheckBox CheckLocation2;
+        private System.Windows.Forms.CheckBox CheckLocation1;
+        private System.Windows.Forms.CheckBox CheckRole3;
+        private System.Windows.Forms.CheckBox CheckRole2;
+        private System.Windows.Forms.CheckBox CheckRole1;
 
     }
 }

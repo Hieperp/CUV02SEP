@@ -67,6 +67,10 @@ namespace TotalDAL.Repositories
             this.totalSmartCodingEntities.ColumnAdd("Employees", "InActive", "bit", "0", true);
             if (!this.totalSmartCodingEntities.ColumnExists("Employees", "EmployeeRoleIDs"))
             {
+                this.ExecuteStoreCommand("UPDATE ModuleDetails SET InActive = 1 WHERE ModuleDetailID IN (" + (int)GlobalEnums.NmvnTaskID.Territory + ", " + (int)GlobalEnums.NmvnTaskID.Warehouse + ", " + (int)GlobalEnums.NmvnTaskID.GoodsReceiptDetailAvailable + ", " + (int)GlobalEnums.NmvnTaskID.PendingOrder + ") ", new ObjectParameter[] { });
+
+                this.ExecuteStoreCommand("UPDATE Employees SET Title = N'#'", new ObjectParameter[] { });
+
                 this.totalSmartCodingEntities.ColumnAdd("Employees", "EmployeeRoleIDs", "nvarchar(100)", "", false);
                 this.totalSmartCodingEntities.ColumnAdd("Employees", "EmployeeLocationIDs", "nvarchar(100)", "", false);
 
@@ -134,6 +138,11 @@ namespace TotalDAL.Repositories
             Helpers.SqlProgrammability.Commons.Team team = new Helpers.SqlProgrammability.Commons.Team(totalSmartCodingEntities);
             team.RestoreProcedure();
 
+            //return;
+
+            Helpers.SqlProgrammability.Generals.Module module = new Helpers.SqlProgrammability.Generals.Module(totalSmartCodingEntities);
+            module.RestoreProcedure();
+
             return;
             return;
 
@@ -197,16 +206,16 @@ namespace TotalDAL.Repositories
 
 
 
-            
+
 
             //return;
             Helpers.SqlProgrammability.Commons.CommodityType commodityType = new Helpers.SqlProgrammability.Commons.CommodityType(totalSmartCodingEntities);
             commodityType.RestoreProcedure();
 
-            
 
-            
-            
+
+
+
 
 
 
@@ -266,7 +275,7 @@ namespace TotalDAL.Repositories
             Helpers.SqlProgrammability.Sales.TransferOrder transferOrder = new Helpers.SqlProgrammability.Sales.TransferOrder(totalSmartCodingEntities);
             transferOrder.RestoreProcedure();
 
-            
+
 
 
             //return;
@@ -282,10 +291,7 @@ namespace TotalDAL.Repositories
 
 
 
-            //return;
 
-            Helpers.SqlProgrammability.Generals.Module module = new Helpers.SqlProgrammability.Generals.Module(totalSmartCodingEntities);
-            module.RestoreProcedure();
 
 
             //return;
@@ -304,7 +310,7 @@ namespace TotalDAL.Repositories
             territory.RestoreProcedure();
 
 
-            
+
 
 
             //return;
@@ -1193,7 +1199,7 @@ namespace TotalDAL.Repositories
             }
             #endregion ColumnMappings
 
-            
+
 
             #region CommoditySettings
             if (!this.totalSmartCodingEntities.TableExists("CommoditySettings") || !this.totalSmartCodingEntities.TableExists("CommoditySettingDetails"))

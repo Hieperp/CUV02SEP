@@ -188,7 +188,7 @@
             this.fastNMVNTasks.Name = "fastNMVNTasks";
             this.fastNMVNTasks.OwnerDraw = true;
             this.fastNMVNTasks.ShowGroups = false;
-            this.fastNMVNTasks.Size = new System.Drawing.Size(289, 582);
+            this.fastNMVNTasks.Size = new System.Drawing.Size(289, 539);
             this.fastNMVNTasks.TabIndex = 69;
             this.fastNMVNTasks.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastNMVNTasks.UseCompatibleStateImageBehavior = false;
@@ -260,7 +260,7 @@
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridexUserAccessControl.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.gridexUserAccessControl.RowTemplate.Height = 24;
-            this.gridexUserAccessControl.Size = new System.Drawing.Size(919, 582);
+            this.gridexUserAccessControl.Size = new System.Drawing.Size(919, 539);
             this.gridexUserAccessControl.TabIndex = 70;
             this.gridexUserAccessControl.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridexAccessControls_CellContentClick);
             // 
@@ -470,7 +470,7 @@
             this.naviIndex.PopupHeight = 554;
             this.naviIndex.PopupMinWidth = 368;
             this.naviIndex.ShowMoreOptionsButton = false;
-            this.naviIndex.Size = new System.Drawing.Size(33, 656);
+            this.naviIndex.Size = new System.Drawing.Size(33, 613);
             this.naviIndex.TabIndex = 72;
             // 
             // navibandUserTrees
@@ -512,7 +512,7 @@
             this.panelLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelLeft.Location = new System.Drawing.Point(0, 0);
             this.panelLeft.Name = "panelLeft";
-            this.panelLeft.Size = new System.Drawing.Size(33, 692);
+            this.panelLeft.Size = new System.Drawing.Size(33, 649);
             this.panelLeft.TabIndex = 73;
             // 
             // pictureTopleft
@@ -530,7 +530,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1241, 692);
+            this.ClientSize = new System.Drawing.Size(1241, 649);
             this.Controls.Add(this.gridexUserAccessControl);
             this.Controls.Add(this.fastNMVNTasks);
             this.Controls.Add(this.toolStrip1);
