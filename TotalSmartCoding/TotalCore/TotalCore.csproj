@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions\ObjectExtension.cs" />
+    <Compile Include="Extensions\SecurePassword.cs" />
     <Compile Include="Helpers\ISqlRoutines.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Commons\IBinLocationRepository.cs" />

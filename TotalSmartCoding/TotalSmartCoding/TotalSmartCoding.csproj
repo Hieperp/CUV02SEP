@@ -1309,6 +1309,10 @@
     <None Include="Resources\Navigate-right.ico" />
     <None Include="Resources\Ncrow-Excel.ico" />
     <None Include="Resources\pay-per-click-1.png" />
+    <None Include="Resources\LoginApplicationRole.png" />
+    <None Include="Resources\ExitRole.png" />
+    <None Include="Resources\ApplicationRoles.png" />
+    <None Include="Resources\LogoutApp.png" />
     <Content Include="SmartCodingSolution.ico" />
     <None Include="Resources\Yellow-cross.ico" />
     <None Include="Resources\White-Pallet.ico" />

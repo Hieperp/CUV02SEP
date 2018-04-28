@@ -18,6 +18,7 @@ using TotalSmartCoding.Views.Productions;
 using TotalSmartCoding.Views.Inventories.Pickups;
 using TotalSmartCoding.Views.Inventories.GoodsIssues;
 using TotalSmartCoding.Libraries.Helpers;
+using TotalCore.Extensions;
 
 
 namespace TotalSmartCoding
@@ -47,66 +48,62 @@ namespace TotalSmartCoding
             ApplicationRoles.Name = CommonConfigs.ReadSetting("SecurePrincipal");
             ApplicationRoles.Password = CommonConfigs.ReadSetting("SecureCode");
 
-            do
+            if (ApplicationRoles.Name != "") ApplicationRoles.Name = SecurePassword.Decrypt(ApplicationRoles.Name);
+            if (ApplicationRoles.Password != "") ApplicationRoles.Password = SecurePassword.Decrypt(ApplicationRoles.Password);
+            
+            TrialConnects trialConnects = new TrialConnects();
+            DialogResult trialConnectResult = trialConnects.Connected();
+            if (trialConnectResult == DialogResult.Yes)
             {
-                TrialConnects trialConnects = new TrialConnects();
-                if (trialConnects.Connected())
-                {
-                    Logon logon = new Logon();
+                Logon logon = new Logon();
 
-                    if (logon.ShowDialog() == DialogResult.OK)
+                if (logon.ShowDialog() == DialogResult.OK)
+                {
+                    if (GlobalVariables.FillingLineID == GlobalVariables.FillingLine.Smallpack || GlobalVariables.FillingLineID == GlobalVariables.FillingLine.Pail || GlobalVariables.FillingLineID == GlobalVariables.FillingLine.Drum)
+                        Application.Run(new MasterMDI(GlobalEnums.NmvnTaskID.SmartCoding, new SmartCoding()));
+                    else
                     {
-                        if (GlobalVariables.FillingLineID == GlobalVariables.FillingLine.Smallpack || GlobalVariables.FillingLineID == GlobalVariables.FillingLine.Pail || GlobalVariables.FillingLineID == GlobalVariables.FillingLine.Drum)
-                            Application.Run(new MasterMDI(GlobalEnums.NmvnTaskID.SmartCoding, new SmartCoding()));
+                        if (GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Pickup)
+                            Application.Run(new MasterMDI(GlobalEnums.NmvnTaskID.Pickup, new Pickups()));
+                        else if (GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.GoodsIssue)
+                            Application.Run(new MasterMDI(GlobalEnums.NmvnTaskID.GoodsIssue, new GoodsIssues()));
                         else
-                        {
-                            if (GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Pickup)
-                                Application.Run(new MasterMDI(GlobalEnums.NmvnTaskID.Pickup, new Pickups()));
-                            else if (GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.GoodsIssue)
-                                Application.Run(new MasterMDI(GlobalEnums.NmvnTaskID.GoodsIssue, new GoodsIssues()));
-                            else
-                                Application.Run(new MasterMDI());
-                        }
+                            Application.Run(new MasterMDI());
                     }
-                    logon.Dispose(); break;
                 }
-                else
+                logon.Dispose();
+            }
+            else
+                if (trialConnectResult == DialogResult.No)
                 {
-                    
+                    ConnectServer connectServer = new ConnectServer(false);
+                    connectServer.ShowDialog(); connectServer.Dispose();
                 }
-            } while (true);
-
         }
-
 
     }
 
     public class TrialConnects
     {
-        public bool Connected()
+        public DialogResult Connected()
         {
             try
             {
                 if (ApplicationRoles.Name == "" || ApplicationRoles.Password == "")
                 {
-                    ConnectServer connectServer = new ConnectServer();
+                    ConnectServer connectServer = new ConnectServer(true);
                     DialogResult connectServerResult = connectServer.ShowDialog(); connectServer.Dispose();
-                    if (connectServerResult != DialogResult.OK) break;
+                    if (connectServerResult != DialogResult.OK) return DialogResult.Cancel;
                 }
 
-                if (ApplicationRoles.Name != "" && ApplicationRoles.Password != "")
-                {
-                    IBaseRepository baseRepository = CommonNinject.Kernel.Get<IBaseRepository>();
-                    return baseRepository.GetVersionID((int)GlobalVariables.FillingLine.None) != null;
-                }
-                else
-                    return false;
+                IBaseRepository baseRepository = CommonNinject.Kernel.Get<IBaseRepository>();
+                return baseRepository.GetVersionID((int)GlobalVariables.FillingLine.None) != null ? DialogResult.Yes : DialogResult.No;
             }
             catch (Exception exception)
             {
                 ApplicationRoles.ExceptionMessage = exception.Message;
                 ExceptionHandlers.ShowExceptionMessageBox(new Form(), exception);
-                return false;
+                return DialogResult.No;
             }
         }
     }

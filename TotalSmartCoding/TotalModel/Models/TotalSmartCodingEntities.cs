@@ -141,7 +141,7 @@ namespace TotalModel.Models
                 ApplicationRoles.ExceptionMessage = "";
 
                 if (connection.State != ConnectionState.Open) return;
-                ActivateApplicationRole(connection, _appRole, _password);
+                if (_appRole != "NOMORE") ActivateApplicationRole(connection, _appRole, _password);
             }
             catch (Exception e)
             {
@@ -154,7 +154,7 @@ namespace TotalModel.Models
         {
             Debug.WriteLine("Connection Closing.");
             if (connection.State != ConnectionState.Open) return;
-            DeActivateApplicationRole(connection, _cookie);
+            if (_appRole != "NOMORE") DeActivateApplicationRole(connection, _cookie);
         }
 
         public virtual void ActivateApplicationRole(DbConnection dbConn, string appRoleName, string password)

@@ -763,6 +763,16 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ApplicationRoles {
+            get {
+                object obj = ResourceManager.GetObject("ApplicationRoles", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap approve_16 {
             get {
                 object obj = ResourceManager.GetObject("approve_16", resourceCulture);
@@ -2433,6 +2443,16 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ExitRole {
+            get {
+                object obj = ResourceManager.GetObject("ExitRole", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ExpandDown_20 {
             get {
                 object obj = ResourceManager.GetObject("ExpandDown-20", resourceCulture);
@@ -4016,6 +4036,26 @@ namespace TotalSmartCoding.Properties {
         internal static System.Drawing.Bitmap Login {
             get {
                 object obj = ResourceManager.GetObject("Login", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LoginApplicationRole {
+            get {
+                object obj = ResourceManager.GetObject("LoginApplicationRole", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LogoutApp {
+            get {
+                object obj = ResourceManager.GetObject("LogoutApp", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

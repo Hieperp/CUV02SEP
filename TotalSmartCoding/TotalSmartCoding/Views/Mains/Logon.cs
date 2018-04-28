@@ -39,9 +39,6 @@ namespace TotalSmartCoding.Views.Mains
 
 
         public int EmployeeID { get; set; }
-        private Binding employeeIDBinding;
-        //private CommonMetaList commonMetaList;
-
 
         private void PublicApplicationLogon_Load(object sender, EventArgs e)
         {
@@ -92,16 +89,16 @@ namespace TotalSmartCoding.Views.Mains
 
 
 
-            ////////string plainText = "Lê Minh Hiệp";
-            ////////// Convert the plain string pwd into bytes
-            //////////byte[] plainTextBytes = UnicodeEncoding.Unicode.GetBytes(plainText);
-            //////////System.Security.Cryptography.HashAlgorithm hashAlgo = new System.Security.Cryptography.SHA256Managed();
-            //////////byte[] hash = hashAlgo.ComputeHash(plainTextBytes);
+            ////string plainText = "Lê Minh Hiệp";
+            ////// Convert the plain string pwd into bytes
+            //////byte[] plainTextBytes = UnicodeEncoding.Unicode.GetBytes(plainText);
+            //////System.Security.Cryptography.HashAlgorithm hashAlgo = new System.Security.Cryptography.SHA256Managed();
+            //////byte[] hash = hashAlgo.ComputeHash(plainTextBytes);
 
-            ////////byte[] data = UnicodeEncoding.Unicode.GetBytes(plainText);
-            ////////data = new System.Security.Cryptography.SHA256Managed().ComputeHash(data);
-            ////////String hash = UnicodeEncoding.Unicode.GetString(data);
-            //////////CustomMsgBox.Show(hash);
+            ////byte[] data = UnicodeEncoding.Unicode.GetBytes(plainText);
+            ////data = new System.Security.Cryptography.SHA256Managed().ComputeHash(data);
+            ////String hash = UnicodeEncoding.Unicode.GetString(data);
+            //////CustomMsgBox.Show(hash);
 
             #endregion TEST
 
