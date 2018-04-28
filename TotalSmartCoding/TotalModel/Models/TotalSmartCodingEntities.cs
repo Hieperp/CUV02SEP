@@ -13,6 +13,7 @@ using System.Data.Common;
 using System.Diagnostics;
 using System.Data.SqlClient;
 using System.Data.Entity;
+using TotalModel.Helpers;
 
 namespace TotalModel.Models
 {
@@ -122,7 +123,7 @@ namespace TotalModel.Models
         private byte[] _cookie;
 
         public DbConnectionApplicationRoleInterceptor()
-            : this("TotalSmartCoding", "Ok@018")
+            : this(ApplicationRoles.Name, ApplicationRoles.Password)
         {
         }
 
@@ -134,9 +135,19 @@ namespace TotalModel.Models
 
         public void Opened(DbConnection connection, DbConnectionInterceptionContext interceptionContext)
         {
-            Debug.WriteLine("Connection Opened.");
-            if (connection.State != ConnectionState.Open) return;
-            ActivateApplicationRole(connection, _appRole, _password);
+            try
+            {
+                Debug.WriteLine("Connection Opened.");
+                ApplicationRoles.ExceptionMessage = "";
+
+                if (connection.State != ConnectionState.Open) return;
+                ActivateApplicationRole(connection, _appRole, _password);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+                ApplicationRoles.ExceptionMessage = e.Message;
+            }
         }
 
         public void Closing(DbConnection connection, DbConnectionInterceptionContext interceptionContext)
@@ -210,6 +221,8 @@ namespace TotalModel.Models
         {
             try
             {
+                ApplicationRoles.ExceptionMessage = "";
+
                 using (var cmd = dbConn.CreateCommand())
                 {
                     cmd.CommandText = "sp_unsetapprole";
@@ -221,6 +234,7 @@ namespace TotalModel.Models
             catch (Exception e)
             {
                 Debug.WriteLine(e.Message);
+                ApplicationRoles.ExceptionMessage = e.Message;
             }
         }
 

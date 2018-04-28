@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseModel.cs" />
+    <Compile Include="Helpers\ApplicationRoles.cs" />
     <Compile Include="Helpers\CustomException.cs" />
     <Compile Include="Helpers\IHelper.cs" />
     <Compile Include="Helpers\NotifyPropertyChangeObject.cs" />

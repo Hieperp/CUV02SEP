@@ -360,6 +360,12 @@
     <Compile Include="Views\Mains\ColumnMappings.designer.cs">
       <DependentUpon>ColumnMappings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Mains\ConnectServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Mains\ConnectServer.Designer.cs">
+      <DependentUpon>ConnectServer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Mains\ExcelSheets.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -580,6 +586,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Mains\ColumnMappings.resx">
       <DependentUpon>ColumnMappings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Mains\ConnectServer.resx">
+      <DependentUpon>ConnectServer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Mains\ExcelSheets.resx">
       <DependentUpon>ExcelSheets.cs</DependentUpon>
