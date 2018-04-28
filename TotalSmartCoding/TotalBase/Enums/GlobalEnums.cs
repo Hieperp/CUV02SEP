@@ -81,7 +81,7 @@
             Warehouse = 8006,
             BinLocation = 8008,
             Territory = 8007,
-
+            FillingLine = 8668,
 
             PurchaseOrder = 8021,
             PurchaseInvoice = 8022,

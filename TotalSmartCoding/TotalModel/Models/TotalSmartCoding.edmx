@@ -288,6 +288,18 @@
           <Property Name="TerritoryID3" Type="int" Nullable="false" />
           <Property Name="Name3" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
+        <EntityType Name="FillingLineDetails">
+          <Key>
+            <PropertyRef Name="FillingLineDetailID" />
+          </Key>
+          <Property Name="FillingLineDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FillingLineID" Type="int" Nullable="false" />
+          <Property Name="DeviceID" Type="int" Nullable="false" />
+          <Property Name="IPv4Byte1" Type="int" Nullable="false" />
+          <Property Name="IPv4Byte2" Type="int" Nullable="false" />
+          <Property Name="IPv4Byte3" Type="int" Nullable="false" />
+          <Property Name="IPv4Byte4" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="FillingLines">
           <Key>
             <PropertyRef Name="FillingLineID" />
@@ -2382,6 +2394,16 @@
           <Parameter Name="EntityID" Type="int" Mode="In" />
           <Parameter Name="SaveRelativeOption" Type="int" Mode="In" />
         </Function>
+        <Function Name="FillingLineDeletable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="FillingLineEditable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="FillingLineSaveRelative" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="int" Mode="In" />
+          <Parameter Name="SaveRelativeOption" Type="int" Mode="In" />
+        </Function>
         <Function Name="ForecastEditable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="EntityID" Type="int" Mode="In" />
         </Function>
@@ -3020,6 +3042,7 @@
           <EntitySet Name="DeliveryAdvices" EntityType="Self.DeliveryAdvices" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EntireTerritories" EntityType="Self.EntireTerritories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FillingLineDetails" EntityType="Self.FillingLineDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FillingLines" EntityType="Self.FillingLines" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ForecastDetails" EntityType="Self.ForecastDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Forecasts" EntityType="Self.Forecasts" Schema="dbo" store:Type="Tables" />
@@ -4703,7 +4726,18 @@
           </FunctionImport>
           <FunctionImport Name="GetTeamTrees" ReturnType="Collection(TotalSmartCodingModel.TeamTree)" />
           <FunctionImport Name="EmployeeDeletable" ReturnType="Collection(String)">
+          <Parameter Name="EntityID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="FillingLineDetails" EntityType="TotalSmartCodingModel.FillingLineDetail" />
+          <FunctionImport Name="FillingLineDeletable" ReturnType="Collection(String)">
             <Parameter Name="EntityID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="FillingLineEditable" ReturnType="Collection(String)">
+            <Parameter Name="EntityID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="FillingLineSaveRelative">
+            <Parameter Name="EntityID" Mode="In" Type="Int32" />
+            <Parameter Name="SaveRelativeOption" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
@@ -8361,6 +8395,18 @@
           <Property Type="String" Name="ParameterName" Nullable="true" MaxLength="6" />
           <Property Type="Boolean" Name="Selected" Nullable="true" />
         </ComplexType>
+        <EntityType Name="FillingLineDetail">
+          <Key>
+            <PropertyRef Name="FillingLineDetailID" />
+          </Key>
+          <Property Name="FillingLineDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FillingLineID" Type="Int32" Nullable="false" />
+          <Property Name="DeviceID" Type="Int32" Nullable="false" />
+          <Property Name="IPv4Byte1" Type="Int32" Nullable="false" />
+          <Property Name="IPv4Byte2" Type="Int32" Nullable="false" />
+          <Property Name="IPv4Byte3" Type="Int32" Nullable="false" />
+          <Property Name="IPv4Byte4" Type="Int32" Nullable="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -11039,6 +11085,22 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="EmployeeDeletable" FunctionName="TotalSmartCodingModel.Store.EmployeeDeletable" />
+          <EntitySetMapping Name="FillingLineDetails">
+            <EntityTypeMapping TypeName="TotalSmartCodingModel.FillingLineDetail">
+              <MappingFragment StoreEntitySet="FillingLineDetails">
+                <ScalarProperty Name="IPv4Byte4" ColumnName="IPv4Byte4" />
+                <ScalarProperty Name="IPv4Byte3" ColumnName="IPv4Byte3" />
+                <ScalarProperty Name="IPv4Byte2" ColumnName="IPv4Byte2" />
+                <ScalarProperty Name="IPv4Byte1" ColumnName="IPv4Byte1" />
+                <ScalarProperty Name="DeviceID" ColumnName="DeviceID" />
+                <ScalarProperty Name="FillingLineID" ColumnName="FillingLineID" />
+                <ScalarProperty Name="FillingLineDetailID" ColumnName="FillingLineDetailID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="FillingLineDeletable" FunctionName="TotalSmartCodingModel.Store.FillingLineDeletable" />
+          <FunctionImportMapping FunctionImportName="FillingLineEditable" FunctionName="TotalSmartCodingModel.Store.FillingLineEditable" />
+          <FunctionImportMapping FunctionImportName="FillingLineSaveRelative" FunctionName="TotalSmartCodingModel.Store.FillingLineSaveRelative" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

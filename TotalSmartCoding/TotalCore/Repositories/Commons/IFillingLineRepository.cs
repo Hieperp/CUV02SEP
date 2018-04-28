@@ -4,9 +4,8 @@ using TotalModel.Models;
 
 namespace TotalCore.Repositories.Commons
 {
-    public interface IFillingLineRepository
+    public interface IFillingLineRepository : IGenericWithDetailRepository<FillingLine, FillingLineDetail>
     {
-
     }
 
     public interface IFillingLineAPIRepository : IGenericAPIRepository

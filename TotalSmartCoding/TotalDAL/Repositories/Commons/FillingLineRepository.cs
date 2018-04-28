@@ -7,13 +7,14 @@ using TotalCore.Repositories.Commons;
 
 namespace TotalDAL.Repositories.Commons
 {
-    public class FillingLineRepository : GenericRepository<FillingLine>, IFillingLineRepository
+    public class FillingLineRepository : GenericWithDetailRepository<FillingLine, FillingLineDetail>, IFillingLineRepository
     {
         public FillingLineRepository(TotalSmartCodingEntities totalSmartCodingEntities)
-            : base(totalSmartCodingEntities, "FillingLineEditable")
+            : base(totalSmartCodingEntities, "FillingLineEditable", null, "FillingLineDeletable")
         {
         }
     }
+
 
 
 

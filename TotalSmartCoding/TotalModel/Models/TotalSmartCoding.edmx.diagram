@@ -163,6 +163,7 @@
         <AssociationConnector Association="TotalSmartCodingModel.FK_Customers_Employees" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_Employees_Locations" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_Employees_Teams" />
+        <EntityTypeShape EntityType="TotalSmartCodingModel.FillingLineDetail" Width="1.5" PointX="5.375" PointY="8.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

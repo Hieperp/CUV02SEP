@@ -143,6 +143,11 @@ namespace TotalDAL.Repositories
             Helpers.SqlProgrammability.Generals.Module module = new Helpers.SqlProgrammability.Generals.Module(totalSmartCodingEntities);
             module.RestoreProcedure();
 
+            //return;
+
+            Helpers.SqlProgrammability.Commons.FillingLine fillingLine = new Helpers.SqlProgrammability.Commons.FillingLine(totalSmartCodingEntities);
+            fillingLine.RestoreProcedure();
+
             return;
             return;
 
@@ -331,10 +336,7 @@ namespace TotalDAL.Repositories
             accessControl.RestoreProcedure();
 
 
-            //return;
 
-            Helpers.SqlProgrammability.Commons.FillingLine fillingLine = new Helpers.SqlProgrammability.Commons.FillingLine(totalSmartCodingEntities);
-            fillingLine.RestoreProcedure();
 
 
             return;

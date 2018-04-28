@@ -465,6 +465,11 @@ namespace TotalModel.Models
     //    public System.DateTime EditedDate { get; set; }
     //}
 
+    public partial class FillingLineIndex : IBaseIndex
+    {
+        public int Id { get { return this.FillingLineID; } }
+    }
+
     public partial class FillingLine : IPrimitiveEntity, IBaseEntity
     {
         public int GetID() { return this.FillingLineID; }

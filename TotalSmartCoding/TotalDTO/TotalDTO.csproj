@@ -63,6 +63,8 @@
     <Compile Include="Commons\CommoditySettingDTO.cs" />
     <Compile Include="Commons\CustomerDTO.cs" />
     <Compile Include="Commons\EmployeeDTO.cs" />
+    <Compile Include="Commons\FillingLineDetailDTO.cs" />
+    <Compile Include="Commons\FillingLineDTO.cs" />
     <Compile Include="Commons\PromotionDTO.cs" />
     <Compile Include="Commons\VoidTypeDTO.cs" />
     <Compile Include="Commons\WarehouseAdjustmentTypeDTO.cs" />

@@ -58,6 +58,7 @@
     <Compile Include="Commons\CommoditySettingService.cs" />
     <Compile Include="Commons\CustomerService.cs" />
     <Compile Include="Commons\EmployeeService.cs" />
+    <Compile Include="Commons\FillingLineService.cs" />
     <Compile Include="Generals\ReportService.cs" />
     <Compile Include="GenericService.cs" />
     <Compile Include="GenericWithDetailService.cs" />

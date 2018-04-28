@@ -75,6 +75,7 @@ namespace TotalModel.Models
         public virtual DbSet<CommoditySettingDetail> CommoditySettingDetails { get; set; }
         public virtual DbSet<Batch> Batches { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
+        public virtual DbSet<FillingLineDetail> FillingLineDetails { get; set; }
     
         public virtual ObjectResult<Nullable<int>> GetAccessLevel(Nullable<int> userID, Nullable<int> nMVNTaskID, Nullable<int> organizationalUnitID)
         {
@@ -2545,6 +2546,37 @@ namespace TotalModel.Models
                 new ObjectParameter("EntityID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("EmployeeDeletable", entityIDParameter);
+        }
+    
+        public virtual ObjectResult<string> FillingLineDeletable(Nullable<int> entityID)
+        {
+            var entityIDParameter = entityID.HasValue ?
+                new ObjectParameter("EntityID", entityID) :
+                new ObjectParameter("EntityID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("FillingLineDeletable", entityIDParameter);
+        }
+    
+        public virtual ObjectResult<string> FillingLineEditable(Nullable<int> entityID)
+        {
+            var entityIDParameter = entityID.HasValue ?
+                new ObjectParameter("EntityID", entityID) :
+                new ObjectParameter("EntityID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("FillingLineEditable", entityIDParameter);
+        }
+    
+        public virtual int FillingLineSaveRelative(Nullable<int> entityID, Nullable<int> saveRelativeOption)
+        {
+            var entityIDParameter = entityID.HasValue ?
+                new ObjectParameter("EntityID", entityID) :
+                new ObjectParameter("EntityID", typeof(int));
+    
+            var saveRelativeOptionParameter = saveRelativeOption.HasValue ?
+                new ObjectParameter("SaveRelativeOption", saveRelativeOption) :
+                new ObjectParameter("SaveRelativeOption", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("FillingLineSaveRelative", entityIDParameter, saveRelativeOptionParameter);
         }
     }
 }
