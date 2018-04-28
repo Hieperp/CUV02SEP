@@ -31,7 +31,9 @@ namespace TotalSmartCoding.Views.Mains
 
                 ServerReport serverReport = this.ssrsMainViewer.ServerReport;
 
+                //System.Net.NetworkCredential credentials = new System.Net.NetworkCredential("CommonOnly", "123", "DELL-E7240T\\SQL2016"); //SQL LOGON //DELL-E7240T\SQL2016
                 System.Net.ICredentials credentials = System.Net.CredentialCache.DefaultCredentials;// Get a reference to the default credentials  
+                
                 ReportServerCredentials rsCredentials = serverReport.ReportServerCredentials;// Get a reference to the report server credentials  
                 rsCredentials.NetworkCredentials = credentials; // Set the credentials for the server report  
 

@@ -169,11 +169,16 @@ namespace TotalSmartCoding.Views.Mains
                 this.statusVersion.Text = "Version 1.0." + GlobalVariables.ConfigVersionID(GlobalVariables.ConfigID).ToString() + ", Date: " + buildDate.ToString("dd/MM/yyyy HH:mm:ss");
 
                 this.comboSearchBarcode.Text = this.searchPlaceHolder;
-                this.toolUserReferences.Visible = ContextAttributes.User.IsDatabaseAdmin;
+                this.toolUserReferences.Enabled = ContextAttributes.User.IsDatabaseAdmin;
                 this.statusUserDescription.Text = ContextAttributes.User.FullyQualifiedUserName;
 
                 this.panelTopRight.Width = (this.nmvnTaskID == GlobalEnums.NmvnTaskID.SmartCoding ? 10 : this.labelSearchBarcode.Width) + this.comboSearchBarcode.Width + this.buttonSearchBarcode.Width + 10;
                 this.panelTop.Height = this.nmvnTaskID == GlobalEnums.NmvnTaskID.SmartCoding ? 61 : 39;
+
+                #region JUST DISABLE FOR CHEVRON
+                this.txtLockedDate.Visible = false;
+                this.buttonLockedDate.Visible = false;
+                #endregion
             }
             catch (Exception exception)
             {
