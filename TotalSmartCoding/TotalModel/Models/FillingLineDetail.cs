@@ -21,5 +21,7 @@ namespace TotalModel.Models
         public int IPv4Byte2 { get; set; }
         public int IPv4Byte3 { get; set; }
         public int IPv4Byte4 { get; set; }
+    
+        public virtual FillingLine FillingLine { get; set; }
     }
 }

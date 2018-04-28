@@ -470,7 +470,7 @@ namespace TotalModel.Models
         public int Id { get { return this.FillingLineID; } }
     }
 
-    public partial class FillingLine : IPrimitiveEntity, IBaseEntity
+    public partial class FillingLine : IPrimitiveEntity, IBaseEntity, IBaseDetailEntity<FillingLineDetail>
     {
         public int GetID() { return this.FillingLineID; }
 
@@ -480,7 +480,17 @@ namespace TotalModel.Models
 
         public System.DateTime CreatedDate { get; set; }
         public System.DateTime EditedDate { get; set; }
+
+        public ICollection<FillingLineDetail> GetDetails() { return this.FillingLineDetails; }
     }
+
+    public partial class FillingLineDetail : IPrimitiveEntity, IHelperEntryDate
+    {
+        public int GetID() { return this.FillingLineDetailID; }
+
+        public System.DateTime EntryDate { get; set; }
+    }
+
 
     public partial class Warehouse : IPrimitiveEntity, IBaseEntity
     {

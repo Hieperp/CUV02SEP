@@ -190,6 +190,7 @@
     <Compile Include="ViewModels\Commons\CommodityViewModel.cs" />
     <Compile Include="ViewModels\Commons\CustomerViewModel.cs" />
     <Compile Include="ViewModels\Commons\EmpoyeeViewModel.cs" />
+    <Compile Include="ViewModels\Commons\FillingLineViewModel.cs" />
     <Compile Include="ViewModels\Generals\ReportViewModel.cs" />
     <Compile Include="ViewModels\Helpers\IBaseViewModel.cs" />
     <Compile Include="ViewModels\Helpers\PrintViewModel.cs" />

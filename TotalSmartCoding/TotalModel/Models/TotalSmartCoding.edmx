@@ -1362,6 +1362,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_FillingLineDetails_FillingLines">
+          <End Role="FillingLines" Type="Self.FillingLines" Multiplicity="1" />
+          <End Role="FillingLineDetails" Type="Self.FillingLineDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FillingLines">
+              <PropertyRef Name="FillingLineID" />
+            </Principal>
+            <Dependent Role="FillingLineDetails">
+              <PropertyRef Name="FillingLineID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ForecastDetails_Forecasts">
           <End Role="Forecasts" Type="Self.Forecasts" Multiplicity="1" />
           <End Role="ForecastDetails" Type="Self.ForecastDetails" Multiplicity="*" />
@@ -3203,6 +3215,10 @@
             <End Role="Teams" EntitySet="Teams" />
             <End Role="Employees" EntitySet="Employees" />
           </AssociationSet>
+          <AssociationSet Name="FK_FillingLineDetails_FillingLines" Association="Self.FK_FillingLineDetails_FillingLines">
+            <End Role="FillingLines" EntitySet="FillingLines" />
+            <End Role="FillingLineDetails" EntitySet="FillingLineDetails" />
+          </AssociationSet>
           <AssociationSet Name="FK_ForecastDetails_Forecasts" Association="Self.FK_ForecastDetails_Forecasts">
             <End Role="Forecasts" EntitySet="Forecasts" />
             <End Role="ForecastDetails" EntitySet="ForecastDetails" />
@@ -4730,15 +4746,19 @@
           </FunctionImport>
           <EntitySet Name="FillingLineDetails" EntityType="TotalSmartCodingModel.FillingLineDetail" />
           <FunctionImport Name="FillingLineDeletable" ReturnType="Collection(String)">
-            <Parameter Name="EntityID" Mode="In" Type="Int32" />
+          <Parameter Name="EntityID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="FillingLineEditable" ReturnType="Collection(String)">
-            <Parameter Name="EntityID" Mode="In" Type="Int32" />
+          <Parameter Name="EntityID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="FillingLineSaveRelative">
             <Parameter Name="EntityID" Mode="In" Type="Int32" />
             <Parameter Name="SaveRelativeOption" Mode="In" Type="Int32" />
           </FunctionImport>
+          <AssociationSet Name="FK_FillingLineDetails_FillingLines" Association="TotalSmartCodingModel.FK_FillingLineDetails_FillingLines">
+            <End Role="FillingLine" EntitySet="FillingLines" />
+            <End Role="FillingLineDetail" EntitySet="FillingLineDetails" />
+          </AssociationSet>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
           <Property Type="Int32" Name="PickupID" Nullable="false" />
@@ -5027,6 +5047,7 @@
           <Property Name="NickName" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
           <Property Name="PalletChanged" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Batches" Relationship="TotalSmartCodingModel.FK_Batches_FillingLines" FromRole="FillingLine" ToRole="Batch" />
+          <NavigationProperty Name="FillingLineDetails" Relationship="TotalSmartCodingModel.FK_FillingLineDetails_FillingLines" FromRole="FillingLine" ToRole="FillingLineDetail" />
         </EntityType>
         <EntityType Name="GoodsReceiptType">
           <Key>
@@ -8406,7 +8427,20 @@
           <Property Name="IPv4Byte2" Type="Int32" Nullable="false" />
           <Property Name="IPv4Byte3" Type="Int32" Nullable="false" />
           <Property Name="IPv4Byte4" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="FillingLine" Relationship="TotalSmartCodingModel.FK_FillingLineDetails_FillingLines" FromRole="FillingLineDetail" ToRole="FillingLine" />
         </EntityType>
+        <Association Name="FK_FillingLineDetails_FillingLines">
+          <End Type="TotalSmartCodingModel.FillingLine" Role="FillingLine" Multiplicity="1" />
+          <End Type="TotalSmartCodingModel.FillingLineDetail" Role="FillingLineDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FillingLine">
+              <PropertyRef Name="FillingLineID" />
+            </Principal>
+            <Dependent Role="FillingLineDetail">
+              <PropertyRef Name="FillingLineID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
