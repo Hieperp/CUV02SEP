@@ -16,6 +16,8 @@ namespace TotalDTO.Commons
     public class FillingLinePrimitiveDTO : BaseWithDetailDTO<FillingLineDetailDTO>, IPrimitiveEntity, IPrimitiveDTO
     {
         public override GlobalEnums.NmvnTaskID NMVNTaskID { get { return GlobalEnums.NmvnTaskID.FillingLine; } }
+        public override bool Newable { get { return false; } set { base.Newable = value; } }
+        public override bool Deletable { get { return false; } set { base.Deletable = value; } }
         public override bool NoApprovable { get { return true; } }
 
         public FillingLinePrimitiveDTO() { this.Initialize(); }
@@ -39,7 +41,7 @@ namespace TotalDTO.Commons
             set { ApplyPropertyChange<FillingLinePrimitiveDTO, int>(ref this.fillingLineID, o => o.FillingLineID, value); }
         }
 
-        
+
         private string fillingLineCode;
         [DefaultValue(null)]
         public string FillingLineCode

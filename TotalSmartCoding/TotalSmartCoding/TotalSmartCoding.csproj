@@ -1324,6 +1324,8 @@
     <None Include="Resources\ExitRole.png" />
     <None Include="Resources\ApplicationRoles.png" />
     <None Include="Resources\LogoutApp.png" />
+    <None Include="Resources\ip-icon.png" />
+    <None Include="Resources\ip_class.png" />
     <Content Include="SmartCodingSolution.ico" />
     <None Include="Resources\Yellow-cross.ico" />
     <None Include="Resources\White-Pallet.ico" />

@@ -87,6 +87,11 @@ namespace TotalSmartCoding.Libraries
                 cfg.CreateMap<WarehouseAdjustmentDetailDTO, WarehouseAdjustmentDetail>();
 
 
+                cfg.CreateMap<FillingLine, FillingLineViewModel>();
+                cfg.CreateMap<FillingLine, FillingLineDTO>();
+                cfg.CreateMap<FillingLinePrimitiveDTO, FillingLine>();
+                cfg.CreateMap<FillingLineDetail, FillingLineDetailDTO>();
+                cfg.CreateMap<FillingLineDetailDTO, FillingLineDetail>();
 
                 cfg.CreateMap<Batch, BatchViewModel>();
                 cfg.CreateMap<Batch, BatchDTO>();

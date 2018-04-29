@@ -89,7 +89,7 @@ namespace TotalDTO
 
 
         public virtual bool AllowDataInput { get { return true; } }
-        public bool Newable { get; set; }
+        public virtual bool Newable { get; set; }
         public bool Editable { get; set; }
 
         //private bool editable;
@@ -103,7 +103,7 @@ namespace TotalDTO
         public virtual bool Importable { get { return false; } }
         public virtual bool Exportable { get { return false; } }
 
-        public bool Deletable { get; set; }
+        public virtual bool Deletable { get; set; }
 
 
         public virtual bool Printable { get; set; }

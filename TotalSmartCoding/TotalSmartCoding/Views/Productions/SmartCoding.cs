@@ -19,6 +19,7 @@ using TotalSmartCoding.Controllers.APIs.Productions;
 using TotalSmartCoding.Libraries;
 using TotalSmartCoding.Libraries.Helpers;
 using TotalSmartCoding.Views.Commons;
+using TotalSmartCoding.Views.Commons.FillingLines;
 using TotalSmartCoding.Views.Mains;
 //using System.Diagnostics;
 
@@ -390,7 +391,7 @@ namespace TotalSmartCoding.Views.Productions
         }
 
 
-        private void toolStripButtonSetting_Click(object sender, EventArgs e)
+        private void buttonSetting_Click(object sender, EventArgs e)
         {
             try
             {
@@ -398,7 +399,10 @@ namespace TotalSmartCoding.Views.Productions
                 //Debug.Print(this.splitContainerCarton.SplitterDistance.ToString());
                 //Debug.Print(this.splitContainerPallet.SplitterDistance.ToString());
 
-                MasterMDI masterMDI = new MasterMDI(GlobalEnums.NmvnTaskID.Batch, new Batches(this, this.scannerController.AllQueueEmpty));
+                GlobalEnums.NmvnTaskID nmvnTaskID = sender.Equals(this.buttonBatches) ? GlobalEnums.NmvnTaskID.Batch : GlobalEnums.NmvnTaskID.FillingLine;
+                Form loadedView; if (sender.Equals(this.buttonBatches)) loadedView = new Batches(this, this.scannerController.AllQueueEmpty); else loadedView = new FillingLines();
+
+                MasterMDI masterMDI = new MasterMDI(nmvnTaskID, loadedView);
 
                 masterMDI.ShowDialog();
 

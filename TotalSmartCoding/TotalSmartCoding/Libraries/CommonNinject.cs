@@ -218,12 +218,12 @@ namespace TotalSmartCoding.Libraries
                 //Kernel.Bind<TransferOrderTypeViewModel>().ToSelf();
 
 
-                
 
-                //Kernel.Bind<IFillingLineService>().To<FillingLineService>();
+
+                Kernel.Bind<IFillingLineService>().To<FillingLineService>();
                 Kernel.Bind<IFillingLineRepository>().To<FillingLineRepository>();
                 Kernel.Bind<IFillingLineAPIRepository>().To<FillingLineAPIRepository>();
-                //Kernel.Bind<FillingLineViewModel>().ToSelf();
+                Kernel.Bind<FillingLineViewModel>().ToSelf();
 
 
 
