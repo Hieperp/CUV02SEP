@@ -57,9 +57,78 @@ namespace TotalDAL.Repositories
                 this.totalSmartCodingEntities.ColumnAdd("Configs", "StoredID", "int", "0", true);
             }
 
-            this.totalSmartCodingEntities.ColumnAdd("Batches", "AutoBarcode", "bit", "0", true);
-            this.totalSmartCodingEntities.ColumnAdd("Batches", "FinalCartonNo", "nvarchar(10)", "000001", true);
+            #region Devices
+            if (!this.totalSmartCodingEntities.TableExists("Devices"))
+            {
+                this.ExecuteStoreCommand(@"CREATE TABLE [dbo].[Devices](
+	                                                [DeviceID] [int] NOT NULL,
+	                                                [Code] [nvarchar](60) NOT NULL,
+	                                                [Name] [nvarchar](60) NOT NULL,
+                                                 CONSTRAINT [PK_Devices] PRIMARY KEY CLUSTERED 
+                                                    ([DeviceID] ASC
+                                                    )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+                                                    ) ON [PRIMARY]	                                                
+                                                ", new ObjectParameter[] { });
 
+
+                this.ExecuteStoreCommand(@" SET IDENTITY_INSERT Devices ON                                                              
+                                        
+                                            INSERT INTO Devices (DeviceID, Code, Name)   VALUES (1, N'Digit Printer', N'Digit Printer')
+                                            INSERT INTO Devices (DeviceID, Code, Name)   VALUES (2, N'2D Printer', N'2D Printer')
+                                            INSERT INTO Devices (DeviceID, Code, Name)   VALUES (3, N'Carton/ Pail Printer', N'Carton/ Pail Printer')
+                                            INSERT INTO Devices (DeviceID, Code, Name)   VALUES (100002, N'Matching Scanner', N'Matching Scanner')
+                                            INSERT INTO Devices (DeviceID, Code, Name)   VALUES (100003, N'Carton/ Pail Scanner', N'Carton/ Pail Scanner')
+                                            INSERT INTO Devices (DeviceID, Code, Name)   VALUES (100006, N'Label Scanner', N'Label Scanner')
+
+                                            SET IDENTITY_INSERT Devices OFF ", new ObjectParameter[] { });
+
+
+
+                this.ExecuteStoreCommand(@" CREATE TABLE [dbo].[FillingLineDetails](
+	                                                    [FillingLineDetailID] [int] IDENTITY(1,1) NOT NULL,
+	                                                    [FillingLineID] [int] NOT NULL,
+	                                                    [DeviceID] [int] NOT NULL,
+	                                                    [IPv4Byte1] [int] NOT NULL,
+	                                                    [IPv4Byte2] [int] NOT NULL,
+	                                                    [IPv4Byte3] [int] NOT NULL,
+	                                                    [IPv4Byte4] [int] NOT NULL,
+                                                     CONSTRAINT [PK_FillingLineDetails] PRIMARY KEY CLUSTERED 
+                                                    (
+	                                                    [FillingLineDetailID] ASC
+                                                    )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+                                                    ) ON [PRIMARY]
+
+                                                    ALTER TABLE [dbo].[FillingLineDetails]  WITH CHECK ADD  CONSTRAINT [FK_FillingLineDetails_Devices] FOREIGN KEY([DeviceID])
+                                                    REFERENCES [dbo].[Devices] ([DeviceID])
+
+                                                    ALTER TABLE [dbo].[FillingLineDetails] CHECK CONSTRAINT [FK_FillingLineDetails_Devices]
+
+                                                    ALTER TABLE [dbo].[FillingLineDetails]  WITH CHECK ADD  CONSTRAINT [FK_FillingLineDetails_FillingLines] FOREIGN KEY([FillingLineID])
+                                                    REFERENCES [dbo].[FillingLines] ([FillingLineID])
+
+                                                    ALTER TABLE [dbo].[FillingLineDetails] CHECK CONSTRAINT [FK_FillingLineDetails_FillingLines]
+                                                ", new ObjectParameter[] { });
+
+
+                this.ExecuteStoreCommand(@" SET IDENTITY_INSERT FillingLineDetails ON                                                              
+                                        
+                                            INSERT INTO FillingLineDetails (FillingLineDetailID, FillingLineID, DeviceID, IPv4Byte1, IPv4Byte2, IPv4Byte3, IPv4Byte4) VALUES (1, 1, 1, 172, 21, 67, 157)
+                                            INSERT INTO FillingLineDetails (FillingLineDetailID, FillingLineID, DeviceID, IPv4Byte1, IPv4Byte2, IPv4Byte3, IPv4Byte4) VALUES (2, 1, 2, 172, 21, 67, 158)
+                                            INSERT INTO FillingLineDetails (FillingLineDetailID, FillingLineID, DeviceID, IPv4Byte1, IPv4Byte2, IPv4Byte3, IPv4Byte4) VALUES (3, 1, 3, 172, 21, 67, 159)
+                                            INSERT INTO FillingLineDetails (FillingLineDetailID, FillingLineID, DeviceID, IPv4Byte1, IPv4Byte2, IPv4Byte3, IPv4Byte4) VALUES (4, 1, 100002, 172, 21, 67, 168)
+                                            INSERT INTO FillingLineDetails (FillingLineDetailID, FillingLineID, DeviceID, IPv4Byte1, IPv4Byte2, IPv4Byte3, IPv4Byte4) VALUES (5, 1, 100003, 172, 21, 67, 169)
+                                            INSERT INTO FillingLineDetails (FillingLineDetailID, FillingLineID, DeviceID, IPv4Byte1, IPv4Byte2, IPv4Byte3, IPv4Byte4) VALUES (6, 1, 100006, 172, 21, 67, 170)
+                                            INSERT INTO FillingLineDetails (FillingLineDetailID, FillingLineID, DeviceID, IPv4Byte1, IPv4Byte2, IPv4Byte3, IPv4Byte4) VALUES (7, 2, 1, 172, 21, 67, 165)
+                                            INSERT INTO FillingLineDetails (FillingLineDetailID, FillingLineID, DeviceID, IPv4Byte1, IPv4Byte2, IPv4Byte3, IPv4Byte4) VALUES (8, 2, 3, 172, 21, 67, 163)
+                                            INSERT INTO FillingLineDetails (FillingLineDetailID, FillingLineID, DeviceID, IPv4Byte1, IPv4Byte2, IPv4Byte3, IPv4Byte4) VALUES (9, 2, 100003, 172, 21, 67, 172)
+                                            INSERT INTO FillingLineDetails (FillingLineDetailID, FillingLineID, DeviceID, IPv4Byte1, IPv4Byte2, IPv4Byte3, IPv4Byte4) VALUES (10, 2, 100006, 172, 21, 67, 173)
+                                            INSERT INTO FillingLineDetails (FillingLineDetailID, FillingLineID, DeviceID, IPv4Byte1, IPv4Byte2, IPv4Byte3, IPv4Byte4) VALUES (11, 3, 1, 172, 21, 67, 167)
+                                            INSERT INTO FillingLineDetails (FillingLineDetailID, FillingLineID, DeviceID, IPv4Byte1, IPv4Byte2, IPv4Byte3, IPv4Byte4) VALUES (12, 3, 100006, 172, 21, 67, 175)
+
+                                            SET IDENTITY_INSERT FillingLineDetails OFF ", new ObjectParameter[] { });
+
+            }
+            #endregion Devices
 
             var query = this.totalSmartCodingEntities.Database.SqlQuery(typeof(int), "SELECT COUNT(ModuleDetailID) AS Expr1 FROM ModuleDetails WHERE ModuleDetailID = " + (int)GlobalEnums.NmvnTaskID.FillingLine + ";", new object[] { });
             int exists = query.Cast<int>().Single();
@@ -1136,6 +1205,11 @@ namespace TotalDAL.Repositories
 
         private void UpdateBackup()
         {
+
+            this.totalSmartCodingEntities.ColumnAdd("Batches", "AutoBarcode", "bit", "0", true);
+            this.totalSmartCodingEntities.ColumnAdd("Batches", "FinalCartonNo", "nvarchar(10)", "000001", true);
+
+
 
             #region Forecasts
             if (this.totalSmartCodingEntities.ColumnExists("Forecasts", "SalespersonID"))
