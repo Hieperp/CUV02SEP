@@ -73,6 +73,7 @@ namespace TotalBase
 
         public enum ScannerName
         {
+            Base = 100000, //BASE VALUE TO ADD TO DeviceID VALUE: START DeviceID VALUE OF SCANNER IS: 10000 + 1, 10000 + 2, 10000 + 3, ...
             QualityScanner = 1,
             PackScanner = 2,
             CartonScanner = 3,
@@ -168,107 +169,104 @@ namespace TotalBase
         public const int ServerLineID = 99;
 
 
-        public static string IpAddress(PrinterName dominoPrinterNameID)
-        {
-            switch (GlobalVariables.FillingLineID)
-            {
-                case FillingLine.Smallpack:
-                    switch (dominoPrinterNameID)
-                    {
-                        case PrinterName.DigitInkjet:
-                            return "172.21.67.157";
-                        case PrinterName.PackInkjet:
-                            return "172.21.67.158";
-                        case PrinterName.CartonInkjet:
-                            return "172.21.67.159";
-                        default:
-                            return "127.0.0.1";
-                    }
+        #region  IP ADDRESS.BACKUP OPLY
+        //public static string IpAddress(PrinterName dominoPrinterNameID)
+        //{
+        //    switch (GlobalVariables.FillingLineID)
+        //    {
+        //        case FillingLine.Smallpack:
+        //            switch (dominoPrinterNameID)
+        //            {
+        //                case PrinterName.DigitInkjet:
+        //                    return "172.21.67.157";
+        //                case PrinterName.PackInkjet:
+        //                    return "172.21.67.158";
+        //                case PrinterName.CartonInkjet:
+        //                    return "172.21.67.159";
+        //                default:
+        //                    return "127.0.0.1";
+        //            }
 
-                case FillingLine.Pail:
-                    switch (dominoPrinterNameID)
-                    {
-                        case PrinterName.DigitInkjet:
-                            return "172.21.67.165";
-                        case PrinterName.CartonInkjet:
-                            return "172.21.67.163";
-                        default:
-                            return "127.0.0.1";
-                    }
-                case FillingLine.Drum:
-                    switch (dominoPrinterNameID)
-                    {
-                        case PrinterName.DigitInkjet:
-                            return "172.21.67.167";
-                        default:
-                            return "127.0.0.1";
-                    }
-
-
-                default:
-                    return "127.0.0.1";
-            }
-
-        }
+        //        case FillingLine.Pail:
+        //            switch (dominoPrinterNameID)
+        //            {
+        //                case PrinterName.DigitInkjet:
+        //                    return "172.21.67.165";
+        //                case PrinterName.CartonInkjet:
+        //                    return "172.21.67.163";
+        //                default:
+        //                    return "127.0.0.1";
+        //            }
+        //        case FillingLine.Drum:
+        //            switch (dominoPrinterNameID)
+        //            {
+        //                case PrinterName.DigitInkjet:
+        //                    return "172.21.67.167";
+        //                default:
+        //                    return "127.0.0.1";
+        //            }
 
 
+        //        default:
+        //            return "127.0.0.1";
+        //    }
+
+        //}
+        //public static string IpAddress(ScannerName barcodeScannerName)
+        //{
+        //    switch (GlobalVariables.FillingLineID)
+        //    {
+        //        case FillingLine.Smallpack:
+        //            switch (barcodeScannerName)
+        //            {
+        //                case ScannerName.QualityScanner:
+        //                    return "127.0.0.1";
+        //                case ScannerName.PackScanner:
+        //                    return "172.21.67.168";
+        //                case ScannerName.CartonScanner:
+        //                    return "172.21.67.169";
+        //                case ScannerName.PalletScanner:
+        //                    return "172.21.67.170";
+        //                default:
+        //                    return "127.0.0.1";
+        //            }
+        //        case FillingLine.Pail:
+        //            switch (barcodeScannerName)
+        //            {
+        //                case ScannerName.QualityScanner:
+        //                    return "127.0.0.1";
+        //                case ScannerName.PackScanner:
+        //                    return "127.0.0.1"; //172.21.67.52
+        //                case ScannerName.CartonScanner:
+        //                    return "172.21.67.172";
+        //                case ScannerName.PalletScanner:
+        //                    return "172.21.67.173";
+        //                default:
+        //                    return "127.0.0.1";
+        //            }
+
+        //        case FillingLine.Drum:
+        //            switch (barcodeScannerName)
+        //            {
+        //                case ScannerName.QualityScanner:
+        //                    return "127.0.0.1";
+        //                case ScannerName.PackScanner:
+        //                    return "127.0.0.1";
+        //                case ScannerName.CartonScanner:
+        //                    return "127.0.0.1";
+        //                case ScannerName.PalletScanner:
+        //                    return "172.21.67.175";
+        //                default:
+        //                    return "127.0.0.1";
+        //            }
 
 
-        public static string IpAddress(ScannerName barcodeScannerName)
-        {
-            switch (GlobalVariables.FillingLineID)
-            {
-                case FillingLine.Smallpack:
-                    switch (barcodeScannerName)
-                    {
-                        case ScannerName.QualityScanner:
-                            return "127.0.0.1";
-                        case ScannerName.PackScanner:
-                            return "172.21.67.168";
-                        case ScannerName.CartonScanner:
-                            return "172.21.67.169";
-                        case ScannerName.PalletScanner:
-                            return "172.21.67.170";
-                        default:
-                            return "127.0.0.1";
-                    }
-                case FillingLine.Pail:
-                    switch (barcodeScannerName)
-                    {
-                        case ScannerName.QualityScanner:
-                            return "127.0.0.1";
-                        case ScannerName.PackScanner:
-                            return "127.0.0.1"; //172.21.67.52
-                        case ScannerName.CartonScanner:
-                            return "172.21.67.172";
-                        case ScannerName.PalletScanner:
-                            return "172.21.67.173";
-                        default:
-                            return "127.0.0.1";
-                    }
+        //        default:
+        //            return "127.0.0.1";
+        //    }
 
-                case FillingLine.Drum:
-                    switch (barcodeScannerName)
-                    {
-                        case ScannerName.QualityScanner:
-                            return "127.0.0.1";
-                        case ScannerName.PackScanner:
-                            return "127.0.0.1";
-                        case ScannerName.CartonScanner:
-                            return "127.0.0.1";
-                        case ScannerName.PalletScanner:
-                            return "172.21.67.175";
-                        default:
-                            return "127.0.0.1";
-                    }
-
-
-                default:
-                    return "127.0.0.1";
-            }
-
-        }
-
+        //}
+        #endregion IP ADDRESS.BACKUP OPLY
 
 
 

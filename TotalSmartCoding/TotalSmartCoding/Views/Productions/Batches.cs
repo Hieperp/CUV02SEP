@@ -95,7 +95,7 @@ namespace TotalSmartCoding.Views.Productions
 
                 this.checkAutoBarcode.Visible = GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Pail;
                 if (GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Pail || GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Drum) { this.labelNextPackNo.Visible = false; this.textexNextPackNo.Visible = false; }
-                if (GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Drum) { this.labelNextCartonNo.Visible = false; this.labelNextCartonNo.Visible = false; }
+                if (GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Drum) { this.labelNextCartonNo.Visible = false; this.textexNextCartonNo.Visible = false; }
 
                 CustomTabControl customTabBatch = new CustomTabControl();
                 //customTabControlCustomerChannel.ImageList = this.imageListTabControl;

@@ -75,6 +75,7 @@ namespace TotalSmartCoding.Views.Commons.FillingLines
                 this.gridexViewDetails.Dock = DockStyle.Fill;
 
                 this.panelCenter.Controls.Add(this.customTabCenter);
+                this.panelCenter.Controls.Add(this.toolBottom);
                 this.customTabCenter.Dock = DockStyle.Fill;
                 #endregion TabCenter
             }

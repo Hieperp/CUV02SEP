@@ -20,6 +20,7 @@ using TotalSmartCoding.Libraries.Communications;
 using TotalSmartCoding.ViewModels.Productions;
 using TotalSmartCoding.Controllers.Productions;
 using AutoMapper;
+using TotalSmartCoding.Controllers.APIs.Productions;
 
 
 namespace TotalSmartCoding.Controllers.Productions
@@ -85,9 +86,11 @@ namespace TotalSmartCoding.Controllers.Productions
                 this.cartonController = new CartonController(CommonNinject.Kernel.Get<ICartonService>(), this.cartonViewModel);
                 this.palletController = new PalletController(CommonNinject.Kernel.Get<IPalletService>(), this.palletViewModel);
 
-                this.ionetSocketPack = new IONetSocket(IPAddress.Parse(GlobalVariables.IpAddress(GlobalVariables.ScannerName.PackScanner)), 23, 120); //PORT 2112: DATA LOGIC
-                this.ionetSocketCarton = new IONetSocket(IPAddress.Parse(GlobalVariables.IpAddress(GlobalVariables.ScannerName.CartonScanner)), 23, 120);
-                this.ionetSocketPallet = new IONetSocket(IPAddress.Parse(GlobalVariables.IpAddress(GlobalVariables.ScannerName.PalletScanner)), 23, 120);
+                ProductionAPIs productionAPIs = new ProductionAPIs();
+
+                this.ionetSocketPack = new IONetSocket(IPAddress.Parse(productionAPIs.IpAddress((int)GlobalVariables.ScannerName.Base + (int)GlobalVariables.ScannerName.PackScanner)), 23, 120); //PORT 2112: DATA LOGIC
+                this.ionetSocketCarton = new IONetSocket(IPAddress.Parse(productionAPIs.IpAddress((int)GlobalVariables.ScannerName.Base + (int)GlobalVariables.ScannerName.CartonScanner)), 23, 120);
+                this.ionetSocketPallet = new IONetSocket(IPAddress.Parse(productionAPIs.IpAddress((int)GlobalVariables.ScannerName.Base + (int)GlobalVariables.ScannerName.PalletScanner)), 23, 120);
 
 
                 this.packQueue = new BarcodeQueue<PackDTO>(this.FillingData.NoSubQueue, this.FillingData.ItemPerSubQueue, this.FillingData.RepeatSubQueueIndex) { ItemPerSet = this.FillingData.PackPerCarton };

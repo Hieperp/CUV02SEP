@@ -9,6 +9,7 @@ using TotalBase;
 using TotalBase.Enums;
 using TotalCore.Services.Productions;
 using TotalDTO.Productions;
+using TotalSmartCoding.Controllers.APIs.Productions;
 using TotalSmartCoding.Libraries.Communications;
 
 namespace TotalSmartCoding.Controllers.Productions
@@ -54,7 +55,9 @@ namespace TotalSmartCoding.Controllers.Productions
                 this.printerName = printerName;
                 this.isLaser = isLaser;
 
-                this.ionetSocket = new IONetSocket(IPAddress.Parse(GlobalVariables.IpAddress(this.printerName)), 7000, this.isLaser);
+                ProductionAPIs productionAPIs = new ProductionAPIs();
+
+                this.ionetSocket = new IONetSocket(IPAddress.Parse(productionAPIs.IpAddress((int)this.printerName)), 7000, this.isLaser);
                 this.ioserialPort = new IOSerialPort(GlobalVariables.ComportName, 9600, Parity.None, 8, StopBits.One, false, "Zebra");
 
 
@@ -900,9 +903,9 @@ namespace TotalSmartCoding.Controllers.Productions
                         if (this.OnPrinting)
                         {
                             if (this.NextAutoBarcodeCode == "" && (this.printerName != GlobalVariables.PrinterName.CartonInkjet || int.Parse(this.getNextNo()) <= int.Parse(this.FillingData.FinalCartonNo)))
-                            { 
+                            {
                                 this.NextAutoBarcodeCode = this.wholeBarcode(this.printerName != GlobalVariables.PrinterName.PalletLabel ? 2 : 0);
-                                this.feedbackNextNo((int.Parse(this.getNextNo()) + 1).ToString("0000000").Substring(1)); 
+                                this.feedbackNextNo((int.Parse(this.getNextNo()) + 1).ToString("0000000").Substring(1));
                             }
                             this.MainStatus = "Đang chạy máy in ảo ...";
                         }

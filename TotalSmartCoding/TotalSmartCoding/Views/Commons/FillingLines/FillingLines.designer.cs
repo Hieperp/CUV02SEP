@@ -52,10 +52,14 @@
             this.olvFillingLineCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvFillingLineName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.imageList32 = new System.Windows.Forms.ImageList(this.components);
+            this.toolBottom = new System.Windows.Forms.ToolStrip();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripChildForm.SuspendLayout();
             this.panelCenter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridexViewDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fastFillingLineIndex)).BeginInit();
+            this.toolBottom.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStripChildForm
@@ -92,6 +96,7 @@
             // 
             this.panelCenter.BackColor = System.Drawing.Color.Ivory;
             this.panelCenter.BackgroundImage = global::TotalSmartCoding.Properties.Resources.Blue2010Large;
+            this.panelCenter.Controls.Add(this.toolBottom);
             this.panelCenter.Controls.Add(this.gridexViewDetails);
             this.panelCenter.Dock = System.Windows.Forms.DockStyle.Right;
             this.panelCenter.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -260,6 +265,35 @@
             this.imageList32.Images.SetKeyName(8, "CustomerRed");
             this.imageList32.Images.SetKeyName(9, "price-tag-32");
             // 
+            // toolBottom
+            // 
+            this.toolBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.toolBottom.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolBottom.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolBottom.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton1,
+            this.toolStripLabel1});
+            this.toolBottom.Location = new System.Drawing.Point(0, 831);
+            this.toolBottom.Name = "toolBottom";
+            this.toolBottom.Size = new System.Drawing.Size(368, 27);
+            this.toolBottom.TabIndex = 68;
+            this.toolBottom.Text = "toolStrip1";
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = global::TotalSmartCoding.Properties.Resources.Warning;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(24, 24);
+            this.toolStripButton1.Text = "toolStripButton1";
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(417, 20);
+            this.toolStripLabel1.Text = "Please restart your software after change IP to take new effect";
+            // 
             // FillingLines
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
@@ -278,8 +312,11 @@
             this.toolStripChildForm.ResumeLayout(false);
             this.toolStripChildForm.PerformLayout();
             this.panelCenter.ResumeLayout(false);
+            this.panelCenter.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridexViewDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fastFillingLineIndex)).EndInit();
+            this.toolBottom.ResumeLayout(false);
+            this.toolBottom.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -304,6 +341,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn IPv4Byte3;
         private System.Windows.Forms.DataGridViewTextBoxColumn IPv4Byte4;
         private BrightIdeasSoftware.OLVColumn olvFillingLineType;
+        private System.Windows.Forms.ToolStrip toolBottom;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
 
     }
 }

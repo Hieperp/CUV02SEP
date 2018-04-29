@@ -122,7 +122,7 @@ namespace TotalSmartCoding.Views.Mains
                         this.panelTopLeft.Dock = DockStyle.Fill;
                         break;
                     case GlobalEnums.NmvnTaskID.FillingLine:
-                        this.Size = new Size(600, 330);
+                        this.Size = new Size(620, 360);
                         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
                         this.MinimizeBox = false; this.MaximizeBox = false; this.WindowState = FormWindowState.Normal;
 
