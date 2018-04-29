@@ -134,6 +134,7 @@
     <Compile Include="Controllers\Commons\CommoditySettingController.cs" />
     <Compile Include="Controllers\Commons\CustomerController.cs" />
     <Compile Include="Controllers\Commons\EmployeeController.cs" />
+    <Compile Include="Controllers\Commons\FillingLineController.cs" />
     <Compile Include="Controllers\Generals\ReportController.cs" />
     <Compile Include="Controllers\Inventories\GoodsIssueController.cs" />
     <Compile Include="Controllers\Inventories\PickupController.cs" />
@@ -249,6 +250,12 @@
     </Compile>
     <Compile Include="Views\Commons\Employees\Employees.designer.cs">
       <DependentUpon>Employees.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Commons\FillingLines\FillingLines.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Commons\FillingLines\FillingLines.designer.cs">
+      <DependentUpon>FillingLines.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Generals\Reports.cs">
       <SubType>Form</SubType>
@@ -530,6 +537,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Commons\Employees\Employees.resx">
       <DependentUpon>Employees.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Commons\FillingLines\FillingLines.resx">
+      <DependentUpon>FillingLines.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Generals\Reports.resx">
       <DependentUpon>Reports.cs</DependentUpon>

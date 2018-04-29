@@ -61,7 +61,13 @@ namespace TotalDAL.Repositories
             this.totalSmartCodingEntities.ColumnAdd("Batches", "FinalCartonNo", "nvarchar(10)", "000001", true);
 
 
-
+            var query = this.totalSmartCodingEntities.Database.SqlQuery(typeof(int), "SELECT COUNT(ModuleDetailID) AS Expr1 FROM ModuleDetails WHERE ModuleDetailID = " + (int)GlobalEnums.NmvnTaskID.FillingLine + ";", new object[] { });
+            int exists = query.Cast<int>().Single();
+            if (exists == 0)
+            {
+                this.ExecuteStoreCommand("INSERT INTO ModuleDetails (ModuleDetailID, ModuleID, Code, Name, FullName, Actions, Controller, LastOpen, SerialID, ImageIndex, InActive) VALUES(" + (int)GlobalEnums.NmvnTaskID.FillingLine + ", 108, 'IP Settings', 'IP Settings', '#', '#', '#', 1, 68, 1, 0) ", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("INSERT INTO AccessControls (UserID, NMVNTaskID, OrganizationalUnitID, AccessLevel, ApprovalPermitted, UnApprovalPermitted, VoidablePermitted, UnVoidablePermitted, ShowDiscount, AccessLevelBACKUP, ApprovalPermittedBACKUP, UnApprovalPermittedBACKUP, InActive) SELECT UserID, " + (int)GlobalEnums.NmvnTaskID.FillingLine + " AS NMVNTaskID, OrganizationalUnitID, 0 AS AccessLevel, 0 AS ApprovalPermitted, 0 AS UnApprovalPermitted, 0 AS VoidablePermitted, 0 AS UnVoidablePermitted, ShowDiscount, AccessLevelBACKUP, ApprovalPermittedBACKUP, UnApprovalPermittedBACKUP, InActive FROM AccessControls WHERE (NMVNTaskID = " + (int)GlobalEnums.NmvnTaskID.Commodity + ") AND (SELECT COUNT(*) FROM AccessControls WHERE NMVNTaskID = " + (int)GlobalEnums.NmvnTaskID.FillingLine + ") = 0", new ObjectParameter[] { });
+            }
 
             #region EmployeeLocationIDs & Roles
             this.totalSmartCodingEntities.ColumnAdd("Employees", "InActive", "bit", "0", true);
@@ -1187,7 +1193,7 @@ namespace TotalDAL.Repositories
                                                 ", new ObjectParameter[] { });
 
 
-                this.ExecuteStoreCommand(@" SET IDENTITY_INSERT CommoditySettings ON                                                              
+                this.ExecuteStoreCommand(@" SET IDENTITY_INSERT ColumnMappings ON                                                              
                                         
                                             INSERT INTO ColumnMappings (ColumnMappingID, MappingTaskID, ColumnID, ColumnName, ColumnDisplayName, ColumnMappingName, SerialID, ImportedDate)   VALUES (1, 8076, 2, N'WarehouseCode', N'WH code', N'WH Code', 10, Getdate())
                                             INSERT INTO ColumnMappings (ColumnMappingID, MappingTaskID, ColumnID, ColumnName, ColumnDisplayName, ColumnMappingName, SerialID, ImportedDate)   VALUES (2, 8076, 6, N'CommodityCode', N'Product code', N'Product code', 20, Getdate())
@@ -1196,7 +1202,7 @@ namespace TotalDAL.Repositories
                                             INSERT INTO ColumnMappings (ColumnMappingID, MappingTaskID, ColumnID, ColumnName, ColumnDisplayName, ColumnMappingName, SerialID, ImportedDate)   VALUES (5, 8076, 16, N'NextTwoMonth', N'Next two month', N'17-Dec', 70, Getdate())
                                             INSERT INTO ColumnMappings (ColumnMappingID, MappingTaskID, ColumnID, ColumnName, ColumnDisplayName, ColumnMappingName, SerialID, ImportedDate)   VALUES (6, 8076, 18, N'NextThreeMonth', N'Next three monnth', N'18-Jan', 80, Getdate())
 
-                                            SET IDENTITY_INSERT CommoditySettings OFF ", new ObjectParameter[] { });
+                                            SET IDENTITY_INSERT ColumnMappings OFF ", new ObjectParameter[] { });
 
             }
             #endregion ColumnMappings
