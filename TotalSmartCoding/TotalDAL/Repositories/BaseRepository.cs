@@ -71,7 +71,7 @@ namespace TotalDAL.Repositories
                                                 ", new ObjectParameter[] { });
 
 
-                this.ExecuteStoreCommand(@" SET IDENTITY_INSERT Devices ON                                                              
+                this.ExecuteStoreCommand(@"                                                              
                                         
                                             INSERT INTO Devices (DeviceID, Code, Name)   VALUES (1, N'Digit Printer', N'Digit Printer')
                                             INSERT INTO Devices (DeviceID, Code, Name)   VALUES (2, N'2D Printer', N'2D Printer')
@@ -80,7 +80,7 @@ namespace TotalDAL.Repositories
                                             INSERT INTO Devices (DeviceID, Code, Name)   VALUES (100003, N'Carton/ Pail Scanner', N'Carton/ Pail Scanner')
                                             INSERT INTO Devices (DeviceID, Code, Name)   VALUES (100006, N'Label Scanner', N'Label Scanner')
 
-                                            SET IDENTITY_INSERT Devices OFF ", new ObjectParameter[] { });
+                                             ", new ObjectParameter[] { });
 
 
 
