@@ -40,17 +40,18 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.panelCenter = new System.Windows.Forms.Panel();
             this.gridexViewDetails = new CustomControls.DataGridexView();
-            this.fastFillingLineIndex = new BrightIdeasSoftware.FastObjectListView();
-            this.olvID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvBlank = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvFillingLineCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.imageList32 = new System.Windows.Forms.ImageList(this.components);
             this.DeviceName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IPv4Byte1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IPv4Byte2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IPv4Byte3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IPv4Byte4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fastFillingLineIndex = new BrightIdeasSoftware.FastObjectListView();
+            this.olvID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvBlank = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvFillingLineType = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvFillingLineCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvFillingLineName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.imageList32 = new System.Windows.Forms.ImageList(this.components);
             this.toolStripChildForm.SuspendLayout();
             this.panelCenter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridexViewDetails)).BeginInit();
@@ -104,7 +105,9 @@
             // 
             this.gridexViewDetails.AllowAddRow = true;
             this.gridexViewDetails.AllowDeleteRow = true;
-            this.gridexViewDetails.BackgroundColor = System.Drawing.Color.Ivory;
+            this.gridexViewDetails.AllowUserToAddRows = false;
+            this.gridexViewDetails.AllowUserToDeleteRows = false;
+            this.gridexViewDetails.BackgroundColor = System.Drawing.Color.White;
             this.gridexViewDetails.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridexViewDetails.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.gridexViewDetails.ColumnHeadersHeight = 24;
@@ -120,6 +123,7 @@
             this.gridexViewDetails.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gridexViewDetails.Name = "gridexViewDetails";
             this.gridexViewDetails.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.gridexViewDetails.RowHeadersVisible = false;
             this.gridexViewDetails.RowHeadersWidth = 15;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridexViewDetails.RowsDefaultCellStyle = dataGridViewCellStyle5;
@@ -127,13 +131,68 @@
             this.gridexViewDetails.Size = new System.Drawing.Size(359, 105);
             this.gridexViewDetails.TabIndex = 66;
             // 
+            // DeviceName
+            // 
+            this.DeviceName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.DeviceName.DataPropertyName = "DeviceName";
+            this.DeviceName.FillWeight = 52F;
+            this.DeviceName.HeaderText = "Device";
+            this.DeviceName.Name = "DeviceName";
+            this.DeviceName.ReadOnly = true;
+            this.DeviceName.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // IPv4Byte1
+            // 
+            this.IPv4Byte1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.IPv4Byte1.DataPropertyName = "IPv4Byte1";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.Format = "N0";
+            this.IPv4Byte1.DefaultCellStyle = dataGridViewCellStyle1;
+            this.IPv4Byte1.FillWeight = 12F;
+            this.IPv4Byte1.HeaderText = "P1";
+            this.IPv4Byte1.Name = "IPv4Byte1";
+            // 
+            // IPv4Byte2
+            // 
+            this.IPv4Byte2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.IPv4Byte2.DataPropertyName = "IPv4Byte2";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.Format = "N0";
+            this.IPv4Byte2.DefaultCellStyle = dataGridViewCellStyle2;
+            this.IPv4Byte2.FillWeight = 12F;
+            this.IPv4Byte2.HeaderText = "P2";
+            this.IPv4Byte2.Name = "IPv4Byte2";
+            // 
+            // IPv4Byte3
+            // 
+            this.IPv4Byte3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.IPv4Byte3.DataPropertyName = "IPv4Byte3";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.Format = "N0";
+            this.IPv4Byte3.DefaultCellStyle = dataGridViewCellStyle3;
+            this.IPv4Byte3.FillWeight = 12F;
+            this.IPv4Byte3.HeaderText = "P3";
+            this.IPv4Byte3.Name = "IPv4Byte3";
+            // 
+            // IPv4Byte4
+            // 
+            this.IPv4Byte4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.IPv4Byte4.DataPropertyName = "IPv4Byte4";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.Format = "N0";
+            this.IPv4Byte4.DefaultCellStyle = dataGridViewCellStyle4;
+            this.IPv4Byte4.FillWeight = 12F;
+            this.IPv4Byte4.HeaderText = "P4";
+            this.IPv4Byte4.Name = "IPv4Byte4";
+            // 
             // fastFillingLineIndex
             // 
             this.fastFillingLineIndex.AllColumns.Add(this.olvID);
             this.fastFillingLineIndex.AllColumns.Add(this.olvBlank);
+            this.fastFillingLineIndex.AllColumns.Add(this.olvFillingLineType);
             this.fastFillingLineIndex.AllColumns.Add(this.olvFillingLineCode);
             this.fastFillingLineIndex.AllColumns.Add(this.olvFillingLineName);
-            this.fastFillingLineIndex.BackColor = System.Drawing.Color.Ivory;
+            this.fastFillingLineIndex.BackColor = System.Drawing.Color.White;
             this.fastFillingLineIndex.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.olvID,
             this.olvBlank,
@@ -169,10 +228,22 @@
             this.olvBlank.Text = "";
             this.olvBlank.Width = 15;
             // 
+            // olvFillingLineType
+            // 
+            this.olvFillingLineType.AspectName = "FillingLineType";
+            this.olvFillingLineType.IsVisible = false;
+            this.olvFillingLineType.Text = "Type";
+            // 
             // olvFillingLineCode
             // 
-            this.olvFillingLineCode.AspectName = "FillingLineCode";
+            this.olvFillingLineCode.AspectName = "Code";
             this.olvFillingLineCode.Text = "Code";
+            // 
+            // olvFillingLineName
+            // 
+            this.olvFillingLineName.AspectName = "Name";
+            this.olvFillingLineName.FillsFreeSpace = true;
+            this.olvFillingLineName.Text = "Name";
             // 
             // imageList32
             // 
@@ -189,66 +260,6 @@
             this.imageList32.Images.SetKeyName(8, "CustomerRed");
             this.imageList32.Images.SetKeyName(9, "price-tag-32");
             // 
-            // DeviceName
-            // 
-            this.DeviceName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.DeviceName.DataPropertyName = "DeviceName";
-            this.DeviceName.FillWeight = 26.00169F;
-            this.DeviceName.HeaderText = "Device";
-            this.DeviceName.Name = "DeviceName";
-            this.DeviceName.ReadOnly = true;
-            this.DeviceName.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // IPv4Byte1
-            // 
-            this.IPv4Byte1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.IPv4Byte1.DataPropertyName = "IPv4Byte1";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.Format = "N0";
-            this.IPv4Byte1.DefaultCellStyle = dataGridViewCellStyle1;
-            this.IPv4Byte1.FillWeight = 17.33446F;
-            this.IPv4Byte1.HeaderText = "1st B";
-            this.IPv4Byte1.Name = "IPv4Byte1";
-            // 
-            // IPv4Byte2
-            // 
-            this.IPv4Byte2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.IPv4Byte2.DataPropertyName = "IPv4Byte2";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.Format = "N0";
-            this.IPv4Byte2.DefaultCellStyle = dataGridViewCellStyle2;
-            this.IPv4Byte2.FillWeight = 17.33446F;
-            this.IPv4Byte2.HeaderText = "2nd B";
-            this.IPv4Byte2.Name = "IPv4Byte2";
-            // 
-            // IPv4Byte3
-            // 
-            this.IPv4Byte3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.IPv4Byte3.DataPropertyName = "IPv4Byte3";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.Format = "N0";
-            this.IPv4Byte3.DefaultCellStyle = dataGridViewCellStyle3;
-            this.IPv4Byte3.FillWeight = 17.33446F;
-            this.IPv4Byte3.HeaderText = "3rd B";
-            this.IPv4Byte3.Name = "IPv4Byte3";
-            // 
-            // IPv4Byte4
-            // 
-            this.IPv4Byte4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.IPv4Byte4.DataPropertyName = "IPv4Byte4";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.Format = "N0";
-            this.IPv4Byte4.DefaultCellStyle = dataGridViewCellStyle4;
-            this.IPv4Byte4.FillWeight = 48.99492F;
-            this.IPv4Byte4.HeaderText = "4th B";
-            this.IPv4Byte4.Name = "IPv4Byte4";
-            // 
-            // olvFillingLineName
-            // 
-            this.olvFillingLineName.AspectName = "FillingLineName";
-            this.olvFillingLineName.FillsFreeSpace = true;
-            this.olvFillingLineName.Text = "Name";
-            // 
             // FillingLines
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
@@ -260,7 +271,7 @@
             this.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FillingLines";
-            this.Text = "Low, High & Alert Settings";
+            this.Text = "IP Settings";
             this.Controls.SetChildIndex(this.toolStripChildForm, 0);
             this.Controls.SetChildIndex(this.panelCenter, 0);
             this.Controls.SetChildIndex(this.fastFillingLineIndex, 0);
@@ -286,12 +297,13 @@
         private BrightIdeasSoftware.OLVColumn olvBlank;
         private CustomControls.DataGridexView gridexViewDetails;
         private BrightIdeasSoftware.OLVColumn olvFillingLineCode;
+        private BrightIdeasSoftware.OLVColumn olvFillingLineName;
         private System.Windows.Forms.DataGridViewTextBoxColumn DeviceName;
         private System.Windows.Forms.DataGridViewTextBoxColumn IPv4Byte1;
         private System.Windows.Forms.DataGridViewTextBoxColumn IPv4Byte2;
         private System.Windows.Forms.DataGridViewTextBoxColumn IPv4Byte3;
         private System.Windows.Forms.DataGridViewTextBoxColumn IPv4Byte4;
-        private BrightIdeasSoftware.OLVColumn olvFillingLineName;
+        private BrightIdeasSoftware.OLVColumn olvFillingLineType;
 
     }
 }

@@ -23,5 +23,6 @@ namespace TotalModel.Models
         public int IPv4Byte4 { get; set; }
     
         public virtual FillingLine FillingLine { get; set; }
+        public virtual Device Device { get; set; }
     }
 }

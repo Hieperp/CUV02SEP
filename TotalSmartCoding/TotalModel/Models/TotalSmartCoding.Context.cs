@@ -76,6 +76,7 @@ namespace TotalModel.Models
         public virtual DbSet<Batch> Batches { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<FillingLineDetail> FillingLineDetails { get; set; }
+        public virtual DbSet<Device> Devices { get; set; }
     
         public virtual ObjectResult<Nullable<int>> GetAccessLevel(Nullable<int> userID, Nullable<int> nMVNTaskID, Nullable<int> organizationalUnitID)
         {

@@ -256,6 +256,14 @@
           <Property Name="InActiveDate" Type="datetime" />
           <Property Name="TeamID" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Devices">
+          <Key>
+            <PropertyRef Name="DeviceID" />
+          </Key>
+          <Property Name="DeviceID" Type="int" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="60" Nullable="false" />
+        </EntityType>
         <EntityType Name="Employees">
           <Key>
             <PropertyRef Name="EmployeeID" />
@@ -1359,6 +1367,18 @@
             </Principal>
             <Dependent Role="Employees">
               <PropertyRef Name="TeamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FillingLineDetails_Devices">
+          <End Role="Devices" Type="Self.Devices" Multiplicity="1" />
+          <End Role="FillingLineDetails" Type="Self.FillingLineDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Devices">
+              <PropertyRef Name="DeviceID" />
+            </Principal>
+            <Dependent Role="FillingLineDetails">
+              <PropertyRef Name="DeviceID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3052,6 +3072,7 @@
           <EntitySet Name="CustomerTypes" EntityType="Self.CustomerTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DeliveryAdviceDetails" EntityType="Self.DeliveryAdviceDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DeliveryAdvices" EntityType="Self.DeliveryAdvices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Devices" EntityType="Self.Devices" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EntireTerritories" EntityType="Self.EntireTerritories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FillingLineDetails" EntityType="Self.FillingLineDetails" Schema="dbo" store:Type="Tables" />
@@ -3214,6 +3235,10 @@
           <AssociationSet Name="FK_Employees_Teams" Association="Self.FK_Employees_Teams">
             <End Role="Teams" EntitySet="Teams" />
             <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FillingLineDetails_Devices" Association="Self.FK_FillingLineDetails_Devices">
+            <End Role="Devices" EntitySet="Devices" />
+            <End Role="FillingLineDetails" EntitySet="FillingLineDetails" />
           </AssociationSet>
           <AssociationSet Name="FK_FillingLineDetails_FillingLines" Association="Self.FK_FillingLineDetails_FillingLines">
             <End Role="FillingLines" EntitySet="FillingLines" />
@@ -4759,6 +4784,11 @@
             <End Role="FillingLine" EntitySet="FillingLines" />
             <End Role="FillingLineDetail" EntitySet="FillingLineDetails" />
           </AssociationSet>
+          <EntitySet Name="Devices" EntityType="TotalSmartCodingModel.Device" />
+          <AssociationSet Name="FK_FillingLineDetails_Devices" Association="TotalSmartCodingModel.FK_FillingLineDetails_Devices">
+            <End Role="Device" EntitySet="Devices" />
+            <End Role="FillingLineDetail" EntitySet="FillingLineDetails" />
+          </AssociationSet>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
           <Property Type="Int32" Name="PickupID" Nullable="false" />
@@ -5009,6 +5039,7 @@
           <Property Type="String" Name="Code" Nullable="false" MaxLength="10" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="60" />
           <Property Type="String" Name="NickName" Nullable="true" MaxLength="60" />
+          <Property Type="String" Name="FillingLineType" Nullable="false" MaxLength="12" />
         </ComplexType>
         <ComplexType Name="BinLocationBase">
           <Property Type="Int32" Name="BinLocationID" Nullable="false" />
@@ -8428,6 +8459,7 @@
           <Property Name="IPv4Byte3" Type="Int32" Nullable="false" />
           <Property Name="IPv4Byte4" Type="Int32" Nullable="false" />
           <NavigationProperty Name="FillingLine" Relationship="TotalSmartCodingModel.FK_FillingLineDetails_FillingLines" FromRole="FillingLineDetail" ToRole="FillingLine" />
+          <NavigationProperty Name="Device" Relationship="TotalSmartCodingModel.FK_FillingLineDetails_Devices" FromRole="FillingLineDetail" ToRole="Device" />
         </EntityType>
         <Association Name="FK_FillingLineDetails_FillingLines">
           <End Type="TotalSmartCodingModel.FillingLine" Role="FillingLine" Multiplicity="1" />
@@ -8438,6 +8470,27 @@
             </Principal>
             <Dependent Role="FillingLineDetail">
               <PropertyRef Name="FillingLineID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Device">
+          <Key>
+            <PropertyRef Name="DeviceID" />
+          </Key>
+          <Property Name="DeviceID" Type="Int32" Nullable="false" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="FillingLineDetails" Relationship="TotalSmartCodingModel.FK_FillingLineDetails_Devices" FromRole="Device" ToRole="FillingLineDetail" />
+        </EntityType>
+        <Association Name="FK_FillingLineDetails_Devices">
+          <End Type="TotalSmartCodingModel.Device" Role="Device" Multiplicity="1" />
+          <End Type="TotalSmartCodingModel.FillingLineDetail" Role="FillingLineDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Device">
+              <PropertyRef Name="DeviceID" />
+            </Principal>
+            <Dependent Role="FillingLineDetail">
+              <PropertyRef Name="DeviceID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -8783,6 +8836,7 @@
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="NickName" ColumnName="NickName" />
+                <ScalarProperty Name="FillingLineType" ColumnName="FillingLineType" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -11135,6 +11189,15 @@
           <FunctionImportMapping FunctionImportName="FillingLineDeletable" FunctionName="TotalSmartCodingModel.Store.FillingLineDeletable" />
           <FunctionImportMapping FunctionImportName="FillingLineEditable" FunctionName="TotalSmartCodingModel.Store.FillingLineEditable" />
           <FunctionImportMapping FunctionImportName="FillingLineSaveRelative" FunctionName="TotalSmartCodingModel.Store.FillingLineSaveRelative" />
+          <EntitySetMapping Name="Devices">
+            <EntityTypeMapping TypeName="TotalSmartCodingModel.Device">
+              <MappingFragment StoreEntitySet="Devices">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="DeviceID" ColumnName="DeviceID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -10,13 +10,21 @@
 namespace TotalModel.Models
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class FillingLineIndex
+    public partial class Device
     {
-        public int FillingLineID { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Device()
+        {
+            this.FillingLineDetails = new HashSet<FillingLineDetail>();
+        }
+    
+        public int DeviceID { get; set; }
         public string Code { get; set; }
         public string Name { get; set; }
-        public string NickName { get; set; }
-        public string FillingLineType { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FillingLineDetail> FillingLineDetails { get; set; }
     }
 }

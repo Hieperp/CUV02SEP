@@ -67,6 +67,22 @@ namespace TotalDAL.Repositories
             {
                 this.ExecuteStoreCommand("INSERT INTO ModuleDetails (ModuleDetailID, ModuleID, Code, Name, FullName, Actions, Controller, LastOpen, SerialID, ImageIndex, InActive) VALUES(" + (int)GlobalEnums.NmvnTaskID.FillingLine + ", 108, 'IP Settings', 'IP Settings', '#', '#', '#', 1, 68, 1, 0) ", new ObjectParameter[] { });
                 this.ExecuteStoreCommand("INSERT INTO AccessControls (UserID, NMVNTaskID, OrganizationalUnitID, AccessLevel, ApprovalPermitted, UnApprovalPermitted, VoidablePermitted, UnVoidablePermitted, ShowDiscount, AccessLevelBACKUP, ApprovalPermittedBACKUP, UnApprovalPermittedBACKUP, InActive) SELECT UserID, " + (int)GlobalEnums.NmvnTaskID.FillingLine + " AS NMVNTaskID, OrganizationalUnitID, 0 AS AccessLevel, 0 AS ApprovalPermitted, 0 AS UnApprovalPermitted, 0 AS VoidablePermitted, 0 AS UnVoidablePermitted, ShowDiscount, AccessLevelBACKUP, ApprovalPermittedBACKUP, UnApprovalPermittedBACKUP, InActive FROM AccessControls WHERE (NMVNTaskID = " + (int)GlobalEnums.NmvnTaskID.Commodity + ") AND (SELECT COUNT(*) FROM AccessControls WHERE NMVNTaskID = " + (int)GlobalEnums.NmvnTaskID.FillingLine + ") = 0", new ObjectParameter[] { });
+
+
+                foreach (GlobalVariables.PrinterName printerName in Enum.GetValues(typeof(GlobalVariables.PrinterName)))
+                {
+                    string ipAddress = GlobalVariables.IpAddress(printerName);
+                    if (ipAddress != "" & ipAddress != "127.0.0.1")
+                        this.ExecuteStoreCommand("INSERT INTO FillingLineDetails (FillingLineID, DeviceID, IPv4Byte1, IPv4Byte2, IPv4Byte3, IPv4Byte4) VALUES (" + (int)GlobalVariables.FillingLineID + ", " + (int)printerName + ", " + ipAddress.Substring(0, ipAddress.IndexOf(".")) + ", " + ipAddress.Substring(ipAddress.IndexOf(".") + 1).Substring(0, ipAddress.Substring(ipAddress.IndexOf(".") + 1).IndexOf(".")) + ", " + ipAddress.Substring(ipAddress.IndexOf(".") + 1).Substring(ipAddress.Substring(ipAddress.IndexOf(".") + 1).IndexOf(".") + 1).Substring(0, ipAddress.Substring(ipAddress.IndexOf(".") + 1).Substring(ipAddress.Substring(ipAddress.IndexOf(".") + 1).IndexOf(".") + 1).IndexOf(".")) + ", " + ipAddress.Substring(ipAddress.IndexOf(".") + 1).Substring(ipAddress.Substring(ipAddress.IndexOf(".") + 1).IndexOf(".") + 1).Substring(ipAddress.Substring(ipAddress.IndexOf(".") + 1).Substring(ipAddress.Substring(ipAddress.IndexOf(".") + 1).IndexOf(".") + 1).IndexOf(".") + 1) + ")", new ObjectParameter[] { });
+                }
+
+                foreach (GlobalVariables.ScannerName scannerName in Enum.GetValues(typeof(GlobalVariables.ScannerName)))
+                {
+                    string ipAddress = GlobalVariables.IpAddress(scannerName);
+                    if (ipAddress != "" & ipAddress != "127.0.0.1")
+                        this.ExecuteStoreCommand("INSERT INTO FillingLineDetails (FillingLineID, DeviceID, IPv4Byte1, IPv4Byte2, IPv4Byte3, IPv4Byte4) VALUES (" + (int)GlobalVariables.FillingLineID + ", " + 10000 + (int)scannerName + ", " + ipAddress.Substring(0, ipAddress.IndexOf(".")) + ", " + ipAddress.Substring(ipAddress.IndexOf(".") + 1).Substring(0, ipAddress.Substring(ipAddress.IndexOf(".") + 1).IndexOf(".")) + ", " + ipAddress.Substring(ipAddress.IndexOf(".") + 1).Substring(ipAddress.Substring(ipAddress.IndexOf(".") + 1).IndexOf(".") + 1).Substring(0, ipAddress.Substring(ipAddress.IndexOf(".") + 1).Substring(ipAddress.Substring(ipAddress.IndexOf(".") + 1).IndexOf(".") + 1).IndexOf(".")) + ", " + ipAddress.Substring(ipAddress.IndexOf(".") + 1).Substring(ipAddress.Substring(ipAddress.IndexOf(".") + 1).IndexOf(".") + 1).Substring(ipAddress.Substring(ipAddress.IndexOf(".") + 1).Substring(ipAddress.Substring(ipAddress.IndexOf(".") + 1).IndexOf(".") + 1).IndexOf(".") + 1) + ")", new ObjectParameter[] { });
+                }
+
             }
 
             #region EmployeeLocationIDs & Roles

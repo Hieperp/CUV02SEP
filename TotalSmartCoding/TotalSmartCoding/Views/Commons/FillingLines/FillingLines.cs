@@ -154,7 +154,15 @@ namespace TotalSmartCoding.Views.Commons.FillingLines
         protected override void DoAfterLoad()
         {
             base.DoAfterLoad();
-            this.fastFillingLineIndex.Sort(this.olvFillingLineCode, SortOrder.Descending);
+            this.fastFillingLineIndex.Sort(this.olvFillingLineType, SortOrder.Descending);
+        }
+
+        protected override void EditableModeChanged(bool editableMode)
+        {
+            base.EditableModeChanged(editableMode);
+
+            this.gridexViewDetails.AllowUserToAddRows = false;
+            this.gridexViewDetails.AllowUserToDeleteRows = false;
         }
     }
 }

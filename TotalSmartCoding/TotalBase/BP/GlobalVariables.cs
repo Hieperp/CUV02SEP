@@ -192,8 +192,6 @@ namespace TotalBase
                             return "172.21.67.165";
                         case PrinterName.CartonInkjet:
                             return "172.21.67.163";
-                        case PrinterName.PalletLabel:
-                            return "172.21.67.164";
                         default:
                             return "127.0.0.1";
                     }
@@ -201,11 +199,7 @@ namespace TotalBase
                     switch (dominoPrinterNameID)
                     {
                         case PrinterName.DigitInkjet:
-                            return "172.21.67.110";
-                        case PrinterName.PackInkjet:
-                            return "172.21.67.111";
-                        case PrinterName.CartonInkjet:
-                            return "172.21.67.112";
+                            return "172.21.67.167";
                         default:
                             return "127.0.0.1";
                     }
