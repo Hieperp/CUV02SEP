@@ -2,7 +2,7 @@
 {
     public static class GlobalEnums
     {
-        public static int OnRecivedMillisecond = 900; //1
+        public static int OnRecivedMillisecond = 900; //1-MANUAL INPUT
 
         public static bool OnTestScanner = false; //1
         public static bool OnTestPalletScanner = false; //3 //WHEN REAL TEST WITHOUT PalletScanner
@@ -10,6 +10,9 @@
         public static bool OnTestPrinter = false; //2
         public static bool OnTestDigit = false; //TRUE WHEN REAL TEST WITHOUT DIGIT PRINTER
         public static bool OnTestZebra = false; //false: WILL SEND TEST PRINT WHEN CONNECTED
+
+
+        public static bool DrumWithDigit = false;
 
         public static bool SendToZebra = true;
 

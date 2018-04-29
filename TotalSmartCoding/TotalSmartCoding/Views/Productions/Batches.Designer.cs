@@ -36,7 +36,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.labelNextPalletNo = new System.Windows.Forms.Label();
             this.labelNextCartonNo = new System.Windows.Forms.Label();
             this.labelNextPackNo = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -93,7 +93,7 @@
             this.layoutMaster.Controls.Add(this.label6, 1, 0);
             this.layoutMaster.Controls.Add(this.label2, 1, 2);
             this.layoutMaster.Controls.Add(this.label14, 1, 4);
-            this.layoutMaster.Controls.Add(this.label4, 1, 16);
+            this.layoutMaster.Controls.Add(this.labelNextPalletNo, 1, 16);
             this.layoutMaster.Controls.Add(this.labelNextCartonNo, 1, 12);
             this.layoutMaster.Controls.Add(this.labelNextPackNo, 1, 10);
             this.layoutMaster.Controls.Add(this.label8, 1, 8);
@@ -215,18 +215,18 @@
             this.label14.Text = "Item Code";
             this.label14.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
-            // label4
+            // labelNextPalletNo
             // 
-            this.label4.AutoSize = true;
-            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Font = new System.Drawing.Font("Calibri", 10.2F);
-            this.label4.Location = new System.Drawing.Point(30, 512);
-            this.label4.Margin = new System.Windows.Forms.Padding(0, 10, 1, 1);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(310, 21);
-            this.label4.TabIndex = 65;
-            this.label4.Text = "Next Pallet";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.labelNextPalletNo.AutoSize = true;
+            this.labelNextPalletNo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelNextPalletNo.Font = new System.Drawing.Font("Calibri", 10.2F);
+            this.labelNextPalletNo.Location = new System.Drawing.Point(30, 512);
+            this.labelNextPalletNo.Margin = new System.Windows.Forms.Padding(0, 10, 1, 1);
+            this.labelNextPalletNo.Name = "labelNextPalletNo";
+            this.labelNextPalletNo.Size = new System.Drawing.Size(310, 21);
+            this.labelNextPalletNo.TabIndex = 65;
+            this.labelNextPalletNo.Text = "Next Pallet";
+            this.labelNextPalletNo.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
             // labelNextCartonNo
             // 
@@ -251,7 +251,7 @@
             this.labelNextPackNo.Name = "labelNextPackNo";
             this.labelNextPackNo.Size = new System.Drawing.Size(310, 21);
             this.labelNextPackNo.TabIndex = 67;
-            this.labelNextPackNo.Text = "Next Bottle";
+            this.labelNextPackNo.Text = "Next Pack";
             this.labelNextPackNo.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
             // label8
@@ -644,7 +644,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton buttonApply;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label labelNextPalletNo;
         private System.Windows.Forms.Label labelNextCartonNo;
         private System.Windows.Forms.Label labelNextPackNo;
         private Guifreaks.Navisuite.NaviBar naviBarMaster;

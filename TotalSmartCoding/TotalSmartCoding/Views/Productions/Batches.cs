@@ -94,8 +94,9 @@ namespace TotalSmartCoding.Views.Productions
                 this.comboDiscontinued.SelectedIndex = 0;
 
                 this.checkAutoBarcode.Visible = GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Pail;
-                if (GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Pail || GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Drum) { this.labelNextPackNo.Visible = false; this.textexNextPackNo.Visible = false; }
+                if (GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Pail || (GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Drum && !GlobalEnums.DrumWithDigit)) { this.labelNextPackNo.Visible = false; this.textexNextPackNo.Visible = false; }
                 if (GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Drum) { this.labelNextCartonNo.Visible = false; this.textexNextCartonNo.Visible = false; }
+                if (GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Drum && GlobalEnums.DrumWithDigit) { this.labelNextPalletNo.Visible = false; this.textexNextPalletNo.Visible = false; }
 
                 CustomTabControl customTabBatch = new CustomTabControl();
                 //customTabControlCustomerChannel.ImageList = this.imageListTabControl;
@@ -144,7 +145,7 @@ namespace TotalSmartCoding.Views.Productions
             this.bindingNextCartonNo = this.textexNextCartonNo.DataBindings.Add("Text", this.batchViewModel, "NextCartonNo", true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingNextPalletNo = this.textexNextPalletNo.DataBindings.Add("Text", this.batchViewModel, "NextPalletNo", true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingFinalCartonNo = this.textexFinalCartonNo.DataBindings.Add("Text", this.batchViewModel, "FinalCartonNo", true, DataSourceUpdateMode.OnPropertyChanged);
-            
+
             this.bindingAutoBarcode = this.checkAutoBarcode.DataBindings.Add("Checked", this.batchViewModel, "AutoBarcode", true, DataSourceUpdateMode.OnPropertyChanged);
             this.labelFinalCartonNo.DataBindings.Add("Visible", this.batchViewModel, "AutoBarcode", true, DataSourceUpdateMode.OnPropertyChanged);
             this.textexFinalCartonNo.DataBindings.Add("Visible", this.batchViewModel, "AutoBarcode", true, DataSourceUpdateMode.OnPropertyChanged);

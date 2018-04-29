@@ -109,19 +109,14 @@ namespace TotalSmartCoding.Views.Productions
 
                 this.comboBoxSendToZebra.ComboBox.Items.AddRange(new string[] { "Stop print label", "Print new label" });
                 this.comboBoxSendToZebra.ComboBox.SelectedIndex = GlobalEnums.SendToZebra ? 1 : 0;
-                this.comboBoxSendToZebra.Visible = this.fillingData.FillingLineID == GlobalVariables.FillingLine.Drum;
-                this.separatorSendToZebra.Visible = this.fillingData.FillingLineID == GlobalVariables.FillingLine.Drum;
-                this.buttonSendToZebra.Visible = this.fillingData.FillingLineID == GlobalVariables.FillingLine.Drum;
+                this.comboBoxSendToZebra.Visible = this.fillingData.FillingLineID == GlobalVariables.FillingLine.Drum && !GlobalEnums.DrumWithDigit;
+                this.separatorSendToZebra.Visible = this.fillingData.FillingLineID == GlobalVariables.FillingLine.Drum && !GlobalEnums.DrumWithDigit;
+                this.buttonSendToZebra.Visible = this.fillingData.FillingLineID == GlobalVariables.FillingLine.Drum && !GlobalEnums.DrumWithDigit;
 
 
-                if (!fillingData.HasPack) { this.labelNextDigitNo.Visible = false; this.textNextDigitNo.Visible = false; this.labelNextPackNo.Visible = false; this.textNextPackNo.Visible = false; this.dgvCartonPendingQueue.RowTemplate.Height = 280; this.dgvCartonQueue.RowTemplate.Height = 280; this.dgvCartonsetQueue.RowTemplate.Height = 280; this.labelLEDPack.Visible = false; this.labelLEDCartonIgnore.Visible = false; this.separatorLEDPack.Visible = false; this.separatorLEDCartonIgnore.Visible = false; this.labelCommodityNameCarton.Visible = true; }
+                if (!fillingData.HasPack) { this.labelNextPackNo.Visible = false; this.textNextPackNo.Visible = false; this.dgvCartonPendingQueue.RowTemplate.Height = 280; this.dgvCartonQueue.RowTemplate.Height = 280; this.dgvCartonsetQueue.RowTemplate.Height = 280; this.labelLEDPack.Visible = false; this.labelLEDCartonIgnore.Visible = false; this.separatorLEDPack.Visible = false; this.separatorLEDCartonIgnore.Visible = false; this.labelCommodityNameCarton.Visible = true; }
                 if (!fillingData.HasCarton) { this.labelNextCartonNo.Visible = false; this.textNextCartonNo.Visible = false; this.dgvPalletQueue.RowTemplate.Height = 280; this.dgvPalletPickupQueue.RowTemplate.Height = 280; this.labelLEDCarton.Visible = false; this.labelLEDCartonPending.Visible = false; this.separatorLEDCarton.Visible = false; this.separatorLEDCartonPending.Visible = false; this.labelCommodityNamePallet.Visible = true; }
-
-
-
-
-                this.labelNextDigitNo.Visible = false; this.textNextDigitNo.Visible = false;
-
+                if (!fillingData.HasCarton && GlobalEnums.DrumWithDigit) { this.labelNextPalletNo.Visible = false; this.textNextPalletNo.Visible = false; } else { this.labelNextDigitNo.Visible = false; this.textNextDigitNo.Visible = false; }
 
 
 

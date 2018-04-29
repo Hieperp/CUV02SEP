@@ -55,7 +55,7 @@ namespace TotalSmartCoding.Controllers.Productions
                 this.localcartonsetQueue = value;
                 this.FillingData.CartonsetQueueCount = this.localcartonsetQueue.Count;
 
-                if (this.FillingData.CartonsetQueueCount > 0 || !this.FillingData.HasCarton)
+                if (this.FillingData.CartonsetQueueCount > 0 || (!GlobalEnums.DrumWithDigit && !this.FillingData.HasCarton))
                     this.FillingData.CartonsetQueueZebraStatus = GlobalVariables.ZebraStatus.Freshnew;
             }
         }

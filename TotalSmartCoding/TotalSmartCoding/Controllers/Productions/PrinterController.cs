@@ -115,6 +115,8 @@ namespace TotalSmartCoding.Controllers.Productions
                 {
                     this.privateFillingData.NextDigitNo = value;
                     this.NotifyPropertyChanged("NextDigitNo");
+
+                    if (this.OnPrinting && GlobalEnums.DrumWithDigit && !this.FillingData.HasCarton) this.FillingData.CartonsetQueueZebraStatus = GlobalVariables.ZebraStatus.Freshnew;
                 }
             }
         }
@@ -333,7 +335,7 @@ namespace TotalSmartCoding.Controllers.Productions
 
         private string thirdLineA2(bool isReadableText, int serialIndentity)
         {
-            return this.privateFillingData.FillingLineCode + (serialIndentity == 1 || serialIndentity == 2 ? (GlobalEnums.OnTestPrinter ? this.getNextNo() : this.dominoSerialNumber(serialIndentity)) : (this.FillingData.CartonsetQueueZebraStatus == GlobalVariables.ZebraStatus.Freshnew ? this.getNextNo() : this.getPreviousNo()));
+            return this.privateFillingData.FillingLineCode + (serialIndentity == 1 || serialIndentity == 2 ? (GlobalEnums.OnTestPrinter ? this.getNextNo() : this.dominoSerialNumber(serialIndentity)) : ((GlobalEnums.DrumWithDigit && !this.FillingData.HasCarton) ? this.NextDigitNo : (this.FillingData.CartonsetQueueZebraStatus == GlobalVariables.ZebraStatus.Freshnew ? this.getNextNo() : this.getPreviousNo())));
         }
 
         private string wholeBarcode(int serialIndentity)
@@ -750,7 +752,7 @@ namespace TotalSmartCoding.Controllers.Productions
             //if (GlobalEnums.OnTestPrinter && this.printerName != GlobalVariables.PrinterName.DigitInkjet) this.feedbackNextNo((int.Parse(this.getNextNo()) + 1).ToString("0000000").Substring(1));
 
             //This command line is specific to: PalletLabel ON FillingLine.Drum || CartonInkjet ON FillingLine.Pail (Just here only for this specific)
-            if ((this.FillingData.FillingLineID == GlobalVariables.FillingLine.Drum && this.printerName != GlobalVariables.PrinterName.PalletLabel) || (this.FillingData.FillingLineID == GlobalVariables.FillingLine.Pail && this.printerName == GlobalVariables.PrinterName.PackInkjet) || (this.printerName == GlobalVariables.PrinterName.DigitInkjet && GlobalEnums.OnTestDigit)) { this.setLED(true, this.LedAmberOn, this.LedRedOn); return; } //DO NOTHING
+            if ((this.FillingData.FillingLineID == GlobalVariables.FillingLine.Drum && !(this.printerName == GlobalVariables.PrinterName.PalletLabel || (GlobalEnums.DrumWithDigit && this.printerName == GlobalVariables.PrinterName.DigitInkjet))) || (this.FillingData.FillingLineID == GlobalVariables.FillingLine.Pail && this.printerName == GlobalVariables.PrinterName.PackInkjet) || (this.printerName == GlobalVariables.PrinterName.DigitInkjet && GlobalEnums.OnTestDigit)) { this.setLED(true, this.LedAmberOn, this.LedRedOn); return; } //DO NOTHING
 
 
             try
