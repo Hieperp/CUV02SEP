@@ -10,6 +10,7 @@ namespace TotalCore.Repositories.Commons
 
     public interface IFillingLineAPIRepository : IGenericAPIRepository
     {
+        IList<FillingLineSetting> GetFillingLineSettings(int fillingLineID, int deviceID);
         IList<FillingLineBase> GetFillingLineBases();
     }
 }

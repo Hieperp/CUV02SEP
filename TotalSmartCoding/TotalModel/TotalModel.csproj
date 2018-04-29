@@ -205,6 +205,9 @@
     <Compile Include="Models\FillingLineIndex.cs">
       <DependentUpon>TotalSmartCoding.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\FillingLineSetting.cs">
+      <DependentUpon>TotalSmartCoding.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Forecast.cs">
       <DependentUpon>TotalSmartCoding.tt</DependentUpon>
     </Compile>

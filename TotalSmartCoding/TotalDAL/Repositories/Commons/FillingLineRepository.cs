@@ -27,6 +27,11 @@ namespace TotalDAL.Repositories.Commons
         {
         }
 
+        public IList<FillingLineSetting> GetFillingLineSettings(int fillingLineID, int deviceID)
+        {
+            return this.TotalSmartCodingEntities.GetFillingLineSettings(fillingLineID, deviceID).ToList();
+        }
+
         public IList<FillingLineBase> GetFillingLineBases()
         {
             return this.TotalSmartCodingEntities.GetFillingLineBases().ToList();

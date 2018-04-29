@@ -124,6 +124,7 @@
     <Compile Include="Controllers\APIs\Inventories\PickupAPIs.cs" />
     <Compile Include="Controllers\APIs\Inventories\WarehouseAdjustmentAPIs.cs" />
     <Compile Include="Controllers\APIs\Productions\CartonAPIs.cs" />
+    <Compile Include="Controllers\APIs\Productions\ProductionAPIs.cs" />
     <Compile Include="Controllers\APIs\Productions\ScannerAPIs.cs" />
     <Compile Include="Controllers\APIs\Sales\DeliveryAdviceAPIs.cs" />
     <Compile Include="Controllers\APIs\Sales\ForecastAPIs.cs" />

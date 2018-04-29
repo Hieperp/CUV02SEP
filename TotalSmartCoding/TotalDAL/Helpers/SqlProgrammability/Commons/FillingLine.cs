@@ -24,6 +24,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             this.FillingLineDeletable();
             this.FillingLineSaveRelative();
 
+            this.GetFillingLineSettings();
             this.GetFillingLineBases();
         }
 
@@ -69,6 +70,18 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             queryArray[0] = " SELECT TOP 1 @FoundEntity = FillingLineID FROM FillingLines WHERE FillingLineID = @EntityID ";
 
             this.totalSmartCodingEntities.CreateProcedureToCheckExisting("FillingLineDeletable", queryArray);
+        }
+
+        private void GetFillingLineSettings()
+        {
+            string queryString = " @FillingLineID Int, @DeviceID Int " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+
+            queryString = queryString + "       SELECT      FillingLineID, DeviceID, IPv4Byte1, IPv4Byte2, IPv4Byte3, IPv4Byte4 FROM FillingLineDetails " + "\r\n";
+            queryString = queryString + "       WHERE       FillingLineID = @FillingLineID AND DeviceID = @DeviceID " + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("GetFillingLineSettings", queryString);
         }
 
         private void GetFillingLineBases()

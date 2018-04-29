@@ -2563,6 +2563,10 @@
           <Parameter Name="FromDate" Type="datetime" Mode="In" />
           <Parameter Name="ToDate" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="GetFillingLineSettings" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FillingLineID" Type="int" Mode="In" />
+          <Parameter Name="DeviceID" Type="int" Mode="In" />
+        </Function>
         <Function Name="GetForecastIndexes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserID" Type="int" Mode="In" />
           <Parameter Name="FromDate" Type="datetime" Mode="In" />
@@ -4789,6 +4793,10 @@
             <End Role="Device" EntitySet="Devices" />
             <End Role="FillingLineDetail" EntitySet="FillingLineDetails" />
           </AssociationSet>
+          <FunctionImport Name="GetFillingLineSettings" ReturnType="Collection(TotalSmartCodingModel.FillingLineSetting)">
+            <Parameter Name="FillingLineID" Mode="In" Type="Int32" />
+            <Parameter Name="DeviceID" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
           <Property Type="Int32" Name="PickupID" Nullable="false" />
@@ -8494,6 +8502,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="FillingLineSetting">
+          <Property Type="Int32" Name="FillingLineID" Nullable="false" />
+          <Property Type="Int32" Name="DeviceID" Nullable="false" />
+          <Property Type="Int32" Name="IPv4Byte1" Nullable="false" />
+          <Property Type="Int32" Name="IPv4Byte2" Nullable="false" />
+          <Property Type="Int32" Name="IPv4Byte3" Nullable="false" />
+          <Property Type="Int32" Name="IPv4Byte4" Nullable="false" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -11198,6 +11214,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetFillingLineSettings" FunctionName="TotalSmartCodingModel.Store.GetFillingLineSettings">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TotalSmartCodingModel.FillingLineSetting">
+                <ScalarProperty Name="FillingLineID" ColumnName="FillingLineID" />
+                <ScalarProperty Name="DeviceID" ColumnName="DeviceID" />
+                <ScalarProperty Name="IPv4Byte1" ColumnName="IPv4Byte1" />
+                <ScalarProperty Name="IPv4Byte2" ColumnName="IPv4Byte2" />
+                <ScalarProperty Name="IPv4Byte3" ColumnName="IPv4Byte3" />
+                <ScalarProperty Name="IPv4Byte4" ColumnName="IPv4Byte4" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

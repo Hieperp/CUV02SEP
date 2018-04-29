@@ -2579,5 +2579,18 @@ namespace TotalModel.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("FillingLineSaveRelative", entityIDParameter, saveRelativeOptionParameter);
         }
+    
+        public virtual ObjectResult<FillingLineSetting> GetFillingLineSettings(Nullable<int> fillingLineID, Nullable<int> deviceID)
+        {
+            var fillingLineIDParameter = fillingLineID.HasValue ?
+                new ObjectParameter("FillingLineID", fillingLineID) :
+                new ObjectParameter("FillingLineID", typeof(int));
+    
+            var deviceIDParameter = deviceID.HasValue ?
+                new ObjectParameter("DeviceID", deviceID) :
+                new ObjectParameter("DeviceID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<FillingLineSetting>("GetFillingLineSettings", fillingLineIDParameter, deviceIDParameter);
+        }
     }
 }
