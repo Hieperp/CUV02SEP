@@ -1883,6 +1883,16 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Continue_x_20 {
+            get {
+                object obj = ResourceManager.GetObject("Continue-x-20", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Cross_UnVerify {
             get {
                 object obj = ResourceManager.GetObject("Cross-UnVerify", resourceCulture);
@@ -3176,6 +3186,36 @@ namespace TotalSmartCoding.Properties {
         internal static System.Drawing.Bitmap if_oil_645021 {
             get {
                 object obj = ResourceManager.GetObject("if_oil_645021", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Ignore_x_16 {
+            get {
+                object obj = ResourceManager.GetObject("Ignore-x-16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Ignore_x_20 {
+            get {
+                object obj = ResourceManager.GetObject("Ignore-x-20", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Ignore_x_24 {
+            get {
+                object obj = ResourceManager.GetObject("Ignore-x-24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

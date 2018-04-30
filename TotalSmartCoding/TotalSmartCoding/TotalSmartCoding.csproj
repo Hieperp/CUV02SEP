@@ -1327,6 +1327,10 @@
     <None Include="Resources\LogoutApp.png" />
     <None Include="Resources\ip-icon.png" />
     <None Include="Resources\ip_class.png" />
+    <None Include="Resources\Ignore-x-24.png" />
+    <None Include="Resources\Ignore-x-20.png" />
+    <None Include="Resources\Ignore-x-16.png" />
+    <None Include="Resources\Continue-x-20.png" />
     <Content Include="SmartCodingSolution.ico" />
     <None Include="Resources\Yellow-cross.ico" />
     <None Include="Resources\White-Pallet.ico" />

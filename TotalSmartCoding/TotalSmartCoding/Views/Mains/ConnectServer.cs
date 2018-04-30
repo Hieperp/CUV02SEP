@@ -26,7 +26,7 @@ namespace TotalSmartCoding.Views.Mains
             this.textexApplicationRolePassword.Visible = this.specifyNewRole;
             this.labelApplicationRolePassword.Visible = this.specifyNewRole;
             this.buttonConnect.Visible = this.specifyNewRole;
-            this.buttonResetApplicationRolePassword.Visible = !this.specifyNewRole;
+            this.buttonResetApplicationRole.Visible = !this.specifyNewRole;
 
             if (!this.specifyNewRole)
             {
@@ -51,13 +51,24 @@ namespace TotalSmartCoding.Views.Mains
                 }
             }
             else
-                if (sender.Equals(this.buttonResetApplicationRolePassword))
+                if (sender.Equals(this.buttonResetApplicationRole))
                 {
                     CommonConfigs.AddUpdateAppSetting("SecureCode", "");
+                    CommonConfigs.AddUpdateAppSetting("SecurePrincipal", "");
                     this.DialogResult = DialogResult.OK;
                 }
                 else
-                    this.DialogResult = DialogResult.Cancel;
+                    if (sender.Equals(this.buttonIgnoreApplicationRole))
+                    {
+                        CommonConfigs.AddUpdateAppSetting("SecureCode", SecurePassword.Encrypt("NOTUSEAPPLICATIONROLE"));
+                        CommonConfigs.AddUpdateAppSetting("SecurePrincipal", SecurePassword.Encrypt("NOTUSEAPPLICATIONROLE"));
+
+                        CustomMsgBox.Show(this, "Please open your program again in order to take new effect.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+                        this.DialogResult = DialogResult.Cancel;
+                    }
+                    else
+                        this.DialogResult = DialogResult.Cancel;
         }
 
         private void textexApplicationRole_TextChanged(object sender, EventArgs e)

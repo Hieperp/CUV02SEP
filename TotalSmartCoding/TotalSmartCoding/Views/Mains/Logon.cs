@@ -152,6 +152,8 @@ namespace TotalSmartCoding.Views.Mains
 
                     this.buttonDownload.Visible = true;
                     this.buttonLoginRestore.Visible = activeUsers[0].IsDatabaseAdmin;
+                    this.buttonResetApplicationRole.Visible = activeUsers[0].IsDatabaseAdmin;
+                    this.separatorResetApplicationRole.Visible = activeUsers[0].IsDatabaseAdmin;
                 }
                 else
                 {
@@ -323,6 +325,16 @@ namespace TotalSmartCoding.Views.Mains
             }
         }
 
+        private void buttonResetApplicationRole_Click(object sender, EventArgs e)
+        {
+            CommonConfigs.AddUpdateAppSetting("SecureCode", "");
+            CommonConfigs.AddUpdateAppSetting("SecurePrincipal", "");
+
+            CustomMsgBox.Show(this, "Please open your program again in order to take new effect.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+            this.DialogResult = DialogResult.Cancel;
+        }
+
         private bool VersionValidate()
         {
             try
@@ -364,6 +376,8 @@ namespace TotalSmartCoding.Views.Mains
             }
             throw new Exception("No network adapters with an IPv4 address in the system!");
         }
+
+        
 
 
 

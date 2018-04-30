@@ -46,6 +46,7 @@
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.buttonLoginRestore = new System.Windows.Forms.ToolStripButton();
             this.buttonDownload = new System.Windows.Forms.ToolStripButton();
+            this.buttonResetApplicationRole = new System.Windows.Forms.ToolStripButton();
             this.pictureBoxIcon = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.layoutTop = new System.Windows.Forms.TableLayoutPanel();
@@ -54,6 +55,7 @@
             this.labelFillingLineID = new System.Windows.Forms.Label();
             this.comboSecurityIdentifier = new System.Windows.Forms.ComboBox();
             this.labelComportName = new System.Windows.Forms.Label();
+            this.separatorResetApplicationRole = new System.Windows.Forms.ToolStripSeparator();
             this.panel1.SuspendLayout();
             this.panelBottom.SuspendLayout();
             this.panelBottomRight.SuspendLayout();
@@ -242,6 +244,8 @@
             this.toolStrip2.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.buttonResetApplicationRole,
+            this.separatorResetApplicationRole,
             this.buttonLoginRestore,
             this.buttonDownload});
             this.toolStrip2.Location = new System.Drawing.Point(0, 0);
@@ -273,6 +277,17 @@
             this.buttonDownload.Text = "Download latest version";
             this.buttonDownload.Visible = false;
             this.buttonDownload.Click += new System.EventHandler(this.buttonDownload_Click);
+            // 
+            // buttonResetApplicationRole
+            // 
+            this.buttonResetApplicationRole.Image = global::TotalSmartCoding.Properties.Resources.Ignore_x_20;
+            this.buttonResetApplicationRole.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonResetApplicationRole.Name = "buttonResetApplicationRole";
+            this.buttonResetApplicationRole.Size = new System.Drawing.Size(37, 52);
+            this.buttonResetApplicationRole.Text = " ";
+            this.buttonResetApplicationRole.ToolTipText = "Reset application role";
+            this.buttonResetApplicationRole.Visible = false;
+            this.buttonResetApplicationRole.Click += new System.EventHandler(this.buttonResetApplicationRole_Click);
             // 
             // pictureBoxIcon
             // 
@@ -401,6 +416,11 @@
             this.labelComportName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.labelComportName.Visible = false;
             // 
+            // separatorResetApplicationRole
+            // 
+            this.separatorResetApplicationRole.Name = "separatorResetApplicationRole";
+            this.separatorResetApplicationRole.Size = new System.Drawing.Size(6, 55);
+            // 
             // Logon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -463,5 +483,7 @@
         private System.Windows.Forms.Label labelFillingLineID;
         private System.Windows.Forms.ComboBox comboSecurityIdentifier;
         private System.Windows.Forms.Label labelComportName;
+        private System.Windows.Forms.ToolStripButton buttonResetApplicationRole;
+        private System.Windows.Forms.ToolStripSeparator separatorResetApplicationRole;
     }
 }

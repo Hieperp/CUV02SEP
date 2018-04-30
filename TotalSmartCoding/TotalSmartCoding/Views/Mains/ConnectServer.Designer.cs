@@ -41,7 +41,8 @@
             this.pictureBoxIcon = new System.Windows.Forms.PictureBox();
             this.buttonExit = new System.Windows.Forms.ToolStripButton();
             this.buttonConnect = new System.Windows.Forms.ToolStripButton();
-            this.buttonResetApplicationRolePassword = new System.Windows.Forms.ToolStripButton();
+            this.buttonResetApplicationRole = new System.Windows.Forms.ToolStripButton();
+            this.buttonIgnoreApplicationRole = new System.Windows.Forms.ToolStripButton();
             this.panelBottom.SuspendLayout();
             this.panelBottomRight.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -103,7 +104,8 @@
             this.toolStrip2.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.buttonResetApplicationRolePassword});
+            this.buttonResetApplicationRole,
+            this.buttonIgnoreApplicationRole});
             this.toolStrip2.Location = new System.Drawing.Point(0, 0);
             this.toolStrip2.Name = "toolStrip2";
             this.toolStrip2.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -224,17 +226,27 @@
             this.buttonConnect.Text = "Connect";
             this.buttonConnect.Click += new System.EventHandler(this.button_Click);
             // 
-            // buttonResetApplicationRolePassword
+            // buttonResetApplicationRole
             // 
-            this.buttonResetApplicationRolePassword.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.buttonResetApplicationRolePassword.Image = global::TotalSmartCoding.Properties.Resources.Settings;
-            this.buttonResetApplicationRolePassword.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonResetApplicationRolePassword.Name = "buttonResetApplicationRolePassword";
-            this.buttonResetApplicationRolePassword.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.buttonResetApplicationRolePassword.Size = new System.Drawing.Size(24, 39);
-            this.buttonResetApplicationRolePassword.Text = "Reset application role";
-            this.buttonResetApplicationRolePassword.Visible = false;
-            this.buttonResetApplicationRolePassword.Click += new System.EventHandler(this.button_Click);
+            this.buttonResetApplicationRole.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.buttonResetApplicationRole.Image = global::TotalSmartCoding.Properties.Resources.Ignore_x_20;
+            this.buttonResetApplicationRole.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonResetApplicationRole.Name = "buttonResetApplicationRole";
+            this.buttonResetApplicationRole.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.buttonResetApplicationRole.Size = new System.Drawing.Size(24, 39);
+            this.buttonResetApplicationRole.Text = "Reset application role";
+            this.buttonResetApplicationRole.Visible = false;
+            this.buttonResetApplicationRole.Click += new System.EventHandler(this.button_Click);
+            // 
+            // buttonIgnoreApplicationRole
+            // 
+            this.buttonIgnoreApplicationRole.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.buttonIgnoreApplicationRole.Image = global::TotalSmartCoding.Properties.Resources.Continue_x_20;
+            this.buttonIgnoreApplicationRole.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonIgnoreApplicationRole.Name = "buttonIgnoreApplicationRole";
+            this.buttonIgnoreApplicationRole.Size = new System.Drawing.Size(24, 39);
+            this.buttonIgnoreApplicationRole.Text = "Ignore application role";
+            this.buttonIgnoreApplicationRole.Click += new System.EventHandler(this.button_Click);
             // 
             // ConnectServer
             // 
@@ -277,12 +289,13 @@
         private System.Windows.Forms.ToolStripButton buttonConnect;
         private System.Windows.Forms.Panel panelBottomLeft;
         private System.Windows.Forms.ToolStrip toolStrip2;
-        private System.Windows.Forms.ToolStripButton buttonResetApplicationRolePassword;
+        private System.Windows.Forms.ToolStripButton buttonResetApplicationRole;
         private System.Windows.Forms.TableLayoutPanel layoutTop;
         private System.Windows.Forms.Label labelApplicationRoleName;
         private System.Windows.Forms.Label labelApplicationRolePassword;
         private System.Windows.Forms.PictureBox pictureBoxIcon;
         private CustomControls.TextexBox textexApplicationRoleName;
         private CustomControls.TextexBox textexApplicationRolePassword;
+        private System.Windows.Forms.ToolStripButton buttonIgnoreApplicationRole;
     }
 }

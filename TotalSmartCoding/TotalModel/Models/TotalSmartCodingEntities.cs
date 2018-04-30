@@ -112,7 +112,8 @@ namespace TotalModel.Models
     {
         public FE6CodeConfig()
         {
-            this.AddInterceptor(new DbConnectionApplicationRoleInterceptor());
+            if (ApplicationRoles.Name != "" && ApplicationRoles.Name.ToUpper() != "NOTUSEAPPLICATIONROLE" && ApplicationRoles.Password.ToUpper() != "NOTUSEAPPLICATIONROLE")
+                this.AddInterceptor(new DbConnectionApplicationRoleInterceptor());
         }
     }
 
@@ -141,7 +142,7 @@ namespace TotalModel.Models
                 ApplicationRoles.ExceptionMessage = "";
 
                 if (connection.State != ConnectionState.Open) return;
-                if (_appRole != "NOMORE") ActivateApplicationRole(connection, _appRole, _password);
+                if (_appRole != "NOTUSEAPPLICATIONROLE") ActivateApplicationRole(connection, _appRole, _password);
             }
             catch (Exception e)
             {
@@ -154,7 +155,7 @@ namespace TotalModel.Models
         {
             Debug.WriteLine("Connection Closing.");
             if (connection.State != ConnectionState.Open) return;
-            if (_appRole != "NOMORE") DeActivateApplicationRole(connection, _cookie);
+            if (_appRole != "NOTUSEAPPLICATIONROLE") DeActivateApplicationRole(connection, _cookie);
         }
 
         public virtual void ActivateApplicationRole(DbConnection dbConn, string appRoleName, string password)
