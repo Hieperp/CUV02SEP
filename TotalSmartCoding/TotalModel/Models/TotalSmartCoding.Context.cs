@@ -77,6 +77,7 @@ namespace TotalModel.Models
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<FillingLineDetail> FillingLineDetails { get; set; }
         public virtual DbSet<Device> Devices { get; set; }
+        public virtual DbSet<UserGroup> UserGroups { get; set; }
     
         public virtual ObjectResult<Nullable<int>> GetAccessLevel(Nullable<int> userID, Nullable<int> nMVNTaskID, Nullable<int> organizationalUnitID)
         {
@@ -2591,6 +2592,62 @@ namespace TotalModel.Models
                 new ObjectParameter("DeviceID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<FillingLineSetting>("GetFillingLineSettings", fillingLineIDParameter, deviceIDParameter);
+        }
+    
+        public virtual ObjectResult<UserGroupIndex> GetUserGroupIndexes(Nullable<int> userID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
+        {
+            var userIDParameter = userID.HasValue ?
+                new ObjectParameter("UserID", userID) :
+                new ObjectParameter("UserID", typeof(int));
+    
+            var fromDateParameter = fromDate.HasValue ?
+                new ObjectParameter("FromDate", fromDate) :
+                new ObjectParameter("FromDate", typeof(System.DateTime));
+    
+            var toDateParameter = toDate.HasValue ?
+                new ObjectParameter("ToDate", toDate) :
+                new ObjectParameter("ToDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UserGroupIndex>("GetUserGroupIndexes", userIDParameter, fromDateParameter, toDateParameter);
+        }
+    
+        public virtual int UserGroupAdd(string code, string name, string description)
+        {
+            var codeParameter = code != null ?
+                new ObjectParameter("Code", code) :
+                new ObjectParameter("Code", typeof(string));
+    
+            var nameParameter = name != null ?
+                new ObjectParameter("Name", name) :
+                new ObjectParameter("Name", typeof(string));
+    
+            var descriptionParameter = description != null ?
+                new ObjectParameter("Description", description) :
+                new ObjectParameter("Description", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UserGroupAdd", codeParameter, nameParameter, descriptionParameter);
+        }
+    
+        public virtual ObjectResult<string> UserGroupEditable(Nullable<int> entityID)
+        {
+            var entityIDParameter = entityID.HasValue ?
+                new ObjectParameter("EntityID", entityID) :
+                new ObjectParameter("EntityID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UserGroupEditable", entityIDParameter);
+        }
+    
+        public virtual int UserGroupRemove(Nullable<int> userGroupID, string code)
+        {
+            var userGroupIDParameter = userGroupID.HasValue ?
+                new ObjectParameter("UserGroupID", userGroupID) :
+                new ObjectParameter("UserGroupID", typeof(int));
+    
+            var codeParameter = code != null ?
+                new ObjectParameter("Code", code) :
+                new ObjectParameter("Code", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UserGroupRemove", userGroupIDParameter, codeParameter);
         }
     }
 }

@@ -39,20 +39,18 @@
             this.olvModuleDetailController = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvModuleDetailName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.imageList32 = new System.Windows.Forms.ImageList(this.components);
-            this.buttonNaviBarHeader = new System.Windows.Forms.Button();
             this.InvisibleMainMenuStripOfMDI = new System.Windows.Forms.MenuStrip();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripSplitButton3 = new System.Windows.Forms.ToolStripSplitButton();
             this.statusVersion = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripSplitButton2 = new System.Windows.Forms.ToolStripSplitButton();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripSplitButton4 = new System.Windows.Forms.ToolStripSplitButton();
             this.statusUserDescription = new System.Windows.Forms.ToolStripStatusLabel();
             this.panelTop = new System.Windows.Forms.Panel();
             this.panelTopLeft = new System.Windows.Forms.Panel();
+            this.panelTopRight = new System.Windows.Forms.Panel();
+            this.panelTopMost = new System.Windows.Forms.Panel();
+            this.buttonNaviBarHeader = new System.Windows.Forms.Button();
             this.toolstripMain = new System.Windows.Forms.ToolStrip();
             this.buttonEscape = new System.Windows.Forms.ToolStripButton();
             this.separatorInputData = new System.Windows.Forms.ToolStripSeparator();
@@ -70,12 +68,10 @@
             this.buttonApprove = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparatorVoid = new System.Windows.Forms.ToolStripSeparator();
             this.buttonVoid = new System.Windows.Forms.ToolStripButton();
-            this.panelTopRight = new System.Windows.Forms.Panel();
             this.toolStripTopRight = new System.Windows.Forms.ToolStrip();
             this.buttonSearchBarcode = new System.Windows.Forms.ToolStripButton();
             this.comboSearchBarcode = new System.Windows.Forms.ToolStripComboBox();
             this.labelSearchBarcode = new System.Windows.Forms.ToolStripLabel();
-            this.panelTopMost = new System.Windows.Forms.Panel();
             this.toolStripTopHead = new System.Windows.Forms.ToolStrip();
             this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
             this.buttonLoading = new System.Windows.Forms.ToolStripButton();
@@ -88,20 +84,25 @@
             this.layoutTop = new System.Windows.Forms.TableLayoutPanel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolUserReferences = new System.Windows.Forms.ToolStripButton();
+            this.toolUserGroupControls = new System.Windows.Forms.ToolStripButton();
             this.buttonLockedDate = new System.Windows.Forms.ToolStripButton();
             this.txtLockedDate = new System.Windows.Forms.ToolStripTextBox();
             this.dateTimexLowerFillterDate = new CustomControls.DateTimexPicker();
             this.dateTimexUpperFillterDate = new CustomControls.DateTimexPicker();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
+            this.toolStripSplitButton3 = new System.Windows.Forms.ToolStripSplitButton();
+            this.toolStripSplitButton2 = new System.Windows.Forms.ToolStripSplitButton();
+            this.toolStripSplitButton4 = new System.Windows.Forms.ToolStripSplitButton();
             this.naviBarModuleMaster.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastNMVNTask)).BeginInit();
             this.statusStrip.SuspendLayout();
             this.panelTop.SuspendLayout();
             this.panelTopLeft.SuspendLayout();
-            this.toolstripMain.SuspendLayout();
             this.panelTopRight.SuspendLayout();
-            this.toolStripTopRight.SuspendLayout();
             this.panelTopMost.SuspendLayout();
+            this.toolstripMain.SuspendLayout();
+            this.toolStripTopRight.SuspendLayout();
             this.toolStripTopHead.SuspendLayout();
             this.layoutTop.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -261,21 +262,6 @@
             this.imageList32.Images.SetKeyName(2, "Report-Navy-32");
             this.imageList32.Images.SetKeyName(3, "Report-Yellow-32");
             // 
-            // buttonNaviBarHeader
-            // 
-            this.buttonNaviBarHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.buttonNaviBarHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.buttonNaviBarHeader.Image = global::TotalSmartCoding.Properties.Resources.ButtonImageIcon;
-            this.buttonNaviBarHeader.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.buttonNaviBarHeader.Location = new System.Drawing.Point(0, 0);
-            this.buttonNaviBarHeader.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.buttonNaviBarHeader.Name = "buttonNaviBarHeader";
-            this.buttonNaviBarHeader.Size = new System.Drawing.Size(278, 30);
-            this.buttonNaviBarHeader.TabIndex = 20;
-            this.buttonNaviBarHeader.Text = "Home Navigation Panel";
-            this.buttonNaviBarHeader.UseVisualStyleBackColor = true;
-            this.buttonNaviBarHeader.Click += new System.EventHandler(this.buttonNaviBarHeader_Click);
-            // 
             // InvisibleMainMenuStripOfMDI
             // 
             this.InvisibleMainMenuStripOfMDI.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -314,29 +300,11 @@
             this.toolStripStatusLabel.Size = new System.Drawing.Size(212, 21);
             this.toolStripStatusLabel.Text = "Designed by Le Minh Hiep       ";
             // 
-            // toolStripSplitButton1
-            // 
-            this.toolStripSplitButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.None;
-            this.toolStripSplitButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton1.Image")));
-            this.toolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripSplitButton1.Name = "toolStripSplitButton1";
-            this.toolStripSplitButton1.Size = new System.Drawing.Size(19, 24);
-            this.toolStripSplitButton1.Text = "toolStripSplitButton1";
-            // 
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(407, 21);
             this.toolStripStatusLabel1.Text = " Cell phone: +84-0903-880-501     +84-0919-878-329            ";
-            // 
-            // toolStripSplitButton3
-            // 
-            this.toolStripSplitButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.None;
-            this.toolStripSplitButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton3.Image")));
-            this.toolStripSplitButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripSplitButton3.Name = "toolStripSplitButton3";
-            this.toolStripSplitButton3.Size = new System.Drawing.Size(19, 24);
-            this.toolStripSplitButton3.Text = "toolStripSplitButton3";
             // 
             // statusVersion
             // 
@@ -346,15 +314,6 @@
             this.statusVersion.Text = "Version 1.91i Date: 19.Feb.2016 ";
             this.statusVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // toolStripSplitButton2
-            // 
-            this.toolStripSplitButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.None;
-            this.toolStripSplitButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton2.Image")));
-            this.toolStripSplitButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripSplitButton2.Name = "toolStripSplitButton2";
-            this.toolStripSplitButton2.Size = new System.Drawing.Size(19, 24);
-            this.toolStripSplitButton2.Text = "toolStripSplitButton2";
-            // 
             // toolStripStatusLabel2
             // 
             this.toolStripStatusLabel2.AutoSize = false;
@@ -362,15 +321,6 @@
             this.toolStripStatusLabel2.Size = new System.Drawing.Size(360, 21);
             this.toolStripStatusLabel2.Text = "Email: hieple.erp@gmail.com;    hieperp@gmail.com;  ";
             this.toolStripStatusLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // toolStripSplitButton4
-            // 
-            this.toolStripSplitButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.None;
-            this.toolStripSplitButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton4.Image")));
-            this.toolStripSplitButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripSplitButton4.Name = "toolStripSplitButton4";
-            this.toolStripSplitButton4.Size = new System.Drawing.Size(19, 24);
-            this.toolStripSplitButton4.Text = "toolStripSplitButton4";
             // 
             // statusUserDescription
             // 
@@ -400,6 +350,44 @@
             this.panelTopLeft.Name = "panelTopLeft";
             this.panelTopLeft.Size = new System.Drawing.Size(1310, 69);
             this.panelTopLeft.TabIndex = 1;
+            // 
+            // panelTopRight
+            // 
+            this.panelTopRight.Controls.Add(this.toolStripTopRight);
+            this.panelTopRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panelTopRight.Location = new System.Drawing.Point(1310, 0);
+            this.panelTopRight.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panelTopRight.Name = "panelTopRight";
+            this.panelTopRight.Size = new System.Drawing.Size(596, 69);
+            this.panelTopRight.TabIndex = 0;
+            // 
+            // panelTopMost
+            // 
+            this.panelTopMost.AutoSize = true;
+            this.panelTopMost.Controls.Add(this.toolStripTopHead);
+            this.panelTopMost.Controls.Add(this.layoutTop);
+            this.panelTopMost.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelTopMost.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panelTopMost.Location = new System.Drawing.Point(0, 0);
+            this.panelTopMost.Margin = new System.Windows.Forms.Padding(0);
+            this.panelTopMost.Name = "panelTopMost";
+            this.panelTopMost.Size = new System.Drawing.Size(1906, 55);
+            this.panelTopMost.TabIndex = 75;
+            // 
+            // buttonNaviBarHeader
+            // 
+            this.buttonNaviBarHeader.Dock = System.Windows.Forms.DockStyle.Top;
+            this.buttonNaviBarHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.buttonNaviBarHeader.Image = global::TotalSmartCoding.Properties.Resources.ButtonImageIcon;
+            this.buttonNaviBarHeader.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.buttonNaviBarHeader.Location = new System.Drawing.Point(0, 0);
+            this.buttonNaviBarHeader.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonNaviBarHeader.Name = "buttonNaviBarHeader";
+            this.buttonNaviBarHeader.Size = new System.Drawing.Size(278, 30);
+            this.buttonNaviBarHeader.TabIndex = 20;
+            this.buttonNaviBarHeader.Text = "Home Navigation Panel";
+            this.buttonNaviBarHeader.UseVisualStyleBackColor = true;
+            this.buttonNaviBarHeader.Click += new System.EventHandler(this.buttonNaviBarHeader_Click);
             // 
             // toolstripMain
             // 
@@ -591,16 +579,6 @@
             this.buttonVoid.Text = "Void";
             this.buttonVoid.Click += new System.EventHandler(this.buttonVoid_Click);
             // 
-            // panelTopRight
-            // 
-            this.panelTopRight.Controls.Add(this.toolStripTopRight);
-            this.panelTopRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelTopRight.Location = new System.Drawing.Point(1310, 0);
-            this.panelTopRight.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.panelTopRight.Name = "panelTopRight";
-            this.panelTopRight.Size = new System.Drawing.Size(596, 69);
-            this.panelTopRight.TabIndex = 0;
-            // 
             // toolStripTopRight
             // 
             this.toolStripTopRight.BackgroundImage = global::TotalSmartCoding.Properties.Resources.Toolbar_Image;
@@ -648,19 +626,6 @@
             this.labelSearchBarcode.Size = new System.Drawing.Size(94, 66);
             this.labelSearchBarcode.Text = "Quick Search";
             // 
-            // panelTopMost
-            // 
-            this.panelTopMost.AutoSize = true;
-            this.panelTopMost.Controls.Add(this.toolStripTopHead);
-            this.panelTopMost.Controls.Add(this.layoutTop);
-            this.panelTopMost.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelTopMost.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panelTopMost.Location = new System.Drawing.Point(0, 0);
-            this.panelTopMost.Margin = new System.Windows.Forms.Padding(0);
-            this.panelTopMost.Name = "panelTopMost";
-            this.panelTopMost.Size = new System.Drawing.Size(1906, 55);
-            this.panelTopMost.TabIndex = 75;
-            // 
             // toolStripTopHead
             // 
             this.toolStripTopHead.BackColor = System.Drawing.SystemColors.Control;
@@ -678,9 +643,9 @@
             this.comboDetailFilterTexts,
             this.buttonClearDetailFilters});
             this.toolStripTopHead.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.toolStripTopHead.Location = new System.Drawing.Point(501, 0);
+            this.toolStripTopHead.Location = new System.Drawing.Point(592, 0);
             this.toolStripTopHead.Name = "toolStripTopHead";
-            this.toolStripTopHead.Size = new System.Drawing.Size(1405, 55);
+            this.toolStripTopHead.Size = new System.Drawing.Size(1314, 55);
             this.toolStripTopHead.TabIndex = 5;
             this.toolStripTopHead.Text = "toolStrip1";
             // 
@@ -778,7 +743,7 @@
             this.layoutTop.Name = "layoutTop";
             this.layoutTop.RowCount = 1;
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 55F));
-            this.layoutTop.Size = new System.Drawing.Size(501, 55);
+            this.layoutTop.Size = new System.Drawing.Size(592, 55);
             this.layoutTop.TabIndex = 9;
             // 
             // toolStrip1
@@ -789,12 +754,13 @@
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolUserReferences,
+            this.toolUserGroupControls,
             this.buttonLockedDate,
             this.txtLockedDate});
             this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(210, 55);
+            this.toolStrip1.Size = new System.Drawing.Size(301, 55);
             this.toolStrip1.TabIndex = 76;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -808,6 +774,17 @@
             this.toolUserReferences.Size = new System.Drawing.Size(52, 52);
             this.toolUserReferences.ToolTipText = "User References";
             this.toolUserReferences.Click += new System.EventHandler(this.toolUserReferences_Click);
+            // 
+            // toolUserGroupControls
+            // 
+            this.toolUserGroupControls.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolUserGroupControls.Image = global::TotalSmartCoding.Properties.Resources.Addressbook_IconG;
+            this.toolUserGroupControls.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolUserGroupControls.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolUserGroupControls.Name = "toolUserGroupControls";
+            this.toolUserGroupControls.Size = new System.Drawing.Size(52, 52);
+            this.toolUserGroupControls.Text = "User Controls";
+            this.toolUserGroupControls.Click += new System.EventHandler(this.toolUserReferences_Click);
             // 
             // buttonLockedDate
             // 
@@ -836,7 +813,7 @@
             this.dateTimexLowerFillterDate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dateTimexLowerFillterDate.Editable = true;
             this.dateTimexLowerFillterDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimexLowerFillterDate.Location = new System.Drawing.Point(248, 8);
+            this.dateTimexLowerFillterDate.Location = new System.Drawing.Point(339, 8);
             this.dateTimexLowerFillterDate.Margin = new System.Windows.Forms.Padding(0, 8, 1, 1);
             this.dateTimexLowerFillterDate.Name = "dateTimexLowerFillterDate";
             this.dateTimexLowerFillterDate.ReadOnly = false;
@@ -849,7 +826,7 @@
             this.dateTimexUpperFillterDate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dateTimexUpperFillterDate.Editable = true;
             this.dateTimexUpperFillterDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimexUpperFillterDate.Location = new System.Drawing.Point(375, 8);
+            this.dateTimexUpperFillterDate.Location = new System.Drawing.Point(466, 8);
             this.dateTimexUpperFillterDate.Margin = new System.Windows.Forms.Padding(0, 8, 0, 1);
             this.dateTimexUpperFillterDate.Name = "dateTimexUpperFillterDate";
             this.dateTimexUpperFillterDate.ReadOnly = false;
@@ -859,12 +836,48 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::TotalSmartCoding.Properties.Resources.calendar_blue_32;
-            this.pictureBox1.Location = new System.Drawing.Point(213, 3);
+            this.pictureBox1.Location = new System.Drawing.Point(304, 3);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(32, 32);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox1.TabIndex = 92;
             this.pictureBox1.TabStop = false;
+            // 
+            // toolStripSplitButton1
+            // 
+            this.toolStripSplitButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.None;
+            this.toolStripSplitButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton1.Image")));
+            this.toolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSplitButton1.Name = "toolStripSplitButton1";
+            this.toolStripSplitButton1.Size = new System.Drawing.Size(19, 4);
+            this.toolStripSplitButton1.Text = "toolStripSplitButton1";
+            // 
+            // toolStripSplitButton3
+            // 
+            this.toolStripSplitButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.None;
+            this.toolStripSplitButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton3.Image")));
+            this.toolStripSplitButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSplitButton3.Name = "toolStripSplitButton3";
+            this.toolStripSplitButton3.Size = new System.Drawing.Size(19, 4);
+            this.toolStripSplitButton3.Text = "toolStripSplitButton3";
+            // 
+            // toolStripSplitButton2
+            // 
+            this.toolStripSplitButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.None;
+            this.toolStripSplitButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton2.Image")));
+            this.toolStripSplitButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSplitButton2.Name = "toolStripSplitButton2";
+            this.toolStripSplitButton2.Size = new System.Drawing.Size(19, 4);
+            this.toolStripSplitButton2.Text = "toolStripSplitButton2";
+            // 
+            // toolStripSplitButton4
+            // 
+            this.toolStripSplitButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.None;
+            this.toolStripSplitButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton4.Image")));
+            this.toolStripSplitButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSplitButton4.Name = "toolStripSplitButton4";
+            this.toolStripSplitButton4.Size = new System.Drawing.Size(19, 4);
+            this.toolStripSplitButton4.Text = "toolStripSplitButton4";
             // 
             // MasterMDI
             // 
@@ -894,14 +907,14 @@
             this.panelTop.ResumeLayout(false);
             this.panelTopLeft.ResumeLayout(false);
             this.panelTopLeft.PerformLayout();
-            this.toolstripMain.ResumeLayout(false);
-            this.toolstripMain.PerformLayout();
             this.panelTopRight.ResumeLayout(false);
             this.panelTopRight.PerformLayout();
-            this.toolStripTopRight.ResumeLayout(false);
-            this.toolStripTopRight.PerformLayout();
             this.panelTopMost.ResumeLayout(false);
             this.panelTopMost.PerformLayout();
+            this.toolstripMain.ResumeLayout(false);
+            this.toolstripMain.PerformLayout();
+            this.toolStripTopRight.ResumeLayout(false);
+            this.toolStripTopRight.PerformLayout();
             this.toolStripTopHead.ResumeLayout(false);
             this.toolStripTopHead.PerformLayout();
             this.layoutTop.ResumeLayout(false);
@@ -979,6 +992,7 @@
         private CustomControls.DateTimexPicker dateTimexLowerFillterDate;
         private CustomControls.DateTimexPicker dateTimexUpperFillterDate;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ToolStripButton toolUserGroupControls;
 
     }
 }

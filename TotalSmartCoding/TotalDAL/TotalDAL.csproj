@@ -70,6 +70,7 @@
     <Compile Include="Helpers\SqlProgrammability\Generals\OleDb.cs" />
     <Compile Include="Helpers\SqlProgrammability\Generals\OrganizationalUnit.cs" />
     <Compile Include="Helpers\SqlProgrammability\Generals\Report.cs" />
+    <Compile Include="Helpers\SqlProgrammability\Generals\UserGroup.cs" />
     <Compile Include="Helpers\SqlProgrammability\Generals\UserReference.cs" />
     <Compile Include="Helpers\SqlProgrammability\InitReference.cs" />
     <Compile Include="Helpers\SqlProgrammability\Inventories\Inventory.cs" />
@@ -110,6 +111,7 @@
     <Compile Include="Repositories\Generals\OleDbAPIRepository.cs" />
     <Compile Include="Repositories\Generals\OrganizationalUnitRepository.cs" />
     <Compile Include="Repositories\Generals\ReportRepository.cs" />
+    <Compile Include="Repositories\Generals\UserGroupRepository.cs" />
     <Compile Include="Repositories\Generals\UserRepository.cs" />
     <Compile Include="Repositories\GenericAPIRepository.cs" />
     <Compile Include="Repositories\GenericRepository.cs" />

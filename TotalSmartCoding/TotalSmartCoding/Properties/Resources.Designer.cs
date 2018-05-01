@@ -543,6 +543,36 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap addressbook_icon_32G {
+            get {
+                object obj = ResourceManager.GetObject("addressbook-icon-32G", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap addressbook_icon_48G {
+            get {
+                object obj = ResourceManager.GetObject("addressbook-icon-48G", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Addressbook_IconG {
+            get {
+                object obj = ResourceManager.GetObject("Addressbook-IconG", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Adjust_48 {
             get {
                 object obj = ResourceManager.GetObject("Adjust_48", resourceCulture);
@@ -5116,6 +5146,16 @@ namespace TotalSmartCoding.Properties {
         internal static System.Drawing.Bitmap selected_user_32 {
             get {
                 object obj = ResourceManager.GetObject("selected_user-32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap selected_user_48 {
+            get {
+                object obj = ResourceManager.GetObject("selected_user-48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

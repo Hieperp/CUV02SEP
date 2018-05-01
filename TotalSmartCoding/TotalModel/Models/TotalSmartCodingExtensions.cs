@@ -529,6 +529,20 @@ namespace TotalModel.Models
         public System.DateTime EditedDate { get; set; }
     }
 
+    public partial class UserGroup : IPrimitiveEntity, IBaseEntity
+    {
+        public int GetID() { return this.UserGroupID; }
+
+        public int LocationID { get; set; }
+
+        public int UserID { get; set; }
+        public int PreparedPersonID { get; set; }
+        public int OrganizationalUnitID { get; set; }
+
+        public System.DateTime CreatedDate { get; set; }
+        public System.DateTime EditedDate { get; set; }
+    }
+
     public partial class User : IPrimitiveEntity, IBaseEntity
     {
         public int GetID() { return this.UserID; }

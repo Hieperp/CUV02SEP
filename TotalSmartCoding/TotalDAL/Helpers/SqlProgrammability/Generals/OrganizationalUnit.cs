@@ -81,8 +81,8 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
 
             queryString = queryString + "                   INSERT INTO     AccessControls (OrganizationalUnitID, NMVNTaskID, UserID, AccessLevel, ApprovalPermitted, UnApprovalPermitted, VoidablePermitted, UnVoidablePermitted, ShowDiscount, InActive) " + "\r\n";
             queryString = queryString + "                   SELECT          @OrganizationalUnitID, ModuleDetails.ModuleDetailID, Users.UserID, 0 AS AccessLevel, 0 AS ApprovalPermitted, 0 AS UnApprovalPermitted, 0 AS VoidablePermitted, 0 AS UnVoidablePermitted, 0 AS ShowDiscount, 0 AS InActive " + "\r\n";
-            queryString = queryString + "                   FROM            ModuleDetails CROSS JOIN Users" + "\r\n";
-            queryString = queryString + "                   WHERE           ModuleDetails.InActive = 0; " + "\r\n";
+            queryString = queryString + "                   FROM            ModuleDetails CROSS JOIN Users;" + "\r\n";
+            //queryString = queryString + "                 WHERE           ModuleDetails.InActive = 0; " + "\r\n";
             queryString = queryString + "               END " + "\r\n";
 
             queryString = queryString + "           ELSE " + "\r\n";

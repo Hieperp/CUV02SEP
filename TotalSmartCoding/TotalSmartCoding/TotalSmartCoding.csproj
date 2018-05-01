@@ -120,6 +120,7 @@
     <Compile Include="Controllers\APIs\Generals\OrganizationalUnitAPIs.cs" />
     <Compile Include="Controllers\APIs\Generals\ReportAPIs.cs" />
     <Compile Include="Controllers\APIs\Generals\UserAPIs.cs" />
+    <Compile Include="Controllers\APIs\Generals\UserGroupAPIs.cs" />
     <Compile Include="Controllers\APIs\Inventories\GoodsIssueAPIs.cs" />
     <Compile Include="Controllers\APIs\Inventories\PickupAPIs.cs" />
     <Compile Include="Controllers\APIs\Inventories\WarehouseAdjustmentAPIs.cs" />
@@ -417,6 +418,12 @@
     <Compile Include="Views\Mains\UserOUs.Designer.cs">
       <DependentUpon>UserOUs.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Mains\UserGroupControls.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Mains\UserGroupControls.Designer.cs">
+      <DependentUpon>UserGroupControls.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Mains\UserReferences.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -624,6 +631,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Mains\UserOUs.resx">
       <DependentUpon>UserOUs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Mains\UserGroupControls.resx">
+      <DependentUpon>UserGroupControls.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Mains\UserReferences.resx">
       <DependentUpon>UserReferences.cs</DependentUpon>
@@ -1331,6 +1341,10 @@
     <None Include="Resources\Ignore-x-20.png" />
     <None Include="Resources\Ignore-x-16.png" />
     <None Include="Resources\Continue-x-20.png" />
+    <None Include="Resources\selected_user-48.png" />
+    <None Include="Resources\addressbook-icon-48G.png" />
+    <None Include="Resources\addressbook-icon-32G.png" />
+    <None Include="Resources\Addressbook-IconG.ico" />
     <Content Include="SmartCodingSolution.ico" />
     <None Include="Resources\Yellow-cross.ico" />
     <None Include="Resources\White-Pallet.ico" />

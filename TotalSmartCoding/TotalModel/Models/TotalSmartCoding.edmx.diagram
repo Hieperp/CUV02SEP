@@ -167,6 +167,7 @@
         <AssociationConnector Association="TotalSmartCodingModel.FK_FillingLineDetails_FillingLines" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.Device" Width="1.5" PointX="14.375" PointY="5.875" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_FillingLineDetails_Devices" />
+        <EntityTypeShape EntityType="TotalSmartCodingModel.UserGroup" Width="1.5" PointX="14.375" PointY="8.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

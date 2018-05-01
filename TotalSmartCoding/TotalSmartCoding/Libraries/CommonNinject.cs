@@ -126,6 +126,11 @@ namespace TotalSmartCoding.Libraries
                 Kernel.Bind<IUserAPIRepository>().To<UserAPIRepository>();
                 //Kernel.Bind<UserViewModel>().ToSelf();
 
+                //Kernel.Bind<IUserGroupService>().To<UserGroupService>();
+                Kernel.Bind<IUserGroupRepository>().To<UserGroupRepository>();
+                Kernel.Bind<IUserGroupAPIRepository>().To<UserGroupAPIRepository>();
+                //Kernel.Bind<UserGroupViewModel>().ToSelf();
+
                 //Kernel.Bind<IOrganizationalUnitService>().To<OrganizationalUnitService>();
                 Kernel.Bind<IOrganizationalUnitRepository>().To<OrganizationalUnitRepository>();
                 Kernel.Bind<IOrganizationalUnitAPIRepository>().To<OrganizationalUnitAPIRepository>();

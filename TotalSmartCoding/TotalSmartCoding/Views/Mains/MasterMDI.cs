@@ -819,10 +819,22 @@ namespace TotalSmartCoding.Views.Mains
 
         private void toolUserReferences_Click(object sender, EventArgs e)
         {
-            UserReferences userReferences = new UserReferences();
-            DialogResult dialogResult = userReferences.ShowDialog();
+            if (sender.Equals(this.toolUserReferences))
+            {
+                UserReferences userReferences = new UserReferences();
+                DialogResult dialogResult = userReferences.ShowDialog();
 
-            userReferences.Dispose();
+                userReferences.Dispose();
+            }
+
+            if (sender.Equals(this.toolUserGroupControls))
+            {
+                UserGroupControls userGroupControls = new UserGroupControls();
+                DialogResult dialogResult = userGroupControls.ShowDialog();
+
+                userGroupControls.Dispose();
+            }
+
         }
 
 
