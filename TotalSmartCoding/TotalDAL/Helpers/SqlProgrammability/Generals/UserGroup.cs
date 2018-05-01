@@ -55,7 +55,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
         {
             string[] queryArray = new string[0];
 
-            //queryArray[0] = " SELECT TOP 1 @FoundEntity = UserGroupID FROM Users WHERE UserGroupID = @EntityID ";
+            //queryArray[0] = " SELECT TOP 1 @FoundEntity = UserGroupID FROM UserGroupDetails WHERE UserGroupID = @EntityID ";
         
             this.totalSmartCodingEntities.CreateProcedureToCheckExisting("UserGroupEditable", queryArray);
         }
@@ -106,12 +106,13 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             queryString = queryString + "           IF (SELECT COUNT(*) FROM @FoundEntitys WHERE NOT FoundEntity IS NULL) <= 0 " + "\r\n";
             queryString = queryString + "               BEGIN " + "\r\n";
             queryString = queryString + "                   DELETE FROM     UserGroupControls WHERE UserGroupID = @UserGroupID " + "\r\n";
+            queryString = queryString + "                   DELETE FROM     UserGroupDetails WHERE UserGroupID = @UserGroupID " + "\r\n";
             queryString = queryString + "                   DELETE FROM     UserGroups WHERE UserGroupID = @UserGroupID " + "\r\n";
             queryString = queryString + "               END " + "\r\n";
 
             queryString = queryString + "           ELSE " + "\r\n";
             queryString = queryString + "               BEGIN " + "\r\n";
-            queryString = queryString + "                   DECLARE     @msg NVARCHAR(300) = N'Không thể xóa ' + @Code + '.' ; " + "\r\n";
+            queryString = queryString + "                   DECLARE     @msg NVARCHAR(300) = N'Không thể xóa ' + @Code + '. Vui lòng remove user trước khi xóa group.' ; " + "\r\n";
             queryString = queryString + "                   THROW       61001,  @msg, 1; " + "\r\n";
             queryString = queryString + "               END " + "\r\n";
 
@@ -157,14 +158,14 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
 
         private void UserGroupRemoveMember()
         {
-            string queryString = " @UserGroupID int, @SecurityIdentifier nvarchar(256) " + "\r\n";
+            string queryString = " @UserGroupDetailID int " + "\r\n";
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "       BEGIN " + "\r\n";
 
-            queryString = queryString + "           IF (SELECT COUNT(*) FROM UserGroupDetails WHERE UserGroupID = @UserGroupID AND SecurityIdentifier = @SecurityIdentifier) = 1 " + "\r\n";
+            queryString = queryString + "           IF (SELECT COUNT(*) FROM UserGroupDetails WHERE UserGroupDetailID = @UserGroupDetailID) = 1 " + "\r\n";
             queryString = queryString + "               BEGIN " + "\r\n";
-            queryString = queryString + "                   DELETE FROM     UserGroupDetails WHERE UserGroupID = @UserGroupID AND SecurityIdentifier = @SecurityIdentifier; " + "\r\n";
+            queryString = queryString + "                   DELETE FROM     UserGroupDetails WHERE UserGroupDetailID = @UserGroupDetailID; " + "\r\n";
             queryString = queryString + "               END " + "\r\n";
 
             queryString = queryString + "           ELSE " + "\r\n";
@@ -189,7 +190,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
 
             queryString = queryString + "       SELECT      UserGroupDetails.UserGroupDetailID, UserGroupDetails.UserGroupID, UserGroupDetails.SecurityIdentifier, Users.UserName, N'Chevron Vietnam' AS UserType " + "\r\n";
             queryString = queryString + "       FROM        UserGroupDetails INNER JOIN (SELECT DISTINCT SecurityIdentifier, UserName FROM Users) Users ON UserGroupDetails.UserGroupID = @UserGroupID AND UserGroupDetails.SecurityIdentifier = Users.SecurityIdentifier " + "\r\n";
-            queryString = queryString + "       ORDER BY    Users.UserName " + "\r\n";
+            queryString = queryString + "       ORDER BY    UserGroupDetails.UserGroupDetailID " + "\r\n";
 
             queryString = queryString + "    END " + "\r\n";
 

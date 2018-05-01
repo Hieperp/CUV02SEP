@@ -2715,17 +2715,13 @@ namespace TotalModel.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UserGroupAddMember", userGroupIDParameter, securityIdentifierParameter);
         }
     
-        public virtual int UserGroupRemoveMember(Nullable<int> userGroupID, string securityIdentifier)
+        public virtual int UserGroupRemoveMember(Nullable<int> userGroupDetailID)
         {
-            var userGroupIDParameter = userGroupID.HasValue ?
-                new ObjectParameter("UserGroupID", userGroupID) :
-                new ObjectParameter("UserGroupID", typeof(int));
+            var userGroupDetailIDParameter = userGroupDetailID.HasValue ?
+                new ObjectParameter("UserGroupDetailID", userGroupDetailID) :
+                new ObjectParameter("UserGroupDetailID", typeof(int));
     
-            var securityIdentifierParameter = securityIdentifier != null ?
-                new ObjectParameter("SecurityIdentifier", securityIdentifier) :
-                new ObjectParameter("SecurityIdentifier", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UserGroupRemoveMember", userGroupIDParameter, securityIdentifierParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UserGroupRemoveMember", userGroupDetailIDParameter);
         }
     
         public virtual ObjectResult<UserGroupMember> GetUserGroupMembers(Nullable<int> userGroupID)

@@ -3084,8 +3084,7 @@
           <Parameter Name="Code" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="UserGroupRemoveMember" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="UserGroupID" Type="int" Mode="In" />
-          <Parameter Name="SecurityIdentifier" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserGroupDetailID" Type="int" Mode="In" />
         </Function>
         <Function Name="UserRegister" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="LocationID" Type="int" Mode="In" />
@@ -4901,11 +4900,10 @@
             <Parameter Name="SecurityIdentifier" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="UserGroupRemoveMember">
-            <Parameter Name="UserGroupID" Mode="In" Type="Int32" />
-            <Parameter Name="SecurityIdentifier" Mode="In" Type="String" />
+            <Parameter Name="UserGroupDetailID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetUserGroupMembers" ReturnType="Collection(TotalSmartCodingModel.UserGroupMember)">
-            <Parameter Name="UserGroupID" Mode="In" Type="Int32" />
+          <Parameter Name="UserGroupID" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">

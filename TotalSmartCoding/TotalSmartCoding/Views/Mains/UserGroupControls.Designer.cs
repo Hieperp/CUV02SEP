@@ -30,15 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserGroupControls));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolUserGroupDetails = new System.Windows.Forms.ToolStrip();
-            this.buttonUserGroupAddMember = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.buttonUserGroupRemoveMember = new System.Windows.Forms.ToolStripButton();
             this.fastUserGroups = new BrightIdeasSoftware.FastObjectListView();
             this.olvID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvUserType = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvUserCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvUserGroupType = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvUserGroupName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.imageList32 = new System.Windows.Forms.ImageList(this.components);
             this.gridexUserGroupControls = new CustomControls.DataGridexView();
@@ -53,8 +50,6 @@
             this.VoidablePermitted = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.UnVoidablePermitted = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.toolUserGroups = new System.Windows.Forms.ToolStrip();
-            this.buttonAddUserGroup = new System.Windows.Forms.ToolStripButton();
-            this.buttonRemoveUserGroup = new System.Windows.Forms.ToolStripButton();
             this.olvTreePrimaryID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvTreeAncestorID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvTreeCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -62,6 +57,12 @@
             this.panelCenter = new System.Windows.Forms.Panel();
             this.fastUserGroupDetails = new BrightIdeasSoftware.FastObjectListView();
             this.olvColumn1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvUserName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvUserType = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.buttonAddMember = new System.Windows.Forms.ToolStripButton();
+            this.buttonRemoveMember = new System.Windows.Forms.ToolStripButton();
+            this.buttonAddUserGroup = new System.Windows.Forms.ToolStripButton();
+            this.buttonRemoveUserGroup = new System.Windows.Forms.ToolStripButton();
             this.toolUserGroupDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastUserGroups)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridexUserGroupControls)).BeginInit();
@@ -75,47 +76,24 @@
             this.toolUserGroupDetails.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolUserGroupDetails.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolUserGroupDetails.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.buttonUserGroupAddMember,
+            this.buttonAddMember,
             this.toolStripSeparator1,
-            this.buttonUserGroupRemoveMember});
+            this.buttonRemoveMember});
             this.toolUserGroupDetails.Location = new System.Drawing.Point(0, 0);
             this.toolUserGroupDetails.Name = "toolUserGroupDetails";
             this.toolUserGroupDetails.Size = new System.Drawing.Size(1016, 55);
             this.toolUserGroupDetails.TabIndex = 0;
             this.toolUserGroupDetails.Text = "toolStrip1";
             // 
-            // buttonUserGroupAddMember
-            // 
-            this.buttonUserGroupAddMember.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.buttonUserGroupAddMember.Image = global::TotalSmartCoding.Properties.Resources.add_user;
-            this.buttonUserGroupAddMember.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.buttonUserGroupAddMember.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonUserGroupAddMember.Name = "buttonUserGroupAddMember";
-            this.buttonUserGroupAddMember.Size = new System.Drawing.Size(52, 52);
-            this.buttonUserGroupAddMember.ToolTipText = "Add user to current group";
-            this.buttonUserGroupAddMember.Click += new System.EventHandler(this.UserGroupAddRemoveMember_Click);
-            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 55);
             // 
-            // buttonUserGroupRemoveMember
-            // 
-            this.buttonUserGroupRemoveMember.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.buttonUserGroupRemoveMember.Image = global::TotalSmartCoding.Properties.Resources.remove_user;
-            this.buttonUserGroupRemoveMember.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.buttonUserGroupRemoveMember.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonUserGroupRemoveMember.Name = "buttonUserGroupRemoveMember";
-            this.buttonUserGroupRemoveMember.Size = new System.Drawing.Size(52, 52);
-            this.buttonUserGroupRemoveMember.ToolTipText = "Remove selected user from current group";
-            this.buttonUserGroupRemoveMember.Click += new System.EventHandler(this.buttonUserUnregister_Click);
-            // 
             // fastUserGroups
             // 
             this.fastUserGroups.AllColumns.Add(this.olvID);
-            this.fastUserGroups.AllColumns.Add(this.olvUserType);
-            this.fastUserGroups.AllColumns.Add(this.olvUserCode);
+            this.fastUserGroups.AllColumns.Add(this.olvUserGroupType);
             this.fastUserGroups.AllColumns.Add(this.olvUserGroupName);
             this.fastUserGroups.BackColor = System.Drawing.Color.Ivory;
             this.fastUserGroups.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -128,12 +106,12 @@
             this.fastUserGroups.GroupImageList = this.imageList32;
             this.fastUserGroups.HideSelection = false;
             this.fastUserGroups.HighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
-            this.fastUserGroups.Location = new System.Drawing.Point(0, 55);
+            this.fastUserGroups.Location = new System.Drawing.Point(0, 39);
             this.fastUserGroups.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.fastUserGroups.Name = "fastUserGroups";
             this.fastUserGroups.OwnerDraw = true;
             this.fastUserGroups.ShowGroups = false;
-            this.fastUserGroups.Size = new System.Drawing.Size(225, 594);
+            this.fastUserGroups.Size = new System.Drawing.Size(225, 610);
             this.fastUserGroups.TabIndex = 69;
             this.fastUserGroups.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastUserGroups.UseCompatibleStateImageBehavior = false;
@@ -147,16 +125,11 @@
             this.olvID.Text = "";
             this.olvID.Width = 20;
             // 
-            // olvUserType
+            // olvUserGroupType
             // 
-            this.olvUserType.AspectName = "UserType";
-            this.olvUserType.IsVisible = false;
-            // 
-            // olvUserCode
-            // 
-            this.olvUserCode.AspectName = "UserCode";
-            this.olvUserCode.FillsFreeSpace = true;
-            this.olvUserCode.IsVisible = false;
+            this.olvUserGroupType.AspectName = "UserGroupType";
+            this.olvUserGroupType.DisplayIndex = 1;
+            this.olvUserGroupType.IsVisible = false;
             // 
             // olvUserGroupName
             // 
@@ -180,6 +153,7 @@
             this.imageList32.Images.SetKeyName(6, "Sales-Order-32");
             this.imageList32.Images.SetKeyName(7, "Sign_Order_32");
             this.imageList32.Images.SetKeyName(8, "Assembly-32");
+            this.imageList32.Images.SetKeyName(9, "UserGroupN");
             // 
             // gridexUserGroupControls
             // 
@@ -210,8 +184,8 @@
             this.gridexUserGroupControls.MultiSelect = false;
             this.gridexUserGroupControls.Name = "gridexUserGroupControls";
             this.gridexUserGroupControls.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridexUserGroupControls.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridexUserGroupControls.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.gridexUserGroupControls.RowTemplate.Height = 24;
             this.gridexUserGroupControls.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridexUserGroupControls.Size = new System.Drawing.Size(1016, 291);
@@ -312,29 +286,9 @@
             this.buttonRemoveUserGroup});
             this.toolUserGroups.Location = new System.Drawing.Point(0, 0);
             this.toolUserGroups.Name = "toolUserGroups";
-            this.toolUserGroups.Size = new System.Drawing.Size(1241, 55);
+            this.toolUserGroups.Size = new System.Drawing.Size(1241, 39);
             this.toolUserGroups.TabIndex = 0;
             this.toolUserGroups.Text = "toolStrip2";
-            // 
-            // buttonAddUserGroup
-            // 
-            this.buttonAddUserGroup.Image = global::TotalSmartCoding.Properties.Resources.Data_add;
-            this.buttonAddUserGroup.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.buttonAddUserGroup.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonAddUserGroup.Name = "buttonAddUserGroup";
-            this.buttonAddUserGroup.Size = new System.Drawing.Size(164, 52);
-            this.buttonAddUserGroup.Text = "Add new group";
-            this.buttonAddUserGroup.Click += new System.EventHandler(this.buttonAddRemoveUserGroup_Click);
-            // 
-            // buttonRemoveUserGroup
-            // 
-            this.buttonRemoveUserGroup.Image = global::TotalSmartCoding.Properties.Resources.RemoveOU;
-            this.buttonRemoveUserGroup.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.buttonRemoveUserGroup.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonRemoveUserGroup.Name = "buttonRemoveUserGroup";
-            this.buttonRemoveUserGroup.Size = new System.Drawing.Size(192, 52);
-            this.buttonRemoveUserGroup.Text = "Delete selected group";
-            this.buttonRemoveUserGroup.Click += new System.EventHandler(this.buttonAddRemoveUserGroup_Click);
             // 
             // olvTreePrimaryID
             // 
@@ -362,19 +316,20 @@
             this.panelCenter.Controls.Add(this.gridexUserGroupControls);
             this.panelCenter.Controls.Add(this.toolUserGroupDetails);
             this.panelCenter.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelCenter.Location = new System.Drawing.Point(225, 55);
+            this.panelCenter.Location = new System.Drawing.Point(225, 39);
             this.panelCenter.Name = "panelCenter";
-            this.panelCenter.Size = new System.Drawing.Size(1016, 594);
+            this.panelCenter.Size = new System.Drawing.Size(1016, 610);
             this.panelCenter.TabIndex = 74;
             // 
             // fastUserGroupDetails
             // 
             this.fastUserGroupDetails.AllColumns.Add(this.olvColumn1);
             this.fastUserGroupDetails.AllColumns.Add(this.olvUserType);
-            this.fastUserGroupDetails.AllColumns.Add(this.olvUserCode);
+            this.fastUserGroupDetails.AllColumns.Add(this.olvUserName);
             this.fastUserGroupDetails.BackColor = System.Drawing.Color.Ivory;
             this.fastUserGroupDetails.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.olvColumn1});
+            this.olvColumn1,
+            this.olvUserName});
             this.fastUserGroupDetails.Cursor = System.Windows.Forms.Cursors.Default;
             this.fastUserGroupDetails.Dock = System.Windows.Forms.DockStyle.Fill;
             this.fastUserGroupDetails.Font = new System.Drawing.Font("Calibri Light", 10.2F);
@@ -387,8 +342,8 @@
             this.fastUserGroupDetails.Name = "fastUserGroupDetails";
             this.fastUserGroupDetails.OwnerDraw = true;
             this.fastUserGroupDetails.ShowGroups = false;
-            this.fastUserGroupDetails.Size = new System.Drawing.Size(1016, 248);
-            this.fastUserGroupDetails.TabIndex = 71;
+            this.fastUserGroupDetails.Size = new System.Drawing.Size(1016, 264);
+            this.fastUserGroupDetails.TabIndex = 102;
             this.fastUserGroupDetails.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastUserGroupDetails.UseCompatibleStateImageBehavior = false;
             this.fastUserGroupDetails.UseFiltering = true;
@@ -399,6 +354,63 @@
             // 
             this.olvColumn1.Text = "";
             this.olvColumn1.Width = 20;
+            // 
+            // olvUserName
+            // 
+            this.olvUserName.AspectName = "UserName";
+            this.olvUserName.FillsFreeSpace = true;
+            this.olvUserName.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvUserName.Sortable = false;
+            this.olvUserName.Text = "";
+            this.olvUserName.Width = 90;
+            // 
+            // olvUserType
+            // 
+            this.olvUserType.AspectName = "UserType";
+            this.olvUserType.IsVisible = false;
+            this.olvUserType.Text = "UserType";
+            // 
+            // buttonAddMember
+            // 
+            this.buttonAddMember.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.buttonAddMember.Image = global::TotalSmartCoding.Properties.Resources.add_user;
+            this.buttonAddMember.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonAddMember.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonAddMember.Name = "buttonAddMember";
+            this.buttonAddMember.Size = new System.Drawing.Size(52, 52);
+            this.buttonAddMember.ToolTipText = "Add user to current group";
+            this.buttonAddMember.Click += new System.EventHandler(this.buttonAddRemoveMember_Click);
+            // 
+            // buttonRemoveMember
+            // 
+            this.buttonRemoveMember.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.buttonRemoveMember.Image = global::TotalSmartCoding.Properties.Resources.remove_user;
+            this.buttonRemoveMember.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonRemoveMember.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonRemoveMember.Name = "buttonRemoveMember";
+            this.buttonRemoveMember.Size = new System.Drawing.Size(52, 52);
+            this.buttonRemoveMember.ToolTipText = "Remove selected user from current group";
+            this.buttonRemoveMember.Click += new System.EventHandler(this.buttonAddRemoveMember_Click);
+            // 
+            // buttonAddUserGroup
+            // 
+            this.buttonAddUserGroup.Image = global::TotalSmartCoding.Properties.Resources.Add_UserGroup;
+            this.buttonAddUserGroup.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonAddUserGroup.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonAddUserGroup.Name = "buttonAddUserGroup";
+            this.buttonAddUserGroup.Size = new System.Drawing.Size(148, 36);
+            this.buttonAddUserGroup.Text = "Add new group";
+            this.buttonAddUserGroup.Click += new System.EventHandler(this.buttonAddRemoveUserGroup_Click);
+            // 
+            // buttonRemoveUserGroup
+            // 
+            this.buttonRemoveUserGroup.Image = global::TotalSmartCoding.Properties.Resources.Remove_UserGroup;
+            this.buttonRemoveUserGroup.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonRemoveUserGroup.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonRemoveUserGroup.Name = "buttonRemoveUserGroup";
+            this.buttonRemoveUserGroup.Size = new System.Drawing.Size(192, 36);
+            this.buttonRemoveUserGroup.Text = "Delete selected group";
+            this.buttonRemoveUserGroup.Click += new System.EventHandler(this.buttonAddRemoveUserGroup_Click);
             // 
             // UserGroupControls
             // 
@@ -434,14 +446,13 @@
         #endregion
 
         private System.Windows.Forms.ToolStrip toolUserGroupDetails;
-        private System.Windows.Forms.ToolStripButton buttonUserGroupAddMember;
-        private System.Windows.Forms.ToolStripButton buttonUserGroupRemoveMember;
+        private System.Windows.Forms.ToolStripButton buttonAddMember;
+        private System.Windows.Forms.ToolStripButton buttonRemoveMember;
         private BrightIdeasSoftware.FastObjectListView fastUserGroups;
         private BrightIdeasSoftware.OLVColumn olvID;
         private BrightIdeasSoftware.OLVColumn olvUserGroupName;
         private CustomControls.DataGridexView gridexUserGroupControls;
         private System.Windows.Forms.ImageList imageList32;
-        private BrightIdeasSoftware.OLVColumn olvUserCode;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStrip toolUserGroups;
         private BrightIdeasSoftware.OLVColumn olvTreePrimaryID;
@@ -450,7 +461,7 @@
         private BrightIdeasSoftware.OLVColumn olvTreeParameterName;
         private System.Windows.Forms.ToolStripButton buttonAddUserGroup;
         private System.Windows.Forms.ToolStripButton buttonRemoveUserGroup;
-        private BrightIdeasSoftware.OLVColumn olvUserType;
+        private BrightIdeasSoftware.OLVColumn olvUserGroupType;
         private System.Windows.Forms.Panel panelCenter;
         private System.Windows.Forms.DataGridViewTextBoxColumn ModuleName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ModuleDetailName;
@@ -464,5 +475,7 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn UnVoidablePermitted;
         private BrightIdeasSoftware.FastObjectListView fastUserGroupDetails;
         private BrightIdeasSoftware.OLVColumn olvColumn1;
+        private BrightIdeasSoftware.OLVColumn olvUserName;
+        private BrightIdeasSoftware.OLVColumn olvUserType;
     }
 }

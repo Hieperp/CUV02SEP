@@ -28,13 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserGroupAvailableMembers));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.buttonESC = new System.Windows.Forms.ToolStripButton();
-            this.buttonOK = new System.Windows.Forms.ToolStripButton();
             this.fastUserGroupAvailableMembers = new BrightIdeasSoftware.FastObjectListView();
             this.olvID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvUserType = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvUserName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.buttonESC = new System.Windows.Forms.ToolStripButton();
+            this.buttonOK = new System.Windows.Forms.ToolStripButton();
+            this.imageList32 = new System.Windows.Forms.ImageList(this.components);
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastUserGroupAvailableMembers)).BeginInit();
             this.SuspendLayout();
@@ -54,31 +57,6 @@
             this.toolStrip1.TabIndex = 100;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // buttonESC
-            // 
-            this.buttonESC.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonESC.Image = global::TotalSmartCoding.Properties.Resources.signout_icon_24;
-            this.buttonESC.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.buttonESC.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonESC.Name = "buttonESC";
-            this.buttonESC.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.buttonESC.Size = new System.Drawing.Size(83, 36);
-            this.buttonESC.Text = "Cancel";
-            this.buttonESC.Click += new System.EventHandler(this.buttonOKESC_Click);
-            // 
-            // buttonOK
-            // 
-            this.buttonOK.Enabled = false;
-            this.buttonOK.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonOK.Image = global::TotalSmartCoding.Properties.Resources.networking;
-            this.buttonOK.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.buttonOK.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonOK.Name = "buttonOK";
-            this.buttonOK.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.buttonOK.Size = new System.Drawing.Size(74, 36);
-            this.buttonOK.Text = "Add";
-            this.buttonOK.Click += new System.EventHandler(this.buttonOKESC_Click);
-            // 
             // fastUserGroupAvailableMembers
             // 
             this.fastUserGroupAvailableMembers.AllColumns.Add(this.olvID);
@@ -92,6 +70,7 @@
             this.fastUserGroupAvailableMembers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.fastUserGroupAvailableMembers.Font = new System.Drawing.Font("Calibri Light", 10.2F);
             this.fastUserGroupAvailableMembers.FullRowSelect = true;
+            this.fastUserGroupAvailableMembers.GroupImageList = this.imageList32;
             this.fastUserGroupAvailableMembers.HideSelection = false;
             this.fastUserGroupAvailableMembers.HighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastUserGroupAvailableMembers.Location = new System.Drawing.Point(0, 0);
@@ -127,6 +106,47 @@
             this.olvUserName.Text = "";
             this.olvUserName.Width = 90;
             // 
+            // buttonESC
+            // 
+            this.buttonESC.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonESC.Image = global::TotalSmartCoding.Properties.Resources.signout_icon_24;
+            this.buttonESC.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonESC.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonESC.Name = "buttonESC";
+            this.buttonESC.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.buttonESC.Size = new System.Drawing.Size(83, 36);
+            this.buttonESC.Text = "Cancel";
+            this.buttonESC.Click += new System.EventHandler(this.buttonOKESC_Click);
+            // 
+            // buttonOK
+            // 
+            this.buttonOK.Enabled = false;
+            this.buttonOK.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonOK.Image = global::TotalSmartCoding.Properties.Resources.networking;
+            this.buttonOK.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonOK.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonOK.Name = "buttonOK";
+            this.buttonOK.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.buttonOK.Size = new System.Drawing.Size(74, 36);
+            this.buttonOK.Text = "Add";
+            this.buttonOK.Click += new System.EventHandler(this.buttonOKESC_Click);
+            // 
+            // imageList32
+            // 
+            this.imageList32.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList32.ImageStream")));
+            this.imageList32.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList32.Images.SetKeyName(0, "Forklift");
+            this.imageList32.Images.SetKeyName(1, "ForkliftYellow");
+            this.imageList32.Images.SetKeyName(2, "ForkliftOrange");
+            this.imageList32.Images.SetKeyName(3, "ForkliftJapan");
+            this.imageList32.Images.SetKeyName(4, "Placeholder32");
+            this.imageList32.Images.SetKeyName(5, "Storage32");
+            this.imageList32.Images.SetKeyName(6, "Sales-Order-32");
+            this.imageList32.Images.SetKeyName(7, "Sign_Order_32");
+            this.imageList32.Images.SetKeyName(8, "Assembly-32");
+            this.imageList32.Images.SetKeyName(9, "UserGroupM");
+            this.imageList32.Images.SetKeyName(10, "UserGroupR");
+            // 
             // UserGroupAvailableMembers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -157,5 +177,6 @@
         private BrightIdeasSoftware.OLVColumn olvID;
         private BrightIdeasSoftware.OLVColumn olvUserName;
         private BrightIdeasSoftware.OLVColumn olvUserType;
+        private System.Windows.Forms.ImageList imageList32;
     }
 }

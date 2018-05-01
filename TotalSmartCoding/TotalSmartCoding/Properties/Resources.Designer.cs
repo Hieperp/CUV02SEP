@@ -513,6 +513,16 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Add_UserGroup {
+            get {
+                object obj = ResourceManager.GetObject("Add-UserGroup", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap AddNew {
             get {
                 object obj = ResourceManager.GetObject("AddNew", resourceCulture);
@@ -5016,6 +5026,16 @@ namespace TotalSmartCoding.Properties {
         internal static System.Drawing.Bitmap remove_user {
             get {
                 object obj = ResourceManager.GetObject("remove-user", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Remove_UserGroup {
+            get {
+                object obj = ResourceManager.GetObject("Remove-UserGroup", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

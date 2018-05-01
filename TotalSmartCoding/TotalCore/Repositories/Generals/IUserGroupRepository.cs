@@ -14,7 +14,7 @@ namespace TotalCore.Repositories.Generals
         int UserGroupRemove(int? userGroupID, string code);
 
         int UserGroupAddMember(int? userGroupID, string securityIdentifier);
-        int UserGroupRemoveMember(int? userGroupID, string securityIdentifier);
+        int UserGroupRemoveMember(int? userGroupDetailID);
 
         IList<UserGroupAvailableMember> GetUserGroupAvailableMembers(int? userGroupID);
 

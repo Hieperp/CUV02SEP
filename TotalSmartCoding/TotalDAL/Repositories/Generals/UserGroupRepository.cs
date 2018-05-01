@@ -40,9 +40,9 @@ namespace TotalDAL.Repositories.Generals
             return this.TotalSmartCodingEntities.UserGroupAddMember(userGroupID, securityIdentifier);
         }
 
-        public int UserGroupRemoveMember(int? userGroupID, string securityIdentifier)
+        public int UserGroupRemoveMember(int? userGroupDetailID)
         {
-            return this.TotalSmartCodingEntities.UserGroupRemoveMember(userGroupID, securityIdentifier);
+            return this.TotalSmartCodingEntities.UserGroupRemoveMember(userGroupDetailID);
         }
 
         public IList<UserGroupAvailableMember> GetUserGroupAvailableMembers(int? userGroupID)

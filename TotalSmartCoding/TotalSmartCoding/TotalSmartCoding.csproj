@@ -1363,6 +1363,8 @@
     <None Include="Resources\addressbook-icon-48G.png" />
     <None Include="Resources\addressbook-icon-32G.png" />
     <None Include="Resources\Addressbook-IconG.ico" />
+    <None Include="Resources\Add-UserGroup.png" />
+    <None Include="Resources\Remove-UserGroup.png" />
     <Content Include="SmartCodingSolution.ico" />
     <None Include="Resources\Yellow-cross.ico" />
     <None Include="Resources\White-Pallet.ico" />

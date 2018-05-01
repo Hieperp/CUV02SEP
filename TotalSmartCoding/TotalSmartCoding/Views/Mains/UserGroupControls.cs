@@ -26,10 +26,6 @@ namespace TotalSmartCoding.Views.Mains
 {
     public partial class UserGroupControls : Form
     {
-        private IUserRepository userRepository { get; set; }
-        private UserAPIs userAPIs { get; set; }
-        private OrganizationalUnitAPIs organizationalUnitAPIs { get; set; }
-
         private UserGroupAPIs userGroupAPIs { get; set; }
 
         private BindingList<UserGroupControlDTO> bindingListUserGroupControls;
@@ -40,26 +36,13 @@ namespace TotalSmartCoding.Views.Mains
             InitializeComponent();
             try
             {
-                this.SelectedUserID = ContextAttributes.User.UserID;
-
-                ModuleAPIs moduleAPIs = new ModuleAPIs(CommonNinject.Kernel.Get<IModuleAPIRepository>());
-
-
-
-
-                this.userRepository = CommonNinject.Kernel.Get<IUserRepository>();
-                this.userAPIs = new UserAPIs(CommonNinject.Kernel.Get<IUserAPIRepository>());
-                this.organizationalUnitAPIs = new OrganizationalUnitAPIs(CommonNinject.Kernel.Get<IOrganizationalUnitAPIRepository>());
                 this.userGroupAPIs = new UserGroupAPIs(CommonNinject.Kernel.Get<IUserGroupAPIRepository>());
 
-
                 this.fastUserGroups.ShowGroups = true;
-                this.fastUserGroups.AboutToCreateGroups += fastUserGroups_AboutToCreateGroups;
+                this.fastUserGroups.AboutToCreateGroups += fastGroups_AboutToCreateGroups;
 
                 this.fastUserGroupDetails.ShowGroups = true;
-                this.fastUserGroupDetails.AboutToCreateGroups += fastUserGroups_AboutToCreateGroups;
-
-
+                this.fastUserGroupDetails.AboutToCreateGroups += fastGroups_AboutToCreateGroups;
 
                 this.gridexUserGroupControls.AutoGenerateColumns = false;
                 this.gridexUserGroupControls.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -120,15 +103,14 @@ namespace TotalSmartCoding.Views.Mains
         #endregion Contruction
 
 
-        #region
+        #region Add, Remove UserGroup
 
         private void LoadUserGroups()
         {
             try
             {
-                //OPTION: TRY TO KEEP LAST SelectedUserID                int lastSelectedUserID = this.SelectedUserID;
                 this.fastUserGroups.SetObjects(this.userGroupAPIs.GetUserGroupIndexes());
-                this.fastUserGroups.Sort(this.olvUserType, SortOrder.Ascending);
+                this.fastUserGroups.Sort(this.olvUserGroupType, SortOrder.Ascending);
 
                 fastUserGroups_SelectedIndexChanged(this.fastUserGroups, new EventArgs());
             }
@@ -138,37 +120,29 @@ namespace TotalSmartCoding.Views.Mains
             }
         }
 
-        #endregion
+        private void buttonAddRemoveUserGroup_Click(object sender, EventArgs e)
+        {
+            UserGroups wizardUserGroups = new UserGroups(this.userGroupAPIs, (sender.Equals(this.buttonRemoveUserGroup) ? this.SelectedUserGroupIndex : null));
+            DialogResult dialogResult = wizardUserGroups.ShowDialog();
+
+            wizardUserGroups.Dispose();
+            if (dialogResult == DialogResult.OK) this.LoadUserGroups();
+        }
+
+        #endregion Add, Remove UserGroup
 
         #region Handle Task
-        private void fastUserGroups_AboutToCreateGroups(object sender, BrightIdeasSoftware.CreateGroupsEventArgs e)
+        private void fastGroups_AboutToCreateGroups(object sender, BrightIdeasSoftware.CreateGroupsEventArgs e)
         {
             if (e.Groups != null && e.Groups.Count > 0)
             {
                 foreach (OLVGroup olvGroup in e.Groups)
                 {
-                    olvGroup.TitleImage = "Assembly-32";
-                    olvGroup.Subtitle = "Count: " + olvGroup.Contents.Count.ToString() + " Group" + (olvGroup.Contents.Count > 1 ? "s" : "");
+                    olvGroup.TitleImage = sender.Equals(this.fastUserGroups) ? "Assembly-32" : "UserGroupN";
+                    olvGroup.Subtitle = olvGroup.Contents.Count.ToString() + (sender.Equals(this.fastUserGroups) ? " Group" : " User") + (olvGroup.Contents.Count > 1 ? "s" : "");
                 }
             }
         }
-
-        //private UserIndex SelectedUserIndex { get; set; }
-        //private int selectedUserID;
-        //public int SelectedUserID
-        //{
-        //    get { return this.selectedUserID; }
-        //    set
-        //    {
-        //        if (this.selectedUserID != value)
-        //        {
-        //            this.selectedUserID = value;
-        //            this.GetUserGroupControls();
-        //            this.GetUserGroupMembers();
-        //        }
-        //    }
-        //}
-
 
         private UserGroupIndex selectedUserGroupIndex;
         private UserGroupIndex SelectedUserGroupIndex
@@ -204,8 +178,11 @@ namespace TotalSmartCoding.Views.Mains
         {
             try
             {
-                this.fastUserGroupDetails.SetObjects(this.userGroupAPIs.GetUserGroupMembers(this.SelectedUserGroupIndex != null ? this.SelectedUserGroupIndex.UserGroupID : 0));
-                this.fastUserGroupDetails.Sort(this.olvColumn1, SortOrder.Ascending);
+                if (this.userGroupAPIs != null)
+                {
+                    this.fastUserGroupDetails.SetObjects(this.userGroupAPIs.GetUserGroupMembers(this.SelectedUserGroupIndex != null ? this.SelectedUserGroupIndex.UserGroupID : 0));
+                    this.fastUserGroupDetails.Sort(this.olvUserType, SortOrder.Ascending);
+                }
             }
             catch (Exception exception)
             {
@@ -258,56 +235,31 @@ namespace TotalSmartCoding.Views.Mains
 
         #endregion Handle Task
 
-        #region Register, Unuegister, ToggleVoid
-        private void UserGroupAddRemoveMember_Click(object sender, EventArgs e)
+        #region Add, remove member
+        private void buttonAddRemoveMember_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult;
-            if (sender.Equals(this.buttonUserGroupAddMember) && this.SelectedUserGroupIndex != null)
+            DialogResult dialogResult = DialogResult.Cancel;
+            if (sender.Equals(this.buttonAddMember) && this.SelectedUserGroupIndex != null)
             {
                 UserGroupAvailableMembers wizardUserRegister = new UserGroupAvailableMembers(this.userGroupAPIs, this.SelectedUserGroupIndex.UserGroupID);
                 dialogResult = wizardUserRegister.ShowDialog(); wizardUserRegister.Dispose();
             }
-            if (sender.Equals(this.buttonUserGroupRemoveMember) && this.SelectedUserGroupIndex != null && this.fastUserGroupDetails.SelectedObject != null)
+            if (sender.Equals(this.buttonRemoveMember) && this.fastUserGroupDetails.SelectedObject != null)
             {
-                UserGroupAvailableMember userGroupAvailableMember = (UserGroupAvailableMember)this.fastUserGroupDetails.SelectedObject;
-                if (userGroupAvailableMember != null && CustomMsgBox.Show(this, "Are you sure you want to add: " + "\r\n" + "\r\n" + userGroupAvailableMember.UserName + "\r\n" + "\r\n" + "to this group?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Stop) == DialogResult.Yes)
+                UserGroupMember userGroupMember = (UserGroupMember)this.fastUserGroupDetails.SelectedObject;
+                if (userGroupMember != null && CustomMsgBox.Show(this, "Are you sure you want to remove: " + "\r\n" + "\r\n" + userGroupMember.UserName + "\r\n" + "\r\n" + "from this group?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Stop) == DialogResult.Yes)
                 {
-                    this.userGroupAPIs.UserGroupRemoveMember(this.SelectedUserGroupIndex.UserGroupID, userGroupAvailableMember.SecurityIdentifier);
-                    this.DialogResult = DialogResult.OK;
+                    this.userGroupAPIs.UserGroupRemoveMember(userGroupMember.UserGroupDetailID);
+                    dialogResult = DialogResult.OK;
                 }
             }
 
-            //if (dialogResult == DialogResult.OK) this.LoadUserTrees();
+            if (dialogResult == DialogResult.OK) this.GetUserGroupMembers();
         }
 
-        private void buttonUserUnregister_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (this.SelectedUserIndex != null && this.SelectedUserIndex.UserID > 0 && !this.SelectedUserIndex.IsDatabaseAdmin)
-                {
-                    if (CustomMsgBox.Show(this, "Are you sure you want to cancel this user registration?" + "\r\n" + "\r\nUser:  " + this.SelectedUserIndex.UserName + "\r\nAt:  " + this.SelectedUserIndex.FullyQualifiedOrganizationalUnitName, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
-                    {
-                        this.userAPIs.UserUnregister(this.SelectedUserIndex.UserID, this.SelectedUserIndex.UserName, this.SelectedUserIndex.FullyQualifiedOrganizationalUnitName);
-                        //this.LoadUserTrees();
-                    }
-                }
-            }
-            catch (Exception exception)
-            {
-                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
-            }
-        }
-        #endregion Register, Unuegister, ToggleVoid
+        #endregion Add, remove member
 
-        private void buttonAddRemoveUserGroup_Click(object sender, EventArgs e)
-        {
-            UserGroups wizardUserGroups = new UserGroups(this.userGroupAPIs, (sender.Equals(this.buttonRemoveUserGroup) ? this.SelectedUserGroupIndex : null));
-            DialogResult dialogResult = wizardUserGroups.ShowDialog();
-
-            wizardUserGroups.Dispose();
-            if (dialogResult == DialogResult.OK) this.LoadUserGroups();
-        }
+        
 
         #region MERGE CELL
         private void gridexUserGroupControls_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
