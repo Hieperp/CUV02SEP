@@ -155,6 +155,15 @@ namespace TotalDAL.Repositories
                 #endregion INIT IP ADDRESS
             }
 
+            #region
+            
+            if (!this.totalSmartCodingEntities.ColumnExists("ModuleDetails", "ControlTypeID"))
+            {
+                this.totalSmartCodingEntities.ColumnAdd("ModuleDetails", "ControlTypeID", "int", "0", true);
+                this.ExecuteStoreCommand("UPDATE ModuleDetails SET ControlTypeID = 1 WHERE ModuleID = 6 ", new ObjectParameter[] { });
+            }
+            #endregion
+
             #region EmployeeLocationIDs & Roles
             this.totalSmartCodingEntities.ColumnAdd("Employees", "InActive", "bit", "0", true);
             if (!this.totalSmartCodingEntities.ColumnExists("Employees", "EmployeeRoleIDs"))

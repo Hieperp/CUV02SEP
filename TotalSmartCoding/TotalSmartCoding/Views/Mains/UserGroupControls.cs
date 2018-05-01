@@ -54,11 +54,8 @@ namespace TotalSmartCoding.Views.Mains
                 this.userGroupAPIs = new UserGroupAPIs(CommonNinject.Kernel.Get<IUserGroupAPIRepository>());
 
 
-
                 this.fastUserGroups.ShowGroups = true;
-                this.fastUserGroups.AboutToCreateGroups += fastNMVNTasks_AboutToCreateGroups;
-
-                this.LoadUserGroups();
+                this.fastUserGroups.AboutToCreateGroups += fastUserGroups_AboutToCreateGroups;
 
 
 
@@ -80,6 +77,8 @@ namespace TotalSmartCoding.Views.Mains
                 this.bindingListUserGroupControls.ListChanged += bindingListUserGroupControls_ListChanged;
 
                 StackedHeaderDecorator stackedHeaderDecorator = new StackedHeaderDecorator(this.gridexUserGroupControls);
+
+                this.LoadUserGroups();
             }
             catch (Exception exception)
             {
@@ -96,6 +95,8 @@ namespace TotalSmartCoding.Views.Mains
                 //OPTION: TRY TO KEEP LAST SelectedUserID                int lastSelectedUserID = this.SelectedUserID;
                 this.fastUserGroups.SetObjects(this.userGroupAPIs.GetUserGroupIndexes());
                 this.fastUserGroups.Sort(this.olvUserGroupType, SortOrder.Ascending);
+
+                fastUserGroups_SelectedIndexChanged(this.fastUserGroups, new EventArgs());
             }
             catch (Exception exception)
             {
@@ -196,7 +197,7 @@ namespace TotalSmartCoding.Views.Mains
         #endregion Select User
 
         #region Handle Task
-        private void fastNMVNTasks_AboutToCreateGroups(object sender, BrightIdeasSoftware.CreateGroupsEventArgs e)
+        private void fastUserGroups_AboutToCreateGroups(object sender, BrightIdeasSoftware.CreateGroupsEventArgs e)
         {
             if (e.Groups != null && e.Groups.Count > 0)
             {
@@ -246,15 +247,17 @@ namespace TotalSmartCoding.Views.Mains
                 if (userGroupIndex != null)
                     this.SelectedUserGroupIndex = userGroupIndex;
             }
+            else
+                this.GetUserGroupControls();
         }
 
         private void GetUserGroupControls()
         {
             try
             {
-                if (this.SelectedUserGroupIndex != null && this.SelectedUserGroupIndex.UserGroupID > 0)
+                if (this.userGroupAPIs != null && this.bindingListUserGroupControls != null)
                 {
-                    IList<UserGroupControl> userGroupControls = this.userGroupAPIs.GetUserGroupControls(this.SelectedUserGroupIndex.UserGroupID);
+                    IList<UserGroupControl> userGroupControls = this.userGroupAPIs.GetUserGroupControls(this.SelectedUserGroupIndex != null ? this.SelectedUserGroupIndex.UserGroupID : 0);
                     this.bindingListUserGroupControls.RaiseListChangedEvents = false;
                     Mapper.Map<ICollection<UserGroupControl>, ICollection<UserGroupControlDTO>>(userGroupControls, this.bindingListUserGroupControls);
                     this.bindingListUserGroupControls.RaiseListChangedEvents = true;
@@ -342,9 +345,9 @@ namespace TotalSmartCoding.Views.Mains
         }
         #endregion Register, Unuegister, ToggleVoid
 
-        private void buttonAddRemoveOU_Click(object sender, EventArgs e)
+        private void buttonAddRemoveUserGroup_Click(object sender, EventArgs e)
         {
-            UserGroups wizardUserGroups = new UserGroups(this.userGroupAPIs, sender.Equals(this.buttonAddOU));
+            UserGroups wizardUserGroups = new UserGroups(this.userGroupAPIs, (sender.Equals(this.buttonRemoveUserGroup) ? this.SelectedUserGroupIndex : null));
             DialogResult dialogResult = wizardUserGroups.ShowDialog();
 
             wizardUserGroups.Dispose();

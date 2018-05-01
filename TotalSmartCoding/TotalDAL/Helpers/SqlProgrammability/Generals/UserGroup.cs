@@ -69,8 +69,9 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
 
             queryString = queryString + "                   INSERT INTO     UserGroupControls (UserGroupID, ModuleDetailID, LocationID, AccessLevel, ApprovalPermitted, UnApprovalPermitted, VoidablePermitted, UnVoidablePermitted, ShowDiscount, InActive) " + "\r\n";
             queryString = queryString + "                   SELECT          @UserGroupID, ModuleDetails.ModuleDetailID, Locations.LocationID, 0 AS AccessLevel, 0 AS ApprovalPermitted, 0 AS UnApprovalPermitted, 0 AS VoidablePermitted, 0 AS UnVoidablePermitted, 0 AS ShowDiscount, 0 AS InActive " + "\r\n";
-            queryString = queryString + "                   FROM            ModuleDetails CROSS JOIN Locations; " + "\r\n";
-            //queryString = queryString + "                 WHERE           ModuleDetails.InActive = 0; " + "\r\n";
+            queryString = queryString + "                   FROM            ModuleDetails CROSS JOIN Locations " + "\r\n";
+            queryString = queryString + "                   WHERE           ModuleDetails.ControlTypeID <> 0 OR (ModuleDetails.ControlTypeID = 0 AND Locations.LocationID = 1); " + "\r\n";
+
             queryString = queryString + "               END " + "\r\n";
 
             queryString = queryString + "           ELSE " + "\r\n";

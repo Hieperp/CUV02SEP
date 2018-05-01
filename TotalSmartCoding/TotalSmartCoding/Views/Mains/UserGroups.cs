@@ -17,30 +17,29 @@ namespace TotalSmartCoding.Views.Mains
 {
     public partial class UserGroups : Form
     {
-        private bool addUserGroup;
+        private UserGroupAPIs userGroupAPIs;
+        private UserGroupIndex userGroupIndex;
 
-        private IUserGroupRepository userGroupRepository { get; set; }
-        private UserGroupAPIs userGroupAPIs { get; set; }
-
-        public UserGroups(UserGroupAPIs userGroupAPIs, bool addUserGroup)
+        public UserGroups(UserGroupAPIs userGroupAPIs, UserGroupIndex userGroupIndex)
         {
             InitializeComponent();
 
             try
             {
                 this.userGroupAPIs = userGroupAPIs;
-                this.userGroupRepository = CommonNinject.Kernel.Get<IUserGroupRepository>();
+                this.userGroupIndex = userGroupIndex;
 
                 this.textexCode.TextChanged += textexNewUserGroupID_TextChanged;
                 this.textexName.TextChanged += textexNewUserGroupID_TextChanged;
                 this.textexDescription.TextChanged += textexNewUserGroupID_TextChanged;
 
-                this.addUserGroup = addUserGroup;
-                this.textexCode.ReadOnly = !this.addUserGroup;
-                this.textexName.ReadOnly = !this.addUserGroup;
-                this.textexDescription.ReadOnly = !this.addUserGroup;
-                this.Text = this.addUserGroup ? "Add new group" : "Remove group";
-                this.buttonOK.Text = this.addUserGroup ? "Add" : "Remove";
+                this.textexCode.ReadOnly = this.userGroupIndex != null;
+                this.textexName.ReadOnly = this.userGroupIndex != null;
+                this.textexDescription.ReadOnly = this.userGroupIndex != null;
+                this.Text = this.userGroupIndex != null ? "Remove group" : "Add new group";
+                this.buttonOK.Text = this.userGroupIndex != null ? "Remove" : "Add";
+
+                if (this.userGroupIndex != null) { this.textexCode.Text = this.userGroupIndex.Code; this.textexName.Text = this.userGroupIndex.Name; this.textexDescription.Text = this.userGroupIndex.Description; }
             }
             catch (Exception exception)
             {
@@ -50,10 +49,7 @@ namespace TotalSmartCoding.Views.Mains
 
         private void textexNewUserGroupID_TextChanged(object sender, EventArgs e)
         {
-            this.buttonOK.Enabled = this.addUserGroup && this.textexCode.Text.Trim().Length > 0 && this.textexName.Text.Trim().Length > 0;
-
-            //REMOVE
-            //this.buttonOK.Enabled = this.OrganizationalUnitID != null && this.organizationalUnitRepository.GetEditable((int)this.OrganizationalUnitID); ;
+            this.buttonOK.Enabled = this.userGroupIndex != null || (this.textexCode.Text.Trim().Length > 0 && this.textexName.Text.Trim().Length > 0);
         }
 
         private void buttonOKESC_Click(object sender, EventArgs e)
@@ -62,17 +58,12 @@ namespace TotalSmartCoding.Views.Mains
             {
                 if (sender.Equals(this.buttonOK))
                 {
-                    UserGroupIndex userGroupIndex = null;
-                    this.textexName.Text = this.textexName.Text.Trim();
-
-                    //if (!this.addUserGroup && this.combexUserGroupID.SelectedIndex >= 0) userGroupIndex = this.combexUserGroupID.SelectedItem as UserGroupIndex;
-
-                    if ((this.addUserGroup && this.textexCode.Text.Trim().Length > 0 && this.textexName.Text.Length > 0) || userGroupIndex != null)
+                    if ((this.textexCode.Text.Trim().Length > 0 && this.textexName.Text.Trim().Length > 0) || this.userGroupIndex != null)
                     {
-                        if (CustomMsgBox.Show(this, "Are you sure you want to " + (this.addUserGroup ? "add" : "remove") + " this group?" + "\r\n" + "\r\n" + this.textexCode.Text + "-" + this.textexName.Text, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Stop) == DialogResult.Yes)
+                        if (CustomMsgBox.Show(this, "Are you sure you want to " + (this.userGroupIndex != null ? "remove" : "add") + " this group?" + "\r\n" + "\r\n" + this.textexCode.Text + "-" + this.textexName.Text, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Stop) == DialogResult.Yes)
                         {
-                            if (this.addUserGroup) this.userGroupAPIs.UserGroupAdd(this.textexCode.Text.Trim(), this.textexName.Text.Trim(), this.textexDescription.Text.Trim());
-                            //if (!this.addUserGroup) this.userGroupAPIs.UserGroupRemove(userGroupIndex.UserGroupID, userGroupIndex.UserGroupName);
+                            if (this.userGroupIndex == null) this.userGroupAPIs.UserGroupAdd(this.textexCode.Text.Trim(), this.textexName.Text.Trim(), this.textexDescription.Text.Trim());
+                            if (this.userGroupIndex != null) this.userGroupAPIs.UserGroupRemove(this.userGroupIndex.UserGroupID, this.userGroupIndex.Name);
                             this.DialogResult = DialogResult.OK;
                         }
                     }
