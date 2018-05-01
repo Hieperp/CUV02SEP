@@ -36,8 +36,8 @@ namespace TotalSmartCoding.Views.Mains
                 this.textexCode.ReadOnly = this.userGroupIndex != null;
                 this.textexName.ReadOnly = this.userGroupIndex != null;
                 this.textexDescription.ReadOnly = this.userGroupIndex != null;
-                this.Text = this.userGroupIndex != null ? "Remove group" : "Add new group";
-                this.buttonOK.Text = this.userGroupIndex != null ? "Remove" : "Add";
+                this.Text = this.userGroupIndex != null ? "Delete group" : "Add new group";
+                this.buttonOK.Text = this.userGroupIndex != null ? "Delete" : "Add";
 
                 if (this.userGroupIndex != null) { this.textexCode.Text = this.userGroupIndex.Code; this.textexName.Text = this.userGroupIndex.Name; this.textexDescription.Text = this.userGroupIndex.Description; }
             }
@@ -60,7 +60,7 @@ namespace TotalSmartCoding.Views.Mains
                 {
                     if ((this.textexCode.Text.Trim().Length > 0 && this.textexName.Text.Trim().Length > 0) || this.userGroupIndex != null)
                     {
-                        if (CustomMsgBox.Show(this, "Are you sure you want to " + (this.userGroupIndex != null ? "remove" : "add") + " this group?" + "\r\n" + "\r\n" + this.textexCode.Text + "-" + this.textexName.Text, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Stop) == DialogResult.Yes)
+                        if (CustomMsgBox.Show(this, "Are you sure you want to " + (this.userGroupIndex != null ? "delete" : "add") + " this group?" + "\r\n" + "\r\n" + this.textexCode.Text + "-" + this.textexName.Text, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Stop) == DialogResult.Yes)
                         {
                             if (this.userGroupIndex == null) this.userGroupAPIs.UserGroupAdd(this.textexCode.Text.Trim(), this.textexName.Text.Trim(), this.textexDescription.Text.Trim());
                             if (this.userGroupIndex != null) this.userGroupAPIs.UserGroupRemove(this.userGroupIndex.UserGroupID, this.userGroupIndex.Name);

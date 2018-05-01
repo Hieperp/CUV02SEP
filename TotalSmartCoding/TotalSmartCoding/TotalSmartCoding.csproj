@@ -412,17 +412,23 @@
     <Compile Include="Views\Mains\TabletMDI.Designer.cs">
       <DependentUpon>TabletMDI.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Mains\UserGroups.cs">
+    <Compile Include="Views\Mains\UserGroupAvailableMembers.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\Mains\UserGroups.Designer.cs">
-      <DependentUpon>UserGroups.cs</DependentUpon>
+    <Compile Include="Views\Mains\UserGroupAvailableMembers.Designer.cs">
+      <DependentUpon>UserGroupAvailableMembers.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Mains\UserGroupControls.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\Mains\UserGroupControls.Designer.cs">
       <DependentUpon>UserGroupControls.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Mains\UserGroups.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Mains\UserGroups.Designer.cs">
+      <DependentUpon>UserGroups.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Mains\UserOUs.cs">
       <SubType>Form</SubType>
@@ -635,11 +641,14 @@
       <DependentUpon>TabletMDI.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Mains\UserGroups.resx">
-      <DependentUpon>UserGroups.cs</DependentUpon>
+    <EmbeddedResource Include="Views\Mains\UserGroupAvailableMembers.resx">
+      <DependentUpon>UserGroupAvailableMembers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Mains\UserGroupControls.resx">
       <DependentUpon>UserGroupControls.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Mains\UserGroups.resx">
+      <DependentUpon>UserGroups.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Mains\UserOUs.resx">
       <DependentUpon>UserOUs.cs</DependentUpon>

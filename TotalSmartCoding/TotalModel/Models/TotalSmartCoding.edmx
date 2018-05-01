@@ -889,6 +889,15 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Remarks" Type="nvarchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="UserGroupDetails">
+          <Key>
+            <PropertyRef Name="UserGroupDetailID" />
+          </Key>
+          <Property Name="UserGroupDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserGroupID" Type="int" Nullable="false" />
+          <Property Name="SecurityIdentifier" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="EntryDate" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="UserGroups">
           <Key>
             <PropertyRef Name="UserGroupID" />
@@ -2805,6 +2814,9 @@
           <Parameter Name="UserID" Type="int" Mode="In" />
           <Parameter Name="NMVNTaskID" Type="int" Mode="In" />
         </Function>
+        <Function Name="GetUserGroupAvailableMembers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserGroupID" Type="int" Mode="In" />
+        </Function>
         <Function Name="GetUserGroupControls" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserGroupID" Type="int" Mode="In" />
         </Function>
@@ -2812,6 +2824,9 @@
           <Parameter Name="UserID" Type="int" Mode="In" />
           <Parameter Name="FromDate" Type="datetime" Mode="In" />
           <Parameter Name="ToDate" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="GetUserGroupMembers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserGroupID" Type="int" Mode="In" />
         </Function>
         <Function Name="GetUserIndexes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserID" Type="int" Mode="In" />
@@ -3057,12 +3072,20 @@
           <Parameter Name="Name" Type="nvarchar" Mode="In" />
           <Parameter Name="Description" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="UserGroupAddMember" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserGroupID" Type="int" Mode="In" />
+          <Parameter Name="SecurityIdentifier" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="UserGroupEditable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="EntityID" Type="int" Mode="In" />
         </Function>
         <Function Name="UserGroupRemove" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserGroupID" Type="int" Mode="In" />
           <Parameter Name="Code" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UserGroupRemoveMember" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserGroupID" Type="int" Mode="In" />
+          <Parameter Name="SecurityIdentifier" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="UserRegister" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="LocationID" Type="int" Mode="In" />
@@ -3147,6 +3170,7 @@
           <EntitySet Name="TransferOrderDetails" EntityType="Self.TransferOrderDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TransferOrders" EntityType="Self.TransferOrders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TransferOrderTypes" EntityType="Self.TransferOrderTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserGroupDetails" EntityType="Self.UserGroupDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserGroups" EntityType="Self.UserGroups" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WarehouseAdjustmentDetails" EntityType="Self.WarehouseAdjustmentDetails" Schema="dbo" store:Type="Tables" />
@@ -4867,6 +4891,21 @@
             <Parameter Name="VoidablePermitted" Mode="In" Type="Boolean" />
             <Parameter Name="UnVoidablePermitted" Mode="In" Type="Boolean" />
             <Parameter Name="ShowDiscount" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <EntitySet Name="UserGroupDetails" EntityType="TotalSmartCodingModel.UserGroupDetail" />
+          <FunctionImport Name="GetUserGroupAvailableMembers" ReturnType="Collection(TotalSmartCodingModel.UserGroupAvailableMember)">
+          <Parameter Name="UserGroupID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UserGroupAddMember">
+            <Parameter Name="UserGroupID" Mode="In" Type="Int32" />
+            <Parameter Name="SecurityIdentifier" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UserGroupRemoveMember">
+            <Parameter Name="UserGroupID" Mode="In" Type="Int32" />
+            <Parameter Name="SecurityIdentifier" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetUserGroupMembers" ReturnType="Collection(TotalSmartCodingModel.UserGroupMember)">
+            <Parameter Name="UserGroupID" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
@@ -8615,6 +8654,27 @@
           <Property Type="Boolean" Name="UnVoidablePermitted" Nullable="false" />
           <Property Type="Boolean" Name="ShowDiscount" Nullable="false" />
         </ComplexType>
+        <EntityType Name="UserGroupDetail">
+          <Key>
+            <PropertyRef Name="UserGroupDetailID" />
+          </Key>
+          <Property Name="UserGroupDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserGroupID" Type="Int32" Nullable="false" />
+          <Property Name="SecurityIdentifier" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <ComplexType Name="UserGroupAvailableMember">
+          <Property Type="String" Name="SecurityIdentifier" Nullable="false" MaxLength="256" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="256" />
+          <Property Type="String" Name="UserType" Nullable="false" MaxLength="15" />
+        </ComplexType>
+        <ComplexType Name="UserGroupMember">
+          <Property Type="Int32" Name="UserGroupDetailID" Nullable="false" />
+          <Property Type="Int32" Name="UserGroupID" Nullable="false" />
+          <Property Type="String" Name="SecurityIdentifier" Nullable="false" MaxLength="256" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="256" />
+          <Property Type="String" Name="UserType" Nullable="false" MaxLength="15" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -11378,6 +11438,38 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SaveUserGroupControls" FunctionName="TotalSmartCodingModel.Store.SaveUserGroupControls" />
+          <EntitySetMapping Name="UserGroupDetails">
+            <EntityTypeMapping TypeName="TotalSmartCodingModel.UserGroupDetail">
+              <MappingFragment StoreEntitySet="UserGroupDetails">
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="SecurityIdentifier" ColumnName="SecurityIdentifier" />
+                <ScalarProperty Name="UserGroupID" ColumnName="UserGroupID" />
+                <ScalarProperty Name="UserGroupDetailID" ColumnName="UserGroupDetailID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetUserGroupAvailableMembers" FunctionName="TotalSmartCodingModel.Store.GetUserGroupAvailableMembers">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TotalSmartCodingModel.UserGroupAvailableMember">
+                <ScalarProperty Name="SecurityIdentifier" ColumnName="SecurityIdentifier" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UserGroupAddMember" FunctionName="TotalSmartCodingModel.Store.UserGroupAddMember" />
+          <FunctionImportMapping FunctionImportName="UserGroupRemoveMember" FunctionName="TotalSmartCodingModel.Store.UserGroupRemoveMember" />
+          <FunctionImportMapping FunctionImportName="GetUserGroupMembers" FunctionName="TotalSmartCodingModel.Store.GetUserGroupMembers">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TotalSmartCodingModel.UserGroupMember">
+                <ScalarProperty Name="UserGroupDetailID" ColumnName="UserGroupDetailID" />
+                <ScalarProperty Name="UserGroupID" ColumnName="UserGroupID" />
+                <ScalarProperty Name="SecurityIdentifier" ColumnName="SecurityIdentifier" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

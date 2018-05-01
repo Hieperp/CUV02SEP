@@ -23,8 +23,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             //this.GetActiveUsers();
             
             //this.UserEditable();
-            //this.UserRegister();
-            //this.UserUnregister();
+            
             //this.UserToggleVoid();
 
             this.GetUserGroupControls();
@@ -90,73 +89,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             this.totalSmartCodingEntities.CreateProcedureToCheckExisting("UserEditable", queryArray);
         }
 
-        private void UserRegister()
-        {
-            string queryString = " @LocationID int, @UserGroupID int, @FirstName nvarchar(60), @LastName nvarchar(60), @UserName nvarchar(256), @SecurityIdentifier nvarchar(256), @SameOUAccessLevel int, @SameLocationAccessLevel int, @OtherOUAccessLevel int " + "\r\n";
-            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
-            queryString = queryString + " AS " + "\r\n";
-            //LUU Y RAT QUAN TRONG - VERY IMPORTANT
-            //AT NOW: UserGroupUsers KHONG CON PHU HOP NUA, TUY NHIEN, VAN PHAI DUY TRI VI KHONG CO THOI GIAN MODIFY
-            //YEU CAU LUC NAY LA: LAM SAO DAM BAO Users(UserID, UserGroupID) VA UserGroupUsers(UserGroupID, UserID) PHAI MATCH 1-1
-            //DO DO: KHI ADD, REMOVE, EDIT, INACTIVE, ... PHAI DAM BAO YEU CAU NAY THI MOI THU SE OK
-            queryString = queryString + "       BEGIN " + "\r\n";
-
-            //---08/JAN/2018: HIỆN TẠI KHÔNG CHO PHÉP ĐĂNG KÝ TRÙNG USER-LOCATION
-            //--->TUY NHIÊN, HOÀN TOÀN CÓ THỂ CẢI TIẾN CHỔ NÀY, CHO PHÉP ĐĂNG KÝ TRÙNG CHO NEW USER-LOCATION NẾU: Users.InActive = 0 AND 
-            //--->KHI ĐÓ: UserToggleVoid: CẦN PHẢI XEM XÉT LẠI --> NHẰM ĐẢM BẢO RẰNG: NẾU ĐÃ CÓ 1 InActive THÌ SẼ KHÔNG THỂ ENABLE CÙNG 1 USER-LOCATION
-            //--->TỨC LÀ: CÓ THỂ CẢI TIẾN --> CHO PHÉP TRÙNG USER-LOCATION, TUY NHIÊN: PHẢI ĐẢM BẢO CHỈ CÓ 1 USER-LOCATION LÀ InActive = 0
-            //--->NHU CẦU ĐĂMG KÝ TRÙNG USER-LOCATION LÀ CÓ: NÓ GIẢI QUYẾT VẤN ĐỀ CẤP LẠI UserGroups CHO USER TRONG CÙNG LOCATION (VÍ DỤ: CẦN CHIA UserGroups => DO ĐÓ: PHẢI ĐĂNG KÝ LẠI USER-LOCATION CHO MỘT UserGroups KHÁC)
-            queryString = queryString + "           IF (SELECT COUNT(Users.UserID) FROM Users INNER JOIN UserGroups ON Users.UserGroupID = UserGroups.UserGroupID WHERE UserGroups.LocationID = @LocationID AND Users.SecurityIdentifier = @SecurityIdentifier) <= 0 " + "\r\n";
-            queryString = queryString + "               BEGIN " + "\r\n";
-            queryString = queryString + "                   DECLARE         @UserID Int" + "\r\n";
-            queryString = queryString + "                   INSERT INTO     Users (UserGroupID, FirstName, LastName, UserName, SecurityIdentifier, IsDatabaseAdmin, InActive) VALUES (@UserGroupID, @FirstName, @LastName, @UserName, @SecurityIdentifier, 0, 0); " + "\r\n";
-            queryString = queryString + "                   SELECT          @UserID = SCOPE_IDENTITY(); " + "\r\n";
-            queryString = queryString + "                   INSERT INTO     UserGroupUsers (UserGroupID, UserID, InActive, InActiveDate) VALUES (@UserGroupID, @UserID, 0, NULL); " + "\r\n";
-
-            queryString = queryString + "                   INSERT INTO     UserGroupControls (UserID, NMVNTaskID, UserGroupID, AccessLevel, ApprovalPermitted, UnApprovalPermitted, VoidablePermitted, UnVoidablePermitted, ShowDiscount, InActive) " + "\r\n";
-            queryString = queryString + "                   SELECT          @UserID, ModuleDetails.ModuleDetailID, UserGroups.UserGroupID, CASE WHEN UserGroups.UserGroupID = @UserGroupID THEN @SameOUAccessLevel WHEN UserGroups.LocationID = @LocationID THEN @SameLocationAccessLevel ELSE @OtherOUAccessLevel END AS AccessLevel, CASE WHEN UserGroups.UserGroupID = @UserGroupID AND @SameOUAccessLevel = " + (int)GlobalEnums.AccessLevel.Editable + " THEN 1 ELSE 0 END AS ApprovalPermitted, CASE WHEN UserGroups.UserGroupID = @UserGroupID AND @SameOUAccessLevel = " + (int)GlobalEnums.AccessLevel.Editable + " THEN 1 ELSE 0 END AS UnApprovalPermitted, CASE WHEN UserGroups.UserGroupID = @UserGroupID AND @SameOUAccessLevel = " + (int)GlobalEnums.AccessLevel.Editable + " THEN 1 ELSE 0 END AS VoidablePermitted, CASE WHEN UserGroups.UserGroupID = @UserGroupID AND @SameOUAccessLevel = " + (int)GlobalEnums.AccessLevel.Editable + " THEN 1 ELSE 0 END AS UnVoidablePermitted, 0 AS ShowDiscount, 0 AS InActive " + "\r\n";
-            queryString = queryString + "                   FROM            ModuleDetails CROSS JOIN UserGroups" + "\r\n";
-            queryString = queryString + "                   WHERE           ModuleDetails.InActive = 0; " + "\r\n";
-            queryString = queryString + "               END " + "\r\n";
-
-            queryString = queryString + "           ELSE " + "\r\n";
-            queryString = queryString + "               BEGIN " + "\r\n";
-            queryString = queryString + "                   DECLARE     @msg NVARCHAR(300) = N'Đăng ký user trùng location.' ; " + "\r\n";
-            queryString = queryString + "                   THROW       61001,  @msg, 1; " + "\r\n";
-            queryString = queryString + "               END " + "\r\n";
-
-            queryString = queryString + "       END " + "\r\n";
-
-            this.totalSmartCodingEntities.CreateStoredProcedure("UserRegister", queryString);
-        }
-
-        private void UserUnregister()
-        {
-            string queryString = " @UserID int, @UserName nvarchar(256), @UserGroupName nvarchar(256)" + "\r\n";
-            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
-            queryString = queryString + " AS " + "\r\n";
-            queryString = queryString + "       BEGIN " + "\r\n";
-
-            queryString = queryString + "           DECLARE     @FoundEntitys TABLE (FoundEntity int NULL) " + "\r\n";
-            queryString = queryString + "           INSERT INTO @FoundEntitys EXEC UserEditable @UserID " + "\r\n";
-
-            queryString = queryString + "           IF (SELECT COUNT(*) FROM @FoundEntitys WHERE NOT FoundEntity IS NULL) <= 0 " + "\r\n";
-            queryString = queryString + "               BEGIN " + "\r\n";
-            queryString = queryString + "                   DELETE FROM     UserGroupControls WHERE UserID = @UserID " + "\r\n";
-            queryString = queryString + "                   DELETE FROM     UserGroupUsers WHERE UserID = @UserID " + "\r\n";
-            queryString = queryString + "                   DELETE FROM     Users WHERE UserID = @UserID " + "\r\n";
-            queryString = queryString + "               END " + "\r\n";
-
-            queryString = queryString + "           ELSE " + "\r\n";
-            queryString = queryString + "               BEGIN " + "\r\n";
-            queryString = queryString + "                   DECLARE     @msg NVARCHAR(300) = N'Không thể hủy đăng ký ' + @UserName + N' tại ' + @UserGroupName + N', do ' + @UserName + N' hiện đang có dữ liệu tại ' + @UserGroupName + N'\r\n\r\n\r\nVui lòng Inactive để dừng đăng ký và sử dụng ' + @UserName + N' tại ' + @UserGroupName + '.' ; " + "\r\n";
-            queryString = queryString + "                   THROW       61001,  @msg, 1; " + "\r\n";
-            queryString = queryString + "               END " + "\r\n";
-
-            queryString = queryString + "       END " + "\r\n";
-
-            this.totalSmartCodingEntities.CreateStoredProcedure("UserUnregister", queryString);
-        }
+        
 
         private void UserToggleVoid()
         {

@@ -56,6 +56,8 @@ namespace TotalSmartCoding.Views.Mains
                 this.fastUserGroups.ShowGroups = true;
                 this.fastUserGroups.AboutToCreateGroups += fastUserGroups_AboutToCreateGroups;
 
+                this.fastUserGroupDetails.ShowGroups = true;
+                this.fastUserGroupDetails.AboutToCreateGroups += fastUserGroups_AboutToCreateGroups;
 
 
 
@@ -103,11 +105,11 @@ namespace TotalSmartCoding.Views.Mains
                 customTabCenter.TabPages[1].BackColor = this.panelCenter.BackColor;
 
                 customTabCenter.TabPages[0].Controls.Add(this.gridexUserGroupControls);
-                customTabCenter.TabPages[1].Controls.Add(this.gridexUserGroupDetails);
+                customTabCenter.TabPages[1].Controls.Add(this.fastUserGroupDetails);
                 customTabCenter.TabPages[1].Controls.Add(this.toolUserGroupDetails);
 
                 this.gridexUserGroupControls.Dock = DockStyle.Fill;
-                this.gridexUserGroupDetails.Dock = DockStyle.Fill;
+                this.fastUserGroupDetails.Dock = DockStyle.Fill;
                 this.toolUserGroupDetails.Dock = DockStyle.Top;
             }
             catch (Exception exception)
@@ -126,7 +128,7 @@ namespace TotalSmartCoding.Views.Mains
             {
                 //OPTION: TRY TO KEEP LAST SelectedUserID                int lastSelectedUserID = this.SelectedUserID;
                 this.fastUserGroups.SetObjects(this.userGroupAPIs.GetUserGroupIndexes());
-                this.fastUserGroups.Sort(this.olvUserGroupType, SortOrder.Ascending);
+                this.fastUserGroups.Sort(this.olvUserType, SortOrder.Ascending);
 
                 fastUserGroups_SelectedIndexChanged(this.fastUserGroups, new EventArgs());
             }
@@ -151,20 +153,21 @@ namespace TotalSmartCoding.Views.Mains
             }
         }
 
-        private UserIndex SelectedUserIndex { get; set; }
-        private int selectedUserID;
-        public int SelectedUserID
-        {
-            get { return this.selectedUserID; }
-            set
-            {
-                if (this.selectedUserID != value)
-                {
-                    this.selectedUserID = value;
-                    this.GetUserGroupControls();
-                }
-            }
-        }
+        //private UserIndex SelectedUserIndex { get; set; }
+        //private int selectedUserID;
+        //public int SelectedUserID
+        //{
+        //    get { return this.selectedUserID; }
+        //    set
+        //    {
+        //        if (this.selectedUserID != value)
+        //        {
+        //            this.selectedUserID = value;
+        //            this.GetUserGroupControls();
+        //            this.GetUserGroupMembers();
+        //        }
+        //    }
+        //}
 
 
         private UserGroupIndex selectedUserGroupIndex;
@@ -177,6 +180,7 @@ namespace TotalSmartCoding.Views.Mains
                 {
                     this.selectedUserGroupIndex = value;
                     this.GetUserGroupControls();
+                    this.GetUserGroupMembers();
                 }
             }
         }
@@ -190,7 +194,23 @@ namespace TotalSmartCoding.Views.Mains
                     this.SelectedUserGroupIndex = userGroupIndex;
             }
             else
+            {
                 this.GetUserGroupControls();
+                this.GetUserGroupMembers();
+            }
+        }
+
+        private void GetUserGroupMembers()
+        {
+            try
+            {
+                this.fastUserGroupDetails.SetObjects(this.userGroupAPIs.GetUserGroupMembers(this.SelectedUserGroupIndex != null ? this.SelectedUserGroupIndex.UserGroupID : 0));
+                this.fastUserGroupDetails.Sort(this.olvColumn1, SortOrder.Ascending);
+            }
+            catch (Exception exception)
+            {
+                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+            }
         }
 
         private void GetUserGroupControls()
@@ -239,12 +259,24 @@ namespace TotalSmartCoding.Views.Mains
         #endregion Handle Task
 
         #region Register, Unuegister, ToggleVoid
-        private void buttonUserRegister_Click(object sender, EventArgs e)
+        private void UserGroupAddRemoveMember_Click(object sender, EventArgs e)
         {
-            UserRegister wizardUserRegister = new UserRegister(this.userAPIs, this.organizationalUnitAPIs);
-            DialogResult dialogResult = wizardUserRegister.ShowDialog();
+            DialogResult dialogResult;
+            if (sender.Equals(this.buttonUserGroupAddMember) && this.SelectedUserGroupIndex != null)
+            {
+                UserGroupAvailableMembers wizardUserRegister = new UserGroupAvailableMembers(this.userGroupAPIs, this.SelectedUserGroupIndex.UserGroupID);
+                dialogResult = wizardUserRegister.ShowDialog(); wizardUserRegister.Dispose();
+            }
+            if (sender.Equals(this.buttonUserGroupRemoveMember) && this.SelectedUserGroupIndex != null && this.fastUserGroupDetails.SelectedObject != null)
+            {
+                UserGroupAvailableMember userGroupAvailableMember = (UserGroupAvailableMember)this.fastUserGroupDetails.SelectedObject;
+                if (userGroupAvailableMember != null && CustomMsgBox.Show(this, "Are you sure you want to add: " + "\r\n" + "\r\n" + userGroupAvailableMember.UserName + "\r\n" + "\r\n" + "to this group?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Stop) == DialogResult.Yes)
+                {
+                    this.userGroupAPIs.UserGroupRemoveMember(this.SelectedUserGroupIndex.UserGroupID, userGroupAvailableMember.SecurityIdentifier);
+                    this.DialogResult = DialogResult.OK;
+                }
+            }
 
-            wizardUserRegister.Dispose();
             //if (dialogResult == DialogResult.OK) this.LoadUserTrees();
         }
 

@@ -32,13 +32,13 @@
             this.buttonESC = new System.Windows.Forms.ToolStripButton();
             this.buttonOK = new System.Windows.Forms.ToolStripButton();
             this.layoutTop = new System.Windows.Forms.TableLayoutPanel();
+            this.textexDescription = new CustomControls.TextexBox();
+            this.textexCode = new CustomControls.TextexBox();
             this.labelNewLocationID = new System.Windows.Forms.Label();
             this.labelNewOrganizationalUnitID = new System.Windows.Forms.Label();
             this.labelOrganizationalUnitID = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.textexName = new CustomControls.TextexBox();
-            this.textexCode = new CustomControls.TextexBox();
-            this.textexDescription = new CustomControls.TextexBox();
             this.toolStrip1.SuspendLayout();
             this.layoutTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -52,7 +52,7 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.buttonESC,
             this.buttonOK});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 121);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 156);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.toolStrip1.Size = new System.Drawing.Size(658, 39);
@@ -112,8 +112,30 @@
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.layoutTop.Size = new System.Drawing.Size(658, 121);
+            this.layoutTop.Size = new System.Drawing.Size(658, 156);
             this.layoutTop.TabIndex = 101;
+            // 
+            // textexDescription
+            // 
+            this.textexDescription.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textexDescription.Editable = false;
+            this.textexDescription.Font = new System.Drawing.Font("Calibri Light", 10.2F);
+            this.textexDescription.Location = new System.Drawing.Point(212, 88);
+            this.textexDescription.Margin = new System.Windows.Forms.Padding(1);
+            this.textexDescription.Name = "textexDescription";
+            this.textexDescription.Size = new System.Drawing.Size(427, 28);
+            this.textexDescription.TabIndex = 3;
+            // 
+            // textexCode
+            // 
+            this.textexCode.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textexCode.Editable = false;
+            this.textexCode.Font = new System.Drawing.Font("Calibri Light", 10.2F);
+            this.textexCode.Location = new System.Drawing.Point(212, 28);
+            this.textexCode.Margin = new System.Windows.Forms.Padding(1);
+            this.textexCode.Name = "textexCode";
+            this.textexCode.Size = new System.Drawing.Size(427, 28);
+            this.textexCode.TabIndex = 1;
             // 
             // labelNewLocationID
             // 
@@ -171,41 +193,19 @@
             this.textexName.Margin = new System.Windows.Forms.Padding(1);
             this.textexName.Name = "textexName";
             this.textexName.Size = new System.Drawing.Size(427, 28);
-            this.textexName.TabIndex = 88;
+            this.textexName.TabIndex = 2;
             // 
-            // textexCode
-            // 
-            this.textexCode.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textexCode.Editable = false;
-            this.textexCode.Font = new System.Drawing.Font("Calibri Light", 10.2F);
-            this.textexCode.Location = new System.Drawing.Point(212, 28);
-            this.textexCode.Margin = new System.Windows.Forms.Padding(1);
-            this.textexCode.Name = "textexCode";
-            this.textexCode.Size = new System.Drawing.Size(427, 28);
-            this.textexCode.TabIndex = 91;
-            // 
-            // textexDescription
-            // 
-            this.textexDescription.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textexDescription.Editable = false;
-            this.textexDescription.Font = new System.Drawing.Font("Calibri Light", 10.2F);
-            this.textexDescription.Location = new System.Drawing.Point(212, 88);
-            this.textexDescription.Margin = new System.Windows.Forms.Padding(1);
-            this.textexDescription.Name = "textexDescription";
-            this.textexDescription.Size = new System.Drawing.Size(427, 28);
-            this.textexDescription.TabIndex = 92;
-            // 
-            // UserGroup
+            // UserGroups
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(658, 160);
+            this.ClientSize = new System.Drawing.Size(658, 195);
             this.Controls.Add(this.layoutTop);
             this.Controls.Add(this.toolStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "UserGroup";
+            this.Name = "UserGroups";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add new group";
             this.toolStrip1.ResumeLayout(false);

@@ -78,6 +78,7 @@ namespace TotalModel.Models
         public virtual DbSet<FillingLineDetail> FillingLineDetails { get; set; }
         public virtual DbSet<Device> Devices { get; set; }
         public virtual DbSet<UserGroup> UserGroups { get; set; }
+        public virtual DbSet<UserGroupDetail> UserGroupDetails { get; set; }
     
         public virtual ObjectResult<Nullable<int>> GetAccessLevel(Nullable<int> userID, Nullable<int> nMVNTaskID, Nullable<int> organizationalUnitID)
         {
@@ -2690,6 +2691,50 @@ namespace TotalModel.Models
                 new ObjectParameter("ShowDiscount", typeof(bool));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SaveUserGroupControls", userGroupControlIDParameter, accessLevelParameter, approvalPermittedParameter, unApprovalPermittedParameter, voidablePermittedParameter, unVoidablePermittedParameter, showDiscountParameter);
+        }
+    
+        public virtual ObjectResult<UserGroupAvailableMember> GetUserGroupAvailableMembers(Nullable<int> userGroupID)
+        {
+            var userGroupIDParameter = userGroupID.HasValue ?
+                new ObjectParameter("UserGroupID", userGroupID) :
+                new ObjectParameter("UserGroupID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UserGroupAvailableMember>("GetUserGroupAvailableMembers", userGroupIDParameter);
+        }
+    
+        public virtual int UserGroupAddMember(Nullable<int> userGroupID, string securityIdentifier)
+        {
+            var userGroupIDParameter = userGroupID.HasValue ?
+                new ObjectParameter("UserGroupID", userGroupID) :
+                new ObjectParameter("UserGroupID", typeof(int));
+    
+            var securityIdentifierParameter = securityIdentifier != null ?
+                new ObjectParameter("SecurityIdentifier", securityIdentifier) :
+                new ObjectParameter("SecurityIdentifier", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UserGroupAddMember", userGroupIDParameter, securityIdentifierParameter);
+        }
+    
+        public virtual int UserGroupRemoveMember(Nullable<int> userGroupID, string securityIdentifier)
+        {
+            var userGroupIDParameter = userGroupID.HasValue ?
+                new ObjectParameter("UserGroupID", userGroupID) :
+                new ObjectParameter("UserGroupID", typeof(int));
+    
+            var securityIdentifierParameter = securityIdentifier != null ?
+                new ObjectParameter("SecurityIdentifier", securityIdentifier) :
+                new ObjectParameter("SecurityIdentifier", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UserGroupRemoveMember", userGroupIDParameter, securityIdentifierParameter);
+        }
+    
+        public virtual ObjectResult<UserGroupMember> GetUserGroupMembers(Nullable<int> userGroupID)
+        {
+            var userGroupIDParameter = userGroupID.HasValue ?
+                new ObjectParameter("UserGroupID", userGroupID) :
+                new ObjectParameter("UserGroupID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UserGroupMember>("GetUserGroupMembers", userGroupIDParameter);
         }
     }
 }

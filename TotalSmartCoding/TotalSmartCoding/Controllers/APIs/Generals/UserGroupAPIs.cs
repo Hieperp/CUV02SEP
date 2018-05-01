@@ -36,6 +36,26 @@ namespace TotalSmartCoding.Controllers.APIs.Generals
             return this.userGroupAPIRepository.UserGroupRemove(userGroupID, code);
         }
 
+        public int UserGroupAddMember(int? userGroupID, string securityIdentifier)
+        {
+            return this.userGroupAPIRepository.UserGroupAddMember(userGroupID, securityIdentifier);
+        }
+
+        public int UserGroupRemoveMember(int? userGroupID, string securityIdentifier)
+        {
+            return this.userGroupAPIRepository.UserGroupRemoveMember(userGroupID, securityIdentifier);
+        }
+
+        public IList<UserGroupAvailableMember> GetUserGroupAvailableMembers(int? userGroupID)
+        {
+            return this.userGroupAPIRepository.GetUserGroupAvailableMembers(userGroupID).ToList();
+        }
+
+        public IList<UserGroupMember> GetUserGroupMembers(int? userGroupID)
+        {
+            return this.userGroupAPIRepository.GetUserGroupMembers(userGroupID);
+        }
+
         public IList<UserGroupControl> GetUserGroupControls(int? userGroupID)
         {
             return this.userGroupAPIRepository.GetUserGroupControls(userGroupID);
