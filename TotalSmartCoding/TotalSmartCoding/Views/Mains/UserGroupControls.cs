@@ -62,8 +62,6 @@ namespace TotalSmartCoding.Views.Mains
                 this.treeUserID.RootKeyValue = 0;
                 this.treeUserID.SelectedIndexChanged += treeUserID_SelectedIndexChanged;
 
-                this.comboActiveOption.SelectedIndex = 0;
-
                 this.comboUserID.ComboBox.DisplayMember = CommonExpressions.PropertyName<UserIndex>(p => p.UserName);
                 this.comboUserID.ComboBox.ValueMember = CommonExpressions.PropertyName<UserIndex>(p => p.UserID);
                 this.bindingUserID = this.comboUserID.ComboBox.DataBindings.Add("SelectedValue", this, "SelectedUserID", true, DataSourceUpdateMode.OnPropertyChanged);
@@ -77,7 +75,18 @@ namespace TotalSmartCoding.Views.Mains
                 this.bindingListUserGroupControls.ListChanged += bindingListUserGroupControls_ListChanged;
 
                 StackedHeaderDecorator stackedHeaderDecorator = new StackedHeaderDecorator(this.gridexUserGroupControls);
+            }
+            catch (Exception exception)
+            {
+                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+            }
+        }
 
+        private void UserGroupControls_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                this.InitializeTabControl();
                 this.LoadUserGroups();
             }
             catch (Exception exception)
@@ -85,6 +94,37 @@ namespace TotalSmartCoding.Views.Mains
                 ExceptionHandlers.ShowExceptionMessageBox(this, exception);
             }
         }
+
+        protected void InitializeTabControl()
+        {
+            try
+            {
+                CustomTabControl customTabCenter = new CustomTabControl();
+                customTabCenter.DisplayStyle = TabStyle.VisualStudio;
+                customTabCenter.Font = this.panelCenter.Font;
+
+                customTabCenter.TabPages.Add("tabCenterAA", "Permission Control          ");
+                customTabCenter.TabPages.Add("tabCenterAA", "Users          ");
+                customTabCenter.TabPages[0].BackColor = this.panelCenter.BackColor;
+                customTabCenter.TabPages[1].BackColor = this.panelCenter.BackColor;
+
+                customTabCenter.TabPages[0].Controls.Add(this.gridexUserGroupControls);
+                customTabCenter.TabPages[1].Controls.Add(this.gridexUserGroupDetails);
+                customTabCenter.TabPages[1].Controls.Add(this.toolUserGroupDetails);
+
+                this.gridexUserGroupControls.Dock = DockStyle.Fill;
+                this.gridexUserGroupDetails.Dock = DockStyle.Fill;
+                this.toolUserGroupDetails.Dock = DockStyle.Top;
+
+                this.panelCenter.Controls.Add(customTabCenter);
+                customTabCenter.Dock = DockStyle.Fill;
+            }
+            catch (Exception exception)
+            {
+                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+            }
+        }
+
 
         #region
 
@@ -107,18 +147,6 @@ namespace TotalSmartCoding.Views.Mains
         #endregion a
 
         #region Select User
-        private void comboActiveOption_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                this.LoadUserTrees();
-            }
-            catch (Exception exception)
-            {
-                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
-            }
-
-        }
 
         private void LoadUserTrees()
         {
@@ -126,9 +154,9 @@ namespace TotalSmartCoding.Views.Mains
             {
                 int lastSelectedUserID = this.SelectedUserID;
 
-                this.comboUserID.ComboBox.DataSource = this.userAPIs.GetUserIndexes(this.comboActiveOption.SelectedIndex == 0 ? GlobalEnums.ActiveOption.Active : GlobalEnums.ActiveOption.Both);
+                this.comboUserID.ComboBox.DataSource = this.userAPIs.GetUserIndexes(GlobalEnums.ActiveOption.Both);
 
-                IList<UserTree> userTrees = this.userAPIs.GetUserTrees(this.comboActiveOption.SelectedIndex == 0 ? GlobalEnums.ActiveOption.Active : GlobalEnums.ActiveOption.Both);
+                IList<UserTree> userTrees = this.userAPIs.GetUserTrees(GlobalEnums.ActiveOption.Both);
                 this.treeUserID.DataSource = new BindingSource(userTrees, "");
                 this.treeUserID.ExpandAll();
 
@@ -378,7 +406,7 @@ namespace TotalSmartCoding.Views.Mains
             else
             {
                 e.AdvancedBorderStyle.Top = gridexUserGroupControls.AdvancedCellBorderStyle.Top;
-            }  
+            }
         }
 
         private bool IsTheSameCellValue(int column, int row)
@@ -393,5 +421,7 @@ namespace TotalSmartCoding.Views.Mains
         }
 
         #endregion MERGE CELL
+
+
     }
 }

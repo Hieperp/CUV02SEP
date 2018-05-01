@@ -31,7 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserGroupControls));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.toolUserGroupDetails = new System.Windows.Forms.ToolStrip();
             this.comboUserID = new System.Windows.Forms.ToolStripComboBox();
             this.comboOrganizationalUnit = new System.Windows.Forms.ToolStripComboBox();
             this.comboInActive = new System.Windows.Forms.ToolStripComboBox();
@@ -47,8 +48,17 @@
             this.olvUserGroupName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.imageList32 = new System.Windows.Forms.ImageList(this.components);
             this.gridexUserGroupControls = new CustomControls.DataGridexView();
+            this.ModuleName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ModuleDetailName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LocationName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NoAccess = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.ReadOnly = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Editable = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.ApprovalPermitted = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.UnApprovalPermitted = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.VoidablePermitted = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.UnVoidablePermitted = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
-            this.comboActiveOption = new System.Windows.Forms.ToolStripComboBox();
             this.buttonAddUserGroup = new System.Windows.Forms.ToolStripButton();
             this.buttonRemoveUserGroup = new System.Windows.Forms.ToolStripButton();
             this.treeUserID = new BrightIdeasSoftware.DataTreeListView();
@@ -63,17 +73,10 @@
             this.button1 = new System.Windows.Forms.Button();
             this.panelLeft = new System.Windows.Forms.Panel();
             this.pictureTopleft = new System.Windows.Forms.PictureBox();
-            this.ModuleName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ModuleDetailName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LocationName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NoAccess = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.ReadOnly = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Editable = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.ApprovalPermitted = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.UnApprovalPermitted = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.VoidablePermitted = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.UnVoidablePermitted = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.toolStrip1.SuspendLayout();
+            this.panelCenter = new System.Windows.Forms.Panel();
+            this.gridexUserGroupDetails = new CustomControls.DataGridexView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.toolUserGroupDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastUserGroups)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridexUserGroupControls)).BeginInit();
             this.toolStrip2.SuspendLayout();
@@ -83,13 +86,15 @@
             this.navibandUserTrees.SuspendLayout();
             this.panelLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureTopleft)).BeginInit();
+            this.panelCenter.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridexUserGroupDetails)).BeginInit();
             this.SuspendLayout();
             // 
-            // toolStrip1
+            // toolUserGroupDetails
             // 
-            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolUserGroupDetails.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolUserGroupDetails.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolUserGroupDetails.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.comboUserID,
             this.comboOrganizationalUnit,
             this.comboInActive,
@@ -98,11 +103,11 @@
             this.buttonUserUnregister,
             this.toolStripSeparator2,
             this.buttonUserToggleVoid});
-            this.toolStrip1.Location = new System.Drawing.Point(33, 55);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1208, 55);
-            this.toolStrip1.TabIndex = 0;
-            this.toolStrip1.Text = "toolStrip1";
+            this.toolUserGroupDetails.Location = new System.Drawing.Point(0, 0);
+            this.toolUserGroupDetails.Name = "toolUserGroupDetails";
+            this.toolUserGroupDetails.Size = new System.Drawing.Size(983, 55);
+            this.toolUserGroupDetails.TabIndex = 0;
+            this.toolUserGroupDetails.Text = "toolStrip1";
             // 
             // comboUserID
             // 
@@ -186,12 +191,12 @@
             this.fastUserGroups.GroupImageList = this.imageList32;
             this.fastUserGroups.HideSelection = false;
             this.fastUserGroups.HighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
-            this.fastUserGroups.Location = new System.Drawing.Point(33, 110);
+            this.fastUserGroups.Location = new System.Drawing.Point(33, 55);
             this.fastUserGroups.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.fastUserGroups.Name = "fastUserGroups";
             this.fastUserGroups.OwnerDraw = true;
             this.fastUserGroups.ShowGroups = false;
-            this.fastUserGroups.Size = new System.Drawing.Size(225, 539);
+            this.fastUserGroups.Size = new System.Drawing.Size(225, 594);
             this.fastUserGroups.TabIndex = 69;
             this.fastUserGroups.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastUserGroups.UseCompatibleStateImageBehavior = false;
@@ -259,10 +264,10 @@
             this.UnApprovalPermitted,
             this.VoidablePermitted,
             this.UnVoidablePermitted});
-            this.gridexUserGroupControls.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridexUserGroupControls.Dock = System.Windows.Forms.DockStyle.Top;
             this.gridexUserGroupControls.Editable = true;
             this.gridexUserGroupControls.GridColor = System.Drawing.SystemColors.ButtonFace;
-            this.gridexUserGroupControls.Location = new System.Drawing.Point(258, 110);
+            this.gridexUserGroupControls.Location = new System.Drawing.Point(0, 55);
             this.gridexUserGroupControls.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gridexUserGroupControls.MultiSelect = false;
             this.gridexUserGroupControls.Name = "gridexUserGroupControls";
@@ -271,18 +276,100 @@
             this.gridexUserGroupControls.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.gridexUserGroupControls.RowTemplate.Height = 24;
             this.gridexUserGroupControls.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridexUserGroupControls.Size = new System.Drawing.Size(983, 539);
+            this.gridexUserGroupControls.Size = new System.Drawing.Size(983, 291);
             this.gridexUserGroupControls.TabIndex = 70;
             this.gridexUserGroupControls.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridexAccessControls_CellContentClick);
             this.gridexUserGroupControls.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.gridexUserGroupControls_CellFormatting);
             this.gridexUserGroupControls.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.gridexUserGroupControls_CellPainting);
+            // 
+            // ModuleName
+            // 
+            this.ModuleName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ModuleName.DataPropertyName = "ModuleName";
+            this.ModuleName.FillWeight = 24F;
+            this.ModuleName.HeaderText = "Features.Tasks";
+            this.ModuleName.Name = "ModuleName";
+            this.ModuleName.ReadOnly = true;
+            // 
+            // ModuleDetailName
+            // 
+            this.ModuleDetailName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ModuleDetailName.DataPropertyName = "ModuleDetailName";
+            this.ModuleDetailName.FillWeight = 24F;
+            this.ModuleDetailName.HeaderText = "Features.Modules";
+            this.ModuleDetailName.Name = "ModuleDetailName";
+            this.ModuleDetailName.ReadOnly = true;
+            // 
+            // LocationName
+            // 
+            this.LocationName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.LocationName.DataPropertyName = "LocationName";
+            this.LocationName.FillWeight = 12F;
+            this.LocationName.HeaderText = "Locations";
+            this.LocationName.Name = "LocationName";
+            this.LocationName.ReadOnly = true;
+            // 
+            // NoAccess
+            // 
+            this.NoAccess.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.NoAccess.DataPropertyName = "NoAccess";
+            this.NoAccess.FillWeight = 9F;
+            this.NoAccess.HeaderText = "Access Controls.No Access";
+            this.NoAccess.Name = "NoAccess";
+            // 
+            // ReadOnly
+            // 
+            this.ReadOnly.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ReadOnly.DataPropertyName = "ReadOnly";
+            this.ReadOnly.FillWeight = 9F;
+            this.ReadOnly.HeaderText = "Access Controls.Read Only";
+            this.ReadOnly.Name = "ReadOnly";
+            // 
+            // Editable
+            // 
+            this.Editable.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Editable.DataPropertyName = "Editable";
+            this.Editable.FillWeight = 9F;
+            this.Editable.HeaderText = "Access Controls.Editable";
+            this.Editable.Name = "Editable";
+            // 
+            // ApprovalPermitted
+            // 
+            this.ApprovalPermitted.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ApprovalPermitted.DataPropertyName = "ApprovalPermitted";
+            this.ApprovalPermitted.FillWeight = 9F;
+            this.ApprovalPermitted.HeaderText = "Verify Permissions.Verify";
+            this.ApprovalPermitted.Name = "ApprovalPermitted";
+            // 
+            // UnApprovalPermitted
+            // 
+            this.UnApprovalPermitted.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.UnApprovalPermitted.DataPropertyName = "UnApprovalPermitted";
+            this.UnApprovalPermitted.FillWeight = 9F;
+            this.UnApprovalPermitted.HeaderText = "Verify Permissions.Unverify";
+            this.UnApprovalPermitted.Name = "UnApprovalPermitted";
+            // 
+            // VoidablePermitted
+            // 
+            this.VoidablePermitted.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.VoidablePermitted.DataPropertyName = "VoidablePermitted";
+            this.VoidablePermitted.FillWeight = 9F;
+            this.VoidablePermitted.HeaderText = "Void Permissions.Void";
+            this.VoidablePermitted.Name = "VoidablePermitted";
+            // 
+            // UnVoidablePermitted
+            // 
+            this.UnVoidablePermitted.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.UnVoidablePermitted.DataPropertyName = "UnVoidablePermitted";
+            this.UnVoidablePermitted.FillWeight = 9F;
+            this.UnVoidablePermitted.HeaderText = "Void Permissions.Unvoid";
+            this.UnVoidablePermitted.Name = "UnVoidablePermitted";
             // 
             // toolStrip2
             // 
             this.toolStrip2.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.comboActiveOption,
             this.buttonAddUserGroup,
             this.buttonRemoveUserGroup});
             this.toolStrip2.Location = new System.Drawing.Point(33, 0);
@@ -290,17 +377,6 @@
             this.toolStrip2.Size = new System.Drawing.Size(1208, 55);
             this.toolStrip2.TabIndex = 0;
             this.toolStrip2.Text = "toolStrip2";
-            // 
-            // comboActiveOption
-            // 
-            this.comboActiveOption.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboActiveOption.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
-            this.comboActiveOption.Items.AddRange(new object[] {
-            "Active only",
-            "Show Inactive"});
-            this.comboActiveOption.Name = "comboActiveOption";
-            this.comboActiveOption.Size = new System.Drawing.Size(139, 55);
-            this.comboActiveOption.SelectedIndexChanged += new System.EventHandler(this.comboActiveOption_SelectedIndexChanged);
             // 
             // buttonAddUserGroup
             // 
@@ -465,97 +541,59 @@
             this.pictureTopleft.TabIndex = 73;
             this.pictureTopleft.TabStop = false;
             // 
-            // ModuleName
+            // panelCenter
             // 
-            this.ModuleName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ModuleName.DataPropertyName = "ModuleName";
-            this.ModuleName.FillWeight = 24F;
-            this.ModuleName.HeaderText = "Features.Tasks";
-            this.ModuleName.Name = "ModuleName";
-            this.ModuleName.ReadOnly = true;
+            this.panelCenter.Controls.Add(this.gridexUserGroupDetails);
+            this.panelCenter.Controls.Add(this.gridexUserGroupControls);
+            this.panelCenter.Controls.Add(this.toolUserGroupDetails);
+            this.panelCenter.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelCenter.Location = new System.Drawing.Point(258, 55);
+            this.panelCenter.Name = "panelCenter";
+            this.panelCenter.Size = new System.Drawing.Size(983, 594);
+            this.panelCenter.TabIndex = 74;
             // 
-            // ModuleDetailName
+            // gridexUserGroupDetails
             // 
-            this.ModuleDetailName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ModuleDetailName.DataPropertyName = "ModuleDetailName";
-            this.ModuleDetailName.FillWeight = 24F;
-            this.ModuleDetailName.HeaderText = "Features.Modules";
-            this.ModuleDetailName.Name = "ModuleDetailName";
-            this.ModuleDetailName.ReadOnly = true;
+            this.gridexUserGroupDetails.AllowAddRow = false;
+            this.gridexUserGroupDetails.AllowDeleteRow = false;
+            this.gridexUserGroupDetails.AllowUserToAddRows = false;
+            this.gridexUserGroupDetails.AllowUserToDeleteRows = false;
+            this.gridexUserGroupDetails.BackgroundColor = System.Drawing.Color.Ivory;
+            this.gridexUserGroupDetails.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.gridexUserGroupDetails.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.gridexUserGroupDetails.ColumnHeadersHeight = 24;
+            this.gridexUserGroupDetails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1});
+            this.gridexUserGroupDetails.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridexUserGroupDetails.Editable = true;
+            this.gridexUserGroupDetails.GridColor = System.Drawing.SystemColors.ButtonFace;
+            this.gridexUserGroupDetails.Location = new System.Drawing.Point(0, 346);
+            this.gridexUserGroupDetails.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gridexUserGroupDetails.MultiSelect = false;
+            this.gridexUserGroupDetails.Name = "gridexUserGroupDetails";
+            this.gridexUserGroupDetails.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridexUserGroupDetails.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.gridexUserGroupDetails.RowTemplate.Height = 24;
+            this.gridexUserGroupDetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gridexUserGroupDetails.Size = new System.Drawing.Size(983, 248);
+            this.gridexUserGroupDetails.TabIndex = 71;
             // 
-            // LocationName
+            // dataGridViewTextBoxColumn1
             // 
-            this.LocationName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.LocationName.DataPropertyName = "LocationName";
-            this.LocationName.FillWeight = 12F;
-            this.LocationName.HeaderText = "Locations";
-            this.LocationName.Name = "LocationName";
-            this.LocationName.ReadOnly = true;
-            // 
-            // NoAccess
-            // 
-            this.NoAccess.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.NoAccess.DataPropertyName = "NoAccess";
-            this.NoAccess.FillWeight = 9F;
-            this.NoAccess.HeaderText = "Access Controls.No Access";
-            this.NoAccess.Name = "NoAccess";
-            // 
-            // ReadOnly
-            // 
-            this.ReadOnly.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ReadOnly.DataPropertyName = "ReadOnly";
-            this.ReadOnly.FillWeight = 9F;
-            this.ReadOnly.HeaderText = "Access Controls.Read Only";
-            this.ReadOnly.Name = "ReadOnly";
-            // 
-            // Editable
-            // 
-            this.Editable.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Editable.DataPropertyName = "Editable";
-            this.Editable.FillWeight = 9F;
-            this.Editable.HeaderText = "Access Controls.Editable";
-            this.Editable.Name = "Editable";
-            // 
-            // ApprovalPermitted
-            // 
-            this.ApprovalPermitted.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ApprovalPermitted.DataPropertyName = "ApprovalPermitted";
-            this.ApprovalPermitted.FillWeight = 9F;
-            this.ApprovalPermitted.HeaderText = "Verify Permissions.Verify";
-            this.ApprovalPermitted.Name = "ApprovalPermitted";
-            // 
-            // UnApprovalPermitted
-            // 
-            this.UnApprovalPermitted.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.UnApprovalPermitted.DataPropertyName = "UnApprovalPermitted";
-            this.UnApprovalPermitted.FillWeight = 9F;
-            this.UnApprovalPermitted.HeaderText = "Verify Permissions.Unverify";
-            this.UnApprovalPermitted.Name = "UnApprovalPermitted";
-            // 
-            // VoidablePermitted
-            // 
-            this.VoidablePermitted.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.VoidablePermitted.DataPropertyName = "VoidablePermitted";
-            this.VoidablePermitted.FillWeight = 9F;
-            this.VoidablePermitted.HeaderText = "Void Permissions.Void";
-            this.VoidablePermitted.Name = "VoidablePermitted";
-            // 
-            // UnVoidablePermitted
-            // 
-            this.UnVoidablePermitted.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.UnVoidablePermitted.DataPropertyName = "UnVoidablePermitted";
-            this.UnVoidablePermitted.FillWeight = 9F;
-            this.UnVoidablePermitted.HeaderText = "Void Permissions.Unvoid";
-            this.UnVoidablePermitted.Name = "UnVoidablePermitted";
+            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "UserName";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Name";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
             // 
             // UserGroupControls
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1241, 649);
-            this.Controls.Add(this.gridexUserGroupControls);
+            this.Controls.Add(this.panelCenter);
             this.Controls.Add(this.fastUserGroups);
-            this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.toolStrip2);
             this.Controls.Add(this.panelLeft);
             this.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -566,8 +604,9 @@
             this.Name = "UserGroupControls";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "User References [Determine the tasks each user can perform]";
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
+            this.Load += new System.EventHandler(this.UserGroupControls_Load);
+            this.toolUserGroupDetails.ResumeLayout(false);
+            this.toolUserGroupDetails.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastUserGroups)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridexUserGroupControls)).EndInit();
             this.toolStrip2.ResumeLayout(false);
@@ -578,6 +617,9 @@
             this.navibandUserTrees.ResumeLayout(false);
             this.panelLeft.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureTopleft)).EndInit();
+            this.panelCenter.ResumeLayout(false);
+            this.panelCenter.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridexUserGroupDetails)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -585,7 +627,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStrip toolUserGroupDetails;
         private System.Windows.Forms.ToolStripComboBox comboUserID;
         private System.Windows.Forms.ToolStripButton buttonUserRegister;
         private System.Windows.Forms.ToolStripButton buttonUserUnregister;
@@ -610,7 +652,6 @@
         private System.Windows.Forms.ToolStripComboBox comboOrganizationalUnit;
         private System.Windows.Forms.ToolStripButton buttonAddUserGroup;
         private System.Windows.Forms.ToolStripComboBox comboInActive;
-        private System.Windows.Forms.ToolStripComboBox comboActiveOption;
         private System.Windows.Forms.Panel panelLeft;
         private System.Windows.Forms.PictureBox pictureTopleft;
         private System.Windows.Forms.ToolStripButton buttonRemoveUserGroup;
@@ -627,5 +668,8 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn UnApprovalPermitted;
         private System.Windows.Forms.DataGridViewCheckBoxColumn VoidablePermitted;
         private System.Windows.Forms.DataGridViewCheckBoxColumn UnVoidablePermitted;
+        private System.Windows.Forms.Panel panelCenter;
+        private CustomControls.DataGridexView gridexUserGroupDetails;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
     }
 }
