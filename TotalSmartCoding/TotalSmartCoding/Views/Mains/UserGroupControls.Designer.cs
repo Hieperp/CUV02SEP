@@ -197,7 +197,7 @@
             this.fastUserGroups.UseFiltering = true;
             this.fastUserGroups.View = System.Windows.Forms.View.Details;
             this.fastUserGroups.VirtualMode = true;
-            this.fastUserGroups.SelectedIndexChanged += new System.EventHandler(this.fastNMVNTasks_SelectedIndexChanged);
+            this.fastUserGroups.SelectedIndexChanged += new System.EventHandler(this.fastUserGroups_SelectedIndexChanged);
             // 
             // olvID
             // 

@@ -46,10 +46,7 @@ namespace TotalSmartCoding.Views.Mains
                 ModuleAPIs moduleAPIs = new ModuleAPIs(CommonNinject.Kernel.Get<IModuleAPIRepository>());
 
 
-                this.fastUserGroups.ShowGroups = true;
-                this.fastUserGroups.AboutToCreateGroups += fastNMVNTasks_AboutToCreateGroups;
-
-                this.LoadUserGroups();
+                
 
                 this.userRepository = CommonNinject.Kernel.Get<IUserRepository>();
                 this.userAPIs = new UserAPIs(CommonNinject.Kernel.Get<IUserAPIRepository>());
@@ -58,6 +55,10 @@ namespace TotalSmartCoding.Views.Mains
 
 
 
+                this.fastUserGroups.ShowGroups = true;
+                this.fastUserGroups.AboutToCreateGroups += fastNMVNTasks_AboutToCreateGroups;
+
+                this.LoadUserGroups();
 
 
 
@@ -223,7 +224,7 @@ namespace TotalSmartCoding.Views.Mains
         }
 
 
-        private void fastNMVNTasks_SelectedIndexChanged(object sender, EventArgs e)
+        private void fastUserGroups_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.GetUserAccessControls();
         }
@@ -331,11 +332,11 @@ namespace TotalSmartCoding.Views.Mains
 
         private void buttonAddRemoveOU_Click(object sender, EventArgs e)
         {
-            UserOUs wizardUserOUs = new UserOUs(this.organizationalUnitAPIs, sender.Equals(this.buttonAddOU));
-            DialogResult dialogResult = wizardUserOUs.ShowDialog();
+            UserGroups wizardUserGroups = new UserGroups(this.userGroupAPIs, sender.Equals(this.buttonAddOU));
+            DialogResult dialogResult = wizardUserGroups.ShowDialog();
 
-            wizardUserOUs.Dispose();
-            if (dialogResult == DialogResult.OK) this.LoadUserTrees();
+            wizardUserGroups.Dispose();
+            if (dialogResult == DialogResult.OK) this.LoadUserGroups();
         }
     }
 }
