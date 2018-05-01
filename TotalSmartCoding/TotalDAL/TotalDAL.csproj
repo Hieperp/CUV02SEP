@@ -71,6 +71,7 @@
     <Compile Include="Helpers\SqlProgrammability\Generals\OrganizationalUnit.cs" />
     <Compile Include="Helpers\SqlProgrammability\Generals\Report.cs" />
     <Compile Include="Helpers\SqlProgrammability\Generals\UserGroup.cs" />
+    <Compile Include="Helpers\SqlProgrammability\Generals\UserGroupControl.cs" />
     <Compile Include="Helpers\SqlProgrammability\Generals\UserReference.cs" />
     <Compile Include="Helpers\SqlProgrammability\InitReference.cs" />
     <Compile Include="Helpers\SqlProgrammability\Inventories\Inventory.cs" />
