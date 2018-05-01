@@ -353,5 +353,45 @@ namespace TotalSmartCoding.Views.Mains
             wizardUserGroups.Dispose();
             if (dialogResult == DialogResult.OK) this.LoadUserGroups();
         }
+
+        #region MERGE CELL
+        private void gridexUserGroupControls_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex == 0 || !(e.ColumnIndex == 0 || e.ColumnIndex == 1))
+                return;
+            if (IsTheSameCellValue(e.ColumnIndex, e.RowIndex))
+            {
+                e.Value = "";
+                e.FormattingApplied = true;
+            }
+        }
+
+        private void gridexUserGroupControls_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            e.AdvancedBorderStyle.Bottom = DataGridViewAdvancedCellBorderStyle.None;
+            if (e.RowIndex < 1 || !(e.ColumnIndex == 0 || e.ColumnIndex == 1))
+                return;
+            if (IsTheSameCellValue(e.ColumnIndex, e.RowIndex))
+            {
+                e.AdvancedBorderStyle.Top = DataGridViewAdvancedCellBorderStyle.None;
+            }
+            else
+            {
+                e.AdvancedBorderStyle.Top = gridexUserGroupControls.AdvancedCellBorderStyle.Top;
+            }  
+        }
+
+        private bool IsTheSameCellValue(int column, int row)
+        {
+            DataGridViewCell cell1 = gridexUserGroupControls[column, row];
+            DataGridViewCell cell2 = gridexUserGroupControls[column, row - 1];
+            if (cell1.Value == null || cell2.Value == null)
+            {
+                return false;
+            }
+            return cell1.Value.ToString() == cell2.Value.ToString();
+        }
+
+        #endregion MERGE CELL
     }
 }

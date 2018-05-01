@@ -180,9 +180,9 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
-            queryString = queryString + "       SELECT      UserGroupControls.UserGroupControlID, Modules.ModuleID, Modules.Name AS ModuleName, ModuleDetails.ModuleDetailID, ModuleDetails.Name AS ModuleDetailName, UserGroupControls.LocationID, Locations.Name AS LocationName, UserGroupControls.AccessLevel, UserGroupControls.ApprovalPermitted, UserGroupControls.UnApprovalPermitted, UserGroupControls.VoidablePermitted, UserGroupControls.UnVoidablePermitted, UserGroupControls.ShowDiscount " + "\r\n";
+            queryString = queryString + "       SELECT      UserGroupControls.UserGroupControlID, Modules.ModuleID, IIF(ModuleDetails.Controller <> N'#', ModuleDetails.Controller, Modules.Code) AS ModuleName, ModuleDetails.ModuleDetailID, ModuleDetails.Name AS ModuleDetailName, UserGroupControls.LocationID, IIF(ModuleDetails.ControlTypeID = 0, N'', Locations.Name) AS LocationName, UserGroupControls.AccessLevel, UserGroupControls.ApprovalPermitted, UserGroupControls.UnApprovalPermitted, UserGroupControls.VoidablePermitted, UserGroupControls.UnVoidablePermitted, UserGroupControls.ShowDiscount " + "\r\n";
             queryString = queryString + "       FROM        UserGroupControls INNER JOIN ModuleDetails ON UserGroupControls.UserGroupID = @UserGroupID AND UserGroupControls.ModuleDetailID = ModuleDetails.ModuleDetailID INNER JOIN Modules ON ModuleDetails.ModuleID = Modules.ModuleID INNER JOIN Locations ON UserGroupControls.LocationID = Locations.LocationID " + "\r\n";
-            queryString = queryString + "       ORDER BY    Modules.Name, ModuleDetails.Name, Locations.Name " + "\r\n";
+            queryString = queryString + "       ORDER BY    Modules.Name, ModuleName, ModuleDetails.SerialID, Locations.LocationID " + "\r\n";
 
             queryString = queryString + "    END " + "\r\n";
 
