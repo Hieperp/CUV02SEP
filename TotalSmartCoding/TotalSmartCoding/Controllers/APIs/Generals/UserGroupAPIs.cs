@@ -36,5 +36,10 @@ namespace TotalSmartCoding.Controllers.APIs.Generals
             return this.userGroupAPIRepository.UserGroupRemove(userGroupID, code);
         }
 
+        public IList<UserGroupControl> GetUserGroupControls(int? userGroupID)
+        {
+            return this.userGroupAPIRepository.GetUserGroupControls(userGroupID);
+        }
+
     }
 }

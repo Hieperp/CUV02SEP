@@ -34,7 +34,7 @@ namespace TotalSmartCoding.Views.Mains
         private UserGroupAPIs userGroupAPIs { get; set; }
 
         private Binding bindingUserID;
-        private BindingList<UserAccessControlDTO> bindingListUserAccessControls;
+        private BindingList<UserGroupControlDTO> bindingListUserGroupControls;
 
         public UserGroupControls()
         {
@@ -46,7 +46,7 @@ namespace TotalSmartCoding.Views.Mains
                 ModuleAPIs moduleAPIs = new ModuleAPIs(CommonNinject.Kernel.Get<IModuleAPIRepository>());
 
 
-                
+
 
                 this.userRepository = CommonNinject.Kernel.Get<IUserRepository>();
                 this.userAPIs = new UserAPIs(CommonNinject.Kernel.Get<IUserAPIRepository>());
@@ -75,9 +75,9 @@ namespace TotalSmartCoding.Views.Mains
                 this.gridexUserGroupControls.AutoGenerateColumns = false;
                 this.gridexUserGroupControls.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-                this.bindingListUserAccessControls = new BindingList<UserAccessControlDTO>();
-                this.gridexUserGroupControls.DataSource = this.bindingListUserAccessControls;
-                this.bindingListUserAccessControls.ListChanged += bindingListUserAccessControls_ListChanged;
+                this.bindingListUserGroupControls = new BindingList<UserGroupControlDTO>();
+                this.gridexUserGroupControls.DataSource = this.bindingListUserGroupControls;
+                this.bindingListUserGroupControls.ListChanged += bindingListUserGroupControls_ListChanged;
 
                 StackedHeaderDecorator stackedHeaderDecorator = new StackedHeaderDecorator(this.gridexUserGroupControls);
             }
@@ -188,7 +188,7 @@ namespace TotalSmartCoding.Views.Mains
                     this.buttonUserToggleVoid.Enabled = !this.SelectedUserIndex.IsDatabaseAdmin;
                     this.buttonUserUnregister.Enabled = !this.SelectedUserIndex.IsDatabaseAdmin && this.userRepository.GetEditable(this.SelectedUserIndex.UserID);
 
-                    this.GetUserAccessControls();
+                    this.GetUserGroupControls();
                 }
             }
         }
@@ -218,32 +218,47 @@ namespace TotalSmartCoding.Views.Mains
                 if (this.selectedUserID != value)
                 {
                     this.selectedUserID = value;
-                    this.GetUserAccessControls();
+                    this.GetUserGroupControls();
                 }
             }
         }
 
 
-        private void fastUserGroups_SelectedIndexChanged(object sender, EventArgs e)
+        private UserGroupIndex selectedUserGroupIndex;
+        private UserGroupIndex SelectedUserGroupIndex
         {
-            this.GetUserAccessControls();
+            get { return this.selectedUserGroupIndex; }
+            set
+            {
+                if (this.selectedUserGroupIndex != value)
+                {
+                    this.selectedUserGroupIndex = value;
+                    this.GetUserGroupControls();
+                }
+            }
         }
 
-        private void GetUserAccessControls()
+        private void fastUserGroups_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.fastUserGroups.SelectedObject != null)
+            {
+                UserGroupIndex userGroupIndex = (UserGroupIndex)this.fastUserGroups.SelectedObject;
+                if (userGroupIndex != null)
+                    this.SelectedUserGroupIndex = userGroupIndex;
+            }
+        }
+
+        private void GetUserGroupControls()
         {
             try
             {
-                if (this.SelectedUserIndex != null && this.SelectedUserIndex.UserID > 0 && this.fastUserGroups.SelectedObject != null)
+                if (this.SelectedUserGroupIndex != null && this.SelectedUserGroupIndex.UserGroupID > 0)
                 {
-                    ModuleDetailIndex moduleDetailIndex = (ModuleDetailIndex)this.fastUserGroups.SelectedObject;
-                    if (moduleDetailIndex != null)
-                    {
-                        IList<UserAccessControl> userAccessControls = this.userAPIs.GetUserAccessControls(this.SelectedUserIndex.UserID, moduleDetailIndex.ModuleDetailID);
-                        this.bindingListUserAccessControls.RaiseListChangedEvents = false;
-                        Mapper.Map<ICollection<UserAccessControl>, ICollection<UserAccessControlDTO>>(userAccessControls, this.bindingListUserAccessControls);
-                        this.bindingListUserAccessControls.RaiseListChangedEvents = true;
-                        this.bindingListUserAccessControls.ResetBindings();
-                    }
+                    IList<UserGroupControl> userGroupControls = this.userGroupAPIs.GetUserGroupControls(this.SelectedUserGroupIndex.UserGroupID);
+                    this.bindingListUserGroupControls.RaiseListChangedEvents = false;
+                    Mapper.Map<ICollection<UserGroupControl>, ICollection<UserGroupControlDTO>>(userGroupControls, this.bindingListUserGroupControls);
+                    this.bindingListUserGroupControls.RaiseListChangedEvents = true;
+                    this.bindingListUserGroupControls.ResetBindings();
                 }
             }
             catch (Exception exception)
@@ -257,19 +272,16 @@ namespace TotalSmartCoding.Views.Mains
             this.gridexUserGroupControls.CommitEdit(DataGridViewDataErrorContexts.Commit);
         }
 
-        private void bindingListUserAccessControls_ListChanged(object sender, ListChangedEventArgs e)
+        private void bindingListUserGroupControls_ListChanged(object sender, ListChangedEventArgs e)
         {
             try
             {
-                if (e.PropertyDescriptor != null && e.NewIndex >= 0 && e.NewIndex < this.bindingListUserAccessControls.Count)
+                if (e.PropertyDescriptor != null && e.NewIndex >= 0 && e.NewIndex < this.bindingListUserGroupControls.Count)
                 {
-                    UserAccessControlDTO userAccessControlDTO = this.bindingListUserAccessControls[e.NewIndex];
-                    if (userAccessControlDTO != null)
+                    UserGroupControlDTO userGroupControlDTO = this.bindingListUserGroupControls[e.NewIndex];
+                    if (userGroupControlDTO != null)
                     {
-                        if (userAccessControlDTO.LocationID != this.SelectedUserIndex.LocationID) { userAccessControlDTO.ApprovalPermitted = false; userAccessControlDTO.UnApprovalPermitted = false; userAccessControlDTO.VoidablePermitted = false; userAccessControlDTO.UnVoidablePermitted = false; }
-                        if (userAccessControlDTO.LocationID != this.SelectedUserIndex.LocationID && userAccessControlDTO.AccessLevel > 1) { userAccessControlDTO.AccessLevel = 1; }
-
-                        this.userAPIs.SaveUserAccessControls(userAccessControlDTO.AccessControlID, userAccessControlDTO.AccessLevel, userAccessControlDTO.ApprovalPermitted, userAccessControlDTO.UnApprovalPermitted, userAccessControlDTO.VoidablePermitted, userAccessControlDTO.UnVoidablePermitted, userAccessControlDTO.ShowDiscount);
+                        //this.userGroupAPIs.SaveUserGroupControls(userGroupControlDTO.AccessControlID, userGroupControlDTO.AccessLevel, userGroupControlDTO.ApprovalPermitted, userGroupControlDTO.UnApprovalPermitted, userGroupControlDTO.VoidablePermitted, userGroupControlDTO.UnVoidablePermitted, userGroupControlDTO.ShowDiscount);
                     }
                 }
             }

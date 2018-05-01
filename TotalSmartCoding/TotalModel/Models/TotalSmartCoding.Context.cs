@@ -2650,17 +2650,13 @@ namespace TotalModel.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UserGroupRemove", userGroupIDParameter, codeParameter);
         }
     
-        public virtual ObjectResult<UserGroupControl> GetUserGroupControls(Nullable<int> userGroupID, Nullable<int> nMVNTaskID)
+        public virtual ObjectResult<UserGroupControl> GetUserGroupControls(Nullable<int> userGroupID)
         {
             var userGroupIDParameter = userGroupID.HasValue ?
                 new ObjectParameter("UserGroupID", userGroupID) :
                 new ObjectParameter("UserGroupID", typeof(int));
     
-            var nMVNTaskIDParameter = nMVNTaskID.HasValue ?
-                new ObjectParameter("NMVNTaskID", nMVNTaskID) :
-                new ObjectParameter("NMVNTaskID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UserGroupControl>("GetUserGroupControls", userGroupIDParameter, nMVNTaskIDParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UserGroupControl>("GetUserGroupControls", userGroupIDParameter);
         }
     }
 }

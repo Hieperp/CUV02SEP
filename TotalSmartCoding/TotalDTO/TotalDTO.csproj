@@ -70,9 +70,11 @@
     <Compile Include="Commons\WarehouseAdjustmentTypeDTO.cs" />
     <Compile Include="Commons\WarehouseDTO.cs" />
     <Compile Include="CustomValidation.cs" />
+    <Compile Include="Generals\AccessControlDTO.cs" />
     <Compile Include="Generals\ColumnMappingDTO.cs" />
     <Compile Include="Generals\ReportDTO.cs" />
     <Compile Include="Generals\UserAccessControlDTO.cs" />
+    <Compile Include="Generals\UserGroupControlDTO.cs" />
     <Compile Include="Helpers\AmountDetailDTO.cs" />
     <Compile Include="Helpers\AmountDTO.cs" />
     <Compile Include="Helpers\DiscountVATAmountDetailDTO.cs" />

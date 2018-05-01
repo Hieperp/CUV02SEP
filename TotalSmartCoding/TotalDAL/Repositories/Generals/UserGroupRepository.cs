@@ -34,5 +34,10 @@ namespace TotalDAL.Repositories.Generals
         {
             return this.TotalSmartCodingEntities.UserGroupRemove(userGroupID, code);
         }
+
+        public IList<UserGroupControl> GetUserGroupControls(int? userGroupID)
+        {
+            return this.TotalSmartCodingEntities.GetUserGroupControls(userGroupID).ToList();
+        }
     }
 }

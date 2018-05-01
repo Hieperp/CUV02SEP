@@ -142,7 +142,9 @@ namespace TotalSmartCoding.Libraries
 
                 cfg.CreateMap<Warehouse, WarehouseBaseDTO>();
                 cfg.CreateMap<WarehouseAdjustmentType, WarehouseAdjustmentTypeBaseDTO>();
+                
                 cfg.CreateMap<UserAccessControl, UserAccessControlDTO>();
+                cfg.CreateMap<UserGroupControl, UserGroupControlDTO>();
 
                 cfg.CreateMap<Report, ReportViewModel>();
                 cfg.CreateMap<Report, ReportDTO>();

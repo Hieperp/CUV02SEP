@@ -2806,7 +2806,6 @@
         </Function>
         <Function Name="GetUserGroupControls" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserGroupID" Type="int" Mode="In" />
-          <Parameter Name="NMVNTaskID" Type="int" Mode="In" />
         </Function>
         <Function Name="GetUserGroupIndexes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserID" Type="int" Mode="In" />
@@ -4849,7 +4848,6 @@
           </FunctionImport>
           <FunctionImport Name="GetUserGroupControls" ReturnType="Collection(TotalSmartCodingModel.UserGroupControl)">
             <Parameter Name="UserGroupID" Mode="In" Type="Int32" />
-            <Parameter Name="NMVNTaskID" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">

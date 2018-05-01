@@ -12,6 +12,8 @@ namespace TotalCore.Repositories.Generals
     {
         int UserGroupAdd(string code, string name, string description);
         int UserGroupRemove(int? userGroupID, string code);
+
+        IList<UserGroupControl> GetUserGroupControls(int? userGroupID);
     }
 
 }
