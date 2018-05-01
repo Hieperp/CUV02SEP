@@ -39,5 +39,11 @@ namespace TotalDAL.Repositories.Generals
         {
             return this.TotalSmartCodingEntities.GetUserGroupControls(userGroupID).ToList();
         }
+
+        public int SaveUserGroupControls(int? userGroupControlID, int? accessLevel, bool? approvalPermitted, bool? unApprovalPermitted, bool? voidablePermitted, bool? unVoidablePermitted, bool? showDiscount)
+        {
+            return this.TotalSmartCodingEntities.SaveUserGroupControls(userGroupControlID, accessLevel, approvalPermitted, unApprovalPermitted, voidablePermitted, unVoidablePermitted, showDiscount);
+        }
+
     }
 }

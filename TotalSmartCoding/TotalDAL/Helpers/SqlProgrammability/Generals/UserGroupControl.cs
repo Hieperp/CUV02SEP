@@ -28,7 +28,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             //this.UserToggleVoid();
 
             this.GetUserGroupControls();
-            //this.SaveUserGroupControls();
+            this.SaveUserGroupControls();
 
             //this.GetUserTrees();
         }
@@ -203,12 +203,12 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
 
             queryString = queryString + "           IF @@ROWCOUNT <> 1 " + "\r\n";
             queryString = queryString + "               BEGIN " + "\r\n";
-            queryString = queryString + "                   DECLARE     @msg NVARCHAR(300) = N'Unknow error: SaveUserAccessControls. Please exit then open and try again.' ; " + "\r\n";
+            queryString = queryString + "                   DECLARE     @msg NVARCHAR(300) = N'Unknow error: Save User Access Controls. Please exit then open and try again.' ; " + "\r\n";
             queryString = queryString + "                   THROW       61001,  @msg, 1; " + "\r\n";
             queryString = queryString + "               END " + "\r\n";
             queryString = queryString + "       END " + "\r\n";
 
-            this.totalSmartCodingEntities.CreateStoredProcedure("SaveUserAccessControls", queryString);
+            this.totalSmartCodingEntities.CreateStoredProcedure("SaveUserGroupControls", queryString);
         }
 
 

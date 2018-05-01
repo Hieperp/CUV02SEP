@@ -612,6 +612,7 @@
           <Property Name="SerialID" Type="float" Nullable="false" />
           <Property Name="ImageIndex" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="InActive" Type="float" Nullable="false" />
+          <Property Name="ControlTypeID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Modules">
           <Key>
@@ -2998,6 +2999,15 @@
           <Parameter Name="UnVoidablePermitted" Type="bit" Mode="In" />
           <Parameter Name="ShowDiscount" Type="bit" Mode="In" />
         </Function>
+        <Function Name="SaveUserGroupControls" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserGroupControlID" Type="int" Mode="In" />
+          <Parameter Name="AccessLevel" Type="int" Mode="In" />
+          <Parameter Name="ApprovalPermitted" Type="bit" Mode="In" />
+          <Parameter Name="UnApprovalPermitted" Type="bit" Mode="In" />
+          <Parameter Name="VoidablePermitted" Type="bit" Mode="In" />
+          <Parameter Name="UnVoidablePermitted" Type="bit" Mode="In" />
+          <Parameter Name="ShowDiscount" Type="bit" Mode="In" />
+        </Function>
         <Function Name="SearchCartons" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Barcode" Type="varchar" Mode="In" />
         </Function>
@@ -4847,7 +4857,16 @@
             <Parameter Name="Code" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetUserGroupControls" ReturnType="Collection(TotalSmartCodingModel.UserGroupControl)">
-            <Parameter Name="UserGroupID" Mode="In" Type="Int32" />
+          <Parameter Name="UserGroupID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SaveUserGroupControls">
+            <Parameter Name="UserGroupControlID" Mode="In" Type="Int32" />
+            <Parameter Name="AccessLevel" Mode="In" Type="Int32" />
+            <Parameter Name="ApprovalPermitted" Mode="In" Type="Boolean" />
+            <Parameter Name="UnApprovalPermitted" Mode="In" Type="Boolean" />
+            <Parameter Name="VoidablePermitted" Mode="In" Type="Boolean" />
+            <Parameter Name="UnVoidablePermitted" Mode="In" Type="Boolean" />
+            <Parameter Name="ShowDiscount" Mode="In" Type="Boolean" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
@@ -6241,6 +6260,7 @@
           <Property Name="SerialID" Type="Double" Nullable="false" />
           <Property Name="ImageIndex" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="InActive" Type="Double" Nullable="false" />
+          <Property Name="ControlTypeID" Type="Int32" Nullable="false" />
         </EntityType>
         <ComplexType Name="BatchAvailable">
           <Property Type="Int32" Name="BatchID" Nullable="true" />
@@ -9838,6 +9858,7 @@
           <EntitySetMapping Name="ModuleDetails">
             <EntityTypeMapping TypeName="TotalSmartCodingModel.ModuleDetail">
               <MappingFragment StoreEntitySet="ModuleDetails">
+                <ScalarProperty Name="ControlTypeID" ColumnName="ControlTypeID" />
                 <ScalarProperty Name="InActive" ColumnName="InActive" />
                 <ScalarProperty Name="ImageIndex" ColumnName="ImageIndex" />
                 <ScalarProperty Name="SerialID" ColumnName="SerialID" />
@@ -11356,6 +11377,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SaveUserGroupControls" FunctionName="TotalSmartCodingModel.Store.SaveUserGroupControls" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
