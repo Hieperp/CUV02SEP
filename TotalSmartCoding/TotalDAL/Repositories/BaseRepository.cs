@@ -57,7 +57,7 @@ namespace TotalDAL.Repositories
                 this.totalSmartCodingEntities.ColumnAdd("Configs", "StoredID", "int", "0", true);
             }
 
-            #region Devices
+            #region UserGroups
             if (!this.totalSmartCodingEntities.TableExists("UserGroups"))
             {
                 this.ExecuteStoreCommand(@"CREATE TABLE [dbo].[UserGroups](
@@ -134,6 +134,7 @@ namespace TotalDAL.Repositories
                                                 ", new ObjectParameter[] { });
 
             }
+            #endregion 
 
             #region Devices
             if (!this.totalSmartCodingEntities.TableExists("Devices"))
@@ -303,7 +304,7 @@ namespace TotalDAL.Repositories
         private void CreateStoredProcedure()
         {
 
-            return;
+            //return;
 
             Helpers.SqlProgrammability.Generals.UserGroup userGroup = new Helpers.SqlProgrammability.Generals.UserGroup(totalSmartCodingEntities);
             userGroup.RestoreProcedure();
