@@ -12,7 +12,7 @@
         public static bool OnTestZebra = false; //false: WILL SEND TEST PRINT WHEN CONNECTED
 
 
-        public static bool DrumWithDigit = false;
+        public static bool DrumWithDigit = true; //NEW DIGIT DOMINO AT DRUM LINE FOR PHASE 2
 
         public static bool SendToZebra = true;
 

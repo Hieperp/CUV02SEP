@@ -4900,7 +4900,7 @@
             <Parameter Name="SecurityIdentifier" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="UserGroupRemoveMember">
-            <Parameter Name="UserGroupDetailID" Mode="In" Type="Int32" />
+          <Parameter Name="UserGroupDetailID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetUserGroupMembers" ReturnType="Collection(TotalSmartCodingModel.UserGroupMember)">
           <Parameter Name="UserGroupID" Mode="In" Type="Int32" />

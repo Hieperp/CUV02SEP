@@ -58,6 +58,84 @@ namespace TotalDAL.Repositories
             }
 
             #region Devices
+            if (!this.totalSmartCodingEntities.TableExists("UserGroups"))
+            {
+                this.ExecuteStoreCommand(@"CREATE TABLE [dbo].[UserGroups](
+	                                                    [UserGroupID] [int] IDENTITY(1,1) NOT NULL,
+	                                                    [Code] [nvarchar](50) NOT NULL,
+	                                                    [Name] [nvarchar](100) NOT NULL,
+	                                                    [Description] [nvarchar](100) NULL,
+	                                                    [Remarks] [nvarchar](100) NULL,
+                                                     CONSTRAINT [PK_ControlGroups] PRIMARY KEY CLUSTERED 
+                                                    (
+	                                                    [UserGroupID] ASC
+                                                    )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+                                                    ) ON [PRIMARY]	                                                
+                                                ", new ObjectParameter[] { });
+
+                this.ExecuteStoreCommand(@"	CREATE TABLE [dbo].[UserGroupDetails](
+	                                                        [UserGroupDetailID] [int] IDENTITY(1,1) NOT NULL,
+	                                                        [UserGroupID] [int] NOT NULL,
+	                                                        [SecurityIdentifier] [nvarchar](256) NOT NULL,
+	                                                        [EntryDate] [datetime] NOT NULL,
+                                                         CONSTRAINT [PK_UserGroupDetails] PRIMARY KEY CLUSTERED 
+                                                        (
+	                                                        [UserGroupDetailID] ASC
+                                                        )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY],
+                                                         CONSTRAINT [IX_UserGroupDetails] UNIQUE NONCLUSTERED 
+                                                        (
+	                                                        [UserGroupID] ASC,
+	                                                        [SecurityIdentifier] ASC
+                                                        )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+                                                        ) ON [PRIMARY]                                                
+                                                ", new ObjectParameter[] { });
+
+                this.ExecuteStoreCommand(@"	 CREATE TABLE [dbo].[UserGroupControls](
+	                                                        [UserGroupControlID] [int] IDENTITY(1,1) NOT NULL,
+	                                                        [UserGroupID] [int] NOT NULL,
+	                                                        [ModuleDetailID] [int] NOT NULL,
+	                                                        [LocationID] [int] NOT NULL,
+	                                                        [AccessLevel] [int] NOT NULL,
+	                                                        [ApprovalPermitted] [bit] NOT NULL,
+	                                                        [UnApprovalPermitted] [bit] NOT NULL,
+	                                                        [VoidablePermitted] [bit] NOT NULL,
+	                                                        [UnVoidablePermitted] [bit] NOT NULL,
+	                                                        [ShowDiscount] [bit] NOT NULL,
+	                                                        [AccessLevelBACKUP] [int] NULL,
+	                                                        [ApprovalPermittedBACKUP] [bit] NULL,
+	                                                        [UnApprovalPermittedBACKUP] [bit] NULL,
+	                                                        [InActive] [bit] NOT NULL,
+                                                            CONSTRAINT [PK_PermissionControls] PRIMARY KEY CLUSTERED 
+                                                        (
+	                                                        [UserGroupControlID] ASC
+                                                        )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+                                                        ) ON [PRIMARY]
+
+
+                                                        ALTER TABLE [dbo].[UserGroupControls]  WITH CHECK ADD  CONSTRAINT [FK_UserGroupControls_Locations] FOREIGN KEY([LocationID])
+                                                        REFERENCES [dbo].[Locations] ([LocationID])
+
+
+                                                        ALTER TABLE [dbo].[UserGroupControls] CHECK CONSTRAINT [FK_UserGroupControls_Locations]
+
+
+                                                        ALTER TABLE [dbo].[UserGroupControls]  WITH CHECK ADD  CONSTRAINT [FK_UserGroupControls_ModuleDetails] FOREIGN KEY([ModuleDetailID])
+                                                        REFERENCES [dbo].[ModuleDetails] ([ModuleDetailID])
+
+
+                                                        ALTER TABLE [dbo].[UserGroupControls] CHECK CONSTRAINT [FK_UserGroupControls_ModuleDetails]
+
+
+                                                        ALTER TABLE [dbo].[UserGroupControls]  WITH CHECK ADD  CONSTRAINT [FK_UserGroupControls_UserGroups] FOREIGN KEY([UserGroupID])
+                                                        REFERENCES [dbo].[UserGroups] ([UserGroupID])
+
+
+                                                        ALTER TABLE [dbo].[UserGroupControls] CHECK CONSTRAINT [FK_UserGroupControls_UserGroups]                                               
+                                                ", new ObjectParameter[] { });
+
+            }
+
+            #region Devices
             if (!this.totalSmartCodingEntities.TableExists("Devices"))
             {
                 this.ExecuteStoreCommand(@"CREATE TABLE [dbo].[Devices](
@@ -225,7 +303,7 @@ namespace TotalDAL.Repositories
         private void CreateStoredProcedure()
         {
 
-            //return;
+            return;
 
             Helpers.SqlProgrammability.Generals.UserGroup userGroup = new Helpers.SqlProgrammability.Generals.UserGroup(totalSmartCodingEntities);
             userGroup.RestoreProcedure();
@@ -270,8 +348,8 @@ namespace TotalDAL.Repositories
             Helpers.SqlProgrammability.Commons.FillingLine fillingLine = new Helpers.SqlProgrammability.Commons.FillingLine(totalSmartCodingEntities);
             fillingLine.RestoreProcedure();
 
-            return;
-            return;
+            //return;
+            //return;
 
             Helpers.SqlProgrammability.Sales.Forecast forecast = new Helpers.SqlProgrammability.Sales.Forecast(totalSmartCodingEntities);
             forecast.RestoreProcedure();
