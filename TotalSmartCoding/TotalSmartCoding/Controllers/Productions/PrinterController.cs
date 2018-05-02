@@ -162,7 +162,11 @@ namespace TotalSmartCoding.Controllers.Productions
 
         public string getPreviousNo()
         {
-            return (int.Parse(this.getNextNo()) - 1).ToString("0000000").Substring(1);
+            return this.getPreviousNo(this.getNextNo());
+        }
+        public string getPreviousNo(string nextNo)
+        {
+            return (int.Parse(nextNo) - 1).ToString("0000000").Substring(1);
         }
 
         private string getNextNo()
@@ -172,7 +176,10 @@ namespace TotalSmartCoding.Controllers.Productions
                 if (this.FillingData.FillingLineID == GlobalVariables.FillingLine.Pail)
                     return this.NextCartonNo;
                 else
-                    return this.NextPackNo;
+                    if (this.FillingData.FillingLineID == GlobalVariables.FillingLine.Drum)
+                        return this.printerName == GlobalVariables.PrinterName.DigitInkjet ? this.NextDigitNo : this.NextCartonNo;
+                    else
+                        return this.NextPackNo;
             }
             else
                 if (this.printerName == GlobalVariables.PrinterName.CartonInkjet)
@@ -215,7 +222,7 @@ namespace TotalSmartCoding.Controllers.Productions
 
                 lock (this.batchService) //ALL PrinterController MUST SHARE THE SAME IBatchService, BECAUSE WE NEED TO LOCK IBatchService IN ORDER TO CORRECTED UPDATE DATA BY IBatchService
                 {
-                    if (!this.batchService.CommonUpdate(this.FillingData.BatchID, this.printerName == GlobalVariables.PrinterName.PackInkjet ? nextNo : "", this.printerName == GlobalVariables.PrinterName.CartonInkjet ? nextNo : "", this.printerName == GlobalVariables.PrinterName.PalletLabel ? nextNo : ""))
+                    if (!this.batchService.CommonUpdate(this.FillingData.BatchID, this.printerName == GlobalVariables.PrinterName.PackInkjet || (GlobalEnums.DrumWithDigit && this.printerName == GlobalVariables.PrinterName.DigitInkjet) ? nextNo : "", this.printerName == GlobalVariables.PrinterName.CartonInkjet ? nextNo : "", this.printerName == GlobalVariables.PrinterName.PalletLabel ? nextNo : ""))
                         this.MainStatus = this.batchService.ServiceTag;
                 }
             }
@@ -335,7 +342,7 @@ namespace TotalSmartCoding.Controllers.Productions
 
         private string thirdLineA2(bool isReadableText, int serialIndentity)
         {
-            return this.privateFillingData.FillingLineCode + (serialIndentity == 1 || serialIndentity == 2 ? (GlobalEnums.OnTestPrinter ? this.getNextNo() : this.dominoSerialNumber(serialIndentity)) : ((GlobalEnums.DrumWithDigit && !this.FillingData.HasCarton) ? this.NextDigitNo : (this.FillingData.CartonsetQueueZebraStatus == GlobalVariables.ZebraStatus.Freshnew ? this.getNextNo() : this.getPreviousNo())));
+            return this.privateFillingData.FillingLineCode + (serialIndentity == 1 || serialIndentity == 2 ? (GlobalEnums.OnTestPrinter ? this.getNextNo() : this.dominoSerialNumber(serialIndentity)) : ((GlobalEnums.DrumWithDigit && !this.FillingData.HasCarton) ? this.getPreviousNo(this.FillingData.NextDigitNo) : (this.FillingData.CartonsetQueueZebraStatus == GlobalVariables.ZebraStatus.Freshnew ? this.getNextNo() : this.getPreviousNo())));
         }
 
         private string wholeBarcode(int serialIndentity)
@@ -918,6 +925,8 @@ namespace TotalSmartCoding.Controllers.Productions
                     {
                         if (!this.OnPrinting)
                         {
+                            if (GlobalEnums.DrumWithDigit && !this.FillingData.HasCarton) this.FillingData.CartonsetQueueZebraStatus = GlobalVariables.ZebraStatus.Printed; //INIT BY PRINTED!!! WILL BE SET FOR NEW PRINT WHEN DIGIT DOMINO PRINTER DOING PRINTING
+
                             #region Reset Message: Clear message: printerName != PalletLabel
 
                             if (this.printerName != GlobalVariables.PrinterName.PalletLabel && this.resetMessage)

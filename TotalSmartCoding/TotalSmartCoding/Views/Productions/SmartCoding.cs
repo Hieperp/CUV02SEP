@@ -479,7 +479,7 @@ namespace TotalSmartCoding.Views.Productions
                     if (e.PropertyName == "MainStatus") { this.digitStatusbox.Text = "[" + DateTime.Now.ToString("hh:mm:ss") + "] " + this.digitController.MainStatus + "\r\n" + this.digitStatusbox.Text; this.cutStatusBox(false); return; }
                     if (e.PropertyName == "LedStatus") { this.digitLEDGreen.Enabled = this.digitController.LedGreenOn; this.digitLEDAmber.Enabled = this.digitController.LedAmberOn; this.digitLEDRed.Enabled = this.digitController.LedRedOn; if (this.digitController.LedRedOn) this.StopPrint(true, true, this.fillingData.FillingLineID == GlobalVariables.FillingLine.Pail, false); return; }
 
-                    if (e.PropertyName == "NextDigitNo") { this.fillingData.NextDigitNo = this.packController.NextDigitNo; return; }
+                    if (e.PropertyName == "NextDigitNo") { this.fillingData.NextDigitNo = this.digitController.NextDigitNo; return; }
                 }
                 else if (sender.Equals(this.packController))
                 {
