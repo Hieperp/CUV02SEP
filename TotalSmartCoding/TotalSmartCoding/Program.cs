@@ -44,10 +44,10 @@ namespace TotalSmartCoding
 
             AutoMapperConfig.SetupMappings();
 
-            #region TEMPORARY INIT FOR FIRST TIME TO BY PASS APPLICATION ROLE
-            CommonConfigs.AddUpdateAppSetting("SecureCode", SecurePassword.Encrypt("NOTUSEAPPLICATIONROLE"));
-            CommonConfigs.AddUpdateAppSetting("SecurePrincipal", SecurePassword.Encrypt("NOTUSEAPPLICATIONROLE"));
-            #endregion
+            ////#region TEMPORARY INIT FOR FIRST TIME TO BY PASS APPLICATION ROLE
+            ////CommonConfigs.AddUpdateAppSetting("SecureCode", SecurePassword.Encrypt("NOTUSEAPPLICATIONROLE"));
+            ////CommonConfigs.AddUpdateAppSetting("SecurePrincipal", SecurePassword.Encrypt("NOTUSEAPPLICATIONROLE"));
+            ////#endregion
 
             ApplicationRoles.Name = CommonConfigs.ReadSetting("SecurePrincipal");
             ApplicationRoles.Password = CommonConfigs.ReadSetting("SecureCode");
