@@ -2630,6 +2630,9 @@
           <Parameter Name="FromDate" Type="datetime" Mode="In" />
           <Parameter Name="ToDate" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="GetLockedDate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LocationID" Type="int" Mode="In" />
+        </Function>
         <Function Name="GetModuleDetailIndexes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetModuleIndexes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserID" Type="int" Mode="In" />
@@ -3063,6 +3066,11 @@
         </Function>
         <Function Name="TransferOrderVoidable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="EntityID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UpdateLockedDate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserID" Type="int" Mode="In" />
+          <Parameter Name="LocationID" Type="int" Mode="In" />
+          <Parameter Name="LockedDate" Type="datetime" Mode="In" />
         </Function>
         <Function Name="UserEditable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="EntityID" Type="int" Mode="In" />
@@ -4904,6 +4912,14 @@
           </FunctionImport>
           <FunctionImport Name="GetUserGroupMembers" ReturnType="Collection(TotalSmartCodingModel.UserGroupMember)">
           <Parameter Name="UserGroupID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetLockedDate" ReturnType="Collection(DateTime)">
+          <Parameter Name="LocationID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateLockedDate">
+            <Parameter Name="UserID" Mode="In" Type="Int32" />
+            <Parameter Name="LocationID" Mode="In" Type="Int32" />
+            <Parameter Name="LockedDate" Mode="In" Type="DateTime" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
@@ -7750,6 +7766,7 @@
           <Property Type="Int32" Name="LocationID" Nullable="false" />
           <Property Type="String" Name="Code" Nullable="false" MaxLength="10" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="LockedDate" Nullable="false" Precision="23" />
         </ComplexType>
         <ComplexType Name="CommodityCategoryBase">
           <Property Type="Int32" Name="CommodityCategoryID" Nullable="false" />
@@ -10724,6 +10741,7 @@
                 <ScalarProperty Name="LocationID" ColumnName="LocationID" />
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LockedDate" ColumnName="LockedDate" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -11468,6 +11486,8 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetLockedDate" FunctionName="TotalSmartCodingModel.Store.GetLockedDate" />
+          <FunctionImportMapping FunctionImportName="UpdateLockedDate" FunctionName="TotalSmartCodingModel.Store.UpdateLockedDate" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

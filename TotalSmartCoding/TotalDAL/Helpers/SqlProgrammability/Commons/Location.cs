@@ -33,7 +33,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
-            queryString = queryString + "       SELECT      Locations.LocationID, Locations.Code, Locations.Name " + "\r\n";
+            queryString = queryString + "       SELECT      Locations.LocationID, Locations.Code, Locations.Name, Locations.LockedDate " + "\r\n";
             queryString = queryString + "       FROM        Locations " + "\r\n";
 
             queryString = queryString + "    END " + "\r\n";

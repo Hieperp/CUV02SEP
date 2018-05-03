@@ -303,6 +303,15 @@ namespace TotalDAL.Repositories
 
         private void CreateStoredProcedure()
         {
+            //return;
+
+            Helpers.SqlProgrammability.Commons.AccessControl accessControl = new Helpers.SqlProgrammability.Commons.AccessControl(totalSmartCodingEntities);
+            accessControl.RestoreProcedure();
+
+            //return;
+
+            Helpers.SqlProgrammability.Commons.Location location = new Helpers.SqlProgrammability.Commons.Location(totalSmartCodingEntities);
+            location.RestoreProcedure();
 
             return;
 
@@ -395,10 +404,7 @@ namespace TotalDAL.Repositories
             Helpers.SqlProgrammability.Commons.Warehouse warehouse = new Helpers.SqlProgrammability.Commons.Warehouse(totalSmartCodingEntities);
             warehouse.RestoreProcedure();
 
-            //return;
 
-            Helpers.SqlProgrammability.Commons.Location location = new Helpers.SqlProgrammability.Commons.Location(totalSmartCodingEntities);
-            location.RestoreProcedure();
 
             //return;
 
@@ -525,10 +531,7 @@ namespace TotalDAL.Repositories
 
 
 
-            //return;
-
-            Helpers.SqlProgrammability.Commons.AccessControl accessControl = new Helpers.SqlProgrammability.Commons.AccessControl(totalSmartCodingEntities);
-            accessControl.RestoreProcedure();
+            
 
 
 

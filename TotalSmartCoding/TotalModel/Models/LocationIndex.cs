@@ -16,5 +16,6 @@ namespace TotalModel.Models
         public int LocationID { get; set; }
         public string Code { get; set; }
         public string Name { get; set; }
+        public System.DateTime LockedDate { get; set; }
     }
 }

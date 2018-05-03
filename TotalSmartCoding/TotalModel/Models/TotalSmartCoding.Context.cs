@@ -2732,5 +2732,31 @@ namespace TotalModel.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UserGroupMember>("GetUserGroupMembers", userGroupIDParameter);
         }
+    
+        public virtual ObjectResult<Nullable<System.DateTime>> GetLockedDate(Nullable<int> locationID)
+        {
+            var locationIDParameter = locationID.HasValue ?
+                new ObjectParameter("LocationID", locationID) :
+                new ObjectParameter("LocationID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.DateTime>>("GetLockedDate", locationIDParameter);
+        }
+    
+        public virtual int UpdateLockedDate(Nullable<int> userID, Nullable<int> locationID, Nullable<System.DateTime> lockedDate)
+        {
+            var userIDParameter = userID.HasValue ?
+                new ObjectParameter("UserID", userID) :
+                new ObjectParameter("UserID", typeof(int));
+    
+            var locationIDParameter = locationID.HasValue ?
+                new ObjectParameter("LocationID", locationID) :
+                new ObjectParameter("LocationID", typeof(int));
+    
+            var lockedDateParameter = lockedDate.HasValue ?
+                new ObjectParameter("LockedDate", lockedDate) :
+                new ObjectParameter("LockedDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateLockedDate", userIDParameter, locationIDParameter, lockedDateParameter);
+        }
     }
 }

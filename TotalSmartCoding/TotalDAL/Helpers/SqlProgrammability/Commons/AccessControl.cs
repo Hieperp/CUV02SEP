@@ -23,6 +23,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
 
             this.GetShowDiscount();
             //this.GetShowDiscountByCustomer();
+            this.GetLockedDate();
             this.UpdateLockedDate();
 
             this.GetUserOrganizationalUnit();
@@ -128,6 +129,19 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             queryString = queryString + "       SELECT      CAST(MAX(CAST(CustomerCategories.ShowDiscount AS Int)) AS Bit) AS ShowDiscount FROM Customers INNER JOIN CustomerCategories ON Customers.CustomerID = @CustomerID AND Customers.CustomerCategoryID = CustomerCategories.CustomerCategoryID " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("GetShowDiscountByCustomer", queryString);
+        }
+
+        private void GetLockedDate()
+        {
+            string queryString = " @LocationID Int " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+
+            queryString = queryString + "       SELECT      MAX(LockedDate) " + "\r\n";
+            queryString = queryString + "       FROM        Locations " + "\r\n";
+            queryString = queryString + "       WHERE       LocationID = @LocationID " + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("GetLockedDate", queryString);
         }
 
         private void UpdateLockedDate()
