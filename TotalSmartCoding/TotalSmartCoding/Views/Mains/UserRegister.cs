@@ -45,7 +45,7 @@ namespace TotalSmartCoding.Views.Mains
 
                     foreach (var found in srch.FindAll())// find all matches
                     {// do whatever here - "found" is of type "Principal" - it could be user, group, computer.....          
-                        allUsers.Add(new DomainUser() { FirstName = found.DisplayName, LastName = found.Name, UserName = this.GetWindowsIdentityName(found.DistinguishedName), SecurityIdentifier = found.Sid.Value });
+                        allUsers.Add(new DomainUser() { FirstName = found.DisplayName, LastName = found.Name, UserName = found.SamAccountName, SecurityIdentifier = found.Sid.Value }); //found.UserPrincipalName: the same as SamAccountName, but with @chevron.com
                     }
                 }
                 else
