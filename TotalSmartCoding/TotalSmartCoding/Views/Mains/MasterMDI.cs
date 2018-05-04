@@ -838,7 +838,13 @@ namespace TotalSmartCoding.Views.Mains
 
         }
 
+        private void buttonLockedDate_Click(object sender, EventArgs e)
+        {
+            LockedDates lockedDates = new LockedDates();
+            DialogResult dialogResult = lockedDates.ShowDialog();
 
+            lockedDates.Dispose();
+        }
 
         #region Search barcode
         private void comboSearchBarcode_Enter(object sender, EventArgs e)
@@ -884,6 +890,8 @@ namespace TotalSmartCoding.Views.Mains
             }
         }
         #endregion Search barcode
+
+        
 
 
 

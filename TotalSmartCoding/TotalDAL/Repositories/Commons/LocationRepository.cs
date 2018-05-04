@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 using TotalModel.Models;
 using TotalCore.Repositories.Commons;
+using System;
 
 
 namespace TotalDAL.Repositories.Commons
@@ -31,6 +32,11 @@ namespace TotalDAL.Repositories.Commons
             IList<LocationBase> locationBases = this.TotalSmartCodingEntities.GetLocationBases().OrderBy(o => o.Name).ToList();
             if (withNullRow) locationBases.Add(new LocationBase() { LocationID = 0 });
             return locationBases;
+        }
+
+        public int UpdateLockedDate(int userID, int locationID, DateTime lockedDate)
+        {
+            return this.TotalSmartCodingEntities.UpdateLockedDate(userID, locationID, lockedDate);
         }
     }
 }

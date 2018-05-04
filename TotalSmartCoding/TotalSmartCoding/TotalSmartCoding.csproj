@@ -382,6 +382,12 @@
     <Compile Include="Views\Mains\ExcelSheets.designer.cs">
       <DependentUpon>ExcelSheets.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Mains\LockedDates.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Mains\LockedDates.Designer.cs">
+      <DependentUpon>LockedDates.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Mains\SearchBarcode.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -623,6 +629,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Mains\ExcelSheets.resx">
       <DependentUpon>ExcelSheets.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Mains\LockedDates.resx">
+      <DependentUpon>LockedDates.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Mains\SearchBarcode.resx">
       <DependentUpon>SearchBarcode.cs</DependentUpon>
@@ -1365,6 +1374,8 @@
     <None Include="Resources\Addressbook-IconG.ico" />
     <None Include="Resources\Add-UserGroup.png" />
     <None Include="Resources\Remove-UserGroup.png" />
+    <None Include="Resources\calendar-with-check-mark.png" />
+    <None Include="Resources\calendar-with-check-mark-G.png" />
     <Content Include="SmartCodingSolution.ico" />
     <None Include="Resources\Yellow-cross.ico" />
     <None Include="Resources\White-Pallet.ico" />

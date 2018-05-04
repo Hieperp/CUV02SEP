@@ -49,12 +49,17 @@ namespace TotalSmartCoding
             ////CommonConfigs.AddUpdateAppSetting("SecurePrincipal", SecurePassword.Encrypt("NOTUSEAPPLICATIONROLE"));
             ////#endregion
 
+            string NotUseApplicationRole = CommonConfigs.ReadSetting("NotUseApplicationRole");
+            bool notUseApplicationRole = false;
+            if (bool.TryParse(NotUseApplicationRole, out notUseApplicationRole))
+                ApplicationRoles.NotApplicable = notUseApplicationRole;
+
             ApplicationRoles.Name = CommonConfigs.ReadSetting("SecurePrincipal");
             ApplicationRoles.Password = CommonConfigs.ReadSetting("SecureCode");
 
             if (ApplicationRoles.Name != "") ApplicationRoles.Name = SecurePassword.Decrypt(ApplicationRoles.Name);
             if (ApplicationRoles.Password != "") ApplicationRoles.Password = SecurePassword.Decrypt(ApplicationRoles.Password);
-            
+
             TrialConnects trialConnects = new TrialConnects();
             DialogResult trialConnectResult = trialConnects.Connected();
             if (trialConnectResult == DialogResult.Yes)

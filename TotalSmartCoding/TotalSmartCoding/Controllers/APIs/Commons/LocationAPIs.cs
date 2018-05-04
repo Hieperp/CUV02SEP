@@ -37,5 +37,10 @@ namespace TotalSmartCoding.Controllers.APIs.Commons
             return this.locationAPIRepository.GetLocationBases(withNullRow);
         }
 
+        public int UpdateLockedDate(int locationID, DateTime lockedDate)
+        {
+            return this.locationAPIRepository.UpdateLockedDate(ContextAttributes.User.UserID, locationID, lockedDate);
+        }
+
     }
 }
