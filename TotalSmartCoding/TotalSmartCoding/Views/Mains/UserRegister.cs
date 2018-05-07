@@ -37,6 +37,8 @@ namespace TotalSmartCoding.Views.Mains
             {
                 List<DomainUser> allUsers = new List<DomainUser>();
 
+                //userAPIs.UpdateUserName("S-1-5-21-3775195119-1044016383-3360809325-1001", "NMVN\vendor");
+
                 if (true)
                 {
                     PrincipalContext ctx = new PrincipalContext(ContextType.Domain, "chevronvn.com"); //, "OU=SomeOU,dc=YourCompany,dc=com"// create your domain context and define the OU container to search in
@@ -45,7 +47,10 @@ namespace TotalSmartCoding.Views.Mains
 
                     foreach (var found in srch.FindAll())// find all matches
                     {// do whatever here - "found" is of type "Principal" - it could be user, group, computer.....          
-                        allUsers.Add(new DomainUser() { FirstName = found.DisplayName, LastName = found.Name, UserName = found.SamAccountName, SecurityIdentifier = found.Sid.Value }); //found.UserPrincipalName: the same as SamAccountName, but with @chevron.com
+
+                        if (found.Sid.Value != null && found.Sid.Value != "" && found.SamAccountName != null && found.SamAccountName != "") userAPIs.UpdateUserName(found.Sid.Value, found.SamAccountName);
+
+                        allUsers.Add(new DomainUser() { FirstName = "", LastName = "", UserName = found.SamAccountName, SecurityIdentifier = found.Sid.Value }); //found.UserPrincipalName: the same as SamAccountName, but with @chevron.com
                     }
                 }
                 else

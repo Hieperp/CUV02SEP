@@ -58,6 +58,11 @@ namespace TotalSmartCoding.Controllers.APIs.Generals
             return this.userAPIRepository.UserToggleVoid(userID, inActive);
         }
 
+        public int UpdateUserName(string securityIdentifier, string userName)
+        {
+            return this.userAPIRepository.UpdateUserName(securityIdentifier, userName);
+        }
+
         public int SaveUserAccessControls(int? accessControlID, int? accessLevel, bool? approvalPermitted, bool? unApprovalPermitted, bool? voidablePermitted, bool? unVoidablePermitted, bool? showDiscount)
         {
             return this.userAPIRepository.SaveUserAccessControls(accessControlID, accessLevel, approvalPermitted, unApprovalPermitted, voidablePermitted, unVoidablePermitted, showDiscount);

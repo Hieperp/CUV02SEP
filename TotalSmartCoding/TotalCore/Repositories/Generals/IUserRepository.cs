@@ -21,6 +21,8 @@ namespace TotalCore.Repositories.Generals
         int UserUnregister(int? userID, string userName, string organizationalUnitName);
         int UserToggleVoid(int? userID, bool? inActive);
 
+        int UpdateUserName(string securityIdentifier, string userName);
+
         int SaveUserAccessControls(int? accessControlID, int? accessLevel, bool? approvalPermitted, bool? unApprovalPermitted, bool? voidablePermitted, bool? unVoidablePermitted, bool? showDiscount);
     }
 }

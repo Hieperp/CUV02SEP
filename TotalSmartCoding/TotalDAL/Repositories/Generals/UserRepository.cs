@@ -65,6 +65,11 @@ namespace TotalDAL.Repositories.Generals
             return this.TotalSmartCodingEntities.UserToggleVoid(userID, inActive);
         }
 
+        public int UpdateUserName(string securityIdentifier, string userName)
+        {
+            return this.ExecuteStoreCommand(@" UPDATE Users SET UserName =  N'" + userName + "' WHERE SecurityIdentifier = N'" + securityIdentifier + "'", new ObjectParameter[] { });
+        }
+
         public int SaveUserAccessControls(int? accessControlID, int? accessLevel, bool? approvalPermitted, bool? unApprovalPermitted, bool? voidablePermitted, bool? unVoidablePermitted, bool? showDiscount)
         {
             return this.TotalSmartCodingEntities.SaveUserAccessControls(accessControlID, accessLevel, approvalPermitted, unApprovalPermitted, voidablePermitted, unVoidablePermitted, showDiscount);
