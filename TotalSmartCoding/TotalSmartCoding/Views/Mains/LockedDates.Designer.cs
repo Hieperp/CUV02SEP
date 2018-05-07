@@ -33,8 +33,9 @@
             this.buttonForward = new System.Windows.Forms.ToolStripButton();
             this.fastUserGroups = new BrightIdeasSoftware.FastObjectListView();
             this.olvID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvUserGroupName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvLocation = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvLockedDate = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.buttonESC = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastUserGroups)).BeginInit();
             this.SuspendLayout();
@@ -45,12 +46,13 @@
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.buttonESC,
             this.buttonBackward,
             this.buttonForward});
             this.toolStrip1.Location = new System.Drawing.Point(0, 229);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStrip1.Size = new System.Drawing.Size(562, 39);
+            this.toolStrip1.Size = new System.Drawing.Size(656, 39);
             this.toolStrip1.TabIndex = 100;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -81,12 +83,12 @@
             // fastUserGroups
             // 
             this.fastUserGroups.AllColumns.Add(this.olvID);
-            this.fastUserGroups.AllColumns.Add(this.olvUserGroupName);
+            this.fastUserGroups.AllColumns.Add(this.olvLocation);
             this.fastUserGroups.AllColumns.Add(this.olvLockedDate);
             this.fastUserGroups.BackColor = System.Drawing.Color.Ivory;
             this.fastUserGroups.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.olvID,
-            this.olvUserGroupName,
+            this.olvLocation,
             this.olvLockedDate});
             this.fastUserGroups.Cursor = System.Windows.Forms.Cursors.Default;
             this.fastUserGroups.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -100,7 +102,7 @@
             this.fastUserGroups.OwnerDraw = true;
             this.fastUserGroups.RowHeight = 36;
             this.fastUserGroups.ShowGroups = false;
-            this.fastUserGroups.Size = new System.Drawing.Size(562, 229);
+            this.fastUserGroups.Size = new System.Drawing.Size(656, 229);
             this.fastUserGroups.TabIndex = 101;
             this.fastUserGroups.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastUserGroups.UseCompatibleStateImageBehavior = false;
@@ -113,27 +115,36 @@
             this.olvID.Text = "";
             this.olvID.Width = 20;
             // 
-            // olvUserGroupName
+            // olvLocation
             // 
-            this.olvUserGroupName.AspectName = "Name";
-            this.olvUserGroupName.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvUserGroupName.Sortable = false;
-            this.olvUserGroupName.Text = "Location";
-            this.olvUserGroupName.Width = 168;
+            this.olvLocation.AspectName = "Name";
+            this.olvLocation.Sortable = false;
+            this.olvLocation.Text = "Location";
+            this.olvLocation.Width = 218;
             // 
             // olvLockedDate
             // 
             this.olvLockedDate.AspectName = "LockedDate";
             this.olvLockedDate.FillsFreeSpace = true;
             this.olvLockedDate.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvLockedDate.Text = "Locked as at date";
+            this.olvLockedDate.Text = "Current closing date";
             this.olvLockedDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // buttonESC
+            // 
+            this.buttonESC.Image = global::TotalSmartCoding.Properties.Resources.signout_icon_24;
+            this.buttonESC.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonESC.Name = "buttonESC";
+            this.buttonESC.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.buttonESC.Size = new System.Drawing.Size(57, 36);
+            this.buttonESC.Text = "Exit";
+            this.buttonESC.Click += new System.EventHandler(this.buttonOKESC_Click);
             // 
             // LockedDates
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(562, 268);
+            this.ClientSize = new System.Drawing.Size(656, 268);
             this.Controls.Add(this.fastUserGroups);
             this.Controls.Add(this.toolStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -141,7 +152,7 @@
             this.MinimizeBox = false;
             this.Name = "LockedDates";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Manage locked date for readonly";
+            this.Text = "Month-end Closing";
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastUserGroups)).EndInit();
@@ -157,7 +168,8 @@
         private System.Windows.Forms.ToolStripButton buttonForward;
         private BrightIdeasSoftware.FastObjectListView fastUserGroups;
         private BrightIdeasSoftware.OLVColumn olvID;
-        private BrightIdeasSoftware.OLVColumn olvUserGroupName;
+        private BrightIdeasSoftware.OLVColumn olvLocation;
         private BrightIdeasSoftware.OLVColumn olvLockedDate;
+        private System.Windows.Forms.ToolStripButton buttonESC;
     }
 }
