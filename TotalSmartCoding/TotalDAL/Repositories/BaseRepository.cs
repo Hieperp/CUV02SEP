@@ -342,7 +342,7 @@ namespace TotalDAL.Repositories
             Helpers.SqlProgrammability.Commons.Location location = new Helpers.SqlProgrammability.Commons.Location(totalSmartCodingEntities);
             location.RestoreProcedure();
 
-            return;
+            //return;
 
             Helpers.SqlProgrammability.Generals.UserGroup userGroup = new Helpers.SqlProgrammability.Generals.UserGroup(totalSmartCodingEntities);
             userGroup.RestoreProcedure();
@@ -387,8 +387,8 @@ namespace TotalDAL.Repositories
             Helpers.SqlProgrammability.Commons.FillingLine fillingLine = new Helpers.SqlProgrammability.Commons.FillingLine(totalSmartCodingEntities);
             fillingLine.RestoreProcedure();
 
-            //return;
-            //return;
+            return;
+            return;
 
             Helpers.SqlProgrammability.Sales.Forecast forecast = new Helpers.SqlProgrammability.Sales.Forecast(totalSmartCodingEntities);
             forecast.RestoreProcedure();
