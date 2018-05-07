@@ -59,6 +59,33 @@ namespace TotalDAL.Repositories
                 this.totalSmartCodingEntities.ColumnAdd("Configs", "StoredID", "int", "0", true);
             }
 
+
+
+
+            #region ApplicationRoles
+            if (!this.totalSmartCodingEntities.TableExists("ApplicationRoles"))
+            {
+                this.ExecuteStoreCommand(@"CREATE TABLE [dbo].[ApplicationRoles](
+	                                                    [ApplicationRoleID] [int] NOT NULL,
+	                                                    [Name] [nvarchar](100) NOT NULL,
+	                                                    [Password] [nvarchar](100) NOT NULL,
+	                                                    [EditedDate] [datetime] NOT NULL,
+                                                     CONSTRAINT [PK_ApplicationRoles] PRIMARY KEY CLUSTERED 
+                                                    (
+	                                                    [ApplicationRoleID] ASC
+                                                    )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+                                                    ) ON [PRIMARY]
+                                                ", new ObjectParameter[] { });
+
+                this.ExecuteStoreCommand(@" UPDATE Locations SET LockedDate = CONVERT(DATETIME, '2018-10-31 23:59:59', 102), EditedDate = GETDATE() ", new ObjectParameter[] { });
+            }
+            #endregion ApplicationRoles
+
+
+
+
+
+
             #region UserGroups
             if (!this.totalSmartCodingEntities.TableExists("UserGroups"))
             {
