@@ -2758,5 +2758,31 @@ namespace TotalModel.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateLockedDate", userIDParameter, locationIDParameter, lockedDateParameter);
         }
+    
+        public virtual ObjectResult<ApplicationRole> GetApplicationRoles(Nullable<int> applicationRoleID)
+        {
+            var applicationRoleIDParameter = applicationRoleID.HasValue ?
+                new ObjectParameter("ApplicationRoleID", applicationRoleID) :
+                new ObjectParameter("ApplicationRoleID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ApplicationRole>("GetApplicationRoles", applicationRoleIDParameter);
+        }
+    
+        public virtual int UpdateApplicationRole(Nullable<int> applicationRoleID, string name, string password)
+        {
+            var applicationRoleIDParameter = applicationRoleID.HasValue ?
+                new ObjectParameter("ApplicationRoleID", applicationRoleID) :
+                new ObjectParameter("ApplicationRoleID", typeof(int));
+    
+            var nameParameter = name != null ?
+                new ObjectParameter("Name", name) :
+                new ObjectParameter("Name", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("Password", password) :
+                new ObjectParameter("Password", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateApplicationRole", applicationRoleIDParameter, nameParameter, passwordParameter);
+        }
     }
 }

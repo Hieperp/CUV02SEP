@@ -94,6 +94,8 @@
             this.dateTimexLowerFillterDate = new CustomControls.DateTimexPicker();
             this.dateTimexUpperFillterDate = new CustomControls.DateTimexPicker();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.toolStripSplitButton5 = new System.Windows.Forms.ToolStripSplitButton();
+            this.labelApplicationRole = new System.Windows.Forms.ToolStripStatusLabel();
             this.naviBarModuleMaster.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastNMVNTask)).BeginInit();
             this.statusStrip.SuspendLayout();
@@ -300,6 +302,8 @@
             this.statusVersion,
             this.toolStripSplitButton2,
             this.toolStripStatusLabel2,
+            this.toolStripSplitButton5,
+            this.labelApplicationRole,
             this.toolStripSplitButton4,
             this.statusUserDescription});
             this.statusStrip.Location = new System.Drawing.Point(0, 1011);
@@ -312,8 +316,8 @@
             // toolStripStatusLabel
             // 
             this.toolStripStatusLabel.Name = "toolStripStatusLabel";
-            this.toolStripStatusLabel.Size = new System.Drawing.Size(212, 21);
-            this.toolStripStatusLabel.Text = "Designed by Le Minh Hiep       ";
+            this.toolStripStatusLabel.Size = new System.Drawing.Size(200, 21);
+            this.toolStripStatusLabel.Text = "Designed by Le Minh Hiep    ";
             // 
             // toolStripSplitButton1
             // 
@@ -327,8 +331,8 @@
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(407, 21);
-            this.toolStripStatusLabel1.Text = " Cell phone: +84-0903-880-501     +84-0919-878-329            ";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(351, 21);
+            this.toolStripStatusLabel1.Text = " Cell phone: +84-0903-880-501   +84-0919-878-329";
             // 
             // toolStripSplitButton3
             // 
@@ -343,7 +347,7 @@
             // 
             this.statusVersion.AutoSize = false;
             this.statusVersion.Name = "statusVersion";
-            this.statusVersion.Size = new System.Drawing.Size(260, 21);
+            this.statusVersion.Size = new System.Drawing.Size(242, 21);
             this.statusVersion.Text = "Version 1.91i Date: 19.Feb.2016 ";
             this.statusVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -360,8 +364,8 @@
             // 
             this.toolStripStatusLabel2.AutoSize = false;
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(360, 21);
-            this.toolStripStatusLabel2.Text = "Email: hieple.erp@gmail.com;    hieperp@gmail.com;  ";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(290, 21);
+            this.toolStripStatusLabel2.Text = "Email: hieple.erp@gmail.com;  hieperp@gmail.com";
             this.toolStripStatusLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // toolStripSplitButton4
@@ -377,7 +381,7 @@
             // 
             this.statusUserDescription.AutoSize = false;
             this.statusUserDescription.Name = "statusUserDescription";
-            this.statusUserDescription.Size = new System.Drawing.Size(348, 21);
+            this.statusUserDescription.Size = new System.Drawing.Size(328, 21);
             this.statusUserDescription.Text = "Le Minh Hiep";
             this.statusUserDescription.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -679,9 +683,9 @@
             this.comboDetailFilterTexts,
             this.buttonClearDetailFilters});
             this.toolStripTopHead.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.toolStripTopHead.Location = new System.Drawing.Point(592, 0);
+            this.toolStripTopHead.Location = new System.Drawing.Point(553, 0);
             this.toolStripTopHead.Name = "toolStripTopHead";
-            this.toolStripTopHead.Size = new System.Drawing.Size(1314, 55);
+            this.toolStripTopHead.Size = new System.Drawing.Size(1353, 55);
             this.toolStripTopHead.TabIndex = 5;
             this.toolStripTopHead.Text = "toolStrip1";
             // 
@@ -779,7 +783,7 @@
             this.layoutTop.Name = "layoutTop";
             this.layoutTop.RowCount = 1;
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 55F));
-            this.layoutTop.Size = new System.Drawing.Size(592, 55);
+            this.layoutTop.Size = new System.Drawing.Size(553, 55);
             this.layoutTop.TabIndex = 9;
             // 
             // toolStrip1
@@ -796,7 +800,7 @@
             this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(301, 55);
+            this.toolStrip1.Size = new System.Drawing.Size(262, 55);
             this.toolStrip1.TabIndex = 76;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -850,7 +854,7 @@
             this.dateTimexLowerFillterDate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dateTimexLowerFillterDate.Editable = true;
             this.dateTimexLowerFillterDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimexLowerFillterDate.Location = new System.Drawing.Point(339, 8);
+            this.dateTimexLowerFillterDate.Location = new System.Drawing.Point(300, 8);
             this.dateTimexLowerFillterDate.Margin = new System.Windows.Forms.Padding(0, 8, 1, 1);
             this.dateTimexLowerFillterDate.Name = "dateTimexLowerFillterDate";
             this.dateTimexLowerFillterDate.ReadOnly = false;
@@ -863,7 +867,7 @@
             this.dateTimexUpperFillterDate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dateTimexUpperFillterDate.Editable = true;
             this.dateTimexUpperFillterDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimexUpperFillterDate.Location = new System.Drawing.Point(466, 8);
+            this.dateTimexUpperFillterDate.Location = new System.Drawing.Point(427, 8);
             this.dateTimexUpperFillterDate.Margin = new System.Windows.Forms.Padding(0, 8, 0, 1);
             this.dateTimexUpperFillterDate.Name = "dateTimexUpperFillterDate";
             this.dateTimexUpperFillterDate.ReadOnly = false;
@@ -873,12 +877,27 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::TotalSmartCoding.Properties.Resources.calendar_blue_32;
-            this.pictureBox1.Location = new System.Drawing.Point(304, 3);
+            this.pictureBox1.Location = new System.Drawing.Point(265, 3);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(32, 32);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox1.TabIndex = 92;
             this.pictureBox1.TabStop = false;
+            // 
+            // toolStripSplitButton5
+            // 
+            this.toolStripSplitButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.None;
+            this.toolStripSplitButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton5.Image")));
+            this.toolStripSplitButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSplitButton5.Name = "toolStripSplitButton5";
+            this.toolStripSplitButton5.Size = new System.Drawing.Size(19, 24);
+            this.toolStripSplitButton5.Text = "toolStripSplitButton5";
+            // 
+            // labelApplicationRole
+            // 
+            this.labelApplicationRole.Name = "labelApplicationRole";
+            this.labelApplicationRole.Size = new System.Drawing.Size(181, 21);
+            this.labelApplicationRole.Text = "[Windows Authentication]";
             // 
             // MasterMDI
             // 
@@ -994,6 +1013,8 @@
         private CustomControls.DateTimexPicker dateTimexUpperFillterDate;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ToolStripButton toolUserGroupControls;
+        private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton5;
+        private System.Windows.Forms.ToolStripStatusLabel labelApplicationRole;
 
     }
 }

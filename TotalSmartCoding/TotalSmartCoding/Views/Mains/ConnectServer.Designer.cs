@@ -40,9 +40,9 @@
             this.textexApplicationRolePassword = new CustomControls.TextexBox();
             this.pictureBoxIcon = new System.Windows.Forms.PictureBox();
             this.buttonExit = new System.Windows.Forms.ToolStripButton();
-            this.buttonConnect = new System.Windows.Forms.ToolStripButton();
-            this.buttonResetApplicationRole = new System.Windows.Forms.ToolStripButton();
-            this.buttonIgnoreApplicationRole = new System.Windows.Forms.ToolStripButton();
+            this.buttonUpdate = new System.Windows.Forms.ToolStripButton();
+            this.buttonApplicationRoleIgnored = new System.Windows.Forms.ToolStripButton();
+            this.buttonApplicationRoleRequired = new System.Windows.Forms.ToolStripButton();
             this.panelBottom.SuspendLayout();
             this.panelBottomRight.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -80,7 +80,7 @@
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.buttonExit,
-            this.buttonConnect});
+            this.buttonUpdate});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -104,8 +104,8 @@
             this.toolStrip2.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.buttonResetApplicationRole,
-            this.buttonIgnoreApplicationRole});
+            this.buttonApplicationRoleIgnored,
+            this.buttonApplicationRoleRequired});
             this.toolStrip2.Location = new System.Drawing.Point(0, 0);
             this.toolStrip2.Name = "toolStrip2";
             this.toolStrip2.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -193,7 +193,7 @@
             // 
             // pictureBoxIcon
             // 
-            this.pictureBoxIcon.Image = global::TotalSmartCoding.Properties.Resources.ApplicationRoles;
+            this.pictureBoxIcon.Image = global::TotalSmartCoding.Properties.Resources.if_key_48;
             this.pictureBoxIcon.Location = new System.Drawing.Point(35, 27);
             this.pictureBoxIcon.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBoxIcon.Name = "pictureBoxIcon";
@@ -214,39 +214,37 @@
             this.buttonExit.Text = "Exit";
             this.buttonExit.Click += new System.EventHandler(this.button_Click);
             // 
-            // buttonConnect
+            // buttonUpdate
             // 
-            this.buttonConnect.Enabled = false;
-            this.buttonConnect.Image = global::TotalSmartCoding.Properties.Resources.LoginApplicationRole;
-            this.buttonConnect.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.buttonConnect.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonConnect.Name = "buttonConnect";
-            this.buttonConnect.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.buttonConnect.Size = new System.Drawing.Size(99, 39);
-            this.buttonConnect.Text = "Connect";
-            this.buttonConnect.Click += new System.EventHandler(this.button_Click);
+            this.buttonUpdate.Enabled = false;
+            this.buttonUpdate.Image = global::TotalSmartCoding.Properties.Resources.LoginApplicationRole;
+            this.buttonUpdate.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonUpdate.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonUpdate.Name = "buttonUpdate";
+            this.buttonUpdate.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.buttonUpdate.Size = new System.Drawing.Size(94, 39);
+            this.buttonUpdate.Text = "Update";
+            this.buttonUpdate.Click += new System.EventHandler(this.button_Click);
             // 
-            // buttonResetApplicationRole
+            // buttonApplicationRoleIgnored
             // 
-            this.buttonResetApplicationRole.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.buttonResetApplicationRole.Image = global::TotalSmartCoding.Properties.Resources.Ignore_x_20;
-            this.buttonResetApplicationRole.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonResetApplicationRole.Name = "buttonResetApplicationRole";
-            this.buttonResetApplicationRole.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.buttonResetApplicationRole.Size = new System.Drawing.Size(24, 39);
-            this.buttonResetApplicationRole.Text = "Reset application role";
-            this.buttonResetApplicationRole.Visible = false;
-            this.buttonResetApplicationRole.Click += new System.EventHandler(this.button_Click);
+            this.buttonApplicationRoleIgnored.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.buttonApplicationRoleIgnored.Image = global::TotalSmartCoding.Properties.Resources.Ignore_x_20;
+            this.buttonApplicationRoleIgnored.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonApplicationRoleIgnored.Name = "buttonApplicationRoleIgnored";
+            this.buttonApplicationRoleIgnored.Size = new System.Drawing.Size(24, 39);
+            this.buttonApplicationRoleIgnored.Text = "Ignore application role";
+            this.buttonApplicationRoleIgnored.Click += new System.EventHandler(this.button_Click);
             // 
-            // buttonIgnoreApplicationRole
+            // buttonApplicationRoleRequired
             // 
-            this.buttonIgnoreApplicationRole.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.buttonIgnoreApplicationRole.Image = global::TotalSmartCoding.Properties.Resources.Continue_x_20;
-            this.buttonIgnoreApplicationRole.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonIgnoreApplicationRole.Name = "buttonIgnoreApplicationRole";
-            this.buttonIgnoreApplicationRole.Size = new System.Drawing.Size(24, 39);
-            this.buttonIgnoreApplicationRole.Text = "Ignore application role";
-            this.buttonIgnoreApplicationRole.Click += new System.EventHandler(this.button_Click);
+            this.buttonApplicationRoleRequired.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.buttonApplicationRoleRequired.Image = global::TotalSmartCoding.Properties.Resources.Continue_x_20;
+            this.buttonApplicationRoleRequired.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonApplicationRoleRequired.Name = "buttonApplicationRoleRequired";
+            this.buttonApplicationRoleRequired.Size = new System.Drawing.Size(24, 39);
+            this.buttonApplicationRoleRequired.Text = "Use application role";
+            this.buttonApplicationRoleRequired.Click += new System.EventHandler(this.button_Click);
             // 
             // ConnectServer
             // 
@@ -286,16 +284,16 @@
         private System.Windows.Forms.Panel panelBottomRight;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton buttonExit;
-        private System.Windows.Forms.ToolStripButton buttonConnect;
+        private System.Windows.Forms.ToolStripButton buttonUpdate;
         private System.Windows.Forms.Panel panelBottomLeft;
         private System.Windows.Forms.ToolStrip toolStrip2;
-        private System.Windows.Forms.ToolStripButton buttonResetApplicationRole;
         private System.Windows.Forms.TableLayoutPanel layoutTop;
         private System.Windows.Forms.Label labelApplicationRoleName;
         private System.Windows.Forms.Label labelApplicationRolePassword;
         private System.Windows.Forms.PictureBox pictureBoxIcon;
         private CustomControls.TextexBox textexApplicationRoleName;
         private CustomControls.TextexBox textexApplicationRolePassword;
-        private System.Windows.Forms.ToolStripButton buttonIgnoreApplicationRole;
+        private System.Windows.Forms.ToolStripButton buttonApplicationRoleRequired;
+        private System.Windows.Forms.ToolStripButton buttonApplicationRoleIgnored;
     }
 }

@@ -2474,6 +2474,9 @@
         <Function Name="GetActiveUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="SecurityIdentifier" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="GetApplicationRoles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationRoleID" Type="int" Mode="In" />
+        </Function>
         <Function Name="GetApprovalPermitted" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserID" Type="int" Mode="In" />
           <Parameter Name="NMVNTaskID" Type="int" Mode="In" />
@@ -3066,6 +3069,11 @@
         </Function>
         <Function Name="TransferOrderVoidable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="EntityID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UpdateApplicationRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationRoleID" Type="int" Mode="In" />
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="UpdateLockedDate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserID" Type="int" Mode="In" />
@@ -4920,6 +4928,14 @@
             <Parameter Name="UserID" Mode="In" Type="Int32" />
             <Parameter Name="LocationID" Mode="In" Type="Int32" />
             <Parameter Name="LockedDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="GetApplicationRoles" ReturnType="Collection(TotalSmartCodingModel.ApplicationRole)">
+          <Parameter Name="ApplicationRoleID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateApplicationRole">
+            <Parameter Name="ApplicationRoleID" Mode="In" Type="Int32" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
@@ -8690,6 +8706,10 @@
           <Property Type="String" Name="UserName" Nullable="false" MaxLength="256" />
           <Property Type="String" Name="UserType" Nullable="false" MaxLength="15" />
         </ComplexType>
+        <ComplexType Name="ApplicationRole">
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="100" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -11488,6 +11508,15 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="GetLockedDate" FunctionName="TotalSmartCodingModel.Store.GetLockedDate" />
           <FunctionImportMapping FunctionImportName="UpdateLockedDate" FunctionName="TotalSmartCodingModel.Store.UpdateLockedDate" />
+          <FunctionImportMapping FunctionImportName="GetApplicationRoles" FunctionName="TotalSmartCodingModel.Store.GetApplicationRoles">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TotalSmartCodingModel.ApplicationRole">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UpdateApplicationRole" FunctionName="TotalSmartCodingModel.Store.UpdateApplicationRole" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

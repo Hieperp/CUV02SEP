@@ -3203,6 +3203,26 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap if_key_20 {
+            get {
+                object obj = ResourceManager.GetObject("if_key_20", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap if_key_48 {
+            get {
+                object obj = ResourceManager.GetObject("if_key_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap if_oil_64502 {
             get {
                 object obj = ResourceManager.GetObject("if_oil_64502", resourceCulture);
@@ -5176,6 +5196,36 @@ namespace TotalSmartCoding.Properties {
         internal static System.Drawing.Bitmap Search_vista {
             get {
                 object obj = ResourceManager.GetObject("Search-vista", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap secure_24 {
+            get {
+                object obj = ResourceManager.GetObject("secure-24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap secure_241 {
+            get {
+                object obj = ResourceManager.GetObject("secure-241", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap secure_32 {
+            get {
+                object obj = ResourceManager.GetObject("secure-32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

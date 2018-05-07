@@ -15,6 +15,9 @@ namespace TotalCore.Repositories
         bool IsDirty();
         bool AutoUpdates(bool restoreProcedures);
 
+        void GetApplicationRoles();
+        int UpdateApplicationRole(string name, string password);
+
         int? GetStoredID(int configID);
         int? GetVersionID(int configID);        
         bool VersionValidate(int configID, int configVersionID);        

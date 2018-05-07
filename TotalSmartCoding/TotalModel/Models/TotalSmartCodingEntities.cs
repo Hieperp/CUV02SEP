@@ -112,15 +112,15 @@ namespace TotalModel.Models
     {
         public FE6CodeConfig()
         {
-            if (ApplicationRoles.Name != "" && !ApplicationRoles.NotApplicable)
+            if (ApplicationRoles.Required)
                 this.AddInterceptor(new DbConnectionApplicationRoleInterceptor());
         }
     }
 
     public class DbConnectionApplicationRoleInterceptor : IDbConnectionInterceptor
     {
-        private readonly string _appRole;
-        private readonly string _password;
+        private string _appRole;
+        private string _password;
         private byte[] _cookie;
 
         public DbConnectionApplicationRoleInterceptor()
@@ -140,6 +140,8 @@ namespace TotalModel.Models
             {
                 Debug.WriteLine("Connection Opened.");
                 ApplicationRoles.ExceptionMessage = "";
+
+                if (_appRole == "" && ApplicationRoles.Name != "") { _appRole = ApplicationRoles.Name; _password = ApplicationRoles.Password; }
 
                 if (connection.State != ConnectionState.Open) return;
                 if (_appRole != "") ActivateApplicationRole(connection, _appRole, _password);
@@ -221,8 +223,7 @@ namespace TotalModel.Models
         public virtual void DeActivateApplicationRole(DbConnection dbConn, byte[] cookie)
         {
             try
-            {
-                ApplicationRoles.ExceptionMessage = "";
+            {                
 
                 using (var cmd = dbConn.CreateCommand())
                 {
@@ -234,8 +235,7 @@ namespace TotalModel.Models
             }
             catch (Exception e)
             {
-                Debug.WriteLine(e.Message);
-                ApplicationRoles.ExceptionMessage = e.Message;
+                Debug.WriteLine(e.Message);                
             }
         }
 

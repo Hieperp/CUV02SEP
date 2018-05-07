@@ -2,7 +2,7 @@
 {
     public static class ApplicationRoles
     {
-        public static bool NotApplicable;
+        public static bool Required;
         public static string Name;
         public static string Password;
         public static string ExceptionMessage;

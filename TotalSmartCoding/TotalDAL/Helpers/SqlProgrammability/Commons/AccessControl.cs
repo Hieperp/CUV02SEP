@@ -27,6 +27,10 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             this.UpdateLockedDate();
 
             this.GetUserOrganizationalUnit();
+
+            this.GetApplicationRoles();
+            this.UpdateApplicationRole();
+
             this.GetVersionID();
             this.GetStoredID();
         }
@@ -171,6 +175,36 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             queryString = queryString + "       SELECT TOP 1 Users.UserID, Users.FirstName, Users.LastName, Users.UserName, Users.SecurityIdentifier, Users.IsDatabaseAdmin, OrganizationalUnitUsers.OrganizationalUnitID FROM Users INNER JOIN OrganizationalUnitUsers ON Users.UserID = OrganizationalUnitUsers.UserID WHERE ({ fn UCASE(Users.SecurityIdentifier) } = { fn UCASE(@UserName) }) AND OrganizationalUnitUsers.InActive = 0 " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("GetUserOrganizationalUnit", queryString);
+        }
+
+        private void GetApplicationRoles()
+        {
+            string queryString = " @ApplicationRoleID Int " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+
+            queryString = queryString + "       SELECT      Name, Password FROM ApplicationRoles WHERE ApplicationRoleID = @ApplicationRoleID " + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("GetApplicationRoles", queryString);
+        }
+
+        private void UpdateApplicationRole()
+        {
+            string queryString = " @ApplicationRoleID Int, @Name nvarchar(100), @Password nvarchar(100) " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+
+            queryString = queryString + "           IF (SELECT COUNT(ApplicationRoleID) FROM ApplicationRoles WHERE ApplicationRoleID = @ApplicationRoleID) <= 0 " + "\r\n";
+            queryString = queryString + "               BEGIN " + "\r\n";
+            queryString = queryString + "                   INSERT INTO     ApplicationRoles (ApplicationRoleID, Name, Password, EditedDate) VALUES (@ApplicationRoleID, @Name, @Password, GetDate()); " + "\r\n";
+            queryString = queryString + "               END " + "\r\n";
+
+            queryString = queryString + "           ELSE " + "\r\n";
+            queryString = queryString + "               BEGIN " + "\r\n";
+            queryString = queryString + "                   UPDATE          ApplicationRoles SET Name = @Name, Password = @Password, EditedDate = GetDate() WHERE ApplicationRoleID = @ApplicationRoleID; " + "\r\n";
+            queryString = queryString + "               END " + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("UpdateApplicationRole", queryString);
         }
 
         private void GetVersionID()

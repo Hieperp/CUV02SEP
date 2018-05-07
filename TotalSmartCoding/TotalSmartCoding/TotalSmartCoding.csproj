@@ -1376,6 +1376,11 @@
     <None Include="Resources\Remove-UserGroup.png" />
     <None Include="Resources\calendar-with-check-mark.png" />
     <None Include="Resources\calendar-with-check-mark-G.png" />
+    <None Include="Resources\secure-32.png" />
+    <None Include="Resources\secure-24.png" />
+    <None Include="Resources\secure-241.png" />
+    <None Include="Resources\if_key_20.png" />
+    <None Include="Resources\if_key_48.png" />
     <Content Include="SmartCodingSolution.ico" />
     <None Include="Resources\Yellow-cross.ico" />
     <None Include="Resources\White-Pallet.ico" />

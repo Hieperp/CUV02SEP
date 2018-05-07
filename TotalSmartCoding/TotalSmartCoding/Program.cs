@@ -44,21 +44,11 @@ namespace TotalSmartCoding
 
             AutoMapperConfig.SetupMappings();
 
-            ////#region TEMPORARY INIT FOR FIRST TIME TO BY PASS APPLICATION ROLE
-            ////CommonConfigs.AddUpdateAppSetting("SecureCode", SecurePassword.Encrypt("NOTUSEAPPLICATIONROLE"));
-            ////CommonConfigs.AddUpdateAppSetting("SecurePrincipal", SecurePassword.Encrypt("NOTUSEAPPLICATIONROLE"));
-            ////#endregion
+            string ApplicationRoleRequired = CommonConfigs.ReadSetting("ApplicationRoleRequired");
+            ApplicationRoles.Required = true; ApplicationRoles.Name = ""; ApplicationRoles.Password = ""; bool applicationRoleRequired = false;
+            if (bool.TryParse(ApplicationRoleRequired, out applicationRoleRequired))
+                ApplicationRoles.Required = applicationRoleRequired;
 
-            string NotUseApplicationRole = CommonConfigs.ReadSetting("NotUseApplicationRole");
-            bool notUseApplicationRole = false;
-            if (bool.TryParse(NotUseApplicationRole, out notUseApplicationRole))
-                ApplicationRoles.NotApplicable = notUseApplicationRole;
-
-            ApplicationRoles.Name = CommonConfigs.ReadSetting("SecurePrincipal");
-            ApplicationRoles.Password = CommonConfigs.ReadSetting("SecureCode");
-
-            if (ApplicationRoles.Name != "") ApplicationRoles.Name = SecurePassword.Decrypt(ApplicationRoles.Name);
-            if (ApplicationRoles.Password != "") ApplicationRoles.Password = SecurePassword.Decrypt(ApplicationRoles.Password);
 
             TrialConnects trialConnects = new TrialConnects();
             DialogResult trialConnectResult = trialConnects.Connected();
@@ -85,8 +75,17 @@ namespace TotalSmartCoding
             else
                 if (trialConnectResult == DialogResult.No)
                 {
-                    ConnectServer connectServer = new ConnectServer(false);
-                    connectServer.ShowDialog(); connectServer.Dispose();
+                    if (ApplicationRoles.Required)
+                    {
+                        ConnectServer connectServer = new ConnectServer(false);
+                        connectServer.ShowDialog(); connectServer.Dispose();
+                    }
+                    else
+                        if (CustomMsgBox.Show(new Form(), "Do you want to specify new application role and password?", "Warning", MessageBoxButtons.YesNoCancel) == DialogResult.Yes)
+                        {
+                            ConnectServer connectServer = new ConnectServer(true);
+                            connectServer.ShowDialog(); connectServer.Dispose();
+                        }
                 }
         }
 
@@ -98,14 +97,9 @@ namespace TotalSmartCoding
         {
             try
             {
-                if (ApplicationRoles.Name == "" || ApplicationRoles.Password == "")
-                {
-                    ConnectServer connectServer = new ConnectServer(true);
-                    DialogResult connectServerResult = connectServer.ShowDialog(); connectServer.Dispose();
-                    if (connectServerResult != DialogResult.OK) return DialogResult.Cancel;
-                }
-
                 IBaseRepository baseRepository = CommonNinject.Kernel.Get<IBaseRepository>();
+                if (ApplicationRoles.Required) baseRepository.GetApplicationRoles();
+
                 return baseRepository.GetVersionID((int)GlobalVariables.FillingLine.None) != null ? DialogResult.Yes : DialogResult.No;
             }
             catch (Exception exception)

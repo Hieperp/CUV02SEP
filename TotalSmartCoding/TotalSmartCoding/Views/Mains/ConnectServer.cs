@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
+
+using Ninject;
+
 using TotalCore.Extensions;
+using TotalCore.Repositories;
 using TotalModel.Helpers;
 using TotalSmartCoding.Libraries;
 
@@ -25,8 +29,9 @@ namespace TotalSmartCoding.Views.Mains
             this.textexApplicationRoleName.Visible = this.specifyNewRole;
             this.textexApplicationRolePassword.Visible = this.specifyNewRole;
             this.labelApplicationRolePassword.Visible = this.specifyNewRole;
-            this.buttonConnect.Visible = this.specifyNewRole;
-            this.buttonResetApplicationRole.Visible = !this.specifyNewRole;
+            this.buttonUpdate.Visible = this.specifyNewRole;
+            this.buttonApplicationRoleRequired.Visible = !this.specifyNewRole && !ApplicationRoles.Required;
+            this.buttonApplicationRoleIgnored.Visible = !this.specifyNewRole && ApplicationRoles.Required;
 
             if (!this.specifyNewRole)
             {
@@ -37,43 +42,33 @@ namespace TotalSmartCoding.Views.Mains
 
         private void button_Click(object sender, EventArgs e)
         {
-            if (sender.Equals(this.buttonConnect))
+            if (sender.Equals(this.buttonUpdate))
             {
                 if (this.textexApplicationRoleName.Text.Trim() != "" && this.textexApplicationRolePassword.Text.Trim() != "")
                 {
-                    ApplicationRoles.Name = this.textexApplicationRoleName.Text.Trim();
-                    ApplicationRoles.Password = this.textexApplicationRolePassword.Text.Trim();
-
-                    CommonConfigs.AddUpdateAppSetting("SecureCode", SecurePassword.Encrypt(ApplicationRoles.Password));
-                    CommonConfigs.AddUpdateAppSetting("SecurePrincipal", SecurePassword.Encrypt(ApplicationRoles.Name));
-
-                    this.DialogResult = DialogResult.OK;
+                    IBaseRepository baseRepository = CommonNinject.Kernel.Get<IBaseRepository>();
+                    if (baseRepository.UpdateApplicationRole(SecurePassword.Encrypt(this.textexApplicationRoleName.Text.Trim()), SecurePassword.Encrypt(this.textexApplicationRolePassword.Text.Trim())) == 1)
+                        this.DialogResult = DialogResult.OK;
+                    else
+                        throw new Exception("Fail to update application role.");
                 }
             }
             else
-                if (sender.Equals(this.buttonResetApplicationRole))
+                if (sender.Equals(this.buttonApplicationRoleRequired) || sender.Equals(this.buttonApplicationRoleIgnored))
                 {
-                    CommonConfigs.AddUpdateAppSetting("SecureCode", "");
-                    CommonConfigs.AddUpdateAppSetting("SecurePrincipal", "");
-                    this.DialogResult = DialogResult.OK;
+                    CommonConfigs.AddUpdateAppSetting("ApplicationRoleRequired", sender.Equals(this.buttonApplicationRoleRequired) ? "true" : "false");
+
+                    CustomMsgBox.Show(this, "Please open your program again in order to take new effect.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+                    this.DialogResult = DialogResult.Cancel;
                 }
                 else
-                    if (sender.Equals(this.buttonIgnoreApplicationRole))
-                    {
-                        CommonConfigs.AddUpdateAppSetting("SecureCode", SecurePassword.Encrypt("NOTUSEAPPLICATIONROLE"));
-                        CommonConfigs.AddUpdateAppSetting("SecurePrincipal", SecurePassword.Encrypt("NOTUSEAPPLICATIONROLE"));
-
-                        CustomMsgBox.Show(this, "Please open your program again in order to take new effect.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
-                        this.DialogResult = DialogResult.Cancel;
-                    }
-                    else
-                        this.DialogResult = DialogResult.Cancel;
+                    this.DialogResult = DialogResult.Cancel;
         }
 
         private void textexApplicationRole_TextChanged(object sender, EventArgs e)
         {
-            this.buttonConnect.Enabled = this.textexApplicationRoleName.Text.Trim() != "" && this.textexApplicationRolePassword.Text.Trim() != "";
+            this.buttonUpdate.Enabled = this.textexApplicationRoleName.Text.Trim() != "" && this.textexApplicationRolePassword.Text.Trim() != "";
         }
     }
 }

@@ -9,7 +9,9 @@ using System.Collections.Generic;
 using TotalBase;
 using TotalBase.Enums;
 using TotalDAL.Helpers;
+using TotalModel.Helpers;
 using TotalModel.Models;
+using TotalCore.Extensions;
 using TotalCore.Repositories;
 
 
@@ -134,7 +136,7 @@ namespace TotalDAL.Repositories
                                                 ", new ObjectParameter[] { });
 
             }
-            #endregion 
+            #endregion
 
             #region Devices
             if (!this.totalSmartCodingEntities.TableExists("Devices"))
@@ -235,7 +237,7 @@ namespace TotalDAL.Repositories
             }
 
             #region
-            
+
             if (!this.totalSmartCodingEntities.ColumnExists("ModuleDetails", "ControlTypeID"))
             {
                 this.totalSmartCodingEntities.ColumnAdd("ModuleDetails", "ControlTypeID", "int", "0", true);
@@ -531,7 +533,7 @@ namespace TotalDAL.Repositories
 
 
 
-            
+
 
 
 
@@ -2038,6 +2040,21 @@ namespace TotalDAL.Repositories
 
 
         #region Base Repository
+
+        public void GetApplicationRoles()
+        {
+            IList<ApplicationRole> applicationRoles = this.TotalSmartCodingEntities.GetApplicationRoles(1).ToList();
+            if (applicationRoles != null && applicationRoles.Count > 0)
+            {
+                if (applicationRoles[0].Name != null) ApplicationRoles.Name = SecurePassword.Decrypt(applicationRoles[0].Name);
+                if (applicationRoles[0].Password != null) ApplicationRoles.Password = SecurePassword.Decrypt(applicationRoles[0].Password);
+            }
+        }
+
+        public int UpdateApplicationRole(string name, string password)
+        {
+            return this.TotalSmartCodingEntities.UpdateApplicationRole(1, name, password);
+        }
 
         public int? GetStoredID(int configID)
         {

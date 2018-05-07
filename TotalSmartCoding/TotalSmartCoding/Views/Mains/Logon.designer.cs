@@ -44,16 +44,18 @@
             this.buttonLogin = new System.Windows.Forms.ToolStripButton();
             this.panelBottomLeft = new System.Windows.Forms.Panel();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
-            this.buttonResetApplicationRole = new System.Windows.Forms.ToolStripButton();
-            this.separatorResetApplicationRole = new System.Windows.Forms.ToolStripSeparator();
             this.buttonLoginRestore = new System.Windows.Forms.ToolStripButton();
+            this.buttonConnectServer = new System.Windows.Forms.ToolStripButton();
             this.buttonDownload = new System.Windows.Forms.ToolStripButton();
-            this.pictureBoxIcon = new System.Windows.Forms.PictureBox();
+            this.separatorResetApplicationRole = new System.Windows.Forms.ToolStripSeparator();
+            this.buttonApplicationRoleIgnored = new System.Windows.Forms.ToolStripButton();
+            this.buttonApplicationRoleRequired = new System.Windows.Forms.ToolStripButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.layoutTop = new System.Windows.Forms.TableLayoutPanel();
             this.labelSecurityIdentifier = new System.Windows.Forms.Label();
             this.labelUserID = new System.Windows.Forms.Label();
             this.labelFillingLineID = new System.Windows.Forms.Label();
+            this.pictureBoxIcon = new System.Windows.Forms.PictureBox();
             this.comboSecurityIdentifier = new System.Windows.Forms.ComboBox();
             this.labelComportName = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
@@ -62,9 +64,9 @@
             this.toolStrip1.SuspendLayout();
             this.panelBottomLeft.SuspendLayout();
             this.toolStrip2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxIcon)).BeginInit();
             this.panel2.SuspendLayout();
             this.layoutTop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxIcon)).BeginInit();
             this.SuspendLayout();
             // 
             // checkEmptyData
@@ -187,9 +189,9 @@
             // 
             this.panelBottomRight.Controls.Add(this.toolStrip1);
             this.panelBottomRight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelBottomRight.Location = new System.Drawing.Point(143, 0);
+            this.panelBottomRight.Location = new System.Drawing.Point(238, 0);
             this.panelBottomRight.Name = "panelBottomRight";
-            this.panelBottomRight.Size = new System.Drawing.Size(557, 55);
+            this.panelBottomRight.Size = new System.Drawing.Size(462, 55);
             this.panelBottomRight.TabIndex = 0;
             // 
             // toolStrip1
@@ -203,7 +205,7 @@
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStrip1.Size = new System.Drawing.Size(557, 55);
+            this.toolStrip1.Size = new System.Drawing.Size(462, 55);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -235,7 +237,7 @@
             this.panelBottomLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelBottomLeft.Location = new System.Drawing.Point(0, 0);
             this.panelBottomLeft.Name = "panelBottomLeft";
-            this.panelBottomLeft.Size = new System.Drawing.Size(143, 55);
+            this.panelBottomLeft.Size = new System.Drawing.Size(238, 55);
             this.panelBottomLeft.TabIndex = 1;
             // 
             // toolStrip2
@@ -245,32 +247,17 @@
             this.toolStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.buttonLoginRestore,
+            this.buttonConnectServer,
             this.buttonDownload,
             this.separatorResetApplicationRole,
-            this.buttonResetApplicationRole});
+            this.buttonApplicationRoleIgnored,
+            this.buttonApplicationRoleRequired});
             this.toolStrip2.Location = new System.Drawing.Point(0, 0);
             this.toolStrip2.Name = "toolStrip2";
             this.toolStrip2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStrip2.Size = new System.Drawing.Size(143, 55);
+            this.toolStrip2.Size = new System.Drawing.Size(238, 55);
             this.toolStrip2.TabIndex = 1;
             this.toolStrip2.Text = "toolStrip2";
-            // 
-            // buttonResetApplicationRole
-            // 
-            this.buttonResetApplicationRole.Image = global::TotalSmartCoding.Properties.Resources.Ignore_x_20;
-            this.buttonResetApplicationRole.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonResetApplicationRole.Name = "buttonResetApplicationRole";
-            this.buttonResetApplicationRole.Size = new System.Drawing.Size(37, 52);
-            this.buttonResetApplicationRole.Text = " ";
-            this.buttonResetApplicationRole.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.buttonResetApplicationRole.ToolTipText = "Reset application role";
-            this.buttonResetApplicationRole.Visible = false;
-            this.buttonResetApplicationRole.Click += new System.EventHandler(this.buttonResetApplicationRole_Click);
-            // 
-            // separatorResetApplicationRole
-            // 
-            this.separatorResetApplicationRole.Name = "separatorResetApplicationRole";
-            this.separatorResetApplicationRole.Size = new System.Drawing.Size(6, 55);
             // 
             // buttonLoginRestore
             // 
@@ -284,6 +271,16 @@
             this.buttonLoginRestore.Visible = false;
             this.buttonLoginRestore.Click += new System.EventHandler(this.buttonLoginExit_Click);
             // 
+            // buttonConnectServer
+            // 
+            this.buttonConnectServer.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.buttonConnectServer.Image = global::TotalSmartCoding.Properties.Resources.if_key_20;
+            this.buttonConnectServer.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonConnectServer.Name = "buttonConnectServer";
+            this.buttonConnectServer.Size = new System.Drawing.Size(24, 52);
+            this.buttonConnectServer.Text = "Specify an application role";
+            this.buttonConnectServer.Click += new System.EventHandler(this.buttonApplicationRole_Click);
+            // 
             // buttonDownload
             // 
             this.buttonDownload.Image = global::TotalSmartCoding.Properties.Resources.Download;
@@ -295,18 +292,33 @@
             this.buttonDownload.Visible = false;
             this.buttonDownload.Click += new System.EventHandler(this.buttonDownload_Click);
             // 
-            // pictureBoxIcon
+            // separatorResetApplicationRole
             // 
-            this.pictureBoxIcon.Image = global::TotalSmartCoding.Properties.Resources.Identity_icon_48;
-            this.pictureBoxIcon.Location = new System.Drawing.Point(35, 22);
-            this.pictureBoxIcon.Margin = new System.Windows.Forms.Padding(0);
-            this.pictureBoxIcon.Name = "pictureBoxIcon";
-            this.layoutTop.SetRowSpan(this.pictureBoxIcon, 6);
-            this.pictureBoxIcon.Size = new System.Drawing.Size(48, 48);
-            this.pictureBoxIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBoxIcon.TabIndex = 11;
-            this.pictureBoxIcon.TabStop = false;
-            this.pictureBoxIcon.DoubleClick += new System.EventHandler(this.pictureBoxIcon_DoubleClick);
+            this.separatorResetApplicationRole.Name = "separatorResetApplicationRole";
+            this.separatorResetApplicationRole.Size = new System.Drawing.Size(6, 55);
+            // 
+            // buttonApplicationRoleIgnored
+            // 
+            this.buttonApplicationRoleIgnored.Image = global::TotalSmartCoding.Properties.Resources.Ignore_x_20;
+            this.buttonApplicationRoleIgnored.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonApplicationRoleIgnored.Name = "buttonApplicationRoleIgnored";
+            this.buttonApplicationRoleIgnored.Size = new System.Drawing.Size(41, 52);
+            this.buttonApplicationRoleIgnored.Text = "  ";
+            this.buttonApplicationRoleIgnored.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.buttonApplicationRoleIgnored.ToolTipText = "Ignore application role";
+            this.buttonApplicationRoleIgnored.Visible = false;
+            this.buttonApplicationRoleIgnored.Click += new System.EventHandler(this.buttonApplicationRole_Click);
+            // 
+            // buttonApplicationRoleRequired
+            // 
+            this.buttonApplicationRoleRequired.Image = global::TotalSmartCoding.Properties.Resources.Continue_x_20;
+            this.buttonApplicationRoleRequired.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonApplicationRoleRequired.Name = "buttonApplicationRoleRequired";
+            this.buttonApplicationRoleRequired.Size = new System.Drawing.Size(41, 52);
+            this.buttonApplicationRoleRequired.Text = "  ";
+            this.buttonApplicationRoleRequired.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.buttonApplicationRoleRequired.ToolTipText = "Use application role";
+            this.buttonApplicationRoleRequired.Click += new System.EventHandler(this.buttonApplicationRole_Click);
             // 
             // panel2
             // 
@@ -395,6 +407,19 @@
             this.labelFillingLineID.Text = "Filling Line";
             this.labelFillingLineID.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // pictureBoxIcon
+            // 
+            this.pictureBoxIcon.Image = global::TotalSmartCoding.Properties.Resources.Identity_icon_48;
+            this.pictureBoxIcon.Location = new System.Drawing.Point(35, 22);
+            this.pictureBoxIcon.Margin = new System.Windows.Forms.Padding(0);
+            this.pictureBoxIcon.Name = "pictureBoxIcon";
+            this.layoutTop.SetRowSpan(this.pictureBoxIcon, 6);
+            this.pictureBoxIcon.Size = new System.Drawing.Size(48, 48);
+            this.pictureBoxIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBoxIcon.TabIndex = 11;
+            this.pictureBoxIcon.TabStop = false;
+            this.pictureBoxIcon.DoubleClick += new System.EventHandler(this.pictureBoxIcon_DoubleClick);
+            // 
             // comboSecurityIdentifier
             // 
             this.comboSecurityIdentifier.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -447,11 +472,11 @@
             this.panelBottomLeft.PerformLayout();
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxIcon)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.layoutTop.ResumeLayout(false);
             this.layoutTop.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxIcon)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -484,7 +509,9 @@
         private System.Windows.Forms.Label labelFillingLineID;
         private System.Windows.Forms.ComboBox comboSecurityIdentifier;
         private System.Windows.Forms.Label labelComportName;
-        private System.Windows.Forms.ToolStripButton buttonResetApplicationRole;
+        private System.Windows.Forms.ToolStripButton buttonApplicationRoleIgnored;
         private System.Windows.Forms.ToolStripSeparator separatorResetApplicationRole;
+        private System.Windows.Forms.ToolStripButton buttonApplicationRoleRequired;
+        private System.Windows.Forms.ToolStripButton buttonConnectServer;
     }
 }

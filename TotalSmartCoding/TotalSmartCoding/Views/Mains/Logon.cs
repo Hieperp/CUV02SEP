@@ -25,6 +25,7 @@ using TotalSmartCoding.Controllers.APIs.Generals;
 using TotalCore.Repositories.Generals;
 using System.Net;
 using System.Net.Sockets;
+using TotalModel.Helpers;
 
 namespace TotalSmartCoding.Views.Mains
 {
@@ -152,7 +153,8 @@ namespace TotalSmartCoding.Views.Mains
 
                     this.buttonDownload.Visible = true;
                     this.buttonLoginRestore.Visible = activeUsers[0].IsDatabaseAdmin;
-                    this.buttonResetApplicationRole.Visible = activeUsers[0].IsDatabaseAdmin;
+                    this.buttonConnectServer.Visible = activeUsers[0].IsDatabaseAdmin;
+                    this.buttonApplicationRoleIgnored.Visible = activeUsers[0].IsDatabaseAdmin;
                     this.separatorResetApplicationRole.Visible = activeUsers[0].IsDatabaseAdmin;
                 }
                 else
@@ -167,6 +169,13 @@ namespace TotalSmartCoding.Views.Mains
 
                     this.buttonLogin.Visible = false;
                 }
+
+                if (ApplicationRoles.ExceptionMessage != null && ApplicationRoles.ExceptionMessage != "")
+                {
+                    CustomMsgBox.Show(this, ApplicationRoles.ExceptionMessage, "Warning", MessageBoxButtons.OK);
+                }
+                this.buttonApplicationRoleRequired.Visible = !ApplicationRoles.Required;
+                this.buttonApplicationRoleIgnored.Visible = ApplicationRoles.Required;
             }
             catch (Exception exception)
             {
@@ -325,14 +334,22 @@ namespace TotalSmartCoding.Views.Mains
             }
         }
 
-        private void buttonResetApplicationRole_Click(object sender, EventArgs e)
+        private void buttonApplicationRole_Click(object sender, EventArgs e)
         {
-            CommonConfigs.AddUpdateAppSetting("SecureCode", "");
-            CommonConfigs.AddUpdateAppSetting("SecurePrincipal", "");
+            if (sender.Equals(this.buttonApplicationRoleRequired) || sender.Equals(this.buttonApplicationRoleIgnored))
+            {
+                CommonConfigs.AddUpdateAppSetting("ApplicationRoleRequired", sender.Equals(this.buttonApplicationRoleRequired) ? "true" : "false");
 
-            CustomMsgBox.Show(this, "Please open your program again in order to take new effect.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                CustomMsgBox.Show(this, "Please open your program again in order to take new effect.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
-            this.DialogResult = DialogResult.Cancel;
+                this.DialogResult = DialogResult.Cancel;
+            }
+            if (sender.Equals(this.buttonConnectServer))
+            {
+                ConnectServer connectServer = new ConnectServer(true);
+                DialogResult dialogResult = connectServer.ShowDialog(); connectServer.Dispose();
+                if (dialogResult == System.Windows.Forms.DialogResult.OK) { CustomMsgBox.Show(this, "Please open your program again in order to take new effect.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); this.DialogResult = DialogResult.Cancel; }
+            }
         }
 
         private bool VersionValidate()
@@ -377,7 +394,7 @@ namespace TotalSmartCoding.Views.Mains
             throw new Exception("No network adapters with an IPv4 address in the system!");
         }
 
-        
+
 
 
 

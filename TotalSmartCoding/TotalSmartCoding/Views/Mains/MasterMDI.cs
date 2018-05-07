@@ -47,6 +47,7 @@ using BrightIdeasSoftware;
 using TotalSmartCoding.Views.Commons.CommoditySettings;
 using TotalSmartCoding.Views.Sales.PendingOrders;
 using TotalSmartCoding.Views.Commons.Employees;
+using TotalModel.Helpers;
 
 
 namespace TotalSmartCoding.Views.Mains
@@ -134,10 +135,10 @@ namespace TotalSmartCoding.Views.Mains
                     default:
                         break;
                 }
-                
+
                 this.beginingDateBinding = this.dateTimexLowerFillterDate.DataBindings.Add("Value", GlobalEnums.GlobalOptionSetting, CommonExpressions.PropertyName<OptionSetting>(p => p.LowerFillterDate), true, DataSourceUpdateMode.OnPropertyChanged);
                 this.endingDateBinding = this.dateTimexUpperFillterDate.DataBindings.Add("Value", GlobalEnums.GlobalOptionSetting, CommonExpressions.PropertyName<OptionSetting>(p => p.UpperFillterDate), true, DataSourceUpdateMode.OnPropertyChanged);
-                
+
                 this.beginingDateBinding.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
                 this.endingDateBinding.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
 
@@ -177,6 +178,7 @@ namespace TotalSmartCoding.Views.Mains
 
                 DateTime buildDate = new FileInfo(Assembly.GetExecutingAssembly().Location).LastWriteTime;
                 this.statusVersion.Text = "Version 1.0." + GlobalVariables.ConfigVersionID(GlobalVariables.ConfigID).ToString() + ", Date: " + buildDate.ToString("dd/MM/yyyy HH:mm:ss");
+                this.labelApplicationRole.Text = ApplicationRoles.Required && ApplicationRoles.Name != "" && ApplicationRoles.ExceptionMessage == "" ? "[Application Role]" : "[Windows Authentication]";
 
                 this.comboSearchBarcode.Text = this.searchPlaceHolder;
                 this.toolUserReferences.Visible = ContextAttributes.User.IsDatabaseAdmin;
@@ -891,7 +893,7 @@ namespace TotalSmartCoding.Views.Mains
         }
         #endregion Search barcode
 
-        
+
 
 
 
