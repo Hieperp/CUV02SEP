@@ -342,7 +342,7 @@ namespace TotalSmartCoding.Controllers.Productions
 
         private string thirdLineA2(bool isReadableText, int serialIndentity)
         {
-            return this.privateFillingData.FillingLineCode + (serialIndentity == 1 || serialIndentity == 2 ? (GlobalEnums.OnTestPrinter ? this.getNextNo() : this.dominoSerialNumber(serialIndentity)) : ((GlobalEnums.DrumWithDigit && !this.FillingData.HasCarton) ? this.getPreviousNo(this.FillingData.NextDigitNo) : (this.FillingData.CartonsetQueueZebraStatus == GlobalVariables.ZebraStatus.Freshnew ? this.getNextNo() : this.getPreviousNo())));
+            return this.privateFillingData.FillingLineCode + (serialIndentity < 0 ? "" : (serialIndentity == 1 || serialIndentity == 2 ? (GlobalEnums.OnTestPrinter ? this.getNextNo() : this.dominoSerialNumber(serialIndentity)) : ((GlobalEnums.DrumWithDigit && !this.FillingData.HasCarton) ? this.getPreviousNo(this.FillingData.NextDigitNo) : (this.FillingData.CartonsetQueueZebraStatus == GlobalVariables.ZebraStatus.Freshnew ? this.getNextNo() : this.getPreviousNo()))));
         }
 
         private string wholeBarcode(int serialIndentity)
@@ -476,7 +476,7 @@ namespace TotalSmartCoding.Controllers.Productions
             if (isSerialNumber)
                 return this.getNextNo();
             else
-                return this.privateFillingData.CommodityCode + this.privateFillingData.FillingLineCode;
+                return this.firstLineA2(true) + " " + this.thirdLine(true, -1); //THIS IS AS THE SAME AS wholeMessageLine.GlobalVariables.PrinterName.DigitInkjet
         }//NOTE: NEVER CHANGE THIS FUNCTION WITHOUT HAVE A LOOK AT this.wholeMessageLine
 
         #endregion Message Configuration
@@ -943,11 +943,11 @@ namespace TotalSmartCoding.Controllers.Productions
 
 
                                 if (this.isLaser)
-                                    this.ionetSocket.WritetoStream("LOADPROJECT store: SLASHSYMBOL Demo");
+                                    this.ionetSocket.WritetoStream("LOADPROJECT store: SLASHSYMBOL Empty1L");
                                 else
                                     this.ionetSocket.WritetoStream(GlobalVariables.charESC + "/I/1/ /" + GlobalVariables.charEOT); //SET OF: Print Acknowledgement Flags I
 
-                                if ((this.isLaser && this.waitforDomino(ref receivedFeedback, false, "OK", "OK".Length)) || (!this.isLaser && this.waitforDomino(ref receivedFeedback, true))) Thread.Sleep(250); else throw new System.InvalidOperationException("Can not set off printing acknowledge/ Load Demo project: " + receivedFeedback);
+                                if ((this.isLaser && this.waitforDomino(ref receivedFeedback, false, "OK", "OK".Length)) || (!this.isLaser && this.waitforDomino(ref receivedFeedback, true))) Thread.Sleep(250); else throw new System.InvalidOperationException("Can not set off printing acknowledge/ Load Empty1L project: " + receivedFeedback);
 
                                 this.resetMessage = false; //Setup first message: Only one times      
                                 this.MainStatus = "Đang kết nối với máy in.";
@@ -964,15 +964,15 @@ namespace TotalSmartCoding.Controllers.Productions
                                 #region SETUP MESSAGE
                                 this.MainStatus = "Vui lòng chờ ...";
 
-                                if (this.isLaser && this.printerName == GlobalVariables.PrinterName.DigitInkjet) //stringWriteTo = " SETVARIABLES \"MonthCodeAndLine\" \"10081\"\r\n"
+                                if (this.isLaser && this.printerName == GlobalVariables.PrinterName.DigitInkjet) //stringWriteTo = " SETVARIABLES \"Text01\" \"10081\"\r\n"
                                 {//BEGINTRANS [ENTER] OK   SETTEXT "Text 1" "Domino AG" [ENTER]   OK   SETTEXT "Barcode 1" "Sator Laser GmbH" [ENTER]   OK EXECTRANS [ENTER] OK MSG 1 
                                     //this.WriteToStream("BEGINTRANS");
                                     //if (this.ReadFromStream(ref receivedFeedback, false, "OK", "OK".Length)) Thread.Sleep(20); else throw new System.InvalidOperationException("NMVN: Can not set message: " + receivedFeedback);
 
-                                    this.ionetSocket.WritetoStream("LOADPROJECT store: SLASHSYMBOL " + (this.FillingData.FillingLineID == GlobalVariables.FillingLine.Smallpack ? "BPCODigit" : (this.FillingData.FillingLineID == GlobalVariables.FillingLine.Pail ? "BPPailDigit" : "BPPailDigit")));
+                                    this.ionetSocket.WritetoStream("LOADPROJECT store: SLASHSYMBOL " + (this.FillingData.FillingLineID == GlobalVariables.FillingLine.Smallpack ? "Digit1L" : (this.FillingData.FillingLineID == GlobalVariables.FillingLine.Pail ? "BPPailDigit" : "BPPailDigit")));
                                     if (this.waitforDomino(ref receivedFeedback, false, "OK", "OK".Length)) Thread.Sleep(500); else throw new System.InvalidOperationException("NMVN: Can not load message: " + receivedFeedback);
 
-                                    this.ionetSocket.WritetoStream("SETVARIABLES \"MonthCodeAndLine\" \"" + this.laserDigitMessage(false) + "\"");
+                                    this.ionetSocket.WritetoStream("SETTEXT \"Text01\" \"" + this.laserDigitMessage(false) + "\"");
                                     if (this.waitforDomino(ref receivedFeedback, false, "OK", "OK".Length)) Thread.Sleep(20); else throw new System.InvalidOperationException("NMVN: Can not set message code: " + receivedFeedback);
 
                                     this.ionetSocket.WritetoStream("SETCOUNTERVALUE Serialnumber01 " + this.laserDigitMessage(true));
@@ -999,7 +999,7 @@ namespace TotalSmartCoding.Controllers.Productions
                                 #endregion SETUP MESSAGE
 
                                 this.MainStatus = "Đang in ...";
-                                this.resetMessage = false; //Setup first message: Only one times                            
+                                if (this.OnPrinting) this.resetMessage = false; //Setup first message: Only one times   //THE CONDITIONAL CHECK: if (this.OnPrinting) ADDED ON 26/MAY/2018: ONLY SET this.resetMessage TO false WHEN STILL this.OnPrinting (THE USE CASE: WHEN CAMERA FAIL TO START => IT WILL CALL this.StopPrint();  RIGHT AFTER CLICK START BUTTON ===> BUT THE THREAD OF PRINTER WILL SET this.resetMessage = false; WITHIN CURRENT LOOP (AT THE END OF THE FIRST LOOP WHEN CLICK START BUTTON) ====> SO: CHECK STILL this.OnPrinting BEFORE SET this.resetMessage TO false)
                             }
 
                             #endregion Reset Message: this.printerName != GlobalVariables.PrinterName.PalletLabel
@@ -1008,9 +1008,23 @@ namespace TotalSmartCoding.Controllers.Productions
                             #region Read counter: printerName == DigitInkjet || printerName == PackInkjet || printerName == CartonInkjet
                             if (this.printerName == GlobalVariables.PrinterName.DigitInkjet || this.printerName == GlobalVariables.PrinterName.PackInkjet || this.printerName == GlobalVariables.PrinterName.CartonInkjet)
                             {
-                                this.ionetSocket.WritetoStream(GlobalVariables.charESC + "/U/001/1/?/" + GlobalVariables.charEOT);//    U: Read Counter 1 (ONLY COUNTER 1---COUNTER 2: THE SAME COUNTER 1: Principlely)
-                                if (this.waitforDomino(ref receivedFeedback, false, "U", 13))
-                                    this.feedbackNextNo("", receivedFeedback);
+                                if (this.isLaser)
+                                {
+                                    this.ionetSocket.WritetoStream("GETSTATUS"); //Determines the current status of the controller
+                                    if (this.waitforDomino(ref receivedFeedback, false, "RESULT GETSTATUS", "RESULT GETSTATUS".Length))
+                                    {
+                                        lfStatusLED(ref receivedFeedback);
+                                        if (!this.LedGreenOn && !this.LedAmberOn) throw new System.InvalidOperationException("Connection fail! Please check your printer.");
+                                    }
+                                    else
+                                        throw new System.InvalidOperationException("Connection fail! Please check your printer.");
+                                }
+                                else
+                                {
+                                    this.ionetSocket.WritetoStream(GlobalVariables.charESC + "/U/001/1/?/" + GlobalVariables.charEOT);//    U: Read Counter 1 (ONLY COUNTER 1---COUNTER 2: THE SAME COUNTER 1: Principlely)
+                                    if (this.waitforDomino(ref receivedFeedback, false, "U", 13))
+                                        this.feedbackNextNo("", receivedFeedback);
+                                }
                             }
                             #endregion Read counter
 

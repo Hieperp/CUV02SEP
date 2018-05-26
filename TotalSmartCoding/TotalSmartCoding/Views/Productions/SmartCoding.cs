@@ -76,7 +76,7 @@ namespace TotalSmartCoding.Views.Productions
 
                 IBatchService batchService = CommonNinject.Kernel.Get<IBatchService>();//ALL PrinterController MUST SHARE THE SAME IBatchService, BECAUSE WE NEED TO LOCK IBatchService IN ORDER TO CORRECTED UPDATE DATA BY IBatchService
 
-                digitController = new PrinterController(batchService, this.fillingData, GlobalVariables.PrinterName.DigitInkjet);
+                digitController = new PrinterController(batchService, this.fillingData, GlobalVariables.PrinterName.DigitInkjet, GlobalEnums.InstallLaser && this.fillingData.FillingLineID == GlobalVariables.FillingLine.Smallpack ? true : false);
                 packController = new PrinterController(batchService, this.fillingData, GlobalVariables.PrinterName.PackInkjet);
                 cartonController = new PrinterController(batchService, this.fillingData, GlobalVariables.PrinterName.CartonInkjet);
                 palletController = new PrinterController(batchService, this.fillingData, GlobalVariables.PrinterName.PalletLabel);
