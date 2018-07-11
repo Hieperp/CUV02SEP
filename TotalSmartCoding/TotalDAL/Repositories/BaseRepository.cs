@@ -77,7 +77,7 @@ namespace TotalDAL.Repositories
                                                     ) ON [PRIMARY]
                                                 ", new ObjectParameter[] { });
 
-                this.ExecuteStoreCommand(@" UPDATE Locations SET LockedDate = CONVERT(DATETIME, '2018-10-31 23:59:59', 102), EditedDate = GETDATE() ", new ObjectParameter[] { });
+                this.ExecuteStoreCommand(@" UPDATE Locations SET LockedDate = CONVERT(DATETIME, '2017-10-31 23:59:59', 102), EditedDate = GETDATE() ", new ObjectParameter[] { });
             }
             #endregion ApplicationRoles
 
