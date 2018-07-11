@@ -58,6 +58,13 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
             this.customTabBatch.DisplayStyle = TabStyle.VisualStudio;
             this.customTabBatch.DisplayStyleProvider.ImageAlign = ContentAlignment.MiddleLeft;
 
+            this.fastAvailablePacks.AlternateRowBackColor = Color.WhiteSmoke;
+            this.fastAvailableCartons.AlternateRowBackColor = Color.WhiteSmoke;
+            this.fastAvailablePallets.AlternateRowBackColor = Color.WhiteSmoke;
+            this.fastAvailablePacks.UseAlternatingBackColors = true;
+            this.fastAvailableCartons.UseAlternatingBackColors = true;
+            this.fastAvailablePallets.UseAlternatingBackColors = true;
+
             this.customTabBatch.TabPages.Add("tabAvailablePallets", "Available pallets");
             this.customTabBatch.TabPages.Add("tabAvailableCartons", "Available cartons");
             if (this.UsingPack) this.customTabBatch.TabPages.Add("tabAvailablePacks", "Available packs");
