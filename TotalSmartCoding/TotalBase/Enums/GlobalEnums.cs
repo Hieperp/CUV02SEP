@@ -4,7 +4,7 @@
     {
         public static int OnRecivedMillisecond = 900; //1-MANUAL INPUT
 
-        public static bool InstallLaser = false; //8888 26/MAY/2018
+        public static bool InstallLaser = true; //8888 26/MAY/2018
 
         public static bool OnTestScanner = false; //1
         public static bool OnTestPalletScanner = false; //3 //WHEN REAL TEST WITHOUT PalletScanner
