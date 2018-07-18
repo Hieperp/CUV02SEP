@@ -44,7 +44,7 @@ namespace TotalSmartCoding
 
             AutoMapperConfig.SetupMappings();
 
-            string ApplicationRoleRequired = "false";//COMMENT ON 11-JUL-2018: NOT USE ApplicationRoleRequired. JUST REMOVE THIS COMMENT ONLY -> TO USE ApplicationRoleRequired (GET ApplicationRoleRequired OPTION FROM CONFIG SETTING BY THE FOLLOWING CommonConfigs.ReadSetting("ReadSetting")).                               CommonConfigs.ReadSetting("ApplicationRoleRequired");
+            string ApplicationRoleRequired = "false"; //string ApplicationRoleRequired = CommonConfigs.ReadSetting("ApplicationRoleRequired"); //COMMENT ON 11-JUL-2018: NOT USE ApplicationRoleRequired. JUST REMOVE THIS COMMENT ONLY -> TO USE ApplicationRoleRequired (GET ApplicationRoleRequired OPTION FROM CONFIG SETTING BY THE FOLLOWING CommonConfigs.ReadSetting("ApplicationRoleRequired")).
             ApplicationRoles.Required = true; ApplicationRoles.Name = ""; ApplicationRoles.Password = ""; bool applicationRoleRequired = false;
             if (bool.TryParse(ApplicationRoleRequired, out applicationRoleRequired))
                 ApplicationRoles.Required = applicationRoleRequired;
