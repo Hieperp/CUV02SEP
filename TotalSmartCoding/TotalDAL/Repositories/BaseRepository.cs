@@ -66,6 +66,9 @@ namespace TotalDAL.Repositories
             int exist4Ls = query4L.Cast<int>().Single();
             if (exist4Ls == 0)
             {
+                this.ExecuteStoreCommand("INSERT INTO Configs (ConfigID, VersionID, VersionDate, Remarks, StoredID) VALUES(" + (int)GlobalVariables.FillingLine.Medium4L + ", " + GlobalVariables.ConfigVersionID((int)GlobalVariables.FillingLine.Medium4L) + ", GetDate(), NULL, " + GlobalVariables.ConfigVersionID((int)GlobalVariables.FillingLine.Medium4L) + ") ", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("INSERT INTO Configs (ConfigID, VersionID, VersionDate, Remarks, StoredID) VALUES(" + (int)GlobalVariables.FillingLine.Import + ", " + GlobalVariables.ConfigVersionID((int)GlobalVariables.FillingLine.Import) + ", GetDate(), NULL, " + GlobalVariables.ConfigVersionID((int)GlobalVariables.FillingLine.Import) + ") ", new ObjectParameter[] { });
+
                 this.ExecuteStoreCommand("INSERT INTO FillingLines (FillingLineID, Code, Name, NickName, HasPack, HasCarton, HasPallet, LocationID, LastLogonFillingLineID, PortName, ServerID, ServerName, DatabaseName, Remarks, PalletChanged, InActive) VALUES(" + (int)GlobalVariables.FillingLine.Medium4L + ", N'4L', N'4L', N'4L', 0, 1, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0) ", new ObjectParameter[] { });
                 this.ExecuteStoreCommand("INSERT INTO FillingLines (FillingLineID, Code, Name, NickName, HasPack, HasCarton, HasPallet, LocationID, LastLogonFillingLineID, PortName, ServerID, ServerName, DatabaseName, Remarks, PalletChanged, InActive) VALUES(" + (int)GlobalVariables.FillingLine.Import + ", N'IM', N'IMPORT', N'IMPORT', 0, 1, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0) ", new ObjectParameter[] { });
                 #region INIT IP ADDRESS
