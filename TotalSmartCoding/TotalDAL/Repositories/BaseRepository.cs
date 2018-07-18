@@ -61,6 +61,42 @@ namespace TotalDAL.Repositories
 
 
 
+            #region 4L
+            var query4L = this.totalSmartCodingEntities.Database.SqlQuery(typeof(int), "SELECT COUNT(FillingLineID) AS Expr1 FROM FillingLines WHERE FillingLineID = " + (int)GlobalVariables.FillingLine.Medium4L + ";", new object[] { });
+            int exist4Ls = query4L.Cast<int>().Single();
+            if (exist4Ls == 0)
+            {
+                this.ExecuteStoreCommand("INSERT INTO FillingLines (FillingLineID, Code, Name, NickName, HasPack, HasCarton, HasPallet, LocationID, LastLogonFillingLineID, PortName, ServerID, ServerName, DatabaseName, Remarks, PalletChanged, InActive) VALUES(" + (int)GlobalVariables.FillingLine.Medium4L + ", N'4L', N'4L', N'4L', 0, 1, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0) ", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("INSERT INTO FillingLines (FillingLineID, Code, Name, NickName, HasPack, HasCarton, HasPallet, LocationID, LastLogonFillingLineID, PortName, ServerID, ServerName, DatabaseName, Remarks, PalletChanged, InActive) VALUES(" + (int)GlobalVariables.FillingLine.Import + ", N'IM', N'IMPORT', N'IMPORT', 0, 1, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0) ", new ObjectParameter[] { });
+                #region INIT IP ADDRESS
+                foreach (GlobalVariables.FillingLine fillingLine in Enum.GetValues(typeof(GlobalVariables.FillingLine)))
+                {
+                    if (fillingLine == GlobalVariables.FillingLine.Medium4L || fillingLine == GlobalVariables.FillingLine.Import)
+                    {
+                        foreach (GlobalVariables.PrinterName printerName in Enum.GetValues(typeof(GlobalVariables.PrinterName)))
+                        {
+                            string ipAddress = GlobalVariables.IpAddress(fillingLine, printerName);
+                            if (ipAddress != "" & ipAddress != "127.0.0.1")
+                                this.ExecuteStoreCommand("INSERT INTO FillingLineDetails (FillingLineID, DeviceID, IPv4Byte1, IPv4Byte2, IPv4Byte3, IPv4Byte4) VALUES (" + (int)fillingLine + ", " + (int)printerName + ", " + ipAddress.Substring(0, ipAddress.IndexOf(".")) + ", " + ipAddress.Substring(ipAddress.IndexOf(".") + 1).Substring(0, ipAddress.Substring(ipAddress.IndexOf(".") + 1).IndexOf(".")) + ", " + ipAddress.Substring(ipAddress.IndexOf(".") + 1).Substring(ipAddress.Substring(ipAddress.IndexOf(".") + 1).IndexOf(".") + 1).Substring(0, ipAddress.Substring(ipAddress.IndexOf(".") + 1).Substring(ipAddress.Substring(ipAddress.IndexOf(".") + 1).IndexOf(".") + 1).IndexOf(".")) + ", " + ipAddress.Substring(ipAddress.IndexOf(".") + 1).Substring(ipAddress.Substring(ipAddress.IndexOf(".") + 1).IndexOf(".") + 1).Substring(ipAddress.Substring(ipAddress.IndexOf(".") + 1).Substring(ipAddress.Substring(ipAddress.IndexOf(".") + 1).IndexOf(".") + 1).IndexOf(".") + 1) + ")", new ObjectParameter[] { });
+                        }
+
+                        foreach (GlobalVariables.ScannerName scannerName in Enum.GetValues(typeof(GlobalVariables.ScannerName)))
+                        {
+                            string ipAddress = GlobalVariables.IpAddress(fillingLine, scannerName);
+                            if (ipAddress != "" & ipAddress != "127.0.0.1")
+                                this.ExecuteStoreCommand("INSERT INTO FillingLineDetails (FillingLineID, DeviceID, IPv4Byte1, IPv4Byte2, IPv4Byte3, IPv4Byte4) VALUES (" + (int)fillingLine + ", " + ((int)GlobalVariables.ScannerName.Base + (int)scannerName) + ", " + ipAddress.Substring(0, ipAddress.IndexOf(".")) + ", " + ipAddress.Substring(ipAddress.IndexOf(".") + 1).Substring(0, ipAddress.Substring(ipAddress.IndexOf(".") + 1).IndexOf(".")) + ", " + ipAddress.Substring(ipAddress.IndexOf(".") + 1).Substring(ipAddress.Substring(ipAddress.IndexOf(".") + 1).IndexOf(".") + 1).Substring(0, ipAddress.Substring(ipAddress.IndexOf(".") + 1).Substring(ipAddress.Substring(ipAddress.IndexOf(".") + 1).IndexOf(".") + 1).IndexOf(".")) + ", " + ipAddress.Substring(ipAddress.IndexOf(".") + 1).Substring(ipAddress.Substring(ipAddress.IndexOf(".") + 1).IndexOf(".") + 1).Substring(ipAddress.Substring(ipAddress.IndexOf(".") + 1).Substring(ipAddress.Substring(ipAddress.IndexOf(".") + 1).IndexOf(".") + 1).IndexOf(".") + 1) + ")", new ObjectParameter[] { });
+                        }
+                    }
+                }
+                #endregion INIT IP ADDRESS
+            }
+
+            #endregion 4L
+
+
+
+
+
 
             #region ApplicationRoles
             if (!this.totalSmartCodingEntities.TableExists("ApplicationRoles"))
