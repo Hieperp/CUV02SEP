@@ -68,7 +68,7 @@ namespace TotalDTO.Productions
         public string FillingLineName { get { return GlobalVariables.FillingLineName; } }
 
         public bool HasPack { get { return this.FillingLineID == GlobalVariables.FillingLine.Smallpack; } }
-        public bool HasCarton { get { return this.FillingLineID == GlobalVariables.FillingLine.Smallpack || this.FillingLineID == GlobalVariables.FillingLine.Pail; } }
+        public bool HasCarton { get { return this.FillingLineID == GlobalVariables.FillingLine.Smallpack || this.FillingLineID == GlobalVariables.FillingLine.Pail || this.FillingLineID == GlobalVariables.FillingLine.Medium4L || this.FillingLineID == GlobalVariables.FillingLine.Import; } }
         public bool HasPallet { get { return true; } }
 
 

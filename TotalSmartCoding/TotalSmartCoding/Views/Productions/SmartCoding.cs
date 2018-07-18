@@ -105,7 +105,7 @@ namespace TotalSmartCoding.Views.Productions
 
                 this.comboBoxEmptyCarton.ComboBox.Items.AddRange(new string[] { "Ignore empty carton", "Keep empty carton" });
                 this.comboBoxEmptyCarton.ComboBox.SelectedIndex = GlobalVariables.IgnoreEmptyCarton ? 0 : 1;
-                this.comboBoxEmptyCarton.Enabled = this.fillingData.FillingLineID != GlobalVariables.FillingLine.Pail;
+                this.comboBoxEmptyCarton.Enabled = this.fillingData.FillingLineID != GlobalVariables.FillingLine.Pail && this.fillingData.FillingLineID != GlobalVariables.FillingLine.Medium4L && this.fillingData.FillingLineID != GlobalVariables.FillingLine.Import;
 
                 this.comboBoxSendToZebra.ComboBox.Items.AddRange(new string[] { "Stop print label", "Print new label" });
                 this.comboBoxSendToZebra.ComboBox.SelectedIndex = GlobalEnums.SendToZebra ? 1 : 0;
@@ -238,6 +238,10 @@ namespace TotalSmartCoding.Views.Productions
                     return 346; //364 
                 case GlobalVariables.FillingLine.Pail:
                     return 0;
+                case GlobalVariables.FillingLine.Medium4L:
+                    return 0;
+                case GlobalVariables.FillingLine.Import:
+                    return 0;
                 case GlobalVariables.FillingLine.Drum:
                     return 0; //86;
                 default:
@@ -253,6 +257,10 @@ namespace TotalSmartCoding.Views.Productions
                     return 225;
                 case GlobalVariables.FillingLine.Pail:
                     return 458;
+                case GlobalVariables.FillingLine.Medium4L:
+                    return 458;
+                case GlobalVariables.FillingLine.Import:
+                    return 458;
                 case GlobalVariables.FillingLine.Drum:
                     return 347; //86;
                 default:
@@ -267,6 +275,10 @@ namespace TotalSmartCoding.Views.Productions
                 case GlobalVariables.FillingLine.Smallpack:
                     return 111;
                 case GlobalVariables.FillingLine.Pail:
+                    return 344;
+                case GlobalVariables.FillingLine.Medium4L:
+                    return 344;
+                case GlobalVariables.FillingLine.Import:
                     return 344;
                 case GlobalVariables.FillingLine.Drum:
                     return 0; //86;

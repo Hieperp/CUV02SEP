@@ -139,7 +139,7 @@ namespace TotalBase
 
 
 
-            else if (configID == (int)GlobalVariables.FillingLine.Smallpack || configID == (int)GlobalVariables.FillingLine.Pail || configID == (int)GlobalVariables.FillingLine.Drum || configID == (int)GlobalVariables.FillingLine.Medium4L || configID == (int)GlobalVariables.FillingLine.Import)
+            else if (configID == (int)GlobalVariables.FillingLine.Smallpack || configID == (int)GlobalVariables.FillingLine.Pail || configID == (int)GlobalVariables.FillingLine.Medium4L || configID == (int)GlobalVariables.FillingLine.Import || configID == (int)GlobalVariables.FillingLine.Drum)
                 return 83; //PAY ATTENTION WHEN CHANGE THIS VALUE BECAUSE: THIS IS USING ON THE FILLING LINES
             else
                 return -1;
@@ -319,6 +319,10 @@ namespace TotalBase
                     return 6;
                 case FillingLine.Pail:
                     return 1;
+                case FillingLine.Medium4L:
+                    return 1;
+                case FillingLine.Import:
+                    return 1;
                 case FillingLine.Drum:
                     return 1;
                 default:
@@ -338,6 +342,10 @@ namespace TotalBase
                 case FillingLine.Smallpack:
                     return 6;
                 case FillingLine.Pail:
+                    return 1;
+                case FillingLine.Medium4L:
+                    return 1;
+                case FillingLine.Import:
                     return 1;
                 case FillingLine.Drum:
                     return 1;
@@ -365,6 +373,10 @@ namespace TotalBase
                     return 24;
                 case FillingLine.Pail:
                     return 1;
+                case FillingLine.Medium4L:
+                    return 1;
+                case FillingLine.Import:
+                    return 1;
                 case FillingLine.Drum:
                     return GlobalVariables.noItemPerCartonSetByProductID;
                 default:
@@ -380,6 +392,10 @@ namespace TotalBase
                 case FillingLine.Smallpack:
                     return false; //AT BP CASTROL: CO LINE => THIS WILL BE true
                 case FillingLine.Pail:
+                    return false;
+                case FillingLine.Medium4L:
+                    return false;
+                case FillingLine.Import:
                     return false;
                 case FillingLine.Drum:
                     return false;

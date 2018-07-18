@@ -309,6 +309,9 @@ namespace TotalSmartCoding.Views.Mains
                             this.buttonDownload_Click(this.buttonDownload, new EventArgs());
                         }
 
+
+                        //JUST FOR 4L FillingLine ONLY. SHOULD REMOVE NEXT TIME
+                        CommonConfigs.AddUpdateAppSetting("ConfigID", ((int)GlobalVariables.FillingLine.Medium4L).ToString());
                     }
                 }
             }

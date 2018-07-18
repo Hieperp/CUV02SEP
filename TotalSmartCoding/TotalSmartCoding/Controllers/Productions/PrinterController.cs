@@ -759,7 +759,11 @@ namespace TotalSmartCoding.Controllers.Productions
             //if (GlobalEnums.OnTestPrinter && this.printerName != GlobalVariables.PrinterName.DigitInkjet) this.feedbackNextNo((int.Parse(this.getNextNo()) + 1).ToString("0000000").Substring(1));
 
             //This command line is specific to: PalletLabel ON FillingLine.Drum || CartonInkjet ON FillingLine.Pail (Just here only for this specific)
-            if ((this.FillingData.FillingLineID == GlobalVariables.FillingLine.Drum && !(this.printerName == GlobalVariables.PrinterName.PalletLabel || (GlobalEnums.DrumWithDigit && this.printerName == GlobalVariables.PrinterName.DigitInkjet))) || (this.FillingData.FillingLineID == GlobalVariables.FillingLine.Pail && this.printerName == GlobalVariables.PrinterName.PackInkjet) || (this.printerName == GlobalVariables.PrinterName.DigitInkjet && GlobalEnums.OnTestDigit)) { this.setLED(true, this.LedAmberOn, this.LedRedOn); return; } //DO NOTHING
+            if ((this.FillingData.FillingLineID == GlobalVariables.FillingLine.Drum && !(this.printerName == GlobalVariables.PrinterName.PalletLabel || (GlobalEnums.DrumWithDigit && this.printerName == GlobalVariables.PrinterName.DigitInkjet))) 
+                || (this.FillingData.FillingLineID == GlobalVariables.FillingLine.Pail && this.printerName == GlobalVariables.PrinterName.PackInkjet)
+                || (this.FillingData.FillingLineID == GlobalVariables.FillingLine.Medium4L && (this.printerName == GlobalVariables.PrinterName.DigitInkjet || this.printerName == GlobalVariables.PrinterName.PackInkjet))
+                || (this.FillingData.FillingLineID == GlobalVariables.FillingLine.Import && (this.printerName == GlobalVariables.PrinterName.DigitInkjet || this.printerName == GlobalVariables.PrinterName.PackInkjet)) //MUST CHECK AGAIN FOR IMPORT LINE
+                || (this.printerName == GlobalVariables.PrinterName.DigitInkjet && GlobalEnums.OnTestDigit)) { this.setLED(true, this.LedAmberOn, this.LedRedOn); return; } //DO NOTHING
 
 
             try
