@@ -53,6 +53,18 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             this.GetGoodsReceiptDetailAvailables();
         }
 
+        public void RestoreProcedure19JUL2018()
+        {
+            GenerateSQLPendingDetails generatePendingPickupDetails = new GenerateSQLPendingDetails(totalSmartCodingEntities, GlobalEnums.GoodsReceiptTypeID.Pickup, "Pickups", "PickupDetails", "PickupID", "@PickupID", "PickupDetailID", "@PickupDetailIDs", "WarehouseID", "PrimaryReference", "PrimaryEntryDate");
+            generatePendingPickupDetails.GetPendingPickups("GetPendingPickups");
+            generatePendingPickupDetails.GetPendingPickupWarehouses("GetPendingPickupWarehouses");
+            generatePendingPickupDetails.GetPendingPickupDetails("GetPendingPickupDetails");
+
+            GenerateSQLPendingDetails generatePendingGoodsIssueTransferDetails = new GenerateSQLPendingDetails(totalSmartCodingEntities, GlobalEnums.GoodsReceiptTypeID.GoodsIssueTransfer, "GoodsIssues", "GoodsIssueTransferDetails", "GoodsIssueID", "@GoodsIssueID", "GoodsIssueTransferDetailID", "@GoodsIssueTransferDetailIDs", "WarehouseReceiptID", "PrimaryReference", "PrimaryEntryDate");
+            generatePendingGoodsIssueTransferDetails.GetPendingPickups("GetPendingGoodsIssueTransfers");
+            generatePendingGoodsIssueTransferDetails.GetPendingPickupWarehouses("GetPendingGoodsIssueTransferWarehouses");
+            generatePendingGoodsIssueTransferDetails.GetPendingPickupDetails("GetPendingGoodsIssueTransferDetails");
+        }
 
         private void GetGoodsReceiptIndexes()
         {
@@ -434,8 +446,8 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
                 queryString = queryString + " AS " + "\r\n";
 
                 queryString = queryString + "       SELECT          " + this.primaryTables + "." + this.primaryKey + ", " + this.primaryTables + ".Reference AS " + this.primaryReference + ", " + this.primaryTables + ".EntryDate AS " + this.primaryEntryDate + ", Warehouses.WarehouseID, Warehouses.Code AS WarehouseCode, Warehouses.Name AS WarehouseName, " + (int)this.goodsReceiptTypeID + " AS GoodsReceiptTypeID, (SELECT TOP 1 Name FROM GoodsReceiptTypes WHERE GoodsReceiptTypeID = " + (int)this.goodsReceiptTypeID + ") AS GoodsReceiptTypeName, " + this.primaryTables + ".Description, " + this.primaryTables + ".Remarks " + (this.goodsReceiptTypeID == GlobalEnums.GoodsReceiptTypeID.GoodsIssueTransfer ? ", GoodsIssues.VoucherCodes, SourceWarehouses.Name AS SourceWarehouseName " : "") + "\r\n";
-                queryString = queryString + "       FROM            " + this.primaryTables + " " + "\r\n";
-                queryString = queryString + "                       INNER JOIN Warehouses ON " + this.primaryTables + "." + this.primaryKey + " IN (SELECT " + this.primaryKey + " FROM " + this.primaryTableDetails + " WHERE LocationID = @LocationID AND Approved = 1 AND ROUND(Quantity - QuantityReceipt, " + (int)GlobalEnums.rndQuantity + ") > 0) AND " + this.primaryTables + "." + fieldNameWarehouseID + " = Warehouses.WarehouseID " + "\r\n";
+                queryString = queryString + "       FROM           (SELECT " + this.primaryKey + ", " + fieldNameWarehouseID + (this.goodsReceiptTypeID == GlobalEnums.GoodsReceiptTypeID.GoodsIssueTransfer && fieldNameWarehouseID.IndexOf("WarehouseID") == -1 ? ", WarehouseID" : "") + ", Reference, EntryDate, Description, Remarks" + (this.goodsReceiptTypeID == GlobalEnums.GoodsReceiptTypeID.GoodsIssueTransfer ? ", VoucherCodes" : "") + " FROM " + this.primaryTables + " WHERE " + this.primaryKey + " IN (SELECT " + this.primaryKey + " FROM " + this.primaryTableDetails + " WHERE LocationID = @LocationID AND Approved = 1 AND ROUND(Quantity - QuantityReceipt, " + (int)GlobalEnums.rndQuantity + ") > 0)) AS " + this.primaryTables + "\r\n";
+                queryString = queryString + "                       INNER JOIN Warehouses ON " + this.primaryTables + "." + fieldNameWarehouseID + " = Warehouses.WarehouseID " + "\r\n";                
                 if (this.goodsReceiptTypeID == GlobalEnums.GoodsReceiptTypeID.GoodsIssueTransfer)
                     queryString = queryString + "                   INNER JOIN Warehouses SourceWarehouses ON GoodsIssues.WarehouseID = SourceWarehouses.WarehouseID " + "\r\n";
 

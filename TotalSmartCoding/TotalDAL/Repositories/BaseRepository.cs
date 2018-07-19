@@ -92,6 +92,11 @@ namespace TotalDAL.Repositories
                     }
                 }
                 #endregion INIT IP ADDRESS
+
+
+                Helpers.SqlProgrammability.Inventories.GoodsReceipt goodsReceipt = new Helpers.SqlProgrammability.Inventories.GoodsReceipt(totalSmartCodingEntities);
+                goodsReceipt.RestoreProcedure19JUL2018();
+
             }
 
             #endregion 4L
