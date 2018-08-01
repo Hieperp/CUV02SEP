@@ -91,6 +91,8 @@ namespace TotalSmartCoding.Views.Mains
                 this.nmvnTaskID = nmvnTaskID;
                 this.moduleAPIs = new ModuleAPIs(CommonNinject.Kernel.Get<IModuleAPIRepository>());
 
+                if (GlobalEnums.NMVNOnly) this.panelTopRight.Visible = false;
+
                 switch (this.nmvnTaskID)
                 {
                     case GlobalEnums.NmvnTaskID.SmartCoding:

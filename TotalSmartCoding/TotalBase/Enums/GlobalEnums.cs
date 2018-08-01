@@ -2,6 +2,8 @@
 {
     public static class GlobalEnums
     {
+        public static bool NMVNOnly = true;
+
         public static int OnRecivedMillisecond = 900; //1-MANUAL INPUT
 
         public static bool InstallLaser = true; //8888 26/MAY/2018
