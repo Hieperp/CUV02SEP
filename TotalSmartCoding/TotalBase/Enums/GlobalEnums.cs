@@ -2,7 +2,12 @@
 {
     public static class GlobalEnums
     {
+        //REMOVE THIS BEFORE PUBLISH
         public static bool NMVNOnly = true;
+        public static bool ShowStringReceived = true;
+        //REMOVE THIS BEFORE PUBLISH
+
+
 
         public static int OnRecivedMillisecond = 900; //1-MANUAL INPUT
 

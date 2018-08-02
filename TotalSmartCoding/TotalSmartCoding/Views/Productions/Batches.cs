@@ -157,7 +157,7 @@ namespace TotalSmartCoding.Views.Productions
 
             CommodityAPIs commodityAPIs = new CommodityAPIs(CommonNinject.Kernel.Get<ICommodityAPIRepository>());
 
-            this.combexCommodityID.DataSource = commodityAPIs.GetCommodityBases().Where(p => p.FillingLineIDs.Contains(((int)GlobalVariables.FillingLineID).ToString())).ToList();
+            this.combexCommodityID.DataSource = commodityAPIs.GetCommodityBases().Where(p => p.FillingLineIDs.Contains(((int)GlobalVariables.FillingLineID).ToString()) || GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Import).ToList();
             this.combexCommodityID.DisplayMember = CommonExpressions.PropertyName<CommodityBase>(p => p.Code);
             this.combexCommodityID.ValueMember = CommonExpressions.PropertyName<CommodityBase>(p => p.CommodityID);
             this.bindingCommodityID = this.combexCommodityID.DataBindings.Add("SelectedValue", this.batchViewModel, CommonExpressions.PropertyName<BatchViewModel>(p => p.CommodityID), true, DataSourceUpdateMode.OnPropertyChanged);

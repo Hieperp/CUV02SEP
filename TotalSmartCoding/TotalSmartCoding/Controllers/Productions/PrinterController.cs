@@ -762,7 +762,7 @@ namespace TotalSmartCoding.Controllers.Productions
             if ((this.FillingData.FillingLineID == GlobalVariables.FillingLine.Drum && !(this.printerName == GlobalVariables.PrinterName.PalletLabel || (GlobalEnums.DrumWithDigit && this.printerName == GlobalVariables.PrinterName.DigitInkjet))) 
                 || (this.FillingData.FillingLineID == GlobalVariables.FillingLine.Pail && this.printerName == GlobalVariables.PrinterName.PackInkjet)
                 || (this.FillingData.FillingLineID == GlobalVariables.FillingLine.Medium4L && (this.printerName == GlobalVariables.PrinterName.DigitInkjet || this.printerName == GlobalVariables.PrinterName.PackInkjet))
-                || (this.FillingData.FillingLineID == GlobalVariables.FillingLine.Import && (this.printerName == GlobalVariables.PrinterName.DigitInkjet || this.printerName == GlobalVariables.PrinterName.PackInkjet)) //MUST CHECK AGAIN FOR IMPORT LINE
+                || (this.FillingData.FillingLineID == GlobalVariables.FillingLine.Import && (this.printerName == GlobalVariables.PrinterName.DigitInkjet || this.printerName == GlobalVariables.PrinterName.PackInkjet || this.printerName == GlobalVariables.PrinterName.CartonInkjet))
                 || (this.printerName == GlobalVariables.PrinterName.DigitInkjet && GlobalEnums.OnTestDigit)) { this.setLED(true, this.LedAmberOn, this.LedRedOn); return; } //DO NOTHING
 
 

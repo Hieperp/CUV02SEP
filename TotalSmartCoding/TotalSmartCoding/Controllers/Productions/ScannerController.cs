@@ -411,10 +411,10 @@ namespace TotalSmartCoding.Controllers.Productions
                 {
                     this.MainStatus = "Đang kết nối máy đọc mã vạch ...";
 
-                    if (this.FillingData.HasPack)
+                    if (this.FillingData.HasPack && !this.FillingData.PalletCameraOnly)
                         this.ionetSocketPack.Connect();
 
-                    if (this.FillingData.HasCarton)
+                    if (this.FillingData.HasCarton && !this.FillingData.PalletCameraOnly)
                         this.ionetSocketCarton.Connect();
 
                     if (this.FillingData.HasPallet && !GlobalEnums.OnTestPalletScanner)
@@ -460,7 +460,7 @@ namespace TotalSmartCoding.Controllers.Productions
             {
                 if (!GlobalEnums.OnTestScanner)
                 {
-                    if (this.FillingData.HasPack)
+                    if (this.FillingData.HasPack && !this.FillingData.PalletCameraOnly)
                     {
                         lock (this.ionetSocketPack)
                         {
@@ -468,7 +468,7 @@ namespace TotalSmartCoding.Controllers.Productions
                         }
                     }
 
-                    if (this.FillingData.HasCarton)
+                    if (this.FillingData.HasCarton && !this.FillingData.PalletCameraOnly)
                     {
                         lock (this.ionetSocketCarton)
                         {
@@ -701,7 +701,10 @@ namespace TotalSmartCoding.Controllers.Productions
             if (GlobalEnums.OnTestScanner)
                 if ((DateTime.Now.Millisecond / (int)GlobalEnums.OnRecivedMillisecond) > 0 && this.FillingData.NextAutoCartonCode != "" && this.CartonQueueCount < this.FillingData.CartonPerPallet && (this.packsetQueue.Count > 0 || !this.FillingData.HasPack)) { stringReceived = GlobalEnums.OnTestCartonNoreadNow ? "NoRead" : this.FillingData.NextAutoCartonCode; this.FillingData.NextAutoCartonCode = ""; GlobalEnums.OnTestCartonNoreadNow = false; } else stringReceived = "";
             else
-                stringReceived = this.ionetSocketCarton.ReadoutStream().Trim();
+                if (this.FillingData.PalletCameraOnly)
+                    stringReceived = "";
+                else
+                    stringReceived = this.ionetSocketCarton.ReadoutStream().Trim();
 
             return stringReceived != "";
         }
@@ -821,6 +824,8 @@ namespace TotalSmartCoding.Controllers.Productions
                 if ((GlobalEnums.OnTestPalletReceivedNow) && ((DateTime.Now.Second % 10) == 0 || GlobalEnums.OnTestPalletReceivedNow) && this.FillingData.NextAutoPalletCode != "" && (this.cartonsetQueue.Count > 0 || !this.FillingData.HasCarton)) { stringReceived = this.FillingData.NextAutoPalletCode; this.FillingData.NextAutoPalletCode = ""; GlobalEnums.OnTestPalletReceivedNow = false; } else stringReceived = "";
             else
                 stringReceived = this.ionetSocketPallet.ReadoutStream().Trim();
+
+            if (GlobalEnums.ShowStringReceived && stringReceived != "") { this.MainStatus = ""; this.MainStatus = stringReceived; }
 
             return stringReceived != "";
         }

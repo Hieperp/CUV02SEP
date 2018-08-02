@@ -71,6 +71,7 @@ namespace TotalDTO.Productions
         public bool HasCarton { get { return this.FillingLineID == GlobalVariables.FillingLine.Smallpack || this.FillingLineID == GlobalVariables.FillingLine.Pail || this.FillingLineID == GlobalVariables.FillingLine.Medium4L || this.FillingLineID == GlobalVariables.FillingLine.Import; } }
         public bool HasPallet { get { return true; } }
 
+        public bool PalletCameraOnly { get { return this.FillingLineID == GlobalVariables.FillingLine.Import; } }
 
         public int CommodityID    //ResetSerialNumber
         {

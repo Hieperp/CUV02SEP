@@ -103,6 +103,8 @@ namespace TotalSmartCoding.Views.Mains
 
             #endregion TEST
 
+            CommonConfigs.AddUpdateAppSetting("ConfigID", "5");
+
             try
             {
                 UserPrincipal currentUserPrincipal = UserPrincipal.Current;
