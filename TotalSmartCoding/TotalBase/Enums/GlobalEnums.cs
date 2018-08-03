@@ -3,7 +3,7 @@
     public static class GlobalEnums
     {
         //REMOVE THIS BEFORE PUBLISH
-        public static bool NMVNOnly = true;
+        public static bool NMVNOnly = false;
         public static bool ShowStringReceived = true;
         //REMOVE THIS BEFORE PUBLISH
 

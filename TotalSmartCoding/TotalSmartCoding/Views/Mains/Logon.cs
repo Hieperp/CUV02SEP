@@ -103,7 +103,8 @@ namespace TotalSmartCoding.Views.Mains
 
             #endregion TEST
 
-            CommonConfigs.AddUpdateAppSetting("ConfigID", "5");
+            //JUST FOR 4L FillingLine ONLY. SHOULD REMOVE NEXT TIME
+            CommonConfigs.AddUpdateAppSetting("ConfigID", ((int)GlobalVariables.FillingLine.Import).ToString());
 
             try
             {
@@ -312,8 +313,7 @@ namespace TotalSmartCoding.Views.Mains
                         }
 
 
-                        //JUST FOR 4L FillingLine ONLY. SHOULD REMOVE NEXT TIME
-                        CommonConfigs.AddUpdateAppSetting("ConfigID", ((int)GlobalVariables.FillingLine.Medium4L).ToString());
+                        
                     }
                 }
             }
