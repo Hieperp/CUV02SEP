@@ -103,8 +103,8 @@ namespace TotalSmartCoding.Views.Mains
 
             #endregion TEST
 
-            //JUST FOR 4L FillingLine ONLY. SHOULD REMOVE NEXT TIME
-            CommonConfigs.AddUpdateAppSetting("ConfigID", ((int)GlobalVariables.FillingLine.Import).ToString());
+            ////JUST FOR 4L FillingLine ONLY. SHOULD REMOVE NEXT TIME
+            //CommonConfigs.AddUpdateAppSetting("ConfigID", ((int)GlobalVariables.FillingLine.Import).ToString());
 
             try
             {
