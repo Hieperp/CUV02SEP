@@ -5065,6 +5065,7 @@
           <Property Type="Int32" Name="Shelflife" Nullable="false" />
           <Property Type="Boolean" Name="AutoBarcode" Nullable="false" />
           <Property Type="String" Name="FinalCartonNo" Nullable="false" MaxLength="10" />
+          <Property Type="Decimal" Name="PackageVolume" Nullable="false" Precision="18" Scale="3" />
         </ComplexType>
         <ComplexType Name="CommodityIndex">
           <Property Type="Int32" Name="CommodityID" Nullable="false" />
@@ -8877,6 +8878,7 @@
                 <ScalarProperty Name="Shelflife" ColumnName="Shelflife" />
                 <ScalarProperty Name="AutoBarcode" ColumnName="AutoBarcode" />
                 <ScalarProperty Name="FinalCartonNo" ColumnName="FinalCartonNo" />
+                <ScalarProperty Name="PackageVolume" ColumnName="PackageVolume" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

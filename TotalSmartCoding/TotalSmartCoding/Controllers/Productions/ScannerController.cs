@@ -702,7 +702,17 @@ namespace TotalSmartCoding.Controllers.Productions
                 if ((DateTime.Now.Millisecond / (int)GlobalEnums.OnRecivedMillisecond) > 0 && this.FillingData.NextAutoCartonCode != "" && this.CartonQueueCount < this.FillingData.CartonPerPallet && (this.packsetQueue.Count > 0 || !this.FillingData.HasPack)) { stringReceived = GlobalEnums.OnTestCartonNoreadNow ? "NoRead" : this.FillingData.NextAutoCartonCode; this.FillingData.NextAutoCartonCode = ""; GlobalEnums.OnTestCartonNoreadNow = false; } else stringReceived = "";
             else
                 if (this.FillingData.PalletCameraOnly)
+                {
                     stringReceived = "";
+                    lock (this.FillingData.CartontoZebraQueue)
+                    {
+                        if (this.FillingData.CartontoZebraQueue.Count > 0)
+                        {
+                            CartonDTO cartonDTO = this.FillingData.CartontoZebraQueue.Dequeue();
+                            if (cartonDTO != null) stringReceived = cartonDTO.Code;
+                        }
+                    }
+                }
                 else
                     stringReceived = this.ionetSocketCarton.ReadoutStream().Trim();
 
@@ -757,7 +767,7 @@ namespace TotalSmartCoding.Controllers.Productions
                 {//BY NOW: GlobalVariables.IgnoreEmptyCarton = TRUE. LATER, WE WILL ADD AN OPTION ON MENU FOR USER, IF NEEDED
                     if (!GlobalVariables.IgnoreEmptyCarton || this.packsetQueue.Count > 0 || !this.FillingData.HasPack) //BY NOT this.FillingData.HasPack: this.packsetQueue.Count WILL ALWAYS BE: 0 (NO PACK RECEIVED)
                     {//IF this.packsetQueue.Count <= 0 => THIS WILL SAVE AN EMPTY CARTON. this.packsetQueue.EntityIDs WILL BE BLANK => NO PACK BE UPDATED FOR THIS CARTON
-                        CartonDTO cartonDTO = new CartonDTO(this.FillingData) { Code = this.interpretBarcode(cartonCode), PackCounts = this.packsetQueue.Count, Quantity = 1, LineVolume = (this.FillingData.HasPack ? this.packsetQueue.TotalLineVolume : this.FillingData.Volume) };
+                        CartonDTO cartonDTO = new CartonDTO(this.FillingData) { Code = this.interpretBarcode(cartonCode), PackCounts = this.packsetQueue.Count, Quantity = 1, LineVolume = (this.FillingData.HasPack ? this.packsetQueue.TotalLineVolume : this.FillingData.PackageVolume) };
                         if (isPending) cartonDTO.EntryStatusID = (int)GlobalVariables.BarcodeStatus.Noread;
 
                         lock (this.cartonController)
@@ -865,7 +875,7 @@ namespace TotalSmartCoding.Controllers.Productions
                     if (!GlobalVariables.IgnoreEmptyPallet || ((this.cartonsetQueue.Count > 0 || !this.FillingData.HasCarton) && (this.FillingData.CartonsetQueueZebraStatus == GlobalVariables.ZebraStatus.Printed || GlobalEnums.OnTestScanner || GlobalEnums.OnTestPalletReceivedNow))) //BY NOW: GlobalVariables.IgnoreEmptyPallet = TRUE. LATER, WE WILL ADD AN OPTION ON MENU FOR USER, IF NEEDED.               NOTES: HERE WE CHECK this.FillingData.CartonsetQueueLabelPrintedCount != 0: TO ENSURE THAT A NEW LABEL HAS BEEN PRINTED BY PrinterController IN ORDER TO MatchingAndAddPallet
                     {//IF this.cartonsetQueue.Count <= 0 => THIS WILL SAVE AN EMPTY PALLET: this.cartonsetQueue.EntityIDs WILL BE BLANK => NO CARTON BE UPDATED FOR THIS PALLET
 
-                        PalletDTO palletDTO = new PalletDTO(this.FillingData) { Code = palletCode, PackCounts = this.cartonsetQueue.PackCounts, CartonCounts = this.cartonsetQueue.Count, Quantity = (this.FillingData.HasCarton ? this.cartonsetQueue.TotalQuantity : 1), LineVolume = (this.FillingData.HasCarton ? this.cartonsetQueue.TotalLineVolume : this.FillingData.Volume) };
+                        PalletDTO palletDTO = new PalletDTO(this.FillingData) { Code = palletCode, PackCounts = this.cartonsetQueue.PackCounts, CartonCounts = this.cartonsetQueue.Count, Quantity = (this.FillingData.HasCarton ? this.cartonsetQueue.TotalQuantity : 1), LineVolume = (this.FillingData.HasCarton ? this.cartonsetQueue.TotalLineVolume : this.FillingData.PackageVolume) };
 
                         lock (this.palletController)
                         {
@@ -1067,7 +1077,7 @@ namespace TotalSmartCoding.Controllers.Productions
             {
                 lock (this.cartonsetQueue)
                 {
-                    if (movedCartonQueue.Count > 0 && (!fromCartonsetQueue || this.cartonQueue.Count > 0))
+                    if (movedCartonQueue.Count > 0 && (true || !fromCartonsetQueue || this.cartonQueue.Count > 0))
                     {
                         CartonDTO cartonDTO = movedCartonQueue.Dequeue(cartonID);
                         if (cartonDTO != null)
@@ -1085,7 +1095,7 @@ namespace TotalSmartCoding.Controllers.Productions
 
                                     if (this.cartonController.cartonService.UpdateEntryStatus(cartonDTO.CartonID.ToString(), GlobalVariables.BarcodeStatus.Pending))
                                     {
-                                        if (fromCartonsetQueue)
+                                        if (fromCartonsetQueue & this.cartonQueue.Count > 0)
                                         {
                                             cartonDTO = this.cartonQueue.Dequeue();
                                             if (cartonDTO != null)

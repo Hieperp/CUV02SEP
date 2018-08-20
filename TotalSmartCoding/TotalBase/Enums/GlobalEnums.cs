@@ -4,7 +4,7 @@
     {
         //REMOVE THIS BEFORE PUBLISH
         public static bool NMVNOnly = false;
-        public static bool ShowStringReceived = true;
+        public static bool ShowStringReceived = false;
         //REMOVE THIS BEFORE PUBLISH
 
 
@@ -21,7 +21,9 @@
         public static bool OnTestZebra = false; //false: WILL SEND TEST PRINT WHEN CONNECTED
 
 
-        public static bool DrumWithDigit = false; //NEW DIGIT DOMINO AT DRUM LINE FOR PHASE 2
+        private static bool drumWithDigit = false; //NEW DIGIT DOMINO AT DRUM LINE FOR PHASE 2
+        public static bool DrumWithDigit { get { return GlobalEnums.drumWithDigit && GlobalVariables.ConfigID != (int)GlobalVariables.FillingLine.Import; } }
+
 
         public static bool SendToZebra = true;
 

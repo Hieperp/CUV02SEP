@@ -38,5 +38,6 @@ namespace TotalModel.Models
         public int Shelflife { get; set; }
         public bool AutoBarcode { get; set; }
         public string FinalCartonNo { get; set; }
+        public decimal PackageVolume { get; set; }
     }
 }

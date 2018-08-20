@@ -3003,6 +3003,16 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_data_matrix_code_32 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-data-matrix-code-32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_esc_30 {
             get {
                 object obj = ResourceManager.GetObject("icons8-esc-30", resourceCulture);
@@ -3296,6 +3306,26 @@ namespace TotalSmartCoding.Properties {
         internal static System.Drawing.Bitmap Ignore_x_24 {
             get {
                 object obj = ResourceManager.GetObject("Ignore-x-24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap images_3030 {
+            get {
+                object obj = ResourceManager.GetObject("images 3030", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap images_3232 {
+            get {
+                object obj = ResourceManager.GetObject("images 3232", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

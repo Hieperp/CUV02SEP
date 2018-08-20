@@ -22,6 +22,8 @@ namespace TotalDTO.Productions
         public int CartonsetQueueCount { get; set; }
         public GlobalVariables.ZebraStatus CartonsetQueueZebraStatus { get; set; } //AT INITIALIZE, THIS = 0 (RIGHT AFTER CartonsetQueue IS SET). AFTER PRINT: THIS = 1. WHEN USER PRESS RE-PRINT => THIS = -1
 
+        public BarcodeQueue<CartonDTO> CartontoZebraQueue;
+
 
         public string NextAutoPackCode { get; set; }
         public string NextAutoCartonCode { get; set; }
@@ -34,6 +36,7 @@ namespace TotalDTO.Productions
         private string commodityOfficialCode;
         private string commodityName;
         private decimal volume;
+        private decimal packageVolume;
 
         private int shelflife;
         private bool isPailLabel;
@@ -55,6 +58,8 @@ namespace TotalDTO.Productions
         public FillingData()
         {
             this.settingDate = DateTime.Now;
+
+            this.CartontoZebraQueue = new BarcodeQueue<CartonDTO>();
         }
 
         #endregion Contructor
@@ -68,9 +73,10 @@ namespace TotalDTO.Productions
         public string FillingLineName { get { return GlobalVariables.FillingLineName; } }
 
         public bool HasPack { get { return this.FillingLineID == GlobalVariables.FillingLine.Smallpack; } }
-        public bool HasCarton { get { return this.FillingLineID == GlobalVariables.FillingLine.Smallpack || this.FillingLineID == GlobalVariables.FillingLine.Pail || this.FillingLineID == GlobalVariables.FillingLine.Medium4L || this.FillingLineID == GlobalVariables.FillingLine.Import; } }
+        public bool HasCarton { get { return this.FillingLineID == GlobalVariables.FillingLine.Smallpack || this.FillingLineID == GlobalVariables.FillingLine.Pail || this.FillingLineID == GlobalVariables.FillingLine.Medium4L || (this.FillingLineID == GlobalVariables.FillingLine.Import && this.CartonPerPallet > 1); } }
         public bool HasPallet { get { return true; } }
 
+        public bool CartonViaPalletZebra { get { return this.FillingLineID == GlobalVariables.FillingLine.Import; } }
         public bool PalletCameraOnly { get { return this.FillingLineID == GlobalVariables.FillingLine.Import; } }
 
         public int CommodityID    //ResetSerialNumber
@@ -122,7 +128,11 @@ namespace TotalDTO.Productions
             set { ApplyPropertyChange<FillingData, decimal>(ref this.volume, o => o.Volume, value); }
         }
 
-
+        public decimal PackageVolume
+        {
+            get { return this.packageVolume; }
+            set { ApplyPropertyChange<FillingData, decimal>(ref this.packageVolume, o => o.PackageVolume, value); }
+        }
 
         public int Shelflife
         {
@@ -142,9 +152,10 @@ namespace TotalDTO.Productions
         public bool AutoBarcode
         {
             get { return this.autoBarcode; }
-            set {
+            set
+            {
                 ApplyPropertyChange<FillingData, bool>(ref this.autoBarcode, o => o.AutoBarcode, value);
-                GlobalEnums.OnTestPrinter = this.AutoBarcode; GlobalEnums.OnTestScanner = this.AutoBarcode; 
+                GlobalEnums.OnTestPrinter = this.AutoBarcode; GlobalEnums.OnTestScanner = this.AutoBarcode;
             }
         }
 
@@ -324,6 +335,14 @@ namespace TotalDTO.Productions
         {
             get { return this.cartonPerPallet; }
             set { ApplyPropertyChange<FillingData, int>(ref this.cartonPerPallet, o => o.CartonPerPallet, value); }
+        }
+
+
+        private int nthCartontoZebra;
+        public int NthCartontoZebra
+        {
+            get { return this.nthCartontoZebra; }
+            set { ApplyPropertyChange<FillingData, int>(ref this.nthCartontoZebra, o => o.NthCartontoZebra, value); }
         }
 
 

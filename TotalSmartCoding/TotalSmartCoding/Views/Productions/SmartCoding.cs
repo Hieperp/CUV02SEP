@@ -103,6 +103,8 @@ namespace TotalSmartCoding.Views.Productions
                 this.textNextPalletNo.TextBox.DataBindings.Add("Text", this.fillingData, "NextPalletNo");
                 this.textFinalCartonNo.TextBox.DataBindings.Add("Text", this.fillingData, "FinalCartonNo");
 
+                this.textNthCartontoZebra.TextBox.DataBindings.Add("Text", this.fillingData, "NthCartontoZebra", true, DataSourceUpdateMode.OnPropertyChanged);
+
                 this.comboBoxEmptyCarton.ComboBox.Items.AddRange(new string[] { "Ignore empty carton", "Keep empty carton" });
                 this.comboBoxEmptyCarton.ComboBox.SelectedIndex = GlobalVariables.IgnoreEmptyCarton ? 0 : 1;
                 this.comboBoxEmptyCarton.Enabled = this.fillingData.FillingLineID != GlobalVariables.FillingLine.Pail && this.fillingData.FillingLineID != GlobalVariables.FillingLine.Medium4L && this.fillingData.FillingLineID != GlobalVariables.FillingLine.Import;
@@ -114,10 +116,10 @@ namespace TotalSmartCoding.Views.Productions
                 this.buttonSendToZebra.Visible = this.fillingData.FillingLineID == GlobalVariables.FillingLine.Drum && !GlobalEnums.DrumWithDigit;
 
 
-                if (!fillingData.HasPack) { this.labelNextPackNo.Visible = false; this.textNextPackNo.Visible = false; this.dgvCartonPendingQueue.RowTemplate.Height = 280; this.dgvCartonQueue.RowTemplate.Height = 280; this.dgvCartonsetQueue.RowTemplate.Height = 280; this.labelLEDPack.Visible = false; this.labelLEDCartonIgnore.Visible = false; this.separatorLEDPack.Visible = false; this.separatorLEDCartonIgnore.Visible = false; this.labelCommodityNameCarton.Visible = true; }
-                if (!fillingData.HasCarton) { this.labelNextCartonNo.Visible = false; this.textNextCartonNo.Visible = false; this.dgvPalletQueue.RowTemplate.Height = 280; this.dgvPalletPickupQueue.RowTemplate.Height = 280; this.labelLEDCarton.Visible = false; this.labelLEDCartonPending.Visible = false; this.separatorLEDCarton.Visible = false; this.separatorLEDCartonPending.Visible = false; this.labelCommodityNamePallet.Visible = true; }
+                if (!fillingData.HasPack) { this.labelNextPackNo.Visible = false; this.textNextPackNo.Visible = false; this.dgvCartonPendingQueue.RowTemplate.Height = 280; this.dgvCartonQueue.RowTemplate.Height = 280; this.dgvCartonsetQueue.RowTemplate.Height = 280; this.labelLEDPack.Visible = false; this.labelLEDCartonIgnore.Visible = false; this.separatorLEDPack.Visible = false; this.separatorLEDCartonIgnore.Visible = false; } //this.labelCommodityNameCarton.Visible = !this.fillingData.CartonViaPalletZebra; 
+                if (!fillingData.HasCarton && this.fillingData.FillingLineID != GlobalVariables.FillingLine.Import) { this.labelNextCartonNo.Visible = false; this.textNextCartonNo.Visible = false; this.dgvPalletQueue.RowTemplate.Height = 280; this.dgvPalletPickupQueue.RowTemplate.Height = 280; this.labelLEDCarton.Visible = false; this.labelLEDCartonPending.Visible = false; this.separatorLEDCarton.Visible = false; this.separatorLEDCartonPending.Visible = false; this.labelCommodityNamePallet.Visible = true; }
                 if (!fillingData.HasCarton && GlobalEnums.DrumWithDigit) { this.labelNextPalletNo.Visible = false; this.textNextPalletNo.Visible = false; } else { this.labelNextDigitNo.Visible = false; this.textNextDigitNo.Visible = false; }
-
+                if (!this.fillingData.CartonViaPalletZebra) { this.buttonSendCartontoZebra.Visible = false; this.textNthCartontoZebra.Visible = false; this.labelNthCartontoZebra.Visible = false; this.separatorSendCartontoZebra.Visible = false; }
 
 
             }
@@ -138,6 +140,8 @@ namespace TotalSmartCoding.Views.Productions
                 this.labelCommodityNamePack.Text = "                                         " + commodityDescription;
                 this.labelCommodityNameCarton.Text = "  " + commodityDescription;
                 this.labelCommodityNamePallet.Text = "                            " + commodityDescription;
+
+                this.Text = "Printing & Scanning" + (!fillingData.HasPack ? " - " + commodityDescription : "");
 
                 this.buttonCartonNoreadNow.Visible = GlobalEnums.OnTestScanner && GlobalEnums.OnTestCartonNoreadNowVisible;
                 this.buttonPalletReceivedNow.Visible = GlobalEnums.OnTestScanner;
@@ -398,6 +402,14 @@ namespace TotalSmartCoding.Views.Productions
         }
 
 
+
+        private void buttonSendCartontoZebra_Click(object sender, EventArgs e)
+        {
+            if (this.digitController.OnPrinting && this.packController.OnPrinting && this.cartonController.OnPrinting && this.palletController.OnPrinting && this.scannerController.OnScanning)
+                this.palletController.StartSendCartontoZebra(this.fillingData.NthCartontoZebra);
+        }
+
+
         private void buttonSetting_Click(object sender, EventArgs e)
         {
             try
@@ -488,21 +500,21 @@ namespace TotalSmartCoding.Views.Productions
 
                 if (sender.Equals(this.digitController))
                 {
-                    if (e.PropertyName == "MainStatus") { this.digitStatusbox.Text = "[" + DateTime.Now.ToString("hh:mm:ss") + "] " + this.digitController.MainStatus + "\r\n" + this.digitStatusbox.Text; this.cutStatusBox(false); return; }
+                    if (e.PropertyName == "MainStatus") { if (this.digitController.MainStatus != "") { this.digitStatusbox.Text = "[" + DateTime.Now.ToString("hh:mm:ss") + "] " + this.digitController.MainStatus + "\r\n" + this.digitStatusbox.Text; this.cutStatusBox(false); } return; }
                     if (e.PropertyName == "LedStatus") { this.digitLEDGreen.Enabled = this.digitController.LedGreenOn; this.digitLEDAmber.Enabled = this.digitController.LedAmberOn; this.digitLEDRed.Enabled = this.digitController.LedRedOn; if (this.digitController.LedRedOn) this.StopPrint(true, true, this.fillingData.FillingLineID == GlobalVariables.FillingLine.Pail, false); return; }
 
                     if (e.PropertyName == "NextDigitNo") { this.fillingData.NextDigitNo = this.digitController.NextDigitNo; return; }
                 }
                 else if (sender.Equals(this.packController))
                 {
-                    if (e.PropertyName == "MainStatus") { this.packStatusbox.Text = "[" + DateTime.Now.ToString("hh:mm:ss") + "] " + this.packController.MainStatus + "\r\n" + this.packStatusbox.Text; this.cutStatusBox(false); return; }
+                    if (e.PropertyName == "MainStatus") { if (this.packController.MainStatus != "") { this.packStatusbox.Text = "[" + DateTime.Now.ToString("hh:mm:ss") + "] " + this.packController.MainStatus + "\r\n" + this.packStatusbox.Text; this.cutStatusBox(false); } return; }
                     if (e.PropertyName == "LedStatus") { this.packLEDGreen.Enabled = this.packController.LedGreenOn; this.packLEDAmber.Enabled = this.packController.LedAmberOn; this.packLEDRed.Enabled = this.packController.LedRedOn; if (this.packController.LedRedOn) this.StopPrint(true, true, this.fillingData.FillingLineID == GlobalVariables.FillingLine.Pail, false); return; }
 
                     if (e.PropertyName == "NextPackNo") { this.fillingData.NextPackNo = this.packController.NextPackNo; return; }
                 }
                 else if (sender.Equals(this.cartonController))
                 {
-                    if (e.PropertyName == "MainStatus") { this.cartonStatusbox.Text = "[" + DateTime.Now.ToString("hh:mm:ss") + "] " + this.cartonController.MainStatus + "\r\n" + this.cartonStatusbox.Text; this.cutStatusBox(false); return; }
+                    if (e.PropertyName == "MainStatus") { if (this.cartonController.MainStatus != "") { this.cartonStatusbox.Text = "[" + DateTime.Now.ToString("hh:mm:ss") + "] " + this.cartonController.MainStatus + "\r\n" + this.cartonStatusbox.Text; this.cutStatusBox(false); } return; }
                     if (e.PropertyName == "LedStatus") { this.cartonLEDGreen.Enabled = this.cartonController.LedGreenOn; this.cartonLEDAmber.Enabled = this.cartonController.LedAmberOn; this.cartonLEDRed.Enabled = this.cartonController.LedRedOn; if (this.cartonController.LedRedOn) this.StopPrint(this.fillingData.FillingLineID == GlobalVariables.FillingLine.Pail, this.fillingData.FillingLineID == GlobalVariables.FillingLine.Pail, this.fillingData.FillingLineID == GlobalVariables.FillingLine.Pail, false); return; }
 
                     if (e.PropertyName == "NextCartonNo") { this.fillingData.NextCartonNo = this.cartonController.NextCartonNo; return; }
@@ -510,15 +522,16 @@ namespace TotalSmartCoding.Views.Productions
 
                 else if (sender.Equals(this.palletController))
                 {
-                    if (e.PropertyName == "MainStatus") { this.palletStatusbox.Text = "[" + DateTime.Now.ToString("hh:mm:ss") + "] " + this.palletController.MainStatus + "\r\n" + this.palletStatusbox.Text; this.cutStatusBox(false); return; }
+                    if (e.PropertyName == "MainStatus") { if (this.palletController.MainStatus != "") { this.palletStatusbox.Text = "[" + DateTime.Now.ToString("hh:mm:ss") + "] " + this.palletController.MainStatus + "\r\n" + this.palletStatusbox.Text; this.cutStatusBox(false); } return; }
                     if (e.PropertyName == "LedStatus") { this.palletLEDGreen.Enabled = this.palletController.LedGreenOn; this.palletLEDAmber.Enabled = this.palletController.LedAmberOn; this.palletLEDRed.Enabled = this.palletController.LedRedOn; return; }
 
+                    if (e.PropertyName == "NextCartonNo" && this.fillingData.CartonViaPalletZebra) { this.fillingData.NextCartonNo = this.palletController.NextCartonNo; return; }
                     if (e.PropertyName == "NextPalletNo") { this.fillingData.NextPalletNo = this.palletController.NextPalletNo; return; }
                 }
 
                 else if (sender.Equals(this.scannerController))
                 {
-                    if (e.PropertyName == "MainStatus") { this.scannerStatusbox.Text = "[" + DateTime.Now.ToString("hh:mm:ss") + "] " + this.scannerController.MainStatus + "\r\n" + this.scannerStatusbox.Text; this.cutStatusBox(false); return; }
+                    if (e.PropertyName == "MainStatus") { if (this.scannerController.MainStatus != "") { this.scannerStatusbox.Text = "[" + DateTime.Now.ToString("hh:mm:ss") + "] " + this.scannerController.MainStatus + "\r\n" + this.scannerStatusbox.Text; this.cutStatusBox(false); } return; }
                     if (e.PropertyName == "LedStatus") { this.scannerLEDGreen.Enabled = this.scannerController.LedGreenOn; this.scannerLEDAmber.Enabled = this.scannerController.LedAmberOn; this.scannerLEDRed.Enabled = this.scannerController.LedRedOn; if (this.scannerController.LedRedOn) this.StopPrint(); return; }
 
                     if (e.PropertyName == "LedMCU") { this.toolStripMCUQuanlity.Enabled = this.scannerController.LedMCUQualityOn; this.toolStripMCUMatching.Enabled = this.scannerController.LedMCUMatchingOn; this.toolStripMCUCarton.Enabled = this.scannerController.LedMCUCartonOn; return; }
@@ -700,7 +713,7 @@ namespace TotalSmartCoding.Views.Productions
 
                 if (!this.fillingData.HasPack && printedBarcode.Length >= 29)
                 {
-                    if (sender != null && (this.fillingData.HasCarton && sender.Equals(this.dgvPalletQueue) || sender.Equals(this.dgvPalletPickupQueue)))
+                    if (sender != null && ((this.fillingData.HasCarton || this.fillingData.FillingLineID == GlobalVariables.FillingLine.Import) && (sender.Equals(this.dgvPalletQueue) || sender.Equals(this.dgvPalletPickupQueue))))
                         printedBarcode = printedBarcode.Substring(indexOfDoubleTabChar - 6, 6);
                     else
                         printedBarcode = printedBarcode.Substring(0, indexOfDoubleTabChar);
@@ -989,6 +1002,7 @@ namespace TotalSmartCoding.Views.Productions
         }
 
         #endregion Backup
+
 
 
 

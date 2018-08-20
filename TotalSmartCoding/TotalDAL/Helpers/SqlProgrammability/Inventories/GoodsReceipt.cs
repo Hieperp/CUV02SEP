@@ -34,7 +34,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             generatePendingGoodsIssueTransferDetails.GetPendingPickupWarehouses("GetPendingGoodsIssueTransferWarehouses");
             generatePendingGoodsIssueTransferDetails.GetPendingPickupDetails("GetPendingGoodsIssueTransferDetails");
 
-            GenerateSQLPendingDetails generatePendingWarehouseAdjustmentDetails = new GenerateSQLPendingDetails(totalSmartCodingEntities, GlobalEnums.GoodsReceiptTypeID.WarehouseAdjustments, "WarehouseAdjustments", "WarehouseAdjustmentDetails", "WarehouseAdjustmentID", "@WarehouseAdjustmentID", "WarehouseAdjustmentDetailID", "@WarehouseAdjustmentDetailIDs", "WarehouseID", "PrimaryReference", "PrimaryEntryDate");
+            GenerateSQLPendingDetails generatePendingWarehouseAdjustmentDetails = new GenerateSQLPendingDetails(totalSmartCodingEntities, GlobalEnums.GoodsReceiptTypeID.WarehouseAdjustments, "WarehouseAdjustments", "WarehouseAdjustmentDetails", "WarehouseAdjustmentID", "@WarehouseAdjustmentID", "WarehouseAdjustmentDetailID", "@WarehouseAdjustmentDetailIDs", "WarehouseReceiptID", "PrimaryReference", "PrimaryEntryDate");
             generatePendingWarehouseAdjustmentDetails.GetPendingPickupDetails("GetPendingWarehouseAdjustmentDetails");
 
             this.GetGoodsReceiptIDofWarehouseAdjustment();

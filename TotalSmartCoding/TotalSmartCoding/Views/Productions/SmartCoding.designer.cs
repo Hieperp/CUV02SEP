@@ -86,6 +86,10 @@
             this.buttonRemoveCarton = new System.Windows.Forms.ToolStripButton();
             this.buttonCartonQueueCount = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton10 = new System.Windows.Forms.ToolStripButton();
+            this.separatorSendCartontoZebra = new System.Windows.Forms.ToolStripSeparator();
+            this.labelNthCartontoZebra = new System.Windows.Forms.ToolStripLabel();
+            this.textNthCartontoZebra = new System.Windows.Forms.ToolStripTextBox();
+            this.buttonSendCartontoZebra = new System.Windows.Forms.ToolStripButton();
             this.labelCommodityNameCarton = new System.Windows.Forms.ToolStripLabel();
             this.dgvCartonsetQueue = new System.Windows.Forms.DataGridView();
             this.toolStrip10 = new System.Windows.Forms.ToolStrip();
@@ -862,6 +866,10 @@
             this.buttonRemoveCarton,
             this.buttonCartonQueueCount,
             this.toolStripButton10,
+            this.separatorSendCartontoZebra,
+            this.labelNthCartontoZebra,
+            this.textNthCartontoZebra,
+            this.buttonSendCartontoZebra,
             this.labelCommodityNameCarton});
             this.toolStrip9.Location = new System.Drawing.Point(0, 0);
             this.toolStrip9.Name = "toolStrip9";
@@ -903,6 +911,35 @@
             this.toolStripButton10.Size = new System.Drawing.Size(57, 52);
             this.toolStripButton10.Text = "      ";
             this.toolStripButton10.ToolTipText = "Khu vực carton đã đóng xong, chờ đóng pallet";
+            // 
+            // separatorSendCartontoZebra
+            // 
+            this.separatorSendCartontoZebra.Name = "separatorSendCartontoZebra";
+            // 
+            // labelNthCartontoZebra
+            // 
+            this.labelNthCartontoZebra.Name = "labelNthCartontoZebra";
+            this.labelNthCartontoZebra.Size = new System.Drawing.Size(56, 36);
+            this.labelNthCartontoZebra.Text = "Carton(s)";
+            // 
+            // textNthCartontoZebra
+            // 
+            this.textNthCartontoZebra.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textNthCartontoZebra.Name = "textNthCartontoZebra";
+            this.textNthCartontoZebra.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.textNthCartontoZebra.Size = new System.Drawing.Size(30, 39);
+            this.textNthCartontoZebra.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // buttonSendCartontoZebra
+            // 
+            this.buttonSendCartontoZebra.Image = global::TotalSmartCoding.Properties.Resources.images_3030;
+            this.buttonSendCartontoZebra.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonSendCartontoZebra.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonSendCartontoZebra.Name = "buttonSendCartontoZebra";
+            this.buttonSendCartontoZebra.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.buttonSendCartontoZebra.Size = new System.Drawing.Size(57, 52);
+            this.buttonSendCartontoZebra.Text = "Print";
+            this.buttonSendCartontoZebra.Click += new System.EventHandler(this.buttonSendCartontoZebra_Click);
             // 
             // labelCommodityNameCarton
             // 
@@ -2610,5 +2647,9 @@
         private System.Windows.Forms.ToolStripLabel labelFinalCartonNo;
         private System.Windows.Forms.ToolStripTextBox textFinalCartonNo;
         private System.Windows.Forms.ToolStripButton buttonFillingLines;
+        private System.Windows.Forms.ToolStripSeparator separatorSendCartontoZebra;
+        private System.Windows.Forms.ToolStripButton buttonSendCartontoZebra;
+        private System.Windows.Forms.ToolStripLabel labelNthCartontoZebra;
+        private System.Windows.Forms.ToolStripTextBox textNthCartontoZebra;
     }
 }

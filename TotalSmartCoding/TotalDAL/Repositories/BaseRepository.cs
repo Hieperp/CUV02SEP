@@ -39,6 +39,43 @@ namespace TotalDAL.Repositories
         {
             this.UpdateDatabases(restoreProcedures);
 
+
+            if (this.GetStoredID(GlobalVariables.ConfigID) < GlobalVariables.MaxConfigVersionID())
+            {
+                this.ExecuteStoreCommand("UPDATE Cartons SET Cartons.LineVolume = ROUND(Cartons.Quantity * Commodities.PackageVolume, 2) FROM Cartons INNER JOIN Commodities ON Cartons.CommodityID = Commodities.CommodityID WHERE Cartons.CommodityID IN (SELECT CommodityID FROM Batches WHERE FillingLineID >= 4)", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("UPDATE Pallets SET Pallets.LineVolume = ROUND(Pallets.Quantity * Commodities.PackageVolume, 2) FROM Pallets INNER JOIN Commodities ON Pallets.CommodityID = Commodities.CommodityID WHERE Pallets.CommodityID IN (SELECT CommodityID FROM Batches WHERE FillingLineID >= 4)", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("UPDATE Pallets SET Pallets.LineVolumePickup = ROUND(Pallets.QuantityPickup * Commodities.PackageVolume, 2) FROM Pallets INNER JOIN Commodities ON Pallets.CommodityID = Commodities.CommodityID WHERE Pallets.CommodityID IN (SELECT CommodityID FROM Batches WHERE FillingLineID >= 4)", new ObjectParameter[] { });
+
+                this.ExecuteStoreCommand("UPDATE DeliveryAdviceDetails SET DeliveryAdviceDetails.LineVolume = ROUND(DeliveryAdviceDetails.Quantity * Commodities.PackageVolume, 2) FROM DeliveryAdviceDetails INNER JOIN Commodities ON DeliveryAdviceDetails.CommodityID = Commodities.CommodityID WHERE DeliveryAdviceDetails.CommodityID IN (SELECT CommodityID FROM Batches WHERE FillingLineID >= 4)", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("UPDATE GoodsIssueDetails SET GoodsIssueDetails.LineVolume = ROUND(GoodsIssueDetails.Quantity * Commodities.PackageVolume, 2) FROM GoodsIssueDetails INNER JOIN Commodities ON GoodsIssueDetails.CommodityID = Commodities.CommodityID WHERE GoodsIssueDetails.CommodityID IN (SELECT CommodityID FROM Batches WHERE FillingLineID >= 4)", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("UPDATE GoodsIssueTransferDetails SET GoodsIssueTransferDetails.LineVolume = ROUND(GoodsIssueTransferDetails.Quantity * Commodities.PackageVolume, 2) FROM GoodsIssueTransferDetails INNER JOIN Commodities ON GoodsIssueTransferDetails.CommodityID = Commodities.CommodityID WHERE GoodsIssueTransferDetails.CommodityID IN (SELECT CommodityID FROM Batches WHERE FillingLineID >= 4)", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("UPDATE GoodsReceiptDetails SET GoodsReceiptDetails.LineVolume = ROUND(GoodsReceiptDetails.Quantity * Commodities.PackageVolume, 2) FROM GoodsReceiptDetails INNER JOIN Commodities ON GoodsReceiptDetails.CommodityID = Commodities.CommodityID WHERE GoodsReceiptDetails.CommodityID IN (SELECT CommodityID FROM Batches WHERE FillingLineID >= 4)", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("UPDATE PickupDetails SET PickupDetails.LineVolume = ROUND(PickupDetails.Quantity * Commodities.PackageVolume, 2) FROM PickupDetails INNER JOIN Commodities ON PickupDetails.CommodityID = Commodities.CommodityID WHERE PickupDetails.CommodityID IN (SELECT CommodityID FROM Batches WHERE FillingLineID >= 4)", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("UPDATE SalesOrderDetails SET SalesOrderDetails.LineVolume = ROUND(SalesOrderDetails.Quantity * Commodities.PackageVolume, 2) FROM SalesOrderDetails INNER JOIN Commodities ON SalesOrderDetails.CommodityID = Commodities.CommodityID WHERE SalesOrderDetails.CommodityID IN (SELECT CommodityID FROM Batches WHERE FillingLineID >= 4)", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("UPDATE TransferOrderDetails SET TransferOrderDetails.LineVolume = ROUND(TransferOrderDetails.Quantity * Commodities.PackageVolume, 2) FROM TransferOrderDetails INNER JOIN Commodities ON TransferOrderDetails.CommodityID = Commodities.CommodityID WHERE TransferOrderDetails.CommodityID IN (SELECT CommodityID FROM Batches WHERE FillingLineID >= 4)", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("UPDATE WarehouseAdjustmentDetails SET WarehouseAdjustmentDetails.LineVolume = ROUND(WarehouseAdjustmentDetails.Quantity * Commodities.PackageVolume, 2) FROM WarehouseAdjustmentDetails INNER JOIN Commodities ON WarehouseAdjustmentDetails.CommodityID = Commodities.CommodityID WHERE WarehouseAdjustmentDetails.CommodityID IN (SELECT CommodityID FROM Batches WHERE FillingLineID >= 4)", new ObjectParameter[] { });
+
+                this.ExecuteStoreCommand("UPDATE DeliveryAdviceDetails SET DeliveryAdviceDetails.LineVolumeIssue = ROUND(DeliveryAdviceDetails.QuantityIssue * Commodities.PackageVolume, 2) FROM DeliveryAdviceDetails INNER JOIN Commodities ON DeliveryAdviceDetails.CommodityID = Commodities.CommodityID WHERE DeliveryAdviceDetails.CommodityID IN (SELECT CommodityID FROM Batches WHERE FillingLineID >= 4)", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("UPDATE GoodsReceiptDetails SET GoodsReceiptDetails.LineVolumeIssue = ROUND(GoodsReceiptDetails.QuantityIssue * Commodities.PackageVolume, 2) FROM GoodsReceiptDetails INNER JOIN Commodities ON GoodsReceiptDetails.CommodityID = Commodities.CommodityID WHERE GoodsReceiptDetails.CommodityID IN (SELECT CommodityID FROM Batches WHERE FillingLineID >= 4)", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("UPDATE GoodsIssueTransferDetails SET GoodsIssueTransferDetails.LineVolumeReceipt = ROUND(GoodsIssueTransferDetails.QuantityReceipt * Commodities.PackageVolume, 2) FROM GoodsIssueTransferDetails INNER JOIN Commodities ON GoodsIssueTransferDetails.CommodityID = Commodities.CommodityID WHERE GoodsIssueTransferDetails.CommodityID IN (SELECT CommodityID FROM Batches WHERE FillingLineID >= 4)", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("UPDATE PickupDetails SET PickupDetails.LineVolumeReceipt = ROUND(PickupDetails.QuantityReceipt * Commodities.PackageVolume, 2) FROM PickupDetails INNER JOIN Commodities ON PickupDetails.CommodityID = Commodities.CommodityID WHERE PickupDetails.CommodityID IN (SELECT CommodityID FROM Batches WHERE FillingLineID >= 4)", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("UPDATE SalesOrderDetails SET SalesOrderDetails.LineVolumeAdvice = ROUND(SalesOrderDetails.QuantityAdvice * Commodities.PackageVolume, 2) FROM SalesOrderDetails INNER JOIN Commodities ON SalesOrderDetails.CommodityID = Commodities.CommodityID WHERE SalesOrderDetails.CommodityID IN (SELECT CommodityID FROM Batches WHERE FillingLineID >= 4)", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("UPDATE TransferOrderDetails SET TransferOrderDetails.LineVolumeIssue = ROUND(TransferOrderDetails.QuantityIssue * Commodities.PackageVolume, 2) FROM TransferOrderDetails INNER JOIN Commodities ON TransferOrderDetails.CommodityID = Commodities.CommodityID WHERE TransferOrderDetails.CommodityID IN (SELECT CommodityID FROM Batches WHERE FillingLineID >= 4)", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("UPDATE WarehouseAdjustmentDetails SET WarehouseAdjustmentDetails.LineVolumeReceipt = ROUND(WarehouseAdjustmentDetails.QuantityReceipt * Commodities.PackageVolume, 2) FROM WarehouseAdjustmentDetails INNER JOIN Commodities ON WarehouseAdjustmentDetails.CommodityID = Commodities.CommodityID WHERE WarehouseAdjustmentDetails.CommodityID IN (SELECT CommodityID FROM Batches WHERE FillingLineID >= 4)", new ObjectParameter[] { });
+
+
+
+                this.ExecuteStoreCommand("UPDATE DeliveryAdvices SET TotalLineVolume = ROUND(DeliveryAdviceDetails_A.TotalLineVolume, 2) FROM DeliveryAdvices INNER JOIN (SELECT DeliveryAdviceID, SUM(LineVolume) AS TotalLineVolume FROM DeliveryAdviceDetails WHERE DeliveryAdviceID IN (SELECT DeliveryAdviceID FROM DeliveryAdviceDetails WHERE CommodityID IN (SELECT CommodityID FROM Batches WHERE (FillingLineID >= 4))) GROUP BY DeliveryAdviceID) AS DeliveryAdviceDetails_A ON DeliveryAdvices.DeliveryAdviceID = DeliveryAdviceDetails_A.DeliveryAdviceID", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("UPDATE GoodsIssues SET TotalLineVolume = ROUND(GoodsIssueDetails_A.TotalLineVolume, 2) FROM GoodsIssues INNER JOIN (SELECT GoodsIssueID, SUM(LineVolume) AS TotalLineVolume FROM GoodsIssueDetails WHERE GoodsIssueID IN (SELECT GoodsIssueID FROM GoodsIssueDetails WHERE CommodityID IN (SELECT CommodityID FROM Batches WHERE (FillingLineID >= 4))) GROUP BY GoodsIssueID) AS GoodsIssueDetails_A ON GoodsIssues.GoodsIssueID = GoodsIssueDetails_A.GoodsIssueID", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("UPDATE GoodsReceipts SET TotalLineVolume = ROUND(GoodsReceiptDetails_A.TotalLineVolume, 2) FROM GoodsReceipts INNER JOIN (SELECT GoodsReceiptID, SUM(LineVolume) AS TotalLineVolume FROM GoodsReceiptDetails WHERE GoodsReceiptID IN (SELECT GoodsReceiptID FROM GoodsReceiptDetails WHERE CommodityID IN (SELECT CommodityID FROM Batches WHERE (FillingLineID >= 4))) GROUP BY GoodsReceiptID) AS GoodsReceiptDetails_A ON GoodsReceipts.GoodsReceiptID = GoodsReceiptDetails_A.GoodsReceiptID", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("UPDATE Pickups SET TotalLineVolume = ROUND(PickupDetails_A.TotalLineVolume, 2) FROM Pickups INNER JOIN (SELECT PickupID, SUM(LineVolume) AS TotalLineVolume FROM PickupDetails WHERE PickupID IN (SELECT PickupID FROM PickupDetails WHERE CommodityID IN (SELECT CommodityID FROM Batches WHERE (FillingLineID >= 4))) GROUP BY PickupID) AS PickupDetails_A ON Pickups.PickupID = PickupDetails_A.PickupID", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("UPDATE SalesOrders SET TotalLineVolume = ROUND(SalesOrderDetails_A.TotalLineVolume, 2) FROM SalesOrders INNER JOIN (SELECT SalesOrderID, SUM(LineVolume) AS TotalLineVolume FROM SalesOrderDetails WHERE SalesOrderID IN (SELECT SalesOrderID FROM SalesOrderDetails WHERE CommodityID IN (SELECT CommodityID FROM Batches WHERE (FillingLineID >= 4))) GROUP BY SalesOrderID) AS SalesOrderDetails_A ON SalesOrders.SalesOrderID = SalesOrderDetails_A.SalesOrderID", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("UPDATE TransferOrders SET TotalLineVolume = ROUND(TransferOrderDetails_A.TotalLineVolume, 2) FROM TransferOrders INNER JOIN (SELECT TransferOrderID, SUM(LineVolume) AS TotalLineVolume FROM TransferOrderDetails WHERE TransferOrderID IN (SELECT TransferOrderID FROM TransferOrderDetails WHERE CommodityID IN (SELECT CommodityID FROM Batches WHERE (FillingLineID >= 4))) GROUP BY TransferOrderID) AS TransferOrderDetails_A ON TransferOrders.TransferOrderID = TransferOrderDetails_A.TransferOrderID", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("UPDATE WarehouseAdjustments SET TotalLineVolume = ROUND(WarehouseAdjustmentDetails_A.TotalLineVolume, 2) FROM WarehouseAdjustments INNER JOIN (SELECT WarehouseAdjustmentID, SUM(LineVolume) AS TotalLineVolume FROM WarehouseAdjustmentDetails WHERE WarehouseAdjustmentID IN (SELECT WarehouseAdjustmentID FROM WarehouseAdjustmentDetails WHERE CommodityID IN (SELECT CommodityID FROM Batches WHERE (FillingLineID >= 4))) GROUP BY WarehouseAdjustmentID) AS WarehouseAdjustmentDetails_A ON WarehouseAdjustments.WarehouseAdjustmentID = WarehouseAdjustmentDetails_A.WarehouseAdjustmentID", new ObjectParameter[] { });
+            }
+
+
+
             if (restoreProcedures || this.GetStoredID(GlobalVariables.ConfigID) < GlobalVariables.MaxConfigVersionID())
             {
                 if (!restoreProcedures)
@@ -48,6 +85,7 @@ namespace TotalDAL.Repositories
 
                 this.RestoreProcedures();
             }
+
 
             return this.GetStoredID(GlobalVariables.ConfigID) == GlobalVariables.MaxConfigVersionID();
         }
@@ -378,6 +416,17 @@ namespace TotalDAL.Repositories
         {
             //return;
 
+            Helpers.SqlProgrammability.Inventories.GoodsReceipt goodsReceipt = new Helpers.SqlProgrammability.Inventories.GoodsReceipt(totalSmartCodingEntities);
+            goodsReceipt.RestoreProcedure();
+
+
+            //return;
+
+            Helpers.SqlProgrammability.Productions.Batch batch = new Helpers.SqlProgrammability.Productions.Batch(totalSmartCodingEntities);
+            batch.RestoreProcedure();
+
+            return;
+
             Helpers.SqlProgrammability.Commons.AccessControl accessControl = new Helpers.SqlProgrammability.Commons.AccessControl(totalSmartCodingEntities);
             accessControl.RestoreProcedure();
 
@@ -406,11 +455,7 @@ namespace TotalDAL.Repositories
             Helpers.SqlProgrammability.Generals.OrganizationalUnit organizationalUnit = new Helpers.SqlProgrammability.Generals.OrganizationalUnit(totalSmartCodingEntities);
             organizationalUnit.RestoreProcedure();
 
-            //return;
-
-            Helpers.SqlProgrammability.Productions.Batch batch = new Helpers.SqlProgrammability.Productions.Batch(totalSmartCodingEntities);
-            batch.RestoreProcedure();
-
+           
             //return;
 
             Helpers.SqlProgrammability.Commons.Employee employee = new Helpers.SqlProgrammability.Commons.Employee(totalSmartCodingEntities);
@@ -467,11 +512,7 @@ namespace TotalDAL.Repositories
             Helpers.SqlProgrammability.Sales.DeliveryAdvice deliveryAdvice = new Helpers.SqlProgrammability.Sales.DeliveryAdvice(totalSmartCodingEntities);
             deliveryAdvice.RestoreProcedure();
 
-            //return;
-
-            Helpers.SqlProgrammability.Inventories.GoodsReceipt goodsReceipt = new Helpers.SqlProgrammability.Inventories.GoodsReceipt(totalSmartCodingEntities);
-            goodsReceipt.RestoreProcedure();
-
+          
             //return;
 
             Helpers.SqlProgrammability.Commons.Warehouse warehouse = new Helpers.SqlProgrammability.Commons.Warehouse(totalSmartCodingEntities);

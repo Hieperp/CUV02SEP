@@ -1381,6 +1381,9 @@
     <None Include="Resources\secure-241.png" />
     <None Include="Resources\if_key_20.png" />
     <None Include="Resources\if_key_48.png" />
+    <None Include="Resources\icons8-data-matrix-code-32.png" />
+    <None Include="Resources\images 3232.png" />
+    <None Include="Resources\images 3030.png" />
     <Content Include="SmartCodingSolution.ico" />
     <None Include="Resources\Yellow-cross.ico" />
     <None Include="Resources\White-Pallet.ico" />
