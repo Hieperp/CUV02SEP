@@ -133,6 +133,25 @@ namespace TotalDTO
         public virtual void PerformPresaveRule() { }
 
         public virtual void PrepareVoidDetail(int? detailID) { }
+
+
+        public string TypeName { get { return this.GetType().Name; } }
+    }
+
+
+
+    public static class PropertyLogs
+    {
+        public void init()
+        {
+            Type stypeNotify = typeof(BaseDTO);
+            List<string> spropertyInfos = stypeNotify.GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance).Select(s => s.Name).ToList();
+            propertyInfos.AddRange(spropertyInfos);
+
+            List<string> ok = new List<string>() { "Reference", "PreparedPersonID", "ApproverID", "Description" };
+
+        }
+        public List<string> ExclusiveList;
     }
 }
 

@@ -2350,6 +2350,25 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="AddDataLogs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntryID" Type="int" Mode="In" />
+          <Parameter Name="EntryDetailID" Type="int" Mode="In" />
+          <Parameter Name="EntryDate" Type="datetime" Mode="In" />
+          <Parameter Name="ModuleName" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="IPAddress" Type="nvarchar" Mode="In" />
+          <Parameter Name="ActionType" Type="nvarchar" Mode="In" />
+          <Parameter Name="TableName" Type="nvarchar" Mode="In" />
+          <Parameter Name="FieldName" Type="nvarchar" Mode="In" />
+          <Parameter Name="FieldValue" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="AddEventLogs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntryDate" Type="datetime" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="IPAddress" Type="nvarchar" Mode="In" />
+          <Parameter Name="ModuleName" Type="nvarchar" Mode="In" />
+          <Parameter Name="ActionType" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="BatchCommonUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="BatchID" Type="int" Mode="In" />
           <Parameter Name="NextPackNo" Type="nvarchar" Mode="In" />
@@ -4936,6 +4955,25 @@
             <Parameter Name="ApplicationRoleID" Mode="In" Type="Int32" />
             <Parameter Name="Name" Mode="In" Type="String" />
             <Parameter Name="Password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="AddDataLogs">
+            <Parameter Name="EntryID" Mode="In" Type="Int32" />
+            <Parameter Name="EntryDetailID" Mode="In" Type="Int32" />
+            <Parameter Name="EntryDate" Mode="In" Type="DateTime" />
+            <Parameter Name="ModuleName" Mode="In" Type="String" />
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="IPAddress" Mode="In" Type="String" />
+            <Parameter Name="ActionType" Mode="In" Type="String" />
+            <Parameter Name="TableName" Mode="In" Type="String" />
+            <Parameter Name="FieldName" Mode="In" Type="String" />
+            <Parameter Name="FieldValue" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="AddEventLogs">
+            <Parameter Name="EntryDate" Mode="In" Type="DateTime" />
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="IPAddress" Mode="In" Type="String" />
+            <Parameter Name="ModuleName" Mode="In" Type="String" />
+            <Parameter Name="ActionType" Mode="In" Type="String" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
@@ -11519,6 +11557,8 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UpdateApplicationRole" FunctionName="TotalSmartCodingModel.Store.UpdateApplicationRole" />
+          <FunctionImportMapping FunctionImportName="AddDataLogs" FunctionName="TotalSmartCodingModel.Store.AddDataLogs" />
+          <FunctionImportMapping FunctionImportName="AddEventLogs" FunctionName="TotalSmartCodingModel.Store.AddEventLogs" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

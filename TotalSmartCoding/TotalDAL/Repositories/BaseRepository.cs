@@ -458,7 +458,7 @@ namespace TotalDAL.Repositories
             Helpers.SqlProgrammability.Generals.OrganizationalUnit organizationalUnit = new Helpers.SqlProgrammability.Generals.OrganizationalUnit(totalSmartCodingEntities);
             organizationalUnit.RestoreProcedure();
 
-           
+
             //return;
 
             Helpers.SqlProgrammability.Commons.Employee employee = new Helpers.SqlProgrammability.Commons.Employee(totalSmartCodingEntities);
@@ -515,7 +515,7 @@ namespace TotalDAL.Repositories
             Helpers.SqlProgrammability.Sales.DeliveryAdvice deliveryAdvice = new Helpers.SqlProgrammability.Sales.DeliveryAdvice(totalSmartCodingEntities);
             deliveryAdvice.RestoreProcedure();
 
-          
+
             //return;
 
             Helpers.SqlProgrammability.Commons.Warehouse warehouse = new Helpers.SqlProgrammability.Commons.Warehouse(totalSmartCodingEntities);
@@ -2338,5 +2338,15 @@ namespace TotalDAL.Repositories
         #endregion Base Repository
 
 
+        #region Smart Logs
+        public void AddDataLogs(int? entryID, int? entryDetailID, DateTime? entryDate, string moduleName, string actionType, string tableName, string fieldName, string fieldValue)
+        {
+            this.TotalSmartCodingEntities.AddDataLogs(entryID, entryDetailID, entryDate, moduleName, ContextAttributes.User.UserName, ContextAttributes.LocalIPAddress, actionType, tableName, fieldName, fieldValue);
+        }
+        public void AddEventLogs(DateTime? entryDate, string moduleName, string actionType)
+        {
+            this.TotalSmartCodingEntities.AddEventLogs(entryDate, ContextAttributes.User.UserName, ContextAttributes.LocalIPAddress, moduleName, actionType);
+        }
+        #endregion Smart Logs
     }
 }

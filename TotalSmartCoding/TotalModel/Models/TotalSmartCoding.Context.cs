@@ -2784,5 +2784,75 @@ namespace TotalModel.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateApplicationRole", applicationRoleIDParameter, nameParameter, passwordParameter);
         }
+    
+        public virtual int AddDataLogs(Nullable<int> entryID, Nullable<int> entryDetailID, Nullable<System.DateTime> entryDate, string moduleName, string userName, string iPAddress, string actionType, string tableName, string fieldName, string fieldValue)
+        {
+            var entryIDParameter = entryID.HasValue ?
+                new ObjectParameter("EntryID", entryID) :
+                new ObjectParameter("EntryID", typeof(int));
+    
+            var entryDetailIDParameter = entryDetailID.HasValue ?
+                new ObjectParameter("EntryDetailID", entryDetailID) :
+                new ObjectParameter("EntryDetailID", typeof(int));
+    
+            var entryDateParameter = entryDate.HasValue ?
+                new ObjectParameter("EntryDate", entryDate) :
+                new ObjectParameter("EntryDate", typeof(System.DateTime));
+    
+            var moduleNameParameter = moduleName != null ?
+                new ObjectParameter("ModuleName", moduleName) :
+                new ObjectParameter("ModuleName", typeof(string));
+    
+            var userNameParameter = userName != null ?
+                new ObjectParameter("UserName", userName) :
+                new ObjectParameter("UserName", typeof(string));
+    
+            var iPAddressParameter = iPAddress != null ?
+                new ObjectParameter("IPAddress", iPAddress) :
+                new ObjectParameter("IPAddress", typeof(string));
+    
+            var actionTypeParameter = actionType != null ?
+                new ObjectParameter("ActionType", actionType) :
+                new ObjectParameter("ActionType", typeof(string));
+    
+            var tableNameParameter = tableName != null ?
+                new ObjectParameter("TableName", tableName) :
+                new ObjectParameter("TableName", typeof(string));
+    
+            var fieldNameParameter = fieldName != null ?
+                new ObjectParameter("FieldName", fieldName) :
+                new ObjectParameter("FieldName", typeof(string));
+    
+            var fieldValueParameter = fieldValue != null ?
+                new ObjectParameter("FieldValue", fieldValue) :
+                new ObjectParameter("FieldValue", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddDataLogs", entryIDParameter, entryDetailIDParameter, entryDateParameter, moduleNameParameter, userNameParameter, iPAddressParameter, actionTypeParameter, tableNameParameter, fieldNameParameter, fieldValueParameter);
+        }
+    
+        public virtual int AddEventLogs(Nullable<System.DateTime> entryDate, string userName, string iPAddress, string moduleName, string actionType)
+        {
+            var entryDateParameter = entryDate.HasValue ?
+                new ObjectParameter("EntryDate", entryDate) :
+                new ObjectParameter("EntryDate", typeof(System.DateTime));
+    
+            var userNameParameter = userName != null ?
+                new ObjectParameter("UserName", userName) :
+                new ObjectParameter("UserName", typeof(string));
+    
+            var iPAddressParameter = iPAddress != null ?
+                new ObjectParameter("IPAddress", iPAddress) :
+                new ObjectParameter("IPAddress", typeof(string));
+    
+            var moduleNameParameter = moduleName != null ?
+                new ObjectParameter("ModuleName", moduleName) :
+                new ObjectParameter("ModuleName", typeof(string));
+    
+            var actionTypeParameter = actionType != null ?
+                new ObjectParameter("ActionType", actionType) :
+                new ObjectParameter("ActionType", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddEventLogs", entryDateParameter, userNameParameter, iPAddressParameter, moduleNameParameter, actionTypeParameter);
+        }
     }
 }

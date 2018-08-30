@@ -19,8 +19,8 @@ namespace TotalCore.Repositories
         int UpdateApplicationRole(string name, string password);
 
         int? GetStoredID(int configID);
-        int? GetVersionID(int configID);        
-        bool VersionValidate(int configID, int configVersionID);        
+        int? GetVersionID(int configID);
+        bool VersionValidate(int configID, int configVersionID);
 
         int GetModuleID(GlobalEnums.NmvnTaskID nmvnTaskID);
 
@@ -43,5 +43,10 @@ namespace TotalCore.Repositories
 
         string RepositoryTag { get; set; }
         Dictionary<string, object> RepositoryBag { get; set; }
+
+        #region
+        void AddDataLogs(int? entryID, int? entryDetailID, DateTime? entryDate, string moduleName, string actionType, string tableName, string fieldName, string fieldValue);
+        void AddEventLogs(DateTime? entryDate, string moduleName, string actionType);
+        #endregion
     }
 }
