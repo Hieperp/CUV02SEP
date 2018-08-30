@@ -414,6 +414,9 @@ namespace TotalDAL.Repositories
 
         private void CreateStoredProcedure()
         {
+            Helpers.SqlProgrammability.Commons.SmartLog smartLog = new Helpers.SqlProgrammability.Commons.SmartLog(totalSmartCodingEntities);
+            smartLog.RestoreProcedure();
+
             //return;
 
             Helpers.SqlProgrammability.Inventories.GoodsReceipt goodsReceipt = new Helpers.SqlProgrammability.Inventories.GoodsReceipt(totalSmartCodingEntities);

@@ -61,6 +61,7 @@
     <Compile Include="Helpers\SqlProgrammability\Commons\Employee.cs" />
     <Compile Include="Helpers\SqlProgrammability\Commons\FillingLine.cs" />
     <Compile Include="Helpers\SqlProgrammability\Commons\Location.cs" />
+    <Compile Include="Helpers\SqlProgrammability\Commons\SmartLog.cs" />
     <Compile Include="Helpers\SqlProgrammability\Commons\Team.cs" />
     <Compile Include="Helpers\SqlProgrammability\Commons\Territory.cs" />
     <Compile Include="Helpers\SqlProgrammability\Commons\TransferOrderType.cs" />
