@@ -220,6 +220,8 @@ namespace TotalService
                 }
 
             dto.SetID(entity.GetID());
+            dto.EditedDate = entity.EditedDate;
+
             return true;
         }
 

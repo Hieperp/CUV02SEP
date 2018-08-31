@@ -520,10 +520,12 @@ namespace TotalSmartCoding.Controllers
 
                     if (saveResult)
                     {
-                        //this.AddDataLogs(dto, actionType); //MUST ADD DATA LOGS RIGHT AFTER SAVE TO KEEP ALL SAVED DTO PROPERTIES
+                        this.AddDataLogs(dto, actionType); //MUST ADD DATA LOGS RIGHT AFTER SAVE TO KEEP ALL SAVED DTO PROPERTIES
 
                         simpleViewModel.SetID(dto.GetID());
                         this.Edit(simpleViewModel.GetID()); //WINFORM: RELOAD AFTER SAVE (IN MVC: WE REDIRECT TO NEW ACTION/ OR RELOAD CURRENT VIEW AGIAN => THIS WILL RELOAD AUTOMATICALLY AFTER SAVE SUCCESSFULY)
+
+                        this.AddViewDetailDataLogs(dto, actionType); //MUST ADD VIEW DETAIL DATA LOGS AFTER RELOAD TO VIEW DETAIL
 
                         this.BackupViewModelToSession(simpleViewModel);
 
@@ -757,6 +759,7 @@ namespace TotalSmartCoding.Controllers
             }
             catch (Exception ex) { throw ex; }
         }
+        public virtual void AddViewDetailDataLogs(TDto dto, string actionType) { }
         #endregion Smart Logs
     }
 

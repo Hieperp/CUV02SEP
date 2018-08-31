@@ -94,14 +94,17 @@ namespace TotalSmartCoding.Controllers
 
 
         #region Smart Logs
-        public override void AddDataLogs(TDto dto, string actionType)
+        public override void AddViewDetailDataLogs(TDto dto, string actionType)
         {
             try
             {
-                base.AddDataLogs(dto, actionType);
+                base.AddViewDetailDataLogs(dto, actionType);
 
                 List<string> entityPropertyNames = typeof(TEntityDetail).GetProperties().Select(s => s.Name).ToList();
                 List<PropertyInfo> propertyInfos = typeof(TDtoDetail).GetProperties().OrderBy(o => o.Name).ToList();
+
+                List<string> entityViewDetailPropertyNames = typeof(TEntityViewDetail).GetProperties().Select(s => s.Name).ToList(); //JUST ADD PROPERTIES RETURNED BY TEntityViewDetail
+
                 if (dto.GetDetails() != null && dto.GetDetails().Count > 0)
                     dto.GetDetails().Each(detailDTO =>
                     {
@@ -109,7 +112,7 @@ namespace TotalSmartCoding.Controllers
                         {
                             if (!SmartLogDTO.ExclusiveNames.Contains(propertyInfo.Name) && !SmartLogDTO.PatternNames.Any(p => propertyInfo.PropertyType.Name.Contains(p)))
                             {
-                                if (!SmartLogDTO.OptionalNames.Contains(propertyInfo.Name) || entityPropertyNames.Contains(propertyInfo.Name))
+                                if ((!SmartLogDTO.OptionalNames.Contains(propertyInfo.Name) || entityPropertyNames.Contains(propertyInfo.Name)) && entityViewDetailPropertyNames.Contains(propertyInfo.Name))
                                     this.genericWithViewDetailService.AddDataLogs(dto.GetID(), detailDTO.GetID(), dto.EditedDate, dto.NMVNTaskID.ToString(), actionType, typeof(TDtoDetail).Name.Replace("DTO", ""), propertyInfo.Name, (propertyInfo.GetValue(detailDTO) != null ? propertyInfo.GetValue(detailDTO).ToString() : null));
                             }
                         }
