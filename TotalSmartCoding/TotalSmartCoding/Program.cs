@@ -63,7 +63,7 @@ namespace TotalSmartCoding
                     else
                     {
                         if (GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Pickup)
-                            Application.Run(new MasterMDI(GlobalEnums.NmvnTaskID.Pickup, new Pickups()));
+                            Application.Run(new MasterMDI(GlobalEnums.NmvnTaskID.Pickups, new Pickups()));
                         else if (GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.GoodsIssue)
                             Application.Run(new MasterMDI(GlobalEnums.NmvnTaskID.GoodsIssues, new GoodsIssues()));
                         else

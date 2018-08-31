@@ -56,7 +56,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             queryString = queryString + "           BEGIN " + "\r\n";
 
             queryString = queryString + "               INSERT INTO TerritoryTerritories (TerritoryID, TerritoryID, TerritoryTaskID, EntryDate, Remarks, InActive) " + "\r\n";
-            queryString = queryString + "               SELECT      TerritoryID, 46 AS TerritoryID, " + (int)GlobalEnums.NmvnTaskID.SalesOrder + " AS TerritoryTaskID, GETDATE(), '', 0 FROM Territories WHERE TerritoryID = @EntityID " + "\r\n";
+            queryString = queryString + "               SELECT      TerritoryID, 46 AS TerritoryID, " + (int)GlobalEnums.NmvnTaskID.SalesOrders + " AS TerritoryTaskID, GETDATE(), '', 0 FROM Territories WHERE TerritoryID = @EntityID " + "\r\n";
 
             queryString = queryString + "               INSERT INTO TerritoryTerritories (TerritoryID, TerritoryID, TerritoryTaskID, EntryDate, Remarks, InActive) " + "\r\n";
             queryString = queryString + "               SELECT      Territories.TerritoryID, Territories.TerritoryID, " + (int)GlobalEnums.NmvnTaskID.DeliveryAdvices + " AS TerritoryTaskID, GETDATE(), '', 0 FROM Territories INNER JOIN Territories ON Territories.TerritoryID = @EntityID AND Territories.TerritoryCategoryID NOT IN (4, 5, 7, 9, 10, 11, 12) AND Territories.TerritoryCategoryID = Territories.TerritoryCategoryID " + "\r\n";

@@ -18,7 +18,7 @@ namespace TotalDTO.Sales
 {
     public class SalesOrderPrimitiveDTO : QuantityDTO<SalesOrderDetailDTO>, IPrimitiveEntity, IPrimitiveDTO
     {
-        public override GlobalEnums.NmvnTaskID NMVNTaskID { get { return GlobalEnums.NmvnTaskID.SalesOrder; } }
+        public override GlobalEnums.NmvnTaskID NMVNTaskID { get { return GlobalEnums.NmvnTaskID.SalesOrders; } }
         public override bool NoVoidable { get { return false; } }
 
         public SalesOrderPrimitiveDTO() { this.Initialize(); }

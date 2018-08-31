@@ -15,7 +15,7 @@ namespace TotalDTO.Commons
 {
     public class CommoditySettingPrimitiveDTO : BaseWithDetailDTO<CommoditySettingDetailDTO>, IPrimitiveEntity, IPrimitiveDTO
     {
-        public override GlobalEnums.NmvnTaskID NMVNTaskID { get { return GlobalEnums.NmvnTaskID.CommoditySetting; } }
+        public override GlobalEnums.NmvnTaskID NMVNTaskID { get { return GlobalEnums.NmvnTaskID.CommoditySettings; } }
         public override bool NoApprovable { get { return true; } }
 
         public CommoditySettingPrimitiveDTO() { this.Initialize(); }

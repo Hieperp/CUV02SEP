@@ -1165,7 +1165,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
             if (!isIssueVersusReceipt || goodsIssueTypeID_REPORTONLY == GlobalEnums.GoodsIssueTypeID_REPORTONLY.Alls || goodsIssueTypeID_REPORTONLY == GlobalEnums.GoodsIssueTypeID_REPORTONLY.CombineSelectedAlls || goodsIssueTypeID_REPORTONLY == GlobalEnums.GoodsIssueTypeID_REPORTONLY.GoodsIssues || goodsIssueTypeID_REPORTONLY == GlobalEnums.GoodsIssueTypeID_REPORTONLY.SelectedGoodsIssues)
             { //isGoodsIssueTypeID IS true WHEN goodsIssueTypeID_REPORTONLY == GlobalEnums.GoodsIssueTypeID_REPORTONLY.CombineSelectedAlls || goodsIssueTypeID_REPORTONLY == GlobalEnums.GoodsIssueTypeID_REPORTONLY.SelectedGoodsIssues
-                queryString = queryString + "                   " + this.WarehouseLedgerBUILDTable((isIssueVersusReceipt ? GlobalEnums.NmvnTaskID.GoodsIssues : GlobalEnums.NmvnTaskID.GoodsReceipt), (isIssueVersusReceipt ? "GoodsIssueDetails" : "GoodsReceiptDetails"), (isIssueVersusReceipt ? "GoodsIssueID" : "GoodsReceiptID"), (isIssueVersusReceipt ? "GoodsIssueDetailID" : "GoodsReceiptDetailID"), isLocationID, isWarehouseID, isCommodityCategoryID, isCommodityTypeID, isCommodityID, goodsIssueTypeID_REPORTONLY == GlobalEnums.GoodsIssueTypeID_REPORTONLY.CombineSelectedAlls || goodsIssueTypeID_REPORTONLY == GlobalEnums.GoodsIssueTypeID_REPORTONLY.SelectedGoodsIssues, isGoodsReceiptTypeID) + "\r\n";
+                queryString = queryString + "                   " + this.WarehouseLedgerBUILDTable((isIssueVersusReceipt ? GlobalEnums.NmvnTaskID.GoodsIssues : GlobalEnums.NmvnTaskID.GoodsReceipts), (isIssueVersusReceipt ? "GoodsIssueDetails" : "GoodsReceiptDetails"), (isIssueVersusReceipt ? "GoodsIssueID" : "GoodsReceiptID"), (isIssueVersusReceipt ? "GoodsIssueDetailID" : "GoodsReceiptDetailID"), isLocationID, isWarehouseID, isCommodityCategoryID, isCommodityTypeID, isCommodityID, goodsIssueTypeID_REPORTONLY == GlobalEnums.GoodsIssueTypeID_REPORTONLY.CombineSelectedAlls || goodsIssueTypeID_REPORTONLY == GlobalEnums.GoodsIssueTypeID_REPORTONLY.SelectedGoodsIssues, isGoodsReceiptTypeID) + "\r\n";
 
                 if (isIssueVersusReceipt)
                 {
@@ -1195,7 +1195,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
             if (isIssueVersusReceipt && (goodsIssueTypeID_REPORTONLY == GlobalEnums.GoodsIssueTypeID_REPORTONLY.Alls || goodsIssueTypeID_REPORTONLY == GlobalEnums.GoodsIssueTypeID_REPORTONLY.CombineSelectedAlls || goodsIssueTypeID_REPORTONLY == GlobalEnums.GoodsIssueTypeID_REPORTONLY.WarehouseAdjustments))
             { //isGoodsIssueTypeID IS ALWAYS false
-                queryString = queryString + "                   " + this.WarehouseLedgerBUILDTable(GlobalEnums.NmvnTaskID.WarehouseAdjustment, "WarehouseAdjustmentDetails", "WarehouseAdjustmentID", "WarehouseAdjustmentDetailID", isLocationID, isWarehouseID, isCommodityCategoryID, isCommodityTypeID, isCommodityID, false, false) + "\r\n";
+                queryString = queryString + "                   " + this.WarehouseLedgerBUILDTable(GlobalEnums.NmvnTaskID.WarehouseAdjustments, "WarehouseAdjustmentDetails", "WarehouseAdjustmentID", "WarehouseAdjustmentDetailID", isLocationID, isWarehouseID, isCommodityCategoryID, isCommodityTypeID, isCommodityID, false, false) + "\r\n";
 
                 queryString = queryString + "                   INNER JOIN WarehouseAdjustmentTypes ON " + (isWarehouseAdjustmentTypeID ? "WarehouseAdjustmentDetails.WarehouseAdjustmentTypeID IN (SELECT Id FROM dbo.SplitToIntList (@WarehouseAdjustmentTypeIDs)) AND " : "") + " WarehouseAdjustmentDetails.WarehouseAdjustmentTypeID = WarehouseAdjustmentTypes.WarehouseAdjustmentTypeID " + "\r\n";
             }
@@ -1211,22 +1211,22 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
             string queryString = "";
 
             queryString = queryString + "       SELECT      " + tableName + "." + primaryKey + " AS PrimaryID, " + tableName + "." + primaryDetailKey + " AS PrimaryDetailID, " + tableName + ".EntryDate, " + tableName + ".Reference, Locations.Name AS LocationName, Warehouses.Name AS WarehouseName, BinLocations.Code AS BinLocationCode, ISNULL(Pallets.Code, Cartons.Code) AS Barcode, " + "\r\n";
-            queryString = queryString + "                   Commodities.CommodityID, Commodities.Code, Commodities.Name, Commodities.PackageSize, CommodityCategories.Name AS CommodityCategoryName, CommodityTypes.Name AS CommodityTypeName, CAST(0 AS bit) AS IsPromotion, " + (nmvnTaskID == GlobalEnums.NmvnTaskID.WarehouseAdjustment ? "-" : "") + tableName + ".Quantity, " + (nmvnTaskID == GlobalEnums.NmvnTaskID.WarehouseAdjustment ? "-" : "") + tableName + ".LineVolume, " + "\r\n";
+            queryString = queryString + "                   Commodities.CommodityID, Commodities.Code, Commodities.Name, Commodities.PackageSize, CommodityCategories.Name AS CommodityCategoryName, CommodityTypes.Name AS CommodityTypeName, CAST(0 AS bit) AS IsPromotion, " + (nmvnTaskID == GlobalEnums.NmvnTaskID.WarehouseAdjustments ? "-" : "") + tableName + ".Quantity, " + (nmvnTaskID == GlobalEnums.NmvnTaskID.WarehouseAdjustments ? "-" : "") + tableName + ".LineVolume, " + "\r\n";
             if (nmvnTaskID == GlobalEnums.NmvnTaskID.GoodsIssues)
                 queryString = queryString + "               9000 + GoodsIssueDetails.GoodsIssueTypeID AS JournalTypeID, GoodsIssueTypes.Name AS JournalTypeName,                   ISNULL(Customers.Code, LocationReceipts.Name) AS LineForeignCode, ISNULL(Customers.Name, WarehouseReceipts.Name) AS LineForeignName, GoodsIssueDetails.VoucherCodes AS LineReferences, CustomerCategories.Name AS CustomerCategoryName, Teams.Name AS TeamName, Employees.Name AS SalespersonName " + "\r\n";
 
 
-            if (nmvnTaskID == GlobalEnums.NmvnTaskID.GoodsReceipt)
+            if (nmvnTaskID == GlobalEnums.NmvnTaskID.GoodsReceipts)
                 queryString = queryString + "               CASE WHEN GoodsReceiptDetails.GoodsReceiptTypeID <> " + (int)GlobalEnums.GoodsReceiptTypeID.WarehouseAdjustments + " THEN GoodsReceiptDetails.GoodsReceiptTypeID ELSE 8000 + GoodsReceiptDetails.WarehouseAdjustmentTypeID END AS JournalTypeID, CASE WHEN GoodsReceiptDetails.GoodsReceiptTypeID <> " + (int)GlobalEnums.GoodsReceiptTypeID.WarehouseAdjustments + " THEN GoodsReceiptTypes.Name ELSE WarehouseAdjustmentTypes.Name END AS JournalTypeName,                   ISNULL(Suppliers.Code, LocationIssues.Name) AS LineForeignCode, ISNULL(Suppliers.Name, WarehouseIssues.Name) AS LineForeignName, GoodsReceiptDetails.PrimaryReferences AS LineReferences, SupplierCategories.Name AS CustomerCategoryName, NULL AS TeamName, NULL AS SalespersonName " + "\r\n";
 
 
-            if (nmvnTaskID == GlobalEnums.NmvnTaskID.WarehouseAdjustment)
+            if (nmvnTaskID == GlobalEnums.NmvnTaskID.WarehouseAdjustments)
                 queryString = queryString + "               8000 + WarehouseAdjustmentDetails.WarehouseAdjustmentTypeID AS JournalTypeID, WarehouseAdjustmentTypes.Name AS JournalTypeName,                   WarehouseAdjustmentTypes.Code AS LineForeignCode, WarehouseAdjustmentTypes.Name AS LineForeignName, WarehouseAdjustmentDetails.Reference + ' ' + WarehouseAdjustmentDetails.AdjustmentJobs AS LineReferences, NULL AS CustomerCategoryName, NULL AS TeamName, NULL AS SalespersonName " + "\r\n";
 
 
             queryString = queryString + "       FROM        " + tableName + " " + "\r\n";
 
-            queryString = queryString + "                   INNER JOIN Locations ON " + (nmvnTaskID == GlobalEnums.NmvnTaskID.WarehouseAdjustment ? tableName + ".Quantity < 0 AND " : "") + tableName + ".EntryDate >= @FromDate AND " + tableName + ".EntryDate <= @ToDate AND " + tableName + ".OrganizationalUnitID IN (SELECT OrganizationalUnitID FROM AccessControls WHERE UserID = @UserID AND NMVNTaskID = " + (int)nmvnTaskID + " AND AccessControls.AccessLevel > 0) AND " + (isGoodsIssueTypeID ? tableName + ".GoodsIssueTypeID IN (SELECT Id FROM dbo.SplitToIntList (@GoodsIssueTypeIDs)) AND " : "") + (isGoodsReceiptTypeID ? tableName + ".GoodsReceiptTypeID IN (SELECT Id FROM dbo.SplitToIntList (@GoodsReceiptTypeIDs)) AND " : "") + (isLocationID || isWarehouseID ? "(" + (isLocationID ? "" + tableName + ".LocationID IN (SELECT Id FROM dbo.SplitToIntList (@LocationIDs)) " : "") + (isLocationID && isWarehouseID ? " OR " : "") + (isWarehouseID ? "" + tableName + ".WarehouseID IN (SELECT Id FROM dbo.SplitToIntList (@WarehouseIDs)) " : "") + ") AND " : "") + " " + tableName + ".LocationID = Locations.LocationID " + "\r\n";
+            queryString = queryString + "                   INNER JOIN Locations ON " + (nmvnTaskID == GlobalEnums.NmvnTaskID.WarehouseAdjustments ? tableName + ".Quantity < 0 AND " : "") + tableName + ".EntryDate >= @FromDate AND " + tableName + ".EntryDate <= @ToDate AND " + tableName + ".OrganizationalUnitID IN (SELECT OrganizationalUnitID FROM AccessControls WHERE UserID = @UserID AND NMVNTaskID = " + (int)nmvnTaskID + " AND AccessControls.AccessLevel > 0) AND " + (isGoodsIssueTypeID ? tableName + ".GoodsIssueTypeID IN (SELECT Id FROM dbo.SplitToIntList (@GoodsIssueTypeIDs)) AND " : "") + (isGoodsReceiptTypeID ? tableName + ".GoodsReceiptTypeID IN (SELECT Id FROM dbo.SplitToIntList (@GoodsReceiptTypeIDs)) AND " : "") + (isLocationID || isWarehouseID ? "(" + (isLocationID ? "" + tableName + ".LocationID IN (SELECT Id FROM dbo.SplitToIntList (@LocationIDs)) " : "") + (isLocationID && isWarehouseID ? " OR " : "") + (isWarehouseID ? "" + tableName + ".WarehouseID IN (SELECT Id FROM dbo.SplitToIntList (@WarehouseIDs)) " : "") + ") AND " : "") + " " + tableName + ".LocationID = Locations.LocationID " + "\r\n";
             queryString = queryString + "                   INNER JOIN Warehouses ON " + tableName + ".WarehouseID = Warehouses.WarehouseID " + "\r\n";
             queryString = queryString + "                   INNER JOIN BinLocations ON " + tableName + ".BinLocationID = BinLocations.BinLocationID " + "\r\n";
 
@@ -1238,7 +1238,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
             if (nmvnTaskID == GlobalEnums.NmvnTaskID.GoodsIssues)
                 queryString = queryString + "               INNER JOIN GoodsIssueTypes ON GoodsIssueDetails.GoodsIssueTypeID = GoodsIssueTypes.GoodsIssueTypeID " + "\r\n";
-            if (nmvnTaskID == GlobalEnums.NmvnTaskID.GoodsReceipt)
+            if (nmvnTaskID == GlobalEnums.NmvnTaskID.GoodsReceipts)
                 queryString = queryString + "               INNER JOIN GoodsReceiptTypes ON GoodsReceiptDetails.GoodsReceiptTypeID = GoodsReceiptTypes.GoodsReceiptTypeID " + "\r\n";
 
 

@@ -39,7 +39,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
 
             queryString = queryString + "       SELECT      BinLocations.BinLocationID, BinLocations.Code AS BinLocationCode, BinLocations.Name AS BinLocationName, Locations.Name AS LocationName, BinLocations.InActive, BinLocations.Remarks " + "\r\n";
             queryString = queryString + "       FROM        BinLocations " + "\r\n";
-            queryString = queryString + "                   INNER JOIN Locations ON BinLocations.OrganizationalUnitID IN (SELECT OrganizationalUnitID FROM AccessControls WHERE UserID = @UserID AND NMVNTaskID = " + (int)TotalBase.Enums.GlobalEnums.NmvnTaskID.BinLocation + " AND AccessControls.AccessLevel > 0) AND BinLocations.LocationID = Locations.LocationID " + "\r\n";
+            queryString = queryString + "                   INNER JOIN Locations ON BinLocations.OrganizationalUnitID IN (SELECT OrganizationalUnitID FROM AccessControls WHERE UserID = @UserID AND NMVNTaskID = " + (int)TotalBase.Enums.GlobalEnums.NmvnTaskID.BinLocations + " AND AccessControls.AccessLevel > 0) AND BinLocations.LocationID = Locations.LocationID " + "\r\n";
 
             queryString = queryString + "    END " + "\r\n";
 

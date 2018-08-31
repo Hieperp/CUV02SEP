@@ -18,7 +18,7 @@ namespace TotalDTO.Sales
 {
     public class TransferOrderPrimitiveDTO : QuantityDTO<TransferOrderDetailDTO>, IPrimitiveEntity, IPrimitiveDTO
     {
-        public override GlobalEnums.NmvnTaskID NMVNTaskID { get { return GlobalEnums.NmvnTaskID.TransferOrder; } }
+        public override GlobalEnums.NmvnTaskID NMVNTaskID { get { return GlobalEnums.NmvnTaskID.TransferOrders; } }
         public override bool NoVoidable { get { return false; } }
 
         public TransferOrderPrimitiveDTO() { this.DeliveryDate = DateTime.Now; }

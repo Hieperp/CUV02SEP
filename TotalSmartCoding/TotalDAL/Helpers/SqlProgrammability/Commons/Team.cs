@@ -57,7 +57,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             queryString = queryString + "           BEGIN " + "\r\n";
 
             queryString = queryString + "               INSERT INTO TeamTeams (TeamID, TeamID, TeamTaskID, EntryDate, Remarks, InActive) " + "\r\n";
-            queryString = queryString + "               SELECT      TeamID, 46 AS TeamID, " + (int)GlobalEnums.NmvnTaskID.SalesOrder + " AS TeamTaskID, GETDATE(), '', 0 FROM Teams WHERE TeamID = @EntityID " + "\r\n";
+            queryString = queryString + "               SELECT      TeamID, 46 AS TeamID, " + (int)GlobalEnums.NmvnTaskID.SalesOrders + " AS TeamTaskID, GETDATE(), '', 0 FROM Teams WHERE TeamID = @EntityID " + "\r\n";
 
             queryString = queryString + "               INSERT INTO TeamTeams (TeamID, TeamID, TeamTaskID, EntryDate, Remarks, InActive) " + "\r\n";
             queryString = queryString + "               SELECT      Teams.TeamID, Teams.TeamID, " + (int)GlobalEnums.NmvnTaskID.DeliveryAdvices + " AS TeamTaskID, GETDATE(), '', 0 FROM Teams INNER JOIN Teams ON Teams.TeamID = @EntityID AND Teams.TeamTypeID NOT IN (4, 5, 7, 9, 10, 11, 12) AND Teams.TeamTypeID = Teams.TeamTypeID " + "\r\n";

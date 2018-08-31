@@ -56,7 +56,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             queryString = queryString + "           BEGIN " + "\r\n";
 
             queryString = queryString + "               INSERT INTO CustomerCategoryCustomerCategories (CustomerCategoryID, CustomerCategoryID, CustomerCategoryTaskID, EntryDate, Remarks, InActive) " + "\r\n";
-            queryString = queryString + "               SELECT      CustomerCategoryID, 46 AS CustomerCategoryID, " + (int)GlobalEnums.NmvnTaskID.SalesOrder + " AS CustomerCategoryTaskID, GETDATE(), '', 0 FROM CustomerCategories WHERE CustomerCategoryID = @EntityID " + "\r\n";
+            queryString = queryString + "               SELECT      CustomerCategoryID, 46 AS CustomerCategoryID, " + (int)GlobalEnums.NmvnTaskID.SalesOrders + " AS CustomerCategoryTaskID, GETDATE(), '', 0 FROM CustomerCategories WHERE CustomerCategoryID = @EntityID " + "\r\n";
 
             queryString = queryString + "               INSERT INTO CustomerCategoryCustomerCategories (CustomerCategoryID, CustomerCategoryID, CustomerCategoryTaskID, EntryDate, Remarks, InActive) " + "\r\n";
             queryString = queryString + "               SELECT      CustomerCategories.CustomerCategoryID, CustomerCategories.CustomerCategoryID, " + (int)GlobalEnums.NmvnTaskID.DeliveryAdvices + " AS CustomerCategoryTaskID, GETDATE(), '', 0 FROM CustomerCategories INNER JOIN CustomerCategories ON CustomerCategories.CustomerCategoryID = @EntityID AND CustomerCategories.CustomerCategoryCategoryID NOT IN (4, 5, 7, 9, 10, 11, 12) AND CustomerCategories.CustomerCategoryCategoryID = CustomerCategories.CustomerCategoryCategoryID " + "\r\n";

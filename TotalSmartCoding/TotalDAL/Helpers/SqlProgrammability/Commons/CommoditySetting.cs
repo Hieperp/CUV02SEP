@@ -79,7 +79,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
 
         private void CommoditySettingInitReference()
         {
-            SimpleInitReference simpleInitReference = new SimpleInitReference("CommoditySettings", "CommoditySettingID", "Reference", ModelSettingManager.ReferenceLength, ModelSettingManager.ReferencePrefix(GlobalEnums.NmvnTaskID.CommoditySetting));
+            SimpleInitReference simpleInitReference = new SimpleInitReference("CommoditySettings", "CommoditySettingID", "Reference", ModelSettingManager.ReferenceLength, ModelSettingManager.ReferencePrefix(GlobalEnums.NmvnTaskID.CommoditySettings));
             this.totalSmartCodingEntities.CreateTrigger("CommoditySettingInitReference", simpleInitReference.CreateQuery());
         }
 

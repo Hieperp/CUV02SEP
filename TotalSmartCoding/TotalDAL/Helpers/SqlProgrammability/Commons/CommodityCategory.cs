@@ -56,7 +56,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             queryString = queryString + "           BEGIN " + "\r\n";
 
             queryString = queryString + "               INSERT INTO CommodityCategoryCommodityCategories (CommodityCategoryID, CommodityCategoryID, CommodityCategoryTaskID, EntryDate, Remarks, InActive) " + "\r\n";
-            queryString = queryString + "               SELECT      CommodityCategoryID, 46 AS CommodityCategoryID, " + (int)GlobalEnums.NmvnTaskID.SalesOrder + " AS CommodityCategoryTaskID, GETDATE(), '', 0 FROM CommodityCategories WHERE CommodityCategoryID = @EntityID " + "\r\n";
+            queryString = queryString + "               SELECT      CommodityCategoryID, 46 AS CommodityCategoryID, " + (int)GlobalEnums.NmvnTaskID.SalesOrders + " AS CommodityCategoryTaskID, GETDATE(), '', 0 FROM CommodityCategories WHERE CommodityCategoryID = @EntityID " + "\r\n";
 
             queryString = queryString + "               INSERT INTO CommodityCategoryCommodityCategories (CommodityCategoryID, CommodityCategoryID, CommodityCategoryTaskID, EntryDate, Remarks, InActive) " + "\r\n";
             queryString = queryString + "               SELECT      CommodityCategories.CommodityCategoryID, CommodityCategories.CommodityCategoryID, " + (int)GlobalEnums.NmvnTaskID.DeliveryAdvices + " AS CommodityCategoryTaskID, GETDATE(), '', 0 FROM CommodityCategories INNER JOIN CommodityCategories ON CommodityCategories.CommodityCategoryID = @EntityID AND CommodityCategories.CommodityCategoryCategoryID NOT IN (4, 5, 7, 9, 10, 11, 12) AND CommodityCategories.CommodityCategoryCategoryID = CommodityCategories.CommodityCategoryCategoryID " + "\r\n";

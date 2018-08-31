@@ -8,7 +8,7 @@ namespace TotalDTO.Generals
 {
     public class ReportPrimitiveDTO : BaseDTO, IPrimitiveEntity, IPrimitiveDTO
     {
-        public override GlobalEnums.NmvnTaskID NMVNTaskID { get { return GlobalEnums.NmvnTaskID.Report; } }
+        public override GlobalEnums.NmvnTaskID NMVNTaskID { get { return GlobalEnums.NmvnTaskID.Reports; } }
         public override bool NoApprovable { get { return true; } }
 
         public override int GetID() { return this.ReportID; }

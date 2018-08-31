@@ -87,43 +87,43 @@
             Pallet = 686868,
             SmartCoding = 888888,
 
-            Customer = 8001,
-            Commodity = 8002,
-            CommoditySetting = 800201,
-            Promotion = 8003,
-            Employee = 8005,
-            Warehouse = 8006,
-            BinLocation = 8008,
-            Territory = 8007,
+            Customers = 8001,
+            Commodities = 8002,
+            CommoditySettings = 800201,
+            Promotions = 8003,
+            Employees = 8005,
+            Warehouses = 8006,
+            BinLocations = 8008,
+            Territories = 8007,
             FillingLine = 8668,
 
-            PurchaseOrder = 8021,
-            PurchaseInvoice = 8022,
+            PurchaseOrders = 8021,
+            PurchaseInvoices = 8022,
 
 
 
-            SalesOrder = 8032,
+            SalesOrders = 8032,
             DeliveryAdvices = 8035,
             GoodsIssues = 8037,
 
 
 
-            SalesReturn = 8038,
-            CreditNote = 8060,
+            SalesReturns = 8038,
+            CreditNotes = 8060,
 
 
-            GoodsReceipt = 8077,
-            WarehouseAdjustment = 8078,
-            GoodsReceiptDetailAvailable = 800001,
-            PendingOrder = 80000101,
+            GoodsReceipts = 8077,
+            WarehouseAdjustments = 8078,
+            GoodsReceiptDetailAvailables = 800001,
+            PendingOrders = 80000101,
 
-            TransferOrder = 8071,
+            TransferOrders = 8071,
 
-            Pickup = 8068,
+            Pickups = 8068,
 
-            Forecast = 8076,
+            Forecasts = 8076,
 
-            Report = 91976999
+            Reports = 91976999
 
         };
 

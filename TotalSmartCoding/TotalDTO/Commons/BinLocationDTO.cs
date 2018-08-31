@@ -18,7 +18,7 @@ namespace TotalDTO.Commons
     /// </summary>
     public class BinLocationPrimitiveDTO : BaseDTO, IPrimitiveEntity, IPrimitiveDTO
     {
-        public override GlobalEnums.NmvnTaskID NMVNTaskID { get { return GlobalEnums.NmvnTaskID.BinLocation; } }
+        public override GlobalEnums.NmvnTaskID NMVNTaskID { get { return GlobalEnums.NmvnTaskID.BinLocations; } }
         public override bool NoApprovable { get { return true; } }
 
         public override int GetID() { return this.BinLocationID; }

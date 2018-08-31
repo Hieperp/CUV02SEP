@@ -49,7 +49,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
             queryString = queryString + "       SELECT      Pickups.PickupID, CAST(Pickups.EntryDate AS DATE) AS EntryDate, Pickups.Reference, Locations.Code AS LocationCode, Warehouses.Name AS WarehouseName, FillingLines.NickName AS FillingLineNickName, Pickups.Description, Pickups.TotalQuantity, Pickups.TotalLineVolume, Pickups.Approved " + "\r\n";
             queryString = queryString + "       FROM        Pickups " + "\r\n";
-            queryString = queryString + "                   INNER JOIN Locations ON Pickups.EntryDate >= @FromDate AND Pickups.EntryDate <= @ToDate AND Pickups.OrganizationalUnitID IN (SELECT OrganizationalUnitID FROM AccessControls WHERE UserID = @UserID AND NMVNTaskID = " + (int)TotalBase.Enums.GlobalEnums.NmvnTaskID.Pickup + " AND AccessControls.AccessLevel > 0) AND Locations.LocationID = Pickups.LocationID " + "\r\n";
+            queryString = queryString + "                   INNER JOIN Locations ON Pickups.EntryDate >= @FromDate AND Pickups.EntryDate <= @ToDate AND Pickups.OrganizationalUnitID IN (SELECT OrganizationalUnitID FROM AccessControls WHERE UserID = @UserID AND NMVNTaskID = " + (int)TotalBase.Enums.GlobalEnums.NmvnTaskID.Pickups + " AND AccessControls.AccessLevel > 0) AND Locations.LocationID = Pickups.LocationID " + "\r\n";
             queryString = queryString + "                   INNER JOIN Warehouses ON Pickups.WarehouseID = Warehouses.WarehouseID " + "\r\n";
             queryString = queryString + "                   INNER JOIN FillingLines ON Pickups.FillingLineID = FillingLines.FillingLineID " + "\r\n";
             queryString = queryString + "       ORDER BY    Pickups.EntryDate DESC, Pickups.Reference " + "\r\n";
@@ -264,7 +264,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
         private void PickupInitReference()
         {
-            SimpleInitReference simpleInitReference = new SimpleInitReference("Pickups", "PickupID", "Reference", ModelSettingManager.ReferenceLength, ModelSettingManager.ReferencePrefix(GlobalEnums.NmvnTaskID.Pickup));
+            SimpleInitReference simpleInitReference = new SimpleInitReference("Pickups", "PickupID", "Reference", ModelSettingManager.ReferenceLength, ModelSettingManager.ReferencePrefix(GlobalEnums.NmvnTaskID.Pickups));
             this.totalSmartCodingEntities.CreateTrigger("PickupInitReference", simpleInitReference.CreateQuery());
         }
 

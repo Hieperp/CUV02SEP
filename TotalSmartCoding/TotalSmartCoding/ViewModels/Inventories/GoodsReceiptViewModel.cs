@@ -11,7 +11,7 @@ namespace TotalSmartCoding.ViewModels.Inventories
 
     public class GoodsReceiptDetailAvailableViewModel : BaseDTO
     {
-        public override GlobalEnums.NmvnTaskID NMVNTaskID { get { return GlobalEnums.NmvnTaskID.GoodsReceiptDetailAvailable; } }
+        public override GlobalEnums.NmvnTaskID NMVNTaskID { get { return GlobalEnums.NmvnTaskID.GoodsReceiptDetailAvailables; } }
 
         public override bool AllowDataInput { get { return false; } }
 

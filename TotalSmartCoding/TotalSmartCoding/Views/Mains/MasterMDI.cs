@@ -297,7 +297,7 @@ namespace TotalSmartCoding.Views.Mains
                 {
                     if (moduleID == 9)
                     {
-                        this.OpenModuleDetail((int)GlobalEnums.NmvnTaskID.Report);
+                        this.OpenModuleDetail((int)GlobalEnums.NmvnTaskID.Reports);
                         if (lastActiveBand != null) this.naviBarModuleMaster.ActiveBand = lastActiveBand;
                     }
                     else
@@ -414,38 +414,38 @@ namespace TotalSmartCoding.Views.Mains
                 { //OPEN NEW VIEW
                     switch (moduleDetailID)
                     {
-                        case (int)GlobalEnums.NmvnTaskID.Customer:
+                        case (int)GlobalEnums.NmvnTaskID.Customers:
                             openingView = new Customers();
                             break;
 
-                        case (int)GlobalEnums.NmvnTaskID.Commodity:
+                        case (int)GlobalEnums.NmvnTaskID.Commodities:
                             openingView = new Commodities();
                             break;
 
-                        case (int)GlobalEnums.NmvnTaskID.CommoditySetting:
+                        case (int)GlobalEnums.NmvnTaskID.CommoditySettings:
                             openingView = new CommoditySettings();
                             break;
 
-                        case (int)GlobalEnums.NmvnTaskID.BinLocation:
+                        case (int)GlobalEnums.NmvnTaskID.BinLocations:
                             openingView = new BinLocations();
                             break;
-                        case (int)GlobalEnums.NmvnTaskID.Employee:
+                        case (int)GlobalEnums.NmvnTaskID.Employees:
                             openingView = new Employees();
                             break;
 
-                        case (int)GlobalEnums.NmvnTaskID.Pickup:
+                        case (int)GlobalEnums.NmvnTaskID.Pickups:
                             openingView = new Pickups();
                             break;
 
-                        case (int)GlobalEnums.NmvnTaskID.GoodsReceipt:
+                        case (int)GlobalEnums.NmvnTaskID.GoodsReceipts:
                             openingView = new GoodsReceipts();
                             break;
 
-                        case (int)GlobalEnums.NmvnTaskID.Forecast:
+                        case (int)GlobalEnums.NmvnTaskID.Forecasts:
                             openingView = new Forecasts();
                             break;
 
-                        case (int)GlobalEnums.NmvnTaskID.SalesOrder:
+                        case (int)GlobalEnums.NmvnTaskID.SalesOrders:
                             openingView = new SalesOrders();
                             break;
 
@@ -453,7 +453,7 @@ namespace TotalSmartCoding.Views.Mains
                             openingView = new DeliveryAdvices();
                             break;
 
-                        case (int)GlobalEnums.NmvnTaskID.TransferOrder:
+                        case (int)GlobalEnums.NmvnTaskID.TransferOrders:
                             openingView = new TransferOrders();
                             break;
 
@@ -461,19 +461,19 @@ namespace TotalSmartCoding.Views.Mains
                             openingView = new GoodsIssues();
                             break;
 
-                        case (int)GlobalEnums.NmvnTaskID.WarehouseAdjustment:
+                        case (int)GlobalEnums.NmvnTaskID.WarehouseAdjustments:
                             openingView = new WarehouseAdjustments();
                             break;
 
-                        case (int)GlobalEnums.NmvnTaskID.GoodsReceiptDetailAvailable:
+                        case (int)GlobalEnums.NmvnTaskID.GoodsReceiptDetailAvailables:
                             openingView = new GoodsReceiptDetailAvailables();
                             break;
 
-                        case (int)GlobalEnums.NmvnTaskID.PendingOrder:
+                        case (int)GlobalEnums.NmvnTaskID.PendingOrders:
                             openingView = new PendingOrders();
                             break;
 
-                        case (int)GlobalEnums.NmvnTaskID.Report:
+                        case (int)GlobalEnums.NmvnTaskID.Reports:
                             openingView = new Reports();
                             break;
 

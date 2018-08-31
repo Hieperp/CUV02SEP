@@ -18,7 +18,7 @@ namespace TotalDTO.Inventories
 {
     public class GoodsReceiptPrimitiveDTO : QuantityDTO<GoodsReceiptDetailDTO>, IPrimitiveEntity, IPrimitiveDTO
     {
-        public override GlobalEnums.NmvnTaskID NMVNTaskID { get { return GlobalEnums.NmvnTaskID.GoodsReceipt; } }
+        public override GlobalEnums.NmvnTaskID NMVNTaskID { get { return GlobalEnums.NmvnTaskID.GoodsReceipts; } }
 
         public override bool Printable { get { return true; } }
         public override bool PrintVisible { get { return true; } }

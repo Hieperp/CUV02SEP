@@ -42,7 +42,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
 
             queryString = queryString + "       SELECT      Forecasts.ForecastID, CAST(Forecasts.EntryDate AS DATE) AS EntryDate, Forecasts.Reference, Forecasts.VoucherCode, Locations.Code AS LocationCode, Forecasts.TotalQuantity, Forecasts.TotalLineVolume, Forecasts.TotalQuantityM1, Forecasts.TotalLineVolumeM1, Forecasts.TotalQuantityM2, Forecasts.TotalLineVolumeM2, Forecasts.TotalQuantityM3, Forecasts.TotalLineVolumeM3, Forecasts.QuantityVersusVolume, Forecasts.Description " + "\r\n";
             queryString = queryString + "       FROM        Forecasts " + "\r\n";
-            queryString = queryString + "                   INNER JOIN Locations ON Forecasts.EntryDate >= @FromDate AND Forecasts.EntryDate <= @ToDate AND Forecasts.OrganizationalUnitID IN (SELECT OrganizationalUnitID FROM AccessControls WHERE UserID = @UserID AND NMVNTaskID = " + (int)TotalBase.Enums.GlobalEnums.NmvnTaskID.Forecast + " AND AccessControls.AccessLevel > 0) AND Forecasts.ForecastLocationID = Locations.LocationID " + "\r\n";
+            queryString = queryString + "                   INNER JOIN Locations ON Forecasts.EntryDate >= @FromDate AND Forecasts.EntryDate <= @ToDate AND Forecasts.OrganizationalUnitID IN (SELECT OrganizationalUnitID FROM AccessControls WHERE UserID = @UserID AND NMVNTaskID = " + (int)TotalBase.Enums.GlobalEnums.NmvnTaskID.Forecasts + " AND AccessControls.AccessLevel > 0) AND Forecasts.ForecastLocationID = Locations.LocationID " + "\r\n";
 
             queryString = queryString + "    END " + "\r\n";
 
@@ -112,7 +112,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
 
         private void ForecastInitReference()
         {
-            SimpleInitReference simpleInitReference = new SimpleInitReference("Forecasts", "ForecastID", "Reference", ModelSettingManager.ReferenceLength, ModelSettingManager.ReferencePrefix(GlobalEnums.NmvnTaskID.Forecast));
+            SimpleInitReference simpleInitReference = new SimpleInitReference("Forecasts", "ForecastID", "Reference", ModelSettingManager.ReferenceLength, ModelSettingManager.ReferencePrefix(GlobalEnums.NmvnTaskID.Forecasts));
             this.totalSmartCodingEntities.CreateTrigger("ForecastInitReference", simpleInitReference.CreateQuery());
         }
 

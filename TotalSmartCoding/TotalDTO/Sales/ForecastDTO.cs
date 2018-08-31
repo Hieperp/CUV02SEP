@@ -16,7 +16,7 @@ namespace TotalDTO.Sales
 {
     public class ForecastPrimitiveDTO : BaseWithDetailDTO<ForecastDetailDTO>, IPrimitiveEntity, IPrimitiveDTO
     {
-        public override GlobalEnums.NmvnTaskID NMVNTaskID { get { return GlobalEnums.NmvnTaskID.Forecast; } }
+        public override GlobalEnums.NmvnTaskID NMVNTaskID { get { return GlobalEnums.NmvnTaskID.Forecasts; } }
         public override bool Importable { get { return true; } }
 
         public ForecastPrimitiveDTO() { this.Initialize(); }

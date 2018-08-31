@@ -47,7 +47,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
 
             queryString = queryString + "       SELECT      SalesOrders.SalesOrderID, CAST(SalesOrders.EntryDate AS DATE) AS EntryDate, SalesOrders.Reference, SalesOrders.VoucherCode, SalesOrders.DeliveryDate, Locations.Code AS LocationCode, Customers.Code AS CustomerCode, Customers.Name AS CustomerName, SalesOrders.Description, SalesOrders.TotalQuantity, SalesOrders.TotalLineVolume, SalesOrders.Approved, SalesOrders.InActive " + "\r\n";
             queryString = queryString + "       FROM        SalesOrders " + "\r\n";
-            queryString = queryString + "                   INNER JOIN Locations ON SalesOrders.EntryDate >= @FromDate AND SalesOrders.EntryDate <= @ToDate AND SalesOrders.OrganizationalUnitID IN (SELECT OrganizationalUnitID FROM AccessControls WHERE UserID = @UserID AND NMVNTaskID = " + (int)TotalBase.Enums.GlobalEnums.NmvnTaskID.SalesOrder + " AND AccessControls.AccessLevel > 0) AND Locations.LocationID = SalesOrders.LocationID " + "\r\n";
+            queryString = queryString + "                   INNER JOIN Locations ON SalesOrders.EntryDate >= @FromDate AND SalesOrders.EntryDate <= @ToDate AND SalesOrders.OrganizationalUnitID IN (SELECT OrganizationalUnitID FROM AccessControls WHERE UserID = @UserID AND NMVNTaskID = " + (int)TotalBase.Enums.GlobalEnums.NmvnTaskID.SalesOrders + " AND AccessControls.AccessLevel > 0) AND Locations.LocationID = SalesOrders.LocationID " + "\r\n";
             queryString = queryString + "                   INNER JOIN Customers ON SalesOrders.CustomerID = Customers.CustomerID " + "\r\n";
             queryString = queryString + "       " + "\r\n";
 
@@ -199,7 +199,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
 
         private void SalesOrderInitReference()
         {
-            SimpleInitReference simpleInitReference = new SimpleInitReference("SalesOrders", "SalesOrderID", "Reference", ModelSettingManager.ReferenceLength, ModelSettingManager.ReferencePrefix(GlobalEnums.NmvnTaskID.SalesOrder));
+            SimpleInitReference simpleInitReference = new SimpleInitReference("SalesOrders", "SalesOrderID", "Reference", ModelSettingManager.ReferenceLength, ModelSettingManager.ReferencePrefix(GlobalEnums.NmvnTaskID.SalesOrders));
             this.totalSmartCodingEntities.CreateTrigger("SalesOrderInitReference", simpleInitReference.CreateQuery());
         }
 

@@ -48,7 +48,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
 
             queryString = queryString + "       SELECT      TransferOrders.TransferOrderID, CAST(TransferOrders.EntryDate AS DATE) AS EntryDate, TransferOrders.Reference, TransferOrders.VoucherCode, TransferOrders.DeliveryDate, Locations.Code AS LocationCode, Warehouses.Code AS WarehouseCode, Warehouses.Name AS WarehouseName, WarehouseReceipts.Code AS WarehouseReceiptCode, WarehouseReceipts.Name AS WarehouseReceiptName, TransferOrders.Description, TransferOrders.TotalQuantity, TransferOrders.TotalLineVolume, TransferOrders.Approved, TransferOrders.InActive " + "\r\n";
             queryString = queryString + "       FROM        TransferOrders " + "\r\n";
-            queryString = queryString + "                   INNER JOIN Locations ON TransferOrders.EntryDate >= @FromDate AND TransferOrders.EntryDate <= @ToDate AND TransferOrders.OrganizationalUnitID IN (SELECT OrganizationalUnitID FROM AccessControls WHERE UserID = @UserID AND NMVNTaskID = " + (int)TotalBase.Enums.GlobalEnums.NmvnTaskID.TransferOrder + " AND AccessControls.AccessLevel > 0) AND Locations.LocationID = TransferOrders.LocationID " + "\r\n";
+            queryString = queryString + "                   INNER JOIN Locations ON TransferOrders.EntryDate >= @FromDate AND TransferOrders.EntryDate <= @ToDate AND TransferOrders.OrganizationalUnitID IN (SELECT OrganizationalUnitID FROM AccessControls WHERE UserID = @UserID AND NMVNTaskID = " + (int)TotalBase.Enums.GlobalEnums.NmvnTaskID.TransferOrders + " AND AccessControls.AccessLevel > 0) AND Locations.LocationID = TransferOrders.LocationID " + "\r\n";
             queryString = queryString + "                   INNER JOIN Warehouses ON TransferOrders.WarehouseID = Warehouses.WarehouseID " + "\r\n";
             queryString = queryString + "                   INNER JOIN Warehouses WarehouseReceipts ON TransferOrders.WarehouseReceiptID = WarehouseReceipts.WarehouseID " + "\r\n";
             queryString = queryString + "       " + "\r\n";
@@ -202,7 +202,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
 
         private void TransferOrderInitReference()
         {
-            SimpleInitReference simpleInitReference = new SimpleInitReference("TransferOrders", "TransferOrderID", "Reference", ModelSettingManager.ReferenceLength, ModelSettingManager.ReferencePrefix(GlobalEnums.NmvnTaskID.TransferOrder));
+            SimpleInitReference simpleInitReference = new SimpleInitReference("TransferOrders", "TransferOrderID", "Reference", ModelSettingManager.ReferenceLength, ModelSettingManager.ReferencePrefix(GlobalEnums.NmvnTaskID.TransferOrders));
             this.totalSmartCodingEntities.CreateTrigger("TransferOrderInitReference", simpleInitReference.CreateQuery());
         }
 
