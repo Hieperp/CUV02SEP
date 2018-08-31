@@ -308,7 +308,7 @@ namespace TotalService
                     }
                 }
         }
-        
+
         public virtual bool Alter(TDto dto)
         {
             using (var dbContextTransaction = this.genericRepository.BeginTransaction())
@@ -501,5 +501,22 @@ namespace TotalService
         {
             return new ObjectParameter[] { new ObjectParameter("EntityID", entity.GetID()), new ObjectParameter("SaveRelativeOption", (int)saveRelativeOption) };
         }
+
+
+
+
+
+
+
+        #region Smart Logs
+        public void AddDataLogs(int? entryID, int? entryDetailID, DateTime? entryDate, string moduleName, string actionType, string tableName, string fieldName, string fieldValue)
+        {
+            this.genericRepository.AddDataLogs(entryID, entryDetailID, entryDate, moduleName, actionType, tableName, fieldName, fieldValue);
+        }
+        public void AddEventLogs(DateTime? entryDate, string moduleName, string actionType)
+        {
+            this.genericRepository.AddEventLogs(entryDate, moduleName, actionType);
+        }
+        #endregion Smart Logs
     }
 }

@@ -102,6 +102,7 @@
     <Compile Include="Inventories\WarehouseAdjustmentDetailDTO.cs" />
     <Compile Include="Inventories\WarehouseAdjustmentDTO.cs" />
     <Compile Include="IPrimitiveDTO.cs" />
+    <Compile Include="SmartLogDTO.cs" />
     <Compile Include="Productions\BarcodeDTO.cs" />
     <Compile Include="Productions\BarcodeQueue.cs" />
     <Compile Include="Productions\BatchDTO.cs" />

@@ -1,4 +1,6 @@
-﻿using TotalBase.Enums;
+﻿using System;
+
+using TotalBase.Enums;
 using TotalModel;
 using TotalDTO;
 
@@ -32,5 +34,14 @@ namespace TotalCore.Services
         bool Alter(TDto dto);
 
         void PreSaveRoutines(TDto dto);
+
+
+
+
+
+        #region
+        void AddDataLogs(int? entryID, int? entryDetailID, DateTime? entryDate, string moduleName, string actionType, string tableName, string fieldName, string fieldValue);
+        void AddEventLogs(DateTime? entryDate, string moduleName, string actionType);
+        #endregion
     }
 }

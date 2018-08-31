@@ -26,6 +26,7 @@ using TotalCore.Repositories.Generals;
 using System.Net;
 using System.Net.Sockets;
 using TotalModel.Helpers;
+using TotalDTO;
 
 namespace TotalSmartCoding.Views.Mains
 {
@@ -313,7 +314,8 @@ namespace TotalSmartCoding.Views.Mains
                         }
 
 
-                        
+
+                        SmartLogDTO.Init();
                     }
                 }
             }
