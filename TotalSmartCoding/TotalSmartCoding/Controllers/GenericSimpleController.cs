@@ -338,6 +338,11 @@ namespace TotalSmartCoding.Controllers
             if (!this.AccessLevelAuthorize()) throw new System.ArgumentException("Lỗi phân quyền", "Không có quyền truy cập dữ liệu");
             if (this.GenericService.Delete(id))
             {
+                
+                simpleViewModel.EditedDate = DateTime.Now;
+                this.AddDataLogs(simpleViewModel, "Delete");
+                this.AddViewDetailDataLogs(simpleViewModel, "Delete");
+
                 simpleViewModel.SetID(0);
                 return true;
             }
