@@ -30,7 +30,7 @@ namespace TotalBase
                 case GlobalEnums.NmvnTaskID.SalesReturn:
                     return "SR";
 
-                case GlobalEnums.NmvnTaskID.GoodsIssue:
+                case GlobalEnums.NmvnTaskID.GoodsIssues:
                     return "K";
                 case GlobalEnums.NmvnTaskID.TransferOrder:
                     return "TO";

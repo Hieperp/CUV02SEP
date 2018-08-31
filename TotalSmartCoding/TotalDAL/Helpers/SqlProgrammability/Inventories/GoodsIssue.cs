@@ -61,7 +61,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
             queryString = queryString + "       SELECT      GoodsIssues.GoodsIssueID, CAST(GoodsIssues.EntryDate AS DATE) AS EntryDate, GoodsIssues.Reference, GoodsIssues.PrimaryReferences, GoodsIssues.VoucherCodes, Locations.Code AS LocationCode, Customers.Code AS CustomerCode, Customers.Name AS CustomerName, WarehouseReceipts.Name AS WarehouseReceiptName, CASE WHEN Customers.Name IS NULL THEN WarehouseReceipts.Name ELSE Customers.Name END AS GoodsIssueName, GoodsIssues.TotalQuantity, GoodsIssues.TotalLineVolume, GoodsIssues.Approved " + "\r\n";
             queryString = queryString + "       FROM        GoodsIssues " + "\r\n";
-            queryString = queryString + "                   INNER JOIN Locations ON GoodsIssues.EntryDate >= @FromDate AND GoodsIssues.EntryDate <= @ToDate AND GoodsIssues.OrganizationalUnitID IN (SELECT OrganizationalUnitID FROM AccessControls WHERE UserID = @UserID AND NMVNTaskID = " + (int)TotalBase.Enums.GlobalEnums.NmvnTaskID.GoodsIssue + " AND AccessControls.AccessLevel > 0) AND Locations.LocationID = GoodsIssues.LocationID " + "\r\n";
+            queryString = queryString + "                   INNER JOIN Locations ON GoodsIssues.EntryDate >= @FromDate AND GoodsIssues.EntryDate <= @ToDate AND GoodsIssues.OrganizationalUnitID IN (SELECT OrganizationalUnitID FROM AccessControls WHERE UserID = @UserID AND NMVNTaskID = " + (int)TotalBase.Enums.GlobalEnums.NmvnTaskID.GoodsIssues + " AND AccessControls.AccessLevel > 0) AND Locations.LocationID = GoodsIssues.LocationID " + "\r\n";
             queryString = queryString + "                   LEFT JOIN Customers ON GoodsIssues.CustomerID = Customers.CustomerID " + "\r\n";
             queryString = queryString + "                   LEFT JOIN Warehouses WarehouseReceipts ON GoodsIssues.WarehouseReceiptID = WarehouseReceipts.WarehouseID " + "\r\n";
             queryString = queryString + "       " + "\r\n";
@@ -319,7 +319,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
         private void GoodsIssueInitReference()
         {
-            SimpleInitReference simpleInitReference = new SimpleInitReference("GoodsIssues", "GoodsIssueID", "Reference", ModelSettingManager.ReferenceLength, ModelSettingManager.ReferencePrefix(GlobalEnums.NmvnTaskID.GoodsIssue));
+            SimpleInitReference simpleInitReference = new SimpleInitReference("GoodsIssues", "GoodsIssueID", "Reference", ModelSettingManager.ReferenceLength, ModelSettingManager.ReferencePrefix(GlobalEnums.NmvnTaskID.GoodsIssues));
             this.totalSmartCodingEntities.CreateTrigger("GoodsIssueInitReference", simpleInitReference.CreateQuery());
         }
 

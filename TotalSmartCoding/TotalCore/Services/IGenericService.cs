@@ -40,7 +40,7 @@ namespace TotalCore.Services
 
 
         #region
-        void AddDataLogs(int? entryID, int? entryDetailID, DateTime? entryDate, string moduleName, string actionType, string tableName, string fieldName, string fieldValue);
+        void AddDataLogs(int? entryID, int? entryDetailID, DateTime? entryDate, string moduleName, string actionType, string entityName, string propertyName, string propertyValue);
         void AddEventLogs(DateTime? entryDate, string moduleName, string actionType);
         #endregion
     }

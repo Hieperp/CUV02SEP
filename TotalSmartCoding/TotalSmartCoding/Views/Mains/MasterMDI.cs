@@ -457,7 +457,7 @@ namespace TotalSmartCoding.Views.Mains
                             openingView = new TransferOrders();
                             break;
 
-                        case (int)GlobalEnums.NmvnTaskID.GoodsIssue:
+                        case (int)GlobalEnums.NmvnTaskID.GoodsIssues:
                             openingView = new GoodsIssues();
                             break;
 

@@ -124,13 +124,13 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
 
         private void AddDataLogs()
         {
-            string queryString = " @EntryID int, @EntryDetailID int, @EntryDate DateTime, @ModuleName nvarchar(100), @UserName  nvarchar(100), @IPAddress nvarchar(100), @ActionType nvarchar(100), @TableName nvarchar(100), @FieldName nvarchar(100), @FieldValue nvarchar(500)" + "\r\n";
+            string queryString = " @EntryID int, @EntryDetailID int, @EntryDate DateTime, @ModuleName nvarchar(100), @UserName  nvarchar(100), @IPAddress nvarchar(100), @ActionType nvarchar(100), @EntityName nvarchar(100), @PropertyName nvarchar(100), @PropertyValue nvarchar(500)" + "\r\n";
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
-            queryString = queryString + "               INSERT TotalSmartLogs.dbo.DataLogs      (EntryID, EntryDetailID, EntryDate, ModuleName, UserName, IPAddress, ActionType, TableName, FieldName, FieldValue) " + "\r\n";
-            queryString = queryString + "               VALUES                                  (@EntryID, @EntryDetailID, @EntryDate, @ModuleName, @UserName, @IPAddress, @ActionType, @TableName, @FieldName, @FieldValue) " + "\r\n";
+            queryString = queryString + "               INSERT TotalSmartLogs.dbo.DataLogs      (EntryID, EntryDetailID, EntryDate, ModuleName, UserName, IPAddress, ActionType, EntityName, PropertyName, PropertyValue) " + "\r\n";
+            queryString = queryString + "               VALUES                                  (@EntryID, @EntryDetailID, @EntryDate, @ModuleName, @UserName, @IPAddress, @ActionType, @EntityName, @PropertyName, @PropertyValue) " + "\r\n";
 
             queryString = queryString + "    END " + "\r\n";
 

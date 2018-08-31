@@ -2785,7 +2785,7 @@ namespace TotalModel.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateApplicationRole", applicationRoleIDParameter, nameParameter, passwordParameter);
         }
     
-        public virtual int AddDataLogs(Nullable<int> entryID, Nullable<int> entryDetailID, Nullable<System.DateTime> entryDate, string moduleName, string userName, string iPAddress, string actionType, string tableName, string fieldName, string fieldValue)
+        public virtual int AddDataLogs(Nullable<int> entryID, Nullable<int> entryDetailID, Nullable<System.DateTime> entryDate, string moduleName, string userName, string iPAddress, string actionType, string entityName, string propertyName, string propertyValue)
         {
             var entryIDParameter = entryID.HasValue ?
                 new ObjectParameter("EntryID", entryID) :
@@ -2815,19 +2815,19 @@ namespace TotalModel.Models
                 new ObjectParameter("ActionType", actionType) :
                 new ObjectParameter("ActionType", typeof(string));
     
-            var tableNameParameter = tableName != null ?
-                new ObjectParameter("TableName", tableName) :
-                new ObjectParameter("TableName", typeof(string));
+            var entityNameParameter = entityName != null ?
+                new ObjectParameter("EntityName", entityName) :
+                new ObjectParameter("EntityName", typeof(string));
     
-            var fieldNameParameter = fieldName != null ?
-                new ObjectParameter("FieldName", fieldName) :
-                new ObjectParameter("FieldName", typeof(string));
+            var propertyNameParameter = propertyName != null ?
+                new ObjectParameter("PropertyName", propertyName) :
+                new ObjectParameter("PropertyName", typeof(string));
     
-            var fieldValueParameter = fieldValue != null ?
-                new ObjectParameter("FieldValue", fieldValue) :
-                new ObjectParameter("FieldValue", typeof(string));
+            var propertyValueParameter = propertyValue != null ?
+                new ObjectParameter("PropertyValue", propertyValue) :
+                new ObjectParameter("PropertyValue", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddDataLogs", entryIDParameter, entryDetailIDParameter, entryDateParameter, moduleNameParameter, userNameParameter, iPAddressParameter, actionTypeParameter, tableNameParameter, fieldNameParameter, fieldValueParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddDataLogs", entryIDParameter, entryDetailIDParameter, entryDateParameter, moduleNameParameter, userNameParameter, iPAddressParameter, actionTypeParameter, entityNameParameter, propertyNameParameter, propertyValueParameter);
         }
     
         public virtual int AddEventLogs(Nullable<System.DateTime> entryDate, string userName, string iPAddress, string moduleName, string actionType)

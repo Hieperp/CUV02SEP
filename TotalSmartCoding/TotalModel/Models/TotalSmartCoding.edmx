@@ -2358,9 +2358,9 @@
           <Parameter Name="UserName" Type="nvarchar" Mode="In" />
           <Parameter Name="IPAddress" Type="nvarchar" Mode="In" />
           <Parameter Name="ActionType" Type="nvarchar" Mode="In" />
-          <Parameter Name="TableName" Type="nvarchar" Mode="In" />
-          <Parameter Name="FieldName" Type="nvarchar" Mode="In" />
-          <Parameter Name="FieldValue" Type="nvarchar" Mode="In" />
+          <Parameter Name="EntityName" Type="nvarchar" Mode="In" />
+          <Parameter Name="PropertyName" Type="nvarchar" Mode="In" />
+          <Parameter Name="PropertyValue" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="AddEventLogs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="EntryDate" Type="datetime" Mode="In" />
@@ -4964,9 +4964,9 @@
             <Parameter Name="UserName" Mode="In" Type="String" />
             <Parameter Name="IPAddress" Mode="In" Type="String" />
             <Parameter Name="ActionType" Mode="In" Type="String" />
-            <Parameter Name="TableName" Mode="In" Type="String" />
-            <Parameter Name="FieldName" Mode="In" Type="String" />
-            <Parameter Name="FieldValue" Mode="In" Type="String" />
+            <Parameter Name="EntityName" Mode="In" Type="String" />
+            <Parameter Name="PropertyName" Mode="In" Type="String" />
+            <Parameter Name="PropertyValue" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="AddEventLogs">
             <Parameter Name="EntryDate" Mode="In" Type="DateTime" />

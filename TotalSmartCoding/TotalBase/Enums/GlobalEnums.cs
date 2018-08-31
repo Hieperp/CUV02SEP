@@ -104,7 +104,7 @@
 
             SalesOrder = 8032,
             DeliveryAdvice = 8035,
-            GoodsIssue = 8037,
+            GoodsIssues = 8037,
 
 
 
