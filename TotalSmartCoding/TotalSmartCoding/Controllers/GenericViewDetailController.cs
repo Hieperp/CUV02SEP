@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Net;
+using System.Linq;
+using System.Reflection;
 using System.Collections.Generic;
 
 using AutoMapper;
 
+using TotalBase;
 using TotalBase.Enums;
 using TotalModel;
 using TotalDTO;
@@ -83,5 +86,37 @@ namespace TotalSmartCoding.Controllers
             return entityViewDetails;
         }
 
+
+
+
+
+
+
+
+        #region Smart Logs
+        public override void AddDataLogs(TDto dto, string actionType)
+        {
+            try
+            {
+                base.AddDataLogs(dto, actionType);
+
+                List<string> entityPropertyNames = typeof(TEntityDetail).GetProperties().Select(s => s.Name).ToList();
+                List<PropertyInfo> propertyInfos = typeof(TDtoDetail).GetProperties().OrderBy(o => o.Name).ToList();
+                if (dto.GetDetails() != null && dto.GetDetails().Count > 0)
+                    dto.GetDetails().Each(detailDTO =>
+                    {
+                        foreach (PropertyInfo propertyInfo in propertyInfos)
+                        {
+                            if (!SmartLogDTO.ExclusiveNames.Contains(propertyInfo.Name) && !SmartLogDTO.PatternNames.Any(p => propertyInfo.PropertyType.Name.Contains(p)))
+                            {
+                                if (!SmartLogDTO.OptionalNames.Contains(propertyInfo.Name) || entityPropertyNames.Contains(propertyInfo.Name))
+                                    this.genericWithViewDetailService.AddDataLogs(dto.GetID(), detailDTO.GetID(), dto.EditedDate, dto.NMVNTaskID.ToString(), actionType, typeof(TDtoDetail).Name.Replace("DTO", ""), propertyInfo.Name, (propertyInfo.GetValue(detailDTO) != null ? propertyInfo.GetValue(detailDTO).ToString() : null));
+                            }
+                        }
+                    });
+            }
+            catch (Exception ex) { throw ex; }
+        }
+        #endregion Smart Logs
     }
 }

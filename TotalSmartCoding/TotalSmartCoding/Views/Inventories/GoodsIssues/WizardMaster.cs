@@ -84,6 +84,8 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                             if (pendingDeliveryAdvice != null)
                             {
                                 this.goodsIssueViewModel.DeliveryAdviceID = pendingDeliveryAdvice.DeliveryAdviceID;
+                                this.goodsIssueViewModel.DeliveryAdviceReference = pendingDeliveryAdvice.DeliveryAdviceReference;
+                                this.goodsIssueViewModel.DeliveryAdviceEntryDate = pendingDeliveryAdvice.DeliveryAdviceEntryDate;
                                 this.goodsIssueViewModel.PrimaryReferences = pendingDeliveryAdvice.DeliveryAdviceReference;
                                 this.goodsIssueViewModel.VoucherCodes = pendingDeliveryAdvice.VoucherCode;
                                 this.goodsIssueViewModel.CustomerID = pendingDeliveryAdvice.CustomerID;
@@ -122,6 +124,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsIssues
                             {
                                 this.goodsIssueViewModel.TransferOrderID = pendingTransferOrder.TransferOrderID;
                                 this.goodsIssueViewModel.TransferOrderReference = pendingTransferOrder.TransferOrderReference;
+                                this.goodsIssueViewModel.TransferOrderEntryDate = pendingTransferOrder.TransferOrderEntryDate;
                                 this.goodsIssueViewModel.VoucherCodes = pendingTransferOrder.VoucherCode;
                                 this.goodsIssueViewModel.WarehouseID = pendingTransferOrder.WarehouseID;
                                 this.goodsIssueViewModel.WarehouseName = pendingTransferOrder.WarehouseName;

@@ -10,6 +10,8 @@ namespace TotalModel
     public interface IBaseModel : IValidatableObject
     {
         DateTime? EntryDate { get; set; }
+        DateTime? EditedDate { get; set; }
+        
         int LocationID { get; set; }
 
 
@@ -41,6 +43,7 @@ namespace TotalModel
             set { ApplyPropertyChange<BaseModel, DateTime?>(ref this.entryDate, o => o.EntryDate, value); }
         }
 
+        public DateTime? EditedDate { get; set; }
 
 
         public int UserID { get; set; }

@@ -133,9 +133,6 @@ namespace TotalDTO
         public virtual void PerformPresaveRule() { }
 
         public virtual void PrepareVoidDetail(int? detailID) { }
-
-
-        public string TypeName { get { return this.GetType().Name; } }
     }
 }
 

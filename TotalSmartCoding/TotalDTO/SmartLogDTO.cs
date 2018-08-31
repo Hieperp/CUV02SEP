@@ -16,14 +16,22 @@ namespace TotalDTO
             Type typeNotify = typeof(NotifyPropertyChangeObject);
             List<string> propertyInfos = typeNotify.GetProperties().Select(s => s.Name).ToList();
 
+            propertyInfos.AddRange(new List<string>() { "Caption", "EditedDate", "ViewDetails" });
             propertyInfos.AddRange(typeof(BaseDTO).GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance).Select(s => s.Name).ToList());
+            propertyInfos.AddRange(typeof(IBaseModel).GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance).Select(s => s.Name).ToList());
+            propertyInfos.AddRange(typeof(IAccessControlAttribute).GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance).Select(s => s.Name).ToList());
 
-            SmartLogDTO.ExclusiveNames = propertyInfos.Except(new List<string>() { "Reference", "PreparedPersonID", "ApproverID", "Description", "Caption", "ViewDetails" }).ToList();
+            SmartLogDTO.ExclusiveNames = propertyInfos.Except(new List<string>() { "EntryDate", "Reference", "Description" }).ToList(); //"PreparedPersonID", "ApproverID", 
 
-            SmartLogDTO.OptionalNames = typeof(IBaseModel).GetProperties().Select(s => s.Name).ToList();
+            SmartLogDTO.OptionalNames = new List<string>() { "EntryDate" }; //NOW: WE DON'T ADD ANY NAME BY IBaseModel (EXCEPT PROPERTY: "EntryDate") ==> SO OptionalNames: NO NEED THIS STATEMENT: typeof(IBaseModel).GetProperties().Select(s => s.Name).ToList();
+
+            SmartLogDTO.PatternNames = new List<string>() { "BindingList" };
         }
 
         public static List<string> ExclusiveNames;
-        public static List<string> OptionalNames;
+
+        public static List<string> OptionalNames; //LIST NAME NEED TO CHECK IF THE ENTITY HAVE IT (EX: Commodities DON'T HAVE EntryDate) 
+
+        public static List<string> PatternNames;
     }
 }

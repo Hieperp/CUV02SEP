@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Net;
 using System.Linq;
+using System.Reflection;
+using System.Collections.Generic;
 
 
 using AutoMapper;
@@ -454,7 +456,7 @@ namespace TotalSmartCoding.Controllers
         public override bool VoidConfirmed()
         {
             this.simpleViewModel.VoidTypeID = 1;
-            
+
             if (this.simpleViewModel.VoidTypeID == null || this.simpleViewModel.VoidTypeID <= 0) throw new System.ArgumentException("Lỗi hủy dữ liệu", "Vui lòng nhập lý do hủy.");
             return this.GenericService.ToggleVoid(this.simpleViewModel);
 
@@ -510,12 +512,16 @@ namespace TotalSmartCoding.Controllers
                 if (!this.TryValidateModel(dto)) return false;//Check DTO IsValid
                 else
                 {
+                    string actionType = dto.GetID() > 0 ? "Update" : "Add new";
+
                     this.simpleViewModel.StopTracking(); //THIS WILL BREAK THE EVENT HANDLER WHEN DOING PerformPresaveRule. 
                     bool saveResult = this.GenericService.Save(dto); //LATER: WE MAY SET RaiseListChangedEvents = false FOR THE viewDetailViewModel OBJECT, BY override Save() METHOD IN GenericViewDetailController TO INCREASE THE SPEED OF SAVE METHOD
                     this.simpleViewModel.StartTracking();
 
                     if (saveResult)
                     {
+                        //this.AddDataLogs(dto, actionType); //MUST ADD DATA LOGS RIGHT AFTER SAVE TO KEEP ALL SAVED DTO PROPERTIES
+
                         simpleViewModel.SetID(dto.GetID());
                         this.Edit(simpleViewModel.GetID()); //WINFORM: RELOAD AFTER SAVE (IN MVC: WE REDIRECT TO NEW ACTION/ OR RELOAD CURRENT VIEW AGIAN => THIS WILL RELOAD AUTOMATICALLY AFTER SAVE SUCCESSFULY)
 
@@ -724,6 +730,34 @@ namespace TotalSmartCoding.Controllers
         //Index: by Authorize Attribute (Readonly) -> Then load entity list by permission check
         //Save: Check for Ediable for entity (Should check by servicelayer only?)
 
+
+
+
+
+
+
+
+        #region Smart Logs
+        public virtual void AddDataLogs(TDto dto, string actionType)
+        {
+            try
+            {
+                if (dto.EditedDate == null || ((DateTime)dto.EditedDate).Year == 1) dto.EditedDate = DateTime.Now;
+
+                List<string> entityPropertyNames = typeof(TEntity).GetProperties().Select(s => s.Name).ToList();
+                List<PropertyInfo> propertyInfos = typeof(TDto).GetProperties().OrderBy(o => o.Name).ToList();
+                foreach (PropertyInfo propertyInfo in propertyInfos)
+                {
+                    if (!SmartLogDTO.ExclusiveNames.Contains(propertyInfo.Name) && !SmartLogDTO.PatternNames.Any(p => propertyInfo.PropertyType.Name.Contains(p)))
+                    {
+                        if (!SmartLogDTO.OptionalNames.Contains(propertyInfo.Name) || entityPropertyNames.Contains(propertyInfo.Name))
+                            this.GenericService.AddDataLogs(dto.GetID(), null, dto.EditedDate, dto.NMVNTaskID.ToString(), actionType, typeof(TDto).Name.Replace("DTO", ""), propertyInfo.Name, (propertyInfo.GetValue(dto) != null ? propertyInfo.GetValue(dto).ToString() : null));
+                    }
+                }
+            }
+            catch (Exception ex) { throw ex; }
+        }
+        #endregion Smart Logs
     }
 
 }
