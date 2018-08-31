@@ -62,10 +62,10 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             queryString = queryString + "               SELECT      WarehouseID, 46 AS WarehouseID, " + (int)GlobalEnums.NmvnTaskID.SalesOrder + " AS WarehouseTaskID, GETDATE(), '', 0 FROM Warehouses WHERE WarehouseID = @EntityID " + "\r\n";
 
             queryString = queryString + "               INSERT INTO WarehouseWarehouses (WarehouseID, WarehouseID, WarehouseTaskID, EntryDate, Remarks, InActive) " + "\r\n";
-            queryString = queryString + "               SELECT      Warehouses.WarehouseID, Warehouses.WarehouseID, " + (int)GlobalEnums.NmvnTaskID.DeliveryAdvice + " AS WarehouseTaskID, GETDATE(), '', 0 FROM Warehouses INNER JOIN Warehouses ON Warehouses.WarehouseID = @EntityID AND Warehouses.WarehouseCategoryID NOT IN (4, 5, 7, 9, 10, 11, 12) AND Warehouses.WarehouseCategoryID = Warehouses.WarehouseCategoryID " + "\r\n";
+            queryString = queryString + "               SELECT      Warehouses.WarehouseID, Warehouses.WarehouseID, " + (int)GlobalEnums.NmvnTaskID.DeliveryAdvices + " AS WarehouseTaskID, GETDATE(), '', 0 FROM Warehouses INNER JOIN Warehouses ON Warehouses.WarehouseID = @EntityID AND Warehouses.WarehouseCategoryID NOT IN (4, 5, 7, 9, 10, 11, 12) AND Warehouses.WarehouseCategoryID = Warehouses.WarehouseCategoryID " + "\r\n";
 
             queryString = queryString + "               INSERT INTO WarehouseWarehouses (WarehouseID, WarehouseID, WarehouseTaskID, EntryDate, Remarks, InActive) " + "\r\n";
-            queryString = queryString + "               SELECT      WarehouseID, 82 AS WarehouseID, " + (int)GlobalEnums.NmvnTaskID.DeliveryAdvice + " AS WarehouseTaskID, GETDATE(), '', 0 FROM Warehouses WHERE WarehouseID = @EntityID AND WarehouseCategoryID IN (4, 5, 7, 9, 10, 11, 12) " + "\r\n";
+            queryString = queryString + "               SELECT      WarehouseID, 82 AS WarehouseID, " + (int)GlobalEnums.NmvnTaskID.DeliveryAdvices + " AS WarehouseTaskID, GETDATE(), '', 0 FROM Warehouses WHERE WarehouseID = @EntityID AND WarehouseCategoryID IN (4, 5, 7, 9, 10, 11, 12) " + "\r\n";
 
             queryString = queryString + "           END " + "\r\n";
 

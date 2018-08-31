@@ -60,10 +60,10 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             queryString = queryString + "               SELECT      CommodityTypeID, 46 AS CommodityTypeID, " + (int)GlobalEnums.NmvnTaskID.SalesOrder + " AS CommodityTypeTaskID, GETDATE(), '', 0 FROM CommodityTypes WHERE CommodityTypeID = @EntityID " + "\r\n";
 
             queryString = queryString + "               INSERT INTO CommodityTypeCommodityTypes (CommodityTypeID, CommodityTypeID, CommodityTypeTaskID, EntryDate, Remarks, InActive) " + "\r\n";
-            queryString = queryString + "               SELECT      CommodityTypes.CommodityTypeID, CommodityTypes.CommodityTypeID, " + (int)GlobalEnums.NmvnTaskID.DeliveryAdvice + " AS CommodityTypeTaskID, GETDATE(), '', 0 FROM CommodityTypes INNER JOIN CommodityTypes ON CommodityTypes.CommodityTypeID = @EntityID AND CommodityTypes.CommodityTypeTypeID NOT IN (4, 5, 7, 9, 10, 11, 12) AND CommodityTypes.CommodityTypeTypeID = CommodityTypes.CommodityTypeTypeID " + "\r\n";
+            queryString = queryString + "               SELECT      CommodityTypes.CommodityTypeID, CommodityTypes.CommodityTypeID, " + (int)GlobalEnums.NmvnTaskID.DeliveryAdvices + " AS CommodityTypeTaskID, GETDATE(), '', 0 FROM CommodityTypes INNER JOIN CommodityTypes ON CommodityTypes.CommodityTypeID = @EntityID AND CommodityTypes.CommodityTypeTypeID NOT IN (4, 5, 7, 9, 10, 11, 12) AND CommodityTypes.CommodityTypeTypeID = CommodityTypes.CommodityTypeTypeID " + "\r\n";
 
             queryString = queryString + "               INSERT INTO CommodityTypeCommodityTypes (CommodityTypeID, CommodityTypeID, CommodityTypeTaskID, EntryDate, Remarks, InActive) " + "\r\n";
-            queryString = queryString + "               SELECT      CommodityTypeID, 82 AS CommodityTypeID, " + (int)GlobalEnums.NmvnTaskID.DeliveryAdvice + " AS CommodityTypeTaskID, GETDATE(), '', 0 FROM CommodityTypes WHERE CommodityTypeID = @EntityID AND CommodityTypeTypeID IN (4, 5, 7, 9, 10, 11, 12) " + "\r\n";
+            queryString = queryString + "               SELECT      CommodityTypeID, 82 AS CommodityTypeID, " + (int)GlobalEnums.NmvnTaskID.DeliveryAdvices + " AS CommodityTypeTaskID, GETDATE(), '', 0 FROM CommodityTypes WHERE CommodityTypeID = @EntityID AND CommodityTypeTypeID IN (4, 5, 7, 9, 10, 11, 12) " + "\r\n";
 
             queryString = queryString + "           END " + "\r\n";
 

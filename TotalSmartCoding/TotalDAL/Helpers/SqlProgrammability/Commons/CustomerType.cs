@@ -59,10 +59,10 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             queryString = queryString + "               SELECT      CustomerTypeID, 46 AS CustomerTypeID, " + (int)GlobalEnums.NmvnTaskID.SalesOrder + " AS CustomerTypeTaskID, GETDATE(), '', 0 FROM CustomerTypes WHERE CustomerTypeID = @EntityID " + "\r\n";
 
             queryString = queryString + "               INSERT INTO CustomerTypeCustomerTypes (CustomerTypeID, CustomerTypeID, CustomerTypeTaskID, EntryDate, Remarks, InActive) " + "\r\n";
-            queryString = queryString + "               SELECT      CustomerTypes.CustomerTypeID, CustomerTypes.CustomerTypeID, " + (int)GlobalEnums.NmvnTaskID.DeliveryAdvice + " AS CustomerTypeTaskID, GETDATE(), '', 0 FROM CustomerTypes INNER JOIN CustomerTypes ON CustomerTypes.CustomerTypeID = @EntityID AND CustomerTypes.CustomerTypeCategoryID NOT IN (4, 5, 7, 9, 10, 11, 12) AND CustomerTypes.CustomerTypeCategoryID = CustomerTypes.CustomerTypeCategoryID " + "\r\n";
+            queryString = queryString + "               SELECT      CustomerTypes.CustomerTypeID, CustomerTypes.CustomerTypeID, " + (int)GlobalEnums.NmvnTaskID.DeliveryAdvices + " AS CustomerTypeTaskID, GETDATE(), '', 0 FROM CustomerTypes INNER JOIN CustomerTypes ON CustomerTypes.CustomerTypeID = @EntityID AND CustomerTypes.CustomerTypeCategoryID NOT IN (4, 5, 7, 9, 10, 11, 12) AND CustomerTypes.CustomerTypeCategoryID = CustomerTypes.CustomerTypeCategoryID " + "\r\n";
 
             queryString = queryString + "               INSERT INTO CustomerTypeCustomerTypes (CustomerTypeID, CustomerTypeID, CustomerTypeTaskID, EntryDate, Remarks, InActive) " + "\r\n";
-            queryString = queryString + "               SELECT      CustomerTypeID, 82 AS CustomerTypeID, " + (int)GlobalEnums.NmvnTaskID.DeliveryAdvice + " AS CustomerTypeTaskID, GETDATE(), '', 0 FROM CustomerTypes WHERE CustomerTypeID = @EntityID AND CustomerTypeCategoryID IN (4, 5, 7, 9, 10, 11, 12) " + "\r\n";
+            queryString = queryString + "               SELECT      CustomerTypeID, 82 AS CustomerTypeID, " + (int)GlobalEnums.NmvnTaskID.DeliveryAdvices + " AS CustomerTypeTaskID, GETDATE(), '', 0 FROM CustomerTypes WHERE CustomerTypeID = @EntityID AND CustomerTypeCategoryID IN (4, 5, 7, 9, 10, 11, 12) " + "\r\n";
 
             queryString = queryString + "           END " + "\r\n";
 

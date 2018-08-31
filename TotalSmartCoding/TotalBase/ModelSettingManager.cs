@@ -25,7 +25,7 @@ namespace TotalBase
                     return "R";
                 case GlobalEnums.NmvnTaskID.SalesOrder:
                     return "O";
-                case GlobalEnums.NmvnTaskID.DeliveryAdvice:
+                case GlobalEnums.NmvnTaskID.DeliveryAdvices:
                     return "D";
                 case GlobalEnums.NmvnTaskID.SalesReturn:
                     return "SR";

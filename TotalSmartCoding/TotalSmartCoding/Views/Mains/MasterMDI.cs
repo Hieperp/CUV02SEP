@@ -449,7 +449,7 @@ namespace TotalSmartCoding.Views.Mains
                             openingView = new SalesOrders();
                             break;
 
-                        case (int)GlobalEnums.NmvnTaskID.DeliveryAdvice:
+                        case (int)GlobalEnums.NmvnTaskID.DeliveryAdvices:
                             openingView = new DeliveryAdvices();
                             break;
 
