@@ -67,6 +67,7 @@ namespace TotalSmartCoding.Views.Mains
 
         private ModuleAPIs moduleAPIs;
 
+        private bool isMainView;
         private readonly string searchPlaceHolder = "Enter a whole or any section of barcode ...";
 
         [DllImport("uxtheme.dll", CharSet = CharSet.Unicode)]
@@ -88,7 +89,7 @@ namespace TotalSmartCoding.Views.Mains
             : this(nmvnTaskID, loadedView, true)
         { }
 
-        public MasterMDI(GlobalEnums.NmvnTaskID nmvnTaskID, Form loadedView, bool log)
+        public MasterMDI(GlobalEnums.NmvnTaskID nmvnTaskID, Form loadedView, bool isMainView)
         {
             InitializeComponent();
 
@@ -201,7 +202,8 @@ namespace TotalSmartCoding.Views.Mains
                 //this.buttonLockedDate.Visible = false;
                 #endregion
 
-                if (log) AddEventLogs("");
+                this.isMainView = isMainView;
+                if (this.isMainView) AddEventLogs("Log on application");
             }
             catch (Exception exception)
             {
@@ -241,6 +243,8 @@ namespace TotalSmartCoding.Views.Mains
 
                 if (this.MdiChildren.Length > 0)
                     e.Cancel = true;
+                else
+                    if (this.isMainView) AddEventLogs("Exit application");
             }
             catch (Exception exception)
             {
