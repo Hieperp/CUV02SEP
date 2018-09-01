@@ -1416,12 +1416,7 @@ namespace TotalDAL.Repositories
         private void UpdateBackup()
         {
 
-
-
-
-
-
-
+            #region 01SEP2018
             var query = this.totalSmartCodingEntities.Database.SqlQuery(typeof(int), "SELECT COUNT(ModuleDetailID) AS Expr1 FROM ModuleDetails WHERE ModuleDetailID = " + (int)GlobalEnums.NmvnTaskID.FillingLine + ";", new object[] { });
             int exists = query.Cast<int>().Single();
             if (exists == 0)
@@ -1452,6 +1447,9 @@ namespace TotalDAL.Repositories
 
             this.totalSmartCodingEntities.ColumnAdd("Batches", "AutoBarcode", "bit", "0", true);
             this.totalSmartCodingEntities.ColumnAdd("Batches", "FinalCartonNo", "nvarchar(10)", "000001", true);
+
+
+            #endregion 01SEP2018
 
 
 
@@ -1615,8 +1613,8 @@ namespace TotalDAL.Repositories
 
             #region Forecasts
             this.totalSmartCodingEntities.ColumnAdd("Forecasts", "QuantityVersusVolume", "int", "0", true);
-            var query = this.totalSmartCodingEntities.Database.SqlQuery(typeof(int), "SELECT COUNT(ModuleDetailID) AS Expr1 FROM ModuleDetails WHERE ModuleDetailID = " + (int)GlobalEnums.NmvnTaskID.Forecasts + ";", new object[] { });
-            int exists = query.Cast<int>().Single();
+            query = this.totalSmartCodingEntities.Database.SqlQuery(typeof(int), "SELECT COUNT(ModuleDetailID) AS Expr1 FROM ModuleDetails WHERE ModuleDetailID = " + (int)GlobalEnums.NmvnTaskID.Forecasts + ";", new object[] { });
+            exists = query.Cast<int>().Single();
             if (exists == 0)
             {
                 this.ExecuteStoreCommand("INSERT INTO ModuleDetails (ModuleDetailID, ModuleID, Code, Name, FullName, Actions, Controller, LastOpen, SerialID, ImageIndex, InActive) VALUES(" + (int)GlobalEnums.NmvnTaskID.Forecasts + ", 6, N'Sales Forecast', N'Sales Forecast', '#', '#', N'LOGISTICS ADMIN', 1, 6, 1, 0) ", new ObjectParameter[] { });
