@@ -33,5 +33,11 @@ namespace TotalDTO
         public static List<string> OptionalNames; //LIST NAME NEED TO CHECK IF THE ENTITY HAVE IT (EX: Commodities DON'T HAVE EntryDate) 
 
         public static List<string> PatternNames;
+
+
+        public static bool CheckProperty(string propertyTypeName, string propertyInfoName)
+        {
+            return !SmartLogDTO.ExclusiveNames.Contains(propertyInfoName) && !SmartLogDTO.PatternNames.Any(p => propertyTypeName.Contains(p));
+        }
     }
 }

@@ -110,7 +110,7 @@ namespace TotalSmartCoding.Controllers
                     {
                         foreach (PropertyInfo propertyInfo in propertyInfos)
                         {
-                            if (!SmartLogDTO.ExclusiveNames.Contains(propertyInfo.Name) && !SmartLogDTO.PatternNames.Any(p => propertyInfo.PropertyType.Name.Contains(p)))
+                            if (SmartLogDTO.CheckProperty(propertyInfo.PropertyType.Name, propertyInfo.Name))
                             {
                                 if ((!SmartLogDTO.OptionalNames.Contains(propertyInfo.Name) || entityPropertyNames.Contains(propertyInfo.Name)) && entityViewDetailPropertyNames.Contains(propertyInfo.Name))
                                     this.genericWithViewDetailService.AddDataLogs(dto.GetID(), detailDTO.GetID(), dto.EditedDate, dto.NMVNTaskID.ToString(), actionType, typeof(TDtoDetail).Name.Replace("DTO", ""), propertyInfo.Name, (propertyInfo.GetValue(detailDTO) != null ? propertyInfo.GetValue(detailDTO).ToString() : null));

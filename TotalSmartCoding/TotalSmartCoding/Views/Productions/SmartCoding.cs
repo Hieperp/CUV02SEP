@@ -421,7 +421,7 @@ namespace TotalSmartCoding.Views.Productions
                 GlobalEnums.NmvnTaskID nmvnTaskID = sender.Equals(this.buttonBatches) ? GlobalEnums.NmvnTaskID.Batch : GlobalEnums.NmvnTaskID.FillingLine;
                 Form loadedView; if (sender.Equals(this.buttonBatches)) loadedView = new Batches(this, this.scannerController.AllQueueEmpty); else loadedView = new FillingLines();
 
-                MasterMDI masterMDI = new MasterMDI(nmvnTaskID, loadedView);
+                MasterMDI masterMDI = new MasterMDI(nmvnTaskID, loadedView, false);
 
                 masterMDI.ShowDialog();
 
