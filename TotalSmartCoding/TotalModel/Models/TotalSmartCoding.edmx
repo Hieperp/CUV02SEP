@@ -596,6 +596,7 @@
           <Property Name="LockedDate" Type="datetime" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
           <Property Name="EditedDate" Type="datetime" Nullable="false" />
+          <Property Name="OnDataLogs" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ModuleDetails">
           <Key>
@@ -2666,6 +2667,7 @@
         <Function Name="GetModuleViewDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ModuleID" Type="int" Mode="In" />
         </Function>
+        <Function Name="GetOnDataLogs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetOrganizationalUnitIndexes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserID" Type="int" Mode="In" />
           <Parameter Name="FromDate" Type="datetime" Mode="In" />
@@ -3100,6 +3102,9 @@
           <Parameter Name="UserID" Type="int" Mode="In" />
           <Parameter Name="LocationID" Type="int" Mode="In" />
           <Parameter Name="LockedDate" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="UpdateOnDataLogs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="OnDataLogs" Type="int" Mode="In" />
         </Function>
         <Function Name="UserEditable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="EntityID" Type="int" Mode="In" />
@@ -4978,6 +4983,10 @@
             <Parameter Name="ActionType" Mode="In" Type="String" />
             <Parameter Name="EntryID" Mode="In" Type="Int32" />
             <Parameter Name="Remarks" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetOnDataLogs" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="UpdateOnDataLogs">
+            <Parameter Name="OnDataLogs" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
@@ -7081,6 +7090,7 @@
           <NavigationProperty Name="Forecasts" Relationship="TotalSmartCodingModel.FK_Forecasts_ForecastLocations" FromRole="Location" ToRole="Forecast" />
           <NavigationProperty Name="Forecasts1" Relationship="TotalSmartCodingModel.FK_Forecasts_Locations" FromRole="Location" ToRole="Forecast" />
           <NavigationProperty Name="Employees" Relationship="TotalSmartCodingModel.FK_Employees_Locations" FromRole="Location" ToRole="Employee" />
+          <Property Name="OnDataLogs" Type="Int32" Nullable="false" />
           </EntityType>
         <Association Name="FK_DeliveryAdvices_Locations">
           <End Type="TotalSmartCodingModel.Location" Role="Location" Multiplicity="1" />
@@ -10492,6 +10502,7 @@
           <EntitySetMapping Name="Locations">
             <EntityTypeMapping TypeName="TotalSmartCodingModel.Location">
               <MappingFragment StoreEntitySet="Locations">
+                <ScalarProperty Name="OnDataLogs" ColumnName="OnDataLogs" />
                 <ScalarProperty Name="EditedDate" ColumnName="EditedDate" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="LockedDate" ColumnName="LockedDate" />
@@ -11563,6 +11574,8 @@
           <FunctionImportMapping FunctionImportName="UpdateApplicationRole" FunctionName="TotalSmartCodingModel.Store.UpdateApplicationRole" />
           <FunctionImportMapping FunctionImportName="AddDataLogs" FunctionName="TotalSmartCodingModel.Store.AddDataLogs" />
           <FunctionImportMapping FunctionImportName="AddEventLogs" FunctionName="TotalSmartCodingModel.Store.AddEventLogs" />
+          <FunctionImportMapping FunctionImportName="GetOnDataLogs" FunctionName="TotalSmartCodingModel.Store.GetOnDataLogs" />
+          <FunctionImportMapping FunctionImportName="UpdateOnDataLogs" FunctionName="TotalSmartCodingModel.Store.UpdateOnDataLogs" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

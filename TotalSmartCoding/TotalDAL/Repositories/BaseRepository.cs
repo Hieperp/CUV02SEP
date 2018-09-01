@@ -398,6 +398,16 @@ namespace TotalDAL.Repositories
             //}
             #endregion REMOVE FirstName, LastName
 
+
+
+
+            #region DATALOGS
+            if (!this.totalSmartCodingEntities.ColumnExists("Locations", "OnDataLogs"))
+            {
+                this.totalSmartCodingEntities.ColumnAdd("Locations", "OnDataLogs", "int", "0", true);
+            }
+            #endregion
+
         }
 
 
@@ -419,6 +429,11 @@ namespace TotalDAL.Repositories
 
             //return;
 
+            Helpers.SqlProgrammability.Commons.AccessControl accessControl = new Helpers.SqlProgrammability.Commons.AccessControl(totalSmartCodingEntities);
+            accessControl.RestoreProcedure();
+
+            return;
+
             Helpers.SqlProgrammability.Inventories.GoodsReceipt goodsReceipt = new Helpers.SqlProgrammability.Inventories.GoodsReceipt(totalSmartCodingEntities);
             goodsReceipt.RestoreProcedure();
 
@@ -428,10 +443,6 @@ namespace TotalDAL.Repositories
             Helpers.SqlProgrammability.Productions.Batch batch = new Helpers.SqlProgrammability.Productions.Batch(totalSmartCodingEntities);
             batch.RestoreProcedure();
 
-            return;
-
-            Helpers.SqlProgrammability.Commons.AccessControl accessControl = new Helpers.SqlProgrammability.Commons.AccessControl(totalSmartCodingEntities);
-            accessControl.RestoreProcedure();
 
             //return;
 
@@ -2339,7 +2350,12 @@ namespace TotalDAL.Repositories
 
 
         #region Smart Logs
-        public bool GetOnDataLogs() { return true; }
+        public bool GetOnDataLogs()
+        {
+            int? onDataLogs = this.TotalSmartCodingEntities.GetOnDataLogs().Single();
+            return (onDataLogs != null && onDataLogs == 1);
+        }
+
         public void AddDataLogs(int? entryID, int? entryDetailID, DateTime? entryDate, string moduleName, string actionType, string entityName, string propertyName, string propertyValue)
         {
             this.TotalSmartCodingEntities.AddDataLogs(entryID, entryDetailID, entryDate, moduleName, ContextAttributes.User.UserName, ContextAttributes.LocalIPAddress, actionType, entityName, propertyName, propertyValue);

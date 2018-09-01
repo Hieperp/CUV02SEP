@@ -2862,5 +2862,19 @@ namespace TotalModel.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddEventLogs", entryDateParameter, userNameParameter, iPAddressParameter, moduleNameParameter, actionTypeParameter, entryIDParameter, remarksParameter);
         }
+    
+        public virtual ObjectResult<Nullable<int>> GetOnDataLogs()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("GetOnDataLogs");
+        }
+    
+        public virtual int UpdateOnDataLogs(Nullable<int> onDataLogs)
+        {
+            var onDataLogsParameter = onDataLogs.HasValue ?
+                new ObjectParameter("OnDataLogs", onDataLogs) :
+                new ObjectParameter("OnDataLogs", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateOnDataLogs", onDataLogsParameter);
+        }
     }
 }
