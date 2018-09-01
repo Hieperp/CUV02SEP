@@ -139,13 +139,13 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
 
         private void AddEventLogs()
         {
-            string queryString = " @EntryDate DateTime, @UserName nvarchar(100), @IPAddress nvarchar(100), @ModuleName nvarchar(100), @ActionType nvarchar(100) " + "\r\n";
+            string queryString = " @EntryDate DateTime, @UserName nvarchar(100), @IPAddress nvarchar(100), @ModuleName nvarchar(100), @ActionType nvarchar(100), @EntryID int, @Remarks nvarchar(200) " + "\r\n";
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
-            queryString = queryString + "               INSERT TotalSmartLogs.dbo.EventLogs     (EntryDate, UserName, IPAddress, ModuleName, ActionType) " + "\r\n";
-            queryString = queryString + "               VALUES                                  (@EntryDate, @UserName, @IPAddress, @ModuleName, @ActionType) " + "\r\n";
+            queryString = queryString + "               INSERT TotalSmartLogs.dbo.EventLogs     (EntryDate, UserName, IPAddress, ModuleName, ActionType, EntryID, Remarks) " + "\r\n";
+            queryString = queryString + "               VALUES                                  (@EntryDate, @UserName, @IPAddress, @ModuleName, @ActionType, @EntryID, @Remarks) " + "\r\n";
 
             queryString = queryString + "    END " + "\r\n";
 

@@ -2830,7 +2830,7 @@ namespace TotalModel.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddDataLogs", entryIDParameter, entryDetailIDParameter, entryDateParameter, moduleNameParameter, userNameParameter, iPAddressParameter, actionTypeParameter, entityNameParameter, propertyNameParameter, propertyValueParameter);
         }
     
-        public virtual int AddEventLogs(Nullable<System.DateTime> entryDate, string userName, string iPAddress, string moduleName, string actionType)
+        public virtual int AddEventLogs(Nullable<System.DateTime> entryDate, string userName, string iPAddress, string moduleName, string actionType, Nullable<int> entryID, string remarks)
         {
             var entryDateParameter = entryDate.HasValue ?
                 new ObjectParameter("EntryDate", entryDate) :
@@ -2852,7 +2852,15 @@ namespace TotalModel.Models
                 new ObjectParameter("ActionType", actionType) :
                 new ObjectParameter("ActionType", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddEventLogs", entryDateParameter, userNameParameter, iPAddressParameter, moduleNameParameter, actionTypeParameter);
+            var entryIDParameter = entryID.HasValue ?
+                new ObjectParameter("EntryID", entryID) :
+                new ObjectParameter("EntryID", typeof(int));
+    
+            var remarksParameter = remarks != null ?
+                new ObjectParameter("Remarks", remarks) :
+                new ObjectParameter("Remarks", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddEventLogs", entryDateParameter, userNameParameter, iPAddressParameter, moduleNameParameter, actionTypeParameter, entryIDParameter, remarksParameter);
         }
     }
 }

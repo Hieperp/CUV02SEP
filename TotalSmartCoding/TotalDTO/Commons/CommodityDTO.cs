@@ -189,6 +189,8 @@ namespace TotalDTO.Commons
 
         public Nullable<bool> Discontinue { get; set; }
 
+        public override string LogRemarks { get { return "Code: " + this.Code; } }
+
         protected override List<ValidationRule> CreateRules()
         {
             List<ValidationRule> validationRules = base.CreateRules();

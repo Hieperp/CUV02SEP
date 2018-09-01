@@ -2368,6 +2368,8 @@
           <Parameter Name="IPAddress" Type="nvarchar" Mode="In" />
           <Parameter Name="ModuleName" Type="nvarchar" Mode="In" />
           <Parameter Name="ActionType" Type="nvarchar" Mode="In" />
+          <Parameter Name="EntryID" Type="int" Mode="In" />
+          <Parameter Name="Remarks" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="BatchCommonUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="BatchID" Type="int" Mode="In" />
@@ -4974,6 +4976,8 @@
             <Parameter Name="IPAddress" Mode="In" Type="String" />
             <Parameter Name="ModuleName" Mode="In" Type="String" />
             <Parameter Name="ActionType" Mode="In" Type="String" />
+            <Parameter Name="EntryID" Mode="In" Type="Int32" />
+            <Parameter Name="Remarks" Mode="In" Type="String" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">

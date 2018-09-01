@@ -2343,9 +2343,9 @@ namespace TotalDAL.Repositories
         {
             this.TotalSmartCodingEntities.AddDataLogs(entryID, entryDetailID, entryDate, moduleName, ContextAttributes.User.UserName, ContextAttributes.LocalIPAddress, actionType, entityName, propertyName, propertyValue);
         }
-        public void AddEventLogs(string moduleName, string actionType)
+        public void AddEventLogs(string moduleName, string actionType, int? entryID, string remarks)
         {
-            this.TotalSmartCodingEntities.AddEventLogs(DateTime.Now, ContextAttributes.User.UserName, ContextAttributes.LocalIPAddress, moduleName, actionType);
+            this.TotalSmartCodingEntities.AddEventLogs(DateTime.Now, ContextAttributes.User.UserName, ContextAttributes.LocalIPAddress, moduleName, actionType, entryID, remarks);
         }
         #endregion Smart Logs
     }

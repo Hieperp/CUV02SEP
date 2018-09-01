@@ -515,9 +515,9 @@ namespace TotalService
         {
             this.genericRepository.AddDataLogs(entryID, entryDetailID, entryDate, moduleName, actionType, entityName, propertyName, propertyValue);
         }
-        public void AddEventLogs(string moduleName, string actionType)
+        public void AddEventLogs(string moduleName, string actionType, int? entryID, string remarks)
         {
-            this.genericRepository.AddEventLogs(moduleName, actionType);
+            this.genericRepository.AddEventLogs(moduleName, actionType, entryID, remarks);
         }
         #endregion Smart Logs
     }

@@ -338,7 +338,7 @@ namespace TotalSmartCoding.Controllers
             if (!this.AccessLevelAuthorize()) throw new System.ArgumentException("Lỗi phân quyền", "Không có quyền truy cập dữ liệu");
             if (this.GenericService.Delete(id))
             {
-                
+
                 simpleViewModel.EditedDate = DateTime.Now;
                 this.AddDataLogs(simpleViewModel, "Delete");
                 this.AddViewDetailDataLogs(simpleViewModel, "Delete");
@@ -622,6 +622,8 @@ namespace TotalSmartCoding.Controllers
             this.simpleViewModel.StartTracking();
             this.simpleViewModel.Reset();
 
+            this.SetLastLogID(this.simpleViewModel.GetID());
+
             return tsimpleViewModel; //NOW FOR WINFORM tsimpleViewModel AND this.simpleViewModel ARE THE SAME OBJECT
         }
 
@@ -745,6 +747,16 @@ namespace TotalSmartCoding.Controllers
 
 
         #region Smart Logs
+
+        private void SetLastLogID(int id)
+        {
+            if (this.simpleViewModel.LastLogID != id && id > 0)
+            {
+                this.simpleViewModel.LastLogID = id;
+                this.GenericService.AddEventLogs(this.simpleViewModel.NMVNTaskID.ToString(), "Open", this.simpleViewModel.GetID(), this.simpleViewModel.LogRemarks);
+            }
+        }
+
         public virtual void AddDataLogs(TDto dto, string actionType)
         {
             try

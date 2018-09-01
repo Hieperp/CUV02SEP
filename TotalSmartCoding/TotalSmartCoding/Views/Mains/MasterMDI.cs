@@ -917,7 +917,7 @@ namespace TotalSmartCoding.Views.Mains
         public void AddEventLogs(string actionType)
         {
             IBaseRepository baseRepository = CommonNinject.Kernel.Get<IBaseRepository>();
-            baseRepository.AddEventLogs("Application", actionType);
+            baseRepository.AddEventLogs("Application", actionType, null, null);
         }
         #endregion Smart Logs
     }

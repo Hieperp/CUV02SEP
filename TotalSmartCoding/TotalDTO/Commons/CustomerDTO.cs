@@ -180,7 +180,8 @@ namespace TotalDTO.Commons
         public bool IsCustomer { get { return true; } }
         public bool IsSupplier { get { return false; } }
 
-        
+
+        public override string LogRemarks { get { return "Code: " + this.Code; } }
 
         protected override List<ValidationRule> CreateRules()
         {

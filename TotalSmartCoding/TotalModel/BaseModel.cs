@@ -44,7 +44,7 @@ namespace TotalModel
         }
 
         public DateTime? EditedDate { get; set; }
-
+        public virtual string LogRemarks { get; }
 
         public int UserID { get; set; }
         public int OrganizationalUnitID { get; set; }
