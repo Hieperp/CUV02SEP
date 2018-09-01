@@ -83,7 +83,7 @@ namespace TotalDTO.Commons
             set { ApplyPropertyChange<CustomerPrimitiveDTO, string>(ref this.attentionName, o => o.AttentionName, value); }
         }
 
-        public override string LogRemarks { get { return "Code: " + this.Code; } }
+        public override string LogRemarks { get { return this.Code != null && this.Code != "" ? "Code: " + this.Code : null; } }
 
         protected override List<ValidationRule> CreateRules()
         {

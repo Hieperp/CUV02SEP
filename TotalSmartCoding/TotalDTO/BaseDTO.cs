@@ -39,7 +39,7 @@ namespace TotalDTO
         public virtual int GetID() { return 0; }
         public int LastID { get; set; } //THIS KEEP THE LAST ID WHEN CREATE NEW Entity. HOWEVER, EACH TIME TO EDIT THE CURRENT Entity, THIS ALSO KEEP CURRENT EDITED ID
         public int LastLogID { get; set; }
-        public override string LogRemarks { get { return this.Reference; } }
+        public override string LogRemarks { get { return this.Reference != null && this.Reference != "" ? "Reference: " + this.Reference : null; } }
 
         private string reference;
         [Display(Name = "Số phiếu")]

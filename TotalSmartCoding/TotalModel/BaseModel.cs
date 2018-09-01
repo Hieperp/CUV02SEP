@@ -44,7 +44,6 @@ namespace TotalModel
         }
 
         public DateTime? EditedDate { get; set; }
-        public virtual string LogRemarks { get; }
 
         public int UserID { get; set; }
         public int OrganizationalUnitID { get; set; }
@@ -54,6 +53,7 @@ namespace TotalModel
 
 
         public virtual string Caption { get { return ""; } }
+        public virtual string LogRemarks { get { return ""; } }
 
         private string remarks;
         [Display(Name = "Ghi chú")]

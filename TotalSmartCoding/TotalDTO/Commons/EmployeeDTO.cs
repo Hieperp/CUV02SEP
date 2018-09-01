@@ -190,7 +190,7 @@ namespace TotalDTO.Commons
             if (this.EmployeeRoleIDs != null && this.EmployeeRoleIDs != "" && this.EmployeeRoleIDs.Substring(this.EmployeeRoleIDs.Length - 1) == ",") this.EmployeeRoleIDs = this.EmployeeRoleIDs.Substring(0, this.EmployeeRoleIDs.Length - 1);
         }
 
-        public override string LogRemarks { get { return "Code: " + this.Code; } }
+        public override string LogRemarks { get { return this.Code != null && this.Code != "" ? "Code: " + this.Code : null; } }
 
         protected override List<ValidationRule> CreateRules()
         {
