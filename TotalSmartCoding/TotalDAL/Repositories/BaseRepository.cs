@@ -320,31 +320,7 @@ namespace TotalDAL.Repositories
             }
             #endregion Devices
 
-            var query = this.totalSmartCodingEntities.Database.SqlQuery(typeof(int), "SELECT COUNT(ModuleDetailID) AS Expr1 FROM ModuleDetails WHERE ModuleDetailID = " + (int)GlobalEnums.NmvnTaskID.FillingLine + ";", new object[] { });
-            int exists = query.Cast<int>().Single();
-            if (exists == 0)
-            {
-                this.ExecuteStoreCommand("INSERT INTO ModuleDetails (ModuleDetailID, ModuleID, Code, Name, FullName, Actions, Controller, LastOpen, SerialID, ImageIndex, InActive) VALUES(" + (int)GlobalEnums.NmvnTaskID.FillingLine + ", 108, 'IP Settings', 'IP Settings', '#', '#', '#', 1, 68, 1, 0) ", new ObjectParameter[] { });
-                this.ExecuteStoreCommand("INSERT INTO AccessControls (UserID, NMVNTaskID, OrganizationalUnitID, AccessLevel, ApprovalPermitted, UnApprovalPermitted, VoidablePermitted, UnVoidablePermitted, ShowDiscount, AccessLevelBACKUP, ApprovalPermittedBACKUP, UnApprovalPermittedBACKUP, InActive) SELECT UserID, " + (int)GlobalEnums.NmvnTaskID.FillingLine + " AS NMVNTaskID, OrganizationalUnitID, 1 AS AccessLevel, 0 AS ApprovalPermitted, 0 AS UnApprovalPermitted, 0 AS VoidablePermitted, 0 AS UnVoidablePermitted, ShowDiscount, AccessLevelBACKUP, ApprovalPermittedBACKUP, UnApprovalPermittedBACKUP, InActive FROM AccessControls WHERE (NMVNTaskID = " + (int)GlobalEnums.NmvnTaskID.Commodities + ") AND (SELECT COUNT(*) FROM AccessControls WHERE NMVNTaskID = " + (int)GlobalEnums.NmvnTaskID.FillingLine + ") = 0", new ObjectParameter[] { });
-
-
-                #region INIT IP ADDRESS
-                //foreach (GlobalVariables.PrinterName printerName in Enum.GetValues(typeof(GlobalVariables.PrinterName)))
-                //{
-                //    string ipAddress = GlobalVariables.IpAddress(printerName);
-                //    if (ipAddress != "" & ipAddress != "127.0.0.1")
-                //        this.ExecuteStoreCommand("INSERT INTO FillingLineDetails (FillingLineID, DeviceID, IPv4Byte1, IPv4Byte2, IPv4Byte3, IPv4Byte4) VALUES (" + (int)GlobalVariables.FillingLineID + ", " + (int)printerName + ", " + ipAddress.Substring(0, ipAddress.IndexOf(".")) + ", " + ipAddress.Substring(ipAddress.IndexOf(".") + 1).Substring(0, ipAddress.Substring(ipAddress.IndexOf(".") + 1).IndexOf(".")) + ", " + ipAddress.Substring(ipAddress.IndexOf(".") + 1).Substring(ipAddress.Substring(ipAddress.IndexOf(".") + 1).IndexOf(".") + 1).Substring(0, ipAddress.Substring(ipAddress.IndexOf(".") + 1).Substring(ipAddress.Substring(ipAddress.IndexOf(".") + 1).IndexOf(".") + 1).IndexOf(".")) + ", " + ipAddress.Substring(ipAddress.IndexOf(".") + 1).Substring(ipAddress.Substring(ipAddress.IndexOf(".") + 1).IndexOf(".") + 1).Substring(ipAddress.Substring(ipAddress.IndexOf(".") + 1).Substring(ipAddress.Substring(ipAddress.IndexOf(".") + 1).IndexOf(".") + 1).IndexOf(".") + 1) + ")", new ObjectParameter[] { });
-                //}
-
-                //foreach (GlobalVariables.ScannerName scannerName in Enum.GetValues(typeof(GlobalVariables.ScannerName)))
-                //{
-                //    string ipAddress = GlobalVariables.IpAddress(scannerName);
-                //    if (ipAddress != "" & ipAddress != "127.0.0.1")
-                //        this.ExecuteStoreCommand("INSERT INTO FillingLineDetails (FillingLineID, DeviceID, IPv4Byte1, IPv4Byte2, IPv4Byte3, IPv4Byte4) VALUES (" + (int)GlobalVariables.FillingLineID + ", " + ((int)GlobalVariables.ScannerName.Base + (int)scannerName) + ", " + ipAddress.Substring(0, ipAddress.IndexOf(".")) + ", " + ipAddress.Substring(ipAddress.IndexOf(".") + 1).Substring(0, ipAddress.Substring(ipAddress.IndexOf(".") + 1).IndexOf(".")) + ", " + ipAddress.Substring(ipAddress.IndexOf(".") + 1).Substring(ipAddress.Substring(ipAddress.IndexOf(".") + 1).IndexOf(".") + 1).Substring(0, ipAddress.Substring(ipAddress.IndexOf(".") + 1).Substring(ipAddress.Substring(ipAddress.IndexOf(".") + 1).IndexOf(".") + 1).IndexOf(".")) + ", " + ipAddress.Substring(ipAddress.IndexOf(".") + 1).Substring(ipAddress.Substring(ipAddress.IndexOf(".") + 1).IndexOf(".") + 1).Substring(ipAddress.Substring(ipAddress.IndexOf(".") + 1).Substring(ipAddress.Substring(ipAddress.IndexOf(".") + 1).IndexOf(".") + 1).IndexOf(".") + 1) + ")", new ObjectParameter[] { });
-                //}
-                #endregion INIT IP ADDRESS
-            }
-
+            
             #region
 
             if (!this.totalSmartCodingEntities.ColumnExists("ModuleDetails", "ControlTypeID"))
@@ -1439,6 +1415,40 @@ namespace TotalDAL.Repositories
 
         private void UpdateBackup()
         {
+
+
+
+
+
+
+
+            var query = this.totalSmartCodingEntities.Database.SqlQuery(typeof(int), "SELECT COUNT(ModuleDetailID) AS Expr1 FROM ModuleDetails WHERE ModuleDetailID = " + (int)GlobalEnums.NmvnTaskID.FillingLine + ";", new object[] { });
+            int exists = query.Cast<int>().Single();
+            if (exists == 0)
+            {
+                this.ExecuteStoreCommand("INSERT INTO ModuleDetails (ModuleDetailID, ModuleID, Code, Name, FullName, Actions, Controller, LastOpen, SerialID, ImageIndex, InActive) VALUES(" + (int)GlobalEnums.NmvnTaskID.FillingLine + ", 108, 'IP Settings', 'IP Settings', '#', '#', '#', 1, 68, 1, 0) ", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("INSERT INTO AccessControls (UserID, NMVNTaskID, OrganizationalUnitID, AccessLevel, ApprovalPermitted, UnApprovalPermitted, VoidablePermitted, UnVoidablePermitted, ShowDiscount, AccessLevelBACKUP, ApprovalPermittedBACKUP, UnApprovalPermittedBACKUP, InActive) SELECT UserID, " + (int)GlobalEnums.NmvnTaskID.FillingLine + " AS NMVNTaskID, OrganizationalUnitID, 1 AS AccessLevel, 0 AS ApprovalPermitted, 0 AS UnApprovalPermitted, 0 AS VoidablePermitted, 0 AS UnVoidablePermitted, ShowDiscount, AccessLevelBACKUP, ApprovalPermittedBACKUP, UnApprovalPermittedBACKUP, InActive FROM AccessControls WHERE (NMVNTaskID = " + (int)GlobalEnums.NmvnTaskID.Commodities + ") AND (SELECT COUNT(*) FROM AccessControls WHERE NMVNTaskID = " + (int)GlobalEnums.NmvnTaskID.FillingLine + ") = 0", new ObjectParameter[] { });
+
+
+                #region INIT IP ADDRESS
+                //foreach (GlobalVariables.PrinterName printerName in Enum.GetValues(typeof(GlobalVariables.PrinterName)))
+                //{
+                //    string ipAddress = GlobalVariables.IpAddress(printerName);
+                //    if (ipAddress != "" & ipAddress != "127.0.0.1")
+                //        this.ExecuteStoreCommand("INSERT INTO FillingLineDetails (FillingLineID, DeviceID, IPv4Byte1, IPv4Byte2, IPv4Byte3, IPv4Byte4) VALUES (" + (int)GlobalVariables.FillingLineID + ", " + (int)printerName + ", " + ipAddress.Substring(0, ipAddress.IndexOf(".")) + ", " + ipAddress.Substring(ipAddress.IndexOf(".") + 1).Substring(0, ipAddress.Substring(ipAddress.IndexOf(".") + 1).IndexOf(".")) + ", " + ipAddress.Substring(ipAddress.IndexOf(".") + 1).Substring(ipAddress.Substring(ipAddress.IndexOf(".") + 1).IndexOf(".") + 1).Substring(0, ipAddress.Substring(ipAddress.IndexOf(".") + 1).Substring(ipAddress.Substring(ipAddress.IndexOf(".") + 1).IndexOf(".") + 1).IndexOf(".")) + ", " + ipAddress.Substring(ipAddress.IndexOf(".") + 1).Substring(ipAddress.Substring(ipAddress.IndexOf(".") + 1).IndexOf(".") + 1).Substring(ipAddress.Substring(ipAddress.IndexOf(".") + 1).Substring(ipAddress.Substring(ipAddress.IndexOf(".") + 1).IndexOf(".") + 1).IndexOf(".") + 1) + ")", new ObjectParameter[] { });
+                //}
+
+                //foreach (GlobalVariables.ScannerName scannerName in Enum.GetValues(typeof(GlobalVariables.ScannerName)))
+                //{
+                //    string ipAddress = GlobalVariables.IpAddress(scannerName);
+                //    if (ipAddress != "" & ipAddress != "127.0.0.1")
+                //        this.ExecuteStoreCommand("INSERT INTO FillingLineDetails (FillingLineID, DeviceID, IPv4Byte1, IPv4Byte2, IPv4Byte3, IPv4Byte4) VALUES (" + (int)GlobalVariables.FillingLineID + ", " + ((int)GlobalVariables.ScannerName.Base + (int)scannerName) + ", " + ipAddress.Substring(0, ipAddress.IndexOf(".")) + ", " + ipAddress.Substring(ipAddress.IndexOf(".") + 1).Substring(0, ipAddress.Substring(ipAddress.IndexOf(".") + 1).IndexOf(".")) + ", " + ipAddress.Substring(ipAddress.IndexOf(".") + 1).Substring(ipAddress.Substring(ipAddress.IndexOf(".") + 1).IndexOf(".") + 1).Substring(0, ipAddress.Substring(ipAddress.IndexOf(".") + 1).Substring(ipAddress.Substring(ipAddress.IndexOf(".") + 1).IndexOf(".") + 1).IndexOf(".")) + ", " + ipAddress.Substring(ipAddress.IndexOf(".") + 1).Substring(ipAddress.Substring(ipAddress.IndexOf(".") + 1).IndexOf(".") + 1).Substring(ipAddress.Substring(ipAddress.IndexOf(".") + 1).Substring(ipAddress.Substring(ipAddress.IndexOf(".") + 1).IndexOf(".") + 1).IndexOf(".") + 1) + ")", new ObjectParameter[] { });
+                //}
+                #endregion INIT IP ADDRESS
+            }
+
+
+
 
             this.totalSmartCodingEntities.ColumnAdd("Batches", "AutoBarcode", "bit", "0", true);
             this.totalSmartCodingEntities.ColumnAdd("Batches", "FinalCartonNo", "nvarchar(10)", "000001", true);
