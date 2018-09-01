@@ -919,7 +919,7 @@ namespace TotalSmartCoding.Views.Mains
             try
             {
                 IBaseRepository baseRepository = CommonNinject.Kernel.Get<IBaseRepository>();
-                baseRepository.AddEventLogs("Application", actionType, null, null);
+                if (baseRepository.GetOnDataLogs()) baseRepository.AddEventLogs("Application", actionType, null, null);
             }
             catch (Exception ex) { }
         }

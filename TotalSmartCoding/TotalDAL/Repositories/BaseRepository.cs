@@ -2339,6 +2339,7 @@ namespace TotalDAL.Repositories
 
 
         #region Smart Logs
+        public bool GetOnDataLogs() { return true; }
         public void AddDataLogs(int? entryID, int? entryDetailID, DateTime? entryDate, string moduleName, string actionType, string entityName, string propertyName, string propertyValue)
         {
             this.TotalSmartCodingEntities.AddDataLogs(entryID, entryDetailID, entryDate, moduleName, ContextAttributes.User.UserName, ContextAttributes.LocalIPAddress, actionType, entityName, propertyName, propertyValue);

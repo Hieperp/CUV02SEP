@@ -99,6 +99,7 @@ namespace TotalSmartCoding.Controllers
             try
             {
                 base.AddViewDetailDataLogs(dto, actionType);
+                if (!SmartLogDTO.OnDataLogs) return;// DO NOTHING: IMPORTANT: SmartLogDTO.OnDataLogs WILL BE CHECKED AND SET EVERY TIME CALL AddDataLogs. TO: SHOULD CALL AddDataLogs BEFORE CALL AddViewDetailDataLogs
 
                 List<string> entityPropertyNames = typeof(TEntityDetail).GetProperties().Select(s => s.Name).ToList();
                 List<PropertyInfo> propertyInfos = typeof(TDtoDetail).GetProperties().OrderBy(o => o.Name).ToList();

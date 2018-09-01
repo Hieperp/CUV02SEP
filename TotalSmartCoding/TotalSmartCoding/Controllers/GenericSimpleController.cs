@@ -755,7 +755,7 @@ namespace TotalSmartCoding.Controllers
                 if (this.simpleViewModel.LastLogID != id && id > 0)
                 {
                     this.simpleViewModel.LastLogID = id;
-                    this.GenericService.AddEventLogs(this.simpleViewModel.NMVNTaskID.ToString(), "Open", this.simpleViewModel.GetID(), this.simpleViewModel.LogRemarks);
+                    if (this.GenericService.GetOnDataLogs()) this.GenericService.AddEventLogs(this.simpleViewModel.NMVNTaskID.ToString(), "Open", this.simpleViewModel.GetID(), this.simpleViewModel.LogRemarks);
                 }
             }
             catch (Exception ex) { }
@@ -765,6 +765,8 @@ namespace TotalSmartCoding.Controllers
         {
             try
             {
+                if (this.GenericService.GetOnDataLogs()) SmartLogDTO.OnDataLogs = true; else return;// DO NOTHING
+
                 if (dto.EditedDate == null || ((DateTime)dto.EditedDate).Year == 1) dto.EditedDate = DateTime.Now;
 
                 List<string> entityPropertyNames = typeof(TEntity).GetProperties().Select(s => s.Name).ToList();

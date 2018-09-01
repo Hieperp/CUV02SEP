@@ -45,6 +45,7 @@ namespace TotalCore.Repositories
         Dictionary<string, object> RepositoryBag { get; set; }
 
         #region
+        bool GetOnDataLogs();
         void AddDataLogs(int? entryID, int? entryDetailID, DateTime? entryDate, string moduleName, string actionType, string entityName, string propertyName, string propertyValue);
         void AddEventLogs(string moduleName, string actionType, int? entryID, string remarks);
         #endregion

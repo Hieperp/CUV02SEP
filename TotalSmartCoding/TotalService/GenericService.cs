@@ -511,6 +511,7 @@ namespace TotalService
 
 
         #region Smart Logs
+        public bool GetOnDataLogs() { return this.genericRepository.GetOnDataLogs(); }
         public void AddDataLogs(int? entryID, int? entryDetailID, DateTime? entryDate, string moduleName, string actionType, string entityName, string propertyName, string propertyValue)
         {
             this.genericRepository.AddDataLogs(entryID, entryDetailID, entryDate, moduleName, actionType, entityName, propertyName, propertyValue);

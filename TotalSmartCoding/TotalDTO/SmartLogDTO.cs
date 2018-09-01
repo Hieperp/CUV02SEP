@@ -11,6 +11,12 @@ namespace TotalDTO
 {
     public static class SmartLogDTO
     {
+        public static bool OnDataLogs { get; set; }
+
+        public static List<string> ExclusiveNames;
+        public static List<string> OptionalNames; //LIST NAME NEED TO CHECK IF THE ENTITY HAVE IT (EX: Commodities DON'T HAVE EntryDate) 
+        public static List<string> PatternNames;
+
         public static void Init()
         {
             Type typeNotify = typeof(NotifyPropertyChangeObject);
@@ -27,13 +33,6 @@ namespace TotalDTO
 
             SmartLogDTO.PatternNames = new List<string>() { "BindingList" };
         }
-
-        public static List<string> ExclusiveNames;
-
-        public static List<string> OptionalNames; //LIST NAME NEED TO CHECK IF THE ENTITY HAVE IT (EX: Commodities DON'T HAVE EntryDate) 
-
-        public static List<string> PatternNames;
-
 
         public static bool CheckProperty(string propertyTypeName, string propertyInfoName)
         {
