@@ -17,7 +17,9 @@ using Guifreaks.Navisuite;
 using TotalBase;
 using TotalBase.Enums;
 
+using TotalCore.Repositories;
 using TotalCore.Repositories.Generals;
+
 using TotalModel.Models;
 
 using TotalSmartCoding.Properties;
@@ -83,6 +85,10 @@ namespace TotalSmartCoding.Views.Mains
         { }
 
         public MasterMDI(GlobalEnums.NmvnTaskID nmvnTaskID, Form loadedView)
+            : this(nmvnTaskID, loadedView, true)
+        { }
+
+        public MasterMDI(GlobalEnums.NmvnTaskID nmvnTaskID, Form loadedView, bool log)
         {
             InitializeComponent();
 
@@ -194,6 +200,8 @@ namespace TotalSmartCoding.Views.Mains
                 this.txtLockedDate.Visible = false;
                 //this.buttonLockedDate.Visible = false;
                 #endregion
+
+                if (log) AddEventLogs("");
             }
             catch (Exception exception)
             {
@@ -901,6 +909,12 @@ namespace TotalSmartCoding.Views.Mains
 
 
 
-
+        #region Smart Logs
+        public void AddEventLogs(string actionType)
+        {
+            IBaseRepository baseRepository = CommonNinject.Kernel.Get<IBaseRepository>();
+            baseRepository.AddEventLogs("Application", actionType);
+        }
+        #endregion Smart Logs
     }
 }
