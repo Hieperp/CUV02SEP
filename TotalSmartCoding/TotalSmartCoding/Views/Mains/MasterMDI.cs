@@ -203,7 +203,7 @@ namespace TotalSmartCoding.Views.Mains
                 #endregion
 
                 this.isMainView = isMainView;
-                if (this.isMainView) AddEventLogs("Log on application");
+                if (this.isMainView) this.AddEventLogs("Log on application");
             }
             catch (Exception exception)
             {
@@ -244,7 +244,7 @@ namespace TotalSmartCoding.Views.Mains
                 if (this.MdiChildren.Length > 0)
                     e.Cancel = true;
                 else
-                    if (this.isMainView) AddEventLogs("Exit application");
+                    if (this.isMainView) this.AddEventLogs("Exit application");
             }
             catch (Exception exception)
             {
@@ -916,8 +916,12 @@ namespace TotalSmartCoding.Views.Mains
         #region Smart Logs
         public void AddEventLogs(string actionType)
         {
-            IBaseRepository baseRepository = CommonNinject.Kernel.Get<IBaseRepository>();
-            baseRepository.AddEventLogs("Application", actionType, null, null);
+            try
+            {
+                IBaseRepository baseRepository = CommonNinject.Kernel.Get<IBaseRepository>();
+                baseRepository.AddEventLogs("Application", actionType, null, null);
+            }
+            catch (Exception ex) { }
         }
         #endregion Smart Logs
     }

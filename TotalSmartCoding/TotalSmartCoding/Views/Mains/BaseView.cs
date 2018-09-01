@@ -9,6 +9,7 @@ using Ninject;
 using CustomControls;
 using BrightIdeasSoftware;
 
+using TotalCore.Repositories;
 using TotalCore.Repositories.Commons;
 
 using TotalDTO;
@@ -53,6 +54,8 @@ namespace TotalSmartCoding.Views.Mains
             {
                 InitializeTabControl();
 
+                this.AddEventLogs("Open");
+
                 this.fastListIndex.CheckBoxes = false;
                 this.fastListIndex.SelectedIndexChanged += new EventHandler(this.fastListIndex_SelectedIndexChanged);
                 this.fastListIndex.MouseClick += new MouseEventHandler(fastListIndex_MouseClick);
@@ -66,11 +69,17 @@ namespace TotalSmartCoding.Views.Mains
 
                 this.Loading();
                 this.DoAfterLoad();
+
             }
             catch (Exception exception)
             {
                 ExceptionHandlers.ShowExceptionMessageBox(this, exception);
             }
+        }
+
+        private void BaseView_FormClosed(object sender, System.Windows.Forms.FormClosedEventArgs e)
+        {
+            this.AddEventLogs("Close");
         }
 
         protected virtual void DoAfterLoad() { }
@@ -665,6 +674,25 @@ namespace TotalSmartCoding.Views.Mains
 
         }
         #endregion Helper Method
+
+
+
+
+
+
+
+        #region Smart Logs
+        public void AddEventLogs(string actionType)
+        {
+            try
+            {
+                IBaseRepository baseRepository = CommonNinject.Kernel.Get<IBaseRepository>();
+                baseRepository.AddEventLogs(this.baseDTO.NMVNTaskID.ToString(), actionType, null, null);
+            }
+            catch (Exception ex) { }
+        }
+        #endregion Smart Logs
+
     }
 
     public class DataGridColumnNames

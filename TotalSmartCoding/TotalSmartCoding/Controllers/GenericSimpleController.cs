@@ -750,11 +750,15 @@ namespace TotalSmartCoding.Controllers
 
         private void SetLastLogID(int id)
         {
-            if (this.simpleViewModel.LastLogID != id && id > 0)
+            try
             {
-                this.simpleViewModel.LastLogID = id;
-                this.GenericService.AddEventLogs(this.simpleViewModel.NMVNTaskID.ToString(), "Open", this.simpleViewModel.GetID(), this.simpleViewModel.LogRemarks);
+                if (this.simpleViewModel.LastLogID != id && id > 0)
+                {
+                    this.simpleViewModel.LastLogID = id;
+                    this.GenericService.AddEventLogs(this.simpleViewModel.NMVNTaskID.ToString(), "Open", this.simpleViewModel.GetID(), this.simpleViewModel.LogRemarks);
+                }
             }
+            catch (Exception ex) { }
         }
 
         public virtual void AddDataLogs(TDto dto, string actionType)
@@ -774,7 +778,7 @@ namespace TotalSmartCoding.Controllers
                     }
                 }
             }
-            catch (Exception ex) { throw ex; }
+            catch (Exception ex) { }
         }
         public virtual void AddViewDetailDataLogs(TDto dto, string actionType) { }
         #endregion Smart Logs

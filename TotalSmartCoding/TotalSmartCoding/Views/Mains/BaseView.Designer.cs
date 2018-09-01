@@ -57,11 +57,14 @@
             this.Name = "BaseView";
             this.Text = "BaseView";
             this.Load += new System.EventHandler(this.BaseView_Load);
+            this.FormClosed += BaseView_FormClosed;
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderMaster)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
+
+
 
         #endregion
 
