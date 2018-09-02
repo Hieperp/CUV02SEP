@@ -164,14 +164,6 @@ namespace TotalSmartCoding.Views.Mains
 
     }
 
-    public class DomainUser
-    {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string UserName { get; set; }
-        public string SecurityIdentifier { get; set; }
-    }
-
     public class ACL
     {
         public GlobalEnums.AccessLevel AccessLevelID { get; set; }
