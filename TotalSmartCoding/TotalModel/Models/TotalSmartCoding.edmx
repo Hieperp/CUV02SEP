@@ -8777,6 +8777,7 @@
           <Property Type="Int32" Name="UserID" Nullable="true" />
           <Property Type="String" Name="SecurityIdentifier" Nullable="false" MaxLength="256" />
           <Property Type="String" Name="UserName" Nullable="false" MaxLength="256" />
+          <Property Type="String" Name="UserControlType" Nullable="false" MaxLength="15" />
         </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
@@ -11597,6 +11598,7 @@
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="SecurityIdentifier" ColumnName="SecurityIdentifier" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserControlType" ColumnName="UserControlType" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

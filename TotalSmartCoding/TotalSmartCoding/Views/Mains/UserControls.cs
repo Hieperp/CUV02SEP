@@ -26,6 +26,7 @@ namespace TotalSmartCoding.Views.Mains
 {
     public partial class UserControls : Form
     {
+        private UserControlAPIs userControlAPIs { get; set; }
         private UserGroupAPIs userGroupAPIs { get; set; }
 
         private BindingList<UserGroupControlDTO> bindingListUserControls;
@@ -36,6 +37,7 @@ namespace TotalSmartCoding.Views.Mains
             InitializeComponent();
             try
             {
+                this.userControlAPIs = new UserControlAPIs(CommonNinject.Kernel.Get<IUserControlAPIRepository>());
                 this.userGroupAPIs = new UserGroupAPIs(CommonNinject.Kernel.Get<IUserGroupAPIRepository>());
 
                 this.fastUserControlIndexes.ShowGroups = true;
@@ -64,7 +66,7 @@ namespace TotalSmartCoding.Views.Mains
             try
             {
                 this.InitializeTabControl();
-                this.LoadUserGroups();
+                this.LoadUserControls();
             }
             catch (Exception exception)
             {
@@ -105,14 +107,14 @@ namespace TotalSmartCoding.Views.Mains
 
         #region Add, Remove UserGroup
 
-        private void LoadUserGroups()
+        private void LoadUserControls()
         {
             try
             {
-                this.fastUserControlIndexes.SetObjects(this.userGroupAPIs.GetUserGroupIndexes());
-                this.fastUserControlIndexes.Sort(this.olvUserGroupType, SortOrder.Ascending);
+                this.fastUserControlIndexes.SetObjects(this.userControlAPIs.GetUserControlIndexes());
+                this.fastUserControlIndexes.Sort(this.olvUserControlType, SortOrder.Ascending);
 
-                fastUserGroups_SelectedIndexChanged(this.fastUserControlIndexes, new EventArgs());
+                fastControlGroups_SelectedIndexChanged(this.fastUserControlIndexes, new EventArgs());
             }
             catch (Exception exception)
             {
@@ -122,11 +124,11 @@ namespace TotalSmartCoding.Views.Mains
 
         private void buttonRegisterDeregisterUser_Click(object sender, EventArgs e)
         {
-            UserGroups wizardUserGroups = new UserGroups(this.userGroupAPIs, (sender.Equals(this.buttonDeregisterUser) ? this.SelectedUserGroupIndex : null));
-            DialogResult dialogResult = wizardUserGroups.ShowDialog();
+            //UserGroups wizardUserGroups = new UserGroups(this.userGroupAPIs, (sender.Equals(this.buttonDeregisterUser) ? this.SelectedUserControlIndex : null));
+            //DialogResult dialogResult = wizardUserGroups.ShowDialog();
 
-            wizardUserGroups.Dispose();
-            if (dialogResult == DialogResult.OK) this.LoadUserGroups();
+            //wizardUserGroups.Dispose();
+            //if (dialogResult == DialogResult.OK) this.LoadUserControls();
         }
 
         #endregion Add, Remove UserGroup
@@ -144,28 +146,28 @@ namespace TotalSmartCoding.Views.Mains
             }
         }
 
-        private UserGroupIndex selectedUserGroupIndex;
-        private UserGroupIndex SelectedUserGroupIndex
+        private UserControlIndex selectedUserControlIndex;
+        private UserControlIndex SelectedUserControlIndex
         {
-            get { return this.selectedUserGroupIndex; }
+            get { return this.selectedUserControlIndex; }
             set
             {
-                if (this.selectedUserGroupIndex != value)
+                if (this.selectedUserControlIndex != value)
                 {
-                    this.selectedUserGroupIndex = value;
+                    this.selectedUserControlIndex = value;
                     this.GetUserControls();
                     this.GetUserGroupMembers();
                 }
             }
         }
 
-        private void fastUserGroups_SelectedIndexChanged(object sender, EventArgs e)
+        private void fastControlGroups_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (this.fastUserControlIndexes.SelectedObject != null)
             {
-                UserGroupIndex userGroupIndex = (UserGroupIndex)this.fastUserControlIndexes.SelectedObject;
+                UserControlIndex userGroupIndex = (UserControlIndex)this.fastUserControlIndexes.SelectedObject;
                 if (userGroupIndex != null)
-                    this.SelectedUserGroupIndex = userGroupIndex;
+                    this.SelectedUserControlIndex = userGroupIndex;
             }
             else
             {
@@ -180,7 +182,7 @@ namespace TotalSmartCoding.Views.Mains
             {
                 if (this.userGroupAPIs != null)
                 {
-                    this.fastUserGroupDetails.SetObjects(this.userGroupAPIs.GetUserGroupMembers(this.SelectedUserGroupIndex != null ? this.SelectedUserGroupIndex.UserGroupID : 0));
+                    this.fastUserGroupDetails.SetObjects(this.userGroupAPIs.GetUserGroupMembers(this.SelectedUserControlIndex != null ? this.SelectedUserControlIndex.UserID : 0));
                     this.fastUserGroupDetails.Sort(this.olvUserType, SortOrder.Ascending);
                 }
             }
@@ -196,7 +198,7 @@ namespace TotalSmartCoding.Views.Mains
             {
                 if (this.userGroupAPIs != null && this.bindingListUserControls != null)
                 {
-                    IList<UserGroupControl> userGroupControls = this.userGroupAPIs.GetUserGroupControls(this.SelectedUserGroupIndex != null ? this.SelectedUserGroupIndex.UserGroupID : 0);
+                    IList<UserGroupControl> userGroupControls = this.userGroupAPIs.GetUserGroupControls(this.SelectedUserControlIndex != null ? this.SelectedUserControlIndex.UserID : 0);
                     this.bindingListUserControls.RaiseListChangedEvents = false;
                     Mapper.Map<ICollection<UserGroupControl>, ICollection<UserGroupControlDTO>>(userGroupControls, this.bindingListUserControls);
                     this.bindingListUserControls.RaiseListChangedEvents = true;
@@ -239,10 +241,10 @@ namespace TotalSmartCoding.Views.Mains
         private void buttonJoinLeaveGroup_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = DialogResult.Cancel;
-            if (sender.Equals(this.buttonJoinGroup) && this.SelectedUserGroupIndex != null)
+            if (sender.Equals(this.buttonJoinGroup) && this.SelectedUserControlIndex != null)
             {
-                UserGroupAvailableMembers wizardUserRegister = new UserGroupAvailableMembers(this.userGroupAPIs, this.SelectedUserGroupIndex.UserGroupID);
-                dialogResult = wizardUserRegister.ShowDialog(); wizardUserRegister.Dispose();
+                //UserGroupAvailableMembers wizardUserRegister = new UserGroupAvailableMembers(this.userGroupAPIs, this.SelectedUserControlIndex.UserGroupID);
+                //dialogResult = wizardUserRegister.ShowDialog(); wizardUserRegister.Dispose();
             }
             if (sender.Equals(this.buttonLeaveGroup) && this.fastUserGroupDetails.SelectedObject != null)
             {

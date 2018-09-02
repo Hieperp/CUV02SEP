@@ -16,5 +16,6 @@ namespace TotalModel.Models
         public Nullable<int> UserID { get; set; }
         public string SecurityIdentifier { get; set; }
         public string UserName { get; set; }
+        public string UserControlType { get; set; }
     }
 }

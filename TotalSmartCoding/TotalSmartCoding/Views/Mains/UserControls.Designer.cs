@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserControls));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolUserGroupDetails = new System.Windows.Forms.ToolStrip();
             this.buttonJoinGroup = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -39,8 +39,8 @@
             this.buttonManageGroups = new System.Windows.Forms.ToolStripButton();
             this.fastUserControlIndexes = new BrightIdeasSoftware.FastObjectListView();
             this.olvID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvUserGroupType = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvUserGroupName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvUserControlType = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvUserControlName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.imageList32 = new System.Windows.Forms.ImageList(this.components);
             this.gridexUserControls = new CustomControls.DataGridexView();
             this.ModuleName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -132,12 +132,12 @@
             // fastUserControlIndexes
             // 
             this.fastUserControlIndexes.AllColumns.Add(this.olvID);
-            this.fastUserControlIndexes.AllColumns.Add(this.olvUserGroupType);
-            this.fastUserControlIndexes.AllColumns.Add(this.olvUserGroupName);
+            this.fastUserControlIndexes.AllColumns.Add(this.olvUserControlType);
+            this.fastUserControlIndexes.AllColumns.Add(this.olvUserControlName);
             this.fastUserControlIndexes.BackColor = System.Drawing.Color.Ivory;
             this.fastUserControlIndexes.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.olvID,
-            this.olvUserGroupName});
+            this.olvUserControlName});
             this.fastUserControlIndexes.Cursor = System.Windows.Forms.Cursors.Default;
             this.fastUserControlIndexes.Dock = System.Windows.Forms.DockStyle.Left;
             this.fastUserControlIndexes.Font = new System.Drawing.Font("Calibri Light", 10.2F);
@@ -157,27 +157,27 @@
             this.fastUserControlIndexes.UseFiltering = true;
             this.fastUserControlIndexes.View = System.Windows.Forms.View.Details;
             this.fastUserControlIndexes.VirtualMode = true;
-            this.fastUserControlIndexes.SelectedIndexChanged += new System.EventHandler(this.fastUserGroups_SelectedIndexChanged);
+            this.fastUserControlIndexes.SelectedIndexChanged += new System.EventHandler(this.fastControlGroups_SelectedIndexChanged);
             // 
             // olvID
             // 
             this.olvID.Text = "";
             this.olvID.Width = 20;
             // 
-            // olvUserGroupType
+            // olvUserControlType
             // 
-            this.olvUserGroupType.AspectName = "UserGroupType";
-            this.olvUserGroupType.DisplayIndex = 1;
-            this.olvUserGroupType.IsVisible = false;
+            this.olvUserControlType.AspectName = "UserControlType";
+            this.olvUserControlType.DisplayIndex = 1;
+            this.olvUserControlType.IsVisible = false;
             // 
-            // olvUserGroupName
+            // olvUserControlName
             // 
-            this.olvUserGroupName.AspectName = "Name";
-            this.olvUserGroupName.FillsFreeSpace = true;
-            this.olvUserGroupName.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvUserGroupName.Sortable = false;
-            this.olvUserGroupName.Text = "";
-            this.olvUserGroupName.Width = 90;
+            this.olvUserControlName.AspectName = "UserName";
+            this.olvUserControlName.FillsFreeSpace = true;
+            this.olvUserControlName.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvUserControlName.Sortable = false;
+            this.olvUserControlName.Text = "";
+            this.olvUserControlName.Width = 90;
             // 
             // imageList32
             // 
@@ -223,8 +223,8 @@
             this.gridexUserControls.MultiSelect = false;
             this.gridexUserControls.Name = "gridexUserControls";
             this.gridexUserControls.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridexUserControls.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridexUserControls.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.gridexUserControls.RowTemplate.Height = 24;
             this.gridexUserControls.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridexUserControls.Size = new System.Drawing.Size(1016, 291);
@@ -477,7 +477,7 @@
         private System.Windows.Forms.ToolStripButton buttonLeaveGroup;
         private BrightIdeasSoftware.FastObjectListView fastUserControlIndexes;
         private BrightIdeasSoftware.OLVColumn olvID;
-        private BrightIdeasSoftware.OLVColumn olvUserGroupName;
+        private BrightIdeasSoftware.OLVColumn olvUserControlName;
         private CustomControls.DataGridexView gridexUserControls;
         private System.Windows.Forms.ImageList imageList32;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
@@ -488,7 +488,7 @@
         private BrightIdeasSoftware.OLVColumn olvTreeParameterName;
         private System.Windows.Forms.ToolStripButton buttonRegisterUser;
         private System.Windows.Forms.ToolStripButton buttonDeregisterUser;
-        private BrightIdeasSoftware.OLVColumn olvUserGroupType;
+        private BrightIdeasSoftware.OLVColumn olvUserControlType;
         private System.Windows.Forms.Panel panelCenter;
         private System.Windows.Forms.DataGridViewTextBoxColumn ModuleName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ModuleDetailName;

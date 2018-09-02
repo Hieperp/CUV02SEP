@@ -37,7 +37,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
-            queryString = queryString + "       SELECT      MIN(UserID) AS UserID, SecurityIdentifier, UserName " + "\r\n";
+            queryString = queryString + "       SELECT      MIN(UserID) AS UserID, SecurityIdentifier, UserName, N'Chevron Vietnam' AS UserControlType " + "\r\n";
             queryString = queryString + "       FROM        Users " + "\r\n";
             queryString = queryString + "       GROUP BY    SecurityIdentifier, UserName " + "\r\n";
             queryString = queryString + "       ORDER BY    UserName " + "\r\n";
