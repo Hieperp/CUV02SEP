@@ -320,7 +320,7 @@ namespace TotalDAL.Repositories
             }
             #endregion Devices
 
-            
+
             #region
 
             if (!this.totalSmartCodingEntities.ColumnExists("ModuleDetails", "ControlTypeID"))
@@ -400,6 +400,14 @@ namespace TotalDAL.Repositories
 
         private void CreateStoredProcedure()
         {
+
+            //return;
+
+            Helpers.SqlProgrammability.Generals.UserControl userControl = new Helpers.SqlProgrammability.Generals.UserControl(totalSmartCodingEntities);
+            userControl.RestoreProcedure();
+
+            //return;
+
             Helpers.SqlProgrammability.Commons.SmartLog smartLog = new Helpers.SqlProgrammability.Commons.SmartLog(totalSmartCodingEntities);
             smartLog.RestoreProcedure();
 

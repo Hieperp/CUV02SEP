@@ -75,7 +75,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
 
         private void UserEditable()
         {
-            string[] queryArray = new string[8];
+            string[] queryArray = new string[9];
 
             queryArray[0] = " SELECT TOP 1 @FoundEntity = UserID FROM BinLocations WHERE UserID = @EntityID ";
             queryArray[1] = " SELECT TOP 1 @FoundEntity = UserID FROM SalesOrders WHERE UserID = @EntityID ";
@@ -85,7 +85,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             queryArray[5] = " SELECT TOP 1 @FoundEntity = UserID FROM Pickups WHERE UserID = @EntityID ";
             queryArray[6] = " SELECT TOP 1 @FoundEntity = UserID FROM GoodsReceipts WHERE UserID = @EntityID ";
             queryArray[7] = " SELECT TOP 1 @FoundEntity = UserID FROM WarehouseAdjustments WHERE UserID = @EntityID ";
-
+            queryArray[8] = " SELECT TOP 1 @FoundEntity = UserID FROM Forecasts WHERE UserID = @EntityID ";
 
             this.totalSmartCodingEntities.CreateProcedureToCheckExisting("UserEditable", queryArray);
         }

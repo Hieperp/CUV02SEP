@@ -30,14 +30,14 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserControls));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolUserGroupDetails = new System.Windows.Forms.ToolStrip();
             this.buttonJoinGroup = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.buttonLeaveGroup = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.buttonManageGroups = new System.Windows.Forms.ToolStripButton();
-            this.fastUserGroups = new BrightIdeasSoftware.FastObjectListView();
+            this.fastUserControlIndexes = new BrightIdeasSoftware.FastObjectListView();
             this.olvID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvUserGroupType = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvUserGroupName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -67,7 +67,7 @@
             this.olvUserType = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvUserName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.toolUserGroupDetails.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.fastUserGroups)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fastUserControlIndexes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridexUserControls)).BeginInit();
             this.toolUserGroups.SuspendLayout();
             this.panelCenter.SuspendLayout();
@@ -129,35 +129,35 @@
             this.buttonManageGroups.Size = new System.Drawing.Size(127, 36);
             this.buttonManageGroups.Text = "Manage Groups";
             // 
-            // fastUserGroups
+            // fastUserControlIndexes
             // 
-            this.fastUserGroups.AllColumns.Add(this.olvID);
-            this.fastUserGroups.AllColumns.Add(this.olvUserGroupType);
-            this.fastUserGroups.AllColumns.Add(this.olvUserGroupName);
-            this.fastUserGroups.BackColor = System.Drawing.Color.Ivory;
-            this.fastUserGroups.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.fastUserControlIndexes.AllColumns.Add(this.olvID);
+            this.fastUserControlIndexes.AllColumns.Add(this.olvUserGroupType);
+            this.fastUserControlIndexes.AllColumns.Add(this.olvUserGroupName);
+            this.fastUserControlIndexes.BackColor = System.Drawing.Color.Ivory;
+            this.fastUserControlIndexes.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.olvID,
             this.olvUserGroupName});
-            this.fastUserGroups.Cursor = System.Windows.Forms.Cursors.Default;
-            this.fastUserGroups.Dock = System.Windows.Forms.DockStyle.Left;
-            this.fastUserGroups.Font = new System.Drawing.Font("Calibri Light", 10.2F);
-            this.fastUserGroups.FullRowSelect = true;
-            this.fastUserGroups.GroupImageList = this.imageList32;
-            this.fastUserGroups.HideSelection = false;
-            this.fastUserGroups.HighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
-            this.fastUserGroups.Location = new System.Drawing.Point(0, 39);
-            this.fastUserGroups.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.fastUserGroups.Name = "fastUserGroups";
-            this.fastUserGroups.OwnerDraw = true;
-            this.fastUserGroups.ShowGroups = false;
-            this.fastUserGroups.Size = new System.Drawing.Size(225, 610);
-            this.fastUserGroups.TabIndex = 69;
-            this.fastUserGroups.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
-            this.fastUserGroups.UseCompatibleStateImageBehavior = false;
-            this.fastUserGroups.UseFiltering = true;
-            this.fastUserGroups.View = System.Windows.Forms.View.Details;
-            this.fastUserGroups.VirtualMode = true;
-            this.fastUserGroups.SelectedIndexChanged += new System.EventHandler(this.fastUserGroups_SelectedIndexChanged);
+            this.fastUserControlIndexes.Cursor = System.Windows.Forms.Cursors.Default;
+            this.fastUserControlIndexes.Dock = System.Windows.Forms.DockStyle.Left;
+            this.fastUserControlIndexes.Font = new System.Drawing.Font("Calibri Light", 10.2F);
+            this.fastUserControlIndexes.FullRowSelect = true;
+            this.fastUserControlIndexes.GroupImageList = this.imageList32;
+            this.fastUserControlIndexes.HideSelection = false;
+            this.fastUserControlIndexes.HighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
+            this.fastUserControlIndexes.Location = new System.Drawing.Point(0, 39);
+            this.fastUserControlIndexes.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.fastUserControlIndexes.Name = "fastUserControlIndexes";
+            this.fastUserControlIndexes.OwnerDraw = true;
+            this.fastUserControlIndexes.ShowGroups = false;
+            this.fastUserControlIndexes.Size = new System.Drawing.Size(225, 610);
+            this.fastUserControlIndexes.TabIndex = 69;
+            this.fastUserControlIndexes.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
+            this.fastUserControlIndexes.UseCompatibleStateImageBehavior = false;
+            this.fastUserControlIndexes.UseFiltering = true;
+            this.fastUserControlIndexes.View = System.Windows.Forms.View.Details;
+            this.fastUserControlIndexes.VirtualMode = true;
+            this.fastUserControlIndexes.SelectedIndexChanged += new System.EventHandler(this.fastUserGroups_SelectedIndexChanged);
             // 
             // olvID
             // 
@@ -223,8 +223,8 @@
             this.gridexUserControls.MultiSelect = false;
             this.gridexUserControls.Name = "gridexUserControls";
             this.gridexUserControls.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridexUserControls.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridexUserControls.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.gridexUserControls.RowTemplate.Height = 24;
             this.gridexUserControls.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridexUserControls.Size = new System.Drawing.Size(1016, 291);
@@ -445,7 +445,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1241, 649);
             this.Controls.Add(this.panelCenter);
-            this.Controls.Add(this.fastUserGroups);
+            this.Controls.Add(this.fastUserControlIndexes);
             this.Controls.Add(this.toolUserGroups);
             this.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -458,7 +458,7 @@
             this.Load += new System.EventHandler(this.UserControls_Load);
             this.toolUserGroupDetails.ResumeLayout(false);
             this.toolUserGroupDetails.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.fastUserGroups)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fastUserControlIndexes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridexUserControls)).EndInit();
             this.toolUserGroups.ResumeLayout(false);
             this.toolUserGroups.PerformLayout();
@@ -475,7 +475,7 @@
         private System.Windows.Forms.ToolStrip toolUserGroupDetails;
         private System.Windows.Forms.ToolStripButton buttonJoinGroup;
         private System.Windows.Forms.ToolStripButton buttonLeaveGroup;
-        private BrightIdeasSoftware.FastObjectListView fastUserGroups;
+        private BrightIdeasSoftware.FastObjectListView fastUserControlIndexes;
         private BrightIdeasSoftware.OLVColumn olvID;
         private BrightIdeasSoftware.OLVColumn olvUserGroupName;
         private CustomControls.DataGridexView gridexUserControls;

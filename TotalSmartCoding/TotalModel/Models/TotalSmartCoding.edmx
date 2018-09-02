@@ -2843,6 +2843,11 @@
           <Parameter Name="UserID" Type="int" Mode="In" />
           <Parameter Name="NMVNTaskID" Type="int" Mode="In" />
         </Function>
+        <Function Name="GetUserControlIndexes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserID" Type="int" Mode="In" />
+          <Parameter Name="FromDate" Type="datetime" Mode="In" />
+          <Parameter Name="ToDate" Type="datetime" Mode="In" />
+        </Function>
         <Function Name="GetUserGroupAvailableMembers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserGroupID" Type="int" Mode="In" />
         </Function>
@@ -4986,7 +4991,12 @@
           </FunctionImport>
           <FunctionImport Name="GetOnDataLogs" ReturnType="Collection(Int32)" />
           <FunctionImport Name="UpdateOnDataLogs">
-            <Parameter Name="OnDataLogs" Mode="In" Type="Int32" />
+          <Parameter Name="OnDataLogs" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetUserControlIndexes" ReturnType="Collection(TotalSmartCodingModel.UserControlIndex)">
+            <Parameter Name="UserID" Mode="In" Type="Int32" />
+            <Parameter Name="FromDate" Mode="In" Type="DateTime" />
+            <Parameter Name="ToDate" Mode="In" Type="DateTime" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
@@ -8763,6 +8773,11 @@
           <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="Password" Nullable="false" MaxLength="100" />
         </ComplexType>
+        <ComplexType Name="UserControlIndex">
+          <Property Type="Int32" Name="UserID" Nullable="true" />
+          <Property Type="String" Name="SecurityIdentifier" Nullable="false" MaxLength="256" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="256" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -11576,6 +11591,15 @@
           <FunctionImportMapping FunctionImportName="AddEventLogs" FunctionName="TotalSmartCodingModel.Store.AddEventLogs" />
           <FunctionImportMapping FunctionImportName="GetOnDataLogs" FunctionName="TotalSmartCodingModel.Store.GetOnDataLogs" />
           <FunctionImportMapping FunctionImportName="UpdateOnDataLogs" FunctionName="TotalSmartCodingModel.Store.UpdateOnDataLogs" />
+          <FunctionImportMapping FunctionImportName="GetUserControlIndexes" FunctionName="TotalSmartCodingModel.Store.GetUserControlIndexes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TotalSmartCodingModel.UserControlIndex">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="SecurityIdentifier" ColumnName="SecurityIdentifier" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

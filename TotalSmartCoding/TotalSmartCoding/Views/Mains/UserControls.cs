@@ -38,8 +38,8 @@ namespace TotalSmartCoding.Views.Mains
             {
                 this.userGroupAPIs = new UserGroupAPIs(CommonNinject.Kernel.Get<IUserGroupAPIRepository>());
 
-                this.fastUserGroups.ShowGroups = true;
-                this.fastUserGroups.AboutToCreateGroups += fastGroups_AboutToCreateGroups;
+                this.fastUserControlIndexes.ShowGroups = true;
+                this.fastUserControlIndexes.AboutToCreateGroups += fastGroups_AboutToCreateGroups;
 
                 this.fastUserGroupDetails.ShowGroups = true;
                 this.fastUserGroupDetails.AboutToCreateGroups += fastGroups_AboutToCreateGroups;
@@ -109,10 +109,10 @@ namespace TotalSmartCoding.Views.Mains
         {
             try
             {
-                this.fastUserGroups.SetObjects(this.userGroupAPIs.GetUserGroupIndexes());
-                this.fastUserGroups.Sort(this.olvUserGroupType, SortOrder.Ascending);
+                this.fastUserControlIndexes.SetObjects(this.userGroupAPIs.GetUserGroupIndexes());
+                this.fastUserControlIndexes.Sort(this.olvUserGroupType, SortOrder.Ascending);
 
-                fastUserGroups_SelectedIndexChanged(this.fastUserGroups, new EventArgs());
+                fastUserGroups_SelectedIndexChanged(this.fastUserControlIndexes, new EventArgs());
             }
             catch (Exception exception)
             {
@@ -138,8 +138,8 @@ namespace TotalSmartCoding.Views.Mains
             {
                 foreach (OLVGroup olvGroup in e.Groups)
                 {
-                    olvGroup.TitleImage = sender.Equals(this.fastUserGroups) ? "Assembly-32" : "UserGroupN";
-                    olvGroup.Subtitle = olvGroup.Contents.Count.ToString() + (sender.Equals(this.fastUserGroups) ? " Group" : " User") + (olvGroup.Contents.Count > 1 ? "s" : "");
+                    olvGroup.TitleImage = sender.Equals(this.fastUserControlIndexes) ? "Assembly-32" : "UserGroupN";
+                    olvGroup.Subtitle = olvGroup.Contents.Count.ToString() + (sender.Equals(this.fastUserControlIndexes) ? " Group" : " User") + (olvGroup.Contents.Count > 1 ? "s" : "");
                 }
             }
         }
@@ -161,9 +161,9 @@ namespace TotalSmartCoding.Views.Mains
 
         private void fastUserGroups_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (this.fastUserGroups.SelectedObject != null)
+            if (this.fastUserControlIndexes.SelectedObject != null)
             {
-                UserGroupIndex userGroupIndex = (UserGroupIndex)this.fastUserGroups.SelectedObject;
+                UserGroupIndex userGroupIndex = (UserGroupIndex)this.fastUserControlIndexes.SelectedObject;
                 if (userGroupIndex != null)
                     this.SelectedUserGroupIndex = userGroupIndex;
             }

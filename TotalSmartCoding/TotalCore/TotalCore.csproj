@@ -72,6 +72,7 @@
     <Compile Include="Repositories\Generals\IOleDbRepository.cs" />
     <Compile Include="Repositories\Generals\IOrganizationalUnitRepository.cs" />
     <Compile Include="Repositories\Generals\IReportRepository.cs" />
+    <Compile Include="Repositories\Generals\IUserControlRepository.cs" />
     <Compile Include="Repositories\Generals\IUserGroupRepository.cs" />
     <Compile Include="Repositories\Generals\IUserRepository.cs" />
     <Compile Include="Repositories\IBaseRepository.cs" />
