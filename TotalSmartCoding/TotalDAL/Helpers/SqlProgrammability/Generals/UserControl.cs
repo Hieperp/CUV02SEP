@@ -25,9 +25,9 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             //this.UserControlAdd();
             //this.UserControlRemove();
 
-            //this.GetUserControlAvailableGroups();
 
             this.GetUserControlGroups();
+            this.GetUserControlAvailableGroups();
         }
 
         private void GetUserControlIndexes()
@@ -128,17 +128,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             this.totalSmartCodingEntities.CreateStoredProcedure("UserControlRemove", queryString);
         }
 
-        private void GetUserControlAvailableGroups()
-        {
-            string queryString = " @UserControlID int " + "\r\n";
-            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
-            queryString = queryString + " AS " + "\r\n";
-            queryString = queryString + "       BEGIN " + "\r\n";
-            queryString = queryString + "           SELECT DISTINCT     SecurityIdentifier, UserName, N'Chevron Vietnam' AS UserType FROM Users WHERE SecurityIdentifier NOT IN (SELECT SecurityIdentifier FROM UserControlDetails WHERE UserControlID = @UserControlID) ORDER BY UserName " + "\r\n";
-            queryString = queryString + "       END " + "\r\n";
-
-            this.totalSmartCodingEntities.CreateStoredProcedure("GetUserControlAvailableGroups", queryString);
-        }
+        
 
         private void GetUserControlGroups()
         {
@@ -156,6 +146,18 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             queryString = queryString + "    END " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("GetUserControlGroups", queryString);
+        }
+
+        private void GetUserControlAvailableGroups()
+        {
+            string queryString = " @SecurityIdentifier nvarchar(256) " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+            queryString = queryString + "       BEGIN " + "\r\n";
+            queryString = queryString + "           SELECT  UserGroupID, Code, Name, Description, N'Chevron Vietnam' AS UserGroup FROM UserGroups WHERE UserGroupID NOT IN (SELECT UserGroupID FROM UserGroupDetails WHERE SecurityIdentifier = @SecurityIdentifier) ORDER BY Code, Name " + "\r\n";
+            queryString = queryString + "       END " + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("GetUserControlAvailableGroups", queryString);
         }
 
     }

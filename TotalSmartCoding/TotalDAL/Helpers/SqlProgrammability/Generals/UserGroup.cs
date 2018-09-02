@@ -25,12 +25,13 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             this.UserGroupAdd();
             this.UserGroupRemove();
 
+           
+
+            this.GetUserGroupMembers();
             this.GetUserGroupAvailableMembers();
 
             this.UserGroupAddMember();
             this.UserGroupRemoveMember();
-
-            this.GetUserGroupMembers();
         }
 
         private void GetUserGroupIndexes()
@@ -121,6 +122,31 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             this.totalSmartCodingEntities.CreateStoredProcedure("UserGroupRemove", queryString);
         }
 
+
+
+
+
+
+
+
+        private void GetUserGroupMembers()
+        {
+            string queryString;
+
+            queryString = " @UserGroupID int " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+            queryString = queryString + "    BEGIN " + "\r\n";
+
+            queryString = queryString + "       SELECT      UserGroupDetails.UserGroupDetailID, UserGroupDetails.UserGroupID, UserGroupDetails.SecurityIdentifier, Users.UserName, N'Chevron Vietnam' AS UserType " + "\r\n";
+            queryString = queryString + "       FROM        UserGroupDetails INNER JOIN (SELECT DISTINCT SecurityIdentifier, UserName FROM Users) Users ON UserGroupDetails.UserGroupID = @UserGroupID AND UserGroupDetails.SecurityIdentifier = Users.SecurityIdentifier " + "\r\n";
+            queryString = queryString + "       ORDER BY    UserGroupDetails.UserGroupDetailID " + "\r\n";
+
+            queryString = queryString + "    END " + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("GetUserGroupMembers", queryString);
+        }
+
         private void GetUserGroupAvailableMembers()
         {
             string queryString = " @UserGroupID int " + "\r\n";
@@ -177,24 +203,6 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             queryString = queryString + "       END " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("UserGroupRemoveMember", queryString);
-        }
-
-        private void GetUserGroupMembers()
-        {
-            string queryString;
-
-            queryString = " @UserGroupID int " + "\r\n";
-            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
-            queryString = queryString + " AS " + "\r\n";
-            queryString = queryString + "    BEGIN " + "\r\n";
-
-            queryString = queryString + "       SELECT      UserGroupDetails.UserGroupDetailID, UserGroupDetails.UserGroupID, UserGroupDetails.SecurityIdentifier, Users.UserName, N'Chevron Vietnam' AS UserType " + "\r\n";
-            queryString = queryString + "       FROM        UserGroupDetails INNER JOIN (SELECT DISTINCT SecurityIdentifier, UserName FROM Users) Users ON UserGroupDetails.UserGroupID = @UserGroupID AND UserGroupDetails.SecurityIdentifier = Users.SecurityIdentifier " + "\r\n";
-            queryString = queryString + "       ORDER BY    UserGroupDetails.UserGroupDetailID " + "\r\n";
-
-            queryString = queryString + "    END " + "\r\n";
-
-            this.totalSmartCodingEntities.CreateStoredProcedure("GetUserGroupMembers", queryString);
         }
 
     }
