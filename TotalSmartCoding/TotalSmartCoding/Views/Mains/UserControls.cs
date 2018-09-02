@@ -26,6 +26,7 @@ namespace TotalSmartCoding.Views.Mains
 {
     public partial class UserControls : Form
     {
+        private IUserControlRepository userControlRepository { get; set; }
         private UserControlAPIs userControlAPIs { get; set; }
         private UserGroupAPIs userGroupAPIs { get; set; }
 
@@ -35,6 +36,7 @@ namespace TotalSmartCoding.Views.Mains
             InitializeComponent();
             try
             {
+                this.userControlRepository = CommonNinject.Kernel.Get<IUserControlRepository>();
                 this.userControlAPIs = new UserControlAPIs(CommonNinject.Kernel.Get<IUserControlAPIRepository>());
                 this.userGroupAPIs = new UserGroupAPIs(CommonNinject.Kernel.Get<IUserGroupAPIRepository>());
 
@@ -124,6 +126,10 @@ namespace TotalSmartCoding.Views.Mains
 
             wizardUserControlRegister.Dispose();
             if (dialogResult == DialogResult.OK) this.LoadUserControls();
+
+            
+            //DeregisterUser PAHI CHU Y DEN VIEC: LEAVE GROUP
+
         }
 
         #endregion Add, Remove UserGroup
@@ -154,7 +160,7 @@ namespace TotalSmartCoding.Views.Mains
                     this.GetUserControlGroups();
 
                     this.buttonUserToggleVoid.Enabled = !this.selectedUserControlIndex.IsDatabaseAdmin;
-                    this.buttonDeregisterUser.Enabled = !this.selectedUserControlIndex.IsDatabaseAdmin ;//&& this.userRepository.GetEditable(this.selectedUserControlIndex.UserID);
+                    this.buttonDeregisterUser.Enabled = !this.selectedUserControlIndex.IsDatabaseAdmin && this.userControlRepository.GetEditable((int)this.selectedUserControlIndex.UserID);
 
                 }
             }

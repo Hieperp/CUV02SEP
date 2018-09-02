@@ -4,6 +4,10 @@ using TotalModel.Models;
 
 namespace TotalCore.Repositories.Generals
 {
+    public interface IUserControlRepository : IGenericRepository<User>
+    {
+    }
+
     public interface IUserControlAPIRepository : IGenericAPIRepository
     {
         IList<UserControlGroup> GetUserControlGroups(string securityIdentifier);

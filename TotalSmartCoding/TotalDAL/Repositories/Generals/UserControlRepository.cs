@@ -7,6 +7,14 @@ using TotalCore.Repositories.Generals;
 
 namespace TotalDAL.Repositories.Generals
 {
+    public class UserControlRepository : GenericRepository<User>, IUserControlRepository
+    {
+        public UserControlRepository(TotalSmartCodingEntities totalSmartCodingEntities)
+            : base(totalSmartCodingEntities, "UserControlEditable")
+        {
+        }
+    }
+
     public class UserControlAPIRepository : GenericAPIRepository, IUserControlAPIRepository
     {
         public UserControlAPIRepository(TotalSmartCodingEntities totalSmartCodingEntities)
