@@ -150,7 +150,7 @@ namespace TotalSmartCoding.Views.Mains
                 if (this.selectedUserControlIndex != value)
                 {
                     this.selectedUserControlIndex = value;
-                    this.GetUserControls();
+                    this.GetUserSalespersons();
                     this.GetUserControlGroups();
                 }
             }
@@ -166,7 +166,7 @@ namespace TotalSmartCoding.Views.Mains
             }
             else
             {
-                this.GetUserControls();
+                this.GetUserSalespersons();
                 this.GetUserControlGroups();
             }
         }
@@ -187,7 +187,7 @@ namespace TotalSmartCoding.Views.Mains
             }
         }
 
-        private void GetUserControls()
+        private void GetUserSalespersons()
         {
             return; //--xxx
             try
