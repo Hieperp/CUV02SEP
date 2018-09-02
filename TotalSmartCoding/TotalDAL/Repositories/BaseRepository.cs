@@ -747,7 +747,7 @@ namespace TotalDAL.Repositories
         public void UpdateUserControls()
         {
             //CLEAR InActive
-            this.ExecuteStoreCommand("UPDATE      Users                       SET InActive = 0", new ObjectParameter[] { });
+            this.ExecuteStoreCommand("UPDATE      Users                       SET InActive = 0, FirstName = N'', LastName = N'' ", new ObjectParameter[] { });
             this.ExecuteStoreCommand("UPDATE      AccessControls              SET InActive = 0", new ObjectParameter[] { });
             this.ExecuteStoreCommand("UPDATE      OrganizationalUnitUsers     SET InActive = 0, InActiveDate = GetDate()", new ObjectParameter[] { });
 

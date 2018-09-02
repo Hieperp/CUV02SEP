@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Objects;
 
 using TotalModel.Models;
 using TotalCore.Repositories.Generals;
@@ -22,6 +23,15 @@ namespace TotalDAL.Repositories.Generals
         {
             return this.TotalSmartCodingEntities.GetUserControlAvailableGroups(securityIdentifier).ToList();
         }
-        
+
+
+
+
+
+
+        public int UpdateUserName(string securityIdentifier, string userName)
+        {
+            return this.ExecuteStoreCommand(@" UPDATE Users SET UserName =  N'" + userName + "' WHERE SecurityIdentifier = N'" + securityIdentifier + "'", new ObjectParameter[] { });
+        }
     }
 }

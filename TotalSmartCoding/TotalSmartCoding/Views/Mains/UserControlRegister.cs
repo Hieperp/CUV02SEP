@@ -16,13 +16,13 @@ namespace TotalSmartCoding.Views.Mains
     public partial class UserControlRegister : Form
     {
 
-        private UserAPIs userAPIs { get; set; }
+        private UserControlAPIs userControlAPIs { get; set; }
 
         public string UserName { get; set; }
 
         private Binding bindingUserName;
 
-        public UserControlRegister(UserAPIs userAPIs)
+        public UserControlRegister(UserControlAPIs userControlAPIs)
         {
             InitializeComponent();
 
@@ -41,16 +41,16 @@ namespace TotalSmartCoding.Views.Mains
                     foreach (var found in srch.FindAll())// find all matches
                     {// do whatever here - "found" is of type "Principal" - it could be user, group, computer.....          
 
-                        if (found.Sid.Value != null && found.Sid.Value != "" && found.SamAccountName != null && found.SamAccountName != "") userAPIs.UpdateUserName(found.Sid.Value, found.SamAccountName);
+                        if (found.Sid.Value != null && found.Sid.Value != "" && found.SamAccountName != null && found.SamAccountName != "") userControlAPIs.UpdateUserName(found.Sid.Value, found.SamAccountName);
 
-                        allUsers.Add(new DomainUser() { FirstName = "", LastName = "", UserName = found.SamAccountName, SecurityIdentifier = found.Sid.Value }); //found.UserPrincipalName: the same as SamAccountName, but with @chevron.com
+                        allUsers.Add(new DomainUser() { FirstName = "", LastName = "", DistinguishedName = this.GetWindowsIdentityName(found.DistinguishedName), UserName = found.SamAccountName, SecurityIdentifier = found.Sid.Value }); //found.UserPrincipalName: the same as SamAccountName, but with @chevron.com
                     }
                 }
                 else
                 {
                     for (int i = 1; i <= 5; i++)
                     {
-                        allUsers.Add(new DomainUser() { FirstName = "FIST NAME" + i.ToString(), LastName = "FIST NAME" + i.ToString(), UserName = "CHEVRONVN\\Vendor " + i.ToString(), SecurityIdentifier = "S-1-5-21-290773801108-" + DateTime.Now.ToString() });
+                        allUsers.Add(new DomainUser() { FirstName = "FIST NAME" + i.ToString(), LastName = "LAST NAME " + i.ToString(), DistinguishedName = "Distinguished Name " + i.ToString(), UserName = "CHEVRONVN\\Vendor " + i.ToString(), SecurityIdentifier = "S-1-5-21-290773801108-TEST-" + i.ToString() });
                     }
                 }
 
@@ -60,7 +60,7 @@ namespace TotalSmartCoding.Views.Mains
                 this.bindingUserName = this.combexUserID.DataBindings.Add("SelectedValue", this, CommonExpressions.PropertyName<DomainUser>(p => p.UserName), true, DataSourceUpdateMode.OnPropertyChanged);
                 this.bindingUserName.BindingComplete += binding_BindingComplete;
 
-                this.userAPIs = userAPIs;
+                this.userControlAPIs = userControlAPIs;
             }
             catch (Exception exception)
             {
@@ -68,10 +68,30 @@ namespace TotalSmartCoding.Views.Mains
             }
         }
 
+        private string GetWindowsIdentityName(string distinguishedName)
+        {
+            string windowsIdentityName = "";
+
+            string[] arrayName = distinguishedName.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (string stringName in arrayName)
+            {
+                if (stringName.IndexOf("CN=") >= 0)
+                    windowsIdentityName = windowsIdentityName + "\\" + stringName.Substring(stringName.IndexOf("CN=") + "CN=".Length);
+                if (stringName.IndexOf("DC=") >= 0 && stringName.IndexOf("DC=com") < 0)
+                    windowsIdentityName = (stringName.Substring(stringName.IndexOf("DC=") + "DC=".Length)).ToUpper() + windowsIdentityName;
+            }
+
+            return windowsIdentityName;
+        }
 
         private void binding_BindingComplete(object sender, BindingCompleteEventArgs e)
         {
             this.buttonOK.Enabled = this.UserName != null;
+            if (this.combexUserID.SelectedIndex >= 0 && this.UserName != null)
+            {
+                DomainUser domainUser = this.combexUserID.SelectedItem as DomainUser;
+                if (domainUser != null) this.textexDistinguishedName.Text = domainUser.DistinguishedName;
+            }
         }
 
         private void buttonOKESC_Click(object sender, EventArgs e)
@@ -85,7 +105,7 @@ namespace TotalSmartCoding.Views.Mains
                         DomainUser domainUser = this.combexUserID.SelectedItem as DomainUser;
                         if (domainUser != null)
                         {
-                            //this.userAPIs.UserControlRegister(organizationalUnitIndex.LocationID, organizationalUnitIndex.OrganizationalUnitID, domainUser.FirstName, domainUser.LastName, domainUser.UserName, domainUser.SecurityIdentifier, (int)this.SameOUAccessLevel, (int)this.SameLocationAccessLevel, (int)this.OtherOUAccessLevel);
+                            //this.userControlAPIs.UserControlRegister(organizationalUnitIndex.LocationID, organizationalUnitIndex.OrganizationalUnitID, domainUser.FirstName, domainUser.LastName, domainUser.UserName, domainUser.SecurityIdentifier, (int)this.SameOUAccessLevel, (int)this.SameLocationAccessLevel, (int)this.OtherOUAccessLevel);
                             this.DialogResult = DialogResult.OK;
                         }
                     }
@@ -107,6 +127,7 @@ namespace TotalSmartCoding.Views.Mains
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string UserName { get; set; }
+        public string DistinguishedName { get; set; }
         public string SecurityIdentifier { get; set; }
     }
 }

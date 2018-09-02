@@ -33,10 +33,10 @@
             this.buttonOK = new System.Windows.Forms.ToolStripButton();
             this.layoutTop = new System.Windows.Forms.TableLayoutPanel();
             this.combexUserID = new CustomControls.CombexBox();
-            this.combexOrganizationalUnitID = new CustomControls.CombexBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.textexDistinguishedName = new CustomControls.TextexBox();
             this.toolStrip1.SuspendLayout();
             this.layoutTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -50,10 +50,10 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.buttonESC,
             this.buttonOK});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 343);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 160);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStrip1.Size = new System.Drawing.Size(622, 39);
+            this.toolStrip1.Size = new System.Drawing.Size(499, 39);
             this.toolStrip1.TabIndex = 100;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -94,10 +94,10 @@
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 15F));
             this.layoutTop.Controls.Add(this.combexUserID, 3, 2);
-            this.layoutTop.Controls.Add(this.combexOrganizationalUnitID, 3, 4);
             this.layoutTop.Controls.Add(this.pictureBox2, 1, 1);
             this.layoutTop.Controls.Add(this.label5, 3, 1);
             this.layoutTop.Controls.Add(this.label2, 3, 3);
+            this.layoutTop.Controls.Add(this.textexDistinguishedName, 3, 4);
             this.layoutTop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutTop.Location = new System.Drawing.Point(0, 0);
             this.layoutTop.Margin = new System.Windows.Forms.Padding(0);
@@ -120,7 +120,7 @@
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.layoutTop.Size = new System.Drawing.Size(622, 343);
+            this.layoutTop.Size = new System.Drawing.Size(499, 160);
             this.layoutTop.TabIndex = 101;
             // 
             // combexUserID
@@ -136,31 +136,14 @@
             this.combexUserID.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.combexUserID.Name = "combexUserID";
             this.combexUserID.ReadOnly = false;
-            this.combexUserID.Size = new System.Drawing.Size(522, 25);
+            this.combexUserID.Size = new System.Drawing.Size(399, 25);
             this.combexUserID.TabIndex = 1;
-            // 
-            // combexOrganizationalUnitID
-            // 
-            this.combexOrganizationalUnitID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.combexOrganizationalUnitID.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.combexOrganizationalUnitID.BackColor = System.Drawing.SystemColors.Window;
-            this.combexOrganizationalUnitID.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.combexOrganizationalUnitID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.combexOrganizationalUnitID.Editable = true;
-            this.combexOrganizationalUnitID.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.combexOrganizationalUnitID.FormattingEnabled = true;
-            this.combexOrganizationalUnitID.Location = new System.Drawing.Point(84, 85);
-            this.combexOrganizationalUnitID.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
-            this.combexOrganizationalUnitID.Name = "combexOrganizationalUnitID";
-            this.combexOrganizationalUnitID.ReadOnly = false;
-            this.combexOrganizationalUnitID.Size = new System.Drawing.Size(522, 25);
-            this.combexOrganizationalUnitID.TabIndex = 2;
             // 
             // pictureBox2
             // 
             this.pictureBox2.Image = global::TotalSmartCoding.Properties.Resources.add_user;
             this.pictureBox2.Location = new System.Drawing.Point(28, 20);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox2.Name = "pictureBox2";
             this.layoutTop.SetRowSpan(this.pictureBox2, 4);
             this.pictureBox2.Size = new System.Drawing.Size(32, 32);
@@ -187,25 +170,37 @@
             this.label2.Location = new System.Drawing.Point(81, 67);
             this.label2.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(118, 17);
+            this.label2.Size = new System.Drawing.Size(120, 17);
             this.label2.TabIndex = 83;
-            this.label2.Text = "Organizational Unit";
+            this.label2.Text = "Distinguished Name";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // textexDistinguishedName
+            // 
+            this.textexDistinguishedName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textexDistinguishedName.Editable = false;
+            this.textexDistinguishedName.Enabled = false;
+            this.textexDistinguishedName.Font = new System.Drawing.Font("Calibri Light", 10.2F);
+            this.textexDistinguishedName.Location = new System.Drawing.Point(84, 85);
+            this.textexDistinguishedName.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
+            this.textexDistinguishedName.Name = "textexDistinguishedName";
+            this.textexDistinguishedName.Size = new System.Drawing.Size(399, 24);
+            this.textexDistinguishedName.TabIndex = 84;
             // 
             // UserControlRegister
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(622, 382);
+            this.ClientSize = new System.Drawing.Size(499, 199);
             this.Controls.Add(this.layoutTop);
             this.Controls.Add(this.toolStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "UserControlRegister";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Register user from domain directory for new location";
+            this.Text = "Register user from domain directories";
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.layoutTop.ResumeLayout(false);
@@ -224,8 +219,8 @@
         private System.Windows.Forms.TableLayoutPanel layoutTop;
         private CustomControls.CombexBox combexUserID;
         private System.Windows.Forms.Label label5;
-        private CustomControls.CombexBox combexOrganizationalUnitID;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private CustomControls.TextexBox textexDistinguishedName;
     }
 }

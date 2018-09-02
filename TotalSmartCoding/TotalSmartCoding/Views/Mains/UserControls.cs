@@ -119,11 +119,11 @@ namespace TotalSmartCoding.Views.Mains
 
         private void buttonRegisterDeregisterUser_Click(object sender, EventArgs e)
         {
-            //UserGroups wizardUserGroups = new UserGroups(this.userGroupAPIs, (sender.Equals(this.buttonDeregisterUser) ? this.SelectedUserControlIndex : null));
-            //DialogResult dialogResult = wizardUserGroups.ShowDialog();
+            UserControlRegister wizardUserControlRegister = new UserControlRegister(this.userControlAPIs);
+            DialogResult dialogResult = wizardUserControlRegister.ShowDialog();
 
-            //wizardUserGroups.Dispose();
-            //if (dialogResult == DialogResult.OK) this.LoadUserControls();
+            wizardUserControlRegister.Dispose();
+            if (dialogResult == DialogResult.OK) this.LoadUserControls();
         }
 
         #endregion Add, Remove UserGroup
