@@ -24,7 +24,10 @@ namespace TotalDAL.Repositories.Generals
             return this.TotalSmartCodingEntities.GetUserControlAvailableGroups(securityIdentifier).ToList();
         }
 
-
+        public int UserControlRegister(string firstName, string lastName, string userName, string securityIdentifier)
+        {
+            return this.TotalSmartCodingEntities.UserControlRegister(firstName, lastName, userName, securityIdentifier);
+        }
 
 
 

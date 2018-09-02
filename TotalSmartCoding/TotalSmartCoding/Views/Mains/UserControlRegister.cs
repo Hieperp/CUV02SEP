@@ -118,7 +118,7 @@ namespace TotalSmartCoding.Views.Mains
                         DomainUser domainUser = this.combexUserID.SelectedItem as DomainUser;
                         if (domainUser != null)
                         {
-                            //this.userControlAPIs.UserControlRegister(organizationalUnitIndex.LocationID, organizationalUnitIndex.OrganizationalUnitID, domainUser.FirstName, domainUser.LastName, domainUser.UserName, domainUser.SecurityIdentifier, (int)this.SameOUAccessLevel, (int)this.SameLocationAccessLevel, (int)this.OtherOUAccessLevel);
+                            this.userControlAPIs.UserControlRegister(domainUser.FirstName, domainUser.LastName, domainUser.UserName, domainUser.SecurityIdentifier);
                             this.DialogResult = DialogResult.OK;
                         }
                     }

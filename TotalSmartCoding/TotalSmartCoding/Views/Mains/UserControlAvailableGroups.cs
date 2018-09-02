@@ -44,7 +44,7 @@ namespace TotalSmartCoding.Views.Mains
             {
                 foreach (OLVGroup olvGroup in e.Groups)
                 {
-                    olvGroup.TitleImage = "UserGroup";
+                    olvGroup.TitleImage = "Assembly-32";
                     olvGroup.Subtitle = "Available " + olvGroup.Contents.Count.ToString() + " Group" + (olvGroup.Contents.Count > 1 ? "s" : "");
                 }
             }

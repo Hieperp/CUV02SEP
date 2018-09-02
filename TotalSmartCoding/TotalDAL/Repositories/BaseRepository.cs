@@ -773,6 +773,8 @@ namespace TotalDAL.Repositories
                 }
             }
 
+
+            this.ExecuteStoreCommand("UPDATE Users SET IsDatabaseAdmin = 1 WHERE SecurityIdentifier IN (SELECT SecurityIdentifier FROM Users WHERE IsDatabaseAdmin = 1) ", new ObjectParameter[] { });
         }
 
 

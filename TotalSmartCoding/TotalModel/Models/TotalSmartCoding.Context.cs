@@ -2911,5 +2911,35 @@ namespace TotalModel.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UserControlAvailableGroup>("GetUserControlAvailableGroups", securityIdentifierParameter);
         }
+    
+        public virtual int UserControlRegister(string firstName, string lastName, string userName, string securityIdentifier)
+        {
+            var firstNameParameter = firstName != null ?
+                new ObjectParameter("FirstName", firstName) :
+                new ObjectParameter("FirstName", typeof(string));
+    
+            var lastNameParameter = lastName != null ?
+                new ObjectParameter("LastName", lastName) :
+                new ObjectParameter("LastName", typeof(string));
+    
+            var userNameParameter = userName != null ?
+                new ObjectParameter("UserName", userName) :
+                new ObjectParameter("UserName", typeof(string));
+    
+            var securityIdentifierParameter = securityIdentifier != null ?
+                new ObjectParameter("SecurityIdentifier", securityIdentifier) :
+                new ObjectParameter("SecurityIdentifier", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UserControlRegister", firstNameParameter, lastNameParameter, userNameParameter, securityIdentifierParameter);
+        }
+    
+        public virtual ObjectResult<string> UserControlEditable(Nullable<int> entityID)
+        {
+            var entityIDParameter = entityID.HasValue ?
+                new ObjectParameter("EntityID", entityID) :
+                new ObjectParameter("EntityID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UserControlEditable", entityIDParameter);
+        }
     }
 }

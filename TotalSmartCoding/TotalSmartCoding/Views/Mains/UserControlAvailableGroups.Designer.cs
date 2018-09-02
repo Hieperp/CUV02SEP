@@ -36,9 +36,9 @@
             this.fastUserControlAvailableGroups = new BrightIdeasSoftware.FastObjectListView();
             this.olvID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvUserGroup = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvGroupCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvGroupName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.imageList32 = new System.Windows.Forms.ImageList(this.components);
-            this.olvGroupCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastUserControlAvailableGroups)).BeginInit();
             this.SuspendLayout();
@@ -54,7 +54,7 @@
             this.toolStrip1.Location = new System.Drawing.Point(0, 366);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStrip1.Size = new System.Drawing.Size(555, 39);
+            this.toolStrip1.Size = new System.Drawing.Size(534, 39);
             this.toolStrip1.TabIndex = 100;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -79,8 +79,8 @@
             this.buttonOK.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.buttonOK.Size = new System.Drawing.Size(66, 36);
-            this.buttonOK.Text = "Add";
+            this.buttonOK.Size = new System.Drawing.Size(65, 36);
+            this.buttonOK.Text = "Join";
             this.buttonOK.Click += new System.EventHandler(this.buttonOKESC_Click);
             // 
             // fastUserControlAvailableGroups
@@ -106,7 +106,7 @@
             this.fastUserControlAvailableGroups.Name = "fastUserControlAvailableGroups";
             this.fastUserControlAvailableGroups.OwnerDraw = true;
             this.fastUserControlAvailableGroups.ShowGroups = false;
-            this.fastUserControlAvailableGroups.Size = new System.Drawing.Size(555, 366);
+            this.fastUserControlAvailableGroups.Size = new System.Drawing.Size(534, 366);
             this.fastUserControlAvailableGroups.TabIndex = 101;
             this.fastUserControlAvailableGroups.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastUserControlAvailableGroups.UseCompatibleStateImageBehavior = false;
@@ -125,6 +125,12 @@
             this.olvUserGroup.AspectName = "UserGroup";
             this.olvUserGroup.IsVisible = false;
             this.olvUserGroup.Text = "";
+            // 
+            // olvGroupCode
+            // 
+            this.olvGroupCode.AspectName = "GroupCode";
+            this.olvGroupCode.Text = "";
+            this.olvGroupCode.Width = 208;
             // 
             // olvGroupName
             // 
@@ -150,22 +156,17 @@
             this.imageList32.Images.SetKeyName(8, "Assembly-32");
             this.imageList32.Images.SetKeyName(9, "UserGroupM");
             this.imageList32.Images.SetKeyName(10, "UserGroupR");
-            // 
-            // olvGroupCode
-            // 
-            this.olvGroupCode.AspectName = "GroupCode";
-            this.olvGroupCode.Text = "";
-            this.olvGroupCode.Width = 208;
+            this.imageList32.Images.SetKeyName(11, "Manage_group");
             // 
             // UserControlAvailableGroups
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(555, 405);
+            this.ClientSize = new System.Drawing.Size(534, 405);
             this.Controls.Add(this.fastUserControlAvailableGroups);
             this.Controls.Add(this.toolStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "UserControlAvailableGroups";

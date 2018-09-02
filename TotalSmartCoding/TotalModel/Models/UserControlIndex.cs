@@ -17,5 +17,6 @@ namespace TotalModel.Models
         public string SecurityIdentifier { get; set; }
         public string UserName { get; set; }
         public string UserControlType { get; set; }
+        public bool IsDatabaseAdmin { get; set; }
     }
 }

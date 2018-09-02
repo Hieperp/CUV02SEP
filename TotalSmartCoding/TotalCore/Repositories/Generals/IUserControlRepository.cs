@@ -9,6 +9,7 @@ namespace TotalCore.Repositories.Generals
         IList<UserControlGroup> GetUserControlGroups(string securityIdentifier);
         IList<UserControlAvailableGroup> GetUserControlAvailableGroups(string securityIdentifier);
 
+        int UserControlRegister(string firstName, string lastName, string userName, string securityIdentifier);
 
         int UpdateUserName(string securityIdentifier, string userName);
     }

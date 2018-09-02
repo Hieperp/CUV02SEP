@@ -3117,6 +3117,15 @@
         <Function Name="UpdateOnDataLogs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="OnDataLogs" Type="int" Mode="In" />
         </Function>
+        <Function Name="UserControlEditable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UserControlRegister" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
+          <Parameter Name="LastName" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="SecurityIdentifier" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="UserEditable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="EntityID" Type="int" Mode="In" />
         </Function>
@@ -5009,6 +5018,15 @@
           </FunctionImport>
           <FunctionImport Name="GetUserControlAvailableGroups" ReturnType="Collection(TotalSmartCodingModel.UserControlAvailableGroup)">
           <Parameter Name="SecurityIdentifier" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UserControlRegister">
+            <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="LastName" Mode="In" Type="String" />
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="SecurityIdentifier" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UserControlEditable" ReturnType="Collection(String)">
+            <Parameter Name="EntityID" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
@@ -8790,6 +8808,7 @@
           <Property Type="String" Name="SecurityIdentifier" Nullable="false" MaxLength="256" />
           <Property Type="String" Name="UserName" Nullable="false" MaxLength="256" />
           <Property Type="String" Name="UserControlType" Nullable="false" MaxLength="15" />
+          <Property Type="Boolean" Name="IsDatabaseAdmin" Nullable="false" />
         </ComplexType>
         <ComplexType Name="UserControlGroup">
           <Property Type="Int32" Name="UserGroupDetailID" Nullable="false" />
@@ -11625,6 +11644,7 @@
                 <ScalarProperty Name="SecurityIdentifier" ColumnName="SecurityIdentifier" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="UserControlType" ColumnName="UserControlType" />
+                <ScalarProperty Name="IsDatabaseAdmin" ColumnName="IsDatabaseAdmin" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -11650,6 +11670,8 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UserControlRegister" FunctionName="TotalSmartCodingModel.Store.UserControlRegister" />
+          <FunctionImportMapping FunctionImportName="UserControlEditable" FunctionName="TotalSmartCodingModel.Store.UserControlEditable" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

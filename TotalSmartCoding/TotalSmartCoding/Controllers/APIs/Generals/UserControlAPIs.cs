@@ -36,6 +36,14 @@ namespace TotalSmartCoding.Controllers.APIs.Generals
             return this.userControlAPIRepository.GetUserControlAvailableGroups(securityIdentifier);
         }
 
+        public int UserControlRegister(string firstName, string lastName, string userName, string securityIdentifier)
+        {
+            return this.userControlAPIRepository.UserControlRegister(firstName, lastName, userName, securityIdentifier);
+        }
+
+
+
+
 
 
         public int UpdateUserName(string securityIdentifier, string userName)

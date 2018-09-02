@@ -152,6 +152,10 @@ namespace TotalSmartCoding.Views.Mains
                     this.selectedUserControlIndex = value;
                     this.GetUserSalespersons();
                     this.GetUserControlGroups();
+
+                    this.buttonUserToggleVoid.Enabled = !this.selectedUserControlIndex.IsDatabaseAdmin;
+                    this.buttonDeregisterUser.Enabled = !this.selectedUserControlIndex.IsDatabaseAdmin ;//&& this.userRepository.GetEditable(this.selectedUserControlIndex.UserID);
+
                 }
             }
         }
