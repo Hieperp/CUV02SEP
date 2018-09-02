@@ -114,7 +114,8 @@
 
             GoodsReceipts = 8077,
             WarehouseAdjustments = 8078,
-            GoodsReceiptDetailAvailables = 800001,
+
+            AvailableItems = 800001,
             PendingOrders = 80000101,
 
             TransferOrders = 8071,

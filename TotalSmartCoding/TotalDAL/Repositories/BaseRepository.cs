@@ -334,7 +334,7 @@ namespace TotalDAL.Repositories
             this.totalSmartCodingEntities.ColumnAdd("Employees", "InActive", "bit", "0", true);
             if (!this.totalSmartCodingEntities.ColumnExists("Employees", "EmployeeRoleIDs"))
             {
-                this.ExecuteStoreCommand("UPDATE ModuleDetails SET InActive = 1 WHERE ModuleDetailID IN (" + (int)GlobalEnums.NmvnTaskID.Territories + ", " + (int)GlobalEnums.NmvnTaskID.Warehouses + ", " + (int)GlobalEnums.NmvnTaskID.GoodsReceiptDetailAvailables + ", " + (int)GlobalEnums.NmvnTaskID.PendingOrders + ") ", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("UPDATE ModuleDetails SET InActive = 1 WHERE ModuleDetailID IN (" + (int)GlobalEnums.NmvnTaskID.Territories + ", " + (int)GlobalEnums.NmvnTaskID.Warehouses + ", " + (int)GlobalEnums.NmvnTaskID.AvailableItems + ", " + (int)GlobalEnums.NmvnTaskID.PendingOrders + ") ", new ObjectParameter[] { });
 
                 this.ExecuteStoreCommand("UPDATE Employees SET Title = N'#'", new ObjectParameter[] { });
 
@@ -1494,7 +1494,7 @@ namespace TotalDAL.Repositories
                 this.ExecuteStoreCommand("UPDATE ModuleDetails SET Controller = N'CUSTOMER MANAGEMENT' WHERE ModuleDetailID IN (" + (int)GlobalEnums.NmvnTaskID.Employees + "," + (int)GlobalEnums.NmvnTaskID.Customers + "," + (int)GlobalEnums.NmvnTaskID.Territories + ") ", new ObjectParameter[] { });
 
                 this.ExecuteStoreCommand("UPDATE ModuleDetails SET Controller = N'LOGISTICS ADMIN', ModuleID = 6 WHERE ModuleDetailID IN (" + (int)GlobalEnums.NmvnTaskID.SalesOrders + "," + (int)GlobalEnums.NmvnTaskID.DeliveryAdvices + "," + (int)GlobalEnums.NmvnTaskID.TransferOrders + ") ", new ObjectParameter[] { });
-                this.ExecuteStoreCommand("UPDATE ModuleDetails SET Controller = N'WAREHOUSE CONTROLS', ModuleID = 6 WHERE ModuleDetailID IN (" + (int)GlobalEnums.NmvnTaskID.GoodsReceipts + "," + (int)GlobalEnums.NmvnTaskID.GoodsIssues + "," + (int)GlobalEnums.NmvnTaskID.WarehouseAdjustments + "," + (int)GlobalEnums.NmvnTaskID.GoodsReceiptDetailAvailables + ") ", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("UPDATE ModuleDetails SET Controller = N'WAREHOUSE CONTROLS', ModuleID = 6 WHERE ModuleDetailID IN (" + (int)GlobalEnums.NmvnTaskID.GoodsReceipts + "," + (int)GlobalEnums.NmvnTaskID.GoodsIssues + "," + (int)GlobalEnums.NmvnTaskID.WarehouseAdjustments + "," + (int)GlobalEnums.NmvnTaskID.AvailableItems + ") ", new ObjectParameter[] { });
 
             }
 
