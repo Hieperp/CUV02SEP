@@ -31,44 +31,44 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserControls));
             this.toolUserGroupDetails = new System.Windows.Forms.ToolStrip();
+            this.buttonJoinGroup = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.buttonLeaveGroup = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.buttonManageGroups = new System.Windows.Forms.ToolStripButton();
             this.fastUserControlIndexes = new BrightIdeasSoftware.FastObjectListView();
             this.olvID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvUserControlType = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvUserControlName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.imageList32 = new System.Windows.Forms.ImageList(this.components);
             this.toolUserGroups = new System.Windows.Forms.ToolStrip();
+            this.buttonRegisterUser = new System.Windows.Forms.ToolStripButton();
+            this.buttonDeregisterUser = new System.Windows.Forms.ToolStripButton();
+            this.buttonUserToggleVoid = new System.Windows.Forms.ToolStripButton();
             this.olvTreePrimaryID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvTreeAncestorID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvTreeCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvTreeParameterName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.panelCenter = new System.Windows.Forms.Panel();
-            this.fastUserGroupDetails = new BrightIdeasSoftware.FastObjectListView();
-            this.olvColumn1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvGroupType = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvUserGroupName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.toolUserSalespersons = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.fastUserSalespersons = new BrightIdeasSoftware.FastObjectListView();
             this.olvColumn2 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvGroupType = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn3 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvUserGroupCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.toolUserSalespersons = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.buttonJoinGroup = new System.Windows.Forms.ToolStripButton();
-            this.buttonLeaveGroup = new System.Windows.Forms.ToolStripButton();
-            this.buttonManageGroups = new System.Windows.Forms.ToolStripButton();
-            this.buttonRegisterUser = new System.Windows.Forms.ToolStripButton();
-            this.buttonDeregisterUser = new System.Windows.Forms.ToolStripButton();
-            this.buttonUserToggleVoid = new System.Windows.Forms.ToolStripButton();
+            this.fastUserGroupDetails = new BrightIdeasSoftware.FastObjectListView();
+            this.olvColumn1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvUserGroupCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvUserGroupName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.toolUserGroupDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastUserControlIndexes)).BeginInit();
             this.toolUserGroups.SuspendLayout();
             this.panelCenter.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.fastUserGroupDetails)).BeginInit();
-            this.toolUserSalespersons.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastUserSalespersons)).BeginInit();
+            this.toolUserSalespersons.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fastUserGroupDetails)).BeginInit();
             this.SuspendLayout();
             // 
             // toolUserGroupDetails
@@ -87,15 +87,45 @@
             this.toolUserGroupDetails.TabIndex = 0;
             this.toolUserGroupDetails.Text = "toolStrip1";
             // 
+            // buttonJoinGroup
+            // 
+            this.buttonJoinGroup.Image = global::TotalSmartCoding.Properties.Resources.Add_UserGroup;
+            this.buttonJoinGroup.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonJoinGroup.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonJoinGroup.Name = "buttonJoinGroup";
+            this.buttonJoinGroup.Size = new System.Drawing.Size(133, 36);
+            this.buttonJoinGroup.Text = "Join a new group";
+            this.buttonJoinGroup.Click += new System.EventHandler(this.buttonJoinLeaveGroup_Click);
+            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 39);
             // 
+            // buttonLeaveGroup
+            // 
+            this.buttonLeaveGroup.Image = global::TotalSmartCoding.Properties.Resources.Remove_UserGroup;
+            this.buttonLeaveGroup.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonLeaveGroup.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonLeaveGroup.Name = "buttonLeaveGroup";
+            this.buttonLeaveGroup.Size = new System.Drawing.Size(154, 36);
+            this.buttonLeaveGroup.Text = "Leave selected group";
+            this.buttonLeaveGroup.Click += new System.EventHandler(this.buttonJoinLeaveGroup_Click);
+            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 39);
+            // 
+            // buttonManageGroups
+            // 
+            this.buttonManageGroups.Image = global::TotalSmartCoding.Properties.Resources.Manage_group;
+            this.buttonManageGroups.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonManageGroups.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonManageGroups.Name = "buttonManageGroups";
+            this.buttonManageGroups.Size = new System.Drawing.Size(126, 36);
+            this.buttonManageGroups.Text = "Manage groups";
+            this.buttonManageGroups.Click += new System.EventHandler(this.buttonManageGroups_Click);
             // 
             // fastUserControlIndexes
             // 
@@ -176,6 +206,35 @@
             this.toolUserGroups.TabIndex = 0;
             this.toolUserGroups.Text = "toolStrip2";
             // 
+            // buttonRegisterUser
+            // 
+            this.buttonRegisterUser.Image = global::TotalSmartCoding.Properties.Resources.add_user;
+            this.buttonRegisterUser.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonRegisterUser.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonRegisterUser.Name = "buttonRegisterUser";
+            this.buttonRegisterUser.Size = new System.Drawing.Size(144, 36);
+            this.buttonRegisterUser.Text = "Register a new user";
+            this.buttonRegisterUser.Click += new System.EventHandler(this.buttonRegisterDeregisterUser_Click);
+            // 
+            // buttonDeregisterUser
+            // 
+            this.buttonDeregisterUser.Image = global::TotalSmartCoding.Properties.Resources.remove_user;
+            this.buttonDeregisterUser.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonDeregisterUser.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonDeregisterUser.Name = "buttonDeregisterUser";
+            this.buttonDeregisterUser.Size = new System.Drawing.Size(167, 36);
+            this.buttonDeregisterUser.Text = "Deregister selected user";
+            this.buttonDeregisterUser.Click += new System.EventHandler(this.buttonRegisterDeregisterUser_Click);
+            // 
+            // buttonUserToggleVoid
+            // 
+            this.buttonUserToggleVoid.Image = global::TotalSmartCoding.Properties.Resources.no_persons_2;
+            this.buttonUserToggleVoid.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonUserToggleVoid.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonUserToggleVoid.Name = "buttonUserToggleVoid";
+            this.buttonUserToggleVoid.Size = new System.Drawing.Size(127, 36);
+            this.buttonUserToggleVoid.Text = "Set active status";
+            // 
             // olvTreePrimaryID
             // 
             this.olvTreePrimaryID.AspectName = "PrimaryID";
@@ -207,6 +266,92 @@
             this.panelCenter.Name = "panelCenter";
             this.panelCenter.Size = new System.Drawing.Size(764, 610);
             this.panelCenter.TabIndex = 74;
+            // 
+            // fastUserSalespersons
+            // 
+            this.fastUserSalespersons.AllColumns.Add(this.olvColumn2);
+            this.fastUserSalespersons.AllColumns.Add(this.olvGroupType);
+            this.fastUserSalespersons.AllColumns.Add(this.olvColumn3);
+            this.fastUserSalespersons.BackColor = System.Drawing.Color.Ivory;
+            this.fastUserSalespersons.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.olvColumn2,
+            this.olvColumn3});
+            this.fastUserSalespersons.Cursor = System.Windows.Forms.Cursors.Default;
+            this.fastUserSalespersons.Dock = System.Windows.Forms.DockStyle.Top;
+            this.fastUserSalespersons.Font = new System.Drawing.Font("Calibri Light", 10.2F);
+            this.fastUserSalespersons.FullRowSelect = true;
+            this.fastUserSalespersons.GroupImageList = this.imageList32;
+            this.fastUserSalespersons.HideSelection = false;
+            this.fastUserSalespersons.HighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
+            this.fastUserSalespersons.Location = new System.Drawing.Point(0, 322);
+            this.fastUserSalespersons.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.fastUserSalespersons.Name = "fastUserSalespersons";
+            this.fastUserSalespersons.OwnerDraw = true;
+            this.fastUserSalespersons.ShowGroups = false;
+            this.fastUserSalespersons.Size = new System.Drawing.Size(764, 244);
+            this.fastUserSalespersons.TabIndex = 104;
+            this.fastUserSalespersons.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
+            this.fastUserSalespersons.UseCompatibleStateImageBehavior = false;
+            this.fastUserSalespersons.UseFiltering = true;
+            this.fastUserSalespersons.View = System.Windows.Forms.View.Details;
+            this.fastUserSalespersons.VirtualMode = true;
+            // 
+            // olvColumn2
+            // 
+            this.olvColumn2.Text = "";
+            this.olvColumn2.Width = 20;
+            // 
+            // olvGroupType
+            // 
+            this.olvGroupType.AspectName = "GroupType";
+            this.olvGroupType.IsVisible = false;
+            this.olvGroupType.Text = "";
+            // 
+            // olvColumn3
+            // 
+            this.olvColumn3.AspectName = "UserName";
+            this.olvColumn3.FillsFreeSpace = true;
+            this.olvColumn3.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvColumn3.Sortable = false;
+            this.olvColumn3.Text = "";
+            this.olvColumn3.Width = 90;
+            // 
+            // toolUserSalespersons
+            // 
+            this.toolUserSalespersons.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolUserSalespersons.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolUserSalespersons.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton1,
+            this.toolStripSeparator3,
+            this.toolStripButton2});
+            this.toolUserSalespersons.Location = new System.Drawing.Point(0, 283);
+            this.toolUserSalespersons.Name = "toolUserSalespersons";
+            this.toolUserSalespersons.Size = new System.Drawing.Size(764, 39);
+            this.toolUserSalespersons.TabIndex = 103;
+            this.toolUserSalespersons.Text = "toolStrip1";
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.Image = global::TotalSmartCoding.Properties.Resources.Add_UserGroup;
+            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(163, 36);
+            this.toolStripButton1.Text = "Add a new salesperson";
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 39);
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.Image = global::TotalSmartCoding.Properties.Resources.Remove_UserGroup;
+            this.toolStripButton2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(196, 36);
+            this.toolStripButton2.Text = "Remove selected salesperson";
             // 
             // fastUserGroupDetails
             // 
@@ -244,11 +389,13 @@
             this.olvColumn1.Text = "";
             this.olvColumn1.Width = 20;
             // 
-            // olvGroupType
+            // olvUserGroupCode
             // 
-            this.olvGroupType.AspectName = "GroupType";
-            this.olvGroupType.IsVisible = false;
-            this.olvGroupType.Text = "";
+            this.olvUserGroupCode.AspectName = "UserGroupCode";
+            this.olvUserGroupCode.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvUserGroupCode.Sortable = false;
+            this.olvUserGroupCode.Text = "";
+            this.olvUserGroupCode.Width = 207;
             // 
             // olvUserGroupName
             // 
@@ -258,152 +405,6 @@
             this.olvUserGroupName.Sortable = false;
             this.olvUserGroupName.Text = "";
             this.olvUserGroupName.Width = 90;
-            // 
-            // toolUserSalespersons
-            // 
-            this.toolUserSalespersons.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolUserSalespersons.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolUserSalespersons.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1,
-            this.toolStripSeparator3,
-            this.toolStripButton2});
-            this.toolUserSalespersons.Location = new System.Drawing.Point(0, 283);
-            this.toolUserSalespersons.Name = "toolUserSalespersons";
-            this.toolUserSalespersons.Size = new System.Drawing.Size(764, 39);
-            this.toolUserSalespersons.TabIndex = 103;
-            this.toolUserSalespersons.Text = "toolStrip1";
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 39);
-            // 
-            // fastUserSalespersons
-            // 
-            this.fastUserSalespersons.AllColumns.Add(this.olvColumn2);
-            this.fastUserSalespersons.AllColumns.Add(this.olvGroupType);
-            this.fastUserSalespersons.AllColumns.Add(this.olvColumn3);
-            this.fastUserSalespersons.BackColor = System.Drawing.Color.Ivory;
-            this.fastUserSalespersons.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.olvColumn2,
-            this.olvColumn3});
-            this.fastUserSalespersons.Cursor = System.Windows.Forms.Cursors.Default;
-            this.fastUserSalespersons.Dock = System.Windows.Forms.DockStyle.Top;
-            this.fastUserSalespersons.Font = new System.Drawing.Font("Calibri Light", 10.2F);
-            this.fastUserSalespersons.FullRowSelect = true;
-            this.fastUserSalespersons.GroupImageList = this.imageList32;
-            this.fastUserSalespersons.HideSelection = false;
-            this.fastUserSalespersons.HighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
-            this.fastUserSalespersons.Location = new System.Drawing.Point(0, 322);
-            this.fastUserSalespersons.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.fastUserSalespersons.Name = "fastUserSalespersons";
-            this.fastUserSalespersons.OwnerDraw = true;
-            this.fastUserSalespersons.ShowGroups = false;
-            this.fastUserSalespersons.Size = new System.Drawing.Size(764, 244);
-            this.fastUserSalespersons.TabIndex = 104;
-            this.fastUserSalespersons.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
-            this.fastUserSalespersons.UseCompatibleStateImageBehavior = false;
-            this.fastUserSalespersons.UseFiltering = true;
-            this.fastUserSalespersons.View = System.Windows.Forms.View.Details;
-            this.fastUserSalespersons.VirtualMode = true;
-            // 
-            // olvColumn2
-            // 
-            this.olvColumn2.Text = "";
-            this.olvColumn2.Width = 20;
-            // 
-            // olvColumn3
-            // 
-            this.olvColumn3.AspectName = "UserName";
-            this.olvColumn3.FillsFreeSpace = true;
-            this.olvColumn3.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvColumn3.Sortable = false;
-            this.olvColumn3.Text = "";
-            this.olvColumn3.Width = 90;
-            // 
-            // olvUserGroupCode
-            // 
-            this.olvUserGroupCode.AspectName = "UserGroupCode";
-            this.olvUserGroupCode.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvUserGroupCode.Sortable = false;
-            this.olvUserGroupCode.Text = "";
-            this.olvUserGroupCode.Width = 207;
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.Image = global::TotalSmartCoding.Properties.Resources.Add_UserGroup;
-            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(163, 36);
-            this.toolStripButton1.Text = "Add a new salesperson";
-            // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.Image = global::TotalSmartCoding.Properties.Resources.Remove_UserGroup;
-            this.toolStripButton2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(196, 36);
-            this.toolStripButton2.Text = "Remove selected salesperson";
-            // 
-            // buttonJoinGroup
-            // 
-            this.buttonJoinGroup.Image = global::TotalSmartCoding.Properties.Resources.Add_UserGroup;
-            this.buttonJoinGroup.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.buttonJoinGroup.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonJoinGroup.Name = "buttonJoinGroup";
-            this.buttonJoinGroup.Size = new System.Drawing.Size(133, 36);
-            this.buttonJoinGroup.Text = "Join a new group";
-            this.buttonJoinGroup.Click += new System.EventHandler(this.buttonJoinLeaveGroup_Click);
-            // 
-            // buttonLeaveGroup
-            // 
-            this.buttonLeaveGroup.Image = global::TotalSmartCoding.Properties.Resources.Remove_UserGroup;
-            this.buttonLeaveGroup.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.buttonLeaveGroup.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonLeaveGroup.Name = "buttonLeaveGroup";
-            this.buttonLeaveGroup.Size = new System.Drawing.Size(154, 36);
-            this.buttonLeaveGroup.Text = "Leave selected group";
-            this.buttonLeaveGroup.Click += new System.EventHandler(this.buttonJoinLeaveGroup_Click);
-            // 
-            // buttonManageGroups
-            // 
-            this.buttonManageGroups.Image = global::TotalSmartCoding.Properties.Resources.Manage_group;
-            this.buttonManageGroups.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.buttonManageGroups.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonManageGroups.Name = "buttonManageGroups";
-            this.buttonManageGroups.Size = new System.Drawing.Size(126, 36);
-            this.buttonManageGroups.Text = "Manage groups";
-            // 
-            // buttonRegisterUser
-            // 
-            this.buttonRegisterUser.Image = global::TotalSmartCoding.Properties.Resources.add_user;
-            this.buttonRegisterUser.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.buttonRegisterUser.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonRegisterUser.Name = "buttonRegisterUser";
-            this.buttonRegisterUser.Size = new System.Drawing.Size(144, 36);
-            this.buttonRegisterUser.Text = "Register a new user";
-            this.buttonRegisterUser.Click += new System.EventHandler(this.buttonRegisterDeregisterUser_Click);
-            // 
-            // buttonDeregisterUser
-            // 
-            this.buttonDeregisterUser.Image = global::TotalSmartCoding.Properties.Resources.remove_user;
-            this.buttonDeregisterUser.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.buttonDeregisterUser.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonDeregisterUser.Name = "buttonDeregisterUser";
-            this.buttonDeregisterUser.Size = new System.Drawing.Size(167, 36);
-            this.buttonDeregisterUser.Text = "Deregister selected user";
-            this.buttonDeregisterUser.Click += new System.EventHandler(this.buttonRegisterDeregisterUser_Click);
-            // 
-            // buttonUserToggleVoid
-            // 
-            this.buttonUserToggleVoid.Image = global::TotalSmartCoding.Properties.Resources.no_persons_2;
-            this.buttonUserToggleVoid.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.buttonUserToggleVoid.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonUserToggleVoid.Name = "buttonUserToggleVoid";
-            this.buttonUserToggleVoid.Size = new System.Drawing.Size(127, 36);
-            this.buttonUserToggleVoid.Text = "Set active status";
             // 
             // UserControls
             // 
@@ -429,10 +430,10 @@
             this.toolUserGroups.PerformLayout();
             this.panelCenter.ResumeLayout(false);
             this.panelCenter.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.fastUserGroupDetails)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fastUserSalespersons)).EndInit();
             this.toolUserSalespersons.ResumeLayout(false);
             this.toolUserSalespersons.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.fastUserSalespersons)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fastUserGroupDetails)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

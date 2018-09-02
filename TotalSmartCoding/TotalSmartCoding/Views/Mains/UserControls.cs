@@ -231,6 +231,15 @@ namespace TotalSmartCoding.Views.Mains
             if (dialogResult == DialogResult.OK) this.GetUserControlGroups();
         }
 
+        private void buttonManageGroups_Click(object sender, EventArgs e)
+        {
+            UserGroupControls userGroupControls = new UserGroupControls();
+            DialogResult dialogResult = userGroupControls.ShowDialog();
+
+            userGroupControls.Dispose();
+            this.GetUserControlGroups();
+        }
+
         #endregion Add, remove member
     }
 }
