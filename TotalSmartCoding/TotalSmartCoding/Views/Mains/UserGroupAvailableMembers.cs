@@ -1,17 +1,11 @@
 ﻿using System;
 using System.Windows.Forms;
 
-using Ninject;
-
-using TotalBase;
-using TotalModel.Models;
-using TotalCore.Repositories.Generals;
-using TotalSmartCoding.Libraries.Helpers;
-using TotalSmartCoding.Controllers.APIs.Generals;
-using TotalSmartCoding.Libraries;
-using TotalSmartCoding.Controllers.APIs.Commons;
-using TotalCore.Repositories.Commons;
 using BrightIdeasSoftware;
+
+using TotalModel.Models;
+using TotalSmartCoding.Controllers.APIs.Generals;
+using TotalSmartCoding.Libraries.Helpers;
 
 
 namespace TotalSmartCoding.Views.Mains

@@ -14,9 +14,9 @@ namespace TotalModel.Models
     public partial class UserControlAvailableGroup
     {
         public int UserGroupID { get; set; }
-        public string Code { get; set; }
-        public string Name { get; set; }
         public string Description { get; set; }
         public string UserGroup { get; set; }
+        public string GroupCode { get; set; }
+        public string GroupName { get; set; }
     }
 }

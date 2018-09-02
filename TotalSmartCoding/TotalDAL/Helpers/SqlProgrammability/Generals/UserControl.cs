@@ -154,7 +154,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "       BEGIN " + "\r\n";
-            queryString = queryString + "           SELECT  UserGroupID, Code, Name, Description, N'Chevron Vietnam' AS UserGroup FROM UserGroups WHERE UserGroupID NOT IN (SELECT UserGroupID FROM UserGroupDetails WHERE SecurityIdentifier = @SecurityIdentifier) ORDER BY Code, Name " + "\r\n";
+            queryString = queryString + "           SELECT  UserGroupID, Code AS GroupCode, Name AS GroupName, Description, N'Chevron Vietnam' AS UserGroup FROM UserGroups WHERE UserGroupID NOT IN (SELECT UserGroupID FROM UserGroupDetails WHERE SecurityIdentifier = @SecurityIdentifier) ORDER BY Code, Name " + "\r\n";
             queryString = queryString + "       END " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("GetUserControlAvailableGroups", queryString);

@@ -9,5 +9,6 @@ namespace TotalCore.Repositories.Generals
 
 
         IList<UserControlGroup> GetUserControlGroups(string securityIdentifier);
+        IList<UserControlAvailableGroup> GetUserControlAvailableGroups(string securityIdentifier);
     }
 }

@@ -5008,7 +5008,7 @@
           <Parameter Name="SecurityIdentifier" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetUserControlAvailableGroups" ReturnType="Collection(TotalSmartCodingModel.UserControlAvailableGroup)">
-            <Parameter Name="SecurityIdentifier" Mode="In" Type="String" />
+          <Parameter Name="SecurityIdentifier" Mode="In" Type="String" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
@@ -8800,10 +8800,10 @@
         </ComplexType>
         <ComplexType Name="UserControlAvailableGroup">
           <Property Type="Int32" Name="UserGroupID" Nullable="false" />
-          <Property Type="String" Name="Code" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="Description" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="UserGroup" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="GroupCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="GroupName" Nullable="false" MaxLength="100" />
         </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
@@ -11643,10 +11643,10 @@
             <ResultMapping>
               <ComplexTypeMapping TypeName="TotalSmartCodingModel.UserControlAvailableGroup">
                 <ScalarProperty Name="UserGroupID" ColumnName="UserGroupID" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="UserGroup" ColumnName="UserGroup" />
+                <ScalarProperty Name="GroupCode" ColumnName="GroupCode" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

@@ -29,8 +29,6 @@ namespace TotalSmartCoding.Views.Mains
         private UserControlAPIs userControlAPIs { get; set; }
         private UserGroupAPIs userGroupAPIs { get; set; }
 
-        private BindingList<UserGroupControlDTO> bindingListUserControls;
-
         #region Contruction
         public UserControls()
         {
@@ -48,10 +46,6 @@ namespace TotalSmartCoding.Views.Mains
 
                 this.fastUserSalespersons.ShowGroups = true;
                 this.fastUserSalespersons.AboutToCreateGroups += fastGroups_AboutToCreateGroups;
-
-                //this.bindingListUserControls = new BindingList<UserGroupControlDTO>();
-                //this.gridexUserControls.DataSource = this.bindingListUserControls;
-                //this.bindingListUserControls.ListChanged += bindingListUserControls_ListChanged;
             }
             catch (Exception exception)
             {
@@ -141,8 +135,8 @@ namespace TotalSmartCoding.Views.Mains
             {
                 foreach (OLVGroup olvGroup in e.Groups)
                 {
-                    olvGroup.TitleImage = sender.Equals(this.fastUserControlIndexes) ? "Assembly-32" : "UserGroupN";
-                    olvGroup.Subtitle = olvGroup.Contents.Count.ToString() + (sender.Equals(this.fastUserControlIndexes) ? " Group" : " User") + (olvGroup.Contents.Count > 1 ? "s" : "");
+                    olvGroup.TitleImage = sender.Equals(this.fastUserControlIndexes) ? "UserGroupN" : "Assembly-32";
+                    olvGroup.Subtitle = olvGroup.Contents.Count.ToString() + (sender.Equals(this.fastUserControlIndexes) ? " User" : " Group") + (olvGroup.Contents.Count > 1 ? "s" : "");
                 }
             }
         }
@@ -198,33 +192,14 @@ namespace TotalSmartCoding.Views.Mains
             return; //--xxx
             try
             {
-                if (this.userGroupAPIs != null && this.bindingListUserControls != null)
-                {
-                    IList<UserGroupControl> userGroupControls = this.userGroupAPIs.GetUserGroupControls(this.SelectedUserControlIndex != null ? this.SelectedUserControlIndex.UserID : 0);
-                    this.bindingListUserControls.RaiseListChangedEvents = false;
-                    Mapper.Map<ICollection<UserGroupControl>, ICollection<UserGroupControlDTO>>(userGroupControls, this.bindingListUserControls);
-                    this.bindingListUserControls.RaiseListChangedEvents = true;
-                    this.bindingListUserControls.ResetBindings();
-                }
-            }
-            catch (Exception exception)
-            {
-                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
-            }
-        }
-
-        private void bindingListUserControls_ListChanged(object sender, ListChangedEventArgs e)
-        {
-            try
-            {
-                if (e.PropertyDescriptor != null && e.NewIndex >= 0 && e.NewIndex < this.bindingListUserControls.Count)
-                {
-                    UserGroupControlDTO userGroupControlDTO = this.bindingListUserControls[e.NewIndex];
-                    if (userGroupControlDTO != null)
-                    {
-                        this.userGroupAPIs.SaveUserGroupControls(userGroupControlDTO.UserGroupControlID, userGroupControlDTO.AccessLevel, userGroupControlDTO.ApprovalPermitted, userGroupControlDTO.UnApprovalPermitted, userGroupControlDTO.VoidablePermitted, userGroupControlDTO.UnVoidablePermitted, userGroupControlDTO.ShowDiscount);
-                    }
-                }
+                //if (this.userGroupAPIs != null && this.bindingListUserControls != null)
+                //{
+                //    IList<UserGroupControl> userGroupControls = this.userGroupAPIs.GetUserGroupControls(this.SelectedUserControlIndex != null ? this.SelectedUserControlIndex.UserID : 0);
+                //    this.bindingListUserControls.RaiseListChangedEvents = false;
+                //    Mapper.Map<ICollection<UserGroupControl>, ICollection<UserGroupControlDTO>>(userGroupControls, this.bindingListUserControls);
+                //    this.bindingListUserControls.RaiseListChangedEvents = true;
+                //    this.bindingListUserControls.ResetBindings();
+                //}
             }
             catch (Exception exception)
             {
@@ -240,15 +215,15 @@ namespace TotalSmartCoding.Views.Mains
             DialogResult dialogResult = DialogResult.Cancel;
             if (sender.Equals(this.buttonJoinGroup) && this.SelectedUserControlIndex != null)
             {
-                //UserGroupAvailableMembers wizardUserRegister = new UserGroupAvailableMembers(this.userGroupAPIs, this.SelectedUserControlIndex.UserGroupID);
-                //dialogResult = wizardUserRegister.ShowDialog(); wizardUserRegister.Dispose();
+                UserControlAvailableGroups wizardUserControlAvailableGroups = new UserControlAvailableGroups(this.userControlAPIs, this.userGroupAPIs, this.SelectedUserControlIndex.SecurityIdentifier);
+                dialogResult = wizardUserControlAvailableGroups.ShowDialog(); wizardUserControlAvailableGroups.Dispose();
             }
             if (sender.Equals(this.buttonLeaveGroup) && this.fastUserGroupDetails.SelectedObject != null)
             {
-                UserGroupMember userGroupMember = (UserGroupMember)this.fastUserGroupDetails.SelectedObject;
-                if (userGroupMember != null && CustomMsgBox.Show(this, "Are you sure you want to remove: " + "\r\n" + "\r\n" + userGroupMember.UserName + "\r\n" + "\r\n" + "from this group?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Stop) == DialogResult.Yes)
+                UserControlGroup userControlGroup = (UserControlGroup)this.fastUserGroupDetails.SelectedObject;
+                if (userControlGroup != null && CustomMsgBox.Show(this, "Are you sure you want to leave this group: " + "\r\n" + "\r\n" + userControlGroup.UserGroupCode + "\r\n" + userControlGroup.UserGroupName , "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Stop) == DialogResult.Yes)
                 {
-                    this.userGroupAPIs.UserGroupRemoveMember(userGroupMember.UserGroupDetailID);
+                    this.userGroupAPIs.UserGroupRemoveMember(userControlGroup.UserGroupDetailID);
                     dialogResult = DialogResult.OK;
                 }
             }
