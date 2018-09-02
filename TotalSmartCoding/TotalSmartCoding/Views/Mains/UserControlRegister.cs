@@ -28,6 +28,10 @@ namespace TotalSmartCoding.Views.Mains
 
             try
             {
+                this.userControlAPIs = userControlAPIs;
+
+                List<UserControlIndex> userControlIndexes = this.userControlAPIs.GetUserControlIndexes();
+
                 List<DomainUser> allUsers = new List<DomainUser>();
 
                 //userAPIs.UpdateUserName("S-1-5-21-3775195119-1044016383-3360809325-1001", "NMVN\vendor");
@@ -41,16 +45,21 @@ namespace TotalSmartCoding.Views.Mains
                     foreach (var found in srch.FindAll())// find all matches
                     {// do whatever here - "found" is of type "Principal" - it could be user, group, computer.....          
 
-                        if (found.Sid.Value != null && found.Sid.Value != "" && found.SamAccountName != null && found.SamAccountName != "") userControlAPIs.UpdateUserName(found.Sid.Value, found.SamAccountName);
+                        if (found.Sid.Value != null && found.Sid.Value != "" && found.SamAccountName != null && found.SamAccountName != "")
+                        {
+                            userControlAPIs.UpdateUserName(found.Sid.Value, found.SamAccountName);
 
-                        allUsers.Add(new DomainUser() { FirstName = "", LastName = "", DistinguishedName = this.GetWindowsIdentityName(found.DistinguishedName), UserName = found.SamAccountName, SecurityIdentifier = found.Sid.Value }); //found.UserPrincipalName: the same as SamAccountName, but with @chevron.com
+                            if (!this.UserExisted(userControlIndexes, found.Sid.Value))
+                                allUsers.Add(new DomainUser() { FirstName = "", LastName = "", DistinguishedName = this.GetWindowsIdentityName(found.DistinguishedName), UserName = found.SamAccountName, SecurityIdentifier = found.Sid.Value }); //found.UserPrincipalName: the same as SamAccountName, but with @chevron.com
+                        }
                     }
                 }
                 else
                 {
                     for (int i = 1; i <= 5; i++)
                     {
-                        allUsers.Add(new DomainUser() { FirstName = "FIST NAME" + i.ToString(), LastName = "LAST NAME " + i.ToString(), DistinguishedName = "Distinguished Name " + i.ToString(), UserName = "CHEVRONVN\\Vendor " + i.ToString(), SecurityIdentifier = "S-1-5-21-290773801108-TEST-" + i.ToString() });
+                        if (!this.UserExisted(userControlIndexes, "S-1-5-21-290773801108-TEST-" + i.ToString()))
+                            allUsers.Add(new DomainUser() { FirstName = "FIST NAME" + i.ToString(), LastName = "LAST NAME " + i.ToString(), DistinguishedName = "Distinguished Name " + i.ToString(), UserName = "CHEVRONVN\\Vendor " + i.ToString(), SecurityIdentifier = "S-1-5-21-290773801108-TEST-" + i.ToString() });
                     }
                 }
 
@@ -60,12 +69,16 @@ namespace TotalSmartCoding.Views.Mains
                 this.bindingUserName = this.combexUserID.DataBindings.Add("SelectedValue", this, CommonExpressions.PropertyName<DomainUser>(p => p.UserName), true, DataSourceUpdateMode.OnPropertyChanged);
                 this.bindingUserName.BindingComplete += binding_BindingComplete;
 
-                this.userControlAPIs = userControlAPIs;
             }
             catch (Exception exception)
             {
                 ExceptionHandlers.ShowExceptionMessageBox(this, exception);
             }
+        }
+
+        private bool UserExisted(List<UserControlIndex> userControlIndexes, string securityIdentifier)
+        {
+            return userControlIndexes.Find(w => w.SecurityIdentifier == securityIdentifier) != null;
         }
 
         private string GetWindowsIdentityName(string distinguishedName)
