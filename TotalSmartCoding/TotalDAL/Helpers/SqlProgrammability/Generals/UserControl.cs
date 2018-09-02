@@ -26,6 +26,8 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             //this.UserControlRemove();
 
             //this.GetUserControlAvailableGroups();
+
+            this.GetUserControlGroups();
         }
 
         private void GetUserControlIndexes()
@@ -137,5 +139,24 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
 
             this.totalSmartCodingEntities.CreateStoredProcedure("GetUserControlAvailableGroups", queryString);
         }
+
+        private void GetUserControlGroups()
+        {
+            string queryString;
+
+            queryString = " @SecurityIdentifier nvarchar(256) " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+            queryString = queryString + "    BEGIN " + "\r\n";
+
+            queryString = queryString + "       SELECT      UserGroupDetails.UserGroupDetailID, UserGroupDetails.UserGroupID, UserGroups.Code AS UserGroupCode, UserGroups.Name AS UserGroupName, N'Chevron Vietnam' AS GroupType " + "\r\n";
+            queryString = queryString + "       FROM        UserGroupDetails INNER JOIN UserGroups ON UserGroupDetails.SecurityIdentifier = @SecurityIdentifier AND UserGroupDetails.UserGroupID = UserGroups.UserGroupID " + "\r\n";
+            queryString = queryString + "       ORDER BY    UserGroupDetails.UserGroupDetailID " + "\r\n";
+
+            queryString = queryString + "    END " + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("GetUserControlGroups", queryString);
+        }
+
     }
 }

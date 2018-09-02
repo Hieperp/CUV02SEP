@@ -83,7 +83,7 @@ namespace TotalSmartCoding.Views.Mains
                 customTabCenter.Dock = DockStyle.Fill;
 
                 customTabCenter.TabPages.Add("tabCenterAA", "Permission Controls          ");
-                customTabCenter.TabPages.Add("tabCenterAA", "Users                ");
+                customTabCenter.TabPages.Add("tabCenterAA", "Members                ");
                 customTabCenter.TabPages[0].BackColor = this.panelCenter.BackColor;
                 customTabCenter.TabPages[1].BackColor = this.panelCenter.BackColor;
 

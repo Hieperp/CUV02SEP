@@ -846,10 +846,10 @@ namespace TotalSmartCoding.Views.Mains
 
             if (sender.Equals(this.toolUserGroupControls))
             {
-                UserGroupControls userGroupControls = new UserGroupControls();
-                DialogResult dialogResult = userGroupControls.ShowDialog();
+                UserControls userControls = new UserControls();
+                DialogResult dialogResult = userControls.ShowDialog();
 
-                userGroupControls.Dispose();
+                userControls.Dispose();
             }
 
         }

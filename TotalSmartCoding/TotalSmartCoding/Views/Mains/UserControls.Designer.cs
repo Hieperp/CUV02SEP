@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserControls));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolUserGroupDetails = new System.Windows.Forms.ToolStrip();
             this.buttonJoinGroup = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -42,17 +41,6 @@
             this.olvUserControlType = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvUserControlName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.imageList32 = new System.Windows.Forms.ImageList(this.components);
-            this.gridexUserControls = new CustomControls.DataGridexView();
-            this.ModuleName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ModuleDetailName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LocationName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NoAccess = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.ReadOnly = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Editable = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.ApprovalPermitted = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.UnApprovalPermitted = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.VoidablePermitted = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.UnVoidablePermitted = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.toolUserGroups = new System.Windows.Forms.ToolStrip();
             this.buttonRegisterUser = new System.Windows.Forms.ToolStripButton();
             this.buttonDeregisterUser = new System.Windows.Forms.ToolStripButton();
@@ -64,14 +52,23 @@
             this.panelCenter = new System.Windows.Forms.Panel();
             this.fastUserGroupDetails = new BrightIdeasSoftware.FastObjectListView();
             this.olvColumn1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvUserType = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvUserName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvGroupType = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvUserGroupName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.toolUserSalespersons = new System.Windows.Forms.ToolStrip();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.fastUserSalespersons = new BrightIdeasSoftware.FastObjectListView();
+            this.olvColumn2 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn3 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvUserGroupCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.toolUserGroupDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastUserControlIndexes)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridexUserControls)).BeginInit();
             this.toolUserGroups.SuspendLayout();
             this.panelCenter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastUserGroupDetails)).BeginInit();
+            this.toolUserSalespersons.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fastUserSalespersons)).BeginInit();
             this.SuspendLayout();
             // 
             // toolUserGroupDetails
@@ -86,7 +83,7 @@
             this.buttonManageGroups});
             this.toolUserGroupDetails.Location = new System.Drawing.Point(0, 0);
             this.toolUserGroupDetails.Name = "toolUserGroupDetails";
-            this.toolUserGroupDetails.Size = new System.Drawing.Size(1016, 39);
+            this.toolUserGroupDetails.Size = new System.Drawing.Size(763, 39);
             this.toolUserGroupDetails.TabIndex = 0;
             this.toolUserGroupDetails.Text = "toolStrip1";
             // 
@@ -126,8 +123,8 @@
             this.buttonManageGroups.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.buttonManageGroups.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonManageGroups.Name = "buttonManageGroups";
-            this.buttonManageGroups.Size = new System.Drawing.Size(127, 36);
-            this.buttonManageGroups.Text = "Manage Groups";
+            this.buttonManageGroups.Size = new System.Drawing.Size(126, 36);
+            this.buttonManageGroups.Text = "Manage groups";
             // 
             // fastUserControlIndexes
             // 
@@ -150,7 +147,7 @@
             this.fastUserControlIndexes.Name = "fastUserControlIndexes";
             this.fastUserControlIndexes.OwnerDraw = true;
             this.fastUserControlIndexes.ShowGroups = false;
-            this.fastUserControlIndexes.Size = new System.Drawing.Size(225, 610);
+            this.fastUserControlIndexes.Size = new System.Drawing.Size(329, 610);
             this.fastUserControlIndexes.TabIndex = 69;
             this.fastUserControlIndexes.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastUserControlIndexes.UseCompatibleStateImageBehavior = false;
@@ -194,128 +191,6 @@
             this.imageList32.Images.SetKeyName(8, "Assembly-32");
             this.imageList32.Images.SetKeyName(9, "UserGroupN");
             // 
-            // gridexUserControls
-            // 
-            this.gridexUserControls.AllowAddRow = false;
-            this.gridexUserControls.AllowDeleteRow = false;
-            this.gridexUserControls.AllowUserToAddRows = false;
-            this.gridexUserControls.AllowUserToDeleteRows = false;
-            this.gridexUserControls.BackgroundColor = System.Drawing.Color.Ivory;
-            this.gridexUserControls.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.gridexUserControls.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.gridexUserControls.ColumnHeadersHeight = 24;
-            this.gridexUserControls.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ModuleName,
-            this.ModuleDetailName,
-            this.LocationName,
-            this.NoAccess,
-            this.ReadOnly,
-            this.Editable,
-            this.ApprovalPermitted,
-            this.UnApprovalPermitted,
-            this.VoidablePermitted,
-            this.UnVoidablePermitted});
-            this.gridexUserControls.Dock = System.Windows.Forms.DockStyle.Top;
-            this.gridexUserControls.Editable = true;
-            this.gridexUserControls.GridColor = System.Drawing.SystemColors.ButtonFace;
-            this.gridexUserControls.Location = new System.Drawing.Point(0, 39);
-            this.gridexUserControls.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.gridexUserControls.MultiSelect = false;
-            this.gridexUserControls.Name = "gridexUserControls";
-            this.gridexUserControls.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridexUserControls.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.gridexUserControls.RowTemplate.Height = 24;
-            this.gridexUserControls.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridexUserControls.Size = new System.Drawing.Size(1016, 291);
-            this.gridexUserControls.TabIndex = 70;
-            this.gridexUserControls.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridexAccessControls_CellContentClick);
-            this.gridexUserControls.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.gridexUserControls_CellFormatting);
-            this.gridexUserControls.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.gridexUserControls_CellPainting);
-            // 
-            // ModuleName
-            // 
-            this.ModuleName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ModuleName.DataPropertyName = "ModuleName";
-            this.ModuleName.FillWeight = 19F;
-            this.ModuleName.HeaderText = "Features.Tasks";
-            this.ModuleName.Name = "ModuleName";
-            this.ModuleName.ReadOnly = true;
-            // 
-            // ModuleDetailName
-            // 
-            this.ModuleDetailName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ModuleDetailName.DataPropertyName = "ModuleDetailName";
-            this.ModuleDetailName.FillWeight = 21F;
-            this.ModuleDetailName.HeaderText = "Features.Modules";
-            this.ModuleDetailName.Name = "ModuleDetailName";
-            this.ModuleDetailName.ReadOnly = true;
-            // 
-            // LocationName
-            // 
-            this.LocationName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.LocationName.DataPropertyName = "LocationName";
-            this.LocationName.FillWeight = 11F;
-            this.LocationName.HeaderText = "Locations";
-            this.LocationName.Name = "LocationName";
-            this.LocationName.ReadOnly = true;
-            // 
-            // NoAccess
-            // 
-            this.NoAccess.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.NoAccess.DataPropertyName = "NoAccess";
-            this.NoAccess.FillWeight = 7F;
-            this.NoAccess.HeaderText = "Access Controls.No Access";
-            this.NoAccess.Name = "NoAccess";
-            // 
-            // ReadOnly
-            // 
-            this.ReadOnly.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ReadOnly.DataPropertyName = "ReadOnly";
-            this.ReadOnly.FillWeight = 7F;
-            this.ReadOnly.HeaderText = "Access Controls.Read Only";
-            this.ReadOnly.Name = "ReadOnly";
-            // 
-            // Editable
-            // 
-            this.Editable.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Editable.DataPropertyName = "Editable";
-            this.Editable.FillWeight = 7F;
-            this.Editable.HeaderText = "Access Controls.Editable";
-            this.Editable.Name = "Editable";
-            // 
-            // ApprovalPermitted
-            // 
-            this.ApprovalPermitted.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ApprovalPermitted.DataPropertyName = "ApprovalPermitted";
-            this.ApprovalPermitted.FillWeight = 7F;
-            this.ApprovalPermitted.HeaderText = "Verify Permissions.Verify";
-            this.ApprovalPermitted.Name = "ApprovalPermitted";
-            // 
-            // UnApprovalPermitted
-            // 
-            this.UnApprovalPermitted.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.UnApprovalPermitted.DataPropertyName = "UnApprovalPermitted";
-            this.UnApprovalPermitted.FillWeight = 7F;
-            this.UnApprovalPermitted.HeaderText = "Verify Permissions.Unverify";
-            this.UnApprovalPermitted.Name = "UnApprovalPermitted";
-            // 
-            // VoidablePermitted
-            // 
-            this.VoidablePermitted.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.VoidablePermitted.DataPropertyName = "VoidablePermitted";
-            this.VoidablePermitted.FillWeight = 7F;
-            this.VoidablePermitted.HeaderText = "Void Permissions.Void";
-            this.VoidablePermitted.Name = "VoidablePermitted";
-            // 
-            // UnVoidablePermitted
-            // 
-            this.UnVoidablePermitted.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.UnVoidablePermitted.DataPropertyName = "UnVoidablePermitted";
-            this.UnVoidablePermitted.FillWeight = 7F;
-            this.UnVoidablePermitted.HeaderText = "Void Permissions.Unvoid";
-            this.UnVoidablePermitted.Name = "UnVoidablePermitted";
-            // 
             // toolUserGroups
             // 
             this.toolUserGroups.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
@@ -326,7 +201,7 @@
             this.buttonUserToggleVoid});
             this.toolUserGroups.Location = new System.Drawing.Point(0, 0);
             this.toolUserGroups.Name = "toolUserGroups";
-            this.toolUserGroups.Size = new System.Drawing.Size(1241, 39);
+            this.toolUserGroups.Size = new System.Drawing.Size(1092, 39);
             this.toolUserGroups.TabIndex = 0;
             this.toolUserGroups.Text = "toolStrip2";
             // 
@@ -381,37 +256,40 @@
             // 
             // panelCenter
             // 
+            this.panelCenter.Controls.Add(this.fastUserSalespersons);
+            this.panelCenter.Controls.Add(this.toolUserSalespersons);
             this.panelCenter.Controls.Add(this.fastUserGroupDetails);
-            this.panelCenter.Controls.Add(this.gridexUserControls);
             this.panelCenter.Controls.Add(this.toolUserGroupDetails);
             this.panelCenter.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelCenter.Location = new System.Drawing.Point(225, 39);
+            this.panelCenter.Location = new System.Drawing.Point(329, 39);
             this.panelCenter.Name = "panelCenter";
-            this.panelCenter.Size = new System.Drawing.Size(1016, 610);
+            this.panelCenter.Size = new System.Drawing.Size(763, 610);
             this.panelCenter.TabIndex = 74;
             // 
             // fastUserGroupDetails
             // 
             this.fastUserGroupDetails.AllColumns.Add(this.olvColumn1);
-            this.fastUserGroupDetails.AllColumns.Add(this.olvUserType);
-            this.fastUserGroupDetails.AllColumns.Add(this.olvUserName);
+            this.fastUserGroupDetails.AllColumns.Add(this.olvGroupType);
+            this.fastUserGroupDetails.AllColumns.Add(this.olvUserGroupCode);
+            this.fastUserGroupDetails.AllColumns.Add(this.olvUserGroupName);
             this.fastUserGroupDetails.BackColor = System.Drawing.Color.Ivory;
             this.fastUserGroupDetails.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.olvColumn1,
-            this.olvUserName});
+            this.olvUserGroupCode,
+            this.olvUserGroupName});
             this.fastUserGroupDetails.Cursor = System.Windows.Forms.Cursors.Default;
-            this.fastUserGroupDetails.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fastUserGroupDetails.Dock = System.Windows.Forms.DockStyle.Top;
             this.fastUserGroupDetails.Font = new System.Drawing.Font("Calibri Light", 10.2F);
             this.fastUserGroupDetails.FullRowSelect = true;
             this.fastUserGroupDetails.GroupImageList = this.imageList32;
             this.fastUserGroupDetails.HideSelection = false;
             this.fastUserGroupDetails.HighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
-            this.fastUserGroupDetails.Location = new System.Drawing.Point(0, 330);
+            this.fastUserGroupDetails.Location = new System.Drawing.Point(0, 39);
             this.fastUserGroupDetails.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.fastUserGroupDetails.Name = "fastUserGroupDetails";
             this.fastUserGroupDetails.OwnerDraw = true;
             this.fastUserGroupDetails.ShowGroups = false;
-            this.fastUserGroupDetails.Size = new System.Drawing.Size(1016, 280);
+            this.fastUserGroupDetails.Size = new System.Drawing.Size(763, 244);
             this.fastUserGroupDetails.TabIndex = 102;
             this.fastUserGroupDetails.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastUserGroupDetails.UseCompatibleStateImageBehavior = false;
@@ -424,26 +302,114 @@
             this.olvColumn1.Text = "";
             this.olvColumn1.Width = 20;
             // 
-            // olvUserType
+            // olvGroupType
             // 
-            this.olvUserType.AspectName = "UserType";
-            this.olvUserType.IsVisible = false;
-            this.olvUserType.Text = "UserType";
+            this.olvGroupType.AspectName = "GroupType";
+            this.olvGroupType.IsVisible = false;
+            this.olvGroupType.Text = "";
             // 
-            // olvUserName
+            // olvUserGroupName
             // 
-            this.olvUserName.AspectName = "UserName";
-            this.olvUserName.FillsFreeSpace = true;
-            this.olvUserName.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvUserName.Sortable = false;
-            this.olvUserName.Text = "";
-            this.olvUserName.Width = 90;
+            this.olvUserGroupName.AspectName = "UserGroupName";
+            this.olvUserGroupName.FillsFreeSpace = true;
+            this.olvUserGroupName.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvUserGroupName.Sortable = false;
+            this.olvUserGroupName.Text = "";
+            this.olvUserGroupName.Width = 90;
+            // 
+            // toolUserSalespersons
+            // 
+            this.toolUserSalespersons.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolUserSalespersons.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolUserSalespersons.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton1,
+            this.toolStripSeparator3,
+            this.toolStripButton2});
+            this.toolUserSalespersons.Location = new System.Drawing.Point(0, 283);
+            this.toolUserSalespersons.Name = "toolUserSalespersons";
+            this.toolUserSalespersons.Size = new System.Drawing.Size(763, 39);
+            this.toolUserSalespersons.TabIndex = 103;
+            this.toolUserSalespersons.Text = "toolStrip1";
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.Image = global::TotalSmartCoding.Properties.Resources.Add_UserGroup;
+            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(163, 36);
+            this.toolStripButton1.Text = "Add a new salesperson";
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 39);
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.Image = global::TotalSmartCoding.Properties.Resources.Remove_UserGroup;
+            this.toolStripButton2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(196, 36);
+            this.toolStripButton2.Text = "Remove selected salesperson";
+            // 
+            // fastUserSalespersons
+            // 
+            this.fastUserSalespersons.AllColumns.Add(this.olvColumn2);
+            this.fastUserSalespersons.AllColumns.Add(this.olvGroupType);
+            this.fastUserSalespersons.AllColumns.Add(this.olvColumn3);
+            this.fastUserSalespersons.BackColor = System.Drawing.Color.Ivory;
+            this.fastUserSalespersons.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.olvColumn2,
+            this.olvColumn3});
+            this.fastUserSalespersons.Cursor = System.Windows.Forms.Cursors.Default;
+            this.fastUserSalespersons.Dock = System.Windows.Forms.DockStyle.Top;
+            this.fastUserSalespersons.Font = new System.Drawing.Font("Calibri Light", 10.2F);
+            this.fastUserSalespersons.FullRowSelect = true;
+            this.fastUserSalespersons.GroupImageList = this.imageList32;
+            this.fastUserSalespersons.HideSelection = false;
+            this.fastUserSalespersons.HighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
+            this.fastUserSalespersons.Location = new System.Drawing.Point(0, 322);
+            this.fastUserSalespersons.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.fastUserSalespersons.Name = "fastUserSalespersons";
+            this.fastUserSalespersons.OwnerDraw = true;
+            this.fastUserSalespersons.ShowGroups = false;
+            this.fastUserSalespersons.Size = new System.Drawing.Size(763, 244);
+            this.fastUserSalespersons.TabIndex = 104;
+            this.fastUserSalespersons.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
+            this.fastUserSalespersons.UseCompatibleStateImageBehavior = false;
+            this.fastUserSalespersons.UseFiltering = true;
+            this.fastUserSalespersons.View = System.Windows.Forms.View.Details;
+            this.fastUserSalespersons.VirtualMode = true;
+            // 
+            // olvColumn2
+            // 
+            this.olvColumn2.Text = "";
+            this.olvColumn2.Width = 20;
+            // 
+            // olvColumn3
+            // 
+            this.olvColumn3.AspectName = "UserName";
+            this.olvColumn3.FillsFreeSpace = true;
+            this.olvColumn3.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvColumn3.Sortable = false;
+            this.olvColumn3.Text = "";
+            this.olvColumn3.Width = 90;
+            // 
+            // olvUserGroupCode
+            // 
+            this.olvUserGroupCode.AspectName = "UserGroupCode";
+            this.olvUserGroupCode.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvUserGroupCode.Sortable = false;
+            this.olvUserGroupCode.Text = "";
+            this.olvUserGroupCode.Width = 207;
             // 
             // UserControls
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1241, 649);
+            this.ClientSize = new System.Drawing.Size(1092, 649);
             this.Controls.Add(this.panelCenter);
             this.Controls.Add(this.fastUserControlIndexes);
             this.Controls.Add(this.toolUserGroups);
@@ -459,12 +425,14 @@
             this.toolUserGroupDetails.ResumeLayout(false);
             this.toolUserGroupDetails.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastUserControlIndexes)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridexUserControls)).EndInit();
             this.toolUserGroups.ResumeLayout(false);
             this.toolUserGroups.PerformLayout();
             this.panelCenter.ResumeLayout(false);
             this.panelCenter.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastUserGroupDetails)).EndInit();
+            this.toolUserSalespersons.ResumeLayout(false);
+            this.toolUserSalespersons.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fastUserSalespersons)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -478,7 +446,6 @@
         private BrightIdeasSoftware.FastObjectListView fastUserControlIndexes;
         private BrightIdeasSoftware.OLVColumn olvID;
         private BrightIdeasSoftware.OLVColumn olvUserControlName;
-        private CustomControls.DataGridexView gridexUserControls;
         private System.Windows.Forms.ImageList imageList32;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStrip toolUserGroups;
@@ -490,22 +457,20 @@
         private System.Windows.Forms.ToolStripButton buttonDeregisterUser;
         private BrightIdeasSoftware.OLVColumn olvUserControlType;
         private System.Windows.Forms.Panel panelCenter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ModuleName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ModuleDetailName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LocationName;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn NoAccess;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn ReadOnly;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Editable;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn ApprovalPermitted;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn UnApprovalPermitted;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn VoidablePermitted;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn UnVoidablePermitted;
         private BrightIdeasSoftware.FastObjectListView fastUserGroupDetails;
         private BrightIdeasSoftware.OLVColumn olvColumn1;
-        private BrightIdeasSoftware.OLVColumn olvUserName;
-        private BrightIdeasSoftware.OLVColumn olvUserType;
+        private BrightIdeasSoftware.OLVColumn olvUserGroupName;
+        private BrightIdeasSoftware.OLVColumn olvGroupType;
         private System.Windows.Forms.ToolStripButton buttonUserToggleVoid;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton buttonManageGroups;
+        private BrightIdeasSoftware.FastObjectListView fastUserSalespersons;
+        private BrightIdeasSoftware.OLVColumn olvColumn2;
+        private BrightIdeasSoftware.OLVColumn olvColumn3;
+        private System.Windows.Forms.ToolStrip toolUserSalespersons;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private BrightIdeasSoftware.OLVColumn olvUserGroupCode;
     }
 }

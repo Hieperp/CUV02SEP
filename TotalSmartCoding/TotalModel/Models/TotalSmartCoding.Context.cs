@@ -2893,5 +2893,14 @@ namespace TotalModel.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UserControlIndex>("GetUserControlIndexes", userIDParameter, fromDateParameter, toDateParameter);
         }
+    
+        public virtual ObjectResult<UserControlGroup> GetUserControlGroups(string securityIdentifier)
+        {
+            var securityIdentifierParameter = securityIdentifier != null ?
+                new ObjectParameter("SecurityIdentifier", securityIdentifier) :
+                new ObjectParameter("SecurityIdentifier", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UserControlGroup>("GetUserControlGroups", securityIdentifierParameter);
+        }
     }
 }

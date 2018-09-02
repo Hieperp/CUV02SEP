@@ -48,7 +48,7 @@ namespace TotalSmartCoding.Controllers.APIs.Generals
 
         public IList<UserGroupAvailableMember> GetUserGroupAvailableMembers(int? userGroupID)
         {
-            return this.userGroupAPIRepository.GetUserGroupAvailableMembers(userGroupID).ToList();
+            return this.userGroupAPIRepository.GetUserGroupAvailableMembers(userGroupID);
         }
 
         public IList<UserGroupMember> GetUserGroupMembers(int? userGroupID)

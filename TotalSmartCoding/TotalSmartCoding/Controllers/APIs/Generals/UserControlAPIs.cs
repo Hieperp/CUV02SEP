@@ -25,5 +25,10 @@ namespace TotalSmartCoding.Controllers.APIs.Generals
         {
             return this.userControlAPIRepository.GetEntityIndexes<UserControlIndex>(ContextAttributes.User.UserID, GlobalEnums.GlobalOptionSetting.LowerFillterDate, GlobalEnums.GlobalOptionSetting.UpperFillterDate).ToList();
         }
+
+        public IList<UserControlGroup> GetUserControlGroups(string securityIdentifier)
+        {
+            return this.userControlAPIRepository.GetUserControlGroups(securityIdentifier);
+        }
     }
 }

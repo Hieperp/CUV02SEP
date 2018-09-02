@@ -2843,6 +2843,9 @@
           <Parameter Name="UserID" Type="int" Mode="In" />
           <Parameter Name="NMVNTaskID" Type="int" Mode="In" />
         </Function>
+        <Function Name="GetUserControlGroups" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SecurityIdentifier" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="GetUserControlIndexes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserID" Type="int" Mode="In" />
           <Parameter Name="FromDate" Type="datetime" Mode="In" />
@@ -4997,6 +5000,9 @@
             <Parameter Name="UserID" Mode="In" Type="Int32" />
             <Parameter Name="FromDate" Mode="In" Type="DateTime" />
             <Parameter Name="ToDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="GetUserControlGroups" ReturnType="Collection(TotalSmartCodingModel.UserControlGroup)">
+            <Parameter Name="SecurityIdentifier" Mode="In" Type="String" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
@@ -8779,6 +8785,13 @@
           <Property Type="String" Name="UserName" Nullable="false" MaxLength="256" />
           <Property Type="String" Name="UserControlType" Nullable="false" MaxLength="15" />
         </ComplexType>
+        <ComplexType Name="UserControlGroup">
+          <Property Type="Int32" Name="UserGroupDetailID" Nullable="false" />
+          <Property Type="Int32" Name="UserGroupID" Nullable="false" />
+          <Property Type="String" Name="UserGroupCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="UserGroupName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="GroupType" Nullable="false" MaxLength="15" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -11599,6 +11612,17 @@
                 <ScalarProperty Name="SecurityIdentifier" ColumnName="SecurityIdentifier" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="UserControlType" ColumnName="UserControlType" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetUserControlGroups" FunctionName="TotalSmartCodingModel.Store.GetUserControlGroups">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TotalSmartCodingModel.UserControlGroup">
+                <ScalarProperty Name="UserGroupDetailID" ColumnName="UserGroupDetailID" />
+                <ScalarProperty Name="UserGroupID" ColumnName="UserGroupID" />
+                <ScalarProperty Name="UserGroupCode" ColumnName="UserGroupCode" />
+                <ScalarProperty Name="UserGroupName" ColumnName="UserGroupName" />
+                <ScalarProperty Name="GroupType" ColumnName="GroupType" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

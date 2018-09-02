@@ -12,5 +12,10 @@ namespace TotalDAL.Repositories.Generals
             : base(totalSmartCodingEntities, "GetUserControlIndexes")
         {
         }
+
+        public IList<UserControlGroup> GetUserControlGroups(string securityIdentifier)
+        {
+            return this.TotalSmartCodingEntities.GetUserControlGroups(securityIdentifier).ToList();
+        }
     }
 }

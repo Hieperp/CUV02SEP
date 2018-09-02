@@ -46,14 +46,12 @@ namespace TotalSmartCoding.Views.Mains
                 this.fastUserGroupDetails.ShowGroups = true;
                 this.fastUserGroupDetails.AboutToCreateGroups += fastGroups_AboutToCreateGroups;
 
-                this.gridexUserControls.AutoGenerateColumns = false;
-                this.gridexUserControls.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                this.fastUserSalespersons.ShowGroups = true;
+                this.fastUserSalespersons.AboutToCreateGroups += fastGroups_AboutToCreateGroups;
 
-                this.bindingListUserControls = new BindingList<UserGroupControlDTO>();
-                this.gridexUserControls.DataSource = this.bindingListUserControls;
-                this.bindingListUserControls.ListChanged += bindingListUserControls_ListChanged;
-
-                StackedHeaderDecorator stackedHeaderDecorator = new StackedHeaderDecorator(this.gridexUserControls);
+                //this.bindingListUserControls = new BindingList<UserGroupControlDTO>();
+                //this.gridexUserControls.DataSource = this.bindingListUserControls;
+                //this.bindingListUserControls.ListChanged += bindingListUserControls_ListChanged;
             }
             catch (Exception exception)
             {
@@ -84,18 +82,21 @@ namespace TotalSmartCoding.Views.Mains
                 panelCenter.Controls.Add(customTabCenter);
                 customTabCenter.Dock = DockStyle.Fill;
 
-                customTabCenter.TabPages.Add("tabCenterAA", "Permission Controls          ");
-                customTabCenter.TabPages.Add("tabCenterAA", "Users                ");
+                customTabCenter.TabPages.Add("tabCenterAA", "Member of Groups            ");
+                customTabCenter.TabPages.Add("tabCenterAA", "Salespersons                        ");
                 customTabCenter.TabPages[0].BackColor = this.panelCenter.BackColor;
                 customTabCenter.TabPages[1].BackColor = this.panelCenter.BackColor;
 
-                customTabCenter.TabPages[0].Controls.Add(this.gridexUserControls);
-                customTabCenter.TabPages[1].Controls.Add(this.fastUserGroupDetails);
-                customTabCenter.TabPages[1].Controls.Add(this.toolUserGroupDetails);
+                customTabCenter.TabPages[0].Controls.Add(this.fastUserGroupDetails);
+                customTabCenter.TabPages[0].Controls.Add(this.toolUserGroupDetails);
+                customTabCenter.TabPages[1].Controls.Add(this.fastUserSalespersons);
+                customTabCenter.TabPages[1].Controls.Add(this.toolUserSalespersons);
 
-                this.gridexUserControls.Dock = DockStyle.Fill;
+
                 this.fastUserGroupDetails.Dock = DockStyle.Fill;
                 this.toolUserGroupDetails.Dock = DockStyle.Top;
+                this.fastUserSalespersons.Dock = DockStyle.Fill;
+                this.toolUserSalespersons.Dock = DockStyle.Top;
             }
             catch (Exception exception)
             {
@@ -156,7 +157,7 @@ namespace TotalSmartCoding.Views.Mains
                 {
                     this.selectedUserControlIndex = value;
                     this.GetUserControls();
-                    this.GetUserGroupMembers();
+                    this.GetUserControlGroups();
                 }
             }
         }
@@ -172,18 +173,18 @@ namespace TotalSmartCoding.Views.Mains
             else
             {
                 this.GetUserControls();
-                this.GetUserGroupMembers();
+                this.GetUserControlGroups();
             }
         }
 
-        private void GetUserGroupMembers()
+        private void GetUserControlGroups()
         {
             try
             {
-                if (this.userGroupAPIs != null)
+                if (this.userControlAPIs != null)
                 {
-                    this.fastUserGroupDetails.SetObjects(this.userGroupAPIs.GetUserGroupMembers(this.SelectedUserControlIndex != null ? this.SelectedUserControlIndex.UserID : 0));
-                    this.fastUserGroupDetails.Sort(this.olvUserType, SortOrder.Ascending);
+                    this.fastUserGroupDetails.SetObjects(this.userControlAPIs.GetUserControlGroups(this.SelectedUserControlIndex != null ? this.SelectedUserControlIndex.SecurityIdentifier : null));
+                    this.fastUserGroupDetails.Sort(this.olvGroupType, SortOrder.Ascending);
                 }
             }
             catch (Exception exception)
@@ -194,6 +195,7 @@ namespace TotalSmartCoding.Views.Mains
 
         private void GetUserControls()
         {
+            return; //--xxx
             try
             {
                 if (this.userGroupAPIs != null && this.bindingListUserControls != null)
@@ -209,11 +211,6 @@ namespace TotalSmartCoding.Views.Mains
             {
                 ExceptionHandlers.ShowExceptionMessageBox(this, exception);
             }
-        }
-
-        private void gridexAccessControls_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            this.gridexUserControls.CommitEdit(DataGridViewDataErrorContexts.Commit);
         }
 
         private void bindingListUserControls_ListChanged(object sender, ListChangedEventArgs e)
@@ -256,53 +253,9 @@ namespace TotalSmartCoding.Views.Mains
                 }
             }
 
-            if (dialogResult == DialogResult.OK) this.GetUserGroupMembers();
+            if (dialogResult == DialogResult.OK) this.GetUserControlGroups();
         }
 
         #endregion Add, remove member
-
-        
-
-        #region MERGE CELL
-        private void gridexUserControls_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            if (e.RowIndex == 0 || !(e.ColumnIndex == 0 || e.ColumnIndex == 1))
-                return;
-            if (IsTheSameCellValue(e.ColumnIndex, e.RowIndex))
-            {
-                e.Value = "";
-                e.FormattingApplied = true;
-            }
-        }
-
-        private void gridexUserControls_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
-        {
-            e.AdvancedBorderStyle.Bottom = DataGridViewAdvancedCellBorderStyle.None;
-            if (e.RowIndex < 1 || !(e.ColumnIndex == 0 || e.ColumnIndex == 1))
-                return;
-            if (IsTheSameCellValue(e.ColumnIndex, e.RowIndex))
-            {
-                e.AdvancedBorderStyle.Top = DataGridViewAdvancedCellBorderStyle.None;
-            }
-            else
-            {
-                e.AdvancedBorderStyle.Top = gridexUserControls.AdvancedCellBorderStyle.Top;
-            }
-        }
-
-        private bool IsTheSameCellValue(int column, int row)
-        {
-            DataGridViewCell cell1 = gridexUserControls[column, row];
-            DataGridViewCell cell2 = gridexUserControls[column, row - 1];
-            if (cell1.Value == null || cell2.Value == null)
-            {
-                return false;
-            }
-            return cell1.Value.ToString() == cell2.Value.ToString();
-        }
-
-        #endregion MERGE CELL
-
-
     }
 }
