@@ -418,6 +418,12 @@
     <Compile Include="Views\Mains\TabletMDI.Designer.cs">
       <DependentUpon>TabletMDI.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Mains\UserControls.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Mains\UserControls.Designer.cs">
+      <DependentUpon>UserControls.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Mains\UserGroupAvailableMembers.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -649,6 +655,9 @@
     <EmbeddedResource Include="Views\Mains\TabletMDI.resx">
       <DependentUpon>TabletMDI.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Mains\UserControls.resx">
+      <DependentUpon>UserControls.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Mains\UserGroupAvailableMembers.resx">
       <DependentUpon>UserGroupAvailableMembers.cs</DependentUpon>
@@ -1384,6 +1393,7 @@
     <None Include="Resources\icons8-data-matrix-code-32.png" />
     <None Include="Resources\images 3232.png" />
     <None Include="Resources\images 3030.png" />
+    <None Include="Resources\Manage_group.png" />
     <Content Include="SmartCodingSolution.ico" />
     <None Include="Resources\Yellow-cross.ico" />
     <None Include="Resources\White-Pallet.ico" />
