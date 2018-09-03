@@ -36,7 +36,7 @@ namespace TotalSmartCoding.Views.Mains
 
                 //userAPIs.UpdateUserName("S-1-5-21-3775195119-1044016383-3360809325-1001", "NMVN\vendor");
 
-                if (false)
+                if (true)
                 {
                     PrincipalContext ctx = new PrincipalContext(ContextType.Domain, "chevronvn.com"); //, "OU=SomeOU,dc=YourCompany,dc=com"// create your domain context and define the OU container to search in
                     UserPrincipal qbeUser = new UserPrincipal(ctx);// define a "query-by-example" principal - here, we search for a UserPrincipal (user)

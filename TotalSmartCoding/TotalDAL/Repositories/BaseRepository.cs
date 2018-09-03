@@ -118,7 +118,15 @@ namespace TotalDAL.Repositories
                                                         ) ON [PRIMARY]	                                                
                                                 ", new ObjectParameter[] { });
 
-                if (false)
+                
+                #endregion
+
+                this.UpdateUserControls();
+            }
+
+            if (!this.totalSmartCodingEntities.TableExists("UserSalespersons"))
+            {
+                if (true)
                 {
                     this.ExecuteStoreCommand(@"CREATE TABLE [dbo].[UserSalespersons](
 	                                                        [UserSalespersonID] [int] IDENTITY(1,1) NOT NULL,	
@@ -137,11 +145,7 @@ namespace TotalDAL.Repositories
                                                         ) ON [PRIMARY]	                                                
                                                 ", new ObjectParameter[] { });
                 }
-                #endregion
-
-                this.UpdateUserControls();
             }
-
             #endregion
 
 

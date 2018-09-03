@@ -28,6 +28,12 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
 
             this.GetUserControlGroups();
             this.GetUserControlAvailableGroups();
+
+            this.GetUserControlSalespersons();
+            this.GetUserControlAvailableSalespersons();
+
+            this.UserControlAddSalesperson();
+            this.UserControlRemoveSalesperson();
         }
 
         private void GetUserControlIndexes()
@@ -131,6 +137,8 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
 
             //                                              REMOVE GROUP MEMBER. SEE STORED: UserGroupRemoveMember
             queryString = queryString + "                   DELETE FROM     UserGroupDetails WHERE SecurityIdentifier = @SecurityIdentifier; " + "\r\n";
+            //                                              REMOVE SALESPERSON.  SEE STORED: UserControlRemoveSalesperson
+            queryString = queryString + "                   DELETE FROM     UserSalespersons WHERE SecurityIdentifier = @SecurityIdentifier; " + "\r\n";
 
             queryString = queryString + "                   DECLARE Action_Cursor CURSOR FOR SELECT Users.UserID, Users.UserName, OrganizationalUnits.Name AS OrganizationalUnitName FROM Users INNER JOIN OrganizationalUnits ON Users.OrganizationalUnitID = OrganizationalUnits.OrganizationalUnitID WHERE Users.SecurityIdentifier = @SecurityIdentifier OPEN Action_Cursor; " + "\r\n";
             queryString = queryString + "                   FETCH NEXT FROM Action_Cursor INTO @UserID, @UserName, @OrganizationalUnitName; " + "\r\n";
@@ -215,6 +223,84 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
 
             this.totalSmartCodingEntities.CreateStoredProcedure("GetUserControlAvailableGroups", queryString);
         }
+
+        private void GetUserControlSalespersons()
+        {
+            string queryString;
+
+            queryString = " @SecurityIdentifier nvarchar(256) " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+            queryString = queryString + "    BEGIN " + "\r\n";
+
+            queryString = queryString + "       SELECT      UserSalespersons.UserSalespersonID, UserSalespersons.EmployeeID, Employees.Code AS EmployeeCode, Employees.Name AS EmployeeName, N'Chevron Vietnam' AS EmployeeType " + "\r\n";
+            queryString = queryString + "       FROM        UserSalespersons INNER JOIN Employees ON UserSalespersons.SecurityIdentifier = @SecurityIdentifier AND UserSalespersons.EmployeeID = Employees.EmployeeID " + "\r\n";
+            queryString = queryString + "       ORDER BY    UserSalespersons.UserSalespersonID " + "\r\n";
+
+            queryString = queryString + "    END " + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("GetUserControlSalespersons", queryString);
+        }
+
+        private void GetUserControlAvailableSalespersons()
+        {
+            string queryString = " @SecurityIdentifier nvarchar(256) " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+            queryString = queryString + "       BEGIN " + "\r\n";
+            queryString = queryString + "           SELECT  EmployeeID, Code AS EmployeeCode, Name AS EmployeeName, N'Chevron Vietnam' AS EmployeeType FROM Employees WHERE EmployeeID NOT IN (SELECT EmployeeID FROM UserSalespersons WHERE SecurityIdentifier = @SecurityIdentifier) ORDER BY Code, Name " + "\r\n";
+            queryString = queryString + "       END " + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("GetUserControlAvailableSalespersons", queryString);
+        }
+
+        private void UserControlAddSalesperson()
+        {
+            string queryString = " @SecurityIdentifier nvarchar(256), @EmployeeID int " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+            queryString = queryString + "       BEGIN " + "\r\n";
+
+            queryString = queryString + "           IF (SELECT COUNT(SecurityIdentifier) FROM UserSalespersons WHERE EmployeeID = @EmployeeID AND SecurityIdentifier = @SecurityIdentifier) <= 0 " + "\r\n";
+            queryString = queryString + "               BEGIN " + "\r\n";
+            queryString = queryString + "                   INSERT INTO     UserSalespersons (SecurityIdentifier, EmployeeID, EntryDate) VALUES (@SecurityIdentifier, @EmployeeID, GetDate()); " + "\r\n";
+            queryString = queryString + "               END " + "\r\n";
+
+            queryString = queryString + "           ELSE " + "\r\n";
+            queryString = queryString + "               BEGIN " + "\r\n";
+            queryString = queryString + "                   DECLARE     @msg NVARCHAR(300) = N'Đăng ký trùng salesperon.' ; " + "\r\n";
+            queryString = queryString + "                   THROW       61001,  @msg, 1; " + "\r\n";
+            queryString = queryString + "               END " + "\r\n";
+
+            queryString = queryString + "       END " + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("UserControlAddSalesperson", queryString);
+        }
+
+        private void UserControlRemoveSalesperson()
+        {
+            string queryString = " @UserSalespersonID int " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+            queryString = queryString + "       BEGIN " + "\r\n";
+
+            queryString = queryString + "           IF (SELECT COUNT(*) FROM UserSalespersons WHERE UserSalespersonID = @UserSalespersonID) = 1 " + "\r\n";
+            queryString = queryString + "               BEGIN " + "\r\n";
+            //                                              WE ALSO CALL THIS BELOW STATEMENT TO REMOVE GROUP MEMBER WHEN UNREGISTER USER. SEE STORED: UserControlUnregister
+            queryString = queryString + "                   DELETE FROM     UserSalespersons WHERE UserSalespersonID = @UserSalespersonID; " + "\r\n";
+            queryString = queryString + "               END " + "\r\n";
+
+            queryString = queryString + "           ELSE " + "\r\n";
+            queryString = queryString + "               BEGIN " + "\r\n";
+            queryString = queryString + "                   DECLARE     @msg NVARCHAR(300) = N'Không thể xóa salesperon khỏi user.' ; " + "\r\n";
+            queryString = queryString + "                   THROW       61001,  @msg, 1; " + "\r\n";
+            queryString = queryString + "               END " + "\r\n";
+
+            queryString = queryString + "       END " + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("UserControlRemoveSalesperson", queryString);
+        }
+
 
     }
 }
