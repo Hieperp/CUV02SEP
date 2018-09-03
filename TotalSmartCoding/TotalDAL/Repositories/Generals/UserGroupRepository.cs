@@ -60,10 +60,19 @@ namespace TotalDAL.Repositories.Generals
             return this.TotalSmartCodingEntities.GetUserGroupControls(userGroupID).ToList();
         }
 
+        public IList<UserGroupReport> GetUserGroupReports(int? userGroupID)
+        {
+            return this.TotalSmartCodingEntities.GetUserGroupReports(userGroupID).ToList();
+        }
+
         public int SaveUserGroupControls(int? userGroupControlID, int? accessLevel, bool? approvalPermitted, bool? unApprovalPermitted, bool? voidablePermitted, bool? unVoidablePermitted, bool? showDiscount)
         {
             return this.TotalSmartCodingEntities.SaveUserGroupControls(userGroupControlID, accessLevel, approvalPermitted, unApprovalPermitted, voidablePermitted, unVoidablePermitted, showDiscount);
         }
 
+        public int SaveUserGroupReports(int? userGroupReportID, bool? enabled)
+        {
+            return this.TotalSmartCodingEntities.SaveUserGroupReports(userGroupReportID, enabled);
+        }
     }
 }

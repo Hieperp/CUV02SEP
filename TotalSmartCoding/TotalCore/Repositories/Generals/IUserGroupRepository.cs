@@ -21,7 +21,9 @@ namespace TotalCore.Repositories.Generals
         IList<UserGroupMember> GetUserGroupMembers(int? userGroupID);
 
         IList<UserGroupControl> GetUserGroupControls(int? userGroupID);
+        IList<UserGroupReport> GetUserGroupReports(int? userGroupID);
         int SaveUserGroupControls(int? userGroupControlID, int? accessLevel, bool? approvalPermitted, bool? unApprovalPermitted, bool? voidablePermitted, bool? unVoidablePermitted, bool? showDiscount);
+        int SaveUserGroupReports(int? userGroupReportID, bool? enabled);
     }
 
 }

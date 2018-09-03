@@ -474,6 +474,9 @@
     <Compile Include="Models\UserGroupMember.cs">
       <DependentUpon>TotalSmartCoding.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UserGroupReport.cs">
+      <DependentUpon>TotalSmartCoding.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UserIndex.cs">
       <DependentUpon>TotalSmartCoding.tt</DependentUpon>
     </Compile>

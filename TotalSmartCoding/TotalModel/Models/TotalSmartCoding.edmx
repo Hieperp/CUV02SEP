@@ -2868,6 +2868,9 @@
         <Function Name="GetUserGroupMembers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserGroupID" Type="int" Mode="In" />
         </Function>
+        <Function Name="GetUserGroupReports" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserGroupID" Type="int" Mode="In" />
+        </Function>
         <Function Name="GetUserIndexes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserID" Type="int" Mode="In" />
           <Parameter Name="FromDate" Type="datetime" Mode="In" />
@@ -3045,15 +3048,7 @@
           <Parameter Name="ColumnMappingID" Type="int" Mode="In" />
           <Parameter Name="ColumnMappingName" Type="nvarchar" Mode="In" />
         </Function>
-        <Function Name="SaveUserAccessControls" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="AccessControlID" Type="int" Mode="In" />
-          <Parameter Name="AccessLevel" Type="int" Mode="In" />
-          <Parameter Name="ApprovalPermitted" Type="bit" Mode="In" />
-          <Parameter Name="UnApprovalPermitted" Type="bit" Mode="In" />
-          <Parameter Name="VoidablePermitted" Type="bit" Mode="In" />
-          <Parameter Name="UnVoidablePermitted" Type="bit" Mode="In" />
-          <Parameter Name="ShowDiscount" Type="bit" Mode="In" />
-        </Function>
+        <Function Name="SaveUserAccessControls" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SaveUserGroupControls" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserGroupControlID" Type="int" Mode="In" />
           <Parameter Name="AccessLevel" Type="int" Mode="In" />
@@ -3062,6 +3057,10 @@
           <Parameter Name="VoidablePermitted" Type="bit" Mode="In" />
           <Parameter Name="UnVoidablePermitted" Type="bit" Mode="In" />
           <Parameter Name="ShowDiscount" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="SaveUserGroupReports" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserGroupReportID" Type="int" Mode="In" />
+          <Parameter Name="Enabled" Type="bit" Mode="In" />
         </Function>
         <Function Name="SearchCartons" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Barcode" Type="varchar" Mode="In" />
@@ -4434,14 +4433,7 @@
             <Parameter Name="NMVNTaskID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SaveUserAccessControls">
-            <Parameter Name="AccessControlID" Mode="In" Type="Int32" />
-            <Parameter Name="AccessLevel" Mode="In" Type="Int32" />
-            <Parameter Name="ApprovalPermitted" Mode="In" Type="Boolean" />
-            <Parameter Name="UnApprovalPermitted" Mode="In" Type="Boolean" />
-            <Parameter Name="VoidablePermitted" Mode="In" Type="Boolean" />
-            <Parameter Name="UnVoidablePermitted" Mode="In" Type="Boolean" />
-            <Parameter Name="ShowDiscount" Mode="In" Type="Boolean" />
-          </FunctionImport>
+            </FunctionImport>
           <FunctionImport Name="GetOrganizationalUnitIndexes" ReturnType="Collection(TotalSmartCodingModel.OrganizationalUnitIndex)" >
             <Parameter Name="UserID" Mode="In" Type="Int32" />
             <Parameter Name="FromDate" Mode="In" Type="DateTime" />
@@ -5041,6 +5033,13 @@
           <FunctionImport Name="UserControlToggleVoid">
             <Parameter Name="EntityID" Mode="In" Type="Int32" />
             <Parameter Name="InActive" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="GetUserGroupReports" ReturnType="Collection(TotalSmartCodingModel.UserGroupReport)">
+            <Parameter Name="UserGroupID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SaveUserGroupReports">
+            <Parameter Name="UserGroupReportID" Mode="In" Type="Int32" />
+            <Parameter Name="Enabled" Mode="In" Type="Boolean" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
@@ -8839,6 +8838,13 @@
           <Property Type="String" Name="GroupCode" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="GroupName" Nullable="false" MaxLength="100" />
         </ComplexType>
+        <ComplexType Name="UserGroupReport">
+          <Property Type="Int32" Name="UserGroupReportID" Nullable="false" />
+          <Property Type="Int32" Name="ReportID" Nullable="false" />
+          <Property Type="String" Name="ReportGroupName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ReportName" Nullable="false" MaxLength="100" />
+          <Property Type="Boolean" Name="Enabled" Nullable="false" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -11690,6 +11696,18 @@
           <FunctionImportMapping FunctionImportName="UserControlEditable" FunctionName="TotalSmartCodingModel.Store.UserControlEditable" />
           <FunctionImportMapping FunctionImportName="UserControlUnregister" FunctionName="TotalSmartCodingModel.Store.UserControlUnregister" />
           <FunctionImportMapping FunctionImportName="UserControlToggleVoid" FunctionName="TotalSmartCodingModel.Store.UserControlToggleVoid" />
+          <FunctionImportMapping FunctionImportName="GetUserGroupReports" FunctionName="TotalSmartCodingModel.Store.GetUserGroupReports">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TotalSmartCodingModel.UserGroupReport">
+                <ScalarProperty Name="UserGroupReportID" ColumnName="UserGroupReportID" />
+                <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+                <ScalarProperty Name="ReportGroupName" ColumnName="ReportGroupName" />
+                <ScalarProperty Name="ReportName" ColumnName="ReportName" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SaveUserGroupReports" FunctionName="TotalSmartCodingModel.Store.SaveUserGroupReports" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

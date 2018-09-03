@@ -61,10 +61,19 @@ namespace TotalSmartCoding.Controllers.APIs.Generals
             return this.userGroupAPIRepository.GetUserGroupControls(userGroupID);
         }
 
+        public IList<UserGroupReport> GetUserGroupReports(int? userGroupID)
+        {
+            return this.userGroupAPIRepository.GetUserGroupReports(userGroupID);
+        }
+
         public int SaveUserGroupControls(int? userGroupControlID, int? accessLevel, bool? approvalPermitted, bool? unApprovalPermitted, bool? voidablePermitted, bool? unVoidablePermitted, bool? showDiscount)
         {
             return this.userGroupAPIRepository.SaveUserGroupControls(userGroupControlID, accessLevel, approvalPermitted, unApprovalPermitted, voidablePermitted, unVoidablePermitted, showDiscount);
         }
 
+        public int SaveUserGroupReports(int? userGroupReportID, bool? enabled)
+        {
+            return this.userGroupAPIRepository.SaveUserGroupReports(userGroupReportID, enabled);
+        }
     }
 }
