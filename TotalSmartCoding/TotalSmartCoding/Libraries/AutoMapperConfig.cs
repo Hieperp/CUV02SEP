@@ -145,6 +145,7 @@ namespace TotalSmartCoding.Libraries
                 
                 cfg.CreateMap<UserAccessControl, UserAccessControlDTO>();
                 cfg.CreateMap<UserGroupControl, UserGroupControlDTO>();
+                cfg.CreateMap<UserGroupReport, UserGroupReportDTO>();
 
                 cfg.CreateMap<Report, ReportViewModel>();
                 cfg.CreateMap<Report, ReportDTO>();

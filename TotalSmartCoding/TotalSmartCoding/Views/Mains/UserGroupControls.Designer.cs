@@ -61,13 +61,13 @@
             this.olvTreeParameterName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.panelCenter = new System.Windows.Forms.Panel();
             this.gridexUserGroupReports = new CustomControls.DataGridexView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewCheckBoxColumn4 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.fastUserGroupDetails = new BrightIdeasSoftware.FastObjectListView();
             this.olvColumn1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvUserType = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvUserName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewCheckBoxColumn4 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.toolUserGroupDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastUserGroups)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridexUserGroupControls)).BeginInit();
@@ -400,32 +400,6 @@
             this.gridexUserGroupReports.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.gridexUserGroupReports_CellFormatting);
             this.gridexUserGroupReports.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.gridexUserGroupReports_CellPainting);
             // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "ReportGroupName";
-            this.dataGridViewTextBoxColumn1.FillWeight = 30F;
-            this.dataGridViewTextBoxColumn1.HeaderText = "Reports.Groups";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "ReportName";
-            this.dataGridViewTextBoxColumn2.FillWeight = 60F;
-            this.dataGridViewTextBoxColumn2.HeaderText = "Reports.Name";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
-            // dataGridViewCheckBoxColumn4
-            // 
-            this.dataGridViewCheckBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewCheckBoxColumn4.DataPropertyName = "Enabled ";
-            this.dataGridViewCheckBoxColumn4.FillWeight = 10F;
-            this.dataGridViewCheckBoxColumn4.HeaderText = "Enabled";
-            this.dataGridViewCheckBoxColumn4.Name = "dataGridViewCheckBoxColumn4";
-            // 
             // fastUserGroupDetails
             // 
             this.fastUserGroupDetails.AllColumns.Add(this.olvColumn1);
@@ -474,6 +448,32 @@
             this.olvUserName.Sortable = false;
             this.olvUserName.Text = "";
             this.olvUserName.Width = 90;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "ReportGroupName";
+            this.dataGridViewTextBoxColumn1.FillWeight = 30F;
+            this.dataGridViewTextBoxColumn1.HeaderText = "Reports.Groups";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "ReportName";
+            this.dataGridViewTextBoxColumn2.FillWeight = 60F;
+            this.dataGridViewTextBoxColumn2.HeaderText = "Reports.Name";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // dataGridViewCheckBoxColumn4
+            // 
+            this.dataGridViewCheckBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewCheckBoxColumn4.DataPropertyName = "Enabled";
+            this.dataGridViewCheckBoxColumn4.FillWeight = 10F;
+            this.dataGridViewCheckBoxColumn4.HeaderText = "Enabled";
+            this.dataGridViewCheckBoxColumn4.Name = "dataGridViewCheckBoxColumn4";
             // 
             // UserGroupControls
             // 
