@@ -1787,9 +1787,37 @@ namespace TotalModel.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UserAccessControl>("GetUserAccessControls", userIDParameter, nMVNTaskIDParameter);
         }
     
-        public virtual int SaveUserAccessControls()
+        public virtual int SaveUserAccessControls(Nullable<int> accessControlID, Nullable<int> accessLevel, Nullable<bool> approvalPermitted, Nullable<bool> unApprovalPermitted, Nullable<bool> voidablePermitted, Nullable<bool> unVoidablePermitted, Nullable<bool> showDiscount)
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SaveUserAccessControls");
+            var accessControlIDParameter = accessControlID.HasValue ?
+                new ObjectParameter("AccessControlID", accessControlID) :
+                new ObjectParameter("AccessControlID", typeof(int));
+    
+            var accessLevelParameter = accessLevel.HasValue ?
+                new ObjectParameter("AccessLevel", accessLevel) :
+                new ObjectParameter("AccessLevel", typeof(int));
+    
+            var approvalPermittedParameter = approvalPermitted.HasValue ?
+                new ObjectParameter("ApprovalPermitted", approvalPermitted) :
+                new ObjectParameter("ApprovalPermitted", typeof(bool));
+    
+            var unApprovalPermittedParameter = unApprovalPermitted.HasValue ?
+                new ObjectParameter("UnApprovalPermitted", unApprovalPermitted) :
+                new ObjectParameter("UnApprovalPermitted", typeof(bool));
+    
+            var voidablePermittedParameter = voidablePermitted.HasValue ?
+                new ObjectParameter("VoidablePermitted", voidablePermitted) :
+                new ObjectParameter("VoidablePermitted", typeof(bool));
+    
+            var unVoidablePermittedParameter = unVoidablePermitted.HasValue ?
+                new ObjectParameter("UnVoidablePermitted", unVoidablePermitted) :
+                new ObjectParameter("UnVoidablePermitted", typeof(bool));
+    
+            var showDiscountParameter = showDiscount.HasValue ?
+                new ObjectParameter("ShowDiscount", showDiscount) :
+                new ObjectParameter("ShowDiscount", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SaveUserAccessControls", accessControlIDParameter, accessLevelParameter, approvalPermittedParameter, unApprovalPermittedParameter, voidablePermittedParameter, unVoidablePermittedParameter, showDiscountParameter);
         }
     
         public virtual ObjectResult<OrganizationalUnitIndex> GetOrganizationalUnitIndexes(Nullable<int> userID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)

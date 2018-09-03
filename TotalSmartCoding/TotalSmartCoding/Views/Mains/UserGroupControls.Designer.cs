@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserGroupControls));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolUserGroupDetails = new System.Windows.Forms.ToolStrip();
             this.buttonAddMember = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -59,6 +60,10 @@
             this.olvTreeCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvTreeParameterName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.panelCenter = new System.Windows.Forms.Panel();
+            this.gridexUserGroupReports = new CustomControls.DataGridexView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewCheckBoxColumn4 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.fastUserGroupDetails = new BrightIdeasSoftware.FastObjectListView();
             this.olvColumn1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvUserType = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -68,6 +73,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridexUserGroupControls)).BeginInit();
             this.toolUserGroups.SuspendLayout();
             this.panelCenter.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridexUserGroupReports)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fastUserGroupDetails)).BeginInit();
             this.SuspendLayout();
             // 
@@ -208,9 +214,9 @@
             this.gridexUserGroupControls.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.gridexUserGroupControls.RowTemplate.Height = 24;
             this.gridexUserGroupControls.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridexUserGroupControls.Size = new System.Drawing.Size(1016, 291);
+            this.gridexUserGroupControls.Size = new System.Drawing.Size(1016, 177);
             this.gridexUserGroupControls.TabIndex = 70;
-            this.gridexUserGroupControls.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridexAccessControls_CellContentClick);
+            this.gridexUserGroupControls.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridexUserGroupControls_CellContentClick);
             this.gridexUserGroupControls.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.gridexUserGroupControls_CellFormatting);
             this.gridexUserGroupControls.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.gridexUserGroupControls_CellPainting);
             // 
@@ -352,6 +358,7 @@
             // 
             // panelCenter
             // 
+            this.panelCenter.Controls.Add(this.gridexUserGroupReports);
             this.panelCenter.Controls.Add(this.fastUserGroupDetails);
             this.panelCenter.Controls.Add(this.gridexUserGroupControls);
             this.panelCenter.Controls.Add(this.toolUserGroupDetails);
@@ -360,6 +367,64 @@
             this.panelCenter.Name = "panelCenter";
             this.panelCenter.Size = new System.Drawing.Size(1016, 610);
             this.panelCenter.TabIndex = 74;
+            // 
+            // gridexUserGroupReports
+            // 
+            this.gridexUserGroupReports.AllowAddRow = false;
+            this.gridexUserGroupReports.AllowDeleteRow = false;
+            this.gridexUserGroupReports.AllowUserToAddRows = false;
+            this.gridexUserGroupReports.AllowUserToDeleteRows = false;
+            this.gridexUserGroupReports.BackgroundColor = System.Drawing.Color.Ivory;
+            this.gridexUserGroupReports.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.gridexUserGroupReports.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.gridexUserGroupReports.ColumnHeadersHeight = 24;
+            this.gridexUserGroupReports.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewCheckBoxColumn4});
+            this.gridexUserGroupReports.Dock = System.Windows.Forms.DockStyle.Top;
+            this.gridexUserGroupReports.Editable = true;
+            this.gridexUserGroupReports.GridColor = System.Drawing.SystemColors.ButtonFace;
+            this.gridexUserGroupReports.Location = new System.Drawing.Point(0, 216);
+            this.gridexUserGroupReports.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gridexUserGroupReports.MultiSelect = false;
+            this.gridexUserGroupReports.Name = "gridexUserGroupReports";
+            this.gridexUserGroupReports.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridexUserGroupReports.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.gridexUserGroupReports.RowTemplate.Height = 24;
+            this.gridexUserGroupReports.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gridexUserGroupReports.Size = new System.Drawing.Size(1016, 177);
+            this.gridexUserGroupReports.TabIndex = 103;
+            this.gridexUserGroupReports.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridexUserGroupReports_CellContentClick);
+            this.gridexUserGroupReports.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.gridexUserGroupReports_CellFormatting);
+            this.gridexUserGroupReports.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.gridexUserGroupReports_CellPainting);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "ReportGroupName";
+            this.dataGridViewTextBoxColumn1.FillWeight = 30F;
+            this.dataGridViewTextBoxColumn1.HeaderText = "Reports.Groups";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "ReportName";
+            this.dataGridViewTextBoxColumn2.FillWeight = 60F;
+            this.dataGridViewTextBoxColumn2.HeaderText = "Reports.Name";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // dataGridViewCheckBoxColumn4
+            // 
+            this.dataGridViewCheckBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewCheckBoxColumn4.DataPropertyName = "Enabled ";
+            this.dataGridViewCheckBoxColumn4.FillWeight = 10F;
+            this.dataGridViewCheckBoxColumn4.HeaderText = "Enabled";
+            this.dataGridViewCheckBoxColumn4.Name = "dataGridViewCheckBoxColumn4";
             // 
             // fastUserGroupDetails
             // 
@@ -371,18 +436,18 @@
             this.olvColumn1,
             this.olvUserName});
             this.fastUserGroupDetails.Cursor = System.Windows.Forms.Cursors.Default;
-            this.fastUserGroupDetails.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fastUserGroupDetails.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.fastUserGroupDetails.Font = new System.Drawing.Font("Calibri Light", 10.2F);
             this.fastUserGroupDetails.FullRowSelect = true;
             this.fastUserGroupDetails.GroupImageList = this.imageList32;
             this.fastUserGroupDetails.HideSelection = false;
             this.fastUserGroupDetails.HighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
-            this.fastUserGroupDetails.Location = new System.Drawing.Point(0, 330);
+            this.fastUserGroupDetails.Location = new System.Drawing.Point(0, 440);
             this.fastUserGroupDetails.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.fastUserGroupDetails.Name = "fastUserGroupDetails";
             this.fastUserGroupDetails.OwnerDraw = true;
             this.fastUserGroupDetails.ShowGroups = false;
-            this.fastUserGroupDetails.Size = new System.Drawing.Size(1016, 280);
+            this.fastUserGroupDetails.Size = new System.Drawing.Size(1016, 170);
             this.fastUserGroupDetails.TabIndex = 102;
             this.fastUserGroupDetails.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastUserGroupDetails.UseCompatibleStateImageBehavior = false;
@@ -435,6 +500,7 @@
             this.toolUserGroups.PerformLayout();
             this.panelCenter.ResumeLayout(false);
             this.panelCenter.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridexUserGroupReports)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fastUserGroupDetails)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -475,5 +541,9 @@
         private BrightIdeasSoftware.OLVColumn olvColumn1;
         private BrightIdeasSoftware.OLVColumn olvUserName;
         private BrightIdeasSoftware.OLVColumn olvUserType;
+        private CustomControls.DataGridexView gridexUserGroupReports;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn4;
     }
 }

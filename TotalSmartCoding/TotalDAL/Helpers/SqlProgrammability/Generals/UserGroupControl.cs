@@ -20,7 +20,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
         {
             this.GetUserGroupControls();
             this.GetUserGroupReports();
-            this.SaveUserAccessControls();//MUST CREATE SaveUserAccessControls BEFORE SaveUserGroupControls, BECAUSE SaveUserAccessControls WILL BE CALLED BY SaveUserGroupControls
+            this.SubmitUserAccessControls();//MUST CREATE SubmitUserAccessControls BEFORE SaveUserGroupControls, BECAUSE SubmitUserAccessControls WILL BE CALLED BY SaveUserGroupControls
 
             this.SaveUserGroupControls();
             this.SaveUserGroupReports();
@@ -81,7 +81,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             queryString = queryString + "                   THROW       61001,  @msg, 1; " + "\r\n";
             queryString = queryString + "               END " + "\r\n";
 
-            queryString = queryString + "           EXEC            SaveUserAccessControls " + "\r\n";
+            queryString = queryString + "           EXEC            SubmitUserAccessControls " + "\r\n";
             queryString = queryString + "       END " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("SaveUserGroupControls", queryString);
@@ -109,7 +109,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             this.totalSmartCodingEntities.CreateStoredProcedure("SaveUserGroupReports", queryString);
         }
 
-        private void SaveUserAccessControls()
+        private void SubmitUserAccessControls()
         {
             string queryString = " " + "\r\n";
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
@@ -156,7 +156,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
 
             queryString = queryString + "       END " + "\r\n";
 
-            this.totalSmartCodingEntities.CreateStoredProcedure("SaveUserAccessControls", queryString);
+            this.totalSmartCodingEntities.CreateStoredProcedure("SubmitUserAccessControls", queryString);
         }
 
     }

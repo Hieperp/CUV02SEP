@@ -3048,7 +3048,15 @@
           <Parameter Name="ColumnMappingID" Type="int" Mode="In" />
           <Parameter Name="ColumnMappingName" Type="nvarchar" Mode="In" />
         </Function>
-        <Function Name="SaveUserAccessControls" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SaveUserAccessControls" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AccessControlID" Type="int" Mode="In" />
+          <Parameter Name="AccessLevel" Type="int" Mode="In" />
+          <Parameter Name="ApprovalPermitted" Type="bit" Mode="In" />
+          <Parameter Name="UnApprovalPermitted" Type="bit" Mode="In" />
+          <Parameter Name="VoidablePermitted" Type="bit" Mode="In" />
+          <Parameter Name="UnVoidablePermitted" Type="bit" Mode="In" />
+          <Parameter Name="ShowDiscount" Type="bit" Mode="In" />
+        </Function>
         <Function Name="SaveUserGroupControls" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserGroupControlID" Type="int" Mode="In" />
           <Parameter Name="AccessLevel" Type="int" Mode="In" />
@@ -4433,7 +4441,14 @@
             <Parameter Name="NMVNTaskID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SaveUserAccessControls">
-            </FunctionImport>
+            <Parameter Name="AccessControlID" Mode="In" Type="Int32" />
+            <Parameter Name="AccessLevel" Mode="In" Type="Int32" />
+            <Parameter Name="ApprovalPermitted" Mode="In" Type="Boolean" />
+            <Parameter Name="UnApprovalPermitted" Mode="In" Type="Boolean" />
+            <Parameter Name="VoidablePermitted" Mode="In" Type="Boolean" />
+            <Parameter Name="UnVoidablePermitted" Mode="In" Type="Boolean" />
+            <Parameter Name="ShowDiscount" Mode="In" Type="Boolean" />
+          </FunctionImport>
           <FunctionImport Name="GetOrganizationalUnitIndexes" ReturnType="Collection(TotalSmartCodingModel.OrganizationalUnitIndex)" >
             <Parameter Name="UserID" Mode="In" Type="Int32" />
             <Parameter Name="FromDate" Mode="In" Type="DateTime" />
@@ -5035,7 +5050,7 @@
             <Parameter Name="InActive" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="GetUserGroupReports" ReturnType="Collection(TotalSmartCodingModel.UserGroupReport)">
-            <Parameter Name="UserGroupID" Mode="In" Type="Int32" />
+          <Parameter Name="UserGroupID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SaveUserGroupReports">
             <Parameter Name="UserGroupReportID" Mode="In" Type="Int32" />

@@ -29,6 +29,7 @@ namespace TotalSmartCoding.Views.Mains
         private UserGroupAPIs userGroupAPIs { get; set; }
 
         private BindingList<UserGroupControlDTO> bindingListUserGroupControls;
+        private BindingList<UserGroupReportDTO> bindingListUserGroupReports;
 
         #region Contruction
         public UserGroupControls()
@@ -47,11 +48,19 @@ namespace TotalSmartCoding.Views.Mains
                 this.gridexUserGroupControls.AutoGenerateColumns = false;
                 this.gridexUserGroupControls.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
+                this.gridexUserGroupReports.AutoGenerateColumns = false;
+                this.gridexUserGroupReports.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
                 this.bindingListUserGroupControls = new BindingList<UserGroupControlDTO>();
                 this.gridexUserGroupControls.DataSource = this.bindingListUserGroupControls;
                 this.bindingListUserGroupControls.ListChanged += bindingListUserGroupControls_ListChanged;
 
-                StackedHeaderDecorator stackedHeaderDecorator = new StackedHeaderDecorator(this.gridexUserGroupControls);
+                this.bindingListUserGroupReports = new BindingList<UserGroupReportDTO>();
+                this.gridexUserGroupReports.DataSource = this.bindingListUserGroupReports;
+                this.bindingListUserGroupReports.ListChanged += bindingListUserGroupReports_ListChanged;
+
+                StackedHeaderDecorator stackedHeaderDecoratorControl = new StackedHeaderDecorator(this.gridexUserGroupControls);
+                StackedHeaderDecorator stackedHeaderDecoratorReport = new StackedHeaderDecorator(this.gridexUserGroupReports);
             }
             catch (Exception exception)
             {
@@ -82,16 +91,20 @@ namespace TotalSmartCoding.Views.Mains
                 panelCenter.Controls.Add(customTabCenter);
                 customTabCenter.Dock = DockStyle.Fill;
 
-                customTabCenter.TabPages.Add("tabCenterAA", "Permission Controls          ");
+                customTabCenter.TabPages.Add("tabCenterAA", "Access Controls          ");
+                customTabCenter.TabPages.Add("tabCenterAA", "Report Controls          ");
                 customTabCenter.TabPages.Add("tabCenterAA", "Members                ");
                 customTabCenter.TabPages[0].BackColor = this.panelCenter.BackColor;
                 customTabCenter.TabPages[1].BackColor = this.panelCenter.BackColor;
+                customTabCenter.TabPages[2].BackColor = this.panelCenter.BackColor;
 
                 customTabCenter.TabPages[0].Controls.Add(this.gridexUserGroupControls);
-                customTabCenter.TabPages[1].Controls.Add(this.fastUserGroupDetails);
-                customTabCenter.TabPages[1].Controls.Add(this.toolUserGroupDetails);
+                customTabCenter.TabPages[1].Controls.Add(this.gridexUserGroupReports);
+                customTabCenter.TabPages[2].Controls.Add(this.fastUserGroupDetails);
+                customTabCenter.TabPages[2].Controls.Add(this.toolUserGroupDetails);
 
                 this.gridexUserGroupControls.Dock = DockStyle.Fill;
+                this.gridexUserGroupReports.Dock = DockStyle.Fill;
                 this.fastUserGroupDetails.Dock = DockStyle.Fill;
                 this.toolUserGroupDetails.Dock = DockStyle.Top;
             }
@@ -154,6 +167,7 @@ namespace TotalSmartCoding.Views.Mains
                 {
                     this.selectedUserGroupIndex = value;
                     this.GetUserGroupControls();
+                    this.GetUserGroupReports();
                     this.GetUserGroupMembers();
                 }
             }
@@ -170,6 +184,7 @@ namespace TotalSmartCoding.Views.Mains
             else
             {
                 this.GetUserGroupControls();
+                this.GetUserGroupReports();
                 this.GetUserGroupMembers();
             }
         }
@@ -209,9 +224,33 @@ namespace TotalSmartCoding.Views.Mains
             }
         }
 
-        private void gridexAccessControls_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void GetUserGroupReports()
+        {
+            try
+            {
+                if (this.userGroupAPIs != null && this.bindingListUserGroupReports != null)
+                {
+                    IList<UserGroupReport> userGroupReports = this.userGroupAPIs.GetUserGroupReports(this.SelectedUserGroupIndex != null ? this.SelectedUserGroupIndex.UserGroupID : 0);
+                    this.bindingListUserGroupReports.RaiseListChangedEvents = false;
+                    Mapper.Map<ICollection<UserGroupReport>, ICollection<UserGroupReportDTO>>(userGroupReports, this.bindingListUserGroupReports);
+                    this.bindingListUserGroupReports.RaiseListChangedEvents = true;
+                    this.bindingListUserGroupReports.ResetBindings();
+                }
+            }
+            catch (Exception exception)
+            {
+                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+            }
+        }
+
+        private void gridexUserGroupControls_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             this.gridexUserGroupControls.CommitEdit(DataGridViewDataErrorContexts.Commit);
+        }
+
+        private void gridexUserGroupReports_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            this.gridexUserGroupReports.CommitEdit(DataGridViewDataErrorContexts.Commit);
         }
 
         private void bindingListUserGroupControls_ListChanged(object sender, ListChangedEventArgs e)
@@ -224,6 +263,25 @@ namespace TotalSmartCoding.Views.Mains
                     if (userGroupControlDTO != null)
                     {
                         this.userGroupAPIs.SaveUserGroupControls(userGroupControlDTO.UserGroupControlID, userGroupControlDTO.AccessLevel, userGroupControlDTO.ApprovalPermitted, userGroupControlDTO.UnApprovalPermitted, userGroupControlDTO.VoidablePermitted, userGroupControlDTO.UnVoidablePermitted, userGroupControlDTO.ShowDiscount);
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+            }
+        }
+
+        private void bindingListUserGroupReports_ListChanged(object sender, ListChangedEventArgs e)
+        {
+            try
+            {
+                if (e.PropertyDescriptor != null && e.NewIndex >= 0 && e.NewIndex < this.bindingListUserGroupReports.Count)
+                {
+                    UserGroupReportDTO userGroupReportDTO = this.bindingListUserGroupReports[e.NewIndex];
+                    if (userGroupReportDTO != null)
+                    {
+                        this.userGroupAPIs.SaveUserGroupReports(userGroupReportDTO.UserGroupReportID, userGroupReportDTO.Enabled);
                     }
                 }
             }
@@ -301,6 +359,45 @@ namespace TotalSmartCoding.Views.Mains
 
         #endregion MERGE CELL
 
+        #region MERGE CELL
+        private void gridexUserGroupReports_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex == 0 || !(e.ColumnIndex == 0))
+                return;
+            if (IsGroupReportTheSameCellValue(e.ColumnIndex, e.RowIndex))
+            {
+                e.Value = "";
+                e.FormattingApplied = true;
+            }
+        }
+
+        private void gridexUserGroupReports_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            e.AdvancedBorderStyle.Bottom = DataGridViewAdvancedCellBorderStyle.None;
+            if (e.RowIndex < 1 || !(e.ColumnIndex == 0))
+                return;
+            if (IsGroupReportTheSameCellValue(e.ColumnIndex, e.RowIndex))
+            {
+                e.AdvancedBorderStyle.Top = DataGridViewAdvancedCellBorderStyle.None;
+            }
+            else
+            {
+                e.AdvancedBorderStyle.Top = gridexUserGroupReports.AdvancedCellBorderStyle.Top;
+            }
+        }
+
+        private bool IsGroupReportTheSameCellValue(int column, int row)
+        {
+            DataGridViewCell cell1 = gridexUserGroupReports[column, row];
+            DataGridViewCell cell2 = gridexUserGroupReports[column, row - 1];
+            if (cell1.Value == null || cell2.Value == null)
+            {
+                return false;
+            }
+            return cell1.Value.ToString() == cell2.Value.ToString();
+        }
+
+        #endregion MERGE CELL
 
     }
 }
