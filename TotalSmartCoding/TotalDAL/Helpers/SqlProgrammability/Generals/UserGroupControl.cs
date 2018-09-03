@@ -19,9 +19,9 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
         public void RestoreProcedure()
         {
             this.GetUserGroupControls();
-            this.SaveUserGroupControls();
+            this.SaveUserAccessControls();//MUST CREATE SaveUserAccessControls BEFORE SaveUserGroupControls, BECAUSE SaveUserAccessControls WILL BE CALLED BY SaveUserGroupControls
 
-            this.SaveUserAccessControls();
+            this.SaveUserGroupControls();
         }
 
         private void GetUserGroupControls()
@@ -59,6 +59,8 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             queryString = queryString + "                   DECLARE     @msg NVARCHAR(300) = N'Unknow error: Save User Access Controls. Please exit then open and try again.' ; " + "\r\n";
             queryString = queryString + "                   THROW       61001,  @msg, 1; " + "\r\n";
             queryString = queryString + "               END " + "\r\n";
+
+            queryString = queryString + "           EXEC            SaveUserAccessControls " + "\r\n";
             queryString = queryString + "       END " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("SaveUserGroupControls", queryString);

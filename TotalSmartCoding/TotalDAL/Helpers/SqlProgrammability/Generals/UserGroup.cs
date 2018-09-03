@@ -109,6 +109,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             queryString = queryString + "                   DELETE FROM     UserGroupControls WHERE UserGroupID = @UserGroupID " + "\r\n";
             queryString = queryString + "                   DELETE FROM     UserGroupDetails WHERE UserGroupID = @UserGroupID " + "\r\n";
             queryString = queryString + "                   DELETE FROM     UserGroups WHERE UserGroupID = @UserGroupID " + "\r\n";
+            queryString = queryString + "                   EXEC            SaveUserAccessControls " + "\r\n";
             queryString = queryString + "               END " + "\r\n";
 
             queryString = queryString + "           ELSE " + "\r\n";
@@ -169,6 +170,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             queryString = queryString + "           IF (SELECT COUNT(SecurityIdentifier) FROM UserGroupDetails WHERE UserGroupID = @UserGroupID AND SecurityIdentifier = @SecurityIdentifier) <= 0 " + "\r\n";
             queryString = queryString + "               BEGIN " + "\r\n";
             queryString = queryString + "                   INSERT INTO     UserGroupDetails (UserGroupID, SecurityIdentifier, EntryDate) VALUES (@UserGroupID, @SecurityIdentifier, GetDate()); " + "\r\n";
+            queryString = queryString + "                   EXEC            SaveUserAccessControls " + "\r\n";
             queryString = queryString + "               END " + "\r\n";
 
             queryString = queryString + "           ELSE " + "\r\n";
@@ -193,6 +195,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             queryString = queryString + "               BEGIN " + "\r\n";
             //                                              WE ALSO CALL THIS BELOW STATEMENT TO REMOVE GROUP MEMBER WHEN UNREGISTER USER. SEE STORED: UserControlUnregister
             queryString = queryString + "                   DELETE FROM     UserGroupDetails WHERE UserGroupDetailID = @UserGroupDetailID; " + "\r\n";
+            queryString = queryString + "                   EXEC            SaveUserAccessControls " + "\r\n";
             queryString = queryString + "               END " + "\r\n";
 
             queryString = queryString + "           ELSE " + "\r\n";

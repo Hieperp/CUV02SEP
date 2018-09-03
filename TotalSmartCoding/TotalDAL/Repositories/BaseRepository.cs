@@ -453,11 +453,11 @@ namespace TotalDAL.Repositories
 
 
             //return;
-            //!!!!!!!!!!!!!!!!!!!!!!!!!ANY STORED CALL SaveUserAccessControls: MUST BY APPLY AFTER THIS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            //!!!!!!!!!!!!!!!!!!!!!!!!!ANY STORED CALL SaveUserAccessControls: MUST BY RESTORE AFTER THIS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             Helpers.SqlProgrammability.Generals.UserGroupControl userGroupControl = new Helpers.SqlProgrammability.Generals.UserGroupControl(totalSmartCodingEntities);
             userGroupControl.RestoreProcedure();
 
-            return;
+            //return;
 
             Helpers.SqlProgrammability.Generals.UserGroup userGroup = new Helpers.SqlProgrammability.Generals.UserGroup(totalSmartCodingEntities);
             userGroup.RestoreProcedure();
