@@ -3126,6 +3126,9 @@
           <Parameter Name="UserName" Type="nvarchar" Mode="In" />
           <Parameter Name="SecurityIdentifier" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="UserControlUnregister" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserID" Type="int" Mode="In" />
+        </Function>
         <Function Name="UserEditable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="EntityID" Type="int" Mode="In" />
         </Function>
@@ -5026,7 +5029,10 @@
             <Parameter Name="SecurityIdentifier" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="UserControlEditable" ReturnType="Collection(String)">
-            <Parameter Name="EntityID" Mode="In" Type="Int32" />
+          <Parameter Name="EntityID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UserControlUnregister">
+            <Parameter Name="UserID" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
@@ -11672,6 +11678,7 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UserControlRegister" FunctionName="TotalSmartCodingModel.Store.UserControlRegister" />
           <FunctionImportMapping FunctionImportName="UserControlEditable" FunctionName="TotalSmartCodingModel.Store.UserControlEditable" />
+          <FunctionImportMapping FunctionImportName="UserControlUnregister" FunctionName="TotalSmartCodingModel.Store.UserControlUnregister" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

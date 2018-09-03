@@ -14,6 +14,7 @@ namespace TotalCore.Repositories.Generals
         IList<UserControlAvailableGroup> GetUserControlAvailableGroups(string securityIdentifier);
 
         int UserControlRegister(string firstName, string lastName, string userName, string securityIdentifier);
+        int UserControlUnregister(int? userID);
 
         int UpdateUserName(string securityIdentifier, string userName);
     }

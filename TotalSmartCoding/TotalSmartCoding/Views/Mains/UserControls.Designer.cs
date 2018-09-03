@@ -42,8 +42,8 @@
             this.olvUserControlName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.imageList32 = new System.Windows.Forms.ImageList(this.components);
             this.toolUserGroups = new System.Windows.Forms.ToolStrip();
-            this.buttonRegisterUser = new System.Windows.Forms.ToolStripButton();
-            this.buttonDeregisterUser = new System.Windows.Forms.ToolStripButton();
+            this.buttonUserRegister = new System.Windows.Forms.ToolStripButton();
+            this.buttonUserUnregister = new System.Windows.Forms.ToolStripButton();
             this.buttonUserToggleVoid = new System.Windows.Forms.ToolStripButton();
             this.olvTreePrimaryID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvTreeAncestorID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -197,8 +197,8 @@
             this.toolUserGroups.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolUserGroups.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolUserGroups.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.buttonRegisterUser,
-            this.buttonDeregisterUser,
+            this.buttonUserRegister,
+            this.buttonUserUnregister,
             this.buttonUserToggleVoid});
             this.toolUserGroups.Location = new System.Drawing.Point(0, 0);
             this.toolUserGroups.Name = "toolUserGroups";
@@ -206,25 +206,25 @@
             this.toolUserGroups.TabIndex = 0;
             this.toolUserGroups.Text = "toolStrip2";
             // 
-            // buttonRegisterUser
+            // buttonUserRegister
             // 
-            this.buttonRegisterUser.Image = global::TotalSmartCoding.Properties.Resources.add_user;
-            this.buttonRegisterUser.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.buttonRegisterUser.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonRegisterUser.Name = "buttonRegisterUser";
-            this.buttonRegisterUser.Size = new System.Drawing.Size(144, 36);
-            this.buttonRegisterUser.Text = "Register a new user";
-            this.buttonRegisterUser.Click += new System.EventHandler(this.buttonRegisterDeregisterUser_Click);
+            this.buttonUserRegister.Image = global::TotalSmartCoding.Properties.Resources.add_user;
+            this.buttonUserRegister.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonUserRegister.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonUserRegister.Name = "buttonUserRegister";
+            this.buttonUserRegister.Size = new System.Drawing.Size(144, 36);
+            this.buttonUserRegister.Text = "Register a new user";
+            this.buttonUserRegister.Click += new System.EventHandler(this.buttonUserRegister_Click);
             // 
-            // buttonDeregisterUser
+            // buttonUserUnregister
             // 
-            this.buttonDeregisterUser.Image = global::TotalSmartCoding.Properties.Resources.remove_user;
-            this.buttonDeregisterUser.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.buttonDeregisterUser.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonDeregisterUser.Name = "buttonDeregisterUser";
-            this.buttonDeregisterUser.Size = new System.Drawing.Size(167, 36);
-            this.buttonDeregisterUser.Text = "Deregister selected user";
-            this.buttonDeregisterUser.Click += new System.EventHandler(this.buttonRegisterDeregisterUser_Click);
+            this.buttonUserUnregister.Image = global::TotalSmartCoding.Properties.Resources.remove_user;
+            this.buttonUserUnregister.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonUserUnregister.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonUserUnregister.Name = "buttonUserUnregister";
+            this.buttonUserUnregister.Size = new System.Drawing.Size(167, 36);
+            this.buttonUserUnregister.Text = "Deregister selected user";
+            this.buttonUserUnregister.Click += new System.EventHandler(this.buttonUserUnregister_Click);
             // 
             // buttonUserToggleVoid
             // 
@@ -454,8 +454,8 @@
         private BrightIdeasSoftware.OLVColumn olvTreeAncestorID;
         private BrightIdeasSoftware.OLVColumn olvTreeCode;
         private BrightIdeasSoftware.OLVColumn olvTreeParameterName;
-        private System.Windows.Forms.ToolStripButton buttonRegisterUser;
-        private System.Windows.Forms.ToolStripButton buttonDeregisterUser;
+        private System.Windows.Forms.ToolStripButton buttonUserRegister;
+        private System.Windows.Forms.ToolStripButton buttonUserUnregister;
         private BrightIdeasSoftware.OLVColumn olvUserControlType;
         private System.Windows.Forms.Panel panelCenter;
         private BrightIdeasSoftware.FastObjectListView fastUserGroupDetails;

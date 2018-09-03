@@ -37,7 +37,10 @@ namespace TotalDAL.Repositories.Generals
             return this.TotalSmartCodingEntities.UserControlRegister(firstName, lastName, userName, securityIdentifier);
         }
 
-
+        public int UserControlUnregister(int? userID)
+        {
+            return this.TotalSmartCodingEntities.UserControlUnregister(userID);
+        }
 
 
         public int UpdateUserName(string securityIdentifier, string userName)

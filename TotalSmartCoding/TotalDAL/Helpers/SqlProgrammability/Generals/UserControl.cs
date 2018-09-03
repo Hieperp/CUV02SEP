@@ -23,7 +23,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             this.UserControlEditable();
 
             this.UserControlRegister();
-            
+            this.UserControlUnregister();
 
 
             this.GetUserControlGroups();
@@ -111,8 +111,53 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
 
             this.totalSmartCodingEntities.CreateStoredProcedure("UserControlRegister", queryString);
         }
-        
-        
+
+        private void UserControlUnregister()
+        {
+            string queryString = " @UserID int " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+            queryString = queryString + "       BEGIN " + "\r\n";
+
+            queryString = queryString + "           DECLARE @SecurityIdentifier nvarchar(256), @UserName nvarchar(256), @OrganizationalUnitName nvarchar(256) " + "\r\n";
+            queryString = queryString + "           SELECT TOP 1 @SecurityIdentifier = SecurityIdentifier, @UserName = UserName FROM Users WHERE UserID = @UserID " + "\r\n";
+
+            queryString = queryString + "           DECLARE     @FoundEntitys TABLE (FoundEntity int NULL) " + "\r\n";
+            queryString = queryString + "           INSERT INTO @FoundEntitys EXEC UserControlEditable @UserID " + "\r\n";
+
+            queryString = queryString + "           IF (SELECT COUNT(*) FROM @FoundEntitys WHERE NOT FoundEntity IS NULL) <= 0 " + "\r\n";
+            queryString = queryString + "               BEGIN " + "\r\n";
+
+            //                                              REMOVE GROUP MEMBER. SEE STORED: UserGroupRemoveMember
+            queryString = queryString + "                   DELETE FROM     UserGroupDetails WHERE SecurityIdentifier = @SecurityIdentifier; " + "\r\n";
+
+            queryString = queryString + "                   DECLARE Action_Cursor CURSOR FOR SELECT Users.UserID, Users.UserName, OrganizationalUnits.Name AS OrganizationalUnitName FROM Users INNER JOIN OrganizationalUnits ON Users.OrganizationalUnitID = OrganizationalUnits.OrganizationalUnitID WHERE Users.SecurityIdentifier = @SecurityIdentifier OPEN Action_Cursor; " + "\r\n";
+            queryString = queryString + "                   FETCH NEXT FROM Action_Cursor INTO @UserID, @UserName, @OrganizationalUnitName; " + "\r\n";
+            queryString = queryString + "                   WHILE @@FETCH_STATUS = 0 " + "\r\n";
+            queryString = queryString + "                       BEGIN " + "\r\n";
+
+            queryString = queryString + "                           EXEC UserUnregister @UserID, @UserName, @OrganizationalUnitName " + "\r\n";
+
+            queryString = queryString + "                           FETCH NEXT FROM Action_Cursor INTO @UserID, @UserName, @OrganizationalUnitName; " + "\r\n";
+
+            queryString = queryString + "                       END" + "\r\n";
+            queryString = queryString + "                   CLOSE Action_Cursor; " + "\r\n";
+            queryString = queryString + "                   DEALLOCATE Action_Cursor " + "\r\n";
+
+
+            queryString = queryString + "               END " + "\r\n";
+
+            queryString = queryString + "           ELSE " + "\r\n";
+            queryString = queryString + "               BEGIN " + "\r\n";
+            queryString = queryString + "                   DECLARE     @msg NVARCHAR(300) = N'Không thể hủy đăng ký ' + @UserName + N', do ' + @UserName + N' hiện đang có dữ liệu.' + N'\r\n\r\n\r\nVui lòng Inactive để dừng đăng ký và sử dụng ' + @UserName + '.' ; " + "\r\n";
+            queryString = queryString + "                   THROW       61001,  @msg, 1; " + "\r\n";
+            queryString = queryString + "               END " + "\r\n";
+
+            queryString = queryString + "       END " + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("UserControlUnregister", queryString);
+        }
+
 
         private void GetUserControlGroups()
         {

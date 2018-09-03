@@ -2941,5 +2941,14 @@ namespace TotalModel.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UserControlEditable", entityIDParameter);
         }
+    
+        public virtual int UserControlUnregister(Nullable<int> userID)
+        {
+            var userIDParameter = userID.HasValue ?
+                new ObjectParameter("UserID", userID) :
+                new ObjectParameter("UserID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UserControlUnregister", userIDParameter);
+        }
     }
 }

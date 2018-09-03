@@ -191,6 +191,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
 
             queryString = queryString + "           IF (SELECT COUNT(*) FROM UserGroupDetails WHERE UserGroupDetailID = @UserGroupDetailID) = 1 " + "\r\n";
             queryString = queryString + "               BEGIN " + "\r\n";
+            //                                              WE ALSO CALL THIS BELOW STATEMENT TO REMOVE GROUP MEMBER WHEN UNREGISTER USER. SEE STORED: UserControlUnregister
             queryString = queryString + "                   DELETE FROM     UserGroupDetails WHERE UserGroupDetailID = @UserGroupDetailID; " + "\r\n";
             queryString = queryString + "               END " + "\r\n";
 

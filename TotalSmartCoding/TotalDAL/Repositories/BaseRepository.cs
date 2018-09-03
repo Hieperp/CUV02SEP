@@ -101,7 +101,8 @@ namespace TotalDAL.Repositories
             }
 
             #region NEW PERMISSION
-
+            //MUST CALL this.UpdateUserControls() BEFORE CALL this.RestoreProcedures(): BECAUSE: WE ADD SOME CODE TO REGISTER REPORT CONTROL IN UserRegister 
+            //VERY IMPORTANT: WE CALL OLD VERSION OF UserRegister IN this.UpdateUserControls() [UserRegister WITHOUT REPORT CONTROL]
             if (!this.totalSmartCodingEntities.TableExists("UserSalespersons"))
             {
                 #region

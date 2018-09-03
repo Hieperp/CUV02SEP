@@ -119,17 +119,32 @@ namespace TotalSmartCoding.Views.Mains
             }
         }
 
-        private void buttonRegisterDeregisterUser_Click(object sender, EventArgs e)
+        private void buttonUserRegister_Click(object sender, EventArgs e)
         {
             UserControlRegister wizardUserControlRegister = new UserControlRegister(this.userControlAPIs);
             DialogResult dialogResult = wizardUserControlRegister.ShowDialog();
 
             wizardUserControlRegister.Dispose();
             if (dialogResult == DialogResult.OK) this.LoadUserControls();
+        }
 
-            
-            //DeregisterUser PAHI CHU Y DEN VIEC: LEAVE GROUP
-
+        private void buttonUserUnregister_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (this.SelectedUserControlIndex != null && this.SelectedUserControlIndex.UserID > 0 && !this.SelectedUserControlIndex.IsDatabaseAdmin)
+                {
+                    if (CustomMsgBox.Show(this, "Are you sure you want to deregister this user?" + "\r\n" + "\r\nUser:  " + this.SelectedUserControlIndex.UserName, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
+                    {
+                        this.userControlAPIs.UserControlUnregister(this.SelectedUserControlIndex.UserID);
+                        this.LoadUserControls();
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+            }
         }
 
         #endregion Add, Remove UserGroup
@@ -160,7 +175,7 @@ namespace TotalSmartCoding.Views.Mains
                     this.GetUserControlGroups();
 
                     this.buttonUserToggleVoid.Enabled = !this.selectedUserControlIndex.IsDatabaseAdmin;
-                    this.buttonDeregisterUser.Enabled = !this.selectedUserControlIndex.IsDatabaseAdmin && this.userControlRepository.GetEditable((int)this.selectedUserControlIndex.UserID);
+                    this.buttonUserUnregister.Enabled = !this.selectedUserControlIndex.IsDatabaseAdmin && this.userControlRepository.GetEditable((int)this.selectedUserControlIndex.UserID);
 
                 }
             }

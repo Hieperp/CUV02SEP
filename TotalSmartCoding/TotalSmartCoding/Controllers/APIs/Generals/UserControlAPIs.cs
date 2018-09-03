@@ -41,7 +41,10 @@ namespace TotalSmartCoding.Controllers.APIs.Generals
             return this.userControlAPIRepository.UserControlRegister(firstName, lastName, userName, securityIdentifier);
         }
 
-
+        public int UserControlUnregister(int? userID)
+        {
+            return this.userControlAPIRepository.UserControlUnregister(userID);
+        }
 
 
 
