@@ -67,7 +67,7 @@
             this.olvUserName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewCheckBoxColumn4 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Enabled = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.toolUserGroupDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastUserGroups)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridexUserGroupControls)).BeginInit();
@@ -381,7 +381,7 @@
             this.gridexUserGroupReports.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
-            this.dataGridViewCheckBoxColumn4});
+            this.Enabled});
             this.gridexUserGroupReports.Dock = System.Windows.Forms.DockStyle.Top;
             this.gridexUserGroupReports.Editable = true;
             this.gridexUserGroupReports.GridColor = System.Drawing.SystemColors.ButtonFace;
@@ -467,13 +467,13 @@
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
             // 
-            // dataGridViewCheckBoxColumn4
+            // Enabled
             // 
-            this.dataGridViewCheckBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewCheckBoxColumn4.DataPropertyName = "Enabled";
-            this.dataGridViewCheckBoxColumn4.FillWeight = 10F;
-            this.dataGridViewCheckBoxColumn4.HeaderText = "Enabled";
-            this.dataGridViewCheckBoxColumn4.Name = "dataGridViewCheckBoxColumn4";
+            this.Enabled.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Enabled.DataPropertyName = "Enabled";
+            this.Enabled.FillWeight = 10F;
+            this.Enabled.HeaderText = "Enabled";
+            this.Enabled.Name = "Enabled";
             // 
             // UserGroupControls
             // 
@@ -544,6 +544,6 @@
         private CustomControls.DataGridexView gridexUserGroupReports;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn4;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Enabled;
     }
 }
