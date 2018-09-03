@@ -18,91 +18,10 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
 
         public void RestoreProcedure()
         {
-            //this.GetUserIndexes();            
-
-            //this.GetActiveUsers();
-            
-            //this.UserEditable();
-            
-            //this.UserToggleVoid();
-
             this.GetUserGroupControls();
             this.SaveUserGroupControls();
 
             this.SaveUserAccessControls();
-            //this.GetUserTrees();
-        }
-
-
-        private void GetUserIndexes()
-        {
-            string queryString;
-
-            queryString = " @UserID Int, @FromDate DateTime, @ToDate DateTime, @ActiveOption int " + "\r\n";
-            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
-            queryString = queryString + " AS " + "\r\n";
-            queryString = queryString + "    BEGIN " + "\r\n";
-
-            queryString = queryString + "       SELECT      Users.UserID, Users.FirstName, Users.LastName, Users.UserName, Users.SecurityIdentifier, Users.IsDatabaseAdmin, UserGroups.Name AS UserGroupName, UserGroups.LocationID, Locations.Name AS LocationName, UserGroupUsers.InActive " + "\r\n";
-            queryString = queryString + "       FROM        Users " + "\r\n";
-            queryString = queryString + "                   INNER JOIN UserGroupUsers ON Users.UserID = UserGroupUsers.UserID AND (@ActiveOption = " + (int)GlobalEnums.ActiveOption.Both + " OR Users.InActive = @ActiveOption) " + "\r\n";
-            queryString = queryString + "                   INNER JOIN UserGroups ON UserGroupUsers.UserGroupID = UserGroups.UserGroupID " + "\r\n";
-            queryString = queryString + "                   INNER JOIN Locations ON UserGroups.LocationID = Locations.LocationID " + "\r\n";
-
-            queryString = queryString + "    END " + "\r\n";
-
-            this.totalSmartCodingEntities.CreateStoredProcedure("GetUserIndexes", queryString);
-        }
-
-        private void GetActiveUsers()
-        {
-            string queryString;
-
-            queryString = " @SecurityIdentifier nvarchar(256) " + "\r\n";
-            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
-            queryString = queryString + " AS " + "\r\n";
-            queryString = queryString + "    BEGIN " + "\r\n";
-
-            queryString = queryString + "       SELECT      Users.UserID, Users.FirstName, Users.LastName, Users.UserName, Users.SecurityIdentifier, Users.IsDatabaseAdmin, Users.UserGroupID, UserGroups.Name AS UserGroupName, UserGroups.LocationID, Locations.Name AS LocationName " + "\r\n";
-            queryString = queryString + "       FROM        Users " + "\r\n";
-            queryString = queryString + "                   INNER JOIN UserGroups ON Users.SecurityIdentifier = @SecurityIdentifier AND Users.InActive = 0 AND Users.UserGroupID = UserGroups.UserGroupID " + "\r\n";
-            queryString = queryString + "                   INNER JOIN Locations ON UserGroups.LocationID = Locations.LocationID " + "\r\n";
-
-            queryString = queryString + "    END " + "\r\n";
-
-            this.totalSmartCodingEntities.CreateStoredProcedure("GetActiveUsers", queryString);
-        }
-
-        private void UserEditable()
-        {
-            string[] queryArray = new string[8];
-
-            queryArray[0] = " SELECT TOP 1 @FoundEntity = UserID FROM BinLocations WHERE UserID = @EntityID ";
-            queryArray[1] = " SELECT TOP 1 @FoundEntity = UserID FROM SalesOrders WHERE UserID = @EntityID ";
-            queryArray[2] = " SELECT TOP 1 @FoundEntity = UserID FROM DeliveryAdvices WHERE UserID = @EntityID ";
-            queryArray[3] = " SELECT TOP 1 @FoundEntity = UserID FROM TransferOrders WHERE UserID = @EntityID ";
-            queryArray[4] = " SELECT TOP 1 @FoundEntity = UserID FROM GoodsIssues WHERE UserID = @EntityID ";
-            queryArray[5] = " SELECT TOP 1 @FoundEntity = UserID FROM Pickups WHERE UserID = @EntityID ";
-            queryArray[6] = " SELECT TOP 1 @FoundEntity = UserID FROM GoodsReceipts WHERE UserID = @EntityID ";
-            queryArray[7] = " SELECT TOP 1 @FoundEntity = UserID FROM WarehouseAdjustments WHERE UserID = @EntityID ";
-
-
-            this.totalSmartCodingEntities.CreateProcedureToCheckExisting("UserEditable", queryArray);
-        }
-
-        
-
-        private void UserToggleVoid()
-        {
-            string queryString = " @EntityID int, @InActive bit " + "\r\n";
-            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
-            queryString = queryString + " AS " + "\r\n";
-
-            queryString = queryString + "       UPDATE      Users                       SET InActive = @InActive                            WHERE UserID = @EntityID AND InActive = ~@InActive" + "\r\n";
-            queryString = queryString + "       UPDATE      UserGroupControls              SET InActive = @InActive                            WHERE UserID = @EntityID AND InActive = ~@InActive" + "\r\n";
-            queryString = queryString + "       UPDATE      UserGroupUsers     SET InActive = @InActive, InActiveDate = GetDate()  WHERE UserID = @EntityID AND InActive = ~@InActive" + "\r\n";
-
-            this.totalSmartCodingEntities.CreateStoredProcedure("UserToggleVoid", queryString);
         }
 
         private void GetUserGroupControls()
@@ -156,7 +75,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
 
             queryString = queryString + "           DECLARE     @MasterAccessControls TABLE (UserID int NULL, NMVNTaskID int NULL, OrganizationalUnitID int NULL, AccessLevel int NULL, ApprovalPermitted bit NULL, UnApprovalPermitted bit NULL, VoidablePermitted bit NULL, UnVoidablePermitted bit NULL, ShowDiscount bit NULL) " + "\r\n";
 
-            queryString = queryString + "           INSERT INO  @MasterAccessControls (UserID, NMVNTaskID, OrganizationalUnitID, AccessLevel, ApprovalPermitted, UnApprovalPermitted, VoidablePermitted, UnVoidablePermitted, ShowDiscount) " + "\r\n";
+            queryString = queryString + "           INSERT INTO @MasterAccessControls (UserID, NMVNTaskID, OrganizationalUnitID, AccessLevel, ApprovalPermitted, UnApprovalPermitted, VoidablePermitted, UnVoidablePermitted, ShowDiscount) " + "\r\n";
             queryString = queryString + "           SELECT      MASTERUserGroupControls.UserID, MASTERUserGroupControls.ModuleDetailID, MASTERUserGroupControls.OrganizationalUnitID, " + "\r\n";
             queryString = queryString + "                       MAX(MASTERUserGroupControls.AccessLevel) AS MAXAccessLevel, " + "\r\n";
             queryString = queryString + "                       MAX(CAST(MASTERUserGroupControls.ApprovalPermitted AS int)) AS ApprovalPermitted, " + "\r\n";
@@ -165,7 +84,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             queryString = queryString + "                       MAX(CAST(MASTERUserGroupControls.UnVoidablePermitted AS int)) AS UnVoidablePermitted, " + "\r\n";
             queryString = queryString + "                       MAX(CAST(MASTERUserGroupControls.ShowDiscount AS int)) AS ShowDiscount" + "\r\n";            
             queryString = queryString + "           FROM        (SELECT     MasterUsers.UserID, UserGroupControls.ModuleDetailID, OrganizationalUnits.OrganizationalUnitID, " + "\r\n";
-            queryString = queryString + "                                   IIF(UserGroupControls.LocationID = MasterUsers.LocationID, UserGroupControls.AccessLevel, IIF(UserGroupControls.AccessLevel >= 1, 1, 0) ) AS AccessLevel, " + "\r\n";
+            queryString = queryString + "                                   IIF(UserGroupControls.LocationID = MasterUsers.LocationID, UserGroupControls.AccessLevel, IIF(UserGroupControls.AccessLevel >= 1, 1, 0) ) AS AccessLevel, " + "\r\n"; //NOW: AccessLevel HAVE A FEATURE CALLED AdvancedPermission: TO ALLOW 1 USER HAVE A 'READONLY ACCESS' TO 'OTHER LOCATION' FROM 'ANY LOCATION'. TO DISABLE THIS: JUST MODIFY THE STATEMENT HERE: SET AccessLevel = 0 WHEN UserGroupControls.LocationID <> MasterUsers.LocationID!!! JUST ONLY HERE - VERY EASY!!!
             queryString = queryString + "                                   IIF(UserGroupControls.LocationID = MasterUsers.LocationID, UserGroupControls.ApprovalPermitted, 0) AS ApprovalPermitted, " + "\r\n";
             queryString = queryString + "                                   IIF(UserGroupControls.LocationID = MasterUsers.LocationID, UserGroupControls.UnApprovalPermitted, 0) AS UnApprovalPermitted, " + "\r\n";
             queryString = queryString + "                                   IIF(UserGroupControls.LocationID = MasterUsers.LocationID, UserGroupControls.VoidablePermitted, 0) AS VoidablePermitted, " + "\r\n";
@@ -196,30 +115,5 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             this.totalSmartCodingEntities.CreateStoredProcedure("SaveUserAccessControls", queryString);
         }
 
-
-        private void GetUserTrees()
-        {
-            string queryString;
-
-            queryString = " @ActiveOption int " + "\r\n";
-            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
-            queryString = queryString + " AS " + "\r\n";
-            queryString = queryString + "    BEGIN " + "\r\n";
-
-            queryString = queryString + "       SELECT      " + GlobalEnums.RootNode + " + LocationID AS NodeID, 0 AS ParentNodeID, LocationID AS PrimaryID, NULL AS AncestorID, Code, Name, 'LocationID' AS ParameterName, CAST(0 AS bit) AS Selected " + "\r\n";
-            queryString = queryString + "       FROM        Locations " + "\r\n";
-
-            queryString = queryString + "       UNION ALL " + "\r\n";
-            queryString = queryString + "       SELECT      " + GlobalEnums.AncestorNode + " + UserGroupID AS NodeID, " + GlobalEnums.RootNode + " + LocationID AS ParentNodeID, UserGroupID AS PrimaryID, LocationID AS AncestorID, Code, Name, 'UserGroupID' AS ParameterName, CAST(0 AS bit) AS Selected " + "\r\n";
-            queryString = queryString + "       FROM        UserGroups " + "\r\n";
-            queryString = queryString + "       UNION ALL " + "\r\n";
-            queryString = queryString + "       SELECT      UserID AS NodeID, " + GlobalEnums.AncestorNode + " + UserGroupID AS ParentNodeID, UserID AS PrimaryID, UserGroupID AS AncestorID, SecurityIdentifier AS Code, UserName AS Name, 'UserID' AS ParameterName, InActive AS Selected " + "\r\n";
-            queryString = queryString + "       FROM        Users " + "\r\n";
-            queryString = queryString + "       WHERE       (@ActiveOption = " + (int)GlobalEnums.ActiveOption.Both + " OR Users.InActive = @ActiveOption) " + "\r\n";
-
-            queryString = queryString + "    END " + "\r\n";
-
-            this.totalSmartCodingEntities.CreateStoredProcedure("GetUserTrees", queryString);
-        }
     }
 }

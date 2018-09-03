@@ -451,6 +451,17 @@ namespace TotalDAL.Repositories
             Helpers.SqlProgrammability.Commons.AccessControl accessControl = new Helpers.SqlProgrammability.Commons.AccessControl(totalSmartCodingEntities);
             accessControl.RestoreProcedure();
 
+
+            //return;
+            //!!!!!!!!!!!!!!!!!!!!!!!!!ANY STORED CALL SaveUserAccessControls: MUST BY APPLY AFTER THIS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            Helpers.SqlProgrammability.Generals.UserGroupControl userGroupControl = new Helpers.SqlProgrammability.Generals.UserGroupControl(totalSmartCodingEntities);
+            userGroupControl.RestoreProcedure();
+
+            return;
+
+            Helpers.SqlProgrammability.Generals.UserGroup userGroup = new Helpers.SqlProgrammability.Generals.UserGroup(totalSmartCodingEntities);
+            userGroup.RestoreProcedure();
+
             return;
 
             Helpers.SqlProgrammability.Inventories.GoodsReceipt goodsReceipt = new Helpers.SqlProgrammability.Inventories.GoodsReceipt(totalSmartCodingEntities);
@@ -468,15 +479,7 @@ namespace TotalDAL.Repositories
             Helpers.SqlProgrammability.Commons.Location location = new Helpers.SqlProgrammability.Commons.Location(totalSmartCodingEntities);
             location.RestoreProcedure();
 
-            //return;
 
-            Helpers.SqlProgrammability.Generals.UserGroup userGroup = new Helpers.SqlProgrammability.Generals.UserGroup(totalSmartCodingEntities);
-            userGroup.RestoreProcedure();
-
-            //return;
-
-            Helpers.SqlProgrammability.Generals.UserGroupControl userGroupControl = new Helpers.SqlProgrammability.Generals.UserGroupControl(totalSmartCodingEntities);
-            userGroupControl.RestoreProcedure();
 
             //return;
 
