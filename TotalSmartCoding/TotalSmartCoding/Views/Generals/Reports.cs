@@ -51,6 +51,17 @@ namespace TotalSmartCoding.Views.Generals
         {
             InitializeComponent();
 
+            #region HIDE ALL OPTIONS
+            this.dateTimexFromDate.Visible = false; this.labelFromDate.Visible = false; this.pictureFromDate.Visible = false;
+            this.dateTimexToDate.Visible = false; this.labelToDate.Visible = false; this.pictureToDate.Visible = false;
+            this.comboSummaryVersusDetail.Visible = false;
+            this.comboQuantityVersusVolume.Visible = false; this.buttonQuantityVersusVolume.Visible = false;
+            this.comboDateVersusMonth.Visible = false; this.buttonDateVersusMonth.Visible = false;
+            this.comboSalesVersusPromotion.Visible = false;
+            this.comboForecastFilters.Visible = false; this.buttonSalesVersusPromotion.Visible = false;
+            this.comboSlowMoving.Visible = false; this.labelSlowMoving.Visible = false; this.numericSlowMoving.Visible = false;
+            #endregion
+
             this.toolstripChild = this.toolStripChildForm;
             this.fastListIndex = this.fastReportIndex;
 
