@@ -102,7 +102,7 @@ namespace TotalSmartCoding.Views.Mains
         #endregion Contruction
 
 
-        #region Add, Remove UserGroup
+        #region Register, Unuegister, ToggleVoid
 
         private void LoadUserControls()
         {
@@ -147,7 +147,26 @@ namespace TotalSmartCoding.Views.Mains
             }
         }
 
-        #endregion Add, Remove UserGroup
+        private void buttonUserToggleVoid_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (this.SelectedUserControlIndex != null && this.SelectedUserControlIndex.UserID > 0 && !this.SelectedUserControlIndex.IsDatabaseAdmin)
+                {
+                    if (CustomMsgBox.Show(this, "Are you sure you want to " + (this.SelectedUserControlIndex.InActive ? "enable" : "disable") + " this user registration?" + "\r\n" + "\r\nUser:  " + this.SelectedUserControlIndex.UserName, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Stop) == DialogResult.Yes)
+                    {
+                        this.userControlAPIs.UserControlToggleVoid(this.SelectedUserControlIndex.UserID, !this.SelectedUserControlIndex.InActive);
+                        this.LoadUserControls();
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+            }
+        }
+
+        #endregion Register, Unuegister, ToggleVoid
 
         #region Handle Task
         private void fastGroups_AboutToCreateGroups(object sender, BrightIdeasSoftware.CreateGroupsEventArgs e)
@@ -266,5 +285,6 @@ namespace TotalSmartCoding.Views.Mains
         }
 
         #endregion Add, remove member
+
     }
 }

@@ -46,6 +46,11 @@ namespace TotalSmartCoding.Controllers.APIs.Generals
             return this.userControlAPIRepository.UserControlUnregister(userID);
         }
 
+        public int UserControlToggleVoid(int? userID, bool? inActive)
+        {
+            return this.userControlAPIRepository.UserControlToggleVoid(userID, inActive);
+        }
+
 
 
 

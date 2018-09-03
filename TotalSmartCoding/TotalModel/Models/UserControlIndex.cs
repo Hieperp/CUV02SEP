@@ -18,5 +18,6 @@ namespace TotalModel.Models
         public string UserName { get; set; }
         public string UserControlType { get; set; }
         public bool IsDatabaseAdmin { get; set; }
+        public bool InActive { get; set; }
     }
 }

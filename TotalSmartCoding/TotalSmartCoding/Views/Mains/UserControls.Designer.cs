@@ -62,6 +62,7 @@
             this.olvColumn1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvUserGroupCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvUserGroupName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvInActive = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.toolUserGroupDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastUserControlIndexes)).BeginInit();
             this.toolUserGroups.SuspendLayout();
@@ -132,10 +133,12 @@
             this.fastUserControlIndexes.AllColumns.Add(this.olvID);
             this.fastUserControlIndexes.AllColumns.Add(this.olvUserControlType);
             this.fastUserControlIndexes.AllColumns.Add(this.olvUserControlName);
+            this.fastUserControlIndexes.AllColumns.Add(this.olvInActive);
             this.fastUserControlIndexes.BackColor = System.Drawing.Color.Ivory;
             this.fastUserControlIndexes.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.olvID,
-            this.olvUserControlName});
+            this.olvUserControlName,
+            this.olvInActive});
             this.fastUserControlIndexes.Cursor = System.Windows.Forms.Cursors.Default;
             this.fastUserControlIndexes.Dock = System.Windows.Forms.DockStyle.Left;
             this.fastUserControlIndexes.Font = new System.Drawing.Font("Calibri Light", 10.2F);
@@ -171,11 +174,10 @@
             // olvUserControlName
             // 
             this.olvUserControlName.AspectName = "UserName";
-            this.olvUserControlName.FillsFreeSpace = true;
             this.olvUserControlName.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvUserControlName.Sortable = false;
             this.olvUserControlName.Text = "";
-            this.olvUserControlName.Width = 90;
+            this.olvUserControlName.Width = 218;
             // 
             // imageList32
             // 
@@ -234,6 +236,7 @@
             this.buttonUserToggleVoid.Name = "buttonUserToggleVoid";
             this.buttonUserToggleVoid.Size = new System.Drawing.Size(127, 36);
             this.buttonUserToggleVoid.Text = "Set active status";
+            this.buttonUserToggleVoid.Click += new System.EventHandler(this.buttonUserToggleVoid_Click);
             // 
             // olvTreePrimaryID
             // 
@@ -406,6 +409,18 @@
             this.olvUserGroupName.Text = "";
             this.olvUserGroupName.Width = 90;
             // 
+            // olvInActive
+            // 
+            this.olvInActive.AspectName = "InActive";
+            this.olvInActive.CheckBoxes = true;
+            this.olvInActive.FillsFreeSpace = true;
+            this.olvInActive.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvInActive.IsEditable = false;
+            this.olvInActive.Sortable = false;
+            this.olvInActive.Text = "";
+            this.olvInActive.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvInActive.Width = 25;
+            // 
             // UserControls
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -473,5 +488,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripButton toolStripButton2;
         private BrightIdeasSoftware.OLVColumn olvUserGroupCode;
+        private BrightIdeasSoftware.OLVColumn olvInActive;
     }
 }

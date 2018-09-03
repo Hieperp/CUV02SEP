@@ -15,6 +15,7 @@ namespace TotalCore.Repositories.Generals
 
         int UserControlRegister(string firstName, string lastName, string userName, string securityIdentifier);
         int UserControlUnregister(int? userID);
+        int UserControlToggleVoid(int? userID, bool? inActive);
 
         int UpdateUserName(string securityIdentifier, string userName);
     }

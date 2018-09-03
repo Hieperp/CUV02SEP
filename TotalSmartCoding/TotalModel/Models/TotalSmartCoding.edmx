@@ -3126,6 +3126,10 @@
           <Parameter Name="UserName" Type="nvarchar" Mode="In" />
           <Parameter Name="SecurityIdentifier" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="UserControlToggleVoid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="int" Mode="In" />
+          <Parameter Name="InActive" Type="bit" Mode="In" />
+        </Function>
         <Function Name="UserControlUnregister" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserID" Type="int" Mode="In" />
         </Function>
@@ -5032,7 +5036,11 @@
           <Parameter Name="EntityID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="UserControlUnregister">
-            <Parameter Name="UserID" Mode="In" Type="Int32" />
+          <Parameter Name="UserID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UserControlToggleVoid">
+            <Parameter Name="EntityID" Mode="In" Type="Int32" />
+            <Parameter Name="InActive" Mode="In" Type="Boolean" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
@@ -8815,6 +8823,7 @@
           <Property Type="String" Name="UserName" Nullable="false" MaxLength="256" />
           <Property Type="String" Name="UserControlType" Nullable="false" MaxLength="15" />
           <Property Type="Boolean" Name="IsDatabaseAdmin" Nullable="false" />
+          <Property Type="Boolean" Name="InActive" Nullable="false" />
         </ComplexType>
         <ComplexType Name="UserControlGroup">
           <Property Type="Int32" Name="UserGroupDetailID" Nullable="false" />
@@ -11651,6 +11660,7 @@
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="UserControlType" ColumnName="UserControlType" />
                 <ScalarProperty Name="IsDatabaseAdmin" ColumnName="IsDatabaseAdmin" />
+                <ScalarProperty Name="InActive" ColumnName="InActive" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -11679,6 +11689,7 @@
           <FunctionImportMapping FunctionImportName="UserControlRegister" FunctionName="TotalSmartCodingModel.Store.UserControlRegister" />
           <FunctionImportMapping FunctionImportName="UserControlEditable" FunctionName="TotalSmartCodingModel.Store.UserControlEditable" />
           <FunctionImportMapping FunctionImportName="UserControlUnregister" FunctionName="TotalSmartCodingModel.Store.UserControlUnregister" />
+          <FunctionImportMapping FunctionImportName="UserControlToggleVoid" FunctionName="TotalSmartCodingModel.Store.UserControlToggleVoid" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

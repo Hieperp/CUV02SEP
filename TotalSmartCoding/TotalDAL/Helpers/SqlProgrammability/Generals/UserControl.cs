@@ -24,7 +24,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
 
             this.UserControlRegister();
             this.UserControlUnregister();
-
+            this.UserControlToggleVoid();
 
             this.GetUserControlGroups();
             this.GetUserControlAvailableGroups();
@@ -39,11 +39,12 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
+            queryString = queryString + "       UPDATE Users SET InActive = 1 WHERE SecurityIdentifier IN (SELECT SecurityIdentifier FROM Users WHERE InActive = 1) " + "\r\n";
             queryString = queryString + "       UPDATE Users SET IsDatabaseAdmin = 1 WHERE SecurityIdentifier IN (SELECT SecurityIdentifier FROM Users WHERE IsDatabaseAdmin = 1) " + "\r\n";
 
-            queryString = queryString + "       SELECT      MIN(UserID) AS UserID, SecurityIdentifier, UserName, IsDatabaseAdmin, N'Chevron Vietnam' AS UserControlType " + "\r\n";
+            queryString = queryString + "       SELECT      MIN(UserID) AS UserID, SecurityIdentifier, UserName, IsDatabaseAdmin, InActive, N'Chevron Vietnam' AS UserControlType " + "\r\n";
             queryString = queryString + "       FROM        Users " + "\r\n";
-            queryString = queryString + "       GROUP BY    SecurityIdentifier, UserName, IsDatabaseAdmin " + "\r\n";
+            queryString = queryString + "       GROUP BY    SecurityIdentifier, UserName, IsDatabaseAdmin, InActive " + "\r\n";
             queryString = queryString + "       ORDER BY    UserName " + "\r\n";
 
             queryString = queryString + "    END " + "\r\n";
@@ -156,6 +157,32 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             queryString = queryString + "       END " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("UserControlUnregister", queryString);
+        }
+
+
+        private void UserControlToggleVoid()
+        {
+            string queryString = " @EntityID int, @InActive bit " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+            queryString = queryString + "       BEGIN " + "\r\n";
+            queryString = queryString + "                   DECLARE @UserID int " + "\r\n";
+
+            queryString = queryString + "                   DECLARE Action_Cursor CURSOR FOR SELECT UserID FROM Users WHERE SecurityIdentifier IN (SELECT SecurityIdentifier FROM Users WHERE UserID = @EntityID) OPEN Action_Cursor; " + "\r\n";
+            queryString = queryString + "                   FETCH NEXT FROM Action_Cursor INTO @UserID; " + "\r\n";
+            queryString = queryString + "                   WHILE @@FETCH_STATUS = 0 " + "\r\n";
+            queryString = queryString + "                       BEGIN " + "\r\n";
+
+            queryString = queryString + "                           EXEC UserToggleVoid @UserID, @InActive " + "\r\n";
+
+            queryString = queryString + "                           FETCH NEXT FROM Action_Cursor INTO @UserID; " + "\r\n";
+
+            queryString = queryString + "                       END" + "\r\n";
+            queryString = queryString + "                   CLOSE Action_Cursor; " + "\r\n";
+            queryString = queryString + "                   DEALLOCATE Action_Cursor " + "\r\n";
+            queryString = queryString + "       END " + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("UserControlToggleVoid", queryString);
         }
 
 
