@@ -210,7 +210,7 @@ namespace TotalSmartCoding.Views.Generals
                     olvGroup.TitleImage = "Analytics";
                     olvGroup.Subtitle = "Count: " + olvGroup.Contents.Count.ToString() + " Reports";
 
-                    if ((string)olvGroup.Key == "2.GOODS RECEIPT JOURNALS" || (string)olvGroup.Key == "3.GOODS RECEIPT PIVOT REPORTS") olvGroup.Collapsed = true;
+                    if (this.ReportIndexCount > 15 && ((string)olvGroup.Key == "2.GOODS RECEIPT JOURNALS" || (string)olvGroup.Key == "3.GOODS RECEIPT PIVOT REPORTS")) olvGroup.Collapsed = true;
                 }
             }
         }
@@ -220,9 +220,12 @@ namespace TotalSmartCoding.Views.Generals
             get { return new ReportController(CommonNinject.Kernel.Get<IReportService>(), this.reportViewModel); }
         }
 
+        private int ReportIndexCount;
         public override void Loading()
         {
-            this.fastReportIndex.SetObjects(this.reportAPIs.GetReportIndexes());
+            ICollection<ReportIndex> reportIndexes = this.reportAPIs.GetReportIndexes();
+            this.ReportIndexCount = reportIndexes.Count();
+            this.fastReportIndex.SetObjects(reportIndexes);
 
             base.Loading();
         }

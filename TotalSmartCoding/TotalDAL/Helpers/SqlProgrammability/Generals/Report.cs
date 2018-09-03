@@ -33,6 +33,9 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
 
             queryString = queryString + "       SELECT      ReportID, ReportUniqueID, ReportGroupID, UPPER(ReportGroupName) AS ReportGroupName, ReportTabPageIDs, ReportName, ReportTypeID " + "\r\n";
             queryString = queryString + "       FROM        Reports " + "\r\n";
+
+            queryString = queryString + "       WHERE       ReportID IN (SELECT UserGroupReports.ReportID FROM Users INNER JOIN UserGroupDetails ON Users.UserID = @UserID AND Users.SecurityIdentifier = UserGroupDetails.SecurityIdentifier INNER JOIN UserGroupReports ON UserGroupReports.Enabled = 1 AND UserGroupDetails.UserGroupID = UserGroupReports.UserGroupID) " + "\r\n";
+
             queryString = queryString + "       ORDER BY    ReportGroupName, SerialID " + "\r\n";
 
             queryString = queryString + "    END " + "\r\n";
