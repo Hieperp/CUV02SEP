@@ -29,6 +29,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             this.GetUserGroupControls();
             this.SaveUserGroupControls();
 
+            this.SaveUserAccessControls();
             //this.GetUserTrees();
         }
 
@@ -142,6 +143,57 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             queryString = queryString + "       END " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("SaveUserGroupControls", queryString);
+        }
+
+
+        private void SaveUserAccessControls()
+        {
+            string queryString = " " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+
+            queryString = queryString + "       BEGIN " + "\r\n";
+
+            queryString = queryString + "           DECLARE     @MasterAccessControls TABLE (UserID int NULL, NMVNTaskID int NULL, OrganizationalUnitID int NULL, AccessLevel int NULL, ApprovalPermitted bit NULL, UnApprovalPermitted bit NULL, VoidablePermitted bit NULL, UnVoidablePermitted bit NULL, ShowDiscount bit NULL) " + "\r\n";
+
+            queryString = queryString + "           INSERT INO  @MasterAccessControls (UserID, NMVNTaskID, OrganizationalUnitID, AccessLevel, ApprovalPermitted, UnApprovalPermitted, VoidablePermitted, UnVoidablePermitted, ShowDiscount) " + "\r\n";
+            queryString = queryString + "           SELECT      MASTERUserGroupControls.UserID, MASTERUserGroupControls.ModuleDetailID, MASTERUserGroupControls.OrganizationalUnitID, " + "\r\n";
+            queryString = queryString + "                       MAX(MASTERUserGroupControls.AccessLevel) AS MAXAccessLevel, " + "\r\n";
+            queryString = queryString + "                       MAX(CAST(MASTERUserGroupControls.ApprovalPermitted AS int)) AS ApprovalPermitted, " + "\r\n";
+            queryString = queryString + "                       MAX(CAST(MASTERUserGroupControls.UnApprovalPermitted AS int)) AS UnApprovalPermitted, " + "\r\n";
+            queryString = queryString + "                       MAX(CAST(MASTERUserGroupControls.VoidablePermitted AS int)) AS VoidablePermitted, " + "\r\n";
+            queryString = queryString + "                       MAX(CAST(MASTERUserGroupControls.UnVoidablePermitted AS int)) AS UnVoidablePermitted, " + "\r\n";
+            queryString = queryString + "                       MAX(CAST(MASTERUserGroupControls.ShowDiscount AS int)) AS ShowDiscount" + "\r\n";            
+            queryString = queryString + "           FROM        (SELECT     MasterUsers.UserID, UserGroupControls.ModuleDetailID, OrganizationalUnits.OrganizationalUnitID, " + "\r\n";
+            queryString = queryString + "                                   IIF(UserGroupControls.LocationID = MasterUsers.LocationID, UserGroupControls.AccessLevel, IIF(UserGroupControls.AccessLevel >= 1, 1, 0) ) AS AccessLevel, " + "\r\n";
+            queryString = queryString + "                                   IIF(UserGroupControls.LocationID = MasterUsers.LocationID, UserGroupControls.ApprovalPermitted, 0) AS ApprovalPermitted, " + "\r\n";
+            queryString = queryString + "                                   IIF(UserGroupControls.LocationID = MasterUsers.LocationID, UserGroupControls.UnApprovalPermitted, 0) AS UnApprovalPermitted, " + "\r\n";
+            queryString = queryString + "                                   IIF(UserGroupControls.LocationID = MasterUsers.LocationID, UserGroupControls.VoidablePermitted, 0) AS VoidablePermitted, " + "\r\n";
+            queryString = queryString + "                                   IIF(UserGroupControls.LocationID = MasterUsers.LocationID, UserGroupControls.UnVoidablePermitted, 0) AS UnVoidablePermitted, " + "\r\n";
+            queryString = queryString + "                                   IIF(UserGroupControls.LocationID = MasterUsers.LocationID, UserGroupControls.ShowDiscount, 0) AS ShowDiscount " + "\r\n";
+            queryString = queryString + "                       FROM        UserGroupControls " + "\r\n";
+            queryString = queryString + "                                   INNER JOIN OrganizationalUnits ON UserGroupControls.LocationID = OrganizationalUnits.LocationID " + "\r\n";
+            queryString = queryString + "                                   INNER JOIN UserGroupDetails ON UserGroupControls.UserGroupID = UserGroupDetails.UserGroupID " + "\r\n";
+            queryString = queryString + "                                   INNER JOIN (SELECT Users.UserID, Users.SecurityIdentifier, UserOUs.LocationID FROM Users INNER JOIN OrganizationalUnits AS UserOUs ON Users.OrganizationalUnitID = UserOUs.OrganizationalUnitID) AS MasterUsers ON UserGroupDetails.SecurityIdentifier = MasterUsers.SecurityIdentifier " + "\r\n";
+            queryString = queryString + "                       ) MASTERUserGroupControls " + "\r\n";
+            queryString = queryString + "           GROUP BY    MASTERUserGroupControls.UserID, MASTERUserGroupControls.ModuleDetailID, MASTERUserGroupControls.OrganizationalUnitID " + "\r\n";
+
+            queryString = queryString + "           UPDATE      AccessControls " + "\r\n";
+            queryString = queryString + "           SET         AccessControls.AccessLevel = 0, AccessControls.ApprovalPermitted = 0, AccessControls.UnApprovalPermitted = 0, " + "\r\n";
+            queryString = queryString + "                       AccessControls.VoidablePermitted = 0, AccessControls.UnVoidablePermitted = 0, AccessControls.ShowDiscount = 0 " + "\r\n";
+            queryString = queryString + "           FROM        AccessControls " + "\r\n";
+            queryString = queryString + "                       LEFT JOIN @MasterAccessControls AS MasterAccessControls ON AccessControls.UserID = MasterAccessControls.UserID AND AccessControls.NMVNTaskID = MasterAccessControls.NMVNTaskID AND AccessControls.OrganizationalUnitID = MasterAccessControls.OrganizationalUnitID " + "\r\n";
+            queryString = queryString + "           WHERE       MasterAccessControls.UserID IS NULL " + "\r\n";
+
+            queryString = queryString + "           UPDATE      AccessControls " + "\r\n";
+            queryString = queryString + "           SET         AccessControls.AccessLevel = MasterAccessControls.AccessLevel, AccessControls.ApprovalPermitted = MasterAccessControls.ApprovalPermitted, AccessControls.UnApprovalPermitted = MasterAccessControls.UnApprovalPermitted, " + "\r\n";
+            queryString = queryString + "                       AccessControls.VoidablePermitted = MasterAccessControls.VoidablePermitted, AccessControls.UnVoidablePermitted = MasterAccessControls.UnVoidablePermitted, AccessControls.ShowDiscount = MasterAccessControls.ShowDiscount " + "\r\n";
+            queryString = queryString + "           FROM        AccessControls " + "\r\n";
+            queryString = queryString + "                       INNER JOIN @MasterAccessControls AS MasterAccessControls ON AccessControls.UserID = MasterAccessControls.UserID AND AccessControls.NMVNTaskID = MasterAccessControls.NMVNTaskID AND AccessControls.OrganizationalUnitID = MasterAccessControls.OrganizationalUnitID " + "\r\n";
+
+            queryString = queryString + "       END " + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("SaveUserAccessControls", queryString);
         }
 
 
