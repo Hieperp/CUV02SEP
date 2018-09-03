@@ -2985,5 +2985,45 @@ namespace TotalModel.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SaveUserGroupReports", userGroupReportIDParameter, enabledParameter);
         }
+    
+        public virtual ObjectResult<UserControlAvailableSalesperson> GetUserControlAvailableSalespersons(string securityIdentifier)
+        {
+            var securityIdentifierParameter = securityIdentifier != null ?
+                new ObjectParameter("SecurityIdentifier", securityIdentifier) :
+                new ObjectParameter("SecurityIdentifier", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UserControlAvailableSalesperson>("GetUserControlAvailableSalespersons", securityIdentifierParameter);
+        }
+    
+        public virtual ObjectResult<UserControlSalesperson> GetUserControlSalespersons(string securityIdentifier)
+        {
+            var securityIdentifierParameter = securityIdentifier != null ?
+                new ObjectParameter("SecurityIdentifier", securityIdentifier) :
+                new ObjectParameter("SecurityIdentifier", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UserControlSalesperson>("GetUserControlSalespersons", securityIdentifierParameter);
+        }
+    
+        public virtual int UserControlAddSalesperson(string securityIdentifier, Nullable<int> employeeID)
+        {
+            var securityIdentifierParameter = securityIdentifier != null ?
+                new ObjectParameter("SecurityIdentifier", securityIdentifier) :
+                new ObjectParameter("SecurityIdentifier", typeof(string));
+    
+            var employeeIDParameter = employeeID.HasValue ?
+                new ObjectParameter("EmployeeID", employeeID) :
+                new ObjectParameter("EmployeeID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UserControlAddSalesperson", securityIdentifierParameter, employeeIDParameter);
+        }
+    
+        public virtual int UserControlRemoveSalesperson(Nullable<int> userSalespersonID)
+        {
+            var userSalespersonIDParameter = userSalespersonID.HasValue ?
+                new ObjectParameter("UserSalespersonID", userSalespersonID) :
+                new ObjectParameter("UserSalespersonID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UserControlRemoveSalesperson", userSalespersonIDParameter);
+        }
     }
 }
