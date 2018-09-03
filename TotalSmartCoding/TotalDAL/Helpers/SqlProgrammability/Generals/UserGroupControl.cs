@@ -19,9 +19,11 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
         public void RestoreProcedure()
         {
             this.GetUserGroupControls();
+            this.GetUserGroupReports();
             this.SaveUserAccessControls();//MUST CREATE SaveUserAccessControls BEFORE SaveUserGroupControls, BECAUSE SaveUserAccessControls WILL BE CALLED BY SaveUserGroupControls
 
             this.SaveUserGroupControls();
+            this.SaveUserGroupReports();
         }
 
         private void GetUserGroupControls()
@@ -41,6 +43,25 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
 
             this.totalSmartCodingEntities.CreateStoredProcedure("GetUserGroupControls", queryString);
         }
+
+        private void GetUserGroupReports()
+        {
+            string queryString;
+
+            queryString = " @UserGroupID int " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+            queryString = queryString + "    BEGIN " + "\r\n";
+
+            queryString = queryString + "       SELECT      UserGroupReports.UserGroupReportID, UserGroupReports.ReportID, UPPER(Reports.ReportGroupName) AS ReportGroupName, Reports.ReportName, UserGroupReports.Enabled " + "\r\n";
+            queryString = queryString + "       FROM        UserGroupReports INNER JOIN Reports ON UserGroupReports.UserGroupID = @UserGroupID AND UserGroupReports.ReportID = Reports.ReportID " + "\r\n";
+            queryString = queryString + "       ORDER BY    Reports.ReportGroupName, Reports.SerialID " + "\r\n";
+
+            queryString = queryString + "    END " + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("GetUserGroupReports", queryString);
+        }
+
 
         private void SaveUserGroupControls()
         {
@@ -66,6 +87,27 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             this.totalSmartCodingEntities.CreateStoredProcedure("SaveUserGroupControls", queryString);
         }
 
+        private void SaveUserGroupReports()
+        {
+            string queryString = " @UserGroupReportID int, @Enabled bit " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+
+            queryString = queryString + "       BEGIN " + "\r\n";
+
+            queryString = queryString + "           UPDATE          UserGroupReports " + "\r\n";
+            queryString = queryString + "           SET             Enabled = @Enabled " + "\r\n";
+            queryString = queryString + "           WHERE           UserGroupReportID = @UserGroupReportID " + "\r\n";
+
+            queryString = queryString + "           IF @@ROWCOUNT <> 1 " + "\r\n";
+            queryString = queryString + "               BEGIN " + "\r\n";
+            queryString = queryString + "                   DECLARE     @msg NVARCHAR(300) = N'Unknow error: Update UserGroupReports. Please exit then open and try again.' ; " + "\r\n";
+            queryString = queryString + "                   THROW       61001,  @msg, 1; " + "\r\n";
+            queryString = queryString + "               END " + "\r\n";
+            queryString = queryString + "       END " + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("SaveUserGroupReports", queryString);
+        }
 
         private void SaveUserAccessControls()
         {

@@ -80,6 +80,10 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             queryString = queryString + "                   FROM            ModuleDetails CROSS JOIN Locations " + "\r\n";
             queryString = queryString + "                   WHERE           ModuleDetails.ControlTypeID <> 0 OR (ModuleDetails.ControlTypeID = 0 AND Locations.LocationID = 1); " + "\r\n";
 
+            queryString = queryString + "                   INSERT INTO     UserGroupReports (UserGroupID, ReportID, Enabled) " + "\r\n";
+            queryString = queryString + "                   SELECT          @UserGroupID, ReportID, 0 AS Enabled " + "\r\n";
+            queryString = queryString + "                   FROM            Reports " + "\r\n";
+
             queryString = queryString + "               END " + "\r\n";
 
             queryString = queryString + "           ELSE " + "\r\n";
@@ -106,6 +110,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
 
             queryString = queryString + "           IF (SELECT COUNT(*) FROM @FoundEntitys WHERE NOT FoundEntity IS NULL) <= 0 " + "\r\n";
             queryString = queryString + "               BEGIN " + "\r\n";
+            queryString = queryString + "                   DELETE FROM     UserGroupReports WHERE UserGroupID = @UserGroupID " + "\r\n";
             queryString = queryString + "                   DELETE FROM     UserGroupControls WHERE UserGroupID = @UserGroupID " + "\r\n";
             queryString = queryString + "                   DELETE FROM     UserGroupDetails WHERE UserGroupID = @UserGroupID " + "\r\n";
             queryString = queryString + "                   DELETE FROM     UserGroups WHERE UserGroupID = @UserGroupID " + "\r\n";
