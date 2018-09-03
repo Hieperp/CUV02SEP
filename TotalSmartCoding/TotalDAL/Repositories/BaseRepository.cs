@@ -103,9 +103,21 @@ namespace TotalDAL.Repositories
             #region NEW PERMISSION
             //MUST CALL this.UpdateUserControls() BEFORE CALL this.RestoreProcedures(): BECAUSE: WE ADD SOME CODE TO REGISTER REPORT CONTROL IN UserRegister 
             //VERY IMPORTANT: WE CALL OLD VERSION OF UserRegister IN this.UpdateUserControls() [UserRegister WITHOUT REPORT CONTROL]
-            if (!this.totalSmartCodingEntities.TableExists("UserSalespersons"))
+            if (!this.totalSmartCodingEntities.TableExists("UserGroupReports"))
             {
                 #region
+                this.ExecuteStoreCommand(@"CREATE TABLE [dbo].[UserGroupReports](
+	                                                        [UserGroupReportID] [int] IDENTITY(1,1) NOT NULL,
+	                                                        [UserGroupID] [int] NOT NULL,
+	                                                        [ReportID] [int] NOT NULL,
+	                                                        [Enabled] [bit] NOT NULL,
+                                                         CONSTRAINT [PK_UserGroupReports] PRIMARY KEY CLUSTERED 
+                                                        (
+	                                                        [UserGroupReportID] ASC
+                                                        )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+                                                        ) ON [PRIMARY]	                                                
+                                                ", new ObjectParameter[] { });
+
                 if (false)
                 {
                     this.ExecuteStoreCommand(@"CREATE TABLE [dbo].[UserSalespersons](

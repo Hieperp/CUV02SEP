@@ -256,18 +256,20 @@ namespace TotalSmartCoding.Views.Generals
 
                 this.reloadTabPages();
 
+                if (this.reportViewModel.OptionBoxIDs != null)
+                {
+                    this.dateTimexFromDate.Visible = this.reportViewModel.OptionBoxIDs.IndexOf(GlobalEnums.OBx(GlobalEnums.OptionBoxID.FromDate)) != -1; this.labelFromDate.Visible = this.dateTimexFromDate.Visible; this.pictureFromDate.Visible = this.dateTimexFromDate.Visible;
+                    this.dateTimexToDate.Visible = this.reportViewModel.OptionBoxIDs.IndexOf(GlobalEnums.OBx(GlobalEnums.OptionBoxID.ToDate)) != -1; this.labelToDate.Visible = this.dateTimexToDate.Visible; this.pictureToDate.Visible = this.dateTimexToDate.Visible; labelToDate.Text = this.dateTimexFromDate.Visible ? "To" : "As at";
 
-                this.dateTimexFromDate.Visible = this.reportViewModel.OptionBoxIDs.IndexOf(GlobalEnums.OBx(GlobalEnums.OptionBoxID.FromDate)) != -1; this.labelFromDate.Visible = this.dateTimexFromDate.Visible; this.pictureFromDate.Visible = this.dateTimexFromDate.Visible;
-                this.dateTimexToDate.Visible = this.reportViewModel.OptionBoxIDs.IndexOf(GlobalEnums.OBx(GlobalEnums.OptionBoxID.ToDate)) != -1; this.labelToDate.Visible = this.dateTimexToDate.Visible; this.pictureToDate.Visible = this.dateTimexToDate.Visible; labelToDate.Text = this.dateTimexFromDate.Visible ? "To" : "As at";
+                    this.comboSummaryVersusDetail.Visible = this.reportViewModel.OptionBoxIDs.IndexOf(GlobalEnums.OBx(GlobalEnums.OptionBoxID.SummaryVersusDetail)) != -1;
+                    this.comboQuantityVersusVolume.Visible = this.reportViewModel.OptionBoxIDs.IndexOf(GlobalEnums.OBx(GlobalEnums.OptionBoxID.QuantityVersusVolume)) != -1; this.buttonQuantityVersusVolume.Visible = this.comboSummaryVersusDetail.Visible || this.comboQuantityVersusVolume.Visible;
+                    this.comboDateVersusMonth.Visible = this.reportViewModel.OptionBoxIDs.IndexOf(GlobalEnums.OBx(GlobalEnums.OptionBoxID.DateVersusMonth)) != -1; this.buttonDateVersusMonth.Visible = this.comboDateVersusMonth.Visible;
+                    this.comboSalesVersusPromotion.Visible = this.reportViewModel.OptionBoxIDs.IndexOf(GlobalEnums.OBx(GlobalEnums.OptionBoxID.SalesVersusPromotion)) != -1;
 
-                this.comboSummaryVersusDetail.Visible = this.reportViewModel.OptionBoxIDs.IndexOf(GlobalEnums.OBx(GlobalEnums.OptionBoxID.SummaryVersusDetail)) != -1;
-                this.comboQuantityVersusVolume.Visible = this.reportViewModel.OptionBoxIDs.IndexOf(GlobalEnums.OBx(GlobalEnums.OptionBoxID.QuantityVersusVolume)) != -1; this.buttonQuantityVersusVolume.Visible = this.comboSummaryVersusDetail.Visible || this.comboQuantityVersusVolume.Visible;
-                this.comboDateVersusMonth.Visible = this.reportViewModel.OptionBoxIDs.IndexOf(GlobalEnums.OBx(GlobalEnums.OptionBoxID.DateVersusMonth)) != -1; this.buttonDateVersusMonth.Visible = this.comboDateVersusMonth.Visible;
-                this.comboSalesVersusPromotion.Visible = this.reportViewModel.OptionBoxIDs.IndexOf(GlobalEnums.OBx(GlobalEnums.OptionBoxID.SalesVersusPromotion)) != -1;
+                    this.comboForecastFilters.Visible = this.reportViewModel.OptionBoxIDs.IndexOf(GlobalEnums.OBx(GlobalEnums.OptionBoxID.ForecastFilters)) != -1; this.buttonSalesVersusPromotion.Visible = this.comboSalesVersusPromotion.Visible || this.comboForecastFilters.Visible;
 
-                this.comboForecastFilters.Visible = this.reportViewModel.OptionBoxIDs.IndexOf(GlobalEnums.OBx(GlobalEnums.OptionBoxID.ForecastFilters)) != -1; this.buttonSalesVersusPromotion.Visible = this.comboSalesVersusPromotion.Visible || this.comboForecastFilters.Visible;
-
-                this.comboSlowMoving.Visible = this.reportViewModel.OptionBoxIDs.IndexOf(GlobalEnums.OBx(GlobalEnums.OptionBoxID.SlowMoving)) != -1; this.labelSlowMoving.Visible = this.comboSlowMoving.Visible; this.numericSlowMoving.Visible = this.comboSlowMoving.Visible;
+                    this.comboSlowMoving.Visible = this.reportViewModel.OptionBoxIDs.IndexOf(GlobalEnums.OBx(GlobalEnums.OptionBoxID.SlowMoving)) != -1; this.labelSlowMoving.Visible = this.comboSlowMoving.Visible; this.numericSlowMoving.Visible = this.comboSlowMoving.Visible;
+                }
             }
             catch (Exception exception)
             {
@@ -283,7 +285,7 @@ namespace TotalSmartCoding.Views.Generals
                 this.clearTabPages();
                 foreach (TabPage tabpage in this.tabPages)
                 {
-                    if (this.reportViewModel.ReportTabPageIDs.IndexOf(tabpage.Tag.ToString()) != -1 && !this.customTabBatch.TabPages.Contains(tabpage))
+                    if (this.reportViewModel.ReportTabPageIDs != null && this.reportViewModel.ReportTabPageIDs.IndexOf(tabpage.Tag.ToString()) != -1 && !this.customTabBatch.TabPages.Contains(tabpage))
                         this.customTabBatch.TabPages.Add(tabpage);
                 }
                 if (this.customTabBatch.TabPages.Contains(this.tabPageCommodities)) this.customTabBatch.SelectedTab = this.tabPageCommodities;
