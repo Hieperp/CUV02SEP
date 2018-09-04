@@ -96,8 +96,8 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             queryString = queryString + "           " + queryMaster + " EventLogs.EntryDate >= @LocalFromDate AND EventLogs.EntryDate <= @LocalToDate " + " AND EventLogs.LocationID = Locations.LocationID " + "\r\n";
             queryString = queryString + "           ORDER BY    EventLogs.EventLogID " + "\r\n";
             queryString = queryString + "       ELSE " + "\r\n";
-            queryString = queryString + "           " + queryMaster + " EventLogID IN (SELECT EventLogID FROM LastEventLogs) " + " AND EventLogs.LocationID = Locations.LocationID " + "\r\n";
-            queryString = queryString + "           ORDER BY    EventLogs.EventLogID " + "\r\n";
+            queryString = queryString + "           " + queryMaster + " EventLogs.EventLogID IN (SELECT EventLogID FROM TotalSmartLogs.dbo.LastEventLogs) " + " AND EventLogs.LocationID = Locations.LocationID " + "\r\n";
+            queryString = queryString + "           ORDER BY    EventLogs.EntryDate DESC " + "\r\n";
             queryString = queryString + "   END " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("EventLogJournals", queryString);

@@ -87,5 +87,6 @@ namespace TotalDTO.Generals
 
     public class ReportDTO : ReportPrimitiveDTO
     {
+        public override string LogRemarks { get { return this.ReportName; } }
     }
 }

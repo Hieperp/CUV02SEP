@@ -118,7 +118,7 @@ namespace TotalDAL.Repositories
                                                         ) ON [PRIMARY]	                                                
                                                 ", new ObjectParameter[] { });
 
-                
+
                 #endregion
 
                 this.UpdateUserControls();
@@ -149,7 +149,7 @@ namespace TotalDAL.Repositories
 
 
 
-                this.ExecuteStoreCommand("DELETE FROM Reports WHERE ReportID = " + (int)GlobalEnums.ReportID.DataLogJournals, new ObjectParameter[] { });
+                this.ExecuteStoreCommand("DELETE FROM Reports WHERE ReportID IN (" + (int)GlobalEnums.ReportID.DataLogJournals + "," + (int)GlobalEnums.ReportID.EventLogJournals + "," + (int)GlobalEnums.ReportID.LastEventLogJournals + ")", new ObjectParameter[] { });
                 string reportTabPageIDs = ((int)GlobalEnums.ReportTabPageID.TabPageWarehouses).ToString() + "," + ((int)GlobalEnums.ReportTabPageID.TabPageCommodities).ToString();
                 string optionBoxIDs = GlobalEnums.OBx(GlobalEnums.OptionBoxID.FromDate) + GlobalEnums.OBx(GlobalEnums.OptionBoxID.ToDate);
                 this.ExecuteStoreCommand("SET IDENTITY_INSERT Reports ON  INSERT INTO Reports (ReportID, ReportUniqueID, ReportGroupID, ReportGroupName, ReportName, ReportURL, ReportTabPageIDs, OptionBoxIDs, ReportTypeID, SerialID, Remarks) VALUES (" + (int)GlobalEnums.ReportID.DataLogJournals + ", " + (int)GlobalEnums.ReportID.DataLogJournals + ", 20, 'X.LOGS', N'Data Logs', N'DataLogJournals', N'" + reportTabPageIDs + "', N'" + optionBoxIDs + "', " + (int)GlobalEnums.ReportTypeID.Logs + ", 11, N'')      SET IDENTITY_INSERT Reports OFF ", new ObjectParameter[] { });

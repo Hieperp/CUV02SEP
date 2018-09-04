@@ -7,14 +7,15 @@ using System.Collections.Generic;
 
 using AutoMapper;
 
+using TotalCore.Services;
 using TotalCore.Extensions;
 using TotalBase.Enums;
 using TotalModel;
 using TotalDTO;
-using TotalCore.Services;
+using TotalDTO.Commons;
 
 using TotalSmartCoding.ViewModels.Helpers;
-using TotalDTO.Commons;
+using TotalSmartCoding.ViewModels.Generals;
 
 
 namespace TotalSmartCoding.Controllers
@@ -755,7 +756,7 @@ namespace TotalSmartCoding.Controllers
                 if (this.simpleViewModel.LastLogID != id && id > 0)
                 {
                     this.simpleViewModel.LastLogID = id;
-                    if (this.GenericService.GetOnDataLogs()) this.GenericService.AddEventLogs(this.simpleViewModel.NMVNTaskID.ToString(), "Open", this.simpleViewModel.GetID(), this.simpleViewModel.LogRemarks);
+                    if (this.GenericService.GetOnDataLogs() && !(this.simpleViewModel is ReportViewModel)) this.GenericService.AddEventLogs(this.simpleViewModel.NMVNTaskID.ToString(), "Open", this.simpleViewModel.GetID(), this.simpleViewModel.LogRemarks);
                 }
             }
             catch (Exception ex) { }

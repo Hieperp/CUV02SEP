@@ -435,6 +435,9 @@ namespace TotalSmartCoding.Views.Generals
             if (this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.PivotStockDIOH3M || this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.PivotStockDRP || this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.PivotStockDIOH3MAndDRP || this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.OldAndSlowMoving)
                 printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("PrintOptionID", (this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.OldAndSlowMoving ? (int)GlobalEnums.ReportID.PivotStockDIOH3M : this.reportViewModel.ReportID).ToString()));
 
+            if (this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.EventLogJournals || this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.LastEventLogJournals)
+                printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("LastEventLogs", (this.reportViewModel.ReportID == (int)GlobalEnums.ReportID.EventLogJournals ? "false" : "true")));
+
             printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("HeaderTitle", headerTitle.ToUpper()));
             printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("HeaderTerms", headerTerms.Trim()));
             if (captionDescriptions != "") printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("CaptionDescriptions", captionDescriptions));
