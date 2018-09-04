@@ -2479,11 +2479,11 @@ namespace TotalDAL.Repositories
 
         public void AddDataLogs(int? entryID, int? entryDetailID, DateTime? entryDate, string moduleName, string actionType, string entityName, string propertyName, string propertyValue)
         {
-            this.TotalSmartCodingEntities.AddDataLogs(entryID, entryDetailID, entryDate, moduleName, ContextAttributes.User.UserName, ContextAttributes.LocalIPAddress, actionType, entityName, propertyName, propertyValue);
+            this.TotalSmartCodingEntities.AddDataLogs(ContextAttributes.User.LocationID, entryID, entryDetailID, entryDate, moduleName, ContextAttributes.User.UserName, ContextAttributes.LocalIPAddress, actionType, entityName, propertyName, propertyValue);
         }
         public void AddEventLogs(string moduleName, string actionType, int? entryID, string remarks)
         {
-            this.TotalSmartCodingEntities.AddEventLogs(DateTime.Now, ContextAttributes.User.UserName, ContextAttributes.LocalIPAddress, moduleName, actionType, entryID, remarks);
+            this.TotalSmartCodingEntities.AddEventLogs(ContextAttributes.User.LocationID, DateTime.Now, ContextAttributes.User.UserName, ContextAttributes.LocalIPAddress, moduleName, actionType, entryID, remarks);
         }
         #endregion Smart Logs
     }
