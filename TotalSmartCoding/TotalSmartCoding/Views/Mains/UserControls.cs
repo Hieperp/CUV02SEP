@@ -79,7 +79,7 @@ namespace TotalSmartCoding.Views.Mains
                 customTabCenter.Dock = DockStyle.Fill;
 
                 customTabCenter.TabPages.Add("tabCenterAA", "Member of Groups            ");
-                customTabCenter.TabPages.Add("tabCenterAA", "Salespersons                        ");
+                customTabCenter.TabPages.Add("tabCenterAA", "Limited Salespersons          ");
                 customTabCenter.TabPages[0].BackColor = this.panelCenter.BackColor;
                 customTabCenter.TabPages[1].BackColor = this.panelCenter.BackColor;
 
@@ -175,8 +175,8 @@ namespace TotalSmartCoding.Views.Mains
             {
                 foreach (OLVGroup olvGroup in e.Groups)
                 {
-                    olvGroup.TitleImage = sender.Equals(this.fastUserControlIndexes) ? "UserGroupN" : "Assembly-32";
-                    olvGroup.Subtitle = olvGroup.Contents.Count.ToString() + (sender.Equals(this.fastUserControlIndexes) ? " User" : " Group") + (olvGroup.Contents.Count > 1 ? "s" : "");
+                    olvGroup.TitleImage = sender.Equals(this.fastUserControlIndexes) ? "UserGroupN" : (sender.Equals(this.fastUserGroupDetails) ? "Assembly-32" : "group-of-users-silhouette");
+                    olvGroup.Subtitle = olvGroup.Contents.Count.ToString() + (sender.Equals(this.fastUserControlIndexes) ? " User" : (sender.Equals(this.fastUserGroupDetails) ? " Group" : " Salesperson")) + (olvGroup.Contents.Count > 1 ? "s" : "");
                 }
             }
         }
@@ -190,7 +190,7 @@ namespace TotalSmartCoding.Views.Mains
                 if (this.selectedUserControlIndex != value)
                 {
                     this.selectedUserControlIndex = value;
-                    this.GetUserSalespersons();
+                    this.GetUserControlSalespersons();
                     this.GetUserControlGroups();
 
                     this.buttonUserToggleVoid.Enabled = !this.selectedUserControlIndex.IsDatabaseAdmin;
@@ -210,7 +210,7 @@ namespace TotalSmartCoding.Views.Mains
             }
             else
             {
-                this.GetUserSalespersons();
+                this.GetUserControlSalespersons();
                 this.GetUserControlGroups();
             }
         }
@@ -231,19 +231,15 @@ namespace TotalSmartCoding.Views.Mains
             }
         }
 
-        private void GetUserSalespersons()
+        private void GetUserControlSalespersons()
         {
-            return; //--xxx
             try
             {
-                //if (this.userGroupAPIs != null && this.bindingListUserControls != null)
-                //{
-                //    IList<UserGroupControl> userGroupControls = this.userGroupAPIs.GetUserGroupControls(this.SelectedUserControlIndex != null ? this.SelectedUserControlIndex.UserID : 0);
-                //    this.bindingListUserControls.RaiseListChangedEvents = false;
-                //    Mapper.Map<ICollection<UserGroupControl>, ICollection<UserGroupControlDTO>>(userGroupControls, this.bindingListUserControls);
-                //    this.bindingListUserControls.RaiseListChangedEvents = true;
-                //    this.bindingListUserControls.ResetBindings();
-                //}
+                if (this.userControlAPIs != null)
+                {
+                    this.fastUserSalespersons.SetObjects(this.userControlAPIs.GetUserControlSalespersons(this.SelectedUserControlIndex != null ? this.SelectedUserControlIndex.SecurityIdentifier : null));
+                    this.fastUserSalespersons.Sort(this.olvEmployeeType, SortOrder.Ascending);
+                }
             }
             catch (Exception exception)
             {
@@ -285,6 +281,29 @@ namespace TotalSmartCoding.Views.Mains
         }
 
         #endregion Add, remove member
+
+        #region Add, remove salesperson
+        private void buttonAddRemoveSalesperson_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = DialogResult.Cancel;
+            if (sender.Equals(this.buttonAddSalesperson) && this.SelectedUserControlIndex != null)
+            {
+                UserControlAvailableSalespersons wizardUserControlAvailableSalespersons = new UserControlAvailableSalespersons(this.userControlAPIs, this.SelectedUserControlIndex.SecurityIdentifier);
+                dialogResult = wizardUserControlAvailableSalespersons.ShowDialog(); wizardUserControlAvailableSalespersons.Dispose();
+            }
+            if (sender.Equals(this.buttonRemoveSalesperson) && this.fastUserSalespersons.SelectedObject != null)
+            {
+                UserControlSalesperson userControlSalesperson = (UserControlSalesperson)this.fastUserSalespersons.SelectedObject;
+                if (userControlSalesperson != null && CustomMsgBox.Show(this, "Are you sure you want to remove this salesperson: " + "\r\n" + "\r\n" + userControlSalesperson.EmployeeCode + "\r\n" + userControlSalesperson.EmployeeName, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Stop) == DialogResult.Yes)
+                {
+                    this.userControlAPIs.UserControlRemoveSalesperson(userControlSalesperson.UserSalespersonID);
+                    dialogResult = DialogResult.OK;
+                }
+            }
+
+            if (dialogResult == DialogResult.OK) this.GetUserControlSalespersons();
+        }
+        #endregion Add, remove salesperson
 
     }
 }

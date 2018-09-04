@@ -425,6 +425,12 @@
     <Compile Include="Views\Mains\UserControlAvailableGroups.Designer.cs">
       <DependentUpon>UserControlAvailableGroups.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Mains\UserControlAvailableSalespersons.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Mains\UserControlAvailableSalespersons.Designer.cs">
+      <DependentUpon>UserControlAvailableSalespersons.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Mains\UserControlRegister.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -671,6 +677,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Mains\UserControlAvailableGroups.resx">
       <DependentUpon>UserControlAvailableGroups.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Mains\UserControlAvailableSalespersons.resx">
+      <DependentUpon>UserControlAvailableSalespersons.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Mains\UserControlRegister.resx">
       <DependentUpon>UserControlRegister.cs</DependentUpon>
@@ -1413,6 +1422,11 @@
     <None Include="Resources\images 3232.png" />
     <None Include="Resources\images 3030.png" />
     <None Include="Resources\Manage_group.png" />
+    <None Include="Resources\AddSalesperson.png" />
+    <None Include="Resources\RemoveSalesperson.png" />
+    <None Include="Resources\RemoveBusinessman.png" />
+    <None Include="Resources\remove-user.png" />
+    <None Include="Resources\Remove-user-111.png" />
     <Content Include="SmartCodingSolution.ico" />
     <None Include="Resources\Yellow-cross.ico" />
     <None Include="Resources\White-Pallet.ico" />

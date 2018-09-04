@@ -248,7 +248,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "       BEGIN " + "\r\n";
-            queryString = queryString + "           SELECT  EmployeeID, Code AS EmployeeCode, Name AS EmployeeName, N'Chevron Vietnam' AS EmployeeType FROM Employees WHERE EmployeeID NOT IN (SELECT EmployeeID FROM UserSalespersons WHERE SecurityIdentifier = @SecurityIdentifier) ORDER BY Code, Name " + "\r\n";
+            queryString = queryString + "           SELECT  EmployeeID, Code AS EmployeeCode, Name AS EmployeeName, N'Chevron Vietnam' AS EmployeeType FROM Employees WHERE EmployeeID NOT IN (SELECT EmployeeID FROM UserSalespersons WHERE SecurityIdentifier = @SecurityIdentifier) AND EmployeeID IN (SELECT EmployeeID FROM EmployeeRoles WHERE RoleID = " + (int)GlobalEnums.RoleID.Saleperson + ") ORDER BY Code, Name " + "\r\n";
             queryString = queryString + "       END " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("GetUserControlAvailableSalespersons", queryString);

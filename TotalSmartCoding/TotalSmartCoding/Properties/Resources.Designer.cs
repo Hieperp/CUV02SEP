@@ -583,6 +583,16 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap AddSalesperson {
+            get {
+                object obj = ResourceManager.GetObject("AddSalesperson", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Adjust_48 {
             get {
                 object obj = ResourceManager.GetObject("Adjust_48", resourceCulture);
@@ -5113,6 +5123,26 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Remove_user_111 {
+            get {
+                object obj = ResourceManager.GetObject("Remove-user-111", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap remove_user1 {
+            get {
+                object obj = ResourceManager.GetObject("remove-user1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Remove_UserGroup {
             get {
                 object obj = ResourceManager.GetObject("Remove-UserGroup", resourceCulture);
@@ -5123,9 +5153,29 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap RemoveBusinessman {
+            get {
+                object obj = ResourceManager.GetObject("RemoveBusinessman", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap RemoveOU {
             get {
                 object obj = ResourceManager.GetObject("RemoveOU", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap RemoveSalesperson {
+            get {
+                object obj = ResourceManager.GetObject("RemoveSalesperson", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
