@@ -533,7 +533,7 @@
             // 
             this.dateTimexFromDate.CustomFormat = "dd/MMM/yyyy HH:mm:ss";
             this.dateTimexFromDate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dateTimexFromDate.Editable = true;
+            this.dateTimexFromDate.Editable = false;
             this.dateTimexFromDate.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimexFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimexFromDate.Location = new System.Drawing.Point(437, 2);
@@ -547,7 +547,7 @@
             // 
             this.dateTimexToDate.CustomFormat = "dd/MMM/yyyy HH:mm:ss";
             this.dateTimexToDate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dateTimexToDate.Editable = true;
+            this.dateTimexToDate.Editable = false;
             this.dateTimexToDate.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimexToDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimexToDate.Location = new System.Drawing.Point(713, 2);
