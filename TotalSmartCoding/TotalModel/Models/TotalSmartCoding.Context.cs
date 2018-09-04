@@ -3033,5 +3033,19 @@ namespace TotalModel.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UserControlRemoveSalesperson", userSalespersonIDParameter);
         }
+    
+        public virtual ObjectResult<Nullable<int>> GetOnEventLogs()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("GetOnEventLogs");
+        }
+    
+        public virtual int UpdateOnEventLogs(Nullable<int> onEventLogs)
+        {
+            var onEventLogsParameter = onEventLogs.HasValue ?
+                new ObjectParameter("OnEventLogs", onEventLogs) :
+                new ObjectParameter("OnEventLogs", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateOnEventLogs", onEventLogsParameter);
+        }
     }
 }

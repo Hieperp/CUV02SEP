@@ -687,7 +687,7 @@ namespace TotalSmartCoding.Views.Mains
             try
             {
                 IBaseRepository baseRepository = CommonNinject.Kernel.Get<IBaseRepository>();
-                if (baseRepository.GetOnDataLogs()) baseRepository.AddEventLogs(this.baseDTO.NMVNTaskID.ToString(), actionType, null, null);
+                if (baseRepository.GetOnEventLogs()) baseRepository.AddEventLogs(this.baseDTO.NMVNTaskID.ToString(), actionType, null, null);
             }
             catch (Exception ex) { }
         }

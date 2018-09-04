@@ -27,7 +27,9 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             this.UpdateLockedDate();
 
             this.GetOnDataLogs();
+            this.GetOnEventLogs();
             this.UpdateOnDataLogs();
+            this.UpdateOnEventLogs();
 
             this.GetUserOrganizationalUnit();
 
@@ -179,6 +181,18 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             this.totalSmartCodingEntities.CreateStoredProcedure("GetOnDataLogs", queryString);
         }
 
+        private void GetOnEventLogs()
+        {
+            string queryString = " " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+
+            queryString = queryString + "       SELECT      MAX(OnEventLogs) " + "\r\n";
+            queryString = queryString + "       FROM        Locations " + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("GetOnEventLogs", queryString);
+        }
+
         private void UpdateOnDataLogs()
         {
             string queryString = " @OnDataLogs Int " + "\r\n";
@@ -191,6 +205,17 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             this.totalSmartCodingEntities.CreateStoredProcedure("UpdateOnDataLogs", queryString);
         }
 
+        private void UpdateOnEventLogs()
+        {
+            string queryString = " @OnEventLogs Int " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+
+            queryString = queryString + "       UPDATE      Locations " + "\r\n";
+            queryString = queryString + "       SET         OnEventLogs = @OnEventLogs " + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("UpdateOnEventLogs", queryString);
+        }
 
 
 

@@ -41,6 +41,7 @@ namespace TotalCore.Services
 
         #region
         bool GetOnDataLogs();
+        bool GetOnEventLogs();
         void AddDataLogs(int? entryID, int? entryDetailID, DateTime? entryDate, string moduleName, string actionType, string entityName, string propertyName, string propertyValue);
         void AddEventLogs(string moduleName, string actionType, int? entryID, string remarks);
         #endregion

@@ -444,6 +444,7 @@ namespace TotalDAL.Repositories
             if (!this.totalSmartCodingEntities.ColumnExists("Locations", "OnDataLogs"))
             {
                 this.totalSmartCodingEntities.ColumnAdd("Locations", "OnDataLogs", "int", "0", true);
+                this.totalSmartCodingEntities.ColumnAdd("Locations", "OnEventLogs", "int", "0", true);
             }
             #endregion
 
@@ -2475,6 +2476,12 @@ namespace TotalDAL.Repositories
         public bool GetOnDataLogs()
         {
             int? onDataLogs = this.TotalSmartCodingEntities.GetOnDataLogs().Single();
+            return (onDataLogs != null && onDataLogs == 1);
+        }
+
+        public bool GetOnEventLogs()
+        {
+            int? onDataLogs = this.TotalSmartCodingEntities.GetOnEventLogs().Single();
             return (onDataLogs != null && onDataLogs == 1);
         }
 

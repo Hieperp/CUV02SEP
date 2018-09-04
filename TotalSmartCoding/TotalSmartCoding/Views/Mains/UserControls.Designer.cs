@@ -67,6 +67,10 @@
             this.olvGroupType = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvUserGroupCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvUserGroupName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.checkOnDataLogs = new System.Windows.Forms.CheckBox();
+            this.checkOnEventLogs = new System.Windows.Forms.CheckBox();
             this.toolUserGroupDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastUserControlIndexes)).BeginInit();
             this.toolUserGroups.SuspendLayout();
@@ -74,6 +78,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.fastUserSalespersons)).BeginInit();
             this.toolUserSalespersons.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastUserGroupDetails)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolUserGroupDetails
@@ -214,6 +220,7 @@
             // 
             // toolUserGroups
             // 
+            this.toolUserGroups.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolUserGroups.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolUserGroups.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolUserGroups.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -222,7 +229,7 @@
             this.buttonUserToggleVoid});
             this.toolUserGroups.Location = new System.Drawing.Point(0, 0);
             this.toolUserGroups.Name = "toolUserGroups";
-            this.toolUserGroups.Size = new System.Drawing.Size(1052, 39);
+            this.toolUserGroups.Size = new System.Drawing.Size(777, 39);
             this.toolUserGroups.TabIndex = 0;
             this.toolUserGroups.Text = "toolStrip2";
             // 
@@ -311,7 +318,7 @@
             this.fastUserSalespersons.Name = "fastUserSalespersons";
             this.fastUserSalespersons.OwnerDraw = true;
             this.fastUserSalespersons.ShowGroups = false;
-            this.fastUserSalespersons.Size = new System.Drawing.Size(764, 244);
+            this.fastUserSalespersons.Size = new System.Drawing.Size(764, 138);
             this.fastUserSalespersons.TabIndex = 104;
             this.fastUserSalespersons.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastUserSalespersons.UseCompatibleStateImageBehavior = false;
@@ -456,6 +463,52 @@
             this.olvUserGroupName.Text = "";
             this.olvUserGroupName.Width = 90;
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
+            this.panel1.Controls.Add(this.toolUserGroups);
+            this.panel1.Controls.Add(this.panel2);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1052, 39);
+            this.panel1.TabIndex = 105;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.SystemColors.Control;
+            this.panel2.Controls.Add(this.checkOnEventLogs);
+            this.panel2.Controls.Add(this.checkOnDataLogs);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel2.Location = new System.Drawing.Point(777, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(275, 39);
+            this.panel2.TabIndex = 1;
+            // 
+            // checkOnDataLogs
+            // 
+            this.checkOnDataLogs.AutoSize = true;
+            this.checkOnDataLogs.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.checkOnDataLogs.Location = new System.Drawing.Point(3, 12);
+            this.checkOnDataLogs.Name = "checkOnDataLogs";
+            this.checkOnDataLogs.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.checkOnDataLogs.Size = new System.Drawing.Size(124, 21);
+            this.checkOnDataLogs.TabIndex = 0;
+            this.checkOnDataLogs.Text = "Enable Data Logs";
+            this.checkOnDataLogs.UseVisualStyleBackColor = true;
+            // 
+            // checkOnEventLogs
+            // 
+            this.checkOnEventLogs.AutoSize = true;
+            this.checkOnEventLogs.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.checkOnEventLogs.Location = new System.Drawing.Point(142, 12);
+            this.checkOnEventLogs.Name = "checkOnEventLogs";
+            this.checkOnEventLogs.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.checkOnEventLogs.Size = new System.Drawing.Size(128, 21);
+            this.checkOnEventLogs.TabIndex = 1;
+            this.checkOnEventLogs.Text = "Enable Event Logs";
+            this.checkOnEventLogs.UseVisualStyleBackColor = true;
+            // 
             // UserControls
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -463,7 +516,7 @@
             this.ClientSize = new System.Drawing.Size(1052, 649);
             this.Controls.Add(this.panelCenter);
             this.Controls.Add(this.fastUserControlIndexes);
-            this.Controls.Add(this.toolUserGroups);
+            this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -484,8 +537,11 @@
             this.toolUserSalespersons.ResumeLayout(false);
             this.toolUserSalespersons.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastUserGroupDetails)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -528,5 +584,9 @@
         private BrightIdeasSoftware.OLVColumn olvEmployeeType;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.CheckBox checkOnDataLogs;
+        private System.Windows.Forms.CheckBox checkOnEventLogs;
     }
 }
