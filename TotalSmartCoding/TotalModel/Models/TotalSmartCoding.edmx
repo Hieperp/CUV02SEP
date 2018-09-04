@@ -2352,6 +2352,7 @@
           </ReferentialConstraint>
         </Association>
         <Function Name="AddDataLogs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LocationID" Type="int" Mode="In" />
           <Parameter Name="EntryID" Type="int" Mode="In" />
           <Parameter Name="EntryDetailID" Type="int" Mode="In" />
           <Parameter Name="EntryDate" Type="datetime" Mode="In" />
@@ -2364,6 +2365,7 @@
           <Parameter Name="PropertyValue" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="AddEventLogs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LocationID" Type="int" Mode="In" />
           <Parameter Name="EntryDate" Type="datetime" Mode="In" />
           <Parameter Name="UserName" Type="nvarchar" Mode="In" />
           <Parameter Name="IPAddress" Type="nvarchar" Mode="In" />
@@ -5011,6 +5013,7 @@
             <Parameter Name="Password" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="AddDataLogs">
+            <Parameter Name="LocationID" Mode="In" Type="Int32" />
             <Parameter Name="EntryID" Mode="In" Type="Int32" />
             <Parameter Name="EntryDetailID" Mode="In" Type="Int32" />
             <Parameter Name="EntryDate" Mode="In" Type="DateTime" />
@@ -5023,6 +5026,7 @@
             <Parameter Name="PropertyValue" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="AddEventLogs">
+            <Parameter Name="LocationID" Mode="In" Type="Int32" />
             <Parameter Name="EntryDate" Mode="In" Type="DateTime" />
             <Parameter Name="UserName" Mode="In" Type="String" />
             <Parameter Name="IPAddress" Mode="In" Type="String" />
@@ -5070,17 +5074,17 @@
             <Parameter Name="Enabled" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="GetUserControlAvailableSalespersons" ReturnType="Collection(TotalSmartCodingModel.UserControlAvailableSalesperson)">
-            <Parameter Name="SecurityIdentifier" Mode="In" Type="String" />
+          <Parameter Name="SecurityIdentifier" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetUserControlSalespersons" ReturnType="Collection(TotalSmartCodingModel.UserControlSalesperson)">
-            <Parameter Name="SecurityIdentifier" Mode="In" Type="String" />
+          <Parameter Name="SecurityIdentifier" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="UserControlAddSalesperson">
             <Parameter Name="SecurityIdentifier" Mode="In" Type="String" />
             <Parameter Name="EmployeeID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="UserControlRemoveSalesperson">
-            <Parameter Name="UserSalespersonID" Mode="In" Type="Int32" />
+          <Parameter Name="UserSalespersonID" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">

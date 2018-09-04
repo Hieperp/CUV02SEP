@@ -2785,8 +2785,12 @@ namespace TotalModel.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateApplicationRole", applicationRoleIDParameter, nameParameter, passwordParameter);
         }
     
-        public virtual int AddDataLogs(Nullable<int> entryID, Nullable<int> entryDetailID, Nullable<System.DateTime> entryDate, string moduleName, string userName, string iPAddress, string actionType, string entityName, string propertyName, string propertyValue)
+        public virtual int AddDataLogs(Nullable<int> locationID, Nullable<int> entryID, Nullable<int> entryDetailID, Nullable<System.DateTime> entryDate, string moduleName, string userName, string iPAddress, string actionType, string entityName, string propertyName, string propertyValue)
         {
+            var locationIDParameter = locationID.HasValue ?
+                new ObjectParameter("LocationID", locationID) :
+                new ObjectParameter("LocationID", typeof(int));
+    
             var entryIDParameter = entryID.HasValue ?
                 new ObjectParameter("EntryID", entryID) :
                 new ObjectParameter("EntryID", typeof(int));
@@ -2827,11 +2831,15 @@ namespace TotalModel.Models
                 new ObjectParameter("PropertyValue", propertyValue) :
                 new ObjectParameter("PropertyValue", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddDataLogs", entryIDParameter, entryDetailIDParameter, entryDateParameter, moduleNameParameter, userNameParameter, iPAddressParameter, actionTypeParameter, entityNameParameter, propertyNameParameter, propertyValueParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddDataLogs", locationIDParameter, entryIDParameter, entryDetailIDParameter, entryDateParameter, moduleNameParameter, userNameParameter, iPAddressParameter, actionTypeParameter, entityNameParameter, propertyNameParameter, propertyValueParameter);
         }
     
-        public virtual int AddEventLogs(Nullable<System.DateTime> entryDate, string userName, string iPAddress, string moduleName, string actionType, Nullable<int> entryID, string remarks)
+        public virtual int AddEventLogs(Nullable<int> locationID, Nullable<System.DateTime> entryDate, string userName, string iPAddress, string moduleName, string actionType, Nullable<int> entryID, string remarks)
         {
+            var locationIDParameter = locationID.HasValue ?
+                new ObjectParameter("LocationID", locationID) :
+                new ObjectParameter("LocationID", typeof(int));
+    
             var entryDateParameter = entryDate.HasValue ?
                 new ObjectParameter("EntryDate", entryDate) :
                 new ObjectParameter("EntryDate", typeof(System.DateTime));
@@ -2860,7 +2868,7 @@ namespace TotalModel.Models
                 new ObjectParameter("Remarks", remarks) :
                 new ObjectParameter("Remarks", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddEventLogs", entryDateParameter, userNameParameter, iPAddressParameter, moduleNameParameter, actionTypeParameter, entryIDParameter, remarksParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddEventLogs", locationIDParameter, entryDateParameter, userNameParameter, iPAddressParameter, moduleNameParameter, actionTypeParameter, entryIDParameter, remarksParameter);
         }
     
         public virtual ObjectResult<Nullable<int>> GetOnDataLogs()
