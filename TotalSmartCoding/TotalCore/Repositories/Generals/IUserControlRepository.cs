@@ -13,6 +13,16 @@ namespace TotalCore.Repositories.Generals
         IList<UserControlGroup> GetUserControlGroups(string securityIdentifier);
         IList<UserControlAvailableGroup> GetUserControlAvailableGroups(string securityIdentifier);
 
+        IList<UserControlSalesperson> GetUserControlSalespersons(string securityIdentifier);
+        IList<UserControlAvailableSalesperson> GetUserControlAvailableSalespersons(string securityIdentifier);
+
+        int UserControlAddSalesperson(string securityIdentifier, int? employeeID);
+        int UserControlRemoveSalesperson(int? userSalespersonID);
+
+
+
+
+
         int UserControlRegister(string firstName, string lastName, string userName, string securityIdentifier);
         int UserControlUnregister(int? userID);
         int UserControlToggleVoid(int? userID, bool? inActive);

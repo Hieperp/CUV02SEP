@@ -775,7 +775,7 @@ namespace TotalDAL.Repositories
             this.ExecuteStoreCommand("UPDATE      AccessControls              SET InActive = 0", new ObjectParameter[] { });
             this.ExecuteStoreCommand("UPDATE      OrganizationalUnitUsers     SET InActive = 0, InActiveDate = GetDate()", new ObjectParameter[] { });
 
-            this.ExecuteStoreCommand("UPDATE      AccessControls              SET AccessLevel = 0, ApprovalPermitted = 0, UnApprovalPermitted = 0, VoidablePermitted = 0, UnVoidablePermitted = 0, ShowDiscount = 0 ", new ObjectParameter[] { });
+            //this.ExecuteStoreCommand("UPDATE      AccessControls              SET AccessLevel = 0, ApprovalPermitted = 0, UnApprovalPermitted = 0, VoidablePermitted = 0, UnVoidablePermitted = 0, ShowDiscount = 0 ", new ObjectParameter[] { });
 
 
             //ADD ALL LOCATION

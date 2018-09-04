@@ -32,6 +32,29 @@ namespace TotalDAL.Repositories.Generals
             return this.TotalSmartCodingEntities.GetUserControlAvailableGroups(securityIdentifier).ToList();
         }
 
+        public IList<UserControlSalesperson> GetUserControlSalespersons(string securityIdentifier)
+        {
+            return this.TotalSmartCodingEntities.GetUserControlSalespersons(securityIdentifier).ToList();
+        }
+
+        public IList<UserControlAvailableSalesperson> GetUserControlAvailableSalespersons(string securityIdentifier)
+        {
+            return this.TotalSmartCodingEntities.GetUserControlAvailableSalespersons(securityIdentifier).ToList();
+        }
+
+        public int UserControlAddSalesperson(string securityIdentifier, int? employeeID)
+        {
+            return this.TotalSmartCodingEntities.UserControlAddSalesperson(securityIdentifier, employeeID);
+        }
+        public int UserControlRemoveSalesperson(int? userSalespersonID)
+        {
+            return this.TotalSmartCodingEntities.UserControlRemoveSalesperson(userSalespersonID);
+        }
+
+
+
+
+        
         public int UserControlRegister(string firstName, string lastName, string userName, string securityIdentifier)
         {
             return this.TotalSmartCodingEntities.UserControlRegister(firstName, lastName, userName, securityIdentifier);
