@@ -81,5 +81,16 @@ namespace TotalSmartCoding.Controllers.APIs.Generals
         {
             return this.userControlAPIRepository.UpdateUserName(securityIdentifier, userName);
         }
+
+        public int UpdateOnDataLogs(int onDataLogs)
+        {
+            return this.userControlAPIRepository.UpdateOnDataLogs(onDataLogs);
+        }
+
+        public int UpdateOnEventLogs(int onEventLogs)
+        {
+            return this.userControlAPIRepository.UpdateOnEventLogs(onEventLogs);
+        }
+
     }
 }

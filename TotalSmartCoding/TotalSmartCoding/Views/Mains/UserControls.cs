@@ -30,6 +30,9 @@ namespace TotalSmartCoding.Views.Mains
         private UserControlAPIs userControlAPIs { get; set; }
         private UserGroupAPIs userGroupAPIs { get; set; }
 
+        private Binding bindingOnDataLogs;
+        private Binding bindingOnEventLogs;
+
         #region Contruction
         public UserControls()
         {
@@ -48,6 +51,11 @@ namespace TotalSmartCoding.Views.Mains
 
                 this.fastUserSalespersons.ShowGroups = true;
                 this.fastUserSalespersons.AboutToCreateGroups += fastGroups_AboutToCreateGroups;
+
+                this.onDataLogs = this.userControlRepository.GetOnDataLogs();
+                this.onEventLogs = this.userControlRepository.GetOnEventLogs();
+                this.bindingOnDataLogs = this.checkOnDataLogs.DataBindings.Add("Checked", this, "OnDataLogs", true, DataSourceUpdateMode.OnPropertyChanged);
+                this.bindingOnEventLogs = this.checkOnEventLogs.DataBindings.Add("Checked", this, "OnEventLogs", true, DataSourceUpdateMode.OnPropertyChanged);
             }
             catch (Exception exception)
             {
@@ -79,7 +87,7 @@ namespace TotalSmartCoding.Views.Mains
                 customTabCenter.Dock = DockStyle.Fill;
 
                 customTabCenter.TabPages.Add("tabCenterAA", "Member of Groups            ");
-                customTabCenter.TabPages.Add("tabCenterAA", "Limited Salespersons          ");
+                customTabCenter.TabPages.Add("tabCenterAA", "Salespersons Filtering          ");
                 customTabCenter.TabPages[0].BackColor = this.panelCenter.BackColor;
                 customTabCenter.TabPages[1].BackColor = this.panelCenter.BackColor;
 
@@ -97,6 +105,33 @@ namespace TotalSmartCoding.Views.Mains
             catch (Exception exception)
             {
                 ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+            }
+        }
+
+        private bool onDataLogs;
+        public bool OnDataLogs
+        {
+            get { return this.onDataLogs; }
+            set
+            {
+                if (this.onDataLogs != value)
+                {
+                    this.onDataLogs = value;
+                    this.userControlAPIs.UpdateOnDataLogs(this.onDataLogs ? 1 : 0);
+                }
+            }
+        }
+        private bool onEventLogs;
+        public bool OnEventLogs
+        {
+            get { return this.onEventLogs; }
+            set
+            {
+                if (this.onEventLogs != value)
+                {
+                    this.onEventLogs = value;
+                    this.userControlAPIs.UpdateOnEventLogs(this.onEventLogs ? 1 : 0);
+                }
             }
         }
         #endregion Contruction
@@ -261,7 +296,7 @@ namespace TotalSmartCoding.Views.Mains
             if (sender.Equals(this.buttonLeaveGroup) && this.fastUserGroupDetails.SelectedObject != null)
             {
                 UserControlGroup userControlGroup = (UserControlGroup)this.fastUserGroupDetails.SelectedObject;
-                if (userControlGroup != null && CustomMsgBox.Show(this, "Are you sure you want to leave this group: " + "\r\n" + "\r\n" + userControlGroup.UserGroupCode + "\r\n" + userControlGroup.UserGroupName , "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Stop) == DialogResult.Yes)
+                if (userControlGroup != null && CustomMsgBox.Show(this, "Are you sure you want to leave this group: " + "\r\n" + "\r\n" + userControlGroup.UserGroupCode + "\r\n" + userControlGroup.UserGroupName, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Stop) == DialogResult.Yes)
                 {
                     this.userGroupAPIs.UserGroupRemoveMember(userControlGroup.UserGroupDetailID);
                     dialogResult = DialogResult.OK;

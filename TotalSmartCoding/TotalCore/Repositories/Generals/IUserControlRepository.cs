@@ -28,5 +28,7 @@ namespace TotalCore.Repositories.Generals
         int UserControlToggleVoid(int? userID, bool? inActive);
 
         int UpdateUserName(string securityIdentifier, string userName);
+        int UpdateOnDataLogs(int onDataLogs);
+        int UpdateOnEventLogs(int onEventLogs);
     }
 }

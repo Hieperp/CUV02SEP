@@ -75,5 +75,14 @@ namespace TotalDAL.Repositories.Generals
         {
             return this.ExecuteStoreCommand(@" UPDATE Users SET UserName =  N'" + userName + "' WHERE SecurityIdentifier = N'" + securityIdentifier + "'", new ObjectParameter[] { });
         }
+
+        public int UpdateOnDataLogs(int onDataLogs)
+        {
+            return this.TotalSmartCodingEntities.UpdateOnDataLogs(onDataLogs);
+        }
+        public int UpdateOnEventLogs(int onEventLogs)
+        {
+            return this.TotalSmartCodingEntities.UpdateOnEventLogs(onEventLogs);
+        }
     }
 }
