@@ -21,6 +21,7 @@ namespace TotalSmartCoding.Controllers.APIs.Generals
             this.moduleAPIRepository = moduleAPIRepository;
         }
 
+        public string DataSource { get { return this.moduleAPIRepository.DataSource; } }
 
         public ICollection<ModuleIndex> GetModuleIndexes()
         {

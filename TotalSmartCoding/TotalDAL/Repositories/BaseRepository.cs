@@ -2473,6 +2473,11 @@ namespace TotalDAL.Repositories
 
 
         #region Smart Logs
+        public string DataSource
+        {
+            get { return this.TotalSmartCodingEntities.Database.Connection.DataSource; } // + " [" + this.TotalSmartCodingEntities.Database.Connection.Database + "]"
+        }
+
         public bool GetOnDataLogs()
         {
             int? onDataLogs = this.TotalSmartCodingEntities.GetOnDataLogs().Single();

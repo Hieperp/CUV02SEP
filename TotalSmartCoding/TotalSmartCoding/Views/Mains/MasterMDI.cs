@@ -186,7 +186,7 @@ namespace TotalSmartCoding.Views.Mains
                 }
 
                 DateTime buildDate = new FileInfo(Assembly.GetExecutingAssembly().Location).LastWriteTime;
-                this.statusVersion.Text = "Version 1.0." + GlobalVariables.ConfigVersionID(GlobalVariables.ConfigID).ToString() + ", Date: " + buildDate.ToString("dd/MM/yyyy HH:mm:ss");
+                this.statusVersion.Text = this.moduleAPIs.DataSource;// "Version 1.0." + GlobalVariables.ConfigVersionID(GlobalVariables.ConfigID).ToString() + ", Date: " + buildDate.ToString("dd/MM/yyyy HH:mm:ss");
                 this.labelApplicationRole.Text = ApplicationRoles.Required && ApplicationRoles.Name != "" && ApplicationRoles.ExceptionMessage == "" ? "[Application Role]" : "[Windows Authentication]";
 
                 this.comboSearchBarcode.Text = this.searchPlaceHolder;
