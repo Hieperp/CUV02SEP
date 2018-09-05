@@ -101,6 +101,17 @@ namespace TotalDAL.Repositories
             }
 
             #region NEW PERMISSION
+
+            #region ADD NEW MODULE: NmvnTaskID.MonthEnd
+            var query = this.totalSmartCodingEntities.Database.SqlQuery(typeof(int), "SELECT COUNT(ModuleDetailID) AS Expr1 FROM ModuleDetails WHERE ModuleDetailID = " + (int)GlobalEnums.NmvnTaskID.MonthEnd + ";", new object[] { });
+            int exists = query.Cast<int>().Single();
+            if (exists == 0)
+            {
+                this.ExecuteStoreCommand("INSERT INTO ModuleDetails (ModuleDetailID, ModuleID, Code, Name, FullName, Actions, Controller, LastOpen, SerialID, ImageIndex, InActive, ControlTypeID) VALUES(" + (int)GlobalEnums.NmvnTaskID.MonthEnd + ", 1, 'Month-end Closing', 'Month-end Closing', '#', '#', 'CUSTOMER MANAGEMENT', 1, 68, 1, 0, 0) ", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("INSERT INTO AccessControls (UserID, NMVNTaskID, OrganizationalUnitID, AccessLevel, ApprovalPermitted, UnApprovalPermitted, VoidablePermitted, UnVoidablePermitted, ShowDiscount, AccessLevelBACKUP, ApprovalPermittedBACKUP, UnApprovalPermittedBACKUP, InActive) SELECT UserID, " + (int)GlobalEnums.NmvnTaskID.MonthEnd + " AS NMVNTaskID, OrganizationalUnitID, 1 AS AccessLevel, 0 AS ApprovalPermitted, 0 AS UnApprovalPermitted, 0 AS VoidablePermitted, 0 AS UnVoidablePermitted, ShowDiscount, AccessLevelBACKUP, ApprovalPermittedBACKUP, UnApprovalPermittedBACKUP, InActive FROM AccessControls WHERE (NMVNTaskID = " + (int)GlobalEnums.NmvnTaskID.Commodities + ") AND (SELECT COUNT(*) FROM AccessControls WHERE NMVNTaskID = " + (int)GlobalEnums.NmvnTaskID.MonthEnd + ") = 0", new ObjectParameter[] { });
+            }
+            #endregion ADD NEW MODULE: NmvnTaskID.MonthEnd
+
             //MUST CALL this.UpdateUserControls() BEFORE CALL this.RestoreProcedures(): BECAUSE: WE ADD SOME CODE TO REGISTER REPORT CONTROL IN UserRegister 
             //VERY IMPORTANT: WE CALL OLD VERSION OF UserRegister IN this.UpdateUserControls() [UserRegister WITHOUT REPORT CONTROL]
             if (!this.totalSmartCodingEntities.TableExists("UserGroupReports"))
