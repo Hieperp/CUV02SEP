@@ -501,7 +501,7 @@ namespace TotalDAL.Repositories
             Helpers.SqlProgrammability.Generals.Report report = new Helpers.SqlProgrammability.Generals.Report(totalSmartCodingEntities);
             report.RestoreProcedure();
 
-            return;
+            //return;
 
             Helpers.SqlProgrammability.Inventories.Inventory inventory = new Helpers.SqlProgrammability.Inventories.Inventory(totalSmartCodingEntities);
             inventory.RestoreProcedure();
