@@ -21,8 +21,8 @@
         public static bool OnTestZebra = false; //false: WILL SEND TEST PRINT WHEN CONNECTED
 
 
-        private static bool drumWithDigit = false; //NEW DIGIT DOMINO AT DRUM LINE FOR PHASE 2
-        public static bool DrumWithDigit { get { return GlobalEnums.drumWithDigit && GlobalVariables.ConfigID != (int)GlobalVariables.FillingLine.Import; } }
+        public static bool GlobalDrumWithDigit = false; //NEW DIGIT DOMINO AT DRUM LINE FOR PHASE 2 - WILL BE SET BY LOGON
+        public static bool DrumWithDigit { get { return GlobalEnums.GlobalDrumWithDigit && GlobalVariables.ConfigID != (int)GlobalVariables.FillingLine.Import; } }
 
 
         public static bool SendToZebra = true;

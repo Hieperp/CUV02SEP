@@ -127,6 +127,8 @@ namespace TotalSmartCoding.Views.Mains
                         int? accessLevel = this.baseRepository.TotalSmartCodingEntities.GetAccessLevel(activeUsers[0].UserID, (int)TotalBase.Enums.GlobalEnums.NmvnTaskID.SmartCoding, 0).Single();
                         if (accessLevel != (int)TotalBase.Enums.GlobalEnums.AccessLevel.Editable) activeUsers = new List<ActiveUser>();
                     }
+                    else
+                        this.Height = this.Height - 80;
                 }
 
                 if (activeUsers.Count > 0)
@@ -154,6 +156,8 @@ namespace TotalSmartCoding.Views.Mains
                         this.comboFillingLineID.Visible = false;
                     }
 
+                    if (GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Drum)
+                        this.checkGlobalDrumWithDigit.Visible = true;
 
                     this.comboComportName.DataSource = System.IO.Ports.SerialPort.GetPortNames();
                     if (this.comboComportName.Items.Count == 0)
@@ -238,6 +242,9 @@ namespace TotalSmartCoding.Views.Mains
                         }
                         else
                             GlobalVariables.FillingLineID = GlobalVariables.FillingLine.None;
+
+                        if (GlobalVariables.FillingLineID == GlobalVariables.FillingLine.Drum)
+                            TotalBase.Enums.GlobalEnums.GlobalDrumWithDigit = this.checkGlobalDrumWithDigit.Checked;
 
                         GlobalVariables.ComportName = (string)this.comboComportName.SelectedValue;
 
