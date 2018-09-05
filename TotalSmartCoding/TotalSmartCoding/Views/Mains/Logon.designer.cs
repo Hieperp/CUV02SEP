@@ -74,7 +74,7 @@
             // 
             this.checkEmptyData.AutoSize = true;
             this.checkEmptyData.Location = new System.Drawing.Point(0, 177);
-            this.checkEmptyData.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkEmptyData.Margin = new System.Windows.Forms.Padding(2);
             this.checkEmptyData.Name = "checkEmptyData";
             this.checkEmptyData.Size = new System.Drawing.Size(104, 17);
             this.checkEmptyData.TabIndex = 28;
@@ -168,7 +168,7 @@
             this.panel1.Controls.Add(this.checkEmptyData);
             this.panel1.Controls.Add(this.labelChangePassword);
             this.panel1.Location = new System.Drawing.Point(-738, 164);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(126, 122);
             this.panel1.TabIndex = 27;
@@ -180,7 +180,7 @@
             this.panelBottom.Controls.Add(this.panelBottomLeft);
             this.panelBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelBottom.Location = new System.Drawing.Point(0, 242);
-            this.panelBottom.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelBottom.Margin = new System.Windows.Forms.Padding(2);
             this.panelBottom.Name = "panelBottom";
             this.panelBottom.Size = new System.Drawing.Size(525, 45);
             this.panelBottom.TabIndex = 74;
@@ -190,7 +190,7 @@
             this.panelBottomRight.Controls.Add(this.toolStrip1);
             this.panelBottomRight.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelBottomRight.Location = new System.Drawing.Point(178, 0);
-            this.panelBottomRight.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelBottomRight.Margin = new System.Windows.Forms.Padding(2);
             this.panelBottomRight.Name = "panelBottomRight";
             this.panelBottomRight.Size = new System.Drawing.Size(347, 45);
             this.panelBottomRight.TabIndex = 0;
@@ -237,7 +237,7 @@
             this.panelBottomLeft.Controls.Add(this.toolStrip2);
             this.panelBottomLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelBottomLeft.Location = new System.Drawing.Point(0, 0);
-            this.panelBottomLeft.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelBottomLeft.Margin = new System.Windows.Forms.Padding(2);
             this.panelBottomLeft.Name = "panelBottomLeft";
             this.panelBottomLeft.Size = new System.Drawing.Size(178, 45);
             this.panelBottomLeft.TabIndex = 1;
@@ -327,7 +327,7 @@
             this.panel2.Controls.Add(this.layoutTop);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(525, 242);
             this.panel2.TabIndex = 75;
@@ -397,7 +397,7 @@
             this.labelUserID.Name = "labelUserID";
             this.labelUserID.Size = new System.Drawing.Size(417, 17);
             this.labelUserID.TabIndex = 83;
-            this.labelUserID.Text = "Organizational Unit";
+            this.labelUserID.Text = "Location";
             this.labelUserID.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // labelFillingLineID
