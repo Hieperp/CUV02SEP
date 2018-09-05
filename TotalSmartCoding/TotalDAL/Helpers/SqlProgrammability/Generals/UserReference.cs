@@ -65,7 +65,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
 
             queryString = queryString + "       SELECT      Users.UserID, Users.FirstName, Users.LastName, Users.UserName, Users.SecurityIdentifier, Users.IsDatabaseAdmin, Users.OrganizationalUnitID, OrganizationalUnits.Name AS OrganizationalUnitName, OrganizationalUnits.LocationID, Locations.Name AS LocationName " + "\r\n";
             queryString = queryString + "       FROM        Users " + "\r\n";
-            queryString = queryString + "                   INNER JOIN OrganizationalUnits ON Users.SecurityIdentifier = @SecurityIdentifier AND Users.InActive = 0 AND Users.OrganizationalUnitID = OrganizationalUnits.OrganizationalUnitID " + "\r\n";
+            queryString = queryString + "                   INNER JOIN OrganizationalUnits ON Users.SecurityIdentifier = @SecurityIdentifier AND Users.InActive = 0 AND Users.OrganizationalUnitID IN (SELECT DISTINCT OrganizationalUnitID FROM AccessControls WHERE AccessLevel > 0) AND Users.OrganizationalUnitID = OrganizationalUnits.OrganizationalUnitID " + "\r\n";
             queryString = queryString + "                   INNER JOIN Locations ON OrganizationalUnits.LocationID = Locations.LocationID " + "\r\n";
 
             queryString = queryString + "    END " + "\r\n";
