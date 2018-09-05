@@ -109,6 +109,9 @@ namespace TotalSmartCoding.Views.Mains
 
             try
             {
+                if (!(int.TryParse(CommonConfigs.ReadSetting("ConfigID"), out GlobalVariables.ConfigID)))
+                    throw new Exception("Please check ConfigID value in config file.");
+
                 UserPrincipal currentUserPrincipal = UserPrincipal.Current;
                 if (currentUserPrincipal == null || currentUserPrincipal.Sid == null) throw new Exception("Sorry, can not get current user principal!");
 
@@ -116,6 +119,15 @@ namespace TotalSmartCoding.Views.Mains
 
                 UserAPIs userAPIs = new UserAPIs(CommonNinject.Kernel.Get<IUserAPIRepository>());
                 IList<ActiveUser> activeUsers = userAPIs.GetActiveUsers(currentUserPrincipal.Sid.Value);
+
+                if (activeUsers.Count > 0)
+                {
+                    if (GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Smallpack || GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Pail || GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Medium4L || GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Import || GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Drum)
+                    {
+                        int? accessLevel = this.baseRepository.TotalSmartCodingEntities.GetAccessLevel(activeUsers[0].UserID, (int)TotalBase.Enums.GlobalEnums.NmvnTaskID.SmartCoding, 0).Single();
+                        if (accessLevel != (int)TotalBase.Enums.GlobalEnums.AccessLevel.Editable) activeUsers = new List<ActiveUser>();
+                    }
+                }
 
                 if (activeUsers.Count > 0)
                 {
@@ -132,9 +144,9 @@ namespace TotalSmartCoding.Views.Mains
                     this.comboFillingLineID.DisplayMember = CommonExpressions.PropertyName<FillingLineBase>(p => p.Name);
                     this.comboFillingLineID.ValueMember = CommonExpressions.PropertyName<FillingLineBase>(p => p.FillingLineID);
 
-                    if (int.TryParse(CommonConfigs.ReadSetting("ConfigID"), out GlobalVariables.ConfigID))
-                        if (GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Smallpack || GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Pail || GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Medium4L || GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Import || GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Drum)
-                            this.comboFillingLineID.SelectedValue = GlobalVariables.ConfigID;
+
+                    if (GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Smallpack || GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Pail || GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Medium4L || GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Import || GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Drum)
+                        this.comboFillingLineID.SelectedValue = GlobalVariables.ConfigID;
 
                     if (!(GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Smallpack || GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Pail || GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Medium4L || GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Import || GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Drum))
                     {
