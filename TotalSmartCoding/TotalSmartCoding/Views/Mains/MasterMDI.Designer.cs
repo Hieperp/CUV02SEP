@@ -45,10 +45,12 @@
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripSplitButton3 = new System.Windows.Forms.ToolStripSplitButton();
-            this.statusVersion = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripSplitButton2 = new System.Windows.Forms.ToolStripSplitButton();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripSplitButton3 = new System.Windows.Forms.ToolStripSplitButton();
+            this.statusVersion = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripSplitButton6 = new System.Windows.Forms.ToolStripSplitButton();
+            this.labelDataSource = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripSplitButton5 = new System.Windows.Forms.ToolStripSplitButton();
             this.labelApplicationRole = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripSplitButton4 = new System.Windows.Forms.ToolStripSplitButton();
@@ -189,11 +191,11 @@
             this.naviBarModuleMaster.ForeColor = System.Drawing.SystemColors.ControlText;
             this.naviBarModuleMaster.HeaderHeight = 32;
             this.naviBarModuleMaster.LayoutStyle = Guifreaks.Navisuite.NaviLayoutStyle.Office2010Blue;
-            this.naviBarModuleMaster.Location = new System.Drawing.Point(0, 124);
+            this.naviBarModuleMaster.Location = new System.Drawing.Point(0, 108);
             this.naviBarModuleMaster.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.naviBarModuleMaster.Name = "naviBarModuleMaster";
             this.naviBarModuleMaster.ShowMoreOptionsButton = false;
-            this.naviBarModuleMaster.Size = new System.Drawing.Size(278, 887);
+            this.naviBarModuleMaster.Size = new System.Drawing.Size(278, 867);
             this.naviBarModuleMaster.TabIndex = 14;
             this.naviBarModuleMaster.Text = "naviBar1";
             this.naviBarModuleMaster.VisibleLargeButtons = 3;
@@ -298,26 +300,28 @@
             this.toolStripStatusLabel,
             this.toolStripSplitButton1,
             this.toolStripStatusLabel1,
-            this.toolStripSplitButton3,
-            this.statusVersion,
             this.toolStripSplitButton2,
             this.toolStripStatusLabel2,
+            this.toolStripSplitButton3,
+            this.statusVersion,
+            this.toolStripSplitButton6,
+            this.labelDataSource,
             this.toolStripSplitButton5,
             this.labelApplicationRole,
             this.toolStripSplitButton4,
             this.statusUserDescription});
-            this.statusStrip.Location = new System.Drawing.Point(0, 1011);
+            this.statusStrip.Location = new System.Drawing.Point(0, 975);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-            this.statusStrip.Size = new System.Drawing.Size(1906, 26);
+            this.statusStrip.Size = new System.Drawing.Size(1276, 22);
             this.statusStrip.TabIndex = 28;
             this.statusStrip.Text = "StatusStrip";
             // 
             // toolStripStatusLabel
             // 
             this.toolStripStatusLabel.Name = "toolStripStatusLabel";
-            this.toolStripStatusLabel.Size = new System.Drawing.Size(200, 21);
-            this.toolStripStatusLabel.Text = "Designed by Le Minh Hiep    ";
+            this.toolStripStatusLabel.Size = new System.Drawing.Size(146, 17);
+            this.toolStripStatusLabel.Text = "Designed by Le Minh Hiep";
             // 
             // toolStripSplitButton1
             // 
@@ -325,31 +329,14 @@
             this.toolStripSplitButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton1.Image")));
             this.toolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripSplitButton1.Name = "toolStripSplitButton1";
-            this.toolStripSplitButton1.Size = new System.Drawing.Size(19, 24);
+            this.toolStripSplitButton1.Size = new System.Drawing.Size(16, 20);
             this.toolStripSplitButton1.Text = "toolStripSplitButton1";
             // 
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(351, 21);
-            this.toolStripStatusLabel1.Text = " Cell phone: +84-0903-880-501   +84-0919-878-329";
-            // 
-            // toolStripSplitButton3
-            // 
-            this.toolStripSplitButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.None;
-            this.toolStripSplitButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton3.Image")));
-            this.toolStripSplitButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripSplitButton3.Name = "toolStripSplitButton3";
-            this.toolStripSplitButton3.Size = new System.Drawing.Size(19, 24);
-            this.toolStripSplitButton3.Text = "toolStripSplitButton3";
-            // 
-            // statusVersion
-            // 
-            this.statusVersion.AutoSize = false;
-            this.statusVersion.Name = "statusVersion";
-            this.statusVersion.Size = new System.Drawing.Size(242, 21);
-            this.statusVersion.Text = "Version 1.91i Date: 19.Feb.2016 ";
-            this.statusVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(235, 17);
+            this.toolStripStatusLabel1.Text = " Cell: +84-0903-880-501   +84-0919-878-329";
             // 
             // toolStripSplitButton2
             // 
@@ -357,16 +344,46 @@
             this.toolStripSplitButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton2.Image")));
             this.toolStripSplitButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripSplitButton2.Name = "toolStripSplitButton2";
-            this.toolStripSplitButton2.Size = new System.Drawing.Size(19, 24);
+            this.toolStripSplitButton2.Size = new System.Drawing.Size(16, 20);
             this.toolStripSplitButton2.Text = "toolStripSplitButton2";
             // 
             // toolStripStatusLabel2
             // 
-            this.toolStripStatusLabel2.AutoSize = false;
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(290, 21);
-            this.toolStripStatusLabel2.Text = "Email: hieple.erp@gmail.com;  hieperp@gmail.com";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(282, 17);
+            this.toolStripStatusLabel2.Text = "Email: hieple.erp@gmail.com;  hieperp@gmail.com ";
             this.toolStripStatusLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // toolStripSplitButton3
+            // 
+            this.toolStripSplitButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.None;
+            this.toolStripSplitButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton3.Image")));
+            this.toolStripSplitButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSplitButton3.Name = "toolStripSplitButton3";
+            this.toolStripSplitButton3.Size = new System.Drawing.Size(16, 20);
+            this.toolStripSplitButton3.Text = "toolStripSplitButton3";
+            // 
+            // statusVersion
+            // 
+            this.statusVersion.Name = "statusVersion";
+            this.statusVersion.Size = new System.Drawing.Size(231, 17);
+            this.statusVersion.Text = "Version 1.91i Date: 19.Feb.2016 11:11:00AM";
+            this.statusVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // toolStripSplitButton6
+            // 
+            this.toolStripSplitButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.None;
+            this.toolStripSplitButton6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton6.Image")));
+            this.toolStripSplitButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSplitButton6.Name = "toolStripSplitButton6";
+            this.toolStripSplitButton6.Size = new System.Drawing.Size(16, 20);
+            this.toolStripSplitButton6.Text = "toolStripSplitButton6";
+            // 
+            // labelDataSource
+            // 
+            this.labelDataSource.Name = "labelDataSource";
+            this.labelDataSource.Size = new System.Drawing.Size(96, 17);
+            this.labelDataSource.Text = "SMART BIZTECH";
             // 
             // toolStripSplitButton5
             // 
@@ -374,13 +391,13 @@
             this.toolStripSplitButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton5.Image")));
             this.toolStripSplitButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripSplitButton5.Name = "toolStripSplitButton5";
-            this.toolStripSplitButton5.Size = new System.Drawing.Size(19, 24);
+            this.toolStripSplitButton5.Size = new System.Drawing.Size(16, 20);
             this.toolStripSplitButton5.Text = "toolStripSplitButton5";
             // 
             // labelApplicationRole
             // 
             this.labelApplicationRole.Name = "labelApplicationRole";
-            this.labelApplicationRole.Size = new System.Drawing.Size(181, 21);
+            this.labelApplicationRole.Size = new System.Drawing.Size(146, 17);
             this.labelApplicationRole.Text = "[Windows Authentication]";
             // 
             // toolStripSplitButton4
@@ -389,14 +406,13 @@
             this.toolStripSplitButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton4.Image")));
             this.toolStripSplitButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripSplitButton4.Name = "toolStripSplitButton4";
-            this.toolStripSplitButton4.Size = new System.Drawing.Size(19, 24);
+            this.toolStripSplitButton4.Size = new System.Drawing.Size(16, 20);
             this.toolStripSplitButton4.Text = "toolStripSplitButton4";
             // 
             // statusUserDescription
             // 
-            this.statusUserDescription.AutoSize = false;
             this.statusUserDescription.Name = "statusUserDescription";
-            this.statusUserDescription.Size = new System.Drawing.Size(328, 21);
+            this.statusUserDescription.Size = new System.Drawing.Size(78, 15);
             this.statusUserDescription.Text = "Le Minh Hiep";
             this.statusUserDescription.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -405,10 +421,10 @@
             this.panelTop.Controls.Add(this.panelTopLeft);
             this.panelTop.Controls.Add(this.panelTopRight);
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelTop.Location = new System.Drawing.Point(0, 55);
+            this.panelTop.Location = new System.Drawing.Point(0, 39);
             this.panelTop.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(1906, 69);
+            this.panelTop.Size = new System.Drawing.Size(1276, 69);
             this.panelTop.TabIndex = 73;
             // 
             // panelTopLeft
@@ -418,7 +434,7 @@
             this.panelTopLeft.Location = new System.Drawing.Point(0, 0);
             this.panelTopLeft.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelTopLeft.Name = "panelTopLeft";
-            this.panelTopLeft.Size = new System.Drawing.Size(1310, 69);
+            this.panelTopLeft.Size = new System.Drawing.Size(680, 69);
             this.panelTopLeft.TabIndex = 1;
             // 
             // toolstripMain
@@ -447,7 +463,7 @@
             this.toolstripMain.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.toolstripMain.Location = new System.Drawing.Point(0, 0);
             this.toolstripMain.Name = "toolstripMain";
-            this.toolstripMain.Size = new System.Drawing.Size(1310, 69);
+            this.toolstripMain.Size = new System.Drawing.Size(680, 69);
             this.toolstripMain.TabIndex = 10;
             this.toolstripMain.Text = "ToolStrip";
             // 
@@ -476,7 +492,7 @@
             this.buttonNew.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.buttonNew.ImageTransparentColor = System.Drawing.Color.Black;
             this.buttonNew.Name = "buttonNew";
-            this.buttonNew.Size = new System.Drawing.Size(89, 66);
+            this.buttonNew.Size = new System.Drawing.Size(65, 66);
             this.buttonNew.Text = "Add";
             this.buttonNew.Click += new System.EventHandler(this.buttonNew_Click);
             // 
@@ -488,7 +504,7 @@
             this.buttonEdit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.buttonEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonEdit.Name = "buttonEdit";
-            this.buttonEdit.Size = new System.Drawing.Size(87, 66);
+            this.buttonEdit.Size = new System.Drawing.Size(63, 66);
             this.buttonEdit.Text = "Edit";
             this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
             // 
@@ -500,7 +516,7 @@
             this.buttonSave.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.buttonSave.ImageTransparentColor = System.Drawing.Color.Black;
             this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(92, 66);
+            this.buttonSave.Size = new System.Drawing.Size(67, 66);
             this.buttonSave.Text = "Save";
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
@@ -512,7 +528,7 @@
             this.buttonDelete.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.buttonDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonDelete.Name = "buttonDelete";
-            this.buttonDelete.Size = new System.Drawing.Size(105, 66);
+            this.buttonDelete.Size = new System.Drawing.Size(76, 66);
             this.buttonDelete.Text = "Delete";
             this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
@@ -530,7 +546,7 @@
             this.buttonImport.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.buttonImport.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonImport.Name = "buttonImport";
-            this.buttonImport.Size = new System.Drawing.Size(106, 66);
+            this.buttonImport.Size = new System.Drawing.Size(79, 66);
             this.buttonImport.Text = "Import";
             this.buttonImport.Visible = false;
             this.buttonImport.Click += new System.EventHandler(this.buttonImport_Click);
@@ -543,7 +559,7 @@
             this.buttonExport.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.buttonExport.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonExport.Name = "buttonExport";
-            this.buttonExport.Size = new System.Drawing.Size(104, 66);
+            this.buttonExport.Size = new System.Drawing.Size(76, 66);
             this.buttonExport.Text = "Export";
             this.buttonExport.Visible = false;
             // 
@@ -561,7 +577,7 @@
             this.buttonPrintPreview.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.buttonPrintPreview.ImageTransparentColor = System.Drawing.Color.Black;
             this.buttonPrintPreview.Name = "buttonPrintPreview";
-            this.buttonPrintPreview.Size = new System.Drawing.Size(52, 66);
+            this.buttonPrintPreview.Size = new System.Drawing.Size(36, 66);
             this.buttonPrintPreview.Text = "Print Preview";
             this.buttonPrintPreview.Click += new System.EventHandler(this.buttonPrintPreview_Click);
             // 
@@ -574,7 +590,7 @@
             this.buttonPrint.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.buttonPrint.ImageTransparentColor = System.Drawing.Color.Black;
             this.buttonPrint.Name = "buttonPrint";
-            this.buttonPrint.Size = new System.Drawing.Size(52, 66);
+            this.buttonPrint.Size = new System.Drawing.Size(36, 66);
             this.buttonPrint.Text = "Print";
             this.buttonPrint.Click += new System.EventHandler(this.buttonPrint_Click);
             // 
@@ -591,7 +607,7 @@
             this.buttonApprove.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.buttonApprove.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonApprove.Name = "buttonApprove";
-            this.buttonApprove.Size = new System.Drawing.Size(83, 66);
+            this.buttonApprove.Size = new System.Drawing.Size(73, 66);
             this.buttonApprove.Text = "Verify";
             this.buttonApprove.Click += new System.EventHandler(this.buttonApprove_Click);
             // 
@@ -607,7 +623,7 @@
             this.buttonVoid.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.buttonVoid.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonVoid.Name = "buttonVoid";
-            this.buttonVoid.Size = new System.Drawing.Size(68, 66);
+            this.buttonVoid.Size = new System.Drawing.Size(59, 66);
             this.buttonVoid.Text = "Void";
             this.buttonVoid.Click += new System.EventHandler(this.buttonVoid_Click);
             // 
@@ -615,7 +631,7 @@
             // 
             this.panelTopRight.Controls.Add(this.toolStripTopRight);
             this.panelTopRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelTopRight.Location = new System.Drawing.Point(1310, 0);
+            this.panelTopRight.Location = new System.Drawing.Point(680, 0);
             this.panelTopRight.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelTopRight.Name = "panelTopRight";
             this.panelTopRight.Size = new System.Drawing.Size(596, 69);
@@ -665,7 +681,7 @@
             // labelSearchBarcode
             // 
             this.labelSearchBarcode.Name = "labelSearchBarcode";
-            this.labelSearchBarcode.Size = new System.Drawing.Size(94, 66);
+            this.labelSearchBarcode.Size = new System.Drawing.Size(76, 66);
             this.labelSearchBarcode.Text = "Quick Search";
             // 
             // panelTopMost
@@ -678,7 +694,7 @@
             this.panelTopMost.Location = new System.Drawing.Point(0, 0);
             this.panelTopMost.Margin = new System.Windows.Forms.Padding(0);
             this.panelTopMost.Name = "panelTopMost";
-            this.panelTopMost.Size = new System.Drawing.Size(1906, 55);
+            this.panelTopMost.Size = new System.Drawing.Size(1276, 39);
             this.panelTopMost.TabIndex = 75;
             // 
             // toolStripTopHead
@@ -698,16 +714,16 @@
             this.comboDetailFilterTexts,
             this.buttonClearDetailFilters});
             this.toolStripTopHead.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.toolStripTopHead.Location = new System.Drawing.Point(592, 0);
+            this.toolStripTopHead.Location = new System.Drawing.Point(521, 0);
             this.toolStripTopHead.Name = "toolStripTopHead";
-            this.toolStripTopHead.Size = new System.Drawing.Size(1314, 55);
+            this.toolStripTopHead.Size = new System.Drawing.Size(755, 39);
             this.toolStripTopHead.TabIndex = 5;
             this.toolStripTopHead.Text = "toolStrip1";
             // 
             // toolStripSeparator12
             // 
             this.toolStripSeparator12.Name = "toolStripSeparator12";
-            this.toolStripSeparator12.Size = new System.Drawing.Size(6, 55);
+            this.toolStripSeparator12.Size = new System.Drawing.Size(6, 39);
             this.toolStripSeparator12.Visible = false;
             // 
             // buttonLoading
@@ -718,14 +734,14 @@
             this.buttonLoading.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.buttonLoading.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonLoading.Name = "buttonLoading";
-            this.buttonLoading.Size = new System.Drawing.Size(52, 52);
+            this.buttonLoading.Size = new System.Drawing.Size(36, 36);
             this.buttonLoading.Text = "Refresh. Click here to reload saved data after change date range.";
             this.buttonLoading.Click += new System.EventHandler(this.buttonLoading_Click);
             // 
             // toolStripSeparator13
             // 
             this.toolStripSeparator13.Name = "toolStripSeparator13";
-            this.toolStripSeparator13.Size = new System.Drawing.Size(6, 55);
+            this.toolStripSeparator13.Size = new System.Drawing.Size(6, 39);
             // 
             // comboFilterTexts
             // 
@@ -734,7 +750,7 @@
             this.comboFilterTexts.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             this.comboFilterTexts.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboFilterTexts.Name = "comboFilterTexts";
-            this.comboFilterTexts.Size = new System.Drawing.Size(368, 55);
+            this.comboFilterTexts.Size = new System.Drawing.Size(368, 39);
             this.comboFilterTexts.TextChanged += new System.EventHandler(this.comboFilterTexts_TextChanged);
             // 
             // buttonClearFilters
@@ -745,14 +761,14 @@
             this.buttonClearFilters.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.buttonClearFilters.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonClearFilters.Name = "buttonClearFilters";
-            this.buttonClearFilters.Size = new System.Drawing.Size(52, 52);
+            this.buttonClearFilters.Size = new System.Drawing.Size(36, 36);
             this.buttonClearFilters.ToolTipText = "Clear current filters";
             this.buttonClearFilters.Click += new System.EventHandler(this.buttonClearFilters_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 55);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 39);
             this.toolStripSeparator1.Visible = false;
             // 
             // comboDetailFilterTexts
@@ -760,7 +776,7 @@
             this.comboDetailFilterTexts.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             this.comboDetailFilterTexts.Font = new System.Drawing.Font("Calibri", 10.2F);
             this.comboDetailFilterTexts.Name = "comboDetailFilterTexts";
-            this.comboDetailFilterTexts.Size = new System.Drawing.Size(318, 55);
+            this.comboDetailFilterTexts.Size = new System.Drawing.Size(318, 25);
             this.comboDetailFilterTexts.Visible = false;
             this.comboDetailFilterTexts.TextChanged += new System.EventHandler(this.comboFilterTexts_TextChanged);
             // 
@@ -771,7 +787,7 @@
             this.buttonClearDetailFilters.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.buttonClearDetailFilters.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonClearDetailFilters.Name = "buttonClearDetailFilters";
-            this.buttonClearDetailFilters.Size = new System.Drawing.Size(52, 52);
+            this.buttonClearDetailFilters.Size = new System.Drawing.Size(36, 36);
             this.buttonClearDetailFilters.Text = "toolStripButton1";
             this.buttonClearDetailFilters.Visible = false;
             this.buttonClearDetailFilters.Click += new System.EventHandler(this.buttonClearFilters_Click);
@@ -798,7 +814,7 @@
             this.layoutTop.Name = "layoutTop";
             this.layoutTop.RowCount = 1;
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 55F));
-            this.layoutTop.Size = new System.Drawing.Size(592, 55);
+            this.layoutTop.Size = new System.Drawing.Size(521, 39);
             this.layoutTop.TabIndex = 9;
             // 
             // toolStrip1
@@ -815,7 +831,7 @@
             this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(301, 55);
+            this.toolStrip1.Size = new System.Drawing.Size(230, 39);
             this.toolStrip1.TabIndex = 76;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -826,7 +842,7 @@
             this.toolUserReferences.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolUserReferences.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolUserReferences.Name = "toolUserReferences";
-            this.toolUserReferences.Size = new System.Drawing.Size(52, 52);
+            this.toolUserReferences.Size = new System.Drawing.Size(36, 36);
             this.toolUserReferences.ToolTipText = "User References";
             this.toolUserReferences.Click += new System.EventHandler(this.toolUserReferences_Click);
             // 
@@ -837,7 +853,7 @@
             this.toolUserGroupControls.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolUserGroupControls.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolUserGroupControls.Name = "toolUserGroupControls";
-            this.toolUserGroupControls.Size = new System.Drawing.Size(52, 52);
+            this.toolUserGroupControls.Size = new System.Drawing.Size(36, 36);
             this.toolUserGroupControls.Text = "User Controls";
             this.toolUserGroupControls.Click += new System.EventHandler(this.toolUserReferences_Click);
             // 
@@ -849,7 +865,7 @@
             this.buttonLockedDate.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.buttonLockedDate.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonLockedDate.Name = "buttonLockedDate";
-            this.buttonLockedDate.Size = new System.Drawing.Size(36, 52);
+            this.buttonLockedDate.Size = new System.Drawing.Size(36, 36);
             this.buttonLockedDate.Text = " Month-end Closing";
             this.buttonLockedDate.Click += new System.EventHandler(this.buttonLockedDate_Click);
             // 
@@ -859,7 +875,7 @@
             this.txtLockedDate.Enabled = false;
             this.txtLockedDate.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLockedDate.Name = "txtLockedDate";
-            this.txtLockedDate.Size = new System.Drawing.Size(108, 55);
+            this.txtLockedDate.Size = new System.Drawing.Size(108, 39);
             this.txtLockedDate.Text = "01/09/2017";
             this.txtLockedDate.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -869,11 +885,11 @@
             this.dateTimexLowerFillterDate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dateTimexLowerFillterDate.Editable = true;
             this.dateTimexLowerFillterDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimexLowerFillterDate.Location = new System.Drawing.Point(339, 8);
+            this.dateTimexLowerFillterDate.Location = new System.Drawing.Point(268, 8);
             this.dateTimexLowerFillterDate.Margin = new System.Windows.Forms.Padding(0, 8, 1, 1);
             this.dateTimexLowerFillterDate.Name = "dateTimexLowerFillterDate";
             this.dateTimexLowerFillterDate.ReadOnly = false;
-            this.dateTimexLowerFillterDate.Size = new System.Drawing.Size(126, 28);
+            this.dateTimexLowerFillterDate.Size = new System.Drawing.Size(126, 24);
             this.dateTimexLowerFillterDate.TabIndex = 90;
             // 
             // dateTimexUpperFillterDate
@@ -882,17 +898,17 @@
             this.dateTimexUpperFillterDate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dateTimexUpperFillterDate.Editable = true;
             this.dateTimexUpperFillterDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimexUpperFillterDate.Location = new System.Drawing.Point(466, 8);
+            this.dateTimexUpperFillterDate.Location = new System.Drawing.Point(395, 8);
             this.dateTimexUpperFillterDate.Margin = new System.Windows.Forms.Padding(0, 8, 0, 1);
             this.dateTimexUpperFillterDate.Name = "dateTimexUpperFillterDate";
             this.dateTimexUpperFillterDate.ReadOnly = false;
-            this.dateTimexUpperFillterDate.Size = new System.Drawing.Size(126, 28);
+            this.dateTimexUpperFillterDate.Size = new System.Drawing.Size(126, 24);
             this.dateTimexUpperFillterDate.TabIndex = 91;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::TotalSmartCoding.Properties.Resources.calendar_blue_32;
-            this.pictureBox1.Location = new System.Drawing.Point(304, 3);
+            this.pictureBox1.Location = new System.Drawing.Point(233, 3);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(32, 32);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -901,9 +917,9 @@
             // 
             // MasterMDI
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1906, 1037);
+            this.ClientSize = new System.Drawing.Size(1276, 997);
             this.Controls.Add(this.naviBarModuleMaster);
             this.Controls.Add(this.panelTop);
             this.Controls.Add(this.panelTopMost);
@@ -1015,6 +1031,8 @@
         private System.Windows.Forms.ToolStripButton toolUserGroupControls;
         private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton5;
         private System.Windows.Forms.ToolStripStatusLabel labelApplicationRole;
+        private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton6;
+        private System.Windows.Forms.ToolStripStatusLabel labelDataSource;
 
     }
 }

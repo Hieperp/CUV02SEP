@@ -562,8 +562,8 @@ namespace TotalModel.Models
     }
     public partial class ActiveUser
     {
-        public string FullyQualifiedUserName { get { return this.UserName + "  [" + this.LocationName + "\\" + this.OrganizationalUnitName + "]"; } }
-        public string FullyQualifiedOrganizationalUnitName { get { return this.LocationName + "\\" + this.OrganizationalUnitName; } }
+        public string FullyQualifiedUserName { get { return this.UserName + "  [" + this.LocationName + "]"; } } // + "\\" + this.OrganizationalUnitName
+        public string FullyQualifiedOrganizationalUnitName { get { return this.LocationName; } }// + "\\" + this.OrganizationalUnitName
     }
 
     public partial class WarehouseAdjustmentType : IPrimitiveEntity, IBaseEntity
