@@ -190,7 +190,7 @@ namespace TotalSmartCoding.Views.Mains
                 this.labelApplicationRole.Text = ApplicationRoles.Required && ApplicationRoles.Name != "" && ApplicationRoles.ExceptionMessage == "" ? "[Application Role]" : "[Windows Authentication]";
 
                 this.comboSearchBarcode.Text = this.searchPlaceHolder;
-                this.toolUserReferences.Visible = ContextAttributes.User.IsDatabaseAdmin;
+                this.toolUserReferences.Visible = ContextAttributes.User.IsDatabaseAdmin && false; //HIDE AT CHEVRON
                 this.toolUserGroupControls.Visible = ContextAttributes.User.IsDatabaseAdmin;
                 this.statusUserDescription.Text = ContextAttributes.User.FullyQualifiedUserName;
 
