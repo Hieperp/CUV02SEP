@@ -102,6 +102,16 @@ namespace TotalDAL.Repositories
 
             #region NEW PERMISSION
 
+
+            #region DATALOGS
+            if (!this.totalSmartCodingEntities.ColumnExists("Locations", "OnDataLogs"))
+            {
+                this.totalSmartCodingEntities.ColumnAdd("Locations", "OnDataLogs", "int", "0", true);
+                this.totalSmartCodingEntities.ColumnAdd("Locations", "OnEventLogs", "int", "0", true);
+            }
+            #endregion
+
+
             #region ADD NEW MODULE: NmvnTaskID.MonthEnd
             var query = this.totalSmartCodingEntities.Database.SqlQuery(typeof(int), "SELECT COUNT(ModuleDetailID) AS Expr1 FROM ModuleDetails WHERE ModuleDetailID = " + (int)GlobalEnums.NmvnTaskID.MonthEnd + ";", new object[] { });
             int exists = query.Cast<int>().Single();
@@ -450,14 +460,6 @@ namespace TotalDAL.Repositories
 
 
 
-
-            #region DATALOGS
-            if (!this.totalSmartCodingEntities.ColumnExists("Locations", "OnDataLogs"))
-            {
-                this.totalSmartCodingEntities.ColumnAdd("Locations", "OnDataLogs", "int", "0", true);
-                this.totalSmartCodingEntities.ColumnAdd("Locations", "OnEventLogs", "int", "0", true);
-            }
-            #endregion
 
         }
 

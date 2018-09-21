@@ -96,7 +96,8 @@ namespace TotalSmartCoding.Views.Mains
             try
             {
                 this.nmvnTaskID = nmvnTaskID;
-                this.moduleAPIs = new ModuleAPIs(CommonNinject.Kernel.Get<IModuleAPIRepository>());
+                IModuleAPIRepository moduleAPIRepository = CommonNinject.Kernel.Get<IModuleAPIRepository>();
+                this.moduleAPIs = new ModuleAPIs(moduleAPIRepository);
 
                 if (GlobalEnums.NMVNOnly) this.panelTopRight.Visible = false;
 
@@ -199,6 +200,9 @@ namespace TotalSmartCoding.Views.Mains
                 this.panelTop.Height = this.nmvnTaskID == GlobalEnums.NmvnTaskID.SmartCoding ? 61 : 39;
 
                 #region JUST DISABLE FOR CHEVRON
+                int? accessLevel = moduleAPIRepository.TotalSmartCodingEntities.GetAccessLevel(ContextAttributes.User.UserID, (int)TotalBase.Enums.GlobalEnums.NmvnTaskID.MonthEnd, 0).Single();
+                if (accessLevel < (int)TotalBase.Enums.GlobalEnums.AccessLevel.Readable) this.buttonLockedDate.Enabled = false;
+
                 this.txtLockedDate.Visible = false;
                 //this.buttonLockedDate.Visible = false;
                 #endregion

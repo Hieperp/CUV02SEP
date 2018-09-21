@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Linq;
 
 using Ninject;
 
@@ -17,13 +18,15 @@ namespace TotalSmartCoding.Views.Mains
 {
     public partial class LockedDates : Form
     {
+        private ILocationAPIRepository locationAPIRepository;
         private LocationAPIs locationAPIs;
 
         public LockedDates()
         {
             InitializeComponent();
 
-            this.locationAPIs = new LocationAPIs(CommonNinject.Kernel.Get<ILocationAPIRepository>());
+            this.locationAPIRepository = CommonNinject.Kernel.Get<ILocationAPIRepository>();
+            this.locationAPIs = new LocationAPIs(this.locationAPIRepository);
             this.loadLocationIndexes();
         }
 
@@ -49,6 +52,9 @@ namespace TotalSmartCoding.Views.Mains
                 {
                     if (this.fastUserGroups.SelectedObject != null)
                     {
+                        int? accessLevel = this.locationAPIRepository.TotalSmartCodingEntities.GetAccessLevel(ContextAttributes.User.UserID, (int)TotalBase.Enums.GlobalEnums.NmvnTaskID.MonthEnd, 0).Single();
+                        if (accessLevel != (int)TotalBase.Enums.GlobalEnums.AccessLevel.Editable) throw new System.ArgumentException("Lỗi phân quyền", "Không có quyền truy cập dữ liệu");
+
                         LocationIndex locationIndex = (LocationIndex)this.fastUserGroups.SelectedObject;
                         if (locationIndex != null)
                         {
