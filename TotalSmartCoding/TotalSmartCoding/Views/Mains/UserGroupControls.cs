@@ -262,7 +262,7 @@ namespace TotalSmartCoding.Views.Mains
                     UserGroupControlDTO userGroupControlDTO = this.bindingListUserGroupControls[e.NewIndex];
                     if (userGroupControlDTO != null)
                     {
-                        this.userGroupAPIs.SaveUserGroupControls(userGroupControlDTO.UserGroupControlID, userGroupControlDTO.AccessLevel, userGroupControlDTO.ApprovalPermitted, userGroupControlDTO.UnApprovalPermitted, userGroupControlDTO.VoidablePermitted, userGroupControlDTO.UnVoidablePermitted, userGroupControlDTO.ShowDiscount);
+                        this.userGroupAPIs.SaveUserGroupControls(this.SelectedUserGroupIndex, userGroupControlDTO, e.PropertyDescriptor.Name);
                     }
                 }
             }
@@ -299,7 +299,7 @@ namespace TotalSmartCoding.Views.Mains
             DialogResult dialogResult = DialogResult.Cancel;
             if (sender.Equals(this.buttonAddMember) && this.SelectedUserGroupIndex != null)
             {
-                UserGroupAvailableMembers wizardUserRegister = new UserGroupAvailableMembers(this.userGroupAPIs, this.SelectedUserGroupIndex.UserGroupID, this.SelectedUserGroupIndex.Code);
+                UserGroupAvailableMembers wizardUserRegister = new UserGroupAvailableMembers(this.userGroupAPIs, this.SelectedUserGroupIndex.UserGroupID, this.SelectedUserGroupIndex.Name);
                 dialogResult = wizardUserRegister.ShowDialog(); wizardUserRegister.Dispose();
             }
             if (sender.Equals(this.buttonRemoveMember) && this.SelectedUserGroupIndex != null && this.fastUserGroupDetails.SelectedObject != null)
@@ -307,7 +307,7 @@ namespace TotalSmartCoding.Views.Mains
                 UserGroupMember userGroupMember = (UserGroupMember)this.fastUserGroupDetails.SelectedObject;
                 if (userGroupMember != null && CustomMsgBox.Show(this, "Are you sure you want to remove: " + "\r\n" + "\r\n" + userGroupMember.UserName + "\r\n" + "\r\n" + "from this group?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Stop) == DialogResult.Yes)
                 {
-                    this.userGroupAPIs.UserGroupRemoveMember(userGroupMember.UserGroupDetailID, this.SelectedUserGroupIndex.UserGroupID, this.SelectedUserGroupIndex.Code, userGroupMember.SecurityIdentifier, userGroupMember.UserName);
+                    this.userGroupAPIs.UserGroupRemoveMember(userGroupMember.UserGroupDetailID, this.SelectedUserGroupIndex.UserGroupID, this.SelectedUserGroupIndex.Name, userGroupMember.SecurityIdentifier, userGroupMember.UserName);
                     dialogResult = DialogResult.OK;
                 }
             }
