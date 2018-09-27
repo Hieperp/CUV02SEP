@@ -323,15 +323,15 @@ namespace TotalSmartCoding.Views.Mains
             DialogResult dialogResult = DialogResult.Cancel;
             if (sender.Equals(this.buttonAddSalesperson) && this.SelectedUserControlIndex != null)
             {
-                UserControlAvailableSalespersons wizardUserControlAvailableSalespersons = new UserControlAvailableSalespersons(this.userControlAPIs, this.SelectedUserControlIndex.SecurityIdentifier);
+                UserControlAvailableSalespersons wizardUserControlAvailableSalespersons = new UserControlAvailableSalespersons(this.userControlAPIs, this.SelectedUserControlIndex.UserName, this.SelectedUserControlIndex.SecurityIdentifier);
                 dialogResult = wizardUserControlAvailableSalespersons.ShowDialog(); wizardUserControlAvailableSalespersons.Dispose();
             }
-            if (sender.Equals(this.buttonRemoveSalesperson) && this.fastUserSalespersons.SelectedObject != null)
+            if (sender.Equals(this.buttonRemoveSalesperson) && this.SelectedUserControlIndex != null && this.fastUserSalespersons.SelectedObject != null)
             {
                 UserControlSalesperson userControlSalesperson = (UserControlSalesperson)this.fastUserSalespersons.SelectedObject;
                 if (userControlSalesperson != null && CustomMsgBox.Show(this, "Are you sure you want to remove this salesperson: " + "\r\n" + "\r\n" + userControlSalesperson.EmployeeCode + "\r\n" + userControlSalesperson.EmployeeName, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Stop) == DialogResult.Yes)
                 {
-                    this.userControlAPIs.UserControlRemoveSalesperson(userControlSalesperson.UserSalespersonID);
+                    this.userControlAPIs.UserControlRemoveSalesperson(userControlSalesperson.UserSalespersonID, this.SelectedUserControlIndex.UserName, this.SelectedUserControlIndex.SecurityIdentifier, userControlSalesperson.EmployeeID, userControlSalesperson.EmployeeName);
                     dialogResult = DialogResult.OK;
                 }
             }

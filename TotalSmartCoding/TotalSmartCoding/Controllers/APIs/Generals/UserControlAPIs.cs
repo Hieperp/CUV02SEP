@@ -46,13 +46,21 @@ namespace TotalSmartCoding.Controllers.APIs.Generals
             return this.userControlAPIRepository.GetUserControlAvailableSalespersons(securityIdentifier);
         }
 
-        public int UserControlAddSalesperson(string securityIdentifier, int? employeeID)
+        public int UserControlAddSalesperson(string userName, string securityIdentifier, int employeeID, string employeeName)
         {
-            return this.userControlAPIRepository.UserControlAddSalesperson(securityIdentifier, employeeID);
+            int userSalespersonID = this.userControlAPIRepository.UserControlAddSalesperson(securityIdentifier, employeeID);
+
+            this.AddDataLogs("Add salesperson to user's filterings", userSalespersonID, userName, securityIdentifier, employeeID, employeeName);
+
+            return userSalespersonID;
         }
-        public int UserControlRemoveSalesperson(int? userSalespersonID)
+        public int UserControlRemoveSalesperson(int userSalespersonID, string userName, string securityIdentifier, int employeeID, string employeeName)
         {
-            return this.userControlAPIRepository.UserControlRemoveSalesperson(userSalespersonID);
+            int affectedRows = this.userControlAPIRepository.UserControlRemoveSalesperson(userSalespersonID);
+
+            this.AddDataLogs("Remove salesperson from user's filterings", userSalespersonID, userName, securityIdentifier, employeeID, employeeName);
+
+            return affectedRows;
         }
 
 
@@ -121,5 +129,16 @@ namespace TotalSmartCoding.Controllers.APIs.Generals
                 this.userControlAPIRepository.AddDataLogs(null, null, entryDate, "UserControls", actionType, "User", "ActiveStatus", activeStatus);
         }
 
+        private void AddDataLogs(string actionType, int userSalespersonID, string userName, string securityIdentifier, int employeeID, string employeeName)
+        {
+            if (!this.userControlAPIRepository.GetOnDataLogs()) return;// DO NOTHING
+
+            DateTime entryDate = DateTime.Now;
+
+            this.userControlAPIRepository.AddDataLogs(userSalespersonID, null, entryDate, "UserControls", actionType, "UserSalesperson", "UserName", userName);
+            this.userControlAPIRepository.AddDataLogs(userSalespersonID, null, entryDate, "UserControls", actionType, "UserSalesperson", "SecurityIdentifier", securityIdentifier);
+            this.userControlAPIRepository.AddDataLogs(userSalespersonID, null, entryDate, "UserControls", actionType, "UserSalesperson", "EmployeeID", employeeID.ToString());
+            this.userControlAPIRepository.AddDataLogs(userSalespersonID, null, entryDate, "UserControls", actionType, "UserSalesperson", "EmployeeName", employeeName);
+        }
     }
 }

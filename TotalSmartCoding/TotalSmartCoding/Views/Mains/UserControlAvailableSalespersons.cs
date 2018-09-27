@@ -11,16 +11,18 @@ namespace TotalSmartCoding.Views.Mains
 {
     public partial class UserControlAvailableSalespersons : Form
     {
+        private string userName;
         private string securityIdentifier;
         private UserControlAPIs userControlAPIs;
 
 
-        public UserControlAvailableSalespersons(UserControlAPIs userControlAPIs, string securityIdentifier)
+        public UserControlAvailableSalespersons(UserControlAPIs userControlAPIs, string userName, string securityIdentifier)
         {
             InitializeComponent();
 
             try
             {
+                this.userName = userName;
                 this.securityIdentifier = securityIdentifier;
                 this.userControlAPIs = userControlAPIs;
 
@@ -64,7 +66,7 @@ namespace TotalSmartCoding.Views.Mains
                         UserControlAvailableSalesperson userControlAvailableSalesperson = (UserControlAvailableSalesperson)this.fastUserControlAvailableSalespersons.SelectedObject;
                         if (userControlAvailableSalesperson != null)
                         {
-                            this.userControlAPIs.UserControlAddSalesperson(this.securityIdentifier, userControlAvailableSalesperson.EmployeeID);
+                            this.userControlAPIs.UserControlAddSalesperson(this.userName, this.securityIdentifier, userControlAvailableSalesperson.EmployeeID, userControlAvailableSalesperson.EmployeeName);
                             this.DialogResult = DialogResult.OK;
                         }
                     }
