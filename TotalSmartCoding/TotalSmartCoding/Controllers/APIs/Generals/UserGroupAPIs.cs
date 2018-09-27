@@ -30,7 +30,7 @@ namespace TotalSmartCoding.Controllers.APIs.Generals
         {
             int userGroupID = this.userGroupAPIRepository.UserGroupAdd(code, name, description);
 
-            this.AddDataLogs("Add new", userGroupID, code, name, description);
+            this.AddDataLogs("Add new group", userGroupID, code, name, description);
 
             return userGroupID;
         }
@@ -39,17 +39,17 @@ namespace TotalSmartCoding.Controllers.APIs.Generals
         {
             int affectedRows = this.userGroupAPIRepository.UserGroupRemove(userGroupID, code);
 
-            this.AddDataLogs("Add new", userGroupID, code, name, description);
+            this.AddDataLogs("Delete group", userGroupID, code, name, description);
 
             return affectedRows;
         }
 
-        public int UserGroupAddMember(int? userGroupID, string securityIdentifier)
+        public int UserGroupAddMember(int userGroupID, string userGroupcode, string securityIdentifier, string userName)
         {
             return this.userGroupAPIRepository.UserGroupAddMember(userGroupID, securityIdentifier);
         }
 
-        public int UserGroupRemoveMember(int? userGroupDetailID)
+        public int UserGroupRemoveMember(int? userGroupDetailID, string userGroupcode, string userName)
         {
             return this.userGroupAPIRepository.UserGroupRemoveMember(userGroupDetailID);
         }

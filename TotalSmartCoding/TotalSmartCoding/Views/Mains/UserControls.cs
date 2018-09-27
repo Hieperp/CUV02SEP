@@ -290,15 +290,15 @@ namespace TotalSmartCoding.Views.Mains
             DialogResult dialogResult = DialogResult.Cancel;
             if (sender.Equals(this.buttonJoinGroup) && this.SelectedUserControlIndex != null)
             {
-                UserControlAvailableGroups wizardUserControlAvailableGroups = new UserControlAvailableGroups(this.userControlAPIs, this.userGroupAPIs, this.SelectedUserControlIndex.SecurityIdentifier);
+                UserControlAvailableGroups wizardUserControlAvailableGroups = new UserControlAvailableGroups(this.userControlAPIs, this.userGroupAPIs, this.SelectedUserControlIndex.SecurityIdentifier, this.SelectedUserControlIndex.UserName);
                 dialogResult = wizardUserControlAvailableGroups.ShowDialog(); wizardUserControlAvailableGroups.Dispose();
             }
-            if (sender.Equals(this.buttonLeaveGroup) && this.fastUserGroupDetails.SelectedObject != null)
+            if (sender.Equals(this.buttonLeaveGroup) && this.SelectedUserControlIndex != null && this.fastUserGroupDetails.SelectedObject != null)
             {
                 UserControlGroup userControlGroup = (UserControlGroup)this.fastUserGroupDetails.SelectedObject;
                 if (userControlGroup != null && CustomMsgBox.Show(this, "Are you sure you want to leave this group: " + "\r\n" + "\r\n" + userControlGroup.UserGroupCode + "\r\n" + userControlGroup.UserGroupName, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Stop) == DialogResult.Yes)
                 {
-                    this.userGroupAPIs.UserGroupRemoveMember(userControlGroup.UserGroupDetailID);
+                    this.userGroupAPIs.UserGroupRemoveMember(userControlGroup.UserGroupDetailID, userControlGroup.UserGroupCode, this.SelectedUserControlIndex.UserName);
                     dialogResult = DialogResult.OK;
                 }
             }

@@ -299,15 +299,15 @@ namespace TotalSmartCoding.Views.Mains
             DialogResult dialogResult = DialogResult.Cancel;
             if (sender.Equals(this.buttonAddMember) && this.SelectedUserGroupIndex != null)
             {
-                UserGroupAvailableMembers wizardUserRegister = new UserGroupAvailableMembers(this.userGroupAPIs, this.SelectedUserGroupIndex.UserGroupID);
+                UserGroupAvailableMembers wizardUserRegister = new UserGroupAvailableMembers(this.userGroupAPIs, this.SelectedUserGroupIndex.UserGroupID, this.SelectedUserGroupIndex.Code);
                 dialogResult = wizardUserRegister.ShowDialog(); wizardUserRegister.Dispose();
             }
-            if (sender.Equals(this.buttonRemoveMember) && this.fastUserGroupDetails.SelectedObject != null)
+            if (sender.Equals(this.buttonRemoveMember) && this.SelectedUserGroupIndex != null && this.fastUserGroupDetails.SelectedObject != null)
             {
                 UserGroupMember userGroupMember = (UserGroupMember)this.fastUserGroupDetails.SelectedObject;
                 if (userGroupMember != null && CustomMsgBox.Show(this, "Are you sure you want to remove: " + "\r\n" + "\r\n" + userGroupMember.UserName + "\r\n" + "\r\n" + "from this group?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Stop) == DialogResult.Yes)
                 {
-                    this.userGroupAPIs.UserGroupRemoveMember(userGroupMember.UserGroupDetailID);
+                    this.userGroupAPIs.UserGroupRemoveMember(userGroupMember.UserGroupDetailID, this.SelectedUserGroupIndex.Code, userGroupMember.UserName);
                     dialogResult = DialogResult.OK;
                 }
             }
@@ -317,7 +317,7 @@ namespace TotalSmartCoding.Views.Mains
 
         #endregion Add, remove member
 
-        
+
 
         #region MERGE CELL
         private void gridexUserGroupControls_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)

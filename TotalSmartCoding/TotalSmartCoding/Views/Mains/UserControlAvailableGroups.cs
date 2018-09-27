@@ -12,17 +12,21 @@ namespace TotalSmartCoding.Views.Mains
     public partial class UserControlAvailableGroups : Form
     {
         private string securityIdentifier;
+        private string userName;
+
         private UserControlAPIs userControlAPIs;
         private UserGroupAPIs userGroupAPIs;
 
 
-        public UserControlAvailableGroups(UserControlAPIs userControlAPIs, UserGroupAPIs userGroupAPIs, string securityIdentifier)
+        public UserControlAvailableGroups(UserControlAPIs userControlAPIs, UserGroupAPIs userGroupAPIs, string securityIdentifier, string userName)
         {
             InitializeComponent();
 
             try
             {
                 this.securityIdentifier = securityIdentifier;
+                this.userName = userName;
+
                 this.userControlAPIs = userControlAPIs;
                 this.userGroupAPIs = userGroupAPIs;
 
@@ -66,7 +70,7 @@ namespace TotalSmartCoding.Views.Mains
                         UserControlAvailableGroup userControlAvailableGroup = (UserControlAvailableGroup)this.fastUserControlAvailableGroups.SelectedObject;
                         if (userControlAvailableGroup != null)
                         {
-                            this.userGroupAPIs.UserGroupAddMember(userControlAvailableGroup.UserGroupID, this.securityIdentifier);
+                            this.userGroupAPIs.UserGroupAddMember(userControlAvailableGroup.UserGroupID, userControlAvailableGroup.GroupCode, this.securityIdentifier, this.userName);
                             this.DialogResult = DialogResult.OK;
                         }
                     }
@@ -81,6 +85,6 @@ namespace TotalSmartCoding.Views.Mains
             }
         }
 
-        
+
     }
 }
