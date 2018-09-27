@@ -2612,7 +2612,7 @@ namespace TotalModel.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UserGroupIndex>("GetUserGroupIndexes", userIDParameter, fromDateParameter, toDateParameter);
         }
     
-        public virtual int UserGroupAdd(string code, string name, string description)
+        public virtual ObjectResult<Nullable<int>> UserGroupAdd(string code, string name, string description)
         {
             var codeParameter = code != null ?
                 new ObjectParameter("Code", code) :
@@ -2626,7 +2626,7 @@ namespace TotalModel.Models
                 new ObjectParameter("Description", description) :
                 new ObjectParameter("Description", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UserGroupAdd", codeParameter, nameParameter, descriptionParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("UserGroupAdd", codeParameter, nameParameter, descriptionParameter);
         }
     
         public virtual ObjectResult<string> UserGroupEditable(Nullable<int> entityID)

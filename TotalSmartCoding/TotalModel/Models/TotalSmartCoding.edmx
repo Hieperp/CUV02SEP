@@ -4963,7 +4963,7 @@
             <Parameter Name="FromDate" Mode="In" Type="DateTime" />
             <Parameter Name="ToDate" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="UserGroupAdd">
+          <FunctionImport Name="UserGroupAdd" ReturnType="Collection(Int32)">
             <Parameter Name="Code" Mode="In" Type="String" />
             <Parameter Name="Name" Mode="In" Type="String" />
             <Parameter Name="Description" Mode="In" Type="String" />
@@ -5093,7 +5093,7 @@
           </FunctionImport>
           <FunctionImport Name="GetOnEventLogs" ReturnType="Collection(Int32)" />
           <FunctionImport Name="UpdateOnEventLogs">
-            <Parameter Name="OnEventLogs" Mode="In" Type="Int32" />
+          <Parameter Name="OnEventLogs" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">

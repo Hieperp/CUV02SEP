@@ -84,6 +84,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             queryString = queryString + "                   SELECT          @UserGroupID, ReportID, 0 AS Enabled " + "\r\n";
             queryString = queryString + "                   FROM            Reports " + "\r\n";
 
+            queryString = queryString + "                   SELECT          @UserGroupID AS UserGroupID " + "\r\n";
             queryString = queryString + "               END " + "\r\n";
 
             queryString = queryString + "           ELSE " + "\r\n";

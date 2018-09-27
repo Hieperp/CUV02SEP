@@ -28,12 +28,20 @@ namespace TotalSmartCoding.Controllers.APIs.Generals
 
         public int UserGroupAdd(string code, string name, string description)
         {
-            return this.userGroupAPIRepository.UserGroupAdd(code, name, description);
+            int userGroupID = this.userGroupAPIRepository.UserGroupAdd(code, name, description);
+
+            this.AddDataLogs("Add new", userGroupID, code, name, description);
+
+            return userGroupID;
         }
 
-        public int UserGroupRemove(int? userGroupID, string code)
+        public int UserGroupRemove(int userGroupID, string code, string name, string description)
         {
-            return this.userGroupAPIRepository.UserGroupRemove(userGroupID, code);
+            int affectedRows = this.userGroupAPIRepository.UserGroupRemove(userGroupID, code);
+
+            this.AddDataLogs("Add new", userGroupID, code, name, description);
+
+            return affectedRows;
         }
 
         public int UserGroupAddMember(int? userGroupID, string securityIdentifier)
@@ -74,6 +82,18 @@ namespace TotalSmartCoding.Controllers.APIs.Generals
         public int SaveUserGroupReports(int? userGroupReportID, bool? enabled)
         {
             return this.userGroupAPIRepository.SaveUserGroupReports(userGroupReportID, enabled);
+        }
+
+
+        private void AddDataLogs(string actionType, int userGroupID, string code, string name, string description)
+        {
+            if (!this.userGroupAPIRepository.GetOnDataLogs()) return;// DO NOTHING
+
+            DateTime entryDate = DateTime.Now;
+
+            this.userGroupAPIRepository.AddDataLogs(userGroupID, null, entryDate, "UserControls", actionType, "UserGroup", "Code", code);
+            this.userGroupAPIRepository.AddDataLogs(userGroupID, null, entryDate, "UserControls", actionType, "UserGroup", "Name", name);
+            this.userGroupAPIRepository.AddDataLogs(userGroupID, null, entryDate, "UserControls", actionType, "UserGroup", "Description", description);
         }
     }
 }
