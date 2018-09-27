@@ -257,7 +257,7 @@ namespace TotalSmartCoding.Views.Mains
         {
             try
             {
-                if (e.PropertyDescriptor != null && e.NewIndex >= 0 && e.NewIndex < this.bindingListUserGroupControls.Count)
+                if (this.SelectedUserGroupIndex != null && e.PropertyDescriptor != null && e.NewIndex >= 0 && e.NewIndex < this.bindingListUserGroupControls.Count)
                 {
                     UserGroupControlDTO userGroupControlDTO = this.bindingListUserGroupControls[e.NewIndex];
                     if (userGroupControlDTO != null)
@@ -276,12 +276,12 @@ namespace TotalSmartCoding.Views.Mains
         {
             try
             {
-                if (e.PropertyDescriptor != null && e.NewIndex >= 0 && e.NewIndex < this.bindingListUserGroupReports.Count)
+                if (this.SelectedUserGroupIndex != null && e.PropertyDescriptor != null && e.NewIndex >= 0 && e.NewIndex < this.bindingListUserGroupReports.Count)
                 {
                     UserGroupReportDTO userGroupReportDTO = this.bindingListUserGroupReports[e.NewIndex];
                     if (userGroupReportDTO != null)
                     {
-                        this.userGroupAPIs.SaveUserGroupReports(userGroupReportDTO.UserGroupReportID, userGroupReportDTO.Enabled);
+                        this.userGroupAPIs.SaveUserGroupReports(userGroupReportDTO.UserGroupReportID, this.SelectedUserGroupIndex.UserGroupID, this.SelectedUserGroupIndex.Name, userGroupReportDTO.ReportID, userGroupReportDTO.ReportName, userGroupReportDTO.Enabled);
                     }
                 }
             }

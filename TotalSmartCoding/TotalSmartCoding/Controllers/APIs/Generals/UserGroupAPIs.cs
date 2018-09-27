@@ -93,30 +93,34 @@ namespace TotalSmartCoding.Controllers.APIs.Generals
                 if (propertyName == "Editable") { propertyName = "AccessLevel"; propertyValue = ((GlobalEnums.AccessLevel)userGroupControlDTO.AccessLevel).ToString(); }
                 if (propertyName == "ApprovalPermitted") { propertyName = "Verify"; propertyValue = userGroupControlDTO.ApprovalPermitted ? "Allowed" : "Disallowed"; }
                 if (propertyName == "UnApprovalPermitted") { propertyName = "Unverify"; propertyValue = userGroupControlDTO.UnApprovalPermitted ? "Allowed" : "Disallowed"; }
-                if (propertyName == "VoidablePermitted") { propertyName = "Void"; propertyValue = userGroupControlDTO.VoidablePermitted ? "Allowed" : "Disallowed";}
-                if (propertyName == "UnVoidablePermitted") { propertyName = "Unvoid"; propertyValue = userGroupControlDTO.UnVoidablePermitted ? "Allowed" : "Disallowed";}
+                if (propertyName == "VoidablePermitted") { propertyName = "Void"; propertyValue = userGroupControlDTO.VoidablePermitted ? "Allowed" : "Disallowed"; }
+                if (propertyName == "UnVoidablePermitted") { propertyName = "Unvoid"; propertyValue = userGroupControlDTO.UnVoidablePermitted ? "Allowed" : "Disallowed"; }
 
-                this.AddDataLogs("Update Access Control", userGroupControlDTO.UserGroupControlID, userGroupIndex.UserGroupID, userGroupIndex.Name, userGroupControlDTO.ModuleDetailID, userGroupControlDTO.ModuleDetailName, userGroupControlDTO.LocationID, userGroupControlDTO.LocationName, propertyName, propertyValue);
+                this.AddDataLogs("Change access control", userGroupControlDTO.UserGroupControlID, userGroupIndex.UserGroupID, userGroupIndex.Name, userGroupControlDTO.ModuleDetailID, userGroupControlDTO.ModuleDetailName, userGroupControlDTO.LocationID, userGroupControlDTO.LocationName, propertyName, propertyValue);
             }
 
             return affectedRows;
         }
 
-        public int SaveUserGroupReports(int? userGroupReportID, bool? enabled)
+        public int SaveUserGroupReports(int userGroupReportID, int userGroupID, string userGroupName, int reportID, string reportName, bool enabled)
         {
-            return this.userGroupAPIRepository.SaveUserGroupReports(userGroupReportID, enabled);
+            int affectedRows = this.userGroupAPIRepository.SaveUserGroupReports(userGroupReportID, enabled);
+
+            this.AddDataLogs("Change report control", userGroupReportID, userGroupID, userGroupName, reportID, reportName, enabled);
+
+            return affectedRows;
         }
 
 
-        private void AddDataLogs(string actionType, int userGroupID, string code, string name, string description)
+        private void AddDataLogs(string actionType, int userGroupID, string userGroupCode, string userGroupName, string description)
         {
             if (!this.userGroupAPIRepository.GetOnDataLogs()) return;// DO NOTHING
 
             DateTime entryDate = DateTime.Now;
 
             this.userGroupAPIRepository.AddDataLogs(userGroupID, null, entryDate, "UserControls", actionType, "UserGroup", "UserGroupID", userGroupID.ToString());
-            this.userGroupAPIRepository.AddDataLogs(userGroupID, null, entryDate, "UserControls", actionType, "UserGroup", "UserGroupCode", code);
-            this.userGroupAPIRepository.AddDataLogs(userGroupID, null, entryDate, "UserControls", actionType, "UserGroup", "UserGroupName", name);
+            this.userGroupAPIRepository.AddDataLogs(userGroupID, null, entryDate, "UserControls", actionType, "UserGroup", "UserGroupCode", userGroupCode);
+            this.userGroupAPIRepository.AddDataLogs(userGroupID, null, entryDate, "UserControls", actionType, "UserGroup", "UserGroupName", userGroupName);
             this.userGroupAPIRepository.AddDataLogs(userGroupID, null, entryDate, "UserControls", actionType, "UserGroup", "Description", description);
         }
 
@@ -130,6 +134,19 @@ namespace TotalSmartCoding.Controllers.APIs.Generals
             this.userGroupAPIRepository.AddDataLogs(userGroupDetailID, null, entryDate, "UserControls", actionType, "UserGroupDetail", "UserGroupName", userGroupName);
             this.userGroupAPIRepository.AddDataLogs(userGroupDetailID, null, entryDate, "UserControls", actionType, "UserGroupDetail", "SecurityIdentifier", securityIdentifier);
             this.userGroupAPIRepository.AddDataLogs(userGroupDetailID, null, entryDate, "UserControls", actionType, "UserGroupDetail", "UserName", userName);
+        }
+
+        private void AddDataLogs(string actionType, int userGroupReportID, int userGroupID, string userGroupName, int reportID, string reportName, bool enabled)
+        {
+            if (!this.userGroupAPIRepository.GetOnDataLogs()) return;// DO NOTHING
+
+            DateTime entryDate = DateTime.Now;
+
+            this.userGroupAPIRepository.AddDataLogs(userGroupReportID, null, entryDate, "UserControls", actionType, "ReportControl", "UserGroupID", userGroupID.ToString());
+            this.userGroupAPIRepository.AddDataLogs(userGroupReportID, null, entryDate, "UserControls", actionType, "ReportControl", "UserGroupName", userGroupName);
+            this.userGroupAPIRepository.AddDataLogs(userGroupReportID, null, entryDate, "UserControls", actionType, "ReportControl", "ReportID", reportID.ToString());
+            this.userGroupAPIRepository.AddDataLogs(userGroupReportID, null, entryDate, "UserControls", actionType, "ReportControl", "ReportName", reportName);
+            this.userGroupAPIRepository.AddDataLogs(userGroupReportID, null, entryDate, "UserControls", actionType, "ReportControl", "Enabled", enabled ? "Enabled" : "Disabled");
         }
 
         private void AddDataLogs(string actionType, int userGroupControlID, int userGroupID, string userGroupName, int moduleDetailID, string moduleDetailName, int locationID, string locationName, string propertyName, string propertyValue)
