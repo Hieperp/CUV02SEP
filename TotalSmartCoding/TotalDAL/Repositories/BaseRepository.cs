@@ -111,6 +111,23 @@ namespace TotalDAL.Repositories
             }
             #endregion
 
+            #region ConfigLogs
+
+            if (false && !this.totalSmartCodingEntities.TableExists("ConfigLogs"))
+            {
+                this.ExecuteStoreCommand(@"CREATE TABLE [dbo].[ConfigLogs](
+	                                                    [ConfigLogID] [int] IDENTITY(1,1) NOT NULL,
+	                                                    [EntryDate] [datetime] NOT NULL,
+	                                                    [ProcedureName] [nvarchar](100) NOT NULL,
+	                                                    [Remarks] [nvarchar](100) NOT NULL,
+                                                     CONSTRAINT [PK_ConfigLogs] PRIMARY KEY CLUSTERED 
+                                                    (
+	                                                    [ConfigLogID] ASC
+                                                    )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+                                                    ) ON [PRIMARY]	                                                
+                                                ", new ObjectParameter[] { });
+            }
+            #endregion
 
             #region ADD NEW MODULE: NmvnTaskID.MonthEnd
             var query = this.totalSmartCodingEntities.Database.SqlQuery(typeof(int), "SELECT COUNT(ModuleDetailID) AS Expr1 FROM ModuleDetails WHERE ModuleDetailID = " + (int)GlobalEnums.NmvnTaskID.MonthEnd + ";", new object[] { });
@@ -466,10 +483,15 @@ namespace TotalDAL.Repositories
 
         private bool RestoreProcedures()
         {
+            //this.ExecuteStoreCommand("DELETE FROM ConfigLogs", new ObjectParameter[] { });
+            //this.ExecuteStoreCommand("INSERT INTO ConfigLogs (EntryDate, ProcedureName, Remarks) SELECT GetDate(), N'START UPDATE OF VSERION " + +GlobalVariables.MaxConfigVersionID() + "', N'' ", new ObjectParameter[] { });
+
             this.CreateStoredProcedure();
 
             //SET LASTEST VERSION AFTER RESTORE SUCCESSFULL
             this.ExecuteStoreCommand("UPDATE Configs SET StoredID = " + GlobalVariables.MaxConfigVersionID() + " WHERE StoredID < " + GlobalVariables.MaxConfigVersionID(), new ObjectParameter[] { });
+
+            //this.ExecuteStoreCommand("INSERT INTO ConfigLogs (EntryDate, ProcedureName, Remarks) SELECT GetDate(), N'FINISH UPDATE OF VSERION " + +GlobalVariables.MaxConfigVersionID() + "', N'' ", new ObjectParameter[] { });
 
             return true;
         }

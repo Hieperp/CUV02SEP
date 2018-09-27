@@ -148,8 +148,13 @@ namespace TotalDAL.Helpers
         /// <param name="queryString"></param>
         public static void CreateStoredProcedure(this DbContext dbContext, string storedProcedureName, string queryString)
         {
-            if (dbContext.StoredProcedureExists(storedProcedureName)) dbContext.Database.ExecuteSqlCommand(@"DROP PROCEDURE " + storedProcedureName);
+            if (dbContext.StoredProcedureExists(storedProcedureName))
+            {
+                //dbContext.Database.ExecuteSqlCommand(@"INSERT INTO ConfigLogs (EntryDate, ProcedureName, Remarks) SELECT GetDate(), N'" + storedProcedureName + "', N'DROP PROC' ");
+                dbContext.Database.ExecuteSqlCommand(@"DROP PROCEDURE " + storedProcedureName);
+            }
 
+            //dbContext.Database.ExecuteSqlCommand(@"INSERT INTO ConfigLogs (EntryDate, ProcedureName, Remarks) SELECT GetDate(), N'" + storedProcedureName + "', N'CREATE PROC' ");
             dbContext.Database.ExecuteSqlCommand(@"CREATE PROC " + storedProcedureName + "\r\n" + queryString);
 
         }
