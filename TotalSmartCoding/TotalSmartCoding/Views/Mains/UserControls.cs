@@ -171,7 +171,7 @@ namespace TotalSmartCoding.Views.Mains
                 {
                     if (CustomMsgBox.Show(this, "Are you sure you want to deregister this user?" + "\r\n" + "\r\nUser:  " + this.SelectedUserControlIndex.UserName, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
                     {
-                        this.userControlAPIs.UserControlUnregister(this.SelectedUserControlIndex.UserID);
+                        this.userControlAPIs.UserControlUnregister(this.SelectedUserControlIndex.UserID, this.SelectedUserControlIndex.UserName, this.SelectedUserControlIndex.SecurityIdentifier);
                         this.LoadUserControls();
                     }
                 }

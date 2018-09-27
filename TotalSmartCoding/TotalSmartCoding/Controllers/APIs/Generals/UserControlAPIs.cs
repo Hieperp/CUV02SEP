@@ -58,15 +58,23 @@ namespace TotalSmartCoding.Controllers.APIs.Generals
 
 
 
-        
+
         public int UserControlRegister(string firstName, string lastName, string userName, string securityIdentifier)
         {
-            return this.userControlAPIRepository.UserControlRegister(firstName, lastName, userName, securityIdentifier);
+            int affectedRows = this.userControlAPIRepository.UserControlRegister(firstName, lastName, userName, securityIdentifier);
+
+            this.AddDataLogs("Register new user", userName, securityIdentifier);
+
+            return affectedRows;
         }
 
-        public int UserControlUnregister(int? userID)
+        public int UserControlUnregister(int? userID, string userName, string securityIdentifier)
         {
-            return this.userControlAPIRepository.UserControlUnregister(userID);
+            int affectedRows = this.userControlAPIRepository.UserControlUnregister(userID);
+
+            this.AddDataLogs("Deregister new user", userName, securityIdentifier);
+
+            return affectedRows;
         }
 
         public int UserControlToggleVoid(int? userID, bool? inActive)
@@ -90,6 +98,20 @@ namespace TotalSmartCoding.Controllers.APIs.Generals
         public int UpdateOnEventLogs(int onEventLogs)
         {
             return this.userControlAPIRepository.UpdateOnEventLogs(onEventLogs);
+        }
+
+
+
+
+
+        private void AddDataLogs(string actionType, string userName, string securityIdentifier)
+        {
+            if (!this.userControlAPIRepository.GetOnDataLogs()) return;// DO NOTHING
+
+            DateTime entryDate = DateTime.Now;
+
+            this.userControlAPIRepository.AddDataLogs(null, null, entryDate, "UserControls", actionType, "User", "UserName", userName);
+            this.userControlAPIRepository.AddDataLogs(null, null, entryDate, "UserControls", actionType, "User", "SecurityIdentifier", securityIdentifier);
         }
 
     }
