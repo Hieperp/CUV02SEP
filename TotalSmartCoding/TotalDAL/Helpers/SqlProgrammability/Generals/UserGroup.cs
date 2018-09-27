@@ -175,8 +175,13 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
 
             queryString = queryString + "           IF (SELECT COUNT(SecurityIdentifier) FROM UserGroupDetails WHERE UserGroupID = @UserGroupID AND SecurityIdentifier = @SecurityIdentifier) <= 0 " + "\r\n";
             queryString = queryString + "               BEGIN " + "\r\n";
+            queryString = queryString + "                   DECLARE         @UserGroupDetailID Int" + "\r\n";
             queryString = queryString + "                   INSERT INTO     UserGroupDetails (UserGroupID, SecurityIdentifier, EntryDate) VALUES (@UserGroupID, @SecurityIdentifier, GetDate()); " + "\r\n";
+            queryString = queryString + "                   SELECT          @UserGroupDetailID = SCOPE_IDENTITY(); " + "\r\n";
+
             queryString = queryString + "                   EXEC            SubmitUserAccessControls " + "\r\n";
+
+            queryString = queryString + "                   SELECT          @UserGroupDetailID AS UserGroupDetailID " + "\r\n";
             queryString = queryString + "               END " + "\r\n";
 
             queryString = queryString + "           ELSE " + "\r\n";

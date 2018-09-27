@@ -4991,7 +4991,7 @@
           <FunctionImport Name="GetUserGroupAvailableMembers" ReturnType="Collection(TotalSmartCodingModel.UserGroupAvailableMember)">
           <Parameter Name="UserGroupID" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="UserGroupAddMember">
+          <FunctionImport Name="UserGroupAddMember" ReturnType="Collection(Int32)">
             <Parameter Name="UserGroupID" Mode="In" Type="Int32" />
             <Parameter Name="SecurityIdentifier" Mode="In" Type="String" />
           </FunctionImport>

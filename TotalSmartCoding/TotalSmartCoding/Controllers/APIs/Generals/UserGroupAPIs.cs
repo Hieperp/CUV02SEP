@@ -46,12 +46,20 @@ namespace TotalSmartCoding.Controllers.APIs.Generals
 
         public int UserGroupAddMember(int userGroupID, string userGroupcode, string securityIdentifier, string userName)
         {
-            return this.userGroupAPIRepository.UserGroupAddMember(userGroupID, securityIdentifier);
+            int userGroupDetailID = this.userGroupAPIRepository.UserGroupAddMember(userGroupID, securityIdentifier);
+
+            this.AddDataLogs("Add new member", userGroupDetailID, userGroupcode, userName);
+
+            return userGroupDetailID;
         }
 
-        public int UserGroupRemoveMember(int? userGroupDetailID, string userGroupcode, string userName)
+        public int UserGroupRemoveMember(int userGroupDetailID, string userGroupcode, string userName)
         {
-            return this.userGroupAPIRepository.UserGroupRemoveMember(userGroupDetailID);
+            int affectedRows = this.userGroupAPIRepository.UserGroupRemoveMember(userGroupDetailID);
+
+            this.AddDataLogs("Remove member", userGroupDetailID, userGroupcode, userName);
+
+            return affectedRows;
         }
 
         public IList<UserGroupAvailableMember> GetUserGroupAvailableMembers(int? userGroupID)
@@ -91,9 +99,20 @@ namespace TotalSmartCoding.Controllers.APIs.Generals
 
             DateTime entryDate = DateTime.Now;
 
+            this.userGroupAPIRepository.AddDataLogs(userGroupID, null, entryDate, "UserControls", actionType, "UserGroup", "UserGroupID", userGroupID.ToString());
             this.userGroupAPIRepository.AddDataLogs(userGroupID, null, entryDate, "UserControls", actionType, "UserGroup", "Code", code);
             this.userGroupAPIRepository.AddDataLogs(userGroupID, null, entryDate, "UserControls", actionType, "UserGroup", "Name", name);
             this.userGroupAPIRepository.AddDataLogs(userGroupID, null, entryDate, "UserControls", actionType, "UserGroup", "Description", description);
+        }
+
+        private void AddDataLogs(string actionType, int userGroupDetailID, string userGroupCode, string userName)
+        {
+            if (!this.userGroupAPIRepository.GetOnDataLogs()) return;// DO NOTHING
+
+            DateTime entryDate = DateTime.Now;
+
+            this.userGroupAPIRepository.AddDataLogs(userGroupDetailID, null, entryDate, "UserControls", actionType, "UserGroupDetail", "GroupCode", userGroupCode);
+            this.userGroupAPIRepository.AddDataLogs(userGroupDetailID, null, entryDate, "UserControls", actionType, "UserGroupDetail", "UserName", userName);
         }
     }
 }

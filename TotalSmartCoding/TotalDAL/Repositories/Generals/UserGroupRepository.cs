@@ -37,7 +37,7 @@ namespace TotalDAL.Repositories.Generals
 
         public int UserGroupAddMember(int? userGroupID, string securityIdentifier)
         {
-            return this.TotalSmartCodingEntities.UserGroupAddMember(userGroupID, securityIdentifier);
+            return (int)this.TotalSmartCodingEntities.UserGroupAddMember(userGroupID, securityIdentifier).FirstOrDefault();
         }
 
         public int UserGroupRemoveMember(int? userGroupDetailID)

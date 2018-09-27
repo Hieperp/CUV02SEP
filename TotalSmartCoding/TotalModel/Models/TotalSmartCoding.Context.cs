@@ -2702,7 +2702,7 @@ namespace TotalModel.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UserGroupAvailableMember>("GetUserGroupAvailableMembers", userGroupIDParameter);
         }
     
-        public virtual int UserGroupAddMember(Nullable<int> userGroupID, string securityIdentifier)
+        public virtual ObjectResult<Nullable<int>> UserGroupAddMember(Nullable<int> userGroupID, string securityIdentifier)
         {
             var userGroupIDParameter = userGroupID.HasValue ?
                 new ObjectParameter("UserGroupID", userGroupID) :
@@ -2712,7 +2712,7 @@ namespace TotalModel.Models
                 new ObjectParameter("SecurityIdentifier", securityIdentifier) :
                 new ObjectParameter("SecurityIdentifier", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UserGroupAddMember", userGroupIDParameter, securityIdentifierParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("UserGroupAddMember", userGroupIDParameter, securityIdentifierParameter);
         }
     
         public virtual int UserGroupRemoveMember(Nullable<int> userGroupDetailID)
