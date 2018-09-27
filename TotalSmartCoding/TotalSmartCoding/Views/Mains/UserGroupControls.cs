@@ -307,7 +307,7 @@ namespace TotalSmartCoding.Views.Mains
                 UserGroupMember userGroupMember = (UserGroupMember)this.fastUserGroupDetails.SelectedObject;
                 if (userGroupMember != null && CustomMsgBox.Show(this, "Are you sure you want to remove: " + "\r\n" + "\r\n" + userGroupMember.UserName + "\r\n" + "\r\n" + "from this group?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Stop) == DialogResult.Yes)
                 {
-                    this.userGroupAPIs.UserGroupRemoveMember(userGroupMember.UserGroupDetailID, this.SelectedUserGroupIndex.Code, userGroupMember.UserName);
+                    this.userGroupAPIs.UserGroupRemoveMember(userGroupMember.UserGroupDetailID, this.SelectedUserGroupIndex.UserGroupID, this.SelectedUserGroupIndex.Code, userGroupMember.SecurityIdentifier, userGroupMember.UserName);
                     dialogResult = DialogResult.OK;
                 }
             }
