@@ -190,7 +190,7 @@ namespace TotalSmartCoding.Views.Mains
                 {
                     if (CustomMsgBox.Show(this, "Are you sure you want to " + (this.SelectedUserControlIndex.InActive ? "enable" : "disable") + " this user registration?" + "\r\n" + "\r\nUser:  " + this.SelectedUserControlIndex.UserName, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Stop) == DialogResult.Yes)
                     {
-                        this.userControlAPIs.UserControlToggleVoid(this.SelectedUserControlIndex.UserID, !this.SelectedUserControlIndex.InActive);
+                        this.userControlAPIs.UserControlToggleVoid(this.SelectedUserControlIndex.UserID, this.SelectedUserControlIndex.UserName, this.SelectedUserControlIndex.SecurityIdentifier, !this.SelectedUserControlIndex.InActive);
                         this.LoadUserControls();
                     }
                 }

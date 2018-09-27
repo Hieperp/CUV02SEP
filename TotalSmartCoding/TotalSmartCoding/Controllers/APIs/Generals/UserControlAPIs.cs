@@ -63,7 +63,7 @@ namespace TotalSmartCoding.Controllers.APIs.Generals
         {
             int affectedRows = this.userControlAPIRepository.UserControlRegister(firstName, lastName, userName, securityIdentifier);
 
-            this.AddDataLogs("Register new user", userName, securityIdentifier);
+            this.AddDataLogs("Register new user", userName, securityIdentifier, null);
 
             return affectedRows;
         }
@@ -72,14 +72,18 @@ namespace TotalSmartCoding.Controllers.APIs.Generals
         {
             int affectedRows = this.userControlAPIRepository.UserControlUnregister(userID);
 
-            this.AddDataLogs("Deregister new user", userName, securityIdentifier);
+            this.AddDataLogs("Deregister new user", userName, securityIdentifier, null);
 
             return affectedRows;
         }
 
-        public int UserControlToggleVoid(int? userID, bool? inActive)
+        public int UserControlToggleVoid(int? userID, string userName, string securityIdentifier, bool inActive)
         {
-            return this.userControlAPIRepository.UserControlToggleVoid(userID, inActive);
+            int affectedRows = this.userControlAPIRepository.UserControlToggleVoid(userID, inActive);
+
+            this.AddDataLogs("Set user active status", userName, securityIdentifier, inActive ? "Inactive" : "Active");
+
+            return affectedRows;
         }
 
 
@@ -104,7 +108,7 @@ namespace TotalSmartCoding.Controllers.APIs.Generals
 
 
 
-        private void AddDataLogs(string actionType, string userName, string securityIdentifier)
+        private void AddDataLogs(string actionType, string userName, string securityIdentifier, string activeStatus)
         {
             if (!this.userControlAPIRepository.GetOnDataLogs()) return;// DO NOTHING
 
@@ -112,6 +116,9 @@ namespace TotalSmartCoding.Controllers.APIs.Generals
 
             this.userControlAPIRepository.AddDataLogs(null, null, entryDate, "UserControls", actionType, "User", "UserName", userName);
             this.userControlAPIRepository.AddDataLogs(null, null, entryDate, "UserControls", actionType, "User", "SecurityIdentifier", securityIdentifier);
+
+            if (activeStatus != null)
+                this.userControlAPIRepository.AddDataLogs(null, null, entryDate, "UserControls", actionType, "User", "ActiveStatus", activeStatus);
         }
 
     }
