@@ -263,9 +263,11 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
 
             queryString = queryString + "           IF (SELECT COUNT(SecurityIdentifier) FROM UserSalespersons WHERE EmployeeID = @EmployeeID AND SecurityIdentifier = @SecurityIdentifier) <= 0 " + "\r\n";
             queryString = queryString + "               BEGIN " + "\r\n";
+            queryString = queryString + "                   DECLARE         @UserSalespersonID Int" + "\r\n";
             queryString = queryString + "                   INSERT INTO     UserSalespersons (SecurityIdentifier, EmployeeID, EntryDate) VALUES (@SecurityIdentifier, @EmployeeID, GetDate()); " + "\r\n";
+            queryString = queryString + "                   SELECT          @UserSalespersonID = SCOPE_IDENTITY(); " + "\r\n";
 
-            queryString = queryString + "                   SELECT          SCOPE_IDENTITY() AS UserSalespersonID " + "\r\n";
+            queryString = queryString + "                   SELECT          @UserSalespersonID AS UserSalespersonID " + "\r\n";
             queryString = queryString + "               END " + "\r\n";
 
             queryString = queryString + "           ELSE " + "\r\n";

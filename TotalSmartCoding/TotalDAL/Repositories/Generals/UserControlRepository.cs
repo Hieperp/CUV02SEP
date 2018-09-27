@@ -44,7 +44,7 @@ namespace TotalDAL.Repositories.Generals
 
         public int UserControlAddSalesperson(string securityIdentifier, int? employeeID)
         {
-            return this.TotalSmartCodingEntities.UserControlAddSalesperson(securityIdentifier, employeeID);
+            return (int)this.TotalSmartCodingEntities.UserControlAddSalesperson(securityIdentifier, employeeID).FirstOrDefault();
         }
         public int UserControlRemoveSalesperson(int? userSalespersonID)
         {

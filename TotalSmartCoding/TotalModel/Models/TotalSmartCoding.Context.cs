@@ -3012,7 +3012,7 @@ namespace TotalModel.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UserControlSalesperson>("GetUserControlSalespersons", securityIdentifierParameter);
         }
     
-        public virtual int UserControlAddSalesperson(string securityIdentifier, Nullable<int> employeeID)
+        public virtual ObjectResult<Nullable<int>> UserControlAddSalesperson(string securityIdentifier, Nullable<int> employeeID)
         {
             var securityIdentifierParameter = securityIdentifier != null ?
                 new ObjectParameter("SecurityIdentifier", securityIdentifier) :
@@ -3022,7 +3022,7 @@ namespace TotalModel.Models
                 new ObjectParameter("EmployeeID", employeeID) :
                 new ObjectParameter("EmployeeID", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UserControlAddSalesperson", securityIdentifierParameter, employeeIDParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("UserControlAddSalesperson", securityIdentifierParameter, employeeIDParameter);
         }
     
         public virtual int UserControlRemoveSalesperson(Nullable<int> userSalespersonID)

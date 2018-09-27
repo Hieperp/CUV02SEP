@@ -5084,7 +5084,7 @@
           <FunctionImport Name="GetUserControlSalespersons" ReturnType="Collection(TotalSmartCodingModel.UserControlSalesperson)">
           <Parameter Name="SecurityIdentifier" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="UserControlAddSalesperson">
+          <FunctionImport Name="UserControlAddSalesperson" ReturnType="Collection(Int32)">
             <Parameter Name="SecurityIdentifier" Mode="In" Type="String" />
             <Parameter Name="EmployeeID" Mode="In" Type="Int32" />
           </FunctionImport>
