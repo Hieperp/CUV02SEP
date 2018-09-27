@@ -63,7 +63,7 @@ namespace TotalSmartCoding.Views.Mains
                         if (CustomMsgBox.Show(this, "Are you sure you want to " + (this.userGroupIndex != null ? "delete" : "add") + " this group?" + "\r\n" + "\r\n" + this.textexCode.Text + "-" + this.textexName.Text, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Stop) == DialogResult.Yes)
                         {
                             if (this.userGroupIndex == null) this.userGroupAPIs.UserGroupAdd(this.textexCode.Text.Trim(), this.textexName.Text.Trim(), this.textexDescription.Text.Trim());
-                            if (this.userGroupIndex != null) this.userGroupAPIs.UserGroupRemove(this.userGroupIndex.UserGroupID, this.userGroupIndex.Name);
+                            if (this.userGroupIndex != null) this.userGroupAPIs.UserGroupRemove(this.userGroupIndex.UserGroupID, this.userGroupIndex.Code, this.userGroupIndex.Name, this.userGroupIndex.Description);
                             this.DialogResult = DialogResult.OK;
                         }
                     }
