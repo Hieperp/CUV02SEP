@@ -60,6 +60,8 @@ namespace TotalSmartCoding.Views.Generals
             this.comboSalesVersusPromotion.Visible = false;
             this.comboForecastFilters.Visible = false; this.buttonSalesVersusPromotion.Visible = false;
             this.comboSlowMoving.Visible = false; this.labelSlowMoving.Visible = false; this.numericSlowMoving.Visible = false;
+
+            this.comboUserName.Visible = false; this.buttonUserName.Visible = false;
             #endregion
 
             this.toolstripChild = this.toolStripChildForm;
@@ -269,6 +271,8 @@ namespace TotalSmartCoding.Views.Generals
                     this.comboForecastFilters.Visible = this.reportViewModel.OptionBoxIDs.IndexOf(GlobalEnums.OBx(GlobalEnums.OptionBoxID.ForecastFilters)) != -1; this.buttonSalesVersusPromotion.Visible = this.comboSalesVersusPromotion.Visible || this.comboForecastFilters.Visible;
 
                     this.comboSlowMoving.Visible = this.reportViewModel.OptionBoxIDs.IndexOf(GlobalEnums.OBx(GlobalEnums.OptionBoxID.SlowMoving)) != -1; this.labelSlowMoving.Visible = this.comboSlowMoving.Visible; this.numericSlowMoving.Visible = this.comboSlowMoving.Visible;
+
+                    this.comboUserName.Visible = this.reportViewModel.OptionBoxIDs.IndexOf(GlobalEnums.OBx(GlobalEnums.OptionBoxID.UserName)) != -1; this.buttonUserName.Visible = this.comboUserName.Visible;
                 }
             }
             catch (Exception exception)

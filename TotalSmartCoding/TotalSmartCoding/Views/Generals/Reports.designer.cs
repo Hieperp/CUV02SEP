@@ -199,6 +199,8 @@
             this.buttonCommodityTypeDeselect = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
             this.buttonCommodityTypeClear = new System.Windows.Forms.ToolStripButton();
+            this.comboUserName = new System.Windows.Forms.ToolStripComboBox();
+            this.buttonUserName = new System.Windows.Forms.ToolStripButton();
             this.toolStripChildForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeCommodityID)).BeginInit();
             this.panelTop.SuspendLayout();
@@ -272,7 +274,7 @@
             this.toolStripButton2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(118, 36);
+            this.toolStripButton2.Size = new System.Drawing.Size(102, 36);
             this.toolStripButton2.Text = "Disconnect";
             this.toolStripButton2.Visible = false;
             // 
@@ -375,7 +377,7 @@
             this.panelTop.Location = new System.Drawing.Point(312, 0);
             this.panelTop.Name = "panelTop";
             this.panelTop.Padding = new System.Windows.Forms.Padding(3, 3, 3, 0);
-            this.panelTop.Size = new System.Drawing.Size(1219, 32);
+            this.panelTop.Size = new System.Drawing.Size(964, 32);
             this.panelTop.TabIndex = 67;
             // 
             // toolReport
@@ -393,11 +395,13 @@
             this.buttonDateVersusMonth,
             this.comboSalesVersusPromotion,
             this.comboForecastFilters,
-            this.buttonSalesVersusPromotion});
+            this.buttonSalesVersusPromotion,
+            this.comboUserName,
+            this.buttonUserName});
             this.toolReport.Location = new System.Drawing.Point(3, 3);
             this.toolReport.Name = "toolReport";
             this.toolReport.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolReport.Size = new System.Drawing.Size(276, 29);
+            this.toolReport.Size = new System.Drawing.Size(68, 29);
             this.toolReport.TabIndex = 10;
             this.toolReport.Text = "toolStrip1";
             // 
@@ -408,7 +412,7 @@
             this.comboQuantityVersusVolume.Font = new System.Drawing.Font("Calibri Light", 10.2F);
             this.comboQuantityVersusVolume.Name = "comboQuantityVersusVolume";
             this.comboQuantityVersusVolume.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.comboQuantityVersusVolume.Size = new System.Drawing.Size(105, 29);
+            this.comboQuantityVersusVolume.Size = new System.Drawing.Size(105, 25);
             // 
             // comboSummaryVersusDetail
             // 
@@ -417,7 +421,7 @@
             this.comboSummaryVersusDetail.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboSummaryVersusDetail.Name = "comboSummaryVersusDetail";
             this.comboSummaryVersusDetail.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.comboSummaryVersusDetail.Size = new System.Drawing.Size(105, 29);
+            this.comboSummaryVersusDetail.Size = new System.Drawing.Size(105, 25);
             // 
             // buttonQuantityVersusVolume
             // 
@@ -425,7 +429,7 @@
             this.buttonQuantityVersusVolume.Image = global::TotalSmartCoding.Properties.Resources.xxx042_24;
             this.buttonQuantityVersusVolume.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonQuantityVersusVolume.Name = "buttonQuantityVersusVolume";
-            this.buttonQuantityVersusVolume.Size = new System.Drawing.Size(28, 26);
+            this.buttonQuantityVersusVolume.Size = new System.Drawing.Size(28, 28);
             // 
             // comboDateVersusMonth
             // 
@@ -434,7 +438,7 @@
             this.comboDateVersusMonth.Font = new System.Drawing.Font("Calibri Light", 10.2F);
             this.comboDateVersusMonth.Name = "comboDateVersusMonth";
             this.comboDateVersusMonth.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.comboDateVersusMonth.Size = new System.Drawing.Size(135, 29);
+            this.comboDateVersusMonth.Size = new System.Drawing.Size(135, 25);
             // 
             // buttonDateVersusMonth
             // 
@@ -451,7 +455,7 @@
             this.comboSalesVersusPromotion.Font = new System.Drawing.Font("Calibri Light", 10.2F);
             this.comboSalesVersusPromotion.Name = "comboSalesVersusPromotion";
             this.comboSalesVersusPromotion.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.comboSalesVersusPromotion.Size = new System.Drawing.Size(135, 29);
+            this.comboSalesVersusPromotion.Size = new System.Drawing.Size(135, 25);
             // 
             // comboForecastFilters
             // 
@@ -460,7 +464,7 @@
             this.comboForecastFilters.Font = new System.Drawing.Font("Calibri Light", 10.2F);
             this.comboForecastFilters.Name = "comboForecastFilters";
             this.comboForecastFilters.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.comboForecastFilters.Size = new System.Drawing.Size(339, 29);
+            this.comboForecastFilters.Size = new System.Drawing.Size(339, 25);
             // 
             // buttonSalesVersusPromotion
             // 
@@ -496,13 +500,13 @@
             this.layoutTop.Controls.Add(this.comboSlowMoving, 2, 0);
             this.layoutTop.Dock = System.Windows.Forms.DockStyle.Right;
             this.layoutTop.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.layoutTop.Location = new System.Drawing.Point(279, 3);
+            this.layoutTop.Location = new System.Drawing.Point(71, 3);
             this.layoutTop.Margin = new System.Windows.Forms.Padding(0);
             this.layoutTop.Name = "layoutTop";
             this.layoutTop.Padding = new System.Windows.Forms.Padding(0, 1, 0, 0);
             this.layoutTop.RowCount = 1;
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.layoutTop.Size = new System.Drawing.Size(937, 29);
+            this.layoutTop.Size = new System.Drawing.Size(890, 29);
             this.layoutTop.TabIndex = 9;
             // 
             // labelSlowMoving
@@ -512,7 +516,7 @@
             this.labelSlowMoving.Location = new System.Drawing.Point(0, 1);
             this.labelSlowMoving.Margin = new System.Windows.Forms.Padding(0);
             this.labelSlowMoving.Name = "labelSlowMoving";
-            this.labelSlowMoving.Size = new System.Drawing.Size(153, 29);
+            this.labelSlowMoving.Size = new System.Drawing.Size(120, 29);
             this.labelSlowMoving.TabIndex = 94;
             this.labelSlowMoving.Text = "Not sold over n days";
             this.labelSlowMoving.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -521,7 +525,7 @@
             // 
             this.pictureToDate.Dock = System.Windows.Forms.DockStyle.Right;
             this.pictureToDate.Image = global::TotalSmartCoding.Properties.Resources.Calendar_2;
-            this.pictureToDate.Location = new System.Drawing.Point(686, 1);
+            this.pictureToDate.Location = new System.Drawing.Point(639, 1);
             this.pictureToDate.Margin = new System.Windows.Forms.Padding(0);
             this.pictureToDate.Name = "pictureToDate";
             this.pictureToDate.Size = new System.Drawing.Size(24, 29);
@@ -536,11 +540,11 @@
             this.dateTimexFromDate.Editable = false;
             this.dateTimexFromDate.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimexFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimexFromDate.Location = new System.Drawing.Point(437, 2);
+            this.dateTimexFromDate.Location = new System.Drawing.Point(394, 2);
             this.dateTimexFromDate.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.dateTimexFromDate.Name = "dateTimexFromDate";
             this.dateTimexFromDate.ReadOnly = false;
-            this.dateTimexFromDate.Size = new System.Drawing.Size(223, 28);
+            this.dateTimexFromDate.Size = new System.Drawing.Size(223, 24);
             this.dateTimexFromDate.TabIndex = 90;
             // 
             // dateTimexToDate
@@ -550,21 +554,21 @@
             this.dateTimexToDate.Editable = false;
             this.dateTimexToDate.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimexToDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimexToDate.Location = new System.Drawing.Point(713, 2);
+            this.dateTimexToDate.Location = new System.Drawing.Point(666, 2);
             this.dateTimexToDate.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.dateTimexToDate.Name = "dateTimexToDate";
             this.dateTimexToDate.ReadOnly = false;
-            this.dateTimexToDate.Size = new System.Drawing.Size(223, 28);
+            this.dateTimexToDate.Size = new System.Drawing.Size(223, 24);
             this.dateTimexToDate.TabIndex = 91;
             // 
             // labelToDate
             // 
             this.labelToDate.AutoSize = true;
             this.labelToDate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelToDate.Location = new System.Drawing.Point(661, 1);
+            this.labelToDate.Location = new System.Drawing.Point(618, 1);
             this.labelToDate.Margin = new System.Windows.Forms.Padding(0);
             this.labelToDate.Name = "labelToDate";
-            this.labelToDate.Size = new System.Drawing.Size(25, 29);
+            this.labelToDate.Size = new System.Drawing.Size(21, 29);
             this.labelToDate.TabIndex = 92;
             this.labelToDate.Text = "To";
             this.labelToDate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -573,10 +577,10 @@
             // 
             this.labelFromDate.AutoSize = true;
             this.labelFromDate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelFromDate.Location = new System.Drawing.Point(363, 1);
+            this.labelFromDate.Location = new System.Drawing.Point(330, 1);
             this.labelFromDate.Margin = new System.Windows.Forms.Padding(0);
             this.labelFromDate.Name = "labelFromDate";
-            this.labelFromDate.Size = new System.Drawing.Size(47, 29);
+            this.labelFromDate.Size = new System.Drawing.Size(37, 29);
             this.labelFromDate.TabIndex = 89;
             this.labelFromDate.Text = "From";
             this.labelFromDate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -585,7 +589,7 @@
             // 
             this.pictureFromDate.Dock = System.Windows.Forms.DockStyle.Right;
             this.pictureFromDate.Image = global::TotalSmartCoding.Properties.Resources.Calendar_icon;
-            this.pictureFromDate.Location = new System.Drawing.Point(410, 1);
+            this.pictureFromDate.Location = new System.Drawing.Point(367, 1);
             this.pictureFromDate.Margin = new System.Windows.Forms.Padding(0);
             this.pictureFromDate.Name = "pictureFromDate";
             this.pictureFromDate.Size = new System.Drawing.Size(24, 29);
@@ -597,7 +601,7 @@
             // 
             this.numericSlowMoving.Dock = System.Windows.Forms.DockStyle.Fill;
             this.numericSlowMoving.Font = new System.Drawing.Font("Calibri Light", 10.2F);
-            this.numericSlowMoving.Location = new System.Drawing.Point(156, 2);
+            this.numericSlowMoving.Location = new System.Drawing.Point(123, 2);
             this.numericSlowMoving.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.numericSlowMoving.Maximum = new decimal(new int[] {
             999,
@@ -605,7 +609,7 @@
             0,
             0});
             this.numericSlowMoving.Name = "numericSlowMoving";
-            this.numericSlowMoving.Size = new System.Drawing.Size(56, 28);
+            this.numericSlowMoving.Size = new System.Drawing.Size(56, 24);
             this.numericSlowMoving.TabIndex = 95;
             this.numericSlowMoving.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.numericSlowMoving.Value = new decimal(new int[] {
@@ -620,10 +624,10 @@
             this.comboSlowMoving.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboSlowMoving.Font = new System.Drawing.Font("Calibri Light", 10.2F);
             this.comboSlowMoving.FormattingEnabled = true;
-            this.comboSlowMoving.Location = new System.Drawing.Point(216, 2);
+            this.comboSlowMoving.Location = new System.Drawing.Point(183, 2);
             this.comboSlowMoving.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.comboSlowMoving.Name = "comboSlowMoving";
-            this.comboSlowMoving.Size = new System.Drawing.Size(146, 29);
+            this.comboSlowMoving.Size = new System.Drawing.Size(146, 25);
             this.comboSlowMoving.TabIndex = 96;
             // 
             // panelLeft
@@ -699,7 +703,7 @@
             this.panelCenter.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelCenter.Location = new System.Drawing.Point(312, 32);
             this.panelCenter.Name = "panelCenter";
-            this.panelCenter.Size = new System.Drawing.Size(1219, 702);
+            this.panelCenter.Size = new System.Drawing.Size(964, 702);
             this.panelCenter.TabIndex = 69;
             // 
             // panelWarehouseIssueID
@@ -780,7 +784,7 @@
             this.textWarehouseIssue.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textWarehouseIssue.Location = new System.Drawing.Point(153, 0);
             this.textWarehouseIssue.Name = "textWarehouseIssue";
-            this.textWarehouseIssue.Size = new System.Drawing.Size(1066, 28);
+            this.textWarehouseIssue.Size = new System.Drawing.Size(1066, 24);
             this.textWarehouseIssue.TabIndex = 70;
             this.textWarehouseIssue.TextChanged += new System.EventHandler(this.textFILTER_TextChanged);
             // 
@@ -978,7 +982,7 @@
             this.textWarehouseAdjustmentType.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textWarehouseAdjustmentType.Location = new System.Drawing.Point(153, 0);
             this.textWarehouseAdjustmentType.Name = "textWarehouseAdjustmentType";
-            this.textWarehouseAdjustmentType.Size = new System.Drawing.Size(1066, 28);
+            this.textWarehouseAdjustmentType.Size = new System.Drawing.Size(1066, 24);
             this.textWarehouseAdjustmentType.TabIndex = 70;
             this.textWarehouseAdjustmentType.TextChanged += new System.EventHandler(this.textFILTER_TextChanged);
             // 
@@ -1176,7 +1180,7 @@
             this.textWarehouseReceipt.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textWarehouseReceipt.Location = new System.Drawing.Point(153, 0);
             this.textWarehouseReceipt.Name = "textWarehouseReceipt";
-            this.textWarehouseReceipt.Size = new System.Drawing.Size(1066, 28);
+            this.textWarehouseReceipt.Size = new System.Drawing.Size(1066, 24);
             this.textWarehouseReceipt.TabIndex = 70;
             this.textWarehouseReceipt.TextChanged += new System.EventHandler(this.textFILTER_TextChanged);
             // 
@@ -1374,7 +1378,7 @@
             this.textWarehouse.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textWarehouse.Location = new System.Drawing.Point(153, 0);
             this.textWarehouse.Name = "textWarehouse";
-            this.textWarehouse.Size = new System.Drawing.Size(1063, 28);
+            this.textWarehouse.Size = new System.Drawing.Size(1063, 24);
             this.textWarehouse.TabIndex = 70;
             this.textWarehouse.TextChanged += new System.EventHandler(this.textFILTER_TextChanged);
             // 
@@ -1582,7 +1586,7 @@
             this.textCustomer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textCustomer.Location = new System.Drawing.Point(153, 0);
             this.textCustomer.Name = "textCustomer";
-            this.textCustomer.Size = new System.Drawing.Size(658, 28);
+            this.textCustomer.Size = new System.Drawing.Size(658, 24);
             this.textCustomer.TabIndex = 70;
             this.textCustomer.TextChanged += new System.EventHandler(this.textFILTER_TextChanged);
             // 
@@ -1782,7 +1786,7 @@
             this.textEmployee.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textEmployee.Location = new System.Drawing.Point(153, 0);
             this.textEmployee.Name = "textEmployee";
-            this.textEmployee.Size = new System.Drawing.Size(255, 28);
+            this.textEmployee.Size = new System.Drawing.Size(255, 24);
             this.textEmployee.TabIndex = 70;
             this.textEmployee.TextChanged += new System.EventHandler(this.textFILTER_TextChanged);
             // 
@@ -1936,7 +1940,7 @@
             this.textCommodity.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textCommodity.Location = new System.Drawing.Point(153, 0);
             this.textCommodity.Name = "textCommodity";
-            this.textCommodity.Size = new System.Drawing.Size(658, 28);
+            this.textCommodity.Size = new System.Drawing.Size(658, 24);
             this.textCommodity.TabIndex = 70;
             this.textCommodity.TextChanged += new System.EventHandler(this.textFILTER_TextChanged);
             // 
@@ -2128,7 +2132,7 @@
             this.textCommodityType.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textCommodityType.Location = new System.Drawing.Point(153, 0);
             this.textCommodityType.Name = "textCommodityType";
-            this.textCommodityType.Size = new System.Drawing.Size(255, 28);
+            this.textCommodityType.Size = new System.Drawing.Size(255, 24);
             this.textCommodityType.TabIndex = 70;
             this.textCommodityType.TextChanged += new System.EventHandler(this.textFILTER_TextChanged);
             // 
@@ -2248,11 +2252,28 @@
             this.buttonCommodityTypeClear.ToolTipText = "Clear Filters";
             this.buttonCommodityTypeClear.Click += new System.EventHandler(this.buttonCollapse_Click);
             // 
+            // comboUserName
+            // 
+            this.comboUserName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboUserName.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
+            this.comboUserName.Font = new System.Drawing.Font("Calibri Light", 10.2F);
+            this.comboUserName.Name = "comboUserName";
+            this.comboUserName.Size = new System.Drawing.Size(268, 25);
+            // 
+            // buttonUserName
+            // 
+            this.buttonUserName.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.buttonUserName.Image = global::TotalSmartCoding.Properties.Resources.Energy_24;
+            this.buttonUserName.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonUserName.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonUserName.Name = "buttonUserName";
+            this.buttonUserName.Size = new System.Drawing.Size(28, 28);
+            // 
             // Reports
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1531, 734);
+            this.ClientSize = new System.Drawing.Size(1276, 734);
             this.Controls.Add(this.panelCenter);
             this.Controls.Add(this.panelTop);
             this.Controls.Add(this.panelLeft);
@@ -2521,6 +2542,8 @@
         private System.Windows.Forms.Label labelSlowMoving;
         private System.Windows.Forms.NumericUpDown numericSlowMoving;
         private System.Windows.Forms.ComboBox comboSlowMoving;
+        private System.Windows.Forms.ToolStripComboBox comboUserName;
+        private System.Windows.Forms.ToolStripButton buttonUserName;
 
     }
 }
