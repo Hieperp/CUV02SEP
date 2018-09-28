@@ -104,17 +104,32 @@ namespace TotalSmartCoding.Controllers.APIs.Generals
 
         public int UpdateOnDataLogs(int onDataLogs)
         {
-            return this.userControlAPIRepository.UpdateOnDataLogs(onDataLogs);
+            int affectedRows = this.userControlAPIRepository.UpdateOnDataLogs(onDataLogs);
+
+            this.AddDataLogs("Enable or disable data logs", "Enable status", onDataLogs == 1 ? "Enabled" : "Disabled");
+
+            return affectedRows;
         }
 
         public int UpdateOnEventLogs(int onEventLogs)
         {
-            return this.userControlAPIRepository.UpdateOnEventLogs(onEventLogs);
+            int affectedRows = this.userControlAPIRepository.UpdateOnEventLogs(onEventLogs);
+
+            this.AddDataLogs("Enable or disable event logs", "Enable status", onEventLogs == 1 ? "Enabled" : "Disabled");
+
+            return affectedRows;
         }
 
 
 
 
+
+        private void AddDataLogs(string actionType, string propertyName, string propertyValue)
+        {
+            DateTime entryDate = DateTime.Now;
+
+            this.userControlAPIRepository.AddDataLogs(null, null, entryDate, "UserControls", actionType, "", propertyName, propertyValue);
+        }
 
         private void AddDataLogs(string actionType, string userName, string securityIdentifier, string activeStatus)
         {

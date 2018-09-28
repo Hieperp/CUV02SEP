@@ -96,7 +96,7 @@ namespace TotalSmartCoding.Controllers.APIs.Generals
                 if (propertyName == "VoidablePermitted") { propertyName = "Void"; propertyValue = userGroupControlDTO.VoidablePermitted ? "Allowed" : "Disallowed"; }
                 if (propertyName == "UnVoidablePermitted") { propertyName = "Unvoid"; propertyValue = userGroupControlDTO.UnVoidablePermitted ? "Allowed" : "Disallowed"; }
 
-                this.AddDataLogs("Change access control", userGroupControlDTO.UserGroupControlID, userGroupIndex.UserGroupID, userGroupIndex.Name, userGroupControlDTO.ModuleDetailID, userGroupControlDTO.ModuleDetailName, userGroupControlDTO.LocationID, userGroupControlDTO.LocationName, propertyName, propertyValue);
+                this.AddDataLogs("Update access control", userGroupControlDTO.UserGroupControlID, userGroupIndex.UserGroupID, userGroupIndex.Name, userGroupControlDTO.ModuleDetailID, userGroupControlDTO.ModuleDetailName, userGroupControlDTO.LocationID, userGroupControlDTO.LocationName, propertyName, propertyValue);
             }
 
             return affectedRows;
@@ -106,7 +106,7 @@ namespace TotalSmartCoding.Controllers.APIs.Generals
         {
             int affectedRows = this.userGroupAPIRepository.SaveUserGroupReports(userGroupReportID, enabled);
 
-            this.AddDataLogs("Change report control", userGroupReportID, userGroupID, userGroupName, reportID, reportName, enabled);
+            this.AddDataLogs("Update report control", userGroupReportID, userGroupID, userGroupName, reportID, reportName, enabled);
 
             return affectedRows;
         }
