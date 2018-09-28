@@ -841,6 +841,8 @@ namespace TotalSmartCoding.Views.Mains
 
         private void toolUserReferences_Click(object sender, EventArgs e)
         {
+            this.AddEventLogs("Open user controls");
+
             if (sender.Equals(this.toolUserReferences))
             {
                 UserReferences userReferences = new UserReferences();
@@ -857,14 +859,19 @@ namespace TotalSmartCoding.Views.Mains
                 userControls.Dispose();
             }
 
+            this.AddEventLogs("Close user controls");
         }
 
         private void buttonLockedDate_Click(object sender, EventArgs e)
         {
+            this.AddEventLogs("Open month-end closing");
+
             LockedDates lockedDates = new LockedDates();
             DialogResult dialogResult = lockedDates.ShowDialog();
 
             lockedDates.Dispose();
+
+            this.AddEventLogs("Close month-end closing");
         }
 
         #region Search barcode

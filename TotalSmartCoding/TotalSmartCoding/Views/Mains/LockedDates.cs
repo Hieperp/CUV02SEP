@@ -61,7 +61,7 @@ namespace TotalSmartCoding.Views.Mains
                             DateTime newLockedDate = sender.Equals(this.buttonForward) ? locationIndex.LockedDate.AddDays(1).AddMonths(1).AddDays(-1) : locationIndex.LockedDate.AddDays(-locationIndex.LockedDate.Day);
                             if (CustomMsgBox.Show(this, "The current closing date for " + locationIndex.Name + " is:" + "\r\n" + "\r\n" + locationIndex.LockedDate + "\r\n" + "\r\n" + "Are you sure you want to change " + (sender.Equals(this.buttonForward) ? "forward" : "backward") + " to:" + "\r\n" + "\r\n" + newLockedDate, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Stop) == DialogResult.Yes)
                             {
-                                this.locationAPIs.UpdateLockedDate(locationIndex.LocationID, newLockedDate);
+                                this.locationAPIs.UpdateLockedDate(locationIndex.LocationID, locationIndex.Name, newLockedDate);
                                 this.loadLocationIndexes();
                             }
                         }

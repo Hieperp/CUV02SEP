@@ -37,10 +37,24 @@ namespace TotalSmartCoding.Controllers.APIs.Commons
             return this.locationAPIRepository.GetLocationBases(withNullRow);
         }
 
-        public int UpdateLockedDate(int locationID, DateTime lockedDate)
+        public int UpdateLockedDate(int locationID, string locationName, DateTime lockedDate)
         {
-            return this.locationAPIRepository.UpdateLockedDate(ContextAttributes.User.UserID, locationID, lockedDate);
+            int affectedRows = this.locationAPIRepository.UpdateLockedDate(ContextAttributes.User.UserID, locationID, lockedDate);
+
+            this.AddDataLogs("Update month-end closing", locationID, locationName, lockedDate);
+
+            return affectedRows;
         }
 
+        private void AddDataLogs(string actionType, int locationID, string locationName, DateTime lockedDate)
+        {
+            if (!this.locationAPIRepository.GetOnDataLogs()) return;// DO NOTHING
+
+            DateTime entryDate = DateTime.Now;
+
+            this.locationAPIRepository.AddDataLogs(locationID, null, entryDate, "Month-Ends", actionType, "Month-End", "LocationID", locationID.ToString());
+            this.locationAPIRepository.AddDataLogs(locationID, null, entryDate, "Month-Ends", actionType, "Month-End", "LocationName", locationName);
+            this.locationAPIRepository.AddDataLogs(locationID, null, entryDate, "Month-Ends", actionType, "Month-End", "LockedDate", lockedDate.ToString("dd/MMM/yyyy"));
+        }
     }
 }
