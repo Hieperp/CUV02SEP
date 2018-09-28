@@ -69,8 +69,8 @@
             this.olvUserGroupName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.checkOnDataLogs = new System.Windows.Forms.CheckBox();
             this.checkOnEventLogs = new System.Windows.Forms.CheckBox();
+            this.checkOnDataLogs = new System.Windows.Forms.CheckBox();
             this.toolUserGroupDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastUserControlIndexes)).BeginInit();
             this.toolUserGroups.SuspendLayout();
@@ -94,7 +94,7 @@
             this.buttonManageGroups});
             this.toolUserGroupDetails.Location = new System.Drawing.Point(0, 0);
             this.toolUserGroupDetails.Name = "toolUserGroupDetails";
-            this.toolUserGroupDetails.Size = new System.Drawing.Size(764, 39);
+            this.toolUserGroupDetails.Size = new System.Drawing.Size(713, 39);
             this.toolUserGroupDetails.TabIndex = 0;
             this.toolUserGroupDetails.Text = "toolStrip1";
             // 
@@ -161,7 +161,7 @@
             this.fastUserControlIndexes.Name = "fastUserControlIndexes";
             this.fastUserControlIndexes.OwnerDraw = true;
             this.fastUserControlIndexes.ShowGroups = false;
-            this.fastUserControlIndexes.Size = new System.Drawing.Size(288, 610);
+            this.fastUserControlIndexes.Size = new System.Drawing.Size(339, 610);
             this.fastUserControlIndexes.TabIndex = 69;
             this.fastUserControlIndexes.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastUserControlIndexes.UseCompatibleStateImageBehavior = false;
@@ -187,7 +187,7 @@
             this.olvUserControlName.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvUserControlName.Sortable = false;
             this.olvUserControlName.Text = "";
-            this.olvUserControlName.Width = 218;
+            this.olvUserControlName.Width = 268;
             // 
             // olvInActive
             // 
@@ -290,9 +290,9 @@
             this.panelCenter.Controls.Add(this.fastUserGroupDetails);
             this.panelCenter.Controls.Add(this.toolUserGroupDetails);
             this.panelCenter.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelCenter.Location = new System.Drawing.Point(288, 39);
+            this.panelCenter.Location = new System.Drawing.Point(339, 39);
             this.panelCenter.Name = "panelCenter";
-            this.panelCenter.Size = new System.Drawing.Size(764, 610);
+            this.panelCenter.Size = new System.Drawing.Size(713, 610);
             this.panelCenter.TabIndex = 74;
             // 
             // fastUserSalespersons
@@ -318,7 +318,7 @@
             this.fastUserSalespersons.Name = "fastUserSalespersons";
             this.fastUserSalespersons.OwnerDraw = true;
             this.fastUserSalespersons.ShowGroups = false;
-            this.fastUserSalespersons.Size = new System.Drawing.Size(764, 138);
+            this.fastUserSalespersons.Size = new System.Drawing.Size(713, 138);
             this.fastUserSalespersons.TabIndex = 104;
             this.fastUserSalespersons.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastUserSalespersons.UseCompatibleStateImageBehavior = false;
@@ -364,7 +364,7 @@
             this.toolStripLabel1});
             this.toolUserSalespersons.Location = new System.Drawing.Point(0, 283);
             this.toolUserSalespersons.Name = "toolUserSalespersons";
-            this.toolUserSalespersons.Size = new System.Drawing.Size(764, 39);
+            this.toolUserSalespersons.Size = new System.Drawing.Size(713, 39);
             this.toolUserSalespersons.TabIndex = 103;
             this.toolUserSalespersons.Text = "toolStrip1";
             // 
@@ -427,7 +427,7 @@
             this.fastUserGroupDetails.Name = "fastUserGroupDetails";
             this.fastUserGroupDetails.OwnerDraw = true;
             this.fastUserGroupDetails.ShowGroups = false;
-            this.fastUserGroupDetails.Size = new System.Drawing.Size(764, 244);
+            this.fastUserGroupDetails.Size = new System.Drawing.Size(713, 244);
             this.fastUserGroupDetails.TabIndex = 102;
             this.fastUserGroupDetails.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastUserGroupDetails.UseCompatibleStateImageBehavior = false;
@@ -485,18 +485,6 @@
             this.panel2.Size = new System.Drawing.Size(275, 39);
             this.panel2.TabIndex = 1;
             // 
-            // checkOnDataLogs
-            // 
-            this.checkOnDataLogs.AutoSize = true;
-            this.checkOnDataLogs.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.checkOnDataLogs.Location = new System.Drawing.Point(3, 12);
-            this.checkOnDataLogs.Name = "checkOnDataLogs";
-            this.checkOnDataLogs.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.checkOnDataLogs.Size = new System.Drawing.Size(124, 21);
-            this.checkOnDataLogs.TabIndex = 0;
-            this.checkOnDataLogs.Text = "Enable Data Logs";
-            this.checkOnDataLogs.UseVisualStyleBackColor = true;
-            // 
             // checkOnEventLogs
             // 
             this.checkOnEventLogs.AutoSize = true;
@@ -508,6 +496,18 @@
             this.checkOnEventLogs.TabIndex = 1;
             this.checkOnEventLogs.Text = "Enable Event Logs";
             this.checkOnEventLogs.UseVisualStyleBackColor = true;
+            // 
+            // checkOnDataLogs
+            // 
+            this.checkOnDataLogs.AutoSize = true;
+            this.checkOnDataLogs.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.checkOnDataLogs.Location = new System.Drawing.Point(3, 12);
+            this.checkOnDataLogs.Name = "checkOnDataLogs";
+            this.checkOnDataLogs.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.checkOnDataLogs.Size = new System.Drawing.Size(124, 21);
+            this.checkOnDataLogs.TabIndex = 0;
+            this.checkOnDataLogs.Text = "Enable Data Logs";
+            this.checkOnDataLogs.UseVisualStyleBackColor = true;
             // 
             // UserControls
             // 
