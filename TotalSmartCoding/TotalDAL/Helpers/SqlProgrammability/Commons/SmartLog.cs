@@ -64,43 +64,77 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
 
         private void DataLogJournals()
         {
-            string queryString = " @FromDate DateTime, @ToDate DateTime " + "\r\n";
+            string queryString = " @FromDate DateTime, @ToDate DateTime, @UserName nvarchar(80) " + "\r\n";
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "   BEGIN " + "\r\n";
-            queryString = queryString + "       DECLARE     @LocalFromDate DateTime, @LocalToDate DateTime " + "\r\n";
-            queryString = queryString + "       SET         @LocalFromDate = @FromDate      SET @LocalToDate = @ToDate  " + "\r\n";
+            queryString = queryString + "       DECLARE     @LocalFromDate DateTime, @LocalToDate DateTime, @LocalUserName nvarchar(80) " + "\r\n";
+            queryString = queryString + "       SET         @LocalFromDate = @FromDate      SET @LocalToDate = @ToDate      SET @LocalUserName = @UserName " + "\r\n";
 
-            queryString = queryString + "       SELECT      DataLogs.DataLogID, DataLogs.LocationID, Locations.Code AS LocationCode, DataLogs.EntryID, DataLogs.EntryDetailID, DataLogs.EntryDate, DataLogs.ModuleName, DataLogs.UserName, DataLogs.IPAddress, DataLogs.ActionType, DataLogs.EntityName, DataLogs.PropertyName, DataLogs.PropertyValue " + "\r\n";
-            queryString = queryString + "       FROM        TotalSmartLogs.dbo.DataLogs AS DataLogs INNER JOIN Locations ON DataLogs.EntryDate >= @LocalFromDate AND DataLogs.EntryDate <= @LocalToDate AND DataLogs.LocationID = Locations.LocationID " + "\r\n";
-            queryString = queryString + "       ORDER BY    DataLogs.DataLogID " + "\r\n";
+            queryString = queryString + "       IF  (@LocalUserName <> '') " + "\r\n";
+            queryString = queryString + "           " + this.DataLogJournalSQL(true) + "\r\n";
+            queryString = queryString + "       ELSE " + "\r\n";
+            queryString = queryString + "           " + this.DataLogJournalSQL(false) + "\r\n";
+
             queryString = queryString + "   END " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("DataLogJournals", queryString);
         }
 
+        private string DataLogJournalSQL(bool isUserName)
+        {
+            string queryString = "";
+            queryString = queryString + "   BEGIN " + "\r\n";
+            queryString = queryString + "       SELECT      DataLogs.DataLogID, DataLogs.LocationID, Locations.Code AS LocationCode, DataLogs.EntryID, DataLogs.EntryDetailID, DataLogs.EntryDate, DataLogs.ModuleName, DataLogs.UserName, DataLogs.IPAddress, DataLogs.ActionType, DataLogs.EntityName, DataLogs.PropertyName, DataLogs.PropertyValue " + "\r\n";
+            queryString = queryString + "       FROM        TotalSmartLogs.dbo.DataLogs AS DataLogs INNER JOIN Locations ON DataLogs.EntryDate >= @LocalFromDate AND DataLogs.EntryDate <= @LocalToDate " + (isUserName ? "AND DataLogs.UserName = @LocalUserName" : "") + " AND DataLogs.LocationID = Locations.LocationID " + "\r\n";
+            queryString = queryString + "       ORDER BY    DataLogs.DataLogID " + "\r\n";
+            queryString = queryString + "   END " + "\r\n";
+
+            return queryString;
+        }
+
         private void EventLogJournals()
         {
-
-            string queryMaster = "              SELECT      EventLogs.EventLogID, EventLogs.LocationID, Locations.Code AS LocationCode, EventLogs.EntryDate, EventLogs.UserName, EventLogs.IPAddress, EventLogs.ModuleName, EventLogs.ActionType, EventLogs.EntryID, EventLogs.Remarks " + "\r\n";
-            queryMaster = queryMaster + "       FROM        TotalSmartLogs.dbo.EventLogs AS EventLogs INNER JOIN Locations ON " + "\r\n";
-
-            string queryString = " @FromDate DateTime, @ToDate DateTime, @LastEventLogs bit " + "\r\n";
+            string queryString = " @FromDate DateTime, @ToDate DateTime, @UserName nvarchar(80), @LastEventLogs bit " + "\r\n";
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "   BEGIN " + "\r\n";
-            queryString = queryString + "       DECLARE     @LocalFromDate DateTime, @LocalToDate DateTime " + "\r\n";
-            queryString = queryString + "       SET         @LocalFromDate = @FromDate      SET @LocalToDate = @ToDate  " + "\r\n";
+            queryString = queryString + "       DECLARE     @LocalFromDate DateTime, @LocalToDate DateTime, @LocalUserName nvarchar(80), @LocalLastEventLogs bit " + "\r\n";
+            queryString = queryString + "       SET         @LocalFromDate = @FromDate      SET @LocalToDate = @ToDate      SET @LocalUserName = @UserName      SET @LocalLastEventLogs = @LastEventLogs " + "\r\n";
             
-            queryString = queryString + "       IF (@LastEventLogs = 0) " + "\r\n";
-            queryString = queryString + "           " + queryMaster + " EventLogs.EntryDate >= @LocalFromDate AND EventLogs.EntryDate <= @LocalToDate " + " AND EventLogs.LocationID = Locations.LocationID " + "\r\n";
-            queryString = queryString + "           ORDER BY    EventLogs.EventLogID " + "\r\n";
+            queryString = queryString + "       IF (@LastEventLogs <> 0) " + "\r\n";
+            queryString = queryString + "           " + this.EventLogJournalSQL(true) + "\r\n";
             queryString = queryString + "       ELSE " + "\r\n";
-            queryString = queryString + "           " + queryMaster + " EventLogs.EventLogID IN (SELECT EventLogID FROM TotalSmartLogs.dbo.LastEventLogs) " + " AND EventLogs.LocationID = Locations.LocationID " + "\r\n";
-            queryString = queryString + "           ORDER BY    EventLogs.EntryDate DESC " + "\r\n";
+            queryString = queryString + "           " + this.EventLogJournalSQL(false) + "\r\n";
             queryString = queryString + "   END " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("EventLogJournals", queryString);
+        }
+
+        private string EventLogJournalSQL(bool isLastEventLogs)
+        {
+            string queryString = "";
+            queryString = queryString + "   BEGIN " + "\r\n";
+            queryString = queryString + "       IF  (@LocalUserName <> '') " + "\r\n";
+            queryString = queryString + "           " + this.EventLogJournalSQL(isLastEventLogs, true) + "\r\n";
+            queryString = queryString + "       ELSE " + "\r\n";
+            queryString = queryString + "           " + this.EventLogJournalSQL(isLastEventLogs, false) + "\r\n";
+            queryString = queryString + "   END " + "\r\n";
+
+            return queryString;
+        }
+
+        private string EventLogJournalSQL(bool isLastEventLogs, bool isUserName)
+        {
+            string queryString = "";
+            queryString = queryString + "   BEGIN " + "\r\n";
+            queryString = queryString + "       SELECT      EventLogs.EventLogID, EventLogs.LocationID, Locations.Code AS LocationCode, EventLogs.EntryDate, EventLogs.UserName, EventLogs.IPAddress, EventLogs.ModuleName, EventLogs.ActionType, EventLogs.EntryID, EventLogs.Remarks " + "\r\n";
+            queryString = queryString + "       FROM        TotalSmartLogs.dbo.EventLogs AS EventLogs " + "\r\n";
+            queryString = queryString + "                   INNER JOIN Locations ON " + (isLastEventLogs ? "EventLogs.EventLogID IN (SELECT EventLogID FROM TotalSmartLogs.dbo.LastEventLogs)" : ("EventLogs.EntryDate >= @LocalFromDate AND EventLogs.EntryDate <= @LocalToDate" + (isUserName ? " AND EventLogs.UserName = @LocalUserName" : ""))) + " AND EventLogs.LocationID = Locations.LocationID " + "\r\n";
+            queryString = queryString + "       ORDER BY    EventLogs.EventLogID " + "\r\n";
+            queryString = queryString + "   END " + "\r\n";
+
+            return queryString;
         }
 
     }
