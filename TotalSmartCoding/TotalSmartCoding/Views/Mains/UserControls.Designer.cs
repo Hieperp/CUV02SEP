@@ -71,6 +71,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.checkOnEventLogs = new System.Windows.Forms.CheckBox();
             this.checkOnDataLogs = new System.Windows.Forms.CheckBox();
+            this.olvAdminName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.toolUserGroupDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastUserControlIndexes)).BeginInit();
             this.toolUserGroups.SuspendLayout();
@@ -143,11 +144,13 @@
             this.fastUserControlIndexes.AllColumns.Add(this.olvID);
             this.fastUserControlIndexes.AllColumns.Add(this.olvUserControlType);
             this.fastUserControlIndexes.AllColumns.Add(this.olvUserControlName);
+            this.fastUserControlIndexes.AllColumns.Add(this.olvAdminName);
             this.fastUserControlIndexes.AllColumns.Add(this.olvInActive);
             this.fastUserControlIndexes.BackColor = System.Drawing.Color.Ivory;
             this.fastUserControlIndexes.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.olvID,
             this.olvUserControlName,
+            this.olvAdminName,
             this.olvInActive});
             this.fastUserControlIndexes.Cursor = System.Windows.Forms.Cursors.Default;
             this.fastUserControlIndexes.Dock = System.Windows.Forms.DockStyle.Left;
@@ -187,7 +190,7 @@
             this.olvUserControlName.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvUserControlName.Sortable = false;
             this.olvUserControlName.Text = "";
-            this.olvUserControlName.Width = 268;
+            this.olvUserControlName.Width = 207;
             // 
             // olvInActive
             // 
@@ -509,6 +512,13 @@
             this.checkOnDataLogs.Text = "Enable Data Logs";
             this.checkOnDataLogs.UseVisualStyleBackColor = true;
             // 
+            // olvAdminName
+            // 
+            this.olvAdminName.AspectName = "AdminName";
+            this.olvAdminName.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvAdminName.Text = "";
+            this.olvAdminName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // UserControls
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -588,5 +598,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.CheckBox checkOnDataLogs;
         private System.Windows.Forms.CheckBox checkOnEventLogs;
+        private BrightIdeasSoftware.OLVColumn olvAdminName;
     }
 }

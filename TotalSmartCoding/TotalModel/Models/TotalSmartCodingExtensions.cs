@@ -566,6 +566,8 @@ namespace TotalModel.Models
         public string FullyQualifiedOrganizationalUnitName { get { return this.LocationName; } }// + "\\" + this.OrganizationalUnitName
     }
 
+    public partial class UserControlIndex { public string AdminName { get { return this.IsDatabaseAdmin ? "[ADMIN]" : ""; } } }
+
     public partial class WarehouseAdjustmentType : IPrimitiveEntity, IBaseEntity
     {
         public int GetID() { return this.WarehouseAdjustmentTypeID; }

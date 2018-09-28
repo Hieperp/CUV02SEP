@@ -48,7 +48,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             queryString = queryString + "       UPDATE Users SET InActive = 1 WHERE SecurityIdentifier IN (SELECT SecurityIdentifier FROM Users WHERE InActive = 1) " + "\r\n";
             queryString = queryString + "       UPDATE Users SET IsDatabaseAdmin = 1 WHERE SecurityIdentifier IN (SELECT SecurityIdentifier FROM Users WHERE IsDatabaseAdmin = 1) " + "\r\n";
 
-            queryString = queryString + "       SELECT      MIN(UserID) AS UserID, SecurityIdentifier, UserName + IIF(IsDatabaseAdmin = 1, ' [ADMIN]','') AS UserName, IsDatabaseAdmin, InActive, N'Chevron Vietnam' AS UserControlType " + "\r\n";
+            queryString = queryString + "       SELECT      MIN(UserID) AS UserID, SecurityIdentifier, UserName, IsDatabaseAdmin, InActive, N'Chevron Vietnam' AS UserControlType " + "\r\n";
             queryString = queryString + "       FROM        Users " + "\r\n";
             queryString = queryString + "       GROUP BY    SecurityIdentifier, UserName, IsDatabaseAdmin, InActive " + "\r\n";
             queryString = queryString + "       ORDER BY    UserName " + "\r\n";
