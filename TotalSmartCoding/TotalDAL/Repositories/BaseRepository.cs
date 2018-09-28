@@ -109,6 +109,63 @@ namespace TotalDAL.Repositories
                 this.totalSmartCodingEntities.ColumnAdd("Locations", "OnDataLogs", "int", "0", true);
                 this.totalSmartCodingEntities.ColumnAdd("Locations", "OnEventLogs", "int", "0", true);
             }
+
+
+            if (!this.totalSmartCodingEntities.TableExists("DataLogs"))
+            {
+                this.ExecuteStoreCommand(@"CREATE TABLE [dbo].[DataLogs](
+	                                                    [DataLogID] [bigint] IDENTITY(1,1) NOT NULL,
+	                                                    [LocationID] [int] NULL,
+	                                                    [EntryID] [int] NULL,
+	                                                    [EntryDetailID] [int] NULL,
+	                                                    [EntryDate] [datetime] NULL,
+	                                                    [ModuleName] [nvarchar](80) NULL,
+	                                                    [UserName] [nvarchar](80) NULL,
+	                                                    [IPAddress] [nvarchar](60) NULL,
+	                                                    [ActionType] [nvarchar](60) NULL,
+	                                                    [EntityName] [nvarchar](60) NULL,
+	                                                    [PropertyName] [nvarchar](60) NULL,
+	                                                    [PropertyValue] [nvarchar](500) NULL,
+                                                     CONSTRAINT [PK_DataLogs] PRIMARY KEY CLUSTERED 
+                                                    (
+	                                                    [DataLogID] ASC
+                                                    )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+                                                    ) ON [PRIMARY]	                                                
+                                                ", new ObjectParameter[] { });
+            }
+            if (!this.totalSmartCodingEntities.TableExists("EventLogs"))
+            {
+                this.ExecuteStoreCommand(@"CREATE TABLE [dbo].[EventLogs](
+	                                                    [EventLogID] [bigint] IDENTITY(1,1) NOT NULL,
+	                                                    [LocationID] [int] NULL,
+	                                                    [EntryDate] [datetime] NULL,
+	                                                    [UserName] [nvarchar](80) NULL,
+	                                                    [IPAddress] [nvarchar](60) NULL,
+	                                                    [ModuleName] [nvarchar](80) NULL,
+	                                                    [ActionType] [nvarchar](60) NULL,
+	                                                    [EntryID] [int] NULL,
+	                                                    [Remarks] [nvarchar](200) NULL,
+                                                     CONSTRAINT [PK_EventLogs] PRIMARY KEY CLUSTERED 
+                                                    (
+	                                                    [EventLogID] ASC
+                                                    )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+                                                    ) ON [PRIMARY]	                                                
+                                                ", new ObjectParameter[] { });
+            }
+            if (!this.totalSmartCodingEntities.TableExists("LastEventLogs"))
+            {
+                this.ExecuteStoreCommand(@"CREATE TABLE [dbo].[LastEventLogs](
+	                                                    [LastEventLogID] [int] IDENTITY(1,1) NOT NULL,
+	                                                    [EventLogID] [bigint] NOT NULL,
+	                                                    [UserName] [nvarchar](80) NOT NULL,
+                                                     CONSTRAINT [PK_LastEventLogs] PRIMARY KEY CLUSTERED 
+                                                    (
+	                                                    [LastEventLogID] ASC
+                                                    )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+                                                    ) ON [PRIMARY]	                                                
+                                                ", new ObjectParameter[] { });
+            }
+
             #endregion
 
             #region ConfigLogs
