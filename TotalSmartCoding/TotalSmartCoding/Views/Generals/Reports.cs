@@ -194,8 +194,10 @@ namespace TotalSmartCoding.Views.Generals
             this.comboSlowMoving.Items.AddRange(new string[] { "Regardless forecast", "And without forecast" });
             this.comboSlowMoving.SelectedIndex = 0;
 
-            //this.comboUserName.ComboBox.DataSource = employeeAPIs.GetEmployeeBases(ContextAttributes.User.UserID, (int)this.pickupViewModel.NMVNTaskID, (int)GlobalEnums.RoleID.Production);
-            //this.comboUserName.ComboBox.SelectedIndex = 0;
+            UserControlAPIs userControlAPIs = new UserControlAPIs(CommonNinject.Kernel.Get<IUserControlAPIRepository>());
+            this.comboUserName.ComboBox.Items.Add("[All users]");
+            this.comboUserName.ComboBox.Items.AddRange(Array.ConvertAll(userControlAPIs.GetUserControlIndexes().ToArray(), u => u.UserName));
+            this.comboUserName.ComboBox.SelectedIndex = 0;
 
             this.dateTimexFromDate.DataBindings.Add("Value", GlobalEnums.GlobalOptionSetting, CommonExpressions.PropertyName<OptionSetting>(p => p.FromDate), true, DataSourceUpdateMode.OnPropertyChanged);
             this.dateTimexToDate.DataBindings.Add("Value", GlobalEnums.GlobalOptionSetting, CommonExpressions.PropertyName<OptionSetting>(p => p.ToDate), true, DataSourceUpdateMode.OnPropertyChanged);
@@ -414,10 +416,10 @@ namespace TotalSmartCoding.Views.Generals
             }
 
 
-            if (this.comboUserName.Visible)
+            if (this.comboUserName.Visible && this.comboUserName.ComboBox.SelectedIndex != 0)
             {
                 headerTitle = headerTitle + " [USER: " + this.comboUserName.Text + "]";
-                printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("UserName", this.comboUserName.Text));
+                printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("UserName", (this.comboUserName.ComboBox.SelectedIndex != 0 ? this.comboUserName.Text : "#")));
             }
 
             string captionDescriptions = "";

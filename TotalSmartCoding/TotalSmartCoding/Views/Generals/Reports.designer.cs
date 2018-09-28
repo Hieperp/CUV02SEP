@@ -50,6 +50,8 @@
             this.comboSalesVersusPromotion = new System.Windows.Forms.ToolStripComboBox();
             this.comboForecastFilters = new System.Windows.Forms.ToolStripComboBox();
             this.buttonSalesVersusPromotion = new System.Windows.Forms.ToolStripButton();
+            this.comboUserName = new System.Windows.Forms.ToolStripComboBox();
+            this.buttonUserName = new System.Windows.Forms.ToolStripButton();
             this.layoutTop = new System.Windows.Forms.TableLayoutPanel();
             this.labelSlowMoving = new System.Windows.Forms.Label();
             this.pictureToDate = new System.Windows.Forms.PictureBox();
@@ -199,8 +201,6 @@
             this.buttonCommodityTypeDeselect = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
             this.buttonCommodityTypeClear = new System.Windows.Forms.ToolStripButton();
-            this.comboUserName = new System.Windows.Forms.ToolStripComboBox();
-            this.buttonUserName = new System.Windows.Forms.ToolStripButton();
             this.toolStripChildForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeCommodityID)).BeginInit();
             this.panelTop.SuspendLayout();
@@ -473,6 +473,23 @@
             this.buttonSalesVersusPromotion.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonSalesVersusPromotion.Name = "buttonSalesVersusPromotion";
             this.buttonSalesVersusPromotion.Size = new System.Drawing.Size(28, 28);
+            // 
+            // comboUserName
+            // 
+            this.comboUserName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboUserName.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
+            this.comboUserName.Font = new System.Drawing.Font("Calibri Light", 10.2F);
+            this.comboUserName.Name = "comboUserName";
+            this.comboUserName.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.comboUserName.Size = new System.Drawing.Size(239, 25);
+            // 
+            // buttonUserName
+            // 
+            this.buttonUserName.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.buttonUserName.Image = global::TotalSmartCoding.Properties.Resources.Energy_24;
+            this.buttonUserName.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonUserName.Name = "buttonUserName";
+            this.buttonUserName.Size = new System.Drawing.Size(28, 28);
             // 
             // layoutTop
             // 
@@ -2251,23 +2268,6 @@
             this.buttonCommodityTypeClear.Text = "toolStripButton6";
             this.buttonCommodityTypeClear.ToolTipText = "Clear Filters";
             this.buttonCommodityTypeClear.Click += new System.EventHandler(this.buttonCollapse_Click);
-            // 
-            // comboUserName
-            // 
-            this.comboUserName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboUserName.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
-            this.comboUserName.Font = new System.Drawing.Font("Calibri Light", 10.2F);
-            this.comboUserName.Name = "comboUserName";
-            this.comboUserName.Size = new System.Drawing.Size(268, 25);
-            // 
-            // buttonUserName
-            // 
-            this.buttonUserName.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.buttonUserName.Image = global::TotalSmartCoding.Properties.Resources.Energy_24;
-            this.buttonUserName.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.buttonUserName.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonUserName.Name = "buttonUserName";
-            this.buttonUserName.Size = new System.Drawing.Size(28, 28);
             // 
             // Reports
             // 

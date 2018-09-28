@@ -71,7 +71,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             queryString = queryString + "       DECLARE     @LocalFromDate DateTime, @LocalToDate DateTime, @LocalUserName nvarchar(80) " + "\r\n";
             queryString = queryString + "       SET         @LocalFromDate = @FromDate      SET @LocalToDate = @ToDate      SET @LocalUserName = @UserName " + "\r\n";
 
-            queryString = queryString + "       IF  (@LocalUserName <> '') " + "\r\n";
+            queryString = queryString + "       IF  (@LocalUserName <> '#') " + "\r\n";
             queryString = queryString + "           " + this.DataLogJournalSQL(true) + "\r\n";
             queryString = queryString + "       ELSE " + "\r\n";
             queryString = queryString + "           " + this.DataLogJournalSQL(false) + "\r\n";
@@ -115,7 +115,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
         {
             string queryString = "";
             queryString = queryString + "   BEGIN " + "\r\n";
-            queryString = queryString + "       IF  (@LocalUserName <> '') " + "\r\n";
+            queryString = queryString + "       IF  (@LocalUserName <> '#') " + "\r\n";
             queryString = queryString + "           " + this.EventLogJournalSQL(isLastEventLogs, true) + "\r\n";
             queryString = queryString + "       ELSE " + "\r\n";
             queryString = queryString + "           " + this.EventLogJournalSQL(isLastEventLogs, false) + "\r\n";
