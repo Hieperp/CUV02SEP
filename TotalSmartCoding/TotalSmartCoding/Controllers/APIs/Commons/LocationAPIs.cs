@@ -54,7 +54,7 @@ namespace TotalSmartCoding.Controllers.APIs.Commons
 
             this.locationAPIRepository.AddDataLogs(locationID, null, entryDate, "Month-Ends", actionType, "Month-End", "LocationID", locationID.ToString());
             this.locationAPIRepository.AddDataLogs(locationID, null, entryDate, "Month-Ends", actionType, "Month-End", "LocationName", locationName);
-            this.locationAPIRepository.AddDataLogs(locationID, null, entryDate, "Month-Ends", actionType, "Month-End", "LockedDate", lockedDate.ToString("dd/MMM/yyyy"));
+            this.locationAPIRepository.AddDataLogs(locationID, null, entryDate, "Month-Ends", actionType, "Month-End", "ClosedDate", lockedDate.ToString("dd/MMM/yyyy HH:mm:ss"));
         }
     }
 }
