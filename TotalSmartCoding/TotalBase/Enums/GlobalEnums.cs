@@ -346,7 +346,8 @@
             DateVersusMonth = 30,
             SalesVersusPromotion = 50,
             ForecastFilters = 60,
-            SlowMoving = 70
+            SlowMoving = 70,
+            UserName = 88
         }//NOTES: OBx(OptionBoxID optionBoxID): MUST BE NOT DUPLICATE ANY PART
 
         public static string OBx(OptionBoxID optionBoxID)
