@@ -20,8 +20,9 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
         {
             this.GetTeamIndexes();
 
-            //this.TeamEditable(); 
-            //this.TeamSaveRelative();
+            this.TeamEditable();
+            this.TeamDeletable();
+            this.TeamSaveRelative();
 
             this.GetTeamBases();
             this.GetTeamTrees();
@@ -51,26 +52,6 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             string queryString = " @EntityID int, @SaveRelativeOption int " + "\r\n"; //SaveRelativeOption: 1: Update, -1:Undo
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
-            queryString = queryString + "    BEGIN " + "\r\n";
-
-            queryString = queryString + "       IF (@SaveRelativeOption = 1) " + "\r\n";
-            queryString = queryString + "           BEGIN " + "\r\n";
-
-            queryString = queryString + "               INSERT INTO TeamTeams (TeamID, TeamID, TeamTaskID, EntryDate, Remarks, InActive) " + "\r\n";
-            queryString = queryString + "               SELECT      TeamID, 46 AS TeamID, " + (int)GlobalEnums.NmvnTaskID.SalesOrders + " AS TeamTaskID, GETDATE(), '', 0 FROM Teams WHERE TeamID = @EntityID " + "\r\n";
-
-            queryString = queryString + "               INSERT INTO TeamTeams (TeamID, TeamID, TeamTaskID, EntryDate, Remarks, InActive) " + "\r\n";
-            queryString = queryString + "               SELECT      Teams.TeamID, Teams.TeamID, " + (int)GlobalEnums.NmvnTaskID.DeliveryAdvices + " AS TeamTaskID, GETDATE(), '', 0 FROM Teams INNER JOIN Teams ON Teams.TeamID = @EntityID AND Teams.TeamTypeID NOT IN (4, 5, 7, 9, 10, 11, 12) AND Teams.TeamTypeID = Teams.TeamTypeID " + "\r\n";
-
-            queryString = queryString + "               INSERT INTO TeamTeams (TeamID, TeamID, TeamTaskID, EntryDate, Remarks, InActive) " + "\r\n";
-            queryString = queryString + "               SELECT      TeamID, 82 AS TeamID, " + (int)GlobalEnums.NmvnTaskID.DeliveryAdvices + " AS TeamTaskID, GETDATE(), '', 0 FROM Teams WHERE TeamID = @EntityID AND TeamTypeID IN (4, 5, 7, 9, 10, 11, 12) " + "\r\n";
-
-            queryString = queryString + "           END " + "\r\n";
-
-            queryString = queryString + "       ELSE " + "\r\n"; //(@SaveRelativeOption = -1) 
-            queryString = queryString + "           DELETE      TeamTeams WHERE TeamID = @EntityID " + "\r\n";
-
-            queryString = queryString + "    END " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("TeamSaveRelative", queryString);
         }
@@ -80,12 +61,19 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
         {
             string[] queryArray = new string[0];
 
-            //queryArray[0] = " SELECT TOP 1 @FoundEntity = TeamID FROM Teams WHERE TeamID = @EntityID AND (InActive = 1 OR InActivePartial = 1)"; //Don't allow approve after void
-            //queryArray[1] = " SELECT TOP 1 @FoundEntity = TeamID FROM GoodsIssueDetails WHERE TeamID = @EntityID ";
-
             this.totalSmartCodingEntities.CreateProcedureToCheckExisting("TeamEditable", queryArray);
         }
 
+        private void TeamDeletable()
+        {
+            string[] queryArray = new string[3];
+
+            queryArray[0] = " SELECT TOP 1 @FoundEntity = TeamID FROM Employees WHERE TeamID = @EntityID ";
+            queryArray[1] = " SELECT TOP 1 @FoundEntity = TeamID FROM SalesOrders WHERE TeamID = @EntityID ";
+            queryArray[2] = " SELECT TOP 1 @FoundEntity = TeamID FROM DeliveryAdvices WHERE TeamID = @EntityID ";
+
+            this.totalSmartCodingEntities.CreateProcedureToCheckExisting("TeamDeletable", queryArray);
+        }
 
         private void GetTeamBases()
         {
