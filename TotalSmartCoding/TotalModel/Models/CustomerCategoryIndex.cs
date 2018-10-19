@@ -15,5 +15,6 @@ namespace TotalModel.Models
     {
         public int CustomerCategoryID { get; set; }
         public string Name { get; set; }
+        public string Remarks { get; set; }
     }
 }

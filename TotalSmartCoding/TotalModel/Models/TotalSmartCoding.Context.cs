@@ -3114,5 +3114,169 @@ namespace TotalModel.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("TeamSaveRelative", entityIDParameter, saveRelativeOptionParameter);
         }
+    
+        public virtual ObjectResult<string> CommodityCategoryDeletable(Nullable<int> entityID)
+        {
+            var entityIDParameter = entityID.HasValue ?
+                new ObjectParameter("EntityID", entityID) :
+                new ObjectParameter("EntityID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("CommodityCategoryDeletable", entityIDParameter);
+        }
+    
+        public virtual ObjectResult<string> CommodityCategoryEditable(Nullable<int> entityID)
+        {
+            var entityIDParameter = entityID.HasValue ?
+                new ObjectParameter("EntityID", entityID) :
+                new ObjectParameter("EntityID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("CommodityCategoryEditable", entityIDParameter);
+        }
+    
+        public virtual int CommodityCategorySaveRelative(Nullable<int> entityID, Nullable<int> saveRelativeOption)
+        {
+            var entityIDParameter = entityID.HasValue ?
+                new ObjectParameter("EntityID", entityID) :
+                new ObjectParameter("EntityID", typeof(int));
+    
+            var saveRelativeOptionParameter = saveRelativeOption.HasValue ?
+                new ObjectParameter("SaveRelativeOption", saveRelativeOption) :
+                new ObjectParameter("SaveRelativeOption", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CommodityCategorySaveRelative", entityIDParameter, saveRelativeOptionParameter);
+        }
+    
+        public virtual ObjectResult<string> CommodityTypeDeletable(Nullable<int> entityID)
+        {
+            var entityIDParameter = entityID.HasValue ?
+                new ObjectParameter("EntityID", entityID) :
+                new ObjectParameter("EntityID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("CommodityTypeDeletable", entityIDParameter);
+        }
+    
+        public virtual ObjectResult<string> CommodityTypeEditable(Nullable<int> entityID)
+        {
+            var entityIDParameter = entityID.HasValue ?
+                new ObjectParameter("EntityID", entityID) :
+                new ObjectParameter("EntityID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("CommodityTypeEditable", entityIDParameter);
+        }
+    
+        public virtual int CommodityTypeSaveRelative(Nullable<int> entityID, Nullable<int> saveRelativeOption)
+        {
+            var entityIDParameter = entityID.HasValue ?
+                new ObjectParameter("EntityID", entityID) :
+                new ObjectParameter("EntityID", typeof(int));
+    
+            var saveRelativeOptionParameter = saveRelativeOption.HasValue ?
+                new ObjectParameter("SaveRelativeOption", saveRelativeOption) :
+                new ObjectParameter("SaveRelativeOption", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CommodityTypeSaveRelative", entityIDParameter, saveRelativeOptionParameter);
+        }
+    
+        public virtual ObjectResult<string> CustomerCategoryDeletable(Nullable<int> entityID)
+        {
+            var entityIDParameter = entityID.HasValue ?
+                new ObjectParameter("EntityID", entityID) :
+                new ObjectParameter("EntityID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("CustomerCategoryDeletable", entityIDParameter);
+        }
+    
+        public virtual ObjectResult<string> CustomerCategoryEditable(Nullable<int> entityID)
+        {
+            var entityIDParameter = entityID.HasValue ?
+                new ObjectParameter("EntityID", entityID) :
+                new ObjectParameter("EntityID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("CustomerCategoryEditable", entityIDParameter);
+        }
+    
+        public virtual int CustomerCategorySaveRelative(Nullable<int> entityID, Nullable<int> saveRelativeOption)
+        {
+            var entityIDParameter = entityID.HasValue ?
+                new ObjectParameter("EntityID", entityID) :
+                new ObjectParameter("EntityID", typeof(int));
+    
+            var saveRelativeOptionParameter = saveRelativeOption.HasValue ?
+                new ObjectParameter("SaveRelativeOption", saveRelativeOption) :
+                new ObjectParameter("SaveRelativeOption", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CustomerCategorySaveRelative", entityIDParameter, saveRelativeOptionParameter);
+        }
+    
+        public virtual ObjectResult<string> CustomerTypeEditable(Nullable<int> entityID)
+        {
+            var entityIDParameter = entityID.HasValue ?
+                new ObjectParameter("EntityID", entityID) :
+                new ObjectParameter("EntityID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("CustomerTypeEditable", entityIDParameter);
+        }
+    
+        public virtual int CustomerTypeSaveRelative(Nullable<int> entityID, Nullable<int> saveRelativeOption)
+        {
+            var entityIDParameter = entityID.HasValue ?
+                new ObjectParameter("EntityID", entityID) :
+                new ObjectParameter("EntityID", typeof(int));
+    
+            var saveRelativeOptionParameter = saveRelativeOption.HasValue ?
+                new ObjectParameter("SaveRelativeOption", saveRelativeOption) :
+                new ObjectParameter("SaveRelativeOption", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CustomerTypeSaveRelative", entityIDParameter, saveRelativeOptionParameter);
+        }
+    
+        public virtual ObjectResult<string> TerritoryDeletable(Nullable<int> entityID)
+        {
+            var entityIDParameter = entityID.HasValue ?
+                new ObjectParameter("EntityID", entityID) :
+                new ObjectParameter("EntityID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("TerritoryDeletable", entityIDParameter);
+        }
+    
+        public virtual ObjectResult<string> TerritoryEditable(Nullable<int> entityID)
+        {
+            var entityIDParameter = entityID.HasValue ?
+                new ObjectParameter("EntityID", entityID) :
+                new ObjectParameter("EntityID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("TerritoryEditable", entityIDParameter);
+        }
+    
+        public virtual ObjectResult<string> TerritoryPostSaveValidate(Nullable<int> entityID)
+        {
+            var entityIDParameter = entityID.HasValue ?
+                new ObjectParameter("EntityID", entityID) :
+                new ObjectParameter("EntityID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("TerritoryPostSaveValidate", entityIDParameter);
+        }
+    
+        public virtual int TerritorySaveRelative(Nullable<int> entityID, Nullable<int> saveRelativeOption)
+        {
+            var entityIDParameter = entityID.HasValue ?
+                new ObjectParameter("EntityID", entityID) :
+                new ObjectParameter("EntityID", typeof(int));
+    
+            var saveRelativeOptionParameter = saveRelativeOption.HasValue ?
+                new ObjectParameter("SaveRelativeOption", saveRelativeOption) :
+                new ObjectParameter("SaveRelativeOption", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("TerritorySaveRelative", entityIDParameter, saveRelativeOptionParameter);
+        }
+    
+        public virtual ObjectResult<string> CustomerTypeDeletable(Nullable<int> entityID)
+        {
+            var entityIDParameter = entityID.HasValue ?
+                new ObjectParameter("EntityID", entityID) :
+                new ObjectParameter("EntityID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("CustomerTypeDeletable", entityIDParameter);
+        }
     }
 }

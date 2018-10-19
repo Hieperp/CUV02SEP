@@ -21,6 +21,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             this.GetCustomerTypeIndexes();
 
             this.CustomerTypeEditable();
+            this.CustomerTypeDeletable();
             this.CustomerTypeSaveRelative();
 
             this.GetCustomerTypeBases();

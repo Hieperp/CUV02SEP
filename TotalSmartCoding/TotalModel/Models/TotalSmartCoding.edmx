@@ -2422,6 +2422,16 @@
           <Parameter Name="CartonIDs" Type="varchar" Mode="In" />
           <Parameter Name="EntryStatusID" Type="int" Mode="In" />
         </Function>
+        <Function Name="CommodityCategoryDeletable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CommodityCategoryEditable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CommodityCategorySaveRelative" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="int" Mode="In" />
+          <Parameter Name="SaveRelativeOption" Type="int" Mode="In" />
+        </Function>
         <Function Name="CommodityDeletable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="EntityID" Type="int" Mode="In" />
         </Function>
@@ -2438,6 +2448,26 @@
         <Function Name="CommoditySettingEditable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="EntityID" Type="int" Mode="In" />
         </Function>
+        <Function Name="CommodityTypeDeletable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CommodityTypeEditable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CommodityTypeSaveRelative" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="int" Mode="In" />
+          <Parameter Name="SaveRelativeOption" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CustomerCategoryDeletable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CustomerCategoryEditable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CustomerCategorySaveRelative" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="int" Mode="In" />
+          <Parameter Name="SaveRelativeOption" Type="int" Mode="In" />
+        </Function>
         <Function Name="CustomerDeletable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="EntityID" Type="int" Mode="In" />
         </Function>
@@ -2445,6 +2475,16 @@
           <Parameter Name="EntityID" Type="int" Mode="In" />
         </Function>
         <Function Name="CustomerSaveRelative" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="int" Mode="In" />
+          <Parameter Name="SaveRelativeOption" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CustomerTypeDeletable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CustomerTypeEditable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CustomerTypeSaveRelative" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="EntityID" Type="int" Mode="In" />
           <Parameter Name="SaveRelativeOption" Type="int" Mode="In" />
         </Function>
@@ -3115,6 +3155,19 @@
           <Parameter Name="EntityID" Type="int" Mode="In" />
         </Function>
         <Function Name="TeamSaveRelative" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="int" Mode="In" />
+          <Parameter Name="SaveRelativeOption" Type="int" Mode="In" />
+        </Function>
+        <Function Name="TerritoryDeletable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="TerritoryEditable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="TerritoryPostSaveValidate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="TerritorySaveRelative" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="EntityID" Type="int" Mode="In" />
           <Parameter Name="SaveRelativeOption" Type="int" Mode="In" />
         </Function>
@@ -5139,6 +5192,59 @@
             <Parameter Name="EntityID" Mode="In" Type="Int32" />
             <Parameter Name="SaveRelativeOption" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="CommodityCategoryDeletable" ReturnType="Collection(String)">
+          <Parameter Name="EntityID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CommodityCategoryEditable" ReturnType="Collection(String)">
+          <Parameter Name="EntityID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CommodityCategorySaveRelative">
+            <Parameter Name="EntityID" Mode="In" Type="Int32" />
+            <Parameter Name="SaveRelativeOption" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CommodityTypeDeletable" ReturnType="Collection(String)">
+          <Parameter Name="EntityID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CommodityTypeEditable" ReturnType="Collection(String)">
+          <Parameter Name="EntityID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CommodityTypeSaveRelative">
+            <Parameter Name="EntityID" Mode="In" Type="Int32" />
+            <Parameter Name="SaveRelativeOption" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CustomerCategoryDeletable" ReturnType="Collection(String)">
+          <Parameter Name="EntityID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CustomerCategoryEditable" ReturnType="Collection(String)">
+          <Parameter Name="EntityID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CustomerCategorySaveRelative">
+            <Parameter Name="EntityID" Mode="In" Type="Int32" />
+            <Parameter Name="SaveRelativeOption" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CustomerTypeEditable" ReturnType="Collection(String)">
+          <Parameter Name="EntityID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CustomerTypeSaveRelative">
+            <Parameter Name="EntityID" Mode="In" Type="Int32" />
+            <Parameter Name="SaveRelativeOption" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="TerritoryDeletable" ReturnType="Collection(String)">
+          <Parameter Name="EntityID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="TerritoryEditable" ReturnType="Collection(String)">
+          <Parameter Name="EntityID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="TerritoryPostSaveValidate" ReturnType="Collection(String)">
+          <Parameter Name="EntityID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="TerritorySaveRelative">
+            <Parameter Name="EntityID" Mode="In" Type="Int32" />
+            <Parameter Name="SaveRelativeOption" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CustomerTypeDeletable" ReturnType="Collection(String)">
+            <Parameter Name="EntityID" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
           <Property Type="Int32" Name="PickupID" Nullable="false" />
@@ -6889,6 +6995,7 @@
         <ComplexType Name="CustomerCategoryIndex">
           <Property Type="Int32" Name="CustomerCategoryID" Nullable="false" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Remarks" Nullable="true" MaxLength="100" />
         </ComplexType>
         <ComplexType Name="CustomerTypeBase">
           <Property Type="Int32" Name="CustomerTypeID" Nullable="false" />
@@ -6897,6 +7004,7 @@
         <ComplexType Name="CustomerTypeIndex">
           <Property Type="Int32" Name="CustomerTypeID" Nullable="false" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Remarks" Nullable="false" MaxLength="100" />
         </ComplexType>
         <ComplexType Name="TerritoryBase">
           <Property Type="Int32" Name="TerritoryID" Nullable="false" />
@@ -6906,6 +7014,7 @@
         <ComplexType Name="TerritoryIndex">
           <Property Type="Int32" Name="TerritoryID" Nullable="false" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Remarks" Nullable="true" MaxLength="100" />
         </ComplexType>
         <ComplexType Name="PendingGoodsIssueTransferDetail">
           <Property Type="Int32" Name="GoodsIssueID" Nullable="false" />
@@ -7996,6 +8105,7 @@
         <ComplexType Name="CommodityCategoryIndex">
           <Property Type="Int32" Name="CommodityCategoryID" Nullable="false" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Remarks" Nullable="true" MaxLength="100" />
         </ComplexType>
         <EntityType Name="CommodityCategory">
           <Key>
@@ -8173,6 +8283,8 @@
         <ComplexType Name="CommodityTypeIndex">
           <Property Type="Int32" Name="CommodityTypeID" Nullable="false" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Remarks" Nullable="true" MaxLength="100" />
         </ComplexType>
         <ComplexType Name="ReportIndex">
           <Property Type="Int32" Name="ReportUniqueID" Nullable="false" />
@@ -10489,6 +10601,7 @@
               <ComplexTypeMapping TypeName="TotalSmartCodingModel.CustomerCategoryIndex">
                 <ScalarProperty Name="CustomerCategoryID" ColumnName="CustomerCategoryID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -10505,6 +10618,7 @@
               <ComplexTypeMapping TypeName="TotalSmartCodingModel.CustomerTypeIndex">
                 <ScalarProperty Name="CustomerTypeID" ColumnName="CustomerTypeID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -10522,6 +10636,7 @@
               <ComplexTypeMapping TypeName="TotalSmartCodingModel.TerritoryIndex">
                 <ScalarProperty Name="TerritoryID" ColumnName="TerritoryID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -11033,6 +11148,7 @@
               <ComplexTypeMapping TypeName="TotalSmartCodingModel.CommodityCategoryIndex">
                 <ScalarProperty Name="CommodityCategoryID" ColumnName="CommodityCategoryID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -11164,6 +11280,8 @@
               <ComplexTypeMapping TypeName="TotalSmartCodingModel.CommodityTypeIndex">
                 <ScalarProperty Name="CommodityTypeID" ColumnName="CommodityTypeID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -11859,6 +11977,22 @@
           <FunctionImportMapping FunctionImportName="TeamDeletable" FunctionName="TotalSmartCodingModel.Store.TeamDeletable" />
           <FunctionImportMapping FunctionImportName="TeamEditable" FunctionName="TotalSmartCodingModel.Store.TeamEditable" />
           <FunctionImportMapping FunctionImportName="TeamSaveRelative" FunctionName="TotalSmartCodingModel.Store.TeamSaveRelative" />
+          <FunctionImportMapping FunctionImportName="CommodityCategoryDeletable" FunctionName="TotalSmartCodingModel.Store.CommodityCategoryDeletable" />
+          <FunctionImportMapping FunctionImportName="CommodityCategoryEditable" FunctionName="TotalSmartCodingModel.Store.CommodityCategoryEditable" />
+          <FunctionImportMapping FunctionImportName="CommodityCategorySaveRelative" FunctionName="TotalSmartCodingModel.Store.CommodityCategorySaveRelative" />
+          <FunctionImportMapping FunctionImportName="CommodityTypeDeletable" FunctionName="TotalSmartCodingModel.Store.CommodityTypeDeletable" />
+          <FunctionImportMapping FunctionImportName="CommodityTypeEditable" FunctionName="TotalSmartCodingModel.Store.CommodityTypeEditable" />
+          <FunctionImportMapping FunctionImportName="CommodityTypeSaveRelative" FunctionName="TotalSmartCodingModel.Store.CommodityTypeSaveRelative" />
+          <FunctionImportMapping FunctionImportName="CustomerCategoryDeletable" FunctionName="TotalSmartCodingModel.Store.CustomerCategoryDeletable" />
+          <FunctionImportMapping FunctionImportName="CustomerCategoryEditable" FunctionName="TotalSmartCodingModel.Store.CustomerCategoryEditable" />
+          <FunctionImportMapping FunctionImportName="CustomerCategorySaveRelative" FunctionName="TotalSmartCodingModel.Store.CustomerCategorySaveRelative" />
+          <FunctionImportMapping FunctionImportName="CustomerTypeEditable" FunctionName="TotalSmartCodingModel.Store.CustomerTypeEditable" />
+          <FunctionImportMapping FunctionImportName="CustomerTypeSaveRelative" FunctionName="TotalSmartCodingModel.Store.CustomerTypeSaveRelative" />
+          <FunctionImportMapping FunctionImportName="TerritoryDeletable" FunctionName="TotalSmartCodingModel.Store.TerritoryDeletable" />
+          <FunctionImportMapping FunctionImportName="TerritoryEditable" FunctionName="TotalSmartCodingModel.Store.TerritoryEditable" />
+          <FunctionImportMapping FunctionImportName="TerritoryPostSaveValidate" FunctionName="TotalSmartCodingModel.Store.TerritoryPostSaveValidate" />
+          <FunctionImportMapping FunctionImportName="TerritorySaveRelative" FunctionName="TotalSmartCodingModel.Store.TerritorySaveRelative" />
+          <FunctionImportMapping FunctionImportName="CustomerTypeDeletable" FunctionName="TotalSmartCodingModel.Store.CustomerTypeDeletable" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
