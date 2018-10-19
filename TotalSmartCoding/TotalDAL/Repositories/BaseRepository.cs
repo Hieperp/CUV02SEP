@@ -591,6 +591,30 @@ namespace TotalDAL.Repositories
             Helpers.SqlProgrammability.Commons.Team team = new Helpers.SqlProgrammability.Commons.Team(totalSmartCodingEntities);
             team.RestoreProcedure();
 
+            //return;
+
+            Helpers.SqlProgrammability.Commons.CommodityCategory commodityCategory = new Helpers.SqlProgrammability.Commons.CommodityCategory(totalSmartCodingEntities);
+            commodityCategory.RestoreProcedure();
+
+            //return;
+            Helpers.SqlProgrammability.Commons.CommodityType commodityType = new Helpers.SqlProgrammability.Commons.CommodityType(totalSmartCodingEntities);
+            commodityType.RestoreProcedure();
+
+            //return;
+
+            Helpers.SqlProgrammability.Commons.Territory territory = new Helpers.SqlProgrammability.Commons.Territory(totalSmartCodingEntities);
+            territory.RestoreProcedure();
+
+            //return;
+
+            Helpers.SqlProgrammability.Commons.CustomerCategory customerCategory = new Helpers.SqlProgrammability.Commons.CustomerCategory(totalSmartCodingEntities);
+            customerCategory.RestoreProcedure();
+
+            //return;
+
+            Helpers.SqlProgrammability.Commons.CustomerType customerType = new Helpers.SqlProgrammability.Commons.CustomerType(totalSmartCodingEntities);
+            customerType.RestoreProcedure();
+
             return;
 
             Helpers.SqlProgrammability.Generals.UserControl userControl = new Helpers.SqlProgrammability.Generals.UserControl(totalSmartCodingEntities);
@@ -719,9 +743,6 @@ namespace TotalDAL.Repositories
 
 
 
-            //return;
-            Helpers.SqlProgrammability.Commons.CommodityType commodityType = new Helpers.SqlProgrammability.Commons.CommodityType(totalSmartCodingEntities);
-            commodityType.RestoreProcedure();
 
 
 
@@ -740,10 +761,8 @@ namespace TotalDAL.Repositories
 
 
 
-            //return;
 
-            Helpers.SqlProgrammability.Commons.CommodityCategory commodityCategory = new Helpers.SqlProgrammability.Commons.CommodityCategory(totalSmartCodingEntities);
-            commodityCategory.RestoreProcedure();
+
 
 
 
@@ -796,20 +815,11 @@ namespace TotalDAL.Repositories
 
 
 
-            //return;
 
-            Helpers.SqlProgrammability.Commons.CustomerCategory customerCategory = new Helpers.SqlProgrammability.Commons.CustomerCategory(totalSmartCodingEntities);
-            customerCategory.RestoreProcedure();
 
-            //return;
 
-            Helpers.SqlProgrammability.Commons.CustomerType customerType = new Helpers.SqlProgrammability.Commons.CustomerType(totalSmartCodingEntities);
-            customerType.RestoreProcedure();
 
-            //return;
 
-            Helpers.SqlProgrammability.Commons.Territory territory = new Helpers.SqlProgrammability.Commons.Territory(totalSmartCodingEntities);
-            territory.RestoreProcedure();
 
 
 

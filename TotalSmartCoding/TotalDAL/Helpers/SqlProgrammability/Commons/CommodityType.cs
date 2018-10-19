@@ -20,8 +20,9 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
         {
             this.GetCommodityTypeIndexes();
 
-            //this.CommodityTypeEditable(); 
-            //this.CommodityTypeSaveRelative();
+            this.CommodityTypeEditable();
+            this.CommodityTypeDeletable();
+            this.CommodityTypeSaveRelative();
 
             this.GetCommodityTypeBases();
             this.GetCommodityTypeTrees();
@@ -37,7 +38,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
-            queryString = queryString + "       SELECT      CommodityTypes.CommodityTypeID, CommodityTypes.Name " + "\r\n";
+            queryString = queryString + "       SELECT      CommodityTypeID, Name, Description, Remarks " + "\r\n";
             queryString = queryString + "       FROM        CommodityTypes " + "\r\n";
 
             queryString = queryString + "    END " + "\r\n";
@@ -51,26 +52,6 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             string queryString = " @EntityID int, @SaveRelativeOption int " + "\r\n"; //SaveRelativeOption: 1: Update, -1:Undo
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
-            queryString = queryString + "    BEGIN " + "\r\n";
-
-            queryString = queryString + "       IF (@SaveRelativeOption = 1) " + "\r\n";
-            queryString = queryString + "           BEGIN " + "\r\n";
-
-            queryString = queryString + "               INSERT INTO CommodityTypeCommodityTypes (CommodityTypeID, CommodityTypeID, CommodityTypeTaskID, EntryDate, Remarks, InActive) " + "\r\n";
-            queryString = queryString + "               SELECT      CommodityTypeID, 46 AS CommodityTypeID, " + (int)GlobalEnums.NmvnTaskID.SalesOrders + " AS CommodityTypeTaskID, GETDATE(), '', 0 FROM CommodityTypes WHERE CommodityTypeID = @EntityID " + "\r\n";
-
-            queryString = queryString + "               INSERT INTO CommodityTypeCommodityTypes (CommodityTypeID, CommodityTypeID, CommodityTypeTaskID, EntryDate, Remarks, InActive) " + "\r\n";
-            queryString = queryString + "               SELECT      CommodityTypes.CommodityTypeID, CommodityTypes.CommodityTypeID, " + (int)GlobalEnums.NmvnTaskID.DeliveryAdvices + " AS CommodityTypeTaskID, GETDATE(), '', 0 FROM CommodityTypes INNER JOIN CommodityTypes ON CommodityTypes.CommodityTypeID = @EntityID AND CommodityTypes.CommodityTypeTypeID NOT IN (4, 5, 7, 9, 10, 11, 12) AND CommodityTypes.CommodityTypeTypeID = CommodityTypes.CommodityTypeTypeID " + "\r\n";
-
-            queryString = queryString + "               INSERT INTO CommodityTypeCommodityTypes (CommodityTypeID, CommodityTypeID, CommodityTypeTaskID, EntryDate, Remarks, InActive) " + "\r\n";
-            queryString = queryString + "               SELECT      CommodityTypeID, 82 AS CommodityTypeID, " + (int)GlobalEnums.NmvnTaskID.DeliveryAdvices + " AS CommodityTypeTaskID, GETDATE(), '', 0 FROM CommodityTypes WHERE CommodityTypeID = @EntityID AND CommodityTypeTypeID IN (4, 5, 7, 9, 10, 11, 12) " + "\r\n";
-
-            queryString = queryString + "           END " + "\r\n";
-
-            queryString = queryString + "       ELSE " + "\r\n"; //(@SaveRelativeOption = -1) 
-            queryString = queryString + "           DELETE      CommodityTypeCommodityTypes WHERE CommodityTypeID = @EntityID " + "\r\n";
-
-            queryString = queryString + "    END " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("CommodityTypeSaveRelative", queryString);
         }
@@ -80,12 +61,17 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
         {
             string[] queryArray = new string[0];
 
-            //queryArray[0] = " SELECT TOP 1 @FoundEntity = CommodityTypeID FROM CommodityTypes WHERE CommodityTypeID = @EntityID AND (InActive = 1 OR InActivePartial = 1)"; //Don't allow approve after void
-            //queryArray[1] = " SELECT TOP 1 @FoundEntity = CommodityTypeID FROM GoodsIssueDetails WHERE CommodityTypeID = @EntityID ";
-
             this.totalSmartCodingEntities.CreateProcedureToCheckExisting("CommodityTypeEditable", queryArray);
         }
 
+        private void CommodityTypeDeletable()
+        {
+            string[] queryArray = new string[1];
+
+            queryArray[0] = " SELECT TOP 1 @FoundEntity = CommodityTypeID FROM Commodities WHERE CommodityTypeID = @EntityID ";
+
+            this.totalSmartCodingEntities.CreateProcedureToCheckExisting("CommodityTypeDeletable", queryArray);
+        }
 
         private void GetCommodityTypeBases()
         {

@@ -10,7 +10,7 @@ namespace TotalDAL.Repositories.Commons
     public class CommodityCategoryRepository : GenericRepository<CommodityCategory>, ICommodityCategoryRepository
     {
         public CommodityCategoryRepository(TotalSmartCodingEntities totalSmartCodingEntities)
-            : base(totalSmartCodingEntities, "CommodityCategoryEditable")
+            : base(totalSmartCodingEntities, "CommodityCategoryEditable", null, "CommodityCategoryDeletable")
         {
         }
     }

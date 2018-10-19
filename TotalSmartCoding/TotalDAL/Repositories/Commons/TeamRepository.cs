@@ -10,7 +10,7 @@ namespace TotalDAL.Repositories.Commons
     public class TeamRepository : GenericRepository<Team>, ITeamRepository
     {
         public TeamRepository(TotalSmartCodingEntities totalSmartCodingEntities)
-            : base(totalSmartCodingEntities, "TeamEditable")
+            : base(totalSmartCodingEntities, "TeamEditable", null, "TeamDeletable")
         {
         }
     }

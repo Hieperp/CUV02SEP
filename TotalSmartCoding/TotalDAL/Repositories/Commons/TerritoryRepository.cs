@@ -10,7 +10,7 @@ namespace TotalDAL.Repositories.Commons
     public class TerritoryRepository : GenericRepository<Territory>, ITerritoryRepository
     {
         public TerritoryRepository(TotalSmartCodingEntities totalSmartCodingEntities)
-            : base(totalSmartCodingEntities, "TerritoryEditable")
+            : base(totalSmartCodingEntities, "TerritoryEditable", null, "TerritoryDeletable")
         {
         }
     }
