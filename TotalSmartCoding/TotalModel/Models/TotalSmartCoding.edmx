@@ -3108,6 +3108,16 @@
         <Function Name="SearchPallets" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Barcode" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="TeamDeletable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="TeamEditable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="TeamSaveRelative" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="int" Mode="In" />
+          <Parameter Name="SaveRelativeOption" Type="int" Mode="In" />
+        </Function>
         <Function Name="TransferOrderApproved" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="EntityID" Type="int" Mode="In" />
         </Function>
@@ -5108,16 +5118,26 @@
           <Parameter Name="OnEventLogs" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="BinLocationDeletable" ReturnType="Collection(String)">
-            <Parameter Name="EntityID" Mode="In" Type="Int32" />
+          <Parameter Name="EntityID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="CommodityDeletable" ReturnType="Collection(String)">
-            <Parameter Name="EntityID" Mode="In" Type="Int32" />
+          <Parameter Name="EntityID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="CommoditySettingDeletable" ReturnType="Collection(String)">
-            <Parameter Name="EntityID" Mode="In" Type="Int32" />
+          <Parameter Name="EntityID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="CustomerDeletable" ReturnType="Collection(String)">
+          <Parameter Name="EntityID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="TeamDeletable" ReturnType="Collection(String)">
+          <Parameter Name="EntityID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="TeamEditable" ReturnType="Collection(String)">
+          <Parameter Name="EntityID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="TeamSaveRelative">
             <Parameter Name="EntityID" Mode="In" Type="Int32" />
+            <Parameter Name="SaveRelativeOption" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
@@ -8766,11 +8786,14 @@
         </Association>
         <ComplexType Name="TeamBase">
           <Property Type="Int32" Name="TeamID" Nullable="false" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Code" Nullable="false" MaxLength="100" />
         </ComplexType>
         <ComplexType Name="TeamIndex">
           <Property Type="Int32" Name="TeamID" Nullable="false" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Code" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Remarks" Nullable="true" MaxLength="100" />
         </ComplexType>
         <ComplexType Name="TeamTree">
           <Property Type="Int32" Name="NodeID" Nullable="true" />
@@ -11595,6 +11618,7 @@
               <ComplexTypeMapping TypeName="TotalSmartCodingModel.TeamBase">
                 <ScalarProperty Name="TeamID" ColumnName="TeamID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -11603,6 +11627,8 @@
               <ComplexTypeMapping TypeName="TotalSmartCodingModel.TeamIndex">
                 <ScalarProperty Name="TeamID" ColumnName="TeamID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -11830,6 +11856,9 @@
           <FunctionImportMapping FunctionImportName="CommodityDeletable" FunctionName="TotalSmartCodingModel.Store.CommodityDeletable" />
           <FunctionImportMapping FunctionImportName="CommoditySettingDeletable" FunctionName="TotalSmartCodingModel.Store.CommoditySettingDeletable" />
           <FunctionImportMapping FunctionImportName="CustomerDeletable" FunctionName="TotalSmartCodingModel.Store.CustomerDeletable" />
+          <FunctionImportMapping FunctionImportName="TeamDeletable" FunctionName="TotalSmartCodingModel.Store.TeamDeletable" />
+          <FunctionImportMapping FunctionImportName="TeamEditable" FunctionName="TotalSmartCodingModel.Store.TeamEditable" />
+          <FunctionImportMapping FunctionImportName="TeamSaveRelative" FunctionName="TotalSmartCodingModel.Store.TeamSaveRelative" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

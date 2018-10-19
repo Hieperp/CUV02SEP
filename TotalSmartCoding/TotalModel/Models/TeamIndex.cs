@@ -15,5 +15,7 @@ namespace TotalModel.Models
     {
         public int TeamID { get; set; }
         public string Name { get; set; }
+        public string Code { get; set; }
+        public string Remarks { get; set; }
     }
 }
