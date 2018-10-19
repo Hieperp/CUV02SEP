@@ -68,10 +68,10 @@
             // 
             this.textexCode.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexCode.Editable = true;
-            this.textexCode.Location = new System.Drawing.Point(28, 47);
+            this.textexCode.Location = new System.Drawing.Point(28, 43);
             this.textexCode.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.textexCode.Name = "textexCode";
-            this.textexCode.Size = new System.Drawing.Size(314, 28);
+            this.textexCode.Size = new System.Drawing.Size(314, 24);
             this.textexCode.TabIndex = 81;
             // 
             // combexWarehouseID
@@ -81,11 +81,11 @@
             this.combexWarehouseID.Dock = System.Windows.Forms.DockStyle.Fill;
             this.combexWarehouseID.Editable = true;
             this.combexWarehouseID.FormattingEnabled = true;
-            this.combexWarehouseID.Location = new System.Drawing.Point(28, 169);
+            this.combexWarehouseID.Location = new System.Drawing.Point(28, 149);
             this.combexWarehouseID.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.combexWarehouseID.Name = "combexWarehouseID";
             this.combexWarehouseID.ReadOnly = false;
-            this.combexWarehouseID.Size = new System.Drawing.Size(314, 29);
+            this.combexWarehouseID.Size = new System.Drawing.Size(314, 25);
             this.combexWarehouseID.TabIndex = 83;
             // 
             // toolStripChildForm
@@ -108,7 +108,7 @@
             this.toolStripButton2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(118, 48);
+            this.toolStripButton2.Size = new System.Drawing.Size(102, 48);
             this.toolStripButton2.Text = "Disconnect";
             this.toolStripButton2.Visible = false;
             // 
@@ -125,7 +125,7 @@
             this.panelCenter.Controls.Add(this.layoutTop);
             this.panelCenter.Dock = System.Windows.Forms.DockStyle.Right;
             this.panelCenter.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panelCenter.Location = new System.Drawing.Point(1163, 0);
+            this.panelCenter.Location = new System.Drawing.Point(908, 0);
             this.panelCenter.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelCenter.Name = "panelCenter";
             this.panelCenter.Size = new System.Drawing.Size(368, 654);
@@ -183,50 +183,53 @@
             // 
             this.textexVATCode.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexVATCode.Editable = false;
-            this.textexVATCode.Location = new System.Drawing.Point(28, 231);
+            this.textexVATCode.Location = new System.Drawing.Point(28, 199);
             this.textexVATCode.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.textexVATCode.Name = "textexVATCode";
-            this.textexVATCode.Size = new System.Drawing.Size(314, 28);
+            this.textexVATCode.Size = new System.Drawing.Size(314, 24);
             this.textexVATCode.TabIndex = 80;
+            this.textexVATCode.Visible = false;
             // 
             // textexAttentionName
             // 
             this.textexAttentionName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexAttentionName.Editable = false;
-            this.textexAttentionName.Location = new System.Drawing.Point(28, 353);
+            this.textexAttentionName.Location = new System.Drawing.Point(28, 305);
             this.textexAttentionName.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.textexAttentionName.Name = "textexAttentionName";
-            this.textexAttentionName.Size = new System.Drawing.Size(314, 28);
+            this.textexAttentionName.Size = new System.Drawing.Size(314, 24);
             this.textexAttentionName.TabIndex = 82;
+            this.textexAttentionName.Visible = false;
             // 
             // textexContactInfo
             // 
             this.textexContactInfo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexContactInfo.Editable = false;
-            this.textexContactInfo.Location = new System.Drawing.Point(28, 292);
+            this.textexContactInfo.Location = new System.Drawing.Point(28, 252);
             this.textexContactInfo.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.textexContactInfo.Name = "textexContactInfo";
-            this.textexContactInfo.Size = new System.Drawing.Size(314, 28);
+            this.textexContactInfo.Size = new System.Drawing.Size(314, 24);
             this.textexContactInfo.TabIndex = 78;
+            this.textexContactInfo.Visible = false;
             // 
             // textexName
             // 
             this.textexName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexName.Editable = true;
-            this.textexName.Location = new System.Drawing.Point(28, 108);
+            this.textexName.Location = new System.Drawing.Point(28, 96);
             this.textexName.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.textexName.Name = "textexName";
-            this.textexName.Size = new System.Drawing.Size(314, 28);
+            this.textexName.Size = new System.Drawing.Size(314, 24);
             this.textexName.TabIndex = 86;
             // 
             // textexRemarks
             // 
             this.textexRemarks.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexRemarks.Editable = true;
-            this.textexRemarks.Location = new System.Drawing.Point(28, 414);
+            this.textexRemarks.Location = new System.Drawing.Point(28, 358);
             this.textexRemarks.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.textexRemarks.Name = "textexRemarks";
-            this.textexRemarks.Size = new System.Drawing.Size(314, 28);
+            this.textexRemarks.Size = new System.Drawing.Size(314, 24);
             this.textexRemarks.TabIndex = 88;
             // 
             // label13
@@ -237,7 +240,7 @@
             this.label13.Margin = new System.Windows.Forms.Padding(0);
             this.label13.Name = "label13";
             this.label13.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
-            this.label13.Size = new System.Drawing.Size(318, 31);
+            this.label13.Size = new System.Drawing.Size(318, 27);
             this.label13.TabIndex = 96;
             this.label13.Text = "Code";
             this.label13.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -246,11 +249,11 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label14.Location = new System.Drawing.Point(25, 76);
+            this.label14.Location = new System.Drawing.Point(25, 68);
             this.label14.Margin = new System.Windows.Forms.Padding(0);
             this.label14.Name = "label14";
             this.label14.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
-            this.label14.Size = new System.Drawing.Size(318, 31);
+            this.label14.Size = new System.Drawing.Size(318, 27);
             this.label14.TabIndex = 97;
             this.label14.Text = "Description";
             this.label14.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -259,11 +262,11 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Location = new System.Drawing.Point(25, 137);
+            this.label3.Location = new System.Drawing.Point(25, 121);
             this.label3.Margin = new System.Windows.Forms.Padding(0);
             this.label3.Name = "label3";
             this.label3.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
-            this.label3.Size = new System.Drawing.Size(318, 31);
+            this.label3.Size = new System.Drawing.Size(318, 27);
             this.label3.TabIndex = 77;
             this.label3.Text = "Warehouse";
             this.label3.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -272,50 +275,53 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Location = new System.Drawing.Point(25, 199);
+            this.label5.Location = new System.Drawing.Point(25, 171);
             this.label5.Margin = new System.Windows.Forms.Padding(0);
             this.label5.Name = "label5";
             this.label5.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
-            this.label5.Size = new System.Drawing.Size(318, 31);
+            this.label5.Size = new System.Drawing.Size(318, 27);
             this.label5.TabIndex = 89;
             this.label5.Text = "Maximum Pallets";
             this.label5.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.label5.Visible = false;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label8.Location = new System.Drawing.Point(25, 260);
+            this.label8.Location = new System.Drawing.Point(25, 224);
             this.label8.Margin = new System.Windows.Forms.Padding(0);
             this.label8.Name = "label8";
             this.label8.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
-            this.label8.Size = new System.Drawing.Size(318, 31);
+            this.label8.Size = new System.Drawing.Size(318, 27);
             this.label8.TabIndex = 90;
             this.label8.Text = "Total Pallets";
             this.label8.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.label8.Visible = false;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label9.Location = new System.Drawing.Point(25, 321);
+            this.label9.Location = new System.Drawing.Point(25, 277);
             this.label9.Margin = new System.Windows.Forms.Padding(0);
             this.label9.Name = "label9";
             this.label9.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
-            this.label9.Size = new System.Drawing.Size(318, 31);
+            this.label9.Size = new System.Drawing.Size(318, 27);
             this.label9.TabIndex = 91;
             this.label9.Text = "Recommended Value";
             this.label9.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.label9.Visible = false;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
             this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label12.Location = new System.Drawing.Point(25, 382);
+            this.label12.Location = new System.Drawing.Point(25, 330);
             this.label12.Margin = new System.Windows.Forms.Padding(0);
             this.label12.Name = "label12";
             this.label12.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
-            this.label12.Size = new System.Drawing.Size(318, 31);
+            this.label12.Size = new System.Drawing.Size(318, 27);
             this.label12.TabIndex = 94;
             this.label12.Text = "Remarks";
             this.label12.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -350,7 +356,7 @@
             this.fastBinLocationIndex.Name = "fastBinLocationIndex";
             this.fastBinLocationIndex.OwnerDraw = true;
             this.fastBinLocationIndex.ShowGroups = false;
-            this.fastBinLocationIndex.Size = new System.Drawing.Size(1163, 654);
+            this.fastBinLocationIndex.Size = new System.Drawing.Size(908, 654);
             this.fastBinLocationIndex.TabIndex = 68;
             this.fastBinLocationIndex.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastBinLocationIndex.UseCompatibleStateImageBehavior = false;
@@ -421,9 +427,9 @@
             // 
             // BinLocations
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1531, 654);
+            this.ClientSize = new System.Drawing.Size(1276, 654);
             this.Controls.Add(this.fastBinLocationIndex);
             this.Controls.Add(this.panelCenter);
             this.Controls.Add(this.toolStripChildForm);

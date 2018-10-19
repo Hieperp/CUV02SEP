@@ -581,6 +581,11 @@ namespace TotalDAL.Repositories
             Helpers.SqlProgrammability.Commons.Customer customer = new Helpers.SqlProgrammability.Commons.Customer(totalSmartCodingEntities);
             customer.RestoreProcedure();
 
+            //return;
+
+            Helpers.SqlProgrammability.Generals.Module module = new Helpers.SqlProgrammability.Generals.Module(totalSmartCodingEntities);
+            module.RestoreProcedure();
+
             return;
 
             Helpers.SqlProgrammability.Generals.UserControl userControl = new Helpers.SqlProgrammability.Generals.UserControl(totalSmartCodingEntities);
@@ -656,10 +661,7 @@ namespace TotalDAL.Repositories
             Helpers.SqlProgrammability.Commons.Team team = new Helpers.SqlProgrammability.Commons.Team(totalSmartCodingEntities);
             team.RestoreProcedure();
 
-            //return;
 
-            Helpers.SqlProgrammability.Generals.Module module = new Helpers.SqlProgrammability.Generals.Module(totalSmartCodingEntities);
-            module.RestoreProcedure();
 
             //return;
 
