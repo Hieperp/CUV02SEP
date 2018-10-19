@@ -21,6 +21,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             this.GetBinLocationIndexes();
 
             this.BinLocationEditable();
+            this.BinLocationDeletable();
             this.BinLocationSaveRelative();
             this.BinLocationPostSaveValidate();
 
@@ -70,18 +71,23 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
 
         private void BinLocationEditable()
         {
+            string[] queryArray = new string[0];
+
+            this.totalSmartCodingEntities.CreateProcedureToCheckExisting("BinLocationEditable", queryArray);
+        }
+
+        private void BinLocationDeletable()
+        {
             string[] queryArray = new string[5];
 
             queryArray[0] = " SELECT TOP 1 @FoundEntity = BinLocationID FROM PickupDetails WHERE BinLocationID = @EntityID ";
             queryArray[1] = " SELECT TOP 1 @FoundEntity = BinLocationID FROM GoodsReceiptDetails WHERE BinLocationID = @EntityID ";
             queryArray[2] = " SELECT TOP 1 @FoundEntity = BinLocationID FROM GoodsIssueDetails WHERE BinLocationID = @EntityID ";
-            queryArray[3] = " SELECT TOP 1 @FoundEntity = BinLocationID FROM GoodsIssueTransferDetails WHERE BinLocationID = @EntityID ";            
+            queryArray[3] = " SELECT TOP 1 @FoundEntity = BinLocationID FROM GoodsIssueTransferDetails WHERE BinLocationID = @EntityID ";
             queryArray[4] = " SELECT TOP 1 @FoundEntity = BinLocationID FROM WarehouseAdjustmentDetails WHERE BinLocationID = @EntityID ";
 
-
-            this.totalSmartCodingEntities.CreateProcedureToCheckExisting("BinLocationEditable", queryArray);
+            this.totalSmartCodingEntities.CreateProcedureToCheckExisting("BinLocationDeletable", queryArray);
         }
-
 
         private void GetBinLocationBases()
         {

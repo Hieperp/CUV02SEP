@@ -21,6 +21,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             this.GetCommoditySettingIndexes();
 
             this.CommoditySettingEditable();
+            this.CommoditySettingDeletable();
             this.CommoditySettingInitReference();
         }
 
@@ -76,6 +77,12 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             this.totalSmartCodingEntities.CreateProcedureToCheckExisting("CommoditySettingEditable", queryArray);
         }
 
+        private void CommoditySettingDeletable()
+        {
+            string[] queryArray = new string[0];
+
+            this.totalSmartCodingEntities.CreateProcedureToCheckExisting("CommoditySettingDeletable", queryArray);
+        }
 
         private void CommoditySettingInitReference()
         {

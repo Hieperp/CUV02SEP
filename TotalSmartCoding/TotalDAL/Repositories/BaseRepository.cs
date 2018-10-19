@@ -556,8 +556,32 @@ namespace TotalDAL.Repositories
 
         private void CreateStoredProcedure()
         {
+            //return;
+
+            Helpers.SqlProgrammability.Commons.Employee employee = new Helpers.SqlProgrammability.Commons.Employee(totalSmartCodingEntities);
+            employee.RestoreProcedure();
 
             //return;
+
+            Helpers.SqlProgrammability.Commons.BinLocation binLocation = new Helpers.SqlProgrammability.Commons.BinLocation(totalSmartCodingEntities);
+            binLocation.RestoreProcedure();
+            
+            //return;
+
+            Helpers.SqlProgrammability.Commons.Commodity commodity = new Helpers.SqlProgrammability.Commons.Commodity(totalSmartCodingEntities);
+            commodity.RestoreProcedure();
+
+            //return;
+
+            Helpers.SqlProgrammability.Commons.CommoditySetting commoditySetting = new Helpers.SqlProgrammability.Commons.CommoditySetting(totalSmartCodingEntities);
+            commoditySetting.RestoreProcedure();
+
+            //return;
+
+            Helpers.SqlProgrammability.Commons.Customer customer = new Helpers.SqlProgrammability.Commons.Customer(totalSmartCodingEntities);
+            customer.RestoreProcedure();
+
+            return;
 
             Helpers.SqlProgrammability.Generals.UserControl userControl = new Helpers.SqlProgrammability.Generals.UserControl(totalSmartCodingEntities);
             userControl.RestoreProcedure();
@@ -625,10 +649,7 @@ namespace TotalDAL.Repositories
             organizationalUnit.RestoreProcedure();
 
 
-            //return;
 
-            Helpers.SqlProgrammability.Commons.Employee employee = new Helpers.SqlProgrammability.Commons.Employee(totalSmartCodingEntities);
-            employee.RestoreProcedure();
 
             //return;
 
@@ -651,15 +672,9 @@ namespace TotalDAL.Repositories
             Helpers.SqlProgrammability.Sales.Forecast forecast = new Helpers.SqlProgrammability.Sales.Forecast(totalSmartCodingEntities);
             forecast.RestoreProcedure();
 
-            //return;
 
-            Helpers.SqlProgrammability.Commons.Commodity commodity = new Helpers.SqlProgrammability.Commons.Commodity(totalSmartCodingEntities);
-            commodity.RestoreProcedure();
 
-            //return;
 
-            Helpers.SqlProgrammability.Commons.CommoditySetting commoditySetting = new Helpers.SqlProgrammability.Commons.CommoditySetting(totalSmartCodingEntities);
-            commoditySetting.RestoreProcedure();
 
             //return;
 
@@ -715,10 +730,7 @@ namespace TotalDAL.Repositories
 
 
 
-            //return;
 
-            Helpers.SqlProgrammability.Commons.Customer customer = new Helpers.SqlProgrammability.Commons.Customer(totalSmartCodingEntities);
-            customer.RestoreProcedure();
 
 
 
@@ -729,10 +741,7 @@ namespace TotalDAL.Repositories
             Helpers.SqlProgrammability.Commons.CommodityCategory commodityCategory = new Helpers.SqlProgrammability.Commons.CommodityCategory(totalSmartCodingEntities);
             commodityCategory.RestoreProcedure();
 
-            //return;
 
-            Helpers.SqlProgrammability.Commons.BinLocation binLocation = new Helpers.SqlProgrammability.Commons.BinLocation(totalSmartCodingEntities);
-            binLocation.RestoreProcedure();
 
 
 

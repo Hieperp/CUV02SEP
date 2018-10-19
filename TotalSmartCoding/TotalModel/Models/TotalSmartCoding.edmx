@@ -2396,6 +2396,9 @@
           <Parameter Name="InActive" Type="bit" Mode="In" />
           <Parameter Name="VoidTypeID" Type="int" Mode="In" />
         </Function>
+        <Function Name="BinLocationDeletable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="int" Mode="In" />
+        </Function>
         <Function Name="BinLocationEditable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="EntityID" Type="int" Mode="In" />
         </Function>
@@ -2419,6 +2422,9 @@
           <Parameter Name="CartonIDs" Type="varchar" Mode="In" />
           <Parameter Name="EntryStatusID" Type="int" Mode="In" />
         </Function>
+        <Function Name="CommodityDeletable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="int" Mode="In" />
+        </Function>
         <Function Name="CommodityEditable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="EntityID" Type="int" Mode="In" />
         </Function>
@@ -2426,7 +2432,13 @@
           <Parameter Name="EntityID" Type="int" Mode="In" />
           <Parameter Name="SaveRelativeOption" Type="int" Mode="In" />
         </Function>
+        <Function Name="CommoditySettingDeletable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="int" Mode="In" />
+        </Function>
         <Function Name="CommoditySettingEditable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CustomerDeletable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="EntityID" Type="int" Mode="In" />
         </Function>
         <Function Name="CustomerEditable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -5094,6 +5106,18 @@
           <FunctionImport Name="GetOnEventLogs" ReturnType="Collection(Int32)" />
           <FunctionImport Name="UpdateOnEventLogs">
           <Parameter Name="OnEventLogs" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="BinLocationDeletable" ReturnType="Collection(String)">
+            <Parameter Name="EntityID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CommodityDeletable" ReturnType="Collection(String)">
+            <Parameter Name="EntityID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CommoditySettingDeletable" ReturnType="Collection(String)">
+            <Parameter Name="EntityID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CustomerDeletable" ReturnType="Collection(String)">
+            <Parameter Name="EntityID" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
@@ -11802,6 +11826,10 @@
           <FunctionImportMapping FunctionImportName="UserControlRemoveSalesperson" FunctionName="TotalSmartCodingModel.Store.UserControlRemoveSalesperson" />
           <FunctionImportMapping FunctionImportName="GetOnEventLogs" FunctionName="TotalSmartCodingModel.Store.GetOnEventLogs" />
           <FunctionImportMapping FunctionImportName="UpdateOnEventLogs" FunctionName="TotalSmartCodingModel.Store.UpdateOnEventLogs" />
+          <FunctionImportMapping FunctionImportName="BinLocationDeletable" FunctionName="TotalSmartCodingModel.Store.BinLocationDeletable" />
+          <FunctionImportMapping FunctionImportName="CommodityDeletable" FunctionName="TotalSmartCodingModel.Store.CommodityDeletable" />
+          <FunctionImportMapping FunctionImportName="CommoditySettingDeletable" FunctionName="TotalSmartCodingModel.Store.CommoditySettingDeletable" />
+          <FunctionImportMapping FunctionImportName="CustomerDeletable" FunctionName="TotalSmartCodingModel.Store.CustomerDeletable" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -12,7 +12,7 @@ namespace TotalDAL.Repositories.Commons
     public class CommoditySettingRepository : GenericWithDetailRepository<CommoditySetting, CommoditySettingDetail>, ICommoditySettingRepository
     {
         public CommoditySettingRepository(TotalSmartCodingEntities totalSmartCodingEntities)
-            : base(totalSmartCodingEntities, "CommoditySettingEditable")
+            : base(totalSmartCodingEntities, "CommoditySettingEditable", null, "CommoditySettingDeletable")
         {
         }
     }

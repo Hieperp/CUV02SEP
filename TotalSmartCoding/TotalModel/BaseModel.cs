@@ -37,7 +37,7 @@ namespace TotalModel
         [UIHint("DateTimeReadonly")]
         [Display(Name = "Ngày lập")]
         [Required(ErrorMessage = "Vui lòng nhập ngày lập")]
-        public DateTime? EntryDate
+        public virtual DateTime? EntryDate
         {
             get { return this.entryDate; }
             set { ApplyPropertyChange<BaseModel, DateTime?>(ref this.entryDate, o => o.EntryDate, value); }

@@ -74,6 +74,13 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
 
         private void EmployeeEditable()
         {
+            string[] queryArray = new string[0];
+
+            this.totalSmartCodingEntities.CreateProcedureToCheckExisting("EmployeeEditable", queryArray);
+        }
+
+        private void EmployeeDeletable()
+        {
             string[] queryArray = new string[16];
 
             queryArray[0] = " SELECT TOP 1 @FoundEntity = SalespersonID FROM Customers WHERE SalespersonID = @EntityID ";
@@ -92,13 +99,6 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             queryArray[13] = " SELECT TOP 1 @FoundEntity = StorekeeperID FROM WarehouseAdjustments WHERE StorekeeperID = @EntityID ";
             queryArray[14] = " SELECT TOP 1 @FoundEntity = SalespersonID FROM DeliveryAdviceDetails WHERE SalespersonID = @EntityID ";
             queryArray[15] = " SELECT TOP 1 @FoundEntity = SalespersonID FROM GoodsIssueDetails WHERE SalespersonID = @EntityID ";
-
-            this.totalSmartCodingEntities.CreateProcedureToCheckExisting("EmployeeEditable", queryArray);
-        }
-
-        private void EmployeeDeletable()
-        {
-            string[] queryArray = new string[0];
 
             this.totalSmartCodingEntities.CreateProcedureToCheckExisting("EmployeeDeletable", queryArray);
         }

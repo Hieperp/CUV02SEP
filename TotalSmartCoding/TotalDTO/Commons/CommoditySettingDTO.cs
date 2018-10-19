@@ -31,6 +31,8 @@ namespace TotalDTO.Commons
         public override int GetID() { return this.CommoditySettingID; }
         public void SetID(int id) { this.CommoditySettingID = id; }
 
+        public override DateTime? EntryDate { get { return DateTime.Now; } set { } }
+
         private int commoditySettingID;
         [DefaultValue(0)]
         public int CommoditySettingID

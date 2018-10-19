@@ -21,6 +21,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             this.GetCustomerIndexes();
 
             this.CustomerEditable();
+            this.CustomerDeletable();
             this.CustomerSaveRelative();
 
             this.GetCustomerBases();
@@ -60,15 +61,20 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
 
         private void CustomerEditable()
         {
+            string[] queryArray = new string[0];
+
+            this.totalSmartCodingEntities.CreateProcedureToCheckExisting("CustomerEditable", queryArray);
+        }
+
+        private void CustomerDeletable()
+        {
             string[] queryArray = new string[2];
 
             queryArray[0] = " SELECT TOP 1 @FoundEntity = CustomerID FROM SalesOrders WHERE CustomerID = @EntityID ";
             queryArray[1] = " SELECT TOP 1 @FoundEntity = CustomerID FROM DeliveryAdvices WHERE CustomerID = @EntityID ";
 
-
-            this.totalSmartCodingEntities.CreateProcedureToCheckExisting("CustomerEditable", queryArray);
+            this.totalSmartCodingEntities.CreateProcedureToCheckExisting("CustomerDeletable", queryArray);
         }
-
 
         private void GetCustomerBases()
         {

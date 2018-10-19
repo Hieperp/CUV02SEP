@@ -23,6 +23,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             this.GetCommodityIndexes();
 
             this.CommodityEditable();
+            this.CommodityDeletable();
             this.CommoditySaveRelative();
 
             this.GetCommodityBases();
@@ -65,6 +66,13 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
 
         private void CommodityEditable()
         {
+            string[] queryArray = new string[0];
+
+            this.totalSmartCodingEntities.CreateProcedureToCheckExisting("CommodityEditable", queryArray);
+        }
+
+        private void CommodityDeletable()
+        {
             string[] queryArray = new string[13];
 
             queryArray[0] = " SELECT TOP 1 @FoundEntity = CommodityID FROM Commodities WHERE CommodityID = @EntityID AND InActive = 1 ";
@@ -81,9 +89,8 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             queryArray[11] = " SELECT TOP 1 @FoundEntity = CommodityID FROM Cartons WHERE CommodityID = @EntityID ";
             queryArray[12] = " SELECT TOP 1 @FoundEntity = CommodityID FROM Packs WHERE CommodityID = @EntityID ";
 
-            this.totalSmartCodingEntities.CreateProcedureToCheckExisting("CommodityEditable", queryArray);
+            this.totalSmartCodingEntities.CreateProcedureToCheckExisting("CommodityDeletable", queryArray);
         }
-
 
         private void GetCommodityBases()
         {
