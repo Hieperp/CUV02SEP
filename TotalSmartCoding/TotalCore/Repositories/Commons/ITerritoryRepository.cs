@@ -4,7 +4,7 @@ using TotalModel.Models;
 
 namespace TotalCore.Repositories.Commons
 {
-    public interface ITerritoryRepository
+    public interface ITerritoryRepository : IGenericRepository<Territory>
     {
 
     }

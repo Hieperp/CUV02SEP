@@ -4,7 +4,7 @@ using TotalModel.Models;
 
 namespace TotalCore.Repositories.Commons
 {
-    public interface ICustomerTypeRepository
+    public interface ICustomerTypeRepository : IGenericRepository<CustomerType>
     {
 
     }

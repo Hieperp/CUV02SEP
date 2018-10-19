@@ -92,11 +92,17 @@
     <Compile Include="Repositories\Sales\ISalesOrderRepository.cs" />
     <Compile Include="Repositories\Sales\ITransferOrderRepository.cs" />
     <Compile Include="Services\Commons\IBinLocationService.cs" />
+    <Compile Include="Services\Commons\ICommodityCategoryService.cs" />
     <Compile Include="Services\Commons\ICommodityService.cs" />
     <Compile Include="Services\Commons\ICommoditySettingService.cs" />
+    <Compile Include="Services\Commons\ICommodityTypeService.cs" />
+    <Compile Include="Services\Commons\ICustomerCategoryService.cs" />
     <Compile Include="Services\Commons\ICustomerService.cs" />
+    <Compile Include="Services\Commons\ICustomerTypeService.cs" />
     <Compile Include="Services\Commons\IEmployeeService.cs" />
     <Compile Include="Services\Commons\IFillingLineService.cs" />
+    <Compile Include="Services\Commons\ITeamService.cs" />
+    <Compile Include="Services\Commons\ITerritoryService.cs" />
     <Compile Include="Services\Generals\IReportService.cs" />
     <Compile Include="Services\IBaseService.cs" />
     <Compile Include="Services\IGenericService.cs" />
