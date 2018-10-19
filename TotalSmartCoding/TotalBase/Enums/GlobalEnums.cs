@@ -88,13 +88,22 @@
             SmartCoding = 888888,
 
             Customers = 8001,
+            CustomerTypes = 8011,
+            CustomerCategories = 8012,
+            
             Commodities = 8002,
+            CommodityTypes = 8102,
+            CommodityCategories = 8103,
             CommoditySettings = 800201,
+
             Promotions = 8003,
             Employees = 8005,
             Warehouses = 8006,
             BinLocations = 8008,
             Territories = 8007,
+
+            Teams = 8108,
+
             FillingLine = 8668,
 
             PurchaseOrders = 8021,

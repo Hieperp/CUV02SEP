@@ -100,6 +100,17 @@ namespace TotalDAL.Repositories
                 this.totalSmartCodingEntities.ColumnAdd("Configs", "StoredID", "int", "0", true);
             }
 
+
+            #region FINAL 19OCT2018
+            if (this.totalSmartCodingEntities.ColumnExists("CommodityTypes", "Description"))
+            {
+                this.totalSmartCodingEntities.ColumnDrop("CommodityTypes", "Description");
+            }
+            #endregion FINAL 19OCT2018
+
+
+
+
             #region NEW PERMISSION
 
 
