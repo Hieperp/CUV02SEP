@@ -38,7 +38,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
-            queryString = queryString + "       SELECT      CommodityTypeID, Name, Description, Remarks " + "\r\n";
+            queryString = queryString + "       SELECT      CommodityTypeID, Name, Remarks " + "\r\n";
             queryString = queryString + "       FROM        CommodityTypes " + "\r\n";
 
             queryString = queryString + "    END " + "\r\n";
