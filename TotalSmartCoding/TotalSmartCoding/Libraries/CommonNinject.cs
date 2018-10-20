@@ -170,40 +170,40 @@ namespace TotalSmartCoding.Libraries
                 Kernel.Bind<ICommoditySettingAPIRepository>().To<CommoditySettingAPIRepository>();
                 Kernel.Bind<CommoditySettingViewModel>().ToSelf();
 
-                //Kernel.Bind<ICommodityCategoryService>().To<CommodityCategoryService>();
+                Kernel.Bind<ICommodityCategoryService>().To<CommodityCategoryService>();
                 Kernel.Bind<ICommodityCategoryRepository>().To<CommodityCategoryRepository>();
                 Kernel.Bind<ICommodityCategoryAPIRepository>().To<CommodityCategoryAPIRepository>();
-                //Kernel.Bind<CommodityCategoryViewModel>().ToSelf();
+                Kernel.Bind<CommodityCategoryViewModel>().ToSelf();
 
-                //Kernel.Bind<ICommodityTypeService>().To<CommodityTypeService>();
+                Kernel.Bind<ICommodityTypeService>().To<CommodityTypeService>();
                 Kernel.Bind<ICommodityTypeRepository>().To<CommodityTypeRepository>();
                 Kernel.Bind<ICommodityTypeAPIRepository>().To<CommodityTypeAPIRepository>();
-                //Kernel.Bind<CommodityTypeViewModel>().ToSelf();
+                Kernel.Bind<CommodityTypeViewModel>().ToSelf();
 
-                //Kernel.Bind<ITeamService>().To<TeamService>();
+                Kernel.Bind<ITeamService>().To<TeamService>();
                 Kernel.Bind<ITeamRepository>().To<TeamRepository>();
                 Kernel.Bind<ITeamAPIRepository>().To<TeamAPIRepository>();
-                //Kernel.Bind<TeamViewModel>().ToSelf();
+                Kernel.Bind<TeamViewModel>().ToSelf();
 
                 Kernel.Bind<IEmployeeService>().To<EmployeeService>();
                 Kernel.Bind<IEmployeeRepository>().To<EmployeeRepository>();
                 Kernel.Bind<IEmployeeAPIRepository>().To<EmployeeAPIRepository>();
                 Kernel.Bind<EmployeeViewModel>().ToSelf();
 
-                //Kernel.Bind<ITerritoryService>().To<TerritoryService>();
+                Kernel.Bind<ITerritoryService>().To<TerritoryService>();
                 Kernel.Bind<ITerritoryRepository>().To<TerritoryRepository>();
                 Kernel.Bind<ITerritoryAPIRepository>().To<TerritoryAPIRepository>();
-                //Kernel.Bind<TerritoryViewModel>().ToSelf();
+                Kernel.Bind<TerritoryViewModel>().ToSelf();
 
-                //Kernel.Bind<ICustomerCategoryService>().To<CustomerCategoryService>();
+                Kernel.Bind<ICustomerCategoryService>().To<CustomerCategoryService>();
                 Kernel.Bind<ICustomerCategoryRepository>().To<CustomerCategoryRepository>();
                 Kernel.Bind<ICustomerCategoryAPIRepository>().To<CustomerCategoryAPIRepository>();
-                //Kernel.Bind<CustomerCategoryViewModel>().ToSelf();
+                Kernel.Bind<CustomerCategoryViewModel>().ToSelf();
 
-                //Kernel.Bind<ICustomerTypeService>().To<CustomerTypeService>();
+                Kernel.Bind<ICustomerTypeService>().To<CustomerTypeService>();
                 Kernel.Bind<ICustomerTypeRepository>().To<CustomerTypeRepository>();
                 Kernel.Bind<ICustomerTypeAPIRepository>().To<CustomerTypeAPIRepository>();
-                //Kernel.Bind<CustomerTypeViewModel>().ToSelf();
+                Kernel.Bind<CustomerTypeViewModel>().ToSelf();
 
                 //Kernel.Bind<ILocationService>().To<LocationService>();
                 //Kernel.Bind<ILocationRepository>().To<LocationRepository>();

@@ -120,6 +120,14 @@ namespace TotalSmartCoding.Libraries
                 cfg.CreateMap<Commodity, CommodityDTO>();
                 cfg.CreateMap<CommodityPrimitiveDTO, Commodity>();
 
+                cfg.CreateMap<CommodityType, CommodityTypeViewModel>();
+                cfg.CreateMap<CommodityType, CommodityTypeDTO>();
+                cfg.CreateMap<CommodityTypePrimitiveDTO, CommodityType>();
+
+                cfg.CreateMap<CommodityCategory, CommodityCategoryViewModel>();
+                cfg.CreateMap<CommodityCategory, CommodityCategoryDTO>();
+                cfg.CreateMap<CommodityCategoryPrimitiveDTO, CommodityCategory>();
+
                 cfg.CreateMap<CommoditySetting, CommoditySettingViewModel>();
                 cfg.CreateMap<CommoditySetting, CommoditySettingDTO>();
                 cfg.CreateMap<CommoditySettingPrimitiveDTO, CommoditySetting>();
@@ -135,6 +143,22 @@ namespace TotalSmartCoding.Libraries
                 cfg.CreateMap<Customer, CustomerViewModel>();
                 cfg.CreateMap<Customer, CustomerDTO>();
                 cfg.CreateMap<CustomerPrimitiveDTO, Customer>();
+
+                cfg.CreateMap<CustomerType, CustomerTypeViewModel>();
+                cfg.CreateMap<CustomerType, CustomerTypeDTO>();
+                cfg.CreateMap<CustomerTypePrimitiveDTO, CustomerType>();
+
+                cfg.CreateMap<CustomerCategory, CustomerCategoryViewModel>();
+                cfg.CreateMap<CustomerCategory, CustomerCategoryDTO>();
+                cfg.CreateMap<CustomerCategoryPrimitiveDTO, CustomerCategory>();
+
+                cfg.CreateMap<Team, TeamViewModel>();
+                cfg.CreateMap<Team, TeamDTO>();
+                cfg.CreateMap<TeamPrimitiveDTO, Team>();
+
+                cfg.CreateMap<Territory, TerritoryViewModel>();
+                cfg.CreateMap<Territory, TerritoryDTO>();
+                cfg.CreateMap<TerritoryPrimitiveDTO, Territory>();
 
                 cfg.CreateMap<BinLocation, BinLocationViewModel>();
                 cfg.CreateMap<BinLocation, BinLocationDTO>();
