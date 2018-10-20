@@ -43,6 +43,7 @@ using TotalSmartCoding.Views.Sales.TransferOrders;
 using TotalSmartCoding.Views.Commons.Customers;
 using TotalSmartCoding.Views.Commons.BinLocations;
 using TotalSmartCoding.Views.Commons.Teams;
+using TotalSmartCoding.Views.Commons.Territories;
 using TotalSmartCoding.ViewModels.Helpers;
 using TotalSmartCoding.Views.Commons.Commodities;
 using TotalSmartCoding.Views.Generals;
@@ -449,6 +450,9 @@ namespace TotalSmartCoding.Views.Mains
                             break;
                         case (int)GlobalEnums.NmvnTaskID.Teams:
                             openingView = new Teams();
+                            break;
+                        case (int)GlobalEnums.NmvnTaskID.Territories:
+                            openingView = new Territories();
                             break;
 
                         case (int)GlobalEnums.NmvnTaskID.Employees:

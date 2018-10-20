@@ -681,6 +681,11 @@ namespace TotalModel.Models
         public System.DateTime EditedDate { get; set; }
     }
 
+    public partial class TerritoryIndex : IBaseIndex
+    {
+        public int Id { get { return this.TerritoryID; } }
+    }
+
     public partial class Territory : IPrimitiveEntity, IBaseEntity
     {
         public int GetID() { return this.TerritoryID; }
