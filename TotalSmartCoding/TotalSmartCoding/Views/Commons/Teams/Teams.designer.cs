@@ -212,7 +212,7 @@
             // 
             // olvTeamName
             // 
-            this.olvTeamName.AspectName = "BinLocationName";
+            this.olvTeamName.AspectName = "Name";
             this.olvTeamName.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvTeamName.Text = "Name";
             this.olvTeamName.Width = 360;

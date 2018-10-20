@@ -68,7 +68,7 @@ namespace TotalSmartCoding.Views.Commons.Teams
                 this.customTabCenter.DisplayStyle = TabStyle.VisualStudio;
                 this.customTabCenter.Font = this.panelCenter.Font;
 
-                this.customTabCenter.TabPages.Add("tabCenterAA", "Bin Information      ");
+                this.customTabCenter.TabPages.Add("tabCenterAA", "Team Info      ");
 
                 this.customTabCenter.TabPages[0].Controls.Add(this.layoutTop);
                 this.customTabCenter.TabPages[0].BackColor = this.panelCenter.BackColor;
