@@ -6995,6 +6995,7 @@
           <Property Type="Int32" Name="CustomerCategoryID" Nullable="false" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="Remarks" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="GlobalName" Nullable="false" MaxLength="15" />
         </ComplexType>
         <ComplexType Name="CustomerTypeBase">
           <Property Type="Int32" Name="CustomerTypeID" Nullable="false" />
@@ -7004,6 +7005,7 @@
           <Property Type="Int32" Name="CustomerTypeID" Nullable="false" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="Remarks" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="GlobalName" Nullable="false" MaxLength="15" />
         </ComplexType>
         <ComplexType Name="TerritoryBase">
           <Property Type="Int32" Name="TerritoryID" Nullable="false" />
@@ -7014,6 +7016,7 @@
           <Property Type="Int32" Name="TerritoryID" Nullable="false" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="Remarks" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="GlobalName" Nullable="false" MaxLength="15" />
         </ComplexType>
         <ComplexType Name="PendingGoodsIssueTransferDetail">
           <Property Type="Int32" Name="GoodsIssueID" Nullable="false" />
@@ -8105,6 +8108,7 @@
           <Property Type="Int32" Name="CommodityCategoryID" Nullable="false" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="Remarks" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="GlobalName" Nullable="false" MaxLength="15" />
         </ComplexType>
         <EntityType Name="CommodityCategory">
           <Key>
@@ -8246,6 +8250,7 @@
           <Property Type="Int32" Name="CommodityTypeID" Nullable="false" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="Remarks" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="GlobalName" Nullable="false" MaxLength="15" />
         </ComplexType>
         <ComplexType Name="ReportIndex">
           <Property Type="Int32" Name="ReportUniqueID" Nullable="false" />
@@ -8867,6 +8872,7 @@
           <Property Type="String" Name="Name" Nullable="false" MaxLength="500" />
           <Property Type="String" Name="Code" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="Remarks" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="GlobalName" Nullable="false" MaxLength="15" />
         </ComplexType>
         <ComplexType Name="TeamTree">
           <Property Type="Int32" Name="NodeID" Nullable="true" />
@@ -10599,6 +10605,7 @@
                 <ScalarProperty Name="CustomerCategoryID" ColumnName="CustomerCategoryID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="GlobalName" ColumnName="GlobalName" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -10616,6 +10623,7 @@
                 <ScalarProperty Name="CustomerTypeID" ColumnName="CustomerTypeID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="GlobalName" ColumnName="GlobalName" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -10634,6 +10642,7 @@
                 <ScalarProperty Name="TerritoryID" ColumnName="TerritoryID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="GlobalName" ColumnName="GlobalName" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -11146,6 +11155,7 @@
                 <ScalarProperty Name="CommodityCategoryID" ColumnName="CommodityCategoryID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="GlobalName" ColumnName="GlobalName" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -11267,6 +11277,7 @@
                 <ScalarProperty Name="CommodityTypeID" ColumnName="CommodityTypeID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="GlobalName" ColumnName="GlobalName" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -11732,6 +11743,7 @@
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="GlobalName" ColumnName="GlobalName" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

@@ -16,5 +16,6 @@ namespace TotalModel.Models
         public int TerritoryID { get; set; }
         public string Name { get; set; }
         public string Remarks { get; set; }
+        public string GlobalName { get; set; }
     }
 }

@@ -38,7 +38,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
-            queryString = queryString + "       SELECT      TerritoryID, Name, Remarks " + "\r\n";
+            queryString = queryString + "       SELECT      TerritoryID, Name, N'Chevron Vietnam' AS GlobalName, Remarks " + "\r\n";
             queryString = queryString + "       FROM        Territories " + "\r\n";
 
             queryString = queryString + "    END " + "\r\n";

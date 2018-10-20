@@ -130,7 +130,7 @@ namespace TotalSmartCoding.Views.Commons.Teams
         protected override void DoAfterLoad()
         {
             base.DoAfterLoad();
-            this.fastTeamIndex.Sort(this.olvTeamName, SortOrder.Descending);
+            this.fastTeamIndex.Sort(this.olvGlobalName, SortOrder.Descending);
         }
     }
 }

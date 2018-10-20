@@ -45,6 +45,7 @@
             this.olvTeamName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvRemarks = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.imageList32 = new System.Windows.Forms.ImageList(this.components);
+            this.olvGlobalName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.toolStripChildForm.SuspendLayout();
             this.panelCenter.SuspendLayout();
             this.layoutTop.SuspendLayout();
@@ -172,6 +173,7 @@
             // 
             this.fastTeamIndex.AllColumns.Add(this.olvID);
             this.fastTeamIndex.AllColumns.Add(this.olvBlank);
+            this.fastTeamIndex.AllColumns.Add(this.olvGlobalName);
             this.fastTeamIndex.AllColumns.Add(this.olvTeamName);
             this.fastTeamIndex.AllColumns.Add(this.olvRemarks);
             this.fastTeamIndex.BackColor = System.Drawing.Color.Ivory;
@@ -239,6 +241,12 @@
             this.imageList32.Images.SetKeyName(8, "CustomerRed");
             this.imageList32.Images.SetKeyName(9, "BinLocation-32");
             // 
+            // olvGlobalName
+            // 
+            this.olvGlobalName.AspectName = "GlobalName";
+            this.olvGlobalName.IsVisible = false;
+            this.olvGlobalName.Text = "";
+            // 
             // Teams
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -283,6 +291,7 @@
         private System.Windows.Forms.Panel panelCenter;
         private BrightIdeasSoftware.OLVColumn olvBlank;
         private System.Windows.Forms.Label label14;
+        private BrightIdeasSoftware.OLVColumn olvGlobalName;
 
     }
 }

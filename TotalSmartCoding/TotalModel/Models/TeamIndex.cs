@@ -17,5 +17,6 @@ namespace TotalModel.Models
         public string Name { get; set; }
         public string Code { get; set; }
         public string Remarks { get; set; }
+        public string GlobalName { get; set; }
     }
 }

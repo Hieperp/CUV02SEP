@@ -37,7 +37,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
-            queryString = queryString + "       SELECT      CustomerCategoryID, Name, Remarks " + "\r\n";
+            queryString = queryString + "       SELECT      CustomerCategoryID, Name, N'Chevron Vietnam' AS GlobalName, Remarks " + "\r\n";
             queryString = queryString + "       FROM        CustomerCategories " + "\r\n";
 
             queryString = queryString + "    END " + "\r\n";
