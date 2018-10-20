@@ -148,7 +148,6 @@
           </Key>
           <Property Name="CommodityTypeID" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="Description" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="AncestorID" Type="int" />
           <Property Name="Remarks" Type="nvarchar" MaxLength="100" />
         </EntityType>
@@ -4761,22 +4760,13 @@
             <Parameter Name="ToDate" Mode="In" Type="DateTime" />
           </FunctionImport>
           <EntitySet Name="CommodityCategories" EntityType="TotalSmartCodingModel.CommodityCategory" />
-          <EntitySet Name="CommodityTypes" EntityType="TotalSmartCodingModel.CommodityType" />
           <AssociationSet Name="FK_Commodities_CommodityCategories" Association="TotalSmartCodingModel.FK_Commodities_CommodityCategories">
             <End Role="CommodityCategory" EntitySet="CommodityCategories" />
-            <End Role="Commodity" EntitySet="Commodities" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Commodities_CommodityTypes" Association="TotalSmartCodingModel.FK_Commodities_CommodityTypes">
-            <End Role="CommodityType" EntitySet="CommodityTypes" />
             <End Role="Commodity" EntitySet="Commodities" />
           </AssociationSet>
           <AssociationSet Name="FK_CommodityCategories_CommodityCategories" Association="TotalSmartCodingModel.FK_CommodityCategories_CommodityCategories">
             <End Role="CommodityCategory" EntitySet="CommodityCategories" />
             <End Role="CommodityCategory1" EntitySet="CommodityCategories" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CommodityTypes_CommodityTypes" Association="TotalSmartCodingModel.FK_CommodityTypes_CommodityTypes">
-            <End Role="CommodityType" EntitySet="CommodityTypes" />
-            <End Role="CommodityType1" EntitySet="CommodityTypes" />
           </AssociationSet>
           <EntitySet Name="Teams" EntityType="TotalSmartCodingModel.Team" />
           <AssociationSet Name="FK_DeliveryAdvices_Teams" Association="TotalSmartCodingModel.FK_DeliveryAdvices_Teams">
@@ -5243,8 +5233,17 @@
             <Parameter Name="SaveRelativeOption" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="CustomerTypeDeletable" ReturnType="Collection(String)">
-            <Parameter Name="EntityID" Mode="In" Type="Int32" />
+          <Parameter Name="EntityID" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="CommodityTypes" EntityType="TotalSmartCodingModel.CommodityType" />
+          <AssociationSet Name="FK_Commodities_CommodityTypes" Association="TotalSmartCodingModel.FK_Commodities_CommodityTypes">
+            <End Role="CommodityType" EntitySet="CommodityTypes" />
+            <End Role="Commodity" EntitySet="Commodities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommodityTypes_CommodityTypes" Association="TotalSmartCodingModel.FK_CommodityTypes_CommodityTypes">
+            <End Role="CommodityType" EntitySet="CommodityTypes" />
+            <End Role="CommodityType1" EntitySet="CommodityTypes" />
+          </AssociationSet>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
           <Property Type="Int32" Name="PickupID" Nullable="false" />
@@ -6500,10 +6499,10 @@
           <NavigationProperty Name="GoodsIssueDetails" Relationship="TotalSmartCodingModel.FK_GoodsIssueDetails_Commodities" FromRole="Commodity" ToRole="GoodsIssueDetail" />
           <NavigationProperty Name="WarehouseAdjustmentDetails" Relationship="TotalSmartCodingModel.FK_WarehouseAdjustmentDetails_Commodities" FromRole="Commodity" ToRole="WarehouseAdjustmentDetail" />
           <NavigationProperty Name="CommodityCategory" Relationship="TotalSmartCodingModel.FK_Commodities_CommodityCategories" FromRole="Commodity" ToRole="CommodityCategory" />
-          <NavigationProperty Name="CommodityType" Relationship="TotalSmartCodingModel.FK_Commodities_CommodityTypes" FromRole="Commodity" ToRole="CommodityType" />
           <NavigationProperty Name="CommoditySettingDetails" Relationship="TotalSmartCodingModel.FK_CommoditySettingDetails_Commodities" FromRole="Commodity" ToRole="CommoditySettingDetail" />
           <NavigationProperty Name="CommoditySettings" Relationship="TotalSmartCodingModel.FK_CommoditySettings_Commodities" FromRole="Commodity" ToRole="CommoditySetting" />
           <NavigationProperty Name="Batches" Relationship="TotalSmartCodingModel.FK_Batches_Commodities" FromRole="Commodity" ToRole="Batch" />
+          <NavigationProperty Name="CommodityType" Relationship="TotalSmartCodingModel.FK_Commodities_CommodityTypes" FromRole="Commodity" ToRole="CommodityType" />
         </EntityType>
         <Association Name="FK_Cartons_Commodities">
           <End Type="TotalSmartCodingModel.Commodity" Role="Commodity" Multiplicity="1" />
@@ -8119,19 +8118,6 @@
           <NavigationProperty Name="CommodityCategories1" Relationship="TotalSmartCodingModel.FK_CommodityCategories_CommodityCategories" FromRole="CommodityCategory" ToRole="CommodityCategory1" />
           <NavigationProperty Name="CommodityCategory1" Relationship="TotalSmartCodingModel.FK_CommodityCategories_CommodityCategories" FromRole="CommodityCategory1" ToRole="CommodityCategory" />
         </EntityType>
-        <EntityType Name="CommodityType">
-          <Key>
-            <PropertyRef Name="CommodityTypeID" />
-          </Key>
-          <Property Name="CommodityTypeID" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="AncestorID" Type="Int32" />
-          <Property Name="Remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Commodities" Relationship="TotalSmartCodingModel.FK_Commodities_CommodityTypes" FromRole="CommodityType" ToRole="Commodity" />
-          <NavigationProperty Name="CommodityTypes1" Relationship="TotalSmartCodingModel.FK_CommodityTypes_CommodityTypes" FromRole="CommodityType" ToRole="CommodityType1" />
-          <NavigationProperty Name="CommodityType1" Relationship="TotalSmartCodingModel.FK_CommodityTypes_CommodityTypes" FromRole="CommodityType1" ToRole="CommodityType" />
-        </EntityType>
         <Association Name="FK_Commodities_CommodityCategories">
           <End Type="TotalSmartCodingModel.CommodityCategory" Role="CommodityCategory" Multiplicity="1" />
           <End Type="TotalSmartCodingModel.Commodity" Role="Commodity" Multiplicity="*" />
@@ -8144,18 +8130,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Commodities_CommodityTypes">
-          <End Type="TotalSmartCodingModel.CommodityType" Role="CommodityType" Multiplicity="1" />
-          <End Type="TotalSmartCodingModel.Commodity" Role="Commodity" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CommodityType">
-              <PropertyRef Name="CommodityTypeID" />
-            </Principal>
-            <Dependent Role="Commodity">
-              <PropertyRef Name="CommodityTypeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_CommodityCategories_CommodityCategories">
           <End Type="TotalSmartCodingModel.CommodityCategory" Role="CommodityCategory" Multiplicity="0..1" />
           <End Type="TotalSmartCodingModel.CommodityCategory" Role="CommodityCategory1" Multiplicity="*" />
@@ -8164,18 +8138,6 @@
               <PropertyRef Name="CommodityCategoryID" />
             </Principal>
             <Dependent Role="CommodityCategory1">
-              <PropertyRef Name="AncestorID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CommodityTypes_CommodityTypes">
-          <End Type="TotalSmartCodingModel.CommodityType" Role="CommodityType" Multiplicity="0..1" />
-          <End Type="TotalSmartCodingModel.CommodityType" Role="CommodityType1" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CommodityType">
-              <PropertyRef Name="CommodityTypeID" />
-            </Principal>
-            <Dependent Role="CommodityType1">
               <PropertyRef Name="AncestorID" />
             </Dependent>
           </ReferentialConstraint>
@@ -8283,7 +8245,6 @@
         <ComplexType Name="CommodityTypeIndex">
           <Property Type="Int32" Name="CommodityTypeID" Nullable="false" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
-          <Property Type="String" Name="Description" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="Remarks" Nullable="true" MaxLength="100" />
         </ComplexType>
         <ComplexType Name="ReportIndex">
@@ -9072,6 +9033,42 @@
           <Property Type="String" Name="EmployeeName" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="EmployeeType" Nullable="false" MaxLength="15" />
         </ComplexType>
+        <EntityType Name="CommodityType">
+          <Key>
+            <PropertyRef Name="CommodityTypeID" />
+          </Key>
+          <Property Name="CommodityTypeID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AncestorID" Type="Int32" />
+          <Property Name="Remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Commodities" Relationship="TotalSmartCodingModel.FK_Commodities_CommodityTypes" FromRole="CommodityType" ToRole="Commodity" />
+          <NavigationProperty Name="CommodityTypes1" Relationship="TotalSmartCodingModel.FK_CommodityTypes_CommodityTypes" FromRole="CommodityType" ToRole="CommodityType1" />
+          <NavigationProperty Name="CommodityType1" Relationship="TotalSmartCodingModel.FK_CommodityTypes_CommodityTypes" FromRole="CommodityType1" ToRole="CommodityType" />
+        </EntityType>
+        <Association Name="FK_Commodities_CommodityTypes">
+          <End Type="TotalSmartCodingModel.CommodityType" Role="CommodityType" Multiplicity="1" />
+          <End Type="TotalSmartCodingModel.Commodity" Role="Commodity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CommodityType">
+              <PropertyRef Name="CommodityTypeID" />
+            </Principal>
+            <Dependent Role="Commodity">
+              <PropertyRef Name="CommodityTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommodityTypes_CommodityTypes">
+          <End Type="TotalSmartCodingModel.CommodityType" Role="CommodityType" Multiplicity="0..1" />
+          <End Type="TotalSmartCodingModel.CommodityType" Role="CommodityType1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CommodityType">
+              <PropertyRef Name="CommodityTypeID" />
+            </Principal>
+            <Dependent Role="CommodityType1">
+              <PropertyRef Name="AncestorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -11162,17 +11159,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="CommodityTypes">
-            <EntityTypeMapping TypeName="TotalSmartCodingModel.CommodityType">
-              <MappingFragment StoreEntitySet="CommodityTypes">
-                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
-                <ScalarProperty Name="AncestorID" ColumnName="AncestorID" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="CommodityTypeID" ColumnName="CommodityTypeID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Teams">
             <EntityTypeMapping TypeName="TotalSmartCodingModel.Team">
               <MappingFragment StoreEntitySet="Teams">
@@ -11280,7 +11266,6 @@
               <ComplexTypeMapping TypeName="TotalSmartCodingModel.CommodityTypeIndex">
                 <ScalarProperty Name="CommodityTypeID" ColumnName="CommodityTypeID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
               </ComplexTypeMapping>
             </ResultMapping>
@@ -11993,6 +11978,16 @@
           <FunctionImportMapping FunctionImportName="TerritoryPostSaveValidate" FunctionName="TotalSmartCodingModel.Store.TerritoryPostSaveValidate" />
           <FunctionImportMapping FunctionImportName="TerritorySaveRelative" FunctionName="TotalSmartCodingModel.Store.TerritorySaveRelative" />
           <FunctionImportMapping FunctionImportName="CustomerTypeDeletable" FunctionName="TotalSmartCodingModel.Store.CustomerTypeDeletable" />
+          <EntitySetMapping Name="CommodityTypes">
+            <EntityTypeMapping TypeName="TotalSmartCodingModel.CommodityType">
+              <MappingFragment StoreEntitySet="CommodityTypes">
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="AncestorID" ColumnName="AncestorID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CommodityTypeID" ColumnName="CommodityTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
