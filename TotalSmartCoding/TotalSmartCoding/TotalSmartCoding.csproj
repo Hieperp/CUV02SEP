@@ -272,6 +272,12 @@
     <Compile Include="Views\Commons\FillingLines\FillingLines.designer.cs">
       <DependentUpon>FillingLines.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Commons\Teams\Teams.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Commons\Teams\Teams.designer.cs">
+      <DependentUpon>Teams.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Generals\Reports.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -603,6 +609,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Commons\FillingLines\FillingLines.resx">
       <DependentUpon>FillingLines.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Commons\Teams\Teams.resx">
+      <DependentUpon>Teams.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Generals\Reports.resx">
       <DependentUpon>Reports.cs</DependentUpon>

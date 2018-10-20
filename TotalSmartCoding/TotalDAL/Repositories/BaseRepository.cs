@@ -104,6 +104,21 @@ namespace TotalDAL.Repositories
             #region FINAL 19OCT2018
             if (this.totalSmartCodingEntities.ColumnExists("CommodityTypes", "Description"))
             {
+                #region ADD NEW MODULE
+                this.ExecuteStoreCommand("UPDATE ModuleDetails SET Code = 'MH', Name = 'MH' WHERE ModuleDetailID = 8006 ", new ObjectParameter[] { }); //HIDE Warehouses FROM ModuleDetails
+
+                var myQuery = this.totalSmartCodingEntities.Database.SqlQuery(typeof(int), "SELECT COUNT(ModuleDetailID) AS Expr1 FROM ModuleDetails WHERE ModuleDetailID = " + (int)GlobalEnums.NmvnTaskID.Teams + ";", new object[] { });
+                int myExists = myQuery.Cast<int>().Single();
+                if (myExists == 0)
+                {
+                    this.ExecuteStoreCommand("INSERT INTO ModuleDetails (ModuleDetailID, ModuleID, Code, Name, FullName, Actions, Controller, LastOpen, SerialID, ImageIndex, InActive, ControlTypeID) VALUES(" + (int)GlobalEnums.NmvnTaskID.Teams + ", 1, 'Sales Teams', 'Sales Teams', '#', '#', 'CUSTOMER MANAGEMENT', 1, 35, 1, 0, 0) ", new ObjectParameter[] { });
+                    this.ExecuteStoreCommand("INSERT INTO AccessControls (UserID, NMVNTaskID, OrganizationalUnitID, AccessLevel, ApprovalPermitted, UnApprovalPermitted, VoidablePermitted, UnVoidablePermitted, ShowDiscount, AccessLevelBACKUP, ApprovalPermittedBACKUP, UnApprovalPermittedBACKUP, InActive) SELECT UserID, " + (int)GlobalEnums.NmvnTaskID.Teams + " AS NMVNTaskID, OrganizationalUnitID, 0 AS AccessLevel, 0 AS ApprovalPermitted, 0 AS UnApprovalPermitted, 0 AS VoidablePermitted, 0 AS UnVoidablePermitted, ShowDiscount, AccessLevelBACKUP, ApprovalPermittedBACKUP, UnApprovalPermittedBACKUP, InActive FROM AccessControls WHERE (NMVNTaskID = " + (int)GlobalEnums.NmvnTaskID.Commodities + ") AND (SELECT COUNT(*) FROM AccessControls WHERE NMVNTaskID = " + (int)GlobalEnums.NmvnTaskID.Teams + ") = 0", new ObjectParameter[] { });
+                }
+
+                #endregion ADD NEW MODULE
+
+
+
                 this.totalSmartCodingEntities.ColumnDrop("CommodityTypes", "Description");
             }
             #endregion FINAL 19OCT2018
@@ -503,7 +518,7 @@ namespace TotalDAL.Repositories
             this.totalSmartCodingEntities.ColumnAdd("Employees", "InActive", "bit", "0", true);
             if (!this.totalSmartCodingEntities.ColumnExists("Employees", "EmployeeRoleIDs"))
             {
-                this.ExecuteStoreCommand("UPDATE ModuleDetails SET InActive = 1 WHERE ModuleDetailID IN (" + (int)GlobalEnums.NmvnTaskID.Territories + ", " + (int)GlobalEnums.NmvnTaskID.Warehouses + ", " + (int)GlobalEnums.NmvnTaskID.AvailableItems + ", " + (int)GlobalEnums.NmvnTaskID.PendingOrders + ") ", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("UPDATE ModuleDetails SET InActive = 1 WHERE ModuleDetailID IN (" + (int)GlobalEnums.NmvnTaskID.Warehouses + ", " + (int)GlobalEnums.NmvnTaskID.AvailableItems + ", " + (int)GlobalEnums.NmvnTaskID.PendingOrders + ") ", new ObjectParameter[] { });
 
                 this.ExecuteStoreCommand("UPDATE Employees SET Title = N'#'", new ObjectParameter[] { });
 

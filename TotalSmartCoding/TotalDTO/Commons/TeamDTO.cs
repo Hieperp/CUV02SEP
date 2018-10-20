@@ -26,13 +26,7 @@ namespace TotalDTO.Commons
         }
 
 
-        private string code;
-        [DefaultValue(null)]
-        public string Code
-        {
-            get { return this.code; }
-            set { ApplyPropertyChange<TeamPrimitiveDTO, string>(ref this.code, o => o.Code, value); }
-        }
+        public string Code { get { return this.Name; } }
 
         private string name;
         [DefaultValue(null)]

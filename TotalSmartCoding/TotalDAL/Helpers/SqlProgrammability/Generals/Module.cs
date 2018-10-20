@@ -116,7 +116,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
-            queryString = queryString + "       SELECT ModuleDetailID, ModuleID, Code, Name, FullName, Actions, Controller, LastOpen, SerialID, ImageIndex, InActive FROM ModuleDetails WHERE ModuleID = @ModuleID AND ModuleDetailID <> " + (int)GlobalEnums.NmvnTaskID.Territories + " AND ModuleDetailID <> " + (int)GlobalEnums.NmvnTaskID.Warehouses + "  AND ModuleDetailID <> " + (int)GlobalEnums.NmvnTaskID.MonthEnd + " ORDER BY SerialID" + "\r\n";
+            queryString = queryString + "       SELECT ModuleDetailID, ModuleID, Code, Name, FullName, Actions, Controller, LastOpen, SerialID, ImageIndex, InActive FROM ModuleDetails WHERE ModuleID = @ModuleID AND ModuleDetailID <> " + (int)GlobalEnums.NmvnTaskID.Warehouses + "  AND ModuleDetailID <> " + (int)GlobalEnums.NmvnTaskID.MonthEnd + " ORDER BY SerialID" + "\r\n";
 
             queryString = queryString + "    END " + "\r\n";
 
