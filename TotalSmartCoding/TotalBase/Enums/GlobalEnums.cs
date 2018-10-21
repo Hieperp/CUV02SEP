@@ -85,7 +85,14 @@
             Pack = 686868,
             Carton = 686868,
             Pallet = 686868,
+
             SmartCoding = 888888,
+            SmartCodingSmallpack = 888889,
+            SmartCodingPail = 888890,
+            SmartCodingDrum = 888891,
+            SmartCodingMedium4L = 888892,
+            SmartCodingImport = 888893,
+            
 
             Customers = 8001,
             CustomerTypes = 8011,

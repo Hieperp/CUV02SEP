@@ -124,7 +124,7 @@ namespace TotalSmartCoding.Views.Mains
                 {
                     if (GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Smallpack || GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Pail || GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Medium4L || GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Import || GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Drum)
                     {
-                        int? accessLevel = this.baseRepository.TotalSmartCodingEntities.GetAccessLevel(activeUsers[0].UserID, (int)TotalBase.Enums.GlobalEnums.NmvnTaskID.SmartCoding, 0).Single();
+                        int? accessLevel = this.baseRepository.TotalSmartCodingEntities.GetAccessLevel(activeUsers[0].UserID, (int)TotalBase.Enums.GlobalEnums.NmvnTaskID.SmartCoding + (int)GlobalVariables.ConfigID, 0).Single();
                         if (accessLevel != (int)TotalBase.Enums.GlobalEnums.AccessLevel.Editable) activeUsers = new List<ActiveUser>();
                     }
                     else
