@@ -67,14 +67,14 @@ namespace TotalSmartCoding.Views.Mains
                 this.InitializeDataGridBinding();
                 this.InitializeReadOnlyModeBinding();
 
-                this.Loading();
-                this.DoAfterLoad();
+                this.Loading();                
 
             }
             catch (Exception exception)
             {
                 ExceptionHandlers.ShowExceptionMessageBox(this, exception);
             }
+            finally { this.DoAfterLoad(); }
         }
 
         private void BaseView_FormClosed(object sender, System.Windows.Forms.FormClosedEventArgs e)

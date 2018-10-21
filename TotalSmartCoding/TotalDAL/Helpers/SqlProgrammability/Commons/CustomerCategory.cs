@@ -39,6 +39,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
 
             queryString = queryString + "       SELECT      CustomerCategoryID, Name, N'Chevron Vietnam' AS GlobalName, Remarks " + "\r\n";
             queryString = queryString + "       FROM        CustomerCategories " + "\r\n";
+            queryString = queryString + "       WHERE      (SELECT TOP 1 OrganizationalUnitID FROM AccessControls WHERE UserID = @UserID AND NMVNTaskID = " + (int)TotalBase.Enums.GlobalEnums.NmvnTaskID.CustomerCategories + " AND AccessControls.AccessLevel > 0) > 0 " + "\r\n";
 
             queryString = queryString + "    END " + "\r\n";
 

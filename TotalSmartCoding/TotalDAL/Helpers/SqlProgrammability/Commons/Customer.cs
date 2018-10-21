@@ -42,6 +42,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             queryString = queryString + "       FROM        Customers " + "\r\n";
             queryString = queryString + "                   INNER JOIN EntireTerritories ON Customers.TerritoryID = EntireTerritories.TerritoryID " + "\r\n";
             queryString = queryString + "                   INNER JOIN Employees ON Customers.SalespersonID = Employees.EmployeeID " + "\r\n";
+            queryString = queryString + "       WHERE      (SELECT TOP 1 OrganizationalUnitID FROM AccessControls WHERE UserID = @UserID AND NMVNTaskID = " + (int)TotalBase.Enums.GlobalEnums.NmvnTaskID.Customers + " AND AccessControls.AccessLevel > 0) > 0 " + "\r\n";
 
             queryString = queryString + "    END " + "\r\n";
 

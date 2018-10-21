@@ -41,6 +41,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             queryString = queryString + "       SELECT      Employees.EmployeeID, Employees.Code, Employees.Name, Employees.Title, ISNULL(Teams.Code, N'[Not belong to a sales team]') AS TeamCode, Employees.Birthday, Employees.Telephone, Employees.Address, Employees.Remarks, Employees.InActive " + "\r\n";
             queryString = queryString + "       FROM        Employees " + "\r\n";
             queryString = queryString + "                   LEFT JOIN Teams ON Employees.TeamID = Teams.TeamID " + "\r\n";
+            queryString = queryString + "       WHERE      (SELECT TOP 1 OrganizationalUnitID FROM AccessControls WHERE UserID = @UserID AND NMVNTaskID = " + (int)TotalBase.Enums.GlobalEnums.NmvnTaskID.Employees + " AND AccessControls.AccessLevel > 0) > 0 " + "\r\n";
 
             queryString = queryString + "    END " + "\r\n";
 

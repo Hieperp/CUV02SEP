@@ -692,6 +692,11 @@ namespace TotalDAL.Repositories
 
             Helpers.SqlProgrammability.Commons.CustomerType customerType = new Helpers.SqlProgrammability.Commons.CustomerType(totalSmartCodingEntities);
             customerType.RestoreProcedure();
+            
+            //return;
+
+            Helpers.SqlProgrammability.Commons.FillingLine fillingLine = new Helpers.SqlProgrammability.Commons.FillingLine(totalSmartCodingEntities);
+            fillingLine.RestoreProcedure();
 
             //return;
             //!!!!!!!!!!!!!!!!!!!!!!!!!ANY STORED CALL SubmitUserAccessControls: MUST BY RESTORE AFTER THIS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -770,10 +775,7 @@ namespace TotalDAL.Repositories
 
 
 
-            //return;
 
-            Helpers.SqlProgrammability.Commons.FillingLine fillingLine = new Helpers.SqlProgrammability.Commons.FillingLine(totalSmartCodingEntities);
-            fillingLine.RestoreProcedure();
 
             return;
             return;

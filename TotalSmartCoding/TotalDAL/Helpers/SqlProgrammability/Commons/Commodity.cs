@@ -47,7 +47,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             queryString = queryString + "       SELECT      Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, CommodityCategories.CommodityCategoryID, CommodityCategories.Name AS CommodityCategoryName, Commodities.PackageSize, Commodities.PackageVolume, Commodities.PackPerCarton, Commodities.CartonPerPallet, Commodities.Shelflife, Commodities.InActive, Commodities.Remarks " + "\r\n";
             queryString = queryString + "       FROM        CommodityCategories " + "\r\n";
             queryString = queryString + "                   INNER JOIN Commodities ON CommodityCategories.CommodityCategoryID = Commodities.CommodityCategoryID " + "\r\n";
-
+            queryString = queryString + "       WHERE      (SELECT TOP 1 OrganizationalUnitID FROM AccessControls WHERE UserID = @UserID AND NMVNTaskID = " + (int)TotalBase.Enums.GlobalEnums.NmvnTaskID.Commodities + " AND AccessControls.AccessLevel > 0) > 0 " + "\r\n";
             queryString = queryString + "    END " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("GetCommodityIndexes", queryString);

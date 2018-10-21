@@ -64,6 +64,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
 
             queryString = queryString + "                   ) AS CommoditySettings INNER JOIN Commodities ON CommoditySettings.CommodityID = Commodities.CommodityID " + "\r\n";
             queryString = queryString + "                   INNER JOIN CommodityCategories ON Commodities.CommodityCategoryID = CommodityCategories.CommodityCategoryID " + "\r\n";
+            queryString = queryString + "       WHERE      (SELECT TOP 1 OrganizationalUnitID FROM AccessControls WHERE UserID = @UserID AND NMVNTaskID = " + (int)TotalBase.Enums.GlobalEnums.NmvnTaskID.CommoditySettings + " AND AccessControls.AccessLevel > 0) > 0 " + "\r\n";
 
             queryString = queryString + "    END " + "\r\n";
 
