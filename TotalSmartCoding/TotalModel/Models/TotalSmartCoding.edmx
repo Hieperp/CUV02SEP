@@ -146,7 +146,7 @@
           <Key>
             <PropertyRef Name="CommodityTypeID" />
           </Key>
-          <Property Name="CommodityTypeID" Type="int" Nullable="false" />
+          <Property Name="CommodityTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="AncestorID" Type="int" />
           <Property Name="Remarks" Type="nvarchar" MaxLength="100" />
@@ -191,7 +191,7 @@
           <Property Name="CustomerTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="AncestorID" Type="int" />
-          <Property Name="Remarks" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Remarks" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="DeliveryAdviceDetails">
           <Key>
@@ -6833,7 +6833,7 @@
           <Property Name="CustomerTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="AncestorID" Type="Int32" />
-          <Property Name="Remarks" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="CustomerTypes1" Relationship="TotalSmartCodingModel.FK_CustomerTypes_CustomerTypes" FromRole="CustomerType" ToRole="CustomerType1" />
           <NavigationProperty Name="CustomerType1" Relationship="TotalSmartCodingModel.FK_CustomerTypes_CustomerTypes" FromRole="CustomerType1" ToRole="CustomerType" />
           <NavigationProperty Name="Customers" Relationship="TotalSmartCodingModel.FK_Customers_CustomerTypes" FromRole="CustomerType" ToRole="Customer" />

@@ -100,7 +100,6 @@ namespace TotalDAL.Repositories
                 this.totalSmartCodingEntities.ColumnAdd("Configs", "StoredID", "int", "0", true);
             }
 
-
             #region FINAL 19OCT2018
             if (this.totalSmartCodingEntities.ColumnExists("CommodityTypes", "Description"))
             {
@@ -198,7 +197,8 @@ namespace TotalDAL.Repositories
 
                 this.ExecuteStoreCommand(@"ALTER TABLE CustomerCategories ALTER COLUMN Remarks nvarchar(100)
                                                 ", new ObjectParameter[] { });
-
+                this.ExecuteStoreCommand(@"ALTER TABLE CustomerTypes ALTER COLUMN Remarks nvarchar(100)
+                                                ", new ObjectParameter[] { });
 
 
                 this.ExecuteStoreCommand(@"CREATE TABLE [dbo].[CommodityTypes](
