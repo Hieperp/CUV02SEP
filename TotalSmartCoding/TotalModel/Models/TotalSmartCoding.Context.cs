@@ -3278,5 +3278,18 @@ namespace TotalModel.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("CustomerTypeDeletable", entityIDParameter);
         }
+    
+        public virtual int UserControlSetAdmin(Nullable<int> entityID, Nullable<bool> isDatabaseAdmin)
+        {
+            var entityIDParameter = entityID.HasValue ?
+                new ObjectParameter("EntityID", entityID) :
+                new ObjectParameter("EntityID", typeof(int));
+    
+            var isDatabaseAdminParameter = isDatabaseAdmin.HasValue ?
+                new ObjectParameter("IsDatabaseAdmin", isDatabaseAdmin) :
+                new ObjectParameter("IsDatabaseAdmin", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UserControlSetAdmin", entityIDParameter, isDatabaseAdminParameter);
+        }
     }
 }

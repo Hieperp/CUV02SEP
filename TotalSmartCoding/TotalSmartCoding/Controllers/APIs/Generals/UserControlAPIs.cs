@@ -85,6 +85,15 @@ namespace TotalSmartCoding.Controllers.APIs.Generals
             return affectedRows;
         }
 
+        public int UserControlSetAdmin(int? userID, string userName, string securityIdentifier, bool isDatabaseAdmin)
+        {
+            int affectedRows = this.userControlAPIRepository.UserControlSetAdmin(userID, isDatabaseAdmin);
+
+            this.AddDataLogs("Set user as admin", userName, securityIdentifier, isDatabaseAdmin ? "Set" : "Unset");
+
+            return affectedRows;
+        }
+
         public int UserControlToggleVoid(int? userID, string userName, string securityIdentifier, bool inActive)
         {
             int affectedRows = this.userControlAPIRepository.UserControlToggleVoid(userID, inActive);

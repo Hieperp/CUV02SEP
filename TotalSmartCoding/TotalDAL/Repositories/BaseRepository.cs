@@ -815,6 +815,11 @@ namespace TotalDAL.Repositories
 
             //return;
 
+            Helpers.SqlProgrammability.Generals.UserReference userReference = new Helpers.SqlProgrammability.Generals.UserReference(totalSmartCodingEntities);
+            userReference.RestoreProcedure();
+
+            //return;
+
             Helpers.SqlProgrammability.Generals.UserControl userControl = new Helpers.SqlProgrammability.Generals.UserControl(totalSmartCodingEntities);
             userControl.RestoreProcedure();
 
@@ -836,10 +841,7 @@ namespace TotalDAL.Repositories
             Helpers.SqlProgrammability.Generals.UserGroup userGroup = new Helpers.SqlProgrammability.Generals.UserGroup(totalSmartCodingEntities);
             userGroup.RestoreProcedure();
 
-            //return;
 
-            Helpers.SqlProgrammability.Generals.UserReference userReference = new Helpers.SqlProgrammability.Generals.UserReference(totalSmartCodingEntities);
-            userReference.RestoreProcedure();
 
             return;
             return;

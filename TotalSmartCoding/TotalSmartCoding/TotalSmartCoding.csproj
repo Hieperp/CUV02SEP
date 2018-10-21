@@ -1493,6 +1493,7 @@
     <None Include="Resources\RemoveBusinessman.png" />
     <None Include="Resources\remove-user.png" />
     <None Include="Resources\Remove-user-111.png" />
+    <None Include="Resources\Admin-User.ico" />
     <Content Include="SmartCodingSolution.ico" />
     <None Include="Resources\Yellow-cross.ico" />
     <None Include="Resources\White-Pallet.ico" />

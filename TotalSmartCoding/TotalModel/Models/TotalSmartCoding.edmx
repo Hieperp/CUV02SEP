@@ -3227,6 +3227,10 @@
         <Function Name="UserControlRemoveSalesperson" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserSalespersonID" Type="int" Mode="In" />
         </Function>
+        <Function Name="UserControlSetAdmin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="int" Mode="In" />
+          <Parameter Name="IsDatabaseAdmin" Type="bit" Mode="In" />
+        </Function>
         <Function Name="UserControlToggleVoid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="EntityID" Type="int" Mode="In" />
           <Parameter Name="InActive" Type="bit" Mode="In" />
@@ -5244,6 +5248,10 @@
             <End Role="CommodityType" EntitySet="CommodityTypes" />
             <End Role="CommodityType1" EntitySet="CommodityTypes" />
           </AssociationSet>
+          <FunctionImport Name="UserControlSetAdmin">
+            <Parameter Name="EntityID" Mode="In" Type="Int32" />
+            <Parameter Name="IsDatabaseAdmin" Mode="In" Type="Boolean" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
           <Property Type="Int32" Name="PickupID" Nullable="false" />
@@ -12000,6 +12008,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="UserControlSetAdmin" FunctionName="TotalSmartCodingModel.Store.UserControlSetAdmin" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

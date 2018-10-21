@@ -24,6 +24,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
 
             this.UserControlRegister();
             this.UserControlUnregister();
+            this.UserControlSetAdmin();
             this.UserControlToggleVoid();
 
             this.GetUserControlGroups();
@@ -167,6 +168,31 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             this.totalSmartCodingEntities.CreateStoredProcedure("UserControlUnregister", queryString);
         }
 
+
+        private void UserControlSetAdmin()
+        {
+            string queryString = " @EntityID int, @IsDatabaseAdmin bit " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+            queryString = queryString + "       BEGIN " + "\r\n";
+            queryString = queryString + "                   DECLARE @UserID int " + "\r\n";
+
+            queryString = queryString + "                   DECLARE Action_Cursor CURSOR FOR SELECT UserID FROM Users WHERE SecurityIdentifier IN (SELECT SecurityIdentifier FROM Users WHERE UserID = @EntityID) OPEN Action_Cursor; " + "\r\n";
+            queryString = queryString + "                   FETCH NEXT FROM Action_Cursor INTO @UserID; " + "\r\n";
+            queryString = queryString + "                   WHILE @@FETCH_STATUS = 0 " + "\r\n";
+            queryString = queryString + "                       BEGIN " + "\r\n";
+
+            queryString = queryString + "                           EXEC UserSetAdmin @UserID, @IsDatabaseAdmin " + "\r\n";
+
+            queryString = queryString + "                           FETCH NEXT FROM Action_Cursor INTO @UserID; " + "\r\n";
+
+            queryString = queryString + "                       END" + "\r\n";
+            queryString = queryString + "                   CLOSE Action_Cursor; " + "\r\n";
+            queryString = queryString + "                   DEALLOCATE Action_Cursor " + "\r\n";
+            queryString = queryString + "       END " + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("UserControlSetAdmin", queryString);
+        }
 
         private void UserControlToggleVoid()
         {

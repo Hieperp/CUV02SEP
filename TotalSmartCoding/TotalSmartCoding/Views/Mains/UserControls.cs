@@ -182,6 +182,25 @@ namespace TotalSmartCoding.Views.Mains
             }
         }
 
+        private void buttonUserAdmin_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (this.SelectedUserControlIndex != null && this.SelectedUserControlIndex.UserID > 0 && this.SelectedUserControlIndex.SecurityIdentifier != ContextAttributes.User.SecurityIdentifier)
+                {
+                    if (CustomMsgBox.Show(this, "Are you sure you want to " + (this.SelectedUserControlIndex.IsDatabaseAdmin ? "unset" : "set") + " as admin for this user?" + "\r\n" + "\r\nUser:  " + this.SelectedUserControlIndex.UserName, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Stop) == DialogResult.Yes)
+                    {
+                        this.userControlAPIs.UserControlSetAdmin(this.SelectedUserControlIndex.UserID, this.SelectedUserControlIndex.UserName, this.SelectedUserControlIndex.SecurityIdentifier, !this.SelectedUserControlIndex.IsDatabaseAdmin);
+                        this.LoadUserControls();
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+            }
+        }
+
         private void buttonUserToggleVoid_Click(object sender, EventArgs e)
         {
             try
@@ -231,6 +250,7 @@ namespace TotalSmartCoding.Views.Mains
                     this.buttonUserToggleVoid.Enabled = !this.selectedUserControlIndex.IsDatabaseAdmin;
                     this.buttonUserUnregister.Enabled = !this.selectedUserControlIndex.IsDatabaseAdmin && this.userControlRepository.GetEditable((int)this.selectedUserControlIndex.UserID);
 
+                    this.buttonUserAdmin.Enabled = this.selectedUserControlIndex.SecurityIdentifier != ContextAttributes.User.SecurityIdentifier;
                 }
             }
         }

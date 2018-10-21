@@ -25,6 +25,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             this.UserEditable();
             this.UserRegister();
             this.UserUnregister();
+            this.UserSetAdmin();
             this.UserToggleVoid();
 
             this.GetUserAccessControls();
@@ -156,6 +157,17 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             queryString = queryString + "       END " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("UserUnregister", queryString);
+        }
+
+        private void UserSetAdmin()
+        {
+            string queryString = " @EntityID int, @IsDatabaseAdmin bit " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+
+            queryString = queryString + "       UPDATE      Users                       SET IsDatabaseAdmin = @IsDatabaseAdmin                            WHERE UserID = @EntityID AND IsDatabaseAdmin = ~@IsDatabaseAdmin" + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("UserSetAdmin", queryString);
         }
 
         private void UserToggleVoid()

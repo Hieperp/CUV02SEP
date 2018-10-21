@@ -65,6 +65,11 @@ namespace TotalDAL.Repositories.Generals
             return this.TotalSmartCodingEntities.UserControlUnregister(userID);
         }
 
+        public int UserControlSetAdmin(int? userID, bool? isDatabaseAdmin)
+        {
+            return this.TotalSmartCodingEntities.UserControlSetAdmin(userID, isDatabaseAdmin);
+        }
+
         public int UserControlToggleVoid(int? userID, bool? inActive)
         {
             return this.TotalSmartCodingEntities.UserControlToggleVoid(userID, inActive);
