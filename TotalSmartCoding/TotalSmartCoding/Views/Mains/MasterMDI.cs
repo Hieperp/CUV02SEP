@@ -11,6 +11,8 @@ using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using BrightIdeasSoftware;
+
 using Ninject;
 using Guifreaks.Navisuite;
 
@@ -21,12 +23,14 @@ using TotalCore.Repositories;
 using TotalCore.Repositories.Generals;
 
 using TotalModel.Models;
+using TotalModel.Helpers;
 
 using TotalSmartCoding.Properties;
 using TotalSmartCoding.Libraries;
 using TotalSmartCoding.Libraries.Helpers;
 using TotalSmartCoding.Controllers.APIs.Generals;
 
+using TotalSmartCoding.Views.Generals;
 using TotalSmartCoding.Views.Commons;
 
 using TotalSmartCoding.Views.Productions;
@@ -40,18 +44,23 @@ using TotalSmartCoding.Views.Sales.Forecasts;
 using TotalSmartCoding.Views.Sales.SalesOrders;
 using TotalSmartCoding.Views.Sales.DeliveryAdvices;
 using TotalSmartCoding.Views.Sales.TransferOrders;
-using TotalSmartCoding.Views.Commons.Customers;
-using TotalSmartCoding.Views.Commons.BinLocations;
-using TotalSmartCoding.Views.Commons.Teams;
-using TotalSmartCoding.Views.Commons.Territories;
-using TotalSmartCoding.ViewModels.Helpers;
-using TotalSmartCoding.Views.Commons.Commodities;
-using TotalSmartCoding.Views.Generals;
-using BrightIdeasSoftware;
-using TotalSmartCoding.Views.Commons.CommoditySettings;
 using TotalSmartCoding.Views.Sales.PendingOrders;
+
+using TotalSmartCoding.Views.Commons.Customers;
+using TotalSmartCoding.Views.Commons.CustomerTypes;
+using TotalSmartCoding.Views.Commons.CustomerCategories;
+using TotalSmartCoding.Views.Commons.BinLocations;
+using TotalSmartCoding.Views.Commons.Territories;
+
+using TotalSmartCoding.Views.Commons.Teams;
 using TotalSmartCoding.Views.Commons.Employees;
-using TotalModel.Helpers;
+
+using TotalSmartCoding.Views.Commons.Commodities;
+using TotalSmartCoding.Views.Commons.CommodityTypes;
+using TotalSmartCoding.Views.Commons.CommodityCategories;
+using TotalSmartCoding.Views.Commons.CommoditySettings;
+
+using TotalSmartCoding.ViewModels.Helpers;
 
 
 namespace TotalSmartCoding.Views.Mains
@@ -436,13 +445,24 @@ namespace TotalSmartCoding.Views.Mains
                         case (int)GlobalEnums.NmvnTaskID.Customers:
                             openingView = new Customers();
                             break;
-
+                        case (int)GlobalEnums.NmvnTaskID.CustomerTypes:
+                            openingView = new CustomerTypes();
+                            break;
+                        case (int)GlobalEnums.NmvnTaskID.CustomerCategories:
+                            openingView = new CustomerCategories();
+                            break;
                         case (int)GlobalEnums.NmvnTaskID.Commodities:
                             openingView = new Commodities();
                             break;
 
                         case (int)GlobalEnums.NmvnTaskID.CommoditySettings:
                             openingView = new CommoditySettings();
+                            break;
+                        case (int)GlobalEnums.NmvnTaskID.CommodityTypes:
+                            openingView = new CommodityTypes();
+                            break;
+                        case (int)GlobalEnums.NmvnTaskID.CommodityCategories:
+                            openingView = new CommodityCategories();
                             break;
 
                         case (int)GlobalEnums.NmvnTaskID.BinLocations:

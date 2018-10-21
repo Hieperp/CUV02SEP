@@ -65,11 +65,13 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             queryString = queryString + "       FROM        EntireTerritories INNER JOIN Territories ON EntireTerritories.TerritoryID = @EntityID AND EntireTerritories.TerritoryID = Territories.TerritoryID " + "\r\n";
 
             queryString = queryString + "       IF @@ROWCOUNT <> 1 " + "\r\n";
+            queryString = queryString + "           BEGIN " + "\r\n";
             queryString = queryString + "               INSERT INTO EntireTerritories (TerritoryID, Name, EntireName, TerritoryID1, Name1, TerritoryID2, Name2, TerritoryID3, Name3) " + "\r\n";
             queryString = queryString + "               SELECT      TerritoryID, Name, Name AS EntireName, TerritoryID AS TerritoryID1, Name AS Name1, 0 AS TerritoryID2, N'' AS Name2, 0 AS TerritoryID3, N'' AS Name3 FROM Territories WHERE TerritoryID = @EntityID " + "\r\n";
 
-            queryString = queryString + "       IF @@ROWCOUNT <> 1 " + "\r\n";
-            queryString = queryString + "               DELETE      EntireTerritories WHERE TerritoryID = @EntityID " + "\r\n";
+            queryString = queryString + "               IF @@ROWCOUNT <> 1 " + "\r\n";
+            queryString = queryString + "                   DELETE      EntireTerritories WHERE TerritoryID = @EntityID " + "\r\n";
+            queryString = queryString + "           END " + "\r\n";
 
             queryArray[0] = " SELECT TOP 1 @FoundEntity = TerritoryID FROM Territories WHERE TerritoryID <> TerritoryID "; //ALWAYS RETURN NOTHING
 

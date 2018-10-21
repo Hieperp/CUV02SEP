@@ -235,17 +235,41 @@
     <Compile Include="Views\Commons\Commodities\Commodities.designer.cs">
       <DependentUpon>Commodities.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Commons\CommodityCategories\CommodityCategories.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Commons\CommodityCategories\CommodityCategories.designer.cs">
+      <DependentUpon>CommodityCategories.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Commons\CommoditySettings\CommoditySettings.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\Commons\CommoditySettings\CommoditySettings.designer.cs">
       <DependentUpon>CommoditySettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Commons\CommodityTypes\CommodityTypes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Commons\CommodityTypes\CommodityTypes.designer.cs">
+      <DependentUpon>CommodityTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Commons\CustomerCategories\CustomerCategories.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Commons\CustomerCategories\CustomerCategories.designer.cs">
+      <DependentUpon>CustomerCategories.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Commons\Customers\Customers.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\Commons\Customers\Customers.designer.cs">
       <DependentUpon>Customers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Commons\CustomerTypes\CustomerTypes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Commons\CustomerTypes\CustomerTypes.designer.cs">
+      <DependentUpon>CustomerTypes.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Commons\CustomExceptionMessageBox.cs">
       <SubType>Form</SubType>
@@ -598,11 +622,23 @@
     <EmbeddedResource Include="Views\Commons\Commodities\Commodities.resx">
       <DependentUpon>Commodities.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Commons\CommodityCategories\CommodityCategories.resx">
+      <DependentUpon>CommodityCategories.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Commons\CommoditySettings\CommoditySettings.resx">
       <DependentUpon>CommoditySettings.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Commons\CommodityTypes\CommodityTypes.resx">
+      <DependentUpon>CommodityTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Commons\CustomerCategories\CustomerCategories.resx">
+      <DependentUpon>CustomerCategories.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Commons\Customers\Customers.resx">
       <DependentUpon>Customers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Commons\CustomerTypes\CustomerTypes.resx">
+      <DependentUpon>CustomerTypes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Commons\CustomExceptionMessageBox.resx">
       <DependentUpon>CustomExceptionMessageBox.cs</DependentUpon>

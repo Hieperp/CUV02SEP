@@ -653,6 +653,11 @@ namespace TotalModel.Models
         public System.DateTime EditedDate { get; set; }
     }
 
+    public partial class CustomerTypeIndex : IBaseIndex
+    {
+        public int Id { get { return this.CustomerTypeID; } }
+    }
+
     public partial class CustomerType : IPrimitiveEntity, IBaseEntity
     {
         public int GetID() { return this.CustomerTypeID; }
@@ -665,6 +670,11 @@ namespace TotalModel.Models
 
         public System.DateTime CreatedDate { get; set; }
         public System.DateTime EditedDate { get; set; }
+    }
+
+    public partial class CustomerCategoryIndex : IBaseIndex
+    {
+        public int Id { get { return this.CustomerCategoryID; } }
     }
 
     public partial class CustomerCategory : IPrimitiveEntity, IBaseEntity
@@ -778,6 +788,11 @@ namespace TotalModel.Models
 
     }
 
+    public partial class CommodityCategoryIndex : IBaseIndex
+    {
+        public int Id { get { return this.CommodityCategoryID; } }
+    }
+
     public partial class CommodityCategory : IPrimitiveEntity, IBaseEntity
     {
         public int GetID() { return this.CommodityCategoryID; }
@@ -790,6 +805,11 @@ namespace TotalModel.Models
 
         public System.DateTime CreatedDate { get; set; }
         public System.DateTime EditedDate { get; set; }
+    }
+
+    public partial class CommodityTypeIndex : IBaseIndex
+    {
+        public int Id { get { return this.CommodityTypeID; } }
     }
 
     public partial class CommodityType : IPrimitiveEntity, IBaseEntity
