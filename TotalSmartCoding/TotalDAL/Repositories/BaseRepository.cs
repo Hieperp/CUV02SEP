@@ -171,7 +171,68 @@ namespace TotalDAL.Repositories
 
 
 
-                this.totalSmartCodingEntities.ColumnDrop("CommodityTypes", "Description");
+                #region CommodityTypes
+                this.ExecuteStoreCommand(@"CREATE TABLE [dbo].[CommodityTypes_ABC](
+	                                                    [CommodityTypeID] [int] NOT NULL,
+	                                                    [Name] [nvarchar](100) NOT NULL,
+	                                                    [AncestorID] [int] NULL,
+	                                                    [Remarks] [nvarchar](100) NULL,
+                                                     CONSTRAINT [PK_CommodityTypes_ABC] PRIMARY KEY CLUSTERED 
+                                                    (
+	                                                    [CommodityTypeID] ASC
+                                                    )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+                                                    ) ON [PRIMARY]
+                                                ", new ObjectParameter[] { });
+
+                this.ExecuteStoreCommand(@"INSERT INTO CommodityTypes_ABC (CommodityTypeID, Name, AncestorID, Remarks) SELECT CommodityTypeID, Name, AncestorID, Remarks FROM CommodityTypes
+                                                ", new ObjectParameter[] { });
+
+                this.ExecuteStoreCommand(@"ALTER TABLE Commodities DROP CONSTRAINT FK_Commodities_CommodityTypes
+                                                ", new ObjectParameter[] { });
+
+
+                this.ExecuteStoreCommand(@"DROP TABLE CommodityTypes
+                                                ", new ObjectParameter[] { });
+
+
+
+                this.ExecuteStoreCommand(@"ALTER TABLE CustomerCategories ALTER COLUMN Remarks nvarchar(100)
+                                                ", new ObjectParameter[] { });
+
+
+
+                this.ExecuteStoreCommand(@"CREATE TABLE [dbo].[CommodityTypes](
+	                                                [CommodityTypeID] [int] IDENTITY(1,1) NOT NULL,
+	                                                [Name] [nvarchar](100) NOT NULL,
+	                                                [AncestorID] [int] NULL,
+	                                                [Remarks] [nvarchar](100) NULL,
+                                                 CONSTRAINT [PK_CommodityTypes] PRIMARY KEY CLUSTERED 
+                                                (
+	                                                [CommodityTypeID] ASC
+                                                )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+                                                ) ON [PRIMARY]
+                                                
+                                                ALTER TABLE [dbo].[CommodityTypes]  WITH CHECK ADD  CONSTRAINT [FK_CommodityTypes_CommodityTypes] FOREIGN KEY([AncestorID])
+                                                REFERENCES [dbo].[CommodityTypes] ([CommodityTypeID])                                                
+
+                                                ALTER TABLE [dbo].[CommodityTypes] CHECK CONSTRAINT [FK_CommodityTypes_CommodityTypes]
+                                                ", new ObjectParameter[] { });
+
+
+                this.ExecuteStoreCommand("SET IDENTITY_INSERT CommodityTypes ON     INSERT INTO CommodityTypes (CommodityTypeID, Name, AncestorID, Remarks) SELECT CommodityTypeID, Name, AncestorID, Remarks FROM CommodityTypes_ABC      SET IDENTITY_INSERT CommodityTypes OFF ", new ObjectParameter[] { });
+
+
+                this.ExecuteStoreCommand(@"ALTER TABLE [dbo].[Commodities]  WITH CHECK ADD  CONSTRAINT [FK_Commodities_CommodityTypes] FOREIGN KEY([CommodityTypeID])
+                                                REFERENCES [dbo].[CommodityTypes] ([CommodityTypeID])                                                
+                                                ", new ObjectParameter[] { });
+                this.ExecuteStoreCommand(@"ALTER TABLE [dbo].[Commodities] CHECK CONSTRAINT [FK_Commodities_CommodityTypes]
+                                                ", new ObjectParameter[] { });
+
+
+                this.ExecuteStoreCommand(@"DROP TABLE CommodityTypes_ABC
+                                                ", new ObjectParameter[] { });
+
+                #endregion CommodityTypes
             }
             #endregion FINAL 19OCT2018
 
