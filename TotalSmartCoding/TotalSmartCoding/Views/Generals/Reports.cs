@@ -351,6 +351,8 @@ namespace TotalSmartCoding.Views.Generals
 
             this.PassFilterParameters(printViewModel);
 
+            this.AddEventLogs("Open", this.reportViewModel.ReportName);
+
             return printViewModel;
         }
 

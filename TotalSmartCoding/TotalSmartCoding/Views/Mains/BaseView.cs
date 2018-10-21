@@ -67,7 +67,7 @@ namespace TotalSmartCoding.Views.Mains
                 this.InitializeDataGridBinding();
                 this.InitializeReadOnlyModeBinding();
 
-                this.Loading();                
+                this.Loading();
 
             }
             catch (Exception exception)
@@ -682,12 +682,13 @@ namespace TotalSmartCoding.Views.Mains
 
 
         #region Smart Logs
-        public void AddEventLogs(string actionType)
+        public void AddEventLogs(string actionType) { this.AddEventLogs(actionType, null); }
+        public void AddEventLogs(string actionType, string remarks)
         {
             try
             {
                 IBaseRepository baseRepository = CommonNinject.Kernel.Get<IBaseRepository>();
-                if (baseRepository.GetOnEventLogs()) baseRepository.AddEventLogs(this.baseDTO.NMVNTaskID.ToString(), actionType, null, null);
+                if (baseRepository.GetOnEventLogs()) baseRepository.AddEventLogs(this.baseDTO.NMVNTaskID.ToString(), actionType, null, remarks);
             }
             catch (Exception ex) { }
         }
