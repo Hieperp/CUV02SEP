@@ -126,6 +126,8 @@ namespace TotalSmartCoding.Views.Mains
                     {
                         int? accessLevel = this.baseRepository.TotalSmartCodingEntities.GetAccessLevel(activeUsers[0].UserID, (int)TotalBase.Enums.GlobalEnums.NmvnTaskID.SmartCoding + (int)GlobalVariables.ConfigID, 0).Single();
                         if (accessLevel != (int)TotalBase.Enums.GlobalEnums.AccessLevel.Editable) activeUsers = new List<ActiveUser>();
+
+                        this.comboUserID.Enabled = false;
                     }
                     else
                         this.Height = this.Height - 80;
