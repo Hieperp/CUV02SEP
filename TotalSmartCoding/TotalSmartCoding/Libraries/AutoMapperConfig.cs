@@ -165,6 +165,10 @@ namespace TotalSmartCoding.Libraries
                 cfg.CreateMap<BinLocationPrimitiveDTO, BinLocation>();
 
                 cfg.CreateMap<Warehouse, WarehouseBaseDTO>();
+                cfg.CreateMap<Warehouse, WarehouseViewModel>();
+                cfg.CreateMap<Warehouse, WarehouseDTO>();
+                cfg.CreateMap<WarehousePrimitiveDTO, Warehouse>();
+                
                 cfg.CreateMap<WarehouseAdjustmentType, WarehouseAdjustmentTypeBaseDTO>();
                 
                 cfg.CreateMap<UserAccessControl, UserAccessControlDTO>();

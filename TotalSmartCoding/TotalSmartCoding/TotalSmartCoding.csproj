@@ -207,6 +207,7 @@
     <Compile Include="ViewModels\Commons\FillingLineViewModel.cs" />
     <Compile Include="ViewModels\Commons\TeamViewModel.cs" />
     <Compile Include="ViewModels\Commons\TerritoryViewModel.cs" />
+    <Compile Include="ViewModels\Commons\WarehouseViewModel.cs" />
     <Compile Include="ViewModels\Generals\ReportViewModel.cs" />
     <Compile Include="ViewModels\Helpers\IBaseViewModel.cs" />
     <Compile Include="ViewModels\Helpers\PrintViewModel.cs" />

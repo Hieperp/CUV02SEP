@@ -65,6 +65,7 @@
     <Compile Include="Commons\FillingLineService.cs" />
     <Compile Include="Commons\TeamService.cs" />
     <Compile Include="Commons\TerritoryService.cs" />
+    <Compile Include="Commons\WarehouseService.cs" />
     <Compile Include="Generals\ReportService.cs" />
     <Compile Include="GenericService.cs" />
     <Compile Include="GenericWithDetailService.cs" />

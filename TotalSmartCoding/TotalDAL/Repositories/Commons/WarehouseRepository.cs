@@ -10,7 +10,7 @@ namespace TotalDAL.Repositories.Commons
     public class WarehouseRepository : GenericRepository<Warehouse>, IWarehouseRepository
     {
         public WarehouseRepository(TotalSmartCodingEntities totalSmartCodingEntities)
-            : base(totalSmartCodingEntities, "WarehouseEditable")
+            : base(totalSmartCodingEntities, "WarehouseEditable", null, "WarehouseDeletable")
         {
         }
     }

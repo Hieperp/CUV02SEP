@@ -103,6 +103,7 @@
     <Compile Include="Services\Commons\IFillingLineService.cs" />
     <Compile Include="Services\Commons\ITeamService.cs" />
     <Compile Include="Services\Commons\ITerritoryService.cs" />
+    <Compile Include="Services\Commons\IWarehouseService.cs" />
     <Compile Include="Services\Generals\IReportService.cs" />
     <Compile Include="Services\IBaseService.cs" />
     <Compile Include="Services\IGenericService.cs" />

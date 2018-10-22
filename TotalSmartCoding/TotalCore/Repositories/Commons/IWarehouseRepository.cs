@@ -4,7 +4,7 @@ using TotalModel.Models;
 
 namespace TotalCore.Repositories.Commons
 {
-    public interface IWarehouseRepository
+    public interface IWarehouseRepository : IGenericRepository<Warehouse>
     {
 
     }
