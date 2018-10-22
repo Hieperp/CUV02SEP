@@ -98,6 +98,10 @@
             this.dateTimexLowerFillterDate = new CustomControls.DateTimexPicker();
             this.dateTimexUpperFillterDate = new CustomControls.DateTimexPicker();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panelTopMostRight = new System.Windows.Forms.Panel();
+            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.buttonUserManuals = new System.Windows.Forms.ToolStripButton();
+            this.buttonLicenseTerms = new System.Windows.Forms.ToolStripButton();
             this.naviBarModuleMaster.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastNMVNTask)).BeginInit();
             this.statusStrip.SuspendLayout();
@@ -111,6 +115,8 @@
             this.layoutTop.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panelTopMostRight.SuspendLayout();
+            this.toolStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // imageListModuleMasterSmall
@@ -688,6 +694,7 @@
             // 
             this.panelTopMost.AutoSize = true;
             this.panelTopMost.Controls.Add(this.toolStripTopHead);
+            this.panelTopMost.Controls.Add(this.panelTopMostRight);
             this.panelTopMost.Controls.Add(this.layoutTop);
             this.panelTopMost.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTopMost.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -716,7 +723,7 @@
             this.toolStripTopHead.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.toolStripTopHead.Location = new System.Drawing.Point(521, 0);
             this.toolStripTopHead.Name = "toolStripTopHead";
-            this.toolStripTopHead.Size = new System.Drawing.Size(747, 39);
+            this.toolStripTopHead.Size = new System.Drawing.Size(668, 39);
             this.toolStripTopHead.TabIndex = 5;
             this.toolStripTopHead.Text = "toolStrip1";
             // 
@@ -776,7 +783,7 @@
             this.comboDetailFilterTexts.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             this.comboDetailFilterTexts.Font = new System.Drawing.Font("Calibri", 10.2F);
             this.comboDetailFilterTexts.Name = "comboDetailFilterTexts";
-            this.comboDetailFilterTexts.Size = new System.Drawing.Size(318, 25);
+            this.comboDetailFilterTexts.Size = new System.Drawing.Size(75, 39);
             this.comboDetailFilterTexts.Visible = false;
             this.comboDetailFilterTexts.TextChanged += new System.EventHandler(this.comboFilterTexts_TextChanged);
             // 
@@ -915,6 +922,51 @@
             this.pictureBox1.TabIndex = 92;
             this.pictureBox1.TabStop = false;
             // 
+            // panelTopMostRight
+            // 
+            this.panelTopMostRight.Controls.Add(this.toolStrip2);
+            this.panelTopMostRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panelTopMostRight.Location = new System.Drawing.Point(1189, 0);
+            this.panelTopMostRight.Name = "panelTopMostRight";
+            this.panelTopMostRight.Size = new System.Drawing.Size(79, 39);
+            this.panelTopMostRight.TabIndex = 10;
+            // 
+            // toolStrip2
+            // 
+            this.toolStrip2.BackgroundImage = global::TotalSmartCoding.Properties.Resources.Toolbar_Image;
+            this.toolStrip2.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.buttonLicenseTerms,
+            this.buttonUserManuals});
+            this.toolStrip2.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip2.Name = "toolStrip2";
+            this.toolStrip2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.toolStrip2.Size = new System.Drawing.Size(79, 39);
+            this.toolStrip2.TabIndex = 0;
+            this.toolStrip2.Text = "toolStrip2";
+            // 
+            // buttonUserManuals
+            // 
+            this.buttonUserManuals.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.buttonUserManuals.Image = global::TotalSmartCoding.Properties.Resources.IManualguide;
+            this.buttonUserManuals.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonUserManuals.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonUserManuals.Name = "buttonUserManuals";
+            this.buttonUserManuals.Size = new System.Drawing.Size(36, 36);
+            this.buttonUserManuals.Text = "User manuals";
+            this.buttonUserManuals.Click += new System.EventHandler(this.buttonUserManuals_Click);
+            // 
+            // buttonLicenseTerms
+            // 
+            this.buttonLicenseTerms.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.buttonLicenseTerms.Image = global::TotalSmartCoding.Properties.Resources.ICopyright;
+            this.buttonLicenseTerms.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonLicenseTerms.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonLicenseTerms.Name = "buttonLicenseTerms";
+            this.buttonLicenseTerms.Size = new System.Drawing.Size(36, 36);
+            this.buttonLicenseTerms.Text = "License Terms";
+            this.buttonLicenseTerms.Click += new System.EventHandler(this.buttonLicenseTerms_Click);
+            // 
             // MasterMDI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -958,6 +1010,10 @@
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panelTopMostRight.ResumeLayout(false);
+            this.panelTopMostRight.PerformLayout();
+            this.toolStrip2.ResumeLayout(false);
+            this.toolStrip2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1033,6 +1089,10 @@
         private System.Windows.Forms.ToolStripStatusLabel labelApplicationRole;
         private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton6;
         private System.Windows.Forms.ToolStripStatusLabel labelDataSource;
+        private System.Windows.Forms.Panel panelTopMostRight;
+        private System.Windows.Forms.ToolStrip toolStrip2;
+        private System.Windows.Forms.ToolStripButton buttonLicenseTerms;
+        private System.Windows.Forms.ToolStripButton buttonUserManuals;
 
     }
 }
