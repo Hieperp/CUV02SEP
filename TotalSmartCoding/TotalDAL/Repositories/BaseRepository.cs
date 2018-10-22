@@ -110,7 +110,6 @@ namespace TotalDAL.Repositories
 
                 #region ADD NEW MODULE              
                 this.ExecuteStoreCommand("UPDATE ModuleDetails SET FullName = '' WHERE FullName = '#' ", new ObjectParameter[] { });
-                this.ExecuteStoreCommand("UPDATE ModuleDetails SET Code = 'MH', Name = 'MH' WHERE ModuleDetailID = 8006 ", new ObjectParameter[] { }); //HIDE Warehouses FROM ModuleDetails
 
 
                 this.ExecuteStoreCommand("UPDATE ModuleDetails SET SerialID = 6 WHERE ModuleDetailID = " + (int)GlobalEnums.NmvnTaskID.Employees, new ObjectParameter[] { });
@@ -170,6 +169,18 @@ namespace TotalDAL.Repositories
                     this.ExecuteStoreCommand("INSERT INTO ModuleDetails (ModuleDetailID, ModuleID, Code, Name, FullName, Actions, Controller, LastOpen, SerialID, ImageIndex, InActive, ControlTypeID) VALUES(" + (int)GlobalEnums.NmvnTaskID.CommodityCategories + ", 1, 'Item Categories', 'Item Categories', '', '#', 'WAREHOUSE RESOURCES', 1, 36, 1, 0, 0) ", new ObjectParameter[] { });
                     this.ExecuteStoreCommand("INSERT INTO AccessControls (UserID, NMVNTaskID, OrganizationalUnitID,   AccessLevel, ApprovalPermitted, UnApprovalPermitted, VoidablePermitted, UnVoidablePermitted, ShowDiscount, AccessLevelBACKUP, ApprovalPermittedBACKUP, UnApprovalPermittedBACKUP, InActive) SELECT UserID, " + (int)GlobalEnums.NmvnTaskID.CommodityCategories + " AS NMVNTaskID, OrganizationalUnitID, 0 AS AccessLevel, 0 AS ApprovalPermitted, 0 AS UnApprovalPermitted, 0 AS VoidablePermitted, 0 AS UnVoidablePermitted, ShowDiscount, AccessLevelBACKUP, ApprovalPermittedBACKUP, UnApprovalPermittedBACKUP, InActive FROM AccessControls    WHERE (NMVNTaskID =     " + (int)GlobalEnums.NmvnTaskID.Commodities + ") AND (SELECT COUNT(*) FROM AccessControls    WHERE NMVNTaskID =     " + (int)GlobalEnums.NmvnTaskID.CommodityCategories + ") = 0", new ObjectParameter[] { });
                     this.ExecuteStoreCommand("INSERT INTO UserGroupControls (UserGroupID, ModuleDetailID, LocationID, AccessLevel, ApprovalPermitted, UnApprovalPermitted, VoidablePermitted, UnVoidablePermitted, ShowDiscount, AccessLevelBACKUP, ApprovalPermittedBACKUP, UnApprovalPermittedBACKUP, InActive) SELECT UserGroupID, " + (int)GlobalEnums.NmvnTaskID.CommodityCategories + " AS ModuleDetailID, LocationID,  0 AS AccessLevel, 0 AS ApprovalPermitted, 0 AS UnApprovalPermitted, 0 AS VoidablePermitted, 0 AS UnVoidablePermitted, ShowDiscount, AccessLevelBACKUP, ApprovalPermittedBACKUP, UnApprovalPermittedBACKUP, InActive FROM UserGroupControls WHERE (ModuleDetailID = " + (int)GlobalEnums.NmvnTaskID.Commodities + ") AND (SELECT COUNT(*) FROM UserGroupControls WHERE ModuleDetailID = " + (int)GlobalEnums.NmvnTaskID.CommodityCategories + ") = 0", new ObjectParameter[] { });
+                }
+
+                this.ExecuteStoreCommand("DELETE FROM AccessControls WHERE NMVNTaskID = " + (int)GlobalEnums.NmvnTaskID.Warehouses, new ObjectParameter[] { });
+                this.ExecuteStoreCommand("DELETE FROM UserGroupControls WHERE ModuleDetailID = " + (int)GlobalEnums.NmvnTaskID.Warehouses, new ObjectParameter[] { });
+                this.ExecuteStoreCommand("DELETE FROM ModuleDetails WHERE ModuleDetailID = " + (int)GlobalEnums.NmvnTaskID.Warehouses, new ObjectParameter[] { });
+                myQuery = this.totalSmartCodingEntities.Database.SqlQuery(typeof(int), "SELECT COUNT(ModuleDetailID) AS Expr1 FROM ModuleDetails WHERE ModuleDetailID = " + (int)GlobalEnums.NmvnTaskID.Warehouses + ";", new object[] { });
+                myExists = myQuery.Cast<int>().Single();
+                if (myExists == 0)
+                {
+                    this.ExecuteStoreCommand("INSERT INTO ModuleDetails (ModuleDetailID, ModuleID, Code, Name, FullName, Actions, Controller, LastOpen, SerialID, ImageIndex, InActive, ControlTypeID) VALUES(" + (int)GlobalEnums.NmvnTaskID.Warehouses + ", 1, 'Warehouses', 'Warehouses', '', '#', 'WAREHOUSE RESOURCES', 1, 38, 1, 0, 0) ", new ObjectParameter[] { });
+                    this.ExecuteStoreCommand("INSERT INTO AccessControls (UserID, NMVNTaskID, OrganizationalUnitID,   AccessLevel, ApprovalPermitted, UnApprovalPermitted, VoidablePermitted, UnVoidablePermitted, ShowDiscount, AccessLevelBACKUP, ApprovalPermittedBACKUP, UnApprovalPermittedBACKUP, InActive) SELECT UserID, " + (int)GlobalEnums.NmvnTaskID.Warehouses + " AS NMVNTaskID, OrganizationalUnitID, 0 AS AccessLevel, 0 AS ApprovalPermitted, 0 AS UnApprovalPermitted, 0 AS VoidablePermitted, 0 AS UnVoidablePermitted, ShowDiscount, AccessLevelBACKUP, ApprovalPermittedBACKUP, UnApprovalPermittedBACKUP, InActive FROM AccessControls    WHERE (NMVNTaskID =     " + (int)GlobalEnums.NmvnTaskID.Commodities + ") AND (SELECT COUNT(*) FROM AccessControls    WHERE NMVNTaskID =     " + (int)GlobalEnums.NmvnTaskID.Warehouses + ") = 0", new ObjectParameter[] { });
+                    this.ExecuteStoreCommand("INSERT INTO UserGroupControls (UserGroupID, ModuleDetailID, LocationID, AccessLevel, ApprovalPermitted, UnApprovalPermitted, VoidablePermitted, UnVoidablePermitted, ShowDiscount, AccessLevelBACKUP, ApprovalPermittedBACKUP, UnApprovalPermittedBACKUP, InActive) SELECT UserGroupID, " + (int)GlobalEnums.NmvnTaskID.Warehouses + " AS ModuleDetailID, LocationID,  0 AS AccessLevel, 0 AS ApprovalPermitted, 0 AS UnApprovalPermitted, 0 AS VoidablePermitted, 0 AS UnVoidablePermitted, ShowDiscount, AccessLevelBACKUP, ApprovalPermittedBACKUP, UnApprovalPermittedBACKUP, InActive FROM UserGroupControls WHERE (ModuleDetailID = " + (int)GlobalEnums.NmvnTaskID.Commodities + ") AND (SELECT COUNT(*) FROM UserGroupControls WHERE ModuleDetailID = " + (int)GlobalEnums.NmvnTaskID.Warehouses + ") = 0", new ObjectParameter[] { });
                 }
 
                 #endregion ADD NEW MODULE
@@ -685,7 +696,7 @@ namespace TotalDAL.Repositories
             this.totalSmartCodingEntities.ColumnAdd("Employees", "InActive", "bit", "0", true);
             if (!this.totalSmartCodingEntities.ColumnExists("Employees", "EmployeeRoleIDs"))
             {
-                this.ExecuteStoreCommand("UPDATE ModuleDetails SET InActive = 1 WHERE ModuleDetailID IN (" + (int)GlobalEnums.NmvnTaskID.Warehouses + ", " + (int)GlobalEnums.NmvnTaskID.AvailableItems + ", " + (int)GlobalEnums.NmvnTaskID.PendingOrders + ") ", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("UPDATE ModuleDetails SET InActive = 1 WHERE ModuleDetailID IN (" + (int)GlobalEnums.NmvnTaskID.AvailableItems + ", " + (int)GlobalEnums.NmvnTaskID.PendingOrders + ") ", new ObjectParameter[] { });
 
                 this.ExecuteStoreCommand("UPDATE Employees SET Title = N'#'", new ObjectParameter[] { });
 

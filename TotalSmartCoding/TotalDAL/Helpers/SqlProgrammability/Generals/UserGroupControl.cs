@@ -37,7 +37,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
 
             queryString = queryString + "       SELECT      UserGroupControls.UserGroupControlID, Modules.ModuleID, IIF(ModuleDetails.Controller <> N'#', ModuleDetails.Controller, Modules.Code) AS ModuleName, ModuleDetails.ModuleDetailID, ModuleDetails.Name AS ModuleDetailName, UserGroupControls.LocationID, IIF(ModuleDetails.ControlTypeID = 0, ModuleDetails.FullName, Locations.Name) AS LocationName, UserGroupControls.AccessLevel, UserGroupControls.ApprovalPermitted, UserGroupControls.UnApprovalPermitted, UserGroupControls.VoidablePermitted, UserGroupControls.UnVoidablePermitted, UserGroupControls.ShowDiscount " + "\r\n";
             queryString = queryString + "       FROM        UserGroupControls INNER JOIN ModuleDetails ON UserGroupControls.UserGroupID = @UserGroupID AND UserGroupControls.ModuleDetailID = ModuleDetails.ModuleDetailID INNER JOIN Modules ON ModuleDetails.ModuleID = Modules.ModuleID INNER JOIN Locations ON UserGroupControls.LocationID = Locations.LocationID " + "\r\n";
-            queryString = queryString + "       WHERE       UserGroupControls.ModuleDetailID NOT IN (" + (int)GlobalEnums.NmvnTaskID.SmartCoding + "," + (int)GlobalEnums.NmvnTaskID.Warehouses + ")" + "\r\n"; //HARD CODE HERE: TO EXCLUDE: SmartCoding + WAREHOUSE FROM THE CONTROL LIST
+            queryString = queryString + "       WHERE       UserGroupControls.ModuleDetailID NOT IN (" + (int)GlobalEnums.NmvnTaskID.SmartCoding + ")" + "\r\n"; //HARD CODE HERE: TO EXCLUDE: SmartCoding FROM THE CONTROL LIST
             queryString = queryString + "       ORDER BY    Modules.Name, ModuleName, ModuleDetails.SerialID, Locations.LocationID " + "\r\n";
 
             queryString = queryString + "    END " + "\r\n";

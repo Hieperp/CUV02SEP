@@ -5273,10 +5273,10 @@
             <Parameter Name="IsDatabaseAdmin" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="WarehouseDeletable" ReturnType="Collection(String)">
-            <Parameter Name="EntityID" Mode="In" Type="Int32" />
+          <Parameter Name="EntityID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="WarehouseEditable" ReturnType="Collection(String)">
-            <Parameter Name="EntityID" Mode="In" Type="Int32" />
+          <Parameter Name="EntityID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="WarehouseSaveRelative">
             <Parameter Name="EntityID" Mode="In" Type="Int32" />
@@ -5521,7 +5521,7 @@
           <Property Type="Int32" Name="WarehouseID" Nullable="false" />
           <Property Type="String" Name="Code" Nullable="false" MaxLength="10" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="60" />
-          <Property Type="String" Name="LocationCode" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="LocationName" Nullable="false" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="FillingLineBase">
           <Property Type="Int32" Name="FillingLineID" Nullable="false" />
@@ -9439,7 +9439,7 @@
                 <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="LocationCode" ColumnName="LocationCode" />
+                <ScalarProperty Name="LocationName" ColumnName="LocationName" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

@@ -491,6 +491,10 @@ namespace TotalModel.Models
         public System.DateTime EntryDate { get; set; }
     }
 
+    public partial class WarehouseIndex : IBaseIndex
+    {
+        public int Id { get { return this.WarehouseID; } }
+    }
 
     public partial class Warehouse : IPrimitiveEntity, IBaseEntity
     {

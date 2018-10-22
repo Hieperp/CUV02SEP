@@ -43,7 +43,7 @@
             this.olvID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvBlank = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvGlobalName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvTeamName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvWarehouseName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvRemarks = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.imageList32 = new System.Windows.Forms.ImageList(this.components);
             this.toolStripChildForm.SuspendLayout();
@@ -174,13 +174,13 @@
             this.fastWarehouseIndex.AllColumns.Add(this.olvID);
             this.fastWarehouseIndex.AllColumns.Add(this.olvBlank);
             this.fastWarehouseIndex.AllColumns.Add(this.olvGlobalName);
-            this.fastWarehouseIndex.AllColumns.Add(this.olvTeamName);
+            this.fastWarehouseIndex.AllColumns.Add(this.olvWarehouseName);
             this.fastWarehouseIndex.AllColumns.Add(this.olvRemarks);
             this.fastWarehouseIndex.BackColor = System.Drawing.Color.Ivory;
             this.fastWarehouseIndex.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.olvID,
             this.olvBlank,
-            this.olvTeamName,
+            this.olvWarehouseName,
             this.olvRemarks});
             this.fastWarehouseIndex.Cursor = System.Windows.Forms.Cursors.Default;
             this.fastWarehouseIndex.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -214,16 +214,16 @@
             // 
             // olvGlobalName
             // 
-            this.olvGlobalName.AspectName = "GlobalName";
+            this.olvGlobalName.AspectName = "LocationName";
             this.olvGlobalName.IsVisible = false;
             this.olvGlobalName.Text = "";
             // 
-            // olvTeamName
+            // olvWarehouseName
             // 
-            this.olvTeamName.AspectName = "Name";
-            this.olvTeamName.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvTeamName.Text = "Name";
-            this.olvTeamName.Width = 360;
+            this.olvWarehouseName.AspectName = "Name";
+            this.olvWarehouseName.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvWarehouseName.Text = "Name";
+            this.olvWarehouseName.Width = 360;
             // 
             // olvRemarks
             // 
@@ -282,7 +282,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private BrightIdeasSoftware.FastObjectListView fastWarehouseIndex;
         private BrightIdeasSoftware.OLVColumn olvID;
-        private BrightIdeasSoftware.OLVColumn olvTeamName;
+        private BrightIdeasSoftware.OLVColumn olvWarehouseName;
         private System.Windows.Forms.ImageList imageList32;
         private BrightIdeasSoftware.OLVColumn olvRemarks;
         private CustomControls.TextexBox textexName;

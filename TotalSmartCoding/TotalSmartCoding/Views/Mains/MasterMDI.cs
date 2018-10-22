@@ -51,6 +51,7 @@ using TotalSmartCoding.Views.Commons.CustomerTypes;
 using TotalSmartCoding.Views.Commons.CustomerCategories;
 using TotalSmartCoding.Views.Commons.BinLocations;
 using TotalSmartCoding.Views.Commons.Territories;
+using TotalSmartCoding.Views.Commons.Warehouses;
 
 using TotalSmartCoding.Views.Commons.Teams;
 using TotalSmartCoding.Views.Commons.Employees;
@@ -474,7 +475,9 @@ namespace TotalSmartCoding.Views.Mains
                         case (int)GlobalEnums.NmvnTaskID.Territories:
                             openingView = new Territories();
                             break;
-
+                        case (int)GlobalEnums.NmvnTaskID.Warehouses:
+                            openingView = new Warehouses();
+                            break;
                         case (int)GlobalEnums.NmvnTaskID.Employees:
                             openingView = new Employees();
                             break;

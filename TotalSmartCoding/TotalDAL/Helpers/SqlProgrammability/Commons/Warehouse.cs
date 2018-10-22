@@ -40,7 +40,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
-            queryString = queryString + "       SELECT      Warehouses.WarehouseID, Warehouses.Code, Warehouses.Name, Locations.Code AS LocationCode " + "\r\n";
+            queryString = queryString + "       SELECT      Warehouses.WarehouseID, Warehouses.Code, Warehouses.Name, Locations.Name AS LocationName " + "\r\n";
             queryString = queryString + "       FROM        Warehouses INNER JOIN Locations ON Warehouses.LocationID = Locations.LocationID " + "\r\n";
             queryString = queryString + "       WHERE      (SELECT TOP 1 OrganizationalUnitID FROM AccessControls WHERE UserID = @UserID AND NMVNTaskID = " + (int)TotalBase.Enums.GlobalEnums.NmvnTaskID.Warehouses + " AND AccessControls.AccessLevel > 0) > 0 " + "\r\n";
 
