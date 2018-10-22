@@ -1494,6 +1494,9 @@
     <None Include="Resources\remove-user.png" />
     <None Include="Resources\Remove-user-111.png" />
     <None Include="Resources\Admin-User.ico" />
+    <None Include="Resources\ICopyright.ico" />
+    <None Include="Resources\IManualguide.ico" />
+    <None Include="Resources\ICsymbol.png" />
     <Content Include="SmartCodingSolution.ico" />
     <None Include="Resources\Yellow-cross.ico" />
     <None Include="Resources\White-Pallet.ico" />

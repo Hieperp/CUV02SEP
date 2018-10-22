@@ -3193,6 +3193,26 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ICopyright {
+            get {
+                object obj = ResourceManager.GetObject("ICopyright", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ICsymbol {
+            get {
+                object obj = ResourceManager.GetObject("ICsymbol", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Identity {
             get {
                 object obj = ResourceManager.GetObject("Identity", resourceCulture);
@@ -3346,6 +3366,16 @@ namespace TotalSmartCoding.Properties {
         internal static System.Drawing.Bitmap images_3232 {
             get {
                 object obj = ResourceManager.GetObject("images 3232", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap IManualguide {
+            get {
+                object obj = ResourceManager.GetObject("IManualguide", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

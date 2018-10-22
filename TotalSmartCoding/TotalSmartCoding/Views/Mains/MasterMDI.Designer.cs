@@ -195,7 +195,7 @@
             this.naviBarModuleMaster.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.naviBarModuleMaster.Name = "naviBarModuleMaster";
             this.naviBarModuleMaster.ShowMoreOptionsButton = false;
-            this.naviBarModuleMaster.Size = new System.Drawing.Size(278, 867);
+            this.naviBarModuleMaster.Size = new System.Drawing.Size(278, 859);
             this.naviBarModuleMaster.TabIndex = 14;
             this.naviBarModuleMaster.Text = "naviBar1";
             this.naviBarModuleMaster.VisibleLargeButtons = 3;
@@ -310,10 +310,10 @@
             this.labelApplicationRole,
             this.toolStripSplitButton4,
             this.statusUserDescription});
-            this.statusStrip.Location = new System.Drawing.Point(0, 975);
+            this.statusStrip.Location = new System.Drawing.Point(0, 967);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-            this.statusStrip.Size = new System.Drawing.Size(1276, 22);
+            this.statusStrip.Size = new System.Drawing.Size(1268, 22);
             this.statusStrip.TabIndex = 28;
             this.statusStrip.Text = "StatusStrip";
             // 
@@ -424,7 +424,7 @@
             this.panelTop.Location = new System.Drawing.Point(0, 39);
             this.panelTop.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(1276, 69);
+            this.panelTop.Size = new System.Drawing.Size(1268, 69);
             this.panelTop.TabIndex = 73;
             // 
             // panelTopLeft
@@ -434,7 +434,7 @@
             this.panelTopLeft.Location = new System.Drawing.Point(0, 0);
             this.panelTopLeft.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelTopLeft.Name = "panelTopLeft";
-            this.panelTopLeft.Size = new System.Drawing.Size(680, 69);
+            this.panelTopLeft.Size = new System.Drawing.Size(672, 69);
             this.panelTopLeft.TabIndex = 1;
             // 
             // toolstripMain
@@ -463,7 +463,7 @@
             this.toolstripMain.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.toolstripMain.Location = new System.Drawing.Point(0, 0);
             this.toolstripMain.Name = "toolstripMain";
-            this.toolstripMain.Size = new System.Drawing.Size(680, 69);
+            this.toolstripMain.Size = new System.Drawing.Size(672, 69);
             this.toolstripMain.TabIndex = 10;
             this.toolstripMain.Text = "ToolStrip";
             // 
@@ -631,7 +631,7 @@
             // 
             this.panelTopRight.Controls.Add(this.toolStripTopRight);
             this.panelTopRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelTopRight.Location = new System.Drawing.Point(680, 0);
+            this.panelTopRight.Location = new System.Drawing.Point(672, 0);
             this.panelTopRight.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelTopRight.Name = "panelTopRight";
             this.panelTopRight.Size = new System.Drawing.Size(596, 69);
@@ -694,7 +694,7 @@
             this.panelTopMost.Location = new System.Drawing.Point(0, 0);
             this.panelTopMost.Margin = new System.Windows.Forms.Padding(0);
             this.panelTopMost.Name = "panelTopMost";
-            this.panelTopMost.Size = new System.Drawing.Size(1276, 39);
+            this.panelTopMost.Size = new System.Drawing.Size(1268, 39);
             this.panelTopMost.TabIndex = 75;
             // 
             // toolStripTopHead
@@ -716,7 +716,7 @@
             this.toolStripTopHead.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.toolStripTopHead.Location = new System.Drawing.Point(521, 0);
             this.toolStripTopHead.Name = "toolStripTopHead";
-            this.toolStripTopHead.Size = new System.Drawing.Size(755, 39);
+            this.toolStripTopHead.Size = new System.Drawing.Size(747, 39);
             this.toolStripTopHead.TabIndex = 5;
             this.toolStripTopHead.Text = "toolStrip1";
             // 
@@ -919,7 +919,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1276, 997);
+            this.ClientSize = new System.Drawing.Size(1268, 989);
             this.Controls.Add(this.naviBarModuleMaster);
             this.Controls.Add(this.panelTop);
             this.Controls.Add(this.panelTopMost);
