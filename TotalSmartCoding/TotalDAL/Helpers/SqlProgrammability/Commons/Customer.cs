@@ -81,13 +81,14 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
         {
             string queryString;
 
-            queryString = " " + "\r\n";
+            queryString = " @IsCustomer bit, @IsReceiver bit " + "\r\n";
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
             queryString = queryString + "       SELECT      CustomerID, Code, Name, ContactInfo, SalespersonID, CASE WHEN ShippingAddress <> '' THEN ShippingAddress ELSE BillingAddress END AS ShippingAddress " + "\r\n";
             queryString = queryString + "       FROM        Customers " + "\r\n";
+            queryString = queryString + "       WHERE       (@IsCustomer = 1 AND IsCustomer = 1) OR (@IsReceiver = 1 AND IsReceiver = 1) " + "\r\n";
 
             queryString = queryString + "    END " + "\r\n";
 

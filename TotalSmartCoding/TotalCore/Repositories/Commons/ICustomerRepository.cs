@@ -10,7 +10,7 @@ namespace TotalCore.Repositories.Commons
 
     public interface ICustomerAPIRepository : IGenericAPIRepository
     {
-        IList<CustomerBase> GetCustomerBases();
+        IList<CustomerBase> GetCustomerBases(bool isCustomer, bool isReceiver);
         IList<CustomerTree> GetCustomerTrees();
     }
 }

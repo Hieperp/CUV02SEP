@@ -50,13 +50,13 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
 
                 CustomerAPIs customerAPIs = new CustomerAPIs(CommonNinject.Kernel.Get<ICustomerAPIRepository>());
 
-                this.combexCustomerID.DataSource = customerAPIs.GetCustomerBases();
+                this.combexCustomerID.DataSource = customerAPIs.GetCustomerBases(true, false);
                 this.combexCustomerID.DisplayMember = CommonExpressions.PropertyName<CustomerBase>(p => p.Code);
                 this.combexCustomerID.ValueMember = CommonExpressions.PropertyName<CustomerBase>(p => p.CustomerID);
                 this.bindingCustomerID = this.combexCustomerID.DataBindings.Add("SelectedValue", this.salesOrderViewModel, CommonExpressions.PropertyName<SalesOrderViewModel>(p => p.CustomerID), true, DataSourceUpdateMode.OnPropertyChanged);
 
                 CustomerAPIs receiverAPIs = new CustomerAPIs(CommonNinject.Kernel.Get<ICustomerAPIRepository>());
-                this.combexReceiverID.DataSource = receiverAPIs.GetCustomerBases();
+                this.combexReceiverID.DataSource = receiverAPIs.GetCustomerBases(false, true);
                 this.combexReceiverID.DisplayMember = CommonExpressions.PropertyName<CustomerBase>(p => p.Code);
                 this.combexReceiverID.ValueMember = CommonExpressions.PropertyName<CustomerBase>(p => p.CustomerID);
                 this.bindingReceiverID = this.combexReceiverID.DataBindings.Add("SelectedValue", this.salesOrderViewModel, CommonExpressions.PropertyName<SalesOrderViewModel>(p => p.ReceiverID), true, DataSourceUpdateMode.OnPropertyChanged);

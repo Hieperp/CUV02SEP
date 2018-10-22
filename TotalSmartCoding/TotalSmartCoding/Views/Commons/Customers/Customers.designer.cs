@@ -44,6 +44,8 @@
             this.toolStripChildForm = new System.Windows.Forms.ToolStrip();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.comboIsCustomers = new System.Windows.Forms.ToolStripComboBox();
             this.naviGroupDetails = new Guifreaks.Navisuite.NaviGroup(this.components);
             this.panelCenter = new System.Windows.Forms.Panel();
@@ -85,8 +87,6 @@
             this.olvInActive = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvBillingAddress = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.imageList32 = new System.Windows.Forms.ImageList(this.components);
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.layoutLeft.SuspendLayout();
             this.toolStripChildForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.naviGroupDetails)).BeginInit();
@@ -302,6 +302,17 @@
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 39);
             this.toolStripSeparator1.Visible = false;
             // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(28, 36);
+            this.toolStripLabel1.Text = "       ";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 39);
+            // 
             // comboIsCustomers
             // 
             this.comboIsCustomers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -399,8 +410,8 @@
             // checkIsReceiver
             // 
             this.checkIsReceiver.AutoSize = true;
-            this.checkIsReceiver.Location = new System.Drawing.Point(671, 48);
-            this.checkIsReceiver.Margin = new System.Windows.Forms.Padding(2);
+            this.checkIsReceiver.Location = new System.Drawing.Point(671, 49);
+            this.checkIsReceiver.Margin = new System.Windows.Forms.Padding(2, 3, 2, 1);
             this.checkIsReceiver.Name = "checkIsReceiver";
             this.checkIsReceiver.Size = new System.Drawing.Size(88, 21);
             this.checkIsReceiver.TabIndex = 108;
@@ -410,8 +421,8 @@
             // checkIsCustomer
             // 
             this.checkIsCustomer.AutoSize = true;
-            this.checkIsCustomer.Location = new System.Drawing.Point(671, 20);
-            this.checkIsCustomer.Margin = new System.Windows.Forms.Padding(2);
+            this.checkIsCustomer.Location = new System.Drawing.Point(671, 21);
+            this.checkIsCustomer.Margin = new System.Windows.Forms.Padding(2, 3, 2, 1);
             this.checkIsCustomer.Name = "checkIsCustomer";
             this.checkIsCustomer.Size = new System.Drawing.Size(93, 21);
             this.checkIsCustomer.TabIndex = 107;
@@ -797,17 +808,6 @@
             this.imageList32.Images.SetKeyName(7, "Sign_Order_32");
             this.imageList32.Images.SetKeyName(8, "CustomerRed");
             this.imageList32.Images.SetKeyName(9, "Bank-32");
-            // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(28, 36);
-            this.toolStripLabel1.Text = "       ";
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 39);
             // 
             // Customers
             // 

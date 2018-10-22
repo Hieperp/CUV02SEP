@@ -2620,7 +2620,10 @@
           <Parameter Name="ToDate" Type="datetime" Mode="In" />
         </Function>
         <Function Name="GetCommodityTypeTrees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="GetCustomerBases" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetCustomerBases" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IsCustomer" Type="bit" Mode="In" />
+          <Parameter Name="IsReceiver" Type="bit" Mode="In" />
+        </Function>
         <Function Name="GetCustomerCategoryBases" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetCustomerCategoryIndexes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserID" Type="int" Mode="In" />
@@ -4068,7 +4071,10 @@
             <Parameter Name="DeliveryAdviceID" Mode="In" Type="Int32" />
             <Parameter Name="TransferOrderID" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="GetCustomerBases" ReturnType="Collection(TotalSmartCodingModel.CustomerBase)" />
+          <FunctionImport Name="GetCustomerBases" ReturnType="Collection(TotalSmartCodingModel.CustomerBase)" >
+            <Parameter Name="IsCustomer" Mode="In" Type="Boolean" />
+            <Parameter Name="IsReceiver" Mode="In" Type="Boolean" />
+          </FunctionImport>
           <FunctionImport Name="GetCustomerIndexes" ReturnType="Collection(TotalSmartCodingModel.CustomerIndex)">
             <Parameter Name="UserID" Mode="In" Type="Int32" />
             <Parameter Name="FromDate" Mode="In" Type="DateTime" />

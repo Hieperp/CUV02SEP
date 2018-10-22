@@ -28,9 +28,10 @@ namespace TotalSmartCoding.Controllers.APIs.Commons
             return this.customerAPIRepository.GetEntityIndexes<CustomerIndex>(ContextAttributes.User.UserID, GlobalEnums.GlobalOptionSetting.LowerFillterDate, GlobalEnums.GlobalOptionSetting.UpperFillterDate).ToList();
         }
 
-        public IList<CustomerBase> GetCustomerBases()
+        public IList<CustomerBase> GetCustomerBases() { return this.GetCustomerBases(true, true); }
+        public IList<CustomerBase> GetCustomerBases(bool isCustomer, bool isReceiver)
         {
-            return this.customerAPIRepository.GetCustomerBases();
+            return this.customerAPIRepository.GetCustomerBases(isCustomer, isReceiver);
         }
 
         public IList<CustomerTree> GetCustomerTrees()
