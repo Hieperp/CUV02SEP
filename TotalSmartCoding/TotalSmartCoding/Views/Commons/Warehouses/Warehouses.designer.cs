@@ -35,10 +35,15 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.panelCenter = new System.Windows.Forms.Panel();
             this.layoutTop = new System.Windows.Forms.TableLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.combexLocationID = new CustomControls.CombexBox();
             this.textexName = new CustomControls.TextexBox();
             this.textexRemarks = new CustomControls.TextexBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.checkBookable = new System.Windows.Forms.CheckBox();
+            this.checkIssuable = new System.Windows.Forms.CheckBox();
+            this.checkIsDefault = new System.Windows.Forms.CheckBox();
             this.fastWarehouseIndex = new BrightIdeasSoftware.FastObjectListView();
             this.olvID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvBlank = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -104,24 +109,65 @@
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.layoutTop.Controls.Add(this.label1, 1, 5);
+            this.layoutTop.Controls.Add(this.combexLocationID, 1, 4);
             this.layoutTop.Controls.Add(this.textexName, 1, 2);
-            this.layoutTop.Controls.Add(this.textexRemarks, 1, 4);
+            this.layoutTop.Controls.Add(this.textexRemarks, 1, 6);
             this.layoutTop.Controls.Add(this.label14, 1, 1);
             this.layoutTop.Controls.Add(this.label12, 1, 3);
+            this.layoutTop.Controls.Add(this.checkBookable, 1, 7);
+            this.layoutTop.Controls.Add(this.checkIssuable, 1, 8);
+            this.layoutTop.Controls.Add(this.checkIsDefault, 1, 9);
             this.layoutTop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutTop.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.layoutTop.Location = new System.Drawing.Point(0, 0);
             this.layoutTop.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.layoutTop.Name = "layoutTop";
-            this.layoutTop.RowCount = 6;
+            this.layoutTop.RowCount = 11;
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 15F));
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.layoutTop.Size = new System.Drawing.Size(368, 654);
             this.layoutTop.TabIndex = 8;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Location = new System.Drawing.Point(25, 122);
+            this.label1.Margin = new System.Windows.Forms.Padding(0);
+            this.label1.Name = "label1";
+            this.label1.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
+            this.label1.Size = new System.Drawing.Size(318, 27);
+            this.label1.TabIndex = 99;
+            this.label1.Text = "Remarks";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            // 
+            // combexLocationID
+            // 
+            this.combexLocationID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.combexLocationID.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.combexLocationID.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.combexLocationID.Editable = true;
+            this.combexLocationID.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.combexLocationID.FormattingEnabled = true;
+            this.combexLocationID.Location = new System.Drawing.Point(26, 96);
+            this.combexLocationID.Margin = new System.Windows.Forms.Padding(1);
+            this.combexLocationID.Name = "combexLocationID";
+            this.combexLocationID.ReadOnly = false;
+            this.combexLocationID.Size = new System.Drawing.Size(316, 25);
+            this.combexLocationID.TabIndex = 98;
             // 
             // textexName
             // 
@@ -137,7 +183,7 @@
             // 
             this.textexRemarks.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexRemarks.Editable = true;
-            this.textexRemarks.Location = new System.Drawing.Point(28, 96);
+            this.textexRemarks.Location = new System.Drawing.Point(28, 150);
             this.textexRemarks.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.textexRemarks.Name = "textexRemarks";
             this.textexRemarks.Size = new System.Drawing.Size(314, 24);
@@ -166,8 +212,44 @@
             this.label12.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
             this.label12.Size = new System.Drawing.Size(318, 27);
             this.label12.TabIndex = 94;
-            this.label12.Text = "Remarks";
+            this.label12.Text = "Location";
             this.label12.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            // 
+            // checkBookable
+            // 
+            this.checkBookable.AutoSize = true;
+            this.checkBookable.Location = new System.Drawing.Point(27, 178);
+            this.checkBookable.Margin = new System.Windows.Forms.Padding(2, 3, 2, 1);
+            this.checkBookable.Name = "checkBookable";
+            this.checkBookable.Size = new System.Drawing.Size(79, 21);
+            this.checkBookable.TabIndex = 108;
+            this.checkBookable.Text = "Bookable";
+            this.checkBookable.UseVisualStyleBackColor = true;
+            this.checkBookable.Visible = false;
+            // 
+            // checkIssuable
+            // 
+            this.checkIssuable.AutoSize = true;
+            this.checkIssuable.Location = new System.Drawing.Point(27, 203);
+            this.checkIssuable.Margin = new System.Windows.Forms.Padding(2, 3, 2, 1);
+            this.checkIssuable.Name = "checkIssuable";
+            this.checkIssuable.Size = new System.Drawing.Size(72, 21);
+            this.checkIssuable.TabIndex = 109;
+            this.checkIssuable.Text = "Issuable";
+            this.checkIssuable.UseVisualStyleBackColor = true;
+            this.checkIssuable.Visible = false;
+            // 
+            // checkIsDefault
+            // 
+            this.checkIsDefault.AutoSize = true;
+            this.checkIsDefault.Location = new System.Drawing.Point(27, 228);
+            this.checkIsDefault.Margin = new System.Windows.Forms.Padding(2, 3, 2, 1);
+            this.checkIsDefault.Name = "checkIsDefault";
+            this.checkIsDefault.Size = new System.Drawing.Size(69, 21);
+            this.checkIsDefault.TabIndex = 110;
+            this.checkIsDefault.Text = "Default";
+            this.checkIsDefault.UseVisualStyleBackColor = true;
+            this.checkIsDefault.Visible = false;
             // 
             // fastWarehouseIndex
             // 
@@ -292,6 +374,11 @@
         private BrightIdeasSoftware.OLVColumn olvBlank;
         private System.Windows.Forms.Label label14;
         private BrightIdeasSoftware.OLVColumn olvGlobalName;
+        private System.Windows.Forms.Label label1;
+        private CustomControls.CombexBox combexLocationID;
+        private System.Windows.Forms.CheckBox checkBookable;
+        private System.Windows.Forms.CheckBox checkIssuable;
+        private System.Windows.Forms.CheckBox checkIsDefault;
 
     }
 }

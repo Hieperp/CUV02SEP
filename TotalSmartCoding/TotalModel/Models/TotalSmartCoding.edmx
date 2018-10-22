@@ -999,7 +999,7 @@
           <Key>
             <PropertyRef Name="WarehouseID" />
           </Key>
-          <Property Name="WarehouseID" Type="int" Nullable="false" />
+          <Property Name="WarehouseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Code" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="60" Nullable="false" />
           <Property Name="WarehouseCategoryID" Type="int" Nullable="false" />

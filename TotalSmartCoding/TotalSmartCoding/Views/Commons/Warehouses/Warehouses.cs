@@ -88,6 +88,11 @@ namespace TotalSmartCoding.Views.Commons.Warehouses
 
         Binding bindingName;
         Binding bindingRemarks;
+        Binding bindingBookable;
+        Binding bindingIssuable;
+        Binding bindingIsDefault;
+        
+        Binding bindingLocationID;
 
         protected override void InitializeCommonControlBinding()
         {
@@ -95,9 +100,23 @@ namespace TotalSmartCoding.Views.Commons.Warehouses
 
             this.bindingName = this.textexName.DataBindings.Add("Text", this.teamViewModel, CommonExpressions.PropertyName<WarehouseDTO>(p => p.Name), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingRemarks = this.textexRemarks.DataBindings.Add("Text", this.teamViewModel, CommonExpressions.PropertyName<WarehouseDTO>(p => p.Remarks), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingBookable = this.checkBookable.DataBindings.Add("Checked", this.teamViewModel, CommonExpressions.PropertyName<WarehouseDTO>(p => p.Bookable), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingIssuable = this.checkIssuable.DataBindings.Add("Checked", this.teamViewModel, CommonExpressions.PropertyName<WarehouseDTO>(p => p.Issuable), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingIsDefault = this.checkIsDefault.DataBindings.Add("Checked", this.teamViewModel, CommonExpressions.PropertyName<WarehouseDTO>(p => p.IsDefault), true, DataSourceUpdateMode.OnPropertyChanged);
+
+            LocationAPIs locationAPIs = new LocationAPIs(CommonNinject.Kernel.Get<ILocationAPIRepository>());
+            this.combexLocationID.DataSource = locationAPIs.GetLocationBases(true);
+            this.combexLocationID.DisplayMember = CommonExpressions.PropertyName<LocationBase>(p => p.Name);
+            this.combexLocationID.ValueMember = CommonExpressions.PropertyName<LocationBase>(p => p.LocationID);
+            this.bindingLocationID = this.combexLocationID.DataBindings.Add("SelectedValue", this.teamViewModel, CommonExpressions.PropertyName<WarehouseDTO>(p => p.LocationID), true, DataSourceUpdateMode.OnPropertyChanged);
 
             this.bindingName.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingRemarks.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingBookable.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingIssuable.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingIsDefault.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+
+            this.bindingLocationID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
 
             this.fastWarehouseIndex.AboutToCreateGroups += fastWarehouseIndex_AboutToCreateGroups;
             this.fastWarehouseIndex.ShowGroups = true;

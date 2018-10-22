@@ -26,8 +26,6 @@ using TotalCore.Repositories.Commons;
 using TotalSmartCoding.Controllers.APIs.Commons;
 using TotalCore.Services.Commons;
 using TotalSmartCoding.ViewModels.Commons;
-using TotalSmartCoding.Controllers.APIs.Commons;
-using TotalCore.Repositories.Commons;
 using TotalBase;
 using TotalModel.Models;
 using TotalDTO.Commons;
@@ -151,8 +149,8 @@ namespace TotalSmartCoding.Views.Commons.Customers
             this.bindingRemarks = this.textexRemarks.DataBindings.Add("Text", this.customerViewModel, CommonExpressions.PropertyName<CustomerDTO>(p => p.Remarks), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingCaption = this.labelCaption.DataBindings.Add("Text", this.customerViewModel, CommonExpressions.PropertyName<CustomerDTO>(p => p.Caption));
 
-            this.bindingIsCustomer = this.checkIsCustomer.DataBindings.Add("Checked", this.customerViewModel, "IsCustomer", true, DataSourceUpdateMode.OnPropertyChanged);
-            this.bindingIsReceiver = this.checkIsReceiver.DataBindings.Add("Checked", this.customerViewModel, "IsReceiver", true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingIsCustomer = this.checkIsCustomer.DataBindings.Add("Checked", this.customerViewModel, CommonExpressions.PropertyName<CustomerDTO>(p => p.IsCustomer), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingIsReceiver = this.checkIsReceiver.DataBindings.Add("Checked", this.customerViewModel, CommonExpressions.PropertyName<CustomerDTO>(p => p.IsReceiver), true, DataSourceUpdateMode.OnPropertyChanged);
 
             this.IsCustomers = true;
             this.comboIsCustomers.ComboBox.DataSource = new List<OptionBool>() { new OptionBool() { OptionValue = true, OptionDescription = "Show Customers" }, new OptionBool() { OptionValue = false, OptionDescription = "Show Receivers" } };
