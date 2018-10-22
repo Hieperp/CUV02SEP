@@ -3303,6 +3303,16 @@
           <Parameter Name="EntityID" Type="int" Mode="In" />
           <Parameter Name="Approved" Type="bit" Mode="In" />
         </Function>
+        <Function Name="WarehouseDeletable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="WarehouseEditable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="WarehouseSaveRelative" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EntityID" Type="int" Mode="In" />
+          <Parameter Name="SaveRelativeOption" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="TotalSmartCodingModelStoreContainer">
           <EntitySet Name="Batches" EntityType="Self.Batches" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BinLocations" EntityType="Self.BinLocations" Schema="dbo" store:Type="Tables" />
@@ -5262,6 +5272,16 @@
             <Parameter Name="EntityID" Mode="In" Type="Int32" />
             <Parameter Name="IsDatabaseAdmin" Mode="In" Type="Boolean" />
           </FunctionImport>
+          <FunctionImport Name="WarehouseDeletable" ReturnType="Collection(String)">
+            <Parameter Name="EntityID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="WarehouseEditable" ReturnType="Collection(String)">
+            <Parameter Name="EntityID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="WarehouseSaveRelative">
+            <Parameter Name="EntityID" Mode="In" Type="Int32" />
+            <Parameter Name="SaveRelativeOption" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
           <Property Type="Int32" Name="PickupID" Nullable="false" />
@@ -5501,6 +5521,7 @@
           <Property Type="Int32" Name="WarehouseID" Nullable="false" />
           <Property Type="String" Name="Code" Nullable="false" MaxLength="10" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="60" />
+          <Property Type="String" Name="LocationCode" Nullable="false" MaxLength="10" />
         </ComplexType>
         <ComplexType Name="FillingLineBase">
           <Property Type="Int32" Name="FillingLineID" Nullable="false" />
@@ -9418,6 +9439,7 @@
                 <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LocationCode" ColumnName="LocationCode" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -12023,6 +12045,9 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="UserControlSetAdmin" FunctionName="TotalSmartCodingModel.Store.UserControlSetAdmin" />
+          <FunctionImportMapping FunctionImportName="WarehouseDeletable" FunctionName="TotalSmartCodingModel.Store.WarehouseDeletable" />
+          <FunctionImportMapping FunctionImportName="WarehouseEditable" FunctionName="TotalSmartCodingModel.Store.WarehouseEditable" />
+          <FunctionImportMapping FunctionImportName="WarehouseSaveRelative" FunctionName="TotalSmartCodingModel.Store.WarehouseSaveRelative" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

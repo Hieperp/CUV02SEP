@@ -20,8 +20,9 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
         {
             this.GetWarehouseIndexes();
 
-            //this.WarehouseEditable(); 
-            //this.WarehouseSaveRelative();
+            this.WarehouseEditable();
+            this.WarehouseDeletable();
+            this.WarehouseSaveRelative();
 
             this.GetWarehouseBases();
             this.GetWarehouseTrees();
@@ -39,8 +40,9 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
-            queryString = queryString + "       SELECT      Warehouses.WarehouseID, Warehouses.Code, Warehouses.Name " + "\r\n";
-            queryString = queryString + "       FROM        Warehouses " + "\r\n";
+            queryString = queryString + "       SELECT      Warehouses.WarehouseID, Warehouses.Code, Warehouses.Name, Locations.Code AS LocationCode " + "\r\n";
+            queryString = queryString + "       FROM        Warehouses INNER JOIN Locations ON Warehouses.LocationID = Locations.LocationID " + "\r\n";
+            queryString = queryString + "       WHERE      (SELECT TOP 1 OrganizationalUnitID FROM AccessControls WHERE UserID = @UserID AND NMVNTaskID = " + (int)TotalBase.Enums.GlobalEnums.NmvnTaskID.Warehouses + " AND AccessControls.AccessLevel > 0) > 0 " + "\r\n";
 
             queryString = queryString + "    END " + "\r\n";
 
@@ -53,26 +55,6 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             string queryString = " @EntityID int, @SaveRelativeOption int " + "\r\n"; //SaveRelativeOption: 1: Update, -1:Undo
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
-            queryString = queryString + "    BEGIN " + "\r\n";
-
-            queryString = queryString + "       IF (@SaveRelativeOption = 1) " + "\r\n";
-            queryString = queryString + "           BEGIN " + "\r\n";
-
-            queryString = queryString + "               INSERT INTO WarehouseWarehouses (WarehouseID, WarehouseID, WarehouseTaskID, EntryDate, Remarks, InActive) " + "\r\n";
-            queryString = queryString + "               SELECT      WarehouseID, 46 AS WarehouseID, " + (int)GlobalEnums.NmvnTaskID.SalesOrders + " AS WarehouseTaskID, GETDATE(), '', 0 FROM Warehouses WHERE WarehouseID = @EntityID " + "\r\n";
-
-            queryString = queryString + "               INSERT INTO WarehouseWarehouses (WarehouseID, WarehouseID, WarehouseTaskID, EntryDate, Remarks, InActive) " + "\r\n";
-            queryString = queryString + "               SELECT      Warehouses.WarehouseID, Warehouses.WarehouseID, " + (int)GlobalEnums.NmvnTaskID.DeliveryAdvices + " AS WarehouseTaskID, GETDATE(), '', 0 FROM Warehouses INNER JOIN Warehouses ON Warehouses.WarehouseID = @EntityID AND Warehouses.WarehouseCategoryID NOT IN (4, 5, 7, 9, 10, 11, 12) AND Warehouses.WarehouseCategoryID = Warehouses.WarehouseCategoryID " + "\r\n";
-
-            queryString = queryString + "               INSERT INTO WarehouseWarehouses (WarehouseID, WarehouseID, WarehouseTaskID, EntryDate, Remarks, InActive) " + "\r\n";
-            queryString = queryString + "               SELECT      WarehouseID, 82 AS WarehouseID, " + (int)GlobalEnums.NmvnTaskID.DeliveryAdvices + " AS WarehouseTaskID, GETDATE(), '', 0 FROM Warehouses WHERE WarehouseID = @EntityID AND WarehouseCategoryID IN (4, 5, 7, 9, 10, 11, 12) " + "\r\n";
-
-            queryString = queryString + "           END " + "\r\n";
-
-            queryString = queryString + "       ELSE " + "\r\n"; //(@SaveRelativeOption = -1) 
-            queryString = queryString + "           DELETE      WarehouseWarehouses WHERE WarehouseID = @EntityID " + "\r\n";
-
-            queryString = queryString + "    END " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("WarehouseSaveRelative", queryString);
         }
@@ -82,12 +64,28 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
         {
             string[] queryArray = new string[0];
 
-            //queryArray[0] = " SELECT TOP 1 @FoundEntity = WarehouseID FROM Warehouses WHERE WarehouseID = @EntityID AND (InActive = 1 OR InActivePartial = 1)"; //Don't allow approve after void
-            //queryArray[1] = " SELECT TOP 1 @FoundEntity = WarehouseID FROM GoodsIssueDetails WHERE WarehouseID = @EntityID ";
-
             this.totalSmartCodingEntities.CreateProcedureToCheckExisting("WarehouseEditable", queryArray);
         }
 
+        private void WarehouseDeletable()
+        {
+            string[] queryArray = new string[12];
+
+            queryArray[0] = " SELECT TOP 1 @FoundEntity = WarehouseID FROM BinLocations                 WHERE WarehouseID = @EntityID ";
+            queryArray[1] = " SELECT TOP 1 @FoundEntity = WarehouseID FROM GoodsReceiptDetails          WHERE WarehouseID = @EntityID OR WarehouseIssueID = @EntityID ";
+            queryArray[2] = " SELECT TOP 1 @FoundEntity = WarehouseID FROM GoodsReceipts                WHERE WarehouseID = @EntityID ";
+            queryArray[3] = " SELECT TOP 1 @FoundEntity = WarehouseID FROM PickupDetails                WHERE WarehouseID = @EntityID ";
+            queryArray[4] = " SELECT TOP 1 @FoundEntity = WarehouseID FROM Pickups                      WHERE WarehouseID = @EntityID ";
+            queryArray[5] = " SELECT TOP 1 @FoundEntity = WarehouseID FROM TransferOrderDetails         WHERE WarehouseID = @EntityID OR WarehouseReceiptID = @EntityID ";
+            queryArray[6] = " SELECT TOP 1 @FoundEntity = WarehouseID FROM TransferOrders               WHERE WarehouseID = @EntityID OR WarehouseReceiptID = @EntityID ";
+            queryArray[7] = " SELECT TOP 1 @FoundEntity = WarehouseID FROM GoodsIssueDetails            WHERE WarehouseID = @EntityID OR WarehouseReceiptID = @EntityID ";
+            queryArray[8] = " SELECT TOP 1 @FoundEntity = WarehouseID FROM GoodsIssues                  WHERE WarehouseID = @EntityID OR WarehouseReceiptID = @EntityID ";
+            queryArray[9] = " SELECT TOP 1 @FoundEntity = WarehouseID FROM GoodsIssueTransferDetails    WHERE WarehouseID = @EntityID OR WarehouseReceiptID = @EntityID ";            
+            queryArray[10] = " SELECT TOP 1 @FoundEntity = WarehouseID FROM WarehouseAdjustmentDetails   WHERE WarehouseID = @EntityID OR WarehouseReceiptID = @EntityID ";
+            queryArray[11] = " SELECT TOP 1 @FoundEntity = WarehouseID FROM WarehouseAdjustments         WHERE WarehouseID = @EntityID OR WarehouseReceiptID = @EntityID ";
+
+            this.totalSmartCodingEntities.CreateProcedureToCheckExisting("WarehouseDeletable", queryArray);
+        }
 
         private void GetWarehouseBases()
         {

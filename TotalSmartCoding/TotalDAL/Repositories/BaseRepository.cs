@@ -814,6 +814,11 @@ namespace TotalDAL.Repositories
             fillingLine.RestoreProcedure();
 
             //return;
+
+            Helpers.SqlProgrammability.Commons.Warehouse warehouse = new Helpers.SqlProgrammability.Commons.Warehouse(totalSmartCodingEntities);
+            warehouse.RestoreProcedure();
+
+            //return;
             //!!!!!!!!!!!!!!!!!!!!!!!!!ANY STORED CALL SubmitUserAccessControls: MUST BY RESTORE AFTER THIS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             Helpers.SqlProgrammability.Generals.UserGroupControl userGroupControl = new Helpers.SqlProgrammability.Generals.UserGroupControl(totalSmartCodingEntities);
             userGroupControl.RestoreProcedure();
@@ -925,10 +930,7 @@ namespace TotalDAL.Repositories
             deliveryAdvice.RestoreProcedure();
 
 
-            //return;
 
-            Helpers.SqlProgrammability.Commons.Warehouse warehouse = new Helpers.SqlProgrammability.Commons.Warehouse(totalSmartCodingEntities);
-            warehouse.RestoreProcedure();
 
 
 
