@@ -33,14 +33,14 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
         {
             string queryString;
 
-            queryString = " @UserID Int, @FromDate DateTime, @ToDate DateTime " + "\r\n";
+            queryString = " @UserID Int, @FromDate DateTime, @ToDate DateTime, @IsCustomers bit " + "\r\n";
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
             queryString = queryString + "       SELECT      Customers.CustomerID, Customers.Code AS CustomerCode, Customers.Name AS CustomerName, Customers.OfficialName AS CustomerOfficialName, Customers.ContactInfo, Customers.BillingAddress, EntireTerritories.TerritoryID, EntireTerritories.EntireName AS EntireTerritoryEntireName, Employees.EmployeeID, Employees.Name AS SalespersonName, Customers.InActive " + "\r\n";
             queryString = queryString + "       FROM        Customers " + "\r\n";
-            queryString = queryString + "                   INNER JOIN EntireTerritories ON Customers.TerritoryID = EntireTerritories.TerritoryID " + "\r\n";
+            queryString = queryString + "                   INNER JOIN EntireTerritories ON (Customers.IsCustomer = @IsCustomers OR Customers.IsReceiver = ~@IsCustomers) AND Customers.TerritoryID = EntireTerritories.TerritoryID " + "\r\n";
             queryString = queryString + "                   INNER JOIN Employees ON Customers.SalespersonID = Employees.EmployeeID " + "\r\n";
             queryString = queryString + "       WHERE      (SELECT TOP 1 OrganizationalUnitID FROM AccessControls WHERE UserID = @UserID AND NMVNTaskID = " + (int)TotalBase.Enums.GlobalEnums.NmvnTaskID.Customers + " AND AccessControls.AccessLevel > 0) > 0 " + "\r\n";
 

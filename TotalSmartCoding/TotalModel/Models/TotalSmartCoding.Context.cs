@@ -956,7 +956,7 @@ namespace TotalModel.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CustomerBase>("GetCustomerBases");
         }
     
-        public virtual ObjectResult<CustomerIndex> GetCustomerIndexes(Nullable<int> userID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
+        public virtual ObjectResult<CustomerIndex> GetCustomerIndexes(Nullable<int> userID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate, Nullable<bool> isCustomers)
         {
             var userIDParameter = userID.HasValue ?
                 new ObjectParameter("UserID", userID) :
@@ -970,7 +970,11 @@ namespace TotalModel.Models
                 new ObjectParameter("ToDate", toDate) :
                 new ObjectParameter("ToDate", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CustomerIndex>("GetCustomerIndexes", userIDParameter, fromDateParameter, toDateParameter);
+            var isCustomersParameter = isCustomers.HasValue ?
+                new ObjectParameter("IsCustomers", isCustomers) :
+                new ObjectParameter("IsCustomers", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CustomerIndex>("GetCustomerIndexes", userIDParameter, fromDateParameter, toDateParameter, isCustomersParameter);
         }
     
         public virtual ObjectResult<string> DeliveryAdviceApproved(Nullable<int> entityID)

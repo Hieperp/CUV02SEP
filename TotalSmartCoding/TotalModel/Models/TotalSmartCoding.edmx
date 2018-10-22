@@ -2631,6 +2631,7 @@
           <Parameter Name="UserID" Type="int" Mode="In" />
           <Parameter Name="FromDate" Type="datetime" Mode="In" />
           <Parameter Name="ToDate" Type="datetime" Mode="In" />
+          <Parameter Name="IsCustomers" Type="bit" Mode="In" />
         </Function>
         <Function Name="GetCustomerTrees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetCustomerTypeBases" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
@@ -4072,6 +4073,7 @@
             <Parameter Name="UserID" Mode="In" Type="Int32" />
             <Parameter Name="FromDate" Mode="In" Type="DateTime" />
             <Parameter Name="ToDate" Mode="In" Type="DateTime" />
+            <Parameter Name="IsCustomers" Mode="In" Type="Boolean" />
           </FunctionImport>
           <EntitySet Name="DeliveryAdviceDetails" EntityType="TotalSmartCodingModel.DeliveryAdviceDetail" />
           <FunctionImport Name="DeliveryAdviceApproved" ReturnType="Collection(String)">

@@ -22,8 +22,9 @@ namespace TotalSmartCoding.Controllers.APIs.Commons
         }
 
 
-        public ICollection<CustomerIndex> GetCustomerIndexes()
+        public ICollection<CustomerIndex> GetCustomerIndexes(bool isCustomers)
         {
+            this.customerAPIRepository.RepositoryBag["IsCustomers"] = isCustomers;
             return this.customerAPIRepository.GetEntityIndexes<CustomerIndex>(ContextAttributes.User.UserID, GlobalEnums.GlobalOptionSetting.LowerFillterDate, GlobalEnums.GlobalOptionSetting.UpperFillterDate).ToList();
         }
 

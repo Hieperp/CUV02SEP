@@ -44,9 +44,12 @@
             this.toolStripChildForm = new System.Windows.Forms.ToolStrip();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.comboIsCustomers = new System.Windows.Forms.ToolStripComboBox();
             this.naviGroupDetails = new Guifreaks.Navisuite.NaviGroup(this.components);
             this.panelCenter = new System.Windows.Forms.Panel();
             this.layoutTop = new System.Windows.Forms.TableLayoutPanel();
+            this.checkIsReceiver = new System.Windows.Forms.CheckBox();
+            this.checkIsCustomer = new System.Windows.Forms.CheckBox();
             this.textexOfficialName = new CustomControls.TextexBox();
             this.label3 = new System.Windows.Forms.Label();
             this.textexVATCode = new CustomControls.TextexBox();
@@ -82,8 +85,8 @@
             this.olvInActive = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvBillingAddress = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.imageList32 = new System.Windows.Forms.ImageList(this.components);
-            this.checkIsCustomer = new System.Windows.Forms.CheckBox();
-            this.checkIsReceiver = new System.Windows.Forms.CheckBox();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.layoutLeft.SuspendLayout();
             this.toolStripChildForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.naviGroupDetails)).BeginInit();
@@ -168,7 +171,7 @@
             this.combexSalespersonID.Dock = System.Windows.Forms.DockStyle.Fill;
             this.combexSalespersonID.Editable = true;
             this.combexSalespersonID.FormattingEnabled = true;
-            this.combexSalespersonID.Location = new System.Drawing.Point(3, 257);
+            this.combexSalespersonID.Location = new System.Drawing.Point(3, 269);
             this.combexSalespersonID.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.combexSalespersonID.Name = "combexSalespersonID";
             this.combexSalespersonID.ReadOnly = false;
@@ -180,7 +183,7 @@
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(0, 238);
+            this.label1.Location = new System.Drawing.Point(0, 250);
             this.label1.Margin = new System.Windows.Forms.Padding(0, 10, 3, 1);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(248, 17);
@@ -193,7 +196,7 @@
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label2.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(0, 124);
+            this.label2.Location = new System.Drawing.Point(0, 128);
             this.label2.Margin = new System.Windows.Forms.Padding(0, 10, 3, 1);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(248, 17);
@@ -206,7 +209,7 @@
             this.label4.AutoSize = true;
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label4.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(0, 181);
+            this.label4.Location = new System.Drawing.Point(0, 189);
             this.label4.Margin = new System.Windows.Forms.Padding(0, 10, 3, 1);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(248, 17);
@@ -245,7 +248,7 @@
             this.combexCustomerTypeID.Dock = System.Windows.Forms.DockStyle.Fill;
             this.combexCustomerTypeID.Editable = true;
             this.combexCustomerTypeID.FormattingEnabled = true;
-            this.combexCustomerTypeID.Location = new System.Drawing.Point(3, 146);
+            this.combexCustomerTypeID.Location = new System.Drawing.Point(3, 150);
             this.combexCustomerTypeID.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.combexCustomerTypeID.Name = "combexCustomerTypeID";
             this.combexCustomerTypeID.ReadOnly = false;
@@ -259,7 +262,7 @@
             this.combexTerritoryID.Dock = System.Windows.Forms.DockStyle.Fill;
             this.combexTerritoryID.Editable = true;
             this.combexTerritoryID.FormattingEnabled = true;
-            this.combexTerritoryID.Location = new System.Drawing.Point(3, 203);
+            this.combexTerritoryID.Location = new System.Drawing.Point(3, 211);
             this.combexTerritoryID.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.combexTerritoryID.Name = "combexTerritoryID";
             this.combexTerritoryID.ReadOnly = false;
@@ -272,10 +275,13 @@
             this.toolStripChildForm.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStripChildForm.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton2,
-            this.toolStripSeparator1});
+            this.toolStripSeparator1,
+            this.toolStripLabel1,
+            this.toolStripSeparator2,
+            this.comboIsCustomers});
             this.toolStripChildForm.Location = new System.Drawing.Point(0, 0);
             this.toolStripChildForm.Name = "toolStripChildForm";
-            this.toolStripChildForm.Size = new System.Drawing.Size(1722, 51);
+            this.toolStripChildForm.Size = new System.Drawing.Size(1268, 39);
             this.toolStripChildForm.TabIndex = 29;
             this.toolStripChildForm.Text = "toolStrip1";
             this.toolStripChildForm.Visible = false;
@@ -286,15 +292,22 @@
             this.toolStripButton2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(102, 48);
+            this.toolStripButton2.Size = new System.Drawing.Size(102, 36);
             this.toolStripButton2.Text = "Disconnect";
             this.toolStripButton2.Visible = false;
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 51);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 39);
             this.toolStripSeparator1.Visible = false;
+            // 
+            // comboIsCustomers
+            // 
+            this.comboIsCustomers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboIsCustomers.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
+            this.comboIsCustomers.Name = "comboIsCustomers";
+            this.comboIsCustomers.Size = new System.Drawing.Size(118, 39);
             // 
             // naviGroupDetails
             // 
@@ -382,6 +395,28 @@
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1F));
             this.layoutTop.Size = new System.Drawing.Size(972, 328);
             this.layoutTop.TabIndex = 8;
+            // 
+            // checkIsReceiver
+            // 
+            this.checkIsReceiver.AutoSize = true;
+            this.checkIsReceiver.Location = new System.Drawing.Point(671, 48);
+            this.checkIsReceiver.Margin = new System.Windows.Forms.Padding(2);
+            this.checkIsReceiver.Name = "checkIsReceiver";
+            this.checkIsReceiver.Size = new System.Drawing.Size(88, 21);
+            this.checkIsReceiver.TabIndex = 108;
+            this.checkIsReceiver.Text = "Is Receiver";
+            this.checkIsReceiver.UseVisualStyleBackColor = true;
+            // 
+            // checkIsCustomer
+            // 
+            this.checkIsCustomer.AutoSize = true;
+            this.checkIsCustomer.Location = new System.Drawing.Point(671, 20);
+            this.checkIsCustomer.Margin = new System.Windows.Forms.Padding(2);
+            this.checkIsCustomer.Name = "checkIsCustomer";
+            this.checkIsCustomer.Size = new System.Drawing.Size(93, 21);
+            this.checkIsCustomer.TabIndex = 107;
+            this.checkIsCustomer.Text = "Is Customer";
+            this.checkIsCustomer.UseVisualStyleBackColor = true;
             // 
             // textexOfficialName
             // 
@@ -763,27 +798,16 @@
             this.imageList32.Images.SetKeyName(8, "CustomerRed");
             this.imageList32.Images.SetKeyName(9, "Bank-32");
             // 
-            // checkIsCustomer
+            // toolStripLabel1
             // 
-            this.checkIsCustomer.AutoSize = true;
-            this.checkIsCustomer.Location = new System.Drawing.Point(671, 20);
-            this.checkIsCustomer.Margin = new System.Windows.Forms.Padding(2);
-            this.checkIsCustomer.Name = "checkIsCustomer";
-            this.checkIsCustomer.Size = new System.Drawing.Size(93, 21);
-            this.checkIsCustomer.TabIndex = 107;
-            this.checkIsCustomer.Text = "Is Customer";
-            this.checkIsCustomer.UseVisualStyleBackColor = true;
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(28, 36);
+            this.toolStripLabel1.Text = "       ";
             // 
-            // checkIsReceiver
+            // toolStripSeparator2
             // 
-            this.checkIsReceiver.AutoSize = true;
-            this.checkIsReceiver.Location = new System.Drawing.Point(671, 48);
-            this.checkIsReceiver.Margin = new System.Windows.Forms.Padding(2);
-            this.checkIsReceiver.Name = "checkIsReceiver";
-            this.checkIsReceiver.Size = new System.Drawing.Size(88, 21);
-            this.checkIsReceiver.TabIndex = 108;
-            this.checkIsReceiver.Text = "Is Receiver";
-            this.checkIsReceiver.UseVisualStyleBackColor = true;
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 39);
             // 
             // Customers
             // 
@@ -878,6 +902,9 @@
         private BrightIdeasSoftware.OLVColumn olvBlank;
         private System.Windows.Forms.CheckBox checkIsReceiver;
         private System.Windows.Forms.CheckBox checkIsCustomer;
+        private System.Windows.Forms.ToolStripComboBox comboIsCustomers;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
 
     }
 }

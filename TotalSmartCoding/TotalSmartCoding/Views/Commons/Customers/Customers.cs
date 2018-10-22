@@ -109,14 +109,14 @@ namespace TotalSmartCoding.Views.Commons.Customers
         Binding bindingCode;
         Binding bindingName;
         Binding bindingOfficialName;
-        
+
         Binding bindingContactInfo;
         Binding bindingVATCode;
         Binding bindingTelephone;
         Binding bindingFacsimile;
         Binding bindingEmail;
         Binding bindingAttentionName;
-        
+
         Binding bindingBillingAddress;
         Binding bindingShippingAddress;
         Binding bindingRemarks;
@@ -129,6 +129,7 @@ namespace TotalSmartCoding.Views.Commons.Customers
 
         Binding bindingIsCustomer;
         Binding bindingIsReceiver;
+        Binding bindingIsCustomers;
 
         protected override void InitializeCommonControlBinding()
         {
@@ -137,7 +138,7 @@ namespace TotalSmartCoding.Views.Commons.Customers
             this.bindingCode = this.textexCode.DataBindings.Add("Text", this.customerViewModel, CommonExpressions.PropertyName<CustomerDTO>(p => p.Code), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingName = this.textexName.DataBindings.Add("Text", this.customerViewModel, CommonExpressions.PropertyName<CustomerDTO>(p => p.Name), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingOfficialName = this.textexOfficialName.DataBindings.Add("Text", this.customerViewModel, CommonExpressions.PropertyName<CustomerDTO>(p => p.OfficialName), true, DataSourceUpdateMode.OnPropertyChanged);
-            
+
             this.bindingContactInfo = this.textexContactInfo.DataBindings.Add("Text", this.customerViewModel, CommonExpressions.PropertyName<CustomerDTO>(p => p.ContactInfo), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingVATCode = this.textexVATCode.DataBindings.Add("Text", this.customerViewModel, CommonExpressions.PropertyName<CustomerDTO>(p => p.VATCode), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingTelephone = this.textexTelephone.DataBindings.Add("Text", this.customerViewModel, CommonExpressions.PropertyName<CustomerDTO>(p => p.Telephone), true, DataSourceUpdateMode.OnPropertyChanged);
@@ -152,6 +153,12 @@ namespace TotalSmartCoding.Views.Commons.Customers
 
             this.bindingIsCustomer = this.checkIsCustomer.DataBindings.Add("Checked", this.customerViewModel, "IsCustomer", true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingIsReceiver = this.checkIsReceiver.DataBindings.Add("Checked", this.customerViewModel, "IsReceiver", true, DataSourceUpdateMode.OnPropertyChanged);
+
+            this.IsCustomers = true;
+            this.comboIsCustomers.ComboBox.DataSource = new List<OptionBool>() { new OptionBool() { OptionValue = true, OptionDescription = "Show Customers" }, new OptionBool() { OptionValue = false, OptionDescription = "Show Receivers" } };
+            this.comboIsCustomers.ComboBox.DisplayMember = CommonExpressions.PropertyName<OptionBool>(p => p.OptionDescription);
+            this.comboIsCustomers.ComboBox.ValueMember = CommonExpressions.PropertyName<OptionBool>(p => p.OptionValue);
+            this.bindingIsCustomers = this.comboIsCustomers.ComboBox.DataBindings.Add("SelectedValue", this, "IsCustomers", true, DataSourceUpdateMode.OnPropertyChanged);
 
             CustomerTypeAPIs customerTypeAPIs = new CustomerTypeAPIs(CommonNinject.Kernel.Get<ICustomerTypeAPIRepository>());
             this.combexCustomerTypeID.DataSource = customerTypeAPIs.GetCustomerTypeBases();
@@ -195,6 +202,7 @@ namespace TotalSmartCoding.Views.Commons.Customers
 
             this.bindingIsCustomer.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingIsReceiver.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingIsCustomers.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
 
             this.bindingCustomerTypeID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingCustomerCategoryID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
@@ -219,6 +227,21 @@ namespace TotalSmartCoding.Views.Commons.Customers
             }
         }
 
+        private bool isCustomers;
+        public bool IsCustomers
+        {
+            get { return this.isCustomers; }
+            set
+            {
+                if (this.isCustomers != value)
+                {
+                    this.isCustomers = value;
+                    this.Loading();
+                }
+            }
+        }
+
+
         protected override Controllers.BaseController myController
         {
             get { return new CustomerController(CommonNinject.Kernel.Get<ICustomerService>(), this.customerViewModel); }
@@ -226,8 +249,8 @@ namespace TotalSmartCoding.Views.Commons.Customers
 
         public override void Loading()
         {
-            this.fastCustomerIndex.SetObjects(this.customerAPIs.GetCustomerIndexes());
-            
+            this.fastCustomerIndex.SetObjects(this.customerAPIs.GetCustomerIndexes(this.IsCustomers));
+
             base.Loading();
         }
 
