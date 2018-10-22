@@ -48,6 +48,8 @@ namespace TotalModel.Models
         public bool InActive { get; set; }
         public bool IsCustomer { get; set; }
         public bool IsSupplier { get; set; }
+        public bool IsReceiver { get; set; }
+        public string Email { get; set; }
     
         public virtual CustomerCategory CustomerCategory { get; set; }
         public virtual CustomerType CustomerType { get; set; }

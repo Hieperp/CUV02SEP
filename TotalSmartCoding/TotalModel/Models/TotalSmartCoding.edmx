@@ -183,6 +183,8 @@
           <Property Name="InActive" Type="bit" Nullable="false" />
           <Property Name="IsCustomer" Type="bit" Nullable="false" />
           <Property Name="IsSupplier" Type="bit" Nullable="false" />
+          <Property Name="IsReceiver" Type="bit" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="CustomerTypes">
           <Key>
@@ -6922,6 +6924,8 @@
           <NavigationProperty Name="GoodsIssues" Relationship="TotalSmartCodingModel.FK_GoodsIssues_Customers" FromRole="Customer" ToRole="GoodsIssue" />
           <NavigationProperty Name="GoodsIssues1" Relationship="TotalSmartCodingModel.FK_GoodsIssues_Receivers" FromRole="Customer" ToRole="GoodsIssue" />
           <NavigationProperty Name="Employee" Relationship="TotalSmartCodingModel.FK_Customers_Employees" FromRole="Customer" ToRole="Employee" />
+          <Property Name="IsReceiver" Type="Boolean" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Customers_CustomerCategories">
           <End Type="TotalSmartCodingModel.CustomerCategory" Role="CustomerCategory" Multiplicity="1" />
@@ -10577,6 +10581,8 @@
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="TotalSmartCodingModel.Customer">
               <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IsReceiver" ColumnName="IsReceiver" />
                 <ScalarProperty Name="IsSupplier" ColumnName="IsSupplier" />
                 <ScalarProperty Name="IsCustomer" ColumnName="IsCustomer" />
                 <ScalarProperty Name="InActive" ColumnName="InActive" />
