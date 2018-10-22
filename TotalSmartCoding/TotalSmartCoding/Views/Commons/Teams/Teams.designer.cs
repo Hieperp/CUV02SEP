@@ -42,10 +42,10 @@
             this.fastTeamIndex = new BrightIdeasSoftware.FastObjectListView();
             this.olvID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvBlank = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvGlobalName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvTeamName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvRemarks = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.imageList32 = new System.Windows.Forms.ImageList(this.components);
-            this.olvGlobalName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.toolStripChildForm.SuspendLayout();
             this.panelCenter.SuspendLayout();
             this.layoutTop.SuspendLayout();
@@ -89,7 +89,7 @@
             this.panelCenter.Controls.Add(this.layoutTop);
             this.panelCenter.Dock = System.Windows.Forms.DockStyle.Right;
             this.panelCenter.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panelCenter.Location = new System.Drawing.Point(908, 0);
+            this.panelCenter.Location = new System.Drawing.Point(900, 0);
             this.panelCenter.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelCenter.Name = "panelCenter";
             this.panelCenter.Size = new System.Drawing.Size(368, 654);
@@ -194,7 +194,7 @@
             this.fastTeamIndex.Name = "fastTeamIndex";
             this.fastTeamIndex.OwnerDraw = true;
             this.fastTeamIndex.ShowGroups = false;
-            this.fastTeamIndex.Size = new System.Drawing.Size(908, 654);
+            this.fastTeamIndex.Size = new System.Drawing.Size(900, 654);
             this.fastTeamIndex.TabIndex = 68;
             this.fastTeamIndex.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastTeamIndex.UseCompatibleStateImageBehavior = false;
@@ -211,6 +211,12 @@
             // 
             this.olvBlank.Text = "";
             this.olvBlank.Width = 15;
+            // 
+            // olvGlobalName
+            // 
+            this.olvGlobalName.AspectName = "GlobalName";
+            this.olvGlobalName.IsVisible = false;
+            this.olvGlobalName.Text = "";
             // 
             // olvTeamName
             // 
@@ -240,18 +246,13 @@
             this.imageList32.Images.SetKeyName(7, "Sign_Order_32");
             this.imageList32.Images.SetKeyName(8, "CustomerRed");
             this.imageList32.Images.SetKeyName(9, "BinLocation-32");
-            // 
-            // olvGlobalName
-            // 
-            this.olvGlobalName.AspectName = "GlobalName";
-            this.olvGlobalName.IsVisible = false;
-            this.olvGlobalName.Text = "";
+            this.imageList32.Images.SetKeyName(10, "Team-32");
             // 
             // Teams
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1276, 654);
+            this.ClientSize = new System.Drawing.Size(1268, 654);
             this.Controls.Add(this.fastTeamIndex);
             this.Controls.Add(this.panelCenter);
             this.Controls.Add(this.toolStripChildForm);

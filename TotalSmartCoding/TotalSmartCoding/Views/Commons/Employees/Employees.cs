@@ -176,7 +176,7 @@ namespace TotalSmartCoding.Views.Commons.Employees
             {
                 foreach (OLVGroup olvGroup in e.Groups)
                 {
-                    olvGroup.TitleImage = "Employee-32";
+                    olvGroup.TitleImage = "Emp-32";
                     olvGroup.Subtitle = "Count: " + olvGroup.Contents.Count.ToString() + " Employee(s)";
                 }
             }

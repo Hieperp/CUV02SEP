@@ -109,8 +109,8 @@ namespace TotalSmartCoding.Views.Commons.CommodityCategories
             {
                 foreach (OLVGroup olvGroup in e.Groups)
                 {
-                    olvGroup.TitleImage = "BinLocation-32";
-                    olvGroup.Subtitle = "Count: " + olvGroup.Contents.Count.ToString() + " Categories";
+                    olvGroup.TitleImage = "2-squares";
+                    olvGroup.Subtitle = "Count: " + olvGroup.Contents.Count.ToString() + " Category(s)";
                 }
             }
         }

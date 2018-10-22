@@ -128,7 +128,7 @@ namespace TotalSmartCoding.Views.Commons.Warehouses
             {
                 foreach (OLVGroup olvGroup in e.Groups)
                 {
-                    olvGroup.TitleImage = "BinLocation-32";
+                    olvGroup.TitleImage = "Warehouse";
                     olvGroup.Subtitle = "Count: " + olvGroup.Contents.Count.ToString() + " Warehouse(s)";
                 }
             }

@@ -109,7 +109,7 @@ namespace TotalSmartCoding.Views.Commons.Territories
             {
                 foreach (OLVGroup olvGroup in e.Groups)
                 {
-                    olvGroup.TitleImage = "BinLocation-32";
+                    olvGroup.TitleImage = "earth-globe";
                     olvGroup.Subtitle = "Count: " + olvGroup.Contents.Count.ToString() + " Territories";
                 }
             }

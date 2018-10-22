@@ -109,7 +109,7 @@ namespace TotalSmartCoding.Views.Commons.Teams
             {
                 foreach (OLVGroup olvGroup in e.Groups)
                 {
-                    olvGroup.TitleImage = "BinLocation-32";
+                    olvGroup.TitleImage = "Team-32";
                     olvGroup.Subtitle = "Count: " + olvGroup.Contents.Count.ToString() + " Team(s)";
                 }
             }

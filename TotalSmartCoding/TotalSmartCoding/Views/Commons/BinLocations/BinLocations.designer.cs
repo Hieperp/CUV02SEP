@@ -125,7 +125,7 @@
             this.panelCenter.Controls.Add(this.layoutTop);
             this.panelCenter.Dock = System.Windows.Forms.DockStyle.Right;
             this.panelCenter.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panelCenter.Location = new System.Drawing.Point(908, 0);
+            this.panelCenter.Location = new System.Drawing.Point(900, 0);
             this.panelCenter.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelCenter.Name = "panelCenter";
             this.panelCenter.Size = new System.Drawing.Size(368, 654);
@@ -183,7 +183,7 @@
             // 
             this.textexVATCode.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexVATCode.Editable = false;
-            this.textexVATCode.Location = new System.Drawing.Point(28, 199);
+            this.textexVATCode.Location = new System.Drawing.Point(28, 203);
             this.textexVATCode.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.textexVATCode.Name = "textexVATCode";
             this.textexVATCode.Size = new System.Drawing.Size(314, 24);
@@ -194,7 +194,7 @@
             // 
             this.textexAttentionName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexAttentionName.Editable = false;
-            this.textexAttentionName.Location = new System.Drawing.Point(28, 305);
+            this.textexAttentionName.Location = new System.Drawing.Point(28, 309);
             this.textexAttentionName.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.textexAttentionName.Name = "textexAttentionName";
             this.textexAttentionName.Size = new System.Drawing.Size(314, 24);
@@ -205,7 +205,7 @@
             // 
             this.textexContactInfo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexContactInfo.Editable = false;
-            this.textexContactInfo.Location = new System.Drawing.Point(28, 252);
+            this.textexContactInfo.Location = new System.Drawing.Point(28, 256);
             this.textexContactInfo.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.textexContactInfo.Name = "textexContactInfo";
             this.textexContactInfo.Size = new System.Drawing.Size(314, 24);
@@ -226,7 +226,7 @@
             // 
             this.textexRemarks.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexRemarks.Editable = true;
-            this.textexRemarks.Location = new System.Drawing.Point(28, 358);
+            this.textexRemarks.Location = new System.Drawing.Point(28, 362);
             this.textexRemarks.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.textexRemarks.Name = "textexRemarks";
             this.textexRemarks.Size = new System.Drawing.Size(314, 24);
@@ -275,7 +275,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Location = new System.Drawing.Point(25, 171);
+            this.label5.Location = new System.Drawing.Point(25, 175);
             this.label5.Margin = new System.Windows.Forms.Padding(0);
             this.label5.Name = "label5";
             this.label5.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
@@ -289,7 +289,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label8.Location = new System.Drawing.Point(25, 224);
+            this.label8.Location = new System.Drawing.Point(25, 228);
             this.label8.Margin = new System.Windows.Forms.Padding(0);
             this.label8.Name = "label8";
             this.label8.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
@@ -303,7 +303,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label9.Location = new System.Drawing.Point(25, 277);
+            this.label9.Location = new System.Drawing.Point(25, 281);
             this.label9.Margin = new System.Windows.Forms.Padding(0);
             this.label9.Name = "label9";
             this.label9.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
@@ -317,7 +317,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label12.Location = new System.Drawing.Point(25, 330);
+            this.label12.Location = new System.Drawing.Point(25, 334);
             this.label12.Margin = new System.Windows.Forms.Padding(0);
             this.label12.Name = "label12";
             this.label12.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
@@ -356,7 +356,7 @@
             this.fastBinLocationIndex.Name = "fastBinLocationIndex";
             this.fastBinLocationIndex.OwnerDraw = true;
             this.fastBinLocationIndex.ShowGroups = false;
-            this.fastBinLocationIndex.Size = new System.Drawing.Size(908, 654);
+            this.fastBinLocationIndex.Size = new System.Drawing.Size(900, 654);
             this.fastBinLocationIndex.TabIndex = 68;
             this.fastBinLocationIndex.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastBinLocationIndex.UseCompatibleStateImageBehavior = false;
@@ -424,12 +424,14 @@
             this.imageList32.Images.SetKeyName(7, "Sign_Order_32");
             this.imageList32.Images.SetKeyName(8, "CustomerRed");
             this.imageList32.Images.SetKeyName(9, "BinLocation-32");
+            this.imageList32.Images.SetKeyName(10, "stack-in-depot");
+            this.imageList32.Images.SetKeyName(11, "BinLocation-1");
             // 
             // BinLocations
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1276, 654);
+            this.ClientSize = new System.Drawing.Size(1268, 654);
             this.Controls.Add(this.fastBinLocationIndex);
             this.Controls.Add(this.panelCenter);
             this.Controls.Add(this.toolStripChildForm);

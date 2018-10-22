@@ -109,7 +109,7 @@ namespace TotalSmartCoding.Views.Commons.CustomerTypes
             {
                 foreach (OLVGroup olvGroup in e.Groups)
                 {
-                    olvGroup.TitleImage = "BinLocation-32";
+                    olvGroup.TitleImage = "google-drive-blue";
                     olvGroup.Subtitle = "Count: " + olvGroup.Contents.Count.ToString() + " Type(s)";
                 }
             }

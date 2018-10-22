@@ -89,7 +89,7 @@
             this.panelCenter.Controls.Add(this.layoutTop);
             this.panelCenter.Dock = System.Windows.Forms.DockStyle.Right;
             this.panelCenter.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panelCenter.Location = new System.Drawing.Point(908, 0);
+            this.panelCenter.Location = new System.Drawing.Point(900, 0);
             this.panelCenter.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelCenter.Name = "panelCenter";
             this.panelCenter.Size = new System.Drawing.Size(368, 654);
@@ -194,7 +194,7 @@
             this.fastCustomerTypeIndex.Name = "fastCustomerTypeIndex";
             this.fastCustomerTypeIndex.OwnerDraw = true;
             this.fastCustomerTypeIndex.ShowGroups = false;
-            this.fastCustomerTypeIndex.Size = new System.Drawing.Size(908, 654);
+            this.fastCustomerTypeIndex.Size = new System.Drawing.Size(900, 654);
             this.fastCustomerTypeIndex.TabIndex = 68;
             this.fastCustomerTypeIndex.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastCustomerTypeIndex.UseCompatibleStateImageBehavior = false;
@@ -246,12 +246,13 @@
             this.imageList32.Images.SetKeyName(7, "Sign_Order_32");
             this.imageList32.Images.SetKeyName(8, "CustomerRed");
             this.imageList32.Images.SetKeyName(9, "BinLocation-32");
+            this.imageList32.Images.SetKeyName(10, "google-drive-blue");
             // 
             // CustomerTypes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1276, 654);
+            this.ClientSize = new System.Drawing.Size(1268, 654);
             this.Controls.Add(this.fastCustomerTypeIndex);
             this.Controls.Add(this.panelCenter);
             this.Controls.Add(this.toolStripChildForm);
