@@ -103,6 +103,11 @@ namespace TotalDAL.Repositories
             #region FINAL 19OCT2018
             if (this.totalSmartCodingEntities.ColumnExists("CommodityTypes", "Description"))
             {
+                this.totalSmartCodingEntities.ColumnAdd("Customers", "IsReceiver", "bit", "0", true);
+                this.ExecuteStoreCommand("UPDATE Customers SET IsCustomer = 1, IsSupplier = 1", new ObjectParameter[] { });
+                this.totalSmartCodingEntities.ColumnAdd("Customers", "Email", "nvarchar(100)", "", false);
+
+
                 #region ADD NEW MODULE              
                 this.ExecuteStoreCommand("UPDATE ModuleDetails SET FullName = '' WHERE FullName = '#' ", new ObjectParameter[] { });
                 this.ExecuteStoreCommand("UPDATE ModuleDetails SET Code = 'MH', Name = 'MH' WHERE ModuleDetailID = 8006 ", new ObjectParameter[] { }); //HIDE Warehouses FROM ModuleDetails
