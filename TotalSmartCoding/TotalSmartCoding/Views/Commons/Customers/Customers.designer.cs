@@ -82,6 +82,8 @@
             this.olvInActive = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvBillingAddress = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.imageList32 = new System.Windows.Forms.ImageList(this.components);
+            this.checkIsCustomer = new System.Windows.Forms.CheckBox();
+            this.checkIsReceiver = new System.Windows.Forms.CheckBox();
             this.layoutLeft.SuspendLayout();
             this.toolStripChildForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.naviGroupDetails)).BeginInit();
@@ -141,7 +143,7 @@
             this.label6.Location = new System.Drawing.Point(0, 13);
             this.label6.Margin = new System.Windows.Forms.Padding(0, 10, 3, 1);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(248, 21);
+            this.label6.Size = new System.Drawing.Size(248, 17);
             this.label6.TabIndex = 30;
             this.label6.Text = "Code";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -151,10 +153,10 @@
             this.label7.AutoSize = true;
             this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label7.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(0, 75);
+            this.label7.Location = new System.Drawing.Point(0, 67);
             this.label7.Margin = new System.Windows.Forms.Padding(0, 10, 3, 1);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(248, 21);
+            this.label7.Size = new System.Drawing.Size(248, 17);
             this.label7.TabIndex = 31;
             this.label7.Text = "Category";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -166,11 +168,11 @@
             this.combexSalespersonID.Dock = System.Windows.Forms.DockStyle.Fill;
             this.combexSalespersonID.Editable = true;
             this.combexSalespersonID.FormattingEnabled = true;
-            this.combexSalespersonID.Location = new System.Drawing.Point(3, 305);
+            this.combexSalespersonID.Location = new System.Drawing.Point(3, 257);
             this.combexSalespersonID.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.combexSalespersonID.Name = "combexSalespersonID";
             this.combexSalespersonID.ReadOnly = false;
-            this.combexSalespersonID.Size = new System.Drawing.Size(247, 29);
+            this.combexSalespersonID.Size = new System.Drawing.Size(247, 25);
             this.combexSalespersonID.TabIndex = 75;
             // 
             // label1
@@ -178,10 +180,10 @@
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(0, 282);
+            this.label1.Location = new System.Drawing.Point(0, 238);
             this.label1.Margin = new System.Windows.Forms.Padding(0, 10, 3, 1);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(248, 21);
+            this.label1.Size = new System.Drawing.Size(248, 17);
             this.label1.TabIndex = 76;
             this.label1.Text = "Salesperson";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -191,10 +193,10 @@
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label2.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(0, 144);
+            this.label2.Location = new System.Drawing.Point(0, 124);
             this.label2.Margin = new System.Windows.Forms.Padding(0, 10, 3, 1);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(248, 21);
+            this.label2.Size = new System.Drawing.Size(248, 17);
             this.label2.TabIndex = 77;
             this.label2.Text = "Type";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -204,10 +206,10 @@
             this.label4.AutoSize = true;
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label4.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(0, 213);
+            this.label4.Location = new System.Drawing.Point(0, 181);
             this.label4.Margin = new System.Windows.Forms.Padding(0, 10, 3, 1);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(248, 21);
+            this.label4.Size = new System.Drawing.Size(248, 17);
             this.label4.TabIndex = 79;
             this.label4.Text = "Territory";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -216,10 +218,10 @@
             // 
             this.textexCode.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexCode.Editable = true;
-            this.textexCode.Location = new System.Drawing.Point(3, 36);
+            this.textexCode.Location = new System.Drawing.Point(3, 32);
             this.textexCode.Margin = new System.Windows.Forms.Padding(3, 1, 1, 1);
             this.textexCode.Name = "textexCode";
-            this.textexCode.Size = new System.Drawing.Size(247, 28);
+            this.textexCode.Size = new System.Drawing.Size(247, 24);
             this.textexCode.TabIndex = 81;
             // 
             // combexCustomerCategoryID
@@ -229,11 +231,11 @@
             this.combexCustomerCategoryID.Dock = System.Windows.Forms.DockStyle.Fill;
             this.combexCustomerCategoryID.Editable = true;
             this.combexCustomerCategoryID.FormattingEnabled = true;
-            this.combexCustomerCategoryID.Location = new System.Drawing.Point(3, 101);
+            this.combexCustomerCategoryID.Location = new System.Drawing.Point(3, 89);
             this.combexCustomerCategoryID.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.combexCustomerCategoryID.Name = "combexCustomerCategoryID";
             this.combexCustomerCategoryID.ReadOnly = false;
-            this.combexCustomerCategoryID.Size = new System.Drawing.Size(245, 29);
+            this.combexCustomerCategoryID.Size = new System.Drawing.Size(245, 25);
             this.combexCustomerCategoryID.TabIndex = 82;
             // 
             // combexCustomerTypeID
@@ -243,11 +245,11 @@
             this.combexCustomerTypeID.Dock = System.Windows.Forms.DockStyle.Fill;
             this.combexCustomerTypeID.Editable = true;
             this.combexCustomerTypeID.FormattingEnabled = true;
-            this.combexCustomerTypeID.Location = new System.Drawing.Point(3, 170);
+            this.combexCustomerTypeID.Location = new System.Drawing.Point(3, 146);
             this.combexCustomerTypeID.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.combexCustomerTypeID.Name = "combexCustomerTypeID";
             this.combexCustomerTypeID.ReadOnly = false;
-            this.combexCustomerTypeID.Size = new System.Drawing.Size(245, 29);
+            this.combexCustomerTypeID.Size = new System.Drawing.Size(245, 25);
             this.combexCustomerTypeID.TabIndex = 83;
             // 
             // combexTerritoryID
@@ -257,11 +259,11 @@
             this.combexTerritoryID.Dock = System.Windows.Forms.DockStyle.Fill;
             this.combexTerritoryID.Editable = true;
             this.combexTerritoryID.FormattingEnabled = true;
-            this.combexTerritoryID.Location = new System.Drawing.Point(3, 239);
+            this.combexTerritoryID.Location = new System.Drawing.Point(3, 203);
             this.combexTerritoryID.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.combexTerritoryID.Name = "combexTerritoryID";
             this.combexTerritoryID.ReadOnly = false;
-            this.combexTerritoryID.Size = new System.Drawing.Size(245, 29);
+            this.combexTerritoryID.Size = new System.Drawing.Size(245, 25);
             this.combexTerritoryID.TabIndex = 84;
             // 
             // toolStripChildForm
@@ -284,7 +286,7 @@
             this.toolStripButton2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(118, 48);
+            this.toolStripButton2.Size = new System.Drawing.Size(102, 48);
             this.toolStripButton2.Text = "Disconnect";
             this.toolStripButton2.Visible = false;
             // 
@@ -309,7 +311,7 @@
             this.naviGroupDetails.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.naviGroupDetails.Name = "naviGroupDetails";
             this.naviGroupDetails.Padding = new System.Windows.Forms.Padding(0, 34, 0, 0);
-            this.naviGroupDetails.Size = new System.Drawing.Size(1531, 362);
+            this.naviGroupDetails.Size = new System.Drawing.Size(1268, 362);
             this.naviGroupDetails.TabIndex = 30;
             // 
             // panelCenter
@@ -320,7 +322,7 @@
             this.panelCenter.Location = new System.Drawing.Point(296, 34);
             this.panelCenter.Margin = new System.Windows.Forms.Padding(7, 8, 7, 8);
             this.panelCenter.Name = "panelCenter";
-            this.panelCenter.Size = new System.Drawing.Size(1235, 328);
+            this.panelCenter.Size = new System.Drawing.Size(972, 328);
             this.panelCenter.TabIndex = 76;
             // 
             // layoutTop
@@ -334,7 +336,9 @@
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+            this.layoutTop.Controls.Add(this.checkIsReceiver, 4, 2);
+            this.layoutTop.Controls.Add(this.checkIsCustomer, 4, 1);
             this.layoutTop.Controls.Add(this.textexOfficialName, 1, 2);
             this.layoutTop.Controls.Add(this.label3, 0, 2);
             this.layoutTop.Controls.Add(this.textexVATCode, 1, 4);
@@ -376,28 +380,27 @@
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1F));
-            this.layoutTop.Size = new System.Drawing.Size(1235, 328);
+            this.layoutTop.Size = new System.Drawing.Size(972, 328);
             this.layoutTop.TabIndex = 8;
             // 
             // textexOfficialName
             // 
-            this.layoutTop.SetColumnSpan(this.textexOfficialName, 4);
             this.textexOfficialName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexOfficialName.Editable = true;
-            this.textexOfficialName.Location = new System.Drawing.Point(180, 52);
+            this.textexOfficialName.Location = new System.Drawing.Point(141, 48);
             this.textexOfficialName.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.textexOfficialName.Name = "textexOfficialName";
-            this.textexOfficialName.Size = new System.Drawing.Size(1027, 28);
+            this.textexOfficialName.Size = new System.Drawing.Size(410, 24);
             this.textexOfficialName.TabIndex = 76;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Location = new System.Drawing.Point(3, 50);
+            this.label3.Location = new System.Drawing.Point(3, 46);
             this.label3.Margin = new System.Windows.Forms.Padding(3, 0, 1, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(173, 32);
+            this.label3.Size = new System.Drawing.Size(134, 28);
             this.label3.TabIndex = 77;
             this.label3.Text = "Official Name";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -406,81 +409,80 @@
             // 
             this.textexVATCode.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexVATCode.Editable = true;
-            this.textexVATCode.Location = new System.Drawing.Point(180, 94);
+            this.textexVATCode.Location = new System.Drawing.Point(141, 86);
             this.textexVATCode.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.textexVATCode.Name = "textexVATCode";
-            this.textexVATCode.Size = new System.Drawing.Size(529, 28);
+            this.textexVATCode.Size = new System.Drawing.Size(410, 24);
             this.textexVATCode.TabIndex = 80;
             // 
             // textexAttentionName
             // 
             this.textexAttentionName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexAttentionName.Editable = true;
-            this.textexAttentionName.Location = new System.Drawing.Point(180, 158);
+            this.textexAttentionName.Location = new System.Drawing.Point(141, 142);
             this.textexAttentionName.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.textexAttentionName.Name = "textexAttentionName";
-            this.textexAttentionName.Size = new System.Drawing.Size(529, 28);
+            this.textexAttentionName.Size = new System.Drawing.Size(410, 24);
             this.textexAttentionName.TabIndex = 82;
             // 
             // textexTelephone
             // 
             this.textexTelephone.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexTelephone.Editable = true;
-            this.textexTelephone.Location = new System.Drawing.Point(856, 94);
+            this.textexTelephone.Location = new System.Drawing.Point(672, 86);
             this.textexTelephone.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.textexTelephone.Name = "textexTelephone";
-            this.textexTelephone.Size = new System.Drawing.Size(351, 28);
+            this.textexTelephone.Size = new System.Drawing.Size(272, 24);
             this.textexTelephone.TabIndex = 83;
             // 
             // textexFacsimile
             // 
             this.textexFacsimile.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexFacsimile.Editable = true;
-            this.textexFacsimile.Location = new System.Drawing.Point(856, 126);
+            this.textexFacsimile.Location = new System.Drawing.Point(672, 114);
             this.textexFacsimile.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.textexFacsimile.Name = "textexFacsimile";
-            this.textexFacsimile.Size = new System.Drawing.Size(351, 28);
+            this.textexFacsimile.Size = new System.Drawing.Size(272, 24);
             this.textexFacsimile.TabIndex = 84;
             // 
             // textexEmail
             // 
             this.textexEmail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexEmail.Editable = true;
-            this.textexEmail.Location = new System.Drawing.Point(856, 158);
+            this.textexEmail.Location = new System.Drawing.Point(672, 142);
             this.textexEmail.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.textexEmail.Name = "textexEmail";
-            this.textexEmail.Size = new System.Drawing.Size(351, 28);
+            this.textexEmail.Size = new System.Drawing.Size(272, 24);
             this.textexEmail.TabIndex = 85;
             // 
             // textexContactInfo
             // 
             this.textexContactInfo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexContactInfo.Editable = true;
-            this.textexContactInfo.Location = new System.Drawing.Point(180, 126);
+            this.textexContactInfo.Location = new System.Drawing.Point(141, 114);
             this.textexContactInfo.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.textexContactInfo.Name = "textexContactInfo";
-            this.textexContactInfo.Size = new System.Drawing.Size(529, 28);
+            this.textexContactInfo.Size = new System.Drawing.Size(410, 24);
             this.textexContactInfo.TabIndex = 78;
             // 
             // textexName
             // 
-            this.layoutTop.SetColumnSpan(this.textexName, 4);
             this.textexName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexName.Editable = true;
-            this.textexName.Location = new System.Drawing.Point(180, 20);
+            this.textexName.Location = new System.Drawing.Point(141, 20);
             this.textexName.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.textexName.Name = "textexName";
-            this.textexName.Size = new System.Drawing.Size(1027, 28);
+            this.textexName.Size = new System.Drawing.Size(410, 24);
             this.textexName.TabIndex = 86;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Location = new System.Drawing.Point(3, 92);
+            this.label5.Location = new System.Drawing.Point(3, 84);
             this.label5.Margin = new System.Windows.Forms.Padding(3, 0, 1, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(173, 32);
+            this.label5.Size = new System.Drawing.Size(134, 28);
             this.label5.TabIndex = 89;
             this.label5.Text = "VAT Code";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -489,10 +491,10 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label8.Location = new System.Drawing.Point(3, 124);
+            this.label8.Location = new System.Drawing.Point(3, 112);
             this.label8.Margin = new System.Windows.Forms.Padding(3, 0, 1, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(173, 32);
+            this.label8.Size = new System.Drawing.Size(134, 28);
             this.label8.TabIndex = 90;
             this.label8.Text = "Contact Info";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -501,10 +503,10 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label9.Location = new System.Drawing.Point(3, 156);
+            this.label9.Location = new System.Drawing.Point(3, 140);
             this.label9.Margin = new System.Windows.Forms.Padding(3, 0, 1, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(173, 32);
+            this.label9.Size = new System.Drawing.Size(134, 28);
             this.label9.TabIndex = 91;
             this.label9.Text = "Attention";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -513,7 +515,7 @@
             // 
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.pictureBox1.Image = global::TotalSmartCoding.Properties.Resources.fax_icon_16;
-            this.pictureBox1.Location = new System.Drawing.Point(836, 132);
+            this.pictureBox1.Location = new System.Drawing.Point(652, 118);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(16, 16);
@@ -524,7 +526,7 @@
             // 
             this.pictureBox3.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.pictureBox3.Image = global::TotalSmartCoding.Properties.Resources.Email_icon_16;
-            this.pictureBox3.Location = new System.Drawing.Point(836, 164);
+            this.pictureBox3.Location = new System.Drawing.Point(652, 146);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(16, 16);
@@ -538,7 +540,7 @@
             this.label13.Location = new System.Drawing.Point(3, 18);
             this.label13.Margin = new System.Windows.Forms.Padding(3, 0, 1, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(173, 32);
+            this.label13.Size = new System.Drawing.Size(134, 28);
             this.label13.TabIndex = 96;
             this.label13.Text = "Name";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -548,10 +550,10 @@
             this.layoutTop.SetColumnSpan(this.textexBillingAddress, 4);
             this.textexBillingAddress.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexBillingAddress.Editable = true;
-            this.textexBillingAddress.Location = new System.Drawing.Point(180, 200);
+            this.textexBillingAddress.Location = new System.Drawing.Point(141, 180);
             this.textexBillingAddress.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.textexBillingAddress.Name = "textexBillingAddress";
-            this.textexBillingAddress.Size = new System.Drawing.Size(1027, 28);
+            this.textexBillingAddress.Size = new System.Drawing.Size(803, 24);
             this.textexBillingAddress.TabIndex = 81;
             // 
             // textexShippingAddress
@@ -559,10 +561,10 @@
             this.layoutTop.SetColumnSpan(this.textexShippingAddress, 4);
             this.textexShippingAddress.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexShippingAddress.Editable = true;
-            this.textexShippingAddress.Location = new System.Drawing.Point(180, 232);
+            this.textexShippingAddress.Location = new System.Drawing.Point(141, 208);
             this.textexShippingAddress.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.textexShippingAddress.Name = "textexShippingAddress";
-            this.textexShippingAddress.Size = new System.Drawing.Size(1027, 28);
+            this.textexShippingAddress.Size = new System.Drawing.Size(803, 24);
             this.textexShippingAddress.TabIndex = 87;
             // 
             // textexRemarks
@@ -570,20 +572,20 @@
             this.layoutTop.SetColumnSpan(this.textexRemarks, 4);
             this.textexRemarks.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexRemarks.Editable = true;
-            this.textexRemarks.Location = new System.Drawing.Point(180, 264);
+            this.textexRemarks.Location = new System.Drawing.Point(141, 236);
             this.textexRemarks.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.textexRemarks.Name = "textexRemarks";
-            this.textexRemarks.Size = new System.Drawing.Size(1027, 28);
+            this.textexRemarks.Size = new System.Drawing.Size(803, 24);
             this.textexRemarks.TabIndex = 88;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label10.Location = new System.Drawing.Point(3, 198);
+            this.label10.Location = new System.Drawing.Point(3, 178);
             this.label10.Margin = new System.Windows.Forms.Padding(3, 0, 1, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(173, 32);
+            this.label10.Size = new System.Drawing.Size(134, 28);
             this.label10.TabIndex = 92;
             this.label10.Text = "Billing Address";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -592,10 +594,10 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label11.Location = new System.Drawing.Point(3, 230);
+            this.label11.Location = new System.Drawing.Point(3, 206);
             this.label11.Margin = new System.Windows.Forms.Padding(3, 0, 1, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(173, 32);
+            this.label11.Size = new System.Drawing.Size(134, 28);
             this.label11.TabIndex = 93;
             this.label11.Text = "Shipping Address";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -604,10 +606,10 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label12.Location = new System.Drawing.Point(3, 262);
+            this.label12.Location = new System.Drawing.Point(3, 234);
             this.label12.Margin = new System.Windows.Forms.Padding(3, 0, 1, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(173, 32);
+            this.label12.Size = new System.Drawing.Size(134, 28);
             this.label12.TabIndex = 94;
             this.label12.Text = "Remarks";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -616,7 +618,7 @@
             // 
             this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.pictureBox2.Image = global::TotalSmartCoding.Properties.Resources.Phone_icon_16;
-            this.pictureBox2.Location = new System.Drawing.Point(836, 100);
+            this.pictureBox2.Location = new System.Drawing.Point(652, 90);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(16, 16);
@@ -631,7 +633,7 @@
             this.labelCaption.ForeColor = System.Drawing.Color.Firebrick;
             this.labelCaption.Location = new System.Drawing.Point(142, 7);
             this.labelCaption.Name = "labelCaption";
-            this.labelCaption.Size = new System.Drawing.Size(191, 21);
+            this.labelCaption.Size = new System.Drawing.Size(157, 17);
             this.labelCaption.TabIndex = 75;
             this.labelCaption.Text = "CHVERON VIETNAM CORP";
             // 
@@ -680,7 +682,7 @@
             this.fastCustomerIndex.Name = "fastCustomerIndex";
             this.fastCustomerIndex.OwnerDraw = true;
             this.fastCustomerIndex.ShowGroups = false;
-            this.fastCustomerIndex.Size = new System.Drawing.Size(1531, 292);
+            this.fastCustomerIndex.Size = new System.Drawing.Size(1268, 292);
             this.fastCustomerIndex.TabIndex = 68;
             this.fastCustomerIndex.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastCustomerIndex.UseCompatibleStateImageBehavior = false;
@@ -761,11 +763,33 @@
             this.imageList32.Images.SetKeyName(8, "CustomerRed");
             this.imageList32.Images.SetKeyName(9, "Bank-32");
             // 
+            // checkIsCustomer
+            // 
+            this.checkIsCustomer.AutoSize = true;
+            this.checkIsCustomer.Location = new System.Drawing.Point(671, 20);
+            this.checkIsCustomer.Margin = new System.Windows.Forms.Padding(2);
+            this.checkIsCustomer.Name = "checkIsCustomer";
+            this.checkIsCustomer.Size = new System.Drawing.Size(93, 21);
+            this.checkIsCustomer.TabIndex = 107;
+            this.checkIsCustomer.Text = "Is Customer";
+            this.checkIsCustomer.UseVisualStyleBackColor = true;
+            // 
+            // checkIsReceiver
+            // 
+            this.checkIsReceiver.AutoSize = true;
+            this.checkIsReceiver.Location = new System.Drawing.Point(671, 48);
+            this.checkIsReceiver.Margin = new System.Windows.Forms.Padding(2);
+            this.checkIsReceiver.Name = "checkIsReceiver";
+            this.checkIsReceiver.Size = new System.Drawing.Size(88, 21);
+            this.checkIsReceiver.TabIndex = 108;
+            this.checkIsReceiver.Text = "Is Receiver";
+            this.checkIsReceiver.UseVisualStyleBackColor = true;
+            // 
             // Customers
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1531, 654);
+            this.ClientSize = new System.Drawing.Size(1268, 654);
             this.Controls.Add(this.fastCustomerIndex);
             this.Controls.Add(this.naviGroupDetails);
             this.Controls.Add(this.toolStripChildForm);
@@ -852,6 +876,8 @@
         private CustomControls.CombexBox combexTerritoryID;
         private System.Windows.Forms.Panel panelCenter;
         private BrightIdeasSoftware.OLVColumn olvBlank;
+        private System.Windows.Forms.CheckBox checkIsReceiver;
+        private System.Windows.Forms.CheckBox checkIsCustomer;
 
     }
 }

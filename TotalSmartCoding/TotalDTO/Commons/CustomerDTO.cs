@@ -176,8 +176,22 @@ namespace TotalDTO.Commons
             set { ApplyPropertyChange<CustomerPrimitiveDTO, string>(ref this.attentionName, o => o.AttentionName, value); }
         }
 
+        private bool isCustomer;
+        [DefaultValue(false)]
+        public bool IsCustomer
+        {
+            get { return this.isCustomer; }
+            set { ApplyPropertyChange<CustomerPrimitiveDTO, bool>(ref this.isCustomer, o => o.IsCustomer, value); }
+        }
 
-        public bool IsCustomer { get { return true; } }
+        private bool isReceiver;
+        [DefaultValue(false)]
+        public bool IsReceiver
+        {
+            get { return this.isReceiver; }
+            set { ApplyPropertyChange<CustomerPrimitiveDTO, bool>(ref this.isReceiver, o => o.IsReceiver, value); }
+        }
+
         public bool IsSupplier { get { return false; } }
 
 
@@ -194,6 +208,7 @@ namespace TotalDTO.Commons
             validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<CustomerPrimitiveDTO>(p => p.CustomerCategoryID), "Vui lòng chọn kênh khách hàng.", delegate { return (this.CustomerCategoryID != null && this.CustomerCategoryID > 0); }));
             validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<CustomerPrimitiveDTO>(p => p.TerritoryID), "Vui lòng chọn địa bàn.", delegate { return (this.TerritoryID != null && this.TerritoryID > 0); }));
             validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<CustomerPrimitiveDTO>(p => p.SalespersonID), "Vui lòng chọn nhân viên phụ trách khách hàng.", delegate { return (this.SalespersonID != null && this.SalespersonID > 0); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<CustomerPrimitiveDTO>(p => p.IsReceiver), "Vui lòng chọn 'Is customer' hoặc 'Is receiver'.", delegate { return (this.IsCustomer || this.IsReceiver); }));
             return validationRules;
 
         }

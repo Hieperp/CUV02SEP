@@ -127,6 +127,9 @@ namespace TotalSmartCoding.Views.Commons.Customers
         Binding bindingTerritoryID;
         Binding bindingSalespersonID;
 
+        Binding bindingIsCustomer;
+        Binding bindingIsReceiver;
+
         protected override void InitializeCommonControlBinding()
         {
             base.InitializeCommonControlBinding();
@@ -146,6 +149,9 @@ namespace TotalSmartCoding.Views.Commons.Customers
             this.bindingShippingAddress = this.textexShippingAddress.DataBindings.Add("Text", this.customerViewModel, CommonExpressions.PropertyName<CustomerDTO>(p => p.ShippingAddress), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingRemarks = this.textexRemarks.DataBindings.Add("Text", this.customerViewModel, CommonExpressions.PropertyName<CustomerDTO>(p => p.Remarks), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingCaption = this.labelCaption.DataBindings.Add("Text", this.customerViewModel, CommonExpressions.PropertyName<CustomerDTO>(p => p.Caption));
+
+            this.bindingIsCustomer = this.checkIsCustomer.DataBindings.Add("Checked", this.customerViewModel, "IsCustomer", true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingIsReceiver = this.checkIsReceiver.DataBindings.Add("Checked", this.customerViewModel, "IsReceiver", true, DataSourceUpdateMode.OnPropertyChanged);
 
             CustomerTypeAPIs customerTypeAPIs = new CustomerTypeAPIs(CommonNinject.Kernel.Get<ICustomerTypeAPIRepository>());
             this.combexCustomerTypeID.DataSource = customerTypeAPIs.GetCustomerTypeBases();
@@ -186,6 +192,9 @@ namespace TotalSmartCoding.Views.Commons.Customers
             this.bindingShippingAddress.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingRemarks.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingCaption.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+
+            this.bindingIsCustomer.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingIsReceiver.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
 
             this.bindingCustomerTypeID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingCustomerCategoryID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
