@@ -144,6 +144,7 @@
     <Compile Include="Controllers\Commons\FillingLineController.cs" />
     <Compile Include="Controllers\Commons\TeamController.cs" />
     <Compile Include="Controllers\Commons\TerritoryController.cs" />
+    <Compile Include="Controllers\Commons\WarehouseController.cs" />
     <Compile Include="Controllers\Generals\ReportController.cs" />
     <Compile Include="Controllers\Inventories\GoodsIssueController.cs" />
     <Compile Include="Controllers\Inventories\PickupController.cs" />
@@ -308,6 +309,12 @@
     </Compile>
     <Compile Include="Views\Commons\Territories\Territories.designer.cs">
       <DependentUpon>Territories.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Commons\Warehouses\Warehouses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Commons\Warehouses\Warehouses.designer.cs">
+      <DependentUpon>Warehouses.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Generals\Reports.cs">
       <SubType>Form</SubType>
@@ -664,6 +671,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Commons\Territories\Territories.resx">
       <DependentUpon>Territories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Commons\Warehouses\Warehouses.resx">
+      <DependentUpon>Warehouses.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Generals\Reports.resx">
       <DependentUpon>Reports.cs</DependentUpon>
