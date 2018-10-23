@@ -71,6 +71,7 @@
             this.olvColumn21 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn23 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn22 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.comboSummaryVersusDetail = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripChildForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastAvailableCartons)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fastAvailablePallets)).BeginInit();
@@ -83,6 +84,7 @@
             this.toolStripChildForm.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton2,
             this.toolStripSeparator1,
+            this.comboSummaryVersusDetail,
             this.toolStripSeparator2,
             this.comboLocationID,
             this.toolStripSeparator3,
@@ -90,7 +92,7 @@
             this.comboOnlyApproved});
             this.toolStripChildForm.Location = new System.Drawing.Point(0, 0);
             this.toolStripChildForm.Name = "toolStripChildForm";
-            this.toolStripChildForm.Size = new System.Drawing.Size(1531, 39);
+            this.toolStripChildForm.Size = new System.Drawing.Size(1276, 39);
             this.toolStripChildForm.TabIndex = 29;
             this.toolStripChildForm.Text = "toolStrip1";
             this.toolStripChildForm.Visible = false;
@@ -101,7 +103,7 @@
             this.toolStripButton2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(118, 36);
+            this.toolStripButton2.Size = new System.Drawing.Size(102, 36);
             this.toolStripButton2.Text = "Disconnect";
             this.toolStripButton2.Visible = false;
             // 
@@ -196,13 +198,13 @@
             this.fastAvailableCartons.GroupImageList = this.imageList32;
             this.fastAvailableCartons.HideSelection = false;
             this.fastAvailableCartons.HighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
-            this.fastAvailableCartons.Location = new System.Drawing.Point(0, 0);
+            this.fastAvailableCartons.Location = new System.Drawing.Point(0, 39);
             this.fastAvailableCartons.Name = "fastAvailableCartons";
             this.fastAvailableCartons.OwnerDraw = true;
             this.fastAvailableCartons.RowHeight = 32;
             this.fastAvailableCartons.ShowGroups = false;
             this.fastAvailableCartons.ShowImagesOnSubItems = true;
-            this.fastAvailableCartons.Size = new System.Drawing.Size(1531, 245);
+            this.fastAvailableCartons.Size = new System.Drawing.Size(1276, 245);
             this.fastAvailableCartons.TabIndex = 70;
             this.fastAvailableCartons.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastAvailableCartons.UseCompatibleStateImageBehavior = false;
@@ -356,13 +358,13 @@
             this.fastAvailablePallets.GroupImageList = this.imageList32;
             this.fastAvailablePallets.HideSelection = false;
             this.fastAvailablePallets.HighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
-            this.fastAvailablePallets.Location = new System.Drawing.Point(0, 245);
+            this.fastAvailablePallets.Location = new System.Drawing.Point(0, 284);
             this.fastAvailablePallets.Name = "fastAvailablePallets";
             this.fastAvailablePallets.OwnerDraw = true;
             this.fastAvailablePallets.RowHeight = 32;
             this.fastAvailablePallets.ShowGroups = false;
             this.fastAvailablePallets.ShowImagesOnSubItems = true;
-            this.fastAvailablePallets.Size = new System.Drawing.Size(1531, 245);
+            this.fastAvailablePallets.Size = new System.Drawing.Size(1276, 245);
             this.fastAvailablePallets.TabIndex = 71;
             this.fastAvailablePallets.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastAvailablePallets.UseCompatibleStateImageBehavior = false;
@@ -475,11 +477,18 @@
             this.olvColumn22.Text = "Name";
             this.olvColumn22.Width = 120;
             // 
+            // comboSummaryVersusDetail
+            // 
+            this.comboSummaryVersusDetail.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboSummaryVersusDetail.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
+            this.comboSummaryVersusDetail.Name = "comboSummaryVersusDetail";
+            this.comboSummaryVersusDetail.Size = new System.Drawing.Size(121, 39);
+            // 
             // GoodsReceiptDetailAvailables
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1531, 654);
+            this.ClientSize = new System.Drawing.Size(1276, 654);
             this.Controls.Add(this.fastAvailablePallets);
             this.Controls.Add(this.fastAvailableCartons);
             this.Controls.Add(this.toolStripChildForm);
@@ -542,6 +551,7 @@
         private BrightIdeasSoftware.OLVColumn olvColumn23;
         private System.Windows.Forms.ToolStripComboBox comboOnlyApproved;
         private System.Windows.Forms.ToolStripComboBox comboOnlyIssuable;
+        private System.Windows.Forms.ToolStripComboBox comboSummaryVersusDetail;
 
     }
 }

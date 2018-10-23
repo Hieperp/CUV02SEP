@@ -85,6 +85,9 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
             this.locationID = ContextAttributes.User.LocationID;
             this.onlyApproved = true; this.onlyIssuable = true;
 
+            this.comboSummaryVersusDetail.ComboBox.Items.AddRange(new string[] { "Summary only", "Show detail" });
+            this.comboSummaryVersusDetail.ComboBox.SelectedIndex = 0;
+
             LocationAPIs locationAPIs = new LocationAPIs(CommonNinject.Kernel.Get<ILocationAPIRepository>());
             this.comboLocationID.ComboBox.DataSource = locationAPIs.GetLocationBases();
             this.comboLocationID.ComboBox.DisplayMember = CommonExpressions.PropertyName<LocationBase>(p => p.Name);
@@ -200,8 +203,11 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
             }
         }
 
+        private string FilterTexts { get; set; }
         public override void ApplyFilter(string filterTexts)
         {
+            this.FilterTexts = filterTexts;
+
             OLVHelpers.ApplyFilters(this.fastAvailablePallets, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
             OLVHelpers.ApplyFilters(this.fastAvailableCartons, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
 
@@ -223,9 +229,15 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
         {
             PrintViewModel printViewModel = base.InitPrintViewModel();
             printViewModel.ReportPath = "AvailableItems";
-            printViewModel.ShowPromptAreaButton = true;
+            
             printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("LocationID", this.LocationID.ToString()));
             printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("LocationCode", this.comboLocationID.Text));
+            printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("SummaryVersusDetail", this.comboSummaryVersusDetail.ComboBox.SelectedIndex.ToString()));
+
+            printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("CommodityCode", this.FilterTexts));
+            printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("OnlyIssuable", this.OnlyIssuable.ToString()));
+            printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("OnlyApproved", this.OnlyApproved.ToString()));
+
             return printViewModel;
         }
 
