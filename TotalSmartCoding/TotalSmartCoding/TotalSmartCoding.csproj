@@ -1517,6 +1517,7 @@
     <None Include="Resources\ICopyright.ico" />
     <None Include="Resources\IManualguide.ico" />
     <None Include="Resources\ICsymbol.png" />
+    <None Include="Resources\Cloud-sync.ico" />
     <Content Include="SmartCodingSolution.ico" />
     <None Include="Resources\Yellow-cross.ico" />
     <None Include="Resources\White-Pallet.ico" />

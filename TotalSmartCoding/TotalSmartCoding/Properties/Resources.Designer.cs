@@ -1923,6 +1923,16 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Cloud_sync {
+            get {
+                object obj = ResourceManager.GetObject("Cloud-sync", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap connect__2_ {
             get {
                 object obj = ResourceManager.GetObject("connect (2)", resourceCulture);

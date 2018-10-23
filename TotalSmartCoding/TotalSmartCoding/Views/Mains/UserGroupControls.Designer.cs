@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserGroupControls));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolUserGroupDetails = new System.Windows.Forms.ToolStrip();
             this.buttonAddMember = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -211,8 +211,8 @@
             this.gridexUserGroupControls.MultiSelect = false;
             this.gridexUserGroupControls.Name = "gridexUserGroupControls";
             this.gridexUserGroupControls.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridexUserGroupControls.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridexUserGroupControls.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.gridexUserGroupControls.RowTemplate.Height = 24;
             this.gridexUserGroupControls.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridexUserGroupControls.Size = new System.Drawing.Size(1016, 177);
@@ -340,11 +340,11 @@
             // 
             // buttonRenameUserGroup
             // 
-            this.buttonRenameUserGroup.Image = ((System.Drawing.Image)(resources.GetObject("buttonRenameUserGroup.Image")));
+            this.buttonRenameUserGroup.Image = global::TotalSmartCoding.Properties.Resources.Cloud_sync;
             this.buttonRenameUserGroup.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.buttonRenameUserGroup.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonRenameUserGroup.Name = "buttonRenameUserGroup";
-            this.buttonRenameUserGroup.Size = new System.Drawing.Size(151, 36);
+            this.buttonRenameUserGroup.Size = new System.Drawing.Size(167, 36);
             this.buttonRenameUserGroup.Text = "Rename selected group";
             this.buttonRenameUserGroup.Click += new System.EventHandler(this.buttonAddRemoveRenameUserGroup_Click);
             // 
@@ -402,8 +402,8 @@
             this.gridexUserGroupReports.MultiSelect = false;
             this.gridexUserGroupReports.Name = "gridexUserGroupReports";
             this.gridexUserGroupReports.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridexUserGroupReports.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridexUserGroupReports.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.gridexUserGroupReports.RowTemplate.Height = 24;
             this.gridexUserGroupReports.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridexUserGroupReports.Size = new System.Drawing.Size(1016, 177);

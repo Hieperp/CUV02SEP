@@ -20,9 +20,9 @@ namespace TotalSmartCoding.Views.Mains
         private UserGroupAPIs userGroupAPIs;
         private UserGroupIndex userGroupIndex;
 
-        private bool deleteVersusRename;
+        private bool removeVersusRename;
 
-        public UserGroups(UserGroupAPIs userGroupAPIs, UserGroupIndex userGroupIndex, bool deleteVersusRename)
+        public UserGroups(UserGroupAPIs userGroupAPIs, UserGroupIndex userGroupIndex, bool removeVersusRename)
         {
             InitializeComponent();
 
@@ -30,17 +30,17 @@ namespace TotalSmartCoding.Views.Mains
             {
                 this.userGroupAPIs = userGroupAPIs;
                 this.userGroupIndex = userGroupIndex;
-                this.deleteVersusRename = deleteVersusRename;
+                this.removeVersusRename = removeVersusRename;
 
                 this.textexCode.TextChanged += textexNewUserGroupID_TextChanged;
                 this.textexName.TextChanged += textexNewUserGroupID_TextChanged;
                 this.textexDescription.TextChanged += textexNewUserGroupID_TextChanged;
 
-                this.textexCode.ReadOnly = this.userGroupIndex != null && this.deleteVersusRename;
-                this.textexName.ReadOnly = this.userGroupIndex != null && this.deleteVersusRename;
-                this.textexDescription.ReadOnly = this.userGroupIndex != null && this.deleteVersusRename;
-                this.Text = this.userGroupIndex != null ? (this.deleteVersusRename ? "Delete group" : "Rename group") : "Add new group";
-                this.buttonOK.Text = this.userGroupIndex != null ? (this.deleteVersusRename ? "Delete" : "Rename") : "Add";
+                this.textexCode.ReadOnly = this.userGroupIndex != null && this.removeVersusRename;
+                this.textexName.ReadOnly = this.userGroupIndex != null && this.removeVersusRename;
+                this.textexDescription.ReadOnly = this.userGroupIndex != null && this.removeVersusRename;
+                this.Text = this.userGroupIndex != null ? (this.removeVersusRename ? "Delete group" : "Rename group") : "Add new group";
+                this.buttonOK.Text = this.userGroupIndex != null ? (this.removeVersusRename ? "Delete" : "Rename") : "Add";
 
                 if (this.userGroupIndex != null) { this.textexCode.Text = this.userGroupIndex.Code; this.textexName.Text = this.userGroupIndex.Name; this.textexDescription.Text = this.userGroupIndex.Description; }
             }
@@ -61,13 +61,13 @@ namespace TotalSmartCoding.Views.Mains
             {
                 if (sender.Equals(this.buttonOK))
                 {
-                    if ((this.textexCode.Text.Trim().Length > 0 && this.textexName.Text.Trim().Length > 0) || (this.userGroupIndex != null && this.deleteVersusRename))
+                    if ((this.textexCode.Text.Trim().Length > 0 && this.textexName.Text.Trim().Length > 0) || (this.userGroupIndex != null && this.removeVersusRename))
                     {
-                        if (CustomMsgBox.Show(this, "Are you sure you want to " + (this.userGroupIndex != null ? (this.deleteVersusRename ? "delete" : "rename") : "add") + " this group?" + "\r\n" + "\r\n" + this.textexCode.Text + "-" + this.textexName.Text, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Stop) == DialogResult.Yes)
+                        if (CustomMsgBox.Show(this, "Are you sure you want to " + (this.userGroupIndex != null ? (this.removeVersusRename ? "delete" : "rename") : "add") + (this.userGroupIndex != null && !this.removeVersusRename ? " " + this.userGroupIndex.Code + "-" + userGroupIndex.Name + " to:" : " this group?") + "\r\n" + "\r\n" + this.textexCode.Text + "-" + this.textexName.Text, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Stop) == DialogResult.Yes)
                         {
                             if (this.userGroupIndex == null) this.userGroupAPIs.UserGroupAdd(this.textexCode.Text.Trim(), this.textexName.Text.Trim(), this.textexDescription.Text.Trim());
-                            if (this.userGroupIndex != null && this.deleteVersusRename) this.userGroupAPIs.UserGroupRemove(this.userGroupIndex.UserGroupID, this.userGroupIndex.Code, this.userGroupIndex.Name, this.userGroupIndex.Description);
-                            if (this.userGroupIndex != null && !this.deleteVersusRename) this.userGroupAPIs.UserGroupRemove(this.userGroupIndex.UserGroupID, this.textexCode.Text.Trim(), this.textexName.Text.Trim(), this.textexDescription.Text.Trim());
+                            if (this.userGroupIndex != null && this.removeVersusRename) this.userGroupAPIs.UserGroupRemove(this.userGroupIndex.UserGroupID, this.userGroupIndex.Code, this.userGroupIndex.Name, this.userGroupIndex.Description);
+                            if (this.userGroupIndex != null && !this.removeVersusRename) this.userGroupAPIs.UserGroupRename(this.userGroupIndex.UserGroupID, this.textexCode.Text.Trim(), this.textexName.Text.Trim(), this.textexDescription.Text.Trim());
                             this.DialogResult = DialogResult.OK;
                         }
                     }

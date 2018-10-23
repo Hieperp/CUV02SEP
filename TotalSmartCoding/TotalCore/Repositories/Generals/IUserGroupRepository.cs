@@ -11,6 +11,7 @@ namespace TotalCore.Repositories.Generals
     public interface IUserGroupAPIRepository : IGenericAPIRepository
     {
         int UserGroupAdd(string code, string name, string description);
+        int UserGroupRename(int? userGroupID, string code, string name, string description);
         int UserGroupRemove(int? userGroupID, string code);
 
         int UserGroupAddMember(int? userGroupID, string securityIdentifier);

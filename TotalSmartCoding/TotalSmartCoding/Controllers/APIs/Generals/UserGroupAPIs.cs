@@ -36,6 +36,15 @@ namespace TotalSmartCoding.Controllers.APIs.Generals
             return userGroupID;
         }
 
+        public int UserGroupRename(int userGroupID, string code, string name, string description)
+        {
+            this.userGroupAPIRepository.UserGroupRename(userGroupID, code, name, description);
+
+            this.AddDataLogs("Rename group", userGroupID, code, name, description);
+
+            return userGroupID;
+        }
+
         public int UserGroupRemove(int userGroupID, string code, string name, string description)
         {
             int affectedRows = this.userGroupAPIRepository.UserGroupRemove(userGroupID, code);

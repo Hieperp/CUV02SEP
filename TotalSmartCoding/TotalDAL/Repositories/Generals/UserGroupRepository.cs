@@ -30,6 +30,11 @@ namespace TotalDAL.Repositories.Generals
             return (int)this.TotalSmartCodingEntities.UserGroupAdd(code, name, description).FirstOrDefault();
         }
 
+        public int UserGroupRename(int? userGroupID, string code, string name, string description)
+        {
+            return (int)this.TotalSmartCodingEntities.UserGroupRename(userGroupID, code, name, description).FirstOrDefault();
+        }
+
         public int UserGroupRemove(int? userGroupID, string code)
         {
             return this.TotalSmartCodingEntities.UserGroupRemove(userGroupID, code);

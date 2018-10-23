@@ -108,7 +108,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
 
             queryString = queryString + "           IF (SELECT COUNT(UserGroupID) FROM UserGroups WHERE (Code = @Code OR Name = @Name) AND UserGroupID <> @UserGroupID) <= 0 " + "\r\n";
             queryString = queryString + "               BEGIN " + "\r\n";
-            queryString = queryString + "                   UPDATE          UserGroups SET Code = @Code, Name = @Name, Description = @Description ; " + "\r\n";
+            queryString = queryString + "                   UPDATE          UserGroups SET Code = @Code, Name = @Name, Description = @Description WHERE UserGroupID = @UserGroupID; " + "\r\n";
             queryString = queryString + "                   SELECT          @UserGroupID AS UserGroupID " + "\r\n";
             queryString = queryString + "               END " + "\r\n";
 
