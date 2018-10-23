@@ -94,6 +94,7 @@ namespace TotalSmartCoding.Views.Productions
                 this.comboDiscontinued.SelectedIndex = 0;
 
                 this.checkAutoBarcode.Visible = GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Pail;
+                this.checkAutoCarton.Visible = GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Import;
                 if (GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Pail || GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Medium4L || GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Import || (GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Drum && !GlobalEnums.DrumWithDigit)) { this.labelNextPackNo.Visible = false; this.textexNextPackNo.Visible = false; }
                 if (GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Drum) { this.labelNextCartonNo.Visible = false; this.textexNextCartonNo.Visible = false; }
                 if (GlobalVariables.ConfigID == (int)GlobalVariables.FillingLine.Drum && GlobalEnums.DrumWithDigit) { this.labelNextPalletNo.Visible = false; this.textexNextPalletNo.Visible = false; }
@@ -129,6 +130,7 @@ namespace TotalSmartCoding.Views.Productions
         Binding bindingFinalCartonNo;
 
         Binding bindingAutoBarcode;
+        Binding bindingAutoCarton;
 
         Binding bindingRemarks;
 
@@ -146,6 +148,7 @@ namespace TotalSmartCoding.Views.Productions
             this.bindingNextPalletNo = this.textexNextPalletNo.DataBindings.Add("Text", this.batchViewModel, "NextPalletNo", true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingFinalCartonNo = this.textexFinalCartonNo.DataBindings.Add("Text", this.batchViewModel, "FinalCartonNo", true, DataSourceUpdateMode.OnPropertyChanged);
 
+            this.bindingAutoCarton = this.checkAutoCarton.DataBindings.Add("Checked", this.batchViewModel, "AutoCarton", true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingAutoBarcode = this.checkAutoBarcode.DataBindings.Add("Checked", this.batchViewModel, "AutoBarcode", true, DataSourceUpdateMode.OnPropertyChanged);
             this.labelFinalCartonNo.DataBindings.Add("Visible", this.batchViewModel, "AutoBarcode", true, DataSourceUpdateMode.OnPropertyChanged);
             this.textexFinalCartonNo.DataBindings.Add("Visible", this.batchViewModel, "AutoBarcode", true, DataSourceUpdateMode.OnPropertyChanged);
@@ -171,6 +174,7 @@ namespace TotalSmartCoding.Views.Productions
 
             this.bindingFinalCartonNo.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingAutoBarcode.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingAutoCarton.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
 
             this.bindingRemarks.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
 
