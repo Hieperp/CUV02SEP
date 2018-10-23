@@ -6099,6 +6099,8 @@
           <Property Type="String" Name="LineReferences" Nullable="true" MaxLength="23" />
           <Property Type="Boolean" Name="Approved" Nullable="false" />
           <Property Type="Boolean" Name="Issuable" Nullable="false" />
+          <Property Type="DateTime" Name="ExpiryDate" Nullable="true" />
+          <Property Type="Int32" Name="Shelflife" Nullable="false" />
         </ComplexType>
         <EntityType Name="WarehouseAdjustmentType">
           <Key>
@@ -10054,6 +10056,8 @@
                 <ScalarProperty Name="LineReferences" ColumnName="LineReferences" />
                 <ScalarProperty Name="Approved" ColumnName="Approved" />
                 <ScalarProperty Name="Issuable" ColumnName="Issuable" />
+                <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+                <ScalarProperty Name="Shelflife" ColumnName="Shelflife" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

@@ -45,5 +45,7 @@ namespace TotalModel.Models
         public string LineReferences { get; set; }
         public bool Approved { get; set; }
         public bool Issuable { get; set; }
+        public Nullable<System.DateTime> ExpiryDate { get; set; }
+        public int Shelflife { get; set; }
     }
 }
