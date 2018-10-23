@@ -3267,6 +3267,12 @@
         <Function Name="UserGroupRemoveMember" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserGroupDetailID" Type="int" Mode="In" />
         </Function>
+        <Function Name="UserGroupRename" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserGroupID" Type="int" Mode="In" />
+          <Parameter Name="Code" Type="nvarchar" Mode="In" />
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="Description" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="UserRegister" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="LocationID" Type="int" Mode="In" />
           <Parameter Name="OrganizationalUnitID" Type="int" Mode="In" />
@@ -5283,6 +5289,12 @@
           <FunctionImport Name="WarehouseSaveRelative">
             <Parameter Name="EntityID" Mode="In" Type="Int32" />
             <Parameter Name="SaveRelativeOption" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UserGroupRename" ReturnType="Collection(Int32)">
+            <Parameter Name="UserGroupID" Mode="In" Type="Int32" />
+            <Parameter Name="Code" Mode="In" Type="String" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Description" Mode="In" Type="String" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
@@ -12050,6 +12062,7 @@
           <FunctionImportMapping FunctionImportName="WarehouseDeletable" FunctionName="TotalSmartCodingModel.Store.WarehouseDeletable" />
           <FunctionImportMapping FunctionImportName="WarehouseEditable" FunctionName="TotalSmartCodingModel.Store.WarehouseEditable" />
           <FunctionImportMapping FunctionImportName="WarehouseSaveRelative" FunctionName="TotalSmartCodingModel.Store.WarehouseSaveRelative" />
+          <FunctionImportMapping FunctionImportName="UserGroupRename" FunctionName="TotalSmartCodingModel.Store.UserGroupRename" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

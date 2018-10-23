@@ -133,9 +133,9 @@ namespace TotalSmartCoding.Views.Mains
             }
         }
 
-        private void buttonAddRemoveUserGroup_Click(object sender, EventArgs e)
+        private void buttonAddRemoveRenameUserGroup_Click(object sender, EventArgs e)
         {
-            UserGroups wizardUserGroups = new UserGroups(this.userGroupAPIs, (sender.Equals(this.buttonRemoveUserGroup) ? this.SelectedUserGroupIndex : null));
+            UserGroups wizardUserGroups = new UserGroups(this.userGroupAPIs, (sender.Equals(this.buttonRemoveUserGroup) || sender.Equals(this.buttonRenameUserGroup) ? this.SelectedUserGroupIndex : null), sender.Equals(this.buttonRemoveUserGroup));
             DialogResult dialogResult = wizardUserGroups.ShowDialog();
 
             wizardUserGroups.Dispose();

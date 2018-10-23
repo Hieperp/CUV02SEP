@@ -23,6 +23,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             this.UserGroupEditable();
 
             this.UserGroupAdd();
+            this.UserGroupRename();
             this.UserGroupRemove();
 
            
@@ -98,6 +99,29 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
             this.totalSmartCodingEntities.CreateStoredProcedure("UserGroupAdd", queryString);
         }
 
+        private void UserGroupRename()
+        {
+            string queryString = " @UserGroupID int, @Code nvarchar(60), @Name nvarchar(100), @Description nvarchar(100) " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+            queryString = queryString + "       BEGIN " + "\r\n";
+
+            queryString = queryString + "           IF (SELECT COUNT(UserGroupID) FROM UserGroups WHERE (Code = @Code OR Name = @Name) AND UserGroupID <> @UserGroupID) <= 0 " + "\r\n";
+            queryString = queryString + "               BEGIN " + "\r\n";
+            queryString = queryString + "                   UPDATE          UserGroups SET Code = @Code, Name = @Name, Description = @Description ; " + "\r\n";
+            queryString = queryString + "                   SELECT          @UserGroupID AS UserGroupID " + "\r\n";
+            queryString = queryString + "               END " + "\r\n";
+
+            queryString = queryString + "           ELSE " + "\r\n";
+            queryString = queryString + "               BEGIN " + "\r\n";
+            queryString = queryString + "                   DECLARE     @msg NVARCHAR(300) = N'Trùng tên group.' ; " + "\r\n";
+            queryString = queryString + "                   THROW       61001,  @msg, 1; " + "\r\n";
+            queryString = queryString + "               END " + "\r\n";
+
+            queryString = queryString + "       END " + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("UserGroupRename", queryString);
+        }
 
         private void UserGroupRemove()
         {

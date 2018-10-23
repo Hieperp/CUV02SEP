@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserGroupControls));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolUserGroupDetails = new System.Windows.Forms.ToolStrip();
             this.buttonAddMember = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -55,19 +55,20 @@
             this.toolUserGroups = new System.Windows.Forms.ToolStrip();
             this.buttonAddUserGroup = new System.Windows.Forms.ToolStripButton();
             this.buttonRemoveUserGroup = new System.Windows.Forms.ToolStripButton();
+            this.buttonRenameUserGroup = new System.Windows.Forms.ToolStripButton();
             this.olvTreePrimaryID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvTreeAncestorID = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvTreeCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvTreeParameterName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.panelCenter = new System.Windows.Forms.Panel();
             this.gridexUserGroupReports = new CustomControls.DataGridexView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Enabled = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.fastUserGroupDetails = new BrightIdeasSoftware.FastObjectListView();
             this.olvColumn1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvUserType = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvUserName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Enabled = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.toolUserGroupDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastUserGroups)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridexUserGroupControls)).BeginInit();
@@ -210,8 +211,8 @@
             this.gridexUserGroupControls.MultiSelect = false;
             this.gridexUserGroupControls.Name = "gridexUserGroupControls";
             this.gridexUserGroupControls.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridexUserGroupControls.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridexUserGroupControls.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.gridexUserGroupControls.RowTemplate.Height = 24;
             this.gridexUserGroupControls.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridexUserGroupControls.Size = new System.Drawing.Size(1016, 177);
@@ -309,7 +310,8 @@
             this.toolUserGroups.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolUserGroups.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.buttonAddUserGroup,
-            this.buttonRemoveUserGroup});
+            this.buttonRemoveUserGroup,
+            this.buttonRenameUserGroup});
             this.toolUserGroups.Location = new System.Drawing.Point(0, 0);
             this.toolUserGroups.Name = "toolUserGroups";
             this.toolUserGroups.Size = new System.Drawing.Size(1241, 39);
@@ -324,7 +326,7 @@
             this.buttonAddUserGroup.Name = "buttonAddUserGroup";
             this.buttonAddUserGroup.Size = new System.Drawing.Size(134, 36);
             this.buttonAddUserGroup.Text = "Add a new group";
-            this.buttonAddUserGroup.Click += new System.EventHandler(this.buttonAddRemoveUserGroup_Click);
+            this.buttonAddUserGroup.Click += new System.EventHandler(this.buttonAddRemoveRenameUserGroup_Click);
             // 
             // buttonRemoveUserGroup
             // 
@@ -334,7 +336,17 @@
             this.buttonRemoveUserGroup.Name = "buttonRemoveUserGroup";
             this.buttonRemoveUserGroup.Size = new System.Drawing.Size(157, 36);
             this.buttonRemoveUserGroup.Text = "Delete selected group";
-            this.buttonRemoveUserGroup.Click += new System.EventHandler(this.buttonAddRemoveUserGroup_Click);
+            this.buttonRemoveUserGroup.Click += new System.EventHandler(this.buttonAddRemoveRenameUserGroup_Click);
+            // 
+            // buttonRenameUserGroup
+            // 
+            this.buttonRenameUserGroup.Image = ((System.Drawing.Image)(resources.GetObject("buttonRenameUserGroup.Image")));
+            this.buttonRenameUserGroup.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonRenameUserGroup.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonRenameUserGroup.Name = "buttonRenameUserGroup";
+            this.buttonRenameUserGroup.Size = new System.Drawing.Size(151, 36);
+            this.buttonRenameUserGroup.Text = "Rename selected group";
+            this.buttonRenameUserGroup.Click += new System.EventHandler(this.buttonAddRemoveRenameUserGroup_Click);
             // 
             // olvTreePrimaryID
             // 
@@ -390,8 +402,8 @@
             this.gridexUserGroupReports.MultiSelect = false;
             this.gridexUserGroupReports.Name = "gridexUserGroupReports";
             this.gridexUserGroupReports.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridexUserGroupReports.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridexUserGroupReports.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.gridexUserGroupReports.RowTemplate.Height = 24;
             this.gridexUserGroupReports.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridexUserGroupReports.Size = new System.Drawing.Size(1016, 177);
@@ -399,6 +411,32 @@
             this.gridexUserGroupReports.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridexUserGroupReports_CellContentClick);
             this.gridexUserGroupReports.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.gridexUserGroupReports_CellFormatting);
             this.gridexUserGroupReports.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.gridexUserGroupReports_CellPainting);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "ReportGroupName";
+            this.dataGridViewTextBoxColumn1.FillWeight = 30F;
+            this.dataGridViewTextBoxColumn1.HeaderText = "Reports.Groups";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "ReportName";
+            this.dataGridViewTextBoxColumn2.FillWeight = 60F;
+            this.dataGridViewTextBoxColumn2.HeaderText = "Reports.Name";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // Enabled
+            // 
+            this.Enabled.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Enabled.DataPropertyName = "Enabled";
+            this.Enabled.FillWeight = 10F;
+            this.Enabled.HeaderText = "Enabled";
+            this.Enabled.Name = "Enabled";
             // 
             // fastUserGroupDetails
             // 
@@ -448,32 +486,6 @@
             this.olvUserName.Sortable = false;
             this.olvUserName.Text = "";
             this.olvUserName.Width = 90;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "ReportGroupName";
-            this.dataGridViewTextBoxColumn1.FillWeight = 30F;
-            this.dataGridViewTextBoxColumn1.HeaderText = "Reports.Groups";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "ReportName";
-            this.dataGridViewTextBoxColumn2.FillWeight = 60F;
-            this.dataGridViewTextBoxColumn2.HeaderText = "Reports.Name";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
-            // Enabled
-            // 
-            this.Enabled.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Enabled.DataPropertyName = "Enabled";
-            this.Enabled.FillWeight = 10F;
-            this.Enabled.HeaderText = "Enabled";
-            this.Enabled.Name = "Enabled";
             // 
             // UserGroupControls
             // 
@@ -545,5 +557,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Enabled;
+        private System.Windows.Forms.ToolStripButton buttonRenameUserGroup;
     }
 }

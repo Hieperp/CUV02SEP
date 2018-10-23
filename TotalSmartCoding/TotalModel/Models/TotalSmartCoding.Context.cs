@@ -3338,5 +3338,26 @@ namespace TotalModel.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("WarehouseSaveRelative", entityIDParameter, saveRelativeOptionParameter);
         }
+    
+        public virtual ObjectResult<Nullable<int>> UserGroupRename(Nullable<int> userGroupID, string code, string name, string description)
+        {
+            var userGroupIDParameter = userGroupID.HasValue ?
+                new ObjectParameter("UserGroupID", userGroupID) :
+                new ObjectParameter("UserGroupID", typeof(int));
+    
+            var codeParameter = code != null ?
+                new ObjectParameter("Code", code) :
+                new ObjectParameter("Code", typeof(string));
+    
+            var nameParameter = name != null ?
+                new ObjectParameter("Name", name) :
+                new ObjectParameter("Name", typeof(string));
+    
+            var descriptionParameter = description != null ?
+                new ObjectParameter("Description", description) :
+                new ObjectParameter("Description", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("UserGroupRename", userGroupIDParameter, codeParameter, nameParameter, descriptionParameter);
+        }
     }
 }
