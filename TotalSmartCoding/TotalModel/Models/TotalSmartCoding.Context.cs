@@ -2897,7 +2897,7 @@ namespace TotalModel.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateOnDataLogs", onDataLogsParameter);
         }
     
-        public virtual ObjectResult<UserControlIndex> GetUserControlIndexes(Nullable<int> userID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
+        public virtual ObjectResult<UserControlIndex> GetUserControlIndexes(Nullable<int> userID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate, Nullable<int> activeOption)
         {
             var userIDParameter = userID.HasValue ?
                 new ObjectParameter("UserID", userID) :
@@ -2911,7 +2911,11 @@ namespace TotalModel.Models
                 new ObjectParameter("ToDate", toDate) :
                 new ObjectParameter("ToDate", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UserControlIndex>("GetUserControlIndexes", userIDParameter, fromDateParameter, toDateParameter);
+            var activeOptionParameter = activeOption.HasValue ?
+                new ObjectParameter("ActiveOption", activeOption) :
+                new ObjectParameter("ActiveOption", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UserControlIndex>("GetUserControlIndexes", userIDParameter, fromDateParameter, toDateParameter, activeOptionParameter);
         }
     
         public virtual ObjectResult<UserControlGroup> GetUserControlGroups(string securityIdentifier)

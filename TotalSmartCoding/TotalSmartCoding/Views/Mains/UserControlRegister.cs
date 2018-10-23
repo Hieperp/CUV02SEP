@@ -30,7 +30,7 @@ namespace TotalSmartCoding.Views.Mains
             {
                 this.userControlAPIs = userControlAPIs;
 
-                List<UserControlIndex> userControlIndexes = this.userControlAPIs.GetUserControlIndexes();
+                List<UserControlIndex> userControlIndexes = this.userControlAPIs.GetUserControlIndexes(GlobalEnums.ActiveOption.Both);
 
                 List<DomainUser> allUsers = new List<DomainUser>();
 

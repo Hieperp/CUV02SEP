@@ -298,6 +298,10 @@ namespace TotalDAL.Repositories
                                                 ", new ObjectParameter[] { });
 
                 #endregion CommodityTypes
+
+                this.ExecuteStoreCommand("DELETE FROM Territories WHERE TerritoryID NOT IN (SELECT TerritoryID FROM EntireTerritories)", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("UPDATE Territories SET Name = '##' WHERE TerritoryID = 7", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("UPDATE EntireTerritories SET Name = '##', EntireName = '##', Name1 = '##', Name2 = '##', Name3 = '##' WHERE TerritoryID = 7", new ObjectParameter[] { });
             }
             #endregion FINAL 19OCT2018
 

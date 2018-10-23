@@ -21,8 +21,9 @@ namespace TotalSmartCoding.Controllers.APIs.Generals
         }
 
 
-        public List<UserControlIndex> GetUserControlIndexes()
+        public List<UserControlIndex> GetUserControlIndexes(GlobalEnums.ActiveOption activeOption)
         {
+            this.userControlAPIRepository.RepositoryBag["ActiveOption"] = (int)activeOption;
             return this.userControlAPIRepository.GetEntityIndexes<UserControlIndex>(ContextAttributes.User.UserID, GlobalEnums.GlobalOptionSetting.LowerFillterDate, GlobalEnums.GlobalOptionSetting.UpperFillterDate).ToList();
         }
 

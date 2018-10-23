@@ -2917,6 +2917,7 @@
           <Parameter Name="UserID" Type="int" Mode="In" />
           <Parameter Name="FromDate" Type="datetime" Mode="In" />
           <Parameter Name="ToDate" Type="datetime" Mode="In" />
+          <Parameter Name="ActiveOption" Type="int" Mode="In" />
         </Function>
         <Function Name="GetUserControlSalespersons" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="SecurityIdentifier" Type="nvarchar" Mode="In" />
@@ -5137,6 +5138,7 @@
             <Parameter Name="UserID" Mode="In" Type="Int32" />
             <Parameter Name="FromDate" Mode="In" Type="DateTime" />
             <Parameter Name="ToDate" Mode="In" Type="DateTime" />
+            <Parameter Name="ActiveOption" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetUserControlGroups" ReturnType="Collection(TotalSmartCodingModel.UserControlGroup)">
           <Parameter Name="SecurityIdentifier" Mode="In" Type="String" />

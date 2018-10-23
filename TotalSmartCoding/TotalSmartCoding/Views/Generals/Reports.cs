@@ -196,7 +196,7 @@ namespace TotalSmartCoding.Views.Generals
 
             UserControlAPIs userControlAPIs = new UserControlAPIs(CommonNinject.Kernel.Get<IUserControlAPIRepository>());
             this.comboUserName.ComboBox.Items.Add("[All users]");
-            this.comboUserName.ComboBox.Items.AddRange(Array.ConvertAll(userControlAPIs.GetUserControlIndexes().ToArray(), u => u.UserName));
+            this.comboUserName.ComboBox.Items.AddRange(Array.ConvertAll(userControlAPIs.GetUserControlIndexes(GlobalEnums.ActiveOption.Both).ToArray(), u => u.UserName));
             this.comboUserName.ComboBox.SelectedIndex = 0;
 
             this.dateTimexFromDate.DataBindings.Add("Value", GlobalEnums.GlobalOptionSetting, CommonExpressions.PropertyName<OptionSetting>(p => p.FromDate), true, DataSourceUpdateMode.OnPropertyChanged);

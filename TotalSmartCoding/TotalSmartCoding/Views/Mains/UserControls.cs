@@ -43,6 +43,8 @@ namespace TotalSmartCoding.Views.Mains
                 this.userControlAPIs = new UserControlAPIs(CommonNinject.Kernel.Get<IUserControlAPIRepository>());
                 this.userGroupAPIs = new UserGroupAPIs(CommonNinject.Kernel.Get<IUserGroupAPIRepository>());
 
+                this.comboActiveOption.SelectedIndex = 0;
+
                 this.fastUserControlIndexes.ShowGroups = true;
                 this.fastUserControlIndexes.AboutToCreateGroups += fastGroups_AboutToCreateGroups;
 
@@ -139,11 +141,24 @@ namespace TotalSmartCoding.Views.Mains
 
         #region Register, Unuegister, ToggleVoid
 
+        private void comboActiveOption_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                this.LoadUserControls();
+            }
+            catch (Exception exception)
+            {
+                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+            }
+
+        }
+
         private void LoadUserControls()
         {
             try
             {
-                this.fastUserControlIndexes.SetObjects(this.userControlAPIs.GetUserControlIndexes());
+                this.fastUserControlIndexes.SetObjects(this.userControlAPIs.GetUserControlIndexes(this.comboActiveOption.SelectedIndex == 0 ? GlobalEnums.ActiveOption.Active : GlobalEnums.ActiveOption.Both));
                 this.fastUserControlIndexes.Sort(this.olvUserControlType, SortOrder.Ascending);
 
                 fastControlGroups_SelectedIndexChanged(this.fastUserControlIndexes, new EventArgs());

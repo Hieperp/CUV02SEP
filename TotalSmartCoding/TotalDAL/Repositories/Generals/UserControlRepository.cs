@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity.Core.Objects;
 
+using TotalBase.Enums;
 using TotalModel.Models;
 using TotalCore.Repositories.Generals;
 
@@ -20,6 +21,13 @@ namespace TotalDAL.Repositories.Generals
         public UserControlAPIRepository(TotalSmartCodingEntities totalSmartCodingEntities)
             : base(totalSmartCodingEntities, "GetUserControlIndexes")
         {
+        }
+
+        protected override ObjectParameter[] GetEntityIndexParameters(int userID, System.DateTime fromDate, System.DateTime toDate)
+        {
+            ObjectParameter[] baseParameters = base.GetEntityIndexParameters(userID, fromDate, toDate);
+
+            return new ObjectParameter[] { baseParameters[0], baseParameters[1], baseParameters[2], new ObjectParameter("ActiveOption", (int)(this.RepositoryBag["ActiveOption"] != null ? this.RepositoryBag["ActiveOption"] : GlobalEnums.ActiveOption.Both)) };
         }
 
         public IList<UserControlGroup> GetUserControlGroups(string securityIdentifier)

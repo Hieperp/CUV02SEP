@@ -41,7 +41,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
         {
             string queryString;
 
-            queryString = " @UserID Int, @FromDate DateTime, @ToDate DateTime " + "\r\n";
+            queryString = " @UserID Int, @FromDate DateTime, @ToDate DateTime, @ActiveOption int " + "\r\n";
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
@@ -51,6 +51,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Generals
 
             queryString = queryString + "       SELECT      MIN(UserID) AS UserID, SecurityIdentifier, UserName, IsDatabaseAdmin, InActive, N'Chevron Vietnam' AS UserControlType " + "\r\n";
             queryString = queryString + "       FROM        Users " + "\r\n";
+            queryString = queryString + "       WHERE       @ActiveOption = " + (int)GlobalEnums.ActiveOption.Both + " OR InActive = @ActiveOption " + "\r\n";
             queryString = queryString + "       GROUP BY    SecurityIdentifier, UserName, IsDatabaseAdmin, InActive " + "\r\n";
             queryString = queryString + "       ORDER BY    UserName " + "\r\n";
 
