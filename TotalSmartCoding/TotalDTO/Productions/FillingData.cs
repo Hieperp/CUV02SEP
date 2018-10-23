@@ -159,6 +159,13 @@ namespace TotalDTO.Productions
             }
         }
 
+        private bool autoCarton;
+        public bool AutoCarton
+        {
+            get { return this.autoCarton; }
+            set { ApplyPropertyChange<FillingData, bool>(ref this.autoCarton, o => o.AutoCarton, value); }
+        }
+
         //-------------------------
         private int batchID;
         public int BatchID

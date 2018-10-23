@@ -678,7 +678,7 @@ namespace TotalSmartCoding.Controllers.Productions
                 if (GlobalEnums.SendToZebra)
                 {
                     CartonDTO cartonDTO = new CartonDTO() { Code = this.wholeBarcode(0, true) };
-                    this.ioserialPort.WritetoSerial(this.wholeMessageLine(true));
+                    if (!this.FillingData.AutoCarton) this.ioserialPort.WritetoSerial(this.wholeMessageLine(true));
                     lock (this.FillingData.CartontoZebraQueue) { this.FillingData.CartontoZebraQueue.Enqueue(cartonDTO); }
 
                     this.feedbackNextNo((int.Parse(this.getNextNo(true)) + 1).ToString("0000000").Substring(1), "", true);

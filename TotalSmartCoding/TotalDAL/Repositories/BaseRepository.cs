@@ -103,6 +103,8 @@ namespace TotalDAL.Repositories
             #region FINAL 19OCT2018
             if (this.totalSmartCodingEntities.ColumnExists("CommodityTypes", "Description"))
             {
+                this.totalSmartCodingEntities.ColumnAdd("Batches", "AutoCarton", "bit", "0", true);
+
                 this.totalSmartCodingEntities.ColumnAdd("Customers", "IsReceiver", "bit", "0", true);
                 this.ExecuteStoreCommand("UPDATE Customers SET IsCustomer = 1, IsSupplier = 1", new ObjectParameter[] { });
                 this.totalSmartCodingEntities.ColumnAdd("Customers", "Email", "nvarchar(100)", "", false);
@@ -867,6 +869,10 @@ namespace TotalDAL.Repositories
             userGroup.RestoreProcedure();
 
 
+            //return;
+
+            Helpers.SqlProgrammability.Productions.Batch batch = new Helpers.SqlProgrammability.Productions.Batch(totalSmartCodingEntities);
+            batch.RestoreProcedure();
 
             return;
             return;
@@ -885,10 +891,7 @@ namespace TotalDAL.Repositories
             goodsReceipt.RestoreProcedure();
 
 
-            //return;
 
-            Helpers.SqlProgrammability.Productions.Batch batch = new Helpers.SqlProgrammability.Productions.Batch(totalSmartCodingEntities);
-            batch.RestoreProcedure();
 
 
             //return;

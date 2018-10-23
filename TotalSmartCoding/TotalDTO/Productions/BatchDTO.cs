@@ -88,6 +88,14 @@ namespace TotalDTO.Productions
             set { ApplyPropertyChange<BatchPrimitiveDTO, bool>(ref this.autoBarcode, o => o.AutoBarcode, value); }
         }
 
+        private bool autoCarton;
+        [DefaultValue(false)]
+        public bool AutoCarton
+        {
+            get { return this.autoCarton; }
+            set { ApplyPropertyChange<BatchPrimitiveDTO, bool>(ref this.autoCarton, o => o.AutoCarton, value); }
+        }
+
         [DefaultValue(false)]
         public bool IsDefault { get; set; }
     }

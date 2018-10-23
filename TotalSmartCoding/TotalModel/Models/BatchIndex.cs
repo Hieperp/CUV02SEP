@@ -39,5 +39,6 @@ namespace TotalModel.Models
         public bool AutoBarcode { get; set; }
         public string FinalCartonNo { get; set; }
         public decimal PackageVolume { get; set; }
+        public bool AutoCarton { get; set; }
     }
 }

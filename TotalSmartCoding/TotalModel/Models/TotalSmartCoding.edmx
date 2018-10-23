@@ -28,6 +28,7 @@
           <Property Name="InActiveDate" Type="datetime" />
           <Property Name="AutoBarcode" Type="bit" Nullable="false" />
           <Property Name="FinalCartonNo" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="AutoCarton" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="BinLocations">
           <Key>
@@ -5425,6 +5426,7 @@
           <Property Type="Boolean" Name="AutoBarcode" Nullable="false" />
           <Property Type="String" Name="FinalCartonNo" Nullable="false" MaxLength="10" />
           <Property Type="Decimal" Name="PackageVolume" Nullable="false" Precision="18" Scale="3" />
+          <Property Type="Boolean" Name="AutoCarton" Nullable="false" />
         </ComplexType>
         <ComplexType Name="CommodityIndex">
           <Property Type="Int32" Name="CommodityID" Nullable="false" />
@@ -8823,6 +8825,7 @@
           <NavigationProperty Name="Commodity" Relationship="TotalSmartCodingModel.FK_Batches_Commodities" FromRole="Batch" ToRole="Commodity" />
           <NavigationProperty Name="FillingLine" Relationship="TotalSmartCodingModel.FK_Batches_FillingLines" FromRole="Batch" ToRole="FillingLine" />
           <NavigationProperty Name="DeliveryAdviceDetails" Relationship="TotalSmartCodingModel.FK_DeliveryAdviceDetails_Batches" FromRole="Batch" ToRole="DeliveryAdviceDetail" />
+          <Property Name="AutoCarton" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="FK_Batches_Commodities">
           <End Type="TotalSmartCodingModel.Commodity" Role="Commodity" Multiplicity="1" />
@@ -9298,6 +9301,7 @@
                 <ScalarProperty Name="AutoBarcode" ColumnName="AutoBarcode" />
                 <ScalarProperty Name="FinalCartonNo" ColumnName="FinalCartonNo" />
                 <ScalarProperty Name="PackageVolume" ColumnName="PackageVolume" />
+                <ScalarProperty Name="AutoCarton" ColumnName="AutoCarton" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -11742,6 +11746,7 @@
           <EntitySetMapping Name="Batches">
             <EntityTypeMapping TypeName="TotalSmartCodingModel.Batch">
               <MappingFragment StoreEntitySet="Batches">
+                <ScalarProperty Name="AutoCarton" ColumnName="AutoCarton" />
                 <ScalarProperty Name="FinalCartonNo" ColumnName="FinalCartonNo" />
                 <ScalarProperty Name="AutoBarcode" ColumnName="AutoBarcode" />
                 <ScalarProperty Name="InActiveDate" ColumnName="InActiveDate" />

@@ -293,7 +293,7 @@
             this.comboActiveOption.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             this.comboActiveOption.Items.AddRange(new object[] {
             "Active user only",
-            "Show Inactive user"});
+            "Show inactive user"});
             this.comboActiveOption.Name = "comboActiveOption";
             this.comboActiveOption.Size = new System.Drawing.Size(139, 39);
             this.comboActiveOption.SelectedIndexChanged += new System.EventHandler(this.comboActiveOption_SelectedIndexChanged);

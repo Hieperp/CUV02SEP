@@ -39,6 +39,7 @@ namespace TotalModel.Models
         public Nullable<System.DateTime> InActiveDate { get; set; }
         public bool AutoBarcode { get; set; }
         public string FinalCartonNo { get; set; }
+        public bool AutoCarton { get; set; }
     
         public virtual Commodity Commodity { get; set; }
         public virtual FillingLine FillingLine { get; set; }
