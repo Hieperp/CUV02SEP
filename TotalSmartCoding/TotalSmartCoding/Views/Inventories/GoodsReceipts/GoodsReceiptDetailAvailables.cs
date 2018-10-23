@@ -234,7 +234,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
             printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("LocationCode", this.comboLocationID.Text));
             printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("SummaryVersusDetail", this.comboSummaryVersusDetail.ComboBox.SelectedIndex.ToString()));
 
-            printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("CommodityCode", this.FilterTexts));
+            printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("CommodityCode", this.FilterTexts == null? "": this.FilterTexts));
             printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("OnlyIssuable", this.OnlyIssuable.ToString()));
             printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("OnlyApproved", this.OnlyApproved.ToString()));
 

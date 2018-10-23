@@ -167,8 +167,11 @@ namespace TotalSmartCoding.Views.Sales.PendingOrders
             }
         }
 
+        private string FilterTexts { get; set; }
         public override void ApplyFilter(string filterTexts)
         {
+            this.FilterTexts = filterTexts;
+
             OLVHelpers.ApplyFilters(this.fastWholePendingSalesOrderDetails, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
             OLVHelpers.ApplyFilters(this.fastWholePendingDeliveryAdviceDetails, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
             OLVHelpers.ApplyFilters(this.fastWholePendingTransferOrderDetails, filterTexts.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
@@ -191,5 +194,16 @@ namespace TotalSmartCoding.Views.Sales.PendingOrders
             this.customTabBatch.TabPages[2].Text = "Pending transfer orders: " + this.fastWholePendingTransferOrderDetails.GetItemCount().ToString("N0") + " line" + (this.fastWholePendingTransferOrderDetails.GetItemCount() > 1 ? "s" : "") + ", quantity: " + (totalQuantityRemains != null ? ((decimal)totalQuantityRemains).ToString("N0") : "0") + ", volume: " + (totalLineVolumeRemains != null ? ((decimal)totalLineVolumeRemains).ToString("N2") : "0.00") + "       ";
         }
 
+        protected override PrintViewModel InitPrintViewModel()
+        {
+            PrintViewModel printViewModel = base.InitPrintViewModel();
+            printViewModel.ReportPath = "PendingOrders";
+
+            printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("LocationID", this.LocationID.ToString()));
+            printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("LocationCode", this.comboLocationID.Text));
+            printViewModel.ReportParameters.Add(new Microsoft.Reporting.WinForms.ReportParameter("CommodityCode", this.FilterTexts == null ? "" : this.FilterTexts));
+
+            return printViewModel;
+        }
     } 
 }

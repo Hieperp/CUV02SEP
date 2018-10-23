@@ -33,6 +33,7 @@
             this.toolStripChildForm = new System.Windows.Forms.ToolStrip();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.comboSummaryVersusDetail = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.comboLocationID = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
@@ -46,6 +47,7 @@
             this.olvCartonCommodityCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn9 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn4 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn24 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn7 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn6 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn8 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -62,6 +64,7 @@
             this.olvPalletCommodityCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn14 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn15 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn25 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn16 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn17 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn18 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -71,7 +74,6 @@
             this.olvColumn21 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn23 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn22 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.comboSummaryVersusDetail = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripChildForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastAvailableCartons)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fastAvailablePallets)).BeginInit();
@@ -112,6 +114,13 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 39);
             this.toolStripSeparator1.Visible = false;
+            // 
+            // comboSummaryVersusDetail
+            // 
+            this.comboSummaryVersusDetail.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboSummaryVersusDetail.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
+            this.comboSummaryVersusDetail.Name = "comboSummaryVersusDetail";
+            this.comboSummaryVersusDetail.Size = new System.Drawing.Size(121, 39);
             // 
             // toolStripSeparator2
             // 
@@ -165,6 +174,7 @@
             this.fastAvailableCartons.AllColumns.Add(this.olvCartonCommodityCode);
             this.fastAvailableCartons.AllColumns.Add(this.olvColumn9);
             this.fastAvailableCartons.AllColumns.Add(this.olvColumn4);
+            this.fastAvailableCartons.AllColumns.Add(this.olvColumn24);
             this.fastAvailableCartons.AllColumns.Add(this.olvColumn7);
             this.fastAvailableCartons.AllColumns.Add(this.olvColumn6);
             this.fastAvailableCartons.AllColumns.Add(this.olvColumn8);
@@ -183,6 +193,7 @@
             this.olvCartonCommodityCode,
             this.olvColumn9,
             this.olvColumn4,
+            this.olvColumn24,
             this.olvColumn7,
             this.olvColumn6,
             this.olvColumn8,
@@ -198,7 +209,7 @@
             this.fastAvailableCartons.GroupImageList = this.imageList32;
             this.fastAvailableCartons.HideSelection = false;
             this.fastAvailableCartons.HighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
-            this.fastAvailableCartons.Location = new System.Drawing.Point(0, 39);
+            this.fastAvailableCartons.Location = new System.Drawing.Point(0, 0);
             this.fastAvailableCartons.Name = "fastAvailableCartons";
             this.fastAvailableCartons.OwnerDraw = true;
             this.fastAvailableCartons.RowHeight = 32;
@@ -222,14 +233,13 @@
             // olvCartonWarehouseCode
             // 
             this.olvCartonWarehouseCode.AspectName = "WarehouseCode";
-            this.olvCartonWarehouseCode.Text = "Warehouse";
-            this.olvCartonWarehouseCode.Width = 80;
+            this.olvCartonWarehouseCode.Text = "WH";
             // 
             // olvColumn3
             // 
             this.olvColumn3.AspectName = "BinLocationCode";
             this.olvColumn3.Text = "Location";
-            this.olvColumn3.Width = 96;
+            this.olvColumn3.Width = 88;
             // 
             // olvCartonCommodityCode
             // 
@@ -250,7 +260,16 @@
             this.olvColumn4.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvColumn4.Text = "Batch";
             this.olvColumn4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvColumn4.Width = 80;
+            this.olvColumn4.Width = 75;
+            // 
+            // olvColumn24
+            // 
+            this.olvColumn24.AspectName = "ExpiryDate";
+            this.olvColumn24.AspectToStringFormat = "{0:d}";
+            this.olvColumn24.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvColumn24.Text = "Expiry";
+            this.olvColumn24.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvColumn24.Width = 75;
             // 
             // olvColumn7
             // 
@@ -260,22 +279,25 @@
             // olvColumn6
             // 
             this.olvColumn6.AspectName = "GoodsReceiptEntryDate";
+            this.olvColumn6.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvColumn6.Text = "Receipt Date";
-            this.olvColumn6.Width = 150;
+            this.olvColumn6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvColumn6.Width = 138;
             // 
             // olvColumn8
             // 
             this.olvColumn8.AspectName = "LineReferences";
             this.olvColumn8.Text = "Receipt Description";
-            this.olvColumn8.Width = 160;
+            this.olvColumn8.Width = 150;
             // 
             // olvCartonQuantityAvailable
             // 
             this.olvCartonQuantityAvailable.AspectName = "QuantityAvailable";
             this.olvCartonQuantityAvailable.AspectToStringFormat = "{0:#,#}";
             this.olvCartonQuantityAvailable.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.olvCartonQuantityAvailable.Text = "Quantity";
+            this.olvCartonQuantityAvailable.Text = "Qty";
             this.olvCartonQuantityAvailable.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.olvCartonQuantityAvailable.Width = 39;
             // 
             // olvCartonLineVolumeAvailable
             // 
@@ -325,6 +347,7 @@
             this.fastAvailablePallets.AllColumns.Add(this.olvPalletCommodityCode);
             this.fastAvailablePallets.AllColumns.Add(this.olvColumn14);
             this.fastAvailablePallets.AllColumns.Add(this.olvColumn15);
+            this.fastAvailablePallets.AllColumns.Add(this.olvColumn25);
             this.fastAvailablePallets.AllColumns.Add(this.olvColumn16);
             this.fastAvailablePallets.AllColumns.Add(this.olvColumn17);
             this.fastAvailablePallets.AllColumns.Add(this.olvColumn18);
@@ -343,6 +366,7 @@
             this.olvPalletCommodityCode,
             this.olvColumn14,
             this.olvColumn15,
+            this.olvColumn25,
             this.olvColumn16,
             this.olvColumn17,
             this.olvColumn18,
@@ -358,7 +382,7 @@
             this.fastAvailablePallets.GroupImageList = this.imageList32;
             this.fastAvailablePallets.HideSelection = false;
             this.fastAvailablePallets.HighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
-            this.fastAvailablePallets.Location = new System.Drawing.Point(0, 284);
+            this.fastAvailablePallets.Location = new System.Drawing.Point(0, 245);
             this.fastAvailablePallets.Name = "fastAvailablePallets";
             this.fastAvailablePallets.OwnerDraw = true;
             this.fastAvailablePallets.RowHeight = 32;
@@ -382,14 +406,13 @@
             // olvColumn11
             // 
             this.olvColumn11.AspectName = "WarehouseCode";
-            this.olvColumn11.Text = "Warehouse";
-            this.olvColumn11.Width = 80;
+            this.olvColumn11.Text = "WH";
             // 
             // olvColumn12
             // 
             this.olvColumn12.AspectName = "BinLocationCode";
             this.olvColumn12.Text = "Location";
-            this.olvColumn12.Width = 96;
+            this.olvColumn12.Width = 88;
             // 
             // olvPalletCommodityCode
             // 
@@ -410,7 +433,16 @@
             this.olvColumn15.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvColumn15.Text = "Batch";
             this.olvColumn15.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.olvColumn15.Width = 80;
+            this.olvColumn15.Width = 75;
+            // 
+            // olvColumn25
+            // 
+            this.olvColumn25.AspectName = "ExpiryDate";
+            this.olvColumn25.AspectToStringFormat = "{0:d}";
+            this.olvColumn25.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvColumn25.Text = "Expiry";
+            this.olvColumn25.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvColumn25.Width = 75;
             // 
             // olvColumn16
             // 
@@ -420,22 +452,25 @@
             // olvColumn17
             // 
             this.olvColumn17.AspectName = "GoodsReceiptEntryDate";
+            this.olvColumn17.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.olvColumn17.Text = "Receipt Date";
-            this.olvColumn17.Width = 150;
+            this.olvColumn17.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvColumn17.Width = 138;
             // 
             // olvColumn18
             // 
             this.olvColumn18.AspectName = "LineReferences";
             this.olvColumn18.Text = "Receipt Description";
-            this.olvColumn18.Width = 160;
+            this.olvColumn18.Width = 150;
             // 
             // olvColumn19
             // 
             this.olvColumn19.AspectName = "QuantityAvailable";
             this.olvColumn19.AspectToStringFormat = "{0:#,#}";
             this.olvColumn19.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.olvColumn19.Text = "Quantity";
+            this.olvColumn19.Text = "Qty";
             this.olvColumn19.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.olvColumn19.Width = 39;
             // 
             // olvColumn20
             // 
@@ -476,13 +511,6 @@
             this.olvColumn22.FillsFreeSpace = true;
             this.olvColumn22.Text = "Name";
             this.olvColumn22.Width = 120;
-            // 
-            // comboSummaryVersusDetail
-            // 
-            this.comboSummaryVersusDetail.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboSummaryVersusDetail.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
-            this.comboSummaryVersusDetail.Name = "comboSummaryVersusDetail";
-            this.comboSummaryVersusDetail.Size = new System.Drawing.Size(121, 39);
             // 
             // GoodsReceiptDetailAvailables
             // 
@@ -552,6 +580,8 @@
         private System.Windows.Forms.ToolStripComboBox comboOnlyApproved;
         private System.Windows.Forms.ToolStripComboBox comboOnlyIssuable;
         private System.Windows.Forms.ToolStripComboBox comboSummaryVersusDetail;
+        private BrightIdeasSoftware.OLVColumn olvColumn24;
+        private BrightIdeasSoftware.OLVColumn olvColumn25;
 
     }
 }
