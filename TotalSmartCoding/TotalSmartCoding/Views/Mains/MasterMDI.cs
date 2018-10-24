@@ -962,7 +962,7 @@ namespace TotalSmartCoding.Views.Mains
         {
             try
             {
-                System.Diagnostics.Process.Start(Path.GetDirectoryName(Application.ExecutablePath) + "\\User Manual.pdf");
+                System.Diagnostics.Process.Start(Path.GetDirectoryName(Application.ExecutablePath) + "\\User Manuals.pdf");
             }
             catch (Exception exception)
             {
