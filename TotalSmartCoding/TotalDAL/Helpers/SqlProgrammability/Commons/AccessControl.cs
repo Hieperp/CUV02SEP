@@ -37,6 +37,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             this.UpdateApplicationRole();
 
             this.GetLegalNotice();
+            this.UpdateLegalNotice();
 
             this.GetVersionID();
             this.GetStoredID();
@@ -271,6 +272,16 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             queryString = queryString + "       SELECT      MAX(LegalNotice) AS LegalNotice FROM Configs " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("GetLegalNotice", queryString);
+        }
+
+        private void UpdateLegalNotice()
+        {
+            string queryString = " @LegalNotice nvarchar(3999) " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+            queryString = queryString + "       UPDATE      Configs SET LegalNotice = @LegalNotice; " + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("UpdateLegalNotice", queryString);
         }
 
         private void GetVersionID()

@@ -2670,6 +2670,10 @@ namespace TotalDAL.Repositories
         {
             return this.TotalSmartCodingEntities.GetLegalNotice().Single();
         }
+        public int UpdateLegalNotice(string legalNotice)
+        {
+            return this.TotalSmartCodingEntities.UpdateLegalNotice(legalNotice);
+        }
 
         /// <summary>
         ///     Detect whether the context is dirty (i.e., there are changes in entities in memory that have

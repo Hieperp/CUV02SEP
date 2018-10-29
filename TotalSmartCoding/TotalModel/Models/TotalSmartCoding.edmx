@@ -3209,6 +3209,9 @@
           <Parameter Name="Name" Type="nvarchar" Mode="In" />
           <Parameter Name="Password" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="UpdateLegalNotice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LegalNotice" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="UpdateLockedDate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserID" Type="int" Mode="In" />
           <Parameter Name="LocationID" Type="int" Mode="In" />
@@ -5299,6 +5302,9 @@
             <Parameter Name="Description" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetLegalNotice" ReturnType="Collection(String)" />
+          <FunctionImport Name="UpdateLegalNotice">
+            <Parameter Name="LegalNotice" Mode="In" Type="String" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
           <Property Type="Int32" Name="PickupID" Nullable="false" />
@@ -12075,6 +12081,7 @@
           <FunctionImportMapping FunctionImportName="WarehouseSaveRelative" FunctionName="TotalSmartCodingModel.Store.WarehouseSaveRelative" />
           <FunctionImportMapping FunctionImportName="UserGroupRename" FunctionName="TotalSmartCodingModel.Store.UserGroupRename" />
           <FunctionImportMapping FunctionImportName="GetLegalNotice" FunctionName="TotalSmartCodingModel.Store.GetLegalNotice" />
+          <FunctionImportMapping FunctionImportName="UpdateLegalNotice" FunctionName="TotalSmartCodingModel.Store.UpdateLegalNotice" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

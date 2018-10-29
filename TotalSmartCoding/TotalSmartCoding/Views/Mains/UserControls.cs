@@ -58,6 +58,9 @@ namespace TotalSmartCoding.Views.Mains
                 this.onEventLogs = this.userControlRepository.GetOnEventLogs();
                 this.bindingOnDataLogs = this.checkOnDataLogs.DataBindings.Add("Checked", this, "OnDataLogs", true, DataSourceUpdateMode.OnPropertyChanged);
                 this.bindingOnEventLogs = this.checkOnEventLogs.DataBindings.Add("Checked", this, "OnEventLogs", true, DataSourceUpdateMode.OnPropertyChanged);
+
+                this.textexLegalNotice.Text = this.userControlRepository.GetLegalNotice();
+                this.labelUpdateSuccessfullly.Text = ""; this.separatorLegalNotice.Visible = false;
             }
             catch (Exception exception)
             {
@@ -89,20 +92,25 @@ namespace TotalSmartCoding.Views.Mains
                 customTabCenter.Dock = DockStyle.Fill;
 
                 customTabCenter.TabPages.Add("tabCenterAA", "Member of Groups            ");
-                customTabCenter.TabPages.Add("tabCenterAA", "Salespersons Filtering          ");
+                customTabCenter.TabPages.Add("tabCenterBB", "Salespersons Filtering          ");
+                customTabCenter.TabPages.Add("tabCenterCC", "Legal Notice          ");
                 customTabCenter.TabPages[0].BackColor = this.panelCenter.BackColor;
                 customTabCenter.TabPages[1].BackColor = this.panelCenter.BackColor;
+                customTabCenter.TabPages[2].BackColor = this.panelCenter.BackColor;
 
                 customTabCenter.TabPages[0].Controls.Add(this.fastUserGroupDetails);
                 customTabCenter.TabPages[0].Controls.Add(this.toolUserGroupDetails);
                 customTabCenter.TabPages[1].Controls.Add(this.fastUserSalespersons);
                 customTabCenter.TabPages[1].Controls.Add(this.toolUserSalespersons);
-
+                customTabCenter.TabPages[2].Controls.Add(this.textexLegalNotice);
+                customTabCenter.TabPages[2].Controls.Add(this.toolLegalNotice);
 
                 this.fastUserGroupDetails.Dock = DockStyle.Fill;
                 this.toolUserGroupDetails.Dock = DockStyle.Top;
                 this.fastUserSalespersons.Dock = DockStyle.Fill;
                 this.toolUserSalespersons.Dock = DockStyle.Top;
+                this.textexLegalNotice.Dock = DockStyle.Fill;
+                this.toolLegalNotice.Dock = DockStyle.Top;
             }
             catch (Exception exception)
             {
@@ -379,6 +387,24 @@ namespace TotalSmartCoding.Views.Mains
             if (dialogResult == DialogResult.OK) this.GetUserControlSalespersons();
         }
         #endregion Add, remove salesperson
+
+        private void buttonUpdateLegalNotice_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.userControlRepository.UpdateLegalNotice(this.textexLegalNotice.Text);
+                this.labelUpdateSuccessfullly.Text = "Update Successfully!";
+            }
+            catch (Exception exception)
+            {
+                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+            }
+        }
+
+        private void textexLegalNotice_TextChanged(object sender, EventArgs e)
+        {
+            this.labelUpdateSuccessfullly.Text = "Legal notice changed. Click save to update!"; this.separatorLegalNotice.Visible = true;
+        }
 
     }
 }

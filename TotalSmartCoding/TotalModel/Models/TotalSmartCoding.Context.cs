@@ -3364,5 +3364,14 @@ namespace TotalModel.Models
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("GetLegalNotice");
         }
+    
+        public virtual int UpdateLegalNotice(string legalNotice)
+        {
+            var legalNoticeParameter = legalNotice != null ?
+                new ObjectParameter("LegalNotice", legalNotice) :
+                new ObjectParameter("LegalNotice", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateLegalNotice", legalNoticeParameter);
+        }
     }
 }

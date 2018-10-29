@@ -54,6 +54,9 @@
             this.olvTreeCode = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvTreeParameterName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.panelCenter = new System.Windows.Forms.Panel();
+            this.toolLegalNotice = new System.Windows.Forms.ToolStrip();
+            this.buttonUpdateLegalNotice = new System.Windows.Forms.ToolStripButton();
+            this.textexLegalNotice = new CustomControls.TextexBox();
             this.fastUserSalespersons = new BrightIdeasSoftware.FastObjectListView();
             this.olvColumn2 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvEmployeeType = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -74,10 +77,13 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.checkOnEventLogs = new System.Windows.Forms.CheckBox();
             this.checkOnDataLogs = new System.Windows.Forms.CheckBox();
+            this.separatorLegalNotice = new System.Windows.Forms.ToolStripSeparator();
+            this.labelUpdateSuccessfullly = new System.Windows.Forms.ToolStripLabel();
             this.toolUserGroupDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastUserControlIndexes)).BeginInit();
             this.toolUserGroups.SuspendLayout();
             this.panelCenter.SuspendLayout();
+            this.toolLegalNotice.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastUserSalespersons)).BeginInit();
             this.toolUserSalespersons.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastUserGroupDetails)).BeginInit();
@@ -320,6 +326,8 @@
             // 
             // panelCenter
             // 
+            this.panelCenter.Controls.Add(this.toolLegalNotice);
+            this.panelCenter.Controls.Add(this.textexLegalNotice);
             this.panelCenter.Controls.Add(this.fastUserSalespersons);
             this.panelCenter.Controls.Add(this.toolUserSalespersons);
             this.panelCenter.Controls.Add(this.fastUserGroupDetails);
@@ -329,6 +337,46 @@
             this.panelCenter.Name = "panelCenter";
             this.panelCenter.Size = new System.Drawing.Size(713, 610);
             this.panelCenter.TabIndex = 74;
+            // 
+            // toolLegalNotice
+            // 
+            this.toolLegalNotice.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolLegalNotice.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolLegalNotice.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.buttonUpdateLegalNotice,
+            this.separatorLegalNotice,
+            this.labelUpdateSuccessfullly});
+            this.toolLegalNotice.Location = new System.Drawing.Point(0, 529);
+            this.toolLegalNotice.Name = "toolLegalNotice";
+            this.toolLegalNotice.Size = new System.Drawing.Size(713, 39);
+            this.toolLegalNotice.TabIndex = 106;
+            this.toolLegalNotice.Text = "toolStrip1";
+            // 
+            // buttonUpdateLegalNotice
+            // 
+            this.buttonUpdateLegalNotice.Image = global::TotalSmartCoding.Properties.Resources.Ok_Saki_Snowish;
+            this.buttonUpdateLegalNotice.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonUpdateLegalNotice.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonUpdateLegalNotice.Name = "buttonUpdateLegalNotice";
+            this.buttonUpdateLegalNotice.Size = new System.Drawing.Size(131, 36);
+            this.buttonUpdateLegalNotice.Text = "Save legal notice";
+            this.buttonUpdateLegalNotice.Click += new System.EventHandler(this.buttonUpdateLegalNotice_Click);
+            // 
+            // textexLegalNotice
+            // 
+            this.textexLegalNotice.BackColor = System.Drawing.SystemColors.Control;
+            this.textexLegalNotice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textexLegalNotice.Dock = System.Windows.Forms.DockStyle.Top;
+            this.textexLegalNotice.Editable = true;
+            this.textexLegalNotice.Font = new System.Drawing.Font("Calibri Light", 10.2F);
+            this.textexLegalNotice.Location = new System.Drawing.Point(0, 460);
+            this.textexLegalNotice.Margin = new System.Windows.Forms.Padding(8);
+            this.textexLegalNotice.Multiline = true;
+            this.textexLegalNotice.Name = "textexLegalNotice";
+            this.textexLegalNotice.Size = new System.Drawing.Size(713, 69);
+            this.textexLegalNotice.TabIndex = 105;
+            this.textexLegalNotice.Text = "LegalNotice";
+            this.textexLegalNotice.TextChanged += new System.EventHandler(this.textexLegalNotice_TextChanged);
             // 
             // fastUserSalespersons
             // 
@@ -544,6 +592,16 @@
             this.checkOnDataLogs.Text = "Enable Data Logs";
             this.checkOnDataLogs.UseVisualStyleBackColor = true;
             // 
+            // separatorLegalNotice
+            // 
+            this.separatorLegalNotice.Name = "separatorLegalNotice";
+            this.separatorLegalNotice.Size = new System.Drawing.Size(6, 39);
+            // 
+            // labelUpdateSuccessfullly
+            // 
+            this.labelUpdateSuccessfullly.Name = "labelUpdateSuccessfullly";
+            this.labelUpdateSuccessfullly.Size = new System.Drawing.Size(0, 36);
+            // 
             // UserControls
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -568,6 +626,8 @@
             this.toolUserGroups.PerformLayout();
             this.panelCenter.ResumeLayout(false);
             this.panelCenter.PerformLayout();
+            this.toolLegalNotice.ResumeLayout(false);
+            this.toolLegalNotice.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastUserSalespersons)).EndInit();
             this.toolUserSalespersons.ResumeLayout(false);
             this.toolUserSalespersons.PerformLayout();
@@ -626,5 +686,10 @@
         private BrightIdeasSoftware.OLVColumn olvAdminName;
         private System.Windows.Forms.ToolStripButton buttonUserAdmin;
         private System.Windows.Forms.ToolStripComboBox comboActiveOption;
+        private CustomControls.TextexBox textexLegalNotice;
+        private System.Windows.Forms.ToolStrip toolLegalNotice;
+        private System.Windows.Forms.ToolStripButton buttonUpdateLegalNotice;
+        private System.Windows.Forms.ToolStripSeparator separatorLegalNotice;
+        private System.Windows.Forms.ToolStripLabel labelUpdateSuccessfullly;
     }
 }
