@@ -29,17 +29,17 @@
         private void InitializeComponent()
         {
             this.layoutTop = new System.Windows.Forms.TableLayoutPanel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.labelLegalNotice = new System.Windows.Forms.Label();
             this.panelBottom = new System.Windows.Forms.Panel();
             this.panelBottomRight = new System.Windows.Forms.Panel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.buttonOK = new System.Windows.Forms.ToolStripButton();
             this.layoutTop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelBottom.SuspendLayout();
             this.panelBottomRight.SuspendLayout();
             this.toolStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutTop
@@ -51,7 +51,7 @@
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 8F));
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 92F));
-            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
+            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 24F));
             this.layoutTop.Controls.Add(this.pictureBox1, 1, 1);
             this.layoutTop.Controls.Add(this.labelLegalNotice, 3, 1);
             this.layoutTop.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -68,6 +68,18 @@
             this.layoutTop.Size = new System.Drawing.Size(609, 315);
             this.layoutTop.TabIndex = 100;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::TotalSmartCoding.Properties.Resources.ICopyright;
+            this.pictureBox1.Location = new System.Drawing.Point(29, 24);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.layoutTop.SetRowSpan(this.pictureBox1, 2);
+            this.pictureBox1.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 75;
+            this.pictureBox1.TabStop = false;
+            // 
             // labelLegalNotice
             // 
             this.labelLegalNotice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -77,9 +89,10 @@
             this.labelLegalNotice.Margin = new System.Windows.Forms.Padding(2, 6, 2, 0);
             this.labelLegalNotice.Name = "labelLegalNotice";
             this.layoutTop.SetRowSpan(this.labelLegalNotice, 3);
-            this.labelLegalNotice.Size = new System.Drawing.Size(477, 268);
+            this.labelLegalNotice.Size = new System.Drawing.Size(476, 268);
             this.labelLegalNotice.TabIndex = 96;
             this.labelLegalNotice.Text = "Legal Notice";
+            this.labelLegalNotice.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panelBottom
             // 
@@ -115,18 +128,6 @@
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::TotalSmartCoding.Properties.Resources.ICopyright;
-            this.pictureBox1.Location = new System.Drawing.Point(29, 24);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.layoutTop.SetRowSpan(this.pictureBox1, 2);
-            this.pictureBox1.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 75;
-            this.pictureBox1.TabStop = false;
-            // 
             // buttonOK
             // 
             this.buttonOK.Image = global::TotalSmartCoding.Properties.Resources.Saki_Snowish_Ok;
@@ -154,12 +155,12 @@
             this.Load += new System.EventHandler(this.LegalNotice_Load);
             this.layoutTop.ResumeLayout(false);
             this.layoutTop.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panelBottom.ResumeLayout(false);
             this.panelBottomRight.ResumeLayout(false);
             this.panelBottomRight.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
