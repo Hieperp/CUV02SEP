@@ -100,6 +100,10 @@ namespace TotalDAL.Repositories
                 this.totalSmartCodingEntities.ColumnAdd("Configs", "StoredID", "int", "0", true);
             }
 
+            #region FINAL 29OCT2018
+            this.totalSmartCodingEntities.ColumnAdd("Configs", "LegalNotice", "nvarchar(3999)", "", false);
+            #endregion FINAL 29OCT2018
+
             #region FINAL 19OCT2018
             if (this.totalSmartCodingEntities.ColumnExists("CommodityTypes", "Description"))
             {
@@ -2660,6 +2664,11 @@ namespace TotalDAL.Repositories
         {
             var moduleDetail = this.totalSmartCodingEntities.ModuleDetails.Where(w => w.ModuleDetailID == (int)nmvnTaskID).FirstOrDefault();
             return moduleDetail != null ? moduleDetail.ModuleID : 0;
+        }
+
+        string GetLegalNotice()
+        {
+            return this.TotalSmartCodingEntities.GetLegalNotice().Single();
         }
 
         /// <summary>

@@ -18,6 +18,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Inventories
 
         public void RestoreProcedure()
         {
+            return;
             return; 
             this.WarehouseLedgers();
             //return; //JUST RESTORE WarehouseLedgers TO IMPLEMENT UserSalespersons

@@ -2710,6 +2710,7 @@
         <Function Name="GetGoodsReceiptViewDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="GoodsReceiptID" Type="int" Mode="In" />
         </Function>
+        <Function Name="GetLegalNotice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetLocationBases" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetLocationIndexes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserID" Type="int" Mode="In" />
@@ -5297,6 +5298,7 @@
             <Parameter Name="Name" Mode="In" Type="String" />
             <Parameter Name="Description" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="GetLegalNotice" ReturnType="Collection(String)" />
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
           <Property Type="Int32" Name="PickupID" Nullable="false" />
@@ -12072,6 +12074,7 @@
           <FunctionImportMapping FunctionImportName="WarehouseEditable" FunctionName="TotalSmartCodingModel.Store.WarehouseEditable" />
           <FunctionImportMapping FunctionImportName="WarehouseSaveRelative" FunctionName="TotalSmartCodingModel.Store.WarehouseSaveRelative" />
           <FunctionImportMapping FunctionImportName="UserGroupRename" FunctionName="TotalSmartCodingModel.Store.UserGroupRename" />
+          <FunctionImportMapping FunctionImportName="GetLegalNotice" FunctionName="TotalSmartCodingModel.Store.GetLegalNotice" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

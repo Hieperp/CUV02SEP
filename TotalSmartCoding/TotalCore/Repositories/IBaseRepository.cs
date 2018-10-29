@@ -18,6 +18,8 @@ namespace TotalCore.Repositories
         void GetApplicationRoles();
         int UpdateApplicationRole(string name, string password);
 
+        string GetLegalNotice();
+
         int? GetStoredID(int configID);
         int? GetVersionID(int configID);
         bool VersionValidate(int configID, int configVersionID);

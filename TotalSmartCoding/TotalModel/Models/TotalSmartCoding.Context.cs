@@ -3359,5 +3359,10 @@ namespace TotalModel.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("UserGroupRename", userGroupIDParameter, codeParameter, nameParameter, descriptionParameter);
         }
+    
+        public virtual ObjectResult<string> GetLegalNotice()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("GetLegalNotice");
+        }
     }
 }
