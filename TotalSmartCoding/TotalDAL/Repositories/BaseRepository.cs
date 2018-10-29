@@ -2666,7 +2666,7 @@ namespace TotalDAL.Repositories
             return moduleDetail != null ? moduleDetail.ModuleID : 0;
         }
 
-        string GetLegalNotice()
+        public string GetLegalNotice()
         {
             return this.TotalSmartCodingEntities.GetLegalNotice().Single();
         }

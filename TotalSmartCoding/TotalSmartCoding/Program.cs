@@ -59,6 +59,9 @@ namespace TotalSmartCoding
 
                 if (logon.ShowDialog() == DialogResult.OK)
                 {
+                    LegalNotice legalNotice = new LegalNotice();
+                    legalNotice.ShowDialog(); legalNotice.Dispose();
+
                     if (GlobalVariables.FillingLineID == GlobalVariables.FillingLine.Smallpack || GlobalVariables.FillingLineID == GlobalVariables.FillingLine.Pail || GlobalVariables.FillingLineID == GlobalVariables.FillingLine.Medium4L || GlobalVariables.FillingLineID == GlobalVariables.FillingLine.Import || GlobalVariables.FillingLineID == GlobalVariables.FillingLine.Drum)
                         Application.Run(new MasterMDI(GlobalEnums.NmvnTaskID.SmartCoding, new SmartCoding()));
                     else
