@@ -120,4 +120,7 @@
   <data name="label11.Text" xml:space="preserve">
     <value>Giải pháp phần mềm này được cung cấp bởi Công ty TNHH TMDV Đạt Mỹ (DMC); được cấp quyền sở hữu và sử dụng cho Công Ty TNHH Dầu Nhờn Chevron Việt Nam (CLVL). Việc sử dụng giải pháp phần mềm này tại hoặc bởi bất kỳ bên nào khác không phải CLVL đều phải được sự đồng ý chính thức bằng văn bản của DMC.</value>
   </data>
+  <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
 </root>

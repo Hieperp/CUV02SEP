@@ -182,12 +182,17 @@ namespace TotalSmartCoding.Views.Mains
         {
             try
             {
-                if (this.SelectedUserControlIndex != null && this.SelectedUserControlIndex.UserID > 0 && !this.SelectedUserControlIndex.IsDatabaseAdmin)
+                if (this.SelectedUserControlIndex != null && this.SelectedUserControlIndex.UserID > 0 && this.SelectedUserControlIndex.SecurityIdentifier != ContextAttributes.User.SecurityIdentifier)
                 {
                     if (CustomMsgBox.Show(this, "Are you sure you want to deregister this user?" + "\r\n" + "\r\nUser:  " + this.SelectedUserControlIndex.UserName, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
                     {
-                        this.userControlAPIs.UserControlUnregister(this.SelectedUserControlIndex.UserID, this.SelectedUserControlIndex.UserName, this.SelectedUserControlIndex.SecurityIdentifier);
-                        this.LoadUserControls();
+                        if (this.userControlRepository.GetEditable((int)this.selectedUserControlIndex.UserID))
+                        {
+                            this.userControlAPIs.UserControlUnregister(this.SelectedUserControlIndex.UserID, this.SelectedUserControlIndex.UserName, this.SelectedUserControlIndex.SecurityIdentifier);
+                            this.LoadUserControls();
+                        }
+                        else
+                            throw new Exception("Can not deregister this user. Please check again!");
                     }
                 }
             }
@@ -220,7 +225,7 @@ namespace TotalSmartCoding.Views.Mains
         {
             try
             {
-                if (this.SelectedUserControlIndex != null && this.SelectedUserControlIndex.UserID > 0 && !this.SelectedUserControlIndex.IsDatabaseAdmin)
+                if (this.SelectedUserControlIndex != null && this.SelectedUserControlIndex.UserID > 0 && this.SelectedUserControlIndex.SecurityIdentifier != ContextAttributes.User.SecurityIdentifier)
                 {
                     if (CustomMsgBox.Show(this, "Are you sure you want to " + (this.SelectedUserControlIndex.InActive ? "enable" : "disable") + " this user registration?" + "\r\n" + "\r\nUser:  " + this.SelectedUserControlIndex.UserName, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Stop) == DialogResult.Yes)
                     {
@@ -262,8 +267,8 @@ namespace TotalSmartCoding.Views.Mains
                     this.GetUserControlSalespersons();
                     this.GetUserControlGroups();
 
-                    this.buttonUserToggleVoid.Enabled = !this.selectedUserControlIndex.IsDatabaseAdmin;
-                    this.buttonUserUnregister.Enabled = !this.selectedUserControlIndex.IsDatabaseAdmin && this.userControlRepository.GetEditable((int)this.selectedUserControlIndex.UserID);
+                    this.buttonUserToggleVoid.Enabled = this.selectedUserControlIndex.SecurityIdentifier != ContextAttributes.User.SecurityIdentifier;
+                    this.buttonUserUnregister.Enabled = this.selectedUserControlIndex.SecurityIdentifier != ContextAttributes.User.SecurityIdentifier && this.userControlRepository.GetEditable((int)this.selectedUserControlIndex.UserID);
 
                     this.buttonUserAdmin.Enabled = this.selectedUserControlIndex.SecurityIdentifier != ContextAttributes.User.SecurityIdentifier;
                 }
