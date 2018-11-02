@@ -5303,7 +5303,7 @@
           </FunctionImport>
           <FunctionImport Name="GetLegalNotice" ReturnType="Collection(String)" />
           <FunctionImport Name="UpdateLegalNotice">
-            <Parameter Name="LegalNotice" Mode="In" Type="String" />
+          <Parameter Name="LegalNotice" Mode="In" Type="String" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
