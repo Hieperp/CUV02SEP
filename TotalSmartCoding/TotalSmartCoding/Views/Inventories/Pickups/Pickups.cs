@@ -58,7 +58,7 @@ namespace TotalSmartCoding.Views.Inventories.Pickups
             this.pickupViewModel.PropertyChanged += new PropertyChangedEventHandler(ModelDTO_PropertyChanged);
             this.baseDTO = this.pickupViewModel;
 
-            this.timerLoadPending = new System.Timers.Timer(10000);
+            this.timerLoadPending = new System.Timers.Timer(60000);
             this.timerLoadPending.Elapsed += new System.Timers.ElapsedEventHandler(timerLoadPending_Elapsed);
             this.timerLoadPending.Enabled = true;
 
