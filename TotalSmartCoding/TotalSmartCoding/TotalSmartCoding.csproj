@@ -261,6 +261,12 @@
     <Compile Include="Views\Commons\CustomerCategories\CustomerCategories.designer.cs">
       <DependentUpon>CustomerCategories.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Commons\Customers\CustomerPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Commons\Customers\CustomerPopup.Designer.cs">
+      <DependentUpon>CustomerPopup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Commons\Customers\Customers.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -653,6 +659,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Commons\CustomerCategories\CustomerCategories.resx">
       <DependentUpon>CustomerCategories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Commons\Customers\CustomerPopup.resx">
+      <DependentUpon>CustomerPopup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Commons\Customers\Customers.resx">
       <DependentUpon>Customers.cs</DependentUpon>

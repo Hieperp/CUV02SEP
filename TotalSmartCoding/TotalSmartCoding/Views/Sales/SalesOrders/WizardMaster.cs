@@ -2,10 +2,12 @@
 using System.Drawing;
 using System.Windows.Forms;
 using System.ComponentModel;
+using System.Collections.Generic;
 
 using Ninject;
 
 using TotalBase;
+using TotalBase.Enums;
 using TotalModel.Models;
 using TotalCore.Repositories.Commons;
 using TotalSmartCoding.Controllers.APIs.Commons;
@@ -13,7 +15,7 @@ using TotalSmartCoding.Controllers.APIs.Sales;
 using TotalSmartCoding.Libraries;
 using TotalSmartCoding.Libraries.Helpers;
 using TotalSmartCoding.ViewModels.Sales;
-using TotalBase.Enums;
+using TotalSmartCoding.Views.Commons.Customers;
 
 
 namespace TotalSmartCoding.Views.Sales.SalesOrders
@@ -125,6 +127,27 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
                 this.salesOrderViewModel.ReceiverName = customerBase.Name;
                 this.salesOrderViewModel.ShippingAddress = customerBase.ShippingAddress;
             }
+        }
+
+        private void combexCustomerReceiverID_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.Enter)
+            {
+                CustomerPopup wizardDetail = new CustomerPopup(sender.Equals(this.combexCustomerID) ? this.combexCustomerID.DataSource as List<CustomerBase> : this.combexReceiverID.DataSource as List<CustomerBase>);
+                if (wizardDetail.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    if (sender.Equals(this.combexCustomerID))
+                        this.salesOrderViewModel.CustomerID = wizardDetail.CustomerBase.CustomerID;
+                    if (sender.Equals(this.combexReceiverID))
+                        this.salesOrderViewModel.ReceiverID = wizardDetail.CustomerBase.CustomerID;
+                }
+                wizardDetail.Dispose();
+            }
+        }
+
+        private void combexCustomerReceiverID_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            this.combexCustomerReceiverID_KeyDown(sender, new KeyEventArgs(Keys.Enter));
         }
 
         private void buttonOKESC_Click(object sender, EventArgs e)
