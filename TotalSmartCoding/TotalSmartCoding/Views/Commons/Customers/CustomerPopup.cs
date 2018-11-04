@@ -24,6 +24,7 @@ namespace TotalSmartCoding.Views.Commons.Customers
         private void CustomerPopup_Load(object sender, EventArgs e)
         {
             this.fastCustomerBases.SetObjects(this.customerBases);
+            this.ActiveControl = this.textexFilters.TextBox;
         }
 
         private void textexFilters_TextChanged(object sender, EventArgs e)
@@ -43,7 +44,7 @@ namespace TotalSmartCoding.Views.Commons.Customers
             this.textexFilters.Text = "";
         }
 
-        private void buttonOK_Click(object sender, EventArgs e)
+        private void buttonOKESC_Click(object sender, EventArgs e)
         {
             try
             {
@@ -67,7 +68,7 @@ namespace TotalSmartCoding.Views.Commons.Customers
 
         private void fastCustomerBases_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            this.buttonOK_Click(this.buttonOK, new EventArgs());
+            this.buttonOKESC_Click(this.buttonOK, new EventArgs());
         }
     }
 }

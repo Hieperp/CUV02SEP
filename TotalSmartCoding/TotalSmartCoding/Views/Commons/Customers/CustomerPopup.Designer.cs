@@ -95,6 +95,7 @@
             this.buttonESC.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.buttonESC.Size = new System.Drawing.Size(64, 42);
             this.buttonESC.Text = "Close";
+            this.buttonESC.Click += new System.EventHandler(this.buttonOKESC_Click);
             // 
             // buttonOK
             // 
@@ -105,7 +106,7 @@
             this.buttonOK.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.buttonOK.Size = new System.Drawing.Size(58, 42);
             this.buttonOK.Text = "Ok";
-            this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
+            this.buttonOK.Click += new System.EventHandler(this.buttonOKESC_Click);
             // 
             // panelBottomLeft
             // 

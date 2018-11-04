@@ -131,7 +131,7 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
 
         private void combexCustomerReceiverID_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Control && e.KeyCode == Keys.Enter)
+            if ((e.Control && e.KeyCode == Keys.Enter) || e.KeyCode == Keys.Insert)
             {
                 CustomerPopup wizardDetail = new CustomerPopup(sender.Equals(this.combexCustomerID) ? this.combexCustomerID.DataSource as List<CustomerBase> : this.combexReceiverID.DataSource as List<CustomerBase>);
                 if (wizardDetail.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -145,9 +145,19 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
             }
         }
 
+        private DateTime? lastClick;
         private void combexCustomerReceiverID_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            this.combexCustomerReceiverID_KeyDown(sender, new KeyEventArgs(Keys.Enter));
+            if (lastClick == null)
+                lastClick = DateTime.Now;
+            else
+            {
+                TimeSpan Current = DateTime.Now - (DateTime)lastClick; lastClick = DateTime.Now;
+                TimeSpan DblClickSpan = TimeSpan.FromMilliseconds(SystemInformation.DoubleClickTime);
+
+                if (Current.TotalMilliseconds <= DblClickSpan.TotalMilliseconds)
+                    this.combexCustomerReceiverID_KeyDown(sender, new KeyEventArgs(Keys.Insert));
+            }
         }
 
         private void buttonOKESC_Click(object sender, EventArgs e)

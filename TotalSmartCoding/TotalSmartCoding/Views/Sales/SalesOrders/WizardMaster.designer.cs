@@ -177,7 +177,7 @@
             this.combexCustomerID.Size = new System.Drawing.Size(466, 25);
             this.combexCustomerID.TabIndex = 2;
             this.combexCustomerID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.combexCustomerReceiverID_KeyDown);
-            this.combexCustomerID.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.combexCustomerReceiverID_MouseDoubleClick);
+            this.combexCustomerID.MouseClick += new System.Windows.Forms.MouseEventHandler(this.combexCustomerReceiverID_MouseDoubleClick);
             // 
             // label4
             // 
@@ -397,7 +397,7 @@
             this.combexReceiverID.Size = new System.Drawing.Size(466, 25);
             this.combexReceiverID.TabIndex = 4;
             this.combexReceiverID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.combexCustomerReceiverID_KeyDown);
-            this.combexReceiverID.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.combexCustomerReceiverID_MouseDoubleClick);
+            this.combexReceiverID.MouseClick += new System.Windows.Forms.MouseEventHandler(this.combexCustomerReceiverID_MouseDoubleClick);
             // 
             // label9
             // 
