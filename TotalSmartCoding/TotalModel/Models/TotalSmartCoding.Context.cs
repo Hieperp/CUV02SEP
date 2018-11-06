@@ -951,7 +951,7 @@ namespace TotalModel.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SearchCommodity>("SearchCommodities", commodityIDParameter, locationIDParameter, batchIDParameter, deliveryAdviceIDParameter, transferOrderIDParameter);
         }
     
-        public virtual ObjectResult<CustomerBase> GetCustomerBases(Nullable<bool> isCustomer, Nullable<bool> isReceiver)
+        public virtual ObjectResult<CustomerBase> GetCustomerBases(Nullable<bool> isCustomer, Nullable<bool> isReceiver, Nullable<int> parentID)
         {
             var isCustomerParameter = isCustomer.HasValue ?
                 new ObjectParameter("IsCustomer", isCustomer) :
@@ -961,7 +961,11 @@ namespace TotalModel.Models
                 new ObjectParameter("IsReceiver", isReceiver) :
                 new ObjectParameter("IsReceiver", typeof(bool));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CustomerBase>("GetCustomerBases", isCustomerParameter, isReceiverParameter);
+            var parentIDParameter = parentID.HasValue ?
+                new ObjectParameter("ParentID", parentID) :
+                new ObjectParameter("ParentID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CustomerBase>("GetCustomerBases", isCustomerParameter, isReceiverParameter, parentIDParameter);
         }
     
         public virtual ObjectResult<CustomerIndex> GetCustomerIndexes(Nullable<int> userID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate, Nullable<bool> isCustomers)

@@ -82,18 +82,40 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
         {
             string queryString;
 
-            queryString = " @IsCustomer bit, @IsReceiver bit " + "\r\n";
+            queryString = " @IsCustomer bit, @IsReceiver bit, @ParentID int " + "\r\n";
             queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
-            queryString = queryString + "       SELECT      CustomerID, Code, Name, ContactInfo, SalespersonID, CASE WHEN ShippingAddress <> '' THEN ShippingAddress ELSE BillingAddress END AS ShippingAddress " + "\r\n";
-            queryString = queryString + "       FROM        Customers " + "\r\n";
-            queryString = queryString + "       WHERE       (@IsCustomer = 1 AND IsCustomer = 1) OR (@IsReceiver = 1 AND IsReceiver = 1) " + "\r\n";
-
+            queryString = queryString + "       IF ((@IsCustomer = 1 AND @IsReceiver = 1) OR (@IsCustomer = 0 AND @IsReceiver = 0)) " + "\r\n";
+            queryString = queryString + "           " + this.GetCustomerBaseSQL(0, false) + "\r\n";
+            queryString = queryString + "       ELSE " + "\r\n";
+            queryString = queryString + "           BEGIN " + "\r\n";
+            queryString = queryString + "               IF (@IsCustomer = 1) " + "\r\n";
+            queryString = queryString + "                   " + this.GetCustomerBaseSQL(1, false) + "\r\n";
+            queryString = queryString + "               ELSE " + "\r\n";
+            queryString = queryString + "                   BEGIN " + "\r\n";
+            queryString = queryString + "                       IF (@ParentID IS NULL) " + "\r\n";
+            queryString = queryString + "                           " + this.GetCustomerBaseSQL(2, false) + "\r\n";
+            queryString = queryString + "                       ELSE " + "\r\n";
+            queryString = queryString + "                           " + this.GetCustomerBaseSQL(2, true) + "\r\n";
+            queryString = queryString + "                   END " + "\r\n";
+            queryString = queryString + "           END " + "\r\n";
             queryString = queryString + "    END " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("GetCustomerBases", queryString);
+        }
+
+        private string GetCustomerBaseSQL(int customerVSReceiver, bool byParentID)
+        { //customerVSReceiver: ALL, 1, 2
+            string queryString = "";
+
+            queryString = queryString + "       SELECT      CustomerID, Code, Name, ContactInfo, SalespersonID, CASE WHEN ShippingAddress <> '' THEN ShippingAddress ELSE BillingAddress END AS ShippingAddress " + "\r\n";
+            queryString = queryString + "       FROM        Customers " + "\r\n";
+            if (customerVSReceiver != 0)
+                queryString = queryString + "   WHERE       " + (customerVSReceiver == 1 ? "IsCustomer = 1" : ("IsReceiver = 1" + (byParentID ? " AND ParentID = @ParentID" : ""))) + "\r\n";
+
+            return queryString;
         }
 
         private void GetCustomerTrees()

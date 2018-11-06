@@ -37,9 +37,9 @@ namespace TotalDAL.Repositories.Commons
             return new ObjectParameter[] { baseParameters[0], baseParameters[1], baseParameters[2], new ObjectParameter("IsCustomers", (bool)(this.RepositoryBag["IsCustomers"] != null ? this.RepositoryBag["IsCustomers"] : 0)) };
         }
 
-        public IList<CustomerBase> GetCustomerBases(bool isCustomer, bool isReceiver)
+        public IList<CustomerBase> GetCustomerBases(bool isCustomer, bool isReceiver, int? parentID)
         {
-            return this.TotalSmartCodingEntities.GetCustomerBases(isCustomer, isReceiver).ToList();
+            return this.TotalSmartCodingEntities.GetCustomerBases(isCustomer, isReceiver, parentID).ToList();
         }
 
 

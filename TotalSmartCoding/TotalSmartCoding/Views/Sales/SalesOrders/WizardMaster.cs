@@ -52,13 +52,13 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
 
                 CustomerAPIs customerAPIs = new CustomerAPIs(CommonNinject.Kernel.Get<ICustomerAPIRepository>());
 
-                this.combexCustomerID.DataSource = customerAPIs.GetCustomerBases(true, false);
+                this.combexCustomerID.DataSource = customerAPIs.GetCustomerBases(true, false, null);
                 this.combexCustomerID.DisplayMember = CommonExpressions.PropertyName<CustomerBase>(p => p.Code);
                 this.combexCustomerID.ValueMember = CommonExpressions.PropertyName<CustomerBase>(p => p.CustomerID);
                 this.bindingCustomerID = this.combexCustomerID.DataBindings.Add("SelectedValue", this.salesOrderViewModel, CommonExpressions.PropertyName<SalesOrderViewModel>(p => p.CustomerID), true, DataSourceUpdateMode.OnPropertyChanged);
 
                 CustomerAPIs receiverAPIs = new CustomerAPIs(CommonNinject.Kernel.Get<ICustomerAPIRepository>());
-                this.combexReceiverID.DataSource = receiverAPIs.GetCustomerBases(false, true);
+                this.combexReceiverID.DataSource = receiverAPIs.GetCustomerBases(false, true, null);
                 this.combexReceiverID.DisplayMember = CommonExpressions.PropertyName<CustomerBase>(p => p.Code);
                 this.combexReceiverID.ValueMember = CommonExpressions.PropertyName<CustomerBase>(p => p.CustomerID);
                 this.bindingReceiverID = this.combexReceiverID.DataBindings.Add("SelectedValue", this.salesOrderViewModel, CommonExpressions.PropertyName<SalesOrderViewModel>(p => p.ReceiverID), true, DataSourceUpdateMode.OnPropertyChanged);
@@ -133,7 +133,17 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
         {
             if ((e.Control && e.KeyCode == Keys.Enter) || e.KeyCode == Keys.Insert)
             {
-                CustomerPopup wizardDetail = new CustomerPopup(sender.Equals(this.combexCustomerID) ? this.combexCustomerID.DataSource as List<CustomerBase> : this.combexReceiverID.DataSource as List<CustomerBase>);
+
+                List<CustomerBase> customerBases;
+                if (sender.Equals(this.combexCustomerID))
+                    customerBases = this.combexCustomerID.DataSource as List<CustomerBase>;
+                else
+                {
+                    CustomerAPIs receiverAPIs = new CustomerAPIs(CommonNinject.Kernel.Get<ICustomerAPIRepository>());
+                    customerBases = receiverAPIs.GetCustomerBases(false, true, this.salesOrderViewModel.CustomerID) as List<CustomerBase>;
+                }
+
+                CustomerPopup wizardDetail = new CustomerPopup(customerBases);
                 if (wizardDetail.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     if (sender.Equals(this.combexCustomerID))
@@ -146,7 +156,7 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
         }
 
         private DateTime? lastClick;
-        private void combexCustomerReceiverID_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void combexCustomerReceiverID_MouseClick(object sender, MouseEventArgs e)
         {
             if (lastClick == null)
                 lastClick = DateTime.Now;

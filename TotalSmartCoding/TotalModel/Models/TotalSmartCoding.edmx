@@ -2637,6 +2637,7 @@
         <Function Name="GetCustomerBases" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IsCustomer" Type="bit" Mode="In" />
           <Parameter Name="IsReceiver" Type="bit" Mode="In" />
+          <Parameter Name="ParentID" Type="int" Mode="In" />
         </Function>
         <Function Name="GetCustomerCategoryBases" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetCustomerCategoryIndexes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -4113,6 +4114,7 @@
           <FunctionImport Name="GetCustomerBases" ReturnType="Collection(TotalSmartCodingModel.CustomerBase)" >
             <Parameter Name="IsCustomer" Mode="In" Type="Boolean" />
             <Parameter Name="IsReceiver" Mode="In" Type="Boolean" />
+            <Parameter Name="ParentID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetCustomerIndexes" ReturnType="Collection(TotalSmartCodingModel.CustomerIndex)">
             <Parameter Name="UserID" Mode="In" Type="Int32" />
