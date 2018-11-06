@@ -282,7 +282,7 @@ namespace TotalSmartCoding.Views.Commons.Customers
         protected override void DoAfterLoad()
         {
             base.DoAfterLoad();
-            this.fastCustomerIndex.Sort(this.olvSalespersonName, SortOrder.Descending);
+            this.fastCustomerIndex.Sort(this.olvCustomerGroups, SortOrder.Descending);
         }
 
         private void textexParentCodeAndName_KeyDown(object sender, KeyEventArgs e)

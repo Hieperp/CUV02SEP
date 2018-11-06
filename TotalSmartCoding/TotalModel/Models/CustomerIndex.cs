@@ -24,5 +24,7 @@ namespace TotalModel.Models
         public int EmployeeID { get; set; }
         public string SalespersonName { get; set; }
         public bool InActive { get; set; }
+        public string CustomerGroup { get; set; }
+        public string ParentCode { get; set; }
     }
 }

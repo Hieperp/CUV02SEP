@@ -5750,6 +5750,8 @@
           <Property Type="Int32" Name="EmployeeID" Nullable="false" />
           <Property Type="String" Name="SalespersonName" Nullable="false" MaxLength="50" />
           <Property Type="Boolean" Name="InActive" Nullable="false" />
+          <Property Type="String" Name="CustomerGroup" Nullable="false" MaxLength="153" />
+          <Property Type="String" Name="ParentCode" Nullable="true" MaxLength="50" />
           </ComplexType>
         <EntityType Name="DeliveryAdviceDetail">
           <Key>
@@ -9729,6 +9731,8 @@
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="SalespersonName" ColumnName="SalespersonName" />
                 <ScalarProperty Name="InActive" ColumnName="InActive" />
+                <ScalarProperty Name="CustomerGroup" ColumnName="CustomerGroup" />
+                <ScalarProperty Name="ParentCode" ColumnName="ParentCode" />
                 </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

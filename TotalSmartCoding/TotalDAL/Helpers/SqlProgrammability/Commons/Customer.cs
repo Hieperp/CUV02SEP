@@ -40,10 +40,11 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
-            queryString = queryString + "       SELECT      Customers.CustomerID, Customers.Code AS CustomerCode, Customers.Name AS CustomerName, Customers.OfficialName AS CustomerOfficialName, Customers.ContactInfo, Customers.BillingAddress, EntireTerritories.TerritoryID, EntireTerritories.EntireName AS EntireTerritoryEntireName, Employees.EmployeeID, Employees.Name AS SalespersonName, Customers.InActive " + "\r\n";
+            queryString = queryString + "       SELECT      Customers.CustomerID, Customers.Code AS CustomerCode, Customers.Name AS CustomerName, Customers.OfficialName AS CustomerOfficialName, Customers.ContactInfo, Customers.BillingAddress, EntireTerritories.TerritoryID, EntireTerritories.EntireName AS EntireTerritoryEntireName, Employees.EmployeeID, Employees.Name AS SalespersonName, Parents.Code AS ParentCode, IIF(@IsCustomers = 1, Employees.Name, ISNULL(Parents.Code + ' [' + Parents.Name + ']', N'[NO PARENT]')) AS CustomerGroup, Customers.InActive " + "\r\n";
             queryString = queryString + "       FROM        Customers " + "\r\n";
             queryString = queryString + "                   INNER JOIN EntireTerritories ON (Customers.IsCustomer = @IsCustomers OR Customers.IsReceiver = ~@IsCustomers) AND Customers.TerritoryID = EntireTerritories.TerritoryID " + "\r\n";
             queryString = queryString + "                   INNER JOIN Employees ON Customers.SalespersonID = Employees.EmployeeID " + "\r\n";
+            queryString = queryString + "                   LEFT JOIN  Customers AS Parents ON Customers.ParentID = Parents.CustomerID " + "\r\n";
             queryString = queryString + "       WHERE      (SELECT TOP 1 OrganizationalUnitID FROM AccessControls WHERE UserID = @UserID AND NMVNTaskID = " + (int)TotalBase.Enums.GlobalEnums.NmvnTaskID.Customers + " AND AccessControls.AccessLevel > 0) > 0 " + "\r\n";
 
             queryString = queryString + "    END " + "\r\n";
