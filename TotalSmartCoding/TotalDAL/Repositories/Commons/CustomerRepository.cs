@@ -48,6 +48,11 @@ namespace TotalDAL.Repositories.Commons
             return this.TotalSmartCodingEntities.GetCustomerTrees().ToList();
         }
 
+
+        public int? CheckCustomerReceiverID(int? customerID, int? receiverID)
+        {
+            return this.TotalSmartCodingEntities.CheckCustomerReceiverID(customerID, receiverID).FirstOrDefault();
+        }
     }
 
 }

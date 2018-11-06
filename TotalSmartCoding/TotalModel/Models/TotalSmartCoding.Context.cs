@@ -3377,5 +3377,18 @@ namespace TotalModel.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateLegalNotice", legalNoticeParameter);
         }
+    
+        public virtual ObjectResult<Nullable<int>> CheckCustomerReceiverID(Nullable<int> customerID, Nullable<int> receiverID)
+        {
+            var customerIDParameter = customerID.HasValue ?
+                new ObjectParameter("CustomerID", customerID) :
+                new ObjectParameter("CustomerID", typeof(int));
+    
+            var receiverIDParameter = receiverID.HasValue ?
+                new ObjectParameter("ReceiverID", receiverID) :
+                new ObjectParameter("ReceiverID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("CheckCustomerReceiverID", customerIDParameter, receiverIDParameter);
+        }
     }
 }

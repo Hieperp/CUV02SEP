@@ -26,6 +26,8 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
 
             this.GetCustomerBases();
             this.GetCustomerTrees();
+
+            this.CheckCustomerReceiverID();
         }
 
 
@@ -140,5 +142,19 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             this.totalSmartCodingEntities.CreateStoredProcedure("GetCustomerTrees", queryString);
         }
 
+
+        private void CheckCustomerReceiverID()
+        {
+            string queryString;
+
+            queryString = " @CustomerID int, @ReceiverID int " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+            queryString = queryString + "    BEGIN " + "\r\n";
+            queryString = queryString + "       SELECT      MIN(CustomerID) AS CustomerID FROM Customers WHERE CustomerID = @ReceiverID AND ParentID = @CustomerID " + "\r\n";
+            queryString = queryString + "    END " + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("CheckCustomerReceiverID", queryString);
+        }
     }
 }

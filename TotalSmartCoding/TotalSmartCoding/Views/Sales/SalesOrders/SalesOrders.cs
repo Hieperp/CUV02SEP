@@ -42,6 +42,7 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
         private CustomTabControl customTabLeft;
         private CustomTabControl customTabCenter;
 
+        private CustomerAPIs customerAPIs;
         private SalesOrderAPIs salesOrderAPIs;
         private SalesOrderViewModel salesOrderViewModel { get; set; }
 
@@ -143,8 +144,8 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
             this.bindingRemarks = this.textexRemarks.DataBindings.Add("Text", this.salesOrderViewModel, CommonExpressions.PropertyName<SalesOrderDTO>(p => p.Remarks), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingCaption = this.labelCaption.DataBindings.Add("Text", this.salesOrderViewModel, CommonExpressions.PropertyName<SalesOrderDTO>(p => p.Caption));
 
-            CustomerAPIs customerAPIs = new CustomerAPIs(CommonNinject.Kernel.Get<ICustomerAPIRepository>());
-            this.combexCustomerID.DataSource = customerAPIs.GetCustomerBases();
+            this.customerAPIs = new CustomerAPIs(CommonNinject.Kernel.Get<ICustomerAPIRepository>());
+            this.combexCustomerID.DataSource = this.customerAPIs.GetCustomerBases();
             this.combexCustomerID.DisplayMember = CommonExpressions.PropertyName<CustomerBase>(p => p.Name);
             this.combexCustomerID.ValueMember = CommonExpressions.PropertyName<CustomerBase>(p => p.CustomerID);
             this.bindingCustomerID = this.combexCustomerID.DataBindings.Add("SelectedValue", this.salesOrderViewModel, CommonExpressions.PropertyName<SalesOrderViewModel>(p => p.CustomerID), true, DataSourceUpdateMode.OnPropertyChanged);
@@ -298,8 +299,14 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
 
         protected override DialogResult wizardMaster()
         {
+            DialogResult dialogResult;
             WizardMaster wizardMaster = new WizardMaster(this.salesOrderViewModel);
-            DialogResult dialogResult = wizardMaster.ShowDialog();
+
+            do
+            {
+                dialogResult = wizardMaster.ShowDialog();
+                if (dialogResult != DialogResult.OK) break;
+            } while (!(this.salesOrderViewModel.CustomerID > 0 && this.salesOrderViewModel.ReceiverID > 0 && this.customerAPIs.CheckCustomerReceiverID(this.salesOrderViewModel.CustomerID, this.salesOrderViewModel.ReceiverID) > 0));
 
             wizardMaster.Dispose();
             return dialogResult;

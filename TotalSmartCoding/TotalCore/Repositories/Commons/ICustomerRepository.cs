@@ -12,6 +12,8 @@ namespace TotalCore.Repositories.Commons
     {
         IList<CustomerBase> GetCustomerBases(bool isCustomer, bool isReceiver, int? parentID);
         IList<CustomerTree> GetCustomerTrees();
+
+        int? CheckCustomerReceiverID(int? customerID, int? receiverID);
     }
 }
 

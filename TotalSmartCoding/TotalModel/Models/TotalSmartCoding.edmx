@@ -2437,6 +2437,10 @@
           <Parameter Name="CartonIDs" Type="varchar" Mode="In" />
           <Parameter Name="EntryStatusID" Type="int" Mode="In" />
         </Function>
+        <Function Name="CheckCustomerReceiverID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CustomerID" Type="int" Mode="In" />
+          <Parameter Name="ReceiverID" Type="int" Mode="In" />
+        </Function>
         <Function Name="CommodityCategoryDeletable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="EntityID" Type="int" Mode="In" />
         </Function>
@@ -5328,6 +5332,10 @@
             <End Role="Customer" EntitySet="Customers" />
             <End Role="Customer1" EntitySet="Customers" />
           </AssociationSet>
+          <FunctionImport Name="CheckCustomerReceiverID" ReturnType="Collection(Int32)">
+            <Parameter Name="CustomerID" Mode="In" Type="Int32" />
+            <Parameter Name="ReceiverID" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
           <Property Type="Int32" Name="PickupID" Nullable="false" />
@@ -12121,6 +12129,7 @@
           <FunctionImportMapping FunctionImportName="UserGroupRename" FunctionName="TotalSmartCodingModel.Store.UserGroupRename" />
           <FunctionImportMapping FunctionImportName="GetLegalNotice" FunctionName="TotalSmartCodingModel.Store.GetLegalNotice" />
           <FunctionImportMapping FunctionImportName="UpdateLegalNotice" FunctionName="TotalSmartCodingModel.Store.UpdateLegalNotice" />
+          <FunctionImportMapping FunctionImportName="CheckCustomerReceiverID" FunctionName="TotalSmartCodingModel.Store.CheckCustomerReceiverID" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

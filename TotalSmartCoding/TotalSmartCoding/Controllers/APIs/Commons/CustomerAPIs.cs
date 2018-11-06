@@ -38,5 +38,10 @@ namespace TotalSmartCoding.Controllers.APIs.Commons
         {
             return this.customerAPIRepository.GetCustomerTrees();
         }
+
+        public int? CheckCustomerReceiverID(int? customerID, int? receiverID)
+        {
+            return this.customerAPIRepository.CheckCustomerReceiverID(customerID, receiverID);
+        }
     }
 }
