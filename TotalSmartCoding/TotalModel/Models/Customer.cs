@@ -27,6 +27,7 @@ namespace TotalModel.Models
             this.GoodsIssueDetails1 = new HashSet<GoodsIssueDetail>();
             this.GoodsIssues = new HashSet<GoodsIssue>();
             this.GoodsIssues1 = new HashSet<GoodsIssue>();
+            this.Customers1 = new HashSet<Customer>();
         }
     
         public int CustomerID { get; set; }
@@ -50,6 +51,7 @@ namespace TotalModel.Models
         public bool IsSupplier { get; set; }
         public bool IsReceiver { get; set; }
         public string Email { get; set; }
+        public Nullable<int> ParentID { get; set; }
     
         public virtual CustomerCategory CustomerCategory { get; set; }
         public virtual CustomerType CustomerType { get; set; }
@@ -75,5 +77,8 @@ namespace TotalModel.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GoodsIssue> GoodsIssues1 { get; set; }
         public virtual Employee Employee { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Customer> Customers1 { get; set; }
+        public virtual Customer Customer1 { get; set; }
     }
 }

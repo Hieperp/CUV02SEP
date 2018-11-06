@@ -102,6 +102,26 @@ namespace TotalDAL.Repositories
                 this.totalSmartCodingEntities.ColumnAdd("Configs", "StoredID", "int", "0", true);
             }
 
+
+            #region FINAL06NOV2018
+            if (!this.totalSmartCodingEntities.ColumnExists("Customers", "ParentID"))
+            {
+                this.totalSmartCodingEntities.ColumnAdd("Customers", "ParentID", "int", null, false);
+
+                this.ExecuteStoreCommand(@"ALTER TABLE [dbo].[Customers]  WITH CHECK ADD  CONSTRAINT [FK_Customers_Customers] FOREIGN KEY([ParentID])
+                                            REFERENCES [dbo].[Customers] ([CustomerID])                                      
+                                            ", new ObjectParameter[] { });
+
+                this.ExecuteStoreCommand(@"ALTER TABLE [dbo].[Customers] CHECK CONSTRAINT [FK_Customers_Customers]", new ObjectParameter[] { });
+
+
+                #region UPDATE ParentID
+
+                #endregion UPDATE ParentID
+            }
+            #endregion FINAL06NOV2018
+
+
             #region FINAL 29OCT2018
             this.totalSmartCodingEntities.ColumnAdd("Configs", "LegalNotice", "nvarchar(3999)", "", false);
             #endregion FINAL 29OCT2018
