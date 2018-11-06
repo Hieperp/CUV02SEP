@@ -305,8 +305,11 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
             do
             {
                 dialogResult = wizardMaster.ShowDialog();
-                if (dialogResult != DialogResult.OK) break;
-            } while (!(this.salesOrderViewModel.CustomerID > 0 && this.salesOrderViewModel.ReceiverID > 0 && this.customerAPIs.CheckCustomerReceiverID(this.salesOrderViewModel.CustomerID, this.salesOrderViewModel.ReceiverID) > 0));
+                if (dialogResult != DialogResult.OK || this.customerAPIs.CheckCustomerReceiverID(this.salesOrderViewModel.CustomerID, this.salesOrderViewModel.ReceiverID) > 0)
+                    break;
+                else
+                    CustomMsgBox.Show(this, "Vui lòng chọn đúng receiver.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            } while (true);
 
             wizardMaster.Dispose();
             return dialogResult;

@@ -116,7 +116,7 @@
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75F));
-            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 17F));
+            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 18F));
             this.layoutTop.Controls.Add(this.combexCustomerID, 3, 2);
             this.layoutTop.Controls.Add(this.label4, 2, 6);
             this.layoutTop.Controls.Add(this.label5, 2, 2);
@@ -374,7 +374,7 @@
             // 
             this.pictureBox2.Image = global::TotalSmartCoding.Properties.Resources.Sign_Order_48;
             this.pictureBox2.Location = new System.Drawing.Point(24, 24);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox2.Name = "pictureBox2";
             this.layoutTop.SetRowSpan(this.pictureBox2, 6);
             this.pictureBox2.Size = new System.Drawing.Size(48, 48);
@@ -470,13 +470,12 @@
             this.Controls.Add(this.layoutTop);
             this.Controls.Add(this.toolStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "WizardMaster";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Create Wizard [New Sales Order]";
-            this.Load += new System.EventHandler(this.WizardMaster_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderMaster)).EndInit();

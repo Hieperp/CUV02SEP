@@ -41,13 +41,11 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
         {
             InitializeComponent();
 
-            this.salesOrderViewModel = salesOrderViewModel;
-        }
-
-        private void WizardMaster_Load(object sender, EventArgs e)
-        {
             try
             {
+                this.salesOrderViewModel = salesOrderViewModel;
+
+
                 this.salesOrderViewModel.PropertyChanged += salesOrderDetailDTO_PropertyChanged;
 
                 CustomerAPIs customerAPIs = new CustomerAPIs(CommonNinject.Kernel.Get<ICustomerAPIRepository>());
