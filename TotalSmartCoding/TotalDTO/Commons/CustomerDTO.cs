@@ -137,6 +137,8 @@ namespace TotalDTO.Commons
 
     public class CustomerPrimitiveDTO : CustomerBaseDTO, IPrimitiveEntity, IPrimitiveDTO
     {
+        public CustomerPrimitiveDTO() { this.isCustomer = true; }
+
         public override GlobalEnums.NmvnTaskID NMVNTaskID { get { return GlobalEnums.NmvnTaskID.Customers; } }
         public override bool NoApprovable { get { return true; } }
 
@@ -176,12 +178,49 @@ namespace TotalDTO.Commons
             set { ApplyPropertyChange<CustomerPrimitiveDTO, string>(ref this.attentionName, o => o.AttentionName, value); }
         }
 
+        private Nullable<int> parentID;
+        [DefaultValue(null)]
+        public Nullable<int> ParentID
+        {
+            get { return this.parentID; }
+            set { ApplyPropertyChange<CustomerPrimitiveDTO, Nullable<int>>(ref this.parentID, o => o.ParentID, value); }
+        }
+
+        private string parentCode;
+        [DefaultValue(null)]
+        public string ParentCode
+        {
+            get { return this.parentCode; }
+            set { ApplyPropertyChange<CustomerPrimitiveDTO, string>(ref this.parentCode, o => o.ParentCode, value); this.NotifyPropertyChanged("ParentCodeAndName"); }
+        }
+
+        private string parentName;
+        [DefaultValue(null)]
+        public string ParentName
+        {
+            get { return this.parentName; }
+            set { ApplyPropertyChange<CustomerPrimitiveDTO, string>(ref this.parentName, o => o.ParentName, value); this.NotifyPropertyChanged("ParentCodeAndName"); }
+        }
+
+        public string ParentCodeAndName
+        {
+            get { return this.ParentCode + (!string.IsNullOrEmpty(this.ParentCode) ? "  [" + this.ParentName + "]" : ""); }
+        }
+
+        private string parentBillingAddress;
+        [DefaultValue(null)]
+        public string ParentBillingAddress
+        {
+            get { return this.parentBillingAddress; }
+            set { ApplyPropertyChange<CustomerPrimitiveDTO, string>(ref this.parentBillingAddress, o => o.ParentBillingAddress, value); }
+        }
+
         private bool isCustomer;
         [DefaultValue(false)]
         public bool IsCustomer
         {
             get { return this.isCustomer; }
-            set { ApplyPropertyChange<CustomerPrimitiveDTO, bool>(ref this.isCustomer, o => o.IsCustomer, value); }
+            set { ApplyPropertyChange<CustomerPrimitiveDTO, bool>(ref this.isCustomer, o => o.IsCustomer, value); this.isReceiver = !this.IsCustomer; this.NotifyPropertyChanged("IsReceiver"); }
         }
 
         private bool isReceiver;
@@ -189,7 +228,7 @@ namespace TotalDTO.Commons
         public bool IsReceiver
         {
             get { return this.isReceiver; }
-            set { ApplyPropertyChange<CustomerPrimitiveDTO, bool>(ref this.isReceiver, o => o.IsReceiver, value); }
+            set { ApplyPropertyChange<CustomerPrimitiveDTO, bool>(ref this.isReceiver, o => o.IsReceiver, value); this.isCustomer = !this.IsReceiver; this.NotifyPropertyChanged("IsCustomer"); }
         }
 
         public bool IsSupplier { get { return false; } }
@@ -209,6 +248,8 @@ namespace TotalDTO.Commons
             validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<CustomerPrimitiveDTO>(p => p.TerritoryID), "Vui lòng chọn địa bàn.", delegate { return (this.TerritoryID != null && this.TerritoryID > 0); }));
             validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<CustomerPrimitiveDTO>(p => p.SalespersonID), "Vui lòng chọn nhân viên phụ trách khách hàng.", delegate { return (this.SalespersonID != null && this.SalespersonID > 0); }));
             validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<CustomerPrimitiveDTO>(p => p.IsReceiver), "Vui lòng chọn 'Is customer' hoặc 'Is receiver'.", delegate { return (this.IsCustomer || this.IsReceiver); }));
+
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<CustomerPrimitiveDTO>(p => p.ParentCodeAndName), "Vui lòng double click để chọn parent customer.", delegate { return (this.IsCustomer || (this.IsReceiver && this.ParentID != null && this.ParentID > 0)); }));
             return validationRules;
 
         }

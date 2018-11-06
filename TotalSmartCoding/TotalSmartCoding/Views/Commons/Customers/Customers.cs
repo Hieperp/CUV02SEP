@@ -115,6 +115,9 @@ namespace TotalSmartCoding.Views.Commons.Customers
         Binding bindingEmail;
         Binding bindingAttentionName;
 
+        Binding bindingParentCodeAndName;
+        Binding bindingParentBillingAddress;
+
         Binding bindingBillingAddress;
         Binding bindingShippingAddress;
         Binding bindingRemarks;
@@ -143,6 +146,9 @@ namespace TotalSmartCoding.Views.Commons.Customers
             this.bindingFacsimile = this.textexFacsimile.DataBindings.Add("Text", this.customerViewModel, CommonExpressions.PropertyName<CustomerDTO>(p => p.Facsimile), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingEmail = this.textexEmail.DataBindings.Add("Text", this.customerViewModel, CommonExpressions.PropertyName<CustomerDTO>(p => p.Email), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingAttentionName = this.textexAttentionName.DataBindings.Add("Text", this.customerViewModel, CommonExpressions.PropertyName<CustomerDTO>(p => p.AttentionName), true, DataSourceUpdateMode.OnPropertyChanged);
+
+            this.bindingParentCodeAndName = this.textexParentCodeAndName.DataBindings.Add("Text", this.customerViewModel, CommonExpressions.PropertyName<CustomerDTO>(p => p.ParentCodeAndName), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingParentBillingAddress = this.textexParentBillingAddress.DataBindings.Add("Text", this.customerViewModel, CommonExpressions.PropertyName<CustomerDTO>(p => p.ParentBillingAddress), true, DataSourceUpdateMode.OnPropertyChanged);
 
             this.bindingBillingAddress = this.textexBillingAddress.DataBindings.Add("Text", this.customerViewModel, CommonExpressions.PropertyName<CustomerDTO>(p => p.BillingAddress), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingShippingAddress = this.textexShippingAddress.DataBindings.Add("Text", this.customerViewModel, CommonExpressions.PropertyName<CustomerDTO>(p => p.ShippingAddress), true, DataSourceUpdateMode.OnPropertyChanged);
@@ -193,6 +199,9 @@ namespace TotalSmartCoding.Views.Commons.Customers
             this.bindingEmail.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingAttentionName.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
 
+            this.bindingParentCodeAndName.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.bindingParentBillingAddress.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+
             this.bindingBillingAddress.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingShippingAddress.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingRemarks.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
@@ -211,6 +220,24 @@ namespace TotalSmartCoding.Views.Commons.Customers
             this.fastCustomerIndex.ShowGroups = true;
             this.olvInActive.Renderer = new MappedImageRenderer(new Object[] { false, Resources.Placeholder16 });
             this.naviGroupDetails.ExpandedHeight = this.naviGroupDetails.Size.Height;
+        }
+
+        protected override void CommonControl_BindingComplete(object sender, BindingCompleteEventArgs e)
+        {
+            base.CommonControl_BindingComplete(sender, e);
+
+            if (sender.Equals(this.bindingIsCustomer) || sender.Equals(this.bindingIsReceiver))
+            {
+                this.labelShippingAddress.Visible = this.customerViewModel.IsCustomer;
+                this.textexShippingAddress.Visible = this.customerViewModel.IsCustomer;
+                this.labelRemarks.Visible = this.customerViewModel.IsCustomer;
+                this.textexRemarks.Visible = this.customerViewModel.IsCustomer;
+
+                this.labelParentCodeAndName.Visible = this.customerViewModel.IsReceiver;
+                this.textexParentCodeAndName.Visible = this.customerViewModel.IsReceiver;
+                this.labelParentAddress.Visible = this.customerViewModel.IsReceiver;
+                this.textexParentBillingAddress.Visible = this.customerViewModel.IsReceiver;
+            }
         }
 
         private void fastCustomerIndex_AboutToCreateGroups(object sender, CreateGroupsEventArgs e)

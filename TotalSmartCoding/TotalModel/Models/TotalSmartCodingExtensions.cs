@@ -790,6 +790,7 @@ namespace TotalModel.Models
         public System.DateTime CreatedDate { get; set; }
         public System.DateTime EditedDate { get; set; }
 
+        public virtual Customer Parent { get { return this.Customer1; } }
     }
 
     public partial class CommodityCategoryIndex : IBaseIndex

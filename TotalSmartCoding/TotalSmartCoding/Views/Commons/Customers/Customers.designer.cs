@@ -50,6 +50,10 @@
             this.naviGroupDetails = new Guifreaks.Navisuite.NaviGroup(this.components);
             this.panelCenter = new System.Windows.Forms.Panel();
             this.layoutTop = new System.Windows.Forms.TableLayoutPanel();
+            this.labelParentCodeAndName = new System.Windows.Forms.Label();
+            this.labelParentAddress = new System.Windows.Forms.Label();
+            this.textexParentBillingAddress = new CustomControls.TextexBox();
+            this.textexParentCodeAndName = new CustomControls.TextexBox();
             this.checkIsReceiver = new System.Windows.Forms.CheckBox();
             this.checkIsCustomer = new System.Windows.Forms.CheckBox();
             this.textexOfficialName = new CustomControls.TextexBox();
@@ -71,8 +75,8 @@
             this.textexShippingAddress = new CustomControls.TextexBox();
             this.textexRemarks = new CustomControls.TextexBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
+            this.labelShippingAddress = new System.Windows.Forms.Label();
+            this.labelRemarks = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.labelCaption = new System.Windows.Forms.Label();
             this.panelLeft = new System.Windows.Forms.Panel();
@@ -361,6 +365,10 @@
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+            this.layoutTop.Controls.Add(this.labelParentCodeAndName, 0, 11);
+            this.layoutTop.Controls.Add(this.labelParentAddress, 0, 12);
+            this.layoutTop.Controls.Add(this.textexParentBillingAddress, 1, 12);
+            this.layoutTop.Controls.Add(this.textexParentCodeAndName, 1, 11);
             this.layoutTop.Controls.Add(this.checkIsReceiver, 4, 2);
             this.layoutTop.Controls.Add(this.checkIsCustomer, 4, 1);
             this.layoutTop.Controls.Add(this.textexOfficialName, 1, 2);
@@ -382,8 +390,8 @@
             this.layoutTop.Controls.Add(this.textexShippingAddress, 1, 9);
             this.layoutTop.Controls.Add(this.textexRemarks, 1, 10);
             this.layoutTop.Controls.Add(this.label10, 0, 8);
-            this.layoutTop.Controls.Add(this.label11, 0, 9);
-            this.layoutTop.Controls.Add(this.label12, 0, 10);
+            this.layoutTop.Controls.Add(this.labelShippingAddress, 0, 9);
+            this.layoutTop.Controls.Add(this.labelRemarks, 0, 10);
             this.layoutTop.Controls.Add(this.pictureBox2, 3, 4);
             this.layoutTop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutTop.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -391,7 +399,7 @@
             this.layoutTop.Margin = new System.Windows.Forms.Padding(0);
             this.layoutTop.Name = "layoutTop";
             this.layoutTop.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
-            this.layoutTop.RowCount = 12;
+            this.layoutTop.RowCount = 14;
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 15F));
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -403,9 +411,57 @@
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1F));
             this.layoutTop.Size = new System.Drawing.Size(972, 328);
             this.layoutTop.TabIndex = 8;
+            // 
+            // labelParentCodeAndName
+            // 
+            this.labelParentCodeAndName.AutoSize = true;
+            this.labelParentCodeAndName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelParentCodeAndName.Location = new System.Drawing.Point(3, 262);
+            this.labelParentCodeAndName.Margin = new System.Windows.Forms.Padding(3, 0, 1, 0);
+            this.labelParentCodeAndName.Name = "labelParentCodeAndName";
+            this.labelParentCodeAndName.Size = new System.Drawing.Size(134, 28);
+            this.labelParentCodeAndName.TabIndex = 112;
+            this.labelParentCodeAndName.Text = "Parent Customer";
+            this.labelParentCodeAndName.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // labelParentAddress
+            // 
+            this.labelParentAddress.AutoSize = true;
+            this.labelParentAddress.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelParentAddress.Location = new System.Drawing.Point(3, 290);
+            this.labelParentAddress.Margin = new System.Windows.Forms.Padding(3, 0, 1, 0);
+            this.labelParentAddress.Name = "labelParentAddress";
+            this.labelParentAddress.Size = new System.Drawing.Size(134, 28);
+            this.labelParentAddress.TabIndex = 111;
+            this.labelParentAddress.Text = "Parent Address";
+            this.labelParentAddress.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // textexParentBillingAddress
+            // 
+            this.layoutTop.SetColumnSpan(this.textexParentBillingAddress, 4);
+            this.textexParentBillingAddress.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textexParentBillingAddress.Editable = false;
+            this.textexParentBillingAddress.Location = new System.Drawing.Point(141, 292);
+            this.textexParentBillingAddress.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
+            this.textexParentBillingAddress.Name = "textexParentBillingAddress";
+            this.textexParentBillingAddress.Size = new System.Drawing.Size(803, 24);
+            this.textexParentBillingAddress.TabIndex = 110;
+            // 
+            // textexParentCodeAndName
+            // 
+            this.layoutTop.SetColumnSpan(this.textexParentCodeAndName, 4);
+            this.textexParentCodeAndName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textexParentCodeAndName.Editable = false;
+            this.textexParentCodeAndName.Location = new System.Drawing.Point(141, 264);
+            this.textexParentCodeAndName.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
+            this.textexParentCodeAndName.Name = "textexParentCodeAndName";
+            this.textexParentCodeAndName.Size = new System.Drawing.Size(803, 24);
+            this.textexParentCodeAndName.TabIndex = 109;
             // 
             // checkIsReceiver
             // 
@@ -636,29 +692,29 @@
             this.label10.Text = "Billing Address";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label11
+            // labelShippingAddress
             // 
-            this.label11.AutoSize = true;
-            this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label11.Location = new System.Drawing.Point(3, 206);
-            this.label11.Margin = new System.Windows.Forms.Padding(3, 0, 1, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(134, 28);
-            this.label11.TabIndex = 93;
-            this.label11.Text = "Shipping Address";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.labelShippingAddress.AutoSize = true;
+            this.labelShippingAddress.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelShippingAddress.Location = new System.Drawing.Point(3, 206);
+            this.labelShippingAddress.Margin = new System.Windows.Forms.Padding(3, 0, 1, 0);
+            this.labelShippingAddress.Name = "labelShippingAddress";
+            this.labelShippingAddress.Size = new System.Drawing.Size(134, 28);
+            this.labelShippingAddress.TabIndex = 93;
+            this.labelShippingAddress.Text = "Shipping Address";
+            this.labelShippingAddress.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label12
+            // labelRemarks
             // 
-            this.label12.AutoSize = true;
-            this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label12.Location = new System.Drawing.Point(3, 234);
-            this.label12.Margin = new System.Windows.Forms.Padding(3, 0, 1, 0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(134, 28);
-            this.label12.TabIndex = 94;
-            this.label12.Text = "Remarks";
-            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.labelRemarks.AutoSize = true;
+            this.labelRemarks.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelRemarks.Location = new System.Drawing.Point(3, 234);
+            this.labelRemarks.Margin = new System.Windows.Forms.Padding(3, 0, 1, 0);
+            this.labelRemarks.Name = "labelRemarks";
+            this.labelRemarks.Size = new System.Drawing.Size(134, 28);
+            this.labelRemarks.TabIndex = 94;
+            this.labelRemarks.Text = "Remarks";
+            this.labelRemarks.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // pictureBox2
             // 
@@ -890,8 +946,8 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label labelShippingAddress;
+        private System.Windows.Forms.Label labelRemarks;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label label13;
         private CustomControls.TextexBox textexCode;
@@ -905,6 +961,10 @@
         private System.Windows.Forms.ToolStripComboBox comboIsCustomers;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.Label labelParentCodeAndName;
+        private System.Windows.Forms.Label labelParentAddress;
+        private CustomControls.TextexBox textexParentBillingAddress;
+        private CustomControls.TextexBox textexParentCodeAndName;
 
     }
 }
