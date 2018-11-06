@@ -284,5 +284,29 @@ namespace TotalSmartCoding.Views.Commons.Customers
             base.DoAfterLoad();
             this.fastCustomerIndex.Sort(this.olvSalespersonName, SortOrder.Descending);
         }
+
+        private void textexParentCodeAndName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((e.Control && e.KeyCode == Keys.Enter) || e.KeyCode == Keys.Insert)
+            {
+                CustomerAPIs customerAPIs = new CustomerAPIs(CommonNinject.Kernel.Get<ICustomerAPIRepository>());
+                List<CustomerBase> customerBases = customerAPIs.GetCustomerBases(true, false, null) as List<CustomerBase>;
+
+                CustomerPopup wizardDetail = new CustomerPopup(customerBases);
+                if (wizardDetail.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    this.customerViewModel.ParentID = wizardDetail.CustomerBase.CustomerID;
+                    this.customerViewModel.ParentCode = wizardDetail.CustomerBase.Code;
+                    this.customerViewModel.ParentName = wizardDetail.CustomerBase.Name;
+                    this.customerViewModel.ParentBillingAddress = wizardDetail.CustomerBase.ShippingAddress;
+                }
+                wizardDetail.Dispose();
+            }
+        }
+
+        private void textexParentCodeAndName_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            this.textexParentCodeAndName_KeyDown(sender, new KeyEventArgs(Keys.Insert));
+        }
     }
 }

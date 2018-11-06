@@ -462,6 +462,8 @@
             this.textexParentCodeAndName.Name = "textexParentCodeAndName";
             this.textexParentCodeAndName.Size = new System.Drawing.Size(803, 24);
             this.textexParentCodeAndName.TabIndex = 109;
+            this.textexParentCodeAndName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textexParentCodeAndName_KeyDown);
+            this.textexParentCodeAndName.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.textexParentCodeAndName_MouseDoubleClick);
             // 
             // checkIsReceiver
             // 
