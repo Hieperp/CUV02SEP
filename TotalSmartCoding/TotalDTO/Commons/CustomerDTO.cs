@@ -236,6 +236,14 @@ namespace TotalDTO.Commons
 
         public override string LogRemarks { get { return this.Code != null && this.Code != "" ? "Code: " + this.Code : null; } }
 
+
+        public override void PerformPresaveRule()
+        {
+            base.PerformPresaveRule();
+
+            if (this.IsCustomer) this.parentID = null;
+        }
+
         protected override List<ValidationRule> CreateRules()
         {
             List<ValidationRule> validationRules = base.CreateRules();
