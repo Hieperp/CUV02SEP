@@ -1497,6 +1497,12 @@ namespace TotalDAL.Repositories
         {
             //return;
 
+            Helpers.SqlProgrammability.Inventories.Inventory inventory = new Helpers.SqlProgrammability.Inventories.Inventory(totalSmartCodingEntities);
+            inventory.RestoreProcedure();
+
+            return;
+            return;
+
             Helpers.SqlProgrammability.Commons.Employee employee = new Helpers.SqlProgrammability.Commons.Employee(totalSmartCodingEntities);
             employee.RestoreProcedure();
 
@@ -1606,10 +1612,7 @@ namespace TotalDAL.Repositories
 
 
 
-            //return;
 
-            Helpers.SqlProgrammability.Inventories.Inventory inventory = new Helpers.SqlProgrammability.Inventories.Inventory(totalSmartCodingEntities);
-            inventory.RestoreProcedure();
 
             //return;
             Helpers.SqlProgrammability.Generals.Report report = new Helpers.SqlProgrammability.Generals.Report(totalSmartCodingEntities);
