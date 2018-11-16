@@ -67,7 +67,7 @@ namespace TotalDTO.Sales
 
 
         private int quantityVersusVolume;
-        [DefaultValue(0)]
+        [DefaultValue(1)]
         public int QuantityVersusVolume
         {
             get { return this.quantityVersusVolume; }
