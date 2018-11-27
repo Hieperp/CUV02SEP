@@ -88,6 +88,14 @@ namespace TotalDTO.Sales
             set { ApplyPropertyChange<SalesOrderDTO, string>(ref this.receiverName, o => o.ReceiverName, value, false); }
         }
 
+        private string receiverTemp;
+        [DefaultValue(null)]
+        public string ReceiverTemp
+        {
+            get { return this.receiverTemp; }
+            set { ApplyPropertyChange<SalesOrderDTO, string>(ref this.receiverTemp, o => o.ReceiverTemp, value, false); }
+        }
+
         private string contactInfo;
         [DefaultValue(null)]
         public string ContactInfo
@@ -138,6 +146,9 @@ namespace TotalDTO.Sales
             List<ValidationRule> validationRules = base.CreateRules();
             validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<SalesOrderPrimitiveDTO>(p => p.CustomerID), "Vui lòng chọn khách hàng.", delegate { return (this.CustomerID != null && this.CustomerID > 0); }));
             validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<SalesOrderPrimitiveDTO>(p => p.ReceiverID), "Vui lòng chọn đơn vị nhận hàng.", delegate { return (this.ReceiverID != null && this.ReceiverID > 0); }));
+
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<SalesOrderPrimitiveDTO>(p => p.ReceiverTemp), "Vui lòng chọn đơn vị nhận hàng.", delegate { return (this.ReceiverID != null && this.ReceiverID > 0); }));
+
             validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<SalesOrderPrimitiveDTO>(p => p.SalespersonID), "Vui lòng chọn nhân viên phụ trách khách hàng.", delegate { return (this.SalespersonID != null && this.SalespersonID > 0); }));
             validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<SalesOrderPrimitiveDTO>(p => p.TeamID), "Vui lòng kiểm tra team của nhân viên tiếp thị.", delegate { return (this.TeamID != null && this.TeamID > 0); }));
 

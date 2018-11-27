@@ -34,6 +34,7 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
         Binding bindingCustomerName;
         Binding bindingContactInfo;
         Binding bindingReceiverName;
+        Binding bindingReceiverTemp;
         Binding bindingShippingAddress;
         Binding bindingRemarks;
 
@@ -74,6 +75,7 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
                 this.bindingCustomerName = this.textexCustomerName.DataBindings.Add("Text", this.salesOrderViewModel, CommonExpressions.PropertyName<SalesOrderViewModel>(p => p.CustomerName), true, DataSourceUpdateMode.OnPropertyChanged);
                 this.bindingContactInfo = this.textexContactInfo.DataBindings.Add("Text", this.salesOrderViewModel, CommonExpressions.PropertyName<SalesOrderViewModel>(p => p.ContactInfo), true, DataSourceUpdateMode.OnPropertyChanged);
                 this.bindingReceiverName = this.textexReceiverName.DataBindings.Add("Text", this.salesOrderViewModel, CommonExpressions.PropertyName<SalesOrderViewModel>(p => p.ReceiverName), true, DataSourceUpdateMode.OnPropertyChanged);
+                this.bindingReceiverTemp = this.textexReceiverTemp.DataBindings.Add("Text", this.salesOrderViewModel, CommonExpressions.PropertyName<SalesOrderViewModel>(p => p.ReceiverTemp), true, DataSourceUpdateMode.OnPropertyChanged);
                 this.bindingShippingAddress = this.textexShippingAddress.DataBindings.Add("Text", this.salesOrderViewModel, CommonExpressions.PropertyName<SalesOrderViewModel>(p => p.ShippingAddress), true, DataSourceUpdateMode.OnPropertyChanged);
                 this.bindingRemarks = this.textexRemarks.DataBindings.Add("Text", this.salesOrderViewModel, CommonExpressions.PropertyName<SalesOrderViewModel>(p => p.Remarks), true, DataSourceUpdateMode.OnPropertyChanged);
 
@@ -87,6 +89,7 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
                 this.bindingCustomerName.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
                 this.bindingContactInfo.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
                 this.bindingReceiverName.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+                this.bindingReceiverTemp.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
                 this.bindingShippingAddress.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
                 this.bindingRemarks.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
 
@@ -166,6 +169,32 @@ namespace TotalSmartCoding.Views.Sales.SalesOrders
                 if (Current.TotalMilliseconds <= DblClickSpan.TotalMilliseconds)
                     this.combexCustomerReceiverID_KeyDown(sender, new KeyEventArgs(Keys.Insert));
             }
+        }
+
+        private void textexReceiverTemp_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                this.salesOrderViewModel.ReceiverTemp = this.textexReceiverTemp.Text;
+                this.combexReceiverID.Text = this.textexReceiverTemp.Text;
+                //this.textexReceiverTemp.Text = this.combexReceiverID.Text;
+            }
+            catch (Exception exception)
+            {
+                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+            }
+        }
+
+        private void textexReceiverTemp_DoubleClick(object sender, EventArgs e)
+        {
+            this.combexCustomerReceiverID_KeyDown(this.combexReceiverID, new KeyEventArgs(Keys.Insert));
+            this.textexReceiverTemp.Text = this.combexReceiverID.Text;
+        }
+
+        private void textexReceiverTemp_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((e.Control && e.KeyCode == Keys.Enter) || e.KeyCode == Keys.Insert)
+                this.textexReceiverTemp_DoubleClick(sender, new EventArgs());
         }
 
         private void buttonOKESC_Click(object sender, EventArgs e)
