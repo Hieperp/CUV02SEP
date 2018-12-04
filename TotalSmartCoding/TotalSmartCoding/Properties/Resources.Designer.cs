@@ -2593,6 +2593,46 @@ namespace TotalSmartCoding.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap f_cross_icon {
+            get {
+                object obj = ResourceManager.GetObject("f-cross-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap f_key_icon_24 {
+            get {
+                object obj = ResourceManager.GetObject("f-key-icon-24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap f_key_icon_48 {
+            get {
+                object obj = ResourceManager.GetObject("f-key-icon-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap f_User_icon_24 {
+            get {
+                object obj = ResourceManager.GetObject("f-User-icon-24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Facsimile_Fax {
             get {
                 object obj = ResourceManager.GetObject("Facsimile-Fax", resourceCulture);
@@ -5926,6 +5966,16 @@ namespace TotalSmartCoding.Properties {
         internal static System.Drawing.Bitmap UpgradeReport_Plus {
             get {
                 object obj = ResourceManager.GetObject("UpgradeReport_Plus", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap User_Control_Update {
+            get {
+                object obj = ResourceManager.GetObject("User-Control-Update", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

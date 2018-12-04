@@ -31,18 +31,18 @@
             this.panelBottom = new System.Windows.Forms.Panel();
             this.panelBottomRight = new System.Windows.Forms.Panel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.buttonExit = new System.Windows.Forms.ToolStripButton();
+            this.buttonUpdate = new System.Windows.Forms.ToolStripButton();
             this.panelBottomLeft = new System.Windows.Forms.Panel();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.buttonApplicationRoleIgnored = new System.Windows.Forms.ToolStripButton();
+            this.buttonApplicationRoleRequired = new System.Windows.Forms.ToolStripButton();
             this.layoutTop = new System.Windows.Forms.TableLayoutPanel();
             this.labelApplicationRoleName = new System.Windows.Forms.Label();
             this.labelApplicationRolePassword = new System.Windows.Forms.Label();
+            this.pictureBoxIcon = new System.Windows.Forms.PictureBox();
             this.textexApplicationRoleName = new CustomControls.TextexBox();
             this.textexApplicationRolePassword = new CustomControls.TextexBox();
-            this.pictureBoxIcon = new System.Windows.Forms.PictureBox();
-            this.buttonExit = new System.Windows.Forms.ToolStripButton();
-            this.buttonUpdate = new System.Windows.Forms.ToolStripButton();
-            this.buttonApplicationRoleIgnored = new System.Windows.Forms.ToolStripButton();
-            this.buttonApplicationRoleRequired = new System.Windows.Forms.ToolStripButton();
             this.panelBottom.SuspendLayout();
             this.panelBottomRight.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -88,6 +88,29 @@
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
+            // buttonExit
+            // 
+            this.buttonExit.Image = global::TotalSmartCoding.Properties.Resources.LogoutApp;
+            this.buttonExit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonExit.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonExit.Name = "buttonExit";
+            this.buttonExit.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.buttonExit.Size = new System.Drawing.Size(61, 39);
+            this.buttonExit.Text = "Exit";
+            this.buttonExit.Click += new System.EventHandler(this.button_Click);
+            // 
+            // buttonUpdate
+            // 
+            this.buttonUpdate.Enabled = false;
+            this.buttonUpdate.Image = global::TotalSmartCoding.Properties.Resources.LoginApplicationRole;
+            this.buttonUpdate.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonUpdate.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonUpdate.Name = "buttonUpdate";
+            this.buttonUpdate.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.buttonUpdate.Size = new System.Drawing.Size(81, 39);
+            this.buttonUpdate.Text = "Update";
+            this.buttonUpdate.Click += new System.EventHandler(this.button_Click);
+            // 
             // panelBottomLeft
             // 
             this.panelBottomLeft.Controls.Add(this.toolStrip2);
@@ -112,6 +135,27 @@
             this.toolStrip2.Size = new System.Drawing.Size(143, 42);
             this.toolStrip2.TabIndex = 1;
             this.toolStrip2.Text = "toolStrip2";
+            // 
+            // buttonApplicationRoleIgnored
+            // 
+            this.buttonApplicationRoleIgnored.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.buttonApplicationRoleIgnored.Image = global::TotalSmartCoding.Properties.Resources.Ignore_x_20;
+            this.buttonApplicationRoleIgnored.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonApplicationRoleIgnored.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonApplicationRoleIgnored.Name = "buttonApplicationRoleIgnored";
+            this.buttonApplicationRoleIgnored.Size = new System.Drawing.Size(24, 39);
+            this.buttonApplicationRoleIgnored.Text = "Ignore application role";
+            this.buttonApplicationRoleIgnored.Click += new System.EventHandler(this.button_Click);
+            // 
+            // buttonApplicationRoleRequired
+            // 
+            this.buttonApplicationRoleRequired.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.buttonApplicationRoleRequired.Image = global::TotalSmartCoding.Properties.Resources.Continue_x_20;
+            this.buttonApplicationRoleRequired.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonApplicationRoleRequired.Name = "buttonApplicationRoleRequired";
+            this.buttonApplicationRoleRequired.Size = new System.Drawing.Size(24, 39);
+            this.buttonApplicationRoleRequired.Text = "Use application role";
+            this.buttonApplicationRoleRequired.Click += new System.EventHandler(this.button_Click);
             // 
             // layoutTop
             // 
@@ -151,7 +195,7 @@
             this.labelApplicationRoleName.Location = new System.Drawing.Point(108, 27);
             this.labelApplicationRoleName.Margin = new System.Windows.Forms.Padding(0);
             this.labelApplicationRoleName.Name = "labelApplicationRoleName";
-            this.labelApplicationRoleName.Size = new System.Drawing.Size(336, 20);
+            this.labelApplicationRoleName.Size = new System.Drawing.Size(336, 15);
             this.labelApplicationRoleName.TabIndex = 78;
             this.labelApplicationRoleName.Text = "Application Role";
             this.labelApplicationRoleName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -160,36 +204,13 @@
             // 
             this.labelApplicationRolePassword.AutoSize = true;
             this.labelApplicationRolePassword.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelApplicationRolePassword.Location = new System.Drawing.Point(108, 86);
+            this.labelApplicationRolePassword.Location = new System.Drawing.Point(108, 77);
             this.labelApplicationRolePassword.Margin = new System.Windows.Forms.Padding(0, 10, 0, 0);
             this.labelApplicationRolePassword.Name = "labelApplicationRolePassword";
-            this.labelApplicationRolePassword.Size = new System.Drawing.Size(336, 20);
+            this.labelApplicationRolePassword.Size = new System.Drawing.Size(336, 15);
             this.labelApplicationRolePassword.TabIndex = 83;
             this.labelApplicationRolePassword.Text = "Password";
             this.labelApplicationRolePassword.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // textexApplicationRoleName
-            // 
-            this.textexApplicationRoleName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textexApplicationRoleName.Editable = false;
-            this.textexApplicationRoleName.Location = new System.Drawing.Point(112, 48);
-            this.textexApplicationRoleName.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
-            this.textexApplicationRoleName.Name = "textexApplicationRoleName";
-            this.textexApplicationRoleName.Size = new System.Drawing.Size(331, 27);
-            this.textexApplicationRoleName.TabIndex = 88;
-            this.textexApplicationRoleName.TextChanged += new System.EventHandler(this.textexApplicationRole_TextChanged);
-            // 
-            // textexApplicationRolePassword
-            // 
-            this.textexApplicationRolePassword.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textexApplicationRolePassword.Editable = false;
-            this.textexApplicationRolePassword.Location = new System.Drawing.Point(112, 107);
-            this.textexApplicationRolePassword.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
-            this.textexApplicationRolePassword.Name = "textexApplicationRolePassword";
-            this.textexApplicationRolePassword.PasswordChar = '*';
-            this.textexApplicationRolePassword.Size = new System.Drawing.Size(331, 27);
-            this.textexApplicationRolePassword.TabIndex = 89;
-            this.textexApplicationRolePassword.TextChanged += new System.EventHandler(this.textexApplicationRole_TextChanged);
             // 
             // pictureBoxIcon
             // 
@@ -203,52 +224,32 @@
             this.pictureBoxIcon.TabIndex = 11;
             this.pictureBoxIcon.TabStop = false;
             // 
-            // buttonExit
+            // textexApplicationRoleName
             // 
-            this.buttonExit.Image = global::TotalSmartCoding.Properties.Resources.LogoutApp;
-            this.buttonExit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.buttonExit.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonExit.Name = "buttonExit";
-            this.buttonExit.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.buttonExit.Size = new System.Drawing.Size(69, 39);
-            this.buttonExit.Text = "Exit";
-            this.buttonExit.Click += new System.EventHandler(this.button_Click);
+            this.textexApplicationRoleName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textexApplicationRoleName.Editable = false;
+            this.textexApplicationRoleName.Location = new System.Drawing.Point(112, 43);
+            this.textexApplicationRoleName.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
+            this.textexApplicationRoleName.Name = "textexApplicationRoleName";
+            this.textexApplicationRoleName.Size = new System.Drawing.Size(331, 23);
+            this.textexApplicationRoleName.TabIndex = 88;
+            this.textexApplicationRoleName.TextChanged += new System.EventHandler(this.textexApplicationRole_TextChanged);
             // 
-            // buttonUpdate
+            // textexApplicationRolePassword
             // 
-            this.buttonUpdate.Enabled = false;
-            this.buttonUpdate.Image = global::TotalSmartCoding.Properties.Resources.LoginApplicationRole;
-            this.buttonUpdate.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.buttonUpdate.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonUpdate.Name = "buttonUpdate";
-            this.buttonUpdate.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.buttonUpdate.Size = new System.Drawing.Size(94, 39);
-            this.buttonUpdate.Text = "Update";
-            this.buttonUpdate.Click += new System.EventHandler(this.button_Click);
-            // 
-            // buttonApplicationRoleIgnored
-            // 
-            this.buttonApplicationRoleIgnored.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.buttonApplicationRoleIgnored.Image = global::TotalSmartCoding.Properties.Resources.Ignore_x_20;
-            this.buttonApplicationRoleIgnored.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonApplicationRoleIgnored.Name = "buttonApplicationRoleIgnored";
-            this.buttonApplicationRoleIgnored.Size = new System.Drawing.Size(24, 39);
-            this.buttonApplicationRoleIgnored.Text = "Ignore application role";
-            this.buttonApplicationRoleIgnored.Click += new System.EventHandler(this.button_Click);
-            // 
-            // buttonApplicationRoleRequired
-            // 
-            this.buttonApplicationRoleRequired.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.buttonApplicationRoleRequired.Image = global::TotalSmartCoding.Properties.Resources.Continue_x_20;
-            this.buttonApplicationRoleRequired.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonApplicationRoleRequired.Name = "buttonApplicationRoleRequired";
-            this.buttonApplicationRoleRequired.Size = new System.Drawing.Size(24, 39);
-            this.buttonApplicationRoleRequired.Text = "Use application role";
-            this.buttonApplicationRoleRequired.Click += new System.EventHandler(this.button_Click);
+            this.textexApplicationRolePassword.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textexApplicationRolePassword.Editable = false;
+            this.textexApplicationRolePassword.Location = new System.Drawing.Point(112, 93);
+            this.textexApplicationRolePassword.Margin = new System.Windows.Forms.Padding(4, 1, 1, 1);
+            this.textexApplicationRolePassword.Name = "textexApplicationRolePassword";
+            this.textexApplicationRolePassword.PasswordChar = '*';
+            this.textexApplicationRolePassword.Size = new System.Drawing.Size(331, 23);
+            this.textexApplicationRolePassword.TabIndex = 89;
+            this.textexApplicationRolePassword.TextChanged += new System.EventHandler(this.textexApplicationRole_TextChanged);
             // 
             // ConnectServer
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(464, 194);
             this.ControlBox = false;

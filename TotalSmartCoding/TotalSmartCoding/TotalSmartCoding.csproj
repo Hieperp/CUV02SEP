@@ -1549,6 +1549,11 @@
     <None Include="Resources\User-settings.png" />
     <None Include="Resources\User-settings-icon.ico" />
     <None Include="Resources\user-settings-24.png" />
+    <None Include="Resources\f-cross-icon.png" />
+    <None Include="Resources\f-User-icon-24.png" />
+    <None Include="Resources\f-key-icon-24.png" />
+    <None Include="Resources\f-key-icon-48.png" />
+    <None Include="Resources\User-Control-Update.ico" />
     <Content Include="SmartCodingSolution.ico" />
     <None Include="Resources\Yellow-cross.ico" />
     <None Include="Resources\White-Pallet.ico" />
