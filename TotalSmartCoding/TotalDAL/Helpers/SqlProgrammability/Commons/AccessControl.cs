@@ -15,6 +15,12 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
 
         public void RestoreProcedure()
         {
+            this.GetApplicationUsers();
+            this.UpdateApplicationUser();
+
+            return;
+            return;
+
             this.GetAccessLevel();
             this.GetApprovalPermitted();
             this.GetUnApprovalPermitted();
@@ -22,7 +28,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             this.GetUnVoidablePermitted();
 
             this.GetShowDiscount();
-            //this.GetShowDiscountByCustomer();
+            ////////////--this.GetShowDiscountByCustomer();
             this.GetLockedDate();
             this.UpdateLockedDate();
 
@@ -261,6 +267,37 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             queryString = queryString + "               END " + "\r\n";
 
             this.totalSmartCodingEntities.CreateStoredProcedure("UpdateApplicationRole", queryString);
+        }
+
+
+        private void GetApplicationUsers()
+        {
+            string queryString = " @ApplicationUserID Int " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+
+            queryString = queryString + "       SELECT      Name, Password FROM ApplicationUsers WHERE ApplicationUserID = @ApplicationUserID " + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("GetApplicationUsers", queryString);
+        }
+
+        private void UpdateApplicationUser()
+        {
+            string queryString = " @ApplicationUserID Int, @Name nvarchar(100), @Password nvarchar(100) " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " AS " + "\r\n";
+
+            queryString = queryString + "           IF (SELECT COUNT(ApplicationUserID) FROM ApplicationUsers WHERE ApplicationUserID = @ApplicationUserID) <= 0 " + "\r\n";
+            queryString = queryString + "               BEGIN " + "\r\n";
+            queryString = queryString + "                   INSERT INTO     ApplicationUsers (ApplicationUserID, Name, Password, EditedDate) VALUES (@ApplicationUserID, @Name, @Password, GetDate()); " + "\r\n";
+            queryString = queryString + "               END " + "\r\n";
+
+            queryString = queryString + "           ELSE " + "\r\n";
+            queryString = queryString + "               BEGIN " + "\r\n";
+            queryString = queryString + "                   UPDATE          ApplicationUsers SET Name = @Name, Password = @Password, EditedDate = GetDate() WHERE ApplicationUserID = @ApplicationUserID; " + "\r\n";
+            queryString = queryString + "               END " + "\r\n";
+
+            this.totalSmartCodingEntities.CreateStoredProcedure("UpdateApplicationUser", queryString);
         }
 
         private void GetLegalNotice()

@@ -439,6 +439,12 @@
     <Compile Include="Views\Mains\ConnectServer.Designer.cs">
       <DependentUpon>ConnectServer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Mains\ConnectSQL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Mains\ConnectSQL.Designer.cs">
+      <DependentUpon>ConnectSQL.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Mains\ExcelSheets.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -749,6 +755,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Mains\ConnectServer.resx">
       <DependentUpon>ConnectServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Mains\ConnectSQL.resx">
+      <DependentUpon>ConnectSQL.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Mains\ExcelSheets.resx">
       <DependentUpon>ExcelSheets.cs</DependentUpon>
@@ -1537,6 +1546,9 @@
     <None Include="Resources\ICsymbol.png" />
     <None Include="Resources\Cloud-sync.ico" />
     <None Include="Resources\Saki-Snowish-Ok.ico" />
+    <None Include="Resources\User-settings.png" />
+    <None Include="Resources\User-settings-icon.ico" />
+    <None Include="Resources\user-settings-24.png" />
     <Content Include="SmartCodingSolution.ico" />
     <None Include="Resources\Yellow-cross.ico" />
     <None Include="Resources\White-Pallet.ico" />

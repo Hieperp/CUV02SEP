@@ -64,6 +64,23 @@ namespace TotalDAL.Repositories
             }
 
             //UPDATE VERSION: ADD UPDATE DATABASE HERE IF NEEDED
+            #region ApplicationUsers
+            if (!this.totalSmartCodingEntities.TableExists("ApplicationUsers"))
+            {
+                this.ExecuteStoreCommand(@"CREATE TABLE [dbo].[ApplicationUsers](
+	                                                    [ApplicationUserID] [int] NOT NULL,
+	                                                    [Name] [nvarchar](100) NOT NULL,
+	                                                    [Password] [nvarchar](100) NOT NULL,
+	                                                    [EditedDate] [datetime] NOT NULL,
+                                                     CONSTRAINT [PK_ApplicationUsers] PRIMARY KEY CLUSTERED 
+                                                    (
+	                                                    [ApplicationUserID] ASC
+                                                    )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+                                                    ) ON [PRIMARY]
+                                                ", new ObjectParameter[] { });
+            }
+            #endregion ApplicationUsers
+
         }
 
 
@@ -86,6 +103,11 @@ namespace TotalDAL.Repositories
         private void CreateStoredProcedure()
         {
             //return;
+
+            Helpers.SqlProgrammability.Commons.AccessControl accessControl = new Helpers.SqlProgrammability.Commons.AccessControl(totalSmartCodingEntities);
+            accessControl.RestoreProcedure();
+
+            return;
 
             Helpers.SqlProgrammability.Inventories.Inventory inventory = new Helpers.SqlProgrammability.Inventories.Inventory(totalSmartCodingEntities);
             inventory.RestoreProcedure();
@@ -180,10 +202,7 @@ namespace TotalDAL.Repositories
             Helpers.SqlProgrammability.Commons.SmartLog smartLog = new Helpers.SqlProgrammability.Commons.SmartLog(totalSmartCodingEntities);
             smartLog.RestoreProcedure();
 
-            //return;
 
-            Helpers.SqlProgrammability.Commons.AccessControl accessControl = new Helpers.SqlProgrammability.Commons.AccessControl(totalSmartCodingEntities);
-            accessControl.RestoreProcedure();
 
 
 
