@@ -3405,6 +3405,21 @@ namespace TotalDAL.Repositories
             return this.TotalSmartCodingEntities.UpdateApplicationRole(1, name, password);
         }
 
+        public void GetApplicationUsers()
+        {
+            IList<ApplicationUser> applicationUsers = this.TotalSmartCodingEntities.GetApplicationUsers(1).ToList();
+            if (applicationUsers != null && applicationUsers.Count > 0)
+            {
+                if (applicationUsers[0].Name != null) ApplicationUsers.Name = SecurePassword.Decrypt(applicationUsers[0].Name);
+                if (applicationUsers[0].Password != null) ApplicationUsers.Password = SecurePassword.Decrypt(applicationUsers[0].Password);
+            }
+        }
+
+        public int UpdateApplicationUser(string name, string password)
+        {
+            return this.TotalSmartCodingEntities.UpdateApplicationUser(1, name, password);
+        }
+
         public int? GetStoredID(int configID)
         {
             return this.TotalSmartCodingEntities.GetStoredID(configID).Single();

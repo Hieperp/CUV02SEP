@@ -3390,5 +3390,31 @@ namespace TotalModel.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("CheckCustomerReceiverID", customerIDParameter, receiverIDParameter);
         }
+    
+        public virtual ObjectResult<ApplicationUser> GetApplicationUsers(Nullable<int> applicationUserID)
+        {
+            var applicationUserIDParameter = applicationUserID.HasValue ?
+                new ObjectParameter("ApplicationUserID", applicationUserID) :
+                new ObjectParameter("ApplicationUserID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ApplicationUser>("GetApplicationUsers", applicationUserIDParameter);
+        }
+    
+        public virtual int UpdateApplicationUser(Nullable<int> applicationUserID, string name, string password)
+        {
+            var applicationUserIDParameter = applicationUserID.HasValue ?
+                new ObjectParameter("ApplicationUserID", applicationUserID) :
+                new ObjectParameter("ApplicationUserID", typeof(int));
+    
+            var nameParameter = name != null ?
+                new ObjectParameter("Name", name) :
+                new ObjectParameter("Name", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("Password", password) :
+                new ObjectParameter("Password", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateApplicationUser", applicationUserIDParameter, nameParameter, passwordParameter);
+        }
     }
 }

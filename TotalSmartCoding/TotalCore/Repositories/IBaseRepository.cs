@@ -18,6 +18,9 @@ namespace TotalCore.Repositories
         void GetApplicationRoles();
         int UpdateApplicationRole(string name, string password);
 
+        void GetApplicationUsers();
+        int UpdateApplicationUser(string name, string password);
+
         string GetLegalNotice();
         int UpdateLegalNotice(string legalNotice);
 

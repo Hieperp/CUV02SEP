@@ -45,10 +45,21 @@ namespace TotalSmartCoding
             AutoMapperConfig.SetupMappings();
 
             //string ApplicationRoleRequired = "false"; //COMMENT ON 11-JUL-2018: NOT USE ApplicationRoleRequired. JUST REMOVE THIS COMMENT ONLY -> TO USE ApplicationRoleRequired (GET ApplicationRoleRequired OPTION FROM CONFIG SETTING BY THE FOLLOWING CommonConfigs.ReadSetting("ApplicationRoleRequired")).
-            string ApplicationRoleRequired = CommonConfigs.ReadSetting("ApplicationRoleRequired"); 
+            string ApplicationRoleRequired = CommonConfigs.ReadSetting("ApplicationRoleRequired");
             ApplicationRoles.Required = true; ApplicationRoles.Name = ""; ApplicationRoles.Password = ""; bool applicationRoleRequired = false;
             if (bool.TryParse(ApplicationRoleRequired, out applicationRoleRequired))
                 ApplicationRoles.Required = applicationRoleRequired;
+
+
+            //string ApplicationUserRequired = "false"; //COMMENT ON 11-JUL-2018: NOT USE ApplicationUserRequired. JUST REMOVE THIS COMMENT ONLY -> TO USE ApplicationUserRequired (GET ApplicationUserRequired OPTION FROM CONFIG SETTING BY THE FOLLOWING CommonConfigs.ReadSetting("ApplicationUserRequired")).
+            string ApplicationUserRequired = CommonConfigs.ReadSetting("ApplicationUserRequired");
+            ApplicationUsers.Required = true; ApplicationUsers.Name = ""; ApplicationUsers.Password = ""; bool applicationUserRequired = false;
+            if (bool.TryParse(ApplicationUserRequired, out applicationUserRequired))
+                ApplicationUsers.Required = applicationUserRequired;
+
+
+
+
 
 
             TrialConnects trialConnects = new TrialConnects();
@@ -90,6 +101,20 @@ namespace TotalSmartCoding
                             ConnectServer connectServer = new ConnectServer(true);
                             connectServer.ShowDialog(); connectServer.Dispose();
                         }
+                        else
+                        {
+                            if (ApplicationUsers.Required)
+                            {
+                                ConnectSQL connectSQL = new ConnectSQL(false);
+                                connectSQL.ShowDialog(); connectSQL.Dispose();
+                            }
+                            else
+                                if (CustomMsgBox.Show(new Form(), "Do you want to specify new SQL login name and password?", "Warning", MessageBoxButtons.YesNoCancel) == DialogResult.Yes)
+                                {
+                                    ConnectSQL connectSQL = new ConnectSQL(true);
+                                    connectSQL.ShowDialog(); connectSQL.Dispose();
+                                }
+                        }
                 }
         }
 
@@ -102,13 +127,19 @@ namespace TotalSmartCoding
             try
             {
                 IBaseRepository baseRepository = CommonNinject.Kernel.Get<IBaseRepository>();
-                if (ApplicationRoles.Required) baseRepository.GetApplicationRoles();
+                if (ApplicationRoles.Required) 
+                    baseRepository.GetApplicationRoles();
+                else
+                    if (ApplicationUsers.Required)
+                        baseRepository.GetApplicationUsers();
 
                 return baseRepository.GetVersionID((int)GlobalVariables.FillingLine.None) != null ? DialogResult.Yes : DialogResult.No;
             }
             catch (Exception exception)
             {
                 ApplicationRoles.ExceptionMessage = exception.Message;
+                ApplicationUsers.ExceptionMessage = exception.Message;
+
                 ExceptionHandlers.ShowExceptionMessageBox(new Form(), exception);
                 return DialogResult.No;
             }

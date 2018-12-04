@@ -232,7 +232,7 @@
             this.textexApplicationUserName.Name = "textexApplicationUserName";
             this.textexApplicationUserName.Size = new System.Drawing.Size(331, 23);
             this.textexApplicationUserName.TabIndex = 88;
-            this.textexApplicationUserName.TextChanged += new System.EventHandler(this.textexApplicationRole_TextChanged);
+            this.textexApplicationUserName.TextChanged += new System.EventHandler(this.textexApplicationUser_TextChanged);
             // 
             // textexApplicationUserPassword
             // 
@@ -244,7 +244,7 @@
             this.textexApplicationUserPassword.PasswordChar = '*';
             this.textexApplicationUserPassword.Size = new System.Drawing.Size(331, 23);
             this.textexApplicationUserPassword.TabIndex = 89;
-            this.textexApplicationUserPassword.TextChanged += new System.EventHandler(this.textexApplicationRole_TextChanged);
+            this.textexApplicationUserPassword.TextChanged += new System.EventHandler(this.textexApplicationUser_TextChanged);
             // 
             // ConnectSQL
             // 

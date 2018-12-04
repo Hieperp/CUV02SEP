@@ -2573,6 +2573,9 @@
         <Function Name="GetApplicationRoles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ApplicationRoleID" Type="int" Mode="In" />
         </Function>
+        <Function Name="GetApplicationUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationUserID" Type="int" Mode="In" />
+        </Function>
         <Function Name="GetApprovalPermitted" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserID" Type="int" Mode="In" />
           <Parameter Name="NMVNTaskID" Type="int" Mode="In" />
@@ -3224,6 +3227,11 @@
         </Function>
         <Function Name="UpdateApplicationRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ApplicationRoleID" Type="int" Mode="In" />
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UpdateApplicationUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ApplicationUserID" Type="int" Mode="In" />
           <Parameter Name="Name" Type="nvarchar" Mode="In" />
           <Parameter Name="Password" Type="nvarchar" Mode="In" />
         </Function>
@@ -5335,6 +5343,14 @@
           <FunctionImport Name="CheckCustomerReceiverID" ReturnType="Collection(Int32)">
             <Parameter Name="CustomerID" Mode="In" Type="Int32" />
             <Parameter Name="ReceiverID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetApplicationUsers" ReturnType="Collection(TotalSmartCodingModel.ApplicationUser)">
+            <Parameter Name="ApplicationUserID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateApplicationUser">
+            <Parameter Name="ApplicationUserID" Mode="In" Type="Int32" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
@@ -9191,6 +9207,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="ApplicationUser">
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="100" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -12134,6 +12154,15 @@
           <FunctionImportMapping FunctionImportName="GetLegalNotice" FunctionName="TotalSmartCodingModel.Store.GetLegalNotice" />
           <FunctionImportMapping FunctionImportName="UpdateLegalNotice" FunctionName="TotalSmartCodingModel.Store.UpdateLegalNotice" />
           <FunctionImportMapping FunctionImportName="CheckCustomerReceiverID" FunctionName="TotalSmartCodingModel.Store.CheckCustomerReceiverID" />
+          <FunctionImportMapping FunctionImportName="GetApplicationUsers" FunctionName="TotalSmartCodingModel.Store.GetApplicationUsers">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TotalSmartCodingModel.ApplicationUser">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UpdateApplicationUser" FunctionName="TotalSmartCodingModel.Store.UpdateApplicationUser" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

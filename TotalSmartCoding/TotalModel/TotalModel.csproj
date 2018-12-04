@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="BaseModel.cs" />
     <Compile Include="Helpers\ApplicationRoles.cs" />
+    <Compile Include="Helpers\ApplicationUsers.cs" />
     <Compile Include="Helpers\CustomException.cs" />
     <Compile Include="Helpers\IHelper.cs" />
     <Compile Include="Helpers\NotifyPropertyChangeObject.cs" />
@@ -68,6 +69,9 @@
       <DependentUpon>TotalSmartCoding.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ApplicationRole.cs">
+      <DependentUpon>TotalSmartCoding.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ApplicationUser.cs">
       <DependentUpon>TotalSmartCoding.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Batch.cs">

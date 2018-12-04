@@ -23,15 +23,15 @@ namespace TotalSmartCoding.Views.Mains
 
         private void ConnectSQL_Load(object sender, EventArgs e)
         {
-            this.textexApplicationUserName.Text = ApplicationRoles.Name;
-            this.textexApplicationUserPassword.Text = ApplicationRoles.Password;
+            this.textexApplicationUserName.Text = ApplicationUsers.Name;
+            this.textexApplicationUserPassword.Text = ApplicationUsers.Password;
 
             this.textexApplicationUserName.Visible = this.specifyNewUser;
             this.textexApplicationUserPassword.Visible = this.specifyNewUser;
             this.labelApplicationUserPassword.Visible = this.specifyNewUser;
             this.buttonUpdate.Visible = this.specifyNewUser;
-            this.buttonApplicationUserRequired.Visible = !this.specifyNewUser && !ApplicationRoles.Required;
-            this.buttonApplicationUserIgnored.Visible = !this.specifyNewUser && ApplicationRoles.Required;
+            this.buttonApplicationUserRequired.Visible = !this.specifyNewUser && !ApplicationUsers.Required;
+            this.buttonApplicationUserIgnored.Visible = !this.specifyNewUser && ApplicationUsers.Required;
 
             if (!this.specifyNewUser)
             {
@@ -47,16 +47,16 @@ namespace TotalSmartCoding.Views.Mains
                 if (this.textexApplicationUserName.Text.Trim() != "" && this.textexApplicationUserPassword.Text.Trim() != "")
                 {
                     IBaseRepository baseRepository = CommonNinject.Kernel.Get<IBaseRepository>();
-                    if (baseRepository.UpdateApplicationRole(SecurePassword.Encrypt(this.textexApplicationUserName.Text.Trim()), SecurePassword.Encrypt(this.textexApplicationUserPassword.Text.Trim())) == 1)
+                    if (baseRepository.UpdateApplicationUser(SecurePassword.Encrypt(this.textexApplicationUserName.Text.Trim()), SecurePassword.Encrypt(this.textexApplicationUserPassword.Text.Trim())) == 1)
                         this.DialogResult = DialogResult.OK;
                     else
-                        throw new Exception("Fail to update application role.");
+                        throw new Exception("Fail to update SQL login.");
                 }
             }
             else
                 if (sender.Equals(this.buttonApplicationUserRequired) || sender.Equals(this.buttonApplicationUserIgnored))
                 {
-                    CommonConfigs.AddUpdateAppSetting("ApplicationRoleRequired", sender.Equals(this.buttonApplicationUserRequired) ? "true" : "false");
+                    CommonConfigs.AddUpdateAppSetting("ApplicationUserRequired", sender.Equals(this.buttonApplicationUserRequired) ? "true" : "false");
 
                     CustomMsgBox.Show(this, "Please open your program again in order to take new effect.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
@@ -66,7 +66,7 @@ namespace TotalSmartCoding.Views.Mains
                     this.DialogResult = DialogResult.Cancel;
         }
 
-        private void textexApplicationRole_TextChanged(object sender, EventArgs e)
+        private void textexApplicationUser_TextChanged(object sender, EventArgs e)
         {
             this.buttonUpdate.Enabled = this.textexApplicationUserName.Text.Trim() != "" && this.textexApplicationUserPassword.Text.Trim() != "";
         }
