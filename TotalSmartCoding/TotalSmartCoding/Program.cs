@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
+using System.Text.RegularExpressions;
 
 using Ninject;
 
@@ -53,7 +54,7 @@ namespace TotalSmartCoding
 
             //string ApplicationUserRequired = "false"; //COMMENT ON 11-JUL-2018: NOT USE ApplicationUserRequired. JUST REMOVE THIS COMMENT ONLY -> TO USE ApplicationUserRequired (GET ApplicationUserRequired OPTION FROM CONFIG SETTING BY THE FOLLOWING CommonConfigs.ReadSetting("ApplicationUserRequired")).
             string ApplicationUserRequired = CommonConfigs.ReadSetting("ApplicationUserRequired");
-            ApplicationUsers.Required = true; ApplicationUsers.Name = ""; ApplicationUsers.Password = ""; bool applicationUserRequired = false;
+            ApplicationUsers.Required = true; ApplicationUsers.Name = ""; ApplicationUsers.Password = ""; bool applicationUserRequired = false; ApplicationUsers.ConnectionString = ""; ApplicationUsers.ExceptionMessage = "";
             if (bool.TryParse(ApplicationUserRequired, out applicationUserRequired))
                 ApplicationUsers.Required = applicationUserRequired;
 
@@ -131,7 +132,14 @@ namespace TotalSmartCoding
                     baseRepository.GetApplicationRoles();
                 else
                     if (ApplicationUsers.Required)
+                    {
                         baseRepository.GetApplicationUsers();
+                        if (ApplicationUsers.Name != "" && ApplicationUsers.Password != "")
+                        {
+                            string connectionString = CommonConfigs.ReadConnectionString("TotalSmartCodingEntities");
+                            if (connectionString != "") ApplicationUsers.ConnectionString = Regex.Replace(connectionString, "integrated security=True", "User ID=" + ApplicationUsers.Name + ";Password=" + ApplicationUsers.Password + "", RegexOptions.IgnoreCase);
+                        }
+                    }
 
                 return baseRepository.GetVersionID((int)GlobalVariables.FillingLine.None) != null ? DialogResult.Yes : DialogResult.No;
             }

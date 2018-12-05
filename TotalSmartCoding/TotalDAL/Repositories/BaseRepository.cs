@@ -67,6 +67,8 @@ namespace TotalDAL.Repositories
             #region ApplicationUsers
             if (!this.totalSmartCodingEntities.TableExists("ApplicationUsers"))
             {
+                if ((ApplicationRoles.Name != null && ApplicationRoles.Name != "") || (ApplicationUsers.Name != null && ApplicationUsers.Name != "")) throw new Exception("Please logon via Windows Authentication in order to update new version.");
+
                 this.ExecuteStoreCommand(@"CREATE TABLE [dbo].[ApplicationUsers](
 	                                                    [ApplicationUserID] [int] NOT NULL,
 	                                                    [Name] [nvarchar](100) NOT NULL,
@@ -102,6 +104,9 @@ namespace TotalDAL.Repositories
 
         private void CreateStoredProcedure()
         {
+            if ((ApplicationRoles.Name != null && ApplicationRoles.Name != "") || (ApplicationUsers.Name != null && ApplicationUsers.Name != "")) throw new Exception("Please logon via Windows Authentication in order to update new version.");
+
+
             //return;
 
             Helpers.SqlProgrammability.Commons.AccessControl accessControl = new Helpers.SqlProgrammability.Commons.AccessControl(totalSmartCodingEntities);

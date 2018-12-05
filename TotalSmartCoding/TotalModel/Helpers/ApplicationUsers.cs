@@ -6,5 +6,7 @@
         public static string Name;
         public static string Password;
         public static string ExceptionMessage;
+        
+        public static string ConnectionString;
     }
 }

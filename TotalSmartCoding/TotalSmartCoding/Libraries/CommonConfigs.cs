@@ -5,6 +5,24 @@ namespace TotalSmartCoding.Libraries
 {
     public class CommonConfigs
     {
+        public static string ReadConnectionString(string name)
+        {
+            try
+            {
+                var appSettings = ConfigurationManager.ConnectionStrings;
+                for (int i = 0; i <= appSettings.Count - 1; i++)
+                {
+                    if (appSettings[i].Name == name) return appSettings[i].ConnectionString;
+                }
+
+                return "";
+            }
+            catch (ConfigurationErrorsException e)
+            {
+                throw e;
+            }
+        }
+
         public static void ReadAllSettings()
         {
             try
