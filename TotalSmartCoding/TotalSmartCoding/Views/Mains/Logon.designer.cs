@@ -52,7 +52,7 @@
             this.buttonApplicationRoleIgnored = new System.Windows.Forms.ToolStripButton();
             this.buttonApplicationUserIgnored = new System.Windows.Forms.ToolStripButton();
             this.buttonApplicationRoleRequired = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.buttonApplicationUserRequired = new System.Windows.Forms.ToolStripButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.layoutTop = new System.Windows.Forms.TableLayoutPanel();
             this.labelSecurityIdentifier = new System.Windows.Forms.Label();
@@ -259,7 +259,7 @@
             this.buttonApplicationRoleIgnored,
             this.buttonApplicationUserIgnored,
             this.buttonApplicationRoleRequired,
-            this.toolStripButton1});
+            this.buttonApplicationUserRequired});
             this.toolStrip2.Location = new System.Drawing.Point(0, 0);
             this.toolStrip2.Name = "toolStrip2";
             this.toolStrip2.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -297,6 +297,7 @@
             this.buttonConnectSQL.Name = "buttonConnectSQL";
             this.buttonConnectSQL.Size = new System.Drawing.Size(24, 42);
             this.buttonConnectSQL.Text = "Specify a SQL login";
+            this.buttonConnectSQL.Click += new System.EventHandler(this.buttonApplicationUser_Click);
             // 
             // buttonDownload
             // 
@@ -337,6 +338,7 @@
             this.buttonApplicationUserIgnored.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.buttonApplicationUserIgnored.ToolTipText = "Ignore SQL login";
             this.buttonApplicationUserIgnored.Visible = false;
+            this.buttonApplicationUserIgnored.Click += new System.EventHandler(this.buttonApplicationUser_Click);
             // 
             // buttonApplicationRoleRequired
             // 
@@ -349,15 +351,16 @@
             this.buttonApplicationRoleRequired.ToolTipText = "Use application role";
             this.buttonApplicationRoleRequired.Click += new System.EventHandler(this.buttonApplicationRole_Click);
             // 
-            // toolStripButton1
+            // buttonApplicationUserRequired
             // 
-            this.toolStripButton1.Image = global::TotalSmartCoding.Properties.Resources.f_User_icon_24;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(37, 42);
-            this.toolStripButton1.Text = "  ";
-            this.toolStripButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.toolStripButton1.ToolTipText = "Use SQL login";
+            this.buttonApplicationUserRequired.Image = global::TotalSmartCoding.Properties.Resources.f_User_icon_24;
+            this.buttonApplicationUserRequired.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonApplicationUserRequired.Name = "buttonApplicationUserRequired";
+            this.buttonApplicationUserRequired.Size = new System.Drawing.Size(37, 42);
+            this.buttonApplicationUserRequired.Text = "  ";
+            this.buttonApplicationUserRequired.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.buttonApplicationUserRequired.ToolTipText = "Use SQL login";
+            this.buttonApplicationUserRequired.Click += new System.EventHandler(this.buttonApplicationUser_Click);
             // 
             // panel2
             // 
@@ -573,6 +576,6 @@
         private System.Windows.Forms.CheckBox checkGlobalDrumWithDigit;
         private System.Windows.Forms.ToolStripButton buttonConnectSQL;
         private System.Windows.Forms.ToolStripButton buttonApplicationUserIgnored;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripButton buttonApplicationUserRequired;
     }
 }

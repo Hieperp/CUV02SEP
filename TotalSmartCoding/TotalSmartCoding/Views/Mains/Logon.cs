@@ -177,6 +177,7 @@ namespace TotalSmartCoding.Views.Mains
                     this.buttonLoginRestore.Visible = activeUsers[0].IsDatabaseAdmin;
                     this.buttonConnectServer.Visible = activeUsers[0].IsDatabaseAdmin;
                     this.buttonApplicationRoleIgnored.Visible = activeUsers[0].IsDatabaseAdmin;
+                    this.buttonApplicationUserIgnored.Visible = activeUsers[0].IsDatabaseAdmin;
                     this.separatorResetApplicationRole.Visible = activeUsers[0].IsDatabaseAdmin;
                 }
                 else
@@ -367,6 +368,24 @@ namespace TotalSmartCoding.Views.Mains
             if (sender.Equals(this.buttonApplicationRoleRequired) || sender.Equals(this.buttonApplicationRoleIgnored))
             {
                 CommonConfigs.AddUpdateAppSetting("ApplicationRoleRequired", sender.Equals(this.buttonApplicationRoleRequired) ? "true" : "false");
+
+                CustomMsgBox.Show(this, "Please open your program again in order to take new effect.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+                this.DialogResult = DialogResult.Cancel;
+            }
+            if (sender.Equals(this.buttonConnectServer))
+            {
+                ConnectServer connectServer = new ConnectServer(true);
+                DialogResult dialogResult = connectServer.ShowDialog(); connectServer.Dispose();
+                if (dialogResult == System.Windows.Forms.DialogResult.OK) { CustomMsgBox.Show(this, "Please open your program again in order to take new effect.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); this.DialogResult = DialogResult.Cancel; }
+            }
+        }
+
+        private void buttonApplicationUser_Click(object sender, EventArgs e)
+        {
+            if (sender.Equals(this.buttonApplicationUserRequired) || sender.Equals(this.buttonApplicationUserIgnored))
+            {
+                CommonConfigs.AddUpdateAppSetting("ApplicationUserRequired", sender.Equals(this.buttonApplicationUserRequired) ? "true" : "false");
 
                 CustomMsgBox.Show(this, "Please open your program again in order to take new effect.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
