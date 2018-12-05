@@ -127,7 +127,7 @@ namespace TotalSmartCoding
             try
             {
                 IBaseRepository baseRepository = CommonNinject.Kernel.Get<IBaseRepository>();
-                if (ApplicationRoles.Required) 
+                if (ApplicationRoles.Required)
                     baseRepository.GetApplicationRoles();
                 else
                     if (ApplicationUsers.Required)
@@ -137,8 +137,11 @@ namespace TotalSmartCoding
             }
             catch (Exception exception)
             {
-                ApplicationRoles.ExceptionMessage = exception.Message;
-                ApplicationUsers.ExceptionMessage = exception.Message;
+                if (ApplicationRoles.Required)
+                    ApplicationRoles.ExceptionMessage = exception.Message;
+                else
+                    if (ApplicationUsers.Required)
+                        ApplicationUsers.ExceptionMessage = exception.Message;
 
                 ExceptionHandlers.ShowExceptionMessageBox(new Form(), exception);
                 return DialogResult.No;

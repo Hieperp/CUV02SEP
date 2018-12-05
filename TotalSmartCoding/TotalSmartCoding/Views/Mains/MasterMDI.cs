@@ -201,7 +201,7 @@ namespace TotalSmartCoding.Views.Mains
                 DateTime buildDate = new FileInfo(Assembly.GetExecutingAssembly().Location).LastWriteTime;
                 this.statusVersion.Text = "Version 1.0." + GlobalVariables.ConfigVersionID(GlobalVariables.ConfigID).ToString() + ", Date: " + buildDate.ToString("dd/MM/yyyy HH:mm:ss");
                 this.labelDataSource.Text = this.moduleAPIs.DataSource;
-                this.labelApplicationRole.Text = ApplicationRoles.Required && ApplicationRoles.Name != "" && ApplicationRoles.ExceptionMessage == "" ? "[Application Role]" : "[Windows Authentication]";
+                this.labelApplicationRole.Text = ApplicationRoles.Required && ApplicationRoles.Name != "" && ApplicationRoles.ExceptionMessage == "" ? "[Application Role]" : (ApplicationUsers.Required && ApplicationUsers.Name != "" && ApplicationUsers.ExceptionMessage == "" ? "[SQL LOGIN]" : "[Windows Authentication]");
 
                 this.comboSearchBarcode.Text = this.searchPlaceHolder;
                 this.toolUserReferences.Visible = ContextAttributes.User.IsDatabaseAdmin && false; //HIDE AT CHEVRON

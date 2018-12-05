@@ -176,6 +176,7 @@ namespace TotalSmartCoding.Views.Mains
                     this.buttonDownload.Visible = true;
                     this.buttonLoginRestore.Visible = activeUsers[0].IsDatabaseAdmin;
                     this.buttonConnectServer.Visible = activeUsers[0].IsDatabaseAdmin;
+                    this.buttonConnectSQL.Visible = activeUsers[0].IsDatabaseAdmin;
                     this.buttonApplicationRoleIgnored.Visible = activeUsers[0].IsDatabaseAdmin;
                     this.buttonApplicationUserIgnored.Visible = activeUsers[0].IsDatabaseAdmin;
                     this.separatorResetApplicationRole.Visible = activeUsers[0].IsDatabaseAdmin;
@@ -193,12 +194,15 @@ namespace TotalSmartCoding.Views.Mains
                     this.buttonLogin.Visible = false;
                 }
 
-                if (ApplicationRoles.ExceptionMessage != null && ApplicationRoles.ExceptionMessage != "")
+                if ((ApplicationRoles.ExceptionMessage != null && ApplicationRoles.ExceptionMessage != "") || (ApplicationUsers.ExceptionMessage != null && ApplicationUsers.ExceptionMessage != ""))
                 {
-                    CustomMsgBox.Show(this, ApplicationRoles.ExceptionMessage, "Warning", MessageBoxButtons.OK);
+                    CustomMsgBox.Show(this, ApplicationRoles.ExceptionMessage + "\r\n" + ApplicationUsers.ExceptionMessage, "Warning", MessageBoxButtons.OK);
                 }
                 this.buttonApplicationRoleRequired.Visible = !ApplicationRoles.Required;
                 this.buttonApplicationRoleIgnored.Visible = ApplicationRoles.Required;
+
+                this.buttonApplicationUserRequired.Visible = !ApplicationUsers.Required;
+                this.buttonApplicationUserIgnored.Visible = ApplicationUsers.Required;
             }
             catch (Exception exception)
             {
@@ -391,10 +395,10 @@ namespace TotalSmartCoding.Views.Mains
 
                 this.DialogResult = DialogResult.Cancel;
             }
-            if (sender.Equals(this.buttonConnectServer))
+            if (sender.Equals(this.buttonConnectSQL))
             {
-                ConnectServer connectServer = new ConnectServer(true);
-                DialogResult dialogResult = connectServer.ShowDialog(); connectServer.Dispose();
+                ConnectSQL connectSQL = new ConnectSQL(true);
+                DialogResult dialogResult = connectSQL.ShowDialog(); connectSQL.Dispose();
                 if (dialogResult == System.Windows.Forms.DialogResult.OK) { CustomMsgBox.Show(this, "Please open your program again in order to take new effect.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); this.DialogResult = DialogResult.Cancel; }
             }
         }
