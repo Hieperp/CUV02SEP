@@ -31,18 +31,18 @@
             this.panelBottom = new System.Windows.Forms.Panel();
             this.panelBottomRight = new System.Windows.Forms.Panel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.buttonExit = new System.Windows.Forms.ToolStripButton();
+            this.buttonUpdate = new System.Windows.Forms.ToolStripButton();
             this.panelBottomLeft = new System.Windows.Forms.Panel();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.buttonApplicationUserIgnored = new System.Windows.Forms.ToolStripButton();
+            this.buttonApplicationUserRequired = new System.Windows.Forms.ToolStripButton();
             this.layoutTop = new System.Windows.Forms.TableLayoutPanel();
             this.labelApplicationUserName = new System.Windows.Forms.Label();
             this.labelApplicationUserPassword = new System.Windows.Forms.Label();
+            this.pictureBoxIcon = new System.Windows.Forms.PictureBox();
             this.textexApplicationUserName = new CustomControls.TextexBox();
             this.textexApplicationUserPassword = new CustomControls.TextexBox();
-            this.pictureBoxIcon = new System.Windows.Forms.PictureBox();
-            this.buttonExit = new System.Windows.Forms.ToolStripButton();
-            this.buttonUpdate = new System.Windows.Forms.ToolStripButton();
-            this.buttonApplicationUserIgnored = new System.Windows.Forms.ToolStripButton();
-            this.buttonApplicationUserRequired = new System.Windows.Forms.ToolStripButton();
             this.panelBottom.SuspendLayout();
             this.panelBottomRight.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -88,6 +88,29 @@
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
+            // buttonExit
+            // 
+            this.buttonExit.Image = global::TotalSmartCoding.Properties.Resources.LogoutApp;
+            this.buttonExit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonExit.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonExit.Name = "buttonExit";
+            this.buttonExit.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.buttonExit.Size = new System.Drawing.Size(61, 39);
+            this.buttonExit.Text = "Exit";
+            this.buttonExit.Click += new System.EventHandler(this.button_Click);
+            // 
+            // buttonUpdate
+            // 
+            this.buttonUpdate.Enabled = false;
+            this.buttonUpdate.Image = global::TotalSmartCoding.Properties.Resources.User_settings_icon;
+            this.buttonUpdate.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.buttonUpdate.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonUpdate.Name = "buttonUpdate";
+            this.buttonUpdate.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.buttonUpdate.Size = new System.Drawing.Size(81, 39);
+            this.buttonUpdate.Text = "Update";
+            this.buttonUpdate.Click += new System.EventHandler(this.button_Click);
+            // 
             // panelBottomLeft
             // 
             this.panelBottomLeft.Controls.Add(this.toolStrip2);
@@ -112,6 +135,26 @@
             this.toolStrip2.Size = new System.Drawing.Size(143, 42);
             this.toolStrip2.TabIndex = 1;
             this.toolStrip2.Text = "toolStrip2";
+            // 
+            // buttonApplicationUserIgnored
+            // 
+            this.buttonApplicationUserIgnored.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.buttonApplicationUserIgnored.Image = global::TotalSmartCoding.Properties.Resources.f_cross_icon;
+            this.buttonApplicationUserIgnored.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonApplicationUserIgnored.Name = "buttonApplicationUserIgnored";
+            this.buttonApplicationUserIgnored.Size = new System.Drawing.Size(24, 39);
+            this.buttonApplicationUserIgnored.Text = "Ignore SQL login";
+            this.buttonApplicationUserIgnored.Click += new System.EventHandler(this.button_Click);
+            // 
+            // buttonApplicationUserRequired
+            // 
+            this.buttonApplicationUserRequired.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.buttonApplicationUserRequired.Image = global::TotalSmartCoding.Properties.Resources.f_User_icon_24;
+            this.buttonApplicationUserRequired.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonApplicationUserRequired.Name = "buttonApplicationUserRequired";
+            this.buttonApplicationUserRequired.Size = new System.Drawing.Size(24, 39);
+            this.buttonApplicationUserRequired.Text = "Use SQL login";
+            this.buttonApplicationUserRequired.Click += new System.EventHandler(this.button_Click);
             // 
             // layoutTop
             // 
@@ -168,6 +211,18 @@
             this.labelApplicationUserPassword.Text = "Password";
             this.labelApplicationUserPassword.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // pictureBoxIcon
+            // 
+            this.pictureBoxIcon.Image = global::TotalSmartCoding.Properties.Resources.f_key_icon_48;
+            this.pictureBoxIcon.Location = new System.Drawing.Point(35, 27);
+            this.pictureBoxIcon.Margin = new System.Windows.Forms.Padding(0);
+            this.pictureBoxIcon.Name = "pictureBoxIcon";
+            this.layoutTop.SetRowSpan(this.pictureBoxIcon, 4);
+            this.pictureBoxIcon.Size = new System.Drawing.Size(48, 48);
+            this.pictureBoxIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBoxIcon.TabIndex = 11;
+            this.pictureBoxIcon.TabStop = false;
+            // 
             // textexApplicationUserName
             // 
             this.textexApplicationUserName.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -190,61 +245,6 @@
             this.textexApplicationUserPassword.Size = new System.Drawing.Size(331, 23);
             this.textexApplicationUserPassword.TabIndex = 89;
             this.textexApplicationUserPassword.TextChanged += new System.EventHandler(this.textexApplicationUser_TextChanged);
-            // 
-            // pictureBoxIcon
-            // 
-            this.pictureBoxIcon.Image = global::TotalSmartCoding.Properties.Resources.f_key_icon_48;
-            this.pictureBoxIcon.Location = new System.Drawing.Point(35, 27);
-            this.pictureBoxIcon.Margin = new System.Windows.Forms.Padding(0);
-            this.pictureBoxIcon.Name = "pictureBoxIcon";
-            this.layoutTop.SetRowSpan(this.pictureBoxIcon, 4);
-            this.pictureBoxIcon.Size = new System.Drawing.Size(48, 48);
-            this.pictureBoxIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBoxIcon.TabIndex = 11;
-            this.pictureBoxIcon.TabStop = false;
-            // 
-            // buttonExit
-            // 
-            this.buttonExit.Image = global::TotalSmartCoding.Properties.Resources.LogoutApp;
-            this.buttonExit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.buttonExit.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonExit.Name = "buttonExit";
-            this.buttonExit.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.buttonExit.Size = new System.Drawing.Size(61, 39);
-            this.buttonExit.Text = "Exit";
-            this.buttonExit.Click += new System.EventHandler(this.button_Click);
-            // 
-            // buttonUpdate
-            // 
-            this.buttonUpdate.Enabled = false;
-            this.buttonUpdate.Image = global::TotalSmartCoding.Properties.Resources.User_Control_Update;
-            this.buttonUpdate.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.buttonUpdate.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonUpdate.Name = "buttonUpdate";
-            this.buttonUpdate.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.buttonUpdate.Size = new System.Drawing.Size(81, 39);
-            this.buttonUpdate.Text = "Update";
-            this.buttonUpdate.Click += new System.EventHandler(this.button_Click);
-            // 
-            // buttonApplicationUserIgnored
-            // 
-            this.buttonApplicationUserIgnored.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.buttonApplicationUserIgnored.Image = global::TotalSmartCoding.Properties.Resources.f_cross_icon;
-            this.buttonApplicationUserIgnored.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonApplicationUserIgnored.Name = "buttonApplicationUserIgnored";
-            this.buttonApplicationUserIgnored.Size = new System.Drawing.Size(24, 39);
-            this.buttonApplicationUserIgnored.Text = "Ignore SQL login";
-            this.buttonApplicationUserIgnored.Click += new System.EventHandler(this.button_Click);
-            // 
-            // buttonApplicationUserRequired
-            // 
-            this.buttonApplicationUserRequired.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.buttonApplicationUserRequired.Image = global::TotalSmartCoding.Properties.Resources.f_User_icon_24;
-            this.buttonApplicationUserRequired.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonApplicationUserRequired.Name = "buttonApplicationUserRequired";
-            this.buttonApplicationUserRequired.Size = new System.Drawing.Size(24, 39);
-            this.buttonApplicationUserRequired.Text = "Use SQL login";
-            this.buttonApplicationUserRequired.Click += new System.EventHandler(this.button_Click);
             // 
             // ConnectSQL
             // 
