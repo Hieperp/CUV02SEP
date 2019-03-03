@@ -132,6 +132,7 @@
     <Compile Include="Repositories\Sales\DeliveryAdviceRepository.cs" />
     <Compile Include="Repositories\Sales\ForecastRepository.cs" />
     <Compile Include="Repositories\Sales\SalesOrderRepository.cs" />
+    <Compile Include="Repositories\Sales\SalesReturnRepository.cs" />
     <Compile Include="Repositories\Sales\TransferOrderRepository.cs" />
   </ItemGroup>
   <ItemGroup>

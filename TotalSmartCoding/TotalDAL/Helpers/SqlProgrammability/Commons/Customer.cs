@@ -75,7 +75,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Commons
             string[] queryArray = new string[3];
 
             queryArray[0] = " SELECT TOP 1 @FoundEntity = CustomerID FROM Customers WHERE ParentID = @EntityID ";
-            queryArray[1] = " SELECT TOP 1 @FoundEntity = CustomerID FROM SalesOrders WHERE CustomerID = @EntityID ";
+            queryArray[1] = " SELECT TOP 1 @FoundEntity = CustomerID FROM SalesReturns WHERE CustomerID = @EntityID ";
             queryArray[2] = " SELECT TOP 1 @FoundEntity = CustomerID FROM DeliveryAdvices WHERE CustomerID = @EntityID ";
 
             this.totalSmartCodingEntities.CreateProcedureToCheckExisting("CustomerDeletable", queryArray);

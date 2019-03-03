@@ -82,6 +82,7 @@
     <Compile Include="Sales\DeliveryAdviceService.cs" />
     <Compile Include="Sales\ForecastService.cs" />
     <Compile Include="Sales\SalesOrderService.cs" />
+    <Compile Include="Sales\SalesReturnService.cs" />
     <Compile Include="Sales\TransferOrderService.cs" />
   </ItemGroup>
   <ItemGroup>

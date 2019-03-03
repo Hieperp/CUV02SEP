@@ -90,6 +90,7 @@
     <Compile Include="Repositories\Sales\IDeliveryAdviceRepository.cs" />
     <Compile Include="Repositories\Sales\IForecastRepository.cs" />
     <Compile Include="Repositories\Sales\ISalesOrderRepository.cs" />
+    <Compile Include="Repositories\Sales\ISalesReturnRepository.cs" />
     <Compile Include="Repositories\Sales\ITransferOrderRepository.cs" />
     <Compile Include="Services\Commons\IBinLocationService.cs" />
     <Compile Include="Services\Commons\ICommodityCategoryService.cs" />
@@ -120,6 +121,7 @@
     <Compile Include="Services\Sales\IDeliveryAdviceService.cs" />
     <Compile Include="Services\Sales\IForecastService.cs" />
     <Compile Include="Services\Sales\ISalesOrderService.cs" />
+    <Compile Include="Services\Sales\ISalesReturnService.cs" />
     <Compile Include="Services\Sales\ITransferOrderService.cs" />
   </ItemGroup>
   <ItemGroup>
