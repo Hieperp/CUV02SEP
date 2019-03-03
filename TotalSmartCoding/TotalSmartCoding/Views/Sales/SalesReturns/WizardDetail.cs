@@ -65,7 +65,7 @@ namespace TotalSmartCoding.Views.Sales.SalesReturns
             this.salesReturnAPIs = salesReturnAPIs;
             this.salesReturnViewModel = salesReturnViewModel;
 
-            this.lowerFillterDate = DateTime.Today; this.upperFillterDate = DateTime.Today;
+            this.lowerFillterDate = DateTime.Today.AddDays(-1); this.upperFillterDate = DateTime.Today;
             this.beginingDateBinding = this.dateTimexLowerFillterDate.DataBindings.Add("Value", this, "LowerFillterDate", true, DataSourceUpdateMode.OnPropertyChanged);
             this.endingDateBinding = this.dateTimexUpperFillterDate.DataBindings.Add("Value", this, "UpperFillterDate", true, DataSourceUpdateMode.OnPropertyChanged);
 
