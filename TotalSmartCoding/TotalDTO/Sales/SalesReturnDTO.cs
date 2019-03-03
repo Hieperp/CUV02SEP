@@ -20,6 +20,16 @@ namespace TotalDTO.Sales
     {
         public override GlobalEnums.NmvnTaskID NMVNTaskID { get { return GlobalEnums.NmvnTaskID.SalesReturns; } }
 
+        public SalesReturnPrimitiveDTO() { this.Initialize(); }
+
+        public override void Init()
+        {
+            base.Init();
+            this.Initialize();
+        }
+
+        private void Initialize() { this.VoucherDate = DateTime.Now; }
+
         public override int GetID() { return this.SalesReturnID; }
         public void SetID(int id) { this.SalesReturnID = id; }
 

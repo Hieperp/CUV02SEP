@@ -87,17 +87,25 @@ namespace TotalSmartCoding.Views.Sales.SalesReturns
                 this.customTabCenter = new CustomTabControl();
                 this.customTabCenter.DisplayStyle = TabStyle.VisualStudio;
 
-                this.customTabCenter.TabPages.Add("tabCenterAA", "Order Lines            ");
+                this.customTabCenter.TabPages.Add("tabCenterAA", "Pallets                  ");
+                this.customTabCenter.TabPages.Add("tabCenterBB", "Cartons                  ");
                 this.customTabCenter.TabPages.Add("tabCenterBB", "Description            ");
                 this.customTabCenter.TabPages.Add("tabCenterBB", "Remarks                    ");
 
-                this.customTabCenter.TabPages[0].Controls.Add(this.gridexViewDetails);
-                this.customTabCenter.TabPages[1].Controls.Add(this.textexDescription);
-                this.customTabCenter.TabPages[2].Controls.Add(this.textexRemarks);
-                this.customTabCenter.TabPages[1].Padding = new Padding(30, 30, 30, 30);
+                this.customTabCenter.TabPages[0].Controls.Add(this.gridexPalletDetails);
+                this.customTabCenter.TabPages[0].Controls.Add(this.toolStripPallet);
+                this.customTabCenter.TabPages[1].Controls.Add(this.gridexCartonDetails);
+                this.customTabCenter.TabPages[1].Controls.Add(this.toolStripCarton);
+                this.customTabCenter.TabPages[2].Controls.Add(this.textexDescription);
+                this.customTabCenter.TabPages[3].Controls.Add(this.textexRemarks);
                 this.customTabCenter.TabPages[2].Padding = new Padding(30, 30, 30, 30);
+                this.customTabCenter.TabPages[3].Padding = new Padding(30, 30, 30, 30);
                 this.customTabCenter.TabPages[0].BackColor = this.panelCenter.BackColor;
-                this.gridexViewDetails.Dock = DockStyle.Fill;
+                this.customTabCenter.TabPages[1].BackColor = this.panelCenter.BackColor;
+                this.toolStripPallet.Dock = DockStyle.Left;
+                this.gridexPalletDetails.Dock = DockStyle.Fill;
+                this.toolStripCarton.Dock = DockStyle.Left;
+                this.gridexCartonDetails.Dock = DockStyle.Fill;
                 this.textexDescription.Dock = DockStyle.Fill;
                 this.textexRemarks.Dock = DockStyle.Fill;
 
@@ -212,58 +220,37 @@ namespace TotalSmartCoding.Views.Sales.SalesReturns
             }
         }
 
-        private BindingSource bindingSourceViewDetails = new BindingSource();
 
         protected override void InitializeDataGridBinding()
         {
             base.InitializeDataGridBinding();
-            this.InitializeDataGridReadonlyColumns(this.gridexViewDetails);
 
-            this.gridexViewDetails.AutoGenerateColumns = false;
-            this.gridexViewDetails.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            this.gridexPalletDetails.AutoGenerateColumns = false;
+            this.gridexCartonDetails.AutoGenerateColumns = false;
+            this.gridexPalletDetails.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            this.gridexCartonDetails.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            this.gridexPalletDetails.DataSource = this.salesReturnViewModel.PalletDetails;
+            this.gridexCartonDetails.DataSource = this.salesReturnViewModel.CartonDetails;
 
-            this.bindingSourceViewDetails.DataSource = this.salesReturnViewModel.ViewDetails;
-            this.gridexViewDetails.DataSource = this.bindingSourceViewDetails;
-
-            this.bindingSourceViewDetails.AddingNew += bindingSourceViewDetails_AddingNew;
             this.salesReturnViewModel.ViewDetails.ListChanged += ViewDetails_ListChanged;
-            this.gridexViewDetails.EditingControlShowing += new DataGridViewEditingControlShowingEventHandler(this.dataGridViewDetails_EditingControlShowing);
-            this.gridexViewDetails.ReadOnlyChanged += new System.EventHandler(this.dataGrid_ReadOnlyChanged);
 
-            DataGridViewComboBoxColumn comboBoxColumn;
-            CommodityAPIs commodityAPIs = new CommodityAPIs(CommonNinject.Kernel.Get<ICommodityAPIRepository>());
-
-            comboBoxColumn = (DataGridViewComboBoxColumn)this.gridexViewDetails.Columns[CommonExpressions.PropertyName<SalesReturnDetailDTO>(p => p.CommodityID)];
-            comboBoxColumn.DataSource = commodityAPIs.GetCommodityBases(true);
-            comboBoxColumn.DisplayMember = CommonExpressions.PropertyName<CommodityBase>(p => p.Code);
-            comboBoxColumn.ValueMember = CommonExpressions.PropertyName<CommodityBase>(p => p.CommodityID);
-
-            StackedHeaderDecorator stackedHeaderDecorator = new StackedHeaderDecorator(this.gridexViewDetails);
+            StackedHeaderDecorator stackedHeaderDecoratorPallet = new StackedHeaderDecorator(this.gridexPalletDetails);
+            StackedHeaderDecorator stackedHeaderDecoratorCarton = new StackedHeaderDecorator(this.gridexCartonDetails);
         }
 
-        private void bindingSourceViewDetails_AddingNew(object sender, AddingNewEventArgs e)
-        {   //ONLY WHEN USING COMBOBOX TO ADD NEW ROW TO datagridview => WE SHOULD USE BindingSource => THEN WE HANDLE AN EVENT HANDLER FOR AddingNew EVENT
-            //In this form, the datagridview using a combobox for add new item => add new row to the datagridview
-            //If user cancel the combobox => the datagridview will not cancel new adding row (event no new row added???)
-            //This will raise error when user move the cursor to the new row (means: the datagridview will add new row again!!!)
-            //I find an workarround to handle this error from this https://stackoverflow.com/questions/2359124/datagridview-throwing-invalidoperationexception-operation-is-not-valid-whe
-            //The following code: will remove current pending new row => in order add another new row again
-            if (this.gridexViewDetails.Rows.Count == this.bindingSourceViewDetails.Count)
-                this.bindingSourceViewDetails.RemoveAt(this.bindingSourceViewDetails.Count - 1);
-            //-----------The following is explanation from internet (the link above): The reason it works is because on a DataGridView where AllowUserToAddRows is true, it adds an empty row at the end of its rows which if bound to a list creates a null element at the end of your list. Your code removes that element and then the AddNew in the BindingList will trigger the DataGridView to add it again. 
-            //This code bypass the error, BUT NOT SOLVE THE PROBLEM COMPLETELY. SO: WE SHOULD ADVICE USER NOT CANCEL THE COMBOBOX => INSTEAD: CANCEL THE ROW AFTER SELECT THE COMBOBOX
-        }
-
+        
         private void ViewDetails_ListChanged(object sender, ListChangedEventArgs e)
         {
             if (e.ListChangedType == ListChangedType.ItemAdded || e.ListChangedType == ListChangedType.ItemDeleted || e.ListChangedType == ListChangedType.Reset)
-                this.customTabCenter.TabPages[0].Text = "Order Lines [" + this.salesReturnViewModel.ViewDetails.Count.ToString("N0") + " item(s)]             ";
-
-            if (this.EditableMode && e.PropertyDescriptor != null && e.NewIndex >= 0 && e.NewIndex < this.salesReturnViewModel.ViewDetails.Count)
             {
-                SalesReturnDetailDTO salesReturnDetailDTO = this.salesReturnViewModel.ViewDetails[e.NewIndex];
-                if (salesReturnDetailDTO != null)
-                    this.CalculateQuantityDetailDTO(salesReturnDetailDTO, e.PropertyDescriptor.Name, null, null);
+                this.customTabCenter.TabPages[0].Text = "Pallets [" + this.salesReturnViewModel.PalletDetails.Count.ToString("N0") + " item(s)]             ";
+                this.customTabCenter.TabPages[1].Text = "Cartons [" + this.salesReturnViewModel.CartonDetails.Count.ToString("N0") + " item(s)]             ";
+
+                //this.gridexPalletDetails.Columns["Pallet" + CommonExpressions.PropertyName<GoodsReceiptDetailDTO>(p => p.PrimaryReference)].Visible = this.salesReturnViewModel.PickupID == null && this.salesReturnViewModel.GoodsIssueID == null && this.salesReturnViewModel.WarehouseAdjustmentID == null;
+                //this.gridexPalletDetails.Columns["Pallet" + CommonExpressions.PropertyName<GoodsReceiptDetailDTO>(p => p.PrimaryEntryDate)].Visible = this.salesReturnViewModel.PickupID == null && this.salesReturnViewModel.GoodsIssueID == null && this.salesReturnViewModel.WarehouseAdjustmentID == null;
+
+                //this.gridexCartonDetails.Columns["Carton" + CommonExpressions.PropertyName<GoodsReceiptDetailDTO>(p => p.PrimaryReference)].Visible = this.salesReturnViewModel.PickupID == null && this.salesReturnViewModel.GoodsIssueID == null && this.salesReturnViewModel.WarehouseAdjustmentID == null;
+                //this.gridexCartonDetails.Columns["Carton" + CommonExpressions.PropertyName<GoodsReceiptDetailDTO>(p => p.PrimaryEntryDate)].Visible = this.salesReturnViewModel.PickupID == null && this.salesReturnViewModel.GoodsIssueID == null && this.salesReturnViewModel.WarehouseAdjustmentID == null;
             }
         }
 
@@ -301,6 +288,28 @@ namespace TotalSmartCoding.Views.Sales.SalesReturns
 
             wizardMaster.Dispose();
             return dialogResult;
+        }
+
+        protected override void wizardDetail()
+        {
+            base.wizardDetail();
+            //WizardDetail wizardDetail = new WizardDetail(this.goodsReceiptAPIs, this.goodsReceiptViewModel);
+            //wizardDetail.ShowDialog();
+
+            //wizardDetail.Dispose();
+        }
+
+        private void buttonAddDetails_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (this.EditableMode)
+                    this.wizardDetail();
+            }
+            catch (Exception exception)
+            {
+                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+            }
         }
 
         private void naviGroupDetails_HeaderMouseClick(object sender, MouseEventArgs e)

@@ -43,6 +43,7 @@ using TotalSmartCoding.Views.Inventories.GoodsReceipts;
 using TotalSmartCoding.Views.Sales.Forecasts;
 using TotalSmartCoding.Views.Sales.SalesOrders;
 using TotalSmartCoding.Views.Sales.DeliveryAdvices;
+using TotalSmartCoding.Views.Sales.SalesReturns;
 using TotalSmartCoding.Views.Sales.TransferOrders;
 using TotalSmartCoding.Views.Sales.PendingOrders;
 
@@ -504,6 +505,10 @@ namespace TotalSmartCoding.Views.Mains
 
                         case (int)GlobalEnums.NmvnTaskID.TransferOrders:
                             openingView = new TransferOrders();
+                            break;
+
+                        case (int)GlobalEnums.NmvnTaskID.SalesReturns:
+                            openingView = new SalesReturns();
                             break;
 
                         case (int)GlobalEnums.NmvnTaskID.GoodsIssues:
