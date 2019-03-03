@@ -115,14 +115,14 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
             string queryString;
 
             queryString = " @LocationID Int, @SalesReturnID Int, @GoodsIssueID Int, @CustomerID Int, @ReceiverID Int, @FromDate DateTime, @ToDate DateTime, @CartonIDs varchar(3999), @PalletIDs varchar(3999) " + "\r\n";
-            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            //queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
 
             queryString = queryString + "   BEGIN " + "\r\n";
             queryString = queryString + "       SET         @ToDate = DATEADD (hour, 23, DATEADD (minute, 59, DATEADD (second, 59, @ToDate))) " + "\r\n";
             queryString = queryString + "       DECLARE     @GoodsIssueDetails TABLE (GoodsIssueDetailID int NOT NULL, GoodsIssueID int NOT NULL, VoucherCodes nvarchar(100) NULL, EntryDate datetime NOT NULL, CommodityID int NOT NULL, PackID int NULL, CartonID int NULL, PalletID int NULL, Quantity decimal(18, 2) NOT NULL, LineVolume decimal(18, 2) NOT NULL) " + "\r\n";
 
-            queryString = queryString + "       IF  (@GoodsIssueID <> 0) " + "\r\n";
+            queryString = queryString + "       IF  (NOT @GoodsIssueID IS NULL AND @GoodsIssueID <> 0) " + "\r\n";
             queryString = queryString + "           " + this.BuildSQL(true) + "\r\n";
             queryString = queryString + "       ELSE " + "\r\n";
             queryString = queryString + "           " + this.BuildSQL(false) + "\r\n";

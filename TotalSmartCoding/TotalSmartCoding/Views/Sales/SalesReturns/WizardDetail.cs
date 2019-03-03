@@ -7,22 +7,40 @@ using BrightIdeasSoftware;
 
 using TotalBase.Enums;
 using TotalModel.Models;
-using TotalDTO.Inventories;
-using TotalSmartCoding.Controllers.APIs.Inventories;
+using TotalDTO.Sales;
+using TotalSmartCoding.Controllers.APIs.Sales;
 using TotalSmartCoding.Libraries.Helpers;
-using TotalSmartCoding.ViewModels.Inventories;
+using TotalSmartCoding.ViewModels.Sales;
 using TotalSmartCoding.Views.Mains;
 using TotalDTO.Helpers.Interfaces;
 
 
-namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
+namespace TotalSmartCoding.Views.Sales.SalesReturns
 {
     public partial class WizardDetail : Form
     {
-        private GoodsReceiptAPIs goodsReceiptAPIs;
-        private GoodsReceiptViewModel goodsReceiptViewModel;
+        private SalesReturnAPIs salesReturnAPIs;
+        private SalesReturnViewModel salesReturnViewModel;
         private CustomTabControl customTabBatch;
-        public WizardDetail(GoodsReceiptAPIs goodsReceiptAPIs, GoodsReceiptViewModel goodsReceiptViewModel)
+
+        private Binding beginingDateBinding;
+        private Binding endingDateBinding;
+
+        private DateTime lowerFillterDate;
+        public DateTime LowerFillterDate
+        {
+            get { return this.lowerFillterDate; }
+            set { if (this.lowerFillterDate != value) { this.lowerFillterDate = value; this.WizardDetail_Load(this, new EventArgs()); } }
+        }
+
+        private DateTime upperFillterDate;
+        public DateTime UpperFillterDate
+        {
+            get { return this.upperFillterDate; }
+            set { if (this.upperFillterDate != value) { this.upperFillterDate = value; this.WizardDetail_Load(this, new EventArgs()); } }
+        }
+
+        public WizardDetail(SalesReturnAPIs salesReturnAPIs, SalesReturnViewModel salesReturnViewModel)
         {
             InitializeComponent();
 
@@ -44,12 +62,15 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
             this.panelMaster.Controls.Add(this.customTabBatch);
 
 
-            this.goodsReceiptAPIs = goodsReceiptAPIs;
-            this.goodsReceiptViewModel = goodsReceiptViewModel;
+            this.salesReturnAPIs = salesReturnAPIs;
+            this.salesReturnViewModel = salesReturnViewModel;
 
-            this.olvCartonSelected.HeaderCheckState = this.goodsReceiptViewModel.GoodsReceiptTypeID == (int)GlobalEnums.GoodsReceiptTypeID.Pickup ? CheckState.Checked : CheckState.Unchecked;
-            this.olvPalletSelected.HeaderCheckState = this.goodsReceiptViewModel.GoodsReceiptTypeID == (int)GlobalEnums.GoodsReceiptTypeID.Pickup ? CheckState.Checked : CheckState.Unchecked;
-            this.menuOptionBinLocations.Visible = this.goodsReceiptViewModel.GoodsReceiptTypeID == (int)GlobalEnums.GoodsReceiptTypeID.GoodsIssueTransfer;
+            this.lowerFillterDate = DateTime.Today; this.upperFillterDate = DateTime.Today;
+            this.beginingDateBinding = this.dateTimexLowerFillterDate.DataBindings.Add("Value", this, "LowerFillterDate", true, DataSourceUpdateMode.OnPropertyChanged);
+            this.endingDateBinding = this.dateTimexUpperFillterDate.DataBindings.Add("Value", this, "UpperFillterDate", true, DataSourceUpdateMode.OnPropertyChanged);
+
+            this.beginingDateBinding.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+            this.endingDateBinding.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
         }
 
 
@@ -57,24 +78,13 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
         {
             try
             {
-                List<PendingPickupDetail> pendingPickupDetails = null;
-                List<PendingGoodsIssueTransferDetail> pendingGoodsIssueTransferDetails = null;
+                List<SalesReturnPendingGoodsIssueDetail> pendingGoodsIssueDetails = null;
+                pendingGoodsIssueDetails = this.salesReturnAPIs.GetPendingGoodsIssueDetails(this.salesReturnViewModel.LocationID, this.salesReturnViewModel.SalesReturnID, this.salesReturnViewModel.GoodsIssueID, this.salesReturnViewModel.CustomerID, this.salesReturnViewModel.ReceiverID, this.LowerFillterDate, this.UpperFillterDate, string.Join(",", this.salesReturnViewModel.ViewDetails.Select(d => d.CartonID)), string.Join(",", this.salesReturnViewModel.ViewDetails.Select(d => d.PalletID)));
 
-                if (this.goodsReceiptViewModel.GoodsReceiptTypeID == (int)GlobalEnums.GoodsReceiptTypeID.Pickup)
-                    pendingPickupDetails = this.goodsReceiptAPIs.GetPendingPickupDetails(this.goodsReceiptViewModel.LocationID, this.goodsReceiptViewModel.GoodsReceiptID, this.goodsReceiptViewModel.PickupID, this.goodsReceiptViewModel.WarehouseID, string.Join(",", this.goodsReceiptViewModel.ViewDetails.Select(d => d.PickupDetailID)), false);
-                if (this.goodsReceiptViewModel.GoodsReceiptTypeID == (int)GlobalEnums.GoodsReceiptTypeID.GoodsIssueTransfer)
-                    pendingGoodsIssueTransferDetails = this.goodsReceiptAPIs.GetPendingGoodsIssueTransferDetails(this.goodsReceiptViewModel.LocationID, this.goodsReceiptViewModel.GoodsReceiptID, this.goodsReceiptViewModel.GoodsIssueID, this.goodsReceiptViewModel.WarehouseID, string.Join(",", this.goodsReceiptViewModel.ViewDetails.Select(d => d.GoodsIssueTransferDetailID)), false);
-
-                if (pendingPickupDetails != null)
+                if (pendingGoodsIssueDetails != null)
                 {
-                    this.fastPendingPallets.SetObjects(pendingPickupDetails.Where(w => w.PalletID != null));
-                    this.fastPendingCartons.SetObjects(pendingPickupDetails.Where(w => w.CartonID != null));
-                }
-
-                if (pendingGoodsIssueTransferDetails != null)
-                {
-                    this.fastPendingPallets.SetObjects(pendingGoodsIssueTransferDetails.Where(w => w.PalletID != null));
-                    this.fastPendingCartons.SetObjects(pendingGoodsIssueTransferDetails.Where(w => w.CartonID != null));
+                    this.fastPendingPallets.SetObjects(pendingGoodsIssueDetails.Where(w => w.PalletID != null));
+                    this.fastPendingCartons.SetObjects(pendingGoodsIssueDetails.Where(w => w.CartonID != null));
                 }
 
                 this.ShowRowCount(true, true);
@@ -85,90 +95,96 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
             }
         }
 
+        protected void CommonControl_BindingComplete(object sender, BindingCompleteEventArgs e)
+        {
+            if (sender.Equals(this.beginingDateBinding) || sender.Equals(this.endingDateBinding))
+            {
+            }
+        }
 
         private void buttonAddESC_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (sender.Equals(this.buttonAdd) || sender.Equals(this.buttonAddExit))
-                {
-                    FastObjectListView fastPendingList = this.customTabBatch.SelectedIndex == 0 ? this.fastPendingPallets : (this.customTabBatch.SelectedIndex == 1 ? this.fastPendingCartons : null);
+            //try
+            //{
+            //    if (sender.Equals(this.buttonAdd) || sender.Equals(this.buttonAddExit))
+            //    {
+            //        FastObjectListView fastPendingList = this.customTabBatch.SelectedIndex == 0 ? this.fastPendingPallets : (this.customTabBatch.SelectedIndex == 1 ? this.fastPendingCartons : null);
 
-                    if (fastPendingList != null)
-                    {
-                        if (fastPendingList.CheckedObjects.Count > 0)
-                        {
-                            IEnumerable<IPendingforGoodsReceiptDetail> pendingforGoodsReceiptDetails = fastPendingList.CheckedObjects.Cast<IPendingforGoodsReceiptDetail>();
-                            if (pendingforGoodsReceiptDetails.Where(w => w.BinLocationID <= 0).FirstOrDefault() != null) throw new Exception("Vui lòng chọn Bin Location.");
+            //        if (fastPendingList != null)
+            //        {
+            //            if (fastPendingList.CheckedObjects.Count > 0)
+            //            {
+            //                IEnumerable<IPendingforSalesReturnDetail> pendingforSalesReturnDetails = fastPendingList.CheckedObjects.Cast<IPendingforSalesReturnDetail>();
+            //                if (pendingforSalesReturnDetails.Where(w => w.BinLocationID <= 0).FirstOrDefault() != null) throw new Exception("Vui lòng chọn Bin Location.");
 
-                            this.goodsReceiptViewModel.ViewDetails.RaiseListChangedEvents = false;
-                            foreach (IPendingforGoodsReceiptDetail pendingforGoodsReceiptDetail in pendingforGoodsReceiptDetails)
-                            {
-                                GoodsReceiptDetailDTO goodsReceiptDetailDTO = new GoodsReceiptDetailDTO()
-                                {
-                                    GoodsReceiptID = this.goodsReceiptViewModel.GoodsReceiptID,
+            //                this.salesReturnViewModel.ViewDetails.RaiseListChangedEvents = false;
+            //                foreach (IPendingforSalesReturnDetail pendingforSalesReturnDetail in pendingforSalesReturnDetails)
+            //                {
+            //                    SalesReturnDetailDTO salesReturnDetailDTO = new SalesReturnDetailDTO()
+            //                    {
+            //                        SalesReturnID = this.salesReturnViewModel.SalesReturnID,
 
-                                    PickupID = pendingforGoodsReceiptDetail.PickupID > 0 ? pendingforGoodsReceiptDetail.PickupID : (int?)null,
-                                    PickupDetailID = pendingforGoodsReceiptDetail.PickupDetailID > 0 ? pendingforGoodsReceiptDetail.PickupDetailID : (int?)null,
-                                    PickupReference = pendingforGoodsReceiptDetail.PrimaryReference,
-                                    PickupEntryDate = pendingforGoodsReceiptDetail.PickupID > 0 ? pendingforGoodsReceiptDetail.PrimaryEntryDate : (DateTime?)null,
+            //                        PickupID = pendingforSalesReturnDetail.PickupID > 0 ? pendingforSalesReturnDetail.PickupID : (int?)null,
+            //                        PickupDetailID = pendingforSalesReturnDetail.PickupDetailID > 0 ? pendingforSalesReturnDetail.PickupDetailID : (int?)null,
+            //                        PickupReference = pendingforSalesReturnDetail.PrimaryReference,
+            //                        PickupEntryDate = pendingforSalesReturnDetail.PickupID > 0 ? pendingforSalesReturnDetail.PrimaryEntryDate : (DateTime?)null,
 
-                                    GoodsIssueID = pendingforGoodsReceiptDetail.GoodsIssueID > 0 ? pendingforGoodsReceiptDetail.GoodsIssueID : (int?)null,
-                                    GoodsIssueTransferDetailID = pendingforGoodsReceiptDetail.GoodsIssueTransferDetailID > 0 ? pendingforGoodsReceiptDetail.GoodsIssueTransferDetailID : (int?)null,
-                                    GoodsIssueReference = pendingforGoodsReceiptDetail.PrimaryReference,
-                                    GoodsIssueEntryDate = pendingforGoodsReceiptDetail.GoodsIssueID > 0 ? pendingforGoodsReceiptDetail.PrimaryEntryDate : (DateTime?)null,
+            //                        GoodsIssueID = pendingforSalesReturnDetail.GoodsIssueID > 0 ? pendingforSalesReturnDetail.GoodsIssueID : (int?)null,
+            //                        GoodsIssueTransferDetailID = pendingforSalesReturnDetail.GoodsIssueTransferDetailID > 0 ? pendingforSalesReturnDetail.GoodsIssueTransferDetailID : (int?)null,
+            //                        GoodsIssueReference = pendingforSalesReturnDetail.PrimaryReference,
+            //                        GoodsIssueEntryDate = pendingforSalesReturnDetail.GoodsIssueID > 0 ? pendingforSalesReturnDetail.PrimaryEntryDate : (DateTime?)null,
 
-                                    LocationIssueID = pendingforGoodsReceiptDetail.LocationIssueID,
-                                    WarehouseIssueID = pendingforGoodsReceiptDetail.WarehouseIssueID,
+            //                        LocationIssueID = pendingforSalesReturnDetail.LocationIssueID,
+            //                        WarehouseIssueID = pendingforSalesReturnDetail.WarehouseIssueID,
 
-                                    BatchID = pendingforGoodsReceiptDetail.BatchID,
-                                    BatchEntryDate = pendingforGoodsReceiptDetail.BatchEntryDate,
+            //                        BatchID = pendingforSalesReturnDetail.BatchID,
+            //                        BatchEntryDate = pendingforSalesReturnDetail.BatchEntryDate,
 
-                                    BinLocationID = pendingforGoodsReceiptDetail.BinLocationID,
-                                    BinLocationCode = pendingforGoodsReceiptDetail.BinLocationCode,
+            //                        BinLocationID = pendingforSalesReturnDetail.BinLocationID,
+            //                        BinLocationCode = pendingforSalesReturnDetail.BinLocationCode,
 
-                                    CommodityID = pendingforGoodsReceiptDetail.CommodityID,
-                                    CommodityCode = pendingforGoodsReceiptDetail.CommodityCode,
-                                    CommodityName = pendingforGoodsReceiptDetail.CommodityName,
+            //                        CommodityID = pendingforSalesReturnDetail.CommodityID,
+            //                        CommodityCode = pendingforSalesReturnDetail.CommodityCode,
+            //                        CommodityName = pendingforSalesReturnDetail.CommodityName,
 
-                                    Quantity = (decimal)pendingforGoodsReceiptDetail.QuantityRemains,
-                                    LineVolume = (decimal)pendingforGoodsReceiptDetail.LineVolumeRemains,
-
-
-                                    PackID = pendingforGoodsReceiptDetail.PackID,
-                                    PackCode = pendingforGoodsReceiptDetail.PackCode,
-                                    CartonID = pendingforGoodsReceiptDetail.CartonID,
-                                    CartonCode = pendingforGoodsReceiptDetail.CartonCode,
-                                    PalletID = pendingforGoodsReceiptDetail.PalletID,
-                                    PalletCode = pendingforGoodsReceiptDetail.PalletCode,
-
-                                    PackCounts = pendingforGoodsReceiptDetail.PackCounts,
-                                    CartonCounts = pendingforGoodsReceiptDetail.CartonCounts,
-                                    PalletCounts = pendingforGoodsReceiptDetail.PalletCounts
-                                };
-                                this.goodsReceiptViewModel.ViewDetails.Add(goodsReceiptDetailDTO);
-                            }
-                            this.goodsReceiptViewModel.ViewDetails.RaiseListChangedEvents = true;
-                            this.goodsReceiptViewModel.ViewDetails.ResetBindings();
-                        }
-                    }
+            //                        Quantity = (decimal)pendingforSalesReturnDetail.QuantityRemains,
+            //                        LineVolume = (decimal)pendingforSalesReturnDetail.LineVolumeRemains,
 
 
-                    if (sender.Equals(this.buttonAddExit))
-                        this.DialogResult = DialogResult.OK;
-                    else
-                        this.WizardDetail_Load(this, new EventArgs());
-                }
+            //                        PackID = pendingforSalesReturnDetail.PackID,
+            //                        PackCode = pendingforSalesReturnDetail.PackCode,
+            //                        CartonID = pendingforSalesReturnDetail.CartonID,
+            //                        CartonCode = pendingforSalesReturnDetail.CartonCode,
+            //                        PalletID = pendingforSalesReturnDetail.PalletID,
+            //                        PalletCode = pendingforSalesReturnDetail.PalletCode,
 
-                if (sender.Equals(this.buttonESC))
-                    this.DialogResult = DialogResult.Cancel;
+            //                        PackCounts = pendingforSalesReturnDetail.PackCounts,
+            //                        CartonCounts = pendingforSalesReturnDetail.CartonCounts,
+            //                        PalletCounts = pendingforSalesReturnDetail.PalletCounts
+            //                    };
+            //                    this.salesReturnViewModel.ViewDetails.Add(salesReturnDetailDTO);
+            //                }
+            //                this.salesReturnViewModel.ViewDetails.RaiseListChangedEvents = true;
+            //                this.salesReturnViewModel.ViewDetails.ResetBindings();
+            //            }
+            //        }
 
 
-            }
-            catch (Exception exception)
-            {
-                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
-            }
+            //        if (sender.Equals(this.buttonAddExit))
+            //            this.DialogResult = DialogResult.OK;
+            //        else
+            //            this.WizardDetail_Load(this, new EventArgs());
+            //    }
+
+            //    if (sender.Equals(this.buttonESC))
+            //        this.DialogResult = DialogResult.Cancel;
+
+
+            //}
+            //catch (Exception exception)
+            //{
+            //    ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+            //}
         }
 
         private void textexFilters_TextChanged(object sender, EventArgs e)
@@ -193,85 +209,18 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
 
         private void ShowRowCount(bool showPalletCount, bool showCartonCount)
         {
-            if (showPalletCount)
-            {
-                decimal? totalQuantityRemains = this.fastPendingPallets.FilteredObjects.Cast<IPendingforGoodsReceiptDetail>().Select(o => o.QuantityRemains).Sum();
-                decimal? totalLineVolumeRemains = this.fastPendingPallets.FilteredObjects.Cast<IPendingforGoodsReceiptDetail>().Select(o => o.LineVolumeRemains).Sum();
-                this.customTabBatch.TabPages[0].Text = "Pending " + this.fastPendingPallets.GetItemCount().ToString("N0") + " pallet" + (this.fastPendingPallets.GetItemCount() > 1 ? "s" : "") + ", Quantity: " + (totalQuantityRemains != null ? ((decimal)totalQuantityRemains).ToString("N0") : "0") + ", Volume: " + (totalLineVolumeRemains != null ? ((decimal)totalLineVolumeRemains).ToString("N0") : "0") + "       ";
-            }
-            if (showCartonCount)
-            {
-                decimal? totalQuantityRemains = this.fastPendingCartons.FilteredObjects.Cast<IPendingforGoodsReceiptDetail>().Select(o => o.QuantityRemains).Sum();
-                decimal? totalLineVolumeRemains = this.fastPendingCartons.FilteredObjects.Cast<IPendingforGoodsReceiptDetail>().Select(o => o.LineVolumeRemains).Sum();
-                this.customTabBatch.TabPages[1].Text = "Pending " + this.fastPendingCartons.GetItemCount().ToString("N0") + " carton" + (this.fastPendingCartons.GetItemCount() > 1 ? "s" : "") + ", Quantity: " + (totalQuantityRemains != null ? ((decimal)totalQuantityRemains).ToString("N0") : "0") + ", Volume: " + (totalLineVolumeRemains != null ? ((decimal)totalLineVolumeRemains).ToString("N0") : "0") + "       ";
-            }
-        }
-
-        private void menuOptionBinLocations_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                FastObjectListView fastPendingList = this.customTabBatch.SelectedIndex == 0 ? this.fastPendingPallets : (this.customTabBatch.SelectedIndex == 1 ? this.fastPendingCartons : null);
-
-                if (fastPendingList != null && fastPendingList.SelectedObject != null)
-                {
-                    IPendingforGoodsReceiptDetail pendingforGoodsReceiptDetail = (IPendingforGoodsReceiptDetail)fastPendingList.SelectedObject;
-                    if (pendingforGoodsReceiptDetail != null)
-                    {
-                        LineDetailBinlLocation lineDetailBinlLocation = new LineDetailBinlLocation()
-                        {
-                            CommodityID = pendingforGoodsReceiptDetail.CommodityID,
-                            CommodityCode = pendingforGoodsReceiptDetail.CommodityCode,
-                            CommodityName = pendingforGoodsReceiptDetail.CommodityName,
-                            PackID = pendingforGoodsReceiptDetail.PackID,
-                            PackCode = pendingforGoodsReceiptDetail.PackCode,
-                            CartonID = pendingforGoodsReceiptDetail.CartonID,
-                            CartonCode = pendingforGoodsReceiptDetail.CartonCode,
-                            PalletID = pendingforGoodsReceiptDetail.PalletID,
-                            PalletCode = pendingforGoodsReceiptDetail.PalletCode,
-                            WarehouseID = this.goodsReceiptViewModel.WarehouseID,
-                            BinLocationID = pendingforGoodsReceiptDetail.BinLocationID,
-                            BinLocationCode = pendingforGoodsReceiptDetail.BinLocationCode,
-                            Quantity = (decimal)pendingforGoodsReceiptDetail.Quantity,
-                            LineVolume = pendingforGoodsReceiptDetail.LineVolume
-                        };
-
-                        Pickups.WizardDetail wizardDetail = new Pickups.WizardDetail(lineDetailBinlLocation);
-                        TabletMDI tabletMDI = new TabletMDI(wizardDetail);
-
-                        if (tabletMDI.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                        {
-                            //if (fastPendingList.Equals(this.fastPendingCartons)) NEU AAP DUNG CACH NAY: CHI CARTON MOI CHO PHEP SET BIN LOCATION HANG LOAT
-                            //{
-                            foreach (var checkedObject in fastPendingList.CheckedObjects)
-                            {
-                                IPendingforGoodsReceiptDetail p = (IPendingforGoodsReceiptDetail)checkedObject;
-                                p.BinLocationID = (int)lineDetailBinlLocation.BinLocationID;
-                                p.BinLocationCode = lineDetailBinlLocation.BinLocationCode;
-                            }
-                            //}
-                            //else
-                            //{
-                            //    pendingforGoodsReceiptDetail.BinLocationID = (int)lineDetailBinlLocation.BinLocationID;
-                            //    pendingforGoodsReceiptDetail.BinLocationCode = lineDetailBinlLocation.BinLocationCode;
-                            //}
-
-                            fastPendingList.RefreshObject(pendingforGoodsReceiptDetail);
-                        }
-
-                        wizardDetail.Dispose(); tabletMDI.Dispose();
-                    }
-                }
-            }
-            catch (Exception exception)
-            {
-                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
-            }
-        }
-
-        private void fastPendingBarcodes_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            this.menuOptionBinLocations_Click(sender, new EventArgs());
+            //if (showPalletCount)
+            //{
+            //    decimal? totalQuantityRemains = this.fastPendingPallets.FilteredObjects.Cast<IPendingforSalesReturnDetail>().Select(o => o.QuantityRemains).Sum();
+            //    decimal? totalLineVolumeRemains = this.fastPendingPallets.FilteredObjects.Cast<IPendingforSalesReturnDetail>().Select(o => o.LineVolumeRemains).Sum();
+            //    this.customTabBatch.TabPages[0].Text = "Pending " + this.fastPendingPallets.GetItemCount().ToString("N0") + " pallet" + (this.fastPendingPallets.GetItemCount() > 1 ? "s" : "") + ", Quantity: " + (totalQuantityRemains != null ? ((decimal)totalQuantityRemains).ToString("N0") : "0") + ", Volume: " + (totalLineVolumeRemains != null ? ((decimal)totalLineVolumeRemains).ToString("N0") : "0") + "       ";
+            //}
+            //if (showCartonCount)
+            //{
+            //    decimal? totalQuantityRemains = this.fastPendingCartons.FilteredObjects.Cast<IPendingforSalesReturnDetail>().Select(o => o.QuantityRemains).Sum();
+            //    decimal? totalLineVolumeRemains = this.fastPendingCartons.FilteredObjects.Cast<IPendingforSalesReturnDetail>().Select(o => o.LineVolumeRemains).Sum();
+            //    this.customTabBatch.TabPages[1].Text = "Pending " + this.fastPendingCartons.GetItemCount().ToString("N0") + " carton" + (this.fastPendingCartons.GetItemCount() > 1 ? "s" : "") + ", Quantity: " + (totalQuantityRemains != null ? ((decimal)totalQuantityRemains).ToString("N0") : "0") + ", Volume: " + (totalLineVolumeRemains != null ? ((decimal)totalLineVolumeRemains).ToString("N0") : "0") + "       ";
+            //}
         }
     }
 }

@@ -293,10 +293,10 @@ namespace TotalSmartCoding.Views.Sales.SalesReturns
         protected override void wizardDetail()
         {
             base.wizardDetail();
-            //WizardDetail wizardDetail = new WizardDetail(this.goodsReceiptAPIs, this.goodsReceiptViewModel);
-            //wizardDetail.ShowDialog();
+            WizardDetail wizardDetail = new WizardDetail(this.salesReturnAPIs, this.salesReturnViewModel);
+            wizardDetail.ShowDialog();
 
-            //wizardDetail.Dispose();
+            wizardDetail.Dispose();
         }
 
         private void buttonAddDetails_Click(object sender, EventArgs e)
