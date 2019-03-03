@@ -79,6 +79,8 @@ namespace TotalModel.Models
         public virtual DbSet<UserGroup> UserGroups { get; set; }
         public virtual DbSet<UserGroupDetail> UserGroupDetails { get; set; }
         public virtual DbSet<CommodityType> CommodityTypes { get; set; }
+        public virtual DbSet<SalesReturnDetail> SalesReturnDetails { get; set; }
+        public virtual DbSet<SalesReturn> SalesReturns { get; set; }
     
         public virtual ObjectResult<Nullable<int>> GetAccessLevel(Nullable<int> userID, Nullable<int> nMVNTaskID, Nullable<int> organizationalUnitID)
         {
@@ -3415,6 +3417,151 @@ namespace TotalModel.Models
                 new ObjectParameter("Password", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateApplicationUser", applicationUserIDParameter, nameParameter, passwordParameter);
+        }
+    
+        public virtual ObjectResult<SalesReturnIndex> GetSalesReturnIndexes(Nullable<int> userID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
+        {
+            var userIDParameter = userID.HasValue ?
+                new ObjectParameter("UserID", userID) :
+                new ObjectParameter("UserID", typeof(int));
+    
+            var fromDateParameter = fromDate.HasValue ?
+                new ObjectParameter("FromDate", fromDate) :
+                new ObjectParameter("FromDate", typeof(System.DateTime));
+    
+            var toDateParameter = toDate.HasValue ?
+                new ObjectParameter("ToDate", toDate) :
+                new ObjectParameter("ToDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SalesReturnIndex>("GetSalesReturnIndexes", userIDParameter, fromDateParameter, toDateParameter);
+        }
+    
+        public virtual ObjectResult<SalesReturnPendingGoodsIssueDetail> GetSalesReturnPendingGoodsIssueDetails(Nullable<int> locationID, Nullable<int> salesReturnID, Nullable<int> goodsIssueID, Nullable<int> customerID, Nullable<int> receiverID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate, string cartonIDs, string palletIDs)
+        {
+            var locationIDParameter = locationID.HasValue ?
+                new ObjectParameter("LocationID", locationID) :
+                new ObjectParameter("LocationID", typeof(int));
+    
+            var salesReturnIDParameter = salesReturnID.HasValue ?
+                new ObjectParameter("SalesReturnID", salesReturnID) :
+                new ObjectParameter("SalesReturnID", typeof(int));
+    
+            var goodsIssueIDParameter = goodsIssueID.HasValue ?
+                new ObjectParameter("GoodsIssueID", goodsIssueID) :
+                new ObjectParameter("GoodsIssueID", typeof(int));
+    
+            var customerIDParameter = customerID.HasValue ?
+                new ObjectParameter("CustomerID", customerID) :
+                new ObjectParameter("CustomerID", typeof(int));
+    
+            var receiverIDParameter = receiverID.HasValue ?
+                new ObjectParameter("ReceiverID", receiverID) :
+                new ObjectParameter("ReceiverID", typeof(int));
+    
+            var fromDateParameter = fromDate.HasValue ?
+                new ObjectParameter("FromDate", fromDate) :
+                new ObjectParameter("FromDate", typeof(System.DateTime));
+    
+            var toDateParameter = toDate.HasValue ?
+                new ObjectParameter("ToDate", toDate) :
+                new ObjectParameter("ToDate", typeof(System.DateTime));
+    
+            var cartonIDsParameter = cartonIDs != null ?
+                new ObjectParameter("CartonIDs", cartonIDs) :
+                new ObjectParameter("CartonIDs", typeof(string));
+    
+            var palletIDsParameter = palletIDs != null ?
+                new ObjectParameter("PalletIDs", palletIDs) :
+                new ObjectParameter("PalletIDs", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SalesReturnPendingGoodsIssueDetail>("GetSalesReturnPendingGoodsIssueDetails", locationIDParameter, salesReturnIDParameter, goodsIssueIDParameter, customerIDParameter, receiverIDParameter, fromDateParameter, toDateParameter, cartonIDsParameter, palletIDsParameter);
+        }
+    
+        public virtual ObjectResult<SalesReturnPendingGoodsIssue> GetSalesReturnPendingGoodsIssues(Nullable<int> locationID, Nullable<int> customerID, Nullable<int> receiverID, Nullable<System.DateTime> fromDate, Nullable<System.DateTime> toDate)
+        {
+            var locationIDParameter = locationID.HasValue ?
+                new ObjectParameter("LocationID", locationID) :
+                new ObjectParameter("LocationID", typeof(int));
+    
+            var customerIDParameter = customerID.HasValue ?
+                new ObjectParameter("CustomerID", customerID) :
+                new ObjectParameter("CustomerID", typeof(int));
+    
+            var receiverIDParameter = receiverID.HasValue ?
+                new ObjectParameter("ReceiverID", receiverID) :
+                new ObjectParameter("ReceiverID", typeof(int));
+    
+            var fromDateParameter = fromDate.HasValue ?
+                new ObjectParameter("FromDate", fromDate) :
+                new ObjectParameter("FromDate", typeof(System.DateTime));
+    
+            var toDateParameter = toDate.HasValue ?
+                new ObjectParameter("ToDate", toDate) :
+                new ObjectParameter("ToDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SalesReturnPendingGoodsIssue>("GetSalesReturnPendingGoodsIssues", locationIDParameter, customerIDParameter, receiverIDParameter, fromDateParameter, toDateParameter);
+        }
+    
+        public virtual ObjectResult<SalesReturnViewDetail> GetSalesReturnViewDetails(Nullable<int> salesReturnID)
+        {
+            var salesReturnIDParameter = salesReturnID.HasValue ?
+                new ObjectParameter("SalesReturnID", salesReturnID) :
+                new ObjectParameter("SalesReturnID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SalesReturnViewDetail>("GetSalesReturnViewDetails", salesReturnIDParameter);
+        }
+    
+        public virtual ObjectResult<string> SalesReturnApproved(Nullable<int> entityID)
+        {
+            var entityIDParameter = entityID.HasValue ?
+                new ObjectParameter("EntityID", entityID) :
+                new ObjectParameter("EntityID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("SalesReturnApproved", entityIDParameter);
+        }
+    
+        public virtual ObjectResult<string> SalesReturnEditable(Nullable<int> entityID)
+        {
+            var entityIDParameter = entityID.HasValue ?
+                new ObjectParameter("EntityID", entityID) :
+                new ObjectParameter("EntityID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("SalesReturnEditable", entityIDParameter);
+        }
+    
+        public virtual ObjectResult<string> SalesReturnPostSaveValidate(Nullable<int> entityID)
+        {
+            var entityIDParameter = entityID.HasValue ?
+                new ObjectParameter("EntityID", entityID) :
+                new ObjectParameter("EntityID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("SalesReturnPostSaveValidate", entityIDParameter);
+        }
+    
+        public virtual int SalesReturnSaveRelative(Nullable<int> entityID, Nullable<int> saveRelativeOption)
+        {
+            var entityIDParameter = entityID.HasValue ?
+                new ObjectParameter("EntityID", entityID) :
+                new ObjectParameter("EntityID", typeof(int));
+    
+            var saveRelativeOptionParameter = saveRelativeOption.HasValue ?
+                new ObjectParameter("SaveRelativeOption", saveRelativeOption) :
+                new ObjectParameter("SaveRelativeOption", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SalesReturnSaveRelative", entityIDParameter, saveRelativeOptionParameter);
+        }
+    
+        public virtual int SalesReturnToggleApproved(Nullable<int> entityID, Nullable<bool> approved)
+        {
+            var entityIDParameter = entityID.HasValue ?
+                new ObjectParameter("EntityID", entityID) :
+                new ObjectParameter("EntityID", typeof(int));
+    
+            var approvedParameter = approved.HasValue ?
+                new ObjectParameter("Approved", approved) :
+                new ObjectParameter("Approved", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SalesReturnToggleApproved", entityIDParameter, approvedParameter);
         }
     }
 }

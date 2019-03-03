@@ -170,6 +170,8 @@
         <AssociationConnector Association="TotalSmartCodingModel.FK_Commodities_CommodityTypes" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_CommodityTypes_CommodityTypes" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_Customers_Customers" />
+        <EntityTypeShape EntityType="TotalSmartCodingModel.SalesReturnDetail" Width="1.5" PointX="27.375" PointY="0.75" />
+        <EntityTypeShape EntityType="TotalSmartCodingModel.SalesReturn" Width="1.5" PointX="5.375" PointY="27.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
