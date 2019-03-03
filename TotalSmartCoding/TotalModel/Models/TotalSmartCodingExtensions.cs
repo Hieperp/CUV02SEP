@@ -1022,6 +1022,25 @@ namespace TotalModel.Models
 
 
 
+    public partial class SalesReturnIndex : IBaseIndex
+    {
+        public int Id { get { return this.SalesReturnID; } }
+        public int ImageID { get { return !this.Approved ? 1 : 0; } }
+    }
+
+    public partial class SalesReturn : IPrimitiveEntity, IBaseEntity, IBaseDetailEntity<SalesReturnDetail>
+    {
+        public int GetID() { return this.SalesReturnID; }
+
+        public virtual Customer Receiver { get { return this.Customer1; } }
+
+        public ICollection<SalesReturnDetail> GetDetails() { return this.SalesReturnDetails; }
+    }
+
+    public partial class SalesReturnDetail : IPrimitiveEntity, IHelperEntryDate
+    {
+        public int GetID() { return this.SalesReturnDetailID; }
+    }
 
 
     public partial class TransferOrderIndex : IBaseIndex

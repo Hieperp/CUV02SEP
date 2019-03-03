@@ -30,6 +30,7 @@ namespace TotalModel.Models
             this.CommoditySettingDetails = new HashSet<CommoditySettingDetail>();
             this.CommoditySettings = new HashSet<CommoditySetting>();
             this.Batches = new HashSet<Batch>();
+            this.SalesReturnDetails = new HashSet<SalesReturnDetail>();
         }
     
         public int CommodityID { get; set; }
@@ -82,5 +83,7 @@ namespace TotalModel.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Batch> Batches { get; set; }
         public virtual CommodityType CommodityType { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SalesReturnDetail> SalesReturnDetails { get; set; }
     }
 }

@@ -14,6 +14,12 @@ namespace TotalModel.Models
     
     public partial class SalesReturn
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public SalesReturn()
+        {
+            this.SalesReturnDetails = new HashSet<SalesReturnDetail>();
+        }
+    
         public int SalesReturnID { get; set; }
         public System.DateTime EntryDate { get; set; }
         public string Reference { get; set; }
@@ -40,5 +46,14 @@ namespace TotalModel.Models
         public System.DateTime EditedDate { get; set; }
         public bool Approved { get; set; }
         public Nullable<System.DateTime> ApprovedDate { get; set; }
+        public int TeamID { get; set; }
+    
+        public virtual Customer Customer { get; set; }
+        public virtual Customer Customer1 { get; set; }
+        public virtual GoodsIssue GoodsIssue { get; set; }
+        public virtual Location Location { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SalesReturnDetail> SalesReturnDetails { get; set; }
+        public virtual Team Team { get; set; }
     }
 }

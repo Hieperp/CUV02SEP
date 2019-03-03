@@ -172,6 +172,20 @@
         <AssociationConnector Association="TotalSmartCodingModel.FK_Customers_Customers" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.SalesReturnDetail" Width="1.5" PointX="27.375" PointY="0.75" />
         <EntityTypeShape EntityType="TotalSmartCodingModel.SalesReturn" Width="1.5" PointX="5.375" PointY="27.75" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_SalesReturnDetails_Batches" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_SalesReturnDetails_Cartons" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_SalesReturnDetails_Commodities" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_SalesReturnDetails_Customers" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_SalesReturnDetails_Customers1" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_SalesReturns_Customers" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_SalesReturns_Customers1" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_SalesReturnDetails_GoodsIssueDetails" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_SalesReturns_GoodsIssues" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_SalesReturns_Locations" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_SalesReturnDetails_Packs" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_SalesReturnDetails_Pallets" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_SalesReturnDetails_SalesReturns" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_SalesReturns_Teams" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

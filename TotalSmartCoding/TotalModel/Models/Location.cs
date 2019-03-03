@@ -29,6 +29,7 @@ namespace TotalModel.Models
             this.Forecasts = new HashSet<Forecast>();
             this.Forecasts1 = new HashSet<Forecast>();
             this.Employees = new HashSet<Employee>();
+            this.SalesReturns = new HashSet<SalesReturn>();
         }
     
         public int LocationID { get; set; }
@@ -69,5 +70,7 @@ namespace TotalModel.Models
         public virtual ICollection<Forecast> Forecasts1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Employee> Employees { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SalesReturn> SalesReturns { get; set; }
     }
 }
