@@ -5345,7 +5345,7 @@
             <Parameter Name="ReceiverID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetApplicationUsers" ReturnType="Collection(TotalSmartCodingModel.ApplicationUser)">
-            <Parameter Name="ApplicationUserID" Mode="In" Type="Int32" />
+          <Parameter Name="ApplicationUserID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="UpdateApplicationUser">
             <Parameter Name="ApplicationUserID" Mode="In" Type="Int32" />

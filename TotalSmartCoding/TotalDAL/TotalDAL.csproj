@@ -88,6 +88,7 @@
     <Compile Include="Helpers\SqlProgrammability\Sales\DeliveryAdvice.cs" />
     <Compile Include="Helpers\SqlProgrammability\Sales\Forecast.cs" />
     <Compile Include="Helpers\SqlProgrammability\Sales\SalesOrder.cs" />
+    <Compile Include="Helpers\SqlProgrammability\Sales\SalesReturn.cs" />
     <Compile Include="Helpers\SqlProgrammability\Sales\TransferOrder.cs" />
     <Compile Include="Helpers\SqlProgrammability\Temporary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
