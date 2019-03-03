@@ -30,7 +30,7 @@ namespace TotalModel.Models
         public int CustomerID { get; set; }
         public int ReceiverID { get; set; }
         public int SalespersonID { get; set; }
-        public int StorekeeperID { get; set; }
+        public int TeamID { get; set; }
         public int UserID { get; set; }
         public int PreparedPersonID { get; set; }
         public int OrganizationalUnitID { get; set; }
@@ -46,7 +46,6 @@ namespace TotalModel.Models
         public System.DateTime EditedDate { get; set; }
         public bool Approved { get; set; }
         public Nullable<System.DateTime> ApprovedDate { get; set; }
-        public int TeamID { get; set; }
     
         public virtual Customer Customer { get; set; }
         public virtual Customer Customer1 { get; set; }

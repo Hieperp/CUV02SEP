@@ -30,12 +30,10 @@ namespace TotalSmartCoding.Views.Sales.SalesReturns
 
         Binding bindingVoucherCode;
         Binding bindingEntryDate;
-        Binding bindingDeliveryDate;
+        Binding bindingVoucherDate;
         Binding bindingCustomerName;
-        Binding bindingContactInfo;
         Binding bindingReceiverName;
         Binding bindingReceiverTemp;
-        Binding bindingShippingAddress;
         Binding bindingRemarks;
 
         public WizardMaster(SalesReturnViewModel salesReturnViewModel)
@@ -71,12 +69,10 @@ namespace TotalSmartCoding.Views.Sales.SalesReturns
 
                 this.bindingVoucherCode = this.textexVoucherCode.DataBindings.Add("Text", this.salesReturnViewModel, CommonExpressions.PropertyName<SalesReturnViewModel>(p => p.VoucherCode), true, DataSourceUpdateMode.OnPropertyChanged);
                 this.bindingEntryDate = this.dateTimexEntryDate.DataBindings.Add("Value", this.salesReturnViewModel, CommonExpressions.PropertyName<SalesReturnViewModel>(p => p.EntryDate), true, DataSourceUpdateMode.OnPropertyChanged);
-                this.bindingDeliveryDate = this.dateTimexDeliveryDate.DataBindings.Add("Value", this.salesReturnViewModel, CommonExpressions.PropertyName<SalesReturnViewModel>(p => p.DeliveryDate), true, DataSourceUpdateMode.OnPropertyChanged);
+                this.bindingVoucherDate = this.dateTimexVoucherDate.DataBindings.Add("Value", this.salesReturnViewModel, CommonExpressions.PropertyName<SalesReturnViewModel>(p => p.VoucherDate), true, DataSourceUpdateMode.OnPropertyChanged);
                 this.bindingCustomerName = this.textexCustomerName.DataBindings.Add("Text", this.salesReturnViewModel, CommonExpressions.PropertyName<SalesReturnViewModel>(p => p.CustomerName), true, DataSourceUpdateMode.OnPropertyChanged);
-                this.bindingContactInfo = this.textexContactInfo.DataBindings.Add("Text", this.salesReturnViewModel, CommonExpressions.PropertyName<SalesReturnViewModel>(p => p.ContactInfo), true, DataSourceUpdateMode.OnPropertyChanged);
                 this.bindingReceiverName = this.textexReceiverName.DataBindings.Add("Text", this.salesReturnViewModel, CommonExpressions.PropertyName<SalesReturnViewModel>(p => p.ReceiverName), true, DataSourceUpdateMode.OnPropertyChanged);
                 this.bindingReceiverTemp = this.textexReceiverTemp.DataBindings.Add("Text", this.salesReturnViewModel, CommonExpressions.PropertyName<SalesReturnViewModel>(p => p.ReceiverTemp), true, DataSourceUpdateMode.OnPropertyChanged);
-                this.bindingShippingAddress = this.textexShippingAddress.DataBindings.Add("Text", this.salesReturnViewModel, CommonExpressions.PropertyName<SalesReturnViewModel>(p => p.ShippingAddress), true, DataSourceUpdateMode.OnPropertyChanged);
                 this.bindingRemarks = this.textexRemarks.DataBindings.Add("Text", this.salesReturnViewModel, CommonExpressions.PropertyName<SalesReturnViewModel>(p => p.Remarks), true, DataSourceUpdateMode.OnPropertyChanged);
 
                 this.bindingCustomerID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
@@ -85,12 +81,10 @@ namespace TotalSmartCoding.Views.Sales.SalesReturns
 
                 this.bindingVoucherCode.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
                 this.bindingEntryDate.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
-                this.bindingDeliveryDate.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
+                this.bindingVoucherDate.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
                 this.bindingCustomerName.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
-                this.bindingContactInfo.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
                 this.bindingReceiverName.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
                 this.bindingReceiverTemp.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
-                this.bindingShippingAddress.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
                 this.bindingRemarks.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
 
                 this.errorProviderMaster.DataSource = this.salesReturnViewModel;
@@ -118,7 +112,6 @@ namespace TotalSmartCoding.Views.Sales.SalesReturns
             {
                 CustomerBase customerBase = (CustomerBase)this.combexCustomerID.SelectedItem;
                 this.salesReturnViewModel.CustomerName = customerBase.Name;
-                this.salesReturnViewModel.ContactInfo = customerBase.ContactInfo;
                 this.salesReturnViewModel.SalespersonID = customerBase.SalespersonID;
                 //this.salesReturnViewModel.ReceiverID = customerBase.CustomerID;
             }
@@ -126,7 +119,6 @@ namespace TotalSmartCoding.Views.Sales.SalesReturns
             {
                 CustomerBase customerBase = (CustomerBase)this.combexReceiverID.SelectedItem;
                 this.salesReturnViewModel.ReceiverName = customerBase.Name;
-                this.salesReturnViewModel.ShippingAddress = customerBase.ShippingAddress;
             }
         }
 

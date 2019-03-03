@@ -120,8 +120,6 @@ namespace TotalSmartCoding.Views.Sales.SalesReturns
         Binding bindingReference;
         Binding bindingVoucherCode;
         Binding bindingDeliveryDate;
-        Binding bindingContactInfo;
-        Binding bindingDeliveryAddress;
         Binding bindingDescription;
         Binding bindingRemarks;
         Binding bindingCaption;
@@ -137,9 +135,7 @@ namespace TotalSmartCoding.Views.Sales.SalesReturns
             this.bindingEntryDate = this.dateTimexEntryDate.DataBindings.Add("Value", this.salesReturnViewModel, CommonExpressions.PropertyName<SalesReturnDTO>(p => p.EntryDate), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingReference = this.textexReference.DataBindings.Add("Text", this.salesReturnViewModel, CommonExpressions.PropertyName<SalesReturnDTO>(p => p.Reference), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingVoucherCode = this.textexVoucherCode.DataBindings.Add("Text", this.salesReturnViewModel, CommonExpressions.PropertyName<SalesReturnDTO>(p => p.VoucherCode), true, DataSourceUpdateMode.OnPropertyChanged);
-            this.bindingDeliveryDate = this.dateTimexDeliveryDate.DataBindings.Add("Value", this.salesReturnViewModel, CommonExpressions.PropertyName<SalesReturnDTO>(p => p.DeliveryDate), true, DataSourceUpdateMode.OnPropertyChanged);
-            this.bindingContactInfo = this.textexContactInfo.DataBindings.Add("Text", this.salesReturnViewModel, CommonExpressions.PropertyName<SalesReturnDTO>(p => p.ContactInfo), true, DataSourceUpdateMode.OnPropertyChanged);
-            this.bindingDeliveryAddress = this.textexDeliveryAddress.DataBindings.Add("Text", this.salesReturnViewModel, CommonExpressions.PropertyName<SalesReturnDTO>(p => p.ShippingAddress), true, DataSourceUpdateMode.OnPropertyChanged);
+            this.bindingDeliveryDate = this.dateTimexVoucherDate.DataBindings.Add("Value", this.salesReturnViewModel, CommonExpressions.PropertyName<SalesReturnDTO>(p => p.VoucherDate), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingDescription = this.textexDescription.DataBindings.Add("Text", this.salesReturnViewModel, CommonExpressions.PropertyName<SalesReturnDTO>(p => p.Description), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingRemarks = this.textexRemarks.DataBindings.Add("Text", this.salesReturnViewModel, CommonExpressions.PropertyName<SalesReturnDTO>(p => p.Remarks), true, DataSourceUpdateMode.OnPropertyChanged);
             this.bindingCaption = this.labelCaption.DataBindings.Add("Text", this.salesReturnViewModel, CommonExpressions.PropertyName<SalesReturnDTO>(p => p.Caption));
@@ -167,8 +163,6 @@ namespace TotalSmartCoding.Views.Sales.SalesReturns
             this.bindingReference.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingVoucherCode.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingDeliveryDate.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
-            this.bindingContactInfo.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
-            this.bindingDeliveryAddress.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingDescription.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingRemarks.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
             this.bindingCaption.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
@@ -197,17 +191,11 @@ namespace TotalSmartCoding.Views.Sales.SalesReturns
                 {
                     CustomerBase customerBase = (CustomerBase)this.combexCustomerID.SelectedItem;
                     this.salesReturnViewModel.CustomerName = customerBase.Name;
-                    //THIS CommonControl_BindingComplete WILL BE RAISED FOR EVERY BINDING => SO WE CAN NOT UPDATE RELATIVE PROPERTY BY THIS WAY. SHOULD THINK OF NEW WAY FOR UPDATE SUCH RELATIVE PROPERTY (SUCH AS: ContactInfo, ShippingAddress OF Customer)
-                    //this.salesReturnViewModel.ContactInfo = customerBase.ContactInfo;
-                    //this.salesReturnViewModel.ShippingAddress = customerBase.ShippingAddress;
                 }
                 if (sender.Equals(this.bindingReceiverID) && this.combexReceiverID.SelectedItem != null)
                 {
                     CustomerBase receiverBase = (CustomerBase)this.combexReceiverID.SelectedItem;
                     this.salesReturnViewModel.ReceiverName = receiverBase.Name;
-                    //THIS CommonControl_BindingComplete WILL BE RAISED FOR EVERY BINDING => SO WE CAN NOT UPDATE RELATIVE PROPERTY BY THIS WAY. SHOULD THINK OF NEW WAY FOR UPDATE SUCH RELATIVE PROPERTY (SUCH AS: ContactInfo, ShippingAddress OF Receiver)
-                    //this.salesReturnViewModel.ContactInfo = receiverBase.ContactInfo;
-                    //this.salesReturnViewModel.ShippingAddress = receiverBase.ShippingAddress;
                 }
             }
         }

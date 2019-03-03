@@ -5683,7 +5683,6 @@
             <Parameter Name="Password" Mode="In" Type="String" />
           </FunctionImport>
           <EntitySet Name="SalesReturnDetails" EntityType="TotalSmartCodingModel.SalesReturnDetail" />
-          <EntitySet Name="SalesReturns" EntityType="TotalSmartCodingModel.SalesReturn" />
           <FunctionImport Name="GetSalesReturnIndexes" ReturnType="Collection(TotalSmartCodingModel.SalesReturnIndex)">
             <Parameter Name="UserID" Mode="In" Type="Int32" />
             <Parameter Name="FromDate" Mode="In" Type="DateTime" />
@@ -5747,25 +5746,9 @@
             <End Role="Customer" EntitySet="Customers" />
             <End Role="SalesReturnDetail" EntitySet="SalesReturnDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK_SalesReturns_Customers" Association="TotalSmartCodingModel.FK_SalesReturns_Customers">
-            <End Role="Customer" EntitySet="Customers" />
-            <End Role="SalesReturn" EntitySet="SalesReturns" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SalesReturns_Customers1" Association="TotalSmartCodingModel.FK_SalesReturns_Customers1">
-            <End Role="Customer" EntitySet="Customers" />
-            <End Role="SalesReturn" EntitySet="SalesReturns" />
-          </AssociationSet>
           <AssociationSet Name="FK_SalesReturnDetails_GoodsIssueDetails" Association="TotalSmartCodingModel.FK_SalesReturnDetails_GoodsIssueDetails">
             <End Role="GoodsIssueDetail" EntitySet="GoodsIssueDetails" />
             <End Role="SalesReturnDetail" EntitySet="SalesReturnDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SalesReturns_GoodsIssues" Association="TotalSmartCodingModel.FK_SalesReturns_GoodsIssues">
-            <End Role="GoodsIssue" EntitySet="GoodsIssues" />
-            <End Role="SalesReturn" EntitySet="SalesReturns" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SalesReturns_Locations" Association="TotalSmartCodingModel.FK_SalesReturns_Locations">
-            <End Role="Location" EntitySet="Locations" />
-            <End Role="SalesReturn" EntitySet="SalesReturns" />
           </AssociationSet>
           <AssociationSet Name="FK_SalesReturnDetails_Packs" Association="TotalSmartCodingModel.FK_SalesReturnDetails_Packs">
             <End Role="Pack" EntitySet="Packs" />
@@ -5774,6 +5757,23 @@
           <AssociationSet Name="FK_SalesReturnDetails_Pallets" Association="TotalSmartCodingModel.FK_SalesReturnDetails_Pallets">
             <End Role="Pallet" EntitySet="Pallets" />
             <End Role="SalesReturnDetail" EntitySet="SalesReturnDetails" />
+          </AssociationSet>
+          <EntitySet Name="SalesReturns" EntityType="TotalSmartCodingModel.SalesReturn" />
+          <AssociationSet Name="FK_SalesReturns_Customers" Association="TotalSmartCodingModel.FK_SalesReturns_Customers">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="SalesReturn" EntitySet="SalesReturns" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SalesReturns_Customers1" Association="TotalSmartCodingModel.FK_SalesReturns_Customers1">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="SalesReturn" EntitySet="SalesReturns" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SalesReturns_GoodsIssues" Association="TotalSmartCodingModel.FK_SalesReturns_GoodsIssues">
+            <End Role="GoodsIssue" EntitySet="GoodsIssues" />
+            <End Role="SalesReturn" EntitySet="SalesReturns" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SalesReturns_Locations" Association="TotalSmartCodingModel.FK_SalesReturns_Locations">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="SalesReturn" EntitySet="SalesReturns" />
           </AssociationSet>
           <AssociationSet Name="FK_SalesReturnDetails_SalesReturns" Association="TotalSmartCodingModel.FK_SalesReturnDetails_SalesReturns">
             <End Role="SalesReturn" EntitySet="SalesReturns" />
@@ -9694,44 +9694,6 @@
           <NavigationProperty Name="Pallet" Relationship="TotalSmartCodingModel.FK_SalesReturnDetails_Pallets" FromRole="SalesReturnDetail" ToRole="Pallet" />
           <NavigationProperty Name="SalesReturn" Relationship="TotalSmartCodingModel.FK_SalesReturnDetails_SalesReturns" FromRole="SalesReturnDetail" ToRole="SalesReturn" />
         </EntityType>
-        <EntityType Name="SalesReturn">
-          <Key>
-            <PropertyRef Name="SalesReturnID" />
-          </Key>
-          <Property Name="SalesReturnID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Reference" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="VoucherCode" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
-          <Property Name="VoucherDate" Type="DateTime" Precision="3" />
-          <Property Name="GoodsIssueID" Type="Int32" />
-          <Property Name="GoodsIssueReferences" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="CustomerID" Type="Int32" Nullable="false" />
-          <Property Name="ReceiverID" Type="Int32" Nullable="false" />
-          <Property Name="SalespersonID" Type="Int32" Nullable="false" />
-          <Property Name="StorekeeperID" Type="Int32" Nullable="false" />
-          <Property Name="UserID" Type="Int32" Nullable="false" />
-          <Property Name="PreparedPersonID" Type="Int32" Nullable="false" />
-          <Property Name="OrganizationalUnitID" Type="Int32" Nullable="false" />
-          <Property Name="LocationID" Type="Int32" Nullable="false" />
-          <Property Name="TotalPackCounts" Type="Int32" Nullable="false" />
-          <Property Name="TotalCartonCounts" Type="Int32" Nullable="false" />
-          <Property Name="TotalPalletCounts" Type="Int32" Nullable="false" />
-          <Property Name="TotalQuantity" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="TotalLineVolume" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="EditedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Approved" Type="Boolean" Nullable="false" />
-          <Property Name="ApprovedDate" Type="DateTime" Precision="3" />
-          <Property Name="TeamID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Customer" Relationship="TotalSmartCodingModel.FK_SalesReturns_Customers" FromRole="SalesReturn" ToRole="Customer" />
-          <NavigationProperty Name="Customer1" Relationship="TotalSmartCodingModel.FK_SalesReturns_Customers1" FromRole="SalesReturn" ToRole="Customer" />
-          <NavigationProperty Name="GoodsIssue" Relationship="TotalSmartCodingModel.FK_SalesReturns_GoodsIssues" FromRole="SalesReturn" ToRole="GoodsIssue" />
-          <NavigationProperty Name="Location" Relationship="TotalSmartCodingModel.FK_SalesReturns_Locations" FromRole="SalesReturn" ToRole="Location" />
-          <NavigationProperty Name="SalesReturnDetails" Relationship="TotalSmartCodingModel.FK_SalesReturnDetails_SalesReturns" FromRole="SalesReturn" ToRole="SalesReturnDetail" />
-          <NavigationProperty Name="Team" Relationship="TotalSmartCodingModel.FK_SalesReturns_Teams" FromRole="SalesReturn" ToRole="Team" />
-        </EntityType>
         <ComplexType Name="SalesReturnIndex">
           <Property Type="Int32" Name="SalesReturnID" Nullable="false" />
           <Property Type="DateTime" Name="EntryDate" Nullable="true" />
@@ -9864,30 +9826,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SalesReturns_Customers">
-          <End Type="TotalSmartCodingModel.Customer" Role="Customer" Multiplicity="1" />
-          <End Type="TotalSmartCodingModel.SalesReturn" Role="SalesReturn" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Customer">
-              <PropertyRef Name="CustomerID" />
-            </Principal>
-            <Dependent Role="SalesReturn">
-              <PropertyRef Name="CustomerID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SalesReturns_Customers1">
-          <End Type="TotalSmartCodingModel.Customer" Role="Customer" Multiplicity="1" />
-          <End Type="TotalSmartCodingModel.SalesReturn" Role="SalesReturn" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Customer">
-              <PropertyRef Name="CustomerID" />
-            </Principal>
-            <Dependent Role="SalesReturn">
-              <PropertyRef Name="ReceiverID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_SalesReturnDetails_GoodsIssueDetails">
           <End Type="TotalSmartCodingModel.GoodsIssueDetail" Role="GoodsIssueDetail" Multiplicity="1" />
           <End Type="TotalSmartCodingModel.SalesReturnDetail" Role="SalesReturnDetail" Multiplicity="*" />
@@ -9897,30 +9835,6 @@
             </Principal>
             <Dependent Role="SalesReturnDetail">
               <PropertyRef Name="GoodsIssueDetailID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SalesReturns_GoodsIssues">
-          <End Type="TotalSmartCodingModel.GoodsIssue" Role="GoodsIssue" Multiplicity="0..1" />
-          <End Type="TotalSmartCodingModel.SalesReturn" Role="SalesReturn" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="GoodsIssue">
-              <PropertyRef Name="GoodsIssueID" />
-            </Principal>
-            <Dependent Role="SalesReturn">
-              <PropertyRef Name="GoodsIssueID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SalesReturns_Locations">
-          <End Type="TotalSmartCodingModel.Location" Role="Location" Multiplicity="1" />
-          <End Type="TotalSmartCodingModel.SalesReturn" Role="SalesReturn" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Location">
-              <PropertyRef Name="LocationID" />
-            </Principal>
-            <Dependent Role="SalesReturn">
-              <PropertyRef Name="LocationID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -9945,6 +9859,91 @@
             </Principal>
             <Dependent Role="SalesReturnDetail">
               <PropertyRef Name="PalletID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SalesReturn">
+          <Key>
+            <PropertyRef Name="SalesReturnID" />
+          </Key>
+          <Property Name="SalesReturnID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Reference" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="VoucherCode" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="VoucherDate" Type="DateTime" Precision="3" />
+          <Property Name="GoodsIssueID" Type="Int32" />
+          <Property Name="GoodsIssueReferences" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerID" Type="Int32" Nullable="false" />
+          <Property Name="ReceiverID" Type="Int32" Nullable="false" />
+          <Property Name="SalespersonID" Type="Int32" Nullable="false" />
+          <Property Name="TeamID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="PreparedPersonID" Type="Int32" Nullable="false" />
+          <Property Name="OrganizationalUnitID" Type="Int32" Nullable="false" />
+          <Property Name="LocationID" Type="Int32" Nullable="false" />
+          <Property Name="TotalPackCounts" Type="Int32" Nullable="false" />
+          <Property Name="TotalCartonCounts" Type="Int32" Nullable="false" />
+          <Property Name="TotalPalletCounts" Type="Int32" Nullable="false" />
+          <Property Name="TotalQuantity" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="TotalLineVolume" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EditedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Approved" Type="Boolean" Nullable="false" />
+          <Property Name="ApprovedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Customer" Relationship="TotalSmartCodingModel.FK_SalesReturns_Customers" FromRole="SalesReturn" ToRole="Customer" />
+          <NavigationProperty Name="Customer1" Relationship="TotalSmartCodingModel.FK_SalesReturns_Customers1" FromRole="SalesReturn" ToRole="Customer" />
+          <NavigationProperty Name="GoodsIssue" Relationship="TotalSmartCodingModel.FK_SalesReturns_GoodsIssues" FromRole="SalesReturn" ToRole="GoodsIssue" />
+          <NavigationProperty Name="Location" Relationship="TotalSmartCodingModel.FK_SalesReturns_Locations" FromRole="SalesReturn" ToRole="Location" />
+          <NavigationProperty Name="SalesReturnDetails" Relationship="TotalSmartCodingModel.FK_SalesReturnDetails_SalesReturns" FromRole="SalesReturn" ToRole="SalesReturnDetail" />
+          <NavigationProperty Name="Team" Relationship="TotalSmartCodingModel.FK_SalesReturns_Teams" FromRole="SalesReturn" ToRole="Team" />
+        </EntityType>
+        <Association Name="FK_SalesReturns_Customers">
+          <End Type="TotalSmartCodingModel.Customer" Role="Customer" Multiplicity="1" />
+          <End Type="TotalSmartCodingModel.SalesReturn" Role="SalesReturn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="SalesReturn">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SalesReturns_Customers1">
+          <End Type="TotalSmartCodingModel.Customer" Role="Customer" Multiplicity="1" />
+          <End Type="TotalSmartCodingModel.SalesReturn" Role="SalesReturn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="SalesReturn">
+              <PropertyRef Name="ReceiverID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SalesReturns_GoodsIssues">
+          <End Type="TotalSmartCodingModel.GoodsIssue" Role="GoodsIssue" Multiplicity="0..1" />
+          <End Type="TotalSmartCodingModel.SalesReturn" Role="SalesReturn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GoodsIssue">
+              <PropertyRef Name="GoodsIssueID" />
+            </Principal>
+            <Dependent Role="SalesReturn">
+              <PropertyRef Name="GoodsIssueID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SalesReturns_Locations">
+          <End Type="TotalSmartCodingModel.Location" Role="Location" Multiplicity="1" />
+          <End Type="TotalSmartCodingModel.SalesReturn" Role="SalesReturn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="LocationID" />
+            </Principal>
+            <Dependent Role="SalesReturn">
+              <PropertyRef Name="LocationID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -12955,38 +12954,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SalesReturns">
-            <EntityTypeMapping TypeName="TotalSmartCodingModel.SalesReturn">
-              <MappingFragment StoreEntitySet="SalesReturns">
-                <ScalarProperty Name="TeamID" ColumnName="TeamID" />
-                <ScalarProperty Name="ApprovedDate" ColumnName="ApprovedDate" />
-                <ScalarProperty Name="Approved" ColumnName="Approved" />
-                <ScalarProperty Name="EditedDate" ColumnName="EditedDate" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="TotalLineVolume" ColumnName="TotalLineVolume" />
-                <ScalarProperty Name="TotalQuantity" ColumnName="TotalQuantity" />
-                <ScalarProperty Name="TotalPalletCounts" ColumnName="TotalPalletCounts" />
-                <ScalarProperty Name="TotalCartonCounts" ColumnName="TotalCartonCounts" />
-                <ScalarProperty Name="TotalPackCounts" ColumnName="TotalPackCounts" />
-                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
-                <ScalarProperty Name="OrganizationalUnitID" ColumnName="OrganizationalUnitID" />
-                <ScalarProperty Name="PreparedPersonID" ColumnName="PreparedPersonID" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="SalespersonID" ColumnName="SalespersonID" />
-                <ScalarProperty Name="ReceiverID" ColumnName="ReceiverID" />
-                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-                <ScalarProperty Name="GoodsIssueReferences" ColumnName="GoodsIssueReferences" />
-                <ScalarProperty Name="GoodsIssueID" ColumnName="GoodsIssueID" />
-                <ScalarProperty Name="VoucherDate" ColumnName="VoucherDate" />
-                <ScalarProperty Name="VoucherCode" ColumnName="VoucherCode" />
-                <ScalarProperty Name="Reference" ColumnName="Reference" />
-                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
-                <ScalarProperty Name="SalesReturnID" ColumnName="SalesReturnID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="GetSalesReturnIndexes" FunctionName="TotalSmartCodingModel.Store.GetSalesReturnIndexes">
             <ResultMapping>
               <ComplexTypeMapping TypeName="TotalSmartCodingModel.SalesReturnIndex">
@@ -13080,6 +13047,38 @@
           <FunctionImportMapping FunctionImportName="SalesReturnPostSaveValidate" FunctionName="TotalSmartCodingModel.Store.SalesReturnPostSaveValidate" />
           <FunctionImportMapping FunctionImportName="SalesReturnSaveRelative" FunctionName="TotalSmartCodingModel.Store.SalesReturnSaveRelative" />
           <FunctionImportMapping FunctionImportName="SalesReturnToggleApproved" FunctionName="TotalSmartCodingModel.Store.SalesReturnToggleApproved" />
+          <EntitySetMapping Name="SalesReturns">
+            <EntityTypeMapping TypeName="TotalSmartCodingModel.SalesReturn">
+              <MappingFragment StoreEntitySet="SalesReturns">
+                <ScalarProperty Name="ApprovedDate" ColumnName="ApprovedDate" />
+                <ScalarProperty Name="Approved" ColumnName="Approved" />
+                <ScalarProperty Name="EditedDate" ColumnName="EditedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="TotalLineVolume" ColumnName="TotalLineVolume" />
+                <ScalarProperty Name="TotalQuantity" ColumnName="TotalQuantity" />
+                <ScalarProperty Name="TotalPalletCounts" ColumnName="TotalPalletCounts" />
+                <ScalarProperty Name="TotalCartonCounts" ColumnName="TotalCartonCounts" />
+                <ScalarProperty Name="TotalPackCounts" ColumnName="TotalPackCounts" />
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+                <ScalarProperty Name="OrganizationalUnitID" ColumnName="OrganizationalUnitID" />
+                <ScalarProperty Name="PreparedPersonID" ColumnName="PreparedPersonID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+                <ScalarProperty Name="SalespersonID" ColumnName="SalespersonID" />
+                <ScalarProperty Name="ReceiverID" ColumnName="ReceiverID" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="GoodsIssueReferences" ColumnName="GoodsIssueReferences" />
+                <ScalarProperty Name="GoodsIssueID" ColumnName="GoodsIssueID" />
+                <ScalarProperty Name="VoucherDate" ColumnName="VoucherDate" />
+                <ScalarProperty Name="VoucherCode" ColumnName="VoucherCode" />
+                <ScalarProperty Name="Reference" ColumnName="Reference" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="SalesReturnID" ColumnName="SalesReturnID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

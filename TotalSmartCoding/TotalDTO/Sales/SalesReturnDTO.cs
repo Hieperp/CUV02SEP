@@ -53,11 +53,11 @@ namespace TotalDTO.Sales
             set { ApplyPropertyChange<SalesReturnPrimitiveDTO, string>(ref this.voucherCode, o => o.VoucherCode, value); }
         }
 
-        private Nullable<DateTime> deliveryDate;
-        public Nullable<DateTime> DeliveryDate
+        private Nullable<DateTime> voucherDate;
+        public Nullable<DateTime> VoucherDate
         {
-            get { return this.deliveryDate; }
-            set { ApplyPropertyChange<SalesReturnPrimitiveDTO, Nullable<DateTime>>(ref this.deliveryDate, o => o.DeliveryDate, value); }
+            get { return this.voucherDate; }
+            set { ApplyPropertyChange<SalesReturnPrimitiveDTO, Nullable<DateTime>>(ref this.voucherDate, o => o.VoucherDate, value); }
         }
 
         private Nullable<int> customerID;
@@ -91,12 +91,28 @@ namespace TotalDTO.Sales
             set { ApplyPropertyChange<SalesReturnPrimitiveDTO, string>(ref this.receiverName, o => o.ReceiverName, value); }
         }
 
+        private string receiverTemp;
+        [DefaultValue(null)]
+        public string ReceiverTemp
+        {
+            get { return this.receiverTemp; }
+            set { ApplyPropertyChange<SalesOrderDTO, string>(ref this.receiverTemp, o => o.ReceiverTemp, value, false); }
+        }
+
         private int salespersonID;
         [DefaultValue(null)]
         public int SalespersonID
         {
             get { return this.salespersonID; }
             set { ApplyPropertyChange<SalesReturnPrimitiveDTO, int>(ref this.salespersonID, o => o.SalespersonID, value); }
+        }
+
+        private Nullable<int> teamID;
+        [DefaultValue(null)]
+        public Nullable<int> TeamID
+        {
+            get { return this.teamID; }
+            set { ApplyPropertyChange<SalesOrderPrimitiveDTO, Nullable<int>>(ref this.teamID, o => o.TeamID, value); }
         }
 
         public override string Caption
@@ -117,8 +133,9 @@ namespace TotalDTO.Sales
         {
             List<ValidationRule> validationRules = base.CreateRules();
             validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<SalesReturnPrimitiveDTO>(p => p.CustomerID), "Vui lòng chọn khách hàng.", delegate { return (this.CustomerID != null && this.CustomerID > 0); }));
-            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<SalesReturnPrimitiveDTO>(p => p.ReceiverID), "Vui lòng chọn đơn vị nhận hàng.", delegate { return (this.ReceiverID != null && this.ReceiverID > 0); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<SalesReturnPrimitiveDTO>(p => p.ReceiverTemp), "Vui lòng chọn đơn vị nhận hàng.", delegate { return (this.ReceiverID != null && this.ReceiverID > 0); }));
             validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<SalesReturnPrimitiveDTO>(p => p.SalespersonID), "Vui lòng chọn người lập.", delegate { return (this.SalespersonID != null && this.SalespersonID > 0); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<SalesReturnPrimitiveDTO>(p => p.TeamID), "Vui lòng chọn người lập.", delegate { return (this.TeamID != null && this.TeamID > 0); }));
 
             return validationRules;
         }
