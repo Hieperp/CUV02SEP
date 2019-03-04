@@ -104,87 +104,75 @@ namespace TotalSmartCoding.Views.Sales.SalesReturns
 
         private void buttonAddESC_Click(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    if (sender.Equals(this.buttonAdd) || sender.Equals(this.buttonAddExit))
-            //    {
-            //        FastObjectListView fastPendingList = this.customTabBatch.SelectedIndex == 0 ? this.fastPendingPallets : (this.customTabBatch.SelectedIndex == 1 ? this.fastPendingCartons : null);
+            try
+            {
+                if (sender.Equals(this.buttonAdd) || sender.Equals(this.buttonAddExit))
+                {
+                    FastObjectListView fastPendingList = this.customTabBatch.SelectedIndex == 0 ? this.fastPendingPallets : (this.customTabBatch.SelectedIndex == 1 ? this.fastPendingCartons : null);
 
-            //        if (fastPendingList != null)
-            //        {
-            //            if (fastPendingList.CheckedObjects.Count > 0)
-            //            {
-            //                IEnumerable<IPendingforSalesReturnDetail> pendingforSalesReturnDetails = fastPendingList.CheckedObjects.Cast<IPendingforSalesReturnDetail>();
-            //                if (pendingforSalesReturnDetails.Where(w => w.BinLocationID <= 0).FirstOrDefault() != null) throw new Exception("Vui lòng chọn Bin Location.");
+                    if (fastPendingList != null)
+                    {
+                        if (fastPendingList.CheckedObjects.Count > 0)
+                        {
+                            IEnumerable<SalesReturnPendingGoodsIssueDetail> salesReturnPendingGoodsIssueDetails = fastPendingList.CheckedObjects.Cast<SalesReturnPendingGoodsIssueDetail>();
 
-            //                this.salesReturnViewModel.ViewDetails.RaiseListChangedEvents = false;
-            //                foreach (IPendingforSalesReturnDetail pendingforSalesReturnDetail in pendingforSalesReturnDetails)
-            //                {
-            //                    SalesReturnDetailDTO salesReturnDetailDTO = new SalesReturnDetailDTO()
-            //                    {
-            //                        SalesReturnID = this.salesReturnViewModel.SalesReturnID,
+                            this.salesReturnViewModel.ViewDetails.RaiseListChangedEvents = false;
+                            foreach (SalesReturnPendingGoodsIssueDetail salesReturnPendingGoodsIssueDetail in salesReturnPendingGoodsIssueDetails)
+                            {
+                                SalesReturnDetailDTO salesReturnDetailDTO = new SalesReturnDetailDTO()
+                                {
+                                    SalesReturnID = this.salesReturnViewModel.SalesReturnID,
 
-            //                        PickupID = pendingforSalesReturnDetail.PickupID > 0 ? pendingforSalesReturnDetail.PickupID : (int?)null,
-            //                        PickupDetailID = pendingforSalesReturnDetail.PickupDetailID > 0 ? pendingforSalesReturnDetail.PickupDetailID : (int?)null,
-            //                        PickupReference = pendingforSalesReturnDetail.PrimaryReference,
-            //                        PickupEntryDate = pendingforSalesReturnDetail.PickupID > 0 ? pendingforSalesReturnDetail.PrimaryEntryDate : (DateTime?)null,
+                                    GoodsIssueID = salesReturnPendingGoodsIssueDetail.GoodsIssueID,
+                                    GoodsIssueDetailID = salesReturnPendingGoodsIssueDetail.GoodsIssueDetailID,
+                                    GoodsIssueReference = salesReturnPendingGoodsIssueDetail.GoodsIssueReference,
+                                    GoodsIssueEntryDate = salesReturnPendingGoodsIssueDetail.GoodsIssueEntryDate,
 
-            //                        GoodsIssueID = pendingforSalesReturnDetail.GoodsIssueID > 0 ? pendingforSalesReturnDetail.GoodsIssueID : (int?)null,
-            //                        GoodsIssueTransferDetailID = pendingforSalesReturnDetail.GoodsIssueTransferDetailID > 0 ? pendingforSalesReturnDetail.GoodsIssueTransferDetailID : (int?)null,
-            //                        GoodsIssueReference = pendingforSalesReturnDetail.PrimaryReference,
-            //                        GoodsIssueEntryDate = pendingforSalesReturnDetail.GoodsIssueID > 0 ? pendingforSalesReturnDetail.PrimaryEntryDate : (DateTime?)null,
+                                    BatchID = salesReturnPendingGoodsIssueDetail.BatchID,
+                                    BatchEntryDate = salesReturnPendingGoodsIssueDetail.BatchEntryDate,
 
-            //                        LocationIssueID = pendingforSalesReturnDetail.LocationIssueID,
-            //                        WarehouseIssueID = pendingforSalesReturnDetail.WarehouseIssueID,
+                                    CommodityID = salesReturnPendingGoodsIssueDetail.CommodityID,
+                                    CommodityCode = salesReturnPendingGoodsIssueDetail.CommodityCode,
+                                    CommodityName = salesReturnPendingGoodsIssueDetail.CommodityName,
 
-            //                        BatchID = pendingforSalesReturnDetail.BatchID,
-            //                        BatchEntryDate = pendingforSalesReturnDetail.BatchEntryDate,
-
-            //                        BinLocationID = pendingforSalesReturnDetail.BinLocationID,
-            //                        BinLocationCode = pendingforSalesReturnDetail.BinLocationCode,
-
-            //                        CommodityID = pendingforSalesReturnDetail.CommodityID,
-            //                        CommodityCode = pendingforSalesReturnDetail.CommodityCode,
-            //                        CommodityName = pendingforSalesReturnDetail.CommodityName,
-
-            //                        Quantity = (decimal)pendingforSalesReturnDetail.QuantityRemains,
-            //                        LineVolume = (decimal)pendingforSalesReturnDetail.LineVolumeRemains,
+                                    Quantity = salesReturnPendingGoodsIssueDetail.Quantity,
+                                    LineVolume = salesReturnPendingGoodsIssueDetail.LineVolume,
 
 
-            //                        PackID = pendingforSalesReturnDetail.PackID,
-            //                        PackCode = pendingforSalesReturnDetail.PackCode,
-            //                        CartonID = pendingforSalesReturnDetail.CartonID,
-            //                        CartonCode = pendingforSalesReturnDetail.CartonCode,
-            //                        PalletID = pendingforSalesReturnDetail.PalletID,
-            //                        PalletCode = pendingforSalesReturnDetail.PalletCode,
+                                    PackID = salesReturnPendingGoodsIssueDetail.PackID,
+                                    PackCode = salesReturnPendingGoodsIssueDetail.PackCode,
+                                    CartonID = salesReturnPendingGoodsIssueDetail.CartonID,
+                                    CartonCode = salesReturnPendingGoodsIssueDetail.CartonCode,
+                                    PalletID = salesReturnPendingGoodsIssueDetail.PalletID,
+                                    PalletCode = salesReturnPendingGoodsIssueDetail.PalletCode,
 
-            //                        PackCounts = pendingforSalesReturnDetail.PackCounts,
-            //                        CartonCounts = pendingforSalesReturnDetail.CartonCounts,
-            //                        PalletCounts = pendingforSalesReturnDetail.PalletCounts
-            //                    };
-            //                    this.salesReturnViewModel.ViewDetails.Add(salesReturnDetailDTO);
-            //                }
-            //                this.salesReturnViewModel.ViewDetails.RaiseListChangedEvents = true;
-            //                this.salesReturnViewModel.ViewDetails.ResetBindings();
-            //            }
-            //        }
-
-
-            //        if (sender.Equals(this.buttonAddExit))
-            //            this.DialogResult = DialogResult.OK;
-            //        else
-            //            this.WizardDetail_Load(this, new EventArgs());
-            //    }
-
-            //    if (sender.Equals(this.buttonESC))
-            //        this.DialogResult = DialogResult.Cancel;
+                                    PackCounts = salesReturnPendingGoodsIssueDetail.PackCounts,
+                                    CartonCounts = salesReturnPendingGoodsIssueDetail.CartonCounts,
+                                    PalletCounts = salesReturnPendingGoodsIssueDetail.PalletCounts
+                                };
+                                this.salesReturnViewModel.ViewDetails.Add(salesReturnDetailDTO);
+                            }
+                            this.salesReturnViewModel.ViewDetails.RaiseListChangedEvents = true;
+                            this.salesReturnViewModel.ViewDetails.ResetBindings();
+                        }
+                    }
 
 
-            //}
-            //catch (Exception exception)
-            //{
-            //    ExceptionHandlers.ShowExceptionMessageBox(this, exception);
-            //}
+                    if (sender.Equals(this.buttonAddExit))
+                        this.DialogResult = DialogResult.OK;
+                    else
+                        this.WizardDetail_Load(this, new EventArgs());
+                }
+
+                if (sender.Equals(this.buttonESC))
+                    this.DialogResult = DialogResult.Cancel;
+
+
+            }
+            catch (Exception exception)
+            {
+                ExceptionHandlers.ShowExceptionMessageBox(this, exception);
+            }
         }
 
         private void textexFilters_TextChanged(object sender, EventArgs e)
@@ -209,18 +197,18 @@ namespace TotalSmartCoding.Views.Sales.SalesReturns
 
         private void ShowRowCount(bool showPalletCount, bool showCartonCount)
         {
-            //if (showPalletCount)
-            //{
-            //    decimal? totalQuantityRemains = this.fastPendingPallets.FilteredObjects.Cast<IPendingforSalesReturnDetail>().Select(o => o.QuantityRemains).Sum();
-            //    decimal? totalLineVolumeRemains = this.fastPendingPallets.FilteredObjects.Cast<IPendingforSalesReturnDetail>().Select(o => o.LineVolumeRemains).Sum();
-            //    this.customTabBatch.TabPages[0].Text = "Pending " + this.fastPendingPallets.GetItemCount().ToString("N0") + " pallet" + (this.fastPendingPallets.GetItemCount() > 1 ? "s" : "") + ", Quantity: " + (totalQuantityRemains != null ? ((decimal)totalQuantityRemains).ToString("N0") : "0") + ", Volume: " + (totalLineVolumeRemains != null ? ((decimal)totalLineVolumeRemains).ToString("N0") : "0") + "       ";
-            //}
-            //if (showCartonCount)
-            //{
-            //    decimal? totalQuantityRemains = this.fastPendingCartons.FilteredObjects.Cast<IPendingforSalesReturnDetail>().Select(o => o.QuantityRemains).Sum();
-            //    decimal? totalLineVolumeRemains = this.fastPendingCartons.FilteredObjects.Cast<IPendingforSalesReturnDetail>().Select(o => o.LineVolumeRemains).Sum();
-            //    this.customTabBatch.TabPages[1].Text = "Pending " + this.fastPendingCartons.GetItemCount().ToString("N0") + " carton" + (this.fastPendingCartons.GetItemCount() > 1 ? "s" : "") + ", Quantity: " + (totalQuantityRemains != null ? ((decimal)totalQuantityRemains).ToString("N0") : "0") + ", Volume: " + (totalLineVolumeRemains != null ? ((decimal)totalLineVolumeRemains).ToString("N0") : "0") + "       ";
-            //}
+            if (showPalletCount)
+            {
+                decimal? totalQuantity = this.fastPendingPallets.FilteredObjects.Cast<SalesReturnPendingGoodsIssueDetail>().Select(o => o.Quantity).Sum();
+                decimal? totalLineVolume = this.fastPendingPallets.FilteredObjects.Cast<SalesReturnPendingGoodsIssueDetail>().Select(o => o.LineVolume).Sum();
+                this.customTabBatch.TabPages[0].Text = "Pending " + this.fastPendingPallets.GetItemCount().ToString("N0") + " pallet" + (this.fastPendingPallets.GetItemCount() > 1 ? "s" : "") + ", Quantity: " + (totalQuantity != null ? ((decimal)totalQuantity).ToString("N0") : "0") + ", Volume: " + (totalLineVolume != null ? ((decimal)totalLineVolume).ToString("N0") : "0") + "       ";
+            }
+            if (showCartonCount)
+            {
+                decimal? totalQuantity = this.fastPendingCartons.FilteredObjects.Cast<SalesReturnPendingGoodsIssueDetail>().Select(o => o.Quantity).Sum();
+                decimal? totalLineVolume = this.fastPendingCartons.FilteredObjects.Cast<SalesReturnPendingGoodsIssueDetail>().Select(o => o.LineVolume).Sum();
+                this.customTabBatch.TabPages[1].Text = "Pending " + this.fastPendingCartons.GetItemCount().ToString("N0") + " carton" + (this.fastPendingCartons.GetItemCount() > 1 ? "s" : "") + ", Quantity: " + (totalQuantity != null ? ((decimal)totalQuantity).ToString("N0") : "0") + ", Volume: " + (totalLineVolume != null ? ((decimal)totalLineVolume).ToString("N0") : "0") + "       ";
+            }
         }
     }
 }

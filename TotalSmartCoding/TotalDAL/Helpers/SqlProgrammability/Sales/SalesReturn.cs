@@ -22,6 +22,8 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
 
             this.GetSalesReturnViewDetails();
 
+            //THIS BELOW STORED PROCEDURES: ALLOW TO RETURN BY A SPECIFIC GOODSISSUES
+            //BUT NOW, AT THE VIEW LAYER: WE ONLY IMPLEMENT FOR RETURN BY DATE RANGE ONLY
             this.GetSalesReturnPendingGoodsIssues();
             this.GetSalesReturnPendingGoodsIssueDetails();
 
@@ -69,7 +71,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
             queryString = queryString + " AS " + "\r\n";
             queryString = queryString + "    BEGIN " + "\r\n";
 
-            queryString = queryString + "       SELECT      SalesReturnDetails.SalesReturnDetailID, SalesReturnDetails.SalesReturnID, SalesReturnDetails.GoodsIssueID, SalesReturnDetails.GoodsIssueDetailID, GoodsIssues.Reference AS GoodsIssueReference, GoodsIssues.EntryDate AS GoodsIssueEntryDate, " + "\r\n";
+            queryString = queryString + "       SELECT      SalesReturnDetails.SalesReturnDetailID, SalesReturnDetails.SalesReturnID, SalesReturnDetails.GoodsIssueID, SalesReturnDetails.GoodsIssueDetailID, GoodsIssues.Reference AS GoodsIssueReference, GoodsIssues.EntryDate AS GoodsIssueEntryDate, GoodsIssues.VoucherCodes, " + "\r\n";
             queryString = queryString + "                   Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, SalesReturnDetails.BatchID, SalesReturnDetails.BatchEntryDate, " + "\r\n";
             queryString = queryString + "                   SalesReturnDetails.PackID, Packs.Code AS PackCode, SalesReturnDetails.CartonID, Cartons.Code AS CartonCode, SalesReturnDetails.PalletID, Pallets.Code AS PalletCode, " + "\r\n";
             queryString = queryString + "                   SalesReturnDetails.PackCounts, SalesReturnDetails.CartonCounts, SalesReturnDetails.PalletCounts, SalesReturnDetails.Quantity, SalesReturnDetails.LineVolume, SalesReturnDetails.Remarks " + "\r\n";
@@ -115,12 +117,12 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
             string queryString;
 
             queryString = " @LocationID Int, @SalesReturnID Int, @GoodsIssueID Int, @CustomerID Int, @ReceiverID Int, @FromDate DateTime, @ToDate DateTime, @CartonIDs varchar(3999), @PalletIDs varchar(3999) " + "\r\n";
-            //queryString = queryString + " WITH ENCRYPTION " + "\r\n";
+            queryString = queryString + " WITH ENCRYPTION " + "\r\n";
             queryString = queryString + " AS " + "\r\n";
 
             queryString = queryString + "   BEGIN " + "\r\n";
             queryString = queryString + "       SET         @ToDate = DATEADD (hour, 23, DATEADD (minute, 59, DATEADD (second, 59, @ToDate))) " + "\r\n";
-            queryString = queryString + "       DECLARE     @GoodsIssueDetails TABLE (GoodsIssueDetailID int NOT NULL, GoodsIssueID int NOT NULL, VoucherCodes nvarchar(100) NULL, EntryDate datetime NOT NULL, CommodityID int NOT NULL, PackID int NULL, CartonID int NULL, PalletID int NULL, Quantity decimal(18, 2) NOT NULL, LineVolume decimal(18, 2) NOT NULL) " + "\r\n";
+            queryString = queryString + "       DECLARE     @GoodsIssueDetails TABLE (GoodsIssueDetailID int NOT NULL, GoodsIssueID int NOT NULL, Reference nvarchar(10) NULL, EntryDate datetime NOT NULL, VoucherCodes nvarchar(100) NULL, CommodityID int NOT NULL, BatchID int NOT NULL, BatchEntryDate date NOT NULL, PackID int NULL, CartonID int NULL, PalletID int NULL, Quantity decimal(18, 2) NOT NULL, LineVolume decimal(18, 2) NOT NULL) " + "\r\n";
 
             queryString = queryString + "       IF  (NOT @GoodsIssueID IS NULL AND @GoodsIssueID <> 0) " + "\r\n";
             queryString = queryString + "           " + this.BuildSQL(true) + "\r\n";
@@ -147,8 +149,8 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
         private string BuildSQL(bool isGoodsIssueID)
         {
             string queryString = "";
-            queryString = queryString + "       INSERT INTO @GoodsIssueDetails (GoodsIssueID, GoodsIssueDetailID, VoucherCodes, EntryDate, CommodityID, PackID, CartonID, PalletID, Quantity, LineVolume) " + "\r\n";
-            queryString = queryString + "       SELECT      GoodsIssueDetails.GoodsIssueID, GoodsIssueDetails.GoodsIssueDetailID, GoodsIssues.VoucherCodes, GoodsIssueDetails.EntryDate, GoodsIssueDetails.CommodityID, GoodsIssueDetails.PackID, GoodsIssueDetails.CartonID, GoodsIssueDetails.PalletID, GoodsIssueDetails.Quantity, GoodsIssueDetails.LineVolume " + "\r\n";
+            queryString = queryString + "       INSERT INTO @GoodsIssueDetails (GoodsIssueID, GoodsIssueDetailID, Reference, EntryDate, VoucherCodes, CommodityID, BatchID, BatchEntryDate, PackID, CartonID, PalletID, Quantity, LineVolume) " + "\r\n";
+            queryString = queryString + "       SELECT      GoodsIssueDetails.GoodsIssueID, GoodsIssueDetails.GoodsIssueDetailID, GoodsIssues.Reference, GoodsIssueDetails.EntryDate, GoodsIssues.VoucherCodes, GoodsIssueDetails.CommodityID, GoodsIssueDetails.BatchID, GoodsIssueDetails.BatchEntryDate, GoodsIssueDetails.PackID, GoodsIssueDetails.CartonID, GoodsIssueDetails.PalletID, GoodsIssueDetails.Quantity, GoodsIssueDetails.LineVolume " + "\r\n";
             queryString = queryString + "       FROM        GoodsIssueDetails INNER JOIN GoodsIssues ON " + (isGoodsIssueID ? " GoodsIssueDetails.GoodsIssueID = @GoodsIssueID " : "GoodsIssueDetails.LocationID = @LocationID AND GoodsIssueDetails.CustomerID = @CustomerID AND GoodsIssueDetails.ReceiverID = @ReceiverID AND GoodsIssueDetails.EntryDate >= @FromDate AND GoodsIssueDetails.EntryDate <= @ToDate ") + " AND GoodsIssueDetails.Approved = 1 AND GoodsIssueDetails.GoodsIssueID = GoodsIssues.GoodsIssueID " + "\r\n";
             
             return queryString;
@@ -158,17 +160,17 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
         {
             string queryString = "";
 
-            queryString = queryString + "       SELECT      GoodsIssueCollections.GoodsIssueID, GoodsIssueCollections.GoodsIssueDetailID, GoodsIssueCollections.GoodsIssueEntryDate, Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, Commodities.CommodityTypeID, " + "\r\n";
+            queryString = queryString + "       SELECT      GoodsIssueCollections.GoodsIssueID, GoodsIssueCollections.GoodsIssueDetailID, GoodsIssueCollections.GoodsIssueReference, GoodsIssueCollections.GoodsIssueEntryDate, GoodsIssueCollections.VoucherCodes, Commodities.CommodityID, Commodities.Code AS CommodityCode, Commodities.Name AS CommodityName, Commodities.CommodityTypeID, GoodsIssueCollections.BatchID, GoodsIssueCollections.BatchEntryDate, " + "\r\n";
             queryString = queryString + "                   GoodsIssueCollections.PackID, GoodsIssueCollections.PackCode, GoodsIssueCollections.CartonID, GoodsIssueCollections.CartonCode, GoodsIssueCollections.PalletID, GoodsIssueCollections.PalletCode, GoodsIssueCollections.PackCounts, GoodsIssueCollections.CartonCounts, GoodsIssueCollections.PalletCounts, GoodsIssueCollections.Quantity, GoodsIssueCollections.LineVolume, CAST(0 AS bit) AS IsSelected " + "\r\n";
 
-            queryString = queryString + "       FROM       (SELECT      GoodsIssueDetails.GoodsIssueID, GoodsIssueDetails.GoodsIssueDetailID, GoodsIssueDetails.EntryDate AS GoodsIssueEntryDate, GoodsIssueDetails.CommodityID, NULL AS PackID, NULL AS PackCode, Cartons.CartonID, Cartons.Code AS CartonCode, NULL AS PalletID, NULL AS PalletCode, Cartons.PackCounts, 1 AS CartonCounts, 0 AS PalletCounts, Cartons.Quantity, Cartons.LineVolume " + "\r\n";
-            queryString = queryString + "                   FROM        @GoodsIssueDetails GoodsIssueDetails INNER JOIN Cartons ON GoodsIssueDetails.CartonID NOT IN (SELECT CartonID FROM SalesReturnDetails WHERE SalesReturnID <> @SalesReturnID) AND GoodsIssueDetails.CartonID = Cartons.CartonID " + (isCartonIDs ? " AND GoodsIssueDetails.CartonID NOT IN (SELECT Id FROM dbo.SplitToIntList (@CartonIDs))" : "") + "\r\n";
+            queryString = queryString + "       FROM       (SELECT      GoodsIssueDetails.GoodsIssueID, GoodsIssueDetails.GoodsIssueDetailID, GoodsIssueDetails.Reference AS GoodsIssueReference, GoodsIssueDetails.EntryDate AS GoodsIssueEntryDate, GoodsIssueDetails.VoucherCodes, GoodsIssueDetails.CommodityID, GoodsIssueDetails.BatchID, GoodsIssueDetails.BatchEntryDate, CAST(NULL AS int) AS PackID, CAST(NULL AS varchar(50)) AS PackCode, Cartons.CartonID, Cartons.Code AS CartonCode, NULL AS PalletID, NULL AS PalletCode, Cartons.PackCounts, 1 AS CartonCounts, 0 AS PalletCounts, Cartons.Quantity, Cartons.LineVolume " + "\r\n";
+            queryString = queryString + "                   FROM        @GoodsIssueDetails GoodsIssueDetails INNER JOIN Cartons ON GoodsIssueDetails.CartonID NOT IN (SELECT CartonID FROM SalesReturnDetails WHERE SalesReturnID <> @SalesReturnID AND NOT CartonID IS NULL) AND GoodsIssueDetails.CartonID = Cartons.CartonID " + (isCartonIDs ? " AND GoodsIssueDetails.CartonID NOT IN (SELECT Id FROM dbo.SplitToIntList (@CartonIDs))" : "") + "\r\n";
             queryString = queryString + "                   UNION ALL " + "\r\n";
-            queryString = queryString + "                   SELECT      GoodsIssueDetails.GoodsIssueID, GoodsIssueDetails.GoodsIssueDetailID, GoodsIssueDetails.EntryDate AS GoodsIssueEntryDate, GoodsIssueDetails.CommodityID, NULL AS PackID, NULL AS PackCode, Cartons.CartonID, Cartons.Code AS CartonCode, NULL AS PalletID, NULL AS PalletCode, Cartons.PackCounts, 1 AS CartonCounts, 0 AS PalletCounts, Cartons.Quantity, Cartons.LineVolume " + "\r\n";
-            queryString = queryString + "                   FROM        @GoodsIssueDetails GoodsIssueDetails INNER JOIN Cartons ON Cartons.CartonID NOT IN (SELECT CartonID FROM SalesReturnDetails WHERE SalesReturnID <> @SalesReturnID) AND GoodsIssueDetails.PalletID = Cartons.PalletID " + (isCartonIDs ? " AND Cartons.CartonID NOT IN (SELECT Id FROM dbo.SplitToIntList (@CartonIDs))" : "") + "\r\n";
+            queryString = queryString + "                   SELECT      GoodsIssueDetails.GoodsIssueID, GoodsIssueDetails.GoodsIssueDetailID, GoodsIssueDetails.Reference AS GoodsIssueReference, GoodsIssueDetails.EntryDate AS GoodsIssueEntryDate, GoodsIssueDetails.VoucherCodes, GoodsIssueDetails.CommodityID, GoodsIssueDetails.BatchID, GoodsIssueDetails.BatchEntryDate, CAST(NULL AS int) AS PackID, CAST(NULL AS varchar(50)) AS PackCode, Cartons.CartonID, Cartons.Code AS CartonCode, NULL AS PalletID, NULL AS PalletCode, Cartons.PackCounts, 1 AS CartonCounts, 0 AS PalletCounts, Cartons.Quantity, Cartons.LineVolume " + "\r\n";
+            queryString = queryString + "                   FROM        @GoodsIssueDetails GoodsIssueDetails INNER JOIN Cartons ON Cartons.CartonID NOT IN (SELECT CartonID FROM SalesReturnDetails WHERE SalesReturnID <> @SalesReturnID AND NOT CartonID IS NULL) AND GoodsIssueDetails.PalletID = Cartons.PalletID " + (isCartonIDs ? " AND Cartons.CartonID NOT IN (SELECT Id FROM dbo.SplitToIntList (@CartonIDs))" : "") + "\r\n";
             queryString = queryString + "                   UNION ALL " + "\r\n";
-            queryString = queryString + "                   SELECT      GoodsIssueDetails.GoodsIssueID, GoodsIssueDetails.GoodsIssueDetailID, GoodsIssueDetails.EntryDate AS GoodsIssueEntryDate, GoodsIssueDetails.CommodityID, NULL AS PackID, NULL AS PackCode, NULL AS CartonID, NULL AS CartonCode, Pallets.PalletID, Pallets.Code AS PalletCode, Pallets.PackCounts, Pallets.CartonCounts, 1 AS PalletCounts, Pallets.Quantity, Pallets.LineVolume " + "\r\n";
-            queryString = queryString + "                   FROM        @GoodsIssueDetails GoodsIssueDetails INNER JOIN Pallets ON NOT GoodsIssueDetails.PalletID IS NULL AND GoodsIssueDetails.PalletID NOT IN (SELECT DISTINCT PalletID FROM Cartons WHERE NOT PalletID IS NULL) AND GoodsIssueDetails.PalletID NOT IN (SELECT PalletID FROM SalesReturnDetails WHERE SalesReturnID <> @SalesReturnID) AND GoodsIssueDetails.PalletID = Pallets.PalletID" + (isPalletIDs ? " AND GoodsIssueDetails.PalletID NOT IN (SELECT Id FROM dbo.SplitToIntList (@PalletIDs))" : "") + "\r\n";
+            queryString = queryString + "                   SELECT      GoodsIssueDetails.GoodsIssueID, GoodsIssueDetails.GoodsIssueDetailID, GoodsIssueDetails.Reference AS GoodsIssueReference, GoodsIssueDetails.EntryDate AS GoodsIssueEntryDate, GoodsIssueDetails.VoucherCodes, GoodsIssueDetails.CommodityID, GoodsIssueDetails.BatchID, GoodsIssueDetails.BatchEntryDate, CAST(NULL AS int) AS PackID, CAST(NULL AS varchar(50)) AS PackCode, NULL AS CartonID, NULL AS CartonCode, Pallets.PalletID, Pallets.Code AS PalletCode, Pallets.PackCounts, Pallets.CartonCounts, 1 AS PalletCounts, Pallets.Quantity, Pallets.LineVolume " + "\r\n";
+            queryString = queryString + "                   FROM        @GoodsIssueDetails GoodsIssueDetails INNER JOIN Pallets ON NOT GoodsIssueDetails.PalletID IS NULL AND GoodsIssueDetails.PalletID NOT IN (SELECT DISTINCT PalletID FROM Cartons WHERE NOT PalletID IS NULL) AND GoodsIssueDetails.PalletID NOT IN (SELECT PalletID FROM SalesReturnDetails WHERE SalesReturnID <> @SalesReturnID AND NOT PalletID IS NULL) AND GoodsIssueDetails.PalletID = Pallets.PalletID" + (isPalletIDs ? " AND GoodsIssueDetails.PalletID NOT IN (SELECT Id FROM dbo.SplitToIntList (@PalletIDs))" : "") + "\r\n";
             queryString = queryString + "                  )GoodsIssueCollections " + "\r\n";
             queryString = queryString + "                   INNER JOIN Commodities ON GoodsIssueCollections.CommodityID = Commodities.CommodityID " + "\r\n";
 

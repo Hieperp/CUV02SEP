@@ -21,7 +21,7 @@ namespace TotalModel.Models
         public string CommodityName { get; set; }
         public int CommodityTypeID { get; set; }
         public Nullable<int> PackID { get; set; }
-        public Nullable<int> PackCode { get; set; }
+        public string PackCode { get; set; }
         public Nullable<int> CartonID { get; set; }
         public string CartonCode { get; set; }
         public Nullable<int> PalletID { get; set; }
@@ -32,5 +32,9 @@ namespace TotalModel.Models
         public decimal Quantity { get; set; }
         public decimal LineVolume { get; set; }
         public Nullable<bool> IsSelected { get; set; }
+        public int BatchID { get; set; }
+        public System.DateTime BatchEntryDate { get; set; }
+        public string GoodsIssueReference { get; set; }
+        public string VoucherCodes { get; set; }
     }
 }

@@ -9718,7 +9718,7 @@
           <Property Type="String" Name="CommodityName" Nullable="false" MaxLength="200" />
           <Property Type="Int32" Name="CommodityTypeID" Nullable="false" />
           <Property Type="Int32" Name="PackID" Nullable="true" />
-          <Property Type="Int32" Name="PackCode" Nullable="true" />
+          <Property Type="String" Name="PackCode" Nullable="true" MaxLength="50" />
           <Property Type="Int32" Name="CartonID" Nullable="true" />
           <Property Type="String" Name="CartonCode" Nullable="true" MaxLength="50" />
           <Property Type="Int32" Name="PalletID" Nullable="true" />
@@ -9727,8 +9727,12 @@
           <Property Type="Int32" Name="CartonCounts" Nullable="false" />
           <Property Type="Int32" Name="PalletCounts" Nullable="false" />
           <Property Type="Decimal" Name="Quantity" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="LineVolume" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="LineVolume" Nullable="false" Precision="19" Scale="3" />
           <Property Type="Boolean" Name="IsSelected" Nullable="true" />
+          <Property Type="Int32" Name="BatchID" Nullable="false" />
+          <Property Type="DateTime" Name="BatchEntryDate" Nullable="false" />
+          <Property Type="String" Name="GoodsIssueReference" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="VoucherCodes" Nullable="true" MaxLength="100" />
         </ComplexType>
         <ComplexType Name="SalesReturnPendingGoodsIssue">
           <Property Type="Int32" Name="GoodsIssueID" Nullable="false" />
@@ -9765,6 +9769,7 @@
           <Property Type="Decimal" Name="Quantity" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="LineVolume" Nullable="false" Precision="18" Scale="2" />
           <Property Type="String" Name="Remarks" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="VoucherCodes" Nullable="true" MaxLength="100" />
         </ComplexType>
         <Association Name="FK_SalesReturnDetails_Batches">
           <End Type="TotalSmartCodingModel.Batch" Role="Batch" Multiplicity="1" />
@@ -12995,6 +13000,10 @@
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="LineVolume" ColumnName="LineVolume" />
                 <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+                <ScalarProperty Name="BatchID" ColumnName="BatchID" />
+                <ScalarProperty Name="BatchEntryDate" ColumnName="BatchEntryDate" />
+                <ScalarProperty Name="GoodsIssueReference" ColumnName="GoodsIssueReference" />
+                <ScalarProperty Name="VoucherCodes" ColumnName="VoucherCodes" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -13039,6 +13048,7 @@
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="LineVolume" ColumnName="LineVolume" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="VoucherCodes" ColumnName="VoucherCodes" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
