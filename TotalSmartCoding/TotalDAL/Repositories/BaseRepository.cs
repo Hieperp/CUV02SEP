@@ -65,6 +65,190 @@ namespace TotalDAL.Repositories
 
             //UPDATE VERSION: ADD UPDATE DATABASE HERE IF NEEDED
             #region ADD SALES RETURN
+
+            if (!this.totalSmartCodingEntities.TableExists("SalesReturns"))
+            {
+                if ((ApplicationRoles.Name != null && ApplicationRoles.Name != "") || (ApplicationUsers.Name != null && ApplicationUsers.Name != "")) throw new Exception("Please logon via Windows Authentication in order to update new version.");
+
+                this.ExecuteStoreCommand(@"CREATE TABLE [dbo].[SalesReturns](
+	                                                    [SalesReturnID] [int] IDENTITY(1,1) NOT NULL,
+	                                                    [EntryDate] [datetime] NOT NULL,
+	                                                    [Reference] [nvarchar](10) NULL,
+	                                                    [VoucherCode] [nvarchar](60) NULL,
+	                                                    [VoucherDate] [datetime] NULL,
+	                                                    [GoodsIssueID] [int] NULL,
+	                                                    [GoodsIssueReferences] [nvarchar](200) NULL,
+	                                                    [CustomerID] [int] NOT NULL,
+	                                                    [ReceiverID] [int] NOT NULL,
+	                                                    [SalespersonID] [int] NOT NULL,
+	                                                    [TeamID] [int] NOT NULL,
+	                                                    [UserID] [int] NOT NULL,
+	                                                    [PreparedPersonID] [int] NOT NULL,
+	                                                    [OrganizationalUnitID] [int] NOT NULL,
+	                                                    [LocationID] [int] NOT NULL,
+	                                                    [TotalPackCounts] [int] NOT NULL,
+	                                                    [TotalCartonCounts] [int] NOT NULL,
+	                                                    [TotalPalletCounts] [int] NOT NULL,
+	                                                    [TotalQuantity] [decimal](18, 2) NOT NULL,
+	                                                    [TotalLineVolume] [decimal](18, 2) NOT NULL,
+	                                                    [Description] [nvarchar](100) NULL,
+	                                                    [Remarks] [nvarchar](100) NULL,
+	                                                    [CreatedDate] [datetime] NOT NULL,
+	                                                    [EditedDate] [datetime] NOT NULL,
+	                                                    [Approved] [bit] NOT NULL,
+	                                                    [ApprovedDate] [datetime] NULL,
+                                                     CONSTRAINT [PK_SalesReturns] PRIMARY KEY CLUSTERED 
+                                                    (
+	                                                    [SalesReturnID] ASC
+                                                    )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+                                                    ) ON [PRIMARY]
+                                                    
+
+                                                    ALTER TABLE [dbo].[SalesReturns]  WITH CHECK ADD  CONSTRAINT [FK_SalesReturns_Customers] FOREIGN KEY([CustomerID])
+                                                    REFERENCES [dbo].[Customers] ([CustomerID])
+                                                    
+
+                                                    ALTER TABLE [dbo].[SalesReturns] CHECK CONSTRAINT [FK_SalesReturns_Customers]
+                                                    
+
+                                                    ALTER TABLE [dbo].[SalesReturns]  WITH CHECK ADD  CONSTRAINT [FK_SalesReturns_Customers1] FOREIGN KEY([ReceiverID])
+                                                    REFERENCES [dbo].[Customers] ([CustomerID])
+                                                    
+
+                                                    ALTER TABLE [dbo].[SalesReturns] CHECK CONSTRAINT [FK_SalesReturns_Customers1]
+                                                    
+
+                                                    ALTER TABLE [dbo].[SalesReturns]  WITH CHECK ADD  CONSTRAINT [FK_SalesReturns_GoodsIssues] FOREIGN KEY([GoodsIssueID])
+                                                    REFERENCES [dbo].[GoodsIssues] ([GoodsIssueID])
+                                                    
+
+                                                    ALTER TABLE [dbo].[SalesReturns] CHECK CONSTRAINT [FK_SalesReturns_GoodsIssues]
+                                                    
+
+                                                    ALTER TABLE [dbo].[SalesReturns]  WITH CHECK ADD  CONSTRAINT [FK_SalesReturns_Locations] FOREIGN KEY([LocationID])
+                                                    REFERENCES [dbo].[Locations] ([LocationID])
+                                                    
+
+                                                    ALTER TABLE [dbo].[SalesReturns] CHECK CONSTRAINT [FK_SalesReturns_Locations]
+                                                    
+
+                                                    ALTER TABLE [dbo].[SalesReturns]  WITH CHECK ADD  CONSTRAINT [FK_SalesReturns_Teams] FOREIGN KEY([TeamID])
+                                                    REFERENCES [dbo].[Teams] ([TeamID])
+                                                    
+
+                                                    ALTER TABLE [dbo].[SalesReturns] CHECK CONSTRAINT [FK_SalesReturns_Teams]
+                                                    
+
+                                                ", new ObjectParameter[] { });
+            }
+
+
+            if (!this.totalSmartCodingEntities.TableExists("SalesReturnDetails"))
+            {
+                if ((ApplicationRoles.Name != null && ApplicationRoles.Name != "") || (ApplicationUsers.Name != null && ApplicationUsers.Name != "")) throw new Exception("Please logon via Windows Authentication in order to update new version.");
+
+                this.ExecuteStoreCommand(@"CREATE TABLE [dbo].[SalesReturnDetails](
+	                                                    [SalesReturnDetailID] [int] IDENTITY(1,1) NOT NULL,
+	                                                    [SalesReturnID] [int] NOT NULL,
+	                                                    [EntryDate] [datetime] NOT NULL,
+	                                                    [Reference] [nvarchar](10) NULL,
+	                                                    [CustomerID] [int] NOT NULL,
+	                                                    [ReceiverID] [int] NOT NULL,
+	                                                    [GoodsIssueID] [int] NOT NULL,
+	                                                    [GoodsIssueDetailID] [int] NOT NULL,
+	                                                    [SalespersonID] [int] NOT NULL,
+	                                                    [LocationID] [int] NOT NULL,
+	                                                    [CommodityID] [int] NOT NULL,
+	                                                    [BatchID] [int] NOT NULL,
+	                                                    [BatchEntryDate] [date] NOT NULL,
+	                                                    [PackID] [int] NULL,
+	                                                    [CartonID] [int] NULL,
+	                                                    [PalletID] [int] NULL,
+	                                                    [PackCounts] [int] NOT NULL,
+	                                                    [CartonCounts] [int] NOT NULL,
+	                                                    [PalletCounts] [int] NOT NULL,
+	                                                    [Quantity] [decimal](18, 2) NOT NULL,
+	                                                    [QuantityReceipt] [decimal](18, 2) NOT NULL,
+	                                                    [LineVolume] [decimal](18, 2) NOT NULL,
+	                                                    [LineVolumeReceipt] [decimal](18, 2) NOT NULL,
+	                                                    [Remarks] [nvarchar](100) NULL,
+	                                                    [Approved] [bit] NOT NULL,
+                                                     CONSTRAINT [PK_SalesReturnDetails] PRIMARY KEY CLUSTERED 
+                                                    (
+	                                                    [SalesReturnDetailID] ASC
+                                                    )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+                                                    ) ON [PRIMARY]
+                                                    
+
+                                                    ALTER TABLE [dbo].[SalesReturnDetails] ADD  CONSTRAINT [DF_SalesReturnDetails_LineVolume]  DEFAULT ((0)) FOR [LineVolume]
+                                                    
+
+                                                    ALTER TABLE [dbo].[SalesReturnDetails]  WITH CHECK ADD  CONSTRAINT [FK_SalesReturnDetails_Batches] FOREIGN KEY([BatchID])
+                                                    REFERENCES [dbo].[Batches] ([BatchID])
+                                                    
+
+                                                    ALTER TABLE [dbo].[SalesReturnDetails] CHECK CONSTRAINT [FK_SalesReturnDetails_Batches]
+                                                    
+
+                                                    ALTER TABLE [dbo].[SalesReturnDetails]  WITH CHECK ADD  CONSTRAINT [FK_SalesReturnDetails_Cartons] FOREIGN KEY([CartonID])
+                                                    REFERENCES [dbo].[Cartons] ([CartonID])
+                                                    
+
+                                                    ALTER TABLE [dbo].[SalesReturnDetails] CHECK CONSTRAINT [FK_SalesReturnDetails_Cartons]
+                                                    
+
+                                                    ALTER TABLE [dbo].[SalesReturnDetails]  WITH CHECK ADD  CONSTRAINT [FK_SalesReturnDetails_Commodities] FOREIGN KEY([CommodityID])
+                                                    REFERENCES [dbo].[Commodities] ([CommodityID])
+                                                    
+
+                                                    ALTER TABLE [dbo].[SalesReturnDetails] CHECK CONSTRAINT [FK_SalesReturnDetails_Commodities]
+                                                    
+
+                                                    ALTER TABLE [dbo].[SalesReturnDetails]  WITH CHECK ADD  CONSTRAINT [FK_SalesReturnDetails_Customers] FOREIGN KEY([CustomerID])
+                                                    REFERENCES [dbo].[Customers] ([CustomerID])
+                                                    
+
+                                                    ALTER TABLE [dbo].[SalesReturnDetails] CHECK CONSTRAINT [FK_SalesReturnDetails_Customers]
+                                                    
+
+                                                    ALTER TABLE [dbo].[SalesReturnDetails]  WITH CHECK ADD  CONSTRAINT [FK_SalesReturnDetails_Customers1] FOREIGN KEY([ReceiverID])
+                                                    REFERENCES [dbo].[Customers] ([CustomerID])
+                                                    
+
+                                                    ALTER TABLE [dbo].[SalesReturnDetails] CHECK CONSTRAINT [FK_SalesReturnDetails_Customers1]
+                                                    
+
+                                                    ALTER TABLE [dbo].[SalesReturnDetails]  WITH CHECK ADD  CONSTRAINT [FK_SalesReturnDetails_GoodsIssueDetails] FOREIGN KEY([GoodsIssueDetailID])
+                                                    REFERENCES [dbo].[GoodsIssueDetails] ([GoodsIssueDetailID])
+                                                    
+
+                                                    ALTER TABLE [dbo].[SalesReturnDetails] CHECK CONSTRAINT [FK_SalesReturnDetails_GoodsIssueDetails]
+                                                    
+
+                                                    ALTER TABLE [dbo].[SalesReturnDetails]  WITH CHECK ADD  CONSTRAINT [FK_SalesReturnDetails_Packs] FOREIGN KEY([PackID])
+                                                    REFERENCES [dbo].[Packs] ([PackID])
+                                                    
+
+                                                    ALTER TABLE [dbo].[SalesReturnDetails] CHECK CONSTRAINT [FK_SalesReturnDetails_Packs]
+                                                    
+
+                                                    ALTER TABLE [dbo].[SalesReturnDetails]  WITH CHECK ADD  CONSTRAINT [FK_SalesReturnDetails_Pallets] FOREIGN KEY([PalletID])
+                                                    REFERENCES [dbo].[Pallets] ([PalletID])
+                                                    
+
+                                                    ALTER TABLE [dbo].[SalesReturnDetails] CHECK CONSTRAINT [FK_SalesReturnDetails_Pallets]
+                                                    
+
+                                                    ALTER TABLE [dbo].[SalesReturnDetails]  WITH CHECK ADD  CONSTRAINT [FK_SalesReturnDetails_SalesReturns] FOREIGN KEY([SalesReturnID])
+                                                    REFERENCES [dbo].[SalesReturns] ([SalesReturnID])
+                                                    
+
+                                                    ALTER TABLE [dbo].[SalesReturnDetails] CHECK CONSTRAINT [FK_SalesReturnDetails_SalesReturns]
+                                                    
+
+                                                ", new ObjectParameter[] { });
+            }
+
             var myQuery = this.totalSmartCodingEntities.Database.SqlQuery(typeof(int), "SELECT COUNT(ModuleDetailID) AS Expr1 FROM ModuleDetails WHERE ModuleDetailID = " + (int)GlobalEnums.NmvnTaskID.SalesReturns + " AND ControlTypeID = 1;", new object[] { });
             var myExists = myQuery.Cast<int>().Single();
             if (myExists == 0)
