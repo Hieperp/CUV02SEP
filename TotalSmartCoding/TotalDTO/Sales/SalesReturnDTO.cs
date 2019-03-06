@@ -82,7 +82,7 @@ namespace TotalDTO.Sales
         public string CustomerName
         {
             get { return this.customerName; }
-            set { ApplyPropertyChange<SalesReturnPrimitiveDTO, string>(ref this.customerName, o => o.CustomerName, value); }
+            set { ApplyPropertyChange<SalesReturnPrimitiveDTO, string>(ref this.customerName, o => o.CustomerName, value, false); }
         }
 
 
@@ -98,7 +98,7 @@ namespace TotalDTO.Sales
         public string ReceiverName
         {
             get { return this.receiverName; }
-            set { ApplyPropertyChange<SalesReturnPrimitiveDTO, string>(ref this.receiverName, o => o.ReceiverName, value); }
+            set { ApplyPropertyChange<SalesReturnPrimitiveDTO, string>(ref this.receiverName, o => o.ReceiverName, value, false); }
         }
 
         private string receiverTemp;

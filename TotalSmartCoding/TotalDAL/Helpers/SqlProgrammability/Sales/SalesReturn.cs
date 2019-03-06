@@ -130,14 +130,14 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
             queryString = queryString + "           " + this.BuildSQL(false) + "\r\n";
 
 
-            queryString = queryString + "       IF  (@CartonIDs = '' AND @PalletIDs = '') " + "\r\n";
+            queryString = queryString + "       IF  (@PalletIDs = '' AND @CartonIDs = '') " + "\r\n";
             queryString = queryString + "           " + this.BuildSQL(false, false) + "\r\n";
             queryString = queryString + "       ELSE " + "\r\n";
-            queryString = queryString + "               IF  (@CartonIDs <> '' AND @PalletIDs = '') " + "\r\n";
-            queryString = queryString + "                   " + this.BuildSQL(true, false) + "\r\n";
+            queryString = queryString + "               IF  (@PalletIDs = '' AND @CartonIDs <> '') " + "\r\n";
+            queryString = queryString + "                   " + this.BuildSQL(false, true) + "\r\n";
             queryString = queryString + "               ELSE " + "\r\n";
-            queryString = queryString + "                   IF  (@CartonIDs = '' AND @PalletIDs <> '') " + "\r\n";
-            queryString = queryString + "                       " + this.BuildSQL(false, true) + "\r\n";
+            queryString = queryString + "                   IF  (@PalletIDs <> '' AND @CartonIDs = '') " + "\r\n";
+            queryString = queryString + "                       " + this.BuildSQL(true, false) + "\r\n";
             queryString = queryString + "                   ELSE " + "\r\n";
             queryString = queryString + "                       " + this.BuildSQL(true, true) + "\r\n";
 
