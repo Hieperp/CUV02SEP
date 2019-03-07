@@ -14,11 +14,12 @@ namespace TotalModel.Models
     using System.Data.Entity.Infrastructure;
     using System.Data.Entity.Core.Objects;
     using System.Linq;
+    using TotalModel.Helpers;
     
     public partial class TotalSmartCodingEntities : DbContext
     {
         public TotalSmartCodingEntities()
-            : base("name=TotalSmartCodingEntities")
+            : base(ApplicationUsers.ConnectionString != "" ? ApplicationUsers.ConnectionString : "name=TotalSmartCodingEntities")
         {
         }
     
