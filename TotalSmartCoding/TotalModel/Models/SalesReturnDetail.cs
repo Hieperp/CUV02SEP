@@ -14,6 +14,12 @@ namespace TotalModel.Models
     
     public partial class SalesReturnDetail
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public SalesReturnDetail()
+        {
+            this.GoodsReceiptDetails = new HashSet<GoodsReceiptDetail>();
+        }
+    
         public int SalesReturnDetailID { get; set; }
         public int SalesReturnID { get; set; }
         public System.DateTime EntryDate { get; set; }
@@ -39,6 +45,7 @@ namespace TotalModel.Models
         public decimal LineVolumeReceipt { get; set; }
         public string Remarks { get; set; }
         public bool Approved { get; set; }
+        public int WarehouseID { get; set; }
     
         public virtual Batch Batch { get; set; }
         public virtual Carton Carton { get; set; }
@@ -49,5 +56,7 @@ namespace TotalModel.Models
         public virtual Pack Pack { get; set; }
         public virtual Pallet Pallet { get; set; }
         public virtual SalesReturn SalesReturn { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GoodsReceiptDetail> GoodsReceiptDetails { get; set; }
     }
 }

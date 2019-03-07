@@ -56,6 +56,8 @@ namespace TotalModel.Models
         public int OrganizationalUnitID { get; set; }
         public string PrimaryReferences { get; set; }
         public Nullable<int> WarehouseAdjustmentTypeID { get; set; }
+        public Nullable<int> SalesReturnDetailID { get; set; }
+        public Nullable<int> SalesReturnID { get; set; }
     
         public virtual BinLocation BinLocation { get; set; }
         public virtual Carton Carton { get; set; }
@@ -71,5 +73,6 @@ namespace TotalModel.Models
         public virtual WarehouseAdjustmentDetail WarehouseAdjustmentDetail { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WarehouseAdjustmentDetail> WarehouseAdjustmentDetails { get; set; }
+        public virtual SalesReturnDetail SalesReturnDetail { get; set; }
     }
 }

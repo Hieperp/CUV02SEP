@@ -3563,5 +3563,52 @@ namespace TotalModel.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SalesReturnToggleApproved", entityIDParameter, approvedParameter);
         }
+    
+        public virtual ObjectResult<PendingSalesReturnDetail> GetPendingSalesReturnDetails(Nullable<int> locationID, Nullable<int> goodsReceiptID, Nullable<int> salesReturnID, Nullable<int> warehouseID, string salesReturnDetailIDs, Nullable<bool> isReadonly)
+        {
+            var locationIDParameter = locationID.HasValue ?
+                new ObjectParameter("LocationID", locationID) :
+                new ObjectParameter("LocationID", typeof(int));
+    
+            var goodsReceiptIDParameter = goodsReceiptID.HasValue ?
+                new ObjectParameter("GoodsReceiptID", goodsReceiptID) :
+                new ObjectParameter("GoodsReceiptID", typeof(int));
+    
+            var salesReturnIDParameter = salesReturnID.HasValue ?
+                new ObjectParameter("SalesReturnID", salesReturnID) :
+                new ObjectParameter("SalesReturnID", typeof(int));
+    
+            var warehouseIDParameter = warehouseID.HasValue ?
+                new ObjectParameter("WarehouseID", warehouseID) :
+                new ObjectParameter("WarehouseID", typeof(int));
+    
+            var salesReturnDetailIDsParameter = salesReturnDetailIDs != null ?
+                new ObjectParameter("SalesReturnDetailIDs", salesReturnDetailIDs) :
+                new ObjectParameter("SalesReturnDetailIDs", typeof(string));
+    
+            var isReadonlyParameter = isReadonly.HasValue ?
+                new ObjectParameter("IsReadonly", isReadonly) :
+                new ObjectParameter("IsReadonly", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PendingSalesReturnDetail>("GetPendingSalesReturnDetails", locationIDParameter, goodsReceiptIDParameter, salesReturnIDParameter, warehouseIDParameter, salesReturnDetailIDsParameter, isReadonlyParameter);
+        }
+    
+        public virtual ObjectResult<PendingSalesReturn> GetPendingSalesReturns(Nullable<int> locationID)
+        {
+            var locationIDParameter = locationID.HasValue ?
+                new ObjectParameter("LocationID", locationID) :
+                new ObjectParameter("LocationID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PendingSalesReturn>("GetPendingSalesReturns", locationIDParameter);
+        }
+    
+        public virtual ObjectResult<PendingSalesReturnWarehouse> GetPendingSalesReturnWarehouses(Nullable<int> locationID)
+        {
+            var locationIDParameter = locationID.HasValue ?
+                new ObjectParameter("LocationID", locationID) :
+                new ObjectParameter("LocationID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PendingSalesReturnWarehouse>("GetPendingSalesReturnWarehouses", locationIDParameter);
+        }
     }
 }

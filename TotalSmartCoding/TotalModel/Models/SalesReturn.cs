@@ -18,6 +18,7 @@ namespace TotalModel.Models
         public SalesReturn()
         {
             this.SalesReturnDetails = new HashSet<SalesReturnDetail>();
+            this.GoodsReceipts = new HashSet<GoodsReceipt>();
         }
     
         public int SalesReturnID { get; set; }
@@ -46,6 +47,7 @@ namespace TotalModel.Models
         public System.DateTime EditedDate { get; set; }
         public bool Approved { get; set; }
         public Nullable<System.DateTime> ApprovedDate { get; set; }
+        public int WarehouseID { get; set; }
     
         public virtual Customer Customer { get; set; }
         public virtual Customer Customer1 { get; set; }
@@ -54,5 +56,8 @@ namespace TotalModel.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SalesReturnDetail> SalesReturnDetails { get; set; }
         public virtual Team Team { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GoodsReceipt> GoodsReceipts { get; set; }
+        public virtual Warehouse Warehouse { get; set; }
     }
 }

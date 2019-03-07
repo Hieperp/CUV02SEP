@@ -49,5 +49,9 @@ namespace TotalModel.Models
         public Nullable<int> LocationIssueID { get; set; }
         public Nullable<int> WarehouseIssueID { get; set; }
         public Nullable<int> WarehouseAdjustmentTypeID { get; set; }
+        public Nullable<int> SalesReturnID { get; set; }
+        public Nullable<int> SalesReturnDetailID { get; set; }
+        public string SalesReturnReference { get; set; }
+        public Nullable<System.DateTime> SalesReturnEntryDate { get; set; }
     }
 }

@@ -125,6 +125,21 @@ namespace TotalDTO.Sales
             set { ApplyPropertyChange<SalesOrderPrimitiveDTO, Nullable<int>>(ref this.teamID, o => o.TeamID, value); }
         }
 
+        private Nullable<int> warehouseID;
+        [DefaultValue(null)]
+        public Nullable<int> WarehouseID
+        {
+            get { return this.warehouseID; }
+            set { ApplyPropertyChange<SalesReturnPrimitiveDTO, Nullable<int>>(ref this.warehouseID, o => o.WarehouseID, value); }
+        }
+        private string warehouseName;
+        [DefaultValue(null)]
+        public string WarehouseName
+        {
+            get { return this.warehouseName; }
+            set { ApplyPropertyChange<SalesReturnPrimitiveDTO, string>(ref this.warehouseName, o => o.WarehouseName, value, false); }
+        }
+
         public override string Caption
         {
             get { return this.VoucherCode + (this.GoodsIssueID != null ? this.GoodsIssueReference : this.GoodsIssueReferences) + ", " + (this.CustomerName != null ? "Customer: " + this.CustomerName.Substring(0, this.CustomerName.Length > 16 ? 15 : this.CustomerName.Length) : "") + "             Total Quantity: " + this.TotalQuantity.ToString("N0") + ",    Total Volume: " + this.TotalLineVolume.ToString("N2"); }
@@ -146,6 +161,7 @@ namespace TotalDTO.Sales
             validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<SalesReturnPrimitiveDTO>(p => p.ReceiverTemp), "Vui lòng chọn đơn vị nhận hàng.", delegate { return (this.ReceiverID != null && this.ReceiverID > 0); }));
             validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<SalesReturnPrimitiveDTO>(p => p.SalespersonID), "Vui lòng chọn người lập.", delegate { return (this.SalespersonID != null && this.SalespersonID > 0); }));
             validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<SalesReturnPrimitiveDTO>(p => p.TeamID), "Vui lòng chọn người lập.", delegate { return (this.TeamID != null && this.TeamID > 0); }));
+            validationRules.Add(new SimpleValidationRule(CommonExpressions.PropertyName<SalesReturnPrimitiveDTO>(p => p.WarehouseID), "Vui lòng chọn kho.", delegate { return (this.WarehouseID != null && this.WarehouseID > 0); }));
 
             return validationRules;
         }

@@ -47,6 +47,7 @@ namespace TotalModel.Models
         public Nullable<System.DateTime> ApprovedDate { get; set; }
         public int ForkliftDriverID { get; set; }
         public string VehicleDriver { get; set; }
+        public Nullable<int> SalesReturnID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GoodsReceiptDetail> GoodsReceiptDetails { get; set; }
@@ -55,5 +56,6 @@ namespace TotalModel.Models
         public virtual Warehouse Warehouse { get; set; }
         public virtual Location Location { get; set; }
         public virtual WarehouseAdjustment WarehouseAdjustment { get; set; }
+        public virtual SalesReturn SalesReturn { get; set; }
     }
 }

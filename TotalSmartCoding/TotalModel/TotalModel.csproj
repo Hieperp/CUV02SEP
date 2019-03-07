@@ -341,6 +341,15 @@
     <Compile Include="Models\PendingSalesOrderDetail.cs">
       <DependentUpon>TotalSmartCoding.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\PendingSalesReturn.cs">
+      <DependentUpon>TotalSmartCoding.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PendingSalesReturnDetail.cs">
+      <DependentUpon>TotalSmartCoding.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PendingSalesReturnWarehouse.cs">
+      <DependentUpon>TotalSmartCoding.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\PendingTransferOrder.cs">
       <DependentUpon>TotalSmartCoding.tt</DependentUpon>
     </Compile>

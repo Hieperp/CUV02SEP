@@ -16,7 +16,7 @@ namespace TotalDTO.Sales
         public int SalesReturnDetailID { get; set; }
         public int SalesReturnID { get; set; }
 
-        
+        public int WarehouseID { get; set; }
         public int SalespersonID { get; set; }
 
         public int CustomerID { get; set; }

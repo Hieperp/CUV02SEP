@@ -186,6 +186,9 @@
         <AssociationConnector Association="TotalSmartCodingModel.FK_SalesReturns_Locations" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_SalesReturnDetails_SalesReturns" />
         <AssociationConnector Association="TotalSmartCodingModel.FK_SalesReturns_Teams" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsReceiptDetails_SalesReturnDetails" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_GoodsReceipts_SalesReturns" />
+        <AssociationConnector Association="TotalSmartCodingModel.FK_SalesReturns_Warehouses" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

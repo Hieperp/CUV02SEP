@@ -542,6 +542,8 @@
           <Property Name="OrganizationalUnitID" Type="int" Nullable="false" />
           <Property Name="PrimaryReferences" Type="nvarchar" MaxLength="100" />
           <Property Name="WarehouseAdjustmentTypeID" Type="int" />
+          <Property Name="SalesReturnDetailID" Type="int" />
+          <Property Name="SalesReturnID" Type="int" />
         </EntityType>
         <EntityType Name="GoodsReceipts">
           <Key>
@@ -574,6 +576,7 @@
           <Property Name="ApprovedDate" Type="datetime" />
           <Property Name="ForkliftDriverID" Type="int" Nullable="false" />
           <Property Name="VehicleDriver" Type="nvarchar" MaxLength="100" />
+          <Property Name="SalesReturnID" Type="int" />
         </EntityType>
         <EntityType Name="GoodsReceiptTypes">
           <Key>
@@ -821,6 +824,7 @@
           <Property Name="ReceiverID" Type="int" Nullable="false" />
           <Property Name="GoodsIssueID" Type="int" Nullable="false" />
           <Property Name="GoodsIssueDetailID" Type="int" Nullable="false" />
+          <Property Name="WarehouseID" Type="int" Nullable="false" />
           <Property Name="SalespersonID" Type="int" Nullable="false" />
           <Property Name="LocationID" Type="int" Nullable="false" />
           <Property Name="CommodityID" Type="int" Nullable="false" />
@@ -852,6 +856,7 @@
           <Property Name="GoodsIssueReferences" Type="nvarchar" MaxLength="200" />
           <Property Name="CustomerID" Type="int" Nullable="false" />
           <Property Name="ReceiverID" Type="int" Nullable="false" />
+          <Property Name="WarehouseID" Type="int" Nullable="false" />
           <Property Name="SalespersonID" Type="int" Nullable="false" />
           <Property Name="TeamID" Type="int" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
@@ -1804,6 +1809,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_GoodsReceiptDetails_SalesReturnDetails">
+          <End Role="SalesReturnDetails" Type="Self.SalesReturnDetails" Multiplicity="0..1" />
+          <End Role="GoodsReceiptDetails" Type="Self.GoodsReceiptDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SalesReturnDetails">
+              <PropertyRef Name="SalesReturnDetailID" />
+            </Principal>
+            <Dependent Role="GoodsReceiptDetails">
+              <PropertyRef Name="SalesReturnDetailID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_GoodsReceiptDetails_WarehouseAdjustmentDetails">
           <End Role="WarehouseAdjustmentDetails" Type="Self.WarehouseAdjustmentDetails" Multiplicity="0..1" />
           <End Role="GoodsReceiptDetails" Type="Self.GoodsReceiptDetails" Multiplicity="*" />
@@ -1861,6 +1878,18 @@
             </Principal>
             <Dependent Role="GoodsReceipts">
               <PropertyRef Name="PickupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GoodsReceipts_SalesReturns">
+          <End Role="SalesReturns" Type="Self.SalesReturns" Multiplicity="0..1" />
+          <End Role="GoodsReceipts" Type="Self.GoodsReceipts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SalesReturns">
+              <PropertyRef Name="SalesReturnID" />
+            </Principal>
+            <Dependent Role="GoodsReceipts">
+              <PropertyRef Name="SalesReturnID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2329,6 +2358,18 @@
             </Principal>
             <Dependent Role="SalesReturns">
               <PropertyRef Name="TeamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SalesReturns_Warehouses">
+          <End Role="Warehouses" Type="Self.Warehouses" Multiplicity="1" />
+          <End Role="SalesReturns" Type="Self.SalesReturns" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouses">
+              <PropertyRef Name="WarehouseID" />
+            </Principal>
+            <Dependent Role="SalesReturns">
+              <PropertyRef Name="WarehouseID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3062,6 +3103,20 @@
           <Parameter Name="IsReadonly" Type="bit" Mode="In" />
         </Function>
         <Function Name="GetPendingSalesOrders" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LocationID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetPendingSalesReturnDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LocationID" Type="int" Mode="In" />
+          <Parameter Name="GoodsReceiptID" Type="int" Mode="In" />
+          <Parameter Name="SalesReturnID" Type="int" Mode="In" />
+          <Parameter Name="WarehouseID" Type="int" Mode="In" />
+          <Parameter Name="SalesReturnDetailIDs" Type="varchar" Mode="In" />
+          <Parameter Name="IsReadonly" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="GetPendingSalesReturns" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LocationID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetPendingSalesReturnWarehouses" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="LocationID" Type="int" Mode="In" />
         </Function>
         <Function Name="GetPendingTransferOrderDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -3922,6 +3977,10 @@
             <End Role="PickupDetails" EntitySet="PickupDetails" />
             <End Role="GoodsReceiptDetails" EntitySet="GoodsReceiptDetails" />
           </AssociationSet>
+          <AssociationSet Name="FK_GoodsReceiptDetails_SalesReturnDetails" Association="Self.FK_GoodsReceiptDetails_SalesReturnDetails">
+            <End Role="SalesReturnDetails" EntitySet="SalesReturnDetails" />
+            <End Role="GoodsReceiptDetails" EntitySet="GoodsReceiptDetails" />
+          </AssociationSet>
           <AssociationSet Name="FK_GoodsReceiptDetails_WarehouseAdjustmentDetails" Association="Self.FK_GoodsReceiptDetails_WarehouseAdjustmentDetails">
             <End Role="WarehouseAdjustmentDetails" EntitySet="WarehouseAdjustmentDetails" />
             <End Role="GoodsReceiptDetails" EntitySet="GoodsReceiptDetails" />
@@ -3940,6 +3999,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_GoodsReceipts_Pickups" Association="Self.FK_GoodsReceipts_Pickups">
             <End Role="Pickups" EntitySet="Pickups" />
+            <End Role="GoodsReceipts" EntitySet="GoodsReceipts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GoodsReceipts_SalesReturns" Association="Self.FK_GoodsReceipts_SalesReturns">
+            <End Role="SalesReturns" EntitySet="SalesReturns" />
             <End Role="GoodsReceipts" EntitySet="GoodsReceipts" />
           </AssociationSet>
           <AssociationSet Name="FK_GoodsReceipts_WarehouseAdjustments" Association="Self.FK_GoodsReceipts_WarehouseAdjustments">
@@ -4096,6 +4159,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_SalesReturns_Teams" Association="Self.FK_SalesReturns_Teams">
             <End Role="Teams" EntitySet="Teams" />
+            <End Role="SalesReturns" EntitySet="SalesReturns" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SalesReturns_Warehouses" Association="Self.FK_SalesReturns_Warehouses">
+            <End Role="Warehouses" EntitySet="Warehouses" />
             <End Role="SalesReturns" EntitySet="SalesReturns" />
           </AssociationSet>
           <AssociationSet Name="FK_Territories_Territories" Association="Self.FK_Territories_Territories">
@@ -5783,6 +5850,32 @@
             <End Role="Team" EntitySet="Teams" />
             <End Role="SalesReturn" EntitySet="SalesReturns" />
           </AssociationSet>
+          <AssociationSet Name="FK_GoodsReceiptDetails_SalesReturnDetails" Association="TotalSmartCodingModel.FK_GoodsReceiptDetails_SalesReturnDetails">
+            <End Role="SalesReturnDetail" EntitySet="SalesReturnDetails" />
+            <End Role="GoodsReceiptDetail" EntitySet="GoodsReceiptDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GoodsReceipts_SalesReturns" Association="TotalSmartCodingModel.FK_GoodsReceipts_SalesReturns">
+            <End Role="SalesReturn" EntitySet="SalesReturns" />
+            <End Role="GoodsReceipt" EntitySet="GoodsReceipts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SalesReturns_Warehouses" Association="TotalSmartCodingModel.FK_SalesReturns_Warehouses">
+            <End Role="Warehouse" EntitySet="Warehouses" />
+            <End Role="SalesReturn" EntitySet="SalesReturns" />
+          </AssociationSet>
+          <FunctionImport Name="GetPendingSalesReturnDetails" ReturnType="Collection(TotalSmartCodingModel.PendingSalesReturnDetail)">
+            <Parameter Name="LocationID" Mode="In" Type="Int32" />
+            <Parameter Name="GoodsReceiptID" Mode="In" Type="Int32" />
+            <Parameter Name="SalesReturnID" Mode="In" Type="Int32" />
+            <Parameter Name="WarehouseID" Mode="In" Type="Int32" />
+            <Parameter Name="SalesReturnDetailIDs" Mode="In" Type="String" />
+            <Parameter Name="IsReadonly" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="GetPendingSalesReturns" ReturnType="Collection(TotalSmartCodingModel.PendingSalesReturn)">
+            <Parameter Name="LocationID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetPendingSalesReturnWarehouses" ReturnType="Collection(TotalSmartCodingModel.PendingSalesReturnWarehouse)">
+            <Parameter Name="LocationID" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
           <Property Type="Int32" Name="PickupID" Nullable="false" />
@@ -5865,6 +5958,10 @@
           <Property Type="Int32" Name="LocationIssueID" Nullable="true" />
           <Property Type="Int32" Name="WarehouseIssueID" Nullable="true" />
           <Property Type="Int32" Name="WarehouseAdjustmentTypeID" Nullable="true" />
+          <Property Type="Int32" Name="SalesReturnID" Nullable="true" />
+          <Property Type="Int32" Name="SalesReturnDetailID" Nullable="true" />
+          <Property Type="String" Name="SalesReturnReference" Nullable="true" MaxLength="10" />
+          <Property Type="DateTime" Name="SalesReturnEntryDate" Nullable="true" Precision="23" />
         </ComplexType>
         <ComplexType Name="PendingPickup">
           <Property Type="Int32" Name="PickupID" Nullable="false" />
@@ -6459,6 +6556,7 @@
           <NavigationProperty Name="WarehouseAdjustments1" Relationship="TotalSmartCodingModel.FK_WarehouseAdjustments_Warehouses1" FromRole="Warehouse" ToRole="WarehouseAdjustment" />
           <NavigationProperty Name="GoodsIssues" Relationship="TotalSmartCodingModel.FK_GoodsIssues_Warehouses" FromRole="Warehouse" ToRole="GoodsIssue" />
           <NavigationProperty Name="GoodsIssues1" Relationship="TotalSmartCodingModel.FK_GoodsIssues_Warehouses1" FromRole="Warehouse" ToRole="GoodsIssue" />
+          <NavigationProperty Name="SalesReturns" Relationship="TotalSmartCodingModel.FK_SalesReturns_Warehouses" FromRole="Warehouse" ToRole="SalesReturn" />
           </EntityType>
         <EntityType Name="Pickup">
           <Key>
@@ -7712,6 +7810,9 @@
           <Property Name="OrganizationalUnitID" Type="Int32" Nullable="false" />
           <Property Name="PrimaryReferences" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="WarehouseAdjustmentTypeID" Type="Int32" />
+          <Property Name="SalesReturnDetailID" Type="Int32" />
+          <Property Name="SalesReturnID" Type="Int32" />
+          <NavigationProperty Name="SalesReturnDetail" Relationship="TotalSmartCodingModel.FK_GoodsReceiptDetails_SalesReturnDetails" FromRole="GoodsReceiptDetail" ToRole="SalesReturnDetail" />
         </EntityType>
         <EntityType Name="GoodsReceipt">
           <Key>
@@ -7750,6 +7851,8 @@
           <NavigationProperty Name="WarehouseAdjustment" Relationship="TotalSmartCodingModel.FK_GoodsReceipts_WarehouseAdjustments" FromRole="GoodsReceipt" ToRole="WarehouseAdjustment" />
           <Property Name="ForkliftDriverID" Type="Int32" Nullable="false" />
           <Property Name="VehicleDriver" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SalesReturnID" Type="Int32" />
+          <NavigationProperty Name="SalesReturn" Relationship="TotalSmartCodingModel.FK_GoodsReceipts_SalesReturns" FromRole="GoodsReceipt" ToRole="SalesReturn" />
         </EntityType>
         <Association Name="FK_GoodsReceiptDetails_BinLocations">
           <End Type="TotalSmartCodingModel.BinLocation" Role="BinLocation" Multiplicity="1" />
@@ -9693,6 +9796,8 @@
           <NavigationProperty Name="Pack" Relationship="TotalSmartCodingModel.FK_SalesReturnDetails_Packs" FromRole="SalesReturnDetail" ToRole="Pack" />
           <NavigationProperty Name="Pallet" Relationship="TotalSmartCodingModel.FK_SalesReturnDetails_Pallets" FromRole="SalesReturnDetail" ToRole="Pallet" />
           <NavigationProperty Name="SalesReturn" Relationship="TotalSmartCodingModel.FK_SalesReturnDetails_SalesReturns" FromRole="SalesReturnDetail" ToRole="SalesReturn" />
+          <Property Name="WarehouseID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="GoodsReceiptDetails" Relationship="TotalSmartCodingModel.FK_GoodsReceiptDetails_SalesReturnDetails" FromRole="SalesReturnDetail" ToRole="GoodsReceiptDetail" />
         </EntityType>
         <ComplexType Name="SalesReturnIndex">
           <Property Type="Int32" Name="SalesReturnID" Nullable="false" />
@@ -9903,6 +10008,9 @@
           <NavigationProperty Name="Location" Relationship="TotalSmartCodingModel.FK_SalesReturns_Locations" FromRole="SalesReturn" ToRole="Location" />
           <NavigationProperty Name="SalesReturnDetails" Relationship="TotalSmartCodingModel.FK_SalesReturnDetails_SalesReturns" FromRole="SalesReturn" ToRole="SalesReturnDetail" />
           <NavigationProperty Name="Team" Relationship="TotalSmartCodingModel.FK_SalesReturns_Teams" FromRole="SalesReturn" ToRole="Team" />
+          <Property Name="WarehouseID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="GoodsReceipts" Relationship="TotalSmartCodingModel.FK_GoodsReceipts_SalesReturns" FromRole="SalesReturn" ToRole="GoodsReceipt" />
+          <NavigationProperty Name="Warehouse" Relationship="TotalSmartCodingModel.FK_SalesReturns_Warehouses" FromRole="SalesReturn" ToRole="Warehouse" />
         </EntityType>
         <Association Name="FK_SalesReturns_Customers">
           <End Type="TotalSmartCodingModel.Customer" Role="Customer" Multiplicity="1" />
@@ -9976,6 +10084,92 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_GoodsReceiptDetails_SalesReturnDetails">
+          <End Type="TotalSmartCodingModel.SalesReturnDetail" Role="SalesReturnDetail" Multiplicity="0..1" />
+          <End Type="TotalSmartCodingModel.GoodsReceiptDetail" Role="GoodsReceiptDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SalesReturnDetail">
+              <PropertyRef Name="SalesReturnDetailID" />
+            </Principal>
+            <Dependent Role="GoodsReceiptDetail">
+              <PropertyRef Name="SalesReturnDetailID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GoodsReceipts_SalesReturns">
+          <End Type="TotalSmartCodingModel.SalesReturn" Role="SalesReturn" Multiplicity="0..1" />
+          <End Type="TotalSmartCodingModel.GoodsReceipt" Role="GoodsReceipt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SalesReturn">
+              <PropertyRef Name="SalesReturnID" />
+            </Principal>
+            <Dependent Role="GoodsReceipt">
+              <PropertyRef Name="SalesReturnID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SalesReturns_Warehouses">
+          <End Type="TotalSmartCodingModel.Warehouse" Role="Warehouse" Multiplicity="1" />
+          <End Type="TotalSmartCodingModel.SalesReturn" Role="SalesReturn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouse">
+              <PropertyRef Name="WarehouseID" />
+            </Principal>
+            <Dependent Role="SalesReturn">
+              <PropertyRef Name="WarehouseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="PendingSalesReturnDetail">
+          <Property Type="Int32" Name="SalesReturnID" Nullable="false" />
+          <Property Type="Int32" Name="SalesReturnDetailID" Nullable="false" />
+          <Property Type="String" Name="PrimaryReference" Nullable="true" MaxLength="10" />
+          <Property Type="DateTime" Name="PrimaryEntryDate" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="LocationIssueID" Nullable="true" />
+          <Property Type="Int32" Name="WarehouseIssueID" Nullable="true" />
+          <Property Type="Int32" Name="WarehouseAdjustmentTypeID" Nullable="true" />
+          <Property Type="Int32" Name="CommodityID" Nullable="false" />
+          <Property Type="String" Name="CommodityCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="CommodityName" Nullable="false" MaxLength="200" />
+          <Property Type="Int32" Name="BatchID" Nullable="false" />
+          <Property Type="DateTime" Name="BatchEntryDate" Nullable="false" />
+          <Property Type="Int32" Name="BinLocationID" Nullable="false" />
+          <Property Type="String" Name="BinLocationCode" Nullable="false" MaxLength="1" />
+          <Property Type="Int32" Name="PackID" Nullable="true" />
+          <Property Type="String" Name="PackCode" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="CartonID" Nullable="true" />
+          <Property Type="String" Name="CartonCode" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="PalletID" Nullable="true" />
+          <Property Type="String" Name="PalletCode" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="QuantityRemains" Nullable="true" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="Quantity" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="LineVolumeRemains" Nullable="true" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="LineVolume" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="PackCounts" Nullable="false" />
+          <Property Type="Int32" Name="CartonCounts" Nullable="false" />
+          <Property Type="Int32" Name="PalletCounts" Nullable="false" />
+          <Property Type="String" Name="Remarks" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="IsSelected" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="PendingSalesReturn">
+          <Property Type="Int32" Name="SalesReturnID" Nullable="false" />
+          <Property Type="String" Name="PrimaryReference" Nullable="true" MaxLength="10" />
+          <Property Type="DateTime" Name="PrimaryEntryDate" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="WarehouseID" Nullable="false" />
+          <Property Type="String" Name="WarehouseCode" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="WarehouseName" Nullable="false" MaxLength="60" />
+          <Property Type="Int32" Name="GoodsReceiptTypeID" Nullable="false" />
+          <Property Type="String" Name="GoodsReceiptTypeName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Remarks" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="PendingSalesReturnWarehouse">
+          <Property Type="Int32" Name="WarehouseID" Nullable="false" />
+          <Property Type="String" Name="WarehouseCode" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="WarehouseName" Nullable="false" MaxLength="60" />
+          <Property Type="Int32" Name="GoodsReceiptTypeID" Nullable="false" />
+          <Property Type="String" Name="GoodsReceiptTypeName" Nullable="true" MaxLength="50" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -10084,6 +10278,10 @@
                 <ScalarProperty Name="LocationIssueID" ColumnName="LocationIssueID" />
                 <ScalarProperty Name="WarehouseIssueID" ColumnName="WarehouseIssueID" />
                 <ScalarProperty Name="WarehouseAdjustmentTypeID" ColumnName="WarehouseAdjustmentTypeID" />
+                <ScalarProperty Name="SalesReturnID" ColumnName="SalesReturnID" />
+                <ScalarProperty Name="SalesReturnDetailID" ColumnName="SalesReturnDetailID" />
+                <ScalarProperty Name="SalesReturnReference" ColumnName="SalesReturnReference" />
+                <ScalarProperty Name="SalesReturnEntryDate" ColumnName="SalesReturnEntryDate" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -11656,6 +11854,8 @@
           <EntitySetMapping Name="GoodsReceiptDetails">
             <EntityTypeMapping TypeName="TotalSmartCodingModel.GoodsReceiptDetail">
               <MappingFragment StoreEntitySet="GoodsReceiptDetails">
+                <ScalarProperty Name="SalesReturnID" ColumnName="SalesReturnID" />
+                <ScalarProperty Name="SalesReturnDetailID" ColumnName="SalesReturnDetailID" />
                 <ScalarProperty Name="WarehouseAdjustmentTypeID" ColumnName="WarehouseAdjustmentTypeID" />
                 <ScalarProperty Name="PrimaryReferences" ColumnName="PrimaryReferences" />
                 <ScalarProperty Name="OrganizationalUnitID" ColumnName="OrganizationalUnitID" />
@@ -11697,6 +11897,7 @@
           <EntitySetMapping Name="GoodsReceipts">
             <EntityTypeMapping TypeName="TotalSmartCodingModel.GoodsReceipt">
               <MappingFragment StoreEntitySet="GoodsReceipts">
+                <ScalarProperty Name="SalesReturnID" ColumnName="SalesReturnID" />
                 <ScalarProperty Name="VehicleDriver" ColumnName="VehicleDriver" />
                 <ScalarProperty Name="ForkliftDriverID" ColumnName="ForkliftDriverID" />
                 <ScalarProperty Name="ApprovedDate" ColumnName="ApprovedDate" />
@@ -12931,6 +13132,7 @@
           <EntitySetMapping Name="SalesReturnDetails">
             <EntityTypeMapping TypeName="TotalSmartCodingModel.SalesReturnDetail">
               <MappingFragment StoreEntitySet="SalesReturnDetails">
+                <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
                 <ScalarProperty Name="Approved" ColumnName="Approved" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
                 <ScalarProperty Name="LineVolumeReceipt" ColumnName="LineVolumeReceipt" />
@@ -13060,6 +13262,7 @@
           <EntitySetMapping Name="SalesReturns">
             <EntityTypeMapping TypeName="TotalSmartCodingModel.SalesReturn">
               <MappingFragment StoreEntitySet="SalesReturns">
+                <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
                 <ScalarProperty Name="ApprovedDate" ColumnName="ApprovedDate" />
                 <ScalarProperty Name="Approved" ColumnName="Approved" />
                 <ScalarProperty Name="EditedDate" ColumnName="EditedDate" />
@@ -13089,6 +13292,68 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetPendingSalesReturnDetails" FunctionName="TotalSmartCodingModel.Store.GetPendingSalesReturnDetails">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TotalSmartCodingModel.PendingSalesReturnDetail">
+                <ScalarProperty Name="SalesReturnID" ColumnName="SalesReturnID" />
+                <ScalarProperty Name="SalesReturnDetailID" ColumnName="SalesReturnDetailID" />
+                <ScalarProperty Name="PrimaryReference" ColumnName="PrimaryReference" />
+                <ScalarProperty Name="PrimaryEntryDate" ColumnName="PrimaryEntryDate" />
+                <ScalarProperty Name="LocationIssueID" ColumnName="LocationIssueID" />
+                <ScalarProperty Name="WarehouseIssueID" ColumnName="WarehouseIssueID" />
+                <ScalarProperty Name="WarehouseAdjustmentTypeID" ColumnName="WarehouseAdjustmentTypeID" />
+                <ScalarProperty Name="CommodityID" ColumnName="CommodityID" />
+                <ScalarProperty Name="CommodityCode" ColumnName="CommodityCode" />
+                <ScalarProperty Name="CommodityName" ColumnName="CommodityName" />
+                <ScalarProperty Name="BatchID" ColumnName="BatchID" />
+                <ScalarProperty Name="BatchEntryDate" ColumnName="BatchEntryDate" />
+                <ScalarProperty Name="BinLocationID" ColumnName="BinLocationID" />
+                <ScalarProperty Name="BinLocationCode" ColumnName="BinLocationCode" />
+                <ScalarProperty Name="PackID" ColumnName="PackID" />
+                <ScalarProperty Name="PackCode" ColumnName="PackCode" />
+                <ScalarProperty Name="CartonID" ColumnName="CartonID" />
+                <ScalarProperty Name="CartonCode" ColumnName="CartonCode" />
+                <ScalarProperty Name="PalletID" ColumnName="PalletID" />
+                <ScalarProperty Name="PalletCode" ColumnName="PalletCode" />
+                <ScalarProperty Name="QuantityRemains" ColumnName="QuantityRemains" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="LineVolumeRemains" ColumnName="LineVolumeRemains" />
+                <ScalarProperty Name="LineVolume" ColumnName="LineVolume" />
+                <ScalarProperty Name="PackCounts" ColumnName="PackCounts" />
+                <ScalarProperty Name="CartonCounts" ColumnName="CartonCounts" />
+                <ScalarProperty Name="PalletCounts" ColumnName="PalletCounts" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetPendingSalesReturns" FunctionName="TotalSmartCodingModel.Store.GetPendingSalesReturns">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TotalSmartCodingModel.PendingSalesReturn">
+                <ScalarProperty Name="SalesReturnID" ColumnName="SalesReturnID" />
+                <ScalarProperty Name="PrimaryReference" ColumnName="PrimaryReference" />
+                <ScalarProperty Name="PrimaryEntryDate" ColumnName="PrimaryEntryDate" />
+                <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
+                <ScalarProperty Name="WarehouseCode" ColumnName="WarehouseCode" />
+                <ScalarProperty Name="WarehouseName" ColumnName="WarehouseName" />
+                <ScalarProperty Name="GoodsReceiptTypeID" ColumnName="GoodsReceiptTypeID" />
+                <ScalarProperty Name="GoodsReceiptTypeName" ColumnName="GoodsReceiptTypeName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetPendingSalesReturnWarehouses" FunctionName="TotalSmartCodingModel.Store.GetPendingSalesReturnWarehouses">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TotalSmartCodingModel.PendingSalesReturnWarehouse">
+                <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
+                <ScalarProperty Name="WarehouseCode" ColumnName="WarehouseCode" />
+                <ScalarProperty Name="WarehouseName" ColumnName="WarehouseName" />
+                <ScalarProperty Name="GoodsReceiptTypeID" ColumnName="GoodsReceiptTypeID" />
+                <ScalarProperty Name="GoodsReceiptTypeName" ColumnName="GoodsReceiptTypeName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
