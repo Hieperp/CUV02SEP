@@ -219,7 +219,7 @@ namespace TotalDAL.Helpers.SqlProgrammability.Sales
         {
             string[] queryArray = new string[1];
 
-            //queryArray[0] = " SELECT TOP 1 @FoundEntity = SalesReturnID FROM GoodsReceiptDetails WHERE SalesReturnID = @EntityID ";
+            queryArray[0] = " SELECT TOP 1 @FoundEntity = SalesReturnID FROM GoodsReceiptDetails WHERE SalesReturnID = @EntityID ";
 
             this.totalSmartCodingEntities.CreateProcedureToCheckExisting("SalesReturnEditable", queryArray);
         }

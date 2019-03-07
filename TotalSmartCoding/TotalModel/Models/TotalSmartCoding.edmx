@@ -5871,10 +5871,10 @@
             <Parameter Name="IsReadonly" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="GetPendingSalesReturns" ReturnType="Collection(TotalSmartCodingModel.PendingSalesReturn)">
-            <Parameter Name="LocationID" Mode="In" Type="Int32" />
+          <Parameter Name="LocationID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetPendingSalesReturnWarehouses" ReturnType="Collection(TotalSmartCodingModel.PendingSalesReturnWarehouse)">
-            <Parameter Name="LocationID" Mode="In" Type="Int32" />
+          <Parameter Name="LocationID" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="PendingPickupDetail">
@@ -5914,7 +5914,7 @@
           <Property Type="String" Name="Reference" Nullable="true" MaxLength="10" />
           <Property Type="String" Name="LocationCode" Nullable="false" MaxLength="10" />
           <Property Type="String" Name="GoodsReceiptTypeCode" Nullable="false" MaxLength="10" />
-          <Property Type="String" Name="Description" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="252" />
           <Property Type="Decimal" Name="TotalQuantity" Nullable="false" Precision="18" Scale="2" />
           <Property Type="Boolean" Name="Approved" Nullable="false" />
           <Property Type="String" Name="WarehouseName" Nullable="false" MaxLength="60" />
@@ -10162,6 +10162,7 @@
           <Property Type="String" Name="GoodsReceiptTypeName" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="Description" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="Remarks" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="CustomerName" Nullable="false" MaxLength="151" />
         </ComplexType>
         <ComplexType Name="PendingSalesReturnWarehouse">
           <Property Type="Int32" Name="WarehouseID" Nullable="false" />
@@ -13340,6 +13341,7 @@
                 <ScalarProperty Name="GoodsReceiptTypeName" ColumnName="GoodsReceiptTypeName" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

@@ -13,7 +13,7 @@ namespace TotalDTO.Inventories
         //IMPORTANT: IMPLEMENT PropertyChanged!!!!
         //NOW: AFTER ADD GoodsReceiptDetailDTO TO COLLECTION, WE DON'T CHANGE THESE PROPERTIES FROM BINDING DataGridView ALSO FROM BACKEND GoodsReceiptDetailDTO OBJECT. SO: WE DON'T IMPLEMENT PropertyChanged FOR THESE PROPERTIES
         //LATER: IF WE RECEIPT FORM OTHER SOURCE THAN FROM PICKUP ONLY, WE SHOULD CONSIDER THIS => AND IMPLEMENT PropertyChanged FOR THESE PROPERTIES WHEN NECCESSARY
-        
+
 
         public int GoodsReceiptDetailID { get; set; }
         public int GoodsReceiptID { get; set; }
@@ -32,6 +32,12 @@ namespace TotalDTO.Inventories
         public Nullable<int> LocationIssueID { get; set; }
         public Nullable<int> WarehouseIssueID { get; set; }
 
+        public Nullable<int> SalesReturnID { get; set; }
+        public Nullable<int> SalesReturnDetailID { get; set; }
+
+        public string SalesReturnReference { get; set; }
+        public Nullable<System.DateTime> SalesReturnEntryDate { get; set; }
+
         public Nullable<int> WarehouseAdjustmentID { get; set; }
         public Nullable<int> WarehouseAdjustmentDetailID { get; set; }
 
@@ -39,8 +45,8 @@ namespace TotalDTO.Inventories
         public Nullable<System.DateTime> WarehouseAdjustmentEntryDate { get; set; }
         public Nullable<int> WarehouseAdjustmentTypeID { get; set; }
 
-        public string PrimaryReference { get { return this.PickupReference != null ? this.PickupReference : (this.GoodsIssueReference != null ? this.GoodsIssueReference : (this.WarehouseAdjustmentReference != null ? this.WarehouseAdjustmentReference : null)); } }
-        public Nullable<System.DateTime> PrimaryEntryDate { get { return this.PickupEntryDate != null ? this.PickupEntryDate : (this.GoodsIssueEntryDate != null ? this.GoodsIssueEntryDate : (this.WarehouseAdjustmentEntryDate != null ? this.WarehouseAdjustmentEntryDate : null)); } }
+        public string PrimaryReference { get { return this.PickupReference != null ? this.PickupReference : (this.GoodsIssueReference != null ? this.GoodsIssueReference : (this.WarehouseAdjustmentReference != null ? this.WarehouseAdjustmentReference : (this.SalesReturnReference != null ? this.SalesReturnReference : null))); } }
+        public Nullable<System.DateTime> PrimaryEntryDate { get { return this.PickupEntryDate != null ? this.PickupEntryDate : (this.GoodsIssueEntryDate != null ? this.GoodsIssueEntryDate : (this.WarehouseAdjustmentEntryDate != null ? this.WarehouseAdjustmentEntryDate : (this.SalesReturnEntryDate != null ? this.SalesReturnEntryDate : null))); } }
         public string PrimaryReferences { get; set; }
 
         public int BatchID { get; set; }
@@ -48,7 +54,7 @@ namespace TotalDTO.Inventories
 
         public Nullable<int> GoodsReceiptTypeID { get; set; }
         public int WarehouseID { get; set; }
-        
+
         public int BinLocationID { get; set; }
         public string BinLocationCode { get; set; }
 
@@ -63,7 +69,7 @@ namespace TotalDTO.Inventories
     }
 
 
-        
+
 
 
 }

@@ -63,6 +63,24 @@ namespace TotalSmartCoding.Controllers.APIs.Inventories
 
 
 
+        public List<PendingSalesReturn> GetPendingSalesReturns(int? locationID)
+        {
+            return this.goodsReceiptAPIRepository.GetPendingSalesReturns(locationID);
+        }
+
+
+        public List<PendingSalesReturnWarehouse> GetPendingSalesReturnWarehouses(int? locationID)
+        {
+            return this.goodsReceiptAPIRepository.GetPendingSalesReturnWarehouses(locationID);
+        }
+
+        public List<PendingSalesReturnDetail> GetPendingSalesReturnDetails(int? locationID, int? goodsReceiptID, int? salesReturnID, int? warehouseID, string salesReturnDetailIDs, bool isReadonly)
+        {
+            return this.goodsReceiptAPIRepository.GetPendingSalesReturnDetails(locationID, goodsReceiptID, salesReturnID, warehouseID, salesReturnDetailIDs, isReadonly);
+        }
+
+
+
         public List<PendingWarehouseAdjustmentDetail> GetPendingWarehouseAdjustmentDetails(int? locationID, int? goodsReceiptID, int? warehouseAdjustmentID, int? warehouseID, string warehouseAdjustmentDetailIDs, bool isReadonly)
         {
             return this.goodsReceiptAPIRepository.GetPendingWarehouseAdjustmentDetails(locationID, goodsReceiptID, warehouseAdjustmentID, warehouseID, warehouseAdjustmentDetailIDs, isReadonly);

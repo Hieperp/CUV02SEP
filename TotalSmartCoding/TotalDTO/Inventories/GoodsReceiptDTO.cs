@@ -71,6 +71,17 @@ namespace TotalDTO.Inventories
         [DefaultValue(null)]
         public string GoodsIssueReference { get; set; }
 
+        private Nullable<int> salesReturnID;
+        [DefaultValue(null)]
+        public Nullable<int> SalesReturnID
+        {
+            get { return this.salesReturnID; }
+            set { ApplyPropertyChange<GoodsReceiptPrimitiveDTO, Nullable<int>>(ref this.salesReturnID, o => o.SalesReturnID, value); }
+        }
+        [DefaultValue(null)]
+        public string SalesReturnReference { get; set; }
+
+
 
         [DefaultValue(null)]
         public string PrimaryReferences { get; set; }
@@ -129,7 +140,7 @@ namespace TotalDTO.Inventories
 
         public override string Caption
         {
-            get { return this.Reference + " for " + this.GoodsReceiptTypeName + ": " + (this.PickupID != null ? this.PickupReference : this.PrimaryReferences) + "             " + this.WarehouseName + (this.WarehouseName != "" ? ", " : "") + this.EntryDate.ToString() + "             Total Quantity: " + this.TotalQuantity.ToString("N0") + ",    Total Volume: " + this.TotalLineVolume.ToString("N2"); }
+            get { return this.Reference + " for " + this.GoodsReceiptTypeName + ": " + (this.PickupID != null ? this.PickupReference : this.PrimaryReferences) + (this.SalesReturnID != null ? this.SalesReturnReference : this.PrimaryReferences) + "             " + this.WarehouseName + (this.WarehouseName != "" ? ", " : "") + this.EntryDate.ToString() + "             Total Quantity: " + this.TotalQuantity.ToString("N0") + ",    Total Volume: " + this.TotalLineVolume.ToString("N2"); }
         }
 
         public override void PerformPresaveRule()

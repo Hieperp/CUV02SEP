@@ -49,7 +49,7 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
 
             this.olvCartonSelected.HeaderCheckState = this.goodsReceiptViewModel.GoodsReceiptTypeID == (int)GlobalEnums.GoodsReceiptTypeID.Pickup ? CheckState.Checked : CheckState.Unchecked;
             this.olvPalletSelected.HeaderCheckState = this.goodsReceiptViewModel.GoodsReceiptTypeID == (int)GlobalEnums.GoodsReceiptTypeID.Pickup ? CheckState.Checked : CheckState.Unchecked;
-            this.menuOptionBinLocations.Visible = this.goodsReceiptViewModel.GoodsReceiptTypeID == (int)GlobalEnums.GoodsReceiptTypeID.GoodsIssueTransfer;
+            this.menuOptionBinLocations.Visible = this.goodsReceiptViewModel.GoodsReceiptTypeID == (int)GlobalEnums.GoodsReceiptTypeID.GoodsIssueTransfer || this.goodsReceiptViewModel.GoodsReceiptTypeID == (int)GlobalEnums.GoodsReceiptTypeID.SalesReturn;
         }
 
 
@@ -59,11 +59,14 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
             {
                 List<PendingPickupDetail> pendingPickupDetails = null;
                 List<PendingGoodsIssueTransferDetail> pendingGoodsIssueTransferDetails = null;
+                List<PendingSalesReturnDetail> pendingSalesReturnDetails = null;
 
                 if (this.goodsReceiptViewModel.GoodsReceiptTypeID == (int)GlobalEnums.GoodsReceiptTypeID.Pickup)
                     pendingPickupDetails = this.goodsReceiptAPIs.GetPendingPickupDetails(this.goodsReceiptViewModel.LocationID, this.goodsReceiptViewModel.GoodsReceiptID, this.goodsReceiptViewModel.PickupID, this.goodsReceiptViewModel.WarehouseID, string.Join(",", this.goodsReceiptViewModel.ViewDetails.Select(d => d.PickupDetailID)), false);
                 if (this.goodsReceiptViewModel.GoodsReceiptTypeID == (int)GlobalEnums.GoodsReceiptTypeID.GoodsIssueTransfer)
                     pendingGoodsIssueTransferDetails = this.goodsReceiptAPIs.GetPendingGoodsIssueTransferDetails(this.goodsReceiptViewModel.LocationID, this.goodsReceiptViewModel.GoodsReceiptID, this.goodsReceiptViewModel.GoodsIssueID, this.goodsReceiptViewModel.WarehouseID, string.Join(",", this.goodsReceiptViewModel.ViewDetails.Select(d => d.GoodsIssueTransferDetailID)), false);
+                if (this.goodsReceiptViewModel.GoodsReceiptTypeID == (int)GlobalEnums.GoodsReceiptTypeID.SalesReturn)
+                    pendingSalesReturnDetails = this.goodsReceiptAPIs.GetPendingSalesReturnDetails(this.goodsReceiptViewModel.LocationID, this.goodsReceiptViewModel.GoodsReceiptID, this.goodsReceiptViewModel.SalesReturnID, this.goodsReceiptViewModel.WarehouseID, string.Join(",", this.goodsReceiptViewModel.ViewDetails.Select(d => d.SalesReturnDetailID)), false);
 
                 if (pendingPickupDetails != null)
                 {
@@ -75,6 +78,12 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
                 {
                     this.fastPendingPallets.SetObjects(pendingGoodsIssueTransferDetails.Where(w => w.PalletID != null));
                     this.fastPendingCartons.SetObjects(pendingGoodsIssueTransferDetails.Where(w => w.CartonID != null));
+                }
+
+                if (pendingSalesReturnDetails != null)
+                {
+                    this.fastPendingPallets.SetObjects(pendingSalesReturnDetails.Where(w => w.PalletID != null));
+                    this.fastPendingCartons.SetObjects(pendingSalesReturnDetails.Where(w => w.CartonID != null));
                 }
 
                 this.ShowRowCount(true, true);
@@ -117,6 +126,12 @@ namespace TotalSmartCoding.Views.Inventories.GoodsReceipts
                                     GoodsIssueTransferDetailID = pendingforGoodsReceiptDetail.GoodsIssueTransferDetailID > 0 ? pendingforGoodsReceiptDetail.GoodsIssueTransferDetailID : (int?)null,
                                     GoodsIssueReference = pendingforGoodsReceiptDetail.PrimaryReference,
                                     GoodsIssueEntryDate = pendingforGoodsReceiptDetail.GoodsIssueID > 0 ? pendingforGoodsReceiptDetail.PrimaryEntryDate : (DateTime?)null,
+
+                                    SalesReturnID = pendingforGoodsReceiptDetail.SalesReturnID > 0 ? pendingforGoodsReceiptDetail.SalesReturnID : (int?)null,
+                                    SalesReturnDetailID = pendingforGoodsReceiptDetail.SalesReturnDetailID > 0 ? pendingforGoodsReceiptDetail.SalesReturnDetailID : (int?)null,
+                                    SalesReturnReference = pendingforGoodsReceiptDetail.PrimaryReference,
+                                    SalesReturnEntryDate = pendingforGoodsReceiptDetail.SalesReturnID > 0 ? pendingforGoodsReceiptDetail.PrimaryEntryDate : (DateTime?)null,
+
 
                                     LocationIssueID = pendingforGoodsReceiptDetail.LocationIssueID,
                                     WarehouseIssueID = pendingforGoodsReceiptDetail.WarehouseIssueID,

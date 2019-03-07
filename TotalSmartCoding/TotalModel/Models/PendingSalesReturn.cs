@@ -23,5 +23,6 @@ namespace TotalModel.Models
         public string GoodsReceiptTypeName { get; set; }
         public string Description { get; set; }
         public string Remarks { get; set; }
+        public string CustomerName { get; set; }
     }
 }

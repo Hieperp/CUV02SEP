@@ -38,18 +38,27 @@
             this.fastPendingPickupWarehouses = new BrightIdeasSoftware.FastObjectListView();
             this.olvWarehouseName1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.panelMaster = new System.Windows.Forms.Panel();
+            this.fastPendingSalesReturns = new BrightIdeasSoftware.FastObjectListView();
+            this.olvColumn1 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn6 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn7 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.fastPendingSalesReturnWarehouses = new BrightIdeasSoftware.FastObjectListView();
+            this.olvColumn8 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.fastPendingGoodsIssueTransfers = new BrightIdeasSoftware.FastObjectListView();
             this.olvColumn3 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn4 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvVoucherCodes = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn5 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvDescription = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.fastPendingGoodsIssueTransferWarehouses = new BrightIdeasSoftware.FastObjectListView();
             this.olvColumn2 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvVoucherCodes = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvDescription = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColumn9 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fastPendingPickups)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fastPendingPickupWarehouses)).BeginInit();
             this.panelMaster.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fastPendingSalesReturns)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fastPendingSalesReturnWarehouses)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fastPendingGoodsIssueTransfers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fastPendingGoodsIssueTransferWarehouses)).BeginInit();
             this.SuspendLayout();
@@ -62,10 +71,10 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.buttonESC,
             this.buttonOK});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 548);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 451);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStrip1.Size = new System.Drawing.Size(1147, 55);
+            this.toolStrip1.Size = new System.Drawing.Size(860, 39);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -77,7 +86,7 @@
             this.buttonESC.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonESC.Name = "buttonESC";
             this.buttonESC.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.buttonESC.Size = new System.Drawing.Size(83, 52);
+            this.buttonESC.Size = new System.Drawing.Size(74, 36);
             this.buttonESC.Text = "Cancel";
             this.buttonESC.Click += new System.EventHandler(this.buttonOKESC_Click);
             // 
@@ -89,7 +98,7 @@
             this.buttonOK.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.buttonOK.Size = new System.Drawing.Size(94, 52);
+            this.buttonOK.Size = new System.Drawing.Size(71, 36);
             this.buttonOK.Text = "Next";
             this.buttonOK.Click += new System.EventHandler(this.buttonOKESC_Click);
             // 
@@ -108,11 +117,12 @@
             this.fastPendingPickups.FullRowSelect = true;
             this.fastPendingPickups.HideSelection = false;
             this.fastPendingPickups.HighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
-            this.fastPendingPickups.Location = new System.Drawing.Point(0, 87);
+            this.fastPendingPickups.Location = new System.Drawing.Point(0, 71);
+            this.fastPendingPickups.Margin = new System.Windows.Forms.Padding(2);
             this.fastPendingPickups.Name = "fastPendingPickups";
             this.fastPendingPickups.OwnerDraw = true;
             this.fastPendingPickups.ShowGroups = false;
-            this.fastPendingPickups.Size = new System.Drawing.Size(1147, 124);
+            this.fastPendingPickups.Size = new System.Drawing.Size(860, 102);
             this.fastPendingPickups.TabIndex = 69;
             this.fastPendingPickups.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastPendingPickups.UseCompatibleStateImageBehavior = false;
@@ -152,11 +162,12 @@
             this.fastPendingPickupWarehouses.FullRowSelect = true;
             this.fastPendingPickupWarehouses.HideSelection = false;
             this.fastPendingPickupWarehouses.HighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
-            this.fastPendingPickupWarehouses.Location = new System.Drawing.Point(0, 9);
+            this.fastPendingPickupWarehouses.Location = new System.Drawing.Point(0, 7);
+            this.fastPendingPickupWarehouses.Margin = new System.Windows.Forms.Padding(2);
             this.fastPendingPickupWarehouses.Name = "fastPendingPickupWarehouses";
             this.fastPendingPickupWarehouses.OwnerDraw = true;
             this.fastPendingPickupWarehouses.ShowGroups = false;
-            this.fastPendingPickupWarehouses.Size = new System.Drawing.Size(1147, 78);
+            this.fastPendingPickupWarehouses.Size = new System.Drawing.Size(860, 64);
             this.fastPendingPickupWarehouses.TabIndex = 70;
             this.fastPendingPickupWarehouses.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastPendingPickupWarehouses.UseCompatibleStateImageBehavior = false;
@@ -174,16 +185,100 @@
             // panelMaster
             // 
             this.panelMaster.BackColor = System.Drawing.Color.Ivory;
+            this.panelMaster.Controls.Add(this.fastPendingSalesReturns);
+            this.panelMaster.Controls.Add(this.fastPendingSalesReturnWarehouses);
             this.panelMaster.Controls.Add(this.fastPendingGoodsIssueTransfers);
             this.panelMaster.Controls.Add(this.fastPendingGoodsIssueTransferWarehouses);
             this.panelMaster.Controls.Add(this.fastPendingPickups);
             this.panelMaster.Controls.Add(this.fastPendingPickupWarehouses);
             this.panelMaster.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelMaster.Location = new System.Drawing.Point(0, 0);
+            this.panelMaster.Margin = new System.Windows.Forms.Padding(2);
             this.panelMaster.Name = "panelMaster";
-            this.panelMaster.Padding = new System.Windows.Forms.Padding(0, 9, 0, 0);
-            this.panelMaster.Size = new System.Drawing.Size(1147, 548);
+            this.panelMaster.Padding = new System.Windows.Forms.Padding(0, 7, 0, 0);
+            this.panelMaster.Size = new System.Drawing.Size(860, 451);
             this.panelMaster.TabIndex = 71;
+            // 
+            // fastPendingSalesReturns
+            // 
+            this.fastPendingSalesReturns.AllColumns.Add(this.olvColumn1);
+            this.fastPendingSalesReturns.AllColumns.Add(this.olvColumn6);
+            this.fastPendingSalesReturns.AllColumns.Add(this.olvColumn7);
+            this.fastPendingSalesReturns.AllColumns.Add(this.olvColumn9);
+            this.fastPendingSalesReturns.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.olvColumn1,
+            this.olvColumn6,
+            this.olvColumn7,
+            this.olvColumn9});
+            this.fastPendingSalesReturns.Cursor = System.Windows.Forms.Cursors.Default;
+            this.fastPendingSalesReturns.Dock = System.Windows.Forms.DockStyle.Top;
+            this.fastPendingSalesReturns.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fastPendingSalesReturns.FullRowSelect = true;
+            this.fastPendingSalesReturns.HideSelection = false;
+            this.fastPendingSalesReturns.HighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
+            this.fastPendingSalesReturns.Location = new System.Drawing.Point(0, 435);
+            this.fastPendingSalesReturns.Margin = new System.Windows.Forms.Padding(2);
+            this.fastPendingSalesReturns.Name = "fastPendingSalesReturns";
+            this.fastPendingSalesReturns.OwnerDraw = true;
+            this.fastPendingSalesReturns.ShowGroups = false;
+            this.fastPendingSalesReturns.Size = new System.Drawing.Size(860, 102);
+            this.fastPendingSalesReturns.TabIndex = 73;
+            this.fastPendingSalesReturns.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
+            this.fastPendingSalesReturns.UseCompatibleStateImageBehavior = false;
+            this.fastPendingSalesReturns.UseFiltering = true;
+            this.fastPendingSalesReturns.View = System.Windows.Forms.View.Details;
+            this.fastPendingSalesReturns.VirtualMode = true;
+            // 
+            // olvColumn1
+            // 
+            this.olvColumn1.AspectName = "PrimaryEntryDate";
+            this.olvColumn1.HeaderTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvColumn1.Text = "Entry Date";
+            this.olvColumn1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.olvColumn1.Width = 170;
+            // 
+            // olvColumn6
+            // 
+            this.olvColumn6.AspectName = "PrimaryReference";
+            this.olvColumn6.Text = "Reference";
+            this.olvColumn6.Width = 137;
+            // 
+            // olvColumn7
+            // 
+            this.olvColumn7.AspectName = "WarehouseName";
+            this.olvColumn7.Text = "Warehouse";
+            this.olvColumn7.Width = 88;
+            // 
+            // fastPendingSalesReturnWarehouses
+            // 
+            this.fastPendingSalesReturnWarehouses.AllColumns.Add(this.olvColumn8);
+            this.fastPendingSalesReturnWarehouses.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.olvColumn8});
+            this.fastPendingSalesReturnWarehouses.Cursor = System.Windows.Forms.Cursors.Default;
+            this.fastPendingSalesReturnWarehouses.Dock = System.Windows.Forms.DockStyle.Top;
+            this.fastPendingSalesReturnWarehouses.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fastPendingSalesReturnWarehouses.FullRowSelect = true;
+            this.fastPendingSalesReturnWarehouses.HideSelection = false;
+            this.fastPendingSalesReturnWarehouses.HighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
+            this.fastPendingSalesReturnWarehouses.Location = new System.Drawing.Point(0, 371);
+            this.fastPendingSalesReturnWarehouses.Margin = new System.Windows.Forms.Padding(2);
+            this.fastPendingSalesReturnWarehouses.Name = "fastPendingSalesReturnWarehouses";
+            this.fastPendingSalesReturnWarehouses.OwnerDraw = true;
+            this.fastPendingSalesReturnWarehouses.ShowGroups = false;
+            this.fastPendingSalesReturnWarehouses.Size = new System.Drawing.Size(860, 64);
+            this.fastPendingSalesReturnWarehouses.TabIndex = 74;
+            this.fastPendingSalesReturnWarehouses.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
+            this.fastPendingSalesReturnWarehouses.UseCompatibleStateImageBehavior = false;
+            this.fastPendingSalesReturnWarehouses.UseFiltering = true;
+            this.fastPendingSalesReturnWarehouses.View = System.Windows.Forms.View.Details;
+            this.fastPendingSalesReturnWarehouses.VirtualMode = true;
+            // 
+            // olvColumn8
+            // 
+            this.olvColumn8.AspectName = "WarehouseName";
+            this.olvColumn8.FillsFreeSpace = true;
+            this.olvColumn8.Text = "Warehouse";
+            this.olvColumn8.Width = 263;
             // 
             // fastPendingGoodsIssueTransfers
             // 
@@ -204,11 +299,12 @@
             this.fastPendingGoodsIssueTransfers.FullRowSelect = true;
             this.fastPendingGoodsIssueTransfers.HideSelection = false;
             this.fastPendingGoodsIssueTransfers.HighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
-            this.fastPendingGoodsIssueTransfers.Location = new System.Drawing.Point(0, 328);
+            this.fastPendingGoodsIssueTransfers.Location = new System.Drawing.Point(0, 269);
+            this.fastPendingGoodsIssueTransfers.Margin = new System.Windows.Forms.Padding(2);
             this.fastPendingGoodsIssueTransfers.Name = "fastPendingGoodsIssueTransfers";
             this.fastPendingGoodsIssueTransfers.OwnerDraw = true;
             this.fastPendingGoodsIssueTransfers.ShowGroups = false;
-            this.fastPendingGoodsIssueTransfers.Size = new System.Drawing.Size(1147, 124);
+            this.fastPendingGoodsIssueTransfers.Size = new System.Drawing.Size(860, 102);
             this.fastPendingGoodsIssueTransfers.TabIndex = 72;
             this.fastPendingGoodsIssueTransfers.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastPendingGoodsIssueTransfers.UseCompatibleStateImageBehavior = false;
@@ -230,11 +326,23 @@
             this.olvColumn4.Text = "Reference";
             this.olvColumn4.Width = 110;
             // 
+            // olvVoucherCodes
+            // 
+            this.olvVoucherCodes.AspectName = "VoucherCodes";
+            this.olvVoucherCodes.Text = "Vouchers";
+            this.olvVoucherCodes.Width = 192;
+            // 
             // olvColumn5
             // 
             this.olvColumn5.AspectName = "SourceWarehouseName";
             this.olvColumn5.Text = "Source Warehouse";
             this.olvColumn5.Width = 110;
+            // 
+            // olvDescription
+            // 
+            this.olvDescription.AspectName = "Description";
+            this.olvDescription.FillsFreeSpace = true;
+            this.olvDescription.Text = "Description";
             // 
             // fastPendingGoodsIssueTransferWarehouses
             // 
@@ -247,11 +355,12 @@
             this.fastPendingGoodsIssueTransferWarehouses.FullRowSelect = true;
             this.fastPendingGoodsIssueTransferWarehouses.HideSelection = false;
             this.fastPendingGoodsIssueTransferWarehouses.HighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
-            this.fastPendingGoodsIssueTransferWarehouses.Location = new System.Drawing.Point(0, 211);
+            this.fastPendingGoodsIssueTransferWarehouses.Location = new System.Drawing.Point(0, 173);
+            this.fastPendingGoodsIssueTransferWarehouses.Margin = new System.Windows.Forms.Padding(2);
             this.fastPendingGoodsIssueTransferWarehouses.Name = "fastPendingGoodsIssueTransferWarehouses";
             this.fastPendingGoodsIssueTransferWarehouses.OwnerDraw = true;
             this.fastPendingGoodsIssueTransferWarehouses.ShowGroups = false;
-            this.fastPendingGoodsIssueTransferWarehouses.Size = new System.Drawing.Size(1147, 117);
+            this.fastPendingGoodsIssueTransferWarehouses.Size = new System.Drawing.Size(860, 96);
             this.fastPendingGoodsIssueTransferWarehouses.TabIndex = 71;
             this.fastPendingGoodsIssueTransferWarehouses.UnfocusedHighlightBackgroundColor = System.Drawing.SystemColors.Highlight;
             this.fastPendingGoodsIssueTransferWarehouses.UseCompatibleStateImageBehavior = false;
@@ -266,26 +375,22 @@
             this.olvColumn2.Text = "Warehouse";
             this.olvColumn2.Width = 263;
             // 
-            // olvVoucherCodes
+            // olvColumn9
             // 
-            this.olvVoucherCodes.AspectName = "VoucherCodes";
-            this.olvVoucherCodes.Text = "Vouchers";
-            this.olvVoucherCodes.Width = 192;
-            // 
-            // olvDescription
-            // 
-            this.olvDescription.AspectName = "Description";
-            this.olvDescription.FillsFreeSpace = true;
-            this.olvDescription.Text = "Description";
+            this.olvColumn9.AspectName = "CustomerName";
+            this.olvColumn9.FillsFreeSpace = true;
+            this.olvColumn9.Text = "Customers";
+            this.olvColumn9.Width = 150;
             // 
             // WizardMaster
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1147, 603);
+            this.ClientSize = new System.Drawing.Size(860, 490);
             this.Controls.Add(this.panelMaster);
             this.Controls.Add(this.toolStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "WizardMaster";
@@ -297,6 +402,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.fastPendingPickups)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fastPendingPickupWarehouses)).EndInit();
             this.panelMaster.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.fastPendingSalesReturns)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fastPendingSalesReturnWarehouses)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fastPendingGoodsIssueTransfers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fastPendingGoodsIssueTransferWarehouses)).EndInit();
             this.ResumeLayout(false);
@@ -324,5 +431,12 @@
         private BrightIdeasSoftware.OLVColumn olvColumn2;
         private BrightIdeasSoftware.OLVColumn olvVoucherCodes;
         private BrightIdeasSoftware.OLVColumn olvDescription;
+        private BrightIdeasSoftware.FastObjectListView fastPendingSalesReturns;
+        private BrightIdeasSoftware.OLVColumn olvColumn1;
+        private BrightIdeasSoftware.OLVColumn olvColumn6;
+        private BrightIdeasSoftware.OLVColumn olvColumn7;
+        private BrightIdeasSoftware.FastObjectListView fastPendingSalesReturnWarehouses;
+        private BrightIdeasSoftware.OLVColumn olvColumn8;
+        private BrightIdeasSoftware.OLVColumn olvColumn9;
     }
 }

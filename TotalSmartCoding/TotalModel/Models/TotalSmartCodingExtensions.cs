@@ -39,6 +39,7 @@ namespace TotalModel.Models
     {
         int PickupID { get; set; }
         int GoodsIssueID { get; set; }
+        int SalesReturnID { get; set; }
 
         string PrimaryReference { get; set; }
         System.DateTime PrimaryEntryDate { get; set; }
@@ -54,17 +55,26 @@ namespace TotalModel.Models
     public partial class PendingPickup : IPendingforGoodsReceipt
     {
         public int GoodsIssueID { get; set; }
+        public int SalesReturnID { get; set; }
     }
 
     public partial class PendingGoodsIssueTransfer : IPendingforGoodsReceipt
     {
         public int PickupID { get; set; }
+        public int SalesReturnID { get; set; }
+    }
+
+    public partial class PendingSalesReturn : IPendingforGoodsReceipt
+    {
+        public int PickupID { get; set; }
+        public int GoodsIssueID { get; set; }
     }
 
     public partial class PendingPickupWarehouse : IPendingforGoodsReceipt
     {
         public int PickupID { get; set; }
         public int GoodsIssueID { get; set; }
+        public int SalesReturnID { get; set; }
 
         public string PrimaryReference { get; set; }
         public System.DateTime PrimaryEntryDate { get; set; }
@@ -74,6 +84,17 @@ namespace TotalModel.Models
     {
         public int PickupID { get; set; }
         public int GoodsIssueID { get; set; }
+        public int SalesReturnID { get; set; }
+
+        public string PrimaryReference { get; set; }
+        public System.DateTime PrimaryEntryDate { get; set; }
+    }
+
+    public partial class PendingSalesReturnWarehouse : IPendingforGoodsReceipt
+    {
+        public int PickupID { get; set; }
+        public int GoodsIssueID { get; set; }
+        public int SalesReturnID { get; set; }
 
         public string PrimaryReference { get; set; }
         public System.DateTime PrimaryEntryDate { get; set; }
@@ -89,6 +110,9 @@ namespace TotalModel.Models
 
         int GoodsIssueID { get; set; }
         int GoodsIssueTransferDetailID { get; set; }
+
+        int SalesReturnID { get; set; }
+        int SalesReturnDetailID { get; set; }
 
         Nullable<int> WarehouseIssueID { get; set; }
         Nullable<int> LocationIssueID { get; set; }
@@ -136,6 +160,9 @@ namespace TotalModel.Models
         public int GoodsIssueID { get; set; }
         public int GoodsIssueTransferDetailID { get; set; }
 
+        public int SalesReturnID { get; set; }
+        public int SalesReturnDetailID { get; set; }
+
         //public int WarehouseAdjustmentID { get; set; }
         //public int WarehouseAdjustmentDetailID { get; set; }
     }
@@ -143,6 +170,21 @@ namespace TotalModel.Models
     {
         public int PickupID { get; set; }
         public int PickupDetailID { get; set; }
+
+        public int SalesReturnID { get; set; }
+        public int SalesReturnDetailID { get; set; }
+
+        //public int WarehouseAdjustmentID { get; set; }
+        //public int WarehouseAdjustmentDetailID { get; set; }
+    }
+
+    public partial class PendingSalesReturnDetail : IPendingforGoodsReceiptDetail
+    {
+        public int PickupID { get; set; }
+        public int PickupDetailID { get; set; }
+
+        public int GoodsIssueID { get; set; }
+        public int GoodsIssueTransferDetailID { get; set; }
 
         //public int WarehouseAdjustmentID { get; set; }
         //public int WarehouseAdjustmentDetailID { get; set; }

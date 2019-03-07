@@ -71,6 +71,23 @@ namespace TotalDAL.Repositories.Inventories
 
 
 
+        public List<PendingSalesReturn> GetPendingSalesReturns(int? locationID)
+        {
+            return base.TotalSmartCodingEntities.GetPendingSalesReturns(locationID).ToList();
+        }
+
+        public List<PendingSalesReturnWarehouse> GetPendingSalesReturnWarehouses(int? locationID)
+        {
+            return base.TotalSmartCodingEntities.GetPendingSalesReturnWarehouses(locationID).ToList();
+        }
+
+        public List<PendingSalesReturnDetail> GetPendingSalesReturnDetails(int? locationID, int? goodsReceiptID, int? salesReturnID, int? warehouseID, string salesReturnDetailIDs, bool isReadonly)
+        {
+            return base.TotalSmartCodingEntities.GetPendingSalesReturnDetails(locationID, goodsReceiptID, salesReturnID, warehouseID, salesReturnDetailIDs, isReadonly).ToList();
+        }
+
+
+
         public List<PendingWarehouseAdjustmentDetail> GetPendingWarehouseAdjustmentDetails(int? locationID, int? goodsReceiptID, int? warehouseAdjustmentID, int? warehouseID, string warehouseAdjustmentDetailIDs, bool isReadonly)
         {
             return base.TotalSmartCodingEntities.GetPendingWarehouseAdjustmentDetails(locationID, goodsReceiptID, warehouseAdjustmentID, warehouseID, warehouseAdjustmentDetailIDs, isReadonly).ToList();

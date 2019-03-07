@@ -18,7 +18,11 @@ namespace TotalCore.Repositories.Inventories
         List<PendingGoodsIssueTransfer> GetPendingGoodsIssueTransfers(int? locationID);
         List<PendingGoodsIssueTransferWarehouse> GetPendingGoodsIssueTransferWarehouses(int? locationID);
         List<PendingGoodsIssueTransferDetail> GetPendingGoodsIssueTransferDetails(int? locationID, int? goodsReceiptID, int? goodsIssueID, int? warehouseID, string goodsIssueTransferDetailIDs, bool isReadonly);
-        
+
+        List<PendingSalesReturn> GetPendingSalesReturns(int? locationID);
+        List<PendingSalesReturnWarehouse> GetPendingSalesReturnWarehouses(int? locationID);
+        List<PendingSalesReturnDetail> GetPendingSalesReturnDetails(int? locationID, int? goodsReceiptID, int? salesReturnID, int? warehouseID, string salesReturnDetailIDs, bool isReadonly);
+
         List<PendingWarehouseAdjustmentDetail> GetPendingWarehouseAdjustmentDetails(int? locationID, int? goodsReceiptID, int? warehouseAdjustmentID, int? warehouseID, string warehouseAdjustmentDetailIDs, bool isReadonly);
         int? GetGoodsReceiptIDofWarehouseAdjustment(int? warehouseAdjustmentID);
 
