@@ -261,6 +261,22 @@ namespace TotalDAL.Repositories
                 this.ExecuteStoreCommand("INSERT INTO AccessControls (UserID, NMVNTaskID, OrganizationalUnitID,   AccessLevel, ApprovalPermitted, UnApprovalPermitted, VoidablePermitted, UnVoidablePermitted, ShowDiscount, AccessLevelBACKUP, ApprovalPermittedBACKUP, UnApprovalPermittedBACKUP, InActive) SELECT UserID, " + (int)GlobalEnums.NmvnTaskID.SalesReturns + " AS NMVNTaskID, OrganizationalUnitID, 0 AS AccessLevel, 0 AS ApprovalPermitted, 0 AS UnApprovalPermitted, 0 AS VoidablePermitted, 0 AS UnVoidablePermitted, ShowDiscount, AccessLevelBACKUP, ApprovalPermittedBACKUP, UnApprovalPermittedBACKUP, InActive FROM AccessControls    WHERE (NMVNTaskID =     " + (int)GlobalEnums.NmvnTaskID.SalesOrders + ") AND (SELECT COUNT(*) FROM AccessControls    WHERE NMVNTaskID =     " + (int)GlobalEnums.NmvnTaskID.SalesReturns + ") = 0", new ObjectParameter[] { });
                 this.ExecuteStoreCommand("INSERT INTO UserGroupControls (UserGroupID, ModuleDetailID, LocationID, AccessLevel, ApprovalPermitted, UnApprovalPermitted, VoidablePermitted, UnVoidablePermitted, ShowDiscount, AccessLevelBACKUP, ApprovalPermittedBACKUP, UnApprovalPermittedBACKUP, InActive) SELECT UserGroupID, " + (int)GlobalEnums.NmvnTaskID.SalesReturns + " AS ModuleDetailID, LocationID,  0 AS AccessLevel, 0 AS ApprovalPermitted, 0 AS UnApprovalPermitted, 0 AS VoidablePermitted, 0 AS UnVoidablePermitted, ShowDiscount, AccessLevelBACKUP, ApprovalPermittedBACKUP, UnApprovalPermittedBACKUP, InActive FROM UserGroupControls WHERE (ModuleDetailID = " + (int)GlobalEnums.NmvnTaskID.SalesOrders + ") AND (SELECT COUNT(*) FROM UserGroupControls WHERE ModuleDetailID = " + (int)GlobalEnums.NmvnTaskID.SalesReturns + ") = 0", new ObjectParameter[] { });
             }
+
+            if (!this.totalSmartCodingEntities.ColumnExists("GoodsReceiptDetails", "SalesReturnDetailID"))
+            {
+                this.totalSmartCodingEntities.ColumnAdd("GoodsReceipts", "SalesReturnID", "int", null, false);
+
+                this.totalSmartCodingEntities.ColumnAdd("GoodsReceiptDetails", "SalesReturnDetailID", "int", null, false);
+                this.totalSmartCodingEntities.ColumnAdd("GoodsReceiptDetails", "SalesReturnID", "int", null, false);
+
+                
+                this.ExecuteStoreCommand("ALTER TABLE [dbo].[GoodsReceipts] WITH CHECK ADD  CONSTRAINT [FK_GoodsReceipts_SalesReturns] FOREIGN KEY([SalesReturnID]) REFERENCES [dbo].[SalesReturns] ([SalesReturnID])", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("ALTER TABLE [dbo].[GoodsReceipts] CHECK CONSTRAINT [FK_GoodsReceipts_SalesReturns]", new ObjectParameter[] { });
+
+                this.ExecuteStoreCommand("ALTER TABLE [dbo].[GoodsReceiptDetails] WITH CHECK ADD  CONSTRAINT [FK_GoodsReceiptDetails_SalesReturnDetails] FOREIGN KEY([SalesReturnDetailID]) REFERENCES [dbo].[SalesReturnDetails] ([SalesReturnDetailID])", new ObjectParameter[] { });
+                this.ExecuteStoreCommand("ALTER TABLE [dbo].[GoodsReceiptDetails] CHECK CONSTRAINT [FK_GoodsReceiptDetails_SalesReturnDetails]", new ObjectParameter[] { });
+            }
+
             #endregion ADD SALES RETURN
 
             #region ApplicationUsers
@@ -311,6 +327,12 @@ namespace TotalDAL.Repositories
             Helpers.SqlProgrammability.Sales.SalesReturn salesReturn = new Helpers.SqlProgrammability.Sales.SalesReturn(totalSmartCodingEntities);
             salesReturn.RestoreProcedure();
 
+            //return;
+
+            Helpers.SqlProgrammability.Inventories.GoodsReceipt goodsReceipt = new Helpers.SqlProgrammability.Inventories.GoodsReceipt(totalSmartCodingEntities);
+            goodsReceipt.RestoreProcedure();
+
+            return;
             return;
 
             Helpers.SqlProgrammability.Commons.AccessControl accessControl = new Helpers.SqlProgrammability.Commons.AccessControl(totalSmartCodingEntities);
@@ -436,10 +458,7 @@ namespace TotalDAL.Repositories
             Helpers.SqlProgrammability.Generals.Report report = new Helpers.SqlProgrammability.Generals.Report(totalSmartCodingEntities);
             report.RestoreProcedure();
 
-            //return;
 
-            Helpers.SqlProgrammability.Inventories.GoodsReceipt goodsReceipt = new Helpers.SqlProgrammability.Inventories.GoodsReceipt(totalSmartCodingEntities);
-            goodsReceipt.RestoreProcedure();
 
             return;
 
