@@ -198,7 +198,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(248, 17);
             this.label6.TabIndex = 30;
-            this.label6.Text = "Order Date";
+            this.label6.Text = "Return Date";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label7
@@ -325,7 +325,7 @@
             // 
             // naviGroupDetails
             // 
-            this.naviGroupDetails.Caption = "   Sales order for";
+            this.naviGroupDetails.Caption = "   Sales return at";
             this.naviGroupDetails.Controls.Add(this.labelCaption);
             this.naviGroupDetails.Controls.Add(this.toolStripNaviGroup);
             this.naviGroupDetails.Controls.Add(this.panelCenter);
@@ -696,7 +696,7 @@
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 39F));
+            this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 42F));
             this.layoutTop.Controls.Add(this.combexCustomerID, 1, 1);
             this.layoutTop.Controls.Add(this.pictureBox1, 0, 1);
             this.layoutTop.Controls.Add(this.textexContactInfo, 4, 1);
@@ -728,7 +728,7 @@
             this.combexCustomerID.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.combexCustomerID.Name = "combexCustomerID";
             this.combexCustomerID.ReadOnly = false;
-            this.combexCustomerID.Size = new System.Drawing.Size(403, 25);
+            this.combexCustomerID.Size = new System.Drawing.Size(402, 25);
             this.combexCustomerID.TabIndex = 74;
             // 
             // pictureBox1
@@ -746,17 +746,17 @@
             // 
             this.textexContactInfo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexContactInfo.Editable = true;
-            this.textexContactInfo.Location = new System.Drawing.Point(660, 12);
+            this.textexContactInfo.Location = new System.Drawing.Point(659, 12);
             this.textexContactInfo.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.textexContactInfo.Name = "textexContactInfo";
-            this.textexContactInfo.Size = new System.Drawing.Size(267, 24);
+            this.textexContactInfo.Size = new System.Drawing.Size(266, 24);
             this.textexContactInfo.TabIndex = 78;
             // 
             // pictureBox2
             // 
             this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.pictureBox2.Image = global::TotalSmartCoding.Properties.Resources.Phone_icon_16;
-            this.pictureBox2.Location = new System.Drawing.Point(640, 16);
+            this.pictureBox2.Location = new System.Drawing.Point(639, 16);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(16, 16);
@@ -774,24 +774,24 @@
             this.combexReceiverID.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.combexReceiverID.Name = "combexReceiverID";
             this.combexReceiverID.ReadOnly = false;
-            this.combexReceiverID.Size = new System.Drawing.Size(403, 25);
+            this.combexReceiverID.Size = new System.Drawing.Size(402, 25);
             this.combexReceiverID.TabIndex = 80;
             // 
             // textexTelephone
             // 
             this.textexTelephone.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexTelephone.Editable = true;
-            this.textexTelephone.Location = new System.Drawing.Point(660, 40);
+            this.textexTelephone.Location = new System.Drawing.Point(659, 40);
             this.textexTelephone.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.textexTelephone.Name = "textexTelephone";
-            this.textexTelephone.Size = new System.Drawing.Size(267, 24);
+            this.textexTelephone.Size = new System.Drawing.Size(266, 24);
             this.textexTelephone.TabIndex = 81;
             // 
             // pictureBox3
             // 
             this.pictureBox3.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.pictureBox3.Image = global::TotalSmartCoding.Properties.Resources.Phone_icon_16;
-            this.pictureBox3.Location = new System.Drawing.Point(640, 44);
+            this.pictureBox3.Location = new System.Drawing.Point(639, 44);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(3, 2, 1, 2);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(16, 16);

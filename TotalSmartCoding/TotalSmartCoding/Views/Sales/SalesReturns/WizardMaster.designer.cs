@@ -54,6 +54,8 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.combexReceiverID = new CustomControls.CombexBox();
+            this.combexWarehouseID = new CustomControls.CombexBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderMaster)).BeginInit();
             this.layoutTop.SuspendLayout();
@@ -114,32 +116,35 @@
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75F));
             this.layoutTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 18F));
-            this.layoutTop.Controls.Add(this.textexReceiverTemp, 3, 4);
-            this.layoutTop.Controls.Add(this.combexCustomerID, 3, 2);
-            this.layoutTop.Controls.Add(this.label5, 2, 2);
-            this.layoutTop.Controls.Add(this.combexSalespersonID, 3, 8);
-            this.layoutTop.Controls.Add(this.textexRemarks, 3, 9);
-            this.layoutTop.Controls.Add(this.label2, 2, 8);
-            this.layoutTop.Controls.Add(this.label3, 2, 9);
-            this.layoutTop.Controls.Add(this.dateTimexVoucherDate, 3, 7);
-            this.layoutTop.Controls.Add(this.label6, 2, 7);
-            this.layoutTop.Controls.Add(this.textexVoucherCode, 3, 6);
-            this.layoutTop.Controls.Add(this.label7, 2, 6);
+            this.layoutTop.Controls.Add(this.label1, 2, 2);
+            this.layoutTop.Controls.Add(this.combexWarehouseID, 3, 2);
+            this.layoutTop.Controls.Add(this.textexReceiverTemp, 3, 5);
+            this.layoutTop.Controls.Add(this.combexCustomerID, 3, 3);
+            this.layoutTop.Controls.Add(this.label5, 2, 3);
+            this.layoutTop.Controls.Add(this.combexSalespersonID, 3, 9);
+            this.layoutTop.Controls.Add(this.textexRemarks, 3, 10);
+            this.layoutTop.Controls.Add(this.label2, 2, 9);
+            this.layoutTop.Controls.Add(this.label3, 2, 10);
+            this.layoutTop.Controls.Add(this.dateTimexVoucherDate, 3, 8);
+            this.layoutTop.Controls.Add(this.label6, 2, 8);
+            this.layoutTop.Controls.Add(this.textexVoucherCode, 3, 7);
+            this.layoutTop.Controls.Add(this.label7, 2, 7);
             this.layoutTop.Controls.Add(this.label8, 2, 1);
             this.layoutTop.Controls.Add(this.dateTimexEntryDate, 3, 1);
             this.layoutTop.Controls.Add(this.pictureBox2, 1, 1);
-            this.layoutTop.Controls.Add(this.label9, 2, 4);
-            this.layoutTop.Controls.Add(this.textexCustomerName, 3, 3);
-            this.layoutTop.Controls.Add(this.textexReceiverName, 3, 5);
-            this.layoutTop.Controls.Add(this.label10, 2, 3);
-            this.layoutTop.Controls.Add(this.label11, 2, 5);
+            this.layoutTop.Controls.Add(this.label9, 2, 5);
+            this.layoutTop.Controls.Add(this.textexCustomerName, 3, 4);
+            this.layoutTop.Controls.Add(this.textexReceiverName, 3, 6);
+            this.layoutTop.Controls.Add(this.label10, 2, 4);
+            this.layoutTop.Controls.Add(this.label11, 2, 6);
             this.layoutTop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutTop.Location = new System.Drawing.Point(0, 0);
             this.layoutTop.Margin = new System.Windows.Forms.Padding(0);
             this.layoutTop.Name = "layoutTop";
             this.layoutTop.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.layoutTop.RowCount = 11;
+            this.layoutTop.RowCount = 12;
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.layoutTop.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -158,7 +163,7 @@
             this.textexReceiverTemp.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexReceiverTemp.Editable = true;
             this.textexReceiverTemp.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textexReceiverTemp.Location = new System.Drawing.Point(231, 102);
+            this.textexReceiverTemp.Location = new System.Drawing.Point(231, 129);
             this.textexReceiverTemp.Margin = new System.Windows.Forms.Padding(1);
             this.textexReceiverTemp.Name = "textexReceiverTemp";
             this.textexReceiverTemp.Size = new System.Drawing.Size(466, 24);
@@ -175,7 +180,7 @@
             this.combexCustomerID.Editable = true;
             this.combexCustomerID.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combexCustomerID.FormattingEnabled = true;
-            this.combexCustomerID.Location = new System.Drawing.Point(231, 49);
+            this.combexCustomerID.Location = new System.Drawing.Point(231, 76);
             this.combexCustomerID.Margin = new System.Windows.Forms.Padding(1);
             this.combexCustomerID.Name = "combexCustomerID";
             this.combexCustomerID.ReadOnly = false;
@@ -189,7 +194,7 @@
             this.label5.AutoSize = true;
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label5.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(76, 48);
+            this.label5.Location = new System.Drawing.Point(76, 75);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(152, 27);
@@ -205,7 +210,7 @@
             this.combexSalespersonID.Editable = true;
             this.combexSalespersonID.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combexSalespersonID.FormattingEnabled = true;
-            this.combexSalespersonID.Location = new System.Drawing.Point(231, 206);
+            this.combexSalespersonID.Location = new System.Drawing.Point(231, 233);
             this.combexSalespersonID.Margin = new System.Windows.Forms.Padding(1);
             this.combexSalespersonID.Name = "combexSalespersonID";
             this.combexSalespersonID.ReadOnly = false;
@@ -217,7 +222,7 @@
             this.textexRemarks.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexRemarks.Editable = true;
             this.textexRemarks.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textexRemarks.Location = new System.Drawing.Point(231, 233);
+            this.textexRemarks.Location = new System.Drawing.Point(231, 260);
             this.textexRemarks.Margin = new System.Windows.Forms.Padding(1);
             this.textexRemarks.Name = "textexRemarks";
             this.textexRemarks.Size = new System.Drawing.Size(466, 24);
@@ -228,7 +233,7 @@
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label2.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(76, 205);
+            this.label2.Location = new System.Drawing.Point(76, 232);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(152, 27);
@@ -241,7 +246,7 @@
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label3.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(76, 232);
+            this.label3.Location = new System.Drawing.Point(76, 259);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(152, 26);
@@ -256,7 +261,7 @@
             this.dateTimexVoucherDate.Editable = true;
             this.dateTimexVoucherDate.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimexVoucherDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimexVoucherDate.Location = new System.Drawing.Point(231, 180);
+            this.dateTimexVoucherDate.Location = new System.Drawing.Point(231, 207);
             this.dateTimexVoucherDate.Margin = new System.Windows.Forms.Padding(1);
             this.dateTimexVoucherDate.Name = "dateTimexVoucherDate";
             this.dateTimexVoucherDate.ReadOnly = false;
@@ -268,7 +273,7 @@
             this.label6.AutoSize = true;
             this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label6.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(76, 179);
+            this.label6.Location = new System.Drawing.Point(76, 206);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(152, 26);
@@ -281,7 +286,7 @@
             this.textexVoucherCode.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexVoucherCode.Editable = true;
             this.textexVoucherCode.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textexVoucherCode.Location = new System.Drawing.Point(231, 154);
+            this.textexVoucherCode.Location = new System.Drawing.Point(231, 181);
             this.textexVoucherCode.Margin = new System.Windows.Forms.Padding(1);
             this.textexVoucherCode.Name = "textexVoucherCode";
             this.textexVoucherCode.Size = new System.Drawing.Size(466, 24);
@@ -292,7 +297,7 @@
             this.label7.AutoSize = true;
             this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label7.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(76, 153);
+            this.label7.Location = new System.Drawing.Point(76, 180);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(152, 26);
@@ -333,7 +338,7 @@
             this.pictureBox2.Location = new System.Drawing.Point(24, 24);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox2.Name = "pictureBox2";
-            this.layoutTop.SetRowSpan(this.pictureBox2, 5);
+            this.layoutTop.SetRowSpan(this.pictureBox2, 6);
             this.pictureBox2.Size = new System.Drawing.Size(48, 48);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox2.TabIndex = 75;
@@ -344,7 +349,7 @@
             this.label9.AutoSize = true;
             this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label9.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(76, 101);
+            this.label9.Location = new System.Drawing.Point(76, 128);
             this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(152, 26);
@@ -357,7 +362,7 @@
             this.textexCustomerName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexCustomerName.Editable = true;
             this.textexCustomerName.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textexCustomerName.Location = new System.Drawing.Point(231, 76);
+            this.textexCustomerName.Location = new System.Drawing.Point(231, 103);
             this.textexCustomerName.Margin = new System.Windows.Forms.Padding(1);
             this.textexCustomerName.Name = "textexCustomerName";
             this.textexCustomerName.ReadOnly = true;
@@ -369,7 +374,7 @@
             this.textexReceiverName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textexReceiverName.Editable = true;
             this.textexReceiverName.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textexReceiverName.Location = new System.Drawing.Point(231, 128);
+            this.textexReceiverName.Location = new System.Drawing.Point(231, 155);
             this.textexReceiverName.Margin = new System.Windows.Forms.Padding(1);
             this.textexReceiverName.Name = "textexReceiverName";
             this.textexReceiverName.ReadOnly = true;
@@ -381,7 +386,7 @@
             this.label10.AutoSize = true;
             this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label10.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(76, 75);
+            this.label10.Location = new System.Drawing.Point(76, 102);
             this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(152, 26);
@@ -394,7 +399,7 @@
             this.label11.AutoSize = true;
             this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label11.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(76, 127);
+            this.label11.Location = new System.Drawing.Point(76, 154);
             this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(152, 26);
@@ -417,6 +422,34 @@
             this.combexReceiverID.TabIndex = 4;
             this.combexReceiverID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.combexCustomerReceiverID_KeyDown);
             this.combexReceiverID.MouseClick += new System.Windows.Forms.MouseEventHandler(this.combexCustomerReceiverID_MouseClick);
+            // 
+            // combexWarehouseID
+            // 
+            this.combexWarehouseID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.combexWarehouseID.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.combexWarehouseID.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.combexWarehouseID.Editable = true;
+            this.combexWarehouseID.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.combexWarehouseID.FormattingEnabled = true;
+            this.combexWarehouseID.Location = new System.Drawing.Point(231, 49);
+            this.combexWarehouseID.Margin = new System.Windows.Forms.Padding(1);
+            this.combexWarehouseID.Name = "combexWarehouseID";
+            this.combexWarehouseID.ReadOnly = false;
+            this.combexWarehouseID.Size = new System.Drawing.Size(466, 25);
+            this.combexWarehouseID.TabIndex = 97;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Font = new System.Drawing.Font("Calibri Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(76, 48);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(152, 27);
+            this.label1.TabIndex = 98;
+            this.label1.Text = "Warehouse";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // WizardMaster
             // 
@@ -471,5 +504,7 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private CustomControls.TextexBox textexReceiverTemp;
+        private System.Windows.Forms.Label label1;
+        private CustomControls.CombexBox combexWarehouseID;
     }
 }

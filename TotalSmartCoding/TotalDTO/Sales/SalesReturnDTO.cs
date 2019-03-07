@@ -142,7 +142,7 @@ namespace TotalDTO.Sales
 
         public override string Caption
         {
-            get { return this.VoucherCode + (this.GoodsIssueID != null ? this.GoodsIssueReference : this.GoodsIssueReferences) + ", " + (this.CustomerName != null ? "Customer: " + this.CustomerName.Substring(0, this.CustomerName.Length > 16 ? 15 : this.CustomerName.Length) : "") + "             Total Quantity: " + this.TotalQuantity.ToString("N0") + ",    Total Volume: " + this.TotalLineVolume.ToString("N2"); }
+            get { return this.WarehouseName + (this.GoodsIssueID != null ? this.GoodsIssueReference : this.GoodsIssueReferences) + ", " + (this.CustomerName != null ? "Customer: " + this.CustomerName.Substring(0, this.CustomerName.Length > 16 ? 15 : this.CustomerName.Length) : "") + "             Total Quantity: " + this.TotalQuantity.ToString("N0") + ",    Total Volume: " + this.TotalLineVolume.ToString("N2"); }
         }
 
         public override void PerformPresaveRule()

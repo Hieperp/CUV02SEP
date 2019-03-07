@@ -24,6 +24,7 @@ namespace TotalSmartCoding.Views.Sales.SalesReturns
     {
         private SalesReturnViewModel salesReturnViewModel;
 
+        Binding bindingWarehouseID;
         Binding bindingCustomerID;
         Binding bindingReceiverID;
         Binding bindingSalespersonID;
@@ -46,6 +47,13 @@ namespace TotalSmartCoding.Views.Sales.SalesReturns
 
 
                 this.salesReturnViewModel.PropertyChanged += salesReturnDetailDTO_PropertyChanged;
+
+                WarehouseAPIs warehouseAPIs = new WarehouseAPIs(CommonNinject.Kernel.Get<IWarehouseAPIRepository>());
+
+                this.combexWarehouseID.DataSource = warehouseAPIs.GetWarehouseBases();
+                this.combexWarehouseID.DisplayMember = CommonExpressions.PropertyName<WarehouseBase>(p => p.Name);
+                this.combexWarehouseID.ValueMember = CommonExpressions.PropertyName<WarehouseBase>(p => p.WarehouseID);
+                this.bindingWarehouseID = this.combexWarehouseID.DataBindings.Add("SelectedValue", this.salesReturnViewModel, CommonExpressions.PropertyName<SalesReturnViewModel>(p => p.WarehouseID), true, DataSourceUpdateMode.OnPropertyChanged);
 
                 CustomerAPIs customerAPIs = new CustomerAPIs(CommonNinject.Kernel.Get<ICustomerAPIRepository>());
 
@@ -75,6 +83,7 @@ namespace TotalSmartCoding.Views.Sales.SalesReturns
                 this.bindingReceiverTemp = this.textexReceiverTemp.DataBindings.Add("Text", this.salesReturnViewModel, CommonExpressions.PropertyName<SalesReturnViewModel>(p => p.ReceiverTemp), true, DataSourceUpdateMode.OnPropertyChanged);
                 this.bindingRemarks = this.textexRemarks.DataBindings.Add("Text", this.salesReturnViewModel, CommonExpressions.PropertyName<SalesReturnViewModel>(p => p.Remarks), true, DataSourceUpdateMode.OnPropertyChanged);
 
+                this.bindingWarehouseID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
                 this.bindingCustomerID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
                 this.bindingReceiverID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
                 this.bindingSalespersonID.BindingComplete += new BindingCompleteEventHandler(CommonControl_BindingComplete);
@@ -103,6 +112,11 @@ namespace TotalSmartCoding.Views.Sales.SalesReturns
         private void CommonControl_BindingComplete(object sender, BindingCompleteEventArgs e)
         {
             if (e.BindingCompleteState == BindingCompleteState.Exception) { ExceptionHandlers.ShowExceptionMessageBox(this, e.ErrorText); e.Cancel = true; }
+            if (sender.Equals(this.bindingWarehouseID) && this.combexWarehouseID.SelectedItem != null)
+            {
+                WarehouseBase warehouseBase = (WarehouseBase)this.combexWarehouseID.SelectedItem;
+                this.salesReturnViewModel.WarehouseName = warehouseBase.Name;
+            }
             if (sender.Equals(this.bindingSalespersonID) && this.combexSalespersonID.SelectedItem != null)
             {
                 EmployeeBase customerBase = (EmployeeBase)this.combexSalespersonID.SelectedItem;
@@ -195,7 +209,7 @@ namespace TotalSmartCoding.Views.Sales.SalesReturns
             {
                 if (sender.Equals(this.buttonOK))
                 {
-                    if (this.salesReturnViewModel.CustomerID != null && this.salesReturnViewModel.ReceiverID != null && this.salesReturnViewModel.SalespersonID != null)
+                    if (this.salesReturnViewModel.WarehouseID != null && this.salesReturnViewModel.CustomerID != null && this.salesReturnViewModel.ReceiverID != null && this.salesReturnViewModel.SalespersonID != null)
                         this.DialogResult = DialogResult.OK;
                     else
                         CustomMsgBox.Show(this, "Vui lòng chọn khách hàng, nhân viên kinh doanh.", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Stop);

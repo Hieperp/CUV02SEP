@@ -72,7 +72,7 @@ namespace TotalSmartCoding.Views.Sales.SalesReturns
                 this.customTabLeft = new CustomTabControl();
                 this.customTabLeft.DisplayStyle = TabStyle.VisualStudio;
 
-                this.customTabLeft.TabPages.Add("tabLeftAA", "Sales Order  ");
+                this.customTabLeft.TabPages.Add("tabLeftAA", "Sales Return  ");
                 this.customTabLeft.TabPages[0].BackColor = this.panelLeft.BackColor;
                 this.customTabLeft.TabPages[0].Padding = new Padding(15, 0, 0, 0);
                 this.customTabLeft.TabPages[0].Controls.Add(this.layoutLeft);
