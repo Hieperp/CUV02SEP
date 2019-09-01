@@ -128,11 +128,11 @@ namespace TotalDTO.Productions
         {
             List<ValidationRule> validationRules = base.CreateRules(); int value;
             validationRules.Add(new SimpleValidationRule("CommodityID", "Vui lòng chọn mã sản phẩm.", delegate { return this.CommodityID > 0; }));
-            validationRules.Add(new SimpleValidationRule("Code", "Số batch quy định là 9 ký tự, gồm 7 ký tự chính thức và 2 ký tự phụ.", delegate { return this.Code != null && this.Code.Length == 9; }));
-            validationRules.Add(new SimpleValidationRule("NextPackNo", "Số thứ tự chai quy định là 6 chữ số.", delegate { return this.NextPackNo.Length == 6 && int.TryParse(this.NextPackNo, out value); }));
-            validationRules.Add(new SimpleValidationRule("NextCartonNo", "Số thứ tự carton quy định là 6 chữ số.", delegate { return this.NextCartonNo.Length == 6 && int.TryParse(this.NextCartonNo, out value); }));
-            validationRules.Add(new SimpleValidationRule("NextPalletNo", "Số thứ tự pallet quy định là 6 chữ số.", delegate { return this.NextPalletNo.Length == 6 && int.TryParse(this.NextPalletNo, out value); }));
-            validationRules.Add(new SimpleValidationRule("FinalCartonNo", "Số carton cuối cùng quy định là 6 chữ số và lớn hơn hoặc bằng số carton.", delegate { return this.FinalCartonNo.Length == 6 && int.TryParse(this.FinalCartonNo, out value) && (!this.AutoBarcode || int.Parse(this.NextCartonNo) <= int.Parse(this.FinalCartonNo)); }));
+            validationRules.Add(new SimpleValidationRule("Code", "Số batch quy định là 12 ký tự, gồm 10 ký tự chính thức và 2 ký tự phụ.", delegate { return this.Code != null && this.Code.Length == 12; }));
+            validationRules.Add(new SimpleValidationRule("NextPackNo", "Số thứ tự chai quy định là 5 chữ số.", delegate { return this.NextPackNo.Length == 5 && int.TryParse(this.NextPackNo, out value); }));
+            validationRules.Add(new SimpleValidationRule("NextCartonNo", "Số thứ tự carton quy định là 5 chữ số.", delegate { return this.NextCartonNo.Length == 5 && int.TryParse(this.NextCartonNo, out value); }));
+            validationRules.Add(new SimpleValidationRule("NextPalletNo", "Số thứ tự pallet quy định là 5 chữ số.", delegate { return this.NextPalletNo.Length == 5 && int.TryParse(this.NextPalletNo, out value); }));
+            validationRules.Add(new SimpleValidationRule("FinalCartonNo", "Số carton cuối cùng quy định là 5 chữ số và lớn hơn hoặc bằng số carton.", delegate { return this.FinalCartonNo.Length == 5 && int.TryParse(this.FinalCartonNo, out value) && (!this.AutoBarcode || int.Parse(this.NextCartonNo) <= int.Parse(this.FinalCartonNo)); }));
 
             return validationRules;
 

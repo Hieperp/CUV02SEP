@@ -166,7 +166,7 @@ namespace TotalSmartCoding.Controllers.Productions
         }
         public string getPreviousNo(string nextNo)
         {
-            return (int.Parse(nextNo) - 1).ToString("0000000").Substring(1);
+            return (int.Parse(nextNo) - 1).ToString("000000").Substring(1);
         }
 
         private string getNextNo()
@@ -209,11 +209,11 @@ namespace TotalSmartCoding.Controllers.Productions
 
         private void feedbackNextNo(string nextNo, string receivedFeedback, bool sendCartontoZebra)
         {
-            if (nextNo == "" && receivedFeedback.Length > 12)
+            if (nextNo == "" && receivedFeedback.Length > 11)
             {
                 int serialNumber = 0;
-                if (int.TryParse(receivedFeedback.Substring(6, 6), out serialNumber))
-                    nextNo = serialNumber.ToString("0000000").Substring(1);//SHOULD OR NOT: Increase serialNumber by 1 (BECAUSE: nextNo MUST GO AHEAD BY 1??): TEST AT DATMY: FOR AX350: NO NEED, BUCAUSE: AX350 RETURN THE NEXT VALUE. BUT FOR A200+: RETURN THE PRINTED VALUE
+                if (int.TryParse(receivedFeedback.Substring(6, 5), out serialNumber))
+                    nextNo = serialNumber.ToString("000000").Substring(1);//SHOULD OR NOT: Increase serialNumber by 1 (BECAUSE: nextNo MUST GO AHEAD BY 1??): TEST AT DATMY: FOR AX350: NO NEED, BUCAUSE: AX350 RETURN THE NEXT VALUE. BUT FOR A200+: RETURN THE PRINTED VALUE
             }
 
             if (nextNo != "")
@@ -304,7 +304,7 @@ namespace TotalSmartCoding.Controllers.Productions
         private string dominoSerialNumber(int serialNumberIndentity)
         {
             if (this.printerName != GlobalVariables.PrinterName.PalletLabel)
-                return GlobalVariables.charESC + "/j/" + serialNumberIndentity.ToString() + "/N/06/000001/999999/000001/Y/N/0/000001/00000/N/";
+                return GlobalVariables.charESC + "/j/" + serialNumberIndentity.ToString() + "/N/05/00001/99999/00001/Y/N/0/00001/00000/N/";
             else
                 return this.privateFillingData.NextPalletNo; //---Dont use counter (This will be updated MANUALLY for each pallet)
         }
@@ -371,7 +371,7 @@ namespace TotalSmartCoding.Controllers.Productions
 
         private string thirdLineA2(bool isReadableText, int serialIndentity, bool sendCartontoZebra)
         {
-            return this.privateFillingData.FillingLineCode + (serialIndentity < 0 ? "" : (serialIndentity == 1 || serialIndentity == 2 ? (GlobalEnums.OnTestPrinter ? this.getNextNo() : this.dominoSerialNumber(serialIndentity)) : ((GlobalEnums.DrumWithDigit && !this.FillingData.HasCarton) ? this.getPreviousNo(this.FillingData.NextDigitNo) : (sendCartontoZebra ? this.getNextNo(true) : (this.FillingData.CartonsetQueueZebraStatus == GlobalVariables.ZebraStatus.Freshnew ? this.getNextNo() : this.getPreviousNo())))));
+            return (isReadableText? this.privateFillingData.FillingLineCode: "") + (serialIndentity < 0 ? "" : (serialIndentity == 1 || serialIndentity == 2 ? (GlobalEnums.OnTestPrinter ? this.getNextNo() : this.dominoSerialNumber(serialIndentity)) : ((GlobalEnums.DrumWithDigit && !this.FillingData.HasCarton) ? this.getPreviousNo(this.FillingData.NextDigitNo) : (sendCartontoZebra ? this.getNextNo(true) : (this.FillingData.CartonsetQueueZebraStatus == GlobalVariables.ZebraStatus.Freshnew ? this.getNextNo() : this.getPreviousNo())))));
         }
 
         private string wholeBarcode(int serialIndentity)
@@ -681,7 +681,7 @@ namespace TotalSmartCoding.Controllers.Productions
                     if (!this.FillingData.AutoCarton) this.ioserialPort.WritetoSerial(this.wholeMessageLine(true));
                     lock (this.FillingData.CartontoZebraQueue) { this.FillingData.CartontoZebraQueue.Enqueue(cartonDTO); }
 
-                    this.feedbackNextNo((int.Parse(this.getNextNo(true)) + 1).ToString("0000000").Substring(1), "", true);
+                    this.feedbackNextNo((int.Parse(this.getNextNo(true)) + 1).ToString("000000").Substring(1), "", true);
                     this.nthCartontoZebra--;
                 }
             }
@@ -723,7 +723,7 @@ namespace TotalSmartCoding.Controllers.Productions
                 string stringReadFrom = "";
                 if (true || this.ioserialPort.ReadoutSerial(true, ref stringReadFrom)) //NOW: THE ZEBRA USING IN THIS CHEVRON PROJECT DOES NOT SUPPORT: "Error Detection Protocol" => WE CAN NOT USING TRANSACTION TO GET RESPOND FROM ZEBRA PRINTER
                 {
-                    this.feedbackNextNo(this.FillingData.CartonsetQueueZebraStatus >= GlobalVariables.ZebraStatus.Printing1 ? (int.Parse(this.getNextNo()) + 1).ToString("0000000").Substring(1) : this.getNextNo());
+                    this.feedbackNextNo(this.FillingData.CartonsetQueueZebraStatus >= GlobalVariables.ZebraStatus.Printing1 ? (int.Parse(this.getNextNo()) + 1).ToString("000000").Substring(1) : this.getNextNo());
                     this.FillingData.CartonsetQueueZebraStatus = GlobalVariables.ZebraStatus.Printed;
                 }
                 else
@@ -843,7 +843,7 @@ namespace TotalSmartCoding.Controllers.Productions
             this.LoopRoutine = true; this.StopPrint();
 
 
-            //if (GlobalEnums.OnTestPrinter && this.printerName != GlobalVariables.PrinterName.DigitInkjet) this.feedbackNextNo((int.Parse(this.getNextNo()) + 1).ToString("0000000").Substring(1));
+            //if (GlobalEnums.OnTestPrinter && this.printerName != GlobalVariables.PrinterName.DigitInkjet) this.feedbackNextNo((int.Parse(this.getNextNo()) + 1).ToString("000000").Substring(1));
 
             //This command line is specific to: PalletLabel ON FillingLine.Drum || CartonInkjet ON FillingLine.Pail (Just here only for this specific)
             if ((this.FillingData.FillingLineID == GlobalVariables.FillingLine.Drum && !(this.printerName == GlobalVariables.PrinterName.PalletLabel || (GlobalEnums.DrumWithDigit && this.printerName == GlobalVariables.PrinterName.DigitInkjet)))
@@ -1005,7 +1005,7 @@ namespace TotalSmartCoding.Controllers.Productions
                             if (this.NextAutoBarcodeCode == "" && (this.printerName != GlobalVariables.PrinterName.CartonInkjet || int.Parse(this.getNextNo()) <= int.Parse(this.FillingData.FinalCartonNo)))
                             {
                                 this.NextAutoBarcodeCode = this.wholeBarcode(this.printerName != GlobalVariables.PrinterName.PalletLabel ? 2 : 0);
-                                this.feedbackNextNo((int.Parse(this.getNextNo()) + 1).ToString("0000000").Substring(1));
+                                this.feedbackNextNo((int.Parse(this.getNextNo()) + 1).ToString("000000").Substring(1));
                             }
                             this.MainStatus = "Đang chạy máy in ảo ...";
                         }

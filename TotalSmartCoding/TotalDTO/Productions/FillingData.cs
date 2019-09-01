@@ -209,7 +209,7 @@ namespace TotalDTO.Productions
                 if (value != this.nextDigitNo)
                 {
                     int intValue = 0;
-                    if (int.TryParse(value, out intValue) && value.Length == 6)
+                    if (int.TryParse(value, out intValue) && value.Length == 5)
                     {
                         ApplyPropertyChange<FillingData, string>(ref this.nextDigitNo, o => o.NextDigitNo, value);
                     }
@@ -230,7 +230,7 @@ namespace TotalDTO.Productions
                 if (value != this.nextPackNo)
                 {
                     int intValue = 0;
-                    if (int.TryParse(value, out intValue) && value.Length == 6)
+                    if (int.TryParse(value, out intValue) && value.Length == 5)
                     {
                         ApplyPropertyChange<FillingData, string>(ref this.nextPackNo, o => o.NextPackNo, value);
                     }
@@ -251,7 +251,7 @@ namespace TotalDTO.Productions
                 if (value != this.nextCartonNo)
                 {
                     int intValue = 0;
-                    if (int.TryParse(value, out intValue) && value.Length == 6)
+                    if (int.TryParse(value, out intValue) && value.Length == 5)
                     {
                         ApplyPropertyChange<FillingData, string>(ref this.nextCartonNo, o => o.NextCartonNo, value);
                     }
@@ -273,7 +273,7 @@ namespace TotalDTO.Productions
                 if (value != this.nextPalletNo)
                 {
                     int intValue = 0;
-                    if (int.TryParse(value, out intValue) && value.Length == 6)
+                    if (int.TryParse(value, out intValue) && value.Length == 5)
                     {
                         ApplyPropertyChange<FillingData, string>(ref this.nextPalletNo, o => o.NextPalletNo, value);
                     }
@@ -295,7 +295,7 @@ namespace TotalDTO.Productions
                 if (value != this.finalCartonNo)
                 {
                     int intValue = 0;
-                    if (int.TryParse(value, out intValue) && value.Length == 6)
+                    if (int.TryParse(value, out intValue) && value.Length == 5)
                     {
                         ApplyPropertyChange<FillingData, string>(ref this.finalCartonNo, o => o.FinalCartonNo, value);
                     }
@@ -447,7 +447,7 @@ namespace TotalDTO.Productions
 
         public string ThirdLineA1(bool isReadableText)
         {
-            return this.BatchCode.Substring(0, 7);
+            return this.BatchCode.Substring(0, 10);
         }
 
     }

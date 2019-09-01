@@ -705,16 +705,16 @@ namespace TotalSmartCoding.Views.Productions
             int indexOfDoubleTabChar = printedBarcode.IndexOf(GlobalVariables.doubleTabChar.ToString());
             if (indexOfDoubleTabChar == 0)
                 printedBarcode = ""; //10-AUG-2017: WHAT IS GlobalVariables.doubleTabChar.ToString()???
-            //else if (printedBarcode.Length > 6) printedBarcode = printedBarcode.Substring(printedBarcode.Length - 7, 6); //Char[3][4][5]...[9]: Serial Number
+            //else if (printedBarcode.Length > 5) printedBarcode = printedBarcode.Substring(printedBarcode.Length - 7, 5); //Char[3][4][5]...[9]: Serial Number
             else
             {
                 if (this.fillingData.HasPack && printedBarcode.Length >= 29)
-                    printedBarcode = printedBarcode.Substring(indexOfDoubleTabChar - 6, 6);
+                    printedBarcode = printedBarcode.Substring(indexOfDoubleTabChar - 5, 5);
 
                 if (!this.fillingData.HasPack && printedBarcode.Length >= 29)
                 {
                     if (sender != null && ((this.fillingData.HasCarton || this.fillingData.FillingLineID == GlobalVariables.FillingLine.Import) && (sender.Equals(this.dgvPalletQueue) || sender.Equals(this.dgvPalletPickupQueue))))
-                        printedBarcode = printedBarcode.Substring(indexOfDoubleTabChar - 6, 6);
+                        printedBarcode = printedBarcode.Substring(indexOfDoubleTabChar - 5, 5);
                     else
                         printedBarcode = printedBarcode.Substring(0, indexOfDoubleTabChar);
                 }
@@ -722,10 +722,10 @@ namespace TotalSmartCoding.Views.Productions
 
             //////--BP CASTROL
             ////if (printedBarcode.IndexOf(GlobalVariables.doubleTabChar.ToString()) == 0) printedBarcode = "";
-            //////else if (printedBarcode.Length > 6) printedBarcode = printedBarcode.Substring(printedBarcode.Length - 7, 6); //Char[3][4][5]...[9]: Serial Number
+            //////else if (printedBarcode.Length > 5) printedBarcode = printedBarcode.Substring(printedBarcode.Length - 7, 5); //Char[3][4][5]...[9]: Serial Number
             ////else
-            ////    if (printedBarcode.Length >= 29) printedBarcode = printedBarcode.Substring(23, 6); //Char[3][4][5]...[9]: Serial Number
-            ////    else if (printedBarcode.Length >= 12) printedBarcode = printedBarcode.Substring(6, 5);
+            ////    if (printedBarcode.Length >= 29) printedBarcode = printedBarcode.Substring(23, 5); //Char[3][4][5]...[9]: Serial Number
+            ////    else if (printedBarcode.Length >= 12) printedBarcode = printedBarcode.Substring(5, 5);
 
             return printedBarcode;
         }

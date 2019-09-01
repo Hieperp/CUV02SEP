@@ -63,6 +63,10 @@ namespace TotalDAL.Repositories
                 this.totalSmartCodingEntities.ColumnAdd("Configs", "StoredID", "int", "0", true);
             }
 
+            #region UPDATE Batches (NextNo)
+            this.ExecuteStoreCommand("UPDATE Batches SET NextPackNo = RIGHT(NextPackNo, 5), NextCartonNo = RIGHT(NextCartonNo, 5), NextPalletNo = RIGHT(NextPalletNo, 5), FinalCartonNo = RIGHT(FinalCartonNo, 5) WHERE (LEN(NextPackNo) = 6)", new ObjectParameter[] { });
+            #endregion UPDATE Batches (NextNo)
+
             //UPDATE VERSION: ADD UPDATE DATABASE HERE IF NEEDED
             #region ADD SALES RETURN
 
