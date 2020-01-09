@@ -1113,7 +1113,7 @@ namespace TotalSmartCoding.Controllers.Productions
                                 else
                                 {
                                     this.ionetSocket.WritetoStream(GlobalVariables.charESC + "/U/001/1/?/" + GlobalVariables.charEOT);//    U: Read Counter 1 (ONLY COUNTER 1---COUNTER 2: THE SAME COUNTER 1: Principlely)
-                                    if (this.waitforDomino(ref receivedFeedback, false, "U", 13))
+                                    if (this.waitforDomino(ref receivedFeedback, false, "U", 12))
                                         this.feedbackNextNo("", receivedFeedback);
                                 }
                             }

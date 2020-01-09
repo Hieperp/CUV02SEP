@@ -47,6 +47,7 @@ namespace TotalSmartCoding.Views.Commons.Commodities
         {
             InitializeComponent();
 
+            this.numericCartonPerPallet.Maximum = 200;
             this.toolstripChild = this.toolStripChildForm;
             this.fastListIndex = this.fastCommodityIndex;
 

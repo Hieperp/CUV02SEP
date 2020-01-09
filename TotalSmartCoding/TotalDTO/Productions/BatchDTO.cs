@@ -49,7 +49,7 @@ namespace TotalDTO.Productions
 
 
         private string nextPackNo;
-        [DefaultValue("000001")]
+        [DefaultValue("00001")]
         public string NextPackNo
         {
             get { return this.nextPackNo; }
@@ -57,7 +57,7 @@ namespace TotalDTO.Productions
         }
 
         private string nextCartonNo;
-        [DefaultValue("000001")]
+        [DefaultValue("00001")]
         public string NextCartonNo
         {
             get { return this.nextCartonNo; }
@@ -65,7 +65,7 @@ namespace TotalDTO.Productions
         }
 
         private string nextPalletNo;
-        [DefaultValue("000001")]
+        [DefaultValue("00001")]
         public string NextPalletNo
         {
             get { return this.nextPalletNo; }
@@ -73,7 +73,7 @@ namespace TotalDTO.Productions
         }
 
         private string finalCartonNo;
-        [DefaultValue("000001")]
+        [DefaultValue("00001")]
         public string FinalCartonNo
         {
             get { return this.finalCartonNo; }
